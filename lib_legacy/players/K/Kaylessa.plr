@@ -1,0 +1,186 @@
+name: Kaylessa
+password: KaLoBCAUVC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 2
+class: 7
+race: 9
+level: 99
+home: 3003
+lifeforce: 0
+composition: 0
+id: 12346
+birthtime: 1058764434
+timeplayed: 9657422
+lastlogintime: 1735415697
+host: 066.199.058.082
+height: 68
+weight: 146
+base_height: 68
+base_weight: 146
+base_size: 2
+natural_size: 2
+alignment: -14
+playerflags: glxy
+effectflags: k 0 0
+prefflags: hnosuzC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 10
+hitpoints: 791/791
+mana: 100/100
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 89
+intelligence: 94
+wisdom: 95
+dexterity: 82
+constitution: 66
+charisma: 66
+cash: 0 8 4 5
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+spellcasts:
+10 242
+0 0
+skills:
+6 1000
+11 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+27 1000
+28 1000
+30 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+51 1000
+70 1000
+71 1000
+73 1000
+74 1000
+88 1000
+89 1000
+90 1000
+91 1000
+99 1000
+118 1000
+144 1000
+145 1000
+146 1000
+147 1000
+148 1000
+149 1000
+150 1000
+151 1000
+152 1000
+153 1000
+154 1000
+155 1000
+156 1000
+206 1000
+207 1000
+215 1000
+241 1000
+243 1000
+245 1000
+247 1000
+263 1000
+415 1000
+416 1000
+417 1000
+421 1000
+423 1000
+424 1000
+429 1000
+438 1000
+443 1000
+444 1000
+451 1000
+452 1000
+453 1000
+454 1000
+455 1000
+456 1000
+457 1000
+458 1000
+459 1000
+460 1000
+462 1000
+463 1000
+464 50
+465 50
+466 1000
+0 0
+trophy:
+1 16110 5.000000
+1 41119 1.000000
+1 41121 1.000000
+1 8014 1.000000
+1 8016 1.000000
+1 3503 0.500000
+1 37001 3.000000
+1 37002 0.500000
+1 2003 1.000000
+1 8021 1.000000
+1 48811 0.250000
+1 5403 2.000000
+1 5442 2.000000
+1 5447 1.000000
+1 5451 2.000000
+1 5443 4.500000
+1 5414 13.000000
+1 5421 3.000000
+1 5408 4.000000
+1 5420 3.000000
+1 5404 6.000000
+0 0 0
+tells:
+1675611804 @WKeric@W tells you, 'well@W'@0
+1675612968 @WHerix@W tells you, 'well@W'@0
+1675614056 @WHerix@W tells you, 'well@W'@0
+1676857322 @WKresselack@W tells you, 'well@W'@0
+1678593192 @WKresselack@W tells you, 'well@W'@0
+1678593198 @WKresselack@W tells you, 'well@W'@0
+1678593298 @WKresselack@W tells you, 'well@W'@0
+1678593539 @WKresselack@W tells you, 'well@W'@0
+1698156299 @WCerea@W tells you, 'well@W'@0
+1717299330 @WBigby@W tells you, 'No cash, no delivery.@W'@0
+$
+gossips:
+1713667895 Discord gossips, 'venath.2005: Well, the quest spell part means it's basically a ** spell anyways LOL'
+1717278994 Kresselack gossips, 'sup chinok'
+1717299986 Lorath gossips, 'does Unholy Word work?'
+1717299995 Corana gossips, 'should'
+1717300002 Corana gossips, 'you are using it again good align right'
+1717300008 Lorath gossips, 'yes'
+1717300023 Lorath gossips, 'what should happen when it works?'
+1717300120 Lorath gossips, 'nvm'
+1717300123 Corana gossips, 'lol'
+1717348416 Corana gossips, 'black flame is in temple of chaos'
+1717348423 Corana gossips, 'maybe blue to?'
+1717348441 Porath gossips, 'yep, blue is the one I'm looking for...don't think i've ever come across a blue one'
+$
+aliases:
+lc l in corpse
+sm c 'sum' mlyec
+st stand
+home c 'word of rec'
+food c 'cre food'
+sk c 'sum' kresselack
+sume c 'summon' erasmus
+mk c 'moonwel' kresselack
+jj c 'heal' kresselack
+wk c 'moonwell' kresselack
+0

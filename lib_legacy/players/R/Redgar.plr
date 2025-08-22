@@ -1,0 +1,79 @@
+name: Redgar
+password: Refyh8RJRL
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19620
+birthtime: 1590936032
+timeplayed: 2211
+lastlogintime: 1591090290
+host: 079.030.058.194
+height: 42
+weight: 91
+base_height: 42
+base_weight: 91
+base_size: 1
+natural_size: 1
+alignment: 994
+playerflags: y
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 37/37
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 6
+strength: 92
+intelligence: 66
+wisdom: 69
+dexterity: 95
+constitution: 77
+charisma: 66
+experience: 5500
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+421 52
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0
+trophy:
+1 8021 1.000000
+1 8030 1.000000
+1 8011 1.000000
+1 8010 1.000000
+1 8001 1.000000
+1 8013 1.000000
+0 0 0
+tells:
+1590936548 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1590937820 Chinok gossips, 'sa quest'
+1590937847 Chinok gossips, 'say status'
+1590937929 Chinok gossips, 'you lean your skills here by using them, no need to train or practice'
+1590938012 Chinok gossips, 'just type inv'
+1590938024 Chinok gossips, 'to see what you are wearing type eq'
+1590938033 Chinok gossips, 'you're not wearing your equipment!!'
+1590938036 Chinok gossips, 'type wear all'
+1590938046 Chinok gossips, 'now type eq'
+1590938144 Chinok gossips, 'ok, we will be here'
+1591090205 Strider gossips, 'Welcome Redgar :)'
+$

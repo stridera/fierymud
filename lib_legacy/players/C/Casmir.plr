@@ -1,0 +1,109 @@
+name: Casmir
+password: Ca1PBnibMo
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20751
+birthtime: 1707966854
+timeplayed: 14698
+lastlogintime: 1708106579
+host: 023.244.073.227
+height: 42
+weight: 147
+base_height: 42
+base_weight: 147
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 56/56
+mana: 1/0
+move: 139/139
+damroll: 3
+hitroll: 6
+strength: 88
+intelligence: 88
+wisdom: 84
+dexterity: 98
+constitution: 90
+charisma: 58
+cash: 0 83 344 65
+experience: 62217
+quit_reason: 1
+saveroom: 3054
+skills:
+401 100
+403 100
+405 50
+408 100
+415 50
+416 50
+421 97
+438 50
+443 50
+444 50
+463 50
+464 100
+465 50
+493 100
+0 0
+trophy:
+1 3501 1.000000
+1 3500 1.000000
+1 5404 2.000000
+1 3066 1.000000
+1 18003 5.000000
+1 18004 1.000000
+1 18002 3.000000
+1 18001 7.000000
+1 18005 3.000000
+1 18000 6.000000
+1 18007 14.000000
+1 6909 1.000000
+0 0 0
+tells:
+1708062522 @WKaroth@W tells you, 'from the room title@W'@0
+1708062532 @WKaroth@W tells you, 'but it's only like 3 rooms in that zone that do that@W'@0
+1708062547 @WKaroth@W tells you, 'and that chasm area does link to another zone, so there's a purpose@W'@0
+1708062561 @WKaroth@W tells you, 'but that zone is a bit high level for you at the moment :)@W'@0
+1708062627 @WKaroth@W tells you, 'haha ouch yeah this guy has ultravision so its a bit easier.  but there are only a couple bottomless rooms@W'@0
+1708062633 @WKaroth@W tells you, 'are you using mudlet?@W'@0
+1708062665 @WKaroth@W tells you, 'nods you should have the map from the package then too, it's not perfect but helps me remember where the pits are :P@W'@0
+1708062686 @WKaroth@W tells you, 'I'm not as good as the guy that built the client, but i can do basic scripts and triggers and such, so if you need a hand lemme know@W'@0
+1708062714 @WKaroth@W tells you, 'sure thing@W'@0
+1708063144 @WA half-elven maid@W tells you, 'If you want to rent a room, please go upstairs to the Reception Area.@W'@0
+$
+gossips:
+1708061024 Discord gossips, 'Daedela: Congrats!'
+1708061186 Karoth gossips, 'should be 10'
+1708061208 Karoth gossips, 'you'll have to find a quest mob and perform a quest to do it'
+1708061262 Karoth gossips, 'yeah'
+1708061326 Karoth gossips, 'if you do help area it lists like the first five or six areas as towns/cities'
+1708061623 Karoth gossips, 'infravision lets you see heat sources but not detail...  for details like in daylight you need a race with ultravision'
+1708061679 Karoth gossips, 'yeah you'll see red shapes etc with infravision...really still need a light source'
+1708061706 Karoth gossips, 'one nice thing here though, a lantern in your inventory lit up is good enough, you don't have to wear/hold it'
+1708062319 Karoth gossips, 'If I am remembering where you are, you'll hit bottom and there are a few rooms you can climb up in :)'
+1708063068 Finlas gossips, 'ty :)'
+$
+aliases:
+map look map
+ss scan
+h hide
+loot get all corpse
+bl backstab lion
+bg backstab gardener
+bd backstab dragon
+bv backstab vine
+0

@@ -1,0 +1,155 @@
+#6308
+a-pair-of-dragonhide-gloves~
+a pair of dragonhide gloves~
+A pair of dragonhide gloves lay neatly folded upon the ground.~
+~
+9 64 129 90
+15 0 0 0 0 0 0
+2.00 96903 0 48 0 0 4194304 16384
+T 18888
+E
+gloves dragon hide dragon-hide pair a-pair-of-dragon-hide-gloves venath~
+Though they are indeed solid brown leather, these gloves appear to be covered
+in thick smoke which eminates from the pores of the leathery surface.  The
+effect of the distortion from the smoke is akin to a heatwave passing through
+the desert.  Although by appearances they should offer little in the way of
+protection, these gloves boast the strength and resiliance of the dragon whose
+skin they were crafted from.  There appears to be an inscription on the inside
+of the right hand glove.~
+E
+inscription~
+Emblazoned in the leather on the inside of the cuff reads:
+Specially crafted for the legendary assassin Kresselack, may his stiletto's forever haunt his foes.~
+A
+18 4
+A
+19 4
+A
+25 1
+A
+26 60
+#6330
+puff delicious-cream-puff food~
+a cream puff~
+A delicious cream puff is sitting here.  Five second rule!~
+~
+19 0 1 1
+6 0 0 0 0 0 0
+0.02 0 0 0 0 0 0 0
+E
+delicious-cream-puff~
+The choux pastry is light and fluffy.  A filling of whipped cream peeks
+out from a little hole on one side of the puff.~
+#6331
+potion bubbly-green-potion health~
+a potion of health~
+A bubbly green potion fizzles here.~
+~
+10 64 1 50
+40 53 28 15 0 0 0
+0.05 10000 0 0 0 0 0 0
+E
+bubbly-green-potion health~
+The potion is in a little cork-stopped vial.~
+#6332
+scroll gleaming-white-scroll blindingly-white-scroll resurrect~
+a gleaming white scroll~
+A blindingly white scroll gleams here.~
+~
+2 64 1 1
+100 189 81 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+gleaming-white-scroll blindingly-white-scroll resurrect~
+This scroll is made from top quality bleached paper.  The whiteness makes your
+eyes hurt.  The interior of the scroll is covered in arcane runes.  On the
+outside, however, some words in plain common read: "DO NOT USE ON SELF"~
+#6333
+scroll misty-scroll blue-scroll~
+a misty scroll~
+A blue scroll sublimates into existence on the ground.~
+~
+2 64 1 75
+90 179 0 0 0 0 0
+0.02 0 0 0 0 0 0 0
+E
+misty-scroll blue-scroll~
+It's made from strange blue paper that's cold to the touch.  Water is
+condensing on the scroll, threatening to dissolve it.~
+#6334
+jelly little-red-jelly little-squishy-jelly~
+a little red jelly~
+A little squishy jelly sits here waiting to be quaffed.~
+~
+10 64 1 1
+100 108 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+little-red-jelly little-squishy-jelly~
+It's a little gummy jelly made from some kind of red food paste.~
+#6380
+bauble shiny-bauble little-glint-light~
+a shiny bauble~
+A little glint of light flashes from the ground.~
+~
+8 16 1851393 20
+0 0 0 0 0 0 0
+0.30 1000 0 0 0 0 0 0
+E
+shiny-bauble little-glint-light~
+Mostly spherical, this tiny bauble looks like a melted silver droplet left
+over from a larger silver treasure.  Nonetheless, it is polished to a shine
+and has a tiny hook on one side, allowing it to be affixed to any number
+of surfaces.~
+A
+28 50
+#6382
+vial violet-vial-viscous-fluid vial-vengeance~
+a vial of vengeance~
+A violet vial of viscous fluid is visible here.~
+~
+10 536870913 1 20
+25 208 91 29 0 0 0
+0.30 3400 0 0 0 0 0 0
+E
+vial violet-vial-viscous-fluid vial-vengeance~
+Vivid violet light wafts from the vial like a veil of vibrant velvet,
+evoking thoughts of vertigo and vengeance.  Visions of vaniloquence
+vanish as the vial vaticinates a revelation of a venator vigorously
+vitiating a once vivacious victim.~
+#6383
+grapesicle everlasting-grapesicle large-grape-icicle food~
+an everlasting grapesicle~
+A large grape icicle lies here, melting.~
+~
+19 536871040 16385 20
+1000 0 0 0 0 0 0
+10.00 1000 0 0 0 0 0 0
+E
+grapesicle everlasting-grapesicle large-grape-icicle food~
+It's an icy popsicle of grape juice.~
+#6391
+volcano flaming~
+a flaming volcano~
+A MASSIVE &1&bFlaming&0&9&b Volcano&0 shoots outs boulders~
+~
+8 67108880 0 0
+0 0 0 0 0 0 0
+9999.00 0 0 0 0 0 0 0
+T 6391
+T 6392
+#6392
+vial flood~
+metamorpho's vial~
+A vial full of clear liquid gives off great sounds of crashing waves.~
+~
+8 67108948 16385 1
+0 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+vial~
+A clear crystal vial containing what appears to be a clear
+liquid similar to water. When listening closely the sound of
+great crashing waves, similar to the ocean, can be heard
+coming from within.~
+$~

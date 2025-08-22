@@ -1,0 +1,91 @@
+name: Gehadron
+password: Ge5ASUAXUq
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20302
+birthtime: 1658070976
+timeplayed: 2199
+lastlogintime: 1658073176
+host: 110.159.023.151
+height: 67
+weight: 163
+base_height: 67
+base_weight: 163
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k r 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 57/58
+mana: 0/0
+move: 114/114
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 61
+wisdom: 66
+dexterity: 96
+constitution: 85
+charisma: 56
+cash: 0 4 63 67
+experience: 25711
+quit_reason: 3
+saveroom: 0
+skills:
+402 74
+404 70
+415 50
+416 50
+421 53
+438 50
+443 50
+444 50
+463 50
+464 50
+465 55
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36001 1.000000
+1 36002 4.000000
+1 36003 2.000000
+1 8015 2.000000
+1 8010 1.000000
+1 8013 1.000000
+1 8011 1.000000
+1 8014 1.000000
+1 8016 3.000000
+1 8020 1.000000
+1 8002 2.000000
+1 8012 2.000000
+1 8022 1.000000
+1 51900 1.000000
+0 0 0
+tells:
+1658071368 @WThe Master of the Revel@W tells you, 'It's time to find a Guild Master!@W'@0
+1658071368 @WThe Master of the Revel@W tells you, 'There are Guild Masters in every town.@W'@0
+1658071368 @WThe Master of the Revel@W tells you, 'You will advance to the next level.@W'@0
+1658071368 @WThe Master of the Revel@W tells you, 'Your Guild Master here in Mielikki@W'@0
+1658071368 @WThe Master of the Revel@W tells you, 'Will also grant you your first quest.@W'@0
+1658071368 @WThe Master of the Revel@W tells you, 'Which will drop randomly from mobs across the world.@W'@0
+1658071368 @WThe Master of the Revel@W tells you, 'Bring back what they ask for and you'll be well rewarded!@W'@0
+1658071374 @WThe Master of the Revel@W tells you, 'Congratulations again, graduate!@W'@0
+1658071374 @WThe Master of the Revel@W tells you, 'May you climb to ever greater fortune!@W'@0
+1658072214 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+$

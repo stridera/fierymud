@@ -1,0 +1,116 @@
+name: Atax
+password: AtZKQmw1f7
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 3
+race: 10
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 9944
+birthtime: 1022637296
+timeplayed: 9498145
+lastlogintime: 1738195427
+host: 066.199.058.082
+height: 76
+weight: 175
+base_height: 76
+base_weight: 175
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: glxyz
+effectflags: 0 0 0
+prefflags: hnosuC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 10
+hitpoints: 1410/1212
+mana: 100/100
+move: 152/152
+damroll: 5
+hitroll: 4
+strength: 91
+intelligence: 63
+wisdom: 63
+dexterity: 93
+constitution: 87
+charisma: 69
+experience: 116386599
+quit_reason: 1
+saveroom: 3054
+skills:
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+419 1000
+420 1000
+421 1000
+422 1000
+427 1000
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 1000
+468 1000
+473 1000
+0 0
+trophy:
+1 5506 2.000000
+1 5518 4.000000
+1 51101 4.000000
+1 51100 5.000000
+1 4017 1.000000
+1 2807 1.000000
+1 11702 2.000000
+1 18504 1.000000
+1 5519 3.000000
+1 5517 2.000000
+1 5516 1.000000
+1 5515 5.000000
+1 5514 4.000000
+1 5513 3.000000
+1 2806 1.000000
+1 43017 0.500000
+1 43013 0.500000
+1 43012 1.000000
+1 43018 0.500000
+1 43005 0.500000
+1 43004 1.500000
+0 0 0
+tells:
+1662232587 @WBigby@W tells you, 'No cash, no delivery.@W'@0
+$
+gossips:
+1673058078 Hackwriter gossips, 'i was at warrior traingin figured he trained warrior skills'
+1673125490 Chinok gossips, 'afk a bit, you guys all behave!'
+1673125494 Catan gossips, 'later'
+1673125496 Catan gossips, 'ty'
+1693622641 Aewynawk gossips, 'are there only 2 races that can be a monk?'
+1693622664 Aewynawk gossips, 'or is the help monk out of date?'
+1693622694 Teric gossips, 'not really sure been a while since i played'
+1738112480 Teric gossips, 'got 11 vials'
+1738195314 Daedela gossips, 'AND I put in a point to tell you to GIVE THE FLAME TO THE MAGE'
+1738195340 Thort gossips, 'that helps the mage as much as it helps us.'
+$
+aliases:
+gc g all.coins from corpse
+lc l in corpse
+jj wi sword
+hit hitall all
+b bash
+0

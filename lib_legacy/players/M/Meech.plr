@@ -1,0 +1,116 @@
+name: Meech
+password: MeMVRR0Ywd
+prompt: <%hh(%HH) %vv(%VV)> <%aA> <%ih> <%df>%_<%t>:<%o>
+autoinvis: 0
+sex: 2
+class: 0
+race: 1
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18188
+birthtime: 1331658534
+timeplayed: 33819
+lastlogintime: 1331739383
+host: 098.065.165.232
+height: 61
+weight: 152
+base_height: 61
+base_weight: 152
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gwy
+effectflags: k 0 0
+prefflags: hnouC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 1
+lastlevel: 0
+hitpoints: 45/45
+mana: 1/-1
+move: 122/122
+damroll: 3
+hitroll: 3
+strength: 74
+intelligence: 94
+wisdom: 88
+dexterity: 60
+constitution: 90
+charisma: 55
+cash: 1 13 112 143
+experience: 146698
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 120
+424 120
+438 50
+443 120
+444 54
+447 60
+451 53
+452 59
+453 80
+459 120
+460 120
+462 52
+464 104
+0 0
+trophy:
+1 12023 1.000000
+1 12004 2.000000
+1 12011 1.000000
+1 12016 1.000000
+1 12015 1.000000
+1 8020 1.000000
+1 8021 3.000000
+1 8015 4.000000
+1 8023 1.000000
+1 8010 2.000000
+1 8002 2.000000
+1 8022 2.000000
+1 8603 1.000000
+1 8615 1.000000
+1 8612 1.000000
+1 8606 2.000000
+1 8604 6.000000
+1 8605 4.000000
+1 8011 6.000000
+1 8012 3.000000
+1 8016 5.000000
+0 0 0
+mem:
+5 1 5
+32 0 5
+5 1 5
+32 1 5
+100 1 5
+20 1 5
+0 0 0
+aliases:
+gfs get food sack
+cmc cast 'minor creation' $*
+kr kill rabbit
+kg kill gremlin
+kh kill hedgehog
+gaac g all.coins all.corpse
+gaa get all all.corpse
+gac get all corpse
+conceal cast 'concealment' $*
+cdm cast 'd magic' $*
+cmm cast 'magic missile' $*
+df drink fountain
+db drink waterskin
+ef eat food
+cbh cast 'burning hands' $*
+0

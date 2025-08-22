@@ -1,0 +1,101 @@
+name: Javen
+password: Ja3g9WrG7H
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 0
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19157
+birthtime: 1492047297
+timeplayed: 6549
+lastlogintime: 1492098398
+host: 206.053.011.175
+height: 71
+weight: 125
+base_height: 71
+base_weight: 125
+base_size: 2
+natural_size: 2
+alignment: -46
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnouC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 44/44
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 78
+intelligence: 92
+wisdom: 95
+dexterity: 72
+constitution: 68
+charisma: 66
+cash: 0 12 16 28
+experience: 98684
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 100
+424 100
+438 50
+443 50
+444 50
+447 60
+451 50
+452 85
+453 100
+459 50
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 3507 1.000000
+1 3506 1.000000
+1 3501 8.000000
+1 3500 7.000000
+1 3503 2.000000
+1 3502 5.000000
+1 1601 4.000000
+1 1602 6.000000
+1 1605 3.000000
+1 3509 1.000000
+1 3508 3.000000
+1 61508 1.000000
+1 61515 1.000000
+1 61512 2.000000
+1 61507 1.000000
+1 61510 2.000000
+1 61506 1.000000
+1 61523 1.000000
+1 61509 3.000000
+1 61502 1.000000
+1 61503 2.000000
+0 0 0
+mem:
+5 1 6
+5 1 6
+32 1 6
+32 1 6
+5 1 6
+0 0 0
+aliases:
+lc l in corpse
+gc g all.coins from corpse
+0

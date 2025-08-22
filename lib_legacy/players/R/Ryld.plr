@@ -1,0 +1,61 @@
+name: Ryld
+password: RyzaeulBRV
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19358
+birthtime: 1525937649
+timeplayed: 2092
+lastlogintime: 1525939801
+host: 097.127.162.000
+height: 78
+weight: 237
+base_height: 78
+base_weight: 237
+base_size: 3
+natural_size: 3
+alignment: 10
+playerflags: y
+effectflags: 0 0 0
+prefflags: bghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 10
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -15/23
+mana: 0/0
+move: 94/148
+damroll: 5
+hitroll: 4
+strength: 86
+intelligence: 56
+wisdom: 71
+dexterity: 100
+constitution: 85
+charisma: 59
+experience: 4124
+quit_reason: 10
+saveroom: 3017
+skills:
+403 50
+415 50
+416 50
+419 1000
+421 55
+427 1000
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0

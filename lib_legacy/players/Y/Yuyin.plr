@@ -1,0 +1,98 @@
+name: Yuyin
+password: YuLxsKBqPg
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20295
+birthtime: 1656811168
+timeplayed: 4105
+lastlogintime: 1656815324
+host: 187.195.231.064
+height: 73
+weight: 243
+base_height: 73
+base_weight: 243
+base_size: 3
+natural_size: 3
+alignment: -4
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 4
+lastlevel: 0
+hitpoints: 59/53
+mana: 1/0
+move: 14/152
+damroll: 5
+hitroll: 4
+strength: 98
+intelligence: 70
+wisdom: 74
+dexterity: 87
+constitution: 87
+charisma: 55
+cash: 0 3 33 19
+experience: 30877
+quit_reason: 1
+saveroom: 3054
+skills:
+402 62
+404 70
+415 50
+416 50
+419 1000
+421 56
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 51
+465 55
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8020 1.000000
+1 8015 1.000000
+1 8000 1.000000
+1 8012 1.000000
+1 8001 1.000000
+1 8011 3.000000
+1 8016 3.000000
+1 8010 1.000000
+1 8023 3.000000
+1 8002 4.000000
+1 8013 3.000000
+1 8014 2.000000
+1 8021 2.000000
+0 0 0
+tells:
+1656811935 @WThe Master of the Revel@W tells you, 'To use a scroll, just have it in your inventory@W'@0
+1656811935 @WThe Master of the Revel@W tells you, 'Alternatively if you're far from town,@W'@0
+1656811935 @WThe Master of the Revel@W tells you, 'It takes a bit of time to set up camp.@W'@0
+1656811935 @WThe Master of the Revel@W tells you, 'Just like with renting you log in where you camped.@W'@0
+1656811935 @WThe Master of the Revel@W tells you, 'If you just disconnect,@W'@0
+1656811935 @WThe Master of the Revel@W tells you, 'You remain in the world until you idle out.@W'@0
+1656811935 @WThe Master of the Revel@W tells you, 'That leaves you vulnerable to attack and losing everything!@W'@0
+1656811941 @WThe Master of the Revel@W tells you, 'The zone list is quite long.@W'@0
+1656812865 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1656813060 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1656813839 Chinok gossips, 'hi Yuyin, '
+1656813851 Chinok gossips, 'seems like you went to an area a bit too high for level 2 :)'
+1656814072 Chinok gossips, 'did you see the 'help area' command ?'
+1656814105 Chinok gossips, 'ok, well each area in that list -- also has a help entry, which should give you a hint on how to find it'
+1656814683 Chinok gossips, 'Gratz Yuyin'
+$

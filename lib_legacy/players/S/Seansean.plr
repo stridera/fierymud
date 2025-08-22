@@ -1,0 +1,75 @@
+name: Seansean
+password: SekHzq41Tp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20807
+birthtime: 1719867587
+timeplayed: 897
+lastlogintime: 1719868487
+host: 192.080.074.002
+height: 71
+weight: 175
+base_height: 71
+base_weight: 175
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 12
+lastlevel: 0
+hitpoints: 27/27
+mana: 0/0
+move: 129/129
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 82
+wisdom: 71
+dexterity: 82
+constitution: 83
+charisma: 54
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1719868259 Discord gossips, 'glorious_gull_07269: I always end up in a zone then get distracted... Is it paladin or priest specific?'
+1719868267 Discord gossips, 'Daedela: Yes'
+1719868285 Discord gossips, 'glorious_gull_07269: Just realized when I was going thru my maps I never competed it... OK that explains why'
+1719868291 Discord gossips, 'glorious_gull_07269: No paladin or priest haha'
+1719868303 Discord gossips, 'Daedela: It's also for Diabolists'
+1719868307 Discord gossips, 'glorious_gull_07269: Ooooh'
+1719868313 Discord gossips, 'glorious_gull_07269: I could do it then'
+1719868351 Discord gossips, 'glorious_gull_07269: City in a cave....'
+1719868358 Discord gossips, 'glorious_gull_07269: Thinking...'
+1719868405 Discord gossips, 'glorious_gull_07269: Not drow right?'
+$

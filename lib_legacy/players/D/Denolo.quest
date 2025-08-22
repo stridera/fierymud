@@ -1,0 +1,103 @@
+29 1 0
+55 1 0
+59 255 2
+target1 0
+hunt 0
+62 7 5
+trophytask2 0
+trophytask1 1
+trophytask3 55705
+trophytask4 0
+attack_counter 0
+61 255 2
+target1 0
+hunt 0
+21 1 4
+actor_level 99
+price 316449
+skill_level 160
+skill_name douse
+15 3 0
+4 5 0
+56 10 4
+target3 0
+target2 0
+target1 0
+bounty running
+54 1 2
+actor_level 72
+price 241367
+2 5 0
+19 255 1
+choice 3
+58 1 1
+armor_vnum 0
+18 1 0
+10 255 0
+47 1 1
+gem_vnum 0
+17 1 9
+5549_reward 1
+5548_reward 1
+5509_trophies 7
+5503_trophies 36
+5507_trophies 32
+5505_trophies 19
+eg_ally 1
+eg_faction 101
+bl_faction -1
+22 1 5
+word2 slashing
+actor_level 21
+price 12127
+skill_level 50
+skill_name disarm
+7 3 40
+55372_armor_acquired 1
+55356_armor_acquired 1
+55681_gems_acquired 3
+55376_armor_acquired 1
+55692_gems_acquired 3
+55703_gems_acquired 3
+55348_armor_acquired 1
+55659_gems_acquired 3
+55364_armor_acquired 1
+55360_armor_acquired 1
+55637_gems_acquired 3
+55340_armor_acquired 1
+55714_gems_acquired 3
+55747_gems_acquired 3
+55368_armor_acquired 1
+55380_armor_acquired 1
+55670_gems_acquired 3
+55648_gems_acquired 3
+55615_gems_acquired 3
+55344_armor_acquired 1
+55332_armor_acquired 1
+55352_armor_acquired 1
+55626_gems_acquired 3
+55336_armor_acquired 1
+55604_gems_acquired 3
+55328_armor_acquired 1
+55593_gems_acquired 3
+55589_gems_acquired 3
+55585_gems_acquired 3
+55577_gems_acquired 3
+55573_gems_acquired 3
+55312_armor_acquired 1
+55316_armor_acquired 1
+55324_armor_acquired 1
+55308_armor_acquired 1
+55304_armor_acquired 1
+55320_armor_acquired 1
+55581_gems_acquired 3
+55569_gems_acquired 3
+55300_armor_acquired 1
+45 255 7
+stand 1
+rest 11
+loot 6
+fight 10
+explore 6
+gear 15
+speech 3

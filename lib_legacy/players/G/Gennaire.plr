@@ -1,0 +1,155 @@
+name: Gennaire
+password: GeI5I8cLap
+currenttitle: GingerBeard
+description
+   From behind she could pass as human, but upon seeing her face there is no
+doubt: this is a dwarven woman.  At 5' 9" she towers over most of her kind,
+and her sturdy frame makes her look deceptively thin.  Dirty blond hair is
+pulled back from her face into a circlet of braids held in place with a thin
+strip of leather.  Similarly, her beard, a darker blond than her hair and
+flecked with redder strands, is also braided.  She has red, ruddy cheeks and a
+large, broad, rounded nose, fairly typical for her kind.  Sparkling grey eyes
+and the slight smirk on her face indicate a hearty sense of humor, but her
+calloused hands also show an aptitude for hard work.~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 3
+level: 64
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17102
+birthtime: 1222046206
+timeplayed: 2788751
+lastlogintime: 1690566496
+host: 076.184.241.147
+height: 69
+weight: 205
+base_height: 69
+base_weight: 205
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: kt w q
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 10053
+lastlevel: 0
+hitpoints: 728/600
+mana: 409/409
+move: 158/158
+damroll: 4
+hitroll: 5
+strength: 92
+intelligence: 60
+wisdom: 69
+dexterity: 91
+constitution: 95
+charisma: 58
+cash: 187 852 953 672
+bank: 454 6714 25280 4068
+experience: 34053521
+quit_reason: 3
+saveroom: 0
+skills:
+401 690
+403 690
+405 394
+408 690
+410 650
+411 690
+415 408
+416 380
+420 286
+421 679
+438 55
+443 390
+444 440
+463 50
+464 690
+465 690
+475 51
+476 690
+477 50
+478 420
+491 543
+492 146
+493 372
+0 0
+trophy:
+1 55002 0.250000
+1 55015 0.500000
+1 55004 0.250000
+1 55016 0.500000
+1 55007 0.250000
+1 46409 0.750000
+1 46403 0.250000
+1 11809 0.250000
+1 11710 1.000000
+1 11704 0.750000
+1 11703 0.750000
+1 11750 0.250000
+1 11702 1.750000
+1 11701 1.250000
+1 48116 0.250000
+1 48131 1.250000
+1 48120 0.250000
+1 48115 2.250000
+1 12003 0.250000
+1 12016 0.250000
+1 2308 0.250000
+0 0 0
+tells:
+1689710700 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1689710908 @WKathra@W tells you, 'Thanks for the deal.@W'@0
+1689710913 @WKathra@W tells you, 'Thanks for the deal.@W'@0
+1689715209 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689743765 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689788850 @WShazz@W tells you, 'Take good care of that.@W'@0
+1689789102 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689794285 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689794343 @WKathra@W tells you, 'Thanks for the deal.@W'@0
+1689798634 @WThe Knight Champion's worthless brother@W tells you, 'Thanks for the deal.@W'@0
+$
+gossips:
+1690562832 Mejna gossips, 'maybe a minor bug, the apprentice shaman did not assist the warrior, who assisted the golems.'
+1690563381 Mersh gossips, 'Hey Dreven'
+1690563387 Dreven gossips, 'morning'
+1690563697 Mejna gossips, 'is the key for the cauldron a reset item? *think*'
+1690563809 Chinok gossips, 'doubt it..'
+1690564096 Mejna gossips, 'ok i'm at the shaman'
+1690564586 Mejna gossips, 'are the guards actually in this zone? *think*'
+1690564637 Mejna gossips, 'hello Aahz :)'
+1690564639 Chinok gossips, 'yep, should be, I'll double check tho'
+1690564640 Aahz gossips, 'hello'
+1690564662 Aahz gossips, 'anyone grouping?'
+1690565519 Mersh gossips, 'sorry mostly working'
+$
+aliases:
+sniffle emo sniffles pitifully.
+btug emo gives her beard a little tug.
+assm ass mejna
+assn ass nauis
+x search
+who who -w
+lic look in corpse
+ol get all corpse
+asg assist gizelle
+asn assist nauis
+gg gouge
+asst ass turgeron
+bs backst $*
+asm ass mejna
+lol emo laughs out loud, her dwarven beard shaking.
+facepalm emo covers her forhead with her hand. What a maroon.
+sob emo sobs pitifully into her beard.
+bristle emo bristles at the suggestion!
+assu ass utaboshi
+waggle emo waggles her eyebrows outrageously!
+wink emo touches her nose and winks at you!
+0

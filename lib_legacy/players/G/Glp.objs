@@ -1,0 +1,1099 @@
+1
+vnum: 4003
+location: 0
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: agjqrtuvD
+name: chaos orb sphere ball
+shortdesc: a &1Chaos&b&0 orb
+desc: A sphere of pure shade glistens in the light.
+adesc:
+The orb glows deeply within, then burst into blackened flames!
+~
+type: 1
+weight: 2.00
+cost: 0
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 16385
+applies:
+2 2
+4 -2
+9 5
+17 2
+~
+extradesc: orb sphere chaos ball
+A sphere of pure unlaced darkness.  The casing around it appears to be clear,
+letting the the view inside be known.  Black clouds seem to be moving within
+the orb, lighting threads around violently.  It is its own world of chaos.    
+~
+~~
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 5201
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 23711
+location: 3
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: jl
+name: pendant black-spider-pendant
+shortdesc: a spider pendant
+desc: A black spider crawls on a small necklace here.
+type: 9
+weight: 1.25
+cost: 1000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 5
+extradesc: spider black necklace pendant
+The black stone spider on the end of the necklace chain seems to be alive.  It
+crawls back and forth on the chain whenever it senses danger.    
+~
+~~
+vnum: 48919
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: necklace shadow-necklace dark-beaded-necklace
+shortdesc: the Shadow Necklace
+desc: A dark-beaded necklace lies hidden in shadows.
+type: 11
+weight: 0.40
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 5
+applies:
+13 50
+14 -50
+~
+extradesc: shadow-necklace dark-beaded-necklace
+It's a fairly simple necklace -- teak beads carved into geometric shapes 
+are strung onto dark thread to form a circle of beads. Here and there 
+little strings of beads are strung along the main circlet to form 
+interesting geometric designs. This necklace is a charm from the 
+Wizardess Thekra; you recognize it at once.
+~
+~~
+vnum: 52022
+location: 5
+values:
+40
+0
+0
+0
+0
+0
+0
+~
+flags: abgmo
+name: skin armor dragon-skin dragon-armor
+shortdesc: a dragon skin
+desc: A set of scaled dragon armor lies here, apparently forgotten by the gods.
+type: 9
+weight: 19.00
+cost: 14000
+timer: 0
+level: 78
+effects: 0 0 0
+wear: 9
+applies:
+1 -5
+5 -5
+~
+extradesc: skin armor dragon-skin dragon-armor
+Of all things, dragon skin is incredibly rare.  The scales are hard and a dark
+black color.  Each scale is the size of a man's kneecap, connected
+mysteriously beneath.    
+~
+~~
+vnum: 58414
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crown golden gypsy-crown gypsy
+shortdesc: the Gypsy Crown
+desc: A golden crown inlaid with emeralds rolls around here.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 17
+applies:
+5 8
+~
+extradesc: crown gypsy
+This crown seems pretty heavy. It's made of thick gold, and probably
+incredibly expensive. The gold is shaped into the traditional peaks of 
+crowns. A green emerald, marquise-cut, is set into each peak, and several 
+of them in various cuts adorn the very front of the crown's tallest peak,
+which would be centered over the wearer's forehead.
+~
+~~
+vnum: 23820
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: agopstwxD
+name: leggings rainbow silk iridescent rainbow-leggings
+shortdesc: rainbow silk leggings
+desc: Iridescent silk leggings lie here.
+type: 9
+weight: 3.00
+cost: 1000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 33
+applies:
+23 -5
+24 -5
+~
+extradesc: leggings rainbow silk iridescent rainbow-leggings
+Feather-light silk is artfully sewn into leggings, gathered at the waist and
+tied with a light string of the same fabric.  The silk is many-colored,
+changing as it is moved and shimmering in the light.  They look like they would
+be rather baggy, but comfortable - how not, as they are made of the finest
+silk?    
+~
+~~
+vnum: 55458
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: mnopqrstuvwxz
+name: putrid rotten slippers
+shortdesc: &2&bRotten Slippers&0
+desc: Molding on the ground is a pair of putrid slippers.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+applies:
+5 2
+13 25
+~
+extradesc: putrid rotten slippers
+Disgusting!  Made out of waste and refuse, these slippers are enchanted to
+eternally fester and rot.  As disgusting as something like this is, those that
+practice necromancy find that their powers are significantly improved when
+wearing clothing like this.
+~
+~~
+vnum: 49020
+location: 9
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: mor
+name: gloves sturdy leather heavy-duty
+shortdesc: sturdy leather gloves
+desc: A pair of heavy-duty leather gloves has dropped out of someone's back pocket.
+type: 9
+weight: 1.50
+cost: 250
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 129
+extradesc: gloves sturdy leather heavy-duty
+These are meant for heavy-duty work!~
+~~
+vnum: 11797
+location: 10
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gAD
+name: myst vambraces vambrace bits long
+shortdesc: a pair of myst vambraces
+desc: Some long bits of myst lie here, seeming to conform to the ground.
+type: 9
+weight: 1.20
+cost: 40
+timer: 0
+level: 87
+effects: 0 0 0
+wear: 257
+applies:
+2 4
+24 -25
+3 -3
+18 1
+~
+extradesc: myst vambraces vambrace bits long
+These vambraces are of exceptional quality, and are simply bits of a magically
+bound myst.  They seem to conform to any shape of any arm which dons them, and
+seem to repel light and seem to absorb impacts and then quickly reform the
+dented portion.  The myst is a dull, absent grey color.    
+~
+~~
+vnum: 58417
+location: 12
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: fD
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~
+vnum: 58432
+location: 13
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: gmnou
+name: girth storm-giants-girth giant blue-steel-girth lightning
+shortdesc: the Storm Giant's Girth
+desc: A blue steel girth flashes with its own lightning.
+type: 9
+weight: 3.00
+cost: 2500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+extradesc: girth storm-giants-girth giant blue-steel-girth lightning
+You can see that this girth must be not only magical, but intrinsically
+strong, for though it is very old, there are no dents, dings, or scratches
+in its shockingly blue surface. It reflects a fierce strike of lightning
+as you look at it. But no lightning flashed right then in the sky....
+~
+~~
+vnum: 8301
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: bracelet light fluffy moisture raining cumulus bracelet cumulus-bracelet
+shortdesc: a cumulus bracelet
+desc: A light, fluffy ring of moisture is floating here, raining upon the ground below.
+type: 9
+weight: 0.00
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+applies:
+2 1
+1 1
+~
+extradesc: bracelet light fluffy moisture raining cumulus bracelet cumulus-bracelet
+Almost insubstantial, this moist little bracelet is made of fluffy cumulus
+clouds.  It drips continuously, never seeming to run out of water.  When placed
+on the wrist, it magically resizes itself to fit, whether it be for arms
+slender of massive.    
+~
+~~
+vnum: 55459
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrstuvwxz
+name: putrid rotten bracelet
+shortdesc: &2&bRotten Bracelet&0
+desc: Molding on the ground is a putrid bracelet.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+1 3
+~
+extradesc: putrid rotten bracelet
+Revolting!  Made out of waste and refuse, this bracer is enchanted to eternally
+fester and rot.  As disgusting as something like this is, those that practice
+necromancy find that their powers are significantly improved when wearing
+clothing like this.
+~
+~~
+vnum: 1029
+location: 18
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+20 1
+32 1
+100 1
+5 1
+8 1
+101 1
+19 2
+87 1
+45 2
+33 1
+37 1
+39 1
+187 1
+106 2
+30 2
+76 2
+25 2
+186 1
+50 1
+31 1
+38 2
+21 1
+29 2
+188 2
+75 1
+67 1
+68 2
+62 1
+213 1
+211 1
+52 2
+226 1
+224 1
+223 1
+222 1
+121 1
+125 1
+212 1
+189 1
+~
+~~
+vnum: 1030
+location: 19
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: quill white-feather-quill
+shortdesc: a white feather quill
+desc: A white feather quill lies here.
+type: 21
+weight: 0.05
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: white-feather-quill
+&0A slender quill made from a white feather.  Its point is used to dunk in ink
+and write with.    
+~
+~~
+vnum: 12550
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: E
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 11
+weight: 0.07
+cost: 250
+timer: 0
+level: 40
+effects: dx 0 0
+wear: 65537
+applies:
+4 2
+~
+~~
+vnum: 51075
+location: 22
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: hjlopqrstwx
+name: mask skin human
+shortdesc: a mask of human skin
+desc: A small floppy piece of skin lies here.
+type: 11
+weight: 2.00
+cost: 40
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 131073
+applies:
+4 3
+3 3
+5 2
+6 -10
+28 15
+13 15
+~
+extradesc: mask skin human
+How grotesque.  Some person's face - sex now indistinguishable - was stripped
+to provide this awful covering.  No hairs remain on it anywhere, and it has
+been tanned to prevent deterioration and to give it a supple, smooth feel.  
+The eyelids are missing, and small strings are attached which go around the
+wearer's ears.
+~
+~~
+vnum: 17805
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: o
+name: tooth cougar earring
+shortdesc: a finely-polished cougar's tooth
+desc: A carnivore's tooth lies half hidden on the ground.
+type: 8
+weight: 0.10
+cost: 1000
+timer: 0
+level: 14
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth cougar
+   The tooth looks like some sort of earring, as small runes are carved on its
+yellowed ivory surface.    
+~
+~~
+vnum: 23802
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snowflake lone earring snowflake-earring
+shortdesc: a snowflake earring
+desc: A lone snowflake glimmers on the floor.
+type: 11
+weight: 0.01
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 262145
+applies:
+13 5
+24 -3
+23 -5
+~
+extradesc: snowflake lone earring snowflake-earring
+It seems to be a snowflake set onto a tiny silver post.  The six-pointed flake
+is cool to the touch, though it does not melt.  Whatever crystal substance it
+is made of catches the light quite well, giving it an ever-present sparkle.  
+Its miniscule arms have hexagonal symmetry, and it is very detailed.    
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some if its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 48128
+location: 26
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: head severed-goats-head chimera-head goat
+shortdesc: a severed goat's head
+desc: The severed head of a goat sticks its tongue out, a final tidings to the world.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1064961
+applies:
+5 3
+6 -4
+~
+extradesc: head severed-goats-head chimera-head goat
+Grotesque and ugly, the severed goat's head oozes blood from its neck just
+below the jawbone.  Its whitish hair is stained and matted, clumping and
+sticking in knots.  A limp pinkish tongue droops out of its mouth between rows
+of vicious-looking teeth, forming a puddle of horrid-smelling drool beneath it.
+~
+~~
+vnum: 55693
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem handful handful-jade
+shortdesc: a handful of jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 8000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1006
+location: 127
+values:
+300
+264
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 19.21
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 55029
+location: 127
+values:
+250
+1
+-1
+0
+0
+0
+0
+~
+flags: g
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: 0.00
+cost: 600
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    
+~
+~~
+vnum: 53314
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~
+vnum: 51006
+location: -1
+values:
+0
+1800
+1800
+0
+0
+0
+0
+~
+flags: ag
+name: eyes balls ice-eyes
+shortdesc: a pair of Ice Eyes
+desc: Two balls of ice lie here, casting a magical glow of light all around.
+type: 1
+weight: 1.03
+cost: 500
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 65537
+applies:
+18 2
+14 20
+28 52
+~
+extradesc: ice eyes magical pair two
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.
+~
+~~
+vnum: 49025
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tail griffin griffin-tail
+shortdesc: a griffin tail
+desc: The golden-brown tail of a griffin lies here seperated from its owner.
+type: 9
+weight: 1.25
+cost: 500
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1048577
+applies:
+3 1
+13 5
+~
+extradesc: tail
+It's long and rather strong, too. Maybe you could use it as a belt...~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

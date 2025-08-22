@@ -1,0 +1,71 @@
+name: Kath
+password: KaZVogmZMJ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 30
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20181
+birthtime: 1646307216
+timeplayed: 813
+lastlogintime: 1646308236
+host: 116.037.059.099
+height: 78
+weight: 194
+base_height: 78
+base_weight: 194
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: k 0 0
+prefflags: abghC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 10
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -15/29
+mana: 1/0
+move: 104/140
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 58
+wisdom: 72
+dexterity: 86
+constitution: 91
+charisma: 55
+experience: 1
+quit_reason: 10
+saveroom: 3049
+skills:
+202 1000
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+456 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+489 71
+0 0
+tells:
+$
+gossips:
+1646307614 Lufa gossips, 'hi again'
+$

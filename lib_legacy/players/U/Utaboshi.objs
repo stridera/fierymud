@@ -1,0 +1,283 @@
+1
+vnum: 55020
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring granite-ring small-circle-black-stone questobject
+shortdesc: a granite ring
+desc: A small circle of black stone catches your eye.
+type: 8
+weight: 0.04
+cost: 450
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+1 -1
+24 -20
+27 1
+~
+extradesc: ring granite-ring small-circle-black-stone questobject
+Made of a dark granite inset with tiny crystals, it has been fashioned into a
+ring and polished until the black stone both catches and absorbs the light.~
+~~
+vnum: 50209
+location: 2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring silver-onyx-studded-ring wide-silver-ring studded black stones
+shortdesc: a silver, onyx-studded ring
+desc: A wide silver ring studded with black stones has been dropped here.
+type: 8
+weight: 0.02
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+1 1
+26 10
+28 20
+~
+extradesc: silver-onyx-studded-ring wide-silver-ring studded black stones
+Small, round black studs protrude from the centerline of this wide silver band.
+They are polished, and gleam darkly.~
+~~
+vnum: 41108
+location: 3
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mt 0
+name: torc tarnished-brass-torc
+shortdesc: a brass torc
+desc: A tarnished brass torc is partially hidden by dust.
+type: 8
+weight: 1.98
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+26 3
+27 1
+~
+extradesc: torc tarnished-brass-torc
+The thick metal torc is heavily tarnished but you can still make out a distinct
+pattern of rowan leaves heavily engraved on the surface.~
+~~
+vnum: 41108
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mt 0
+name: torc tarnished-brass-torc
+shortdesc: a brass torc
+desc: A tarnished brass torc is partially hidden by dust.
+type: 8
+weight: 1.98
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+26 3
+27 1
+~
+extradesc: torc tarnished-brass-torc
+The thick metal torc is heavily tarnished but you can still make out a distinct
+pattern of rowan leaves heavily engraved on the surface.~
+~~
+vnum: 58014
+location: 5
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: mo 0
+name: cuirass armor cuirass-bamboo-strips bamboo-armor
+shortdesc: a cuirass made of bamboo strips
+desc: You see a cuirass made, amazingly, of bamboo strips.
+type: 9
+weight: 10.00
+cost: 1200
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+19 1
+5 5
+~
+extradesc: cuirass armor cuirass-bamboo-strips bamboo-armor
+This armor is so light that you wonder that it could be at all effective!  
+Made from strips of bamboo cleverly lashed together with wire, it covers from
+the throat to the knees.  It looks like it ties in the back.~
+~~
+vnum: 12004
+location: 6
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hood tasseled-hood crumpled fabric
+shortdesc: a tasseled hood
+desc: A tasseled hood lies crumpled on the ground.
+type: 9
+weight: 0.75
+cost: 150
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: tasseled-hood crumpled fabric
+The tasseled hood was once made of grey leather, though over time, the color
+was obscured into a kind of all-purpose light brown.  It's a simple two-piece
+conical sort of hood, coming to a point well above the wearer's crown and
+falling back.  A lively tassel made of leather fringe finishes the headgear.~
+~~
+vnum: 41118
+location: 7
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: kn 0
+name: skirt skirt-woven-kelp tangled-pile-seaweed heap
+shortdesc: a skirt of woven kelp
+desc: A tangled pile of seaweed lies here in a heap.
+type: 9
+weight: 4.00
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+3 2
+27 1
+~
+extradesc: skirt skirt-woven-kelp tangled-pile-seaweed heap
+Red and brown seaweeds have been woven together to form a skirt of sorts.  It
+is very sturdy and would hang down past your knees although you have doubts as
+to how well it would protect your modesty.~
+~~
+vnum: 3031
+location: 127
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 3031
+location: 127
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~

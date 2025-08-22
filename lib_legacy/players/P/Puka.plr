@@ -1,0 +1,277 @@
+name: Puka
+password: PuuCPLZf9p
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 0
+race: 0
+level: 99
+home: 3046
+lifeforce: 0
+composition: 0
+id: 2424
+birthtime: 939095260
+timeplayed: 14337063
+lastlogintime: 1383619673
+host: 072.239.223.174
+height: 66
+weight: 123
+base_height: 66
+base_weight: 123
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: glxyz
+effectflags: 0 0 0
+prefflags: hnouxCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 80
+loadroom: 3054
+lastlevel: 5
+hitpoints: 524/524
+mana: 100/100
+move: 78/78
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 96
+wisdom: 91
+dexterity: 79
+constitution: 55
+charisma: 60
+cash: 0 4 952 249
+bank: 2649 4353 75813 31734
+experience: 126967198
+clan: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+7 1000
+8 1000
+10 1000
+19 1000
+20 1000
+26 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+65 1000
+66 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+104 1000
+105 1000
+106 1000
+107 1000
+108 1000
+109 1000
+110 1000
+111 1000
+112 1000
+113 1000
+184 1000
+185 1000
+186 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+447 1000
+451 1000
+452 1000
+453 1000
+454 1000
+455 1000
+456 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 1000
+0 0
+trophy:
+1 5414 1.000000
+1 5420 91.000000
+1 5408 237.000000
+1 7053 1.000000
+1 7004 1.000000
+1 12524 1.000000
+1 12514 5.000000
+1 12515 6.000000
+1 12502 7.000000
+1 12500 2.000000
+1 8023 1.000000
+1 8015 1.000000
+1 7301 1.000000
+1 18507 1.000000
+1 18503 1.000000
+1 3133 1.000000
+1 53024 1.000000
+1 53007 12.000000
+1 53023 8.000000
+1 8034 1.000000
+1 8000 1.000000
+0 0 0
+mem:
+20 1 1
+100 0 1
+100 0 1
+100 0 1
+100 0 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+19 1 1
+19 1 1
+19 1 1
+19 1 1
+19 1 1
+8 1 1
+8 1 1
+8 1 1
+39 1 1
+39 1 1
+186 1 1
+186 1 1
+31 0 1
+31 0 1
+31 1 1
+99 1 2
+99 1 1
+99 1 1
+37 0 1
+37 1 1
+2 1 1
+2 1 1
+2 1 1
+2 1 1
+2 1 1
+102 1 1
+106 1 1
+106 1 1
+105 1 1
+29 0 1
+29 1 1
+29 1 1
+62 1 1
+62 1 1
+62 1 1
+67 1 1
+76 1 1
+76 1 1
+76 1 1
+52 1 1
+52 1 1
+52 1 1
+68 1 1
+68 1 1
+68 1 1
+57 1 1
+77 1 1
+77 1 1
+77 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+108 1 1
+108 1 1
+111 1 1
+111 1 1
+111 1 1
+113 0 1
+113 0 1
+113 0 1
+112 1 1
+112 1 1
+109 1 1
+109 1 1
+65 1 1
+65 1 1
+65 1 1
+65 1 2
+65 1 1
+65 1 1
+185 1 1
+184 1 1
+7 1 1
+7 1 1
+7 1 1
+7 1 1
+104 1 1
+104 1 1
+104 1 1
+110 1 1
+110 1 1
+110 1 1
+107 1 1
+0 0 0
+aliases:
+gac get all corpse
+dsnt cast 'disintegrate' $*
+locate cast 'locate object' $1
+charm cast 'charm person' $1
+wizeye cast 'wizard eye' $1
+reduce cast 'reduce' $1
+enlarge cast 'enlarge' $1
+meteors cast 'meteorswarm' $*
+masinvis cast 'mass invisiblility' $*
+relocate cast 'relocate' $1
+chain cast 'chain lightning' $*
+storm cast 'ice storm' $*
+farsee cast 'farsee' self
+cdd cast 'dim door' $1
+fireshield cast 'fireshield' self
+coldshield cast 'coldshield' self
+tele cast 'teleport' self
+dism cast 'dispel magic' $1
+cid cast 'identify' $*
+cmc cast 'minor creation' $*
+db drink waterskin
+eb eat bread
+bow curtsey
+globe cast 'major globe' $*
+fist cast 'bigbys clenched fist' $*
+cfly cast 'fly' $*
+haste cast 'haste' $*
+css cast 'stone skin' $*
+cone cast 'cone of cold' $*
+invis cast 'invisibility' $*
+ray cast 'ray of enfeeblement' $*
+csg cast 'shocking grasp' $*
+str cast 'strength' $*
+cct cast 'chill touch' $*
+cdi cast 'detect invisibility' $*
+cmm cast 'magic missile' $*
+cdm cast 'detect magic' $*
+harness cast 'harness' puka
+0

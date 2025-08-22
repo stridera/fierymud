@@ -1,0 +1,1086 @@
+1
+vnum: 12538
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu 0
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 8
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    ~
+~~
+vnum: 12538
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu 0
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 8
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    ~
+~~
+vnum: 58429
+location: 3
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pendant alicorn-pendant tip-spiral-horn-chain necklace
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant tip-spiral-horn-chain necklace
+This pendant is made of the very tip of a spiral horn.  It's been drilled so a
+primitive chain can support it.  The horn glows with power.~
+~~
+vnum: 58429
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pendant alicorn-pendant tip-spiral-horn-chain necklace
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant tip-spiral-horn-chain necklace
+This pendant is made of the very tip of a spiral horn.  It's been drilled so a
+primitive chain can support it.  The horn glows with power.~
+~~
+vnum: 48419
+location: 7
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: motuyz 0
+name: kilt brass-kilt
+shortdesc: a brass kilt
+desc: A brass kilt lies here in a pile.
+type: 9
+weight: 10.00
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+19 2
+18 2
+2 3
+~
+extradesc: kilt brass-kilt
+The kilt is worn over your legs.  It would look quite sexy on you; why not try
+it on?~
+~~
+vnum: 48408
+location: 8
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: motuvwyz 0
+name: boots spiked-boots
+shortdesc: a pair of spiked boots
+desc: A pair of spiked boots lie here.
+type: 9
+weight: 6.00
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+23 -20
+~
+extradesc: boots spiked-boots
+The boots are made of metal and seem quite heavy.  They will inhibit you in
+combat, but will provide unparalled protection for your tender feet.  The
+spikes project from the bottom of the boot and dig deep into the earth,
+providing you with excellent footing.~
+~~
+vnum: 12503
+location: 9
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: jmnrstuvyz 0
+name: gloves bladed-gloves long-sharp-blades
+shortdesc: a pair of bladed gloves
+desc: A pair of gloves with long, sharp blades lies here. 
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+19 2
+~
+extradesc: gloves blades bladed
+The gloves each feature 3 long blades originating from the top of the hand.  
+When wielding a weapon or making a fist, the long blades extend past the hand,
+making it more difficult to block a blow without taking damage.  The blades
+seem to be connected to a large metal plate sandwiched between two layers of
+leather.  A wide strap allows one to tighten the whole apparatus to the hand for
+stability.    ~
+~~
+vnum: 48426
+location: 10
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: gmuvyzAD 0
+name: bracers-loong embellished-sapphire-bracers chinese-dragon-bracers
+shortdesc: the Bracers of Loong
+desc: Highly embellished sapphire bracers lie here sparkling.
+type: 9
+weight: 8.23
+cost: 13490
+timer: 0
+level: 90
+effects: y 0 0
+wear: 257
+hiddenness: 0
+applies:
+19 1
+18 2
+~
+extradesc: bracers-loong embellished-sapphire-bracers chinese-dragon-bracers
+Sparkling with some mysterious light, these bracers are indeed a work of art to
+behold.  Twin snake-like dragons are carved into the sapphire making up each
+bracer.  Each serpent has four claws and manes resembling bolts of lightning.
+A semicircular white diamond has been placed in each dragon's mouth, looking
+somewhat like a twisted crescent.  A tiny black dot appears slightly off-center
+in each diamond.  Beneath the sapphire exterior, layers of strong steel stand
+between the gemstone and the softer padding beneath.  There must be some sort
+of magical protection upon these bracers though, for such beautiful sapphire
+would never stand up against physical attack.~
+~~
+vnum: 53315
+location: 11
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: shield dragon's-cult-shield dragons-cult-shield dragon-cult-shield image-dragon's-claw
+shortdesc: a dragon's cult shield
+desc: A shield with the image of a dragon's claw lies here.
+type: 9
+weight: 8.00
+cost: 2250
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+5 2
+2 2
+~
+extradesc: shield dragon's-cult-shield dragons-cult-shield dragon-cult-shield image-dragon's-claw
+This white heater-shaped shield bears the symbol of the cult of Tri-Aszp on its
+front: a bleeding dragon's claw.  You notice that it is extremely well
+balanced.~
+~~
+vnum: 48423
+location: 13
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: motuvwyz 0
+name: girth titan's-girth titans-girth girth-inlaid-precious-stones
+shortdesc: a Titan's girth
+desc: A girth inlaid with precious stones lies here.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+1 3
+~
+extradesc: titans-girth titan-girth
+This belt is made of a metal as while as snow itself. It is inlaid with
+precious stones.~
+~~
+vnum: 48036
+location: 21
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: gaze fiery-gaze glowing-red-eyes
+shortdesc: &3&ba&0 &1&bfiery&0 &3&bgaze&0
+desc: Glowing red eyes rest here.
+type: 8
+weight: 0.60
+cost: 8010
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+18 1
+28 175
+~
+extradesc: gaze fiery-gaze glowing-red-eyes
+They're a pair of magical red eyes that strike fear into the hearts of those
+who oppose their owner.~
+~~
+vnum: 10304
+location: 22
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: jmouwx 0
+name: mask demonic-mask frightening-mask
+shortdesc: a demonic mask
+desc: A frightening mask is sitting here.
+type: 8
+weight: 3.50
+cost: 5000
+timer: 100
+level: 35
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+13 5
+4 1
+~
+extradesc: mask demonic-mask frightening-mask
+Made of beaten gold and shaped into the fearsome visage of a scowling demon,
+this mask is complete with curling white horns.  Sure to frighten anyone gazing
+upon it, the demon's face is both ugly and true to form.  Perhaps it was
+modeled after a real demon.~
+~~
+vnum: 408
+location: 23
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag 0
+name: ball ornamental-christmas-ball small-shining-ornament orb
+shortdesc: an ornamental christmas ball
+desc: A small shining ornament sparkles on the ground.
+type: 1
+weight: 0.06
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1310721
+hiddenness: 0
+~~
+vnum: 49004
+location: 127
+values:
+100
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: backpack leather black leather-backpack pack
+shortdesc: a leather backpack
+desc: A backpack of tough black leather has lost its owner.
+type: 15
+weight: 6.00
+cost: 50
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+17 4
+~
+extradesc: backpack leather
+A vast amount of stuff can fit into this sturdy backpack.~
+~~
+vnum: 8506
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring jet-earring ear-ring tiny-black-earring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 8
+weight: 0.02
+cost: 250
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+18 1
+19 1
+~
+extradesc: earring jet-earring ear-ring tiny-black-earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.~
+~~
+vnum: 58601
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ap 0
+name: spyglass spy-glass cylindrical object
+shortdesc: a spyglass
+desc: A cylindrical object rolls out of reach.
+type: 8
+weight: 0.75
+cost: 2000
+timer: 0
+level: 10
+effects: x 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 5
+~
+extradesc: spyglass spy-glass cylindrical object
+This object is made up of many cylinders in progressive sizes that collapse to
+make a little object the size of a drinking cup, and expands to form a long,
+narrowing tube with glass at either end.  When you look through it, you can see
+things close up, or so the legends go.~
+~~
+vnum: 1803
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: canoe bark-canoe
+shortdesc: a bark canoe
+desc: A bark canoe has been abandoned here.
+type: 22
+weight: 20.00
+cost: 1
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: canoe bark-canoe
+   &0It looks very heavy, but quite sturdy.  &0~
+~~
+vnum: 58603
+location: 127
+values:
+100
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: duffel duffel-bag bag satchel canvas-satchel canvas
+shortdesc: a duffel bag
+desc: A canvas satchel awaits its new owner.
+type: 15
+weight: 1.75
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+17 4
+~
+extradesc: satchel canvas bag duffel
+A green sailcloth bag that closes at the top with a drawstring,
+this satchel seems like it'd hold a lot of stuff! Straps allow
+it to be worn as well as merely held.~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 11704
+location: 127
+values:
+50
+10
+9
+1
+0
+0
+0
+~
+flags: g 0
+name: stick hardened leather
+shortdesc: a stick made of hardened leather
+desc: A small stick made of hardened leather lies here.
+type: 3
+weight: 1.00
+cost: 45
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 53317
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjop 0
+name: amulet dragon's-eye-amulet dragons-eye-amulet silver-amulet-embedded-dragons-eye
+shortdesc: a dragon's eye amulet
+desc: A silver amulet embedded with a dragon's eye lies here.
+type: 8
+weight: 1.50
+cost: 1100
+timer: 0
+level: 53
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+3 2
+2 -1
+28 100
+~
+extradesc: amulet dragon's-eye-amulet dragons-eye-amulet silver-amulet-embedded-dragons-eye
+This amulet is made of pure silver and in its center is embedded the huge eye
+of a dragon.  A gold chain allows it it be worn around the neck.~
+~~
+vnum: 11704
+location: 127
+values:
+50
+10
+2
+1
+0
+0
+0
+~
+flags: g 0
+name: stick hardened leather
+shortdesc: a stick made of hardened leather
+desc: A small stick made of hardened leather lies here.
+type: 3
+weight: 1.00
+cost: 45
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 16009
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwyz 0
+name: stormshield storm-shield large-black-shield
+shortdesc: the Stormshield
+desc: A large black shield is almost hidden by debris.
+type: 9
+weight: 2.20
+cost: 5000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+1 1
+18 2
+~
+extradesc: stormshield storm-shield large-black-shield
+This is the legendary Stormshield, once used by the Lords of Mystwatch.  
+Resembling a large heater shield, there is a heraldic design emblazoned upon
+it.  It is said that this shield was forged by the Gods themselves in the
+beginning of the world.~
+extradesc: design heraldic herald
+   An argent hawk outstretched, upon an azure field. ~
+triggers:
+5324
+5332
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 1006
+location: 127
+values:
+30
+30
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: waterskin well-crafted-leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: well-crafted-leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.  &0~
+~~
+vnum: 58417
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: fD 0
+name: cloak swan-princess-cloak-feathers cloak-white-feathers-shimmers questobject
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+18 2
+2 5
+~
+extradesc: cloak swan-princess-cloak-feathers cloak-white-feathers-shimmers questobject
+This beautiful cloak is made of some kind of silky white fabric sewn all over
+with the most amazing white feathers.  Each full, white feather has a single
+dark blue dot near its tip, giving the cloak a kind of shimmery nature as it
+turns from white to dappled.  The cloak fits closely about its wearer's body,
+with a white leather clasp holding it closed at the throat and at the waist.~
+~~
+vnum: 48407
+location: 127
+values:
+99
+53
+210
+44
+0
+0
+0
+~
+flags: ag 0
+name: decanter crystal-decanter
+shortdesc: a crystal decanter
+desc: A decanter made of crystal is here, sparkling in the light.
+type: 10
+weight: 0.80
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 48407
+location: 127
+values:
+99
+53
+210
+44
+0
+0
+0
+~
+flags: ag 0
+name: decanter crystal-decanter
+shortdesc: a crystal decanter
+desc: A decanter made of crystal is here, sparkling in the light.
+type: 10
+weight: 0.80
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 48024
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mnu 0
+name: heartstone heart-stone large-black-jewel questobject
+shortdesc: the Heartstone
+desc: A large black jewel glows ominously at you.
+type: 9
+weight: 0.90
+cost: 4800
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+5 1
+13 25
+~
+extradesc: heartstone heart-stone large-black-jewel questobject
+Inside the Heartstone you see a small fleck of green which seems to pulse at
+odd intervals.  The Heartstone itself is a large black jewel.  You have never
+seen anything quite like it before.~
+~~
+vnum: 23823
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aiAD 0
+name: wings dragon-wings heap-silver-scales
+shortdesc: a pair of dragon wings
+desc: A heap of silver scales lies here.
+type: 8
+weight: 21.00
+cost: 10000
+timer: 0
+level: 85
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+19 2
+14 20
+13 20
+~
+extradesc: wings dragon-wings heap-silver-scales
+A quicksilver mess of barely-defined scales and membranes resolves itself into
+a pair of wings upon closer inspection.  They seem to magically resize
+themselves if worn, becoming closer to the size of the wearer as though to fit
+them personally.  Once worn, they attach themselves seamlessly to the wearer's
+back and look like an extra set of limbs that could probably be used for their
+original purpose: flight.  Their value seems beyond reckoning.~
+~~

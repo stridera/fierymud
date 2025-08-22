@@ -6,6 +6,7 @@ from mud import Encoder, MudFiles
 
 
 def main(path: str, zone: int | None, output: str = None):
+    processed_files = 0
     for zone_files in MudFiles.zone_files(path, zone):
         zone_id = zone_files.id
         print(f"\nProcessing Zone {zone_id}...")
@@ -23,6 +24,7 @@ def main(path: str, zone: int | None, output: str = None):
         else:
             out_file = os.path.join(output, f"{zone_id}.json")
 
+        print(f"-- Writing {out_file} ...")
         if out_file == "stdout":
             print(json.dumps(prototype, cls=Encoder, indent=4))
         else:
@@ -31,7 +33,10 @@ def main(path: str, zone: int | None, output: str = None):
             file.write(json.dumps(prototype, cls=Encoder, indent=4))
             file.write("\n")
 
-        print("Done")
+            processed_files += 1
+
+        print(f"Done processing Zone {zone_id}")
+    print(f"Total files processed: {processed_files}")
 
 
 if __name__ == "__main__":

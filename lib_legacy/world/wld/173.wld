@@ -1,0 +1,1368 @@
+#17301
+Temple Entrance~
+   You find yourself in a long corridor with side passages to the west and
+east.  The walls seem to be a multi-hued, but because the colours change so
+fast, it almost seem to be black.  An atmosphere of impenetrable gloom
+permeates this evil looking place.  Grosteque statues of malformed creatures
+line the corridor at irregular intervals.  You could even swear that some of
+them move.  The corridor continues on to the south.    
+~
+173 8 0
+D0
+~
+~
+0 -1 55794
+D1
+~
+~
+0 0 17305
+D2
+~
+~
+0 0 17311
+D3
+~
+~
+0 0 17304
+E
+statues statue~
+   The statues are jet black in colour but they are strangely soft to the touch
+and has a texture similar to flesh. Some sport an astonishing array of 
+appendages, and all look totally horrifying.
+~
+S
+#17302
+The Blue Corridor~
+   The corridor is now in a curious shade of blue, with streaks of purple
+suddenly appearing and disappearing without warning.  The scent of violets is
+heavy in the air.  This corridor seem to lead on forever towards the west.  
+But then again, it seems to be a little more pleasant as there are no horrible
+statues arounds.    
+~
+173 8 0
+D1
+~
+~
+0 -1 17303
+D3
+~
+~
+0 -1 17304
+S
+#17303
+The Blue Corridor~
+   The corridor is now in a curious shade of blue, with streaks of purple
+suddenly appearing and disappearing without warning.  The scent of violets is
+heavy in the air.  This corridor seem to lead on forever towards the west.  
+But then again, it seems to be a little more pleasant as there are no horrible
+statues arounds.    
+~
+173 8 0
+D1
+~
+~
+0 -1 17304
+D2
+   You find a small latch here which can trigger open the panel.
+~
+door secret panel~
+1 -1 17309
+D3
+~
+~
+0 -1 17302
+S
+#17304
+The Blue Corridor~
+   The corridor is now in a curious shade of blue, with streaks of purple
+suddenly appearing and disappearing without warning.  The scent of violets is
+heavy in the air.  This corridor seem to lead on forever towards the west.  
+But then again, it seems to be a little more pleasant as there are no horrible
+statues arounds.    
+~
+173 12 0
+D3
+~
+~
+0 -1 17303
+S
+#17305
+The Bright Corridor~
+   The walls of this place are extemely bright, almost to the point of being
+blinding.  They seem to radiate extreme heat, but when you raise the courage to
+feel one, its surface feels cold.  The corridor seems to extend from east to
+west.
+~
+173 12 0
+D1
+~
+~
+0 -1 17306
+D3
+~
+~
+0 -1 17301
+S
+#17306
+The Curving Path~
+   The corridor seems to be bending towards the south.  Now, in addition to the
+heat that you feel, there is a dark, forboding feeling invading your
+consciousness.  To the east, there seems to be a dark outline etched in the
+bright surface of the wall.    
+~
+173 8 0
+D1
+   As you grope in the blinding mass of light, you can feel something within,
+cold, bar like objects.
+~
+portal~
+1 -1 17307
+D2
+~
+~
+0 -1 17313
+D3
+~
+~
+0 -1 17305
+S
+#17307
+The Dark Path~
+   You seem to have stumbled upon a dark and rarely used pathway.  The dust on
+the floor is thick, and you leave footprints behind as you tread along this
+way.  Littered all around you are the bones of small, deformed creatures.  The
+pathway leads onwards to the south.    
+~
+173 8 0
+D2
+~
+~
+0 -1 17314
+D3
+   There is a portal here, leading back to the west.
+~
+portal~
+1 -1 17306
+S
+#17308
+Dark Corridor~
+   The blackness in this place is beyond belief.  The walls seem to swallow up
+light like a vacuum, and every direction looks the same.  Once in a while,
+there are flashes of red light, and it serves to confuse you even more.    
+~
+173 136 0
+D1
+~
+~
+0 -1 17316
+D2
+~
+door secret~
+0 -1 17315
+S
+#17309
+Dark Corridor~
+   The blackness in this place is beyond belief.  The walls seem to swallow up
+light like a vacuum, and every direction looks the same.  Once in a while,
+there are flashes of red light, and it serves to confuse you even more.    
+~
+173 136 0
+D1
+~
+~
+0 -1 17308
+D2
+~
+door secret~
+0 -1 17316
+S
+#17310
+Sudden Bend~
+   The passageway bends suddenly to the east and south.  You are almost blinded
+as you come here as a bright light suddenly flashed before your eyes.  As your
+eyes readjust to the gloom, you notice that there the walls here are bright red
+in colour.    
+~
+173 136 0
+D1
+~
+~
+0 -1 17311
+D2
+~
+~
+0 -1 17317
+E
+walls wall red~
+   As you place your hand on the wall, it feels rather sticky and wet. A
+horrible wail fills the air as you remove your hand from the disgusting
+surface.
+~
+S
+#17311
+The Dark Corridor~
+   You find yourself in a long corridor with side passages to the west and
+east.  The walls seem to be a multi-hued, but because the colours change so
+fast, it almost seem to be black.  An atmosphere of impenetrable gloom
+permeates this evil looking place.  Grosteque statues of malformed creatures
+line the corridor at irregular intervals.  You could even swear that some of
+them move.  The corridor continues on to the south.    
+~
+173 8 0
+D0
+~
+~
+0 -1 17301
+D1
+~
+~
+0 0 17311
+D2
+~
+~
+0 0 17318
+D3
+~
+~
+0 0 17310
+E
+statues statue~
+   The statues are jet black in colour but they are strangely soft to the touch
+and has a texture similar to flesh. Some sport an astonishing array of 
+appendages, and all look totally horrifying.
+~
+S
+#17312
+A Closed Room~
+   You find yourself in an enclosed room.  The path behind you has mysteriously
+closed up.  As you peer in the darkness, you notice a small passage leading to
+the north.  Perhaps it is a way out.    
+~
+173 8 0
+D0
+~
+~
+0 -1 17311
+S
+#17313
+The Bright Corridor~
+   The corridor seems to be aflame with bright light, making it quite difficult
+to see.  It is also beginning to feel uncomfortably warm here, and you feel
+like you're being burnt alive.  There is a small passage leading to the west.
+~
+173 8 0
+D0
+~
+~
+0 -1 17306
+D2
+~
+~
+0 -1 17320
+D3
+~
+~
+0 -1 17312
+S
+#17314
+The Dark Path~
+   You seem to have stumbled upon a dark and rarely used pathway.  The dust on
+the floor is thick, and you leave footprints behind as you tread along this
+way.  Littered all around you are the bones of small, deformed creatures.  
+There is a faint smell of sulphur in the air.  The pathway leads onwards to the
+north and south.    
+~
+173 8 0
+D0
+~
+~
+0 -1 17307
+D2
+~
+~
+0 -1 17321
+S
+#17315
+Dark Corridor~
+   The blackness in this place is beyond belief.  The walls seem to swallow up
+light like a vacuum, and every direction looks the same.  Once in a while,
+there are flashes of red light, and it serves to confuse you even more.    
+~
+173 136 0
+D0
+~
+~
+0 -1 17308
+D1
+~
+~
+0 -1 17316
+D2
+   You find a door in that direction which blended in well with the black
+walls.
+~
+door secret~
+1 -1 17322
+S
+#17316
+Dark Corridor~
+   The blackness in this place is beyond belief.  The walls seem to swallow up
+light like a vacuum, and every direction looks the same.  Once in a while,
+there are flashes of red light, and it serves to confuse you even more.    
+~
+173 136 0
+D0
+~
+~
+0 -1 17309
+D2
+~
+door secret~
+0 -1 17308
+D3
+~
+~
+0 -1 17315
+S
+#17317
+The Dark Corridor~
+   You find yourself in a long corridor.  The walls seem to be a multi-hued,
+but because the colours change so fast, it almost seem to be black.  An
+atmosphere of impenetrable gloom permeates this evil looking place.  Grosteque
+statues of malformed creatures line the corridor at irregular intervals.  You
+could even swear that some of them move.  The corridor continues on to the
+south.    
+~
+173 8 0
+D0
+~
+~
+0 -1 17310
+D2
+~
+~
+0 -1 17324
+E
+statues statue~
+   The statues are jet black in colour but they are strangely soft to the touch
+and has a texture similar to flesh. Some sport an astonishing array of 
+appendages, and all look totally horrifying.
+~
+S
+#17318
+The Dark Corridor~
+   You find yourself in a long corridor.  The walls seem to be a multi-hued,
+but because the colours change so fast, it almost seem to be black.  An
+atmosphere of impenetrable gloom permeates this evil looking place.  Grosteque
+statues of malformed creatures line the corridor at irregular intervals.  You
+could even swear that some of them move.  The corridor continues on to the
+south.    
+~
+173 8 0
+D0
+~
+~
+0 -1 17311
+D2
+~
+~
+0 0 17325
+E
+statues statue~
+   The statues are jet black in colour but they are strangely soft to the touch
+and has a texture similar to flesh. Some sport an astonishing array of 
+appendages, and all look totally horrifying.
+~
+S
+#17319
+The Red Passage~
+   You find yourself in a passageway leading to the north and south.  The walls
+here are blood red in colour, and the floor feels sticky beneath your feet.  
+There is even the sickeningly sweet smell of blood.  You heart begins to beat
+faster as your senses are assaulted by such morbid stimuli.    
+~
+173 12 5
+D0
+~
+~
+0 -1 17316
+D2
+~
+~
+0 -1 17326
+S
+#17320
+Bright Corridor~
+   The corridor continues on in three different directions, with identical
+corridors leading to the north, east and south.  The sheer intensity of the
+lights here threatens to blind you, yet somehow, you can see clearly.  This is
+very queer.    
+~
+173 136 0
+D0
+~
+~
+0 -1 17313
+D1
+~
+~
+0 -1 17321
+D2
+~
+~
+0 -1 17327
+S
+#17321
+The Hound Pen~
+   You seem to have stumbled upon a holding area for animals!  There is an
+overpowering smell of urine and faeces here.  As you step gingerly, you can
+hear the sounds of bones breaking under you feet.  There is also a very squishy
+feeling under your boots.  You don't dare to look down.    
+~
+173 8 0
+D0
+~
+~
+0 -1 17314
+S
+#17322
+A Bend In The Corridor~
+   The stone corridor bends here, going from east to south. There
+are no light sources, so the only way to tell this is if there is
+one brought here.
+~
+173 136 0
+D1
+~
+~
+0 -1 17323
+D2
+~
+~
+0 -1 17329
+S
+#17323
+A Bend In The Corridor~
+   The corridor suddenly bends to the west, and you feel a sudden chill in the
+air, as if there is something missing here.    
+~
+173 136 0
+D2
+~
+~
+0 -1 17330
+D3
+~
+~
+0 -1 17322
+S
+#17324
+The Dark Corridor~
+   You find yourself in a long corridor.  The walls seem to be a multi-hued,
+but because the colours change so fast, it almost seem to be black.  An
+atmosphere of impenetrable gloom permeates this evil looking place.  Grosteque
+statues of malformed creatures line the corridor at irregular intervals.  You
+could even swear that some of them move.  The corridor continues on to the
+south and the east.    
+~
+173 8 0
+D0
+~
+~
+0 -1 17317
+D1
+~
+~
+0 -1 17325
+D2
+~
+~
+0 -1 17331
+E
+statues statue~
+   The statues are jet black in colour but they are strangely soft to the touch
+and has a texture similar to flesh. Some sport an astonishing array of 
+appendages, and all look totally horrifying.
+~
+S
+#17325
+The T-Junction~
+   You arrive at a T-junction, with passages leading to the north, east and
+west.  The floor here is rather uneven, and you have some difficulty walking on
+its surface.  When you touch the walls, it is pulsating, almost as if it were
+alive.    
+~
+173 8 5
+D0
+~
+~
+0 -1 17318
+D1
+~
+~
+0 -1 17326
+D3
+~
+~
+0 -1 17324
+S
+#17326
+The Red Passage~
+   You find yourself in a passageway leading to the north and south.  The walls
+here are blood red in colour, and the floor feels sticky beneath your feet.  
+There is even the sickeningly sweet smell of blood.  You heart begins to beat
+faster as your senses are assaulted by such morbid stimuli.    
+~
+173 8 5
+D0
+~
+~
+0 -1 17319
+D2
+~
+~
+0 -1 17333
+D3
+~
+~
+0 -1 17325
+S
+#17327
+The Curving Path~
+   The corridor seems to be bending towards the east.  The lights here seems to
+be getting dimmer and dimmer, and for once, you can see your shadow on the
+ground.  The walls around you looks a lot like marble, except for the flashes
+of red that sometimes crosses its surface.    
+~
+173 8 0
+D0
+~
+~
+0 -1 17320
+D1
+~
+~
+0 -1 17328
+S
+#17328
+A Dead End~
+   It seems like you have reached a dead end.  The walls are solid, offering no
+indication of any hidden portals.  The only way out is back to the west.    
+~
+173 8 0
+D3
+~
+~
+0 -1 17327
+S
+#17329
+The End Of The Passage~
+   The passage has ended in what seems to be a dead end.  Upon closer
+examination, you uncover a small hole in the ground.  It could lead somewhere.
+  
+~
+173 136 0
+D0
+~
+~
+0 -1 17322
+D5
+~
+~
+0 -1 17336
+S
+#17330
+Beyond The Portal~
+   Where the portal should be, there is only an impassable wall of bright
+light.  The corridor continues north, through a path of ever shifting colours.
+Sometimes, you can see suggestions of shapes all around you, beautiful, yet
+ugly.  You sense no hate here, no love, just the ever changing chaos.    
+~
+173 8 0
+D0
+~
+~
+0 -1 17323
+S
+#17331
+Before The Portal~
+   You stand before a dark, whirling portal to the west.  The corridor has come
+to a dead end, and the only way out you can see is either back north, or
+through the dark portal.    
+~
+173 8 0
+D0
+~
+~
+0 -1 17324
+D1
+There is a small, movable panel here.
+~
+panel~
+1 -1 17332
+D3
+The darkness before you seems inpenetrable and hostile. It seems to suck in
+light and sound.
+~
+portal~
+1 -1 17330
+S
+#17332
+The Stairwell~
+   You find yourself at the foot of a stairwell, with dark, obsidian staircase
+leading upwards into the innards of the temple.  There are deep, growling
+sounds which seems to originate from the very walls itself.  It makes you think
+of your stomach ...  When you are hungry.    
+~
+173 8 0
+D3
+   There is a small, movable panel on this wall.
+~
+panel~
+1 -1 17331
+D4
+~
+~
+0 -1 17367
+S
+#17333
+A Red Intersection~
+   You find yourself in a passageway leading to the north, east and south.  
+The walls here are blood red in colour, and the floor feels sticky beneath your
+feet.  There is even the sickeningly sweet smell of blood.  You heart begins to
+beat faster as your senses are assaulted by such morbid stimuli.    
+~
+173 8 5
+D0
+~
+~
+0 -1 17326
+D1
+~
+~
+0 -1 17334
+D2
+~
+~
+0 -1 17314
+S
+#17334
+The Red Passage~
+   You find yourself in a passageway leading to the east and west.  The walls
+here are blood red in colour, and the floor feels sticky beneath your feet.  
+There is even the sickeningly sweet smell of blood.  You heart begins to beat
+faster as your senses are assaulted by such morbid stimuli.    
+~
+173 8 5
+D1
+~
+~
+0 -1 17335
+D3
+~
+~
+0 -1 17333
+S
+#17335
+A Dead End~
+   You seem to have reached a dead end.  The smell of blood is strong in the
+air, as if the very essense of death is concentrated here.  The ground beneath
+you feels soft and smells putrid.  You feel like going back out where you came
+from.    
+~
+173 136 5
+D3
+~
+~
+0 -1 17334
+S
+#17336
+A Dark Tunnel~
+   The smell of earth is very strong here, though the walls seems to be made of
+a smooth, glassy material.  You reach out to touch its surface, but your
+fingers go right through it!  An icy cold sensation creeps up your fingers, and
+you quickly withdraw your hand.  The tunnel meanders southwards, and above you
+is an opening.    
+~
+173 136 0
+D2
+~
+~
+0 -1 17342
+D4
+~
+~
+0 -1 17329
+S
+#17337
+Portal Room~
+   You find you have entered a large, round room which is very brightly
+illuminated.  It is devoid of any distinguishing items, save a large, black
+portal which dominates the eastern wall.  There is an electric feeling in the
+air which seems to emanate from the portal itself.    
+~
+173 136 0
+D1
+   A jet black door bars your way to the east. There is an almost electric
+feeling as you run your fingers across its surface.
+~
+portal~
+1 -1 17338
+D2
+~
+~
+0 -1 17343
+S
+#17338
+Swirling Corridor~
+   The walls and ceiling in this corridor seems to consist of a confusing
+jumble of swirling colours.  You feel disoriented in here, as if the structure
+of reality is being distorted beyond all recognition.    
+~
+173 140 0
+D1
+~
+~
+0 -1 17339
+D2
+~
+~
+0 -1 17344
+D3
+   A jet black door blocks your way to the west. There is a dull throbbing on
+your fingers as you brush them against the surface of the door.
+~
+portal~
+1 -1 17337
+D4
+~
+~
+0 -1 17318
+S
+#17339
+Swirling Corridor~
+   The walls and ceiling in this corridor seems to consist of a confusing
+jumble of swirling colours.  You feel disoriented in here, as if the structure
+of reality is being distorted beyond all recognition.    
+~
+173 136 0
+D1
+~
+portal~
+0 -1 17340
+D3
+~
+portal~
+0 -1 17338
+S
+#17340
+Swirling Corridor~
+   The walls and ceiling in this corridor seems to consist of a confusing
+jumble of swirling colours.  You feel disoriented in here, as if the structure
+of reality is being distorted beyond all recognition.    
+~
+173 136 0
+D3
+~
+portal~
+0 -1 17339
+S
+#17341
+Swirling Corridor~
+   The walls and ceiling in this corridor seems to consist of a confusing
+jumble of swirling colours.  You feel disoriented in here, as if the structure
+of reality is being distorted beyond all recognition.    
+~
+173 136 0
+D4
+~
+~
+0 -1 17301
+S
+#17342
+A Dark Tunnel~
+   The tunnel meanders in a north-south direction.  Just at the edge of hearing
+is the sound of running water.  Your feet feel cold and wet, even though the
+floor beneath you is dry.  A small tunnel leads east.
+~
+173 136 6
+D0
+~
+~
+0 -1 17336
+D1
+~
+~
+0 -1 17343
+D2
+~
+~
+0 -1 17348
+S
+#17343
+A Dark Tunnel~
+   The tunnel meanders in a north-south direction.  Just at the edge of
+hearing, you can hear the sound of running water.  You feet feels cold and wet,
+even though the floor beneath you is dry.    
+~
+173 136 0
+D0
+~
+~
+0 -1 17337
+D2
+~
+~
+0 -1 17349
+S
+#17344
+Swirling Corridor~
+   The walls and ceiling in this corridor seems to consist of a confusing
+jumble of swirling colours.  You feel disoriented in here, as if the structure
+of reality is being distorted beyond all recognition.    
+~
+173 136 0
+D2
+~
+~
+0 -1 17350
+S
+#17345
+Chamber of Chaos~
+   You find yourself in a massive chamber, which measures about 300 feet by 300
+feet.  It seems to be made of a hard, red stone, which seems to sparkle with a
+merry life of its own.  It almost makes up for the queer sense of loss you have
+been feeling on this floor.    
+~
+173 136 5
+D1
+~
+gateway~
+0 -1 17346
+D2
+~
+~
+0 -1 17351
+E
+red stone~
+   You try to scratch the surface of the chamber, but in spite of your best
+efforts, it is unmarked. Then you realise, this chamber is made of one large
+piece of ruby.
+~
+S
+#17346
+Chamber of Chaos~
+   You find yourself in a massive chamber, which measures about 300 feet by 300
+feet.  It seems to be made of a hard, red stone, which seems to sparkle with a
+merry life of its own.  It almost makes up for the queer sense of loss you have
+been feeling on this floor.    
+~
+173 136 5
+D1
+   There is a solid metal door in that direction. No, its a metal door. Now,
+its a door of stone. It seems to continue changing its material, but one thing
+remains the same. There is a golden doorknob right in its centre.
+~
+gateway~
+1 -1 17347
+D2
+~
+~
+0 -1 17352
+D3
+~
+gateway~
+0 -1 17345
+E
+red stone~
+   You try to scratch the surface of the chamber, but in spite of your best
+efforts, it is unmarked. Then you realise, this chamber is made of one large
+piece of ruby.
+~
+S
+#17347
+Swirling Corridor~
+   The walls and ceiling in this corridor seems to consist of a confusing
+jumble of swirling colours.  You feel disoriented in here, as if the structure
+of reality is being distorted beyond all recognition.    
+~
+173 140 0
+D0
+~
+~
+0 -1 17341
+D2
+~
+~
+0 -1 17353
+D3
+   There is a strange gateway in this direction. It seems to be nothing more
+than a black abyss which is of an incredible depth, but smack in its centre is
+a golden doorknob.
+~
+gateway~
+1 -1 17346
+S
+#17348
+A Dark Tunnel~
+   The tunnel meanders in a north-south direction.  Just at the edge of hearing
+is the sound of running water.  Your feet feel cold and wet, even though the
+floor beneath you is dry.  A small tunnel leads east.
+~
+173 136 6
+D0
+~
+~
+0 -1 17342
+D2
+~
+~
+0 -1 17354
+S
+#17349
+A Dark Tunnel~
+   The tunnel meanders in a north-south direction.  Just at the edge of
+hearing, you can hear the sound of running water.  Your feet feel cold and wet,
+even though the floor beneath you is dry.    
+~
+173 136 6
+D0
+~
+~
+0 -1 17343
+D2
+~
+~
+0 -1 17355
+S
+#17350
+Swirling Corridor~
+   The walls and ceiling in this corridor seems to consist of a confusing
+jumble of swirling colours.  You feel disoriented in here, as if the structure
+of reality is being distorted beyond all recognition.    
+~
+173 136 0
+D0
+~
+~
+0 -1 17344
+D2
+~
+~
+0 -1 17356
+S
+#17351
+Chamber of Chaos~
+   You find yourself in a massive chamber, which measures about 300 feet by 300
+feet.  It seems to be made of a hard, red stone, which seems to sparkle with a
+merry life of its own.  It almost makes up for the queer sense of loss you have
+been feeling on this floor.    
+~
+173 136 5
+D0
+~
+~
+0 -1 17345
+D1
+~
+gateway~
+0 -1 17352
+E
+red stone~
+   You try to scratch the surface of the chamber, but in spite of your best
+efforts, it is unmarked. Then you realise, this chamber is made of one large
+piece of ruby.
+~
+S
+#17352
+Chamber of Chaos~
+   You find yourself in a massive chamber, which measures about 300 feet by 300
+feet.  It seems to be made of a hard, red stone, which seems to sparkle with a
+merry life of its own.  It almost makes up for the queer sense of loss you have
+been feeling on this floor.    
+~
+173 136 5
+D0
+~
+~
+0 -1 17346
+D3
+~
+gateway~
+0 -1 17351
+E
+red stone~
+   You try to scratch the surface of the chamber, but in spite of your best
+efforts, it is unmarked. Then you realise, this chamber is made of one large
+piece of ruby.
+~
+S
+#17353
+Swirling Corridor~
+   The walls and ceiling in this corridor seems to consist of a confusing
+jumble of swirling colours.  You feel disoriented in here, as if the structure
+of reality is being distorted beyond all recognition.    
+~
+173 136 0
+D0
+~
+~
+0 -1 17347
+D2
+~
+~
+0 -1 17359
+S
+#17354
+A Bend In The Tunnel~
+   The tunnel takes a sudden sharp bend towards the east.  You find yourself
+waist deep in water.  Just above you, you can see a steady stream of water
+coming down from an outlet in the roof.  Curiously, you do not feel wet, but
+you do feel cold.    
+~
+173 136 6
+D0
+~
+~
+0 -1 17348
+D1
+~
+~
+0 -1 17355
+S
+#17355
+A Bend In The Tunnel~
+   The tunnel takes a sudden sharp bend towards the north.  You find yourself
+waist deep in water.  Just above you, you can see a steady stream of water
+coming down from an outlet in the roof.  Curiously, you do not feel wet, but
+you do feel cold.    
+~
+173 136 6
+D0
+~
+~
+0 -1 17349
+D3
+~
+~
+0 -1 17354
+S
+#17356
+Swirling Corridor~
+   The walls and ceiling in this corridor seems to consist of a confusing
+jumble of swirling colours.  You feel disoriented in here, as if the structure
+of reality is being distorted beyond all recognition.    
+~
+173 136 0
+D0
+~
+~
+0 -1 17350
+D1
+~
+~
+0 -1 17357
+S
+#17357
+Swirling Corridor~
+   The walls and ceiling in this corridor seems to consist of a confusing
+jumble of swirling colours.  You feel disoriented in here, as if the structure
+of reality is being distorted beyond all recognition.    
+~
+173 136 0
+D1
+~
+~
+0 -1 17358
+D3
+~
+~
+0 -1 17356
+S
+#17358
+Swirling Corridor~
+   The walls and ceiling in this corridor seems to consist of a confusing
+jumble of swirling colours.  You feel disoriented in here, as if the structure
+of reality is being distorted beyond all recognition.    
+~
+173 136 0
+D1
+~
+~
+0 -1 17359
+D3
+~
+~
+0 -1 17357
+S
+#17359
+Swirling Corridor~
+   The walls and ceiling in this corridor seems to consist of a confusing
+jumble of swirling colours.  You feel disoriented in here, as if the structure
+of reality is being distorted beyond all recognition.    
+~
+173 136 0
+D0
+~
+~
+0 -1 17353
+D3
+~
+~
+0 -1 17358
+S
+#17360
+The Circular Corridor~
+   You find yourself in what resembles a giant pipe.  The surface is wet and
+slippery, making walking difficult.  It seems to curve away to the south and
+east, with no end in sight.    
+~
+173 8 6
+D1
+~
+~
+0 -1 17361
+D2
+~
+~
+0 -1 17365
+S
+#17361
+The Circular Corridor~
+   You find yourself in what resembles a giant pipe.  The surface is wet and
+slippery, making walking difficult.  It seems to curve away to the east and
+west, with no end in sight.  A chute like passage leads down to the south.    
+~
+173 8 6
+D1
+~
+~
+0 -1 17362
+D2
+~
+~
+0 -1 17366
+D3
+~
+~
+0 -1 17360
+S
+#17362
+The Circular Corridor~
+   You find yourself in what resembles a giant pipe.  The surface is wet and
+slippery, making walking difficult.  It seems to curve away to the east and
+west, with no end in sight.    
+~
+173 8 6
+D1
+~
+~
+0 -1 17363
+D3
+~
+~
+0 -1 17361
+S
+#17363
+The Circular Corridor~
+   You find yourself in what resembles a giant pipe.  The surface is wet and
+slippery, making walking difficult.  It seems to curve away to the east and
+west, with no end in sight.  A chute like passage leads down to the south.    
+~
+173 8 6
+D1
+~
+~
+0 -1 17364
+D2
+~
+~
+0 -1 17368
+D3
+~
+~
+0 -1 17362
+S
+#17364
+The Circular Corridor~
+   You find yourself in what resembles a giant pipe.  The surface is wet and
+slippery, making walking difficult.  It seems to curve away to the south and
+west, with no end in sight.    
+~
+173 8 6
+D2
+~
+~
+0 -1 17369
+D3
+~
+~
+0 -1 17363
+S
+#17365
+The Circular Corridor~
+   You find yourself in what resembles a giant pipe.  The surface is wet and
+slippery, making walking difficult.  It seems to curve away to the north and
+south, with no end in sight.    
+~
+173 8 6
+D0
+~
+~
+0 -1 17360
+D2
+~
+~
+0 -1 17370
+S
+#17366
+High Priest's Chambers~
+   The rich smell of incense fills their air, and in the distance, you could
+swear you can hear the sounds of chanting.  Thick books line the walls, but as
+you try to touch them, your hands pass right through them, as if they were an
+illusion.    
+~
+173 8 6
+D0
+~
+~
+0 -1 17361
+S
+#17367
+Top Of The Stairwell~
+   The stairwell opens up to an open parapet, on the top of the temple.  It's
+strange but, you didn't notice this temple having a tower, but since you're
+here, it obviously does.  The sky looks changed, with a glory of colours
+dominating it from horizon to horizon.  A rope ladder suspended in mid-air,
+with no obvious support.  An obsidian door is to the south, beckoning you to
+enter.    
+~
+173 128 5
+D2
+   The obsidian door bars your way to the south.
+~
+obsidian door~
+1 -1 17372
+D4
+~
+~
+0 -1 17305
+D5
+~
+~
+0 -1 17332
+S
+#17368
+Necromancer's Lair~
+   The stink of decaying flesh hits you as you walk into this chamber.  All
+around you, there are corpses in various stages of decay.  Maggots are crawling
+on the floor, making it quite distasteful to take another step.    
+~
+173 8 6
+D0
+~
+~
+0 -1 17363
+S
+#17369
+The Circular Corridor~
+   You find yourself in what resembles a giant pipe.  The surface is wet and
+slippery, making walking difficult.  It seems to curve away to the north and
+south, with no end in sight.    
+~
+173 8 6
+D0
+~
+~
+0 -1 17364
+D2
+~
+~
+0 -1 17374
+S
+#17370
+The Circular Corridor~
+   You find yourself in what resembles a giant pipe.  The surface is wet and
+slippery, making walking difficult.  It seems to curve away to the north and
+east, with no end in sight.    
+~
+173 8 6
+D0
+~
+~
+0 -1 17365
+D1
+~
+~
+0 -1 17371
+S
+#17371
+The Circular Corridor~
+   You find yourself in what resembles a giant pipe.  The surface is wet and
+slippery, making walking difficult.  It seems to curve away to the east and
+west, with no end in sight.    
+~
+173 8 6
+D1
+~
+~
+0 -1 17372
+D3
+~
+~
+0 -1 17370
+S
+#17372
+The Circular Corridor~
+   You find yourself in what resembles a giant pipe.  The surface is wet and
+slippery, making walking difficult.  It seems to curve away to the east and
+west, with no end in sight.    
+~
+173 8 6
+D0
+   The obsidian door bars your way to the north.
+~
+obsidian door~
+1 -1 17367
+D1
+~
+~
+0 -1 17373
+D3
+~
+~
+0 -1 17371
+S
+#17373
+The Circular Corridor~
+   You find yourself in what resembles a giant pipe.  The surface is wet and
+slippery, making walking difficult.  It seems to curve away to the east and
+west, with no end in sight.    
+~
+173 8 6
+D1
+~
+~
+0 -1 17374
+D3
+~
+~
+0 -1 17372
+S
+#17374
+The Circular Corridor~
+   You find yourself in what resembles a giant pipe.  The surface is wet and
+slippery, making walking difficult.  It seems to curve away to the north and
+west, with no end in sight.    
+~
+173 8 6
+D0
+~
+~
+0 -1 17369
+D3
+~
+~
+0 -1 17373
+S
+$~

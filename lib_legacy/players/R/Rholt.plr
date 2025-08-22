@@ -1,0 +1,86 @@
+name: Rholt
+password: RhOf8UHtFO
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19676
+birthtime: 1596956610
+timeplayed: 1364
+lastlogintime: 1621473759
+host: 024.020.004.178
+height: 85
+weight: 228
+base_height: 85
+base_weight: 228
+base_size: 3
+natural_size: 3
+alignment: -5
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 5
+lastlevel: 0
+hitpoints: 62/54
+mana: 1/0
+move: 170/170
+damroll: 5
+hitroll: 4
+strength: 91
+intelligence: 58
+wisdom: 69
+dexterity: 94
+constitution: 97
+charisma: 55
+cash: 0 10 47 38
+experience: 47684
+quit_reason: 1
+saveroom: 3054
+skills:
+403 50
+415 50
+416 50
+419 1000
+421 54
+427 1000
+438 50
+443 50
+444 50
+464 52
+465 50
+467 50
+0 0
+trophy:
+1 3508 2.000000
+1 3503 3.000000
+1 3502 2.000000
+1 3501 3.000000
+1 3500 2.000000
+1 36002 1.000000
+1 8022 1.000000
+1 8010 4.000000
+1 8012 2.000000
+1 8023 4.000000
+1 8013 2.000000
+1 8016 7.000000
+1 8021 2.000000
+1 8011 6.000000
+1 8020 3.000000
+1 8015 2.000000
+1 8014 4.000000
+1 8002 5.000000
+0 0 0
+tells:
+1596957284 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1597203893 Kiram gossips, 'bird'
+$

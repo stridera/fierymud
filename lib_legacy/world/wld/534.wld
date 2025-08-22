@@ -1,0 +1,3471 @@
+#53401
+Ice Tunnel~
+   This wide tunnel through the ice is nearly circular in shape.  It is not as
+rough-hewn as the others through which you have traveled.  It leads to the east
+and west.    ~
+534 8 12
+D1
+~
+~
+0 -1 53302
+D3
+~
+~
+0 -1 53402
+S
+#53402
+Ice Tunnel~
+   This wide tunnel through the ice runs east and west.  A chilly wind assails
+your face, blowing in from the west.    ~
+534 8 12
+D1
+~
+~
+0 -1 53401
+D3
+~
+~
+0 -1 53403
+S
+#53403
+Bend in Ice Tunnel~
+   The tunnel carved through the ice curves here.  It leads off to the east and
+south.  Freezing arctic air blows in from the south.    ~
+534 8 12
+D1
+~
+~
+0 -1 53402
+D2
+~
+~
+0 -1 53404
+S
+#53404
+Turn in Ice Tunnel~
+The tunnel bends here, heading off to the north and west. A slight wind
+whips through the tunnel from the west.    ~
+534 8 12
+D0
+~
+~
+0 -1 53403
+D3
+~
+~
+0 -1 53405
+S
+#53405
+Ice Tunnel Entrance~
+   The tunnel through the ice ends here and opens up to the outside air.  A
+gusty wind blows in from the tunnel opening to the west making strange noises
+as it races down the tunnel.  A layer of snow has been blown into the tunnel by
+the last storm and you can already see many footprints leading in and out of
+the tunnel.  The tunnel leads back to the east; to the west it opens up to the
+outside.    ~
+534 0 12
+D1
+~
+~
+0 -1 53404
+D3
+~
+~
+0 -1 53406
+S
+#53406
+Clearing in Coniferous Forest~
+   You are standing in a small hill overlooking a large valley that stretches
+out before you to the west.  To the east a small tunnel is carved through a
+huge mountain of solid ice.  To the west and north you are surrounded by a
+dense coniferous forest.  In the middle of the snow covered valley you can see
+a large lake.  A tall tower is built on a small island in the center of the
+lake and rises up like a beacon.    ~
+534 0 11
+D0
+~
+~
+0 -1 53407
+D1
+~
+~
+0 -1 53405
+D3
+~
+~
+0 -1 53410
+S
+#53407
+Coniferous Forest~
+   You are surrounded by a dense forest of coniferous trees.  To the north and
+east the forest ends at the face of a large impassable mountain.  A light snow
+is falling covering the trees with a blanket of white.    ~
+534 0 3
+D2
+~
+~
+0 -1 53406
+D3
+~
+~
+0 -1 53409
+S
+#53408
+Coniferous Forest~
+   A light snow is falling here blanketing the ground and trees.  To the north
+and east the steep walls of the mountains that enclose this valley rise up
+before you.  Occasionally, you can hear the calls of the many creatures that
+make this forest their home.    ~
+534 0 3
+D2
+~
+~
+0 -1 53409
+D3
+~
+~
+0 -1 53412
+S
+#53409
+Coniferous Forest~
+   A dense forest of coniferous trees surround you.  Their branches sag with
+freshly fallen snow.  All around you is silence and peace.    ~
+534 0 3
+D0
+~
+~
+0 -1 53408
+D1
+~
+~
+0 -1 53407
+D2
+~
+~
+0 -1 53410
+D3
+~
+~
+0 -1 53413
+S
+#53410
+Coniferous Forest~
+   Old, gnarled coniferous trees surround you on all sides, their branches
+sagging with freshly fallen snow.  The forest is rather dense here and you
+cannot see very far through the forest.  The hill slopes down to the west and a
+light mist is creeping up from the valley floor below.    ~
+534 0 3
+D0
+~
+~
+0 -1 53409
+D1
+~
+~
+0 -1 53406
+D2
+~
+~
+0 -1 53411
+D3
+~
+~
+0 -1 53414
+S
+#53411
+Coniferous Forest~
+   The forest has begun to thin out here and to the west you can see a wide
+open valley with a large crystal tower in its center.  To the east and south a
+large mountain made of ice blocks any passage.  The forest thickens to the
+north.  Everything is blanketed in a layer of snow.    ~
+534 0 3
+D0
+~
+~
+0 -1 53410
+D3
+~
+~
+0 -1 53415
+S
+#53412
+Coniferous Forest~
+   The dark coniferous forest surrounding you is covered by a layer of fresh
+snow.  Snowflakes float down, slowly obscuring your tracks through the snow.  
+To the north the forest comes up against the tall cliffs that enclose this
+valley.  The forest surrounds you on all other sides.    ~
+534 0 3
+D1
+~
+~
+0 -1 53408
+D2
+~
+~
+0 -1 53413
+D3
+~
+~
+0 -1 53418
+S
+#53413
+Coniferous Forest~
+   Snowflakes gently float down onto the trees all around you.  The forest is
+dense here making it dark and difficult to see very far.  To the west and south
+the forest thins as it gets closer to the valley floor.  To the north and east
+the forest becomes denser.    ~
+534 0 3
+D0
+~
+~
+0 -1 53412
+D1
+~
+~
+0 -1 53409
+D2
+~
+~
+0 -1 53414
+D3
+~
+~
+0 -1 53419
+S
+#53414
+Coniferous Forest~
+   The forest has thinned down to only a hand full of trees here.  The forest
+becomes much more dense to the north and east.  A thick layer of snow covers
+the ground.  Through the snow you see many tracks, none of which look human in
+origin.  They all lead to a large opening in the ground, leading down.    ~
+534 0 3
+D0
+~
+~
+0 -1 53413
+D1
+~
+~
+0 -1 53410
+D2
+~
+~
+0 -1 53415
+D3
+~
+~
+0 -1 53420
+D5
+~
+~
+0 -1 53568
+S
+#53415
+Edge of Forest~
+   You are standing at the edge of the forest.  This section of the valley
+floor is sparsely dotted with trees but the real forest is to the north and
+east.  To the south and west a large valley opens up before you.  A little ways
+to the west you can see a large lake and the crystal tower.    ~
+534 0 3
+D0
+~
+~
+0 -1 53414
+D1
+~
+~
+0 -1 53411
+D2
+~
+~
+0 -1 53416
+D3
+~
+~
+0 -1 53421
+S
+#53416
+Frost Valley~
+   A large mountain made of ice blocks all passage to the east and south.  To
+the north you can see the edge of a coniferous forest while a ways to the west
+you can see the lake.    ~
+534 0 11
+D0
+~
+~
+0 -1 53415
+D3
+~
+~
+0 -1 53422
+S
+#53417
+Snow Covered Valley~
+   You are standing at the northeastern most section of Frost Valley.  To the
+north and east a huge mountain of ice blocks any attempts at passage.  To the
+south is the beginning of a snow covered coniferous forest.  To the west the
+valley floor continues.  Wait a minute.  Is that a trail leading up the
+mountain to the east?    ~
+534 0 11
+D1
+~
+~
+0 -1 53527
+D2
+~
+~
+0 -1 53418
+D3
+~
+~
+0 -1 53425
+S
+#53418
+Edge of Forest~
+   The forest becomes thinner the further west you travel.  Off to the north
+and west you can see the forest gives way to the sweeping valley floor.  To the
+south and east the forest continues.    ~
+534 0 3
+D0
+~
+~
+0 -1 53417
+D1
+~
+~
+0 -1 53412
+D2
+~
+~
+0 -1 53419
+D3
+~
+~
+0 -1 53426
+S
+#53419
+Edge of Forest~
+   The forest begins to give way to the vast valley floor the farther you
+travel to the west.  To the west is the valley floor.  The forest surrounds you
+on all other sides.    ~
+534 0 3
+D0
+~
+~
+0 -1 53418
+D1
+~
+~
+0 -1 53413
+D2
+~
+~
+0 -1 53420
+D3
+~
+~
+0 -1 53427
+S
+#53420
+Edge of Forest~
+   To the west and south the valley opens up before you.  The forest continues
+to the north and east.  Snow gently falls all around you slowly obscuring your
+tracks through the snow.    ~
+534 0 3
+D0
+~
+~
+0 -1 53419
+D1
+~
+~
+0 -1 53414
+D2
+~
+~
+0 -1 53421
+D3
+~
+~
+0 -1 53428
+S
+#53421
+Frost Valley~
+   A desolate snow covered valley stretches out on all sides.  There are no
+landmarks save for the tall mountains that enclose this valley and the forest
+off to the east.  It would be very easy to become lost and disoriented if it
+weren't for the huge tower to the west.    ~
+534 0 11
+D0
+~
+~
+0 -1 53420
+D1
+~
+~
+0 -1 53415
+D2
+~
+~
+0 -1 53422
+D3
+~
+~
+0 -1 53429
+S
+#53422
+Frost Valley~
+   All around you lies the flat snow covered valley floor.  To the northeast
+you can see a coniferous forest and to the west lies the lake.  Far off to the
+east perched high on one of the mountains that encloses this valley you can see
+some kind of structure.  It appears to be a fort of some kind.    ~
+534 0 11
+D0
+~
+~
+0 -1 53421
+D1
+~
+~
+0 -1 53416
+D2
+~
+~
+0 -1 53423
+D3
+~
+~
+0 -1 53430
+S
+#53423
+Frost Valley~
+   A large mountain of ice rises up like a giant wall to the east.  To the west
+you can see the shores of the great lake in the middle of the valley.  
+Desolate snow covered valley is to the north and south.    ~
+534 0 11
+D0
+~
+~
+0 -1 53422
+D2
+~
+~
+0 -1 53424
+D3
+~
+~
+0 -1 53431
+S
+#53424
+Frost Valley~
+   The steep cliff faces of the mountains that enclose this valley are to your
+south and east.  The valley floor continues to the north and east.  Snow
+blankets everything here and the falling snow quickly erases your footprints.~
+534 0 11
+D0
+~
+~
+0 -1 53423
+D3
+~
+~
+0 -1 53432
+S
+#53425
+Snow Covered Valley~
+   The huge expanse of Frost Valley extends before you to the south.  To the
+north a huge mountain of ice rises before you.  A light snow is falling,
+obscuring everything and limiting your vision.  A gusty wind sends shivers
+through your body, chilling you to the bone.    ~
+534 0 11
+D1
+~
+~
+0 -1 53417
+D2
+~
+~
+0 -1 53426
+D3
+~
+~
+0 -1 53434
+S
+#53426
+Snow Covered Valley~
+   Falling snowflakes add a fresh layer of snow to knee deep snow you are
+slowly trudging through.  Off to the the west you can see the large coniferous
+forest that dominates the eastern section of the valley.  In all other
+directions the bleak whiteness of valley extends as far as you can see.    ~
+534 0 11
+D0
+~
+~
+0 -1 53425
+D1
+~
+~
+0 -1 53418
+D2
+~
+~
+0 -1 53427
+D3
+~
+~
+0 -1 53435
+S
+#53427
+Frost Valley~
+   The vast expanse of the valley floor spreads out before you to the north,
+south, and west.  To the east you can see the beginning of the coniferous
+forest that dominates the eastern section of Frost Valley.  A light snow storm
+is blowing in from the west.    ~
+534 0 11
+D0
+~
+~
+0 -1 53426
+D1
+~
+~
+0 -1 53419
+D2
+~
+~
+0 -1 53428
+D3
+~
+~
+0 -1 53436
+S
+#53428
+Snow Covered Valley~
+   The bleak whiteness of the valley stretches out before you on all sides.  
+Off to the east you can see a coniferous forest, while to the west a ways is
+Frost Valley lake.  Rising out of the mists of the lake you can see the tall
+tower of the Frost Elves.    ~
+534 0 11
+D0
+~
+~
+0 -1 53427
+D1
+~
+~
+0 -1 53420
+D2
+~
+~
+0 -1 53429
+D3
+~
+~
+0 -1 53437
+S
+#53429
+Eastern Edge of Lake~
+   You are standing on the eastern edge of the large lake in the middle of
+Frost Valley.  To the north, east, and south all you can see is the huge snow
+covered valley.    ~
+534 4 11
+D0
+~
+~
+0 -1 53428
+D1
+~
+~
+0 -1 53421
+D2
+~
+~
+0 -1 53430
+D3
+~
+~
+0 -1 53438
+S
+#53430
+Eastern Edge of Lake~
+   To the west you can see the large lake that stands in the middle of Frost
+Valley.  In the center is an island that is home to the mysterious Frost Elves.
+To the north, south, and east you see only the snow covered valley floor.    ~
+534 4 11
+D0
+~
+~
+0 -1 53429
+D1
+~
+~
+0 -1 53422
+D2
+~
+~
+0 -1 53431
+D3
+~
+~
+0 -1 53439
+S
+#53431
+Eastern Edge of Lake~
+   You are standing on the eastern shore of a large lake that lies in the
+middle of Frost Valley.  All around you a blanket of white covers the valley
+floor.    ~
+534 4 11
+D0
+~
+~
+0 -1 53430
+D1
+~
+~
+0 -1 53423
+D2
+~
+~
+0 -1 53432
+D3
+~
+~
+0 -1 53440
+S
+#53432
+Frost Valley~
+   The barren valley floor surrounds you on all sides.  To the south and east
+can be seen the steep cliffs of the mountains that cradle this valley.  Off to
+the west can be seen the shores of a lake.    ~
+534 0 11
+D0
+~
+~
+0 -1 53431
+D1
+~
+~
+0 -1 53424
+D2
+~
+~
+0 -1 53433
+D3
+~
+~
+0 -1 53441
+S
+#53433
+Frost Valley~
+   Steep cliffs rise up before you to the east and south blocking all passage.
+To the north and west the desolate valley floor continues.  A fierce wind
+assails your face freezing you to the bone.    ~
+534 0 11
+D0
+~
+~
+0 -1 53432
+D3
+~
+~
+0 -1 53442
+S
+#53434
+Snow Covered Valley~
+   Tracks through the snow indicate the passage of some sort of creature
+recently.  They seem to head of to the east but are being covered up by the
+falling snow rather quickly.  To the north and west a towering mountain of ice
+prevents any sort of passage.  To the south and east the valley continues.    ~
+534 0 11
+D1
+~
+~
+0 -1 53425
+D2
+~
+~
+0 -1 53435
+S
+#53435
+Snow Covered Valley~
+   All around you the desolate whiteness of the valley extends as far as you
+can see, which isn't very far because gusty winds and falling snow combine to
+limit vision to only a few feet.    ~
+534 0 11
+D0
+~
+~
+0 -1 53434
+D1
+~
+~
+0 -1 53426
+D2
+~
+~
+0 -1 53436
+D3
+~
+~
+0 -1 53443
+S
+#53436
+Snow Covered Valley~
+   Off to the southwest you can see the rolling waters of Frost Valley lake.  
+The snow is coming down quite heavily now and you begin to wish you could find
+shelter from the falling snow and freezing temperatures.  The only shelter you
+can see, however, is the tall tower of the mysterious Frost Elves.    ~
+534 0 11
+D0
+~
+~
+0 -1 53435
+D1
+~
+~
+0 -1 53427
+D2
+~
+~
+0 -1 53437
+D3
+~
+~
+0 -1 53444
+S
+#53437
+Northeastern Edge of Lake~
+   You are standing on the northeastern edge of Frost Valley lake.  Before you
+to the south and west you can see the dark cold waters lapping gently against
+the shore.  You wonder what horrors lie beneath those waves.    ~
+534 4 11
+D0
+~
+~
+0 -1 53436
+D1
+~
+~
+0 -1 53428
+D2
+~
+~
+0 -1 53438
+D3
+~
+~
+0 -1 53445
+S
+#53438
+Frost Valley Lake~
+   You are floating in the lake in the center of Frost Valley.  To the west
+lies the island of the Frost Elves A light mist covers the surface of the lake
+and to the east you can just make the shore.    ~
+534 0 7
+D0
+~
+~
+0 -1 53437
+D1
+~
+~
+0 -1 53429
+D2
+~
+~
+0 -1 53439
+D3
+~
+~
+0 -1 53446
+S
+#53439
+Frost Valley Lake~
+   You are floating along the eastern edge of Frost Valley lake.  To the east
+you can just see the shore of the lake.    ~
+534 0 7
+D0
+~
+~
+0 -1 53438
+D1
+~
+~
+0 -1 53430
+D2
+~
+~
+0 -1 53440
+D3
+~
+~
+0 -1 53447
+S
+#53440
+Frost Valley Lake~
+   You are floating along the edge of Frost Valley lake.  A slight mist covers
+the rolling waves of this lake.  To the south and east you can make the shore.
+Off to the north and west you can just make out the island of the Frost Elves.~
+534 0 7
+D0
+~
+~
+0 -1 53439
+D1
+~
+~
+0 -1 53431
+D2
+~
+~
+0 -1 53441
+D3
+~
+~
+0 -1 53448
+S
+#53441
+Southeastern Edge of Lake~
+   You are standing on the shores of the great lake in the center of this huge
+valley.  To the north and west lie the freezing waters of the lake.  To the
+south and east the valley continues.    ~
+534 4 11
+D0
+~
+~
+0 -1 53440
+D1
+~
+~
+0 -1 53432
+D2
+~
+~
+0 -1 53442
+D3
+~
+~
+0 -1 53449
+S
+#53442
+Frost Valley~
+   You are standing at the southern edge of this huge snow covered valley.  To
+the south tall mountains make passage impossible.  The snow covered valley
+surrounds you in all other directions.    ~
+534 0 11
+D0
+~
+~
+0 -1 53441
+D1
+~
+~
+0 -1 53433
+D3
+~
+~
+0 -1 53450
+S
+#53443
+Frost Valley~
+   A towering mountain of ice to the north intersects a snow covered mountain
+to the west here creating a rough, dangerous terrain.  Rock and ice combine to
+form a real hazard to travel.  A fierce of gust of wind and a blinding snow
+storm only add to the danger.    ~
+534 0 11
+D1
+~
+~
+0 -1 53435
+D2
+~
+~
+0 -1 53444
+S
+#53444
+Northern Edge of Lake~
+   A narrow strip of snow covered terrain slips between the huge cliff face to
+the north and the vast Frost Valley lake to the south.  The valley continues to
+the east and north.  The narrow passage between the lake and the mountain heads
+off to the west.    ~
+534 4 11
+D0
+~
+~
+0 -1 53443
+D1
+~
+~
+0 -1 53436
+D2
+~
+~
+0 -1 53445
+D3
+~
+~
+0 -1 53451
+S
+#53445
+Frost Valley Lake~
+   You are floating in Frost Valley lake near the northeast shore.  To the
+southwest you can see the huge tower that is the home of the Frost elves.  The
+lake continues to the south and west.    ~
+534 0 7
+D0
+~
+~
+0 -1 53444
+D1
+~
+~
+0 -1 53437
+D2
+~
+~
+0 -1 53446
+D3
+~
+~
+0 -1 53452
+S
+#53446
+Frost Valley Lake~
+   You are floating in Frost Valley lake.  To the west rises a huge tower which
+is the home of the mysterious Frost Elves.  A light mist covers the surface of
+the lake obscuring your vision.    ~
+534 0 7
+D0
+~
+~
+0 -1 53445
+D1
+~
+~
+0 -1 53438
+D2
+~
+~
+0 -1 53447
+S
+#53447
+Frost Valley Lake~
+   You are floating near the shores of the island of the Frost Elves, which
+lies to the west.  All around you are the freezing waters of Frost Valley lake.
+A freezing wind whips across the surface of the water.    ~
+534 0 7
+D0
+~
+~
+0 -1 53446
+D1
+~
+~
+0 -1 53439
+D2
+~
+~
+0 -1 53448
+D3
+~
+~
+0 -1 53454
+S
+T 53501
+#53448
+Frost Valley Lake~
+   You are floating somewhere in the lake in the middle of Frost Valley.  All
+around you is frigid water.  A light mist limits vision to only a few feet.  ~
+534 0 7
+D0
+~
+~
+0 -1 53447
+D1
+~
+~
+0 -1 53440
+D2
+~
+~
+0 -1 53449
+D3
+~
+~
+0 -1 53455
+S
+#53449
+Frost Valley Lake~
+   You are floating somewhere near the southeast corner of Frost Valley lake.
+The cold waters surround you to the north and west.  To the south and east you
+can just make out the shore through the mist that covers the lake.    ~
+534 0 7
+D0
+~
+~
+0 -1 53448
+D1
+~
+~
+0 -1 53441
+D2
+~
+~
+0 -1 53450
+D3
+~
+~
+0 -1 53456
+S
+#53450
+Southern Edge of Lake~
+   The freezing waters of Frost Valley Lake lie to the north.  To the south a
+huge cliff face blocks all passage.  The valley continues to the east and west.~
+534 4 11
+D0
+~
+~
+0 -1 53449
+D1
+~
+~
+0 -1 53442
+D3
+~
+~
+0 -1 53457
+S
+#53451
+Northern Edge of Lake~
+   This narrow path between the mountains to the north and the lake to the
+south curves slightly to match the shore of the lake.  The path continues to
+the east and west from here.  Off to the west you can just make out the huge
+plateau that dominates the northeastern section of the valley.    ~
+534 4 11
+D1
+~
+~
+0 -1 53444
+D2
+~
+~
+0 -1 53452
+D3
+~
+~
+0 -1 53463
+S
+#53452
+Frost Valley Lake~
+   You are floating near the northern shore of Frost Valley lake.  To the south
+you can see the huge tower that the Frost Elves call home.  The lake continues
+to the east and west, while to the north you can just see the shore of the
+lake.    ~
+534 0 7
+D0
+~
+~
+0 -1 53451
+D1
+~
+~
+0 -1 53445
+D3
+~
+~
+0 -1 53464
+S
+#53454
+Frost Elf Island~
+   The dark waters of Frost Valley lake lap against the shores of this small
+island to the south and east.  To the north the huge white tower of the Frost
+Elves rises up before you, becoming lost in the mists that cover the lake.  To
+the west a huge wall with a metal gate encloses a courtyard.    ~
+534 0 2
+D1
+~
+~
+0 -1 53447
+D2
+~
+~
+0 -1 53455
+D3
+A huge metal gate is set into the thick stone wall that surrounds the
+courtyard.  It is known that the Frost Elves only allow those pure of 
+heart into their domain.~
+gate~
+2 53402 53466
+S
+#53455
+Frost Valley Lake~
+   Floating near the edge of Frost Elf Island you can see their large tower
+rising out of the mists to the north.  All around are the frigid waters of
+Frost Valley lake.    ~
+534 0 7
+D0
+~
+~
+0 -1 53454
+D1
+~
+~
+0 -1 53448
+D2
+~
+~
+0 -1 53456
+D3
+~
+~
+0 -1 53467
+S
+T 53501
+#53456
+Frost Valley Lake~
+   You are floating along the southern shore of Frost Valley lake.  A gray mist
+hangs low over the surface of the lake and a chill wind sends shivers down your
+spine.    ~
+534 0 7
+D0
+~
+~
+0 -1 53455
+D1
+~
+~
+0 -1 53449
+D2
+~
+~
+0 -1 53457
+D3
+~
+~
+0 -1 53468
+S
+#53457
+Southern Edge of Lake~
+   To the north the dark cold waters of Frost Valley lake gently lap against
+the shore.  To the south you notice a wide, shallow opening in the mountain
+range that leads south.  To the east and west the shores of the lake continue.~
+534 4 11
+D0
+~
+~
+0 -1 53456
+D1
+~
+~
+0 -1 53450
+D2
+~
+~
+0 -1 53458
+D3
+~
+~
+0 -1 53469
+S
+#53458
+Frost Valley~
+   To the south and east tall cliffs block any passage.  To the north and west
+the valley continues.  A short ways up the cliff face to the south you notice a
+narrow opening.  Perhaps that is a cave or a tunnel of sorts.  You wonder if
+you can reach it...    ~
+534 0 11
+D0
+~
+~
+0 -1 53457
+D2
+~
+~
+0 -1 53459
+D3
+~
+~
+0 -1 53470
+S
+#53459
+Icy Tunnel Entrance~
+   The hole in the mountain was in fact the entrance to a narrow tunnel covered
+in ice the leads roughly to the south.  The tunnel does not appear to be
+naturally made and you can only wonder if this is the lair of some hideous
+creature.    ~
+534 260 12
+D0
+~
+~
+0 -1 53458
+D2
+~
+~
+0 -1 53460
+S
+#53460
+Icy Tunnel~
+   The icy tunnel continues to the north and south.  A cold wind howls wildly
+through the narrow tunnel sending chills down your spine.    ~
+534 256 12
+D0
+~
+~
+0 -1 53459
+D2
+~
+~
+0 -1 53461
+S
+#53461
+Bend in Icy Tunnel~
+   The icy tunnel bends here leading both north and west.  To the west it
+appears to open into a large cavern.  For an instant you think you hear
+clicking noises.  Maybe it was just the wind whipping through the tunnel.    ~
+534 256 12
+D0
+~
+~
+0 -1 53460
+D3
+~
+~
+0 -1 53462
+S
+#53462
+Icy Cavern~
+   A vast cavern opens up before you.  Rough ledges cover the walls of this
+cavern at various heights.  Long sticky strands cover the floor and hang from
+the ceiling in places.  You wonder what could have created these strands...  ~
+534 256 12
+D1
+~
+~
+0 -1 53461
+S
+#53463
+Northern Edge of Lake~
+   This narrow path continues to navigate between the mountains to the north
+and the lake to the south.  At times it narrows down so you are nearly walking
+in the waters of Frost Valley lake.  The trail continues to the east and west.
+  ~
+534 4 11
+D1
+~
+~
+0 -1 53451
+D2
+~
+~
+0 -1 53464
+D3
+~
+~
+0 -1 53471
+S
+#53464
+Frost Valley Lake~
+   Before you to the south the huge tower of the Frost Elves rises before you.
+To the north you can just make out the shore of the lake through the mist.  To
+the east and west the cold waters of the lake continue.    ~
+534 0 7
+D0
+~
+~
+0 -1 53463
+D1
+~
+~
+0 -1 53452
+D3
+~
+~
+0 -1 53472
+S
+#53466
+Tower Courtyard~
+   There is a huge courtyard here, from which the snow has been painstakingly
+shoveled to the walls.  To the north there is the remains of a tower.  The
+first floor looks reasonably complete, however above that level is just rubble.
+The large silver doors leading into the tower are bent and stopped, preventing
+access to the interior of the tower.  A large metal gate leads outside the
+courtyard to the east.    ~
+534 0 0
+D0
+The doors are over ten feet tall and a dull silver color.  They are warped, as
+if bent and twisted by titanic forces, but which touched them long ago.  No
+cracks mar their rippled surfaces, but the gray sheen of corrosion covers them.
+They are wedged so tightly into each other and against their sturdy hinges that
+there appears to be no hope of opening them.    ~
+doors door~
+3 -1 -1
+D1
+A huge metal gate is set into the wall that surrounds this courtyard.
+Beyond the gate are the shores of Frost Valley lake.~
+gate~
+2 53402 53454
+S
+#53467
+Frost Valley Lake~
+   You are floating in Frost valley lake somewhere near Frost Elf island.  To
+the north, through the mists you can just make out the wall that surrounds the
+tower of the Frost elves.  To the southwest you can see the shore.  A cold
+wind drives waves across the surface of the lake.    ~
+534 0 7
+D1
+~
+~
+0 -1 53455
+D2
+~
+~
+0 -1 53468
+D3
+~
+~
+0 -1 53475
+S
+#53468
+Frost Valley Lake~
+   To the south and west you can see the shore of Frost Valley lake.  To the
+north and east the cold waters of the lake recede into the mists that hang like
+a blanket over the lake.    ~
+534 0 7
+D0
+~
+~
+0 -1 53467
+D1
+~
+~
+0 -1 53456
+D2
+~
+~
+0 -1 53469
+D3
+~
+~
+0 -1 53476
+S
+#53469
+Southern Edge of Lake~
+   You are standing along the shores of the great lake at the center of Frost
+Valley.  To the north the cold waters look forbidding.  The shores of the lake
+continue to the east and northwest.  To the south and west the valley
+continues.  A ways to the west, high atop the ridge of the mountain you see
+what appears to be a small keep of sorts.    ~
+534 4 11
+D0
+~
+~
+0 -1 53468
+D1
+~
+~
+0 -1 53457
+D2
+~
+~
+0 -1 53470
+D3
+~
+~
+0 -1 53477
+S
+#53470
+Frost Valley~
+   Tall mountains rise up to block any passage to the south and west.  To the
+east and north the desolate valley continues.    ~
+534 0 11
+D0
+~
+~
+0 -1 53469
+D1
+~
+~
+0 -1 53458
+S
+#53471
+Northern Edge of Lake~
+   The path between the lake to the south and the mountains to the north ends
+at the steep cliff face of the plateau to the west.  The narrow path leads back
+to the east.  There appears to be a trail that winds its way up the the cliff
+face to the plateau overhead.  The dark waters of the lake are to the south.  ~
+534 4 11
+D1
+~
+~
+0 -1 53463
+D2
+~
+~
+0 -1 53472
+D4
+~
+~
+0 -1 53479
+S
+#53472
+Frost Valley Lake~
+   You are floating in Frost Valley lake near the northwestern shore.  To the
+southeast you can see the huge white tower of the Frost Elves.  The lake
+continues to the south and east, while to the north and west you can see the
+shore of this great lake.    ~
+534 0 7
+D0
+~
+~
+0 -1 53471
+D1
+~
+~
+0 -1 53464
+D2
+~
+~
+0 -1 53473
+D3
+~
+~
+0 -1 53480
+S
+#53473
+Frost Valley Lake~
+   The vast expanse of the lake surrounds you on all sides save the east.  To
+the east you can see the huge white walls that surround the home of the Frost
+Elves.  To the northwest you can just make out the shore of the lake through
+the mists.    ~
+534 0 7
+D0
+~
+~
+0 -1 53472
+D2
+~
+~
+0 -1 53474
+D3
+~
+~
+0 -1 53481
+S
+#53474
+Frost Valley Lake~
+   To the east huge, white stone walls rise out of the mist enclosing the home
+of the Frost Elves.  In all other directions the dark waters of Frost Valley
+surround you.    ~
+534 0 7
+D0
+~
+~
+0 -1 53473
+D2
+~
+~
+0 -1 53475
+D3
+~
+~
+0 -1 53482
+S
+#53475
+Frost Valley Lake~
+   You are floating near the southwestern shore of Frost Valley lake.  The dark
+waters of the lake surround you and you can only wonder what horrors lie
+beneath the waves.    ~
+534 0 7
+D0
+~
+~
+0 -1 53474
+D1
+~
+~
+0 -1 53467
+D2
+~
+~
+0 -1 53476
+D3
+~
+~
+0 -1 53483
+S
+#53476
+Southwestern Edge of Lake~
+   You are standing on the southwestern shore of the great Frost Valley lake.
+Before you, to the north and east the frigid waters lap unceasingly against the
+shore.  To the south and west the valley continues.    ~
+534 4 11
+D0
+~
+~
+0 -1 53475
+D1
+~
+~
+0 -1 53468
+D2
+~
+~
+0 -1 53477
+D3
+~
+~
+0 -1 53484
+S
+#53477
+Frost Valley~
+   A huge mountain range to the south blocks any passage.  In all other
+directions the dull whiteness of Frost Valley fades into the distance.  High on
+a cliff to the west you can see what appears to be some kind of keep.  There
+appears to be movement up on the cliff.    ~
+534 0 11
+D0
+~
+~
+0 -1 53476
+D1
+~
+~
+0 -1 53469
+D3
+~
+~
+0 -1 53485
+S
+#53478
+Frost Valley Plateau~
+   The massive mountain range that encloses Frost Valley blocks your passage to
+the north and east.  The edge of the plateau can be seen to the south, while to
+the west the plateau opens up before you.  A cold wind whips across the
+plateau.    ~
+534 0 11
+D2
+~
+~
+0 -1 53479
+D3
+~
+~
+0 -1 53487
+S
+#53479
+Edge of Frost Valley Plateau~
+   You are standing on the edge of the Frost Valley Plateau.  The plateau opens
+up before you to the north and west.  To the south and east there is nothing
+but air.  A narrow trail carefully navigates its way down the steep face of the
+plateau to the valley floor below.    ~
+534 0 11
+D0
+~
+~
+0 -1 53478
+D1
+~
+~
+0 -1 53538
+D2
+~
+~
+0 -1 53539
+D3
+~
+~
+0 -1 53488
+D5
+~
+~
+0 -1 53471
+S
+#53480
+Northwestern Edge of Lake~
+   This small patch of land is sandwiched between the face of the plateau to
+the north and west and the dark forbidding waters of Frost Valley lake to the
+south and east.  Unless you have a boat or wings your only course of travel
+will be up the narrow trail to the top of the plateau.    ~
+534 4 11
+D1
+~
+~
+0 -1 53472
+D2
+~
+~
+0 -1 53481
+D4
+~
+~
+0 -1 53489
+S
+#53481
+Frost Valley Lake~
+   Before you to the west the steep cliffs of a plateau rise before you.  To
+the north you can see the shore of the lake while to the south and east the
+dark frigid waters of the lake continue.    ~
+534 0 7
+D0
+~
+~
+0 -1 53480
+D1
+~
+~
+0 -1 53473
+D2
+~
+~
+0 -1 53482
+D4
+~
+~
+0 -1 53540
+S
+#53482
+Frost Valley Lake~
+   You are floating near the western shore of Frost Valley lake.  Off to the
+north and east you can see the huge plateau that dominates the north western
+section of Frost Valley.  The lake continues to the north and east, while to
+the south and west you can see the shores of the lake.    ~
+534 0 7
+D0
+~
+~
+0 -1 53481
+D1
+~
+~
+0 -1 53474
+D2
+~
+~
+0 -1 53483
+D3
+~
+~
+0 -1 53491
+S
+#53483
+Southwestern Edge of Lake~
+   You are standing on the southwestern shore of Frost Valley lake.  To the
+north and east the cold waters look forbidding.  To the west and south the snow
+covered valley continues.    ~
+534 4 11
+D0
+~
+~
+0 -1 53482
+D1
+~
+~
+0 -1 53475
+D2
+~
+~
+0 -1 53484
+D3
+~
+~
+0 -1 53492
+S
+#53484
+Frost Valley~
+   The barren valley stretches out before you in all directions.  Off to the
+northeast you can see the tall tower of the frost elves rising out of the mist.~
+534 0 11
+D0
+~
+~
+0 -1 53483
+D1
+~
+~
+0 -1 53476
+D2
+~
+~
+0 -1 53485
+D3
+~
+~
+0 -1 53493
+S
+#53485
+Frost Valley~
+   You are the southwestern most edge of the valley.  Both to the south and
+west a huge mountain range blocks any passage.  To only sound you hear is the
+low howl of the wind whipping through the valley.    ~
+534 0 11
+D0
+~
+~
+0 -1 53484
+D1
+~
+~
+0 -1 53477
+S
+#53486
+Frost Valley Plateau~
+   To the north and east the huge mountains of ice that help enclose Frost
+Valley block your passage.  A strange hole seems to bore its way through the
+ice leading north.  All around the entrance to this strange tunnel the rock has
+been turned a ghastly black color!  Even the ice is black.  A wind blows across
+the valley and a shiver runs down your spine.  But you shiver not because of
+the cold, rather you shiver in horror at what could lie beyond that tunnel
+entrance to the north...    ~
+534 4 11
+D0
+~
+~
+0 -1 53518
+D2
+~
+~
+0 -1 53487
+D3
+~
+~
+0 -1 53494
+S
+#53487
+Frost Valley Plateau~
+   The plateau stretches out before you in all directions.  Strangely, the ice
+appears black in patches.  You wonder what could have caused this strange
+phenomenon.  A strange pair of tracks through the snow seem to lead north, but
+you cannot be certain.    ~
+534 0 11
+D0
+~
+~
+0 -1 53486
+D1
+~
+~
+0 -1 53478
+D2
+~
+~
+0 -1 53488
+D3
+~
+~
+0 -1 53495
+S
+#53488
+Frost Valley Plateau~
+   All around you, in all directions, the great expanse of the plateau opens up
+before you.  The plateau is completely devoid of any vegetation.  Strange
+tracks can been seen in the snow leading off in various directions.    ~
+534 0 11
+D0
+~
+~
+0 -1 53487
+D1
+~
+~
+0 -1 53479
+D2
+~
+~
+0 -1 53489
+D3
+~
+~
+0 -1 53496
+S
+#53489
+Edge of Frost Valley Plateau~
+   You are standing near the edge of the plateau in the northeastern corner of
+Frost Valley.  The plateau stretches off to the north, south, and west.  A
+narrow path leads down the steep face of plateau to the valley floor below.  ~
+534 0 11
+D0
+~
+~
+0 -1 53488
+D1
+~
+~
+0 -1 53539
+D2
+~
+~
+0 -1 53490
+D3
+~
+~
+0 -1 53497
+D5
+~
+~
+0 -1 53480
+S
+#53490
+Edge of Frost Valley Plateau~
+   You are standing near the edge of Frost Valley plateau.  The plateau
+continues to the north and west, while to the east and south there is nothing
+but air!  Looking over the edge of the plateau to the east you can see the dark
+waters of Frost Valley lake.  A narrow trail leads down to the valley floor
+below.    ~
+534 0 11
+D0
+~
+~
+0 -1 53489
+D1
+~
+~
+0 -1 53540
+D2
+~
+~
+0 -1 53541
+D3
+~
+~
+0 -1 53498
+D5
+~
+~
+0 -1 53491
+S
+#53491
+Western Edge of Lake~
+   You are standing on the western edge of Frost Valley lake.  To the north a
+large plateau dominates the north west corner of the valley.  A path leads up
+to the plateau.  To the south and west the snow covered plain continues.    ~
+534 4 11
+D1
+~
+~
+0 -1 53482
+D2
+~
+~
+0 -1 53492
+D3
+~
+~
+0 -1 53499
+D4
+~
+~
+0 -1 53490
+S
+#53492
+Frost Valley~
+   The valley floor stretches out on all sides around you.  Off to the east you
+can just make out the tall tower on Frost Elf island.  Off to the south and
+west large mountains loom.    ~
+534 0 11
+D0
+~
+~
+0 -1 53491
+D1
+~
+~
+0 -1 53483
+D2
+~
+~
+0 -1 53493
+D3
+~
+~
+0 -1 53500
+S
+#53493
+Frost Valley~
+   Before you to the south and west a huge cliff face looms.  There appears to
+be a narrow path carved into the cliff high above.  To the north and east the
+desolate valley continues~
+534 0 11
+D0
+~
+~
+0 -1 53492
+D1
+~
+~
+0 -1 53484
+S
+#53494
+Frost Valley Plateau~
+   You are standing near the northwestern most section of Frost Valley.  To the
+north and west huge mountains rise up blocking any passage.  Off to the east
+the snow has been turned completely black in color.  At first it is just black
+splotches in the snow.  However, the further east you the travel the more black
+the snow appears...    ~
+534 0 11
+D1
+~
+~
+0 -1 53486
+D2
+~
+~
+0 -1 53495
+S
+#53495
+Frost Valley Plateau~
+   All around you is the bleak whiteness of the snow covered plateau.  The
+plateau continues in all directions.  A set of fresh tracks can be seen in the
+snow, apparently heading north.  They appear human only much larger in size...
+  ~
+534 0 11
+D0
+~
+~
+0 -1 53494
+D1
+~
+~
+0 -1 53487
+D2
+~
+~
+0 -1 53496
+D3
+~
+~
+0 -1 53501
+S
+#53496
+Frost Valley Plateau~
+   A fierce wind whips across the flat terrain of the plateau freezing you to
+the bone.  There is nowhere to seek shelter from the elements.  The plateau
+stretches out before you in all directions.  Partially covered tracks through
+the snow indicate that someone or something has recently traveled here.    ~
+534 0 11
+D0
+~
+~
+0 -1 53495
+D1
+~
+~
+0 -1 53488
+D2
+~
+~
+0 -1 53497
+D3
+~
+~
+0 -1 53502
+S
+#53497
+Frost Valley Plateau~
+   The vast expanse of the plateau stretches out in all directions around you.
+Everywhere is flat, snow covered terrain.  You notice that there are quite a
+few tracks through the snow here leading off in all directions.  Some appear
+human, some are definitely not human!    ~
+534 0 11
+D0
+~
+~
+0 -1 53496
+D1
+~
+~
+0 -1 53489
+D2
+~
+~
+0 -1 53498
+D3
+~
+~
+0 -1 53503
+S
+#53498
+Edge of Frost Valley Plateau~
+   The vast expanse of the plateau stretches out to the north, east, and west,
+while to the south there is nothing but air!  A path carefully winds it's way
+down to the valley floor below.  A cold wind wind blows fiercely over the flat
+expanse of the plateau.    ~
+534 0 11
+D0
+~
+~
+0 -1 53497
+D1
+~
+~
+0 -1 53490
+D2
+~
+~
+0 -1 53542
+D3
+~
+~
+0 -1 53504
+D5
+~
+~
+0 -1 53499
+S
+#53499
+Frost Valley~
+   To the north the huge plateau that dominates the northeastern part of the
+valley looms before you.  A narrow trail leads up to the plateau.  The snow
+covered valley continues on all other sides.    ~
+534 0 11
+D1
+~
+~
+0 -1 53491
+D2
+~
+~
+0 -1 53500
+D3
+~
+~
+0 -1 53505
+D4
+~
+~
+0 -1 53498
+S
+#53500
+Frost Valley~
+   Tall mountains surround you to the south and west.  To the north and east
+the valley continues.  A small sign stands near a trail that heads up the
+mountainside to the south.    ~
+534 0 11
+D0
+~
+~
+0 -1 53499
+D1
+~
+~
+0 -1 53492
+D4
+~
+~
+0 -1 53544
+E
+sign~
+
+	+-----------------------------------------------+
+	|						|
+	|	Traveler,				|
+	|						|
+	|		Ysgarran's Keep offers safety	|
+	|	from the elements and beasts of this	|
+	|	valley.					|
+	|						|
+	|		--Ysgarran			|
+	|						|
+	+-----------------------------------------------+
+			|		|
+			|		|
+			|		|
+			|		|~
+S
+#53501
+Frost Valley Plateau~
+   You are standing along the mountain range that closes in the northwestern
+section of Frost Valley.  A huge cliff looms over you to the north and west
+barring any possible travel.  The valley continues to the east and south.    ~
+534 0 11
+D1
+~
+~
+0 -1 53495
+D2
+~
+~
+0 -1 53502
+S
+T 53400
+#53502
+Frost Valley Plateau~
+   You are standing near the northwestern mountain range that encloses Frost
+Valley.  The plateau stretches off in all directions around you.  A cold wind
+whips across the valley and you wish you could find shelter from the harsh
+elements.    ~
+534 0 11
+D0
+~
+~
+0 -1 53501
+D1
+~
+~
+0 -1 53496
+D2
+~
+~
+0 -1 53503
+D3
+~
+~
+0 -1 53506
+S
+#53503
+Frost Valley Plateau~
+   It is very easy to be come disoriented as the plateau stretches out before
+you.  A cold wind whips across the valley from the east as you trudge through
+the knee-deep snow.  Off in the distance you hear the howl of some arctic
+creature.    ~
+534 0 11
+D0
+~
+~
+0 -1 53502
+D1
+~
+~
+0 -1 53497
+D2
+~
+~
+0 -1 53504
+D3
+~
+~
+0 -1 53507
+S
+#53504
+Edge of Frost Valley Plateau~
+   You are standing on the edge of the great plateau that stretches out to the
+north, west and east.  To the south is nothing but air.  A narrow trail
+carefully winds it way down to the valley floor below.    ~
+534 4 11
+D0
+~
+~
+0 -1 53503
+D1
+~
+~
+0 -1 53498
+D2
+~
+~
+0 -1 53543
+D3
+~
+~
+0 -1 53508
+D5
+~
+~
+0 -1 53505
+S
+#53505
+Frost Valley~
+   The mountain range blocks passage to the south and west.  To the north is
+the huge plateau of Frost Valley.  A pathway leads up to the plateau while to
+the east the snow covered valley continues.    ~
+534 0 11
+D1
+~
+~
+0 -1 53499
+D4
+~
+~
+0 -1 53504
+S
+#53506
+Frost Valley Plateau~
+   The mountains that cradle Frost Valley block your passage to the west and
+north.  A small river of ice cold water flows in from the south and disappears
+down a small hole in the plateau floor near the base of the mountain to the
+north.  The plateau continues to the east and south.    ~
+534 0 11
+D1
+~
+~
+0 -1 53502
+D2
+~
+~
+0 -1 53507
+S
+T 53400
+#53507
+Frost Valley Plateau~
+   An ice cold river runs across the plateau from the west and leaves north.  
+The plateau stretches out in all directions around you and you can see a cloud
+of mists that envelopes this area apparently coming from the west.    ~
+534 0 11
+D0
+~
+~
+0 -1 53506
+D1
+~
+~
+0 -1 53503
+D2
+~
+~
+0 -1 53508
+D3
+~
+~
+0 -1 53509
+S
+#53508
+Frost Valley Plateau~
+   The large mountain range that cradles Frost Valley blocks your passage to
+the south.  The plateau continues to the north, east, and west.  A blanket of
+mist covers the plateau here and seems to continue off to the east.  For a
+brief second you think you see something huge moving through the mist.    ~
+534 0 11
+D0
+~
+~
+0 -1 53507
+D1
+~
+~
+0 -1 53504
+D3
+~
+~
+0 -1 53510
+S
+#53509
+Frost Valley Plateau~
+   A small ice cold river runs through the snow covered plateau.  It comes from
+a narrow gorge to the west and runs off to the east.  A dense mist clings to
+the plateau here making it difficult to see.  The plateau continues to the
+south and east.    ~
+534 0 11
+D1
+~
+~
+0 -1 53507
+D2
+~
+~
+0 -1 53510
+D3
+~
+~
+0 -1 53516
+S
+#53510
+Frost Valley Plateau~
+   You are standing at the western most edge of Frost Valley.  The mountain
+range that encloses Frost Valley bars travel to the south and west.  A huge
+cave, over 15 feet tall, opens up into the mountain to the south.  The mist is
+especially thick here.    ~
+534 0 11
+D0
+~
+~
+0 -1 53509
+D1
+~
+~
+0 -1 53508
+D2
+~
+~
+0 -1 53511
+S
+#53511
+Wide Passageway~
+   This passageway that heads deep into the mountain is very wide with the
+ceiling over 25 feet above.  The walls and floor are smooth as if this
+passageway sees continual use.    ~
+534 256 12
+D0
+~
+~
+0 -1 53510
+D2
+~
+~
+0 -1 53512
+S
+#53512
+Frost Giant Lair~
+   You have entered into the lair of the Frost Giants.  A monstrously huge
+cavern open up before you.  A roaring fire to the west lights the cavern and
+keeps it warm.  You can only wonder if the inhabitants of this cavern will be
+happy to see you here ...  Invading their home.    ~
+534 256 12
+D0
+~
+~
+0 -1 53511
+D2
+~
+~
+0 -1 53513
+D3
+~
+~
+0 -1 53514
+S
+#53513
+Frost Giant Lair~
+   This area of the cavern is used by the Frost Giants for dinning.  A huge
+roughly chiselled stone table stands in the middle of this section.  A large
+wooden shelf holds various jars, pots, and other cooking utensils.  The cavern
+continues to the north and west.    ~
+534 256 12
+D0
+~
+~
+0 -1 53512
+D3
+~
+~
+0 -1 53515
+S
+#53514
+Frost Giant Lair~
+   A large fire pit dominates this section of the cavern.  A circle of rocks
+defines the border of the fire pit while a huge fire blazes away giving off
+warmth and light.  The cavern continues to the south and east.    ~
+534 256 12
+D1
+~
+~
+0 -1 53512
+D2
+~
+~
+0 -1 53515
+S
+#53515
+Frost Giant Lair~
+   Large patches of straw and course blankets are strewn about the floor of
+this section of the cavern.  Obviously this is the area were the Frost Giants
+sleep.  The cavern continues to the north and east.    ~
+534 256 12
+D0
+~
+~
+0 -1 53514
+D1
+~
+~
+0 -1 53513
+S
+#53516
+Gorge~
+   High steep walls to the south and west enclose this narrow gorge.  A small
+ice cold river runs down the gorge from the north and exists out onto the
+plateau to the east.  The sound of falling water can be heard from the north.
+A mist is very thick here and you can see no more than a few feet in front of
+you.    ~
+534 256 12
+D0
+~
+~
+0 -1 53517
+D1
+~
+~
+0 -1 53509
+S
+T 53400
+#53517
+Waterfall (Gorge)~
+   A huge waterfall to the north crashes over the steep cliffs that enclose
+this narrow valley.  The sound is deafening and a great cloud of mist and water
+vapor is created by the falling water.  The mist seems to travel off to the
+south along the gorge.  A river of ice cold water is formed by the falling
+water and runs south.    ~
+534 256 12
+D2
+~
+~
+0 -1 53516
+D4
+~
+~
+0 -1 10100
+S
+#53518
+Entrance to the Black Ice Tunnel~
+   It would appear that something or someone just ripped its way, slowly,
+through the mountain.  The tunnel is jagged and uneven and is definitely not
+naturally made.  The ice, through which this tunnel has been made, has been
+turned totally black in color by some strange force.  The wisest course of
+action would be to turn and run from the place; but, for those who do not heed
+such counsel, the tunnel continues to the east.    ~
+534 0 12
+D1
+~
+~
+0 -1 53519
+D2
+~
+~
+0 -1 53486
+S
+#53519
+Black Ice Tunnel~
+   The tunnel continues to travel roughly east and west from here.  For a
+moment you get the feeling that you are walking backwards, but suddenly
+everything feels normal again.  You begin to have doubts about the intelligence
+of continuing down this tunnel of blackness.    ~
+534 0 12
+D1
+~
+~
+0 -1 53520
+D3
+~
+~
+0 -1 53518
+S
+#53520
+Turn in Black Ice Tunnel~
+   The tunnel ripped through the ice curves here leading both to the north and
+west from here.  A strange, almost imperceptible, noise seems to be coming from
+further down the tunnel to the north.  You can't quite make out the sound...  ~
+534 0 12
+D0
+~
+~
+0 -1 53521
+D3
+~
+~
+0 -1 53519
+S
+#53521
+Another Turn in Black Ice Tunnel~
+   The tunnel through the blackened ice curves again here leading off to the
+south and east.  Again, you get the feeling of walking backwards and for a
+moment you can't remember what day it is.  But the strange feeling quickly
+passes.  Maybe coming down this tunnel was not such a wise choice.    ~
+534 0 12
+D1
+~
+~
+0 -1 53522
+D2
+~
+~
+0 -1 53520
+S
+#53522
+Black Ice Tunnel~
+   The tunnel through the blackened ice continues to the east and west.  To the
+east the tunnel open up into a large cavern in the ice.  You can see that the
+ice in the cavern has been blackened also.  The noise is definitely coming from
+within the cavern.  It is a low 'Thump Thump' repeated over and over, pausing
+only for a second between beats...    ~
+534 0 12
+D1
+~
+~
+0 -1 53523
+D3
+~
+~
+0 -1 53521
+S
+#53523
+Black Ice Cavern~
+   This huge cavern is made of blackened ice.  Jagged sections of the wall hang
+down almost to the floor.  The jagged uneven floor rises up in places to meet
+the stalactites as if trying to form some unholy union.  The low sound of a
+beating heart seems to be coming from the east.  The cavern continues to the
+south and east.    ~
+534 0 12
+D1
+~
+~
+0 -1 53524
+D2
+~
+~
+0 -1 53525
+D3
+~
+~
+0 -1 53522
+S
+#53524
+Black Ice Cavern~
+   This huge cavern is made of blackened ice.  Jagged sections of the wall hang
+down almost to the floor.  The jagged uneven floor rises up in places to meet
+the stalactites as if trying to form some unholy union.  The low sound of a
+beating heart seems to echo through the area.  The cavern continues to the
+south and west.    ~
+534 0 12
+D2
+~
+~
+0 -1 53526
+D3
+~
+~
+0 -1 53523
+S
+#53525
+Black Ice Cavern~
+   This blackened cavern of ice gives off a feeling of hatred and rage as if
+the very cavern was alive and pulsating with evil.  An oily black substance is
+oozing out of the wall to the south.  It gives of a horrid stench that
+threatens to overpower you.  The cavern continues to the north and east.    ~
+534 0 12
+D0
+~
+~
+0 -1 53523
+D1
+~
+~
+0 -1 53526
+S
+#53526
+Black Ice Cavern~
+   Large chunks of blackened ice litter this section of the cavern.  The sound
+of the beating heart seems especially loud here as it echoes in from the north.
+A sense of uneasiness and dread presses down all around you, threatening to
+engulf you.  You have to fight back the urge to run from this place.    ~
+534 0 12
+D0
+~
+~
+0 -1 53524
+D3
+~
+~
+0 -1 53525
+S
+#53527
+Ice Ledge Trail~
+   A narrow trail chiselled into the mountain of ice before carefully winds it
+way up the mountainside.  High up on the mountain to the north you can see some
+sort of structure made of wood and stone.  It is well hidden from the valley
+floor and you realize that maybe that was the intent of the builders.  The
+trail continues to the north.    ~
+534 0 5
+D0
+~
+~
+0 -1 53528
+D3
+~
+~
+0 -1 53417
+S
+T 53402
+#53528
+Ice Ledge Trail~
+   This narrow trail has been chiselled into the solid mountain of ice before
+you.  Travel is slow and dangerous and you wonder who could be crazy chisel a
+path up the side of a mountain.  The trail continues up and to the south.    ~
+534 0 5
+D2
+~
+~
+0 -1 53527
+D4
+~
+~
+0 -1 53529
+S
+T 53402
+#53529
+Ice Ledge Trail~
+   The narrow trail carved into the side of the mountain leads down and also
+off to the west.  A fierce wind blows from the south making travel slow and
+dangerous.    ~
+534 0 5
+D3
+~
+~
+0 -1 53530
+D5
+~
+~
+0 -1 53528
+S
+T 53402
+#53530
+Ice Ledge Trail~
+   The trail winds around a curve in the mountain and heads up.  You can also
+follow the trail back down the mountain by heading east.  From here you can see
+far across the valley including the tall tower of the Frost Elves.    ~
+534 0 5
+D1
+~
+~
+0 -1 53529
+D4
+~
+~
+0 -1 53531
+S
+T 53402
+#53531
+Outside Trapper's Lodge~
+   The trail ends outside a lodge made of wood with a stone foundation.  The
+lodge is situated high on a cliff overlooking Frost Valley.  From here you can
+see various creatures moving about on the valley floor.  The lodge is to the
+west while a narrow trail will take you back down to the valley floor.    ~
+534 0 5
+D3
+An old wooden door reinforced with metal offers entrance to those who possess
+the key to unlock it.~
+door~
+1 53400 53532
+D5
+~
+~
+0 -1 53530
+S
+#53532
+Trapper's Lodge Entrance~
+   The entrance hall to the trapper's lodge is lined with monuments of the
+various creatures hunted by the trappers.  The heads of deer, rabbits, even a
+wooly mammoth decorate the walls.  A door to the east leads outside.  The small
+entrance hall opens up into a larger hall to the north.    ~
+534 0 0
+D0
+~
+~
+0 -1 53533
+D1
+This old wooden door leads to the outside.  It has bravely held back the
+elements for untold years. ~
+door~
+1 53400 53531
+S
+#53533
+Trapper's Lodge Hall~
+   This huge hall acts as a dining, meeting, recreating, and work hall.  A huge
+dining table stands in the middle of the hall while various small tables lining
+the walls seem to be used as places to skin the animals.  Various pelts hang
+from the wall and a fireplace along the north wall adds warmth to the lodge.  
+A stairway leads upstairs.    ~
+534 0 0
+D1
+~
+~
+0 -1 53534
+D2
+~
+~
+0 -1 53532
+D3
+This stout wooden door leads outside behind the Trapper's Lodge.~
+door~
+1 53400 53536
+D4
+~
+~
+0 -1 53535
+S
+#53534
+Trapper's Sleeping Quarters~
+   Five small bunk beds line the walls of this large room.  A footlocker is
+positioned at the base of each bed.  A fire burns brightly in a fireplace along
+the south wall keeping this room warm.  To the west is the larger lodge hall.~
+534 524440 0
+D3
+~
+~
+0 -1 53533
+S
+#53535
+Trapper's Lodge Lookout~
+   A small lookout is built atop the lodge from where the trappers can keep a
+lookout on the valley below.  Off in the distance to the southwest you can see
+the tower of the Frost Elves.  To the south is a large coniferous forest.  A
+staircase leads back down into the lodge.    ~
+534 0 0
+D5
+~
+~
+0 -1 53533
+S
+#53536
+Outside Trapper's Lodge~
+   You are standing behind Trapper's lodge.  A low wall of stones to the north
+and west act as a boundary of sorts.  To the east a doorway leads back into the
+warmth of Trapper's Lodge.  To the south is a large pen that is used to house
+the trapped animals before they are skinned.    ~
+534 0 2
+D1
+A stout wooden door set into the wall leads back into the warmth of
+the trapper's lodge.~
+door~
+1 53400 53533
+D2
+A huge door made of metal blocks any entrance into the trapper's pens.  It
+also keeps any animals in the pens from coming out...~
+door~
+1 53401 53537
+S
+#53537
+Trapper's Pen~
+   This huge cage made of wood and iron is meant to hold the various animals
+the trappers catch before they are killed and skinned.  Blood of the previous
+inhabitants of this cage line the walls and floor.  Decomposing piles of dung
+litter the floor.  The stench of decay is almost overpowering.    ~
+534 8 0
+D0
+This huge metal door prevents any of the animals trapped in here from
+escaping.~
+door~
+1 53401 53536
+S
+#53538
+Over Frost Valley~
+   You are surrounding in the mists that blanket Frost Valley.  You realize
+that there is nothing solid under your feet.  To the west is the edge of the
+Plateau.    ~
+534 4 9
+D3
+~
+~
+0 -1 53479
+D5
+~
+~
+0 -1 53471
+S
+#53539
+Over Frost Valley~
+You are surrounded by the mist that blankets Frost Valley.  You realize
+that there is nothing solid under your feet!  To the west and north you
+can just make out the edge of the plateau.~
+534 4 9
+D0
+~
+~
+0 -1 53479
+D2
+~
+~
+0 0 53540
+D3
+~
+~
+0 -1 53489
+D5
+~
+~
+0 -1 53480
+S
+#53540
+Over Frost Valley~
+   You are surrounded by the mist that blanket Frost Valley.  You realize that
+there is nothing solid under your feet.  To the west you can just make out the
+edge of the plateau.    ~
+534 4 9
+D0
+~
+~
+0 0 53539
+D3
+~
+~
+0 -1 53490
+D5
+~
+~
+0 -1 53481
+S
+#53541
+Over Frost Valley~
+You are surrounded by the mist that blankets Frost Valley.  You realize
+that there is nothing solid under your feet!  To the north you can just
+make out the edge of the plateau.~
+534 4 9
+D0
+~
+~
+0 -1 53490
+D3
+~
+~
+0 -1 53542
+D5
+~
+~
+0 -1 53491
+S
+#53542
+Over Frost Valley~
+   You are surrounded by the mist that blankets Frost Valley.  You realize that
+there is nothing solid under your feet!  To the north you can just make out the
+edge of the plateau.    ~
+534 4 9
+D0
+~
+~
+0 -1 53498
+D1
+~
+~
+0 -1 53541
+D2
+~
+~
+0 0 53547
+D3
+~
+~
+0 -1 53543
+D5
+~
+~
+0 -1 53499
+S
+#53543
+Over Frost Valley~
+   You are surrounded in the mist that blankets Frost Valley.  You realize that
+there is nothing solid under your feet!  To the north you can just make out the
+edge of the plateau.    ~
+534 0 9
+D0
+~
+~
+0 -1 53504
+D1
+~
+~
+0 -1 53542
+D5
+~
+~
+0 -1 53505
+S
+#53544
+Narrow Ledge~
+   This narrow ledge rises steeply as it hugs the cliff face.  Travel is slow
+and dangerous as you wonder where this trail leads.  The trail continues to the
+south.    ~
+534 4 5
+D0
+~
+~
+0 -1 53547
+D1
+~
+~
+0 -1 53548
+D2
+~
+~
+0 -1 53545
+D5
+~
+~
+0 -1 53500
+S
+#53545
+Narrow Ledge Bend~
+   The narrow trails bends here leading both north and east.  Below you is the
+vast expanse of Frost Valley.  Far off to the east you can see the tower of the
+Frost Elves.    ~
+534 0 5
+D0
+~
+~
+0 -1 53544
+D1
+~
+~
+0 -1 53546
+S
+#53546
+Narrow Ledge~
+   This narrow ledge carved into the cliff face climbs up and west from here.
+A light mist surrounds you and you can see that the mist in fact covers all of
+Frost Valley in a blanket of gray.    ~
+534 4 5
+D0
+~
+~
+0 -1 53548
+D1
+~
+~
+0 -1 53549
+D3
+~
+~
+0 -1 53545
+D4
+~
+~
+0 -1 53550
+S
+#53547
+Over Frost Valley~
+   You are surrounded by the mist that blankets Frost Valley.  You realize that
+there is nothing solid under your feet!  To the south you can just make out the
+ledge of a narrow trail.    ~
+534 4 9
+D0
+~
+~
+0 0 53542
+D2
+~
+~
+0 -1 53544
+D4
+~
+~
+0 0 53560
+D5
+~
+~
+0 -1 53500
+S
+#53548
+Over Frost Valley~
+   You are surrounded by the mist that blankets Frost Valley.  You realize that
+there is nothing solid under you feet!  To the west and south you can just make
+out a narrow ledge.    ~
+534 4 9
+D2
+~
+~
+0 -1 53546
+D3
+~
+~
+0 -1 53544
+D4
+~
+~
+0 0 53559
+D5
+~
+~
+0 -1 53493
+S
+#53549
+Over Frost Valley~
+   You are surrounded by the mist that covers Frost Valley.  You realize that
+there is nothing solid under you feet!  To the west you can just make out a
+narrow ledge.    ~
+534 4 9
+D3
+~
+~
+0 -1 53546
+D4
+~
+~
+0 0 53558
+D5
+~
+~
+0 -1 53485
+S
+#53550
+Outside Ysgarran's Keep~
+   You are standing on the top of the cliff that overlooks the southwestern
+section of the valley.  You can barely see the valley floor through the mists
+that blanket the valley.  A low stone wall has been constructed around the edge
+of the cliff, probably for safety reasons.  To the west a small stone keep
+seems to keep a watchful eye over Frost Valley.  A small sign in front of the
+keep contains a greetings to all travelers.    ~
+534 4 5
+D0
+~
+~
+0 -1 53559
+D1
+~
+~
+0 -1 53558
+D3
+A stout oaken door with metal bands is set into the thick stone walls
+of the keep.~
+door oaken~
+1 -1 53551
+D5
+~
+~
+0 -1 53546
+E
+sign~
+
+     	+-------------------------------------------------------+
+     	|							|
+	|	Greetings Traveler,				|
+	|							|
+	|		Please enjoy the hospitality of the	|
+	|	the Clan Ysgarran.  You may find warmth by	|
+	|	our fire and hot food to aid you on your 	|
+	|	journey.  All are most welcome to our humble	|
+	|	keep.						|
+	|							|
+	|				--Ysgarran		|
+	|							|
+	+-------------------------------------------------------+
+				|	|
+				|	|
+				|	|
+				|	|
+				|	|~
+S
+#53551
+Keep Entrance Hall~
+   This small entrance hall built of large gray stones is decorated with long
+green banners.  The banners contain the crest of Ysgarran: a double headed
+eagle.  To the east a stout oaken door keeps out the elements.  To the north
+the huge dining hall of Ysgarran's keep opens up before you.  Its warmth is
+very inviting.    ~
+534 8 1
+D0
+~
+~
+0 -1 53552
+D1
+A stout oaken door reinforced with large metal bands keeps out the
+elements.~
+door oaken~
+1 -1 53550
+S
+#53552
+Keep's Great Hall~
+   A large roaring fire along the keeps western wall fills this great hall with
+warmth and life.  A massive banquet table is laid out in the center of the
+hall.  Two sturdy oaken benches flank both sides of the table.  A narrow
+staircase built against the north wall leads up to the second floor of the
+keep.  To the west a doorway leads to the kitchen.  A long banner hangs from
+the north wall recording the great history of the clan of Ysgarran.    ~
+534 8 1
+D2
+~
+~
+0 -1 53551
+D3
+A simple oaken door leads to the kitchen.~
+door oaken~
+1 -1 53553
+D4
+~
+~
+0 -1 53555
+S
+#53553
+Keep's Kitchen~
+   Before you lies the keep's great kitchen.  Huge pots hang from massive iron
+pegs over a fire, rabbit stew boiling away in each.  A long table is placed
+against the north wall and various cooking utensils decorate it.  A small
+stairway leads down to the cellar below.  A door to the east leads back to the
+Great Hall.    ~
+534 8 1
+D1
+A simple oaken door leads to the Great Hall.~
+door oaken~
+1 -1 53552
+D5
+~
+~
+0 -1 53554
+S
+#53554
+Keep's Cellar~
+   This dark damp cellar is lined with crates storing foodstuffs and various
+other supplies.  You get the impression that with the supplies stored here the
+keep could withstand a siege for months.    ~
+534 8 0
+D4
+~
+~
+0 -1 53553
+S
+#53555
+Hallway~
+   You are in a narrow hallway that ends in a simple oaken door.  A stairway
+against the north wall leads down to the great hall below.  Half spent torches
+burn in iron sconces.    ~
+534 8 1
+D2
+This simple oaken door probably leads to a bedroom.~
+door simple oaken door~
+1 53403 53556
+D4
+~
+~
+0 -1 53557
+D5
+~
+~
+0 -1 53552
+S
+#53556
+Ysgarran's Bedroom~
+   The bedroom before you is of simple design.  A large bed is placed against
+one corner of the room and a simple dresser and table line the wall.  A large
+painting, presumably of the Ysgarran clan, hangs across from the bed.    ~
+534 8 1
+D0
+This simple oaken door leads back to the hallway.~
+door oaken~
+1 53403 53555
+S
+#53557
+Keep's Lookout~
+   From this lookout atop the keep you have a commanding view of Frost Valley
+below you.  Although it is rather difficult to see through the patches of mist
+there are sufficient clearings in the mists to keep a watchful eye on the
+valley below.    ~
+534 0 2
+D0
+~
+~
+0 -1 53564
+D1
+~
+~
+0 -1 53563
+D5
+~
+~
+0 -1 53555
+S
+#53558
+Over Frost Valley~
+   You can hardly see through the mist that surrounds you on all sides.  You
+realize that there is nothing solid under your feet!  To the west you can just
+make out a narrow ledge cut into the mountainside.    ~
+534 4 9
+D3
+~
+~
+0 -1 53550
+D5
+~
+~
+0 0 53549
+S
+#53559
+Over Frost Valley~
+   You can hardly see through the mists that surround you on all sides.  You
+realize that there is nothing solid under your feet!  To the west you can just
+make out the stone wall of a keep, while to the south you can see a narrow
+trail cut into the mountainside.    ~
+534 4 9
+D2
+~
+~
+0 -1 53550
+D5
+~
+~
+0 0 53548
+S
+#53560
+Over Frost Valley~
+The mist that blankets Frost Valley is all around you.  You realize that
+there is nothing solid under your feet!  To the south you can just make
+out the stone wall of a keep.~
+534 0 9
+D4
+~
+~
+0 -1 53562
+D5
+~
+~
+0 0 53547
+S
+#53561
+Over Frost Valley~
+   The mist that blankets Frost Valley surrounds you on all sides.  You realize
+that there is nothing solid under your feet!  To the west you can just make out
+the stone tower of a keep.    ~
+534 0 9
+D4
+~
+~
+0 -1 53563
+D5
+~
+~
+0 -1 53559
+S
+#53562
+Over Frost Valley~
+   The mists that blanket Frost Valley surround you on all sides.  You realize
+that there is nothing solid under your feet!  To the south you can just make
+out the stone tower of a keep.    ~
+534 0 9
+D4
+~
+~
+0 -1 53564
+D5
+~
+~
+0 -1 53560
+S
+#53563
+Over Frost Valley~
+   You realize that there is nothing solid under your feet!  The mists that
+blanket Frost Valley surround you.  To the west you can see the lookout of the
+stone keep.    ~
+534 4 9
+D3
+~
+~
+0 -1 53557
+D5
+~
+~
+0 -1 53561
+S
+#53564
+Over Frost Valley~
+   You realize there is nothing solid under your feet!  The mists that cover
+Frost Valley surround you on all sides.  To the south you can just make out the
+lookout of the keep.    ~
+534 4 9
+D2
+~
+~
+0 -1 53557
+D5
+~
+~
+0 -1 53562
+S
+#53567
+Buried Under an Avalanche~
+   There's not much air in here, and you can't tell which way is up or down.  
+Not that you will be getting out in a hurry.  Better hope your friends didn't
+get caught in this too.    ~
+534 56 12
+S
+#53568
+Giant Lynx's Lair~
+   You are standing in a large cavern dug underground.  It is relatively warm
+in here and offers refuge from the elements.  However, this appears to be the
+home of some giant arctic creature and it is doubtful it will welcome visitors
+to its lair.~
+534 256 12
+D4
+~
+~
+0 -1 53414
+S
+#53569
+Portal to the Plane of Garl'lixxil~
+As you step through the portal you feel as if your entire body is being
+ripped VIOLENTLY out of the world you know.  You can only wonder where
+this portal leads however there is no going back.  You have committed
+yourself and now you must face whatever horrors lie on the other side...~
+534 640 12
+S
+#53570
+Tower Courtyard~
+   There is a huge courtyard here, from which the snow has been painstakingly
+shoveled to the walls.  A large tower to the north dominates the courtyard.  
+The tower has four floors, each of which seems to have several windows facing
+the courtyard.  Large wooden doors in the wall to the north lead into the
+tower, and a huge metal gate in the east wall leads out of the courtyard.    ~
+534 512 1
+D0
+A large, intricately carved wooden door.~
+door wooden~
+1 -1 53571
+D1
+A huge metal gate is set into the wall that surrounds this courtyard.  Beyond
+the gate are the shores of Frost Valley lake.    ~
+gate~
+2 53402 53578
+S
+#53571
+Tower Foyer~
+   This foyer is circular in shape and quite wide in diameter, stretching the
+length of a large trireme.  Extravagent sculpted pillars bridge the floor and a
+circular stone landing that wraps around the chamber above.  Each carving
+depicts a different field of knowledge, and some are quite astonishing, as if
+the sculptor wanted his audience to be awed by the importance of this tower and
+its contents.  A majestic marble staircase spirals upwards in the center of the
+hall, meeting the landing above.  Beams of light stream down at the center of
+the stair, illuminating the entire foyer with its radiance.  A large arch in
+the east wall opens up into a beautiful vaulted hall, and two large wooden
+doors to the south lead out to the courtyard.    ~
+534 520 0
+D1
+~
+~
+0 0 53573
+D2
+A large, intricately carved wooden door.~
+door wooden~
+1 -1 53570
+D4
+~
+~
+0 0 53572
+S
+#53572
+The First Landing~
+   Circularly shaped, this landing wraps around the interior of main portion of
+the tower.  A golden railing divides the landing, only a few paces across, from
+the open air at the center of the tower.  Spiraling through the center of the
+citadel, a flawless marble stair pauses briefly at the landing on its journey
+up and down the tower.  The spiral staircase continues downward to the tower
+foyer and farther upward to another landing.  Vibrant beams of light shine down
+at the center of the staircase from somewhere high above, reflecting off its
+polished surface to light this entire landing.  A large entryway in the east
+wall leads to a large library.    ~
+534 520 0
+D1
+~
+~
+0 0 53575
+D4
+~
+~
+0 0 53574
+D5
+~
+~
+0 0 53571
+S
+#53573
+The Hall of Brilliance~
+   Built from strong, beautiful marble, this ballroom has high majestic
+ceilings with complex bejeweled vaults.  Tall glass windows rise from waist
+level to the beginning of the curving ceiling, trimmed with long velvety blue
+drapery.  The curtains are opened, allowing in the vibrant sunlight during the
+day and the pristine starlight at night.  At the eastern end of the hall, a
+slightly raised platform serves as a stage for announcements and music.  An
+immense arched entryway in the west wall opens up to the tower's foyer.    ~
+534 520 0
+D3
+~
+~
+0 0 53571
+S
+#53574
+The Second Landing~
+   Wrapping around the inside of the main tower, this stone landing has a
+silver railing and is slightly narrower than the landing below.  Open air fills
+the center of the chamber, a long fall down to the tower foyer below.  A
+splendid spiral staircase rises through the center of the tower, stopping
+briefly at this landing on its journey from the foyer to the apex.  Bright
+beams of light are channeled from somewhere above, illuminating the landing on
+their way down to the base of the tower.  Another landing can be seen below
+this one, and pillars stationed periodically around the landing support another
+one above.  An arch in the east wall opens to a royally decorated room.    ~
+534 520 0
+D1
+~
+~
+0 0 53577
+D4
+~
+~
+0 0 53576
+D5
+~
+~
+0 0 53572
+S
+#53575
+The Great Library~
+   Books of all sizes and languages dominate this spacious room.  Tall shelves
+stand against all four walls, and out into the room forming small aisles.  
+Near the south wall, a series of heavy pine desks take advantage of the light
+that streams through the large windows on that side of the library.  Several
+lacquered wooden pillars are spread through the room, decorated by complex
+inscriptions seemingly designed to help a reader locate a book.  There are
+small icons depicting medicine, law, and many other disciplines at the tops of
+the bookshelves.  A large open door to the west presents access to the tower
+landings.    ~
+534 520 0
+D3
+~
+~
+0 0 53572
+E
+carvings~
+The carvings are in an elaborate elven script, far too enigmatic for you to
+decipher.    ~
+S
+T 5212
+T 10317
+#53576
+The Third Landing~
+   The tower grows narrow here, with the landing around the edge barely an
+armspan across.  A spiral staircase leads downwards here, centered in the open
+air shaft of the tower.  Dozens of small mirrored shafts near the tip of the
+tower reflect light in and down the center of the stair shaft, illuminating the
+entire tower.  Some lower windows about waist level around the landing present
+a majestic view of the snowy valley and lake around, providing clear and early
+warning of any territorial intrusion.  Complex elven runes cover the walls,
+telling the history of the Frost Elves and their collected knowledge.  The
+marble stair leads down to the second landing.    ~
+534 520 0
+D5
+~
+~
+0 0 53574
+S
+#53577
+A Reading Room~
+   Plush white sofas are spread about the room, surrounded by dark wooden
+endtables.  A wooden bar runs along the eastern edge of the room, lined with
+bottles and packages.  Tall bay windows stretch the height of the walls to the
+north and south, presenting a beautiful view of the frigid landscape outside.
+Attractive creeping ivy grows up the sides of the windows, forming natural
+self-sustained curtains.  Some kind of magical force maintains a pleasant
+temperature in the room and indeed the entire tower, sealing the frost and
+chill outside.  A line of round wooden tables runs down the center of the room,
+each encircled by several kingly chairs.  An arch opens up to the tower
+landings to the west.    ~
+534 520 0
+D3
+~
+~
+0 0 53574
+S
+#53578
+Frost Elf Island~
+   The dark waters of Frost Valley lake lap against the shores of this small
+island to the south and east.  To the north, the huge white tower of the Frost
+Elves rises up before you, becoming lost in the mists that cover the lake.  To
+the west, a huge wall with a metal gate encloses a courtyard.    ~
+534 512 10
+D1
+~
+~
+0 -1 53447
+D2
+~
+~
+0 -1 53455
+D3
+A huge metal gate is set into the thick stone wall that surrounds the
+courtyard.  It is known that the Frost Elves only allow those of pure heart
+into their domain.    ~
+gate~
+2 53402 53570
+E
+BUILDNOTE~
+This room is part of the "past elf tower."  It should have an enter trigger
+that prevents players from entering.  However, it will allow mobs to enter from
+the west, to create the illusion of more beyond the tower.  Those mobs will not
+be able to go east or south though, because there should be enter triggers on
+those rooms preventing past-elf mobs from entering.    ~
+S
+T 53500
+$~

@@ -1,0 +1,1271 @@
+1
+vnum: 3031
+location: 0
+values:
+1
+250
+44
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 5506
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 5542
+location: -1
+values:
+2
+2
+4
+5
+0
+0
+0
+~
+flags: jow
+name: flail eldoria-reward 3rd-black-legion-flail
+shortdesc: a flail of the 3rd Black Legion
+desc: A black flail lies here.
+type: 5
+weight: 6.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5541
+location: -1
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: jowx
+name: warhammer eldoria-reward hammer 3rd-black-legion-warhammer
+shortdesc: a warhammer of the 3rd Black Legion
+desc: A black warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5521
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: sleeves eldoria-reward 3rd-black-legion-leather-sleeves
+shortdesc: leather sleeves of the 3rd Black Legion
+desc: Some black leather sleeves lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 5521
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: sleeves eldoria-reward 3rd-black-legion-leather-sleeves
+shortdesc: leather sleeves of the 3rd Black Legion
+desc: Some black leather sleeves lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 5521
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: sleeves eldoria-reward 3rd-black-legion-leather-sleeves
+shortdesc: leather sleeves of the 3rd Black Legion
+desc: Some black leather sleeves lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 5521
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: sleeves eldoria-reward 3rd-black-legion-leather-sleeves
+shortdesc: leather sleeves of the 3rd Black Legion
+desc: Some black leather sleeves lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 5515
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gj
+name: unholy symbol eldoria-reward 3rd-black-legion-symbol small
+shortdesc: an unholy symbol of the 3rd Black Legion
+desc: A small black symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+applies:
+13 30
+14 25
+26 10
+~
+extradesc: unholy symbol eldoria-trophy 3rd-black-legion-symbol small
+A feeling of malevolence radiates from this black medal.
+~
+~~
+vnum: 5523
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: wristguards wristguard eldoria-reward leather 3rd-black-legion-wristguards wrist
+shortdesc: wristguards of the 3rd Black Legion
+desc: A pair of black leather wristguards lies discarded here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 4097
+applies:
+1 1
+~
+~~
+vnum: 5519
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: torque eldoria-reward 3rd-black-legion-torque
+shortdesc: a torque of the 3rd Black Legion
+desc: A black torque lies nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward 3rd-black-legion-torque
+A torque made of twisted black metal, it looks fairly protective.
+~
+~~
+vnum: 5525
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: gloves eldoria-reward 3rd-black-legion-gloves
+shortdesc: gloves of the 3rd Black Legion
+desc: Some gloves lie discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 129
+applies:
+3 2
+13 5
+~
+~~
+vnum: 5531
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: leggings eldoria-reward 3rd-black-legion-leggings
+shortdesc: leggings of the 3rd Black Legion
+desc: Some leggings lie here.
+type: 9
+weight: 4.90
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 33
+applies:
+3 2
+~
+~~
+vnum: 5519
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: torque eldoria-reward 3rd-black-legion-torque
+shortdesc: a torque of the 3rd Black Legion
+desc: A black torque lies nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward 3rd-black-legion-torque
+A torque made of twisted black metal, it looks fairly protective.
+~
+~~
+vnum: 5540
+location: -1
+values:
+2
+4
+2
+3
+0
+0
+0
+~
+flags: jnuv
+name: shortsword short sword eldoria-reward 3rd-black-legion-shortsword
+shortdesc: a shortsword of the 3rd Black Legion
+desc: A black shortsword lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5516
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: holy symbol eldoria-reward small white 3rd-eldorian-guard-symbol
+shortdesc: a holy symbol of the 3rd Eldorian Guard
+desc: A small white symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+applies:
+13 30
+14 25
+26 10
+~
+extradesc: holy symbol eldoria-trophy small white 3rd-eldorian-guard-symbol
+A mild feeling of benevolence radiates from this white medal.
+~
+~~
+vnum: 5512
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+shortdesc: an insignia of the 3rd Eldorian Guard
+desc: A small white insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+A small patch of white fabric with the insignia of the 3rd Eldorian Guard has
+been ripped off a larger peice of fabric.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 5541
+location: -1
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: jowx
+name: warhammer eldoria-reward hammer 3rd-black-legion-warhammer
+shortdesc: a warhammer of the 3rd Black Legion
+desc: A black warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5541
+location: -1
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: jowx
+name: warhammer eldoria-reward hammer 3rd-black-legion-warhammer
+shortdesc: a warhammer of the 3rd Black Legion
+desc: A black warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5541
+location: -1
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: jowx
+name: warhammer eldoria-reward hammer 3rd-black-legion-warhammer
+shortdesc: a warhammer of the 3rd Black Legion
+desc: A black warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5541
+location: -1
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: jowx
+name: warhammer eldoria-reward hammer 3rd-black-legion-warhammer
+shortdesc: a warhammer of the 3rd Black Legion
+desc: A black warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5541
+location: -1
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: jowx
+name: warhammer eldoria-reward hammer 3rd-black-legion-warhammer
+shortdesc: a warhammer of the 3rd Black Legion
+desc: A black warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5541
+location: -1
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: jowx
+name: warhammer eldoria-reward hammer 3rd-black-legion-warhammer
+shortdesc: a warhammer of the 3rd Black Legion
+desc: A black warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5533
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: boots eldoria-reward 3rd-black-legion-boots
+shortdesc: boots of the 3rd Black Legion
+desc: Some black boots lie here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 65
+applies:
+2 2
+~
+~~
+vnum: 5521
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: sleeves eldoria-reward 3rd-black-legion-leather-sleeves
+shortdesc: leather sleeves of the 3rd Black Legion
+desc: Some black leather sleeves lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 5525
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: gloves eldoria-reward 3rd-black-legion-gloves
+shortdesc: gloves of the 3rd Black Legion
+desc: Some gloves lie discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 129
+applies:
+3 2
+13 5
+~
+~~
+vnum: 5541
+location: -1
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: jowx
+name: warhammer eldoria-reward hammer 3rd-black-legion-warhammer
+shortdesc: a warhammer of the 3rd Black Legion
+desc: A black warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5529
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: belt eldoria-reward 3rd-black-legion-belt
+shortdesc: a belt of the 3rd Black Legion
+desc: A belt lies discaded here.
+type: 9
+weight: 0.96
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 2049
+applies:
+1 2
+~
+~~
+vnum: 5523
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: wristguards wristguard eldoria-reward leather 3rd-black-legion-wristguards wrist
+shortdesc: wristguards of the 3rd Black Legion
+desc: A pair of black leather wristguards lies discarded here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 4097
+applies:
+1 1
+~
+~~
+vnum: 5539
+location: -1
+values:
+2
+4
+2
+7
+0
+0
+0
+~
+flags: j
+name: staff eldoria-reward 3rd-black-legion-staff
+shortdesc: a staff of the 3rd Black Legion
+desc: A staff lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5539
+location: 127
+values:
+2
+4
+2
+7
+0
+0
+0
+~
+flags: j
+name: staff eldoria-reward 3rd-black-legion-staff
+shortdesc: a staff of the 3rd Black Legion
+desc: A staff lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5539
+location: 127
+values:
+2
+4
+2
+7
+0
+0
+0
+~
+flags: j
+name: staff eldoria-reward 3rd-black-legion-staff
+shortdesc: a staff of the 3rd Black Legion
+desc: A staff lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5506
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5547
+location: 127
+values:
+2
+4
+2
+3
+0
+0
+0
+~
+flags: knuv
+name: shortsword short sword eldoria-reward 3rd-eldorian-guard-shortsword
+shortdesc: a shortsword of the 3rd Eldorian Guard
+desc: A shortsword lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5510
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5547
+location: 127
+values:
+2
+4
+2
+3
+0
+0
+0
+~
+flags: knuv
+name: shortsword short sword eldoria-reward 3rd-eldorian-guard-shortsword
+shortdesc: a shortsword of the 3rd Eldorian Guard
+desc: A shortsword lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5510
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~

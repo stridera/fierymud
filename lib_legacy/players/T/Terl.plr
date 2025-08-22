@@ -1,0 +1,177 @@
+name: Terl
+password: TelgWfIVgC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 6
+race: 0
+level: 35
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18379
+birthtime: 1351538699
+timeplayed: 82073
+lastlogintime: 1383420921
+host: 098.230.026.143
+height: 76
+weight: 174
+base_height: 76
+base_weight: 174
+base_size: 2
+natural_size: 2
+alignment: 328
+playerflags: gxy
+effectflags: x 0 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 444/409
+mana: 122/122
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 54
+wisdom: 74
+dexterity: 92
+constitution: 95
+charisma: 55
+cash: 0 2571 1439 794
+experience: 8090025
+quit_reason: 1
+saveroom: 3054
+skills:
+8 1000
+16 1000
+18 1000
+32 1000
+37 1000
+88 1000
+144 1000
+402 262
+404 278
+407 50
+410 50
+411 192
+415 50
+416 50
+417 50
+420 54
+421 146
+423 117
+424 62
+430 52
+438 80
+443 50
+444 50
+447 72
+451 51
+452 52
+454 50
+456 50
+457 54
+458 52
+462 51
+463 50
+464 50
+465 177
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 58024 3.000000
+1 58021 0.500000
+1 58150 0.500000
+1 58022 0.500000
+1 58023 0.500000
+1 58003 0.500000
+1 58015 1.500000
+1 58019 0.500000
+1 58010 0.500000
+1 58029 1.500000
+1 58034 2.000000
+1 58031 0.500000
+1 58026 4.500000
+1 58013 2.500000
+1 58027 3.000000
+1 58035 1.000000
+1 58001 0.500000
+1 58037 1.000000
+1 58007 0.500000
+1 39006 0.500000
+1 39004 0.500000
+0 0 0
+mem:
+18 1 1
+32 1 1
+18 1 1
+32 1 1
+32 1 1
+32 1 1
+18 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+144 1 2
+144 1 2
+144 1 2
+144 1 2
+144 1 2
+144 1 2
+16 1 1
+88 1 4
+88 1 4
+88 1 4
+88 1 4
+88 1 4
+88 1 4
+37 1 8
+37 1 8
+37 1 7
+0 0 0
+aliases:
+kh kill hedge
+kv kill vine
+cmm cast 'magic missile'
+cb cast 'barkskin'
+ccl cast 'cure light'
+cbl cast 'barkskin' lanelot
+ccll cast 'cure light' lanelot
+kg kill grasshopper
+ggs get gem saddle
+pgs put gem saddle
+dfw drink from well
+fsfw fill skin from well
+r rescue
+dfs drink from skin
+ggc get gem corpse
+grc get rusted corpse
+gcc get coins corpse
+gac get all corpse
+ec examine corpse
+kp kill priest
+kl kill ladybug
+eb eat bread
+fsff fill skin from fountain
+dff drink from fountain
+kz kill zombie
+b bash
+al assist lanelot
+kb kill bandit
+kd kill deer
+kr kill rabbit
+kf kill fox
+km kill mouse
+kc kill crow
+ka kill attendant
+kq kill queen
+ks kill stone
+kw kill worm
+0

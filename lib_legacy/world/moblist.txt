@@ -1,0 +1,1948 @@
+45, a steady warhorse
+46, a sleek nightmare
+47, a grey-dappled mare
+48, a bay gelding
+49, a sinewy rouncy
+50, a thoroughbred destrier
+51, a magnificent courser
+52, a proud shadowmare
+1001, a rat
+1002, a black bat
+1003, a &0&3wild horse&0
+1004, a badger
+1005, a timber wolf
+1006, a panther
+1007, a polar bear
+1008, a cheetah
+1009, a rhino
+1010, a sparrow
+1011, a bluebird
+1012, a robin
+1013, an owl
+1014, an ebony raven
+1015, a timberland hawk
+1016, a seaside falcon
+1017, a buzzard
+1018, a golden eagle
+1019, an ostrich
+1020, a garter snake
+1021, a desert lizard
+1022, a chameleon
+1023, a crimson asp
+1024, a tortoise
+1025, a spitting cobra
+1026, a sea turtle
+1027, a water viper
+1028, a crocodile
+1029, a gigantic anaconda
+1030, a piranah
+1031, an electric eel
+1032, a swordfish
+1033, a stingray
+1034, a gray manatee
+1035, a dark lamprey
+1036, a dolphin
+1037, a reef shark
+1038, an orca
+10001, the Warrior Coach
+10002, the Archmage
+10003, an Elite Mercenary
+10004, a sturdy clydesdale
+10005, a nordic mustang
+10006, a frost stallion
+10010, the Knight Templar
+10011, the Mighty Knight
+10012, the Mystical Sorcerer
+10013, the Mercenary Guardian
+10020, Traldi Trumward
+10021, Vran the Varied
+10022, Karr Nojj
+10023, Mara the Baker
+10024, Ariana Shelti
+10025, Surr the Aged
+10026, Garm
+10027, Kilaxi the Trickster
+10028, a store clerk
+10029, Faric
+10040, a Barbaric Guard
+10041, a Barbaric Guard
+10050, the wanderer
+10051, the playful penguin
+10052, the drunk
+10053, the Ickle Banker
+10054, the receptionist
+10055, the Ickle Postmaster
+10056, a mysteriously cloaked figure
+10301, Tai'ir, the Chosen of Endings
+10302, Jaden, the Chosen of Journeys
+10303, Kaz, the Chosen of Battles
+10304, Arceroi, the Chosen of Secrets
+10305, Liada Delamon
+10306, Osnys
+10307, Irise
+10308, Rianne d'Argent
+10309, a polar trout
+10310, Warikh
+10311, a guest
+10312, a swimmer
+10313, an osprey
+10314, Eamon
+10315, a barista
+11702, the Mist Beast
+11703, the Mud Beast
+11704, the Moss Beast
+11710, the Illithid
+11750, a mild mannered merchant
+11797, a storm guardian
+11798, Mysa
+11799, a myst guardian
+11800, &7&bthe mist&0
+11801, a gray mist demon
+11802, a vicious tree
+11803, a slender temple guard
+11804, the mist
+11805, a gentle wave
+11806, a swirl of air
+11807, a thick fog
+11808, a wise squirrel
+11809, a small qua-jit
+11810, a tremendous ooze
+11811, a streak of lightning
+11812, an assassin vine
+11813, a huge mound of moss and rock
+1208, &1Art&9&ber&0&1ius&0
+1260, a brilliant golden dragon
+1261, Lynnli
+1262, Shulien
+1263, a dusky black dragon
+1275, the &3Angel &0Manifest
+12001, a gaunt rabbit
+12002, a kestrel
+12003, a large buck
+12004, a groundsman
+12005, a park ranger
+12006, the Darkseed
+12007, a black deer
+12008, a greasy vulture
+12009, a dark pixie
+12010, a strange vagabond child
+12011, a slavering raccoon
+12012, a moulting eagle
+12013, an owl
+12014, a badger
+12015, a screeching quail
+12016, a bloody-eyed tree rat
+12017, a huge sow
+12018, the hooded druid
+12019, a haggard brownie
+12020, a dark pixie
+12021, a dark pixie
+12022, a dark pixie
+12023, a shaggy, unkempt bear
+12024, a staggering wolverine
+12025, a reddish squirrel of unusual size
+12301, the coven high priestess
+12302, the Tzigane Vityaz
+12303, the Keeper of the North
+12304, the Keeper of the South
+12305, the Keeper of the East
+12306, the Keeper of the West
+12307, the celestial envoy
+12308, an ancient unicorn
+12309, a witch
+12310, a witch
+12311, a unicorn
+12312, a nymph
+12313, a dryad
+12314, a Seelie faerie
+12315, a manticore
+12316, an Unseelie faerie
+12317, a grey render
+12318, a displacer beast
+12319, a gorgon
+12320, an owlbear
+12321, a shoggoth
+12322, a faerie dragon
+12323, a fey cat
+12324, a witch
+12501, a human warrior
+12502, a half-elven mage
+12503, a gnome
+12504, a gnome
+12505, a dwarven scavenger
+12506, the Silent One
+12507, a scrawny dog
+12508, a Devourer
+12509, a bloody-beaked vulture
+12510, a two-headed rat
+12511, a sentient moss
+12512, a stately elk
+12513, an injured halfling
+12514, a demonic guardian
+12515, a demonic guardian
+12516, the taskmaster
+12517, a worker ant
+12518, a guardian demon
+12519, Torik Gavenstlad
+12520, a dancing sword
+12521, a stealthy woman
+12522, Mearo
+12523, a fire elemental lord
+12524, the Devourer Lord
+12525, the demoness
+12526, the Demon Lord Krisenna
+12599, the undead gazebo
+13302, a troglodyte
+13303, a dwarven miner
+13304, a beastly blind badger
+13305, an overseer
+13306, the young miner
+13307, a dwarven girl
+13308, the old miner
+13309, a small bat
+13310, a sturdy dwarven miner
+13311, a dwarf
+13312, a cave cricket
+13313, a pale spider
+13314, a glowing millipede
+13318, a tired miner
+13319, a thirsty miner
+13321, a dwarf
+13333, a beam of starlight
+13602, a fierce-looking little gremlin
+13603, a gremlin captain
+13604, a brown hare
+13605, a fawn
+13606, a graceful deer
+13607, a red fox
+13608, a bulldog
+13609, a young druidess
+13610, a gremlin sentinel
+13611, an old gremlin warrior
+13612, an armor-clad skeleton
+13613, a brown beaver
+13614, a glowing poltergeist
+13615, a black-furred rat
+13616, a bright bird
+13617, a mournful shade
+13618, a bullfrog
+13619, a dwarven treasure-hunter
+13620, an old dwarven treasure-hunter
+13621, a dwarven adventurer
+13622, a zombie servant
+13623, a decaying butler
+13624, a mad dwarf
+13625, a mad priest
+1401, the GoT Pastry Table
+1402, a tall slender innkeeper
+1602, a mutant butterfly
+1603, a boa constrictor
+1604, a pit viper
+1605, the lost blind dwarf
+1682, the mad scientist
+1685, a butterfly
+1688, a brown rabbit
+1689, a haggard dwarf
+16001, the skeletal warrior
+16002, a Shadow Hound
+16003, the sentinel
+16004, a shadow horseman
+16005, the guard
+16006, an Officer
+16007, the General
+16008, the storm demon
+16009, the minion
+16010, the shadow demon
+16011, the Demon Lord
+16015, a charred skeleton
+16016, a charred warrior
+16017, a charred sentry
+16018, a charred warlord
+16019, a charred blacksmith
+16020, the Avatar of Zzur
+16101, a trader
+16102, the nomad
+16103, a snake
+16104, a lizard
+16105, the giant scorpion
+16106, a sand devil
+16107, a bandit
+16108, a horse
+16109, an old man
+16110, a baby scorpion
+16111, the bandit chief
+16201, a skeleton
+16202, the holy cat
+16203, a giant snake
+16204, a guard
+16205, Imanhotep
+16206, Neris
+16207, Aaros
+16275, a mysteriously cloaked figure
+16301, the Chieftain
+16302, the Chieftain
+16303, the warrior
+16304, the warrior
+16305, the warrior
+16306, the Hierophant
+16307, the druid
+16308, the Knight Errant
+16309, the wyvern
+16310, a wolf
+16311, the Dryad
+16312, a satyr
+16313, a centaur
+16315, Eleweiss
+16316, the dryad
+16901, the Gremlin Lord
+16902, the zombie
+16903, a Lost Soul
+16904, the poltergeist
+16905, a skeleton
+16906, a hoarder spirit
+16907, a bat
+16908, a rat
+16909, a ferocious beast
+16910, Asiri'Qaxt
+16911, the undead templar
+17201, a magician
+17202, the apprentice
+17203, the Eye
+17204, the Guardian
+17205, the familiar
+17206, the unseen servant
+17207, a simulacrum
+17208, a gargoyle
+17209, a sorcerer
+17301, the high priest
+17302, a necromancer
+17303, a demon-steed
+17304, the Avenger
+17305, an initiate
+17306, the Chaos
+17307, a hellhound
+17308, the undead servant
+17801, a bear
+17802, an eagle
+17803, a tribesman
+17804, the tribesman
+17805, the tribesman
+17806, the shaman
+17807, the Chief
+17808, the Chief
+17809, the Chief
+17810, the hunter
+17811, the Fetch
+17812, the shaman's apprentice
+17813, a half frozen half burning shrub
+1801, a wild boar
+1802, a weary traveler
+1803, a bestial hunter
+1804, a tree spider
+1805, a forest creature
+1806, a panther
+1807, the pit lurker
+1808, a fallen nymph
+1809, a giant fungus
+1810, a black fungus
+1811, a nymph
+1812, a thorn monster
+1813, the Shade of Thelmor
+1814, a flightless bird
+1815, a sentient tree
+1816, a lesser thorn monster
+1817, a thorny vine
+1850, the void guardian
+18001, the raven hedge
+18002, the unicorn hedge
+18003, the lion hedge
+18004, the dragon hedge
+18005, the dolphin hedge
+18006, the Hedge Wizard
+18007, a creeping vine
+18501, a humble monk
+18502, the Sexton
+18503, the Prior
+18504, the Almoner
+18505, a monk
+18506, the sick monk
+18507, a monk
+18508, a monk
+18509, the Noble
+18510, the Monk Guard
+18511, a mule
+18512, a scruffy cook
+18513, the baker
+18514, a small fish
+18515, the information clerk
+18516, a highly educated monk
+18517, a young acolyte
+18518, a visiting scholar
+18519, a researching priest
+18520, a repentant criminal
+18521, the doctor
+18522, the Desert Devil
+18550, a wise scholar
+18551, the librarian
+18552, the acquisitor
+18553, a sketch artist
+18581, Silania
+18699, the Eldorian Emissary
+18807, the Degree Warden
+18820, Genois
+18821, Annira
+18822, Pryrian of Duclia
+18823, Eralshar of Duclia
+18824, Shryllyr of Oruldin
+18825, Galyrith of Daigodai
+18826, Sereth Kar of Yerria
+18827, Jeraku of Althia
+18828, Ryon Llialis of Raymif
+18829, Akylra the Foreknower
+18830, Theralmos the Traveler
+18831, Weyvril the Elysian
+18832, Ersinox of Duclia
+18833, Dethylir the Deceiver
+18834, Taerleshem the Pattern Seeker
+18835, Azurine of Terikrus
+18836, Chronyl the Sea Monarch
+18837, Sharik of Nydis
+18838, Haranith the Psionic
+18839, Kaprilix of Ethrilos
+18840, Soderrin of Mystes
+18841, Gesonom the Apparition
+18842, Berzynith the Voracious
+18843, Argernis the Nevermore
+18880, a referee
+18889, a large marble fountain
+18890, a brilliant golden dragon
+18891, a dusky black dragon
+18892, a dragonsquire
+18896, the FieryTag announcer
+18897, the FieryTag controller
+18898, the FieryTag announcer
+2002, a great two-headed boar
+2003, a small iguana
+2004, a traveling pilgrim
+2005, a wild dog
+20301, a lioness
+20302, a lion
+20303, a lion cub
+20304, a wildebeest
+20305, a vulture
+20306, a zebra
+20307, a hyena
+20308, a large elephant
+20309, a baby elephant
+20310, a large crocodile
+20311, a slender cheetah
+20312, a large giraffe
+20313, a green snake
+20314, a small bird
+20315, a lioness
+20316, a wildebeest
+20317, a zebra
+20318, a gazelle
+20319, a snake
+20320, a small lizard
+2201, Varin
+2202, Tsaeldin the historian
+2210, an Incubus
+2211, a Succubus
+2212, a Pit Fiend
+2213, a Greater Yugoloth
+2214, a Glabrezu
+2215, a Nalfeshnee
+2216, a Balor
+2219, Crown Prince Belial
+2220, a dummy loader
+2221, Belial, Lord of Destruction
+2250, an elementalist
+2251, a Greater Baatezu
+2252, a fire elemental lord
+2253, a heavily armored knight
+2254, an archangel
+2255, an archangel
+2297, test animal
+2298, test human
+2299, test dragon
+2301, a giant northern roc
+2302, a roc hatchling
+2303, a roc hatchling
+2304, a stone statue
+2305, a bulbous forest spider
+2306, a giant canopy spider
+2307, a giant canopy spider
+2308, a monstrous canopy spider
+2309, a camouflaged hunter spider
+2310, a vicious tree spider
+2311, a dark patriarch
+2312, a dark cultist
+2314, a robed cultist
+2315, Aldern
+2316, an armored soldier
+2317, an armored soldier
+2318, a groomed horse
+2319, Naleen Moonwalker
+2320, a border soldier
+2321, the guard captain
+2322, Lord Venth
+2323, a soldier
+2324, a wary adventurer
+2325, a drunken dwarf
+2326, a dwarven warrior
+2327, an elven maiden
+2328, a plant elemental
+2329, an ancient oak tree
+2330, the high druid
+2331, an elder druid
+2332, a dryad
+2333, a dryad
+2334, an ancient dryad
+2335, a wrinkled dryad
+2336, an elder dryad
+2337, a water sprite
+2338, a forest sprite
+2339, a slender druid
+2340, a soldier
+2341, a traveling merchant
+2342, an unemployed caravan guard
+2343, a pilgrim
+2344, a spotted Southeastern rabbit
+2345, an orc scout
+2346, a plains antelope
+2347, a suspicious soldier
+2348, a skinny stablehand
+23701, the drow mage
+23702, a crawling lizard
+23704, the killart
+23705, a myconid man
+23706, a licca
+23707, the drow gateguard
+23708, the drow slave master
+23709, a drow mage
+23710, a drow priestess
+23711, the Archmage of Dheduu
+23712, a kobold slave
+23713, a goblin slave
+23714, a duergar slave
+23715, an orcish slave
+23716, a troll slave
+23717, an ogre overseer
+23718, a human slave
+23719, Serin Sunfire
+23720, the prison guard
+23721, Fhlarrfakk the Illithid
+23722, a drow shrine maiden
+23724, the drow swordmaster
+23726, the guardian
+23727, a weapons student
+23728, Vilekka Kar'Shezden
+23729, a drider
+23730, the drider king
+23731, a large black spider
+23732, a tiny mist beast
+23733, the roper
+23734, a Kar'Shezden guard
+23735, the drow alchemist
+23736, a drow servant
+23737, a drow soldier
+23738, the drow master
+23801, the fallen paladin
+23802, the wandering mage
+23803, the Tempest Manifest
+23804, the lightning beast
+23805, an ice mephit
+23806, a cloud mephit
+23807, a giant hawk
+23808, an air sprite
+23809, a lantern archon
+23810, a ghaele
+23811, a lesser seraph
+23812, a solar celestial
+23813, a sylph
+23814, an invisible stalker
+23815, an ethereal stalker
+23816, a djinn
+23817, a couatl
+23818, an ice garuda
+23819, a divine seeker
+23820, an air genasi
+23821, a celestial hound
+2802, the Blue-Fog Pirate
+2803, the Blue-Fog Pirate
+2804, the Blue-Fog Pirate Captain
+2805, the Blue Wave
+2806, the Mist Elemental
+2807, the Mist Elemental Lord
+2808, the Water Elemental
+2809, the Water Elemental Lord
+2810, The Great Wave
+3001, Helena
+3002, Aaron
+3003, Santiago
+3004, Beowyn
+3005, a pretty half-elven receptionist
+3006, Lisa
+3007, Granite
+3008, Drako
+3009, Shauna
+3010, Elspeth the Jeweler
+3011, Jorhan
+3012, Kayla Ex'la
+3013, Bigby's research assistant
+3014, a plain attendant
+3018, Erasmus
+3020, the Archmage
+3021, the High Priestess
+3022, the Master Rogue
+3023, the Warrior Coach
+3024, a sorcerer-guard
+3025, the Knight Templar
+3026, a well-built Rogue
+3027, the Mighty Knight
+3034, &1&bUNUSED CHARACTER&0
+3040, a half-elven barkeep
+3046, Morgen
+3050, a tall elven guard
+3051, a half-elven guard
+3052, a half-elven town guard
+3053, the High Druid
+3054, a quiet helmeted knight
+3055, a druidic guard
+3056, a druidic guard
+3059, a village footman
+3060, a peasant guard
+3061, a gnomic janitor
+3062, a furry stray dog
+3064, a drunk
+3065, a poor beggar
+3066, a snarling cur
+3067, the gate guard
+3068, the horrid green gelatinous blob
+3069, a quiet guard
+3070, the Elite Black Mage
+3075, a mysteriously cloaked figure
+3081, a stout mare
+3090, a kitten
+3091, a puppy
+3092, a beagle
+3093, a rottweiler
+3094, a wolf
+3095, the postmaster
+3096, a fussy gnomic banker
+3100, a half-elven maid
+3101, the peasant guard
+3102, a spunky donkey
+3103, a colorful parrot
+3130, a nasty sewer monster
+3131, a small bat
+3132, a small maggot
+3133, abominable slime creature
+3143, the Mayor
+3149, Freddy
+3160, Julk
+3161, Judith
+3165, Calken
+3170, Fecil
+3208, the elderly man
+3301, Rousel the newbie training master
+3490, the Lord of Flames
+3491, the High Cryomancer
+3492, Zeno the Priest
+3499, the code
+30002, Slevvirik
+30003, Dugrik
+30004, Woddly
+30005, Dorndle
+30006, Arandidor
+30007, Myrzistan
+30008, Skosh
+30009, Jhanna
+30010, Ralg
+30011, Unndush
+30012, Argesh
+30013, Grulo
+30014, Krigg
+30015, Ghiala
+30016, Gagar
+30017, Tinilas
+30018, Rorgdush
+30019, Grort
+30020, an ash crab
+30021, a kea
+30022, a caracal
+30023, a tired nag
+30024, an ill-tempered camel
+30025, a gaunt ox
+30026, a plough horse
+30027, an anklecrusher
+30028, an asp
+30030, an orc patroller
+30031, a glowering warlock
+30032, the guard captain
+30033, an ogre enforcer
+30034, the elite guard
+30035, an orcish gate guard
+30036, an orcish gate guard
+30037, an orcish gate guard
+30039, a massive ogre guard
+30040, a quiet hooded guard
+30041, a black-clad guard
+30042, a quiet ogre
+30043, the postmaster
+30044, Kekund
+30045, a drunken soldier
+30046, a crimson-armored guard
+30047, a blue-robed sorcerer
+30048, a dark knight
+30049, a fiery-eyed priest
+30050, a bedraggled mercenary
+30051, a small ragged refugee
+30052, a thin little refugee
+30053, a lanky slave
+30054, a hobbling child
+30055, a seagull
+30056, a jackal
+30057, an undead knight
+30058, the master pyromancer
+30059, the master cryomancer
+30060, the dread knight
+30061, the diabolist
+30062, Schkerra
+30065, a trollish adventurer
+30066, the former mayor
+30067, General Angrugg
+30068, Colonel Khapser
+30069, Lieutenant Udz
+30070, Lieutenant Higg
+30071, a puny janitor
+30072, a skinny janitor
+30073, a runty troll
+30078, Esh
+30079, a sullen guard
+30202, an orc sergeant
+30203, an orc runner
+30204, a mountain eagle
+30205, a pika
+30206, a serval
+30207, a kea
+30208, the skeletal paladin
+30209, a soldier
+30210, a paladin
+30211, a messenger
+30212, an ash crab
+30213, a mountain goat
+30214, the hooded druid
+30215, a snow troll
+30216, Murgbol
+32402, a desperate bandit
+32403, a bandit chieftess
+32404, a gypsy lord
+32405, a lithe dancer
+32406, a gypsy musician
+32407, a gypsy guard
+32408, a gypsy child
+32409, a tired gypsy
+32410, the gypsy witch
+32411, a tower guard
+32412, a cleric of Henya
+32413, a southern deer
+32414, a farmer
+32415, a traveling mercenary
+32416, a grey hare
+32420, a &0&3horse &0trainer
+32421, a &0well trained &3horse&0
+32422, &0&b&9The Thing&0
+32423, a muscular stallion
+32424, a &0stablehand&0
+3501, the brown fox
+3502, the fallow deer
+3503, the brownie
+3504, Galithel Silverwing
+3505, a dwarven miner
+3506, a song sparrow
+3507, a black crow
+3508, a hedgehog
+3509, a brown mouse
+3549, a half-elven woman
+35001, a brush hare
+35002, a golden mouse
+35003, a dusty hawk
+35004, a brown racer
+35005, a raccoon
+35006, a rabid raccoon
+35007, a brush finch
+35008, a horned lark
+35009, a lark
+35010, a bullfrog
+35011, an earthworm
+35012, a green snake
+35013, a black squirrel
+35014, a grouse
+35015, a hummingbird
+35016, a bluebird
+35017, a cardinal
+35018, a young fox
+35019, a big-eared bat
+35020, a hellbender
+35021, a fat rat
+35022, a vole
+35023, a crow
+35024, a speckled mouse
+35025, a fur trapper
+35026, a crimson-bellied snake
+36002, an ambitious priest
+36003, a seether
+36004, a seether
+36010, Girbina Tickmaster
+36101, a Bozak
+36102, a quidnatta
+36103, a wounded quidnatta
+36104, a spiny urchin
+36105, a slimy mass
+36106, a large Bozak hunter
+36107, a large monitor
+36108, a large crab
+36200, the Iasgair
+36201, the blue Gorm
+36202, the gray Liath
+36301, the smuggler's leader
+36302, a cougar
+36303, a smuggler guard
+36304, a smuggler
+36305, a mountain lion
+36306, the chief smuggler guard
+36400, an arctic fox
+36401, a shivering quail
+36501, the mob
+37001, a phantom guardian
+37002, a phantom guardian
+37003, Engaja
+37004, Cirion
+37005, Baldathor
+37006, Haldir's skeleton
+37007, a dwarven miner
+37008, a troll miner
+37009, the messenger
+37010, a phantom guardian
+37060, a phantasmic shape
+39002, a black barracuda
+39003, a sleek grey shark
+39004, a shimmering flying fish
+39005, a golden sunfish
+39006, a vibrant paradise fish
+39007, the Giant Squid
+39008, a sinister blind eel
+39009, an ugly hagfish
+39010, a cute sea slug
+39011, a clear jellyfish
+39012, the Lady of the Sea
+39013, the Blue-Fog
+39014, the Water Phoenix
+39015, the Three-Falls Totem
+39016, the Greengreen Hag
+39017, the Lullaby
+39018, the Ghost of the Frozen North
+39019, the Spirit of the Darkest Depths
+39020, the Dreaming Undine
+4001, a fallen angel
+4002, a Trejen
+4003, Lajon's soul
+4004, Lajon's corruption
+4005, a weeping angel
+4006, a shard of darkness
+4007, a Tres
+4008, Soul of Sahemin
+4009, Norhamen
+4010, a fallen guard
+4011, a Drejen
+4012, a Kindel
+4013, the beast of Borgan
+4014, a Frozen Shade
+4015, an angel of darkness
+4016, Tres Keeper
+4017, a fragile cloaked man
+4102, a Skulking Patroller
+4103, a Split Skull Gate Guard
+4104, a skulking berserker
+4105, a Split Skull Guard
+4106, a Split Skull Guard
+4107, a Split Skull grunt
+4108, a Split Skull grunt
+4109, an ogre rogue
+4110, an orc sorcerer
+4111, the Split Skull Armorer
+4112, the Split Skull Supplier
+4113, the Split Skull Stablemaster
+4114, the Split Skull Barkeep
+4115, the Split Skull Innkeeper
+4116, an Elite Split Skull Grunt
+4117, an Elite Split Skull Grunt
+4118, an Elite Skulking Berserker
+4119, an Elite Skulking Berserker
+4120, a diabolist of Kul'Vulrath
+4121, a skulking mercenary
+4122, a Grrk Guard
+4123, an orc cryomancer
+4124, a Zealot of Zzur
+4125, the Captain of the Skulking Guard
+4126, a minion of the Dark Flame
+4127, a Black Legion Emissary
+4128, the rabid moss
+4129, guard
+4130, guard
+41002, the protective Nurse
+41003, the Warrior
+41004, a shining Prismatic Warrior
+41005, a faithful Attendant
+41006, a sparkling Prismatic Attendant
+41007, the Blue Drone
+41008, the Red Queen
+41009, the Yellow Queen
+41010, the Green Queen
+41011, the Blue Queen
+41012, the bloated Hive Mother
+41013, the Warrior
+41014, a shining Prismatic Warrior
+41015, a shining Prismatic Warrior
+41016, a Prismatic Royal Guard
+41017, a Prismatic Royal Guard
+41018, a Prismatic Royal Guard
+41019, a Prismatic Royal Guard
+41021, a sparkling Prismatic Attendant
+41102, the snarling milgwn
+41103, the wary milgwn
+41104, the hungry uiske
+41105, the virgin dancer
+41106, the drunken young man
+41107, the Brew Master
+41108, Raibeart of the Dance
+41109, the Maiden Cianalas
+41110, a bewitching Nereid
+41111, a crazed Nereid
+41112, the Soul-Bound Phantasm
+41113, Seinneadair of the Wish
+41114, some strangleweed
+41115, an herbalist
+41116, a sea squirt
+41117, the weeping uaine Bocan
+41118, the Burnt Togair
+41119, the Uaine Witch
+41120, the virgin dancer
+41121, a crone
+4301, a player
+4302, a player
+4303, a player
+4304, a player
+4305, a player
+4306, a player
+4307, a player
+4308, a Ceiling Monkey
+4309, a House Gnome
+4310, Theo
+4311, the Fire Goddess
+4312, Pippin
+4313, a player
+4345, Lewis
+4351, Catherine
+4352, Charlemagne
+4353, Fastrada
+4354, the House Gnome King
+4399, the Leading Player
+43001, a maudlin panther
+43002, a Vault Sentry
+43003, a cronkneb
+43004, a Walk Sentry
+43005, Seblan's Apprentice
+43006, a Keeper of Demise
+43007, a Keeper of Demise
+43008, a Keeper of Demise
+43009, a Keeper of Demise
+43010, a Keeper of Demise
+43011, a Keeper of Demise
+43012, a small, red sphere
+43013, a large, red sphere
+43014, Voliangloch's Apprentice
+43015, Seblan the Young
+43016, Voliangloch the Evil
+43017, Cyprianum the Reaper
+43018, Seblan's Apprentice
+43019, an evil tree
+43020, a dying knight
+43021, Lord Dargo
+46401, a whiteface cockatiel
+46402, a wild quarrion
+46403, a lesser troll
+46404, the Alexandra's Parrot
+46405, a large budgerigar
+46406, a crimson rosella
+46407, a pink cockatoo
+46408, the paradise kingfisher
+46409, a little bittern
+46410, a blue-breasted fairy wren
+46411, a superb fruit dove
+46412, a small zebra finch
+46413, a hatchling many-coloured parrot
+46414, a sick cassowary
+46415, the angry gardener
+46416, the laughing kookaburra
+46420, the Avatar of Haddixx
+47002, a Greater Zombie
+47003, an Evil Ghast
+47004, a Wight
+47005, a Wraith
+47006, the Death Knight
+47007, a Dracolich
+47008, an Evil Haunt
+47009, a Heucuva
+47010, Kryzanthor
+47011, the Shrieking Banshee
+47012, the Spectre
+47013, a Revenant
+47014, the Undead Caretaker
+47015, the Crimson Death
+47016, the Necrophidius
+47017, the Bone Guard
+47018, a Dark Thing
+47019, Scruffy
+47020, a Wight
+47021, a Wraith
+47022, a Dracolich
+47023, a Heucuva
+47024, a Wight
+47025, a Wraith
+47026, a Dracolich
+47027, a Heucuva
+47028, the Necrophidius
+47029, the Spectre's Wife
+47030, the Crimson Death
+47031, a Dark Thing
+47032, a Dark Thing
+47033, a Dark Thing
+47075, a mysteriously cloaked figure
+48001, an Enchanted Skeleton
+48002, the Sentinel
+48003, a Monstrous Rat
+48004, an Animated Statue
+48005, the Eidolon
+48006, the High Priestess
+48007, a Blind Priest
+48008, the Wailing Shade
+48009, the Young Witch
+48010, the Undead KingPriest
+48011, the Undead Prince
+48012, a Skeletal Guardian
+48013, the Craven
+48014, Jerajai
+48015, Thelriki
+48016, a Witch
+48017, the Lich
+48018, the Elder Witch
+48019, a vampire bat
+48020, Zalkar the demon lord
+48021, Rhalean's evil sister
+48022, a Monstrous Rat
+48023, a Monstrous Rat
+48024, a Monstrous Rat
+48025, the infidel
+48026, the infidel
+48027, the Wraith of the KingPriest
+48028, a stone shadow guardian
+48101, a fire sprite
+48102, the lava beast
+48103, a creeping shadow
+48104, a dancing flame
+48105, Vulcera
+48106, an ash daemon
+48107, the ash lord
+48108, a swirling smoke daemon
+48109, the pasty-skinned boy
+48110, an ash beast
+48112, a Jungle Tribe warrior
+48113, the warlord
+48114, the old Shaman
+48115, a Bone Tribe head-hunter
+48116, the red-skinned Bone Tribe chief
+48117, a carnivorous ape
+48118, a dispirited Mountain Tribe dwarrow
+48119, a Jungle Tribe woman
+48120, the chimera
+48121, a giant tree spider
+48122, a tangle tree
+48123, a fierce Mountain Tribe dwarrow
+48124, an elderly Mountain Tribe dwarrow woman
+48125, a wee Jungle Tribe child
+48126, a doppelganger
+48127, the rock monster
+48128, a dispirited Mountain Tribe dwarrow
+48129, a stone statue
+48131, a Bone Tribe head-hunter
+48132, a fire sprite
+48200, Jemnon the Lionheart
+48250, McCabe the Elementalist
+48251, a frightened seagull
+48401, the Grimalkin
+48402, a nomadic Jann
+48403, the Butcher of Anduin
+48404, a ghost warrior
+48405, an undead captain
+48406, the Lord of the Realm
+48407, an Ogre
+48408, a Phase Worm
+48409, a Black Dwarf
+48410, the Oracle of Justice
+48411, the Oracle of the Wild Hunt
+48412, the Oracle of the Sun
+48413, the Keeper of the Keys
+48414, an Earth Elemental
+48500, a Fire Elemental
+48501, a maddened Tremaen
+48502, a mud golem
+48503, a grasping root
+48504, the elder tremaen
+48505, an aerial servant
+48506, the mighty druid
+48507, an efreeti
+48508, an Azer sentinel
+48509, an Azer warrior
+48510, the Azer warlord
+48511, a Fire Elemental
+48512, a Fire Elemental
+48513, &2&bThe crop of roots
+48514, &2&bThe crop of roots
+48515, &2&bThe crop of roots
+48630, an Ice Elemental
+48631, a Water Elemental
+48632, the Ice Elemental Lord
+48633, a Titan
+48634, a mist elemental
+48635, the Leviathan
+48636, a troll
+48802, an ifrit
+48803, a windstorm
+48804, a Wind Genie
+48805, the Blue Dragon
+48806, the Stormchild
+48807, a Cloud Dragon
+48808, the Stormchild's Keeper
+48809, the Stormlord
+48810, a Jann warrior
+48811, a Forgotten Soldier
+48812, an air elemental
+48813, an Air Elemental Lord
+48814, the Birdmaster
+48815, a cavern hawk
+48902, Solek
+48903, Soleki
+48904, a Jann warrior
+48905, the ghost of Velocity
+48906, Lokari's wiseman
+48907, a Keep servant
+48908, a Keep maidservant
+48909, a Dark Servant
+48910, a Sunchild
+48911, the Jann Lord
+48912, Nikita
+48913, Severan
+48914, Irinia
+48915, a maid in waiting
+48916, a Gardener Mystic
+48917, a Sunchild
+48918, a Sunchild
+48919, a Dark Servant
+48920, a wandering minstrel
+48921, a resolute maid in waiting
+48922, a maid in waiting
+48923, a maid in waiting
+49001, the undead captain
+49002, Brother Crowley
+49003, the Seer
+49004, Derceta
+49005, the one-armed druid
+49006, a bat
+49007, the shepherd druid
+49008, the eldest druid
+49009, the toad warrior
+49010, Adramalech
+49011, the hermit
+49012, the wrecker
+49013, the butterfly of Death
+49014, the pirate
+49015, the wood dwarf
+49016, the severed arm
+49017, Awura
+49018, a Rotundifolia Carnivorica
+49019, a rabbit
+49020, the leprous outcast
+49021, Dagon
+49022, the mandragora man
+49023, Derrick the Hammerhand
+49024, the kobold woman
+49025, the ferocious griffin
+49026, the ferocious griffin
+49027, a griffin chick
+49028, the druid
+49029, the druid
+49030, the ferocious griffin
+49031, a seagull
+49033, the griffin guard
+49034, the griffin statue
+49035, the cult leader
+49036, the griffin statue
+49037, the griffin statue
+49038, the cult member
+49039, the cult member
+49040, Skuran
+49041, a small winged demon
+49042, a druidess
+49201, a grace tree
+49202, a famlur
+49203, a torrid wind
+49204, a raging windstorm
+49205, a statue of glass
+49250, the lost mage
+49251, the observer
+49501, a vague figure
+49502, a dryken
+49503, Driceme'y
+49504, Traek
+49505, Tremlece
+49506, Guardian of Tresyn
+49514, a dark undead man
+49522, the dark archmage
+49525, the master thief
+49562, Traek
+50201, the ghost of a diplomat
+50202, the zombie of a slave
+50203, the zombified pirate cook
+50204, a zombified mutineer
+50205, a zombie pirate
+50206, a ghostly first mate
+50207, the ghostly pirate captain
+50208, a quiet ranger
+50209, the spectre of a maddened diplomat
+50210, the shade of a lookout
+50211, a ghostly girl
+50212, a bedraggled macaw
+50213, a blood eel
+50214, a winged lizard
+50215, a kookaburra
+50216, a will o' the wisp
+50217, a black panther
+50218, a bloated mass
+50219, a swamp troll
+50220, the diplomat's proxy
+5101, the turgoloth
+5102, the mezzoloth
+5103, the bodak
+5104, the yagnoloth
+5110, the stone slug
+5111, the borer worm
+5112, the stone spider
+5113, the shadow
+5120, the stone priest
+5121, the stone golem
+5122, the high stone priest
+5125, a giant stone statue
+5130, Arre Matu
+5131, a slender priest
+51001, a Liquid Statue
+51002, a common woman
+51003, a common child
+51004, a vagrant traveler
+51005, Bloody
+51006, Krandor
+51007, the crazy chef
+51008, a small putrid beast
+51009, Fintazz the Weaponer
+51010, Rana Theroxa
+51011, Aranahir
+51012, the Crazed Survivor
+51013, a Magical Shadow
+51014, Luchiaans
+51015, a small putrid beast
+51016, a common man
+51017, a common woman
+51018, a common child
+51019, a Liquid Statue
+51020, a common man
+51021, a Liquid Statue
+51022, a Magical Shadow
+51023, a common child
+51024, an Astral Demon
+51025, the guardian
+51026, the phoenix
+51101, a glowing lizard
+51102, a bile shaman
+5201, the kafyr
+5202, the nabaal
+5203, the gresque
+5204, the vorlith
+5210, the firenewt
+5211, the salamander
+5212, the flame elemental
+5213, the fire giant
+5220, the demulith
+5221, the demulcent
+5222, the fire priest
+5223, the high fire priest
+5230, Emmath Firehand
+52001, an air demon
+52002, a smoke demon
+52003, the crazed mage
+52004, the clockwork beast
+52005, a blood demon
+52006, the medusa
+52007, an earth demon
+52008, a stone snake
+52009, the Hydra's head
+52010, the Hydra
+52011, the tapestry knight
+52012, Sagece of Raymif
+52013, a dark elf
+52014, a ghostly blacksmith
+52015, the weaponsmith
+52016, an assassin
+52017, a towering rock demon
+52018, a tree in burning agony
+52019, spirit demon
+5301, the Grey Knight
+5302, a powerful monk
+5303, the Head Monk
+53001, the Spectral Man
+53002, a spectral guard
+53003, the Banshee
+53004, the Water Weird
+53005, a giant spider
+53006, a lizard man
+53007, an Elite Lizard Man
+53008, a Lizard Shaman
+53009, the Lizard King
+53010, the Malebranche
+53011, the witch
+53013, a male statue
+53015, a female statue
+53016, a female statue
+53017, the Iron Golem
+53018, the Spectral Bride
+53019, the Lurker Above
+53020, the animated roots
+53021, the Lizard Captain
+53022, the Kingsman's Shade
+53023, an Elite Lizard Man
+53024, the lizardess
+53301, a baby white dragon
+53302, a remorhaz
+53303, an ice golem
+53304, a frost giant
+53305, a beholder
+53306, a yeti
+53307, a will-o-wisp
+53308, Aelfric
+53309, Sorcha
+53310, a dragon priest
+53311, a dragon cult guardian
+53312, an ice elemental
+53313, an ice elemental lord
+53314, a winter wolf
+53315, a winter wolf
+53316, an ice sculptor
+53401, a gruff trapper
+53402, a frost giant
+53403, a frost giant chieftain
+53404, a huge ice toad
+53405, a bloated Ice Toad Lord
+53406, a giant lynx
+53407, a Cave Fisher
+53408, an ice couatl
+53409, a verbeeg
+53410, an ice lizard
+53411, a Xeg-Yi
+53412, a Time Elemental
+53413, a Time Elemental Lord
+53414, a mammoth
+53415, a frost elf scout
+53416, a scout leader
+53417, a Chaos Demon
+53418, Ysgarran
+53419, Adwen
+53420, Gwion
+53421, Aeron
+53422, Briant
+53423, a Keep Guard
+53424, a lamprey
+53425, a trapper
+53450, an injured war mage
+53500, a frost elf
+53501, a frost elf
+53502, a frost elf
+53503, a frost elf
+53504, a frost elf
+53505, a frost elf
+53506, a frost elf
+53507, a frost elf
+53508, a frost elf
+5404, the Larva Worm
+5408, the Skeleton
+5414, the Lesser Shade
+5420, the Large Skeleton
+5421, the Skeletal Warrior
+5442, the Large Shade
+5443, the Large Shade
+5447, the Great Shade
+5451, the Large Worm
+5475, the evil mist priest
+5479, the evil high priest
+5483, the dretch
+5484, the mane
+5485, the rutterkin
+5502, a skeletal guard of the 3rd Black Legion
+5503, an undead archer of the Black Legion
+5504, a zombie soldier of the Black Legion
+5505, an undead mercenary of the Black Legion
+5506, a skeletal rogue of the Black Legion
+5507, an undead cleric of the Black Legion
+5508, a wraithly mage of the Black Legion
+5509, skeletal cavalry of the Black Legion
+5510, a wraithly ranger of the Black Legion
+5511, the undead captain of the Black Legion
+5512, the Black Legion quartermaster
+5513, a footman of the 3rd Eldorian Guard
+5514, a guard of the 3rd Eldorian Guard
+5515, an archer of the 3rd Eldorian Guard
+5516, a soldier of the 3rd Eldorian Guard
+5517, a mercenary of the elven court
+5518, a rogue in service to the elven court
+5519, a cleric of the 3rd Eldorian Guard
+5520, a mage of the 3rd Eldorian Guard
+5521, a highguard of the 3rd Eldorian Guard
+5522, a ranger of the 3rd Eldorian Guard
+5523, the commander of the 3rd Eldorian Guard
+5524, the quartermaster of the 3rd Eldorian Guard
+5525, a mysteriously cloaked figure
+55002, Xapizo
+55003, the gale wind
+55004, a Leopard Warrior
+55005, a Leopard Warrior
+55006, a leopard shaman apprentice
+55007, a leopard shaman apprentice
+55008, a Leopard Knight
+55009, a Leopard Knight
+55010, a Leopard Shaman
+55011, a Leopard Shaman
+55012, the Knight Champion
+55013, the &3&bMaster Shaman&0
+55014, a polar bear
+55015, an Ice Golem
+55016, a Granite Golem
+55017, a traveling merchant
+55018, an ice snake
+55020, Suralla Iceeye
+55211, a skunk
+55212, a small brown rabbit
+55213, a vicious porcupine
+55214, a white-tailed deer
+55215, a wolverine
+55216, a bobcat
+55217, a large black bear
+55218, a brown wolf
+55219, a ferret
+55220, a grizzly bear
+55221, a gopher
+55222, a coyote
+55223, a buffalo
+55224, a wild horse
+55225, a duck
+55226, a goose
+55227, an alligator
+55228, a fisherman
+55229, a caribou
+55230, an old duergar warrior
+55231, a dwarven warrior
+55232, a dwarven commoner
+55233, a falcon
+55234, a chamois
+55235, a wooly llama
+55236, a dwarven thief
+55237, an old dwarven woman
+55238, a dwarven child
+55239, a dwarven merchant
+55240, an elk
+55241, a white rabbit
+55242, a dwarven cleric
+55243, a traveling elf
+55244, a white-tailed deer
+55245, a pure white hart
+55701, a medium-length monitor lizard
+55702, a small mountain goat
+58002, a wall guard
+58003, the Chajin
+58004, Yoshino
+58005, Kannon, Goddess of Mercy
+58006, Yajiro
+58007, the Sea Serpent
+58008, the Emperor
+58009, a paper deer
+58010, a paper tiger
+58011, a paper crane
+58012, the wizard's oni
+58013, a monkey
+58014, the Sunbird
+58015, a courtier
+58016, the Princess
+58017, the Princess' lover
+58018, a paper folder
+58019, the Snake Princess
+58020, the kimono seller
+58021, the rice vendor
+58022, the potter
+58023, the swordmaker
+58024, a courtesan
+58025, a courtesan
+58026, a farmer
+58027, an ox
+58028, the fox-woman
+58029, a samurai
+58030, the samurai master
+58031, the round-bellied merchant
+58032, the ninja
+58033, the Emperor's Honor Guard
+58034, a townsman
+58035, a townswoman
+58036, a Great White Shark
+58037, the Emperor's Honor Guard
+58102, the unfinished mob
+58150, a wizened fishmonger
+58302, a scuttling Whatsit
+58303, an iguanadon
+58304, a longhorn ram
+58375, a mysteriously cloaked figure
+58402, the Gypsy Prince
+58403, a gypsy dancer
+58404, an outcast goblin
+58405, the Swan Princess
+58406, a river nymph
+58407, the front door
+58408, a gypsy dancer
+58409, a Pooka
+58410, a young ogrill
+58411, the Goblin King
+58412, a goblin
+58413, the Syric Warder
+58414, an ogrill
+58415, the Ageless Seeker
+58416, Queen Mab of the Faeries
+58417, a faerie
+58418, a Sandman
+58419, a Dreamweaver
+58420, an enchanted cod
+58421, the King's youngest son
+58422, the one the Unicorn loved
+58423, a gypsy dancer
+58602, a Settler man
+58603, a healer
+58604, a spurlacht
+58605, a sailor
+58606, a Man O' War
+58607, a giant horsefish
+58608, a narwhal
+58609, a surveyor
+58610, Myorrhed
+58702, Meg
+58703, a mountain pony
+58704, a traveling bard
+58705, a stableboy
+58706, a young maid
+58801, a fresh-faced trainee
+58802, Commander Thraja
+58803, a wounded Amazon
+58804, a camp dog
+58805, a grey rat
+58806, a white crow
+58807, the necromancer's cat
+58808, an imp
+58809, the blood-dread
+58810, a black carrion bird
+58811, an alley cat
+58812, a giant mosquito
+59001, a Haven wallguard
+59002, the Holyguard Captain
+59004, the Haven wallguard Captain
+59005, a man
+59006, a woman
+59007, the errand boy
+59008, a training Paladin
+59009, Lewish
+59010, a Paladin
+59011, a Paladin
+59012, a sanctuary priest
+59013, Rylee
+59014, the town overseer
+59015, Cyrus
+59016, Belward
+59017, a wandering poet
+59018, Oloian
+59019, the handler of science
+59020, the treasure keeper
+59021, the cell Holyguard
+59022, a Guard of the Brotherhood
+59023, the Headguard of the Brotherhood
+59024, a Holyguard
+59025, the Holyguard Captain
+59026, an armory guard
+59027, the alteration priest
+59028, the Holy Avenger
+59029, a dark robed figure
+59030, the principle conversion priest
+59031, the trecor
+59033, a yertan
+59034, a cowering prisoner
+59035, a blazrik
+59036, a turyt
+59037, a shadowy figure
+59038, the Sacred Haven AI
+59039, the scavengent
+59040, a hooded old man
+59099, the Forgemaster
+6002, Rickshaw Suth
+6003, Phillip
+6004, the Ole Witch
+6005, Bungle
+6006, Princess Signess
+6007, Ruin Wormheart
+6008, the Undead Knight Templar
+6009, a nondescript fellow
+6010, the Master Thief
+6011, an Anduin cityguard
+6012, an Anduin gateguard
+6013, the priest of Blackmourne
+6014, the statue
+6015, Falstin, the grocer
+6016, the pawnbroker
+6017, the receptionist
+6018, a burly guard
+6019, a skeletal guard
+6020, Haren
+6021, a tough-looking human guard
+6022, the Green Woman
+6031, a drunken gnome
+6032, the Black Priestess
+6040, a deadly assassin
+6041, a guilty thief
+6050, Timulos Fasthand
+6053, the barker
+6080, the Horsemaster
+6102, a dwarven guard
+6103, a dwarven laborer
+6104, a dwarven mercenary
+6105, a drunken dwarf
+6106, an Anduin gateguard
+6112, Shawn Three-Axe
+6113, Blackhaven
+6114, a dwarven guard
+6115, a dwarven janitor
+6119, a stray dog
+6120, a lame beggar
+6126, a bespectacled dwarf
+6131, Zorn
+6135, Jarad Grindstone
+6145, Rabal Black
+6153, Jasper Ironfeld
+6154, a grim-looking dwarven guard
+6171, the dwarven postmaster
+6175, a druidic guard
+6176, the warrior coach
+61501, a monarch butterfly
+61502, a monarch caterpillar
+61503, a gossamer fairy
+61504, a yellow-bellied sapsucker
+61505, the malpinscher
+61506, a fiery wisp
+61507, a sly brownie
+61508, a smiling brownie
+61509, a brownie boy
+61510, a brownie girl
+61511, a stonefang
+61512, a pollen fairy
+61514, the wise leprechaun
+61515, a spark pixie
+61517, a potbellied orb spider
+61518, a dark flier
+61519, a lost baby flier
+61520, a leprechaun
+61521, an orbweaver
+61522, Niaxxa
+61523, a bullfrog
+61524, a shadow pixie
+61525, a mushroom gnome
+61526, a wood sylph
+61527, a very angry pixie
+61550, a pudgy gnome
+6201, a red-surcoated guard
+6202, a blue-surcoated guard
+6203, an elven guard
+6204, a half-elven mage
+6205, a dark tabby cat
+6206, a gold-surcoated guard
+6207, a burro
+6208, a mule
+6209, a hrongang
+6210, a burly guard
+6211, Aylana
+6216, a green-clad ranger
+6217, a white-clad knight
+6218, the High Priestess
+6219, a black-surcoated guard
+6220, a pyromancer
+6221, a cryomancer
+6222, a serene druidess
+6223, a necromancer
+6224, Serena
+6225, Shazz
+6226, a barmaid
+6227, the receptionist
+6228, Shula
+6230, a dwarven banker
+6231, the Archmage
+6232, Phayla
+62501, a Dryad
+62502, a Mighty Rhell Tree
+62503, a Treant
+62504, a hooded ranger
+62505, the Eldest Rhell
+62506, a mild mannered merchant
+62507, Ursa
+62508, a dire wolf
+62509, a she-wolf
+62510, a woodpecker
+62511, a clever squirrel
+62550, Ursa
+62569, Purity
+62570, a molten devil
+62590, Toothless
+6302, a scrawny wizard
+6902, a small piglet
+6903, the Fruit Wizard
+6904, a gnomish field hand
+6905, a large heifer
+6906, a white rabbit
+6907, a red rooster
+6908, a pearl white hen
+6909, a small green salamander
+6910, a marshland mosquito
+6911, a bronze-colored steed
+6912, an auburn pony
+6913, a slimy alligator
+7002, a large brown toad
+7003, a warthog
+7004, a black snake
+7005, the Northern Crusher Bile
+7009, the Southern Swamp Bile
+7010, the Southern Thornguard
+7012, the Southern Bilerot
+7014, the Bile Clave
+7050, a traveling halfling
+7051, a small Southern Bile
+7052, a mendicant priest
+7053, an old alligator
+7075, a mysteriously cloaked figure
+7301, the Northern Crusher Bile
+7302, the Bile Rot
+7310, the crazy hermit
+7475, a mysteriously cloaked man
+8001, the small firefly
+8002, a bluebottle fly
+8010, the jumping spider
+8011, an ugly cockroach
+8012, a large green grasshopper
+8013, the annoying cricket
+8014, the cute young ladybug
+8015, the striped beetle
+8016, the large black ant
+8020, the large brown beetle
+8021, the huge black spider
+8022, the fire ant
+8023, the army ant
+8030, the majestic praying mantis
+8031, an Ice Drakling
+8032, an Ash Drakling
+8033, an Emerald Drakling
+8034, Wug the Fiery Drakling
+8039, a mysterious cloaked ranger
+8301, the chief guard
+8302, a frakati hunter
+8303, a frakati scout
+8304, a frakati warrior
+8305, a Frakati farmer
+8306, a small dog
+8307, the Frakati Chef
+8308, a frakati commoner
+8309, a huge frakati guard
+8310, the frakati weaponsmith
+8311, a frakati magus
+8312, a frakati commoner
+8313, the frakati armorsmith
+8314, the frakati medicine man
+8315, Rix the sorcerer
+8316, the Frakati Leader
+8317, a muscular Frakati warrior
+8318, a young frakati warrior
+8319, a frakati warrior
+8320, a Frakati woman
+8321, a Frakati warrior
+8322, a Frakati hunter
+8323, an old frakati villager
+8324, an old frakati villager
+8325, an old frakati woman
+8326, an old frakati man
+8327, Josen the researcher
+8328, Coren the researcher
+8329, a large monkey
+8330, a beautiful parrot
+8331, a green snake
+8332, a large guard
+8502, a dire wolf
+8503, the gargoyle
+8504, a statue
+8505, a priestess
+8506, the Evil Ghast
+8507, a corpse
+8508, a sinner
+8509, an acolyte
+8510, the shadow
+8511, a Heavy Fog
+8512, the axeman
+8513, the Torturer
+8514, the bishop
+8515, the blind Seer
+8516, the crazed man
+8520, a demonic bat
+8521, a large stone statue
+8522, a large stone statue
+8523, a large stone statue
+8524, a traveling pilgrim
+8550, Norisent
+8551, the res quest AI mob
+8601, a pup
+8602, the Captain of the guard
+8603, a Meer Cat guard
+8604, a giant tick
+8605, a field mouse
+8606, a gila monster
+8607, the princess
+8608, the King of the Meer Cats
+8609, the Queen
+8610, a baby Meer Cat
+8611, a buzzard
+8612, a snake
+8613, the warrior
+8614, the worker
+8615, a coyote
+8616, the off-duty guard
+8701, a dwarven worker
+8702, a barbarian worker
+8703, a human worker
+8704, a dwarven apprentice
+8705, a barbarian apprentice
+8706, a human apprentice
+8707, Sven
+8708, a large mule
+8709, Muleard
+8710, a sturdy clydesdale
+8711, a badger
+8712, Doren
+8713, a bandit
+8714, a huge ox
+8796, Tr'ven
+8797, the Avatar of A'gad
+8798, the Avatar of H'var
+8799, the Avatar of Ramah
+8801, a farm boy
+8802, a sheep
+8803, a cow
+8804, a farmer
+8805, a calico kitten
+8806, a sheepdog
+8807, a calico cat
+8808, a farmer's wife
+8809, a manor guest
+902, the ferocious rabbit
+905, the vicious warg
+906, the ferocious warg
+907, the large, grey wolf
+908, the large, black wolf
+909, a huge, ancient tree, walking on giant roots,
+910, a huge, ancient tree, walking on giant roots,
+911, the Elder Druid
+912, the young spider
+913, the quasit
+914, dwarf guard
+915, dwarf worker
+916, a wraith
+917, the giant
+918, the giraffe
+919, the goat
+920, the pelican
+921, the horse
+922, the chicken
+923, the kangaroo
+924, the skunk
+925, the leopard
+926, the lion
+927, the bear
+928, the elephant
+929, the computer bug
+930, Death
+931, the small bat
+932, the small Spider
+933, the scaled basilisk
+934, the master mindflayer
+935, the senior mindflayer
+936, the junior mindflayer
+937, the ugly wererat
+938, the gigantic rat
+939, the bug
+940, the Daemon
+941, the Juggernaut
+942, the butterfly
+943, the coral snake
+944, the small scorpion
+945, the dracolich
+946, the drider
+947, the dark dwarf
+948, the Drow commoner
+949, the drow warrior noble
+950, the drow mage noble
+951, the drow priestess
+952, the drow master
+953, the weaponsmaster
+954, the Matron Mother
+955, the Matron Mother
+956, the yochlol
+957, the mighty beholder
+958, the lamia
+959, the mimic
+960, the mimic
+961, the mimic
+962, the mimic
+963, the mimic
+964, the horned lizard
+965, the stone golem
+966, the water weird
+967, the snake
+968, the green snake
+969, the centipede
+970, the kobold
+971, the orc
+972, the orc
+973, the hobgoblin
+974, the snake
+975, the centipede
+976, the hobgoblin
+977, the orc
+978, the mountain lion
+979, the hill giant
+980, the troll
+981, the snake
+982, the kobold

@@ -1,0 +1,85 @@
+name: Cavin
+password: CarrJoMFjj
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 8
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18686
+birthtime: 1397834129
+timeplayed: 13898
+lastlogintime: 1435679398
+host: 012.027.032.198
+height: 46
+weight: 196
+base_height: 46
+base_weight: 196
+base_size: 2
+natural_size: 2
+alignment: 897
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 11
+lastlevel: 0
+hitpoints: 130/114
+mana: 1/0
+move: 108/152
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 68
+wisdom: 71
+dexterity: 74
+constitution: 91
+charisma: 54
+cash: 0 75 427 233
+experience: 189243
+quit_reason: 3
+saveroom: 0
+skills:
+402 52
+404 84
+415 50
+416 50
+421 86
+438 50
+443 50
+444 50
+463 85
+464 50
+465 62
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 1603 2.000000
+1 1605 1.000000
+1 1602 2.000000
+1 1601 7.000000
+1 8015 1.000000
+1 8022 1.000000
+1 8013 2.000000
+1 8021 1.000000
+1 8023 2.000000
+1 36305 2.000000
+1 8016 3.000000
+1 8000 2.000000
+1 8010 1.000000
+1 2005 1.000000
+1 2001 2.000000
+1 2004 2.000000
+1 2003 8.000000
+1 3505 1.000000
+1 61500 1.000000
+1 17205 1.000000
+1 17204 2.000000
+0 0 0

@@ -1,0 +1,72 @@
+name: Krean
+password: KrpyMUYw27
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 1
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20451
+birthtime: 1676270957
+timeplayed: 160
+lastlogintime: 1676271122
+host: 213.087.120.127
+height: 60
+weight: 100
+base_height: 60
+base_weight: 100
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 10
+lastlevel: 0
+hitpoints: 21/21
+mana: 0/0
+move: 103/103
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 95
+wisdom: 95
+dexterity: 74
+constitution: 60
+charisma: 58
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+447 50
+451 50
+452 50
+453 50
+459 50
+460 50
+462 50
+464 50
+465 71
+0 0
+tells:
+$
+gossips:
+$

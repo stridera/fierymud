@@ -1,0 +1,161 @@
+name: Kendo
+password: Kez70v2/1Z
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 7
+race: 9
+level: 38
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17570
+birthtime: 1266650191
+timeplayed: 267099
+lastlogintime: 1618545214
+host: 071.203.105.012
+height: 71
+weight: 147
+base_height: 71
+base_weight: 147
+base_size: 2
+natural_size: 2
+alignment: -31
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hno 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 21
+thirst: 16
+lastlevel: 0
+hitpoints: 318/318
+mana: 144/144
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 81
+wisdom: 86
+dexterity: 68
+constitution: 94
+charisma: 55
+cash: 0 16 19 4
+bank: 25 1500 5000 2500
+experience: 8793336
+quit_reason: 1
+saveroom: 3054
+skills:
+11 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+27 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+88 1000
+89 1000
+90 1000
+91 1000
+144 1000
+145 1000
+146 1000
+147 1000
+148 1000
+206 1000
+207 1000
+215 1000
+415 50
+416 50
+417 50
+421 334
+423 430
+424 430
+429 50
+438 50
+443 112
+444 159
+451 222
+452 53
+454 57
+455 51
+457 430
+458 147
+459 55
+460 430
+462 64
+463 330
+466 50
+0 0
+trophy:
+1 58029 1.000000
+1 18507 1.000000
+1 18518 1.000000
+1 18510 2.000000
+1 58035 1.000000
+1 58024 2.000000
+1 3143 1.000000
+0 0 0
+tells:
+$
+gossips:
+$
+mem:
+13 1 1
+88 1 1
+88 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+42 1 2
+144 1 2
+144 1 2
+18 1 1
+145 1 1
+16 1 1
+16 1 1
+146 1 1
+215 1 1
+88 1 1
+40 1 3
+16 1 1
+16 1 1
+16 1 1
+15 1 3
+15 1 2
+147 1 3
+27 1 4
+43 1 1
+27 1 4
+148 1 4
+27 1 4
+27 1 4
+15 1 2
+0 0 0
+aliases:
+cb cast 'barkskin'
+deta cast 'detect align'
+ccs cast 'cure serious'
+dff drink from fountain
+gac get all corpse
+gcc get all.coins corpse
+ga get all
+ec examine corpse
+cf cast 'create food'
+wr cast 'word of recall'
+ccc cast 'cure critic'
+fs fil skin fountain
+ds drink skin
+ccb cast 'cure critic' bolin
+0

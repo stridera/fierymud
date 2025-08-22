@@ -1,0 +1,5791 @@
+1
+vnum: 53323
+location: 0
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 1
+weight: 4.50
+cost: 800
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+2 2
+18 1
+~
+extradesc: white egg white-egg dragon
+As you look at the large white dragon's egg, you seem to remember something you
+heard long ago.  Something about how a dragon's egg had special powers.  Now
+what was that.    
+~
+~~
+vnum: 55020
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring granite-ring granite black stone circle small
+shortdesc: a granite ring
+desc: A small circle of black stone catches your eye.
+type: 9
+weight: 0.04
+cost: 450
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 3
+applies:
+1 -1
+24 -20
+~
+extradesc: ring granite-ring granite black stone circle small
+Made of a dark granite inset with tiny crystals, it has been fashioned into a
+ring and polished until the black stone both catches and absorbs the light.  
+
+~
+~~
+vnum: 41120
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring sea sea-ring blue clear
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 9
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 30
+~
+extradesc: sea-ring blue ring water dolphin clear
+A series of playful dolphins chase each other around the perimeter of
+the sea-blue ring. It is difficult to determine exactly what the ring
+is made of -- clear, yet neither crystal nor glass. 
+~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 53500
+location: 5
+values:
+30
+0
+0
+0
+0
+0
+0
+~
+flags: klmosuwyzD
+name: breastplate sleet-breastplate breast-plate slender-white-breastplate glistening
+shortdesc: a sleet breastplate
+desc: A slender white breastplate rests on the ground glistening.
+type: 9
+weight: 8.00
+cost: 7400
+timer: 0
+level: 74
+effects: m 0 0
+wear: 9
+applies:
+21 -5
+22 -5
+5 5
+2 4
+19 1
+~
+extradesc: sleet-breastplate breast-plate slender-white-breastplate glistening
+This breastplate is somewhat small, likely designed for an elf or slender
+human.  It is formed from a strange metal, ice-cold to the touch, yet not
+melting in heat.  The plate is much thinner than steel, not even as thick as
+most swords.  A series of leather straps on the back may be tied together to
+hold the breastplate on.    
+~
+~~
+vnum: 55433
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: aghmopqrstuvwxyz
+name: divine believer believers helm believers-helm
+shortdesc: &5Believer's Helm&0
+desc: Resting on the ground is a divine helm.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+applies:
+4 2
+13 5
+~
+extradesc: divine believer believers helm believers-helm
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 53501
+location: 7
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: klmosuvwyz
+name: greaves pair-sleet-greaves thin-white-legplates leg-plates
+shortdesc: a pair of sleet greaves
+desc: Thin white legplates lie crisscrossed on the ground.
+type: 9
+weight: 5.00
+cost: 5490
+timer: 0
+level: 76
+effects: 0 0 0
+wear: 33
+applies:
+18 1
+19 1
+13 13
+1 3
+~
+extradesc: pair-sleet-greaves thin-white-legplates leg-plates
+Cast from an odd white metal, the outside of these greaves are cold as ice,
+but can withstand quite a bit of damage.  They are padded on the inside with
+white fur, preventing the frigid white metal from touching skin.  The plate
+metal is slightly curved and much thinner than average steel, undoubtedly
+created by some uncomprehensible elven miracle.    
+~
+~~
+vnum: 49017
+location: 8
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: shoes feathered
+shortdesc: a pair of feathered shoes
+desc: A pair of shoes with wings flutter around here!
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65
+applies:
+14 35
+~
+extradesc: shoes feathered
+These starry blue shoes seem to be alive! They have wings attached to them
+and make little loopings when they know you're looking at them.~
+~~
+vnum: 49020
+location: 9
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: mor
+name: gloves sturdy leather heavy-duty
+shortdesc: sturdy leather gloves
+desc: A pair of heavy-duty leather gloves has dropped out of someone's back pocket.
+type: 9
+weight: 1.50
+cost: 250
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 129
+extradesc: gloves sturdy leather heavy-duty
+These are meant for heavy-duty work!~
+~~
+vnum: 55434
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: aghmopqrstuvwxyz
+name: divine believer believers vambraces believers-vambraces
+shortdesc: &5Believer's Vambraces&0
+desc: Resting on the ground are some divine vambraces.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+applies:
+2 2
+1 4
+~
+extradesc: divine believer belivers helm believers-helm
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 53315
+location: 11
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: dragon-shield shield dragon's claw
+shortdesc: a dragon's cult shield
+desc: A shield with the image of a dragon's claw lies here.
+type: 9
+weight: 8.00
+cost: 2250
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 513
+applies:
+5 2
+2 2
+~
+extradesc: shield dragon's claw
+This white heater-shaped shield bears the symbol of the cult of Tri-Aszp
+on its front: a bleeding dragon's claw.  You notice that it is extremely
+well balanced.
+~
+~~
+vnum: 58418
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wings pair-translucent-faerie-wings
+shortdesc: a pair of translucent faerie wings
+desc: A pair of translucent faerie wings scintillate.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+3 2
+24 -10
+~
+extradesc: wings translucent pair faerie
+These wings look so real! A metallic golden frame supports two
+somewhat large wings made of some kind of silk that stretches to
+the point of being almost transparent. Some kind of sparkly things
+are woven into the silk, making the wings shimmer as they move.
+~
+~~
+vnum: 12008
+location: 13
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: baldric emblazoned belt
+shortdesc: an emblazoned baldric
+desc: A large, ornamented belt lies coiled here.
+type: 9
+weight: 1.25
+cost: 225
+timer: 0
+level: 6
+effects: 0 0 0
+wear: 2049
+applies:
+19 1
+~
+extradesc: belt emblazoned baldric
+This large, wide belt goes around the waist, up over the shoulders,      
+to support a sword's sheath. A lion rampant adorns the front of
+it, where it goes across the stomach. The baldric seems very
+old; its owner hasn't taken good care of it -- the leather is
+cracked in places.
+~
+~~
+vnum: 47004
+location: 14
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: pr
+name: bracelet ethereal
+shortdesc: an Ethereal Bracelet
+desc: A bracelet lies here shimmering in and out of view.
+type: 12
+weight: 0.70
+cost: 700
+timer: 0
+level: 49
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+2 1
+~
+extradesc: ethereal-bracelet ethereal bracelet
+As you look at the bracelet, you begin to wonder if it is really there.  It
+seems to shimmer in and out of view, as if it couldn't decide which plane it
+wants to be in.  All you know is that you like it.
+~
+~~
+vnum: 1617
+location: 15
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wristband nordus
+shortdesc: the wristband of Nordus
+desc: A wristband, stamped with a city logo, lies here.
+type: 9
+weight: 0.80
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+4 1
+3 1
+~
+extradesc: wristband nordus
+This wristband is metal, but somehow slightly stretchy, almost elastic.
+Its finely grained metal is stamped with the outline of a city; it appears
+to be Nordus.
+~
+~~
+vnum: 58406
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: tambourine gypsy-tambourine gypsy tam
+shortdesc: a gypsy tambourine
+desc: A gypsy tambourine plays itself sadly here.
+type: 8
+weight: 0.50
+cost: 1000
+timer: 0
+level: 70
+effects: d 0 0
+wear: 16385
+applies:
+24 -5
+~
+extradesc: tambourine gypsy
+This tambourine is made of two wooden discs pegged together. Through
+the gaps in between them, someone has thrust pairs of small brass
+circles. The slightest movement makes the circles jingle together,
+producing a wild, mysterious cacophony.
+~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: mask imanhotep golden
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 9
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+applies:
+1 2
+4 2
+~
+extradesc: mask
+The mask is made of solid gold and is encrusted with jewels. It has an aura
+of power around it.~
+~~
+vnum: 53502
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gklA
+name: stud tiny-white-stud miniscule-speck-white
+shortdesc: a tiny white stud
+desc: A miniscule speck of white almost escapes detection here.
+type: 9
+weight: 0.01
+cost: 3420
+timer: 0
+level: 71
+effects: 0 0 0
+wear: 262145
+applies:
+4 2
+6 2
+13 17
+~
+extradesc: tiny-white-stud miniscule-speck-white
+Small and round, this ear stud is made of an odd white metal and shaped
+somewhat like a little sphere.  It feels cool against skin, strangely drawn to
+it as if magnetic, allowing it to stick to an ear without a piercing.    
+~
+~~
+vnum: 23802
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snowflake lone earring snowflake-earring
+shortdesc: a snowflake earring
+desc: A lone snowflake glimmers on the floor.
+type: 11
+weight: 0.01
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 262145
+applies:
+13 5
+24 -3
+23 -5
+~
+extradesc: snowflake lone earring snowflake-earring
+It seems to be a snowflake set onto a tiny silver post.  The six-pointed flake
+is cool to the touch, though it does not melt.  Whatever crystal substance it
+is made of catches the light quite well, giving it an ever-present sparkle.  
+Its miniscule arms have hexagonal symmetry, and it is very detailed.    
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some if its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 49033
+location: 26
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sheath wooden
+shortdesc: a wooden sheath
+desc: There's a wooden sheath on the floor.
+type: 9
+weight: 0.50
+cost: 150
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 1048577
+applies:
+20 -1
+24 -1
+~
+extradesc: sheath wooden
+It is meant to contain a sword, but it looks like you could use it armor
+yourself a bit more, too.~
+~~
+vnum: 23802
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snowflake lone earring snowflake-earring
+shortdesc: a snowflake earring
+desc: A lone snowflake glimmers on the floor.
+type: 11
+weight: 0.01
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 262145
+applies:
+13 5
+24 -3
+23 -5
+~
+extradesc: snowflake lone earring snowflake-earring
+It seems to be a snowflake set onto a tiny silver post.  The six-pointed flake
+is cool to the touch, though it does not melt.  Whatever crystal substance it
+is made of catches the light quite well, giving it an ever-present sparkle.  
+Its miniscule arms have hexagonal symmetry, and it is very detailed.    
+~
+~~
+vnum: 58418
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wings pair-translucent-faerie-wings
+shortdesc: a pair of translucent faerie wings
+desc: A pair of translucent faerie wings scintillate.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+3 2
+24 -10
+~
+extradesc: wings translucent pair faerie
+These wings look so real! A metallic golden frame supports two
+somewhat large wings made of some kind of silk that stretches to
+the point of being almost transparent. Some kind of sparkly things
+are woven into the silk, making the wings shimmer as they move.
+~
+~~
+vnum: 36100
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 55020
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring granite-ring granite black stone circle small
+shortdesc: a granite ring
+desc: A small circle of black stone catches your eye.
+type: 9
+weight: 0.04
+cost: 450
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 3
+applies:
+1 -1
+24 -20
+~
+extradesc: ring granite-ring granite black stone circle small
+Made of a dark granite inset with tiny crystals, it has been fashioned into a
+ring and polished until the black stone both catches and absorbs the light.  
+
+~
+~~
+vnum: 16032
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring shadow small circlet dark metal
+shortdesc: a shadow ring
+desc: A small circlet of dark metal lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 14
+effects: 0 0 0
+wear: 3
+applies:
+5 -5
+6 3
+3 6
+~
+extradesc: ring shadow small circlet dark metal
+This is a simple little ring, it is black with flecks of grey shimmering in and
+out of being.  For the most part, the ring does not exist in any coporeal form,
+but tends to wander back and forth to its ethereal state.    
+~
+~~
+vnum: 55029
+location: 127
+values:
+250
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: 0.00
+cost: 600
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    
+~
+~~
+vnum: 52035
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wood ember burning-ember
+shortdesc: a burning wooden ember
+desc: A burning wooden ember smoulders here.
+type: 12
+weight: 0.75
+cost: 20
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 52035
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wood ember burning-ember
+shortdesc: a burning wooden ember
+desc: A burning wooden ember smoulders here.
+type: 12
+weight: 0.75
+cost: 20
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 49034
+location: -1
+values:
+55
+15
+0
+0
+0
+0
+0
+~
+flags: g
+name: bottle nostrum
+shortdesc: a bottle of nostrum
+desc: A bottle lies on the ground.
+type: 10
+weight: 0.30
+cost: 8000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 1
+extradesc: bottle nostrum
+This is a very small bottle, made of dark green glass. It's ice-cold to the
+touch.~
+~~
+vnum: 10012
+location: -1
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: fg
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 1248
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: strawberry chocolate chocolate-covered covered delicious delicious-looking candy food
+shortdesc: a chocolate-covered strawberry
+desc: A delicious-looking piece of candy is sitting here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: strawberry chocolate chocolate-covered covered delicious candy
+A plump, fresh, red strawberry has been dipped into chocolate, looking
+absolutely tantalizing.  It smells slightly fruity and very sweet, inducing the
+salivary glands to work their hardest.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 125
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 125
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 23755
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pepper black spice herb dash food
+shortdesc: a dash of pepper
+desc: A black spice sits here, unused.
+type: 19
+weight: 0.10
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: pepper black spice herb dash food
+A very rare spice, black pepper can be sold for a lot of money in areas where
+it is in high demand.  Kings and queens have sent explorers to their deaths for
+this spice, so it has something of a nasty reputation.    
+~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    
+~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    
+~
+~~
+vnum: 129
+location: -1
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: nutbread bread wheat loaf round hefty food
+shortdesc: a hefty round loaf of whole wheat nutbread
+desc: A large, round, nutty brown loaf of bread sits heavily on the ground.
+type: 19
+weight: 4.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: nutbread bread wheat loaf round hefty food
+This huge loaf of bread could easily be used as a shield in battle.  For a
+while that is - it is tender and slices rather easily.  But it is very large
+indeed.  The soft, dense wheat bread is peppered liberally with several kinds
+of chopped nuts, along with
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 129
+location: -1
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: nutbread bread wheat loaf round hefty food
+shortdesc: a hefty round loaf of whole wheat nutbread
+desc: A large, round, nutty brown loaf of bread sits heavily on the ground.
+type: 19
+weight: 4.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: nutbread bread wheat loaf round hefty food
+This huge loaf of bread could easily be used as a shield in battle.  For a
+while that is - it is tender and slices rather easily.  But it is very large
+indeed.  The soft, dense wheat bread is peppered liberally with several kinds
+of chopped nuts, along with
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 128
+location: -1
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: loaf bread sourdough golden food
+shortdesc: a large sourdough loaf
+desc: A rather large golden loaf of bread lies here smelling sour.
+type: 19
+weight: 2.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: loaf bread sourdough golden food
+Measuring three feet from end to end, this massive loaf could feed an entire
+village.  The crust is a beautiful golden brown, crisscrossed with knife cuts
+where butter was poured prior to baking.  A sour aroma drifts upward, making
+your mouth water.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 128
+location: -1
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: loaf bread sourdough golden food
+shortdesc: a large sourdough loaf
+desc: A rather large golden loaf of bread lies here smelling sour.
+type: 19
+weight: 2.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: loaf bread sourdough golden food
+Measuring three feet from end to end, this massive loaf could feed an entire
+village.  The crust is a beautiful golden brown, crisscrossed with knife cuts
+where butter was poured prior to baking.  A sour aroma drifts upward, making
+your mouth water.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 129
+location: -1
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: nutbread bread wheat loaf round hefty food
+shortdesc: a hefty round loaf of whole wheat nutbread
+desc: A large, round, nutty brown loaf of bread sits heavily on the ground.
+type: 19
+weight: 4.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: nutbread bread wheat loaf round hefty food
+This huge loaf of bread could easily be used as a shield in battle.  For a
+while that is - it is tender and slices rather easily.  But it is very large
+indeed.  The soft, dense wheat bread is peppered liberally with several kinds
+of chopped nuts, along with
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 129
+location: -1
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: nutbread bread wheat loaf round hefty food
+shortdesc: a hefty round loaf of whole wheat nutbread
+desc: A large, round, nutty brown loaf of bread sits heavily on the ground.
+type: 19
+weight: 4.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: nutbread bread wheat loaf round hefty food
+This huge loaf of bread could easily be used as a shield in battle.  For a
+while that is - it is tender and slices rather easily.  But it is very large
+indeed.  The soft, dense wheat bread is peppered liberally with several kinds
+of chopped nuts, along with
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 129
+location: -1
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: nutbread bread wheat loaf round hefty food
+shortdesc: a hefty round loaf of whole wheat nutbread
+desc: A large, round, nutty brown loaf of bread sits heavily on the ground.
+type: 19
+weight: 4.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: nutbread bread wheat loaf round hefty food
+This huge loaf of bread could easily be used as a shield in battle.  For a
+while that is - it is tender and slices rather easily.  But it is very large
+indeed.  The soft, dense wheat bread is peppered liberally with several kinds
+of chopped nuts, along with
+~
+~~
+vnum: 128
+location: -1
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: loaf bread sourdough golden food
+shortdesc: a large sourdough loaf
+desc: A rather large golden loaf of bread lies here smelling sour.
+type: 19
+weight: 2.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: loaf bread sourdough golden food
+Measuring three feet from end to end, this massive loaf could feed an entire
+village.  The crust is a beautiful golden brown, crisscrossed with knife cuts
+where butter was poured prior to baking.  A sour aroma drifts upward, making
+your mouth water.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 127
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread bread filling wafers stack food
+shortdesc: some filling waybread
+desc: A few white wafers sit here in a neat stack.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread filling wafers stack food
+This is a stack of white bready wafers.  They appear to be quite insubstantial.
+They give off a subtle, attractive smell and show no signs of drying out or
+decaying.    
+~
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 0
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 1
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: 0
+name: scroll blue remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: 0
+name: scroll blue remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3220
+location: -1
+values:
+15
+18
+19
+20
+0
+0
+0
+~
+flags: gD
+name: scroll bound
+shortdesc: a bound scroll
+desc: A bound scroll of detection lies at your feet.
+type: 2
+weight: 0.15
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: scroll bound
+The scroll reads:
+	Detection sharpens perception!
+~
+~~
+vnum: 3220
+location: -1
+values:
+15
+18
+19
+20
+0
+0
+0
+~
+flags: gD
+name: scroll bound
+shortdesc: a bound scroll
+desc: A bound scroll of detection lies at your feet.
+type: 2
+weight: 0.15
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: scroll bound
+The scroll reads:
+	Detection sharpens perception!
+~
+~~
+vnum: 3220
+location: -1
+values:
+15
+18
+19
+20
+0
+0
+0
+~
+flags: gD
+name: scroll bound
+shortdesc: a bound scroll
+desc: A bound scroll of detection lies at your feet.
+type: 2
+weight: 0.15
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: scroll bound
+The scroll reads:
+	Detection sharpens perception!
+~
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3220
+location: -1
+values:
+15
+18
+19
+20
+0
+0
+0
+~
+flags: gD
+name: scroll bound
+shortdesc: a bound scroll
+desc: A bound scroll of detection lies at your feet.
+type: 2
+weight: 0.15
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: scroll bound
+The scroll reads:
+	Detection sharpens perception!
+~
+~~
+vnum: 4309
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: shirt tech black ball
+shortdesc: a black 'TECH' shirt
+desc: A black shirt sits here in a ball on the floor.
+adesc:
+Nothing.
+~
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 9
+applies:
+2 1
+1 1
+3 1
+6 -3
+~
+extradesc: shirt tech black ball
+This shirt is smaller than a normal shirt.  It's totally black, except on the
+back where the word 'TECH' is spelled out in white letters.  You wonder who
+would wear something like this.
+~
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1006
+location: 127
+values:
+30
+30
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 3.96
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+~~
+vnum: 23806
+location: 127
+values:
+1
+4
+4
+11
+0
+0
+0
+~
+flags: gnprsuD
+name: icicle sharp
+shortdesc: an icicle
+desc: A sharp icicle lies here.
+type: 5
+weight: 0.60
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+extradesc: icicle sharp
+A sharp icicle seems to be magically preserved, for it does not melt even when
+taken to warm climates.  Thin string wrapped around the thick base acts as a
+grip, indicating that it could be used as a weapon.  Whether or not it would be
+a very effective weapon, however, is yet to be seen.    
+~
+triggers:
+23804
+~
+~~
+vnum: 12509
+location: 127
+values:
+70
+1
+1
+66
+0
+0
+0
+~
+flags: 0
+name: fist crystal
+shortdesc: a yellow, fist shaped crystal
+desc: A yellow-tinged, fist-shaped crystal lies here, its purpose forgotten.
+adesc:
+The fist pulses with energy, and soars through the air.
+~
+type: 3
+weight: 0.75
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+extradesc: fist crystal 
+The crystal is a sickly yellow, and has been carved into a clenched fist, with
+part of the forearm intact.    
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: E
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+~~
+vnum: 16309
+location: 127
+values:
+15
+3
+2
+29
+0
+0
+0
+~
+flags: 0
+name: wand black
+shortdesc: a black wand
+desc: A black wand is here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+extradesc: wand black
+   The wand is jet black in colour, and it seems to absorb all the light that
+falls on it. Etched on one end are the words :
+		May the eyes never set their sights on me.
+~
+~~
+vnum: 5207
+location: 127
+values:
+40
+28
+0
+0
+0
+0
+0
+~
+flags: ag
+name: potion red vial red-potion
+shortdesc: a red potion
+desc: A vial containing a red potion tempts you.
+type: 10
+weight: 0.20
+cost: 300
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+extradesc: potion red vial red-potion
+The strange looking vial holds a bright red magical liquid.
+~
+~~
+vnum: 20
+location: 127
+values:
+25
+1
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.07
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 16303
+location: 127
+values:
+75
+15
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potion green mistletoe brew
+shortdesc: the mistletoe brew
+desc: A light green potion lies among the grasses.
+type: 10
+weight: 0.75
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+extradesc: potion green mistletoe brew
+   You look at the messy green gunk in the crystal potion. You wonder who 
+would want to keep something like this.
+~
+~~
+vnum: 16303
+location: 127
+values:
+75
+15
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potion green mistletoe brew
+shortdesc: the mistletoe brew
+desc: A light green potion lies among the grasses.
+type: 10
+weight: 0.75
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+extradesc: potion green mistletoe brew
+   You look at the messy green gunk in the crystal potion. You wonder who 
+would want to keep something like this.
+~
+~~
+vnum: 16303
+location: 127
+values:
+75
+15
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potion green mistletoe brew
+shortdesc: the mistletoe brew
+desc: A light green potion lies among the grasses.
+type: 10
+weight: 0.75
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+extradesc: potion green mistletoe brew
+   You look at the messy green gunk in the crystal potion. You wonder who 
+would want to keep something like this.
+~
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 8342
+location: 127
+values:
+15
+15
+15
+15
+0
+0
+0
+~
+flags: 0
+name: potion dark herbal
+shortdesc: a dark potion
+desc: A dark herbal potion lays here.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: potion dark blue
+This small potion has chunks of fresh herbs and plants floating all about it.
+It is a mostly dark liquid which emits an incredible scent from the strong
+leaves it is made from.    
+~
+~~
+vnum: 8341
+location: 127
+values:
+15
+16
+16
+16
+0
+0
+0
+~
+flags: a
+name: potion strong herbal small
+shortdesc: a small potion
+desc: A strong herbal potion lays here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: potion herbal healing strong small
+This old and small potion has been brewed directly from the freshest Frakati
+plants around.  The green particles you see in the potion shows signs that this
+herb is not only one of the healing kind, but a strong one.    
+~
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1006
+location: 127
+values:
+300
+300
+17
+0
+0
+0
+0
+~
+flags: 0
+name: sake waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 21.56
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 1617
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wristband nordus
+shortdesc: the wristband of Nordus
+desc: A wristband, stamped with a city logo, lies here.
+type: 9
+weight: 0.80
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+4 1
+3 1
+~
+extradesc: wristband nordus
+This wristband is metal, but somehow slightly stretchy, almost elastic.
+Its finely grained metal is stamped with the outline of a city; it appears
+to be Nordus.
+~
+~~
+vnum: 55436
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmopqrstuvwxyz
+name: divine believer believers greaves believers-greaves
+shortdesc: &5Believer's Greaves&0
+desc: Resting on the ground is a set of divine greaves.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 33
+applies:
+6 3
+1 3
+~
+extradesc: divine believer believers greaves believers-greaves
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 52026
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: agpr
+name: cloak elven elven-cloak
+shortdesc: an elven cloak
+desc: A semi-transparent cloak has been forsaken here.
+type: 9
+weight: 1.60
+cost: 1400
+timer: 0
+level: 67
+effects: 0 0 0
+wear: 1025
+applies:
+17 -10
+13 -50
+~
+extradesc: cloak elven elven-cloak
+This cloak is long, likely to drape to the ground on nearly anyone.  It is a
+deep shade of green, with some ugly purple frills on the edges.    
+~
+~~
+vnum: 23802
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snowflake lone earring snowflake-earring
+shortdesc: a snowflake earring
+desc: A lone snowflake glimmers on the floor.
+type: 11
+weight: 0.01
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 262145
+applies:
+13 5
+24 -3
+23 -5
+~
+extradesc: snowflake lone earring snowflake-earring
+It seems to be a snowflake set onto a tiny silver post.  The six-pointed flake
+is cool to the touch, though it does not melt.  Whatever crystal substance it
+is made of catches the light quite well, giving it an ever-present sparkle.  
+Its miniscule arms have hexagonal symmetry, and it is very detailed.    
+~
+~~
+vnum: 58430
+location: 127
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tights purple purple-tights snug-fitting pair rolled ball discarded
+shortdesc: a pair of snug-fitting purple tights
+desc: A pair of tights has been rolled into a ball and discarded.
+type: 9
+weight: 0.50
+cost: 750
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: tights purple purple-tights snug-fitting pair rolled ball discarded
+These tights look like they'd be a perfect fit! A tie-waist secures
+them at the waist, and the thick woolen material goes from there all the
+way down to your feet. They look quite old, and seem to glow with some
+kind of magical power. Perhaps they're enchanted!
+~
+~~
+vnum: 52016
+location: 127
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: abgmowyz
+name: skin armor dragon-skin dragon-armor
+shortdesc: a dragon skin
+desc: A set of scaled dragon armor lies here, apparently forgotten by the gods.
+type: 9
+weight: 18.00
+cost: 7810
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 9
+applies:
+23 -5
+24 -5
+~
+extradesc: skin armor dragon-skin dragon-armor
+Of all things, dragon skin is incredibly rare.  The scales are hard and a dark
+black color.  Each scale is the size of man's kneecap, connected from
+underneath solidly.    
+~
+~~
+vnum: 53505
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: klmnuvyzD
+name: visor sleet-visor semicircle-thin-white-metal
+shortdesc: a sleet visor
+desc: A semicircle of thin white metal lies on the floor.
+type: 9
+weight: 1.20
+cost: 3290
+timer: 0
+level: 73
+effects: 0 0 0
+wear: 17
+applies:
+19 4
+14 20
+~
+extradesc: sleet-visor semicircle-thin-white-metal
+This thin visor is cast from a mysterious white metal.  Apparently stronger
+than steel, despite its thinness, it is almost impossible to deform.  A strap
+hanging around the back allows the visor to be worn on the head to protect the
+face.  Several vertical slits give the wearer a clear view of the surroundings.
+~
+~~
+vnum: 53506
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: klmowyz
+name: guard sleet-guard small-diamond-shaped-shield diamond-shield
+shortdesc: a sleet guard
+desc: A small diamond-shaped shield rests here guarding no one.
+type: 9
+weight: 5.00
+cost: 4402
+timer: 0
+level: 73
+effects: g 0 0
+wear: 513
+applies:
+1 5
+13 13
+~
+extradesc: sleet-guard small-diamond-shaped-shield diamond-shield
+Displaying an elaborate elven crest on its front, this sleet-white shield is
+only as wide as a forearm is long, but used effectively could provide decent
+protection.  The metal of the guard is fantastically thin, yet seems as strong
+as, if not stronger than, well-tempered steel.    
+~
+extradesc: elven-crest
+The elaborate elven crest is painted on the front of the sleet shield with
+amazing detail.  It depicts a great lynx running on a blue background, with a
+waving banner above it.  Some ancient elven runes are written across the
+banner, but below the crest, the name Shiran appears in common script.    
+~
+~~
+vnum: 30013
+location: 127
+values:
+0
+1
+7
+3
+0
+0
+0
+~
+flags: 0
+name: hatchet battle axe
+shortdesc: a battle hatchet
+desc: A small cracked axe with a stained handle lies here.
+type: 5
+weight: 3.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+applies:
+2 1
+~
+extradesc: hatchet battle axe
+This cruel implement looks to be forged from iron, though crudely.  It has a
+short shaft to which is attached the iron head.  A long "chin" extends downward
+a ways to give it a longer cutting edge, and it is rather heavy.  Given the
+chips and scratches, it has been used as much as a club as a slashing weapon.
+  
+~
+~~

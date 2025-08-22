@@ -1,0 +1,77 @@
+name: Iosin
+password: IoDKDtYTA1
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19777
+birthtime: 1605287139
+timeplayed: 1011
+lastlogintime: 1605288151
+host: 073.170.126.103
+height: 75
+weight: 143
+base_height: 75
+base_weight: 143
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8671
+hunger: 10
+lastlevel: 0
+hitpoints: 27/27
+mana: 0/0
+move: 10/118
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 63
+wisdom: 75
+dexterity: 83
+constitution: 82
+charisma: 55
+experience: 6049
+quit_reason: 7
+saveroom: 8671
+skills:
+402 50
+404 60
+415 50
+416 50
+421 52
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8013 1.000000
+1 8021 1.000000
+1 8015 1.000000
+1 8002 2.000000
+1 8014 2.000000
+1 8020 1.000000
+1 8023 1.000000
+1 8000 2.000000
+0 0 0
+tells:
+$
+gossips:
+1605287217 Chinok gossips, 'welcome Iosin'
+1605287273 Chinok gossips, 'let me know if you have any questions about how things work here'
+$

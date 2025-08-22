@@ -1,0 +1,628 @@
+1
+vnum: 55022
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: o
+name: robe fur lined pile cloth heavy heavy-fur-lined-robe
+shortdesc: a heavy fur-lined robe
+desc: A pile of fur and cloth has been abandoned here.
+type: 9
+weight: 8.00
+cost: 500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1025
+applies:
+2 -1
+~
+extradesc: robe fur lined pile cloth heavy heavy-fur-lined-robe
+This garmet is white in color much like the region it comes from.  It is
+highlighted with a mysterious silvery sash with many symbols on it.  It looks to
+be very warm.  
+~
+~~
+vnum: 48024
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mnu
+name: Heartstone black jewel heart stone
+shortdesc: the Heartstone
+desc: A large black jewel glows ominously at you.
+type: 9
+weight: 0.90
+cost: 4800
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 16385
+applies:
+5 1
+~
+extradesc: Heartstone black jewel heart stone
+Inside the Heartstone you see a small fleck of green which seems to pulse at 
+odd intervals. The Heartstone itself is a large black jewel. You have 
+never seen anything quite like it before.
+~
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 53314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~
+vnum: 43021
+location: 127
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: gnoprt
+name: orb orb-catastrophe gleaming catastrophe
+shortdesc: the Orb of Catastrophe
+desc: A gleaming orb floats a few feet off of the ground here.
+type: 1
+weight: 5.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+1 3
+3 2
+~
+extradesc: gleaming orb catastrophe
+The orb slowly spins on a random axis, even when held.  Looking deep within its
+depths, you can almost swear that you see its fluid core swirling about a
+solitary figure.    
+~
+~~
+vnum: 32403
+location: 127
+values:
+0
+1
+8
+11
+0
+0
+0
+~
+flags: gmn
+name: rapier sword bright ornate
+shortdesc: an ornate, swept-hilt rapier
+desc: A bright, ornate sword lies here.
+type: 5
+weight: 3.00
+cost: 4500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+18 2
+19 2
+~
+extradesc: rapier sword ornate bright
+This slender rapier is long, its blade not sharp but is point wickedly so.
+It is made of some very bright alloy of steel that looks almost silvery,
+and its hilt is wrapped in blue leather. The crossguard is the traditional
+basket hilt, but very ornately done, sweeping and scrolling.
+~
+~~
+vnum: 32403
+location: 127
+values:
+0
+1
+8
+11
+0
+0
+0
+~
+flags: gmn
+name: rapier sword bright ornate
+shortdesc: an ornate, swept-hilt rapier
+desc: A bright, ornate sword lies here.
+type: 5
+weight: 3.00
+cost: 4500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+18 2
+19 2
+~
+extradesc: rapier sword ornate bright
+This slender rapier is long, its blade not sharp but is point wickedly so.
+It is made of some very bright alloy of steel that looks almost silvery,
+and its hilt is wrapped in blue leather. The crossguard is the traditional
+basket hilt, but very ornately done, sweeping and scrolling.
+~
+~~
+vnum: 16202
+location: 127
+values:
+0
+3
+5
+3
+0
+0
+0
+~
+flags: io
+name: scimitar long
+shortdesc: a long scimitar
+desc: A scimitar lies among the rocks here.
+type: 5
+weight: 1.70
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 8193
+applies:
+18 2
+~
+extradesc: scimitar sword
+The scimitar is very well crafted and has a fine balance. You detect an aura    holiness around it.~
+~~
+vnum: 5107
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: dark ale jug stone stone-jug
+shortdesc: a stone jug
+desc: A stone jug is lying on the floor here.
+type: 17
+weight: 2.00
+cost: 25
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: jug stone stone-jug
+It's a large, heavy jug made of grey stone.  Sloshing sounds inside indicate
+some kind of liquid.
+~
+~~
+vnum: 5107
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: dark ale jug stone stone-jug
+shortdesc: a stone jug
+desc: A stone jug is lying on the floor here.
+type: 17
+weight: 2.00
+cost: 25
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: jug stone stone-jug
+It's a large, heavy jug made of grey stone.  Sloshing sounds inside indicate
+some kind of liquid.
+~
+~~
+vnum: 49004
+location: 127
+values:
+100
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack leather black leather-backpack pack
+shortdesc: a leather backpack
+desc: A backpack of tough black leather has lost its owner.
+type: 15
+weight: 6.00
+cost: 50
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 9
+applies:
+17 -4
+~
+extradesc: backpack leather
+A vast amount of stuff can fit into this sturdy backpack.~
+~~
+vnum: 36101
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mno
+name: neckguard rock heavy rock-neckguard
+shortdesc: a heavy rock neckguard
+desc: A neckguard constructed of tough stone lays here.
+type: 9
+weight: 4.00
+cost: 250
+timer: 0
+level: 13
+effects: 0 0 0
+wear: 5
+extradesc: rock neckguard
+The rock neckguard appears to be chipped and sculpted from a single
+large stone. Previously constructed for the huge Bozaks, it is almost
+too large for your neck. The neckguard is sturdy enough to withstand
+almost any attack.~
+~~
+vnum: 36101
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mno
+name: neckguard rock heavy rock-neckguard
+shortdesc: a heavy rock neckguard
+desc: A neckguard constructed of tough stone lays here.
+type: 9
+weight: 4.00
+cost: 250
+timer: 0
+level: 13
+effects: 0 0 0
+wear: 5
+extradesc: rock neckguard
+The rock neckguard appears to be chipped and sculpted from a single
+large stone. Previously constructed for the huge Bozaks, it is almost
+too large for your neck. The neckguard is sturdy enough to withstand
+almost any attack.~
+~~
+vnum: 47005
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: mtu
+name: bracers shadow black
+shortdesc: the Shadow Bracers
+desc: A pair of black bracers lie against the wall.
+type: 9
+weight: 5.50
+cost: 1000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 257
+applies:
+1 1
+~
+extradesc: shadow-bracers bracers black shadow
+You peer into the bracers, and you can only see the silhouette of them in
+the midday sun.  All light is shadowed out by them, and you can see how they
+could be quite useful on your arms.
+~
+~~
+vnum: 8506
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring jet black ear ring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 9
+weight: 0.02
+cost: 250
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 262145
+applies:
+18 1
+19 1
+~
+extradesc: earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.
+~
+~~
+vnum: 48104
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: head shrivelled severed-head
+shortdesc: a shrivelled, severed head
+desc: The shrivelled head of a jungle savage lies here.
+type: 12
+weight: 8.00
+cost: 50
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1064961
+applies:
+3 1
+17 5
+~
+extradesc: shrivelled head severed
+This grotesque trophy makes you want to puke. Why would you ever want to
+look at such a thing??
+~
+~~
+vnum: 8506
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring jet black ear ring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 9
+weight: 0.02
+cost: 250
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 262145
+applies:
+18 1
+19 1
+~
+extradesc: earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.
+~
+~~
+vnum: 16202
+location: 127
+values:
+0
+3
+5
+3
+0
+0
+0
+~
+flags: io
+name: scimitar long
+shortdesc: a long scimitar
+desc: A scimitar lies among the rocks here.
+type: 5
+weight: 1.70
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 8193
+applies:
+18 2
+~
+extradesc: scimitar sword
+The scimitar is very well crafted and has a fine balance. You detect an aura    holiness around it.~
+~~
+vnum: 53309
+location: 127
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: gmotu
+name: breastplate plate ice-steel ice steel
+shortdesc: an ice-steel breastplate
+desc: A breastplate made of magical, hardened ice rests here.
+type: 9
+weight: 16.00
+cost: 1400
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 9
+applies:
+21 -3
+~
+extradesc: breastplate magical hardened ice
+This breastplate is made of a magically hardened ice called ice-steel
+because it takes on the strength of steel.  It is as light as ice and has
+hard as steel. Embossed on the surface of the breastplate in a strange red
+ice is the symbol of the cult of Tri-Aszp: a bleeding dragon's claw.
+~
+~~
+vnum: 53310
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gmotu
+name: ice-leggings ice hardened ice-steel leggings
+shortdesc: the ice-steel leggings
+desc: A set of leggings made of magical, hardened ice lies here.
+type: 9
+weight: 12.00
+cost: 900
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 33
+extradesc: leggings hardened ice ice-steel magically
+These leggings are made of a magically hardened ice called ice-steel.
+Ice-steel is as hard as steel and weights as much as ice.  On the
+thigh of each leg is an image embossed in a strange red ice.  The image
+is the symbol of the cult of Tri-Aszp: a bleeding dragon's claw
+~
+~~
+vnum: 16106
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: scimitar golden golden-scimitar
+shortdesc: a golden scimitar
+desc: A gleaming golden scimitar lies upon a large rock.
+type: 5
+weight: 2.00
+cost: 1000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+applies:
+19 2
+~
+extradesc: scimitar golden
+This weapon seems to be made of pure gold.  It is however extremely light and
+has a very good balance.  
+~
+~~

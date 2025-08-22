@@ -1,0 +1,94 @@
+name: Zai
+password: Za5Yki0L7f
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20800
+birthtime: 1719189787
+timeplayed: 722
+lastlogintime: 1719190512
+host: 075.100.041.188
+height: 82
+weight: 230
+base_height: 82
+base_weight: 230
+base_size: 3
+natural_size: 3
+alignment: 30
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 2
+lastlevel: 0
+hitpoints: 40/38
+mana: 0/0
+move: 154/154
+damroll: 5
+hitroll: 4
+strength: 87
+intelligence: 70
+wisdom: 70
+dexterity: 88
+constitution: 85
+charisma: 66
+cash: 0 0 2 34
+experience: 13509
+quit_reason: 3
+saveroom: 0
+skills:
+402 52
+404 65
+415 50
+416 50
+419 1000
+421 52
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8011 2.000000
+1 8020 1.000000
+1 8001 1.000000
+1 8016 1.000000
+1 8015 2.000000
+1 8023 1.000000
+1 16902 2.000000
+1 16901 1.000000
+1 16906 2.000000
+1 16905 1.000000
+1 16900 5.000000
+1 3062 2.000000
+1 3066 1.000000
+1 51900 2.000000
+0 0 0
+tells:
+1719190068 @WSantiago@W tells you, 'No credit here, come back when you have some cash.@W'@0
+1719190277 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1719190286 @WLisa@W tells you, 'Feel the quality, a superior product.@W'@0
+1719190292 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1719190300 @WLisa@W tells you, 'Feel the quality, a superior product.@W'@0
+1719190301 @WLisa@W tells you, 'Feel the quality, a superior product.@W'@0
+1719190320 @WLisa@W tells you, 'Feel the quality, a superior product.@W'@0
+1719190331 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1719190343 @WLisa@W tells you, 'Come back when you have a bit more money.@W'@0
+1719190367 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+$

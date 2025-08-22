@@ -1,0 +1,97 @@
+name: Sot
+password: SoWxFszs8L
+description
+This guy is always thirsty.  
+You got something to drink?
+~
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 3
+race: 3
+level: 18
+home: 3022
+lifeforce: 0
+composition: 0
+id: 16599
+birthtime: 1185242353
+timeplayed: 7125090
+lastlogintime: 1557550450
+host: 216.241.197.068
+height: 45
+weight: 178
+base_height: 45
+base_weight: 178
+base_size: 2
+natural_size: 2
+alignment: -305
+playerflags: ly
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 48549
+lastlevel: 11
+hitpoints: 277/241
+mana: 100/32
+move: 158/158
+damroll: 4
+hitroll: 5
+strength: 92
+intelligence: 68
+wisdom: 84
+dexterity: 95
+constitution: 95
+charisma: 58
+cash: 4 196 476 110
+experience: 1322853
+quit_reason: 3
+saveroom: 0
+skills:
+402 220
+404 228
+407 207
+415 220
+416 220
+421 230
+430 220
+438 50
+443 184
+444 225
+463 203
+464 208
+465 200
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36003 1.000000
+1 8034 2.000000
+1 8033 2.000000
+1 8032 2.000000
+1 8031 2.000000
+1 36004 4.000000
+1 16908 13.500000
+1 8000 1.000000
+1 8016 1.500000
+1 8011 0.500000
+1 8010 0.500000
+1 8001 1.000000
+1 8013 1.000000
+1 8023 0.500000
+1 8015 0.500000
+1 5504 2.500000
+1 5503 1.833333
+1 5502 7.000000
+1 5501 8.833333
+1 5513 0.500000
+1 7051 0.500000
+0 0 0
+aliases:
+ry rescue yum
+ay assist yum
+rw rescue wimpee
+z scan
+aa assist podunk
+aaa assist dufus
+0

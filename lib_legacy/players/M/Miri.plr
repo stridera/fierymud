@@ -1,0 +1,119 @@
+name: Miri
+password: Mi53EZt1Qd
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 0
+level: 8
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20279
+birthtime: 1654950056
+timeplayed: 41750
+lastlogintime: 1655438307
+host: 100.006.016.128
+height: 62
+weight: 100
+base_height: 62
+base_weight: 100
+base_size: 2
+natural_size: 2
+alignment: -12
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 7001
+thirst: 12
+lastlevel: 0
+hitpoints: 73/73
+mana: 1/0
+move: 74/100
+damroll: 3
+hitroll: 3
+strength: 72
+intelligence: 89
+wisdom: 94
+dexterity: 75
+constitution: 63
+charisma: 73
+cash: 0 7 45 24
+experience: 154000
+quit_reason: 7
+saveroom: 7001
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 54
+416 50
+423 120
+424 109
+438 50
+443 50
+444 50
+451 56
+457 70
+458 61
+459 52
+460 74
+462 53
+463 86
+466 50
+0 0
+trophy:
+1 3503 1.000000
+1 3502 3.000000
+1 8030 4.000000
+1 3130 2.000000
+1 8606 4.000000
+1 3501 20.500000
+1 3506 3.000000
+1 3509 6.000000
+1 3500 4.500000
+1 3508 17.500000
+1 8020 4.000000
+1 8023 6.000000
+1 8021 2.000000
+1 8022 4.000000
+1 51900 2.000000
+0 0 0
+tells:
+1655438015 @WElspeth the Jeweler@W tells you, 'I'll give you 0p, 0g, 4s, 7c for that!@W'@0
+1655438028 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1655438088 @WBeowyn@W tells you, 'I only buy the finest steel armour.@W'@0
+1655438097 @WShauna@W tells you, 'I don't trade in such items.@W'@0
+1655438126 @WShauna@W tells you, 'I don't trade in such items.@W'@0
+1655438138 @WSantiago@W tells you, 'You ought to pay me to take that off of your hands!@W'@0
+1655438156 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1655438168 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1655438172 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1655438178 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+$
+gossips:
+1655431278 Someone gossips, 'sorry to hear.  I don't have a lot of swing with the mudlet app... '
+1655433654 Chinok gossips, 'newest stuff will be at the top, I typically use containers to manage my stuff'
+1655433705 Chinok gossips, 'there are bags, saddles, lots of containers.'
+1655433761 Chinok gossips, 'yeah, keep all my gems in one bag, kinda like that'
+1655433831 Chinok gossips, 'yes, 1.bag, will be the one at the top of your inventory'
+1655433845 Chinok gossips, '1.bag is also just bag'
+1655434367 Chinok gossips, 'right now, no.'
+1655434373 Chinok gossips, 'but we have talked about expanding that'
+1655434447 Chinok gossips, 'hum, I don't think so.. '
+1655436540 Chinok gossips, 'night all'
+$
+mem:
+1 1 5
+16 1 6
+16 1 5
+84 1 6
+84 1 6
+12 1 6
+0 0 0

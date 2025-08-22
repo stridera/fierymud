@@ -1,0 +1,17 @@
+#519
+Ethilien Training Academy~
+51999 30 0 100 0 0
+M 0 51903 1 51902 	(the Combat Clerk)
+M 0 51901 1 51900 	(the Academy Recruiter)
+G 1 51901 1 -1 	(the key to gates of Ethilien Training Academy)
+D 0 51900 1 2 	(The Gates of Ethilien Training Academy)
+M 0 51908 1 51907 	(the Master of the Revel)
+O 0 51900 1 51907 	(a fountain)
+M 0 51904 1 51906 	(the Warmaster)
+M 0 51907 1 51905 	(the Professor of Divinity)
+M 0 51906 1 51904 	(the Chair of Arcane Studies)
+M 0 51905 1 51903 	(Doctor Mischief)
+M 0 51902 1 51901 	(the Instructor of Adventure)
+D 0 51901 1 5 	(The Welcome Hall of Ethilien Training Academy)
+S
+$

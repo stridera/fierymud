@@ -1,0 +1,182 @@
+#58701
+receptionist woman~
+the Receptionist~
+The Receptionist looks up names in a large book.
+~
+This woman is of indeterminate middle age, yet she retains a 
+youthful appearance somehow. She seems quite bored at the moment,
+and she's obviously waiting for you to make up your mind what you
+want to do.
+~
+16394 44 1000 E
+50 20 0 0d0+0 0d0+0
+0 0 0 587
+3 3 2 24 13 0 2
+Str: 81
+Dex: 79
+Int: 72
+Wis: 71
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 1000
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#58702
+meg woman blonde~
+Meg~
+A blonde woman cheerfully tends to her shop.
+~
+She seems so cheerful and so perky! Her blonde hair is curly and
+bounces with her every movement, and her face is always bright
+and smiling. Soft, gentle hands dust and arrange and tidy up
+before your eyes, even while she makes small talk.
+~
+16394 36 1000 E
+100 20 0 0d0+0 0d0+0
+0 0 0 587
+3 3 2 24 13 0 2
+Str: 76
+Dex: 89
+Int: 71
+Wis: 70
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#58703
+pony mountain-pony~
+a mountain pony~
+A mountain pony whickers softly when it hears you coming.
+~
+It looks a lot like a horse, but it's smaller and more compact.
+You've heard mountain ponies are quite mean and formidable in
+fights, but they're all but impossible to find anywhere but on
+the southern continent. As you look at the creature, you can
+see how thick its fur is, how sure-footed it is... and how very
+hostile it is!
+~
+264202 0 750 E
+13 20 0 0d0+0 0d0+0
+0 0 0 587
+3 3 0 24 14 0 1
+BareHandAttack: 9
+Str: 84
+Dex: 82
+Int: 66
+Wis: 74
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#58704
+bard traveling-bard man~
+a traveling bard~
+A man in brightly-colored clothes strolls around here.
+~
+This man's clothes are motley and seem ridiculous, but he's so cheerful and
+sprightly his attire seems fitting!  The bright colors stand out against his
+dark complexion, hinting at his origins beyond the Gothra Desert.  Yet he gives
+the impression of having lived a carefree life, and even now, he's one happy
+fellow.
+~
+2120 0 500 E
+30 20 0 0d0+0 0d0+0
+0 0 0 587
+3 3 1 19 13 0 2
+Str: 77
+Dex: 99
+Int: 74
+Wis: 68
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 115
+#58705
+boy stable-boy stableboy~
+a stableboy~
+A thin, poorly dressed boy scampers past you on some errand.
+~
+This boy is a ragamuffin, hardly worth your notice. Scrawny and
+badly malnourished, he nonetheless is one sneaky fellow! Those
+slender hands are quick to find a mark, and he's had a lifetime
+of learning to avoid injuries.
+~
+2120 0 250 E
+25 20 0 0d0+0 0d0+0
+0 0 0 587
+3 3 1 24 13 0 2
+Str: 95
+Dex: 81
+Int: 70
+Wis: 69
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#58706
+maid young-maid young buxom wench~
+a young maid~
+A buxom wench dashes past you with a smile on her face.
+~
+Sweaty and overworked, this girl nonetheless seems cheerful; she
+laughs as she shoulders past you. Her long hair is braided to keep
+it out of her face. Her clothes seem quite old, but at least the
+dress is clean, even if the apron isn't.
+~
+2120 0 250 E
+25 20 0 0d0+0 0d0+0
+0 0 0 587
+3 3 2 24 13 0 2
+Str: 86
+Dex: 82
+Int: 70
+Wis: 74
+Con: 30
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

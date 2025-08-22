@@ -1,0 +1,936 @@
+#47001
+undead-lord undead lord~
+the Undead Lord~
+The Undead Lord floats here staring at you with contempt.~
+You are looking at the undead Lord of the mausoleum.  It seems that at one 
+time he was buried here, and has chosen to spend his afterlife in this room.
+He looks disturbed somehow, but you would rather not know why.  A deep light
+glows from his eyes, and as you look at him, he seems to concentrating on
+you intensely.~
+33556554 1048584 0 E
+30 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 4 0 0 2
+Str: 83
+Dex: 76
+Int: 62
+Wis: 75
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+T 55697
+#47002
+greater-zombie greater zombie~
+a Greater Zombie~
+A moaning zombie shambles towards you.~
+This shambling creature moans in fury and agony as it lurches toward
+its victims. Flesh rots right off of it, but it doesn't seem to notice
+that some of its bones are exposed. Despite this, the aura of menace
+and power around the creature is unmistakable.~
+67111500 4 -1000 E
+30 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 3 0 0 2
+Str: 84
+Dex: 80
+Int: 72
+Wis: 69
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#47003
+evil-ghast evil ghast undead~
+an Evil Ghast~
+An undead form of a man with ripped clothing stands here drooling.~
+Somewhat a zombie, but more disgusting in appearance, this creature
+feeds on flesh. Blood, dried and crusted, covers the lower half of 
+what was once its face, with its rotted-away nose and dribbling 
+eyesockets. The flesh covering its bones is worm-eaten, but mostly
+whole.~
+100663884 0 -1000 E
+30 20 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 24 0 0 2
+Str: 81
+Dex: 79
+Int: 60
+Wis: 77
+Con: 30
+Cha: 72
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#47004
+deadly-wight wight deadly~
+a Wight~
+A deadly wight stands here wanting to rip you apart.~
+This insane-looking, gibbering creature might once have been human,
+but now its status is undiscernible. Its fingers are arched into claws,
+and the claws are yellowed and cracking, but sharp. The teeth are filed
+into points, and they, too, are not in good shape. The creature's eyes,
+once human, are now utterly mad.~
+67109512 1024 -1000 E
+45 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 24 4 1 3
+Str: 91
+Dex: 79
+Int: 74
+Wis: 75
+Con: 30
+Cha: 61
+AFF2: 4194304
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#47005
+cloud-wraith wraith cloud~
+a Wraith~
+A deadly wraith grins evilly as he lurches towards you.~
+This wraith is an evil undead spirit of a powerful human that seeks to eat
+the life right out of you.  He is definitely not an easy opponent!~
+67109448 1048576 -1000 E
+45 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 11 0 0 2
+Str: 81
+Dex: 85
+Int: 71
+Wis: 78
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+#47006
+death-knight death knight~
+the Death Knight~
+A death knight stands here on guard.~
+The death knight is the horrifying corruption of a Knight of Honor, cursed
+by the gods to his terrible form as a punishment for betraying the code
+of honor he held in his former life.  He is quite a formidable foe, and
+will definitely hold his own in battle.~
+67120718 0 -550 E
+50 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 5 0 0 2
+Str: 88
+Dex: 84
+Int: 63
+Wis: 73
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+T 55698
+#47007
+dracolich~
+a Dracolich~
+A Dracolich towers over you with acid dripping from its fangs.~
+This is an undead dragon from the old days.  It has acid dripping from its
+fangs, and towers over you with a height of 15 feet.  Its claws are clenched
+in anger and wants your blood.~
+102762568 0 -500 E
+45 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 3 14 0 2
+BareHandAttack: 9
+Str: 84
+Dex: 87
+Int: 69
+Wis: 76
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#47008
+evil-haunt haunt~
+an Evil Haunt~
+A restless haunt shambles around looking for something to eat.~
+You are looking at a restless spirit of a person who died leaving some
+important task undone.  It seems to be searching for something, and nothing
+is going to get in its way.  ~
+100663308 262144 -1000 E
+35 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 24 0 0 2
+Str: 97
+Dex: 86
+Int: 59
+Wis: 77
+Con: 30
+Cha: 51
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 350
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+#47009
+heucuva~
+a Heucuva~
+An evil heucuva reaches out to grab you.~
+You are looking at an undead spirit similar to that of a skeleton, but
+much more dangerous.  It is robed in ragged garments, and reeks of rotting
+flesh.~
+67111496 1049600 -800 E
+47 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 9 1 0 2
+BareHandAttack: 12
+Str: 85
+Dex: 74
+Int: 69
+Wis: 78
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 10
+Stance: 6
+E
+#47010
+kryzanthor evil necromancer necro~
+Kryzanthor~
+An evil necromancer is standing here muttering powerful incantations.~
+As you look at this evil being, you wonder if it was wise to come here.  It
+seems as if this creature has been here for quite a long time, and is getting
+restless.  Kryzanthor is single-handedly responsible for the creation of the
+tunnel system, and the chaotic state of the graveyard.~
+101722186 4 -1000 E
+60 20 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 11 0 0 2
+Str: 97
+Dex: 70
+Int: 60
+Wis: 85
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+T 55699
+#47011
+shrieking-banshee shrieking banshee~
+the Shrieking Banshee~
+An evil banshee stands here ready to rip any body part off she can.~
+You are staring at the spirit of an evil female elf who seems to have died
+at a young age. She still seems to have her youth and vigor, but the anger
+within reflects that of one who seeks to harm anyone that messes with her.~
+101713992 1049608 -1000 E
+50 0 0 0d0+0 0d0+0
+0 0 0 470
+4 4 2 24 1 0 2
+Str: 91
+Dex: 74
+Int: 70
+Wis: 85
+Con: 30
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+T 47001
+T 55698
+#47012
+ghostly-spectre spectre ghost~
+the Spectre~
+A Spectre floats here watching you closely.~
+A spirit floats here, simmering with righteous indignation.  It doesn't seem to
+take much notice of things going on around it, preferring instead to search
+endlessly for something.~
+100673614 1048576 0 E
+62 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 18 0 0 2
+BareHandAttack: 12
+Str: 95
+Dex: 72
+Int: 74
+Wis: 74
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+T 55699
+#47013
+revenant~
+a Revenant~
+A wandering revenant moans painfully.~
+A shuffling gait and unfocused eyes mark this mindless zombie-like
+creature. Once human, it seems to seek, in every face it meets, some
+sort of clue or information that it cannot find. The eyes are sunken
+and dull, but blaze with unnatural intensity.~
+2188 0 0 E
+30 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 24 0 0 2
+Str: 96
+Dex: 84
+Int: 56
+Wis: 78
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#47014
+undead-caretaker undead caretaker~
+the Undead Caretaker~
+The Undead Caretaker floats here mourning over his death.~
+He floats, keening and wailing, sorrowing for things long ago dead.
+His features are impossible to discern, so misty and ethereal is his
+form.~
+138 1048576 600 E
+40 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 24 0 0 2
+Str: 89
+Dex: 85
+Int: 64
+Wis: 77
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+T 55697
+#47015
+crimson-death crimson death~
+the Crimson Death~
+A Crimson Death rushes towards you.~
+You look upon this horrible creature and sense great power.  This is a 
+malevolent, vaporous creature that feeds on the bodily fluids of its victims.
+It is in the shape of cloud, and has a pale color.  It resembles a humanoid.~
+100665420 1310724 -1000 E
+50 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 24 13 0 2
+Str: 86
+Dex: 85
+Int: 75
+Wis: 72
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 6
+Stance: 6
+E
+T 55698
+#47016
+necrophidius snake skeleton~
+the Necrophidius~
+A Necrophidius Snake moves towards you quickly.~
+You are looking at an animated creature in the shape of a snake.  It is fully
+skeletal.  It is also known as the "death worm", and was created for the
+sole purpose of assassination.  Its head is in the shape of a fanged human 
+skull, and has constantly swirling milky white eyes.  It moves along the
+ground silently with a macabre grace.~
+101713992 262152 -800 E
+50 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 9 14 0 2
+Str: 86
+Dex: 81
+Int: 75
+Wis: 77
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 500
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#47017
+bone-guard bone guard~
+the Bone Guard~
+A Bone Guard stands here with a menacing look on his face.~
+This skeletal guard seems to have been put here by the necromancer to guard
+the western sector of the graveyard.  He is seven feet in height, and has
+a strange light coming from his eyes.  He will not let you pass while he is
+still standing.~
+10 36 0 E
+30 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 3 13 0 2
+Str: 76
+Dex: 84
+Int: 66
+Wis: 78
+Con: 30
+Cha: 77
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 10
+Stance: 6
+E
+#47018
+thing dark-thing shadow~
+a Dark Thing~
+A Dark Thing moves in the shadows.~
+As you look at this thing, you have trouble perceiving its shape or size.
+It is devoid of light, and it seems to suck all light in like a black hole.
+The Dark Thing likes to hide in the shadows and attack unsuspecting prey at
+will.~
+101713930 1048578 0 E
+25 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 9 19 1 5
+BareHandAttack: 10
+Str: 82
+Dex: 90
+Int: 72
+Wis: 70
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 250
+Lifeforce: 4
+Composition: 0
+Stance: 6
+E
+#47019
+scruffy dog~
+Scruffy~
+The Caretaker's Undead Dog is sitting here panting.~
+You are looking at Scruffy, the caretaker's dog.  He seems to have been
+killed off by the necromancer too when he killed his master.  Scruffy is a
+good natured dog that wants to be petted.  At one time, he could have played
+the part of Lassie, because that's exactly what he looks like.~
+72 1048576 1000 E
+25 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 24 14 0 2
+Str: 88
+Dex: 84
+Int: 64
+Wis: 74
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+T 55696
+#47020
+deadly-wight wight deadly~
+a Wight~
+A deadly wight stands here ready to rip you apart.~
+This monster is deadly in combat, and quite fierce.  Its claws stick out
+in a menacing manner, and it looks upon you as fresh meat.  You hope that
+this one already had dinner, but you wouldn't bet on it.~
+67111496 1024 -1000 E
+45 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 3 7 1 4
+Str: 81
+Dex: 89
+Int: 64
+Wis: 72
+Con: 30
+Cha: 67
+AFF2: 4194304
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#47021
+cloud-wraith wraith cloud~
+a Wraith~
+A deadly wraith grins evilly as he lurches towards you.~
+This wraith is an evil undead spirit of a powerful human that seeks to eat
+the life right out of you.  He is definitely not an easy opponent!~
+100665416 1048576 -1000 E
+45 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 3 0 0 2
+Str: 92
+Dex: 84
+Int: 70
+Wis: 70
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+#47022
+dracolich~
+a Dracolich~
+A Dracolich towers over you with acid dripping from its fangs.~
+This is an undead dragon from the old days.  It has acid dripping from its
+fangs, and towers over you with a height of 15 feet.  Its claws are clenched
+in anger and wants your blood.~
+100665416 0 -500 E
+45 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 3 14 0 2
+BareHandAttack: 4
+Str: 91
+Dex: 74
+Int: 84
+Wis: 74
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#47023
+heucuva~
+a Heucuva~
+An evil heucuva reaches out to grab you.~
+You are looking at an undead spirit similar to that of a skeleton, but
+much more dangerous.  It is robed in ragged garments, and reeks of rotting
+flesh.~
+100665416 1048576 -800 E
+47 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 24 0 0 2
+Str: 94
+Dex: 77
+Int: 78
+Wis: 81
+Con: 30
+Cha: 52
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#47024
+deadly-wight wight deadly~
+a Wight~
+A deadly wight stands here wanting to rip you apart.~
+This monster is deadly in combat, and quite fierce.  Its claws stick out
+in a menacing manner, and it looks upon you as fresh meat.  You hope that
+this one already had dinner, but you wouldn't bet on it.~
+100663438 1024 -1000 E
+45 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 3 4 1 3
+Str: 97
+Dex: 77
+Int: 66
+Wis: 75
+Con: 30
+Cha: 59
+AFF2: 4194304
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#47025
+cloud-wraith wraith cloud~
+a Wraith~
+A deadly wraith grins evilly as he lurches towards you.~
+This wraith is an evil undead spirit of a powerful human that seeks to eat
+the life right out of you.  He is definitely not an easy opponent!~
+2570 1048576 -1000 E
+45 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 3 0 0 2
+Str: 84
+Dex: 86
+Int: 70
+Wis: 79
+Con: 30
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+#47026
+dracolich~
+a Dracolich~
+A Dracolich towers over you with acid dripping from its fangs.~
+This is an undead dragon from the old days.  It has acid dripping from its
+fangs, and towers over you with a height of 15 feet.  Its claws are clenched
+in anger and wants your blood.~
+6666 0 -500 E
+45 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 3 14 0 2
+BareHandAttack: 9
+Str: 96
+Dex: 80
+Int: 64
+Wis: 72
+Con: 30
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#47027
+heucuva~
+a Heucuva~
+An evil heucuva reaches out to grab you.~
+You are looking at an undead spirit similar to that of a skeleton, but
+much more dangerous.  It is robed in ragged garments, and reeks of rotting
+flesh.~
+2107998 1048576 -800 E
+47 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 0 0 0 2
+BareHandAttack: 12
+Str: 96
+Dex: 97
+Int: 63
+Wis: 68
+Con: 30
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+T 55698
+#47028
+necrophidius snake skeleton~
+the Necrophidius~
+A Necrophidius Snake moves towards you quickly.~
+You are looking an animated creature in the shape of a snake.  It is fully
+skeletal.  It is also known as the "death worm", and was created for the
+sole purpose of assassination.  Its head is in the shape of a fanged human 
+skull, and has constantly swirling milky white eyes.  It moves along the
+ground silently with a macabre grace.~
+586 262152 -350 E
+50 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 3 14 0 2
+BareHandAttack: 4
+Str: 86
+Dex: 91
+Int: 65
+Wis: 68
+Con: 30
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#47029
+spectre wife spectre-wife wife-spectre~
+the Spectre's Wife~
+The Spectre's Wife floats here awaiting her husband.~
+This is the wife of the mighty spectre.  Her beauty is undaunted despite
+her age, and you can understand why the spectre has protected her in such
+a way.  Just as the spectre, she is a mighty force in battle.~
+2099274 1048712 0 E
+62 20 0 0d0+0 0d0+0
+0 0 0 470
+3 3 2 10 0 0 2
+BareHandAttack: 7
+Str: 86
+Dex: 83
+Int: 66
+Wis: 66
+Con: 30
+Cha: 74
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+T 47002
+T 47003
+T 55699
+#47030
+crimson-death crimson death~
+the Crimson Death~
+A Crimson Death rushes towards you.~
+You look upon this horrible creature and sense great power.  This is a
+malevolent, vaporous creature that feeds on the bodily fluids of its victims.
+It is in the shape of cloud, and has a pale color.  It resembles a humanoid.~
+67109448 1310724 -1000 E
+50 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 3 13 0 2
+BareHandAttack: 12
+Str: 84
+Dex: 86
+Int: 64
+Wis: 90
+Con: 67
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 6
+Stance: 6
+E
+#47031
+dark-thing dark thing~
+a Dark Thing~
+A Dark Thing moves in the shadows.~
+As you look at this thing, you have trouble perceiving its shape or size.  It
+is devoid of light, and it seems to suck all light in like a black hole.  The
+Dark Thing likes to hide in the shadows and attack unsuspecting prey at will.~
+67109386 1048618 0 E
+25 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 3 19 1 5
+BareHandAttack: 12
+Str: 86
+Dex: 78
+Int: 68
+Wis: 82
+Con: 84
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 500
+Lifeforce: 4
+Composition: 0
+Stance: 6
+E
+#47032
+dark-thing dark thing~
+a Dark Thing~
+A Dark Thing moves in the shadows.~
+As you look at this thing, you have trouble perceiving its shape or size.
+It is devoid of light, and it seems to suck all light in like a black hole.
+The Dark Thing likes to hide in the shadows and attack unsuspecting prey at
+will.~
+67109386 1048618 0 E
+25 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 24 17 0 2
+BareHandAttack: 12
+Str: 98
+Dex: 76
+Int: 70
+Wis: 74
+Con: 81
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 500
+Lifeforce: 4
+Composition: 0
+Stance: 6
+E
+#47033
+dark-thing dark thing~
+a Dark Thing~
+A Dark Thing moves in the shadows.~
+As you look at this thing, you have trouble perceiving its shape or size.
+It is devoid of light, and it seems to suck all light in like a black hole.
+The Dark Thing likes to hide in the shadows and attack unsuspecting prey at
+will.~
+67109386 1048618 0 E
+25 0 0 0d0+0 0d0+0
+0 0 0 470
+3 3 0 3 19 1 5
+BareHandAttack: 12
+Str: 82
+Dex: 85
+Int: 71
+Wis: 74
+Con: 81
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 500
+Lifeforce: 4
+Composition: 0
+Stance: 6
+E
+#47075
+ranger tall mysteriously cloaked figure elf~
+a mysteriously cloaked figure~
+A tall ranger peers at you from under his hood.~
+A tall, slender elf leans gently on the cemetery entrance.  A dark green cloak
+gracefully drapes to his ankles.  A handcrafted longbow is slung over his
+shoulder.  There are glowing runes covering the length of the great weapon.  
+The ranger makes no attempt to hide an elven holy symbol that hangs around his
+neck from a thin, silver cord of silk.  His facial expression is solemn as he
+surveys the area.    ~
+-2147481574 33566760 800 E
+90 20 0 0d0+0 0d0+0
+0 0 0 470
+3 3 1 6 1 0 2
+Str: 86
+Dex: 84
+Int: 76
+Wis: 74
+Con: 78
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 47075
+T 306
+T 307
+T 308
+T 311
+T 314
+$

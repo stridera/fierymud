@@ -1,0 +1,85 @@
+name: Koren
+password: Ko8rydMHLN
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19101
+birthtime: 1472317047
+timeplayed: 1178
+lastlogintime: 1472318227
+host: 104.052.223.001
+height: 67
+weight: 145
+base_height: 67
+base_weight: 145
+base_size: 2
+natural_size: 2
+alignment: 17
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 8
+thirst: 18
+lastlevel: 0
+hitpoints: 29/29
+mana: 0/0
+move: 93/100
+damroll: 3
+hitroll: 3
+strength: 83
+intelligence: 76
+wisdom: 92
+dexterity: 82
+constitution: 67
+charisma: 69
+experience: 5500
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 54
+438 50
+443 50
+444 50
+451 50
+457 50
+458 54
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+trophy:
+1 16900 1.000000
+1 16901 0.500000
+1 16905 0.500000
+1 16908 1.000000
+1 16903 0.500000
+1 16906 1.000000
+0 0 0
+effects:
+1 8 10 17 0 0 0
+0 0 0 0 0
+mem:
+1 0 9
+1 0 9
+0 0 0

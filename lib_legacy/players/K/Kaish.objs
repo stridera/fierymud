@@ -1,0 +1,1748 @@
+1
+vnum: 460
+location: 0
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: stick small light
+shortdesc: a small stick
+desc: A small stick lies here.
+type: 1
+weight: 0.40
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small stick
+The small stick does not look interesting at all.  But just as you are going
+to throw it away you notice some small letters.
+~
+extradesc: letters letter
+It reads 'Hold me'.
+~
+~~
+vnum: 36104
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: coral ring coral-ring
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lies on the ground.
+type: 9
+weight: 0.30
+cost: 200
+timer: 0
+level: 13
+effects: 0 0 0
+wear: 3
+applies:
+3 1
+24 -5
+~
+extradesc: coral ring coral-ring
+The coral ring seems totally flawless. It is made of the finest coral
+you have ever seen, and fades from a light pink on one side to white
+on the other. It is smoothed completely and coated with a clear substance
+so that it is not the least bit abrasive.~
+~~
+vnum: 36104
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: coral ring coral-ring
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lies on the ground.
+type: 9
+weight: 0.30
+cost: 200
+timer: 0
+level: 13
+effects: 0 0 0
+wear: 3
+applies:
+3 1
+24 -5
+~
+extradesc: coral ring coral-ring
+The coral ring seems totally flawless. It is made of the finest coral
+you have ever seen, and fades from a light pink on one side to white
+on the other. It is smoothed completely and coated with a clear substance
+so that it is not the least bit abrasive.~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 20303
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace tooth crocodile
+shortdesc: a crocodile-tooth necklace
+desc: A large crocodile-tooth necklace lies discarded here.
+type: 9
+weight: 1.20
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+applies:
+13 12
+~
+extradesc: necklace crocodile tooth
+This is a very interesting and intricate necklace.  It is made of an
+intricately braided green material and a has a large crocodile tooth at the
+very center.  It must have taken many hours to make this amazing necklace.    
+~
+~~
+vnum: 58103
+location: 5
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: kimono neatly-folded autumn-themed-kimono colored-leaves patterned
+shortdesc: an autumn-themed kimono
+desc: A kimono patterned with colored leaves is lying here, neatly folded.
+adesc:
+Nothing.
+~
+type: 11
+weight: 1.20
+cost: 10000
+timer: 100
+level: 25
+effects: 0 0 0
+wear: 9
+applies:
+3 4
+4 4
+5 3
+~
+extradesc: kimono neatly-folded autumn-themed-kimono colored-leaves patterned
+Made of a raw, tan-colored silk that is much heavier than normal silk, the
+kimono is patterned with leaves of red, yellow, orange, and brown.  The leaves
+are embroidered on with silk thread, making them shine in the light.  The body
+of the kimono must have been made of raw silk so that the textures, both
+tactile and visual, would complement each other.  This robe is truly a work of
+art.    
+~
+~~
+vnum: -1
+location: 6
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cap leather
+shortdesc: &3a small leather cap&0
+desc: &3A small leather cap lies on the ground here.&0
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+~~
+vnum: 5532
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: leggings eldoria-reward 3rd-eldorian-guard-leggings
+shortdesc: leggings of the 3rd Eldorian Guard
+desc: Some leggings lie discarded nearby.
+type: 9
+weight: 4.90
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 33
+applies:
+3 2
+~
+~~
+vnum: 55395
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: boots acolyte
+shortdesc: acolyte boots
+desc: A set of sligtly magical thin metal boots lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 65
+applies:
+14 5
+13 4
+~
+extradesc: acolyte boots
+Newly forged, these magical metal boots were made to reflect your acceptance to
+your god.  Treated well, they will carry you through your beginning trials and
+on to greater wisdom.
+~
+~~
+vnum: -1
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: motuwy 0
+name: gauntlets plated-iron-gauntlets thick pair
+shortdesc: plated iron gauntlets
+desc: A pair of thick, iron-plated gauntlets sits on the ground.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 129
+applies:
+13 15
+~
+extradesc: gauntlets plated-iron-gauntlets thick pair
+This is a pair of very heavy gauntlets.  Stiff leather underlies thick, riveted
+iron plates.  They feel very substantial and protective, though not suited for
+delicate work.    
+~
+~~
+vnum: -1
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz 0
+name: sleeves leather
+shortdesc: &3a pair of leather sleeves&0
+desc: &3A pair of leather sleeves lies on the ground here.&0
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+~~
+vnum: 1615
+location: 12
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: labcoat coat white
+shortdesc: a white labcoat
+desc: A white labcoat lies unused.
+adesc:
+<not set>
+~
+type: 9
+weight: 3.00
+cost: 100
+timer: 10
+level: 3
+effects: 0 0 0
+wear: 1033
+applies:
+3 2
+~
+extradesc: labcoat white coat
+Made of soft cotton, this coat is stained from various unknown chemicals.
+Two buttons on the left side appear freshly sewn on, as if unused.
+~
+~~
+vnum: 12008
+location: 13
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo 0
+name: baldric emblazoned belt
+shortdesc: an emblazoned baldric
+desc: A large, ornamented belt lies coiled here.
+type: 9
+weight: 1.25
+cost: 225
+timer: 0
+level: 6
+effects: 0 0 0
+wear: 2049
+applies:
+19 1
+~
+extradesc: belt emblazoned baldric
+This large, wide belt goes around the waist, up over the shoulders,      
+to support a sword's sheath. A lion rampant adorns the front of
+it, where it goes across the stomach. The baldric seems very
+old; its owner hasn't taken good care of it -- the leather is
+cracked in places.
+~
+~~
+vnum: 55396
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: bracer acolyte
+shortdesc: an acolyte bracer
+desc: A slightly magical thin metal bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 4097
+applies:
+13 3
+6 1
+~
+extradesc: acolyte bracer
+Newly forged, this magical metal bracer was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.
+~
+~~
+vnum: 59022
+location: 15
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agk 0
+name: bracelet small stone gold beads consecrated spirit bracelet-consecrated-spirit
+shortdesc: the bracelet of the consecrated spirit
+desc: A small bracelet made of stone and gold beads is lying on the ground.
+type: 11
+weight: 0.30
+cost: 1300
+timer: 0
+level: 23
+effects: 0 0 0
+wear: 20481
+applies:
+24 -1
+13 4
+~
+extradesc: bracelet consecrated spirit
+   The bracelet is formed from small beads of gold and grayish colored stones.
+It is very old and shows the marks from years of use.  The stone beads are
+cracked and worn down on the edges and a few of them have chipped apart.  The
+gold beads are starting to tarnish and fade, almost matching the dull luster of
+the stone, from prolonged contact with the sweat from the skin.    
+~
+~~
+vnum: 32409
+location: 16
+values:
+0
+2
+3
+7
+0
+0
+0
+~
+flags: mo 0
+name: mace silver
+shortdesc: a silver mace
+desc: A mace with a silver head lies here.
+type: 5
+weight: 6.00
+cost: 2000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+19 1
+~
+extradesc: mace silver
+The ball of this mace is crafted from silver, and covered with dull knobs,
+the kind prefered by clerics. Its shaft is made from a heavy wood, which is
+wrapped in leather to provide a better grip.
+~
+~~
+vnum: 58601
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ap 0
+name: spyglass cylindrical object
+shortdesc: a spyglass
+desc: A cylindrical object rolls out of reach.
+type: 8
+weight: 0.75
+cost: 2000
+timer: 0
+level: 10
+effects: x 0 0
+wear: 16385
+applies:
+2 5
+~
+extradesc: spyglass cylindrical object
+This object is made up of many cylinders in progressive sizes
+that collapse to make a little object the size of a drinking cup,
+and expands to form a long, narrowing tube with glass at either
+end. When you look through it, you can see things close up, or
+so the legends go.
+~
+~~
+vnum: 10307
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: oprstwx 0
+name: glasses silver-trimmed-glasses pair abandoned
+shortdesc: a pair of glasses
+desc: A pair of silver-trimmed glasses has been abandoned here.
+type: 11
+weight: 0.10
+cost: 500
+timer: 5
+level: 40
+effects: 0 0 0
+wear: 65537
+applies:
+3 5
+28 80
+~
+extradesc: glasses silver-trimmed-glasses pair abandoned
+These finely ground lenses must be gnomish work, for they seem to be flawless.
+The rims are a thin silver and the nosepiece seems quite comfortable.  They
+would surely be a great help to someone who has no near-vision that wants to
+read a book or crochet or do anything else that requires them to see things
+close up.    
+~
+~~
+vnum: 1805
+location: 22
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tattoo claw panther
+shortdesc: a panther claw tattoo
+desc: A tattoo glows in the air here.
+type: 11
+weight: 0.01
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 131073
+applies:
+6 -3
+2 1
+14 10
+~
+extradesc: panther claw tattoo
+   This large tattoo covers half the face, and is shaped like a cat's striking
+paw, claws extended as if about to rend across the cheek from eyebrow to
+jawline.  It's an impressive piece.    
+~
+~~
+vnum: 8611
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 8611
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 5516
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: holy symbol eldoria-reward small white 3rd-eldorian-guard-symbol
+shortdesc: a holy symbol of the 3rd Eldorian Guard
+desc: A small white symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+applies:
+13 30
+14 25
+26 10
+~
+extradesc: holy symbol eldoria-trophy small white 3rd-eldorian-guard-symbol
+A mild feeling of benevolence radiates from this white medal.
+~
+~~
+vnum: 20300
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 1009
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: raft heavy-wooden-raft
+shortdesc: &0&3a heavy wooden raft&0
+desc: &0&3A heavy wooden raft sits here.&0
+type: 22
+weight: 40.00
+cost: 120
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: heavy-wooden-raft
+A simple raft, consisting of several wooden logs bound together with thick
+rope. It seems large enough to support one individual.
+~
+~~
+vnum: 17804
+location: 127
+values:
+30
+5
+5
+15
+0
+0
+0
+~
+flags: bgmopr 0
+name: staff shaman
+shortdesc: shaman's staff
+desc: A shaman's staff has been left unattended.
+type: 4
+weight: 4.00
+cost: 320
+timer: 0
+level: 14
+effects: 0 0 0
+wear: 16385
+extradesc: staff shaman
+   The shaman's staff is heavily decorated with many runes of mystical
+origin. You get a feeling of well-being when you touch the item.
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3115
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 5536
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: faceguard eldoria-reward small face guard 3rd-eldorian-guard-faceguard
+shortdesc: a faceguard of the 3rd Eldorian Guard
+desc: A small faceguard lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 131073
+applies:
+18 1
+~
+~~
+vnum: 2005
+location: -1
+values:
+1
+1
+5
+5
+0
+0
+0
+~
+flags: 0 0
+name: staff walking walking-staff
+shortdesc: a walking-staff
+desc: A staff rests here.
+type: 5
+weight: 2.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+applies:
+14 30
+~
+extradesc: staff walking
+This plain wooden staff is imbued with a peaceful feeling, making
+it useless in combat. But it does help one walk rather nicely.
+~
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 8034
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1007
+location: 127
+values:
+1024
+1024
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: water barrel heavy-wooden-barrel
+shortdesc: a wooden barrel
+desc: A heavy wooden barrel lies here.
+type: 17
+weight: 78.76
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: water heavy-wooden-barrel
+&0A heavy barrel crafted from hardened wood. It has been waterproofed to hold
+liquid effectivly. Its bulky size can cause problems, but it also allows the
+barrel to hold a greater amount of supplies.
+~
+~~

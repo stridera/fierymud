@@ -1,0 +1,188 @@
+name: Samun
+password: SaEk5kykQL
+currenttitle: Todesengel
+prompt: %n%-&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b>%_<&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 7
+race: 9
+level: 99
+home: 3003
+lifeforce: 0
+composition: 0
+id: 8731
+birthtime: 1007041517
+timeplayed: 7957251
+lastlogintime: 1712273329
+host: 076.188.036.136
+height: 74
+weight: 151
+base_height: 74
+base_weight: 151
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: glxy
+effectflags: k 0 0
+prefflags: hnoxBC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 6
+thirst: 16
+lastlevel: 8
+hitpoints: 767/767
+mana: 100/100
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 96
+wisdom: 96
+dexterity: 76
+constitution: 68
+charisma: 66
+cash: 80 105 340 366
+bank: 374 0 0 0
+experience: 105805999
+title: Todesengel
+quit_reason: 1
+saveroom: 3054
+skills:
+6 1000
+11 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+27 1000
+28 1000
+30 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+51 1000
+63 1000
+70 1000
+71 1000
+73 1000
+74 1000
+88 1000
+89 1000
+90 1000
+91 1000
+99 1000
+118 1000
+144 1000
+145 1000
+146 1000
+147 1000
+148 1000
+149 1000
+150 1000
+151 1000
+152 1000
+153 1000
+154 1000
+155 1000
+156 1000
+206 1000
+207 1000
+215 1000
+241 1000
+243 1000
+245 1000
+247 1000
+263 1000
+415 1000
+416 1000
+417 1000
+421 1000
+423 1000
+424 1000
+429 1000
+438 1000
+443 1000
+444 1000
+451 1000
+452 1000
+453 1000
+454 1000
+455 1000
+456 1000
+457 1000
+458 1000
+459 1000
+460 1000
+462 1000
+463 1000
+464 50
+465 50
+466 1000
+0 0
+trophy:
+1 16903 1.000000
+1 16909 1.000000
+1 3061 1.000000
+1 11704 1.000000
+1 16901 2.000000
+1 8330 1.000000
+1 8331 1.000000
+1 8329 2.000000
+1 16110 2.000000
+1 16111 1.000000
+1 5404 1.000000
+1 5120 15.000000
+1 16906 6.000000
+1 16900 25.000000
+1 16905 4.000000
+1 16902 5.000000
+1 8800 1.000000
+1 16106 0.500000
+1 16107 3.000000
+1 16307 2.000000
+1 8015 9.000000
+0 0 0
+tells:
+$
+gossips:
+$
+aliases:
+dm cast 'dispel magic' $1
+mb cast 'moonbeam'
+bb cast 'barks' $1
+h2o cast 'create spring'
+q cast 'earthquake'
+hh cast 'harm' $1
+ok rest;pray;meditate
+sun cast 'sunray' $1
+rg cast 'word of recall'
+df drink fountain
+g get all.coins from all.corpse
+` get all from all.corpse
+lic look in corpse
+lib look in bag
+sp help spell_druid
+dd cast 'creeping doom'
+h cast 'heal' $1
+well cast 'moonwell' $1
+mm meditate
+m pray
+f flee
+cloak cast 'cloak'
+food cast 'create food'
+vig cast 'vig crit'
+harm cast 'harm' $1
+id get scroll bag;rec scroll $1
+k kill $1
+ds drink skin
+who who -w
+ew enter well
+ill cast 'illum' $1
+0

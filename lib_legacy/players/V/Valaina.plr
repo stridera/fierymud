@@ -1,0 +1,194 @@
+name: Valaina
+password: Va8RaIu.lH
+currenttitle: Flogger of Dark Ones
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 6
+race: 9
+level: 66
+home: 30050
+lifeforce: 0
+composition: 0
+id: 17940
+birthtime: 1310589642
+timeplayed: 1915933
+lastlogintime: 1375711061
+host: 076.025.019.240
+height: 70
+weight: 119
+base_height: 70
+base_weight: 119
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: kx 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 102
+loadroom: 3054
+lastlevel: 0
+hitpoints: 707/707
+mana: 435/435
+move: 115/124
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 54
+wisdom: 59
+dexterity: 84
+constitution: 92
+charisma: 67
+cash: 30 632 2867 2974
+experience: 41360899
+quit_reason: 1
+saveroom: 3054
+skills:
+8 1000
+15 1000
+16 1000
+18 1000
+30 1000
+32 1000
+37 1000
+44 1000
+88 1000
+144 1000
+214 1000
+402 52
+404 78
+407 562
+410 638
+411 700
+412 566
+415 590
+416 484
+417 76
+420 700
+421 700
+422 700
+423 700
+424 700
+430 76
+438 150
+443 50
+444 54
+447 164
+451 686
+452 586
+454 655
+456 700
+457 690
+458 198
+459 51
+462 175
+463 185
+464 211
+465 700
+466 50
+467 50
+468 476
+0 0
+trophy:
+1 47008 1.000000
+1 47013 1.000000
+1 47017 0.333333
+1 47001 0.333333
+1 47003 4.000000
+1 47002 10.666665
+1 5408 1.000000
+1 5104 1.000000
+1 5211 0.666667
+1 5210 0.666667
+1 5200 1.166667
+1 5201 1.666667
+1 5121 0.666667
+1 5122 0.333333
+1 5120 1.000000
+1 5103 5.000000
+1 5112 1.166667
+1 5101 1.583333
+1 5102 1.000000
+1 16103 1.000000
+1 16107 1.000000
+0 0 0
+mem:
+32 1 2
+16 1 2
+16 1 2
+16 1 2
+16 1 2
+16 1 2
+16 1 2
+32 1 2
+32 1 2
+8 1 2
+8 1 2
+32 1 2
+8 1 2
+8 1 2
+16 1 2
+88 1 2
+88 1 2
+88 1 2
+88 1 2
+144 1 2
+88 1 2
+88 1 2
+37 1 2
+37 1 2
+37 1 2
+32 1 2
+37 1 2
+37 1 2
+37 1 2
+15 1 2
+15 1 2
+15 1 2
+15 1 2
+15 1 2
+15 1 2
+8 1 2
+32 1 2
+144 1 2
+30 1 5
+30 1 5
+32 1 2
+30 1 2
+30 1 2
+30 1 2
+30 1 5
+88 1 2
+44 1 2
+44 1 2
+44 1 2
+44 1 2
+44 1 2
+44 1 2
+214 1 9
+214 1 9
+0 0 0
+aliases:
+zz rescue Justitia
+\\ cast 'natures guidance'
+\ cast barkskin
+vv cast 'lightning bolt'
+cc cast 'shocking grasp'
+xx cast 'chill touch'
+55 say Heal, lvl 1.
+44 say Heal, lvl 2.
+99 say Protect me father
+00 say 'Bless for father for I have sinned.
+33 say Heal, lvl 3.
+22 say I've been Blinded
+11 say I've been poisoned
+3 cast 'cure critic' self
+2 cast 'cure serious' self
+gac get all all.corpse
+who who -w
+sit rest
+1 say assist
+aa rescue Serc
+0

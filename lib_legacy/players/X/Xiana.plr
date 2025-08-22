@@ -1,0 +1,137 @@
+name: Xiana
+password: Xis1bwXbky
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 0
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19082
+birthtime: 1465928830
+timeplayed: 48230
+lastlogintime: 1577681526
+host: 184.170.168.244
+height: 62
+weight: 98
+base_height: 62
+base_weight: 98
+base_size: 2
+natural_size: 2
+alignment: 41
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 20
+lastlevel: 0
+hitpoints: 63/63
+mana: 1/0
+move: 94/100
+damroll: 3
+hitroll: 3
+strength: 83
+intelligence: 98
+wisdom: 97
+dexterity: 62
+constitution: 63
+charisma: 60
+cash: 0 248 904 524
+experience: 351163
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+39 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 150
+438 54
+443 50
+444 50
+447 68
+451 73
+452 150
+453 61
+454 56
+459 50
+460 57
+462 50
+464 53
+0 0
+trophy:
+1 18007 0.333333
+1 16100 0.666667
+1 16111 0.333333
+1 16102 0.333333
+1 16106 0.333333
+1 16107 3.333333
+1 2002 0.333333
+1 2001 0.333333
+1 2003 0.666667
+1 2004 1.000000
+1 17200 0.333333
+1 17201 0.333333
+1 17209 2.000000
+1 17208 1.000000
+1 17204 2.333333
+1 41012 0.666666
+1 41006 1.666666
+1 41021 0.666666
+1 41015 0.666666
+1 41014 0.666666
+1 41002 1.666666
+0 0 0
+tells:
+1573940249 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1573940487 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1574477282 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1574477473 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1577129329 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1577129330 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1577155711 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1577156642 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1577216254 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1577677886 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1577678530 Luxx gossips, 'Is the berserker class abandoned i'm assuming?'
+1577678542 Someone gossips, 'no, not really'
+1577678624 Luxx gossips, 'Ive only seen that 1 person with the class. Wasn't sure if it still needed work.'
+1577678633 Someone gossips, 'it does still need work'
+1577678655 Luxx gossips, 'Kind of on the broken side, or on the OP side?'
+1577678665 Luxx gossips, 'or just general tweaking needed everywhere?'
+1577678681 Someone gossips, 'in the still in dev side'
+1577678722 Someone gossips, 'ok, off to bed, have to get up early tomorrow'
+1577678724 Someone gossips, 'later'
+1577678726 Luxx gossips, 'G'night'
+$
+mem:
+32 1 5
+32 1 5
+32 1 5
+32 1 5
+32 1 5
+32 1 5
+32 1 5
+8 1 9
+8 1 9
+0 0 0
+aliases:
+as gsay assist
+heal gsay heal
+armor gsay armor
+al assist luxx
+ct cast 'chill touch' 
+0

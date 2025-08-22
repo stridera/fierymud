@@ -1,0 +1,175 @@
+name: Gyy
+password: GyHUGBXdIZ
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 49
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18770
+birthtime: 1412476416
+timeplayed: 641922
+lastlogintime: 1712076887
+host: 143.109.129.009
+height: 72
+weight: 158
+base_height: 72
+base_weight: 158
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+loadroom: 3500
+lastlevel: 0
+hitpoints: 201/201
+mana: 240/240
+move: 229/229
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 100
+wisdom: 94
+dexterity: 72
+constitution: 68
+charisma: 62
+cash: 673 1115 6 3
+bank: 20 1000 3000 63
+experience: 20046374
+quit_reason: 3
+saveroom: 0
+skills:
+2 1000
+5 1000
+8 1000
+10 1000
+19 1000
+20 1000
+26 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+66 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+106 1000
+107 1000
+186 1000
+228 1000
+246 1000
+415 468
+416 540
+421 509
+423 540
+424 538
+438 135
+443 105
+444 433
+447 258
+451 280
+452 531
+453 533
+454 533
+456 522
+458 50
+459 50
+460 210
+462 262
+464 532
+0 0
+trophy:
+1 11703 0.333333
+1 2808 0.333333
+1 2806 0.333333
+1 11702 0.666667
+1 3507 0.333333
+1 3508 0.333333
+1 3503 0.333333
+1 3501 0.333333
+1 3500 1.333333
+1 50215 0.666667
+1 50217 0.666667
+1 50213 0.666667
+1 50200 0.666667
+1 50204 1.000000
+1 50201 0.666667
+1 50202 1.333333
+1 50211 0.666667
+1 50207 0.666667
+1 50206 0.666667
+1 50203 0.666667
+1 50205 3.333333
+0 0 0
+tells:
+1694567602 @WAriana Shelti@W tells you, 'What! I don't trade in those goods.@W'@0
+1694567663 @WTraldi Trumward@W tells you, 'I don't trade in such items.@W'@0
+1694606801 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694606819 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694620776 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694620777 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694620778 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694997283 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694997283 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694997284 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1695006913 Snil gossips, 'gratz!'
+1695006918 Porath gossips, 'grats'
+1695006966 Ryy gossips, 'gratz'
+1695006969 Porath gossips, 'thanks!'
+1695006994 Porath gossips, 'anyone have crushed diamond?'
+1695007191 Snil gossips, 'Daedela I am doing the quest in Nukreth Spire and I saw the text to kill the gnoll spiritbreaker and search again but nothing is comming up after killing it and searching again'
+1695007225 Ryy gossips, 'ahhh... didn't see the Water Elemental Lord enter the room... I was wondering why the Blue Fog capt killed me so quickly.... now it makes sense :)'
+1695007239 Snil gossips, 'yeah those water elemental lords do work'
+1695009341 Porath gossips, 'hey Dae, i think hunt is stuck again'
+1695009922 Porath gossips, 'oh nvm, figured it out'
+1695012256 Discord gossips, 'Daedela: Congratulations!'
+$
+aliases:
+cbf cast bigbys $1
+clow cast 'locate object' 'wolf-tooth'
+train dismount ; mount 2.mare ; st
+cfb cast fireball $1
+md mount mare
+coc cast 'cone of cold' $1
+cdi cast 'detect inv'
+cmm cast 'magic missile' $1
+ar ass ryy ; ass wyy
+gac get all.coins corpse ; get all.gem corpse ; examine corpse
+df drink fountain
+ec examine corpse
+cbh cast 'burning hands' $1
+cct cast chill $1
+amap ask mage armor progress
+rmm rest ; med ; mem
+csg cast 'shocking grasp' $1
+gaca get all corpse
+fu fol ryy ; consent ryy
+tmc cast 'minor creation' lantern ; rest ; med ; mem ; st
+clb cast 'lightning bolt' $1
+cfs cast farsee $1
+0

@@ -1,0 +1,1738 @@
+1
+vnum: 17308
+location: 0
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: gjl
+name: flame black black-flame pillar fire Questobject
+shortdesc: a black flame
+desc: A small pillar of black fire flickers here.
+type: 1
+weight: 0.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+applies:
+4 -1
+19 2
+~
+extradesc: black flame black-flame
+  The fire seems at the same time both large, yet small, hot yet cold.
+Strangely, you are able to pick it up in your hand. It seems to light up
+the area, but somehow, seems to shed no light at all.
+~
+triggers:
+5207
+~
+variables:
+retriever Swez
+~
+~~
+vnum: 12538
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 11
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    
+~
+~~
+vnum: 16103
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 58429
+location: 3
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant alicorn-pendant alicorn horn tip spiral chain
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 9
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant alicorn horn tip spiral chain
+This pendant is made of the very tip of a spiral horn. It's been drilled
+so a primitive chain can support it. The horn glows with power.
+~
+~~
+vnum: 58429
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant alicorn-pendant alicorn horn tip spiral chain
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 9
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant alicorn horn tip spiral chain
+This pendant is made of the very tip of a spiral horn. It's been drilled
+so a primitive chain can support it. The horn glows with power.
+~
+~~
+vnum: 55463
+location: 5
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnoqrstuvwxyz
+name: neophyte tunic
+shortdesc: &9&bTunic of the Neophyte&0
+desc: Waiting for its owner is a tunic of a monk's order.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 9
+applies:
+2 3
+18 3
+~
+extradesc: tunic neophyte
+This cloth tunic is enchanted but unadorned and simply created, reflecting the
+simple life of a monastic order.  It bears a seal indicated the owner's name
+and order.
+~
+~~
+vnum: 514
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: mohawk green bright bright-green-mohawk
+shortdesc: a bright green mohawk
+desc: The scalp of a Gaar'lix demon lies here.
+type: 9
+weight: 1.00
+cost: 10000
+timer: 0
+level: 75
+effects: dfu 0 0
+wear: 17
+applies:
+18 3
+19 3
+28 400
+~
+~~
+vnum: 8609
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pants coyote-skin coyote
+shortdesc: coyote skin pants
+desc: A pair of coyote skin pants is here looking stylish.
+type: 9
+weight: 7.30
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+applies:
+5 1
+~
+extradesc: coyote skin pants
+Stylish and functional too. These pants will insulate the heat as 
+well as the cold. Now you have more of a reason to live!
+~
+~~
+vnum: 23799
+location: 8
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gqAD
+name: black leather drow intricate breathtaking boots
+shortdesc: black leather drow boots
+desc: Breathtakingly intricate black leather boots rest here.
+type: 11
+weight: 1.75
+cost: 0
+timer: 0
+level: 65
+effects: y 0 0
+wear: 65
+applies:
+18 2
+19 2
+14 40
+17 2
+~
+extradesc: black leather drow boots
+This grand pair of customized drow boots appears to have just been completed
+after many hours and days of labor.  The flawless leather straps glisten with
+every bit of light that crosses its surface.  The extra cushioning and soft
+padding along the sole ensure that these boots are not only comfortable, but
+very protective.    
+~
+~~
+vnum: 12503
+location: 9
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: jmnrstuvyz
+name: gloves bladed blades blade long sharp
+shortdesc: a pair of bladed gloves
+desc: A pair of gloves with long, sharp blades lies here. 
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 129
+applies:
+19 2
+~
+extradesc: gloves blades bladed
+The gloves each feature 3 long blades originating from the top of the hand.  
+When wielding a weapon or making a fist, the long blades extend past the hand,
+making it more difficult to block a blow without taking damage.  The blades
+seem to be connected to a large metal plate sandwiched between two layers of
+leather.  A wide strap allows one to tighten the whole apparatus to the hand for
+stability.    
+~
+~~
+vnum: 55539
+location: 10
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnoqrstuvwxyz
+name: tough thick strips leather armwraps master
+shortdesc: &3Armwraps of the Master&0
+desc: Tough thick strips of leather coil around the arm of a monastic statue here.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+applies:
+1 2
+4 3
+~
+extradesc: tough thick strips leather armwraps master
+Armwraps like these would make for poor armor in any other situation, but in
+the hands of a truly dedicated monk, they function as a focus for internal
+strength and power.  The natural abilities of one such person come to the
+forefront, increasing their defensive and offensive capabilities.
+~
+~~
+vnum: 43022
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-insanity something insanity
+shortdesc: the Cloak of Insanity
+desc: Something rests on the ground here, slowly corrupting reality.
+type: 12
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+applies:
+4 -3
+19 3
+~
+extradesc: cloak insanity
+Looking at the cloak too long gives you a headache.
+~
+~~
+vnum: 58434
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 58434
+location: 15
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 553
+location: 20
+values:
+0
+65
+2
+3
+0
+0
+0
+~
+flags: afgmnoqrstuvwxyzD
+name: Naugeir vengence battle-axe axe
+shortdesc: Naugeir's vengence
+desc: A glowing, ornate battle axe floats here, spinning slowly.
+type: 5
+weight: 14.00
+cost: 0
+timer: 0
+level: 0
+effects: y 0 0
+wear: 32769
+applies:
+13 125
+~
+~~
+vnum: 51006
+location: 21
+values:
+0
+1800
+1800
+0
+0
+0
+0
+~
+flags: ag
+name: eyes balls ice-eyes
+shortdesc: a pair of Ice Eyes
+desc: Two balls of ice lie here, casting a magical glow of light all around.
+type: 1
+weight: 1.03
+cost: 500
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 65537
+applies:
+18 2
+14 20
+28 52
+~
+extradesc: ice eyes magical pair two
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.
+~
+~~
+vnum: 59023
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: mask thick dark smoke enmity mask-enmity 
+shortdesc: the mask of enmity
+desc: A thick, dark mask is lying on the ground, with a small cloud of smoke surrounding it.
+type: 9
+weight: 4.00
+cost: 2500
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 131073
+applies:
+1 1
+18 1
+~
+extradesc: mask thick dark smoke enmity mask-enmity
+   The mask is not built from a solid material, but formed from a thick, dark
+cloud of smoke.  The outline of the mask, as well as the eye holes can be seen
+and even felt, giving it the illusion of being solid.  The smoke that swirls
+around it is vividly dark and gloomy, creating a supernatural look.  There are
+no apparent straps used to leash it to your face.  It seems that the smoke is
+wrapping around your hands as if to hold on, so it might do the same for your
+face.    
+~
+triggers:
+59001
+~
+~~
+vnum: 420
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aeA
+name: badge herlequin
+shortdesc: a badge of the herlequin
+desc: A red and black badge pulsates in the dust.
+type: 11
+weight: 0.25
+cost: 0
+timer: 0
+level: 1
+effects: f 0 0
+wear: 540673
+applies:
+19 4
+18 3
+26 10
+13 150
+6 -4
+~
+extradesc: badge herlequin
+Pulsing with what appears to be a heart beat, this badge
+is the reminence of the demons known as the herlequin.
+The power it emites adds to the person wearing it,
+strengthening them with it's unholy power.
+~
+~~
+vnum: 1803
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: canoe bark
+shortdesc: a bark canoe
+desc: A bark canoe has been abandoned here.
+type: 22
+weight: 20.00
+cost: 1
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+extradesc: canoe
+   &0It looks very heavy, but quite sturdy.  &0
+~
+~~
+vnum: 55542
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnoqrstuvwxyz
+name: plain simple monastic slippers master
+shortdesc: &3Slippers of the Master&0
+desc: Plain, simple monastic slippers rest near a cot.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+applies:
+1 2
+3 4
+~
+extradesc: plain simple monastic slippers master
+Slippers of this sort are given to monks who have proven themselves as more
+than adepts and have moved to the level of a true master.  Stamped with the
+symbol for the original wearer's order, they are otherwise unadorned.  Made of
+tan leather, this pair is worn and obviously well used.
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 55626
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem uncut uncut-aquamarine
+shortdesc: an uncut aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55659
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem perfect perfect-amethyst
+shortdesc: a perfect amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55680
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem flawed flawed-citrine
+shortdesc: a flawed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 6000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55688
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrines gem handful handful-citrines citrine
+shortdesc: a handful of citrines
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 7000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 43021
+location: 127
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: gnoprt
+name: orb orb-catastrophe gleaming catastrophe
+shortdesc: the Orb of Catastrophe
+desc: A gleaming orb floats a few feet off of the ground here.
+type: 1
+weight: 5.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+1 3
+3 2
+~
+extradesc: gleaming orb catastrophe
+The orb slowly spins on a random axis, even when held.  Looking deep within its
+depths, you can almost swear that you see its fluid core swirling about a
+solitary figure.    
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.69
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 12503
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: jmnrstuvyz
+name: gloves bladed blades blade long sharp
+shortdesc: a pair of bladed gloves
+desc: A pair of gloves with long, sharp blades lies here. 
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 129
+applies:
+19 2
+~
+extradesc: gloves blades bladed
+The gloves each feature 3 long blades originating from the top of the hand.  
+When wielding a weapon or making a fist, the long blades extend past the hand,
+making it more difficult to block a blow without taking damage.  The blades
+seem to be connected to a large metal plate sandwiched between two layers of
+leather.  A wide strap allows one to tighten the whole apparatus to the hand for
+stability.    
+~
+~~
+vnum: 55544
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmnoqrstuvwxyz
+name: pliable tough strips leather monastic scriptures fistwraps master
+shortdesc: &3Fistwraps of the Master&0
+desc: Dropped here are pliable but tough strips of leather with monastic scriptures on them.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+1 4
+6 4
+~
+extradesc: pliable tough strips leather monastic scriptures fistwraps master
+The most powerful weapon a monk master can ever use is his fists, and these
+wrappings prove that.  Meditation chants and order scriptures are written all
+over these strips which can be laced around the hands, protecting them like
+gloves and focusing all of a monk's energy into their strikes.  Written on one
+strap is a dedication to the original bearer.
+~
+~~
+vnum: 55462
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmnoqrstuvwxyz
+name: neophyte sleeves
+shortdesc: &9&bSleeves of the Neophyte&0
+desc: Waiting for their owner is a pair of sleeves of a monk's order.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+applies:
+13 20
+~
+extradesc: sleeves neophyte
+These cloth sleeves are enchanted but unadorned and simply created, reflecting
+the simple life of a monastic order.  It bears a seal indicated the owner's
+name and order.
+~
+~~
+vnum: 3053
+location: 127
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll blue remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 50219
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: mnu
+name: stone sharpening-stone sharpening sharp small rectangular
+shortdesc: a sharpening stone
+desc: A small rectangular stone with a metal loop lies in the debris.
+type: 11
+weight: 0.10
+cost: 0
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1048577
+applies:
+18 2
+~
+extradesc: stone sharpening-stone sharpening sharp small rectangular
+This is a small, gray stone in a roughly rectangular shape. It has
+a metal loop that runs through a hole near one end. The stone is
+somewhat abrasive, and has light striations running nearly
+parallel to its length.
+~
+~~
+vnum: 55538
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnoqrstuvwxyz
+name: unadorned leather monastic headband circlet master
+shortdesc: &3Circlet of the Master&0
+desc: An unadorned leather monastic headband sits on a shelf.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+applies:
+3 2
+2 2
+~
+extradesc: unadorned leather monastic headband circlet master
+A simple strip of leather, long enough to be wrapped around the head twice and
+then tied, this headband could in the loosest terms be described as a circlet.
+It reminds the wearer of the principles of monastic life over the trappings of
+fashion and material wealth.
+~
+~~
+vnum: 482
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horns demon krisenna krisenna's
+shortdesc: Krisenna's horns
+desc: The horns of a demon lie here, a trophy of the slaying of the demon. 
+type: 9
+weight: 10.00
+cost: 12000
+timer: 0
+level: 50
+effects: y 0 0
+wear: 17
+applies:
+19 4
+18 2
+14 20
+~
+~~
+vnum: 503
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abemnoprstuvwxyzD
+name: knuckles bronze
+shortdesc: a pair of bronze knuckles
+desc: A pair of bronze knuckles is lying on the floor here just waiting to be worn.
+type: 11
+weight: 1.00
+cost: 5000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+applies:
+19 4
+18 4
+~
+extradesc: knuckles bronze
+These knuckles are made of pure bronze.  It fits right into your fist and is
+deadly when used on others.  There are small spikes on the knuckles that would
+seriously devistate someones body if hit hard enough.  These knuckles can only
+be used by those of the monk class for they know the art of martial arts.    
+~
+~~
+vnum: 503
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abemnoprstuvwxyzD
+name: knuckles bronze
+shortdesc: a pair of bronze knuckles
+desc: A pair of bronze knuckles is lying on the floor here just waiting to be worn.
+type: 11
+weight: 1.00
+cost: 5000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+applies:
+19 4
+18 4
+~
+extradesc: knuckles bronze
+These knuckles are made of pure bronze.  It fits right into your fist and is
+deadly when used on others.  There are small spikes on the knuckles that would
+seriously devistate someones body if hit hard enough.  These knuckles can only
+be used by those of the monk class for they know the art of martial arts.    
+~
+~~
+vnum: 4101
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: jlmnprstuvwyz
+name: badge mercenary-badge small-pin-muck
+shortdesc: a mercenary badge
+desc: A small pin lies here, covered in muck.
+type: 9
+weight: 0.10
+cost: 500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 524289
+applies:
+2 2
+~
+extradesc: badge mercenary-badge small-pin-muck
+This pin, made to be attached to a cloak or other armor as an identifying mark,
+shows a spear broken in half tipped in blood.  The spear is made of bronze and
+the blood is a kind of red enamel, attached to the backing which is slightly
+rusted steel.  It is the symbol of the Broken Spear mercenary brotherhood.
+~
+~~
+vnum: 5513
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy 3rd-black-legion-wand
+shortdesc: a wand of the 3rd Black Legion
+desc: A black wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+extradesc: wand eldoria-trophy 3rd-black-legion-wand
+A simple black wand, it probably belonged to a member of the 3rd Black Legion.
+~
+~~

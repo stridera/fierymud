@@ -1,0 +1,91 @@
+name: Nomki
+password: NooRPAcgIw
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 15
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18242
+birthtime: 1335565555
+timeplayed: 11738
+lastlogintime: 1335659217
+host: 068.048.032.139
+height: 71
+weight: 117
+base_height: 71
+base_weight: 117
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 6
+lastlevel: 0
+hitpoints: 194/194
+mana: 22/22
+move: 130/130
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 57
+wisdom: 59
+dexterity: 100
+constitution: 96
+charisma: 51
+cash: 0 0 813 0
+experience: 796950
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 90
+407 50
+415 50
+416 50
+421 62
+430 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 66
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 5204 0.500000
+1 5212 0.500000
+1 5202 0.500000
+1 5203 1.000000
+1 5120 0.500000
+1 5201 15.500000
+1 5200 16.000000
+1 5211 19.500000
+1 5210 19.500000
+1 18003 1.000000
+1 18005 4.000000
+1 18007 2.000000
+1 18002 1.000000
+1 18000 3.000000
+1 18001 3.000000
+1 3508 1.000000
+1 3509 1.000000
+1 3503 2.000000
+1 3502 4.000000
+1 3501 3.000000
+1 3500 1.000000
+0 0 0
+aliases:
+kk kick hedge
+kg kick gardener
+0

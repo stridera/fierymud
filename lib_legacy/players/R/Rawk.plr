@@ -1,0 +1,71 @@
+name: Rawk
+password: RaNqK3TqLj
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19195
+birthtime: 1503527029
+timeplayed: 17832
+lastlogintime: 1512593057
+host: 070.034.003.133
+height: 77
+weight: 244
+base_height: 77
+base_weight: 244
+base_size: 3
+natural_size: 3
+alignment: 58
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+badpasswords: 2
+lastlevel: 0
+hitpoints: 41/38
+mana: 1/0
+move: 150/150
+damroll: 5
+hitroll: 4
+strength: 85
+intelligence: 64
+wisdom: 80
+dexterity: 88
+constitution: 86
+charisma: 58
+experience: 32999
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+419 1000
+421 61
+427 1000
+438 50
+443 50
+444 50
+464 53
+465 50
+467 50
+0 0
+trophy:
+1 8021 1.000000
+1 8001 1.000000
+1 8015 1.000000
+1 8000 2.000000
+1 8002 1.000000
+1 8010 2.000000
+1 3062 1.000000
+1 3501 2.000000
+1 3500 1.000000
+1 3066 1.000000
+0 0 0

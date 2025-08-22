@@ -1,0 +1,36 @@
+Id  : 2
+Name: The Clandestine Degree&0
+Abbr: &4&8>>TCD<<&0&0
+Dues: 1
+Fee : 123
+ALvl: 75
+Cppr: 1500000
+Slvr: 200000
+Gold: 25000
+Plat: 0
+Priv: setdesc 13
+Priv: enroll 13
+Priv: expel 13
+Priv: promote 13
+Priv: demote 13
+Priv: setappfee 13
+Priv: withdraw 13
+Priv: setapplev 13
+Priv: setalt 13
+Priv: settitle 13
+Priv: setdues 13
+Rank: the Initiate of the Degree&0
+Rank: the Adept of Carnage&0
+Rank: the Adept of Repungence&0
+Rank: the Adept of Deception&0
+Rank: the Adept of Chaos&0
+Rank: New Rank
+Rank: New Rank
+Rank: New Rank
+Rank: the &6Main &8Bouncer&0&0
+Rank: the &1Predatory &4&8Enforcer&0&0
+Rank: the &5&8Mysterious &9Arbiter&0&0
+Rank: the &8&9Death&1dealer&0&0
+Rank: the &6Ascendant&0 of &8&9Dusk&0&0
+Mmbr: Karde 13
+Mmbr: Gung 9

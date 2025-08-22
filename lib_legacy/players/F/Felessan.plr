@@ -1,0 +1,197 @@
+name: Felessan
+password: Bet5dVHORa
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 15
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19748
+birthtime: 1604817340
+timeplayed: 1143428
+lastlogintime: 1737962173
+host: 052.119.120.201
+height: 65
+weight: 163
+base_height: 65
+base_weight: 163
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxyz
+effectflags: c 0 0
+prefflags: bhnoxCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 772/772
+mana: 980/980
+move: 228/228
+damroll: 3
+hitroll: 3
+strength: 71
+intelligence: 91
+wisdom: 100
+dexterity: 78
+constitution: 75
+charisma: 84
+cash: 6827 12200 47037 9101
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+28 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+47 100
+48 100
+51 1000
+53 1000
+54 1000
+70 1000
+74 1000
+81 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+97 1000
+99 1000
+115 1000
+116 1000
+117 1000
+118 1000
+119 1000
+120 1000
+122 1000
+123 1000
+124 1000
+126 1000
+127 100
+128 1000
+129 1000
+130 100
+142 1000
+206 1000
+207 1000
+208 1000
+209 1000
+210 1000
+241 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+451 1000
+452 1000
+455 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 830
+463 1000
+466 1000
+0 0
+trophy:
+1 4009 0.400000
+1 4010 0.200000
+1 4013 0.200000
+1 4007 0.600000
+1 4015 0.200000
+1 4008 0.200000
+1 4004 0.200000
+1 53417 0.200000
+1 43003 1.200000
+1 43017 0.200000
+1 43016 0.200000
+1 43013 0.600000
+1 43002 1.200000
+1 43010 0.200000
+1 43011 0.200000
+1 43009 0.200000
+1 43008 0.200000
+1 43007 0.200000
+1 43006 0.200000
+1 43019 2.000000
+1 8509 0.600000
+0 0 0
+tells:
+1624509682 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1624603747 @WShazz@W tells you, 'Take good care of that.@W'@0
+1624604618 @WKilaxi the Trickster@W tells you, 'This supposed to be some kind of joke?@W'@0
+1624604620 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1624608637 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1624609191 @WShazz@W tells you, 'Take good care of that.@W'@0
+1624609665 @WShazz@W tells you, 'Take good care of that.@W'@0
+1658983194 @WLord Dargo@W tells you, 'To show my gratitude, take this.@W'@0
+1706857668 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1706865297 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1670618485 Fril gossips, 'wait'
+1670618493 Fril gossips, 'the saintly bracer'
+1670618498 Daedela gossips, '... you have one?'
+1706854979 Karoth gossips, 'heya all'
+1706855047 Phillameia gossips, 'Hello!'
+1706855195 Karoth gossips, 'not bad, yourself?'
+1706856067 Karoth gossips, 'just waking up here, thinking of things I want to accomplish and realizing I have too much work to do it :('
+1706859891 A kobold scout shouts, 'Help meeeeee!!'
+1706859895 A gnoll spiritbreaker shouts, 'Kill the slave!'
+1706859899 A kobold scout shouts, 'Nooo!  Save meee!!'
+$
+aliases:
+cgh c 'group heal'
+cga c 'group armor'
+chw c 'holy word'
+cdr c 'divine ray' $*
+ccl c 'cure light' $*
+ccs c 'cure serious' $*
+ccc c 'cure critic' $*
+ga get all
+gat get all 2.corpse
+gac get all corpse
+ch c 'heal' $*
+cde c 'dispel evil' $*
+cwr c 'word of recall'
+cdu c 'destroy undead' $*
+cpe c 'protection from evil' $*
+cfh c 'full heal' $*
+cs c 'silence' $*
+cle c 'lesser exorcism' $*
+cdm c 'dispel magic' $*
+chh c 'full harm' $*
+0

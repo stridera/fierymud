@@ -1,0 +1,133 @@
+name: Teicho
+password: TeEjC8def/
+currenttitle: Scopia
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 0
+level: 18
+home: 6015
+lifeforce: 0
+composition: 0
+id: 19129
+birthtime: 1486413069
+timeplayed: 89812
+lastlogintime: 1494623221
+host: 208.070.031.232
+height: 70
+weight: 103
+base_height: 70
+base_weight: 103
+base_size: 2
+natural_size: 2
+alignment: 384
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnosC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+loadroom: 16100
+hunger: 16
+lastlevel: 0
+hitpoints: 124/124
+mana: 31/31
+move: 104/104
+damroll: 3
+hitroll: 3
+strength: 79
+intelligence: 96
+wisdom: 90
+dexterity: 63
+constitution: 73
+charisma: 60
+cash: 0 130 731 789
+bank: 0 340 1150 1000
+experience: 1437554
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+31 1000
+32 1000
+37 1000
+39 1000
+99 1000
+100 1000
+101 1000
+186 1000
+415 57
+416 50
+423 230
+424 230
+438 136
+443 230
+444 165
+447 94
+451 77
+452 229
+453 230
+454 230
+456 65
+459 50
+460 83
+462 50
+464 230
+0 0
+trophy:
+1 2003 1.000000
+1 16107 1.000000
+1 36301 1.000000
+1 36304 1.000000
+1 36306 1.000000
+1 36300 5.000000
+1 36303 5.000000
+1 36305 3.000000
+1 8002 1.000000
+1 8010 1.000000
+1 8013 1.000000
+1 8016 1.000000
+1 8023 1.000000
+1 3506 3.000000
+1 3503 1.000000
+1 3501 5.000000
+1 3500 5.000000
+1 3508 5.000000
+1 3507 1.000000
+1 3509 2.000000
+1 3502 2.000000
+0 0 0
+mem:
+5 0 1
+5 1 1
+100 1 2
+32 1 1
+32 1 1
+32 1 1
+8 1 4
+8 1 4
+8 1 4
+32 1 1
+8 1 4
+8 1 4
+8 1 5
+37 1 7
+37 1 7
+0 0 0
+aliases:
+sg cast 'shocking grasp' $*
+ass assist Laisha
+ct cast 'chill touch' $*
+cc get coins corpse
+mc cast 'minor creation' $*
+gac get all corpse
+mm cast 'magic missile' $*
+bh cast 'burning hands' $*
+b bandage $*
+k kill $*
+mh mount horse
+0

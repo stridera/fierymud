@@ -1,0 +1,122 @@
+name: Linera
+password: LiNoeervaa
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 0
+level: 58
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20444
+birthtime: 1675622100
+timeplayed: 680634
+lastlogintime: 1730950566
+host: 070.249.169.036
+height: 69
+weight: 97
+base_height: 69
+base_weight: 97
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: agxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 100
+loadroom: 3054
+lastlevel: 0
+hitpoints: 749/749
+mana: 336/336
+move: 282/282
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 70
+wisdom: 76
+dexterity: 80
+constitution: 88
+charisma: 62
+cash: 268 3430 13301 7496
+bank: 200 1000 0 0
+experience: 29064372
+quit_reason: 1
+saveroom: 3054
+skills:
+402 230
+404 630
+407 630
+411 50
+412 630
+415 50
+416 50
+420 630
+421 630
+422 630
+430 594
+431 580
+434 630
+438 59
+441 580
+443 50
+444 589
+463 51
+464 50
+465 134
+466 593
+467 150
+468 630
+0 0
+trophy:
+1 58301 0.500000
+1 58304 0.500000
+1 58303 1.500000
+1 47017 0.500000
+1 47019 0.500000
+1 47014 0.500000
+1 47031 5.000000
+1 47032 5.000000
+1 47001 1.666666
+1 47003 41.666668
+1 47002 110.333344
+1 55216 7.000000
+1 23732 1.500000
+1 5451 2.333333
+1 5443 0.333333
+1 5403 1.000000
+1 5404 2.000000
+1 23710 2.000000
+1 23736 1.666667
+1 23734 3.999999
+1 23711 1.000000
+0 0 0
+tells:
+1696911819 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1696911823 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1696911825 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1696911831 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1696994051 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1697255292 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1697419277 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1697427645 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1697923496 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1697925119 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1701401467 Chinok gossips, 'awesome!'
+1701401844 Chinok gossips, 'what ya up to ? looking for anything ?'
+1701401925 Chinok gossips, 'cool, everyone so far seems to really like it, it gives a ton more flexibility'
+1701401938 Chinok gossips, 'but yell if you have any questions.'
+1701401962 Chinok gossips, 'you caught the up-cast bit yet ? :)'
+1701402026 Chinok gossips, 'so -- if you've used all your spells from circle 2, and you try to cast another circle 2 spell, it will cast from a spell-slot from circle 3'
+1701402069 Chinok gossips, 'so when you get ** -- all those circle 13 spell-slots that are nearly useless... can now be used'
+1701402106 Chinok gossips, 'we were considering making a toggle, to allow that, or not, but so far, everyone wants it.'
+1701402157 Chinok gossips, 'please share any feedback, if there's something we've missed, or something you don't like, let us know'
+1701402843 Chinok gossips, 'dying already!! :)'
+$
+aliases:
+g get all in corpse
+0

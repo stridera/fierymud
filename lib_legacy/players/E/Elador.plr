@@ -1,0 +1,92 @@
+name: Elador
+password: EluQarubtQ
+currenttitle: (veruk's swimmer)
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18161
+birthtime: 1331272707
+timeplayed: 11980
+lastlogintime: 1411630670
+host: 050.206.102.120
+height: 75
+weight: 253
+base_height: 75
+base_weight: 253
+base_size: 3
+natural_size: 3
+alignment: 4
+playerflags: gy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 1270
+badpasswords: 3
+lastlevel: 0
+hitpoints: 110/96
+mana: 1/0
+move: 168/168
+damroll: 5
+hitroll: 4
+strength: 92
+intelligence: 67
+wisdom: 62
+dexterity: 92
+constitution: 96
+charisma: 52
+cash: 0 1 21 22
+experience: 127050
+quit_reason: 1
+saveroom: 1270
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 67
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 73
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 1603 0.500000
+1 1602 3.000000
+1 1605 0.500000
+1 1601 8.000000
+1 18003 1.000000
+1 13601 0.500000
+1 3062 0.500000
+1 8013 7.000000
+1 8011 6.500000
+1 8020 6.000000
+1 8000 10.000000
+1 8014 11.000000
+1 8001 13.500000
+1 8023 5.500000
+1 8015 13.500000
+1 8016 12.500000
+1 8002 13.500000
+1 8012 11.500000
+1 8021 7.500000
+1 8022 6.000000
+1 8010 11.500000
+0 0 0
+tells:
+$
+gossips:
+$

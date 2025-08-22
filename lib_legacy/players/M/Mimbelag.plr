@@ -1,0 +1,148 @@
+name: Mimbelag
+password: MiWaZxlZG6
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 8
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19454
+birthtime: 1563169269
+timeplayed: 113334
+lastlogintime: 1689255782
+host: 076.184.241.147
+height: 64
+weight: 135
+base_height: 64
+base_weight: 135
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 111/111
+mana: 16/16
+move: 104/104
+damroll: 3
+hitroll: 3
+strength: 74
+intelligence: 91
+wisdom: 100
+dexterity: 69
+constitution: 73
+charisma: 63
+cash: 3 32 143 193
+experience: 574915
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+131 1000
+206 1000
+415 170
+416 50
+423 180
+424 176
+438 50
+443 50
+444 80
+451 65
+457 97
+458 105
+459 53
+460 56
+462 53
+463 111
+466 50
+0 0
+trophy:
+1 16303 1.500000
+1 16310 0.250000
+1 16300 0.583333
+1 16105 0.250000
+1 16110 5.000000
+1 16103 0.500000
+1 16106 0.750000
+1 16111 0.750000
+1 16107 4.583333
+1 2002 0.250000
+1 2001 0.250000
+1 2005 0.500000
+1 2003 1.583333
+1 8015 0.500000
+1 8022 0.250000
+1 8014 0.250000
+1 8010 0.250000
+1 8013 0.250000
+1 8023 0.250000
+1 8001 0.750000
+1 8000 0.250000
+0 0 0
+tells:
+1591904460 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1591904460 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1591904473 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1591910586 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1591974756 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1594093623 @WShazz@W tells you, 'Take good care of that.@W'@0
+1594093655 @WShazz@W tells you, 'Sorry, I don't stock that item.@W'@0
+1594094080 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1594097083 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1594097094 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1618535916 Shimono gossips, 'yay!'
+1618536031 Chinok gossips, 'hummm, I don't think so'
+1618536085 Chinok gossips, 'would have to be careful with pet names, but description is something I tihink we could do easy enough'
+1618536100 Someone gossips, 'blast though maybe the heartstone would be one of the wands i need :('
+1618536121 Chinok gossips, 'what do you need it to cast ?'
+1618536134 Chinok gossips, 'I'll consdier giving you a hint :)'
+1618536156 Someone gossips, '1 str and 1 energy drain found the blue vial and fist ruby'
+1618536165 Someone gossips, 'need one more of each'
+1618536188 Chinok gossips, 'energy drain.. you might need to ask riki'
+1618536276 Someone gossips, 'none that i remember but desposables that don't come from shops dont get much love '
+$
+mem:
+16 1 2
+16 1 2
+1 1 2
+1 1 2
+20 1 3
+88 1 6
+88 1 6
+88 1 6
+88 1 6
+84 1 2
+13 1 2
+88 1 6
+0 0 0
+aliases:
+cs cas 'cure ser' $*
+ol get all corpse
+waggle emo waggles her eyebrows outrageously!
+k cas 'cure light' $*
+mfood cas 'create food'
+mem pray $*
+lol emo laughs out loud.
+assk ass kuvira
+0

@@ -1,0 +1,88 @@
+name: Brottor
+password: BrEEno3eru
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19302
+birthtime: 1513632429
+timeplayed: 124905
+lastlogintime: 1537600156
+host: 068.114.132.109
+height: 69
+weight: 205
+base_height: 69
+base_weight: 205
+base_size: 3
+natural_size: 3
+alignment: -21
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: aghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 3054
+lastlevel: 0
+hitpoints: 153/133
+mana: 1/0
+move: 160/160
+damroll: 5
+hitroll: 4
+strength: 92
+intelligence: 64
+wisdom: 73
+dexterity: 91
+constitution: 92
+charisma: 56
+cash: 8 100 362 32
+experience: 327179
+quit_reason: 1
+saveroom: 3054
+skills:
+402 128
+404 55
+415 53
+416 50
+419 1000
+421 125
+427 1000
+430 50
+438 59
+443 50
+444 50
+463 50
+464 50
+465 138
+466 50
+467 55
+468 50
+0 0
+trophy:
+1 17307 5.500000
+1 17300 1.000000
+1 2004 1.250000
+1 7001 1.000000
+1 7050 1.000000
+1 7051 0.333333
+1 6906 3.000000
+1 6910 2.000000
+1 6909 2.000000
+1 6905 2.000000
+1 6908 3.000000
+1 6913 9.000000
+1 4101 1.000000
+1 7053 2.000000
+1 7004 2.500000
+1 4312 0.500000
+1 55701 4.000000
+1 55216 3.666667
+1 55702 5.500000
+1 55700 3.250000
+1 2003 4.333333
+0 0 0

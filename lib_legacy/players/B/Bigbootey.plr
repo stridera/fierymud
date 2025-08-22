@@ -1,0 +1,73 @@
+name: Bigbootey
+password: Bickupoa6j
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18362
+birthtime: 1349652399
+timeplayed: 24266
+lastlogintime: 1479926691
+host: 216.241.197.068
+height: 67
+weight: 148
+base_height: 67
+base_weight: 148
+base_size: 2
+natural_size: 2
+alignment: 6
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 4
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 21/21
+mana: 1/0
+move: 134/134
+damroll: 3
+hitroll: 3
+strength: 76
+intelligence: 92
+wisdom: 87
+dexterity: 73
+constitution: 94
+charisma: 46
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+447 50
+451 54
+452 50
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+tells:
+$
+gossips:
+$

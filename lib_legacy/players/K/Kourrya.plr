@@ -1,0 +1,121 @@
+name: Kourrya
+password: KoQxlgLN3F
+currenttitle: &4&bDevourer of Souls&0
+description
+Even at first glance, there is nothing normal about Kourrya.  Her hair is a
+dark blue color only seen in elven nobility - or pictures of ancient elven
+nobility, at any rate, since no living elves have blue hair.  Even so, there's
+something of the drow about her as well - not in her skin color, which is
+slightly rosier than a normal pale elven tint, but nothing like the ebon skin
+of the drow.  What is it that brings drow to mind then?  It's not the eyes...
+For starters, only one is visible.  Her left eye is covered by a strange
+eyepatch with the symbol of a crying eye done in purples and blues.  Her right
+eye is a dark violet color that glints in both light and shadow.  Her features
+certainly show elven influence, but with a human softness and a deific light.
+She is on the short side, but prone to levitation so she often appears taller,
+especially when wearing long robes or dresses.  She glows with a faint light
+composed of different colors - primarily the dark purple of her eye and the
+blue of her hair, but with occasional swirls of red, green, white, and various
+other hues.  Whenever she moves into a shadowy area, the shadows reach out and
+embrace her.
+~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
+poofin: &5The shadows in the room coalesce into a human figure.&0
+poofout: &5Kourrya's figure melts into the shadows, which disappear.&0
+sex: 2
+class: 11
+race: 5
+level: 101
+home: 3046
+lifeforce: 1
+composition: 0
+id: 15524
+birthtime: 1139721784
+timeplayed: 11386483
+lastlogintime: 1379897233
+host: 107.002.207.072
+height: 72
+weight: 180
+base_height: 72
+base_weight: 180
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glnxy
+effectflags: knt w 0
+prefflags: himnorvACD 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+invislevel: 100
+aggression: 200
+loadroom: 1266
+lastlevel: 8
+hitpoints: 666/666
+mana: 1081/1081
+move: 636/636
+damroll: 2
+hitroll: 3
+strength: 100
+intelligence: 91
+wisdom: 93
+dexterity: 100
+constitution: 96
+charisma: 100
+cash: 50703 5017 11889 34473
+bank: 500 315 0 0
+experience: 300000006
+logview: 40
+wiztitle: &6&bRenegade&0
+quit_reason: 7
+saveroom: 1266
+trophy:
+1 41013 1.000000
+1 16009 1.000000
+1 53410 0.333333
+1 48003 0.666667
+1 7300 6.000000
+1 52009 2.250000
+1 3508 1.000000
+2 16790 1.000000
+1 23714 2.000000
+1 23713 1.000000
+1 23712 1.000000
+1 11798 1.000000
+1 36004 1.000000
+1 8013 4.000000
+1 48021 2.000000
+1 23709 1.000000
+1 18507 0.500000
+1 8010 1.000000
+1 45 1.000000
+1 2803 2.000000
+1 12520 1.000000
+0 0 0
+aliases:
+who wh -w
+gac get all all.corpse
+walker title &5Walker in Shadows&0
+soul title &3&bwill eat your soul!&0
+kecho gecho [Kourrya]$*
+cookie load obj 23887;at $1 give cookie $1
+check at postmaster check
+rec at postmaster receive
+buyid at 2.bigby buy identify
+users users -i
+devour title &4&bDevourer of Souls&0
+makepet tele $1 3031
+qi1 quest start quest_items $1
+qi2 quest complete quest_items $1
+qi3 quest variable quest_items $1 $2 1
+yuan set kourrya wiztitle &6&bRenegade&0
+ratroom tele $1 48021
+candy at $1 give chocolate $1
+qi4 quest variable quest_items $1 $2 0
+ss skillset faegern '$*' 1000
+0
+grants:
+iedit Zzur 105
+~
+grantgroups:
+builder Cronax 104
+~

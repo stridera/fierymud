@@ -1,0 +1,2369 @@
+1
+vnum: 41120
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring sea's-ring seas-ring clear-blue-ring
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 8
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 30
+~
+extradesc: ring sea's-ring seas-ring clear-blue-ring
+A series of playful dolphins chase each other around the perimeter of the
+sea-blue ring.  It is difficult to determine exactly what the ring is made of
+-- clear, yet neither crystal nor glass.~
+~~
+vnum: 41120
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring sea's-ring seas-ring clear-blue-ring
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 8
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 30
+~
+extradesc: ring sea's-ring seas-ring clear-blue-ring
+A series of playful dolphins chase each other around the perimeter of the
+sea-blue ring.  It is difficult to determine exactly what the ring is made of
+-- clear, yet neither crystal nor glass.~
+~~
+vnum: 1038
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: scarf light-green-scarf
+shortdesc: &0a &0&2&blight green&0 scarf
+desc: &0A &0&2&blight green&0 scarf lies here.
+type: 9
+weight: 0.40
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+extradesc: light-green-scarf
+This scarf is crafted from a flowing light green material.  It is very light,
+though offers only minimal protection from physical attacks.~
+~~
+vnum: 55533
+location: 5
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstuvwxz 0
+name: robe-decay odd-patchwork-robe mottled-fur cat cats
+shortdesc: &5Robe of Decay&0
+desc: An odd patchwork robe of mottled fur stinks up the room.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 n 0
+wear: 9
+hiddenness: 0
+applies:
+13 50
+27 3
+~
+extradesc: robe-decay odd-patchwork-robe mottled-fur cat cats
+This disgusting, stinky robe is made out of a large number of pelts, which
+appear not to have been tanned correctly, for there is evidence of decay and
+some structural instability.  The robe pelts feel less like a normal animal
+hide and given the color and variety of the pelts, it looks like this robe is
+made entirely from alley cat skins!~
+~~
+vnum: 55531
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstuvwxz 0
+name: skullcap-decay skull-cap sallow-face barbarian
+shortdesc: &5Skullcap of Decay&0
+desc: A sallow face stares up at you from the ground.
+type: 9
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+28 30
+13 30
+27 3
+~
+extradesc: skullcap-decay skull-cap sallow-face barbarian
+This hideous face is like a mask, only the eyes and mouth have been sewn shut
+and the edges of this face have been bunched up, like it is meant to be worn
+without strings.  Much larger than a normal human face, and much more rugged,
+this face appears to have been peeled off whole from someone, then prepared to
+be worn as some kind of hat.  The face feels moist, as if it was freshly
+harvested.~
+~~
+vnum: 55534
+location: 7
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstuvwxz 0
+name: leggings-decay long-slim-hide-leggings elf
+shortdesc: &5Leggings of Decay&0
+desc: Long, slim hide leggings decompose in the corner.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+1 2
+6 2
+13 25
+27 3
+~
+extradesc: leggings-decay long-slim-hide-leggings elf
+With only a single seam along the back, yet with knee joints and perfectly
+fitted hips and ankles somehow formed in them, these leggings must have been
+flayed right off of some being, stretched, stitched back up and then discarded
+without any further treatment.  Long and slim, these must have been taken from
+an elf, or someone with elven blood.~
+~~
+vnum: 55458
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: mnopqrstuvwxz 0
+name: slippers rotten-slippers putrid-slippers
+shortdesc: &2&bRotten Slippers&0
+desc: Molding on the ground is a pair of putrid slippers.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+5 2
+13 20
+27 2
+~
+extradesc: slippers rotten-slippers putrid-slippers
+Disgusting!  Made out of waste and refuse, these slippers are enchanted to
+eternally fester and rot.  As disgusting as something like this is, those that
+practice necromancy find that their powers are significantly improved when
+wearing clothing like this.~
+~~
+vnum: 55537
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstuvwxz 0
+name: gloves-decay svelte-human-hands
+shortdesc: &5Gloves of Decay&0
+desc: Svelte human hands lie here on the floor, chopped off at the wrists.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+13 15
+28 50
+27 3
+~
+extradesc: gloves-decay svelte-human-hands
+These hands are little more than skin now, having been cleaned and tanned to
+make gloves out of.  Necromantic magic makes it clear that these hands, while
+seeming fresh, were made to be used on a regular basis.  How horrible that
+someone would take another's hands, then rip them apart only to remake them as
+handwear!~
+~~
+vnum: 55532
+location: 10
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstuvwxz 0
+name: sleeves-decay decomposing-leather-sleeves dwarf
+shortdesc: &5Sleeves of Decay&0
+desc: Decomposing leather sleeves have been tossed into a pile of trash.
+type: 9
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+3 2
+5 2
+13 20
+27 3
+~
+extradesc: sleeves-decay decomposing-leather-sleeves dwarf
+Upon closer inspection, these sleeves appear not to be normal leather, but much
+thinner and lighter than any other animal skin.  Also, they appear to have
+elbow joints already in them, and are turning putrid almost like they were
+taken straight from someone's arms and discarded.  Shorter than a human's, but
+larger around as well like a dwarf's, they look like they~
+~~
+vnum: 12303
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wings feather-wings severed-wings-person-sized-bird
+shortdesc: feather wings
+desc: Someone seems to have left the severed wings of a person-sized bird here!
+type: 9
+weight: 5.00
+cost: 10000
+timer: 0
+level: 40
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+13 20
+~
+extradesc: wings feather-wings severed-wings-person-sized-bird
+Wings this large must have come from some enormous bird.  Structured like the
+wings of an eagle, they must be some six feet in span.  Each feather is in
+pristine condition, indicating dedicated care and grooming.~
+~~
+vnum: 12398
+location: 13
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: belt belt-stars glimmering-incredible-beauty-silver-belt-sparkling-lights star-belt
+shortdesc: a belt of stars
+desc: Glimmering with incredible beauty is a silver belt set with sparkling lights.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+13 25
+4 2
+5 2
+24 -5
+27 3
+~
+extradesc: belt-stars glimmering-incredible-beauty-silver-belt-sparkling-lights
+This belt appears to be made of small silver discs set with dark blue starstone
+hemispheres.  However, upon closer inspection, you realize the glittering dots
+within the hemispheres are not merely reflecting light - they are diminutive
+pinpoints of luminescence contained in some kind of crystalline matrix.  They
+swirl and float, giving a cosmic life to each disc.  Surely a treasure like
+this must be a gift from the Gods!~
+~~
+vnum: 55536
+location: 14
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstuvwxz 0
+name: bracelet-decay small-plump-piece-flesh crescent gnome
+shortdesc: &5Bracelet of Decay&0
+desc: A small plump piece of flesh rolls around here, molded into a crescent.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+2 2
+13 20
+28 10
+27 3
+~
+extradesc: bracelet-decay small-plump-piece-flesh crescent gnome
+In addition to the powerful death magic radiating from this weird fleshy
+bracelet, some small inherent illusory power still lingers in this horrid
+thing.  The bracelet is still in the process of decaying, the process being
+prolonged indefinitely by the necromantic powers placed in it.~
+~~
+vnum: 55459
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqrstuvwxz 0
+name: bracelet rotten-bracelet putrid-bracelet
+shortdesc: &2&bRotten Bracelet&0
+desc: Molding on the ground is a putrid bracelet.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+14 15
+1 2
+27 2
+~
+extradesc: bracelet rotten-bracelet putrid-bracelet
+Revolting!  Made out of waste and refuse, this bracer is enchanted to eternally
+fester and rot.  As disgusting as something like this is, those that practice
+necromancy find that their powers are significantly improved when wearing
+clothing like this.~
+~~
+vnum: 905
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abgD 0
+name: spellbook book large tome book-of-healing legendary-large-book
+shortdesc: a legendary large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome book-of-healing legendary-large-book
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.~
+~~
+vnum: 905
+location: 19
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abgD 0
+name: spellbook book large tome book-of-healing legendary-large-book
+shortdesc: a legendary large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome book-of-healing legendary-large-book
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.~
+~~
+vnum: 12550
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 8
+weight: 0.07
+cost: 250
+timer: 1010
+level: 40
+effects: dx 0 0
+wear: 65537
+hiddenness: 0
+applies:
+4 2
+28 150
+27 2
+~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: mask-imanhotep golden-burial-mask
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 8
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+1 2
+4 2
+27 2
+~
+extradesc: mask-imanhotep golden-burial-mask
+The mask is made of solid gold and is encrusted with jewels.  It has an aura of
+power around it.~
+~~
+vnum: 53325
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale perfect-white-dragon-scale
+shortdesc: a white dragon scale
+desc: A perfect white dragon scale lies here.
+type: 9
+weight: 2.00
+cost: 10000
+timer: 1000
+level: 60
+effects: 0 0 0
+wear: 540673
+hiddenness: 0
+applies:
+13 30
+18 2
+27 2
+~
+extradesc: scale perfect-white-dragon-scale
+About as large as a human's palm, this pure white scale comes from the tender
+shoulder area of a white dragon.  It is a beautiful scale, shining brightly in
+the light and feeling slightly cool to the touch.  Dragons are very magical
+creatures, so the scale would probably be valuable to a researching sorcerer or
+anyone else interested in unlocking the power of a dragon's skin.~
+~~
+vnum: 49025
+location: 26
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tail griffin-tail golden-brown-tail
+shortdesc: a griffin tail
+desc: The golden-brown tail of a griffin lies here seperated from its owner.
+type: 9
+weight: 1.25
+cost: 500
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+3 1
+13 5
+27 1
+~
+extradesc: tail griffin-tail golden-brown-tail
+It's long and rather strong, too.  Maybe you could use it as a belt...~
+~~
+vnum: 47017
+location: 27
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: g 0
+name: lantern-undead small-forsaken-lantern
+shortdesc: the Lantern of the Undead
+desc: A small forsaken lantern lies here in the bushes.
+type: 1
+weight: 5.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+3 2
+6 3
+27 2
+~
+extradesc: lantern-undead small-forsaken-lantern
+This lantern glows a pale green light that makes you chill all over.  It is a
+permanent light source, originating from the world of the undead.  How it got
+here, no one knows.~
+~~
+vnum: 521
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: aghoprwx 0
+name: purse purse-magic-focuses ragged-pouch strange-smell
+shortdesc: a purse of magic focuses
+desc: A ragged pouch lies on the floor, exuding a strange smell.
+adesc:
+Nothing.~
+type: 15
+weight: 2.00
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+3 4
+4 4
+1 4
+6 7
+17 2
+27 4
+~
+extradesc: purse purse-magic-focuses ragged-pouch strange-smell
+This ragged pouch is Fecil's bag of magic focus items.  It permanently stinks
+from the odd things the old shaman had stored there.~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sack rough-cloth cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+extradesc: sack rough-cloth cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.~
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 51017
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg 0
+name: magic small-piece-petrified-magic small-chunk-glittering-material questobject
+shortdesc: a small piece of petrified magic
+desc: A small chunk of glittering material is here changing colors.
+type: 8
+weight: 9.00
+cost: 40
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+20 1
+27 3
+23 -1
+24 -1
+~
+extradesc: magic small-piece-petrified-magic small-chunk-glittering-material questobject
+As you gaze at this remarkably heavy material you feel invigorated and
+more alive!  The material glows and hums softly while giving off a slight
+trace of smoke that smells sweet like candy.  ~
+triggers:
+51008
+~
+~~

@@ -1,0 +1,91 @@
+name: Vorath
+password: VoFibsJ7EA
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20224
+birthtime: 1649904379
+timeplayed: 31669
+lastlogintime: 1650130268
+host: 107.139.176.194
+height: 40
+weight: 198
+base_height: 40
+base_weight: 198
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 8
+thirst: 16
+lastlevel: 0
+hitpoints: 48/48
+mana: 1/0
+move: 100/116
+damroll: 4
+hitroll: 5
+strength: 78
+intelligence: 80
+wisdom: 92
+dexterity: 78
+constitution: 70
+charisma: 83
+experience: 75624
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 55
+438 50
+443 50
+444 50
+451 62
+457 52
+458 52
+459 51
+460 50
+462 50
+463 78
+466 50
+0 0
+tells:
+1650074244 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+$
+gossips:
+1650079245 Chinok gossips, 'night Z'
+1650080492 Chinok gossips, 'gratz Vorath'
+1650081771 Someone gossips, 'gratz'
+1650081796 Tarnoth gossips, 'Thank you'
+1650081950 Chinok gossips, 'thank you!'
+1650086449 Chinok gossips, 'ok, I'm off to bed, night all'
+1650086454 Tarnoth gossips, 'night!'
+1650125691 Tarnoth gossips, 'Heya!'
+1650126642 Chaldin gossips, 'Hey everyone!  '
+1650129111 Remil gossips, 'grats!'
+$
+mem:
+1 0 7
+16 0 7
+206 0 7
+16 0 7
+0 0 0

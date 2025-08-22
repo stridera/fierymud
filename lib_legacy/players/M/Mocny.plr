@@ -1,0 +1,109 @@
+name: Mocny
+password: Mo1/XiRn.z
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 0
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20745
+birthtime: 1707704743
+timeplayed: 10715
+lastlogintime: 1726553563
+host: 098.043.254.092
+height: 64
+weight: 152
+base_height: 64
+base_weight: 152
+base_size: 2
+natural_size: 2
+alignment: 106
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 50/42
+mana: 1/0
+move: 164/164
+damroll: 3
+hitroll: 3
+strength: 64
+intelligence: 98
+wisdom: 86
+dexterity: 84
+constitution: 100
+charisma: 64
+cash: 0 19 225 414
+bank: 0 10 0 0
+experience: 49499
+quit_reason: 1
+saveroom: 3054
+spellcasts:
+1 15
+0 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 62
+424 90
+438 50
+443 50
+444 57
+447 58
+451 53
+452 83
+453 90
+459 53
+460 51
+462 51
+464 50
+0 0
+trophy:
+1 18006 0.250000
+1 18004 0.500000
+1 18003 1.250000
+1 18002 0.500000
+1 18005 1.750000
+1 18001 0.750000
+1 18007 1.750000
+1 16901 0.416667
+1 16905 1.166667
+1 16907 0.833333
+1 16902 2.166667
+1 16906 1.166667
+1 16908 3.000000
+1 16903 0.500000
+1 16900 5.833334
+1 36003 0.333333
+1 36002 0.166667
+1 36001 0.166667
+1 8015 2.000000
+1 8016 1.000000
+1 8023 2.000000
+0 0 0
+tells:
+$
+gossips:
+1707704789 Daedela gossips, 'Uh oh look who's baaaaaack'
+1707704824 Daedela gossips, 'eeeeeeek!'
+1707705788 Chinok gossips, 'good to see some newbies on!'
+1707705794 Galrath gossips, 'we're trying!'
+1707706504 Chinok gossips, 'gratz on 98!'
+1707706508 Porath gossips, 'thanks!'
+1707706511 Orrun gossips, 'congrats!'
+1726550907 Melandru gossips, 'congrats!'
+$
+aliases:
+cmm cast 'magic missile' $1
+0

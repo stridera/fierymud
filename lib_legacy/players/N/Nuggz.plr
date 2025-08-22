@@ -1,0 +1,129 @@
+name: Nuggz
+password: NuqmgFpuYB
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 5
+race: 0
+level: 23
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18475
+birthtime: 1364452671
+timeplayed: 153990
+lastlogintime: 1653309363
+host: 172.058.146.251
+height: 66
+weight: 136
+base_height: 66
+base_weight: 136
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: y
+effectflags: cn 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -56/292
+mana: 57/52
+move: 71/122
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 62
+wisdom: 66
+dexterity: 91
+constitution: 86
+charisma: 60
+experience: 2580213
+clan: 4
+quit_reason: 10
+saveroom: 8309
+skills:
+12 1000
+13 1000
+84 1000
+85 1000
+131 1000
+132 1000
+235 1000
+402 192
+404 290
+407 217
+411 290
+415 55
+416 290
+417 50
+420 273
+421 290
+423 228
+424 151
+430 272
+434 55
+438 107
+443 50
+444 50
+450 50
+451 139
+457 68
+458 76
+459 83
+460 64
+463 50
+464 50
+465 290
+466 50
+468 50
+0 0
+tells:
+$
+gossips:
+$
+mem:
+84 0 1
+84 0 1
+84 0 1
+84 0 1
+84 0 1
+84 0 1
+84 0 1
+131 0 1
+131 0 1
+132 0 1
+132 0 1
+132 0 1
+131 0 1
+12 0 5
+12 0 5
+12 0 5
+12 0 5
+13 0 5
+13 0 5
+0 0 0
+aliases:
+re res; med; pra
+bu buy bread
+ea eat bread; drink water
+harm c 'cause light'
+pg put all.gem bag
+food c 'create food'
+dm c 'dark presence' meric
+demon c 'demonskin'
+dp cast 'dark presence'
+heal tell cerim heal
+ff fill water fountain
+who who -w
+lic lo in corpse
+gac get all corpse
+x get all
+wa wear all
+ac ass cerim
+df drink water
+rc rescue cerim
+0

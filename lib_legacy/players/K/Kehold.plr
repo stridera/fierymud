@@ -1,0 +1,136 @@
+name: Kehold
+password: KeVClAfl2k
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 13
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 15777
+birthtime: 1147566248
+timeplayed: 12761363
+lastlogintime: 1723872292
+host: 066.199.058.082
+height: 75
+weight: 142
+base_height: 75
+base_weight: 142
+base_size: 2
+natural_size: 2
+alignment: -905
+playerflags: glxyz
+effectflags: 0 0 0
+prefflags: hnouxzC c
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 24
+lastlevel: 13
+hitpoints: 1172/1073
+mana: 980/980
+move: 123/128
+damroll: 3
+hitroll: 3
+strength: 81
+intelligence: 65
+wisdom: 92
+dexterity: 84
+constitution: 90
+charisma: 50
+cash: 571 34147 76664 29183
+experience: 137547799
+quit_reason: 1
+saveroom: 3054
+skills:
+191 200
+404 1000
+411 244
+412 1000
+414 1000
+415 50
+416 50
+420 1000
+421 1000
+422 1000
+430 150
+438 196
+443 76
+444 659
+446 1000
+448 1000
+449 1000
+463 58
+475 142
+495 50
+601 1000
+602 50
+603 50
+604 50
+605 50
+606 50
+608 50
+0 0
+trophy:
+1 62500 18.000000
+1 62508 1.000000
+1 11704 1.000000
+1 11701 1.000000
+1 11703 1.000000
+1 23709 4.000000
+1 23734 11.000000
+1 23711 2.000000
+1 23707 8.000000
+1 41121 1.000000
+1 41115 1.000000
+1 41116 4.000000
+1 51010 1.000000
+1 51007 1.000000
+1 51020 2.000000
+1 51002 1.000000
+1 51008 2.000000
+1 7300 2.000000
+1 53306 1.000000
+1 53303 3.000000
+1 53312 3.000000
+0 0 0
+tells:
+1640138564 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641757995 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641757997 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1646634136 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1646634136 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1646634136 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1646634136 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1646697051 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1650075739 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1682164748 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1646634273 Laird gossips, 'hey kehold'
+1646634282 Mlyec gossips, 'sup'
+1646634313 Laird gossips, 'you wouldn't happen to know if you can haste shapechanged druides would you?'
+1646634352 Laird gossips, 'it doesn't seem to be working on cheetah or ostrich'
+1646634755 Lyno gossips, 'i'm guessing that it has something to do with if the shape attacks more then once'
+1646634769 Lyno gossips, 'it just worked on a bear so... '
+1647218631 Chinok gossips, 'kehold :)'
+1650075750 Chinok gossips, 'which class are we talking about ?'
+1650075838 Chinok gossips, 'who gave you that... lol bard is not really ready to test'
+1673212621 Mersh gossips, 'cleric or priest'
+$
+effects:
+601 45 60 26 0 0 0
+0 0 0 0 0
+aliases:
+q pepper gy clove of garlic temp
+ivory chant 'ivory'
+cn corner
+nq say 'floor phrase is eingang bitte'
+lc l in corpse
+gc g all.coins from corpse
+kk as kresselack
+gac g all.coins from all.corpse
+shadows chant 'shadows'
+b t kresselack b
+0

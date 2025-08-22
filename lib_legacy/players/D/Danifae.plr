@@ -1,0 +1,83 @@
+name: Danifae
+password: DafMjdqEyn
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 2
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18125
+birthtime: 1330100509
+timeplayed: 3952
+lastlogintime: 1330432936
+host: 075.071.199.100
+height: 37
+weight: 68
+base_height: 37
+base_weight: 68
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 38/38
+mana: 1/0
+move: 122/122
+damroll: 2
+hitroll: 4
+strength: 88
+intelligence: 93
+wisdom: 90
+dexterity: 86
+constitution: 91
+charisma: 80
+cash: 0 0 4 8
+experience: 16500
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 52
+438 50
+443 50
+444 50
+451 51
+457 50
+458 52
+459 50
+460 50
+462 50
+463 57
+466 50
+0 0
+trophy:
+1 3506 2.000000
+1 3500 3.000000
+1 3509 2.000000
+1 3508 5.000000
+1 18007 1.000000
+1 16906 1.000000
+1 16900 2.000000
+1 16908 3.000000
+0 0 0
+mem:
+1 0 8
+1 1 8
+0 0 0

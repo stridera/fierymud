@@ -1,0 +1,12 @@
+#187
+Balance of Pandor~
+18799 30 0 100 0 0
+D 0 18701 0 1 	(The Courtyard)
+D 0 18701 2 0 	(The Courtyard)
+D 0 18703 2 0 	(The Pandor Rec Room)
+D 0 18702 0 0 	(Pandor Gathering Room)
+D 0 18702 2 1 	(Pandor Gathering Room)
+M 0 18701 1 18700 	(a stone knight)
+D 0 18700 0 0 	(Before an Old Monastery)
+S
+$

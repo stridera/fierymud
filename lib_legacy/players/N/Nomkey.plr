@@ -1,0 +1,103 @@
+name: Nomkey
+password: NoVCBbiyAC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 13
+race: 0
+level: 55
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18275
+birthtime: 1335919879
+timeplayed: 370138
+lastlogintime: 1450406973
+host: 067.061.203.133
+height: 69
+weight: 174
+base_height: 69
+base_weight: 174
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 102
+loadroom: 48106
+lastlevel: 0
+hitpoints: 647/647
+mana: 302/302
+move: 128/128
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 78
+wisdom: 82
+dexterity: 89
+constitution: 90
+charisma: 74
+cash: 1922 5687 6429 60
+experience: 34909932
+quit_reason: 3
+saveroom: 0
+skills:
+404 392
+411 176
+412 600
+414 101
+415 520
+416 50
+420 504
+421 584
+422 539
+430 114
+438 149
+443 88
+444 55
+446 600
+448 1000
+449 1000
+463 55
+601 50
+602 50
+605 50
+606 50
+0 0
+trophy:
+1 5200 0.666667
+1 5211 0.333333
+1 5120 0.333333
+1 5104 0.333333
+1 16909 0.333333
+1 16908 3.333333
+1 2808 0.400000
+1 48124 0.500000
+1 11701 0.250000
+1 11702 0.650000
+1 5403 2.500000
+1 5404 9.333333
+1 48102 0.833333
+1 48127 1.000000
+1 48105 0.500000
+1 48107 1.500000
+1 48114 0.500000
+1 48117 1.000000
+1 48120 2.500000
+1 48116 1.000000
+1 48131 6.500000
+0 0 0
+aliases:
+ss assist slo
+ggg get gem all.corpse
+ec examine corpse
+gaa get coins all.corpse
+z scan
+aa assist nomkee
+aaa assist nomk
+ds drink skin
+vv buntoi nakkarri karisto
+0

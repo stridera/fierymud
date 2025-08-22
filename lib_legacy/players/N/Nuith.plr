@@ -1,0 +1,76 @@
+name: Nuith
+password: NuSMglOlOG
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 9
+level: 8
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19131
+birthtime: 1487023979
+timeplayed: 39124
+lastlogintime: 1509458255
+host: 067.181.128.205
+height: 69
+weight: 155
+base_height: 69
+base_weight: 155
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3506
+hunger: 19
+lastlevel: 0
+hitpoints: 94/94
+mana: 1/-2
+move: 91/114
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 75
+wisdom: 77
+dexterity: 84
+constitution: 84
+charisma: 62
+cash: 0 1 12 4
+bank: 0 79 389 253
+experience: 175535
+quit_reason: 7
+saveroom: 3506
+skills:
+403 52
+405 50
+415 50
+416 70
+421 130
+438 130
+443 50
+444 50
+464 72
+465 50
+467 50
+0 0
+trophy:
+1 5451 1.000000
+1 5403 1.000000
+1 5484 0.500000
+1 5483 0.500000
+1 5475 0.500000
+1 5404 2.500000
+1 17204 1.000000
+1 36001 1.000000
+0 0 0
+aliases:
+gac get all from corpse
+li look in corpse
+gc get all.coins from corpse
+aa assist voz
+0

@@ -1,0 +1,119 @@
+name: Vistk
+password: VifRK4voE.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%rr&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 14
+race: 3
+level: 21
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18658
+birthtime: 1394312589
+timeplayed: 63199
+lastlogintime: 1738196132
+host: 066.199.058.082
+height: 43
+weight: 170
+base_height: 43
+base_weight: 170
+base_size: 2
+natural_size: 2
+alignment: 865
+playerflags: gxy
+effectflags: k w q
+prefflags: hnouxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 24
+lastlevel: 0
+hitpoints: 333/291
+mana: 44/44
+move: 163/169
+damroll: 4
+hitroll: 5
+strength: 94
+intelligence: 57
+wisdom: 61
+dexterity: 96
+constitution: 96
+charisma: 63
+cash: 12 1123 3429 459
+experience: 1926100
+quit_reason: 1
+saveroom: 3054
+skills:
+404 250
+411 127
+413 57
+415 51
+416 50
+420 198
+421 250
+430 52
+438 102
+443 50
+444 157
+463 228
+464 50
+465 177
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36101 2.000000
+1 36100 1.000000
+1 18513 1.000000
+1 18500 1.000000
+1 18507 1.000000
+1 18509 1.000000
+1 18510 1.000000
+1 55231 1.000000
+1 55238 1.000000
+1 55242 1.000000
+1 55239 2.000000
+1 55229 1.000000
+1 55240 2.000000
+1 12005 1.000000
+1 12006 1.000000
+1 12009 1.000000
+1 12003 5.000000
+1 12007 5.000000
+1 12011 3.000000
+1 12004 4.000000
+1 12016 1.000000
+0 0 0
+tells:
+1731898812 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1731898813 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1731898814 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735415704 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735950528 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735950530 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735950741 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1737881277 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737881285 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737881336 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738196079 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1731898846 Daedela gossips, 'it's been a while!'
+1731898884 Derrgon gossips, 'hi Vistk'
+1731898885 Daedela gossips, 'oh, when were you on last?'
+1731898999 Flynt gossips, 'Anyone have some tinder?'
+1731899009 Daedela gossips, 'uh oh!'
+1731899046 Thort gossips, 'daed went to help me out and it... just worked.'
+1731987632 Derrgon gossips, 'hey Vistk'
+1735415161 Discord gossips, 'Daedela: Heyo!'
+1735415180 Discord gossips, 'Daedela: Not a whole lot.  How was your holiday?'
+1735415265 Discord gossips, 'Daedela: It was good!  Pretty low key fortunately'
+$
+aliases:
+gb gt b
+b bash
+gc get all.coins from corpse
+lc l in corpse
+0

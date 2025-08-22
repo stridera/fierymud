@@ -1,0 +1,186 @@
+name: Ailiki
+password: MeMVRR0Ywd
+prompt: <%hh(%HH) %vv(%VV)> <%aA> <%ih> <%df>%_<%t>:<%o>
+autoinvis: 0
+sex: 2
+class: 21
+race: 1
+level: 44
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18191
+birthtime: 1331739440
+timeplayed: 2765046
+lastlogintime: 1384330798
+host: 072.239.212.195
+height: 81
+weight: 123
+base_height: 81
+base_weight: 123
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoux a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 223/223
+mana: 202/191
+move: 114/114
+damroll: 3
+hitroll: 3
+strength: 74
+intelligence: 94
+wisdom: 88
+dexterity: 60
+constitution: 90
+charisma: 55
+bank: 340 12838 19697 6198
+experience: 13128296
+clan: 1
+quit_reason: 3
+saveroom: 0
+skills:
+2 1000
+8 1000
+19 1000
+20 1000
+29 1000
+30 1000
+31 1000
+37 1000
+38 1000
+39 1000
+51 1000
+52 1000
+62 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+106 1000
+107 1000
+171 1000
+172 1000
+173 1000
+174 1000
+182 1000
+183 1000
+415 490
+416 490
+421 500
+423 500
+424 500
+438 57
+443 445
+444 500
+447 500
+451 266
+452 310
+454 500
+456 500
+458 495
+459 500
+460 500
+462 443
+464 500
+0 0
+mem:
+100 0 1
+100 0 1
+171 0 1
+37 0 1
+171 0 1
+37 0 1
+171 0 1
+172 0 1
+37 0 1
+37 0 1
+20 0 1
+2 0 1
+30 0 1
+30 0 1
+31 0 1
+29 0 2
+106 0 1
+174 0 2
+62 0 2
+76 0 2
+30 0 1
+30 0 1
+52 0 8
+77 0 3
+76 0 2
+19 0 1
+19 0 1
+19 0 1
+19 0 1
+19 0 1
+19 0 1
+29 0 2
+183 0 5
+8 0 1
+100 0 1
+107 0 4
+0 0 0
+aliases:
+css cast 'stone skin' 
+ks kill skeleton
+cdd cast 'dim door' $*
+km kill mutant
+levitate cast 'levitate' $*
+tele cast 'teleport' $*
+khum kill humanoid
+invi q invisibility
+gr get ration
+cmm cast 'ice darts' $*
+ca cast 'ice armor' $*
+icearmor cast 'ice armor' $*
+csg cast 'shocking grasp' $*
+cid cast 'identify' $*
+cmc cast 'minor creation' $*
+cbh cast 'burning hands' $*
+cdm cast 'd magic' $*
+conceal cast 'concealment' $*
+gac get all corpse
+gaac get all.coins all.corpse
+cdi cast 'd invis' $*
+cct cast 'chill touch' $*
+str cast 'strength' $*
+gfs get food sack
+ef eat food
+db drink waterskin
+df drink fountain
+kr kill rabbit
+kh kill hedgehog
+kg kill gremlin
+mh mount horse
+gfb get food basket
+locate cast 'locate object' $*
+dism cast 'dispel magic' $*
+ban bandage
+ds cast 'dispel magic' self
+coldshield cast 'coldshield' $*
+rg recite green
+icedag cast 'ice dagger' $*
+estinguish cast 'extinguish' $*
+gfc get food corpse
+cone cast 'cone of cold' $*
+sleep cast 'sleep' $*
+invis cast 'invisibility' $*
+wind cast 'freezing wind' $*
+cmp cast 'minor paralysis' $*
+bolt cast 'lightning bolt' $*
+sh "say heal"
+cold shield
+0

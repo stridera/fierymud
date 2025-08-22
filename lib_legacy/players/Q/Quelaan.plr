@@ -1,0 +1,98 @@
+name: Quelaan
+password: QuDTKobcy8
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19017
+birthtime: 1445184805
+timeplayed: 3220
+lastlogintime: 1445292747
+host: 098.192.233.138
+height: 62
+weight: 115
+base_height: 62
+base_weight: 115
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 19
+lastlevel: 0
+hitpoints: 35/35
+mana: 1/0
+move: 108/108
+damroll: 3
+hitroll: 3
+strength: 79
+intelligence: 87
+wisdom: 78
+dexterity: 82
+constitution: 76
+charisma: 59
+cash: 0 8 54 7
+experience: 27514
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 56
+424 64
+438 50
+443 50
+444 50
+447 58
+451 52
+452 51
+453 62
+459 50
+460 50
+462 50
+464 59
+0 0
+trophy:
+1 18006 0.333333
+1 18003 1.000000
+1 18001 1.000000
+1 18000 4.000000
+1 18007 1.000000
+1 8023 1.000000
+1 8000 1.000000
+1 8021 2.000000
+1 8016 1.000000
+1 8020 1.000000
+1 8011 3.000000
+1 8010 2.000000
+1 8013 2.000000
+1 8002 1.000000
+1 8001 1.000000
+1 8012 3.000000
+1 8014 5.000000
+0 0 0
+mem:
+5 1 7
+5 1 7
+5 1 7
+0 0 0
+aliases:
+2 cast 'burning hands' $1
+1 assist themomentum
+ga get all
+gac get all corpse
+0

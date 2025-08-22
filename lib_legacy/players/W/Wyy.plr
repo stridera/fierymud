@@ -1,0 +1,186 @@
+name: Wyy
+password: WyC4.k6uPj
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 9
+level: 51
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20588
+birthtime: 1691457299
+timeplayed: 592229
+lastlogintime: 1712076793
+host: 143.109.129.009
+height: 69
+weight: 126
+base_height: 69
+base_weight: 126
+base_size: 2
+natural_size: 2
+alignment: 987
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3500
+lastlevel: 0
+hitpoints: 387/387
+mana: 260/260
+move: 280/280
+damroll: 3
+hitroll: 3
+strength: 72
+intelligence: 55
+wisdom: 94
+dexterity: 62
+constitution: 96
+charisma: 88
+cash: 422 179 197 157
+bank: 0 59 272 410
+experience: 19049111
+quit_reason: 7
+saveroom: 3500
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+27 1000
+28 1000
+33 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+74 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+95 1000
+96 1000
+97 1000
+131 1000
+206 1000
+207 1000
+208 1000
+235 1000
+241 1000
+415 477
+416 560
+421 550
+423 560
+424 560
+438 50
+443 50
+444 362
+451 264
+453 555
+455 51
+457 560
+458 50
+459 323
+460 50
+461 255
+462 140
+463 560
+466 50
+0 0
+trophy:
+1 11703 0.333333
+1 2808 0.333333
+1 2806 0.333333
+1 11702 0.666667
+1 3507 0.333333
+1 3508 0.333333
+1 3503 0.333333
+1 3501 0.333333
+1 3500 1.333333
+1 50215 0.666667
+1 50217 0.666667
+1 50213 0.666667
+1 50200 0.666667
+1 50204 1.000000
+1 50201 0.666667
+1 50202 1.333333
+1 50211 0.666667
+1 50207 0.666667
+1 50206 0.666667
+1 50203 0.666667
+1 50205 3.333333
+0 0 0
+tells:
+1694273002 @WThe old cartographer@W tells you, 'Good doing business with you.@W'@0
+1694273002 @WThe old cartographer@W tells you, 'Good doing business with you.@W'@0
+1694273003 @WThe old cartographer@W tells you, 'Good doing business with you.@W'@0
+1694273003 @WThe old cartographer@W tells you, 'Good doing business with you.@W'@0
+1694273003 @WThe old cartographer@W tells you, 'Good doing business with you.@W'@0
+1694273003 @WThe old cartographer@W tells you, 'You don't seem to have that.@W'@0
+1694273004 @WThe old cartographer@W tells you, 'You don't seem to have that.@W'@0
+1694273004 @WThe old cartographer@W tells you, 'You don't seem to have that.@W'@0
+1694273004 @WThe old cartographer@W tells you, 'You don't seem to have that.@W'@0
+1694274819 @WShazz@W tells you, 'Take good care of that.@W'@0
+$
+gossips:
+1695006918 Porath gossips, 'grats'
+1695006966 Ryy gossips, 'gratz'
+1695006969 Porath gossips, 'thanks!'
+1695006994 Porath gossips, 'anyone have crushed diamond?'
+1695007191 Snil gossips, 'Daedela I am doing the quest in Nukreth Spire and I saw the text to kill the gnoll spiritbreaker and search again but nothing is comming up after killing it and searching again'
+1695007225 Ryy gossips, 'ahhh... didn't see the Water Elemental Lord enter the room... I was wondering why the Blue Fog capt killed me so quickly.... now it makes sense :)'
+1695007239 Snil gossips, 'yeah those water elemental lords do work'
+1695009341 Porath gossips, 'hey Dae, i think hunt is stuck again'
+1695009922 Porath gossips, 'oh nvm, figured it out'
+1695012256 Discord gossips, 'Daedela: Congratulations!'
+1712076788 Chinok gossips, 'lots of YY guys coming on! welcome :)'
+$
+aliases:
+train dismount ; mount mare ; st
+cha cast harm $1
+che cast heal $1
+cdu cast 'destroy undead' $1
+cfs cast flamestrike $1
+twm cast 'lesser endurance' wyy ; cast bless wyy ; cast 'detect magic' ; cast endurance gyy ; res ; med ; pray ; med ; pray ; st
+gaca get all corpse
+gac get all.coins corpse ; get all.gem corpse ; examine corpse
+ccs cast 'cure serious' $1
+ccl cast 'cure light' $1
+ar assist ryy ; assis gyy
+ec exam corpse
+rmp rest ; med ; pray
+cb cast bless $1
+cdm cast 'detect magic'
+ccc cast 'cause critical' $1
+fu fol gyy ; consent ryy
+md mount mare
+cs cast silence $1
+cfh cast 'full harm' $1
+0

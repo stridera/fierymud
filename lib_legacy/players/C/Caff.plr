@@ -1,0 +1,98 @@
+name: Caff
+password: CaYdr9eYbv
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA %ih&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 18
+race: 9
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 6992
+birthtime: 989200370
+timeplayed: 9219349
+lastlogintime: 1738115983
+host: 104.048.170.022
+height: 63
+weight: 133
+base_height: 63
+base_weight: 133
+base_size: 2
+natural_size: 2
+alignment: 915
+playerflags: gly
+effectflags: kt 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 10
+hitpoints: 862/862
+mana: 100/100
+move: 124/124
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 74
+wisdom: 54
+dexterity: 94
+constitution: 92
+charisma: 50
+cash: 0 99 9 2
+bank: 63 3749 15187 12005
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+410 650
+411 1000
+412 1000
+415 494
+416 391
+420 1000
+421 1000
+438 50
+443 55
+444 235
+463 50
+464 1000
+465 670
+475 218
+476 1000
+477 1000
+478 1000
+491 50
+492 50
+493 50
+0 0
+trophy:
+1 3502 1.000000
+1 3501 1.000000
+1 3500 3.000000
+1 8023 1.000000
+1 8012 1.000000
+1 36301 1.000000
+1 3503 1.000000
+1 8002 1.000000
+1 8015 2.000000
+1 8016 2.000000
+1 53007 3.000000
+1 53006 3.000000
+1 7301 1.000000
+1 7302 2.000000
+1 58013 1.000000
+1 58011 1.000000
+1 39009 0.500000
+1 36101 0.500000
+1 12006 1.000000
+1 50203 0.500000
+1 50205 1.000000
+0 0 0
+tells:
+$
+gossips:
+$

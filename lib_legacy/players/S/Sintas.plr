@@ -1,0 +1,102 @@
+name: Sintas
+password: Si4iwYVcx9
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20541
+birthtime: 1687196375
+timeplayed: 8988
+lastlogintime: 1687382627
+host: 024.062.251.055
+height: 71
+weight: 174
+base_height: 71
+base_weight: 174
+base_size: 2
+natural_size: 2
+alignment: -10
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 78/78
+mana: 1/0
+move: 147/148
+damroll: 3
+hitroll: 3
+strength: 87
+intelligence: 66
+wisdom: 84
+dexterity: 96
+constitution: 79
+charisma: 53
+cash: 0 234 58 265
+bank: 0 197 32 207
+experience: 120343
+quit_reason: 1
+saveroom: 3054
+skills:
+401 114
+403 112
+405 50
+408 92
+415 50
+416 50
+421 86
+438 50
+443 50
+444 50
+463 50
+464 93
+465 50
+493 110
+0 0
+trophy:
+1 18005 1.000000
+1 18001 1.000000
+1 18002 2.000000
+1 18000 1.000000
+1 8014 2.000000
+1 8015 1.000000
+1 8021 1.000000
+1 3506 1.000000
+1 3507 1.000000
+1 8030 2.000000
+1 3503 2.000000
+1 3508 9.000000
+1 3509 5.000000
+1 3501 10.000000
+1 3500 9.000000
+1 3502 6.000000
+1 8012 8.000000
+1 8023 4.000000
+1 8022 6.000000
+1 8002 5.000000
+1 8000 7.000000
+0 0 0
+tells:
+1687197343 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1687199233 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1687267984 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1687382179 Lismini gossips, 'absolutely'
+1687382182 Jaco gossips, ':D'
+1687382379 Jore gossips, 'made the boottime high 17 :D nice!rent'
+1687382528 Daedela gossips, 'woo!  Love it when it's that high'
+1687382535 Daedela gossips, 'I also love we have four actual players on'
+1687382548 Torranis gossips, 'anyone feel up for actually doing anything?'
+1687382569 Mirallison gossips, 'I cant really. Need to go start on dinner pretty soon'
+1687382573 Torranis gossips, 'ah okay'
+1687382583 Mirallison gossips, 'thanks tho!'
+1687382612 Torranis gossips, 'you're welcome!'
+$

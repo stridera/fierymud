@@ -1,0 +1,230 @@
+name: Hikari
+password: HiQL3WSPMr
+prompt: &1&bHIKARI&0%_&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 15
+race: 1
+level: 50
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19469
+birthtime: 1566615196
+timeplayed: 248637
+lastlogintime: 1615868549
+host: 073.222.171.239
+height: 38
+weight: 135
+base_height: 38
+base_weight: 135
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxy
+effectflags: ck 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 391/391
+mana: 250/250
+move: 108/108
+damroll: 3
+hitroll: 6
+strength: 86
+intelligence: 93
+wisdom: 97
+dexterity: 84
+constitution: 85
+charisma: 66
+cash: 41 452 1462 1060
+experience: 17582001
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+28 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+51 1000
+53 1000
+70 1000
+74 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+115 1000
+116 1000
+117 1000
+118 1000
+119 1000
+120 1000
+142 1000
+206 1000
+207 1000
+208 1000
+415 170
+416 85
+421 50
+423 1000
+424 1000
+438 50
+443 50
+444 76
+451 247
+452 50
+455 50
+457 252
+458 239
+459 191
+460 80
+461 50
+462 53
+463 208
+466 50
+0 0
+trophy:
+1 5510 0.666667
+1 5509 0.666667
+1 5508 1.333333
+1 5507 1.333333
+1 5506 0.666667
+1 5505 0.666667
+1 5504 1.000000
+1 5503 0.333333
+1 5502 1.000000
+1 5501 1.333333
+1 4106 0.333333
+1 4126 0.333333
+1 4124 0.333333
+1 4123 1.333333
+1 4122 1.333333
+1 4120 0.666667
+1 4121 1.666667
+1 4119 1.333333
+1 4108 0.333333
+1 4107 1.000000
+1 4110 0.333333
+0 0 0
+tells:
+1570419863 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1570730851 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1570730852 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1570730852 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1570730858 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1570730858 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1570730858 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1570730858 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1570730859 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1570730859 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1615868292 Foug gossips, 'playing a cripple sounds... interesting?'
+1615868314 Strider gossips, 'We have different definitions of interesting'
+1615868387 Zenawk gossips, 'so pyro pal right felj'
+1615868400 Foug gossips, 'woot!'
+1615868426 Foug gossips, 'i think thats the best way to make the world a better place'
+1615868439 Foug gossips, 'cleansing flames! starting with my own baptism by fire'
+1615868495 Zenawk gossips, 'especaly after you had to flee your homeland becouse of your beliefes'
+1615868515 Zenawk gossips, 'and your bee leafs too'
+1615868531 Foug gossips, 'yeah, they dont like my paradime in ogawk'
+1615868539 Zenawk gossips, 'stupid dislexic public school'
+$
+mem:
+16 1 1
+16 1 1
+16 1 1
+1 1 1
+16 1 1
+16 1 2
+3 1 2
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+1 1 1
+88 1 1
+15 1 2
+15 1 2
+15 1 2
+15 1 2
+53 1 2
+117 1 1
+40 1 2
+53 1 2
+28 1 1
+28 1 1
+23 1 2
+23 1 2
+28 1 2
+119 1 5
+119 1 5
+119 1 5
+119 1 5
+119 1 5
+119 1 5
+42 1 2
+4 1 2
+4 1 1
+4 1 1
+35 1 1
+34 1 1
+34 1 1
+207 1 1
+3 1 1
+0 0 0
+aliases:
+mcc rest;pray cure critic
+frp forget remove poison
+crp cast 'remove poison' $1
+mrp rest;pray 'remove poison'
+fpfe forget 'protection from evil'
+mvs rest;pray 'vigorize serious'
+fcc forget cure critic
+mpfe pray 'protection from evil'
+fvs forget 'vigorize serious'
+; gt $*
+tac take all all.corpse
+mem rest;pray $*; meditate
+cv cast 'vigorize light' $1
+ccl cast 'cure light' $1
+wa wake;stand
+to_split_skull n;n;e;e;n;n;n;n;w;n;n;n;e;e;e;e;n;e;e;e;n;n;e;s;s;
+fc follow $1;consent $1
+armor cast armor $1
+bless cast bless $1
+ccs cast 'cure serious' $1
+ccc cast 'cure critic' $1
+pfe cast 'protection from evil' $1
+cpfe cast 'protection from evil' $1
+cvs cast 'vigorize serious' $1
+corpse cast 'shift corpse' $1
+cfh cast 'full heal' $1
+0

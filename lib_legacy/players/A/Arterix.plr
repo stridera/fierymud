@@ -1,0 +1,101 @@
+name: Arterix
+password: ArGCWn1o5T
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20579
+birthtime: 1690441959
+timeplayed: 5542
+lastlogintime: 1690524917
+host: 024.018.175.148
+height: 64
+weight: 144
+base_height: 64
+base_weight: 144
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+badpasswords: 3
+lastlevel: 0
+hitpoints: 34/34
+mana: 1/0
+move: 140/140
+damroll: 3
+hitroll: 3
+strength: 78
+intelligence: 88
+wisdom: 98
+dexterity: 82
+constitution: 88
+charisma: 54
+bank: 0 1 1 1
+experience: 16499
+quit_reason: 5
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 55
+424 51
+438 50
+443 50
+444 50
+451 51
+457 51
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+trophy:
+1 8010 1.000000
+1 8016 1.000000
+1 8013 2.000000
+1 8001 1.000000
+1 8015 1.000000
+1 8000 1.000000
+1 8012 3.000000
+1 8011 2.000000
+1 51900 1.000000
+0 0 0
+tells:
+$
+gossips:
+1690444404 Daedela gossips, 'it should be right at the top'
+1690445608 Tavsan gossips, 'Hellooooo'
+1690445614 Tavsan gossips, 'yeah, that didn't work oops'
+1690445633 Tavsan gossips, 'well, I mean I kinda am haha'
+1690446741 Daedela gossips, 'it means you need to rest and re-pray for it before you can cast it again'
+1690446746 Daedela gossips, 'it's D&&D style'
+1690446847 Daedela gossips, 'yeah, not sure why Mudlet isn't giving you the map properly.  It's a lifesaver'
+1690446870 Daedela gossips, 'town is east and north'
+1690446889 Daedela gossips, 'the fields is just a very big rectangle.  Town is in the north-east corner'
+1690447199 Daedela gossips, 'oh good!  Go s1 e1 and you'll be back in town'
+$
+mem:
+16 0 8
+0 0 0
+aliases:
+k kill $1
+0

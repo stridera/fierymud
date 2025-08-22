@@ -1,0 +1,76 @@
+name: Kekler
+password: Ke5Rj1oDLF
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 3
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18896
+birthtime: 1427312986
+timeplayed: 8392
+lastlogintime: 1427328920
+host: 073.020.033.171
+height: 46
+weight: 198
+base_height: 46
+base_weight: 198
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k r q
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 2
+thirst: 22
+lastlevel: 0
+hitpoints: 15/50
+mana: 1/-2
+move: 120/140
+damroll: 4
+hitroll: 5
+strength: 89
+intelligence: 66
+wisdom: 68
+dexterity: 97
+constitution: 84
+charisma: 58
+cash: 0 0 0 7
+experience: 48803
+quit_reason: 1
+saveroom: 3054
+skills:
+403 90
+415 50
+416 50
+421 57
+438 50
+443 50
+444 50
+464 52
+465 50
+467 50
+0 0
+trophy:
+1 8012 1.000000
+1 8022 1.000000
+1 8014 3.000000
+1 8002 2.000000
+1 8010 3.000000
+1 8011 1.000000
+1 8013 2.000000
+1 8016 4.000000
+1 8023 1.000000
+1 8020 1.000000
+1 36001 9.000000
+1 36003 2.000000
+1 36002 6.000000
+1 8000 3.000000
+1 8015 3.000000
+0 0 0

@@ -1,0 +1,86 @@
+name: Contua
+password: CoRAmL.F7n
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19178
+birthtime: 1495026432
+timeplayed: 5040
+lastlogintime: 1498153938
+host: 136.165.138.169
+height: 60
+weight: 171
+base_height: 60
+base_weight: 171
+base_size: 2
+natural_size: 2
+alignment: 45
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 10
+thirst: 8
+lastlevel: 0
+hitpoints: 67/67
+mana: 1/-2
+move: 92/122
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 60
+wisdom: 71
+dexterity: 96
+constitution: 85
+charisma: 67
+cash: 0 8 70 163
+experience: 67719
+quit_reason: 1
+saveroom: 3054
+skills:
+403 93
+415 50
+416 50
+421 75
+438 50
+443 50
+444 62
+464 75
+465 50
+467 50
+0 0
+trophy:
+1 18000 1.000000
+1 8615 2.000000
+1 8613 2.000000
+1 8602 1.000000
+1 8603 4.000000
+1 8604 1.000000
+1 8606 1.000000
+1 8605 1.000000
+1 36004 1.000000
+1 8015 3.000000
+1 8020 2.000000
+1 8023 2.000000
+1 8021 3.000000
+1 8013 2.000000
+1 8002 3.000000
+1 8011 4.000000
+1 8016 3.000000
+1 8001 2.000000
+1 8012 6.000000
+1 36001 4.000000
+1 8000 3.000000
+0 0 0
+aliases:
+gcc get coins corpse
+gac get all corpse
+0

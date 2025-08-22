@@ -1,0 +1,4032 @@
+1
+vnum: 11705
+location: 0
+values:
+1
+2500
+6802
+0
+0
+0
+0
+~
+flags: ag
+name: splinter ruby ruby-splinter
+shortdesc: a ruby splinter
+desc: Someone has dropped a ruby splinter here.
+type: 1
+weight: 0.01
+cost: 480
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+applies:
+13 10
+14 -20
+~
+~~
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 5201
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 17806
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw bear
+shortdesc: a bear's claw
+desc: A sharp claw lies on the ground.
+type: 8
+weight: 0.50
+cost: 500
+timer: 0
+level: 11
+effects: 0 0 0
+wear: 16389
+applies:
+1 1
+5 1
+~
+extradesc: claw bear
+   The bear's claw is yellowed with age. There are also very strange etchings
+on its' surface.
+~
+~~
+vnum: 53023
+location: 5
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz
+name: jerkin leather cuir bouilli
+shortdesc: the Cuir Bouilli
+desc: A jerkin made of hardened, boiled leather lies here.
+type: 9
+weight: 8.00
+cost: 600
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 9
+applies:
+5 7
+~
+~~
+vnum: 55510
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gkmopqrstuvwxyz
+name: mythril saintly helm
+shortdesc: &5&bSaintly Helm&0
+desc: Symbols of divine clarity adorn a mythril helm resting here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+applies:
+3 4
+6 2
+~
+extradesc: mythril saintly helm
+Large, decorative symbols for sight and clarity cover this sanctified helm.  
+Both symbols are stylistically enclosed in the sign of the original wearer's
+patron spirit.  Blessed by the gods, this helm grants clerics a closer
+connection to their deities in their travels.
+~
+~~
+vnum: 58430
+location: 7
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tights purple purple-tights snug-fitting pair rolled ball discarded
+shortdesc: a pair of snug-fitting purple tights
+desc: A pair of tights has been rolled into a ball and discarded.
+type: 9
+weight: 0.50
+cost: 750
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: tights purple purple-tights snug-fitting pair rolled ball discarded
+These tights look like they'd be a perfect fit! A tie-waist secures
+them at the waist, and the thick woolen material goes from there all the
+way down to your feet. They look quite old, and seem to glow with some
+kind of magical power. Perhaps they're enchanted!
+~
+~~
+vnum: 49017
+location: 8
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: shoes feathered
+shortdesc: a pair of feathered shoes
+desc: A pair of shoes with wings flutter around here!
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65
+applies:
+14 35
+~
+extradesc: shoes feathered
+These starry blue shoes seem to be alive! They have wings attached to them
+and make little loopings when they know you're looking at them.~
+~~
+vnum: 55516
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gkmopqrstuvwxyz
+name: divine mythril saintly gauntlets
+shortdesc: &5&bSaintly Gauntlets&0
+desc: A pair of divine mythril gauntlets has been placed on a small table here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+5 3
+~
+extradesc: divine mythril saintly gauntlets
+Made more for protection and recognition than strength and battle prowess,
+these gauntlets are made from many small plates linked together, but are
+relatively unadorned.  Strong spiritual enchantments have been placed on these
+gauntlets however; the healing aura around them is unmistakable.
+~
+~~
+vnum: 55511
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gkmopqrstuvwxyz
+name: mythril saintly vambraces
+shortdesc: &5&bSaintly Vambraces&0
+desc: Mythril vambraces reverently await their owner here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+applies:
+5 2
+3 3
+~
+extradesc: mythril saintly vambraces
+These vambraces are forged from mythril, a metal that when in its purest form,
+can hold great spiritual power and divine favor.  Each set of vambraces like
+these is made for a specific cleric in the name of a specific deity, both of
+which are indicated in intricate designs across the surface of the plates.
+~
+~~
+vnum: 53409
+location: 12
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: muyz
+name: cloak giant-lynx-fur
+shortdesc: a cloak of lynx fur
+desc: A cloak made out of the fur of a giant lynx lies here.
+type: 9
+weight: 3.00
+cost: 2500
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+applies:
+5 3
+~
+extradesc: giant-lynx-fur-cloak
+This large cloak is made from the fur of a giant lynx.  The material
+is smooth and the workmanship is flawless.  The interior of the cloak
+is lined with a white fur, maybe snow rabbit or snow leopard.  The
+clasp is made of gold and is carved to appear like some sort of winged
+snake.  This cloak appears very, very valuable.
+~
+~~
+vnum: 12008
+location: 13
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: baldric emblazoned belt
+shortdesc: an emblazoned baldric
+desc: A large, ornamented belt lies coiled here.
+type: 9
+weight: 1.25
+cost: 225
+timer: 0
+level: 6
+effects: 0 0 0
+wear: 2049
+applies:
+19 1
+~
+extradesc: belt emblazoned baldric
+This large, wide belt goes around the waist, up over the shoulders,      
+to support a sword's sheath. A lion rampant adorns the front of
+it, where it goes across the stomach. The baldric seems very
+old; its owner hasn't taken good care of it -- the leather is
+cracked in places.
+~
+~~
+vnum: 55438
+location: 14
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aghmopqrstuvwxyz
+name: divine believer believers bracer believers-bracer
+shortdesc: &5Believer's Bracer&0
+desc: Resting on the ground is a small divine bracer.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+applies:
+5 2
+13 20
+~
+extradesc: divine believer belivers bracer believers-bracer
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 55002
+location: 15
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: jade-bracelet bracelet jade ring solid
+shortdesc: a jade bracelet
+desc: A large ring of solid jade lies here.
+type: 9
+weight: 1.00
+cost: 1700
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 4097
+applies:
+1 1
+13 -10
+~
+extradesc: jade-bracelet bracelet jade ring solid
+This is a large ring carved from a solid piece of jade.  It looks as though it
+is made up of many symbols that resemble squared cerimonial masks.  
+~
+~~
+vnum: 48417
+location: 20
+values:
+0
+11
+12
+9
+0
+0
+0
+~
+flags: mowxyzD
+name: limb limb-maddened-tremaen fire-scorched-staff
+shortdesc: the limb of a maddened tremaen
+desc: A fire-scorched staff lies here, smoldering slightly.
+type: 5
+weight: 7.54
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 32769
+extradesc: limb-maddened-tremaen fire-scorched-staff
+This limb broke off during a tremaen during battle. The limb is sturdy and
+could make an effective weapon in battle.
+~
+triggers:
+18887
+~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: mask imanhotep golden
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 9
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+applies:
+1 2
+4 2
+~
+extradesc: mask
+The mask is made of solid gold and is encrusted with jewels. It has an aura
+of power around it.~
+~~
+vnum: 8611
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 8611
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 8602
+location: 25
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: badge guards guard
+shortdesc: a guard's badge
+desc: A badge belonging to one of the guards has been dropped here.
+type: 9
+weight: 0.04
+cost: 300
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 524289
+extradesc: badge guards
+A small red badge with a picture of the MeerCat Royal family stitched onto
+it.
+~
+~~
+vnum: 16201
+location: 127
+values:
+0
+0
+300
+0
+0
+0
+0
+~
+flags: ag
+name: sceptre rod kings golden
+shortdesc: a golden sceptre
+desc: A golden sceptre glitters in the light.
+type: 1
+weight: 1.20
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+17 3
+~
+extradesc: sceptre rod kings
+The sceptre is made of pure gold, and is encrusted in jewels. Intricate carvingsdepicting wings snakes decorate this majestic rod.~
+~~
+vnum: 20
+location: 127
+values:
+25
+17
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 3.11
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1000
+location: 127
+values:
+110
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 101
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: gruel cup thin food
+shortdesc: a cup of thin gruel
+desc: A cup full of a mushy substance has been left here.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: gruel cup thin food
+This is a thin drippy gruel, no doubt boiled down from some concoction of oats
+and water.  It has little smell and isn't the least bit appetizing.    
+~
+~~
+vnum: 104
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lentil food bowl
+shortdesc: some warm lentil soup
+desc: Well-cooked flattish seeds form a soup in a small bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lentil food
+A brownish-green slurry fills this little bowl.  It is steaming nicely.  It
+could use a bit of salt, but but is pretty edible as is.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 102
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: boullion bowl food soup
+shortdesc: a bowl of tasty boullion
+desc: There's a little bowl of yellow soup lying here.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: boullion bowl food
+This yellowish liquid has the occasional bit of meat or vegetable drifting
+through it.  It smells a bit like chicken, and is salty to the taste.    
+~
+~~
+vnum: 104
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lentil food bowl
+shortdesc: some warm lentil soup
+desc: Well-cooked flattish seeds form a soup in a small bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lentil food
+A brownish-green slurry fills this little bowl.  It is steaming nicely.  It
+could use a bit of salt, but but is pretty edible as is.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 103
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lima bean food
+shortdesc: yummy lima bean soup
+desc: Some beans swim in thin soup in a bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lima bean food
+Fat white beans are piled high in this little bowl of vegetarian soup.  A few
+herbs are sprinkled in, but they must be parsely, for the taste of lima beans
+overwhelms all.    
+~
+~~
+vnum: 106
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jambalaya bowl pork spicy food bowl
+shortdesc: a spicy bowl of pork jambalaya
+desc: Tasty-looking meaty stew sits in a little bowl, waiting to be eaten.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: jambalaya bowl pork spicy food
+Generous strips of chewy pork appear to have been marinated, grilled, and
+stewed in any number of spicy herbs and vegetables, then mixed up with steamed
+rice.    
+~
+~~
+vnum: 106
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jambalaya bowl pork spicy food bowl
+shortdesc: a spicy bowl of pork jambalaya
+desc: Tasty-looking meaty stew sits in a little bowl, waiting to be eaten.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: jambalaya bowl pork spicy food
+Generous strips of chewy pork appear to have been marinated, grilled, and
+stewed in any number of spicy herbs and vegetables, then mixed up with steamed
+rice.    
+~
+~~
+vnum: 106
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jambalaya bowl pork spicy food bowl
+shortdesc: a spicy bowl of pork jambalaya
+desc: Tasty-looking meaty stew sits in a little bowl, waiting to be eaten.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: jambalaya bowl pork spicy food
+Generous strips of chewy pork appear to have been marinated, grilled, and
+stewed in any number of spicy herbs and vegetables, then mixed up with steamed
+rice.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 107
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: gumbo chicken bowl steaming food
+shortdesc: a steaming bowl of chicken gumbo
+desc: Steam rises enticingly from a bowl of gumbo.
+type: 19
+weight: 1.20
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: gumbo chicken bowl steaming food
+Hot spicy chicken swims in an okra-thickened stock.  Soft cooked peas and rice
+complete this rich stew.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 106
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jambalaya bowl pork spicy food bowl
+shortdesc: a spicy bowl of pork jambalaya
+desc: Tasty-looking meaty stew sits in a little bowl, waiting to be eaten.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: jambalaya bowl pork spicy food
+Generous strips of chewy pork appear to have been marinated, grilled, and
+stewed in any number of spicy herbs and vegetables, then mixed up with steamed
+rice.    
+~
+~~
+vnum: 108
+location: -1
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: goulash plate heaping food
+shortdesc: a heaping plate of goulash
+desc: There's a nice plate heaped high with goulash, left unattended.
+type: 19
+weight: 3.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: goulash plate heaping food
+This is quite the pile of beef chunks!  They are tender and rich, smelling of
+hot peppers and onions.  Bits of broccoli make it a well-rounded dish.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 103
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lima bean food
+shortdesc: yummy lima bean soup
+desc: Some beans swim in thin soup in a bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lima bean food
+Fat white beans are piled high in this little bowl of vegetarian soup.  A few
+herbs are sprinkled in, but they must be parsely, for the taste of lima beans
+overwhelms all.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 107
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: gumbo chicken bowl steaming food
+shortdesc: a steaming bowl of chicken gumbo
+desc: Steam rises enticingly from a bowl of gumbo.
+type: 19
+weight: 1.20
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: gumbo chicken bowl steaming food
+Hot spicy chicken swims in an okra-thickened stock.  Soft cooked peas and rice
+complete this rich stew.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 104
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lentil food bowl
+shortdesc: some warm lentil soup
+desc: Well-cooked flattish seeds form a soup in a small bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lentil food
+A brownish-green slurry fills this little bowl.  It is steaming nicely.  It
+could use a bit of salt, but but is pretty edible as is.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 108
+location: -1
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: goulash plate heaping food
+shortdesc: a heaping plate of goulash
+desc: There's a nice plate heaped high with goulash, left unattended.
+type: 19
+weight: 3.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: goulash plate heaping food
+This is quite the pile of beef chunks!  They are tender and rich, smelling of
+hot peppers and onions.  Bits of broccoli make it a well-rounded dish.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 107
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: gumbo chicken bowl steaming food
+shortdesc: a steaming bowl of chicken gumbo
+desc: Steam rises enticingly from a bowl of gumbo.
+type: 19
+weight: 1.20
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: gumbo chicken bowl steaming food
+Hot spicy chicken swims in an okra-thickened stock.  Soft cooked peas and rice
+complete this rich stew.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 104
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lentil food bowl
+shortdesc: some warm lentil soup
+desc: Well-cooked flattish seeds form a soup in a small bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lentil food
+A brownish-green slurry fills this little bowl.  It is steaming nicely.  It
+could use a bit of salt, but but is pretty edible as is.    
+~
+~~
+vnum: 106
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jambalaya bowl pork spicy food bowl
+shortdesc: a spicy bowl of pork jambalaya
+desc: Tasty-looking meaty stew sits in a little bowl, waiting to be eaten.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: jambalaya bowl pork spicy food
+Generous strips of chewy pork appear to have been marinated, grilled, and
+stewed in any number of spicy herbs and vegetables, then mixed up with steamed
+rice.    
+~
+~~
+vnum: 104
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lentil food bowl
+shortdesc: some warm lentil soup
+desc: Well-cooked flattish seeds form a soup in a small bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lentil food
+A brownish-green slurry fills this little bowl.  It is steaming nicely.  It
+could use a bit of salt, but but is pretty edible as is.    
+~
+~~
+vnum: 104
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lentil food bowl
+shortdesc: some warm lentil soup
+desc: Well-cooked flattish seeds form a soup in a small bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lentil food
+A brownish-green slurry fills this little bowl.  It is steaming nicely.  It
+could use a bit of salt, but but is pretty edible as is.    
+~
+~~
+vnum: 104
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lentil food bowl
+shortdesc: some warm lentil soup
+desc: Well-cooked flattish seeds form a soup in a small bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lentil food
+A brownish-green slurry fills this little bowl.  It is steaming nicely.  It
+could use a bit of salt, but but is pretty edible as is.    
+~
+~~
+vnum: 106
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jambalaya bowl pork spicy food bowl
+shortdesc: a spicy bowl of pork jambalaya
+desc: Tasty-looking meaty stew sits in a little bowl, waiting to be eaten.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: jambalaya bowl pork spicy food
+Generous strips of chewy pork appear to have been marinated, grilled, and
+stewed in any number of spicy herbs and vegetables, then mixed up with steamed
+rice.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 104
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lentil food bowl
+shortdesc: some warm lentil soup
+desc: Well-cooked flattish seeds form a soup in a small bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lentil food
+A brownish-green slurry fills this little bowl.  It is steaming nicely.  It
+could use a bit of salt, but but is pretty edible as is.    
+~
+~~
+vnum: 103
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lima bean food
+shortdesc: yummy lima bean soup
+desc: Some beans swim in thin soup in a bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lima bean food
+Fat white beans are piled high in this little bowl of vegetarian soup.  A few
+herbs are sprinkled in, but they must be parsely, for the taste of lima beans
+overwhelms all.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 104
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lentil food bowl
+shortdesc: some warm lentil soup
+desc: Well-cooked flattish seeds form a soup in a small bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lentil food
+A brownish-green slurry fills this little bowl.  It is steaming nicely.  It
+could use a bit of salt, but but is pretty edible as is.    
+~
+~~
+vnum: 109
+location: -1
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: stew hearty beef pot large food
+shortdesc: a large pot of hearty beef stew
+desc: A large pot sits here giving off a beefy smell.
+type: 19
+weight: 5.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: stew hearty beef pot large food
+What a huge pot of stew this is!  It looks like a meal for a king, filled with
+giant hunks of beef, thick carrot slices, celery, and a bit of barley for good
+measure.  Several potatoes lurk in the broth as well.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 108
+location: -1
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: goulash plate heaping food
+shortdesc: a heaping plate of goulash
+desc: There's a nice plate heaped high with goulash, left unattended.
+type: 19
+weight: 3.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: goulash plate heaping food
+This is quite the pile of beef chunks!  They are tender and rich, smelling of
+hot peppers and onions.  Bits of broccoli make it a well-rounded dish.    
+~
+~~
+vnum: 107
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: gumbo chicken bowl steaming food
+shortdesc: a steaming bowl of chicken gumbo
+desc: Steam rises enticingly from a bowl of gumbo.
+type: 19
+weight: 1.20
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: gumbo chicken bowl steaming food
+Hot spicy chicken swims in an okra-thickened stock.  Soft cooked peas and rice
+complete this rich stew.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 104
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lentil food bowl
+shortdesc: some warm lentil soup
+desc: Well-cooked flattish seeds form a soup in a small bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lentil food
+A brownish-green slurry fills this little bowl.  It is steaming nicely.  It
+could use a bit of salt, but but is pretty edible as is.    
+~
+~~
+vnum: 103
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lima bean food
+shortdesc: yummy lima bean soup
+desc: Some beans swim in thin soup in a bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lima bean food
+Fat white beans are piled high in this little bowl of vegetarian soup.  A few
+herbs are sprinkled in, but they must be parsely, for the taste of lima beans
+overwhelms all.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 105
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup pea food bowl
+shortdesc: pea soup with bits of ham
+desc: A nice bowl of pea soup sits here steaming.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup pea food
+A gloppy green paste fills this bowl to the brim with pea goodness.  Bits and
+pieces of ham are sprinked through it, giving it a nice meaty flavor.    
+~
+~~
+vnum: 104
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: soup lentil food bowl
+shortdesc: some warm lentil soup
+desc: Well-cooked flattish seeds form a soup in a small bowl.
+type: 19
+weight: 0.40
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: soup lentil food
+A brownish-green slurry fills this little bowl.  It is steaming nicely.  It
+could use a bit of salt, but but is pretty edible as is.    
+~
+~~
+vnum: 109
+location: -1
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: stew hearty beef pot large food
+shortdesc: a large pot of hearty beef stew
+desc: A large pot sits here giving off a beefy smell.
+type: 19
+weight: 5.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: stew hearty beef pot large food
+What a huge pot of stew this is!  It looks like a meal for a king, filled with
+giant hunks of beef, thick carrot slices, celery, and a bit of barley for good
+measure.  Several potatoes lurk in the broth as well.    
+~
+~~
+vnum: 101
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: gruel cup thin food
+shortdesc: a cup of thin gruel
+desc: A cup full of a mushy substance has been left here.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: gruel cup thin food
+This is a thin drippy gruel, no doubt boiled down from some concoction of oats
+and water.  It has little smell and isn't the least bit appetizing.    
+~
+~~
+vnum: 53024
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmot
+name: helm feathered plume
+shortdesc: a feathered helm
+desc: An open-faced helm with a red plume rests here.
+type: 9
+weight: 4.80
+cost: 1000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 17
+applies:
+3 1
+4 2
+~
+~~
+vnum: 49017
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: shoes feathered
+shortdesc: a pair of feathered shoes
+desc: A pair of shoes with wings flutter around here!
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65
+applies:
+14 35
+~
+extradesc: shoes feathered
+These starry blue shoes seem to be alive! They have wings attached to them
+and make little loopings when they know you're looking at them.~
+~~
+vnum: 55008
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gl
+name: cloak snow-leopard-cloak snow leopard pelt fur pure white dark spots
+shortdesc: the Snow Leopard Cloak
+desc: A pelt of pure white fur and dark spots is piled in a corner.
+type: 9
+weight: 2.10
+cost: 5900
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 1025
+applies:
+1 1
+2 -2
+~
+extradesc: cloak snow-leopard-cloak snow leopard pelt fur pure white dark spots
+In your hands is the cloak made from the pelt of a snow leopard, valuable
+beyond anything else to the people of Technitzitlan.  It is said that those who
+wear such a cloak are closer to the great Snow Leopard herself than anyone
+else.    
+~
+~~
+vnum: 5201
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 5207
+location: -1
+values:
+40
+28
+0
+0
+0
+0
+0
+~
+flags: ag
+name: potion red vial red-potion
+shortdesc: a red potion
+desc: A vial containing a red potion tempts you.
+type: 10
+weight: 0.20
+cost: 300
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+extradesc: potion red vial red-potion
+The strange looking vial holds a bright red magical liquid.
+~
+~~
+vnum: 11705
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag
+name: splinter ruby ruby-splinter
+shortdesc: a ruby splinter
+desc: Someone has dropped a ruby splinter here.
+type: 1
+weight: 0.01
+cost: 480
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+applies:
+13 10
+14 -20
+~
+~~
+vnum: 5201
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 8345
+location: -1
+values:
+20
+29
+29
+29
+0
+0
+0
+~
+flags: 0
+name: vial clear small
+shortdesc: a clear vial
+desc: A small vial of clear liquid lays here on the ground.
+type: 10
+weight: 0.10
+cost: 100
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: vial clear small
+This old glass vial contains a small amount of crystal clear liquid.  The thick
+glass that surrounds the liquid could handle a drop or two if it was put to
+test.    
+~
+~~
+vnum: 55513
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gkmopqrstuvwxyz
+name: mythril amethysts saintly greaves
+shortdesc: &5&bSaintly Greaves&0
+desc: A pair of mythril greaves set with blessed amethysts lies on the floor.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+applies:
+2 3
+13 25
+~
+extradesc: mythril amethysts saintly greaves
+Powerful blessings have been bestowed on the gems in these greaves, attuning
+the wearer's body and soul with the higher realms.  Embossed on the mythril
+itself among the many celestial images is the original bearer's holy symbol.
+~
+~~
+vnum: 55437
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agmopqrstuvwxyz
+name: divine believer believers boots believers-boots
+shortdesc: &5Believer's Boots&0
+desc: Resting on the ground is a pair of divine boots.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+applies:
+1 2
+13 15
+~
+extradesc: divine believer believers boots believers-boots
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 55514
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agkmopqrstuvwxyz
+name: shining radiant mythril saintly boots
+shortdesc: &5&bSaintly Boots&0
+desc: Shining, radiant mythril boots gleam in the light here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+applies:
+3 4
+6 2
+~
+extradesc: shining radiant mythril saintly boots
+These boots more than reflect light, they radiate with their own inner
+sanctified illumination.  Exquisite angelic designs and celestial glyphs cover
+each boot, identifying the wearer as a holy being.  The beauty of these boots
+is surpassed only by their holy purity.
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 55434
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agkmopqrstuvwxyz
+name: divine believer believers vambraces believers-vambraces
+shortdesc: &5Believer's Vambraces&0
+desc: Resting on the ground are some divine vambraces.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+applies:
+2 2
+1 4
+~
+extradesc: divine believer belivers helm believers-helm
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 55439
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: agkmopqrstuvwxyz
+name: divine believer believers gauntlets believers-gauntlets
+shortdesc: &5Believer's Gauntlets&0
+desc: Resting on the ground is a divine pair of gauntlets.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+3 3
+1 2
+~
+extradesc: divine believer believers gauntlets believers-gauntlets
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 55435
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: agkmopqrstuvwxyz
+name: divine believer believers plate believers-plate
+shortdesc: &5Believer's Plate&0
+desc: Resting on the ground is a divine plate.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 9
+applies:
+5 3
+13 10
+~
+extradesc: divine believer believers plate believers-plate
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 55436
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agkmopqrstuvwxyz
+name: divine believer believers greaves believers-greaves
+shortdesc: &5Believer's Greaves&0
+desc: Resting on the ground is a set of divine greaves.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 33
+applies:
+6 3
+1 3
+~
+extradesc: divine believer believers greaves believers-greaves
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 55433
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agkmopqrstuvwxyz
+name: divine believer believers helm believers-helm
+shortdesc: &5Believer's Helm&0
+desc: Resting on the ground is a divine helm.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+applies:
+4 2
+13 5
+~
+extradesc: divine believer believers helm believers-helm
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 3056
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20
+location: 127
+values:
+25
+25
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 3.63
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55628
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem cursed cursed-tourmaline
+shortdesc: a cursed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55632
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem perfect perfect-turquoise
+shortdesc: a perfect turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~

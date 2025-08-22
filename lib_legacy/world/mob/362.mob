@@ -1,0 +1,89 @@
+#36200
+iasgair fisherman~
+the iasgair~
+An iasgair is here, dangling a line into the water.
+~
+A lean man with fiery red hair sits calmly in his small round boat. Several
+fishing lines dangle into the water and a stringer of fish hangs from his
+side.
+~
+2099276 64 200 E
+17 0 0 0d0+0 0d0+0
+0 0 0 362
+3 3 1 24 0 0 2
+BareHandAttack: 13
+Str: 64
+Dex: 81
+Int: 71
+Wis: 79
+Con: 30
+Cha: 83
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#36201
+gorm blue-bird bird~
+the blue Gorm~
+the blue gorm
+~
+A bird with feathers of the palest blue soars by on spread wings. Its head
+turns from side to side as it scans the kelp bed for entangled fish or snails.
+It must be some kind of gull.
+~
+18874568 295936 500 E
+18 0 0 0d0+0 0d0+0
+0 0 0 362
+3 3 0 24 14 0 1
+BareHandAttack: 10
+Str: 68
+Dex: 72
+Int: 69
+Wis: 68
+Con: 30
+Cha: 99
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#36202
+liath gray gray-bird~
+the gray liath~
+A large gray bird floats softly on the breeze overhead.
+~
+Soft gray feathers tipped with blue form a striking pattern on this huge
+sea bird. You've never seen such a large bird! Its wings must span at
+least seven feet. It soars easily overhead, catching the breeze so skillfully
+that it seldom has to beat its mighty wings.
+~
+16842824 1344512 -500 E
+20 0 0 0d0+0 0d0+0
+0 0 0 362
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 74
+Dex: 78
+Int: 56
+Wis: 72
+Con: 30
+Cha: 97
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

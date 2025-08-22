@@ -1,0 +1,121 @@
+name: Vitkus
+password: Vi.FBNBfSE
+description
+likes small, varied coins when he's paid.
+~
+prompt: &0&6Tank&0: &4&b%t &0&6Opp&0: &4&b%o &7&b%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0 &0(&6%i&0)&6vis&0> 
+sex: 1
+class: 10
+race: 3
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 14170
+birthtime: 1103752312
+timeplayed: 12801068
+lastlogintime: 1650591282
+host: 069.162.244.194
+height: 44
+weight: 184
+base_height: 44
+base_weight: 184
+base_size: 2
+natural_size: 2
+alignment: 65
+playerflags: glxyz
+effectflags: k 0 q
+prefflags: hnoxCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+freezelevel: 104
+loadroom: 3054
+lastlevel: 8
+hitpoints: 1366/1168
+mana: 100/100
+move: 162/164
+damroll: 4
+hitroll: 5
+strength: 89
+intelligence: 60
+wisdom: 66
+dexterity: 99
+constitution: 98
+charisma: 56
+cash: 117 827 13127 8203
+experience: 105321088
+pagelength: 50
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+402 1000
+403 1000
+404 1000
+410 850
+411 1000
+412 1000
+415 1000
+416 1000
+420 1000
+421 1000
+422 1000
+428 150
+430 1000
+431 1000
+434 1000
+438 178
+443 116
+444 1000
+463 1000
+464 1000
+465 1000
+466 347
+467 765
+468 186
+473 1000
+474 1000
+0 0
+trophy:
+1 2221 0.166667
+0 0 0
+tells:
+1616334539 @WFigh@W tells you, 'that will be 1 gem@W'@0
+1618028724 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1648873073 @WLaird@W tells you, 'testing?@W'@0
+1648873116 @WLaird@W tells you, 'been a very quite day@W'@0
+1648873124 @WLaird@W tells you, 'working on it now@W'@0
+1648873140 @WLaird@W tells you, 'farming sim just crashed so its time for a new game :)@W'@0
+1648873380 @WLaird@W tells you, 'anaconda@W'@0
+1648873434 @WLaird@W tells you, 'good @W'@0
+1648873539 @WLaird@W tells you, 'ya when i first saw zavers go off i thought some moron gave him perma blur@W'@0
+1649555727 @WFigh@W tells you, 'that will be 1 gem@W'@0
+$
+gossips:
+1649567013 Shikata gossips, 'arterius is the last mob'
+1649567091 Zaver gossips, 'also consent choak'
+1649567139 Ija gossips, 'how goes it'
+1649567148 Zaver gossips, 'tell choak well'
+1649567155 Zaver gossips, 'and come die with us'
+1649567164 Zaver gossips, 'consent choak'
+1649567166 Ija gossips, 'whats needed?'
+1649567177 Fasq gossips, 'meh'
+1649567186 Fasq gossips, 'ija'
+1649567189 Fasq gossips, 'bring ija'
+$
+aliases:
+h hide
+all get all all.corpse
+gem get all.gem all.corpse
+id recite identify $*
+df drink fountain
+ba bash $*
+coin get all.coin all.corpse
+dis disarm blade
+0 recite green
+3 ass fasq
+2 ass faegern
+1 ass zaver
+0

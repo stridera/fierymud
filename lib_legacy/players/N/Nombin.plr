@@ -1,0 +1,119 @@
+name: Nombin
+password: NoI.wZ.8kK
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>%_CH CD: %dc>>%_
+autoinvis: 0
+sex: 1
+class: 13
+race: 9
+level: 56
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19493
+birthtime: 1572706352
+timeplayed: 157612
+lastlogintime: 1583080181
+host: 115.070.210.087
+height: 65
+weight: 167
+base_height: 65
+base_weight: 167
+base_size: 2
+natural_size: 2
+alignment: 605
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3208
+thirst: 22
+lastlevel: 0
+hitpoints: 693/637
+mana: 313/313
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 56
+wisdom: 68
+dexterity: 96
+constitution: 100
+charisma: 52
+cash: 274 2223 12208 5034
+experience: 36450803
+quit_reason: 7
+saveroom: 3208
+cooldowns:
+10 1030/18000
+-1 0
+skills:
+404 165
+411 50
+412 610
+414 50
+415 50
+416 50
+420 219
+421 261
+422 219
+430 56
+438 50
+443 50
+444 86
+446 127
+448 1000
+449 1000
+463 50
+601 50
+602 50
+605 50
+606 50
+0 0
+trophy:
+1 53305 0.500000
+1 53313 1.000000
+1 53306 1.500000
+1 53303 1.500000
+1 53315 6.000000
+1 53314 2.000000
+1 53312 5.000000
+1 13601 2.000000
+1 13603 1.000000
+1 13610 2.000000
+1 8012 1.000000
+1 8010 1.000000
+1 8023 1.000000
+1 8015 1.000000
+1 8013 1.000000
+1 8014 1.000000
+1 8001 2.000000
+1 36004 1.000000
+1 36002 1.000000
+1 36003 1.000000
+1 36001 1.000000
+0 0 0
+tells:
+1583074778 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1583075213 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1583075682 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1583076260 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1583076553 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1583076711 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1583076876 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1583077203 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1583078178 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1583078504 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+$
+gossips:
+1583078561 Chiron gossips, 'what is your well trigger'
+1583078564 Moonda gossips, 'well'
+1583078574 Chiron gossips, 'but no detect invis on?'
+1583078580 Harnv gossips, 'I usually do'
+1583078640 Moonda gossips, 'sorry'
+1583078662 Childress gossips, 'np'
+1583078853 Moonda gossips, 'laughing'
+1583078893 Moonda gossips, 'what were you grabbing?'
+1583079663 Merlic gossips, 'have you worked out how to get dagger of shadows again?'
+1583079712 Childress gossips, 'multiple times by now I assume'
+$

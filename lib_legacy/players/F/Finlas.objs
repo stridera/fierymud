@@ -1,0 +1,1664 @@
+1
+vnum: 16103
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: ring dull-sandstone-ring sand-stone
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+18 1
+1 3
+5 2
+~
+extradesc: sandstone-ring dull sand-stone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  ~
+triggers:
+5324
+5332
+~
+~~
+vnum: 16103
+location: 2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: ring dull-sandstone-ring sand-stone
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+18 1
+1 3
+5 2
+~
+extradesc: sandstone-ring dull sand-stone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  ~
+triggers:
+5324
+5332
+~
+~~
+vnum: 17806
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: claw bear's-claw sharp-claw bears-claw bear-claw
+shortdesc: a bear's claw
+desc: A sharp claw lies on the ground.
+type: 8
+weight: 0.50
+cost: 500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16389
+hiddenness: 0
+applies:
+1 3
+5 3
+~
+extradesc: claw bear's-claw sharp-claw bears-claw bear-claw
+The bear's claw is yellowed with age.  There are also very strange etchings on
+its' surface.~
+~~
+vnum: 48123
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace small-stone-necklace
+shortdesc: a stone necklace
+desc: A small stone necklace lies here.
+type: 8
+weight: 0.80
+cost: 40
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 4101
+hiddenness: 0
+applies:
+1 1
+5 1
+19 2
+~
+~~
+vnum: 58104
+location: 5
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: kimono black-cotton jet-black-kimono
+shortdesc: a jet-black kimono
+desc: A black cotton kimono lies forgotten on the floor.
+adesc:
+Nothing.~
+type: 9
+weight: 1.20
+cost: 20000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+18 2
+26 2
+~
+extradesc: kimono black-cotton jet-black-kimono
+Made of thin black cotton, this kimono blends in perfectly with the shadows of
+night.  Silk would provide a telltale sheen, though it would also be lighter,
+but the black-dyed cotton absorbs light rather than reflecting it.  It is
+utterly silent, not even giving the usual "whoosh" of fabric when moved.  The
+sleeves fall only to the elbows, providing plenty of room to swing a weapon.  ~
+~~
+vnum: 55384
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz befghij
+name: helm trainee-helm magic-power
+shortdesc: a trainee helm
+desc: A helm of slight magic power lies here.
+type: 9
+weight: 4.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+18 1
+13 7
+~
+extradesc: helm trainee-helm magic-power
+Newly forged, this magical metal helm was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 55387
+location: 7
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz befghij
+name: greaves trainee-greaves magical-plate-greaves magic
+shortdesc: trainee greaves
+desc: A set of slightly magical plate greaves lies here.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+18 1
+13 7
+~
+extradesc: greaves trainee-greaves magical-plate-greaves magic
+Newly forged, these magical metal greaves were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 55444
+location: 8
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: adghmnopqrsuvwxyzD abefghij
+name: boots-woodsmen survivalist's-leather-boots survivalists-leather-boots
+shortdesc: &3Boots of the Woodsmen&0
+desc: A pair of survivalist's leather boots are hung on a nearby tree.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+6 2
+13 15
+14 15
+27 2
+~
+extradesc: boots-woodsmen survivalist's-leather-boots survivalists-leather-boots
+Stitched together by hand and reinforced with enchanted chainmail, the creator
+of these boots is clearly a hardy woodsmen, capable of fending for themselves.
+New rangers are usually given armor like this to aid them in their exploration.~
+~~
+vnum: 55446
+location: 9
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: adghmnopqrsuvwxyzD abefghij
+name: gloves-woodsmen survivalist's-leather-gloves survivalists-leather-gloves
+shortdesc: &3Gloves of the Woodsmen&0
+desc: A pair of survivalist's leather gloves is hung on a nearby tree.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+2 2
+6 2
+18 1
+27 2
+~
+extradesc: gloves-woodsmen survivalist's-leather-gloves survivalists-leather-gloves
+Stitched together by hand and reinforced with enchanted chainmail, the creator
+of these gloves is clearly a hardy woodsmen, capable of fending for themselves.
+New rangers are usually given armor like this to aid them in their exploration.~
+~~
+vnum: 55385
+location: 10
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: mnouvwxyz befghij
+name: vambraces trainee-vambraces magical-plate magic
+shortdesc: trainee vambraces
+desc: A set of somewhat magical plate vambraces lies here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 2
+13 10
+~
+extradesc: vambraces trainee-vambraces magical-plate magic
+Newly forged, these magical metal vambraces were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 4356
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cloak royal-purple-cloak velvet golden-edged-pool
+shortdesc: a &5royal purple cloak&0
+desc: Purple velvet has been left here, forming a soft golden-edged pool on the floor.
+adesc:
+Nothing.~
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+1 1
+6 2
+~
+extradesc: royal-purple-cloak velvet golden-edged-pool
+From a distance, this cloak is perfect in detail, but when viewed up close, it
+clearly fits the phrase 'good enough for stage'.  It's still quite a piece of
+work though, lined in darker purple silk and trimmed in gold.  A golden cord
+clasped in a large brooch ties the cloak to the wearer's neck.    ~
+~~
+vnum: 58007
+location: 13
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: belt ninja's-belt ninjas-belt length-black-cloth
+shortdesc: the ninja's belt
+desc: You see a neatly folded length of black cloth.
+type: 9
+weight: 1.10
+cost: 500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+14 20
+2 4
+~
+extradesc: ninjas ninja belt black cloth
+This is a very simple length of black cloth, hemmed all around very
+neatly. There's literally nothing impressive about it.~
+~~
+vnum: 55445
+location: 14
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: adghmnopqrsuvwxyzD abefghij
+name: bracer woodsmen-bracer survivalist's-leather-bracer survivalists-leather-bracer
+shortdesc: &3Woodsmen Bracer&0
+desc: A survivalist's leather bracer is hung on a nearby tree.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+1 2
+4 2
+27 2
+~
+extradesc: bracer woodsmen-bracer survivalist's-leather-bracer survivalists-leather-bracer
+Stitched together by hand and reinforced with enchanted chainmail, the creator
+of this bracer is clearly a hardy woodsmen, capable of fending for themselves.
+New rangers are usually given armor like this to aid them in their exploration.~
+~~
+vnum: 20306
+location: 15
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracelet snake-fang-bracelet small fangs
+shortdesc: a snake fang bracelet
+desc: A small bracelet made of snake fangs lies on the ground here.
+type: 8
+weight: 0.70
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+19 1
+18 1
+1 1
+~
+extradesc: snake-fang-bracelet small fangs
+This bracelet is made out of a very durable weaved grass that has several
+spaced out snake fangs weaved into it.  The fangs are about an inch in length
+and give the bracelet a menacing look.  The grass is a dull green color and it
+is weaved tightly so it looks almost like it is one piece of grass.~
+~~
+vnum: 59024
+location: 16
+values:
+2
+2
+8
+3
+0
+0
+0
+~
+flags: agkmnuyz acfghij
+name: sword iridescent-sword pristine-sword
+shortdesc: an iridescent sword
+desc: A pristine sword is lying on the ground, iridescent in the light.
+type: 5
+weight: 3.00
+cost: 3000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+1 1
+19 1
+27 1
+~
+extradesc: sword iridescent-sword pristine-sword
+The iridescent sword gleams in the light, almost like its giving off some light
+of its own.  The brilliant Damascus forged two sided blade is split down the
+middle with a blood groove, from tip to shoulder.  The handle of the sword is
+wrapped in what looks to be dragon skin, sewn together with a golden twine.  
+There is a small inscription on the pommel.~
+extradesc: inscription 
+   May the Iridescent Sword guide your way to victory against the wicked.    ~
+~~
+vnum: 59024
+location: 17
+values:
+2
+2
+8
+3
+0
+0
+0
+~
+flags: agkmnuyz acfghij
+name: sword iridescent-sword pristine-sword
+shortdesc: an iridescent sword
+desc: A pristine sword is lying on the ground, iridescent in the light.
+type: 5
+weight: 3.00
+cost: 3000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+1 1
+19 1
+27 1
+~
+extradesc: sword iridescent-sword pristine-sword
+The iridescent sword gleams in the light, almost like its giving off some light
+of its own.  The brilliant Damascus forged two sided blade is split down the
+middle with a blood groove, from tip to shoulder.  The handle of the sword is
+wrapped in what looks to be dragon skin, sewn together with a golden twine.  
+There is a small inscription on the pommel.~
+extradesc: inscription 
+   May the Iridescent Sword guide your way to victory against the wicked.    ~
+~~
+vnum: 373
+location: 21
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mnorsuvwyzD abefghij
+name: trophy bird-wing-tattoo dark-ink-bottle
+shortdesc: a bird wing tattoo
+desc: Dark ink in a bottle shaped like a bird's wing sits here.
+type: 8
+weight: 0.01
+cost: 4000
+timer: 0
+level: 30
+effects: f 0 0
+wear: 65537
+hiddenness: 0
+applies:
+18 1
+19 1
+28 80
+~
+extradesc: trophy bird-wing-tattoo dark-ink-bottle
+This small pair of yellow orbs are actually a set of tiny snake eyes, carefully
+preserved in some kind of resin.  They are a brilliant yellow with a vertically
+elliptical pupil in the middle.  The tattoo is a highly realistic black image
+of a hawk's wing, with intricate details that capture the texture and shape of
+the feathers.  The use of shading and highlights creates a sense of depth and
+movement in the feathers.  It incorporates intricate swirls in the details of
+the feathers, evoking the image of the moving air.~
+triggers:
+5318
+324
+~
+~~
+vnum: 5536
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: faceguard small-faceguard eldoria-reward face-guard 3rd-eldorian-guard-faceguard third
+shortdesc: a faceguard of the 3rd Eldorian Guard
+desc: A small faceguard lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+18 1
+~
+~~
+vnum: 20301
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 8
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+1 1
+~
+extradesc: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.~
+~~
+vnum: 20301
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 8
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+1 1
+~
+extradesc: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 5212
+location: 27
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: DE g
+name: flame gray-flame grey-flame small-pillar fire questobject
+shortdesc: a gray flame
+desc: A small pillar of gray flame flickers here.
+type: 1
+weight: 0.50
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 15
+2 1
+~
+extradesc: gray-flame grey-flame small-pillar questobject
+The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  Its luminosity is both too
+bright and too dim, yet seems to light the area perfectly.~
+triggers:
+5207
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 8705
+location: 127
+values:
+15
+16
+16
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion small-healing-potion small-clay-healing-potion magic
+shortdesc: a small healing potion
+desc: A small clay healing potion has been dropped here.
+adesc:
+Nothing.~
+type: 10
+weight: 0.14
+cost: 53
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion small-healing-potion small-clay-healing-potion magic
+This small clay seems anti-climatic for a healing potion though quite
+suitable for a bandage.  It's doubtful that anything inside could save your
+life. Though it seems the only real way to find out what magic is contained in
+side would be to quaff it.~
+~~
+vnum: 8705
+location: 127
+values:
+15
+16
+16
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion small-healing-potion small-clay-healing-potion magic
+shortdesc: a small healing potion
+desc: A small clay healing potion has been dropped here.
+adesc:
+Nothing.~
+type: 10
+weight: 0.14
+cost: 53
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion small-healing-potion small-clay-healing-potion magic
+This small clay seems anti-climatic for a healing potion though quite
+suitable for a bandage.  It's doubtful that anything inside could save your
+life. Though it seems the only real way to find out what magic is contained in
+side would be to quaff it.~
+~~
+vnum: 8705
+location: 127
+values:
+15
+16
+16
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion small-healing-potion small-clay-healing-potion magic
+shortdesc: a small healing potion
+desc: A small clay healing potion has been dropped here.
+adesc:
+Nothing.~
+type: 10
+weight: 0.14
+cost: 53
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion small-healing-potion small-clay-healing-potion magic
+This small clay seems anti-climatic for a healing potion though quite
+suitable for a bandage.  It's doubtful that anything inside could save your
+life. Though it seems the only real way to find out what magic is contained in
+side would be to quaff it.~
+~~
+vnum: 8705
+location: 127
+values:
+15
+16
+16
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion small-healing-potion small-clay-healing-potion magic
+shortdesc: a small healing potion
+desc: A small clay healing potion has been dropped here.
+adesc:
+Nothing.~
+type: 10
+weight: 0.14
+cost: 53
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion small-healing-potion small-clay-healing-potion magic
+This small clay seems anti-climatic for a healing potion though quite
+suitable for a bandage.  It's doubtful that anything inside could save your
+life. Though it seems the only real way to find out what magic is contained in
+side would be to quaff it.~
+~~
+vnum: 8705
+location: 127
+values:
+15
+16
+16
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion small-healing-potion small-clay-healing-potion magic
+shortdesc: a small healing potion
+desc: A small clay healing potion has been dropped here.
+adesc:
+Nothing.~
+type: 10
+weight: 0.14
+cost: 53
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion small-healing-potion small-clay-healing-potion magic
+This small clay seems anti-climatic for a healing potion though quite
+suitable for a bandage.  It's doubtful that anything inside could save your
+life. Though it seems the only real way to find out what magic is contained in
+side would be to quaff it.~
+~~
+vnum: 8705
+location: 127
+values:
+15
+16
+16
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion small-healing-potion small-clay-healing-potion magic
+shortdesc: a small healing potion
+desc: A small clay healing potion has been dropped here.
+adesc:
+Nothing.~
+type: 10
+weight: 0.14
+cost: 53
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion small-healing-potion small-clay-healing-potion magic
+This small clay seems anti-climatic for a healing potion though quite
+suitable for a bandage.  It's doubtful that anything inside could save your
+life. Though it seems the only real way to find out what magic is contained in
+side would be to quaff it.~
+~~
+vnum: 8705
+location: 127
+values:
+15
+16
+16
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion small-healing-potion small-clay-healing-potion magic
+shortdesc: a small healing potion
+desc: A small clay healing potion has been dropped here.
+adesc:
+Nothing.~
+type: 10
+weight: 0.14
+cost: 53
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion small-healing-potion small-clay-healing-potion magic
+This small clay seems anti-climatic for a healing potion though quite
+suitable for a bandage.  It's doubtful that anything inside could save your
+life. Though it seems the only real way to find out what magic is contained in
+side would be to quaff it.~
+~~
+vnum: 8705
+location: 127
+values:
+15
+16
+16
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion small-healing-potion small-clay-healing-potion magic
+shortdesc: a small healing potion
+desc: A small clay healing potion has been dropped here.
+adesc:
+Nothing.~
+type: 10
+weight: 0.14
+cost: 53
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion small-healing-potion small-clay-healing-potion magic
+This small clay seems anti-climatic for a healing potion though quite
+suitable for a bandage.  It's doubtful that anything inside could save your
+life. Though it seems the only real way to find out what magic is contained in
+side would be to quaff it.~
+~~
+vnum: 1803
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe bark-canoe
+shortdesc: a bark canoe
+desc: A bark canoe has been abandoned here.
+type: 22
+weight: 20.00
+cost: 1
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: canoe bark-canoe
+   &0It looks very heavy, but quite sturdy.  &0~
+~~
+vnum: 6053
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: contract
+shortdesc: a contract for the Frakati Leader
+desc: A contract for someone's head has been accidentally left out!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+6055
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+18 9
+32 5
+16 9
+144 16
+266 18
+88 5
+264 18
+15 14
+~
+triggers:
+51949
+~
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: quill feather-quill long-white-feather pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill feather-quill long-white-feather pen
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)~
+triggers:
+51990
+~
+~~
+vnum: 55328
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gauntlets crushed-gauntlets armor
+shortdesc: crushed gauntlets
+desc: A pile of crushed armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gauntlets crushed-gauntlets armor
+These gauntlets are crushed beyond use.~
+~~
+vnum: 55663
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: emerald gem uncut-emerald
+shortdesc: an uncut emerald
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 15000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 5313
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: order
+shortdesc: an order for a crimson-tinged electrum hoop
+desc: An search order for a treasure hunt lays here.
+type: 12
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+5327
+~
+~~
+vnum: 55345
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves crushed-leather-sleeves armor
+shortdesc: crushed leather sleeves
+desc: A pile of crushed leather armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves crushed-leather-sleeves armor
+These sleeves are crushed beyond use.~
+~~
+vnum: 55353
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tunic crushed-leather-tunic armor
+shortdesc: a crushed leather tunic
+desc: A pile of crushed leather armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tunic crushed-leather-tunic armor
+This tunic is crushed beyond use.~
+~~
+vnum: 55601
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem uncut-amethyst
+shortdesc: an uncut amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55642
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bloodstone gem blood-stone plain-bloodstone plain-blood-stone
+shortdesc: a bloodstone
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 5000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55708
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: onyx gem radiant-onyx
+shortdesc: a radiant onyx
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 16000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 1004
+location: 127
+values:
+1
+240
+126
+0
+0
+0
+0
+~
+flags: q 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern.  It holds about fifteen hours worth of fuel.~
+~~
+vnum: 55642
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bloodstone gem blood-stone plain-bloodstone plain-blood-stone
+shortdesc: a bloodstone
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 5000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55657
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem plain-aquamarine
+shortdesc: an aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55328
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gauntlets crushed-gauntlets armor
+shortdesc: crushed gauntlets
+desc: A pile of crushed armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gauntlets crushed-gauntlets armor
+These gauntlets are crushed beyond use.~
+~~
+vnum: 55657
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem plain-aquamarine
+shortdesc: an aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55684
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pearl gem perfect-pearl
+shortdesc: a perfect pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 7000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~

@@ -1,0 +1,85 @@
+name: Hellene
+password: HeS3s.Ooqg
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20414
+birthtime: 1673553413
+timeplayed: 1437
+lastlogintime: 1673554853
+host: 076.134.021.027
+height: 61
+weight: 127
+base_height: 61
+base_weight: 127
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 39/39
+mana: 0/0
+move: 123/126
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 65
+wisdom: 71
+dexterity: 100
+constitution: 83
+charisma: 54
+cash: 0 4 0 8
+bank: 0 1 1 1
+experience: 5500
+quit_reason: 1
+saveroom: 3054
+skills:
+401 51
+403 51
+408 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+1673554510 @WDaedela@W tells you, 'head back west for your guild.  It's behind the jewelry shop@W'@0
+1673554526 @WDaedela@W tells you, 'but no rush, feel free to explore@W'@0
+1673554629 @WJulk@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
+1673554635 @WJulk@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
+1673554659 @WDaedela@W tells you, 'the command to level up is "level gain"@W'@0
+1673554715 @WJulk@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
+$
+gossips:
+1673553429 Daedela gossips, 'welcome!'
+1673553455 Mand gossips, 'Hey Hellene good to have you here!'
+1673553469 Strider gossips, 'New friends!  yay!'
+1673553531 Strider gossips, 'Feel free to ask if you have any questions.  :)'
+1673554404 Chinok gossips, 'welcome Hellene.. please let us know if you need any help or advice.'
+1673554692 Daedela gossips, 'congratulations!!!'
+1673554708 Chinok gossips, 'Gratz Hellene!'
+1673554813 Daedela gossips, 'awesome!'
+1673554819 Chinok gossips, 'awesome!'
+1673554822 Daedela gossips, 'I'll take you to the inn'
+$

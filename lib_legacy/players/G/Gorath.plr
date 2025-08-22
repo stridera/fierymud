@@ -1,0 +1,176 @@
+name: Gorath
+password: Go8gnLekfj
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA %ih&2&b><&0%e&2&b>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 5
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 16409
+birthtime: 1173410804
+timeplayed: 13547430
+lastlogintime: 1732853347
+host: 076.111.030.099
+height: 75
+weight: 124
+base_height: 75
+base_weight: 124
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxyz
+effectflags: cn 0 0
+prefflags: hjnoxzC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+lastlevel: 12
+hitpoints: 1298/1100
+mana: 980/980
+move: 350/354
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 56
+wisdom: 71
+dexterity: 87
+constitution: 100
+charisma: 48
+cash: 68 445 2544 2542
+bank: 1200 0 100 0
+experience: 121676898
+quit_reason: 1
+saveroom: 3054
+skills:
+4 1000
+12 1000
+13 1000
+14 1000
+17 1000
+27 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+92 1000
+96 1000
+99 1000
+131 1000
+132 1000
+188 1000
+191 200
+235 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 639
+416 820
+417 150
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 219
+431 166
+434 1000
+438 124
+441 1000
+443 130
+444 813
+445 869
+450 150
+451 1000
+452 303
+457 720
+458 587
+459 1000
+460 537
+461 267
+463 1000
+464 1000
+465 1000
+466 1000
+467 300
+468 1000
+473 1000
+0 0
+trophy:
+1 59013 0.500000
+1 59012 1.500000
+1 59002 0.500000
+1 59000 1.000000
+1 59010 0.500000
+1 59011 1.000000
+1 1816 1.000000
+1 1800 1.000000
+1 1803 1.000000
+1 1817 2.000000
+1 1801 2.000000
+1 1802 1.000000
+1 1814 1.000000
+1 1812 2.000000
+1 52007 1.150000
+1 52001 0.450000
+1 52018 0.533333
+1 55223 0.333333
+1 55213 0.333333
+1 55214 0.333333
+1 55221 1.333333
+0 0 0
+tells:
+1699678339 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1699678339 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1699678340 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1699678340 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1699678340 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1699678340 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1699678340 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1699678341 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1699678341 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1701566900 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+$
+gossips:
+1703616677 Discord gossips, 'Daedela: Ethereal as in incorporeal'
+1703616800 Porath gossips, 'not sure if i just missed it or if it's something recent, but shout out to whoever updated the Ickle map on Fiery website. I liked that you can hover over the zones and see it on the map now'
+1713110490 Rogzel gossips, 'hello all'
+1713110494 Altec gossips, 'sup'
+1713110583 Porath gossips, 'Heyas'
+1717257234 Chinok gossips, 'hi everyone'
+1717257242 Woogy gossips, 'good mornin!'
+1732844036 Daedela gossips, 'alright everyone I'm starting the drive home see you in an hour!'
+1732844044 Flynt gossips, 'drive safely!'
+1732853196 Chinok gossips, 'trying to thinkn of the easiest way to hand these out, since there are so many people on'
+$
+aliases:
+dm cast 'dispel magic' $*
+hh cast 'harm' $*
+db drink waterskin
+x experience
+g get all corpse
+where who -w
+df drink fountain
+tt trophy
+mem pray
+stop disengage
+cc cast 'cause critical' $*
+bl cast 'blindness' $*
+ds cast 'demonskin' $*
+dp cast 'dark presence' $*
+cf cast 'create food'
+eb eat food
+ss cast 'soulshield'
+sca scan
+gg get coins from corpse
+b bash $1
+rs rescue porath
+rx rescue xorath
+rr rescue dorath;;rescue porath
+haa hitall all
+0

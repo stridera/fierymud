@@ -1,0 +1,262 @@
+name: Kai
+password: Ka1Uzp5wZh
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 20
+race: 0
+level: 99
+home: 3046
+lifeforce: 0
+composition: 0
+id: 156
+birthtime: 923027717
+timeplayed: 12569863
+lastlogintime: 1374765912
+host: 098.065.167.167
+height: 69
+weight: 100
+base_height: 69
+base_weight: 100
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: glxyz
+effectflags: 0 0 0
+prefflags: hnouxC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 5
+hitpoints: 521/521
+mana: 100/100
+move: 81/86
+damroll: 3
+hitroll: 3
+strength: 83
+intelligence: 93
+wisdom: 96
+dexterity: 81
+constitution: 61
+charisma: 58
+cash: 13 293 770 8
+bank: 8539 8255 38335 56040
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+19 1000
+20 1000
+26 1000
+29 1000
+31 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+65 1000
+67 1000
+68 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+107 1000
+108 1000
+112 1000
+113 1000
+157 1000
+158 1000
+159 1000
+160 1000
+161 1000
+162 1000
+163 1000
+164 1000
+165 1000
+166 1000
+167 1000
+168 1000
+169 1000
+170 1000
+200 1000
+220 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+447 1000
+451 1000
+452 1000
+453 1000
+455 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 1000
+0 0
+trophy:
+1 36002 3.000000
+1 36001 2.000000
+1 8013 1.000000
+1 5223 1.000000
+1 5220 6.000000
+1 5222 5.000000
+1 5221 8.000000
+1 51010 1.000000
+1 51007 1.000000
+1 51002 1.000000
+1 51001 2.000000
+1 51023 1.000000
+1 51003 2.000000
+0 0 0
+mem:
+170 1 1
+170 1 1
+52 1 1
+113 1 1
+5 1 1
+100 1 1
+5 1 1
+100 1 1
+5 1 1
+100 1 1
+5 1 1
+100 1 1
+5 1 1
+100 1 2
+19 1 2
+101 1 1
+19 1 1
+101 1 1
+157 1 1
+157 1 1
+157 1 1
+157 1 1
+159 1 1
+31 1 1
+99 1 1
+159 1 1
+31 1 1
+99 1 1
+31 1 1
+99 1 1
+99 1 1
+99 1 1
+160 1 1
+105 1 1
+2 1 1
+2 1 1
+2 1 1
+160 1 1
+105 1 1
+162 1 1
+162 1 1
+162 1 1
+162 1 1
+162 1 1
+162 1 1
+162 1 1
+29 1 1
+29 1 1
+68 1 1
+52 1 1
+68 1 1
+52 1 1
+52 1 1
+163 1 1
+163 1 1
+163 1 1
+163 1 1
+164 1 1
+164 1 1
+164 1 1
+164 1 1
+164 1 1
+164 1 1
+164 1 1
+108 1 1
+170 1 1
+170 1 1
+170 1 1
+170 1 1
+170 1 1
+166 1 1
+166 1 1
+166 1 1
+166 1 1
+166 1 1
+166 1 1
+169 1 1
+168 1 1
+168 1 1
+168 1 1
+168 1 1
+168 1 1
+65 1 1
+65 1 1
+65 1 1
+65 1 1
+65 1 1
+167 1 1
+167 1 1
+167 1 1
+167 1 1
+170 1 1
+170 1 1
+161 1 1
+2 1 1
+2 1 1
+200 1 1
+200 1 1
+62 1 1
+0 0 0
+aliases:
+smoke cast 'smoke' $*
+cfly cast 'fly' $*
+db drink skin
+er eat ration
+eb eat bread
+gr get ration
+cmc cast 'minor creation' $1
+mirage cast 'mirage' $
+cbh cast 'burning hands' $*
+darts cast 'fire darts' $*
+cdi cast 'detect invisibility' $*
+str cast 'strength' $*
+conceal cast 'concealment' $*
+cdm cast 'dispel magic' $*
+tele cast 'teleport' $
+fireball cast 'fireball' $*
+fireshield cast 'fireshield' $
+invis cast 'invisibility' $*
+cdd cast 'dim door' $1
+farsee cast 'farsee' $
+haste cast 'haste' $*
+css cast 'stone skin' $*
+smi emo smiles warmly.
+firestorm cast 'firestorm' $*
+melt cast 'melt' $*
+masinvis cast 'mass invisibility' $*
+globe cast 'major globe' $*
+relocate cast 'relocate' $1
+immolate cast 'immolate' $*
+cremate cast 'cremate' $*
+meteors cast 'meteorswarm' $*
+nova cast 'supernova' $*
+heat cast 'heatwave' $*
+combust cast 'combust' $*
+dto cast 'detonation' $*
+shock cast 'positive field' $*
+0

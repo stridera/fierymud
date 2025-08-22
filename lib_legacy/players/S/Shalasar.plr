@@ -1,0 +1,114 @@
+name: Shalasar
+password: ShV7mvUJS.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19555
+birthtime: 1583985058
+timeplayed: 9819
+lastlogintime: 1584135245
+host: 141.239.175.026
+height: 33
+weight: 59
+base_height: 33
+base_weight: 59
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 27/27
+mana: 1/0
+move: 60/100
+damroll: 2
+hitroll: 4
+strength: 70
+intelligence: 96
+wisdom: 97
+dexterity: 76
+constitution: 69
+charisma: 58
+experience: 33953
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 83
+424 84
+438 50
+443 50
+444 50
+447 64
+451 55
+452 61
+453 78
+459 57
+460 54
+462 50
+464 64
+0 0
+tells:
+1583987775 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1583988017 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1584130192 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1584130353 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1584134091 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1584135233 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1584132336 Someone gossips, 'give fecil 2s 3g 9c'
+1584132345 Someone gossips, 'for example'
+1584132787 Someone gossips, 'cause I told you to flee :)'
+1584132794 Someone gossips, 'and you didnt :)'
+1584132827 Someone gossips, 'those tunnels are a little tough for you alone right now'
+1584132833 Someone gossips, 'I wouldn't go through that portal'
+1584132846 Someone gossips, 'I'll pull your corpse out'
+1584133127 Someone gossips, 'when you get higher levels, you can see such.. but you'll have to look for the message'
+1584133160 Someone gossips, 'don't recall exactly, something along the lines of you are no longer inspired by the gods.'
+1584133377 Someone gossips, 'afk a bit'
+$
+mem:
+5 0 8
+100 0 7
+101 0 8
+0 0 0
+aliases:
+b cast 'burning hands' $1
+sm sit;memorize
+scr sit;hold spellbook;hold quill
+mk magic missile $1
+mmc memorize minor creation
+mmm memorize magic missile
+fmc forget minor creation
+fmm forget magic missile
+mbh memorize burning hands
+fbh forget burning hands
+mc memorize concealment
+fc forget concealment
+st stand
+si sit
+cmm cast 'magic missile' $1
+mdc memorize detect magic
+fdc forget detect majic
+mem sit;memorize;meditate
+cc cast concealment
+0

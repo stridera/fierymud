@@ -1,0 +1,105 @@
+name: Aeslynn
+password: Aer.IlDwbv
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 2
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19634
+birthtime: 1592020949
+timeplayed: 5453
+lastlogintime: 1599147383
+host: 064.251.141.170
+height: 31
+weight: 56
+base_height: 31
+base_weight: 56
+base_size: 1
+natural_size: 1
+alignment: 994
+playerflags: gxy
+effectflags: k 0 0
+prefflags: abfghnoBC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 52/52
+mana: 1/0
+move: 71/100
+damroll: 2
+hitroll: 4
+strength: 84
+intelligence: 100
+wisdom: 100
+dexterity: 66
+constitution: 56
+charisma: 52
+experience: 55000
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 63
+424 53
+438 50
+443 50
+444 50
+451 51
+457 50
+458 52
+459 51
+460 50
+462 50
+463 75
+466 50
+0 0
+trophy:
+1 8020 1.500000
+1 8022 1.500000
+1 8030 0.500000
+1 8010 2.500000
+1 8021 2.500000
+1 8011 2.500000
+1 8014 5.000000
+1 8013 5.500000
+1 8012 5.000000
+1 8016 5.000000
+1 8023 5.500000
+1 8002 5.500000
+1 8001 6.500000
+1 8015 8.500000
+1 8000 7.000000
+0 0 0
+tells:
+$
+gossips:
+1592023256 Surreal gossips, 'Okay I won't bother saving exp then'
+1592023288 Glawk gossips, 'ya best to head for a guild asap once you are ready to level'
+1592024395 Surreal gossips, 'Sorry, were you looking for me?'
+1592024442 Glawk gossips, '? '
+1592024458 Surreal gossips, 'Ohhh I misread the message'
+1592024889 Trinigwarn gossips, 'night fiery!'
+1592024900 Aawk gossips, 'night'
+1592024905 Surreal gossips, 'night!'
+1592026134 Aawk gossips, 'nice'
+1592026181 Surreal gossips, 'thanks'
+$
+mem:
+1 1 7
+1 1 7
+206 0 7
+0 0 0

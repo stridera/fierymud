@@ -1,0 +1,437 @@
+1
+vnum: 23
+location: 0
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: D 0
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 36014
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring tiny-copper-ring thin-circle-copper-coin
+shortdesc: a tiny copper ring
+desc: A thin circle of copper resembles a coin.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: tiny-copper-ring thin-circle-copper-coin
+A thin copper wire bears the symbol of the Kaaz clan.
+~
+~~
+vnum: 36020
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: chain bone-chain length-chain
+shortdesc: a bone chain
+desc: A length of chain lies here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+extradesc: bone-chain length-chain
+About thirty small bone rings are roughly connected together to form a piece of
+decoration.  It looks as though it may offer you a little protection though.  
+
+~
+~~
+vnum: 36008
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.    
+~
+~~
+vnum: 36016
+location: 5
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: moyz a
+name: shirt bonemail-shirt bone-mail-shirt old-pile-small-bone-rings
+shortdesc: a bonemail shirt
+desc: An old pile of small bone rings lies heaped here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+applies:
+18 1
+~
+extradesc: bonemail-shirt bone-mail-shirt old-pile-small-bone-rings
+Gross!  This armor appears to me made of small circles of bone.  It seems
+rather protective though.    
+~
+~~
+vnum: 1014
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouwyz 0
+name: helmet steel
+shortdesc: a steel-studded helmet
+desc: A steel-studded helmet lies on the ground.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+~~
+vnum: 36021
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: moyz a
+name: plates bone-leg-plates boneplates bone-pieces
+shortdesc: bone leg plates
+desc: A few pieces of bone lie about.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+applies:
+13 2
+~
+extradesc: plates bone leg boneplates leg-boneplates
+These are a few plates of bone that look as though you could fasten to your
+legs for a bit of protection.    
+~
+~~
+vnum: 1026
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouwyz 0
+name: boots steel steel-toed-boots
+shortdesc: steel-toed boots
+desc: A pair of steel boots lies on the ground here.
+type: 9
+weight: 5.10
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+~~
+vnum: 1102
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: my 0
+name: gloves leather leather-gloves
+shortdesc: leather gloves
+desc: A pair of leather gloves lies neatly folded out of the way.
+type: 9
+weight: 1.30
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+extradesc: gloves leather
+Beige leather makes up these soft gloves. They're made to fit just about
+anybody's hands.
+~
+~~
+vnum: 36019
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: moyz a
+name: sleeves bonemail-sleeves bone-mail-sleeves small-pile-bone-rings
+shortdesc: some bonemail sleeves
+desc: A small pile of bone rings lies folded here.
+type: 9
+weight: 4.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+applies:
+13 2
+~
+extradesc: bonemail-sleeves bone-mail-sleeves small-pile-bone-rings
+These sleeves are made from roughly cut bone rings and seem to offer little if
+any protection.    
+~
+~~
+vnum: 36004
+location: 12
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cloak cloak-kaaz-cloak simple-canvas-cloak ancient-symbol
+shortdesc: a cloak of the Kaaz
+desc: A simple canvas cloak with an ancient symbol lies here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: cloak cloak-kaaz-cloak simple-canvas-cloak ancient-symbol
+A heavy canvas cloak that can easily envelope you and protect you from the
+elements.  A large symbol of an ancient clan covers the center, marking its
+origin.    
+~
+~~
+vnum: 36010
+location: 13
+values:
+15
+5
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: belt small-belt-potions canvas-belt-canvas potions-belt
+shortdesc: a small belt of potions
+desc: A belt of canvas lies here.
+type: 15
+weight: 1.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+extradesc: small-belt-potions canvas-belt-canvas potions-belt
+A wide canvas belt with buttons along its borders is revealed to be a
+container.    
+~
+~~
+vnum: 3010
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 36015
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracelet thin-copper-bracelet small
+shortdesc: a thin copper bracelet
+desc: A small bracelet of copper lies here collecting dust.
+type: 9
+weight: 0.07
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+applies:
+24 -1
+~
+extradesc: bracelet thin-copper-bracelet small
+A band of copper is covered with runes depicting a tale of the magical battle
+of the rift wars...    
+~
+~~
+vnum: 36022
+location: 16
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnyz a
+name: axe small-bonehandled-axe
+shortdesc: a small bonehandled axe
+desc: A small bonehandled axe lies here in a bloody pool.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: bone-handled-axe
+This is a small light axe that is weakly constructed with iron and the bone of
+some creature.    
+~
+~~
+vnum: 8033
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: green drakling scale
+shortdesc: a green drakling scale
+desc: A small green scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 10
+18 1
+~
+~~

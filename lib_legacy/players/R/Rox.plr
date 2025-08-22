@@ -1,0 +1,64 @@
+name: Rox
+password: Ro22XFpt5X
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19036
+birthtime: 1457305745
+timeplayed: 60
+lastlogintime: 1457305810
+host: 204.209.044.014
+height: 88
+weight: 194
+base_height: 88
+base_weight: 194
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 30/29
+mana: 0/0
+move: 146/146
+damroll: 5
+hitroll: 4
+strength: 93
+intelligence: 68
+wisdom: 72
+dexterity: 88
+constitution: 83
+charisma: 64
+experience: 1
+quit_reason: 10
+saveroom: 3005
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0

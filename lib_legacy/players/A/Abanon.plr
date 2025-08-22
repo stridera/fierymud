@@ -1,0 +1,91 @@
+name: Abanon
+password: AbeVDiRLe4
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 1
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20787
+birthtime: 1715667721
+timeplayed: 2053
+lastlogintime: 1715699241
+host: 071.150.198.017
+height: 61
+weight: 119
+base_height: 61
+base_weight: 119
+base_size: 2
+natural_size: 2
+alignment: 954
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 27/27
+mana: 1/0
+move: 106/106
+damroll: 3
+hitroll: 3
+strength: 67
+intelligence: 100
+wisdom: 86
+dexterity: 66
+constitution: 70
+charisma: 76
+cash: 0 33 109 13
+bank: 0 1 1 1
+experience: 19800
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 70
+424 68
+438 50
+443 50
+444 50
+447 54
+451 50
+452 67
+453 50
+459 50
+460 50
+462 50
+464 50
+465 50
+0 0
+trophy:
+1 17204 1.000000
+1 3507 1.000000
+1 3503 8.000000
+1 3509 1.000000
+1 3502 3.000000
+1 3501 1.000000
+1 51900 1.000000
+0 0 0
+tells:
+1715669335 @WElspeth the Jeweler@W tells you, 'quiet guard, Good doing business with you.@W'@0
+1715669335 @WElspeth the Jeweler@W tells you, 'quiet guard, Good doing business with you.@W'@0
+1715669335 @WElspeth the Jeweler@W tells you, 'quiet guard, Good doing business with you.@W'@0
+1715669352 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1715669473 @WA half-elven maid@W tells you, 'If you want to rent a room, please go upstairs to the Reception Area.@W'@0
+1715698954 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1715698974 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+$
+gossips:
+1715668249 Discord gossips, 'Daedela: Congratulations!'
+1715669457 Discord gossips, 'Daedela: Congrats again!'
+$

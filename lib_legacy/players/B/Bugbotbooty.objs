@@ -1,0 +1,466 @@
+1
+vnum: 23
+location: 0
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: D
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1032
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring wide-bronze-ring
+shortdesc: a bronze ring
+desc: A wide bronze ring lies here.
+type: 9
+weight: 0.08
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: wide-bronze-ring
+&0A cheap little ring, forged from bronze. It lacks any design, resembling a
+simple band of metal.&0
+~
+~~
+vnum: 1038
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: scarf light-green-scarf
+shortdesc: &0a &0&2&blight green&0 scarf
+desc: &0A &0&2&blight green&0 scarf lies here.
+type: 9
+weight: 0.40
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+extradesc: light-green-scarf
+This scarf is crafted from a flowing light green material. It is very light,
+though offers only minimal protection from physical attacks.
+~
+~~
+vnum: 1017
+location: 5
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: tunic beige-cloth-tunic beige-length-cloth
+shortdesc: a beige cloth tunic
+desc: A beige length of cloth lies folded here.
+type: 9
+weight: 2.50
+cost: 2
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: beige-cloth-tunic beige-length-cloth
+This simple tunic is crafted from a rather boring beige cloth.  It isn't very
+thick, made more for style than for overall protection.  It wouldn't provide
+much protection, but it is certainly better than wearing nothing!  It's a
+one-size-fits-all model, so it should fit anyone.
+~
+~~
+vnum: 1014
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mnouwyz
+name: helmet steel
+shortdesc: a steel-studded helmet
+desc: A steel-studded helmet lies on the ground.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+~~
+vnum: 1019
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: leggings leather
+shortdesc: &3a pair of leather leggings&0
+desc: &3A pair of leather leggings lies on the ground here.&0
+type: 9
+weight: 7.30
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+~~
+vnum: 1026
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouwyz
+name: boots steel steel-toed-boots
+shortdesc: steel-toed boots
+desc: &7A pair of steel boots lies on the ground here.&0
+type: 9
+weight: 5.10
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+~~
+vnum: 1021
+location: 9
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz
+name: gauntlets pair-studded-leather-gauntlets
+shortdesc: studded leather gauntlets
+desc: A pair of studded leather gauntlets lie here.
+type: 9
+weight: 1.50
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+extradesc: pair-studded-leather-gauntlets
+&0A pair of hardened leather gauntlets. The knuckles have been studded with
+metal knobs, providing extra protection against attack.
+~
+~~
+vnum: 1022
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: sleeves leather
+shortdesc: &3a pair of leather sleeves&0
+desc: &3A pair of leather sleeves lies on the ground here.&0
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+~~
+vnum: 1000
+location: 12
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 1039
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: bracer leather-bracer
+shortdesc: a leather bracer
+desc: A leather bracer lies here.
+type: 9
+weight: 0.65
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+extradesc: leather-bracer
+&0A simple leather bracer, about two feet in length. It offers protection to
+the lower arm, with its padded surface.
+~
+~~
+vnum: 1013
+location: 20
+values:
+0
+2
+7
+3
+0
+0
+0
+~
+flags: mnouvwyz
+name: sword massive-two-handed-bastard-sword
+shortdesc: a two-handed bastard sword
+desc: A massive two-handed bastard sword lies here.
+type: 5
+weight: 8.00
+cost: 10
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 32769
+extradesc: massive-two-handed-bastard-sword
+&0A six foot blade, crafted from heavy iron. Its long hilt is designed for
+two handed use. Its crafted of average quality metal, and seems durable
+enough to last several years of use.&0
+~
+~~
+vnum: 1036
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: mask simple-wooden-mask
+shortdesc: a simple wooden mask
+desc: A simple wooden mask lies here.
+type: 9
+weight: 0.65
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 131073
+applies:
+6 -1
+~
+extradesc: simple-wooden-mask
+&0This small mask is crafted of a dark wood, and is designed to slip easily
+over the face. It has very littlte detail, save for a small etched mouth and
+two slits for eyes. Quite uncomfortable, and not very stylish.
+~
+~~
+vnum: 1037
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring tin-earring
+shortdesc: a tin earring
+desc: A tin earring lies here.
+type: 9
+weight: 0.01
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+extradesc: tin-earring
+&0This earring is crafted from tin. It is shaped like a small hoop, barely
+half an inch in length.
+~
+~~
+vnum: 1037
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring tin-earring
+shortdesc: a tin earring
+desc: A tin earring lies here.
+type: 9
+weight: 0.01
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+extradesc: tin-earring
+&0This earring is crafted from tin. It is shaped like a small hoop, barely
+half an inch in length.
+~
+~~
+vnum: 1006
+location: 127
+values:
+300
+276
+0
+0
+0
+0
+0
+~
+flags: f
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 19.99
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 5554
+location: 127
+values:
+1
+800
+2251
+0
+0
+0
+0
+~
+flags: k
+name: crystal light eldoria-reward small glowing
+shortdesc: a crystal
+desc: A small crystal lies here glowing.
+type: 1
+weight: 0.40
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20
+location: 127
+values:
+256
+232
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 17.13
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

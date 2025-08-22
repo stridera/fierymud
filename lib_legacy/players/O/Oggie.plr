@@ -1,0 +1,150 @@
+name: Oggie
+password: Ogz4eBaQ07
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 9
+level: 11
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20373
+birthtime: 1667832284
+timeplayed: 52402
+lastlogintime: 1668339427
+host: 068.185.121.152
+height: 69
+weight: 133
+base_height: 69
+base_weight: 133
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 13
+loadroom: 3054
+hunger: 13
+thirst: 18
+lastlevel: 0
+hitpoints: 90/90
+mana: 1/12
+move: 58/102
+damroll: 3
+hitroll: 3
+strength: 77
+intelligence: 83
+wisdom: 80
+dexterity: 70
+constitution: 75
+charisma: 73
+cash: 3 102 543 21
+bank: 0 1 1 1
+experience: 332472
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 85
+416 150
+423 160
+424 157
+438 105
+443 50
+444 50
+451 57
+457 151
+458 85
+459 73
+460 152
+462 50
+463 152
+466 50
+0 0
+trophy:
+1 5420 3.000000
+1 5408 1.500000
+1 5404 0.500000
+1 3501 0.500000
+1 3502 2.000000
+1 41013 2.000000
+1 8010 0.500000
+1 8016 0.500000
+1 8604 0.500000
+1 8013 0.500000
+1 8020 0.500000
+1 8015 1.000000
+1 55702 2.000000
+1 2001 1.000000
+1 17202 1.000000
+1 17204 2.000000
+1 18003 2.000000
+1 18004 1.000000
+1 12015 1.000000
+1 12011 3.000000
+1 12007 5.000000
+0 0 0
+tells:
+1668267681 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1668267683 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1668277618 @WIlish@W tells you, 'do you have any desire to run multiple characters?@W'@0
+1668277695 @WIlish@W tells you, 'it would be better to do run them now. Otherwise you will have a level 1 and a level 10 and it will beome harder to keep them together.@W'@0
+1668277727 @WIlish@W tells you, 'but to each their own@W'@0
+1668277735 @WIlish@W tells you, ':D@W'@0
+1668339359 @WHelena@W tells you, 'I only sell bread and donuts, all home made.@W'@0
+1668339368 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1668339368 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1668339369 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+$
+gossips:
+1668133186 Ilish gossips, 'I think I have them figured out pretty well though.'
+1668196914 Ilish gossips, 'Hey Oggie!'
+1668197080 Daedela gossips, 'hello oggie!'
+1668197335 Ilish gossips, 'nice made it to 10! Done any searching for the druid sublcass NPC?'
+1668197385 Ilish gossips, 'might be a bit too high level at this point. There are some nasty guys on the way there'
+1668266276 Choak gossips, 'Hey Oggie'
+1668267237 Ilish gossips, 'Hey Chinok'
+1668276748 Tensel gossips, 'Hey Oggie!'
+1668276939 Ilish gossips, 'Daelea looks like the air demon trigger worked'
+1668276951 Ilish gossips, '*daedela'
+$
+effects:
+3 7 0 0 0 0 16384
+3 7 -2 24 0 0 0
+3 7 1 18 0 0 0
+1 3 10 17 0 0 0
+0 0 0 0 0
+mem:
+16 0 3
+84 1 3
+1 1 3
+12 0 3
+206 1 5
+16 1 4
+3 0 7
+84 1 4
+85 1 7
+88 1 7
+0 0 0
+aliases:
+cs cast 'cause serious' 
+cl cast 'cure light'
+cc cast 'cause light'
+0

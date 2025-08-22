@@ -1,0 +1,73 @@
+name: Thwap
+password: ThwPHa1NO0
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20009
+birthtime: 1631232204
+timeplayed: 760
+lastlogintime: 1631232965
+host: 136.144.035.252
+height: 78
+weight: 214
+base_height: 78
+base_weight: 214
+base_size: 3
+natural_size: 3
+alignment: 2
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 14
+thirst: 4
+lastlevel: 0
+hitpoints: 27/27
+mana: 0/0
+move: 107/134
+damroll: 5
+hitroll: 4
+strength: 96
+intelligence: 72
+wisdom: 74
+dexterity: 96
+constitution: 77
+charisma: 62
+experience: 1863
+quit_reason: 5
+saveroom: 3016
+skills:
+402 50
+404 51
+415 50
+416 50
+419 1000
+421 60
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 52
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3066 2.000000
+0 0 0
+tells:
+1631232652 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1631232803 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+$
+gossips:
+$

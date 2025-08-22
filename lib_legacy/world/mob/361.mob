@@ -1,0 +1,249 @@
+#36100
+bat small eyes small-bat~
+a small bat~
+A pair of bright eyes hovers quickly towards you.~
+The small bat seems to be floating on light, gossamer wings. It
+darts across the room in haphazard and random swoops, looking for
+anything that gets in its way.~
+2120 1049600 0 E
+10 20 0 0d0+0 0d0+0
+0 0 0 361
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 90
+Dex: 90
+Int: 70
+Wis: 74
+Con: 30
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#36101
+bozak woman hunter beast grotesque~
+a Bozak~
+A grotesque beast, standing over a kill, hisses in your direction.~
+Before you stands a HUGE furry white hunter that is scantily clothed
+in a variety of crudely made armor. She is covered from head to toe 
+with scars, bruises, lumps, and bumps most of which came from fights 
+with other Bozaks. After a few moments, your presence is registered
+and she walks forward, limping slightly.~
+72 1024 0 E
+11 20 0 0d0+0 0d0+0
+0 0 0 361
+3 3 2 3 13 0 3
+Str: 95
+Dex: 85
+Int: 72
+Wis: 71
+Con: 30
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#36102
+quidnatta mammal small~
+a quidnatta~
+A small mammal stares carefully at you from the corner of its eyes.~
+This four-legged herbivore stands only a few feet tall. It is lightly
+muscled, and doesn't move very quickly. Its short, bristly fur is an
+intense olive green, except for on its tail, which is hairless.~
+200 1024 0 E
+10 20 0 0d0+0 0d0+0
+0 0 0 361
+3 3 1 24 14 0 1
+BareHandAttack: 9
+Str: 82
+Dex: 78
+Int: 70
+Wis: 74
+Con: 30
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#36103
+quidnatta wounded wounded-quidnatta~
+a wounded quidnatta~
+A wounded quidnatta stands with its back to the wall, panting quickly.~
+This knee-high herbivore has clearly been wounded. Savage cuts mar
+its intense olive-green coat of short, bristly fur. Its lightly
+muscled flanks shiver with each ragged breath it takes.~
+200 1024 0 E
+10 20 0 0d0+0 0d0+0
+0 0 0 361
+3 3 1 24 14 0 1
+Str: 100
+Dex: 87
+Int: 52
+Wis: 75
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#36104
+urchin spiny spiny-urchin~
+a spiny urchin~
+A spiny urchin is attached to the cave wall with sharp barbs here.~
+The spiny urchin is covered in sharp needles which it uses both to 
+attach to the cave wall and to protect itself from any unintelligent
+predators. The urchin moves slowly along the walls in no observable
+direction or path.~
+2120 1024 0 E
+10 20 0 0d0+0 0d0+0
+0 0 0 361
+3 3 0 24 14 0 1
+BareHandAttack: 11
+Str: 99
+Dex: 81
+Int: 65
+Wis: 74
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#36105
+mass slimy slimy-mass~
+a slimy mass~
+A slimy mass rolls and spins along the cave walls and floors.~
+The slimy mass appears to have no true shape. It forms into puddles
+along the cave floor or balls up to roll along the walls. No matter
+its shape or position, a single naked eye tracks you completely. 
+There actually appears to be a spark of intelligence in this gelatinous
+form.~
+2120 1024 0 E
+10 20 0 0d0+0 0d0+0
+0 0 0 361
+3 3 0 24 17 0 2
+BareHandAttack: 1
+Str: 88
+Dex: 76
+Int: 67
+Wis: 75
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#36106
+bozak hunter huge furry white beast male-bozak~
+a large Bozak hunter~
+A HUGE furry white beast stands above the others, staring directly into your eyes.~
+This Bozak is about twice the size of the other hunters you have seen
+so far in the caves. He has none of the scars or lumps apparent on the
+others and they all keep a safe distance from him. He notices your
+intrusion immediately, and does not even move a muscle.~
+2124 1024 0 E
+12 20 0 0d0+0 0d0+0
+0 0 0 361
+3 3 1 3 13 0 4
+Str: 97
+Dex: 85
+Int: 66
+Wis: 72
+Con: 30
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#36107
+lizard monitor monitor-lizard~
+a large monitor~
+A large monitor slowly patrols the beach, looking for food.~
+This is surely one of the most intimidating reptiles you have ever seen
+in your life. It is about 5 feet long and covered in thick plated scales.
+It patrols slowly but once it sees its next meal it turns into a fierce
+fighting machine. It has extremely strong jaws, which when open expose
+a slimy, black tongue.~
+2124 1024 0 E
+10 20 0 0d0+0 0d0+0
+0 0 0 361
+3 3 1 24 14 0 2
+BareHandAttack: 4
+Str: 74
+Dex: 85
+Int: 67
+Wis: 84
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#36108
+crab large~
+a large crab~
+Something on the sands below the water is moving around.~
+You see a very large crab with jointed legs, a red-tinted
+carapace big enough to sleep in, and eyes on stalks.~
+2062 0 0 E
+12 20 0 0d0+0 0d0+0
+0 0 0 361
+3 3 0 24 14 0 3
+BareHandAttack: 9
+Str: 90
+Dex: 86
+Int: 68
+Wis: 70
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55694
+$

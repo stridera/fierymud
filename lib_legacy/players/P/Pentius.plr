@@ -1,0 +1,104 @@
+name: Pentius
+password: Pe6f.vJbLC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 21
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18135
+birthtime: 1331066777
+timeplayed: 121218
+lastlogintime: 1332352719
+host: 209.202.021.006
+height: 87
+weight: 203
+base_height: 87
+base_weight: 203
+base_size: 3
+natural_size: 3
+alignment: 978
+playerflags: gy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 25
+loadroom: 3054
+hunger: 12
+thirst: 10
+lastlevel: 0
+hitpoints: 312/270
+mana: 44/44
+move: 158/158
+damroll: 5
+hitroll: 4
+strength: 95
+intelligence: 63
+wisdom: 71
+dexterity: 86
+constitution: 90
+charisma: 58
+cash: 0 331 723 471
+bank: 3 1230 3746 700
+experience: 2105930
+quit_reason: 3
+saveroom: 0
+skills:
+402 260
+404 260
+407 260
+415 50
+416 50
+419 1000
+421 260
+427 1000
+430 112
+431 50
+438 209
+443 66
+444 121
+463 50
+464 103
+465 260
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 61515 0.500000
+1 61517 0.500000
+1 61508 0.500000
+1 61509 0.500000
+1 61503 0.500000
+1 4104 0.500000
+1 4102 7.500000
+1 4101 0.500000
+1 61519 0.500000
+1 61526 1.000000
+1 61525 0.500000
+1 17200 0.500000
+1 17209 2.000000
+1 17208 2.500000
+1 17202 1.000000
+1 17203 1.500000
+1 17204 3.000000
+1 3506 0.500000
+1 3508 1.000000
+1 3502 0.500000
+1 3500 1.000000
+0 0 0
+aliases:
+assist tell sorek assist
+as assist sorek
+df drink fountain
+lic look in corpse
+gac get all corpse
+gcc get coins corpse
+rs rescue sorek
+heal tell sorek heal
+tsr tell sorek rest
+0

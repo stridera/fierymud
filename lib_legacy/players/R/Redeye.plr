@@ -1,0 +1,94 @@
+name: Redeye
+password: ReTt1PeFvY
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18699
+birthtime: 1401703550
+timeplayed: 6379
+lastlogintime: 1402019119
+host: 070.210.000.092
+height: 63
+weight: 162
+base_height: 63
+base_weight: 162
+base_size: 2
+natural_size: 2
+alignment: 25
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 35
+loadroom: 3054
+hunger: 21
+lastlevel: 0
+hitpoints: 64/64
+mana: 1/-1
+move: 132/134
+damroll: 3
+hitroll: 3
+strength: 81
+intelligence: 60
+wisdom: 62
+dexterity: 96
+constitution: 94
+charisma: 73
+cash: 0 72 97 80
+experience: 55000
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 7140/18000
+-1 0
+skills:
+403 73
+415 50
+416 50
+421 67
+438 50
+443 50
+444 54
+464 61
+465 50
+467 50
+0 0
+trophy:
+1 3509 1.000000
+1 3502 1.000000
+1 3503 2.000000
+1 3500 3.000000
+1 3501 7.000000
+1 36304 0.500000
+1 36300 1.000000
+1 36303 1.000000
+1 36305 1.000000
+1 8013 4.000000
+1 8015 1.000000
+1 36002 4.000000
+1 36003 5.000000
+1 8021 1.000000
+1 8010 1.000000
+1 8016 2.000000
+1 8023 1.000000
+1 8000 1.000000
+1 8011 4.000000
+1 8022 2.000000
+1 8002 2.000000
+0 0 0
+aliases:
+ax assist xanril
+eb eat bread
+df drink fountain
+fb fill barrel fountain
+wa wear all
+ga get all corpse
+lc l in corpse
+0

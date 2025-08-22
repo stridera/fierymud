@@ -1,0 +1,161 @@
+name: Norath
+password: NoB73M3a13
+currenttitle: DonCoin
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 11
+race: 0
+level: 99
+home: 6015
+lifeforce: 0
+composition: 0
+id: 10125
+birthtime: 1024685380
+timeplayed: 14161327
+lastlogintime: 1732853367
+host: 076.111.030.099
+height: 74
+weight: 179
+base_height: 74
+base_weight: 179
+base_size: 2
+natural_size: 2
+alignment: -998
+playerflags: glxyz
+effectflags: 0 0 0
+prefflags: hnoxzBC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+lastlevel: 3
+hitpoints: 537/537
+mana: 100/100
+move: 194/200
+damroll: 3
+hitroll: 3
+strength: 70
+intelligence: 98
+wisdom: 97
+dexterity: 56
+constitution: 63
+charisma: 81
+cash: 4469 27516 110523 47255
+bank: 326 1537 0 1692
+experience: 136891984
+title: DonCoin
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+21 1000
+25 1000
+29 1000
+31 1000
+32 1000
+33 1000
+38 1000
+39 1000
+45 1000
+50 1000
+52 1000
+62 1000
+67 1000
+68 1000
+76 1000
+87 1000
+100 1000
+101 1000
+106 1000
+121 1000
+125 1000
+186 1000
+187 1000
+188 1000
+189 1000
+191 200
+211 1000
+212 1000
+213 1000
+222 1000
+223 1000
+224 1000
+226 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 551
+443 162
+444 1000
+447 906
+451 1000
+452 530
+453 588
+454 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+464 711
+0 0
+trophy:
+1 52007 0.200000
+0 0 0
+tells:
+1676843353 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1689820098 @WIlish@W tells you, 'you have an extra couple sprigs of parsley?@W'@0
+1689820170 @WIlish@W tells you, 'need 2 if you have them. Looks like they have been looted this reset@W'@0
+1689820194 @WIlish@W tells you, 'nvm I just found them! Locate wasn't brining them up@W'@0
+1691935613 @WLokar@W tells you, 'reply ah he will come back I think@W'@0
+1691935696 @WLokar@W tells you, 'on the outer plane I think he is still in that portal area just a different spot@W'@0
+1691935765 @WLokar@W tells you, 'he is invis could you have missed him?@W'@0
+1691935909 @WLokar@W tells you, 'do you have the golden key?@W'@0
+1691936099 @WLokar@W tells you, 'maybe try teleport@W'@0
+1719701779 @WPorath@W tells you, 'well@W'@0
+$
+gossips:
+1703614618 Porath gossips, 'how tough is this forgemaster gonna be in templace?'
+1703614631 Porath gossips, 'harder than air demon?'
+1703614675 Chinok gossips, 'honestly don't remember.'
+1703614693 Porath gossips, 'i can kill an earth but the air one is about 50/50'
+1703614848 Porath gossips, 'what's the amount of protection of elemental warding with vs. without? Trying to see if it's necessary'
+1703614966 Chinok gossips, 'I can only say it's noticable.'
+1732849044 Thort gossips, 'Daedela: It said I can't summon such a powerful being. Is that the same as a skill issue?'
+1732849072 Someone gossips, 'Yes'
+1732849079 Thort gossips, 'ah okay'
+1732853196 Chinok gossips, 'trying to thinkn of the easiest way to hand these out, since there are so many people on'
+$
+aliases:
+fb fill waterskin fountain
+bh cast 'burning hands' $*
+eb eat ration
+hh cast 'haste' $*
+x experience
+pray memorize
+df drink fountain
+dw drink water
+tt trophy
+g get all from corpse
+where who -w
+di cast 'detect invisibility' $*
+iv cast 'invisibility' $*
+h cast 'haste' $*
+of order follower $*
+ad cast 'animate dead' $*
+cc cast 'cone of cold' $*
+gg get coins from corpse
+mc cast 'minor creation' $*
+dd cast 'dimension door' $*
+ss cast 'stone skin' $*
+ii cast 'identify' $*
+ofstop order followers disengage
+pp cast 'preserve' corpse
+db drink waterskin
+im cast 'iron maiden' $*
+0

@@ -1,0 +1,177 @@
+name: Jolio
+password: JoM6A8n88K
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18080
+birthtime: 1322632883
+timeplayed: 10240944
+lastlogintime: 1729255458
+host: 001.146.156.027
+height: 42
+weight: 174
+base_height: 42
+base_weight: 174
+base_size: 2
+natural_size: 2
+alignment: -801
+playerflags: gxyz
+effectflags: k w q
+prefflags: huBC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 3054
+lastlevel: 0
+hitpoints: 873/774
+mana: 980/980
+move: 144/144
+damroll: 4
+hitroll: 5
+strength: 70
+intelligence: 81
+wisdom: 98
+dexterity: 76
+constitution: 86
+charisma: 55
+cash: 1350 5366 20768 12828
+bank: 700 8200 10000 6500
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+27 1000
+28 1000
+33 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+47 1000
+48 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+74 1000
+81 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+95 1000
+96 1000
+97 1000
+99 1000
+131 1000
+206 1000
+207 1000
+208 1000
+209 1000
+210 1000
+235 1000
+241 1000
+415 1000
+416 647
+421 1000
+423 1000
+424 1000
+438 545
+443 55
+444 760
+451 1000
+452 53
+453 1000
+455 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+463 1000
+466 50
+0 0
+trophy:
+1 53301 0.250000
+1 53300 0.250000
+1 53313 0.250000
+1 53306 0.750000
+1 53302 1.000000
+1 53303 0.750000
+1 53312 1.500000
+1 53314 0.750000
+1 53315 2.250000
+1 4011 0.333333
+1 4013 0.250000
+1 4010 0.250000
+1 4016 0.250000
+1 4000 1.500000
+1 4004 0.250000
+1 49203 0.250000
+1 49202 0.250000
+1 55216 0.250000
+1 53424 0.500000
+1 53410 0.250000
+1 53408 0.250000
+0 0 0
+tells:
+1672499471 @WChinok@W tells you, 'corpses are at fountain@W'@0
+1672500228 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1673703438 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1673759843 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1673761870 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1673762561 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1718548967 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1728649791 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1728824573 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1729254825 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+$
+gossips:
+1718521264 Marlia gossips, 'I'm sure I've run 5 too and noone has complained'
+1718521302 Woogy gossips, 'haha i ran 3 for a brief moment after i kinda figured. same thing, no one said anything... struggled to make it all work lol'
+1718521303 Marlia gossips, 'help rules .... 5 is the limit'
+1718521334 Marlia gossips, 'if it goes wrong with 4 or 5 it often goes VERY WRONG'
+1718521345 Woogy gossips, 'haha i bet'
+1718521383 Woogy gossips, 'my little L20 warrior, rescue isnt quite up to snuff at max skill yet'
+1718523367 Harnv gossips, 'whoops'
+1718523430 Woogy gossips, 'one of those very wrong moments'
+1718550522 Discord gossips, 'Daedela: Ah I thought Moonda might be yours Marlia'
+1718550538 Harnv gossips, 'that would be the case :)'
+$
+aliases:
+practice {stand;cast 'bless';cast 'bless' marlia;cast 'cure light'; cast 'cure light' marlia;cast 'detect align';cast 'detect magic';cast 'armor';cast 'detect poison';cast 'detect magic' marlia;cast 'detect poison' marlia;cast 'armor' marlia;recharg
+av assist valaina
+rr recite recall
+ccl cast 'cause light' $1
+0

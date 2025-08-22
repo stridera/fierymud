@@ -1,0 +1,129 @@
+#36500
+The Beginning of the Western Road to the Ruins.~
+   As you make your way through this narrow path you notice many different
+types of footprints around you.  These footprints are solidified into the
+sediment upon which you are walking on. You begin to wonder what kind of ancient warriors could have travelled along this path so long ago.
+~
+365 0 4
+D1
+~
+~
+0 0 36501
+S
+#36501
+The Western Road to the Ruins.~
+   This narrow path has been travelled upon by many warriors long ago.  There
+are footprints around you on all sides, they are solidified into the sediment
+you are walking upon.  You begin to wonder what kind of ancient warriors could
+have travelled this path so long ago.
+~
+365 0 4
+D1
+This room is full of stuff
+~
+~
+0 0 36502
+D3
+~
+~
+0 0 36500
+S
+#36502
+The Western Road to the Ruins.~
+   This narrow path has been travelled upon by many warriors long ago.  There
+are footprints around you on all sides, they are solidified into the sediment
+you are walking upon.  You begin to wonder what kind of ancient warriors could
+have travelled this path so long ago.
+~
+365 0 4
+D1
+~
+~
+0 0 36503
+D3
+~
+~
+0 0 36501
+S
+#36503
+The Western Road to the Ruins.~
+   This narrow path has been travelled upon by many warriors long ago.  There
+are footprints around you on all sides, they are solidified into the sediment
+you are walking upon.  You begin to wonder what kind of ancient warriors could
+have travelled this path so long ago.
+~
+365 0 4
+D1
+~
+~
+0 0 36504
+D3
+~
+~
+0 0 36502
+S
+#36504
+The Western Road to the Ruins.~
+   This narrow path has been travelled upon by many warriors long ago.  There
+are footprints around you on all sides, they are solidified into the sediment
+you are walking upon.  You begin to wonder what kind of ancient warriors could
+have travelled this path so long ago.
+~
+365 0 4
+D2
+~
+~
+0 0 36505
+D3
+~
+~
+0 0 36503
+S
+#36505
+The Western Road to the Ruins.~
+   This narrow path has been travelled upon by many warriors long ago.  There
+are footprints around you on all sides, they are solidified into the sediment
+you are walking upon.  You begin to wonder what kind of ancient warriors could
+have travelled this path so long ago.
+~
+365 0 4
+D0
+~
+~
+0 0 36504
+D1
+~
+~
+0 0 36506
+S
+#36506
+The Western Road to the Ruins.~
+   This narrow path has been travelled upon by many warriors long ago.  There
+are footprints around you on all sides, they are solidified into the sediment
+you are walking upon.  You begin to wonder what kind of ancient warriors could
+have travelled this path so long ago.
+~
+365 0 4
+D1
+~
+~
+0 0 36507
+D3
+~
+~
+0 0 36505
+S
+#36507
+The Western Road to the Ruins.~
+   This narrow path has been travelled upon by many warriors long ago.  There
+are footprints around you on all sides, they are solidified into the sediment
+you are walking upon.  You begin to wonder what kind of ancient warriors could
+have travelled this path so long ago.
+~
+365 0 4
+D3
+~
+~
+0 0 36506
+S
+$~

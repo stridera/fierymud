@@ -1,0 +1,86 @@
+name: Belgahr
+password: BeQMFdmb.6
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19682
+birthtime: 1597418217
+timeplayed: 1031
+lastlogintime: 1597419253
+host: 164.119.005.072
+height: 43
+weight: 184
+base_height: 43
+base_weight: 184
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: xy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 10
+lastlevel: 0
+hitpoints: 23/23
+mana: 0/0
+move: 102/104
+damroll: 4
+hitroll: 5
+strength: 88
+intelligence: 83
+wisdom: 90
+dexterity: 72
+constitution: 63
+charisma: 68
+experience: 1
+quit_reason: 5
+saveroom: 3001
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 55
+424 50
+438 50
+443 50
+444 50
+451 50
+457 50
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+tells:
+$
+gossips:
+1597418233 Chinok gossips, 'welcome belgahr'
+1597418250 Chinok gossips, 'yell if you need any help or advice.'
+1597418282 Chinok gossips, 'also, the in-game help system is searchable online at www.fierymud.org/help'
+1597418360 Chinok gossips, 'the in-game help command can be a bit picky about syntax, the web page not so much.'
+1597418388 Chinok gossips, 'you should get a comms window and a map on the right, and a couple status bars on the left'
+1597418452 Chinok gossips, 'hmmm, maybe close mudlet, and let it try to download again ?'
+1597418493 Chinok gossips, 'hummm, what version of mudlet ? '
+1597418507 Chinok gossips, 'same one I'm using'
+1597418559 Chinok gossips, 'is the download failing ?'
+1597418648 Chinok gossips, 'ah good!'
+$
+mem:
+1 1 8
+0 0 0

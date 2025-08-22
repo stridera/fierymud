@@ -1,0 +1,128 @@
+#48801
+stormcloak storm-cloak glittering-cloak~
+the Stormcloak~
+Someone has dropped a glittering cloak here.~
+~
+9 549503048 1025 90
+10 0 0 0 0 0 0
+4.00 12000 0 1048576 0 0 0 0
+E
+stormcloak storm-cloak glittering-cloak~
+You behold the legendary Stormcloak, once worn by the mighty Stormlord, Holder
+of Tempests, himself.  The dark indigo cloth the cloak is made of scintillates,
+giving the impression of thousands of tiny indigo-colored gems woven right into
+its brocade surface.  It's quite heavy, with a handspan-wide collar held
+together by a bronze clasp, beautifully worked into the shape of a horned demon
+whose raised fists make the clasp circular in form.  The ankle-length cloak is
+lined in black silk and edged in crimson.  Your blood stirs inside you as you
+look at it, touch it.~
+A
+27 3
+X
+17
+#48802
+ball bright-red-rubber-ball~
+a red rubber ball~
+A bright red rubber ball rolls on the ground here.~
+~
+18 4 16401 1
+0 0 0 0 0 0 0
+0.50 0 0 0 0 0 0 0
+E
+bright-red-rubber-ball~
+You see a bouncy red rubber ball! It's so big you can barely hold it in 
+one hand. You think it'd be a lot of fun to try balancing it on your 
+head, as well.~
+#48803
+feather wing-feather-cavern-hawk cavern-hawk-wing-feather immense-feather quill pen~
+the wing feather of a cavern hawk~
+An immense feather is sitting on the ground here.~
+~
+21 0 16385 85
+0 0 0 0 0 0 0
+3.10 10000 0 0 0 0 0 0
+E
+feather wing-feather-cavern-hawk cavern-hawk-wing-feather immense-feather quill pen~
+This is the primary flight feather of the giant cavern hawks near the
+Stormchild's keep.  Dark gold in color, it is nearly three feet long.  If
+someone were large enough, they could probably use it as a quill pen, but other
+than that it would make a nice trophy.~
+A
+3 5
+A
+4 5
+A
+26 15
+A
+27 3
+#48804
+baton lightweight-baton leight-weight condensation slender-metallic-rod~
+a lightweight baton~
+Condensation forms on a slender metallic rod lying here.~
+~
+5 795897920 8193 90
+0 3 6 5 0 0 0
+2.40 34902 0 0 0 0 0 0
+T 48812
+E
+baton lightweight-baton leight-weight condensation slender-metallic-rod~
+The baton feels extremely cool to the touch, as if its brushed metal surface is
+pulling all the heat from its surroundings.  It feels hollow and perfectly
+balanced, yet the metal seems to be somewhat stronger than anything this light
+should be.~
+X
+1010
+#48809
+m-command-implementation m-implementation mdamage mheal~
+an m-command implementation~
+An implementation of death and destruction sits here.~
+~
+13 0 1 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+T 48811
+#48823
+jesses leather-hawk's-jesses leather-hawks-jesses leather-thongs~
+leather hawk's jesses~
+Some leather thongs curl in the dirt.~
+~
+9 0 16385 85
+3 0 0 0 0 0 0
+1.90 500 0 32768 0 0 0 0
+E
+jesses leather-hawk's-jesses leather-hawks-jesses leather-thongs~
+These jesses are made of thick dark-brown leather thongs wrapped around what
+seems to be leather gloves.  The thongs dangle a bit, but just looking at the
+jesses make you aware of how fast and agile a true falconer must be.  Perhaps
+wearing these will make you feel like that as well.~
+A
+2 2
+#48831
+key cloud-key~
+the cloud key~
+A key whose surface shifts like the clouds above lies here.~
+~
+18 4 1 80
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+cloud-key~
+You hold a beautiful key with a most fascinating property-- its surface 
+looks like clouds, and the clouds move across it as if it were a piece of 
+the sky.~
+#48856
+stormchilds-key stormchild-key stormchilds key~
+the Stormchild's Key~
+You come across the Stormchild's misplaced key.~
+~
+18 69 16385 1
+0 0 0 0 0 0 0
+0.11 0 0 0 0 0 0 0
+E
+stormchild stormchilds key~
+You see a key fit for a small child-- larger than most keys, simplistic 
+in design, and strung on a pretty red ribbon, so its wearer would be sure 
+not to lose it.~
+A
+9 -20
+$~

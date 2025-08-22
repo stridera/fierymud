@@ -1,0 +1,62 @@
+name: Skittles
+password: SkwacKMBUA
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18210
+birthtime: 1334018052
+timeplayed: 11541
+lastlogintime: 1334250481
+host: 075.164.203.044
+height: 61
+weight: 161
+base_height: 61
+base_weight: 161
+base_size: 2
+natural_size: 2
+alignment: -1
+playerflags: y
+effectflags: 0 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -15/46
+mana: 1/0
+move: 12/120
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 62
+wisdom: 80
+dexterity: 98
+constitution: 84
+charisma: 57
+experience: 17635
+quit_reason: 10
+saveroom: 16123
+skills:
+403 56
+415 50
+416 50
+421 64
+438 50
+443 50
+444 50
+464 66
+465 50
+467 50
+0 0
+aliases:
+ah assist huggy
+tc take all corpse
+0

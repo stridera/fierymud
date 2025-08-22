@@ -1,0 +1,47 @@
+name: Serar
+password: SeyJ45rK.O
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 0
+level: 0
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18979
+birthtime: 1436093863
+timeplayed: 0
+lastlogintime: 1436093863
+host: 194.102.102.147
+height: 77
+weight: 168
+base_height: 77
+base_weight: 168
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 0/0
+mana: 100/100
+move: 100/100
+damroll: 0
+hitroll: 0
+strength: 85
+intelligence: 88
+wisdom: 85
+dexterity: 68
+constitution: 66
+charisma: 74
+experience: 0
+quit_reason: 0
+saveroom: 0
+skills:
+0 0

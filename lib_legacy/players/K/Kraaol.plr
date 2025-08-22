@@ -1,0 +1,112 @@
+name: Kraaol
+password: KrImgnhxvb
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 9
+race: 8
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17256
+birthtime: 1234496090
+timeplayed: 383107
+lastlogintime: 1312773413
+host: 070.184.120.151
+height: 73
+weight: 172
+base_height: 73
+base_weight: 172
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: hnoxzC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 937/838
+mana: 980/980
+move: 142/142
+damroll: 3
+hitroll: 3
+strength: 81
+intelligence: 64
+wisdom: 71
+dexterity: 86
+constitution: 99
+charisma: 59
+cash: 1940 15448 25080 5987
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 67
+404 76
+405 165
+408 107
+410 50
+411 1000
+412 1000
+415 50
+416 50
+418 50
+420 686
+421 667
+438 50
+440 1000
+443 50
+444 62
+464 1000
+465 50
+477 50
+0 0
+trophy:
+1 51011 0.500000
+1 7053 1.000000
+1 51012 1.500000
+1 51010 1.500000
+1 51007 1.500000
+1 51023 2.000000
+1 51005 2.000000
+1 51009 1.500000
+1 51006 1.500000
+1 51008 3.000000
+1 51003 22.500000
+1 51020 10.000000
+1 51000 10.000000
+1 51001 3.000000
+1 51004 7.000000
+1 51002 9.500000
+1 51102 7.500000
+1 51101 42.000000
+1 51100 42.000000
+1 7301 1.000000
+1 7300 1.000000
+0 0 0
+effects:
+67 7 0 0 8388608 0 0
+19 7 10 28 8 0 0
+0 0 0 0 0
+aliases:
+a back bloody
+q back bloody
+z back bile
+aa back lizard
+77 group all
+7 fol kinto
+6 remove necklace; wear star
+1 back child
+2 back man
+3 back woman
+x back demon
+8 fol deax
+88 group deax
+zz back bile
+` fol ceryt
+`` group ceryt
+0

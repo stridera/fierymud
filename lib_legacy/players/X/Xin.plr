@@ -1,0 +1,238 @@
+name: Xin
+password: XigYRNfHLt
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 5
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 13731
+birthtime: 1092293230
+timeplayed: 300190
+lastlogintime: 1373079011
+host: 070.170.088.071
+height: 64
+weight: 95
+base_height: 64
+base_weight: 95
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxy
+effectflags: cn 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+hunger: 4
+lastlevel: 9
+hitpoints: 1069/1069
+mana: 100/100
+move: 101/118
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 77
+wisdom: 68
+dexterity: 81
+constitution: 83
+charisma: 55
+cash: 2 1777 10130 1857
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+4 1000
+12 1000
+13 1000
+14 1000
+17 1000
+27 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+92 1000
+96 1000
+99 1000
+131 1000
+132 1000
+188 1000
+402 820
+404 1000
+407 737
+411 1000
+412 1000
+415 1000
+416 1000
+417 159
+420 1000
+421 1000
+422 1000
+423 1000
+424 470
+430 242
+431 192
+434 150
+438 50
+441 150
+443 57
+444 132
+445 999
+450 150
+451 636
+452 150
+457 163
+458 274
+459 172
+460 265
+461 158
+463 50
+464 50
+465 1000
+466 50
+468 68
+473 150
+0 0
+trophy:
+1 7051 1.000000
+1 7053 2.000000
+1 2807 1.000000
+1 16204 2.000000
+1 18510 1.000000
+1 16102 1.000000
+1 16111 1.000000
+1 16106 3.000000
+1 16105 1.000000
+1 16110 7.000000
+1 16103 3.000000
+1 2002 1.000000
+1 16107 13.000000
+1 7300 1.000000
+1 16002 2.000000
+1 16004 1.000000
+1 16000 3.000000
+1 8020 1.000000
+1 53003 0.500000
+1 53021 2.000000
+1 53006 5.000000
+0 0 0
+mem:
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+17 1 2
+17 1 2
+17 1 2
+17 1 2
+17 1 2
+17 1 2
+17 1 2
+17 1 2
+17 1 2
+96 1 2
+96 1 2
+96 1 2
+96 1 2
+96 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+46 1 2
+46 1 2
+46 1 2
+46 1 2
+46 1 2
+85 1 2
+85 1 2
+85 1 2
+86 1 2
+86 1 2
+86 1 2
+86 1 2
+86 1 2
+12 1 2
+12 1 2
+12 1 2
+12 1 2
+13 1 2
+13 1 2
+13 1 2
+17 1 2
+92 1 2
+92 1 2
+92 1 2
+92 1 2
+188 0 1
+188 0 1
+188 1 1
+188 1 1
+27 1 2
+27 1 2
+27 1 2
+27 1 2
+27 1 2
+27 1 2
+27 1 2
+4 1 2
+4 1 2
+4 1 2
+4 1 2
+4 1 2
+14 1 2
+14 1 2
+14 1 2
+4 1 2
+4 1 2
+0 0 0
+aliases:
+ss drag corpse s
+kw kill water
+g get all.gem
+as assist skeleton
+ec exa corpse
+ggg get all all.corpse
+ggc get all.coins corpse
+gac get all corpse
+rg rescue garnx
+aa assist garnx
+m mount horse
+db drink barrel
+bb bas man
+, dism
+df drink fountain
+rd rescue dyren
+km kill man
+wb wield blade
+rz rescue zia
+gg get all.coins
+cuw cast 'unholy word'
+ee drag daven e
+0

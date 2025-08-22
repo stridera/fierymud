@@ -1,0 +1,88 @@
+name: Kitai
+password: KiLvWH7LJB
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 9
+level: 11
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20827
+birthtime: 1724730829
+timeplayed: 23195
+lastlogintime: 1724900726
+host: 185.229.059.049
+height: 69
+weight: 117
+base_height: 69
+base_weight: 117
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 11
+lastlevel: 0
+hitpoints: 137/153
+mana: 1/12
+move: 160/167
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 74
+wisdom: 87
+dexterity: 94
+constitution: 99
+charisma: 62
+cash: 0 29 75 62
+bank: 30 52 228 501
+experience: 370654
+quit_reason: 1
+saveroom: 3054
+skills:
+402 110
+404 160
+415 50
+416 50
+421 160
+430 50
+438 50
+443 50
+444 67
+463 50
+464 109
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+1724898094 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1724898097 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1724898101 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1724898102 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1724898107 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1724898113 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1724898185 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1724898323 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1724898861 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1724898863 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1724824124 Discord gossips, 'Daedela: You should go back south...'
+1724826156 Discord gossips, 'Daedela: What deathtrap thing?'
+1724826199 Discord gossips, 'Daedela: Hehe'
+1724826208 Discord gossips, 'Daedela: Your corpse will be dumped back outside the box'
+1724826244 Discord gossips, 'Daedela: Sure thing'
+1724826259 Discord gossips, 'Daedela: You can also use the Bloody Red Cross, or Lokar if he's on'
+1724826328 Discord gossips, 'Daedela: It's a device for retrieving corpses'
+1724826533 Daedela gossips, 'hmmm...  it should have moved your corpse.  not sure why it didn't'
+1724826632 Daedela gossips, 'huh'
+1724826644 Daedela gossips, 'there's a bug in the room code...'
+$

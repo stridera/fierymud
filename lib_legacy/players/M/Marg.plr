@@ -1,0 +1,78 @@
+name: Marg
+password: Mal0LbPOUO
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 14
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18323
+birthtime: 1344031067
+timeplayed: 118332
+lastlogintime: 1349305277
+host: 024.119.060.250
+height: 77
+weight: 260
+base_height: 77
+base_weight: 260
+base_size: 3
+natural_size: 3
+alignment: 286
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 8
+thirst: 10
+lastlevel: 0
+hitpoints: 82/150
+mana: 17/17
+move: 79/150
+damroll: 5
+hitroll: 4
+strength: 98
+intelligence: 54
+wisdom: 70
+dexterity: 95
+constitution: 86
+charisma: 60
+cash: 0 3 53 6
+experience: 609762
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 14760/18000
+-1 0
+skills:
+401 63
+403 183
+405 138
+408 181
+415 60
+416 50
+419 1000
+421 187
+427 1000
+438 50
+443 50
+444 108
+464 85
+465 142
+467 50
+0 0
+trophy:
+1 18510 1.000000
+1 16100 1.000000
+1 16102 1.000000
+1 16107 2.000000
+1 2004 3.000000
+1 2005 1.000000
+1 2003 1.000000
+1 3503 1.000000
+1 36305 5.000000
+0 0 0

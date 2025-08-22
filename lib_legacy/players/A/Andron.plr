@@ -1,0 +1,108 @@
+name: Andron
+password: AnVrtbpI90
+currenttitle: needs no healer
+description
+He is Deleterious, Ruthless, Cunning, and has no remorse.~
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 9
+race: 0
+level: 72
+home: 3001
+lifeforce: 0
+composition: 0
+id: 15473
+birthtime: 1138156364
+timeplayed: 9338694
+lastlogintime: 1737902003
+host: 195.252.220.094
+height: 75
+weight: 168
+base_height: 75
+base_weight: 168
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 75
+loadroom: 3054
+lastlevel: 7
+hitpoints: 635/635
+mana: 518/518
+move: 118/118
+damroll: 3
+hitroll: 3
+strength: 89
+intelligence: 68
+wisdom: 68
+dexterity: 92
+constitution: 83
+charisma: 61
+cash: 131 1379 1861 8
+bank: 300 2490 7291 3165
+experience: 45014579
+pagelength: 30
+quit_reason: 1
+saveroom: 3054
+skills:
+401 770
+403 770
+404 707
+405 712
+408 770
+410 717
+411 770
+412 770
+415 700
+416 700
+418 700
+420 715
+421 714
+438 700
+440 770
+443 700
+444 704
+463 50
+464 770
+465 700
+477 700
+0 0
+trophy:
+1 17209 2.000000
+1 11811 0.500000
+0 0 0
+tells:
+1640647279 @WDaedela@W tells you, 'Tavsan is my main@W'@0
+1640647284 @WDaedela@W tells you, 'of course!@W'@0
+1640647324 @WDaedela@W tells you, 'did you play much between the great crash and now?@W'@0
+1640647395 @WDaedela@W tells you, 'that's so weird, I don't remember you.  I have like 17 characters I used to play back then@W'@0
+1640647411 @WDaedela@W tells you, 'I thought I would remember everyone from the early 2000's, but I guess not@W'@0
+1640647461 @WDaedela@W tells you, 'Meina?@W'@0
+1640647483 @WDaedela@W tells you, 'yeah she skulks around from time to time@W'@0
+1640647520 @WDaedela@W tells you, 'niiiiice@W'@0
+1640647537 @WDaedela@W tells you, 'okay, I really do need to get going.  We should catch up later!@W'@0
+1640647544 @WDaedela@W tells you, 'happy hunting!@W'@0
+$
+gossips:
+1666104376 Chinok gossips, 'I actually have to check mine, Ive not checked yet, but I'm just assuming :)'
+1666104560 Chinok gossips, 'yep, didn't win a penny'
+1666105644 Eslander gossips, 'Hey Chinok what is the link to the not nublue item db?'
+1671752873 Kilop gossips, 'Good evening everyone!'
+1691874454 Someone gossips, 'Whats up!'
+1691874461 Someone gossips, 'Been a while!'
+1691874475 Someone gossips, 'doin' good. you?'
+1691874505 Tors gossips, 'sorry :D'
+1691874539 Tors gossips, 'sweet!'
+1691874640 Discord gossips, 'Daedela: Hiiiii'
+$
+aliases:
+ds gsay demonskin
+dp gsay dark presence
+bs backstab
+gs recite green
+ak assist kilop
+0

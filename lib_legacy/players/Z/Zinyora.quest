@@ -1,0 +1,220 @@
+15 255 0
+38 255 0
+69 1 2
+elf 1
+shake 1
+39 255 0
+29 255 19
+bad5 0
+bad4 0
+bad3 0
+bad2 0
+bad1 0
+invoke 0
+summon 0
+prayer 0
+reliquary 0
+north 0
+east 0
+south 0
+west 0
+item5 0
+goblet 41110
+item2 0
+item3 0
+item4 0
+item1 0
+68 1 2
+alicorn 1
+feather 1
+6 255 13
+got_spice:23757 1
+got_spice:23760 1
+got_spice:23754 1
+got_spice:23752 1
+got_spice:49022 1
+got_spice:23758 1
+got_spice:23751 1
+got_spice:23755 1
+got_spice:23753 1
+got_spice:23750 1
+num_spices 10
+awarded_23717 1
+awarded_23718 1
+4 255 2
+ladder 1
+oak 1
+19 255 1
+choice 2
+67 1 2
+cloak 1
+girth 1
+63 1 1
+step complete
+47 1 1
+gem_vnum 0
+55 1 0
+2 255 3
+reward yes
+chimera dead
+shell 1
+10 255 0
+16 1 1
+blood_time 14458094
+66 255 0
+18 255 7
+item7 0
+item6 0
+item5 0
+item2 0
+item4 0
+item3 0
+item1 0
+65 1 2
+scorpion 1
+lever 1
+17 1 32
+5535_reward 1
+5527_reward 1
+5545_reward 1
+5537_reward 1
+5531_reward 1
+5533_reward 1
+5544_reward 1
+5543_reward 1
+5529_reward 1
+5553_reward 1
+5515_reward 1
+5525_reward 1
+5542_reward 1
+5523_reward 1
+5541_reward 1
+5521_reward 1
+5539_reward 1
+5519_reward 1
+5540_reward 1
+5517_reward 1
+5557_reward 1
+5555_reward 2
+5506_trophies 9
+5512_trophies 9
+5514_trophies 9
+5516_trophies 11
+5504_trophies 14
+5510_trophies 10
+5508_trophies 22
+bl_ally 1
+eg_faction 0
+bl_faction 166
+13 255 6
+satisfied_tree:12046 1
+satisfied_tree:12014 1
+satisfied_tree:12016 1
+satisfied_tree:12017 1
+satisfied_tree:12018 1
+num_trees 5
+48 255 1
+fire_ring 1
+32770 255 1
+subclass_name necromancer
+49 255 7
+wandtask5 0
+wandtask4 1
+wandtask3 1
+greet 1
+wandtask1 1
+attack_counter 450
+wandtask2 1
+52 255 7
+wandtask5 0
+wandtask4 1
+wandtask3 1
+greet 1
+wandtask1 1
+attack_counter 450
+wandtask2 1
+51 255 7
+wandtask5 0
+wandtask4 1
+wandtask3 1
+wandtask1 1
+attack_counter 450
+wandtask2 1
+greet 1
+50 255 7
+wandtask5 0
+wandtask4 1
+wandtask3 1
+wandtask2 1
+wandtask1 1
+attack_counter 450
+greet 1
+64 255 1
+got_cherry 0
+59 255 2
+target1 0
+hunt 0
+56 255 4
+target3 0
+target2 0
+target1 0
+bounty 0
+61 255 2
+target1 0
+hunt 0
+72 255 4
+target2 necro_fang
+target3 dia_fang
+target1 0
+bounty 0
+70 255 2
+treasure1 0
+hunt 0
+7 3 42
+55379_armor_acquired 1
+55367_armor_acquired 1
+55371_armor_acquired 1
+55359_armor_acquired 1
+55363_armor_acquired 1
+55383_armor_acquired 1
+55375_armor_acquired 1
+55719_gems_acquired 3
+55697_gems_acquired 3
+55675_gems_acquired 3
+55686_gems_acquired 3
+55730_gems_acquired 3
+55741_gems_acquired 3
+55708_gems_acquired 3
+55620_gems_acquired 3
+55631_gems_acquired 3
+55664_gems_acquired 3
+55598_gems_acquired 3
+55609_gems_acquired 3
+55642_gems_acquired 3
+55653_gems_acquired 3
+55335_armor_acquired 1
+55331_armor_acquired 1
+55347_armor_acquired 1
+55339_armor_acquired 1
+55351_armor_acquired 1
+55343_armor_acquired 1
+55355_armor_acquired 1
+55306_armor_acquired 1
+55326_armor_acquired 1
+55322_armor_acquired 1
+55583_gems_acquired 3
+55591_gems_acquired 3
+55575_gems_acquired 3
+55567_gems_acquired 3
+55587_gems_acquired 3
+55571_gems_acquired 3
+55579_gems_acquired 3
+55318_armor_acquired 1
+55302_armor_acquired 1
+55314_armor_acquired 1
+55310_armor_acquired 1
+45 255 4
+rest complete
+money complete
+loot complete
+fight complete

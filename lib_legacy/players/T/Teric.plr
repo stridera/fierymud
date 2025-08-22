@@ -1,0 +1,125 @@
+name: Teric
+password: TeI6k4A8Hf
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 2
+race: 32
+level: 37
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20336
+birthtime: 1661655851
+timeplayed: 110872
+lastlogintime: 1738112657
+host: 066.199.058.082
+height: 9
+weight: 8
+base_height: 9
+base_weight: 8
+base_size: 0
+natural_size: 0
+alignment: -1000
+playerflags: gxy
+effectflags: u 0 0
+prefflags: hnouxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 24
+lastlevel: 0
+hitpoints: 74/321
+mana: 129/136
+move: 195/196
+damroll: 0
+hitroll: 6
+strength: 85
+intelligence: 72
+wisdom: 72
+dexterity: 96
+constitution: 87
+charisma: 52
+cash: 92 3125 1697 416
+experience: 8059437
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 9720/18000
+-1 0
+skills:
+401 418
+403 415
+405 155
+408 420
+409 248
+411 420
+415 50
+416 50
+420 420
+421 417
+438 57
+443 50
+444 312
+463 50
+464 420
+465 69
+472 420
+478 51
+494 420
+0 0
+trophy:
+1 12504 1.000000
+1 12501 2.000000
+1 12512 2.000000
+1 12509 1.000000
+1 36301 1.000000
+1 36306 1.000000
+1 36300 1.000000
+1 36303 4.000000
+1 3500 1.000000
+1 16105 1.000000
+1 16111 1.000000
+1 16107 1.000000
+1 2002 1.000000
+1 18507 2.000000
+1 18500 1.000000
+1 18510 3.000000
+1 13623 1.000000
+1 13624 2.000000
+1 13609 2.000000
+1 13618 1.000000
+1 13613 4.000000
+0 0 0
+tells:
+1731371950 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1731372321 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1733073933 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1733073937 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1733074187 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738105086 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738105086 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738105087 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738110549 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738111040 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1738112497 Chinok gossips, 'I'd quaff those vials :)'
+1738112531 Chinok gossips, 'there's a specific boot quest they are needed for'
+1738112541 Chinok gossips, 'if you like things like perma haste'
+1738112592 Chinok gossips, 'you know I'm not going to answer that, gave you more hints than I should alredy'
+1738112598 Discord gossips, 'glorious_gull_07269: Did you kill clouds?'
+1738112605 Discord gossips, 'glorious_gull_07269: I need one if their items'
+1738112618 Thort gossips, 'the mist?'
+1738112621 Discord gossips, 'glorious_gull_07269: Yes'
+1738112634 Thort gossips, 'yes'
+1738112643 Thort gossips, 'those are a pain.'
+$
+aliases:
+jj as illusion
+lc l in corpse
+gc g all.coins from all.corpse
+gm get all.gem from all.corpse
+eg gouge
+aqua rec aqua
+0

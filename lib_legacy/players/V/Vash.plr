@@ -1,0 +1,166 @@
+name: Vash
+password: VaXBvlL7HA
+description
+Nothing.~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 29
+level: 73
+home: 10006
+lifeforce: 0
+composition: 0
+id: 20182
+birthtime: 1646415838
+timeplayed: 1840712
+lastlogintime: 1733417931
+host: 152.117.078.200
+height: 74
+weight: 336
+base_height: 74
+base_weight: 336
+base_size: 2
+natural_size: 2
+alignment: 69
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 277/384
+mana: 532/532
+move: 243/254
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 95
+wisdom: 94
+dexterity: 72
+constitution: 67
+charisma: 46
+cash: 230 2367 8732 434
+experience: 56458420
+pagelength: 35
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+8 1000
+10 1000
+19 1000
+20 1000
+26 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+66 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+106 1000
+107 1000
+108 1000
+109 1000
+110 1000
+111 1000
+112 1000
+113 1000
+186 1000
+205 1000
+228 1000
+246 1000
+415 58
+416 50
+421 780
+423 770
+424 780
+435 759
+438 61
+443 56
+444 327
+447 746
+451 379
+452 780
+453 690
+454 757
+455 50
+456 703
+458 780
+459 776
+460 780
+462 628
+464 240
+0 0
+trophy:
+1 2808 0.333333
+1 11701 0.666667
+1 11702 0.666667
+1 11750 0.666667
+1 11809 0.333333
+1 46208 1.000000
+1 46206 1.000000
+1 46207 1.000000
+1 46218 1.000000
+1 46219 1.000000
+1 46200 1.000000
+1 46211 2.000000
+1 46210 1.000000
+1 53312 1.000000
+1 10313 0.500000
+1 10309 2.000000
+1 10312 0.500000
+1 10305 0.500000
+1 16908 1.000000
+1 16900 1.000000
+1 1604 1.000000
+0 0 0
+tells:
+1702058440 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1702059065 @WKilaxi the Trickster@W tells you, 'This supposed to be some kind of joke?@W'@0
+1702059066 @WChinok@W tells you, 'specifically the poor sector@W'@0
+1702059405 @WChinok@W tells you, 'think you walked past it@W'@0
+1702059435 @WChinok@W tells you, 'that's not it :)@W'@0
+1702059531 @WChinok@W tells you, 'I'm standing outside it now@W'@0
+1702483316 @WSomeone@W tells you, 'well@W'@0
+1702647585 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702647586 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702647591 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1702647733 Chinok gossips, 'morning Abbil'
+1702647744 Abbil gossips, 'hello!'
+1702647908 Wisper gossips, 'gratz Moylen'
+1702648111 Abbil gossips, '4x level not bad :D'
+1702650683 Chinok gossips, 'how did you like that thief quest Wisper ?'
+1702651690 Wisper gossips, 'It was a little tricky, had to redo it several times after getting caught'
+1702651749 Chinok gossips, 'but -- you had to do thief stuff to complete, not 'go kill someone' :)'
+1733417740 Krocrot gossips, 'I have collected some raw meat. What can I do with that? Not sure I should eat it, but can't seem to sell it or cook it either.'
+1733417790 Mash gossips, 'I don't think it will poison you, it's likely a random food item or quest item'
+1733417812 Krocrot gossips, 'ok, I'll try eating it. thanks!'
+$
+effects:
+494 3 -18 17 0 0 64
+0 0 0 0 0
+aliases:
+disx cast 'disintegrate'
+0

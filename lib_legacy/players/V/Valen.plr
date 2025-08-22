@@ -1,0 +1,91 @@
+name: Valen
+password: VaAwf4cVDH
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18558
+birthtime: 1375303286
+timeplayed: 110898
+lastlogintime: 1376446159
+host: 099.097.089.045
+height: 63
+weight: 168
+base_height: 63
+base_weight: 168
+base_size: 2
+natural_size: 2
+alignment: 345
+playerflags: gy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 42
+hunger: 4
+thirst: 10
+lastlevel: 0
+hitpoints: 136/127
+mana: 1/0
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 93
+intelligence: 58
+wisdom: 70
+dexterity: 81
+constitution: 100
+charisma: 56
+cash: 0 1 636 50
+bank: 0 453 0 0
+experience: 217800
+quit_reason: 3
+saveroom: 0
+skills:
+402 120
+404 130
+415 130
+416 130
+421 140
+438 80
+443 50
+444 130
+463 50
+464 50
+465 98
+466 50
+467 70
+468 140
+0 0
+trophy:
+1 17203 1.000000
+1 8030 1.000000
+1 36004 1.000000
+1 36003 3.000000
+1 12014 1.000000
+1 12016 1.000000
+1 12015 1.000000
+1 3501 1.000000
+1 3502 3.000000
+1 17204 8.000000
+1 8016 1.000000
+1 8015 1.000000
+1 8023 1.000000
+1 8020 2.000000
+1 8013 2.000000
+1 8011 1.000000
+1 8021 1.000000
+1 8010 6.000000
+1 8022 2.000000
+1 8000 1.000000
+1 8606 1.000000
+0 0 0
+effects:
+1 1 10 17 0 0 0
+0 0 0 0 0

@@ -1,0 +1,189 @@
+name: Zaver
+password: ZaXP51pbMC
+currenttitle: &5&bWeaver&0 of &2&bBalance&0&0 @M>>WoF<<&0
+description
+The glory of this @&@Wholy@&@0 being is impressive. His presence is so @&@Wbr@&@Yig@&@Wht@&@0 you can hardly make out his face. But as your pupils adjust to his aura you see his kind eyes and at once feel safe with him near.~
+prompt: &0&5Mnt: %do%_&5Lay: %dl%_&6Opponent&0: &4&b%o &7&b/&0&6Tank&0:&4&b%t%_&0&1%h&0(&1&b%H&0)hitp&2%v&0(&2&b%V&0)&7move&0>&2&b<&0&2%aA&2&b><&0%l&2&b>
+sex: 1
+class: 4
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 14738
+birthtime: 1115510902
+timeplayed: 11540484
+lastlogintime: 1737540966
+host: 136.038.231.125
+height: 75
+weight: 156
+base_height: 75
+base_weight: 156
+base_size: 2
+natural_size: 2
+alignment: 932
+playerflags: lyz
+effectflags: cm 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+freezelevel: 105
+loadroom: 3054
+lastlevel: 11
+hitpoints: 1775/1577
+mana: 980/980
+move: 279/279
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 100
+wisdom: 100
+dexterity: 100
+constitution: 100
+charisma: 100
+cash: 7194 48523 168097 12737
+bank: 30000 200000 2000000 20000000
+experience: 121676898
+clan: 4
+quit_reason: 10
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+21 1000
+22 1000
+28 1000
+34 1000
+43 1000
+88 1000
+92 1000
+97 1000
+99 1000
+241 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+417 1000
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 1000
+450 1000
+451 1000
+452 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 1000
+468 1000
+473 1000
+0 0
+trophy:
+1 13625 1.000000
+1 13612 3.000000
+1 13617 1.000000
+1 55234 2.000000
+1 7301 1.000000
+1 7302 2.000000
+1 7300 6.000000
+1 3064 1.000000
+1 53304 1.000000
+1 53315 3.000000
+1 53314 0.500000
+1 53311 2.500000
+0 0 0
+tells:
+1735056786 @WThe Green Woman@W tells you, 'Thank you dearie, be safe with that!@W'@0
+1735056786 @WThe Green Woman@W tells you, 'Thank you dearie, be safe with that!@W'@0
+1735056786 @WThe Green Woman@W tells you, 'Thank you dearie, be safe with that!@W'@0
+1735056786 @WThe Green Woman@W tells you, 'Thank you dearie, be safe with that!@W'@0
+1735056786 @WThe Green Woman@W tells you, 'Thank you dearie, be safe with that!@W'@0
+1735056787 @WThe Green Woman@W tells you, 'Thank you dearie, be safe with that!@W'@0
+1735056787 @WThe Green Woman@W tells you, 'I don't have that on hand at the moment, dearie.@W'@0
+1735057134 @WBigby@W tells you, 'You can only hold 67.@W'@0
+1735057134 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1736281252 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1737516132 Discord gossips, 'Daedela: Yeah!  Really hoping to get back to digging in.  How are you?'
+1737516147 Yote gossips, 'enjoyin it so far :)'
+1737516237 Thort gossips, 'Good! I'm gonna go beat something up.'
+1737516708 Tynder gossips, 'congratulations!'
+1737517960 Tynder gossips, 'congrats!'
+1737517970 Taki gossips, 'thanks :D'
+1737517970 Chinok gossips, 'gratz on 20!'
+1737521522 Yote gossips, 'woo :D'
+1737521548 Thort gossips, ':)'
+1737521785 Tynder gossips, 'congrats on 20!'
+1737521804 Yote gossips, 'sank you berry much'
+1737522475 Xo gossips, 'yus'
+1737522522 Yote gossips, 'some progress today :o - time to sleeeeeep'
+1737526593 Thort gossips, 'g'night fiery!'
+1737526654 Discord gossips, 'Daedela: Good night!'
+$
+aliases:
+b remove rahmat;wear shield;bash $*;remove shield;wi rahmat
+fieryi say buntoi nakkarri karisto
+ha hitall all
+blud remove sword;remove baton;remove baton;wi mallet;wi mallet
+rc get curse sack;recite curse $*
+ul unlock $*;open $*
+vulcera buntoi nakkarri karisto
+gcc get coins corpse
+dis cast 'dis evil' $1
+df drink fountain
+ec examine corpse
+protect cast 'protection from evil' $1
+os open sack
+mh mount horse
+m meditate
+sm summon mount
+bless cast 'bless' $1
+holy cast 'holy word' $1
+cs close sack
+heal cast 'heal' $1
+armor cast 'armor' $1
+soul cast 'soulshield' $1
+gaac get all.coins all.corpse
+ggc get gem corpse
+gagc get all.gem all.corpse
+ga get all
+gac get all all.corpse
+lall l n;l s;l e;l w;l u;l d
+of order followers $*
+rmp rest;meditate;pray
+id get identify sack;recite identify $*
+hm tell tensel fheal
+rp rest;pray
+well tell choak well
+cb cast 'cure blind' $*
+rb cast 'cure blind' $*
+tomez n;e;n;s;s;w;e
+who who -w
+0

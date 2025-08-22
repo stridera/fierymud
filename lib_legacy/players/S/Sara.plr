@@ -1,0 +1,68 @@
+name: Sara
+password: SafcmIygRX
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 11
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19608
+birthtime: 1589583941
+timeplayed: 194
+lastlogintime: 1589584136
+host: 108.079.009.040
+height: 41
+weight: 128
+base_height: 41
+base_weight: 128
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: y
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+badpasswords: 1
+hunger: 15
+thirst: 6
+lastlevel: 0
+hitpoints: 28/28
+mana: 0/0
+move: 114/114
+damroll: 3
+hitroll: 6
+strength: 94
+intelligence: 60
+wisdom: 68
+dexterity: 95
+constitution: 90
+charisma: 60
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0
+tells:
+$
+gossips:
+1589583950 Chinok gossips, 'Welcome Sara'
+1589583995 Chinok gossips, 'just gossip if you need any advice or help about how things work here'
+1589584020 Chinok gossips, 'I'm in the middle of writing a newbie training area, but it's not ready yet.'
+1589584037 Chinok gossips, 'first basic is the help command'
+1589584069 Chinok gossips, 'help newbie has a decent amount of how to do most baic stuff'
+$

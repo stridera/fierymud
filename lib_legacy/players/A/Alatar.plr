@@ -1,0 +1,130 @@
+name: Alatar
+password: AlKErHcSHs
+prompt: %n%-&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_<&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 21
+race: 0
+level: 23
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18688
+birthtime: 1398860717
+timeplayed: 31029
+lastlogintime: 1442067688
+host: 075.117.229.038
+height: 63
+weight: 157
+base_height: 63
+base_weight: 157
+base_size: 2
+natural_size: 2
+alignment: 180
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 20
+thirst: 18
+lastlevel: 0
+hitpoints: 139/139
+mana: 52/52
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 92
+wisdom: 94
+dexterity: 82
+constitution: 67
+charisma: 56
+cash: 29 355 313 2
+experience: 2358476
+quit_reason: 1
+saveroom: 3054
+skills:
+8 1000
+19 1000
+20 1000
+31 1000
+37 1000
+39 1000
+51 1000
+99 1000
+100 1000
+101 1000
+171 1000
+172 1000
+182 1000
+415 50
+416 50
+421 50
+423 170
+424 99
+438 50
+443 50
+444 61
+447 132
+451 57
+452 50
+454 54
+456 50
+458 51
+459 50
+460 60
+462 50
+464 63
+0 0
+trophy:
+1 53024 0.500000
+1 53006 1.500000
+1 53023 6.000000
+1 53007 2.500000
+1 53021 1.500000
+1 53004 11.000000
+0 0 0
+mem:
+100 1 1
+100 1 1
+8 1 2
+8 1 2
+171 1 1
+171 1 1
+171 1 1
+171 1 1
+171 1 1
+19 1 2
+19 1 2
+8 1 2
+8 1 2
+31 1 6
+31 1 6
+172 1 5
+172 1 6
+37 1 6
+37 1 5
+0 0 0
+aliases:
+arm cast 'ice arm'
+sh cast 'shocking gr' $1
+loc cast 'locate obj' $1
+chill cast 'chill touch' $1
+da cast 'ice darts' $1
+sp help spell_cryo
+who who -w
+ew enter well
+well tell samun moonwell
+lib look in bag
+ok rest;memorize;meditate
+mm meditate
+` get all from all.corpse
+k kill $1
+ds drink skin
+g get all.coins from all.corpse
+df drink fountain
+mc cast 'minor cre' $1
+id get identify bag;rec identify $1
+0

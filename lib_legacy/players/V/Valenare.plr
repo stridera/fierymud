@@ -1,0 +1,82 @@
+name: Valenare
+password: VaYTt7PtFv
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 11
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18557
+birthtime: 1375268157
+timeplayed: 92371
+lastlogintime: 1376446159
+host: 074.090.056.193
+height: 41
+weight: 125
+base_height: 41
+base_weight: 125
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: y
+effectflags: fk 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 11
+thirst: 10
+lastlevel: 0
+hitpoints: 53/53
+mana: 1/-2
+move: 96/100
+damroll: 3
+hitroll: 6
+strength: 81
+intelligence: 84
+wisdom: 98
+dexterity: 68
+constitution: 68
+charisma: 62
+cash: 0 28 63 70
+bank: 0 150 0 0
+experience: 69111
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 80
+416 100
+423 100
+424 100
+438 60
+443 50
+444 80
+451 63
+457 86
+458 100
+459 50
+460 67
+462 55
+463 100
+466 90
+0 0
+effects:
+1 0 10 17 0 0 0
+0 0 0 0 0
+mem:
+16 1 6
+1 1 6
+12 1 6
+13 1 6
+20 1 6
+0 0 0

@@ -1,0 +1,74 @@
+name: Firwin
+password: FizoQr6k/X
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18617
+birthtime: 1387142036
+timeplayed: 1352
+lastlogintime: 1640490353
+host: 024.020.004.178
+height: 75
+weight: 116
+base_height: 75
+base_weight: 116
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 4
+lastlevel: 0
+hitpoints: 20/20
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 75
+intelligence: 92
+wisdom: 98
+dexterity: 66
+constitution: 62
+charisma: 72
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+451 51
+457 50
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+tells:
+$
+gossips:
+1596814966 Mejna gossips, 'damn i died lol'
+$

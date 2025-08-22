@@ -1,0 +1,28 @@
+1
+vnum: 3004
+location: 127
+values:
+32
+32
+8
+0
+0
+0
+0
+~
+flags: 0
+name: local-speciality bottle local dark glass
+shortdesc: a dark glass bottle
+desc: A dark bottle has been left here.
+type: 17
+weight: 2.59
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: local bottle
+Whatever is inside this bottle is made in the local tavern, and smells
+good. 
+~
+~~

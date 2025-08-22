@@ -1,0 +1,67 @@
+name: Akro
+password: AkT9Gb0.s5
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18377
+birthtime: 1351318278
+timeplayed: 83214
+lastlogintime: 1352438041
+host: 068.084.108.156
+height: 62
+weight: 167
+base_height: 62
+base_weight: 167
+base_size: 2
+natural_size: 2
+alignment: 267
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 14
+thirst: 4
+lastlevel: 0
+hitpoints: 193/180
+mana: 16/16
+move: 99/138
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 55
+wisdom: 65
+dexterity: 85
+constitution: 96
+charisma: 54
+cash: 0 378 1067 18
+experience: 598663
+quit_reason: 1
+saveroom: 3054
+skills:
+402 180
+404 180
+415 180
+416 50
+421 180
+430 74
+438 180
+443 50
+444 90
+463 52
+464 50
+465 180
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 16103 1.000000
+0 0 0

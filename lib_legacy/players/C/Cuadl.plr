@@ -1,0 +1,74 @@
+name: Cuadl
+password: CuPdJbVw2N
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 2
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20706
+birthtime: 1701481589
+timeplayed: 1273
+lastlogintime: 1701482882
+host: 047.200.126.122
+height: 27
+weight: 75
+base_height: 27
+base_weight: 75
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -15/36
+mana: 0/0
+move: 114/114
+damroll: 2
+hitroll: 4
+strength: 86
+intelligence: 72
+wisdom: 77
+dexterity: 85
+constitution: 79
+charisma: 67
+experience: 7353
+quit_reason: 10
+saveroom: 3038
+skills:
+401 58
+403 54
+408 50
+415 50
+416 50
+421 53
+438 50
+443 50
+444 50
+463 50
+464 52
+465 50
+493 50
+0 0
+tells:
+1701482096 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1701482128 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1701482343 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1701482398 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1701482470 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1701482040 Ekon gossips, 'Hey Cuadl'
+1701482219 Chinok gossips, 'gratz on 2 Cuadl'
+1701482239 Chinok gossips, 'Cuadl, just yell if you need any advice or help'
+1701482314 Chinok gossips, 'awesome to hear, just yell if you need anyting'
+$

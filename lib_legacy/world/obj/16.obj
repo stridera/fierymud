@@ -1,0 +1,271 @@
+#1601
+foot lucky-rabbit's-foot~
+a lucky rabbit's foot~
+A lucky rabbit's foot is covered in dirt on the ground.~
+~
+9 0 5 1
+1 0 0 0 0 0 0
+0.23 10 0 0 0 0 0 0
+E
+lucky-rabbit's-foot~
+Quite large for a rabbit's foot, the previous owner must have been rather
+fearsome to have produced such a magnificient specimen.  The last owner must
+not have been very lucky, however, having lost such a vital appendage.  Some
+flecks of blood stick in the matted rabbit's hair around the area from which
+the leg once protruded.  A thick strand of twine runs through the foot,
+allowing it to be worn.~
+A
+13 2
+#1602
+skin small-rabbit-skin~
+a small rabbit skin~
+A small rabbit skin hardens in the sun.~
+~
+17 0 1 1
+16 16 10 0 0 0 0
+0.30 0 0 0 0 0 0 0
+E
+skin small-rabbit-skin~
+The waterskin is sewn from the sleek fur of a brown rabbit.  When full,
+it's squishy, like some horrible furry organ.~
+#1603
+snake meat food~
+a small hunk of snake meat~
+A small hunk of snake meat begins to rot here.~
+~
+19 0 1 1
+8 0 0 0 0 0 0
+0.50 12 0 0 0 0 0 0
+#1604
+boots snake-boots leather~
+a pair of snake boots~
+A pair of snake boots are here covered in dust.~
+~
+9 0 65 1
+2 0 0 0 0 0 0
+1.50 45 0 0 0 0 0 0
+E
+snake-boots leather~
+The boots are hastily crafted from strips of viper skin.  It's thoroughly
+dried-out, and some of the scales are flaking off.~
+#1605
+slimy mushroom food~
+a slimy mushroom~
+A slimy mushroom is here getting moldy.~
+~
+19 0 1 1
+2 0 0 0 0 0 0
+0.80 0 0 0 0 0 0 0
+E
+slimy mushroom food~
+The mushroom has shrivelled as it dried, its brownish color mixing with grays
+and greens.  A slimy coat of mold covers it now, encasing its limp spongey
+shape in a mix of fungal growths.~
+#1606
+grass single-blade-grass food~
+a blade of grass~
+A single blade of grass peeks out of the dirt.~
+~
+19 536870912 1 3
+1 0 0 0 0 0 0
+0.09 10 0 0 0 0 0 0
+E
+grass single-blade-grass food~
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+H
+20
+#1607
+fang viper-fang pointy~
+a viper fang~
+A pointy viper fang rests here.~
+Nothing.~
+8 67108928 262145 1
+2 0 0 0 0 0 0
+0.40 1000 0 0 0 0 0 0
+E
+viper-fang pointy~
+About 2 inches long, and razor-sharp, this fang looks like it could pierce
+steel.  Or be worn as an earring...~
+A
+13 3
+#1608
+bunny rabbit chocolate food~
+a small candy bunny~
+A small candy bunny is lying here.~
+~
+19 0 1 1
+4 0 0 0 0 0 0
+0.36 0 0 0 0 0 0 0
+#1609
+small-stone~
+a small stone~
+A small stone lies in the dirt here.~
+~
+5 0 8193 1
+0 1 3 7 0 0 0
+0.90 0 0 0 0 0 0 0
+E
+small-stone~
+Composed of what appears to be marble and granite, it fits nicely into one
+hand.~
+A
+2 -1
+A
+19 1
+#1610
+stone large-stone~
+a large stone~
+A large stone lies in the dirt.~
+~
+5 54530048 32769 1
+0 2 6 6 0 0 0
+1.80 0 0 0 0 0 0 0
+E
+large-stone~
+This solid stone, while large and heavy, looks like if used properly, could
+cause some damage to somebody.~
+A
+2 -2
+A
+6 -2
+A
+19 1
+A
+18 -1
+X
+994
+#1611
+hamper clothes-hamper~
+a clothes hamper~
+A small clothes hamper rests peacefully on the floor.~
+~
+15 0 0 3
+10000 5 -1 0 0 0 0
+16.00 100 0 0 0 0 0 0
+#1612
+chemicals pool chemical~
+a pool of chemicals~
+A little pool of chemicals has formed here.~
+~
+12 0 1 0
+0 0 0 0 0 0 0
+3.00 100 10 0 0 0 0 0
+T 1604
+E
+pool chemical chemicals~
+This appears to be a colorful mixture of many different chemicals.  The
+colors swirl in a hypnotic rhythm, making it difficult to look away.  In fact,
+a nap sounds good right about now...~
+#1613
+potion scientific~
+a scientific potion~
+A scientific potion rests on the workbench.~
+~
+10 0 1 3
+3 255 0 0 0 0 0
+0.30 1000 20 0 0 0 0 0
+E
+potion scientific~
+The colors of this mixture swirl together in an odd sort of rhythm.~
+#1614
+key skeleton simple~
+a simple skeleton key~
+A simple-looking key lies in the dust.~
+~
+18 65540 5 3
+0 0 0 0 0 0 0
+0.20 100 10 0 0 0 0 0
+#1615
+labcoat white-labcoat lab-coat cloth~
+a white labcoat~
+A white labcoat lies unused.~
+<not set>~
+9 0 1033 1
+2 0 0 0 0 0 0
+3.00 100 10 0 0 0 0 0
+E
+white-labcoat lab-coat cloth~
+Made of soft cotton, this coat is stained from various unknown chemicals.  Two
+buttons on the left side appear freshly sewn on, as if unused.~
+A
+3 2
+#1617
+wristband wristband-nordus wrist-band city-logo~
+the wristband of Nordus~
+A wristband, stamped with a city logo, lies here.~
+~
+8 0 4097 5
+2 0 0 0 0 0 0
+0.80 200 20 0 0 0 0 0
+E
+wristband-nordus wrist-band city-logo~
+This wristband is metal, but somehow slightly stretchy, almost elastic.  Its
+finely grained metal is stamped with the outline of a city; it appears to be
+Nordus.~
+A
+4 1
+A
+3 1
+#1618
+rock medium~
+a medium rock~
+A medium-sized rock lies in the dirt.~
+~
+18 4 1 3
+0 0 0 0 0 0 0
+1.20 10 1 0 0 0 0 0
+E
+rock medium~
+This rock appears to have been broken out of a larger piece of stone.~
+#1620
+potion blue~
+a sky-blue potion~
+A sky-blue potion lies unused here.~
+~
+10 0 1 3
+5 106 0 0 0 0 0
+0.30 100 10 0 0 0 0 0
+E
+potion blue sky~
+This potion sparkles with the color of the sky.~
+#1621
+potion blue~
+a sky-blue potion~
+A sky-blue potion lies unused here.~
+~
+10 0 1 3
+5 259 0 0 0 0 0
+0.30 100 10 0 0 0 0 0
+E
+potion blue sky~
+This potion sparkles with the color of the sky.~
+#1622
+potion blue~
+a sky-blue potion~
+A sky-blue potion lies unused here.~
+~
+10 0 1 3
+5 88 0 0 0 0 0
+0.30 100 10 0 0 0 0 0
+E
+potion blue sky~
+This potion sparkles with the color of the sky.~
+#1681
+glass shards~
+some shards of glass~
+Some broken glass lies in the sand.~
+~
+12 0 1 1
+0 0 0 0 0 0 0
+5.00 20 10 0 0 0 0 0
+T 1652
+#1682
+chest pure ice clan treasure~
+a chest made of pure ice~
+A chest of pure ice sits in one corner.~
+~
+15 1024 0 0
+999 1 1680 0 0 0 0
+100.00 0 0 0 0 0 0 0
+$~

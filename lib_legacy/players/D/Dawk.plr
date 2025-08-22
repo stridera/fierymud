@@ -1,0 +1,212 @@
+name: Dawk
+password: Damfxj3axx
+description
+Nothing.
+You see nothing special about him.~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 16
+race: 8
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17312
+birthtime: 1236979860
+timeplayed: 1505303
+lastlogintime: 1738993640
+host: 208.093.179.007
+height: 76
+weight: 545
+base_height: 35
+base_weight: 73
+base_size: 1
+natural_size: 2
+alignment: -1000
+playerflags: gxyz
+effectflags: c 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 794/794
+mana: 980/980
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 62
+intelligence: 100
+wisdom: 95
+dexterity: 82
+constitution: 69
+charisma: 55
+cash: 169 306 692 738
+experience: 105805999
+pagelength: 40
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+4 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+28 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+48 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+81 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+94 1000
+96 1000
+99 1000
+118 1000
+122 1000
+127 1000
+128 1000
+131 1000
+132 1000
+133 1000
+134 1000
+135 1000
+136 1000
+137 1000
+138 1000
+139 1000
+140 1000
+141 1000
+142 1000
+206 1000
+207 1000
+235 1000
+241 1000
+415 153
+416 54
+421 1000
+423 1000
+424 1000
+438 1000
+443 50
+444 761
+451 1000
+452 1000
+453 1000
+455 722
+457 1000
+458 933
+459 1000
+460 1000
+461 927
+462 1000
+463 332
+466 1000
+0 0
+trophy:
+1 8015 7.000000
+1 8023 8.000000
+1 8022 18.000000
+1 8000 14.000000
+1 8013 16.000000
+1 8020 12.000000
+1 8011 17.000000
+1 8021 12.000000
+1 8030 1.000000
+1 8016 10.000000
+1 8014 15.000000
+1 8012 22.000000
+1 8010 18.000000
+1 47003 2.000000
+1 47018 2.000000
+1 53315 1.500000
+1 53314 0.500000
+1 53313 0.500000
+1 53306 1.000000
+1 53303 1.500000
+1 53305 1.000000
+0 0 0
+tells:
+1589517581 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1589525680 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1590366268 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1590366270 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1616842763 @WDavar@W tells you, 'one gem please@W'@0
+1737836064 @WDavar@W tells you, 'one gem please@W'@0
+1737997966 @WDavar@W tells you, 'one gem please@W'@0
+$
+gossips:
+1620764745 Gidion gossips, 'wouldn't be a bad idea to use it untell it says your as skilled as you can be then only when your faceing a caster'
+1620764792 Tatabutataka gossips, 'ah that sounds like far away hah, im still bad and i basically use it on cooldown'
+1737728663 Chinok gossips, 'you never got the MV bump...'
+1737728678 Chinok gossips, 'that look better?'
+1737728722 Ija gossips, '? sure just assumed it was the eq but after i died i saw i wasn't wearing any -mv'
+1737728779 Chinok gossips, 'yeah over a year ago, we started increasing MV .'
+1737728786 Chinok gossips, 'you now gain MV with levels too'
+1737728811 Chinok gossips, 'if you have any other chars that look low, let me know.'
+1737728823 Ija gossips, 'and so playing new charactors got me to think of 200ish being normal'
+1737728860 Ija gossips, 'that explains why i though it was odd'
+$
+aliases:
+met c 'hellfire'
+y ass davar
+res c 'resurrect' $*
+ursa golden druidstaff
+fh c 'fu heal' $*
+sty c 'sty e' $*
+pois c 'poison' $*
+blind c 'blind' $*
+1 heal harnv
+mem pray $*
+summon c 'summon' $*
+3 c 'cure c ' lanelot
+9 c  ' cure c'  nakita
+0 c ' cure c' prunkhaft
+8 curec nawk
+cc c 'caus c' $*
+curec c 'cure c' $*
+yyy ass skeleton
+cures c 'cure s' $*
+gac g all all.corpse
+cure c 'cure l' $*
+demon c 'demons' $*
+pain c 'les en' $*
+dark c 'dark p' $*
+dr drag corpse $*
+harms c 'caus l' $*
+id recite identify $*
+hell c 'hell b' $*
+yy ass tstark
+word c 'word o r'
+dis c 'dis goo' $*
+heal c 'heal' $*
+2 c 'heal' valaina
+disp c 'disp mag' $*
+unh c 'unh'
+gh c 'g heal'
+sick c 'disease' $*
+harm c 'f harm' $*
+vit c 'gre endur' $*
+0

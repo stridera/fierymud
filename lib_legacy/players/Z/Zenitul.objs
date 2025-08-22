@@ -1,0 +1,3625 @@
+1
+vnum: 52002
+location: 0
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: bg
+name: torch sagece sagece-torch
+shortdesc: the torch of Sagece
+desc: A torch with strange markings floats here.
+type: 1
+weight: 3.00
+cost: 4500
+timer: 0
+level: 70
+effects: c 0 0
+wear: 16385
+applies:
+4 5
+~
+extradesc: torch sagece sagece-torch
+The torch of Sagece has some interesting, peculiar designs carved into it.  It
+is long, nearly a meter from tip to tip, and carved of a hollow, dark wood.  
+~
+~~
+vnum: 41120
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring sea sea-ring blue clear
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 9
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 30
+~
+extradesc: sea-ring blue ring water dolphin clear
+A series of playful dolphins chase each other around the perimeter of
+the sea-blue ring. It is difficult to determine exactly what the ring
+is made of -- clear, yet neither crystal nor glass. 
+~
+~~
+vnum: 41120
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring sea sea-ring blue clear
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 9
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 30
+~
+extradesc: sea-ring blue ring water dolphin clear
+A series of playful dolphins chase each other around the perimeter of
+the sea-blue ring. It is difficult to determine exactly what the ring
+is made of -- clear, yet neither crystal nor glass. 
+~
+~~
+vnum: 49063
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aeiD
+name: necklace leaves woven
+shortdesc: a necklace made of woven leaves
+desc: A necklace made of woven leaves lies forgotten here.
+type: 11
+weight: 0.75
+cost: 0
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 5
+applies:
+13 20
+~
+extradesc: necklace leaves woven
+This necklace was very intricately made.  It is made of several small green
+leaves woven together to form a very pretty necklace.    
+~
+~~
+vnum: 49063
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aeiD
+name: necklace leaves woven
+shortdesc: a necklace made of woven leaves
+desc: A necklace made of woven leaves lies forgotten here.
+type: 11
+weight: 0.75
+cost: 0
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 5
+applies:
+13 20
+~
+extradesc: necklace leaves woven
+This necklace was very intricately made.  It is made of several small green
+leaves woven together to form a very pretty necklace.    
+~
+~~
+vnum: 52016
+location: 5
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: abgmowyz
+name: skin armor dragon-skin dragon-armor
+shortdesc: a dragon skin
+desc: A set of scaled dragon armor lies here, apparently forgotten by the gods.
+type: 9
+weight: 18.00
+cost: 7810
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 9
+applies:
+23 -5
+24 -5
+~
+extradesc: skin armor dragon-skin dragon-armor
+Of all things, dragon skin is incredibly rare.  The scales are hard and a dark
+black color.  Each scale is the size of man's kneecap, connected from
+underneath solidly.    
+~
+~~
+vnum: 58414
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crown golden gypsy-crown gypsy
+shortdesc: the Gypsy Crown
+desc: A golden crown inlaid with emeralds rolls around here.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 17
+applies:
+5 8
+~
+extradesc: crown gypsy
+This crown seems pretty heavy. It's made of thick gold, and probably
+incredibly expensive. The gold is shaped into the traditional peaks of 
+crowns. A green emerald, marquise-cut, is set into each peak, and several 
+of them in various cuts adorn the very front of the crown's tallest peak,
+which would be centered over the wearer's forehead.
+~
+~~
+vnum: 58430
+location: 7
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tights purple purple-tights snug-fitting pair rolled ball discarded
+shortdesc: a pair of snug-fitting purple tights
+desc: A pair of tights has been rolled into a ball and discarded.
+type: 9
+weight: 0.50
+cost: 750
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: tights purple purple-tights snug-fitting pair rolled ball discarded
+These tights look like they'd be a perfect fit! A tie-waist secures
+them at the waist, and the thick woolen material goes from there all the
+way down to your feet. They look quite old, and seem to glow with some
+kind of magical power. Perhaps they're enchanted!
+~
+~~
+vnum: 49017
+location: 8
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: shoes feathered
+shortdesc: a pair of feathered shoes
+desc: A pair of shoes with wings flutter around here!
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65
+applies:
+14 35
+~
+extradesc: shoes feathered
+These starry blue shoes seem to be alive! They have wings attached to them
+and make little loopings when they know you're looking at them.~
+~~
+vnum: 52003
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: goprt
+name: gloves black black-gloves
+shortdesc: a pair of black gloves
+desc: A pair of black gloves lies here.
+type: 9
+weight: 0.75
+cost: 500
+timer: 0
+level: 75
+effects: 0 0 0
+wear: 129
+applies:
+4 2
+~
+extradesc: gloves black black-gloves
+These gloves are jet black, nearly dark as the night sky with no moon.  There
+are even small twinkles like the stars.    
+~
+~~
+vnum: 53018
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: mouvwyz
+name: bracers coiled serpent
+shortdesc: the Serpent Bracers
+desc: Bracers formed like coiled serpents rest here.
+type: 9
+weight: 8.00
+cost: 1500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 257
+applies:
+1 2
+~
+~~
+vnum: 58417
+location: 12
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: fD
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~
+vnum: 58431
+location: 13
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flowers plaited plaited-flowers belt
+shortdesc: some plaited flowers
+desc: Some plaited flowers form a sort of belt.
+type: 9
+weight: 0.75
+cost: 1000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+applies:
+6 3
+~
+extradesc: flowers belt plaited
+You see a loose belt made of braided wildflowers. The daisies and
+honeysuckles were connected by threading each flower through its
+neighbor somehow. They must be enchanted, for you cannot separate
+any of the flowers from the belt.
+~
+~~
+vnum: 16033
+location: 14
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracers charred pair odd black metal bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 16
+effects: 0 0 0
+wear: 4097
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred pair odd black metal bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    
+~
+~~
+vnum: 16033
+location: 15
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracers charred pair odd black metal bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 16
+effects: 0 0 0
+wear: 4097
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred pair odd black metal bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    
+~
+~~
+vnum: 905
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 905
+location: 19
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 55011
+location: 21
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ajl
+name: eye jade jeweled leopard leopard's cat large piece cat's strand gold jeweled-leopards-eye
+shortdesc: a jeweled leopard's eye
+desc: A large piece of jade carved like a cat's eye hangs here on an strand of gold.
+type: 9
+weight: 0.25
+cost: 2400
+timer: 0
+level: 48
+effects: 0 0 0
+wear: 65537
+applies:
+3 9
+24 -3
+~
+extradesc: eye jade jeweled leopard leopard's cat large piece cat's strand gold jeweled-leopards-eye
+You hold a palm sized, polished dark green jade medallion.  It seems to be warm
+to the touch.  In the green of the medalion are two crystal blue veins forming
+what looks like a cats eye.  
+~
+~~
+vnum: 506
+location: 22
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: abegiD
+name: mask betrayal
+shortdesc: the Mask of Betrayal
+desc: A dark almost invisible mask lies here sending twisted beams of light all over the room.
+type: 9
+weight: 0.50
+cost: 5000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+applies:
+5 2
+19 2
+~
+extradesc: mask betrayal
+This mask is one of the most unusual objects you have ever seen.  This mask is
+made of an almost invisible black material that emits a dark glow of twisted
+light through out the room.  This material is very flexable and when worn
+conforms to your face and is quite hard to get off.  It is also quite durable
+and could easily withstand a blow from any weapon.    
+~
+~~
+vnum: 1607
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA
+name: viper fang
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 0.40
+cost: 1000
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+24 -1
+13 5
+~
+extradesc: fang viper
+About 2 inches long, and razor-sharp, this fang looks like it could
+pierce steel.  Or be worn as an earring...
+~
+~~
+vnum: 1607
+location: 24
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA
+name: viper fang
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 0.40
+cost: 1000
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+24 -1
+13 5
+~
+extradesc: fang viper
+About 2 inches long, and razor-sharp, this fang looks like it could
+pierce steel.  Or be worn as an earring...
+~
+~~
+vnum: 420
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aeA
+name: badge herlequin
+shortdesc: a badge of the herlequin
+desc: A red and black badge pulsates in the dust.
+type: 11
+weight: 0.25
+cost: 0
+timer: 0
+level: 1
+effects: f 0 0
+wear: 540673
+applies:
+19 4
+18 3
+26 10
+13 150
+6 -4
+~
+extradesc: badge herlequin
+Pulsing with what appears to be a heart beat, this badge
+is the reminence of the demons known as the herlequin.
+The power it emites adds to the person wearing it,
+strengthening them with it's unholy power.
+~
+~~
+vnum: 58705
+location: 26
+values:
+50
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: pouch cloth-pouch cloth
+shortdesc: a pouch
+desc: A cloth pouch lies crumpled on the ground.
+type: 15
+weight: 0.25
+cost: 8
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: pouch cloth
+It's just a simple woolen pouch. The fabric is dyed a brilliant
+red color, and there's some embroidery on its front. A cord closes
+around the pouch's neck; the cord is quite long, long enough for
+you to tie its ends around your belt.
+~
+extradesc: embroidery
+The embroidery is of a strange kind. Usually embroidery is of
+pretty things, for some sort of informative or decorative purpose,
+but this picture is of a monstrous golden wolf-like beast with
+eerily human eyes.
+~
+~~
+vnum: 1225
+location: -1
+values:
+99
+15
+15
+208
+0
+0
+0
+~
+flags: abeAD
+name: thing shiny
+shortdesc: a shiny thing
+desc: A shiny thing sticks out from a shiny necklace. 
+type: 3
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: A 0 0
+wear: 16389
+applies:
+17 6
+19 2
+~
+~~
+vnum: 58417
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~
+vnum: 58417
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~
+vnum: 58417
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~
+vnum: 58417
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~
+vnum: 20025
+location: -1
+values:
+1
+2
+5
+2
+0
+0
+0
+~
+flags: bjmnuvyz
+name: whip black
+shortdesc: a black whip
+desc: A long coiled black whip is lying on the floor here.
+type: 5
+weight: 2.50
+cost: 1000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+extradesc: whip black
+This whip is made of hardened black leather.  It is about eight feet in length
+and has a few barbs at the end.  It is mostly used to make noise but whould
+really hurt if you got hit with it.    
+~
+~~
+vnum: 459
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: fg
+name: visor black knight's
+shortdesc: a black knight's visor
+desc: A black visor sits here.
+type: 9
+weight: 1.00
+cost: 700
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+applies:
+1 1
+5 2
+~
+extradesc: visor
+The visor is black and looks like it'd be a good piece of equipment to
+protect your head.
+~
+~~
+vnum: 459
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: fg
+name: visor black knight's
+shortdesc: a black knight's visor
+desc: A black visor sits here.
+type: 9
+weight: 1.00
+cost: 700
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+applies:
+1 1
+5 2
+~
+extradesc: visor
+The visor is black and looks like it'd be a good piece of equipment to
+protect your head.
+~
+~~
+vnum: 504
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: breastplate mythril white
+shortdesc: a breastplate made of white mythril
+desc: A gleaming piece of thin white metal is lying in the dirt here.
+type: 9
+weight: 8.00
+cost: 4000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+applies:
+5 1
+1 1
+~
+extradesc: breastplate mythril white
+This breastplate is made out of pure mythril.  The white color and the amount
+of mythril used must have made this breastplate very expensive to make.  
+Mythril is a very special material that is very thin and lightweight and thin
+but is as strong as dragon scales.  This breastplate looks to have saved many a
+man in battle.    
+~
+~~
+vnum: 11797
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gAD
+name: myst vambraces vambrace bits long
+shortdesc: a pair of myst vambraces
+desc: Some long bits of myst lie here, seeming to conform to the ground.
+type: 9
+weight: 1.20
+cost: 40
+timer: 0
+level: 87
+effects: 0 0 0
+wear: 257
+applies:
+2 4
+24 -25
+3 -3
+18 1
+~
+extradesc: myst vambraces vambrace bits long
+These vambraces are of exceptional quality, and are simply bits of a magically
+bound myst.  They seem to conform to any shape of any arm which dons them, and
+seem to repel light and seem to absorb impacts and then quickly reform the
+dented portion.  The myst is a dull, absent grey color.    
+~
+~~
+vnum: 18800
+location: -1
+values:
+3009
+0
+0
+0
+0
+0
+0
+~
+flags: degAD
+name: lease agreement tcd-lease-agreement piece parchment
+shortdesc: the TCD lease agreement
+desc: A parchment titled with the initials TCD lies here abandoned.
+type: 12
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+extradesc: lease agreement tcd-lease-agreement piece parchment
+   This deed entitles the clan known as the Clandestine Degree to the
+following items as paid for in their initial construction costs so long as
+they continue to pay maintainance costs of 10% of the total construction
+costs by the 5th of each month. At the time dues are collected the seal on
+this lease shall be updated to reflect the date the next collection shall
+take place.
+
+Note- Lease agreements may be inspected at any time to verify that all dues
+      are up-to-date.
+
+Clan Construction details follow and a Holy Seal is placed at the bottom.
+~
+extradesc: details
+The following are details surrounding the costs and maintenance of the
+clan's hall and item:
+
+Inital Construction cost (2 rooms)   - 15K
+Additional rooms (7)                 - 21K
+Shop with four basic items (18807)   -  7K
+One basic clan item (18801)          -  3K
+--------------------------------------------
+Total                                - 46K
+
+Upkeep is 10% of total cost          - 4.6K
+~
+extradesc: seal holy
+A holy seal is stamped at the bottom of this parchment.
+
+        ,-.      .-,
+        |-.\ __ /.-|
+        \  `    `  /
+        / _     _  \
+        | _`q  p _ |
+        '._=/  \=_.'
+            \()/
+
+Dues paid through: July 5th, 2006
+Collected by:  
+~
+~~
+vnum: 23815
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant crystal ice hexagon hexagonal ice-crystal-pendant
+shortdesc: an ice crystal pendant
+desc: A hexagonal crystal glimmers in the light here.
+type: 11
+weight: 0.70
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 5
+applies:
+18 1
+19 1
+26 2
+~
+extradesc: pendant ice crystal hexagonal hexagon ice-crystal-pendant
+   A solid crystal attached to a silver chain looks like it is made of ice, and
+indeed it is cool to the touch.  It does not melt when worn, an indicator that
+it was probably made with magic.  The crystal itself has six-sided symmetry and
+is a translucent pale blue-white, distorting objects slightly if looked
+through.  The chain is rather long and would probably fit adventurers large and
+small.    
+~
+~~
+vnum: 401
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: deceivers icon
+shortdesc: a Deceivers Icon
+desc: A small thin strip of metal lies here.
+type: 9
+weight: 0.06
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+2 5
+14 30
+~
+~~
+vnum: 532
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring dream realm ring-dream-realm ring-dream dream-realm quest
+shortdesc: the Ring of the Dream Realm
+desc: A powerful ring lies hidden in the shadows.
+type: 8
+weight: 0.10
+cost: 55000
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+4 4
+3 4
+~
+extradesc: ring dream realm
+Drawing power from the mysterious realm of slumber and dreams, this ring
+molds to your finger giving you a greater understanding of the world around
+you. The face of the ring is a constantly swirling milky cloud.
+~
+~~
+vnum: 1286
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: iou arlian
+shortdesc: an Arlian IOU
+desc: An Arlian IOU lies on the ground here.
+type: 8
+weight: 0.03
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1286
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: iou arlian
+shortdesc: an Arlian IOU
+desc: An Arlian IOU lies on the ground here.
+type: 8
+weight: 0.03
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1286
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: iou arlian
+shortdesc: an Arlian IOU
+desc: An Arlian IOU lies on the ground here.
+type: 8
+weight: 0.03
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1286
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: iou arlian
+shortdesc: an Arlian IOU
+desc: An Arlian IOU lies on the ground here.
+type: 8
+weight: 0.03
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 905
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 905
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 58431
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flowers plaited plaited-flowers belt
+shortdesc: some plaited flowers
+desc: Some plaited flowers form a sort of belt.
+type: 9
+weight: 0.75
+cost: 1000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+applies:
+6 3
+~
+extradesc: flowers belt plaited
+You see a loose belt made of braided wildflowers. The daisies and
+honeysuckles were connected by threading each flower through its
+neighbor somehow. They must be enchanted, for you cannot separate
+any of the flowers from the belt.
+~
+~~
+vnum: 58417
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~
+vnum: 41120
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring sea sea-ring blue clear
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 9
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 30
+~
+extradesc: sea-ring blue ring water dolphin clear
+A series of playful dolphins chase each other around the perimeter of
+the sea-blue ring. It is difficult to determine exactly what the ring
+is made of -- clear, yet neither crystal nor glass. 
+~
+~~
+vnum: 41120
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring sea sea-ring blue clear
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 9
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 30
+~
+extradesc: sea-ring blue ring water dolphin clear
+A series of playful dolphins chase each other around the perimeter of
+the sea-blue ring. It is difficult to determine exactly what the ring
+is made of -- clear, yet neither crystal nor glass. 
+~
+~~
+vnum: 53325
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: white dragon scale white-dragon-scale
+shortdesc: a white dragon scale
+desc: A perfect white dragon scale lies here.
+type: 9
+weight: 2.00
+cost: 10000
+timer: 1000
+level: 40
+effects: 0 0 0
+wear: 16385
+applies:
+13 30
+18 1
+~
+extradesc: white dragon scale white-dragon-scale
+About as large as a human's palm, this pure white scale comes from the tender
+shoulder area of a white dragon.  It is a beautiful scale, shining brightly in
+the light and feeling slightly cool to the touch.  Dragons are very magical
+creatures, so the scale would probably be valuable to a researching sorcerer or
+anyone else interested in unlocking the power of a dragon's skin.    
+~
+~~
+vnum: 48431
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bAD
+name: vial sunlight wax-stoppered-lead-vial sunlight-vial
+shortdesc: a vial of sunlight
+desc: A wax-stoppered lead vial lies here unattended.
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: vial sunlight wax-stoppered-lead-vial sunlight-vial
+A warm, comforting heat comes from this vial.  If it were to be opened,what
+would it release?  Imprinted on the wax stopper is the ancient symbol for
+Timun, the sun god: a four-pointed sun symbol.  But it would take divine power
+to seal something immaterial inside a container....
+~
+triggers:
+48423
+~
+~~
+vnum: 48430
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: egAD
+name: rag blooded-rag whitish-rag crumpled-bloodied-rag ragtoscarewhitetaileddeer
+shortdesc: a blooded rag
+desc: A whitish rag lies here crumpled and bloodied.
+type: 12
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+extradesc: blooded-rag whitish-rag crumpled-bloodied-rag
+The rag is a large scrap of linen, soaked with acrid blood.  The blood remains
+strangely bright red, as if fresh.
+~
+~~
+vnum: 58417
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: fD
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~
+vnum: 58426
+location: 127
+values:
+90
+61
+18
+39
+0
+0
+0
+~
+flags: DE
+name: elixir little-vial-faerie-elixir cunning-little-vial-clear-liquid
+shortdesc: a little vial of faerie elixir
+desc: A cunning little vial of clear liquid floats past.
+type: 10
+weight: 0.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+extradesc: little-vial-faerie-elixir cunning-little-vial-clear-liquid
+This little glass bottle looks so delicate you swear you could destroy
+it with a gentle breath of air. Its stopper is made of some kind of 
+filigree that somehow still keeps the liquid in the vial from spilling
+out. The liquid itself is clear and seems to bubble and sway all by
+itself inside the bottle.
+~
+~~
+vnum: 58426
+location: 127
+values:
+90
+61
+18
+39
+0
+0
+0
+~
+flags: DE
+name: elixir little-vial-faerie-elixir cunning-little-vial-clear-liquid
+shortdesc: a little vial of faerie elixir
+desc: A cunning little vial of clear liquid floats past.
+type: 10
+weight: 0.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+extradesc: little-vial-faerie-elixir cunning-little-vial-clear-liquid
+This little glass bottle looks so delicate you swear you could destroy
+it with a gentle breath of air. Its stopper is made of some kind of 
+filigree that somehow still keeps the liquid in the vial from spilling
+out. The liquid itself is clear and seems to bubble and sway all by
+itself inside the bottle.
+~
+~~
+vnum: 58413
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: shield mothers-love mother love pink kindness glowing
+shortdesc: a Shield of Mother's Love...It glows pink!
+desc: A shield radiates love and kindness...It glows pink!
+type: 9
+weight: 4.00
+cost: 3000
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 513
+applies:
+13 30
+~
+extradesc: shield mothers-love mother love pink kindness glowing
+This shield is made of bright blue-white steel, but it glows with
+a faint pink aura. The design on the front is ancient and very
+familiar, though you can't immediately place it for now. And if 
+you put your ear against its softly thrumming surface, you can
+hear what seems to be a lullaby, in a strong female voice touched
+with gentleness.
+~
+~~
+vnum: 58415
+location: 127
+values:
+90
+3
+3
+38
+0
+0
+0
+~
+flags: aD
+name: enchiridion book leatherbound ench
+shortdesc: the Enchiridion
+desc: A large leatherbound book glows golden.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+applies:
+24 -5
+~
+extradesc: book enchiridion ench
+The glowing pages glow with power, telling a story older than time
+itself -- that of gods and mortals, struggles with beasts greater
+than any the world has ever known, true love and blackest hatred,
+friendship and betrayal.. all couched in the language of ancient
+times to form a manual of behavior for magicians in the aftermath
+of a war the likes of which may never be seen again... Though the
+majority of the ancient book's thick pages seem torn out or damaged,
+enough of it remains for you to see that it must be very valuable.
+The cover looks like a good place to start learning about this book.
+~
+extradesc: cover
+The cover of the book reads:
+
+                      THE ENCHIRIDION:
+
+                       BEING A MANUAL 
+             FOR THE RECOVERY OF MAGISH VITALITY
+
+You open the book, and see page1.
+~
+extradesc: page1
+Hear the words of one who speaks across time: the Gypsy Seeress
+Mressnerah:
+
+      My dear Hrathis,
+
+      Long ago, my master told these things to me, and now 
+      that I am old, I wish to pass them down to you. When
+      you have come into your full power, you will understand
+      why I demanded certain things of you.
+
+      Long ago, magicians walked this world with impunity. 
+      There was nothing we could not do. I remember those days
+      very well indeed. The Cardinal of Templace himself was
+      amazed at our bravery, for we could face the Riftwar
+      beasts alone, with only our magicks to protect us.
+
+The book continues on page2.
+~
+extradesc: page2
+The second page continues:
+
+      But the wizard-dragon Sagece, that foul beast from the
+      Demon Planes, despised our kind and put her entire energies
+      to work to destroy our control over the human worlds.
+
+      This she did, all too well. I was old even when I felt the
+      shockwave of whatever spell she cast that was to spell our
+      doom. I looked down at my body and saw the rejuvenation I
+      had depended on for beauty disappear, the strength I'd 
+      always felt dissipate like fog before the morning light.
+      From then on, I was helpless physically; only when I had
+      the protection of much stronger folk could I work my most
+      devastating magicks.
+
+      But behold, Hrathis. There is way to reverse this evil
+      enchantment.
+
+The page ends. The next page is page3.
+~
+extradesc: page3
+This page seems very washed out. In fact, it's almost impossible to
+make out any details of what was once printed here. All you can see is
+what appears to be a blueprint of some kind of large machine. The small
+caption near the bottom of the page reads "NAU I S". That is all you
+can tell for sure.
+~
+~~
+vnum: 23760
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: saffron vial small herb yellow spice food
+shortdesc: a small vial of saffron
+desc: A small vial of a yellow spice lies forgotten in the dust.
+type: 19
+weight: 1.00
+cost: 20000
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+extradesc: saffron vial small herb yellow spice food
+Two tiny, golden yellow stalks are suspended in oil inside this vial.  Saffron
+is known as the most expensive, hard-to-get spice in the world.  Each saffron
+plant, which takes two years to mature, only produces two stalks that can be
+used as a spice.  It is a powerful spell component for earth elemental spells,
+and it is also a very delicious spice.  Take good care of it.    
+~
+~~
+vnum: 12508
+location: 127
+values:
+50
+94
+94
+94
+0
+0
+0
+~
+flags: D
+name: brown scroll
+shortdesc: a brown scroll
+desc: A brown scroll lying on the ground is bound with plain twine.
+type: 2
+weight: 0.10
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+extradesc: scroll brown paper
+The scroll is made of delicate brown paper, and has been rolled into a tube.  
+The tube has been tied together with a single piece of brown twine.    
+~
+~~
+vnum: 41120
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring sea sea-ring blue clear
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 9
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 30
+~
+extradesc: sea-ring blue ring water dolphin clear
+A series of playful dolphins chase each other around the perimeter of
+the sea-blue ring. It is difficult to determine exactly what the ring
+is made of -- clear, yet neither crystal nor glass. 
+~
+~~
+vnum: 12509
+location: 127
+values:
+70
+1
+1
+66
+0
+0
+0
+~
+flags: 0
+name: fist crystal
+shortdesc: a yellow, fist shaped crystal
+desc: A yellow-tinged, fist-shaped crystal lies here, its purpose forgotten.
+adesc:
+The fist pulses with energy, and soars through the air.
+~
+type: 3
+weight: 0.75
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+extradesc: fist crystal 
+The crystal is a sickly yellow, and has been carved into a clenched fist, with
+part of the forearm intact.    
+~
+~~
+vnum: 12508
+location: 127
+values:
+50
+94
+94
+94
+0
+0
+0
+~
+flags: D
+name: brown scroll
+shortdesc: a brown scroll
+desc: A brown scroll lying on the ground is bound with plain twine.
+type: 2
+weight: 0.10
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+extradesc: scroll brown paper
+The scroll is made of delicate brown paper, and has been rolled into a tube.  
+The tube has been tied together with a single piece of brown twine.    
+~
+~~
+vnum: 48036
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: gaze fiery fiery-gaze glowing red eyes
+shortdesc: &3&ba&0 &1&bfiery&0 &3&bgaze&0
+desc: Glowing red eyes rest here.
+type: 9
+weight: 0.60
+cost: 8010
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 65537
+applies:
+18 1
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: g
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: g
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 11707
+location: -1
+values:
+7
+1
+3
+34
+0
+0
+0
+~
+flags: ag
+name: potion violet glowing
+shortdesc: a violet potion
+desc: A violet potion has been left here.
+type: 10
+weight: 0.30
+cost: 20
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1620
+location: -1
+values:
+5
+106
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potion blue
+shortdesc: a sky-blue potion
+desc: A sky-blue potion lies unused here.
+type: 10
+weight: 0.30
+cost: 100
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: potion blue sky
+This potion sparkles with the color of the sky.
+~
+~~
+vnum: 11702
+location: -1
+values:
+12
+22
+16
+43
+0
+0
+0
+~
+flags: g
+name: potion white bright
+shortdesc: a bright white potion
+desc: A bright white potion is lying on the ground here.
+type: 10
+weight: 0.50
+cost: 1500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: bright white potion
+It is a bright, almost glowing white potion. The liquid in the glass
+vial is milky and opaque, and smells faintly of herbs.
+~
+~~
+vnum: 11702
+location: -1
+values:
+12
+22
+16
+43
+0
+0
+0
+~
+flags: g
+name: potion white bright
+shortdesc: a bright white potion
+desc: A bright white potion is lying on the ground here.
+type: 10
+weight: 0.50
+cost: 1500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: bright white potion
+It is a bright, almost glowing white potion. The liquid in the glass
+vial is milky and opaque, and smells faintly of herbs.
+~
+~~
+vnum: 11707
+location: -1
+values:
+7
+1
+3
+34
+0
+0
+0
+~
+flags: ag
+name: potion violet glowing
+shortdesc: a violet potion
+desc: A violet potion has been left here.
+type: 10
+weight: 0.30
+cost: 20
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+~~
+vnum: 11702
+location: -1
+values:
+12
+22
+16
+43
+0
+0
+0
+~
+flags: g
+name: potion white bright
+shortdesc: a bright white potion
+desc: A bright white potion is lying on the ground here.
+type: 10
+weight: 0.50
+cost: 1500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: bright white potion
+It is a bright, almost glowing white potion. The liquid in the glass
+vial is milky and opaque, and smells faintly of herbs.
+~
+~~
+vnum: 11702
+location: -1
+values:
+12
+22
+16
+43
+0
+0
+0
+~
+flags: g
+name: potion white bright
+shortdesc: a bright white potion
+desc: A bright white potion is lying on the ground here.
+type: 10
+weight: 0.50
+cost: 1500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: bright white potion
+It is a bright, almost glowing white potion. The liquid in the glass
+vial is milky and opaque, and smells faintly of herbs.
+~
+~~
+vnum: 16906
+location: -1
+values:
+15
+1
+3
+0
+0
+0
+0
+~
+flags: 0
+name: potion green
+shortdesc: a green potion
+desc: A murky green potion is here.
+type: 10
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: potion green
+The liquid has an odd astringent odour which reminds you of
+castor oil from your youth.
+~
+~~
+vnum: 8345
+location: -1
+values:
+20
+29
+29
+29
+0
+0
+0
+~
+flags: 0
+name: vial clear small
+shortdesc: a clear vial
+desc: A small vial of clear liquid lays here on the ground.
+type: 10
+weight: 0.10
+cost: 100
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: vial clear small
+This old glass vial contains a small amount of crystal clear liquid.  The thick
+glass that surrounds the liquid could handle a drop or two if it was put to
+test.    
+~
+~~
+vnum: 48117
+location: -1
+values:
+80
+42
+0
+0
+0
+0
+0
+~
+flags: g
+name: quest recall quest-recall
+shortdesc: a questing scroll
+desc: A scroll lies here in the dirt, it seems some questor died and left it here... muhahahahahahaha!
+type: 2
+weight: 0.04
+cost: 400
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 1
+extradesc: quest scroll
+TURN THIS SCROLL IN TO A GOD WHEN YOU ARE DONE (please).
+~
+~~
+vnum: 58426
+location: -1
+values:
+90
+61
+18
+39
+0
+0
+0
+~
+flags: 0
+name: elixir little-vial-faerie-elixir cunning-little-vial-clear-liquid
+shortdesc: a little vial of faerie elixir
+desc: A cunning little vial of clear liquid floats past.
+type: 10
+weight: 0.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+extradesc: little-vial-faerie-elixir cunning-little-vial-clear-liquid
+This little glass bottle looks so delicate you swear you could destroy
+it with a gentle breath of air. Its stopper is made of some kind of 
+filigree that somehow still keeps the liquid in the vial from spilling
+out. The liquid itself is clear and seems to bubble and sway all by
+itself inside the bottle.
+~
+~~
+vnum: 55347
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: sleeves burned
+shortdesc: burned sleeves
+desc: A pile of burned armor lies here unusable.
+type: 11
+weight: 3.20
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+~~
+vnum: 8034
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some if its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 905
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 905
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 905
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 905
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 11702
+location: -1
+values:
+7
+14
+16
+43
+0
+0
+0
+~
+flags: g
+name: potion white bright
+shortdesc: a bright white potion
+desc: A bright white potion is lying on the ground here.
+type: 10
+weight: 0.50
+cost: 1500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: bright white potion
+It is a bright, almost glowing white potion. The liquid in the glass
+vial is milky and opaque, and smells faintly of herbs.
+~
+~~
+vnum: 11702
+location: -1
+values:
+12
+22
+16
+43
+0
+0
+0
+~
+flags: g
+name: potion white bright
+shortdesc: a bright white potion
+desc: A bright white potion is lying on the ground here.
+type: 10
+weight: 0.50
+cost: 1500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: bright white potion
+It is a bright, almost glowing white potion. The liquid in the glass
+vial is milky and opaque, and smells faintly of herbs.
+~
+~~
+vnum: 11702
+location: -1
+values:
+7
+14
+16
+43
+0
+0
+0
+~
+flags: g
+name: potion white bright
+shortdesc: a bright white potion
+desc: A bright white potion is lying on the ground here.
+type: 10
+weight: 0.50
+cost: 1500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: bright white potion
+It is a bright, almost glowing white potion. The liquid in the glass
+vial is milky and opaque, and smells faintly of herbs.
+~
+~~
+vnum: 7302
+location: -1
+values:
+50
+50
+0
+0
+0
+0
+0
+~
+flags: bg
+name: potion murky murky-potion swamp-potion
+shortdesc: a murky potion
+desc: A murky potion has been dropped here.
+type: 10
+weight: 0.30
+cost: 800
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 32403
+location: -1
+values:
+0
+1
+8
+11
+0
+0
+0
+~
+flags: gmn
+name: rapier sword bright ornate
+shortdesc: an ornate, swept-hilt rapier
+desc: A bright, ornate sword lies here.
+type: 5
+weight: 3.00
+cost: 4500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+18 2
+19 2
+~
+extradesc: rapier sword ornate bright
+This slender rapier is long, its blade not sharp but is point wickedly so.
+It is made of some very bright alloy of steel that looks almost silvery,
+and its hilt is wrapped in blue leather. The crossguard is the traditional
+basket hilt, but very ornately done, sweeping and scrolling.
+~
+~~
+vnum: 51008
+location: -1
+values:
+66
+19
+67
+0
+0
+0
+0
+~
+flags: 0
+name: vial nordus water-vial
+shortdesc: a small vial
+desc: A small vial lies partially hidden on the ground.
+type: 10
+weight: 0.15
+cost: 140
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: water vial
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. 
+~
+~~
+vnum: 51008
+location: -1
+values:
+66
+19
+67
+0
+0
+0
+0
+~
+flags: 0
+name: vial nordus water-vial
+shortdesc: a small vial
+desc: A small vial lies partially hidden on the ground.
+type: 10
+weight: 0.15
+cost: 140
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: water vial
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. 
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 51075
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: jlopqrstwx
+name: mask skin human
+shortdesc: a mask of human skin
+desc: A small floppy piece of skin lies here.
+type: 11
+weight: 2.00
+cost: 40
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 131073
+applies:
+4 2
+3 2
+5 2
+6 -10
+~
+extradesc: mask skin human
+How grotesque.  Some person's face - sex now indistinguishable - was stripped
+to provide this awful covering.  No hairs remain on it anywhere, and it has
+been tanned to prevent deterioration and to give it a supple, smooth feel.  
+The eyelids are missing, and small strings are attached which go around the
+wearer's ears.
+~
+~~
+vnum: 3058
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55495
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gmnoqrstuvwxyz
+name: polished jointed steel gauntlets champion
+shortdesc: &6&bGauntlets of the Champion&0
+desc: Brightly polished jointed steel gauntlets lay collapsed on the ground.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+13 20
+4 4
+~
+extradesc: polished jointed steel gauntlets champion
+A true champion uses these gloves for all purposes from slaying mighty
+creatures to jousting in a grand arena, and they are designed to fit all those
+purposes.  Each plate is enchanted and joined together with extreme care and
+magical precision, making these dwarven steel gauntlets the perfect rewards for
+diligent warriors.
+~
+~~
+vnum: 8345
+location: -1
+values:
+20
+29
+29
+29
+0
+0
+0
+~
+flags: 0
+name: vial clear small
+shortdesc: a clear vial
+desc: A small vial of clear liquid lays here on the ground.
+type: 10
+weight: 0.10
+cost: 100
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: vial clear small
+This old glass vial contains a small amount of crystal clear liquid.  The thick
+glass that surrounds the liquid could handle a drop or two if it was put to
+test.    
+~
+~~
+vnum: 5104
+location: 127
+values:
+0
+1
+3
+11
+0
+0
+0
+~
+flags: ghnu
+name: dagger stone stone-dagger
+shortdesc: a stone dagger
+desc: A stone dagger has been abandoned here.
+type: 5
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 5102
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring stone rock stone-ring rock-ring
+shortdesc: a stone ring
+desc: A small circular rock catches your eye.
+type: 12
+weight: 0.04
+cost: 120
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 3
+applies:
+1 -2
+2 -2
+~
+extradesc: ring stone rock stone-ring rock-ring
+It's a circular piece of stone that could probably fit around a small finger.
+It has a strange, unpolished part, though - maybe it was broken off of
+something?
+~
+~~
+vnum: 5102
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring stone rock stone-ring rock-ring
+shortdesc: a stone ring
+desc: A small circular rock catches your eye.
+type: 12
+weight: 0.04
+cost: 120
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 3
+applies:
+1 -2
+2 -2
+~
+extradesc: ring stone rock stone-ring rock-ring
+It's a circular piece of stone that could probably fit around a small finger.
+It has a strange, unpolished part, though - maybe it was broken off of
+something?
+~
+~~
+vnum: 5201
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 17203
+location: -1
+values:
+10
+7
+6
+32
+0
+0
+0
+~
+flags: gnoprtu
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.
+~
+~~
+vnum: 17203
+location: -1
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.
+~
+~~
+vnum: 17203
+location: -1
+values:
+10
+7
+6
+32
+0
+0
+0
+~
+flags: gnoprtu
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.
+~
+~~
+vnum: 11701
+location: -1
+values:
+7
+3
+35
+88
+0
+0
+0
+~
+flags: ag
+name: potion silty glowing
+shortdesc: a silty potion
+desc: A silty potion has been left here.
+type: 10
+weight: 0.20
+cost: 20
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+~~
+vnum: 16006
+location: -1
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag
+name: orb ball crystal globe wind winds orb-of-winds
+shortdesc: the Orb of Winds
+desc: A crystal orb floats around you.
+type: 1
+weight: 0.50
+cost: 1000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+18 2
+20 -2
+~
+extradesc: orb
+   The orb is totally weightless and possesses a very bright glow. Gazing 
+into its crystalline depths, there seems to be insubstantial forms 
+floating within it. Before you can decide what lies within, you are 
+forced to look away, lest its light blinds you.
+~
+~~
+vnum: 58429
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant alicorn-pendant alicorn horn tip spiral chain
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 9
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant alicorn horn tip spiral chain
+This pendant is made of the very tip of a spiral horn. It's been drilled
+so a primitive chain can support it. The horn glows with power.
+~
+~~
+vnum: 58434
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: g
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: g
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: g
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: g
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: g
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: g
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 51075
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: jlopqrstwx
+name: mask skin human
+shortdesc: a mask of human skin
+desc: A small floppy piece of skin lies here.
+type: 11
+weight: 2.00
+cost: 40
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 131073
+applies:
+4 2
+3 2
+5 2
+6 -10
+~
+extradesc: mask skin human
+How grotesque.  Some person's face - sex now indistinguishable - was stripped
+to provide this awful covering.  No hairs remain on it anywhere, and it has
+been tanned to prevent deterioration and to give it a supple, smooth feel.  
+The eyelids are missing, and small strings are attached which go around the
+wearer's ears.
+~
+~~
+vnum: 58417
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: fD
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~

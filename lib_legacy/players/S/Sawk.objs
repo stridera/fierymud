@@ -1,0 +1,1721 @@
+1
+vnum: 10315
+location: 0
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag 0
+name: emerald brilliant-emerald green-gem-remarkable-beauty beautiful
+shortdesc: a brilliant emerald
+desc: A green gem of remarkable beauty rests on the floor.
+type: 1
+weight: 0.02
+cost: 30000
+timer: 0
+level: 65
+effects: 0 j 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 10
+14 50
+27 3
+17 2
+~
+extradesc: emerald brilliant-emerald green-gem-remarkable-beauty beautiful
+It's a large emerald, about the size of a bean.  It glows with a brilliant
+green light, illuminating the area around it.  It is undoubtedly enchanted,
+since it's warm to the touch and gives off a faint sense of well-being to
+anyone who picks it up.  Looking closely, the very faint outline of a hawk is
+visible on one facet.~
+~~
+vnum: 41120
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring sea's-ring seas-ring clear-blue-ring
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 8
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 30
+~
+extradesc: ring sea's-ring seas-ring clear-blue-ring
+A series of playful dolphins chase each other around the perimeter of the
+sea-blue ring.  It is difficult to determine exactly what the ring is made of
+-- clear, yet neither crystal nor glass.~
+~~
+vnum: 41120
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring sea's-ring seas-ring clear-blue-ring
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 8
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 30
+~
+extradesc: ring sea's-ring seas-ring clear-blue-ring
+A series of playful dolphins chase each other around the perimeter of the
+sea-blue ring.  It is difficult to determine exactly what the ring is made of
+-- clear, yet neither crystal nor glass.~
+~~
+vnum: 48919
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace shadow-necklace dark-beaded-necklace
+shortdesc: the Shadow Necklace
+desc: A dark-beaded necklace lies hidden in shadows.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 50
+14 -25
+27 3
+~
+extradesc: necklace shadow-necklace dark-beaded-necklace
+It's a fairly simple necklace -- teak beads carved into geometric shapes are
+strung onto dark thread to form a circle of beads.  Here and there little
+strings of beads are strung along the main circlet to form interesting
+geometric designs.  This necklace is a charm from the Wizardess Thekra; you
+recognize it at once.~
+~~
+vnum: 17212
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: jewel-heart dusty-little-jewel questobject
+shortdesc: the jewel of the heart
+desc: A dusty little jewel lies here.
+type: 8
+weight: 0.20
+cost: 1782
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 20
+~
+extradesc: jewel-heart dusty-little-jewel questobject
+This beautiful little jewel is shaped oddly, and appears to be very valuable to someone at least.~
+triggers:
+16307
+~
+~~
+vnum: 55512
+location: 5
+values:
+30
+0
+0
+0
+0
+0
+0
+~
+flags: gkmopqrstuvwxyz 0
+name: chestguard saintly-chestguard chest-guard mythril-adorned-angelic-symbols
+shortdesc: &5&bSaintly Chestguard&0
+desc: A chestguard of mythril, adorned with angelic symbols, is propped up against a rock.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 g 0
+wear: 9
+hiddenness: 0
+applies:
+13 50
+27 3
+~
+extradesc: chestguard saintly-chestguard chest-guard mythril-adorned-angelic-symbols
+Hugely stylized celestial runes have been engraved into this gorgeous
+chestguard.  Each rune relates to the domains of the original owner's deity,
+putting the priest into further contact with their gods' power.  Made of the
+purest mythril, this plate holds the strongest holy enchantments, designed not
+to make the wearer the warforce of the gods, but to be their voice and spirit
+among mortal man.~
+~~
+vnum: 55510
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gkmopqrstuvwxyz 0
+name: helm saintly-helm symbols-divine-clarity mythril-helm
+shortdesc: &5&bSaintly Helm&0
+desc: Symbols of divine clarity adorn a mythril helm resting here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+13 15
+28 45
+27 3
+~
+extradesc: helm saintly-helm symbols-divine-clarity mythril-helm
+Large, decorative symbols for sight and clarity cover this sanctified helm.  
+Both symbols are stylistically enclosed in the sign of the original wearer's
+patron spirit.  Blessed by the gods, this helm grants clerics a closer
+connection to their deities in their travels.~
+~~
+vnum: 48419
+location: 7
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: motuyz 0
+name: kilt brass-kilt
+shortdesc: a brass kilt
+desc: A brass kilt lies here in a pile.
+type: 9
+weight: 10.00
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+19 2
+18 2
+2 3
+~
+extradesc: kilt brass-kilt
+The kilt is worn over your legs.  It would look quite sexy on you; why not try
+it on?~
+~~
+vnum: 55514
+location: 8
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: agkmopqrstuvwxyz 0
+name: boots saintly-boots shining-radiant-mythril-boots
+shortdesc: &5&bSaintly Boots&0
+desc: Shining, radiant mythril boots gleam in the light here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 25
+6 2
+3 2
+27 3
+~
+extradesc: boots saintly-boots shining-radiant-mythril-boots
+These boots more than reflect light, they radiate with their own inner
+sanctified illumination.  Exquisite angelic designs and celestial glyphs cover
+each boot, identifying the wearer as a holy being.  The beauty of these boots
+is surpassed only by their holy purity.~
+~~
+vnum: 55516
+location: 9
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gkmopqrstuvwxyz 0
+name: gauntlets saintly-gauntlets divine-mythril-gauntlets
+shortdesc: &5&bSaintly Gauntlets&0
+desc: A pair of divine mythril gauntlets has been placed on a small table here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+13 20
+5 3
+27 3
+~
+extradesc: gauntlets saintly-gauntlets divine-mythril-gauntlets
+Made more for protection and recognition than strength and battle prowess,
+these gauntlets are made from many small plates linked together, but are
+relatively unadorned.  Strong spiritual enchantments have been placed on these
+gauntlets however; the healing aura around them is unmistakable.~
+~~
+vnum: 48426
+location: 10
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: gmuvyzAD 0
+name: bracers-loong embellished-sapphire-bracers chinese-dragon-bracers
+shortdesc: the Bracers of Loong
+desc: Highly embellished sapphire bracers lie here sparkling.
+type: 9
+weight: 8.23
+cost: 13490
+timer: 0
+level: 90
+effects: y 0 0
+wear: 257
+hiddenness: 0
+applies:
+19 1
+18 2
+27 1
+~
+extradesc: bracers-loong embellished-sapphire-bracers chinese-dragon-bracers
+Sparkling with some mysterious light, these bracers are indeed a work of art to
+behold.  Twin snake-like dragons are carved into the sapphire making up each
+bracer.  Each serpent has four claws and manes resembling bolts of lightning.
+A semicircular white diamond has been placed in each dragon's mouth, looking
+somewhat like a twisted crescent.  A tiny black dot appears slightly off-center
+in each diamond.  Beneath the sapphire exterior, layers of strong steel stand
+between the gemstone and the softer padding beneath.  There must be some sort
+of magical protection upon these bracers though, for such beautiful sapphire
+would never stand up against physical attack.~
+~~
+vnum: 48801
+location: 12
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gopwxD 0
+name: stormcloak storm-cloak glittering-cloak
+shortdesc: the Stormcloak
+desc: Someone has dropped a glittering cloak here.
+type: 9
+weight: 4.00
+cost: 12000
+timer: 0
+level: 90
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: stormcloak storm-cloak glittering-cloak
+You behold the legendary Stormcloak, once worn by the mighty Stormlord, Holder
+of Tempests, himself.  The dark indigo cloth the cloak is made of scintillates,
+giving the impression of thousands of tiny indigo-colored gems woven right into
+its brocade surface.  It's quite heavy, with a handspan-wide collar held
+together by a bronze clasp, beautifully worked into the shape of a horned demon
+whose raised fists make the clasp circular in form.  The ankle-length cloak is
+lined in black silk and edged in crimson.  Your blood stirs inside you as you
+look at it, touch it.~
+~~
+vnum: 48423
+location: 13
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: motuvwyz 0
+name: girth titan's-girth titans-girth girth-inlaid-precious-stones
+shortdesc: a Titan's girth
+desc: A girth inlaid with precious stones lies here.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+1 3
+~
+extradesc: titans-girth titan-girth
+This belt is made of a metal as while as snow itself. It is inlaid with
+precious stones.~
+~~
+vnum: 16033
+location: 14
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracers charred-bracers black-metal-bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred-bracers black-metal-bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    ~
+~~
+vnum: 55515
+location: 15
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gkmopqrstuvwxyz 0
+name: bracer saintly-bracer small-mythril-band-decorated-holy-symbols
+shortdesc: &5&bSaintly Bracer&0
+desc: A small mythril band, decorated with holy symbols has been discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+1 2
+13 50
+27 3
+~
+extradesc: bracer saintly-bracer small-mythril-band-decorated-holy-symbols
+Numerous small blessings and wards have been scribed onto this bracer.  The
+spells themselves are written down in the shape of the divine symbol of the
+bearer's god.~
+~~
+vnum: 48417
+location: 20
+values:
+0
+11
+12
+9
+0
+0
+0
+~
+flags: mowxyzD 0
+name: limb-maddened-tremaen fire-scorched-staff
+shortdesc: the limb of a maddened tremaen
+desc: A fire-scorched staff lies here, smoldering slightly.
+type: 5
+weight: 7.54
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 32769
+hiddenness: 0
+applies:
+27 1
+~
+extradesc: limb-maddened-tremaen fire-scorched-staff
+This limb broke off during a tremaen during battle.  The limb is sturdy and
+could make an effective weapon in battle.~
+~~
+vnum: 1406
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gk 0
+name: eyes truth glasses eye_glasses truth_glasses GUILD_ITEM GoT_ITEM
+shortdesc: the Eyes of Truth
+desc: A plain pair of glasses rest here, forgotten by someone.
+type: 8
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: d w 0
+wear: 65537
+hiddenness: 0
+applies:
+3 3
+4 3
+24 -5
+28 100
+~
+extradesc: eyes truth glasses
+This is just a plain pair of glasses until worn.  Once placed over the eyes,
+they begin to glow with a golden light and transform into a thin line of energy
+that hums for a moment and then seemingly vanishes except for a small glyph
+representing "Truth" that can be seen deep in the pupils of the wearer.    ~
+triggers:
+1402
+~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: mask-imanhotep golden-burial-mask
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 8
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+1 2
+4 2
+27 2
+~
+extradesc: mask-imanhotep golden-burial-mask
+The mask is made of solid gold and is encrusted with jewels.  It has an aura of
+power around it.~
+~~
+vnum: 53502
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gklA 0
+name: stud tiny-white-stud miniscule-speck-white earring
+shortdesc: a tiny white stud
+desc: A miniscule speck of white almost escapes detection here.
+type: 8
+weight: 0.01
+cost: 3420
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+4 2
+6 2
+13 17
+27 3
+~
+extradesc: stud tiny-white-stud miniscule-speck-white earring
+Small and round, this ear stud is made of an odd white metal and shaped
+somewhat like a little sphere.  It feels cool against skin, strangely drawn to
+it as if magnetic, allowing it to stick to an ear without a piercing.~
+~~
+vnum: 53502
+location: 24
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gklA 0
+name: stud tiny-white-stud miniscule-speck-white earring
+shortdesc: a tiny white stud
+desc: A miniscule speck of white almost escapes detection here.
+type: 8
+weight: 0.01
+cost: 3420
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+4 2
+6 2
+13 17
+27 3
+~
+extradesc: stud tiny-white-stud miniscule-speck-white earring
+Small and round, this ear stud is made of an odd white metal and shaped
+somewhat like a little sphere.  It feels cool against skin, strangely drawn to
+it as if magnetic, allowing it to stick to an ear without a piercing.~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 20300
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+14 20
+~
+extradesc: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.~
+~~
+vnum: 48924
+location: 127
+values:
+100
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: case instrument-case oblong-black-case
+shortdesc: an instrument case
+desc: An oblong black case is propped up against the wall.
+type: 15
+weight: 3.00
+cost: 0
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+extradesc: case instrument-case oblong-black-case
+A case of hard, oiled black leather provides a safe, waterproof environment for
+the precious instruments carried within.  A crescent moon has been worked into
+the leather casing and dyed a bright silver color, marking the case as
+originating from the stores of Lokari himself.  Shaped rather like a pear, it
+looks like it was made to contain some kind of stringed instrument with a short
+neck.  A black strap embroidered with patterns of stars attaches to either end
+of the case, and it looks like it could be comfortably worn slung over a
+shoulder.~
+~~
+vnum: 55511
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gkmopqrstuvwxyz 0
+name: vambraces saintly-vambraces mythril-vambraces
+shortdesc: &5&bSaintly Vambraces&0
+desc: Mythril vambraces reverently await their owner here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+24 -5
+27 3
+1 2
+~
+extradesc: vambraces saintly-vambraces mythril-vambraces
+These vambraces are forged from mythril, a metal that when in its purest form,
+can hold great spiritual power and divine favor.  Each set of vambraces like
+these is made for a specific cleric in the name of a specific deity, both of
+which are indicated in intricate designs across the surface of the plates.~
+~~
+vnum: 8034
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 20
+location: -1
+values:
+256
+12
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 48423
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: motuvwyz 0
+name: girth titan's-girth titans-girth girth-inlaid-precious-stones
+shortdesc: a Titan's girth
+desc: A girth inlaid with precious stones lies here.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+1 3
+~
+extradesc: titans-girth titan-girth
+This belt is made of a metal as while as snow itself. It is inlaid with
+precious stones.~
+~~
+vnum: 55513
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gkmopqrstuvwxyz 0
+name: greaves saintly-greaves mythril-greaves blessed-amethysts
+shortdesc: &5&bSaintly Greaves&0
+desc: A pair of mythril greaves set with blessed amethysts lies on the floor.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+27 3
+4 2
+28 20
+~
+extradesc: greaves saintly-greaves mythril-greaves blessed-amethysts
+Powerful blessings have been bestowed on the gems in these greaves, attuning
+the wearer's body and soul with the higher realms.  Embossed on the mythril
+itself among the many celestial images is the original bearer's holy symbol.~
+~~
+vnum: 5536
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: faceguard small-faceguard eldoria-reward face-guard 3rd-eldorian-guard-faceguard third
+shortdesc: a faceguard of the 3rd Eldorian Guard
+desc: A small faceguard lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+18 1
+~
+~~
+vnum: 51006
+location: -1
+values:
+0
+1800
+1800
+0
+0
+0
+0
+~
+flags: ag 0
+name: eyes ice-eyes two-balls-ice
+shortdesc: a pair of Ice Eyes
+desc: Two balls of ice lie here, casting a magical glow of light all around.
+type: 1
+weight: 1.03
+cost: 500
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+5 2
+2 2
+18 1
+24 -5
+27 2
+~
+extradesc: eyes ice-eyes two-balls-ice
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.~
+~~
+vnum: 12550
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 8
+weight: 0.07
+cost: 250
+timer: 1010
+level: 40
+effects: dx 0 0
+wear: 65537
+hiddenness: 0
+applies:
+4 2
+28 150
+27 2
+~
+~~
+vnum: 48036
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: gaze fiery-gaze glowing-red-eyes
+shortdesc: &3&ba&0 &1&bfiery&0 &3&bgaze&0
+desc: Glowing red eyes rest here.
+type: 8
+weight: 0.60
+cost: 8010
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+18 1
+28 175
+~
+extradesc: gaze fiery-gaze glowing-red-eyes
+They're a pair of magical red eyes that strike fear into the hearts of those
+who oppose their owner.~
+~~
+vnum: 4003
+location: 127
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: agjpqrtuvzD 0
+name: orb chaos-orb sphere-pure-shade questobject
+shortdesc: a &1Chaos&b&0 orb
+desc: A sphere of pure shade glistens in the light.
+adesc:
+The orb glows deeply within, then burst into blackened flames!~
+type: 1
+weight: 2.00
+cost: 0
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+2 1
+19 2
+5 -2
+27 2
+~
+extradesc: orb chaos-orb sphere-pure-shade questobject
+A sphere of pure unlaced darkness.  The casing around it appears to be clear,
+letting the the view inside be known.  Black clouds seem to be moving within
+the orb, lighting threads around violently.  It is its own world of chaos.~
+~~
+vnum: 1803
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe bark-canoe
+shortdesc: a bark canoe
+desc: A bark canoe has been abandoned here.
+type: 22
+weight: 20.00
+cost: 1
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: canoe bark-canoe
+   &0It looks very heavy, but quite sturdy.  &0~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sack rough-cloth cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+extradesc: sack rough-cloth cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 48417
+location: 127
+values:
+0
+11
+12
+9
+0
+0
+0
+~
+flags: mowxyzD 0
+name: limb-maddened-tremaen fire-scorched-staff
+shortdesc: the limb of a maddened tremaen
+desc: A fire-scorched staff lies here, smoldering slightly.
+type: 5
+weight: 7.54
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 32769
+hiddenness: 0
+applies:
+27 1
+~
+extradesc: limb-maddened-tremaen fire-scorched-staff
+This limb broke off during a tremaen during battle.  The limb is sturdy and
+could make an effective weapon in battle.~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 3030
+location: -1
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 28
+location: -1
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: mowyz 0
+name: mace steel-mace
+shortdesc: a mace
+desc: A steel mace lies on the ground, out of the way.
+type: 5
+weight: 5.00
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 13606
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: shield tribal-shield emblem orc clan
+shortdesc: a tribal shield
+desc: A shield with the tribal emblem of an orc clan lies on the floor.
+type: 9
+weight: 2.50
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+18 1
+1 2
+~
+extradesc: tribal-shield emblem orc clan
+This hardened leather shield is stretched taut over a framework of wood, with
+straps in the back for one's arm.  The front is tooled and painted to look like
+a mouthful of gnashing teeth.~
+~~
+vnum: 3090
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map mielikki map-of-mielikki
+                  Mielikki, the forest town, by Kara-Sithri
+  
+                                                             &3***POINTS OF INTEREST***&0
+          &3#&0              &6&b2&0                                 |&6&b1&0: Temple to Mielikki
+          &9&b|              |&0                                 |&6&b2&0: Altar to Mielikki
+          &9&bSB&0         &B&1&b3&0 - &6&b1&0   &1???&0        &517&0 - &9&bNC&0            |&B&1&b3&0: Cleric Guild
+          &9&b|              |    |              |&0             |&B&1&b4&0: Warrior Guild
+      &521&0  &9&bSB        TC - TC - TC             NC -&0 &518&0       |&B&1&b5&0: Rogue Guild
+      &9&b|   |         |    |    |              |&0             |&B&1&b6&0: Sorcerer Guild
+      &2&b7&0 &9&b- SB -&0 &38&0    &9&bTC -&0 &C&4&b*&0 &9&b-  TC&0   &515&0 - &B&1&b4&0    &9&bNC -&0 &519&0       |&2&b7&0: Forest Inn
+          &9&b|         |    |    |    |         |&0             |&38&0: Post Office
+ &3#&0 &9&b- SQ - WM - WM - TC - TC - TC - EM - EM - CS - EM -&0 &3#&0   |&59&0: Drako's Bronze Shop
+     &9&b|          |   |         |              |&0             |&510&0: Garm's Shield Emporium
+ &59&0 &9&b- SR -&0 &510&0    &513&0  &514&0 &9&b-&0 &B&1&b5&0    &9&bDA - DA - DA   SC&0            |&511&0: Shauna's Hosue of Iron
+     &9&b|          |                  |    |    |&0             |&512&0: Beowyn's Steel
+&511&0 &9&b- SR -&0 &512&0    &B&1&b6&0        &3&b22&0        &516&0  &9&bdump  SC -&0 &520&0       |&513&0: Bigby's House of Magic
+     &9&b|                   |                   |&0             |&514&0: Fine Jewelry
+    &9&bNCP - NC - NC - NC - NC - NC - NC - NC - NCS&0           |&515&0: Santiago's Weapons
+          &9&b|              &0&1#&0&9&b         |&0                       |&516&0: Sloshed Squirrel Tavern
+     &9&bRP - RP - RP   TH - TH - TH   WW&0                      |&517&0: Helena's Bakery
+     &9&b|    |    |    |    |    |    |&0                       |&518&0: Aaron's General Store
+     &9&bRP -&0 &C&4&b*&0  &9&b- RP   TH - TH - TH   WW -&0 &1???&0                |&519&0: Lisa's House of Leather
+     &9&b|    |    |                   |&0                       |&520&0: Freddy's Toy Shop
+     &9&bRP - RP - RP                  WW&0                      |&521&0: Cartographer's Room
+          &9&b|                        |&0                       |&3&b22&0: Bank
+         &9&bGrey&0                      &3#&0                       |&C&4&b*&0: Fountain
+        &9&bCastle&0                                             |&3#&0: City Gates     
+                                                           |&1???&0: New Adventures! 
+ 
+                                                               &9&b***ROADS***&0
+                                                           |SB: Sleepy Blvd.
+                                                           |SQ: Smelter's Sq.
+                                                           |WM: West main St.
+                                                           |TC: Town Center
+                                                           |EM: East Main St.
+                                                           |CS: Commerce Sq.
+                                                           |NC: N. Commerce Ave.
+                                                           |SC: S. Commerce Ave.
+                                                           |DA: Dark Alley
+                                                           |SR: Smelter's Row
+                                                           |NCP: New Castle Plaza
+                                                           |NC: New castle Rd.
+                                                           |NCS: New Castle Sq.
+                                                           |WW: Windy Way
+                                                           |RP: Royal Plaza
+                                                           |TH: Town Hall~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild~
+~~
+vnum: 5102
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring stone-ring small-circular-rock questobject
+shortdesc: a stone ring
+desc: A small circular rock catches your eye.
+adesc:
+stone ring stone-ring~
+type: 12
+weight: 0.04
+cost: 120
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+1 -2
+2 -2
+~
+extradesc: stone-ring small-circular-rock questobject
+It's a circular piece of stone that could probably fit around a small finger.
+It has a strange, unpolished part, though - maybe it was broken off of
+something?~
+~~
+vnum: 1610
+location: -1
+values:
+0
+2
+6
+6
+0
+0
+0
+~
+flags: mowxyz 0
+name: stone large-stone
+shortdesc: a large stone
+desc: A large stone lies in the dirt.
+type: 5
+weight: 1.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 32769
+hiddenness: 0
+applies:
+2 -2
+6 -2
+19 1
+18 -1
+~
+extradesc: large-stone
+This solid stone, while large and heavy, looks like if used properly, could
+cause some damage to somebody.~
+~~
+vnum: 5551
+location: -1
+values:
+2
+2
+4
+3
+0
+0
+0
+~
+flags: knuv 0
+name: longsword long-sword eldoria-reward longsword-3rd-eldorian-guard third
+shortdesc: a longsword of the 3rd Eldorian Guard
+desc: A longsword lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 55803
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tail deer-tail
+shortdesc: a deer tail
+desc: A deer tail, disattached from its owner, lies here.
+type: 12
+weight: 0.08
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+18 1
+~
+extradesc: deer-tail
+It is a little white deer tail which has little strips of brown down the side.~
+~~
+vnum: 5502
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: corpse 3rd-eldorian-guard-recruiter-corpse
+shortdesc: the corpse of the 3rd Eldorian Guard Recruiter
+desc: The corpse of the 3rd Eldorian Guard Recruiter lies here.
+type: 12
+weight: 187.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: corpse
+   This corpse belonged to the man in charge of directing new recruits to see
+the quartermaster at the top of the hill.~
+~~

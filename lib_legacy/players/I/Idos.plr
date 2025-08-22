@@ -1,0 +1,117 @@
+name: Idos
+password: Idvw.HhVpD
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 11
+race: 0
+level: 18
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18496
+birthtime: 1366750581
+timeplayed: 187336
+lastlogintime: 1371030010
+host: 072.010.062.012
+height: 72
+weight: 149
+base_height: 72
+base_weight: 149
+base_size: 2
+natural_size: 2
+alignment: -366
+playerflags: y
+effectflags: 0 0 0
+prefflags: hxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 114/114
+mana: 32/32
+move: 102/102
+damroll: 3
+hitroll: 3
+strength: 74
+intelligence: 100
+wisdom: 76
+dexterity: 78
+constitution: 71
+charisma: 60
+cash: 8 334 833 705
+bank: 5 0 0 0
+experience: 1581583
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+33 1000
+39 1000
+45 1000
+87 1000
+100 1000
+101 1000
+121 1000
+415 53
+416 50
+423 143
+424 230
+438 119
+443 50
+444 153
+447 132
+451 77
+452 166
+453 229
+454 50
+459 130
+460 179
+461 230
+462 81
+464 210
+0 0
+trophy:
+1 8022 1.000000
+1 8010 2.000000
+1 8000 2.000000
+1 8011 2.000000
+1 8021 2.000000
+1 8015 1.000000
+1 8014 2.000000
+1 8013 6.000000
+1 8012 4.000000
+1 8030 1.000000
+1 8020 1.000000
+1 8016 3.000000
+1 8002 3.000000
+1 8001 6.000000
+1 61500 1.000000
+1 61517 1.000000
+1 61512 1.000000
+1 61509 1.000000
+1 61510 1.000000
+1 61506 1.000000
+1 61508 2.000000
+0 0 0
+mem:
+100 1 2
+121 1 2
+121 1 2
+121 1 2
+121 1 2
+100 1 2
+121 1 2
+5 1 5
+19 1 5
+101 1 5
+5 1 5
+5 1 5
+45 1 9
+87 1 5
+39 1 9
+0 0 0

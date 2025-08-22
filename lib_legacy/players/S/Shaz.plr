@@ -1,0 +1,69 @@
+name: Shaz
+password: Sh.2YLnE5z
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19086
+birthtime: 1467050523
+timeplayed: 47488
+lastlogintime: 1479414202
+host: 108.083.173.192
+height: 70
+weight: 222
+base_height: 70
+base_weight: 222
+base_size: 3
+natural_size: 3
+alignment: 32
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 10
+loadroom: 3001
+hunger: 21
+thirst: 18
+lastlevel: 0
+hitpoints: 59/91
+mana: 1/0
+move: 154/154
+damroll: 5
+hitroll: 4
+strength: 94
+intelligence: 58
+wisdom: 71
+dexterity: 100
+constitution: 88
+charisma: 56
+cash: 0 104 289 112
+experience: 165703
+quit_reason: 10
+saveroom: 3008
+cooldowns:
+10 16750/18000
+-1 0
+skills:
+402 122
+404 128
+415 120
+416 50
+419 1000
+421 130
+427 1000
+438 50
+443 50
+444 75
+463 75
+464 50
+465 110
+466 50
+467 50
+468 50
+0 0

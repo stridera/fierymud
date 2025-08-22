@@ -1,0 +1,64 @@
+name: Leafa
+password: LeWuVMGtF.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 1
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20374
+birthtime: 1667970933
+timeplayed: 116
+lastlogintime: 1667972642
+host: 208.093.179.103
+height: 61
+weight: 153
+base_height: 61
+base_weight: 153
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 24/24
+mana: 1/0
+move: 122/122
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 50
+wisdom: 84
+dexterity: 96
+constitution: 96
+charisma: 48
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 56
+0 0
+tells:
+$
+gossips:
+$

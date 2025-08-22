@@ -1,0 +1,135 @@
+name: Dril
+password: DrtjEZgvIY
+prompt: &0&5Cha: %dd%_&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>&2&b<&0&2%rR&2&b><&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 14
+race: 10
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20317
+birthtime: 1660075104
+timeplayed: 566428
+lastlogintime: 1737598262
+host: 136.038.231.125
+height: 75
+weight: 196
+base_height: 75
+base_weight: 196
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: yz
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1404/1206
+mana: 980/980
+move: 176/176
+damroll: 5
+hitroll: 4
+strength: 97
+intelligence: 68
+wisdom: 66
+dexterity: 82
+constitution: 100
+charisma: 49
+cash: 0 7 17 19
+experience: 116386599
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+404 1000
+407 50
+411 1000
+412 1000
+413 1000
+415 1000
+416 1000
+419 1000
+420 1000
+421 1000
+422 1000
+423 1000
+427 1000
+430 1000
+434 50
+438 1000
+443 1000
+444 1000
+446 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 1000
+468 1000
+482 1000
+483 1000
+484 1000
+485 1000
+611 50
+612 50
+613 50
+0 0
+trophy:
+1 18550 1.000000
+1 53312 1.500000
+1 48408 0.250000
+1 48414 0.250000
+1 48400 0.750000
+1 48409 1.083333
+1 48407 1.083333
+1 48402 0.583333
+1 41003 1.000000
+1 16106 1.000000
+1 8020 1.000000
+1 2808 3.000000
+1 11710 1.000000
+1 11701 2.000000
+1 11803 3.000000
+1 11806 1.500000
+0 0 0
+tells:
+1665625669 @WDaedela@W tells you, 'got it.  Yeah, bard is intended to be constantly using their songs, so the CD is short and plentiful@W'@0
+1665625770 @WDaedela@W tells you, 'I agree.  Monk needs a shorter cooldown.  I'@W'@0
+1665625776 @WDaedela@W tells you, 'I'll check a few things.  Thanks for the ideas@W'@0
+1665625865 @WSlink@W tells you, 'Really he has that trig? That is AWESOME@W'@0
+1665625912 @WSlink@W tells you, 'very cool, much appreciated@W'@0
+1665758240 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1665768493 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1665769421 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1665771003 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690319220 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1719024654 Brack gossips, 'Why do I have a quest where I can't get the requisite items?'
+1719024667 Marlia gossips, 'you will get them eventually'
+1719024667 Mersh gossips, 'which quest?'
+1719024686 Brack gossips, 'Whatever you're given at the start by your class person'
+1719024710 Mersh gossips, 'you can get those items. and they are meant to be started now and worked on for many levels'
+1719024726 Brack gossips, 'How though? And how do I know that?'
+1719024747 Marlia gossips, 'as you kill mobs occasionally gems and the phase quest armors will drop'
+1719024758 Marlia gossips, 'eventually you will get the ones you need'
+1719024759 Mersh gossips, 'just kill stuff and you will get gems. I mean quests usually mean you have to work for it'
+1719024784 Mersh gossips, 'Never done a quest in any mud where I just already had everything I needed'
+$
+aliases:
+who who -w
+rc get curse sack;recite scroll $*
+df drink fountain
+id get identify sack;recite identify $*
+ec examine corpse
+ul unlock $*;open $*
+cb chant 'spirit of the bear'
+st stand;fly
+cwo chant 'spirit of the wolf'
+cw chant 'spirit of the wolf'
+ci chant 'interminable wrath'
+0

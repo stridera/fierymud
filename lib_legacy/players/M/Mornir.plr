@@ -1,0 +1,257 @@
+name: Mornir
+password: MojPiQVdFm
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 1
+race: 3
+level: 99
+home: 3003
+lifeforce: 0
+composition: 0
+id: 16011
+birthtime: 1156319376
+timeplayed: 22436113
+lastlogintime: 1644767525
+host: 162.233.153.155
+height: 43
+weight: 193
+base_height: 43
+base_weight: 193
+base_size: 2
+natural_size: 2
+alignment: -122
+playerflags: glxyz
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 62524
+lastlevel: 10
+hitpoints: 807/807
+mana: 100/100
+move: 110/110
+damroll: 4
+hitroll: 5
+strength: 81
+intelligence: 95
+wisdom: 100
+dexterity: 67
+constitution: 66
+charisma: 54
+cash: 11 10461 60743 221
+experience: 105805999
+quit_reason: 7
+saveroom: 62524
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+27 1000
+28 1000
+33 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+74 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+95 1000
+96 1000
+97 1000
+99 1000
+206 1000
+207 1000
+208 1000
+209 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+451 1000
+452 50
+453 53
+455 50
+457 863
+458 1000
+459 1000
+460 1000
+461 1000
+462 65
+463 1000
+466 1000
+0 0
+trophy:
+1 58418 0.250000
+1 58421 0.200000
+1 11702 0.083333
+1 3170 0.220513
+1 3161 0.153846
+1 3165 0.167832
+1 3055 0.544872
+1 3070 0.143590
+1 3050 0.551282
+1 3051 0.237179
+1 3060 1.019231
+1 3052 0.557692
+1 3059 1.089744
+1 3075 0.238095
+1 3160 0.154762
+1 18001 0.500000
+1 58401 0.090909
+1 58416 1.000000
+1 48914 0.090909
+0 0 0
+tells:
+1571969766 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1572117969 @WNorisent@W tells you, 'What brings a young cleric to my home? Has your order sent you to steal my books again?@W'@0
+1572117969 @WNorisent@W tells you, 'Or could it be that your order has forgotten how the resurrection incantations are to be preformed?@W'@0
+1574230264 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574230265 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574230265 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574230265 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574230343 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574230354 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574230355 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1571969772 Muertonis gossips, '*blush*'
+1572117362 Someone gossips, 'Quest resurrection_quest: Stage 2'
+1572117368 Someone gossips, 'will reset'
+1572117491 Someone gossips, 'voruulr is set'
+1572117504 Voruulr gossips, 'ty'
+1572117562 Someone gossips, 'done'
+1625951819 Daedela gossips, 'awww, cute'
+1625951873 Daedela gossips, 'yeah, I miss him'
+1641098337 Bojana gossips, 'dagger that absorbs no ligth from South Caelia'
+1641098401 Chinok gossips, 'yup'
+$
+mem:
+42 0 1
+97 1 1
+97 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+1 1 1
+1 1 1
+1 1 1
+13 1 1
+15 1 1
+15 1 1
+15 1 1
+4 1 1
+4 1 1
+40 0 1
+40 0 1
+40 0 1
+91 1 1
+91 1 1
+28 0 1
+28 0 1
+28 0 1
+28 0 1
+92 1 1
+92 1 1
+53 0 1
+53 0 1
+53 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+209 1 1
+209 1 1
+209 1 2
+209 1 2
+209 1 2
+209 1 2
+3 1 2
+3 1 2
+3 1 2
+3 1 2
+87 1 2
+87 1 2
+3 1 2
+42 1 2
+42 1 2
+28 0 2
+87 1 2
+97 1 2
+42 1 2
+53 1 1
+40 1 2
+28 1 2
+99 1 2
+97 1 2
+53 1 1
+209 1 2
+1 1 2
+3 1 2
+15 1 2
+28 1 2
+97 1 2
+40 1 2
+97 1 2
+13 1 2
+3 1 2
+34 1 2
+91 1 2
+28 1 2
+53 1 2
+99 1 2
+43 1 2
+94 1 1
+94 1 1
+53 1 2
+53 1 2
+53 1 2
+94 1 1
+94 1 2
+0 0 0
+aliases:
+who who -where
+word cast 'word of recall'
+- enter well
+gs group self
+df drink fountain
+gccc get all.coins 2.corpse
+gcc get all.coins corpse
+gc get all.coins 
+lic look in corpse
+hw cast 'holy word'
+0

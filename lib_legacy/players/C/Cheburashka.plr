@@ -1,0 +1,64 @@
+name: Cheburashka
+password: ChLnG5T8/N
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 3
+class: 18
+race: 34
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20819
+birthtime: 1721922662
+timeplayed: 1070
+lastlogintime: 1721923736
+host: 024.052.225.051
+height: 70
+weight: 100
+base_height: 70
+base_weight: 100
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 9
+lastlevel: 0
+hitpoints: 24/24
+mana: 0/0
+move: 116/116
+damroll: 3
+hitroll: 3
+strength: 81
+intelligence: 71
+wisdom: 69
+dexterity: 81
+constitution: 87
+charisma: 75
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+493 50
+0 0
+tells:
+$
+gossips:
+$

@@ -1,0 +1,92 @@
+name: Siv
+password: Six7DWyokW
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19132
+birthtime: 1487289205
+timeplayed: 52484
+lastlogintime: 1499299213
+host: 099.103.205.250
+height: 84
+weight: 216
+base_height: 84
+base_weight: 216
+base_size: 3
+natural_size: 3
+alignment: 16
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 113/99
+mana: 1/0
+move: 174/174
+damroll: 5
+hitroll: 4
+strength: 98
+intelligence: 70
+wisdom: 59
+dexterity: 81
+constitution: 99
+charisma: 58
+bank: 1 43 155 250
+experience: 150954
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 113
+415 50
+416 50
+419 1000
+421 59
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 83
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3506 1.000000
+1 3500 2.000000
+1 3501 5.000000
+1 3502 1.000000
+1 8012 1.000000
+1 18006 0.833333
+1 18001 0.333333
+1 18007 0.333333
+1 61525 0.333333
+1 61502 0.333333
+1 61501 0.333333
+1 61500 0.333333
+1 17204 1.666667
+1 50213 0.250000
+1 36301 0.200000
+1 36303 3.800001
+1 36305 1.800000
+1 36300 1.400000
+0 0 0
+aliases:
+gc get coins corpse
+gg get all corpse
+eb eat bread
+dff drink from fountain
+rc recite recall
+hf assist fyndla
+ao assist oawk
+0

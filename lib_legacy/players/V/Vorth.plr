@@ -1,0 +1,120 @@
+name: Vorth
+password: Vodauh8VGK
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 2
+race: 3
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20242
+birthtime: 1650847247
+timeplayed: 18540
+lastlogintime: 1652060931
+host: 066.199.058.082
+height: 42
+weight: 175
+base_height: 42
+base_weight: 175
+base_size: 2
+natural_size: 2
+alignment: 110
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnouC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 2013
+hunger: 22
+thirst: 6
+lastlevel: 0
+hitpoints: 52/141
+mana: 16/16
+move: 126/126
+damroll: 4
+hitroll: 5
+strength: 99
+intelligence: 58
+wisdom: 71
+dexterity: 96
+constitution: 75
+charisma: 62
+cash: 0 439 1132 69
+experience: 527387
+quit_reason: 7
+saveroom: 2013
+cooldowns:
+10 13120/18000
+-1 0
+skills:
+401 180
+403 56
+405 78
+408 82
+409 54
+415 50
+416 50
+421 177
+438 50
+443 50
+444 107
+464 163
+465 50
+467 50
+478 50
+0 0
+trophy:
+1 2001 1.000000
+1 2004 3.000000
+1 2005 3.000000
+1 2003 4.000000
+1 8021 1.000000
+1 8002 2.000000
+1 8015 1.000000
+1 8011 1.000000
+1 8016 1.000000
+1 8000 3.000000
+1 8023 2.000000
+1 8013 1.000000
+1 18006 1.000000
+1 41001 2.000000
+1 41005 1.000000
+1 41004 1.000000
+1 41013 1.000000
+1 61512 1.000000
+1 61501 1.000000
+1 17204 2.000000
+1 3509 1.000000
+0 0 0
+tells:
+1651453412 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1651530142 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1651530145 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1652025466 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1652025466 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1652025466 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1652025466 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1652025473 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1652060309 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1652060310 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1651452900 Jot gossips, 'hiya'
+1651452981 Jot gossips, 'trying to learn this game'
+1651453044 Jot gossips, 'thanks :)'
+1651626977 Holk gossips, 'Happy Tuesday Night!'
+1651627028 Holk gossips, 'soaking up the last few minutes of nice weather for the day'
+1651970884 Chinok gossips, 'hey Voth'
+1651970888 Chinok gossips, 'err Vorth'
+1651970906 Chinok gossips, 'keep missing that R key'
+1652060565 Chinok gossips, 'hey Vorth'
+1652060626 Chinok gossips, 'cleaning up after mothers day celeb'
+$
+effects:
+72 1 1 1 0 0 0
+0 0 0 0 0
+aliases:
+lc l in corpse
+0

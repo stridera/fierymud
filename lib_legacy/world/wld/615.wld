@@ -1,0 +1,1515 @@
+#61500
+Footpath on a Hillside~
+   A lightly worn, narrow footpath winds along a grassy verge.  The path skirts
+a clump of bushes here as it approaches a large open area to the north.  It is
+impossible to see too far to the north due to a slight ridge in that direction.
+The hillside slopes downward to the south, and maples and beeches grow in
+scattered clusters all arond.  The path continues south toward the entrance to
+a tall tower which looms to the southwest.~
+615 4 10
+D0
+~
+~
+0 -1 61501
+D2
+~
+~
+0 -1 17200
+S
+#61501
+Path Beside a Pond~
+   A small-ish pond lies here in a broad meadow in the hills.  This spot is
+near the southwest corner of the pond, and a path enters from the south, then
+turns west to skirt the edge of the water.  Cattails grow in thick profusion in
+the shallow water.    ~
+615 0 2
+D1
+~
+~
+0 -1 61535
+D2
+~
+~
+0 -1 61500
+D3
+The path skirts the pond, following it to the west.~
+~
+0 -1 61502
+S
+#61502
+Path Beside a Pond~
+   A light footpath skirts a pond here, beside a flower-laden meadow.  The pond
+is northeast, beyond a wall of tules growing thick at the edge of the water.  
+To the south, the land slopes gently away under a thick covering of tall,
+smooth-barked bushes.    ~
+615 0 2
+D0
+~
+~
+0 -1 61505
+D1
+The path follows the edge of the pond to the east.~
+~
+0 -1 61501
+D3
+~
+~
+0 -1 61503
+E
+bush bushes~
+These can only be manzanita bushes, with their pale, almost grayish oval leaves
+and striking reddish bark.  They interlock with one another, their strong
+branches forming an impenetrable wall to the south.    ~
+E
+tule tules~
+Tules are rushes, growing in shallow, motionless water, and often to very large
+sizes.  These are medium-sized specimens.  The sound of buzzing insects can be
+heard from their sheltering embrace, and small birds flit to and fro above
+them, hunting.    ~
+E
+pond~
+The pond itself is obscured behind the tules.  It lies to the northeast, and
+appears to be somewhat long, continuing a ways to the east.    ~
+E
+meadow~
+The meadow is covered with bright flowers and tall grasses that wave gently in
+the mild breeze.    ~
+S
+#61503
+Meadow on a Hillside~
+   A clearing lies here on a gently sloping hillside, filled with wildflowers
+of every description.  A few trees and tall reddish bushes encircle the meadow
+to the south and west.  The low buzz of insects drifts along on a warm breeze.
+A small body of water is just visible some distance to the east.    ~
+615 0 2
+D0
+~
+~
+0 -1 61504
+D1
+~
+~
+0 -1 61502
+E
+flower flowers~
+Violet shooting stars grow scattered all around. Beneath them, almost hiding
+among the taller grasses, small yellow daisies are almost flat against the
+ground.~
+E
+tree trees~
+The trees are beeches, of medium height, with straight trunks and large round
+canopies. Their dark green leaves rustle in the wind.    ~
+S
+#61504
+Meadow on a Hillside~
+   A profusion of flowers grows here in the forest's embrace.  Small white
+blossoms pepper the ground beneath tall, reedy plants that sport odd, scarlet,
+star-like blooms.  Over to the side in a semi-shaded spot, some milkweed grows
+and emits a surprisingly pleasant odor.  Trees and undergrowth grow thick to
+the northwest, but the opening continues south, and east toward a glistening
+pond.    ~
+615 0 2
+D1
+~
+~
+0 -1 61505
+D2
+~
+~
+0 -1 61503
+E
+flower flowers reedy plant plants~
+With their shocking yellow centers and streaming crimson petals, these can only
+be columbines.  They tower over the other denizens of the meadow, preferring
+shade to direct sunlight.    ~
+E
+weed milkweed~
+These tall, grayish, fuzzy plants grow in the shade near some helpful beeches.
+Their broad leaves show signs of being munched on, perhaps by some tolerant
+insect who doesn't mind the acrid-tasting sap that oozes from the bites.    ~
+S
+#61505
+Path Beside a Pond~
+   A slight depression, with smaller plants than elsewhere, barely indicates
+the route of what must have once been a path here.  It runs north-south
+alongside a medium-sized pond to the east.  Beyond the tules, the water of the
+pond is still and quiet.  A clearing in the forest lies to the west.    ~
+615 0 2
+D0
+The path seems to fade to the north, but the trees are thinly scattered, and it
+would be easy to follow the pond's bank.    ~
+~
+0 -1 61506
+D2
+The path runs south alongside the tules.~
+~
+0 -1 61502
+D3
+~
+~
+0 -1 61504
+S
+#61506
+Beside a Pond~
+   A few beech and oak trees crowd up against a pond here.  The land is mostly
+level, except for a gentle slope that rises to the north.  Insects sweep back
+and forth across the surface of the pond, and small, swift birds chase them
+down with surprising efficiency.    ~
+615 0 2
+D0
+~
+~
+0 -1 61507
+D2
+~
+~
+0 -1 61505
+S
+#61507
+Wood Beside a Pond~
+   Numerous beech trees and a pair of giant oaks are scattered about the
+hillside.  A small pond, just off to the southeast, lies beside a ridge to the
+north.  Some odd-looking trees peek over the ridge, but they are too far away
+to make anything out.  It is possible to follow the ridge east or west, or to
+make your way along the pond's edge to the south.    ~
+615 0 2
+D1
+~
+~
+0 -1 61508
+D2
+~
+~
+0 -1 61506
+D3
+~
+~
+0 -1 61510
+S
+#61508
+Between a Ridge and a Pond~
+   A few willow trees grow on the marshy shore of a pond to the south.  Here,
+the land is dry, and a steep east-west ridge prevents northward movement.  
+Other than that, the land is level.  Larger deciduous trees grow to the west,
+and the branches of what appear to be fruit trees peek over the ridge.    ~
+615 0 2
+D1
+~
+~
+0 -1 61509
+D3
+~
+~
+0 -1 61507
+E
+ridge~
+The ridge is stony, and obscured by grass and a little bit of moss.  As you
+look closer, however, it becomes apparent that the stones are laid in rows.  
+It appears that this is a retaining wall, although it's in poor repair.    ~
+E
+tree trees fruit branch branches~
+The branches peeking over the ridge are long, spindly, and slightly curved.  
+Looking higher up, you can barely see a small, round, wizened fruit.  It's a
+sickly shade of orangey-brown, and quite wrinkled.    ~
+S
+#61509
+Between a Ridge and a Pond~
+   A narrow strip of land, squeezed between a ridge to the north and a pond to
+the south, comes to an end here.  The only exit is west.  The pond is fairly
+long and continues some distance east and west.  Some sort of graceful,
+black-barked tree is growing up above the ridge, but other than a few pale
+lavender flowers, little can be seen.    ~
+615 20 2
+D3
+~
+~
+0 -1 61508
+E
+tree flower flowers~
+There are some clusters of small, pale, lavender flowers high up on the tree
+above the ridge.  The tree is fairly large and healthy.  Most of it is not
+visible from here.    ~
+E
+ridge~
+The ridge is steep and stony, and rises up about ten feet.  It blocks the way
+north.  It's fairly regular and straight for a ridge, and is covered with
+vegetation.    ~
+S
+#61510
+Hillside Below a Ridge~
+   This is a wooded hillside, with a gentle slope, that lies just south of a
+steep ridge.  Some steps have been carved into the ridge so that it's possible
+to climb them from here.  They are partly hidden below a few gorse bushes, and
+are generally overgrown, but serviceable.  It is also possible to follow the
+ridge to the east, where the trees thin out.    ~
+615 0 2
+D0
+~
+~
+0 -1 61511
+D1
+~
+~
+0 -1 61507
+S
+#61511
+Mossy Walkway~
+   Here in the middle of the forest is an odd sight: a slate-paved walkway,
+covered with damp green moss.  It comes from the south, where a set of steps
+leads down, and curves to the east.  There, what appear to be fruit trees are
+growing in rows.  The tall dark trees of the forest loom to the north and west.
+A pond is visible far to the southeast.    ~
+615 4 2
+D1
+~
+~
+0 -1 61515
+D2
+~
+~
+0 -1 61510
+S
+#61512
+Chortling Wood~
+   The forest is dark and damp, with giant oak and beech trees looming over
+thick underbrush.  The ground is fairly clear here.  Oddly, the usual silence
+of the woods is broken by an odd chattering or chortling sound.  It seems to be
+coming from underfoot.    ~
+615 0 3
+D1
+~
+~
+0 -1 61513
+D3
+~
+~
+0 -1 61534
+D5
+The forest litter is a bit lower in a somewhat square-shaped spot.
+Is there something hidden underneath it?~
+grate~
+1 -1 61514
+S
+T 61506
+#61513
+Silent Wood~
+   This is a small area in an old forest, where large trees tower overhead and
+thick underbrush impedes movement.  The shade and the moisture in the air
+conspire to chill the area.  These conditions are favorable to the foxgloves,
+which dot the area with tall flower stalks.    ~
+615 0 3
+D3
+~
+~
+0 -1 61512
+E
+foxglove flower flowers~
+If these are foxgloves, then foxes must have small, simple paws.  At any rate,
+the blooms resemble tiny caps or hoods, hung from their tips downward at an
+angle.  They are a light purple or violet in color and are covered with
+brownish dots.  The leaves of the plant grow mainly in a large flat circle down
+at the base of the stalk.    ~
+S
+#61514
+Root Cellar~
+   This room is rather dark and cool.  It is small, and the walls and floor are
+made from bricks which are stained and rotting.  Roots of many sizes have grown
+through and reach all the way down.  On the north side, a trickle of water
+flows in.  A shelf of granite juts out from the wall beneath it, forcing it
+outward, so that it dribbles onto the floor with a constant tinkling sound.  
+Piles of rotten wood lie beneath the other walls, while a tight tunnel leads
+west.    ~
+615 524 0
+D3
+Though small, the tunnel looks large enough to be crawled through.~
+~
+0 -1 61524
+D4
+A rusted grate covers an opening above a set of handholds in the wall.~
+grate~
+1 -1 61512
+S
+T 61508
+#61515
+A Cozy Orchard~
+   Unpruned fruit trees grow here, where the forest encroaches from the west.
+The view to the southeast is beautiful.  There, a pond reclines among tules and
+willows.  The trees to the north and east appear to be cultivated as well,
+though they are no better cared-for than these.    ~
+615 0 2
+D0
+~
+~
+0 -1 61516
+D1
+~
+~
+0 -1 61518
+D3
+~
+~
+0 -1 61511
+S
+#61516
+A Cozy Orchard~
+   Old fruit trees grow all around, except on the west, where the forest is
+attempting to invade the orchard.  The crumbling remains of a stone wall do
+little to slow the forest's advance.  Peach pits, fresh and otherwise, are
+strewn across the ground, a testament to the productivity of these trees.  
+Little fruit remains, however.    ~
+615 0 2
+D0
+~
+~
+0 -1 61517
+D1
+~
+~
+0 -1 61519
+D2
+~
+~
+0 -1 61515
+S
+#61517
+A Cozy Orchard~
+   A single peach tree grows here, but it is very old indeed.  Its main trunk
+is dessicated.  Only a few leaves grow on the single remaining lively branch.
+The forest, eager to reclaim this land from the interlopers, encroaches from
+the north and west.  This appears to be the corner of the orchard, and more
+fruit trees are visible to the south and east.    ~
+615 0 2
+D1
+~
+~
+0 -1 61520
+D2
+~
+~
+0 -1 61516
+S
+#61518
+A Cozy Orchard~
+   Large apple trees grow through an unkempt layer of underbrush.  Their long,
+untrimmed branches grow in profusion from thick stubs where they were once
+pruned regularly.  Regular rows of holes dot their trunks, no doubt the work of
+some sweet-loving animal.  The ground drops off to the south, affording a view
+of a flowery meadow and a pond.  On the east, a thorny, hedgelike bramble
+blocks the way.    ~
+615 0 2
+D0
+~
+~
+0 -1 61519
+D3
+~
+~
+0 -1 61515
+S
+#61519
+A Cozy Orchard~
+   This is the middle of a small orchard, and apple trees grow here among
+copious weeds.  The trees look fairly healthy, in spite of numerous small holes
+drilled into their bark.  Thorny brambles surround them on the north and east.
+More fruit trees are visible in every direction, including those portions of
+the orchard invaded by the brambles.    ~
+615 0 2
+D2
+~
+~
+0 -1 61518
+D3
+~
+~
+0 -1 61516
+S
+#61520
+An Overgrown Orchard~
+   Signs of cultivation are visible here, but the orchard has not been tended
+in some time.  Round river stones and the crumbling remains of mortar poke out
+of the grass to the north.  Thorny brambles grow to the southeast, choking
+trees and blocking movement.  A few large stumps poke out of the weeds here,
+their fruit-bearing days long past.    ~
+615 0 2
+D0
+~
+~
+0 -1 61521
+D1
+~
+~
+0 -1 61522
+D3
+~
+~
+0 -1 61517
+S
+#61521
+Silent Wood~
+   Beeches, oaks, and sturdy underbrush make movement difficult.  The forest is
+oddly quiet.  The hillside slopes steeply upward to the north and east, but
+seems altogether level just south of this place.  There is an opening in the
+undergrowth to the east, and a wide open area to the south.  The undergrowth is
+passable to the north as the hills slopes downward tward the east.~
+615 0 3
+D0
+~
+~
+0 -1 61576
+D1
+~
+~
+0 -1 61529
+D2
+~
+~
+0 -1 61520
+S
+#61522
+An Overgrown Orchard~
+   A high stone wall, in poor repair but standing, surrounds this orchard on
+the north and east.  However, whatever trees were planted have succumbed to
+time and competition, for little remains but a few rotting stumps.  Nasty
+brambles and stinging weeds have taken their place.  The orchard extends west
+and south.    ~
+615 0 2
+D2
+~
+~
+0 -1 61523
+D3
+~
+~
+0 -1 61520
+S
+#61523
+An Overgrown Orchard~
+   A healthy thicket of thornbushes encroaches on the orchard, choking
+everything in its path.  All movement to the south and west is blocked by it.
+A tall stone wall lies to the east.  In spite of the bushes, a single slender
+cherry tree stands tall.  It seems healthy enough, but sadly bears neither
+blossoms nor fruit.    ~
+615 0 2
+D0
+~
+~
+0 -1 61522
+D2
+Another cherry tree peeks over the brambles to the south.  It appears to be
+healthy, and a ripe cherry hangs high up in its branches.    ~
+~
+3 -1 -1
+S
+#61524
+Drainpipe~
+   This is a small tunnel reinforced with brick and stone.  Water trickles down
+the middle, and large black roots break through the walls and ceiling,
+thirsting for the water.  The water is draining to the west.  From the east,
+the trickling noise is much louder.    ~
+615 520 0
+D1
+~
+~
+0 -1 61514
+D3
+~
+~
+0 -1 61525
+S
+#61525
+Damp Nest~
+   This is a snug little underground hollow, with stone-lined tunnels on the
+eastern and western sides.  It's filled with all manner of junk, such as
+colored stones, scraps of metal, and bone fragments.  Water is trickling in
+through the eastern tunnel, but drains quickly away through the earth.    ~
+615 520 0
+D1
+~
+~
+0 -1 61524
+D3
+~
+~
+0 -1 61526
+S
+#61526
+Drainpipe~
+   This snug little drain turns a corner here, leading east and south.  The
+bottom, lined with slate, is as dry as anything else here under several feet of
+damp earth.  Nevertheless, many woody roots have pushed through the walls and
+ceiling in search of moisture.  They show signs of being cut or broken, and the
+tunnel remains passable.    ~
+615 520 0
+D1
+~
+~
+0 -1 61525
+D2
+~
+~
+0 -1 61527
+S
+#61527
+Drainpipe~
+   The drainpipe comes to an end here at a metal grating.  The grating is
+choked with dirt, rocks, roots, and the like.  Some especially heavy roots have
+grown through the roof of the drainpipe.  Darkness lies in the many hollows
+where the earth has fallen from the roots.  The pipe continues to the north.  
+Fresh air is coming in from above.    ~
+615 520 0
+D0
+~
+~
+0 -1 61526
+D4
+A tunnel rises up among the roots.~
+~
+0 -1 61528
+S
+#61528
+A Cozy Orchard~
+   A single, slender cherry tree grows in this tiny clearing.  It is surrounded
+by a stone wall on the east, a steep drop to the south, and thorny bushes to
+the north and west.  In spite of these obstacles, the area shows signs of
+tending.  The tree is pruned and the weeds have been pulled for a few feet in
+every direction from its trunk.  There is a large hole in the ground next to
+the tree.    ~
+615 512 2
+D5
+The hole leads straight down. The many roots through which it descends
+may provide handholds.~
+~
+0 -1 61527
+S
+#61529
+Silent Wood~
+   An old forest, full of large trees, grows right up to a stone wall that lies
+to the south.  The wall is old, and in some places cracked, but it remains
+sturdy.  Ferns grow in the protective shade of the trees, and moss and lichens
+coat the rounded stones in the wall.    ~
+615 0 3
+D1
+~
+~
+0 -1 61530
+D3
+~
+~
+0 -1 61521
+S
+#61530
+Silent Wood~
+   A deciduous forest of beeches, maples, and oaks crowds up against a tall
+stone wall.  The wall makes a corner and leads south and west.  A few branches
+and small stones lie against the wall, but do not block the way entirely.  
+Shelf fungi jut out from the rotting wood and emit a somewhat pleasing musky
+odor.    ~
+615 0 3
+D2
+~
+~
+0 -1 61531
+D3
+~
+~
+0 -1 61529
+E
+fungi fungus shelf~
+The fungi are as large as your hand, with bright orange flat tops and spongy
+yellow bottoms that taper toward the base.  They smell nice.    ~
+S
+#61531
+Silent Wood~
+   A high stone wall stands here, to the west of a cluster of brightly-colored
+maples.  The brilliant red and yellow leaves drift to the ground slowly.  The
+leaves collect in a drift against the wall, and get hung up in the twining
+branches of the bushy undergrowth that makes passage through the forest
+difficult.    ~
+615 0 3
+D0
+~
+~
+0 -1 61530
+D2
+~
+~
+0 -1 61532
+S
+#61532
+Silent Wood~
+   A forest of oak trees and maples covers the sloping hillside, which rises to
+the northeast.  A crumbling stone wall lies to the west.  Just visible beyond
+it are the upper branches of a cherry tree.  A narrow path leads east into the
+forest.  Acorn cups and decaying leaves collect along the base of the wall,
+among the fallen river stones used to build it.    ~
+615 0 3
+D0
+~
+~
+0 -1 61531
+D1
+~
+~
+0 -1 61534
+D2
+~
+~
+0 -1 61533
+E
+tree~
+The cherry tree seems healthy enough, with a profusion of green leaves and no
+visibly diseased twigs.  However, it is not blooming, nor is it bearing fruit.
+  ~
+S
+#61533
+Top of a Ridge~
+   This is the top of a moderately high ridge, above a meadow with a pond to
+the south.  Up here, a deciduous forest grows right up to a crumbling stone
+wall.  The wall lies to the west, and goes north from the ridge.  It has partly
+fallen down, and a cherry tree is visible beyond it.    ~
+615 0 2
+D0
+~
+~
+0 -1 61532
+E
+tree~
+The cherry tree on the other side of the wall is slender, and has few branches
+for its height.  However, it is healthy and has several blooms in addition to a
+single ripe purple cherry.    ~
+S
+#61534
+Buzzing Wood~
+   The woods seem to be host to a number of buzzing insects, whose constant
+noises are unmistakable, but difficult to locate.  The forest is, for the most
+part, impassable.  Somewhat clear spots, which might once have been part of a
+path, lie to the east and west.    ~
+615 0 3
+D1
+~
+~
+0 -1 61512
+D3
+~
+~
+0 -1 61532
+S
+#61535
+Beside a Pond~
+   Cattails grow on the banks of a pond to the north.  A gently sloping meadow
+surrounds the water, and is home to a variety of flowers and tall grass.  Just
+beyond the pond to the north, a raised flat area is covered with trees and
+ruins of some kind.    ~
+615 4 2
+D1
+~
+~
+0 -1 61536
+D3
+~
+~
+0 -1 61501
+E
+ruin ruins~
+Very little can be seen from this distance - perhaps the end of a stone
+wall.~
+S
+#61536
+Flowery Meadow~
+   The land rolls gently underfoot, sloping to the north, where a pond nestles
+among cattails and willows.  Flowers and the occasional small bush dot the
+landscape.  A small peninsula juts north into the pond, and a large tree seems
+to be growing on it.    ~
+615 0 2
+D0
+~
+~
+0 -1 61537
+D1
+~
+~
+0 -1 61539
+D3
+~
+~
+0 -1 61535
+S
+#61537
+A Small Peninsula~
+   This tiny finger of land juts out into the quiet waters of a hillside pond.
+Fireflies and midges spiral and swoop out over the water.  In the middle of the
+peninsula is a large weeping willow whose drooping branches nearly form a
+curtain.    ~
+615 0 2
+D0
+~
+~
+0 -1 61538
+D2
+~
+~
+0 -1 61536
+E
+fireflies firefly~
+The silent dance of the fireflies can be rather soothing to watch.
+They seem to blink almost in unison, although there must be thousands!
+On closer inspection, one of the fireflies doesn't seem to be blinking
+at all... and it's much brighter than the others.~
+S
+T 61505
+#61538
+Mudflat~
+   A trickle of water from the east has transformed this area into a wide
+expanse of sloppy mud.  It is filled with cattails and long grasses.  Algae
+lines the western edge of the mud, beyond which is the pond.  A ridge, covered
+with scrubby bushes and long grass, rises to the north.    ~
+615 4 14
+D2
+~
+~
+0 -1 61537
+S
+#61539
+Flowery Meadow~
+   Wildflowers of every kind grow all around.  The hillside slopes down both
+north and south from this spot, toward a little pond to the north, and a deep
+valley to the south.  There are few trees nearby, but a vast deciduous forest
+lies to the north.    ~
+615 0 2
+D1
+~
+~
+0 -1 61540
+D3
+~
+~
+0 -1 61536
+S
+#61540
+Flowery Meadow~
+   Lush green grass and clusters of poppies cover the hillside.  The ground is
+a bit dry here, but the plants show no sign of thinning.  The sounds of larks
+and blackbirds fill the air, almost drowning out the faint sound of giggling
+that's drifting in from the east.    ~
+615 0 2
+D0
+~
+~
+0 -1 61541
+D3
+~
+~
+0 -1 61539
+S
+#61541
+Meadow by a Pond~
+   A still, quiet pond lies to the west of this lush meadow.  Willows compete
+with cattails for space along the pond's bank.  A cluster of white lilies grows
+a little farther from the water, competing for attention with a tall dogwood
+tree in full bloom.  The shade under the dogwood is nice and cool.    ~
+615 0 2
+D1
+~
+~
+0 -1 61542
+D2
+~
+~
+0 -1 61540
+S
+#61542
+Buffalo Hollow~
+   This is a buffalo hollow - a small depression filled with flowers, but not
+with water - so named because of the perception that buffalo used them to hide
+in.  No buffalo are in evidence, however.  The hollow is not so low that the
+surrounding land is hidden, and a pond can be seen to the west, while a ridge
+and a stream are off to the north.    ~
+615 0 2
+D0
+~
+~
+0 -1 61544
+D1
+~
+~
+0 -1 61543
+D3
+~
+~
+0 -1 61541
+S
+#61543
+Hillside Meadow~
+   Here on the southern slope of some low hills, a gently sloping meadow lies
+in quiet repose.  Off to the north, a small waterfall flows down a ridge, and
+there is a pond to the west.  A tall, thick stand of gorse bushes lies directly
+to the east.    ~
+615 0 2
+D0
+~
+~
+0 -1 61545
+D2
+~
+~
+0 -1 61549
+D3
+~
+~
+0 -1 61542
+S
+#61544
+Meadow by a Stream~
+   Just below a stony ridge to the north, a stream flows by.  The water flows
+to the west toward a misshapen pond.  All around to the south is a meadow
+filled with wildflowers.  Beyond the meadow is a forest.    ~
+615 0 2
+D1
+~
+~
+0 -1 61545
+D2
+~
+~
+0 -1 61542
+S
+#61545
+Meadow by a Waterfall~
+   A wide, gently sloping meadow surrounds this spot from the south, ending
+here at the bottom of a ridge.  A stream of water is falling over the ridge
+here, into a small pool and out to the west toward a pond.  The sound of
+rushing water is relaxing.    ~
+615 0 2
+D1
+~
+~
+0 -1 61546
+D2
+~
+~
+0 -1 61543
+D3
+~
+~
+0 -1 61544
+E
+waterfall~
+The waterfall is about twelve feet high.  Its water glistens in whatever light
+is available, be it from the sun, the moon, or only the stars.  Thick mats of
+moss grow on the stone to either side.    ~
+S
+#61546
+Edge of a Meadow~
+   This is the edge of a meadow in the hills, bounded on the north by a high
+ridge and on the east by a thicket of thorny bushes.  A bit of mist seems to be
+floating through the area.  Oddly, it is not coming from the direction of a
+small waterfall to the west, but from the east.  Also, a path cuts through the
+bushes leading into the mist.    ~
+615 0 2
+D1
+~
+~
+0 -1 61547
+D3
+~
+~
+0 -1 61545
+S
+#61547
+A Misty Menhir~
+   Several paths converge here upon a small clearing in the middle of a thicket
+of thorny bushes.  The paths lead north, south, and west.  It is misty here due
+to a cool breeze that is carrying fog in from the north.  To the east, the
+bushes give way to a dark oak forest.    ~
+615 0 2
+D0
+~
+~
+0 -1 61548
+D2
+~
+~
+0 -1 61552
+D3
+~
+~
+0 -1 61546
+S
+T 61512
+#61548
+Thick Fog~
+   Thick dark fog flows into the area constantly, from an unseen source.  
+Treetops are visible above it, as is a high stone ridge to the north.  It is
+not immediately obvious which ways are clear to leave, but the trees do seem a
+bit thinner to the south.    ~
+615 4194304 2
+D2
+~
+~
+0 -1 61547
+S
+#61549
+Hillside Path~
+   A winding little path passes between bushes and small trees here on a
+hillside.  It is little more than a game trail, perhaps used by deer.  There
+appears to be a clearer area in the northwesterly direction, and more and more
+trees to the east.  The path can be followed north and east.    ~
+615 0 2
+D0
+~
+~
+0 -1 61543
+D1
+A delicate-looking web stretches between two trees, blocking the path.
+~
+~
+0 0 61550
+S
+T 61515
+T 61517
+T 61514
+T 61541
+#61550
+Hillside Path~
+   A tiny path winds among tall green bushes and small, hardwood trees.  The
+hillside slopes downward to the south.  The trees are small here, but a forest
+looms to the east with mature beeches and oaks.  The path comes to an end here
+in a tiny little clearing.    ~
+615 512 3
+D3
+~
+~
+0 -1 61549
+S
+#61551
+Hillside Path~
+   Young trees grow among clusters of bushes on this hillside.  These medium-
+sized oaks and beeches are much smaller than those in the more mature forest to
+the east.  The sound of running water is barely audible.  It seems to be coming
+from a point some distance to the north.  A light trail goes east.    ~
+615 0 2
+D1
+~
+~
+0 -1 61552
+S
+#61552
+Path in the Woods~
+   A narrow trail runs through the woods going east and west.  This is the edge
+of a forest, where mighty beeches grow close together and shade the earth
+below.  It seems to open up a bit to the north.  Leaves, twigs, and other
+litter covers the ground in a thick mat.~
+615 0 2
+D0
+~
+~
+0 -1 61547
+D1
+~
+~
+0 -1 61574
+D3
+~
+~
+0 -1 61551
+S
+#61553
+A Drippy Passage~
+   This is a narrow passage carved into dark gray stone.  Water drops from the
+ceiling and the walls and floor are slick and wet.  Black stains and dark algae
+streak the walls and make the floor slippery.  A massive stone slab sits at the
+southern end of the tunnel, which continues north into the darkness.    ~
+615 524 12
+D0
+~
+~
+0 -1 61554
+S
+#61554
+A Rough Tunnel~
+   This tunnel is low and oval-shaped, and passes through solid rock.  Water
+trickles down the sides through grayish mats of slime.  Mud, leaves, and other
+detritus covers the floor.  The tunnel comes from the south and veers upward
+here.  Wisps of fresh air come down from above occasionally, but there is no
+steady breeze.    ~
+615 520 12
+D2
+~
+~
+0 -1 61553
+D4
+~
+~
+0 -1 61555
+S
+#61555
+Ridge by a Stream~
+   Mighty oaks grow in a thick forest all around, except to the south.  There,
+a steep ridge falls fifteen feet down into the fog.  A footpath follows the
+ridge east past the gnarled roots of weathered trees.  It is also possible to
+wade in the stream to the west, which is falling over the ridge.  A hole in the
+earth leads down into darkness.    ~
+615 512 2
+D1
+~
+~
+0 -1 61558
+D3
+~
+~
+0 -1 61556
+D5
+~
+~
+0 -1 61554
+S
+#61556
+Above a Waterfall~
+   Water flows between spiky boulders to the north and plunges over a steep
+ridge to the south.  Giant oak trees grow all around, but down below the ridge
+is a meadow.  The forest looks mostly impassable, but there is a small clear
+spot to the east.    ~
+615 512 6
+D1
+~
+~
+0 -1 61555
+D2
+You can walk out over the edge of the waterfall, but be prepared for a sharp
+drop!    ~
+~
+0 -1 61557
+S
+#61557
+Brisk Waterfall~
+   Water is falling quickly past this point from a stream overhead.  A solid
+stone wall to the north is streaked and wet.  Below, a pool churns as the
+waterfall plunges into it.    ~
+615 4 9
+D5
+~
+~
+0 -1 61545
+S
+#61558
+Ridge by a Forest~
+   The crumbling rocky edge of a ridge runs east-west here.  This is the top,
+where an old forest of broadleaved trees covers the hillside to the north.  
+There is a steep drop to the south.  A small path leads north into the forest,
+or west along the top of the ridge.    ~
+615 512 2
+D0
+~
+~
+0 -1 61559
+D3
+~
+~
+0 -1 61555
+S
+#61559
+Dark Forest~
+   Grizzled oaks with huge trunks darken the forest floor with their canopies.
+Even at noon, this place is shrouded in shadow.  Still, dark-leaved bushes grow
+all around.  A very narrow path, faint but readable, passes north-south among
+the bulbous roots of the silent trees.    ~
+615 512 3
+D0
+~
+~
+0 -1 61560
+D2
+~
+~
+0 -1 61558
+S
+T 61529
+#61560
+Dark Forest~
+   Dark forest giants tower overhead.  The understory lies in perpetual shade.
+A few seedlings struggle hopelessly to break out of their dark prison, among
+the stolid and thorny bushes.  There is little noise or movement.  A faint path
+winds among the mighty trunks from north to south.    ~
+615 512 3
+D0
+~
+~
+0 -1 61561
+D2
+~
+~
+0 -1 61559
+S
+#61561
+Dark Forest~
+   This forest, while thick and crowded elsewhere, is amazingly dense here.  A
+solid wall of impenetrable trunks blocks northward movement, and the faint path
+from the south makes a sharp turn to the east.  Oddly, the forest's stillness
+is disturbed by faint noises whose distance is difficult to judge.    ~
+615 512 3
+D0
+The trees are very regular, almost forming a wall with their trunks.
+Indeed, they all look pretty much the same.~
+~
+0 -1 61566
+D1
+~
+~
+0 -1 61562
+D2
+~
+~
+0 -1 61560
+S
+#61562
+Dark Forest~
+   Silence reigns in the shady understory of this forest, where mighty oaks and
+beeches grow.  Slender vines reach for sunlight through bristly, intransigent
+bushes.  An extremely faint path seems to pass through from west to east.  It
+shows little sign of use, however.  A low hump of earth sits several yards to
+the north; it seems oddly out of place.    ~
+615 512 3
+D1
+~
+~
+0 -1 61563
+D3
+~
+~
+0 -1 61561
+S
+#61563
+Dark Forest~
+   The trees seem to close in here, and the faint path from the west shows no
+signs of continuing.  The forest floor seems a little bit depressed.  A low
+mound sits incongruously off to the north.    ~
+615 516 9
+D3
+~
+~
+0 -1 61562
+D5
+~
+~
+0 -1 61564
+S
+#61564
+Steep Pit~
+   Crash!  You fell through a screen of twigs, small branches, and leaves into
+a pit!  Luckily, the bottom is covered with forest litter - a few sharp spikes
+are visible near the pit's walls, but those in the middle are too deeply buried
+to harm anyone.  Also, the wall of the pit has crumbled over time, and it
+should be no trouble to climb back out.    ~
+615 512 12
+D4
+~
+~
+0 -1 61562
+S
+#61565
+Fairy Ring~
+   A wide clearing nestles here in the heart of the forest.  This is the
+southern edge, where part of a ring of orange, green, and brown toadstools
+swings around.  The mouldering trunk of a fallen tree lies directly on the ring
+to the east.  A few bits of grass attempt to take advantage of the lack of
+trees, but for the most part, only the fungi rise unmolested through the litter
+of brown and decaying leaves.    ~
+615 512 2
+D0
+~
+~
+0 -1 61567
+D2
+~
+~
+0 -1 61566
+D3
+~
+~
+0 -1 61569
+E
+fungi fungus toadstool toadstools~
+The toadstools are growing in a broad ring over a foot wide.  This is only the
+southern edge; it swings east and west, curving toward the north in each case.
+The toadstools themselves range from short and squat to tall and fat.  They are
+somewhat slimy and smell like fungus.    ~
+E
+trunk tree fallen~
+The tree appears to have fallen some time ago.  Even so, the rate of its decay
+is remarkable: while some dead leaves still cling to a few of the
+upward-pointing twigs, all of the wood near the ground is crumbling and
+infested with white filaments.    ~
+S
+#61566
+Dark Forest Path~
+   A light path runs through an old forest, meandering among the trunks of
+mighty beeches and oaks.  Darkness lies all around, but the path leads to an
+open area some distance to the north.  The path also leads south through
+shadows.    ~
+615 516 3
+D0
+A delicate-looking web stretches between two trees, blocking the path.
+~
+~
+0 0 61565
+D2
+~
+~
+0 -1 61561
+S
+T 61531
+T 61533
+T 61530
+T 61541
+#61567
+Middle of the Fairy Ring~
+   This is the center of a large clearing in the middle of a dark forest.  A
+ring of large toadstools grows all around.  The ground is clear here, as if it
+had been raked or tended to on purpose.  However, a few slender bones lie
+scattered about.  There are too many footsteps to make out any individuals, but
+a path leads south.    ~
+615 512 2
+D0
+~
+~
+0 -1 61570
+D1
+~
+~
+0 -1 61573
+D2
+~
+~
+0 -1 61565
+D3
+~
+~
+0 -1 61568
+E
+bone bones~
+A closer inspection reveals that most of them are fairy bones.  The remainder
+are cruder and more difficult to identify, perhaps belonging to a predatory
+bird.    ~
+S
+#61568
+Fairy Ring~
+   The western arc of a rather large fairy ring passes through the area, its
+orange, brown, and green toadstools giving off an aroma of earthy decay.  The
+mighty oaks of the surrounding forest are well back to the west.  Neither they
+nor their saplings attempt to impinge upon the circle.    ~
+615 512 2
+D0
+~
+~
+0 -1 61571
+D1
+~
+~
+0 -1 61567
+D2
+~
+~
+0 -1 61569
+E
+toadstool toadstools~
+The toadstools sport irregular white blotches on their caps, regardless of
+color.  The orange ones are shaped like a flattened, curving cone, while the
+brown ones are taller and more cylindrical.  The green ones vary, and are
+usually covered with bumps and ripples.    ~
+S
+#61569
+Fairy Ring~
+   A large fairy ring of spotted toadstools passes by on the northeast.  It is
+surrounded by an old oak and beech forest, which keeps a respectful distance.
+In spite of the lack of trees, little grows here except the fairy ring itself.
+The forest itself is impassable.    ~
+615 512 2
+D0
+~
+~
+0 -1 61568
+D1
+~
+~
+0 -1 61565
+S
+#61570
+Fairy Ring~
+   A broad ring of earth-colored toadstools occupies a clearing in the forest
+here.  This is the northern edge, and the hillside's upward slope begins just
+beyond the nearest trees.  A few straggly plants grow near the tree roots, but
+there are no flowers.    ~
+615 512 2
+D1
+~
+~
+0 -1 61572
+D2
+~
+~
+0 -1 61567
+D3
+~
+~
+0 -1 61571
+S
+#61571
+Fairy Ring~
+   A fairy ring, composed of large, ugly toadstools, spreads out into a
+clearing to the southeast.  Little grows in the clearing but the odorous fungi
+that give it its shape.  A few oak and beech leaves from the surrounding forest
+lie on the ground.    ~
+615 512 2
+D1
+~
+~
+0 -1 61570
+D2
+~
+~
+0 -1 61568
+S
+#61572
+Fairy Ring~
+   This is a large clearing in an old forest, whose stolid trunks form an
+impenetrable barrier to the northeast.  Within the clearing, a large ring of
+toadstools encircles a cleared area.  The smell of the toadstools is
+unavoidable, and while not overpowering, it is somewhat unpleasant.    ~
+615 512 2
+D2
+~
+~
+0 -1 61573
+D3
+~
+~
+0 -1 61570
+S
+#61573
+Crown of the Fallen Giant~
+   A swath of large toadstools, forming a broad ring, is rudely interrupted
+here by the fallen trunk of a massive oak.  Its roots once gripped the earth
+off to the south, and it fell in this direction, evidently some time ago.  All
+of the toadstools growing under it are unbroken, and the tree is in an advanced
+state of decay.  Indeed, white filaments poke out from its wood everywhere,
+even where it is only slightly damp.    ~
+615 512 2
+D0
+~
+~
+0 -1 61572
+D3
+~
+~
+0 -1 61567
+S
+#61574
+A Path in the Foothills~
+   A light path rambles up the foothills to the north.  Small sections of the
+Grey Spray Road are just visible in the distance to the south, down below.  A
+few lonely oaks grow here and there, while a mature hardwood forest grows
+farther up the hills.~
+615 0 10
+D2
+~
+~
+0 -1 61575
+D3
+~
+~
+0 -1 61552
+S
+#61575
+A Path in the Foothills~
+   The path rises as it goes north, away from the road and into the foothills.
+A few flowers and bushes grow here and there.  Trees are fairly scarce.  The
+Grey Spray Road is clearly visible to the south.~
+615 4 10
+D0
+~
+~
+0 -1 61574
+D2
+~
+~
+0 -1 3566
+S
+#61576
+Silent Wood~
+   Beeches, oaks, and sturdy underbrush make movement difficult.  The forest is
+oddly quiet.  The hillside slopes steeply upward to the east and south, and
+seems to crest to a level area just south up the path through the undergrowth.
+The undergrowth lessens to the west as the hill steeply descends and the trees
+seem to be quite different in that direction even to the untrained eye.~
+615 0 3
+D2
+~
+~
+0 -1 61521
+D3
+~
+~
+0 -1 61577
+S
+#61577
+Silent Wood~
+   Beeches, oaks, and sturdy underbrush make movement difficult.  The forest is
+changing as the hill slopes.  The way is very steep but passable as the brush
+increases to the east climbing the hill.  Mangrove trees seem to be mixing with
+the oaks and beeches to the south.  It is possible to proceed downslope to the
+north, or back upslope to the east.~
+615 0 3
+D0
+~
+~
+0 -1 61578
+D1
+~
+~
+0 -1 61576
+S
+#61578
+Mangrove Forest~
+   The deciduous trees finally begin to fall away and the ground becomes level
+here at the beginning of a mangrove forest.  Brackish water appears out of the
+ground whenever anyone heavy steps on it.  Back to the south, a hill begins to
+climb out of the mangroves and towards a more deciduous forest.  The mangrove
+swamp continues to the north.~
+615 0 3
+D0
+~
+~
+0 -1 61579
+D2
+~
+~
+0 -1 61577
+S
+#61579
+A Mangrove Swamp~
+   The forest has truly become a swamp here.  Knobby mangrove roots push their
+way through the brackish water, making passage difficult in any direction.  It
+seems to be slightly clearer to the north, where the swamp continues, and to
+the south, where there is a hillside farther off as well as different kinds of
+trees.  Insect and plant life is abundnt here, and the waters occasionally move
+with the passage of fishes and, undoubtedly, predators.~
+615 4 14
+D0
+~
+~
+0 -1 4102
+D2
+~
+~
+0 -1 61578
+S
+#61599
+A Pocket in the Void~
+This is a small space in an infinite void.  Nothing much happens here.~
+615 590520 0
+D5
+~
+~
+0 -1 61559
+S
+$~

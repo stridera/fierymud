@@ -1,0 +1,103 @@
+name: Nexia
+password: NeYJ4yVEad
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19601
+birthtime: 1589147846
+timeplayed: 3473
+lastlogintime: 1589151319
+host: 067.183.244.046
+height: 66
+weight: 103
+base_height: 66
+base_weight: 103
+base_size: 2
+natural_size: 2
+alignment: 15
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 11
+lastlevel: 0
+hitpoints: 51/51
+mana: 0/0
+move: 112/112
+damroll: 3
+hitroll: 3
+strength: 93
+intelligence: 70
+wisdom: 68
+dexterity: 94
+constitution: 79
+charisma: 61
+cash: 0 8 73 54
+experience: 21668
+quit_reason: 3
+saveroom: 0
+cooldowns:
+10 1580/18000
+-1 0
+skills:
+402 80
+404 58
+415 50
+416 50
+421 58
+438 71
+443 50
+444 57
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36003 0.500000
+1 36002 2.000000
+1 8016 0.500000
+1 8023 0.500000
+1 8012 0.500000
+1 8010 1.500000
+1 8002 1.000000
+1 36001 6.000000
+1 8011 2.500000
+1 8013 1.000000
+1 8001 1.500000
+1 8022 1.500000
+1 8014 2.500000
+0 0 0
+tells:
+1589148064 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1589148249 @WVaxarn@W tells you, 'oh, i don't even know what there is to do there. i just found it by accident@W'@0
+1589148268 @WVaxarn@W tells you, 'but it's West of the starter place then north@W'@0
+1589148552 @WGranite@W tells you, 'I hope it protects you well.@W'@0
+1589150010 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1589150013 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1589150016 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1589150018 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1589150022 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+$
+gossips:
+1589148432 Vaxarn gossips, 'what fire?'
+$
+aliases:
+7 drink waterskin
+8 scan
+1 get all corpse
+5 l self
+4 who
+3 get all
+2 inv
+0

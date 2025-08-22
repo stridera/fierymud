@@ -1,0 +1,110 @@
+name: Kazimir
+password: KanhPCrGd2
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19835
+birthtime: 1612543159
+timeplayed: 59082
+lastlogintime: 1638469397
+host: 208.127.241.101
+height: 70
+weight: 223
+base_height: 70
+base_weight: 223
+base_size: 3
+natural_size: 3
+alignment: -29
+playerflags: y
+effectflags: 0 r 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 94/89
+mana: 1/0
+move: 150/150
+damroll: 5
+hitroll: 4
+strength: 88
+intelligence: 66
+wisdom: 66
+dexterity: 95
+constitution: 86
+charisma: 67
+cash: 0 39 155 102
+experience: 114757
+quit_reason: 3
+saveroom: 0
+skills:
+402 62
+404 70
+415 50
+416 50
+419 1000
+421 64
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 61
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36003 4.000000
+1 36001 10.000000
+1 36002 15.000000
+1 3500 1.000000
+1 8030 1.000000
+1 3061 18.000000
+1 3064 2.000000
+1 8021 2.000000
+1 8022 1.000000
+1 8002 10.000000
+1 8011 7.000000
+1 8023 5.000000
+1 8016 9.000000
+1 8013 12.000000
+1 8001 14.000000
+1 8014 5.000000
+1 8000 12.000000
+1 8010 7.000000
+1 8020 7.000000
+1 8015 8.000000
+1 8012 13.000000
+0 0 0
+tells:
+1617854605 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
+1617854628 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1617854659 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1617854664 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1617854674 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1617854679 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1617854683 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1617854689 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1617854716 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1617854717 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+$
+gossips:
+1617332994 Fernley gossips, 'accept for the fish in the pond.they are mean'
+1617850681 Someone gossips, 'hi'
+1617850808 Glawk gossips, 'nice'
+1617851071 Someone gossips, 'hey strider you want to unlock a door for me?'
+1617854771 Kruk gossips, 'henlo'
+1617854785 Glawk gossips, 'hi'
+1622187502 Daedela gossips, 'hello there'
+1626722216 Chinok gossips, 'hi Kazimir'
+1638468879 Chinok gossips, 'welcome Kazimir'
+1638468956 Chinok gossips, 'yell if you need anything'
+$

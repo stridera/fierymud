@@ -1,0 +1,219 @@
+name: Wozzaki
+password: WoAL9VQdqr
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 15
+race: 9
+level: 40
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20086
+birthtime: 1640553052
+timeplayed: 1506861
+lastlogintime: 1646007673
+host: 052.232.177.117
+height: 67
+weight: 128
+base_height: 67
+base_weight: 128
+base_size: 2
+natural_size: 2
+alignment: 626
+playerflags: gxy
+effectflags: ck 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 30009
+lastlevel: 0
+hitpoints: 289/289
+mana: 160/160
+move: 20/102
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 100
+wisdom: 96
+dexterity: 82
+constitution: 75
+charisma: 68
+cash: 9 152 288 202
+experience: 10202307
+quit_reason: 1
+saveroom: 30009
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+28 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+70 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+115 1000
+116 1000
+117 1000
+118 1000
+142 1000
+206 1000
+207 1000
+241 1000
+415 51
+416 63
+421 450
+423 450
+424 450
+438 330
+443 50
+444 61
+451 450
+452 50
+455 50
+457 450
+458 325
+459 166
+460 52
+461 70
+462 52
+463 344
+466 50
+0 0
+trophy:
+1 59014 0.200000
+1 59012 0.400000
+1 59013 0.200000
+1 59006 0.200000
+1 59026 0.400000
+1 59015 0.200000
+1 59016 0.200000
+1 59023 0.400000
+1 59022 0.800000
+1 59002 0.200000
+1 59000 0.400000
+1 59011 0.600000
+1 59007 0.200000
+1 59035 0.200000
+1 59009 0.200000
+1 59008 1.000000
+1 59010 0.600000
+1 59001 0.200000
+1 59004 0.200000
+1 2328 0.600000
+1 2320 0.200000
+0 0 0
+tells:
+1645968666 @WTors@W tells you, 'hey are you doing the quest for the boots in drow?@W'@0
+1645985261 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645985261 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645985261 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645985261 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645999360 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645999362 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1645999366 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645999366 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645999366 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1646006371 Lanik gossips, 'the rapiers that have 2h and 2d would be nice hold items but why hold when you should wield....'
+1646007451 Kaylara gossips, 'congrats!'
+1646007455 Lanik gossips, 'ty'
+1646007498 Lanik gossips, 'can thiefs identify shop items?'
+1646007507 Daedela gossips, 'not until you buy them, unfortunately'
+1646007544 Lanik gossips, 'but if they were on the ground they anyone could recite a scroll right?'
+1646007549 Kaylara gossips, 'correct'
+1646007579 Lanik gossips, 'is makeing un pickupable items easyer then the other plan for identifying shop items?'
+1646007599 Daedela gossips, 'I'm sorry, what?'
+1646007659 Lanik gossips, 'chinok is making some method of geting stats for shop items, i was wondering if just makeing shop keepers have there items on the ground would work as long as people couldn't take them'
+$
+effects:
+57 1 0 0 1048576 0 0
+0 0 0 0 0
+mem:
+3 1 1
+16 1 1
+16 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+40 1 1
+85 1 1
+85 1 1
+85 1 1
+1 1 1
+1 1 1
+1 1 1
+1 1 1
+3 1 1
+85 1 1
+85 1 1
+28 1 4
+22 1 1
+22 1 1
+22 1 1
+118 1 1
+117 1 4
+14 1 1
+12 1 1
+28 1 4
+28 1 4
+14 1 2
+35 1 1
+0 0 0
+aliases:
+healme cast heal self
+invisme say invisme
+heal cast heal $1
+cs case 'cause serious' $1
+ccs cast 'cure critic' self
+bless cast bless $1
+armor cast armor $1
+df drink fountain
+clp cast 'cure light' pashku
+csp cast 'cure serious' pashku
+ec examine corpse
+cl cast 'cure light' self
+ca cast 'armor' self
+pcl pray 'cure light'
+rc recite recall self
+pa pray 'armor'
+dw drink water
+gac get all corpse
+tk eat turkey
+ri recite identify $1
+css cast 'cure serious' self
+cls cast 'cure light' self
+lev say lev
+cc cast 'cure critic' $1
+qh quaff healing
+fwf fill water fountain
+ch cast cause serious $1
+ccme cast 'cure critic' self
+vs cast 'vigorize serious' $1
+stoneme say stoneme
+0

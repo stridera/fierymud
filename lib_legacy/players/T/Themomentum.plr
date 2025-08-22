@@ -1,0 +1,92 @@
+name: Themomentum
+password: ThbT7YzJH7
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 9
+level: 12
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19019
+birthtime: 1445195588
+timeplayed: 43610
+lastlogintime: 1446236413
+host: 098.192.233.138
+height: 60
+weight: 100
+base_height: 60
+base_weight: 100
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 35
+loadroom: 3054
+hunger: 9
+lastlevel: 0
+hitpoints: 165/165
+mana: 14/14
+move: 81/118
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 58
+wisdom: 75
+dexterity: 95
+constitution: 88
+charisma: 63
+cash: 1 225 798 407
+experience: 463989
+quit_reason: 1
+saveroom: 3054
+skills:
+402 56
+404 170
+415 127
+416 86
+421 152
+430 52
+438 116
+443 50
+444 50
+463 50
+464 50
+465 158
+466 120
+467 50
+468 50
+0 0
+trophy:
+1 17300 1.000000
+1 17305 2.000000
+1 55216 4.000000
+1 6904 1.000000
+1 6903 1.000000
+1 7002 1.000000
+1 7051 1.000000
+1 18006 1.000000
+1 18007 2.000000
+1 18004 2.000000
+1 18003 1.000000
+1 18001 2.000000
+1 16310 2.200000
+1 16308 0.200000
+1 16312 0.200000
+1 16309 0.200000
+1 8605 2.000000
+1 8606 2.000000
+1 8604 5.000000
+1 8014 1.000000
+1 8002 2.000000
+0 0 0
+aliases:
+gac get all from all.corpse
+3 kill familiar
+1 search
+0

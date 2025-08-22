@@ -1,0 +1,172 @@
+name: Pio
+password: SeLFfjy/W3
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 1
+race: 3
+level: 100
+home: 1204
+lifeforce: 0
+composition: 0
+id: 8622
+birthtime: 1006048716
+timeplayed: 4920116
+lastlogintime: 1425584814
+host: 076.126.206.019
+height: 45
+weight: 190
+base_height: 45
+base_weight: 190
+base_size: 2
+natural_size: 2
+alignment: 546
+playerflags: ly
+effectflags: k 0 q
+prefflags: hmnosvC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 100
+freezelevel: 104
+invislevel: 100
+loadroom: 17229
+lastlevel: 10
+hitpoints: 813/813
+mana: 100/100
+move: 122/122
+damroll: 4
+hitroll: 5
+strength: 80
+intelligence: 78
+wisdom: 99
+dexterity: 74
+constitution: 73
+charisma: 60
+cash: 780 766 11664 8041
+experience: 105806001
+wiztitle: &0&5   Coder   &0 &0
+quit_reason: 10
+saveroom: 3040
+trophy:
+1 2802 0.500000
+1 2801 5.000000
+1 17202 3.000000
+1 8016 4.000000
+1 17204 17.000000
+1 55227 1.000000
+1 13604 1.000000
+1 13601 1.000000
+1 13603 1.000000
+1 13610 2.000000
+1 16001 1.000000
+1 16004 1.000000
+1 16904 1.000000
+1 3055 1.000000
+1 3052 1.000000
+1 3051 1.000000
+1 3060 1.000000
+1 3059 1.000000
+1 8602 1.000000
+1 8603 4.000000
+1 3502 1.000000
+0 0 0
+mem:
+12 0 2
+12 0 2
+12 0 2
+12 1 2
+20 1 2
+16 1 2
+1 0 2
+1 1 2
+13 1 2
+13 1 2
+3 1 2
+3 1 2
+3 1 2
+3 1 2
+18 1 2
+18 1 2
+18 1 2
+18 1 2
+21 1 2
+87 1 2
+42 0 2
+42 1 2
+42 1 2
+42 1 2
+42 1 2
+43 1 2
+43 1 2
+15 1 2
+15 1 2
+14 1 2
+91 1 2
+91 1 2
+91 1 2
+91 1 2
+91 1 2
+91 1 2
+40 1 2
+40 1 2
+40 1 2
+4 1 2
+23 0 2
+23 0 2
+28 1 2
+28 1 2
+35 1 2
+35 1 2
+35 1 2
+93 1 2
+93 1 2
+92 1 2
+97 0 2
+53 0 2
+53 0 2
+53 0 2
+53 0 2
+53 0 2
+53 0 2
+48 1 2
+48 1 2
+48 1 2
+48 1 2
+99 0 2
+99 0 2
+99 0 2
+99 0 2
+81 1 2
+81 1 2
+81 1 2
+81 1 2
+81 1 2
+209 0 2
+209 1 2
+209 1 2
+209 1 2
+209 1 2
+209 1 2
+209 1 2
+53 0 2
+53 1 2
+94 0 2
+94 0 2
+74 1 2
+97 0 2
+97 0 2
+97 0 2
+97 0 2
+97 0 2
+97 0 2
+54 0 2
+0 0 0
+aliases:
+caa cast 'armor'
+cab cast 'bless'
+cas cast 'summon'
+cacc cast 'cure critic'
+cae cast 'earthquake'
+cafha cast 'full harm'
+cawc cast 'w
+{1~} {cast 'cure light'}
+0

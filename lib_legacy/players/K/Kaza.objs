@@ -1,0 +1,4088 @@
+1
+vnum: 3030
+location: 0
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+~~
+vnum: 36014
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring tiny-copper-ring thin-circle-copper-coin
+shortdesc: a tiny copper ring
+desc: A thin circle of copper resembles a coin.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: tiny-copper-ring thin-circle-copper-coin
+A thin copper wire bears the symbol of the Kaaz clan.
+~
+~~
+vnum: 16907
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring diamond
+shortdesc: a diamond ring
+desc: A sparkling diamond ring catches your eye.
+type: 8
+weight: 0.20
+cost: 320
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 3
+applies:
+6 3
+~
+extradesc: ring diamond
+The diamond sparkles with a merry light, as if it were alive.
+You can't help but admire the skill of the jeweler.
+~
+~~
+vnum: 18001
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 18001
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 53023
+location: 5
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz
+name: jerkin leather cuir bouilli
+shortdesc: the Cuir Bouilli
+desc: A jerkin made of hardened, boiled leather lies here.
+type: 9
+weight: 8.00
+cost: 600
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 9
+applies:
+5 5
+~
+~~
+vnum: 55384
+location: 6
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz
+name: helm trainee
+shortdesc: a trainee helm
+desc: A helm of slight magic power lies here.
+type: 9
+weight: 4.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 17
+applies:
+1 1
+13 7
+~
+extradesc: helm trainee
+Newly forged, this magical metal helm was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 53030
+location: 7
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz
+name: skirt leather cuisse
+shortdesc: a thick leather cuisse
+desc: A thick leather cuisse sits here.
+type: 9
+weight: 7.50
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 33
+extradesc: skirt leather cuisse
+Used to protect the thighs from damage in a battle, a cuisse is a handy item to
+find.  The creature who has fashioned this piece of armor has created an item
+that can be worn on the legs, but attaches to the body like a skirt.    
+~
+~~
+vnum: 55390
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz
+name: gauntlets trainee
+shortdesc: trainee gauntlets
+desc: A pair of slightly magical gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 129
+applies:
+14 5
+13 4
+~
+extradesc: trainee gauntlets
+Newly forged, these magical metal gauntlets were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 5402
+location: 10
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouvyz
+name: vambraces bracers dark red
+shortdesc: dark red vambraces
+desc: A set of dark red vambraces barely catch your attention.
+type: 9
+weight: 6.50
+cost: 200
+timer: 0
+level: 4
+effects: 0 0 0
+wear: 257
+applies:
+3 -1
+~
+~~
+vnum: 16101
+location: 11
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: shield hide
+shortdesc: a hide shield
+desc: A shield made of camel hide is on the ground.
+type: 9
+weight: 1.90
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 513
+applies:
+5 1
+~
+extradesc: shield hide-shield camel-hide
+Poorly constructed of rough wood with a thick layer of tightly stretched camel
+hide over it, this shield nevertheless does its job, standing between its
+wearer and attackers.  It appears to have seen quite the history of violence,
+with numerous gashes and dents in the hide, but still holds together somehow.
+~
+~~
+vnum: 16308
+location: 12
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak fur wolf wolf-fur-cloak
+shortdesc: a wolf fur cloak
+desc: A cloak of wolf fur lies in a heap.
+type: 9
+weight: 5.00
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+applies:
+5 1
+~
+extradesc: cloak fur wolf wolf-fur-cloak
+   The fur cloak is not very comfortable to wear but if it can protect you
+from the cold, well, you just aren't complaining.
+~
+~~
+vnum: 16110
+location: 13
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: d
+name: bronze sash small Questobject
+shortdesc: a small bronze sash
+desc: A bronze colored sash lies here, junked.
+type: 11
+weight: 1.20
+cost: 140
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2049
+applies:
+2 2
+5 1
+~
+extradesc: bronze sash small
+This is just a small bronze piece of fabric, woven into a colorful sash.    
+~
+triggers:
+5113
+~
+variables:
+sash_already_god 1
+~
+~~
+vnum: 55389
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz
+name: bracer trainee
+shortdesc: a trainee bracer
+desc: A slightly magical plate bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 4097
+applies:
+6 1
+13 3
+~
+extradesc: trainee bracer
+Newly forged, this magical metal bracer was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 41006
+location: 16
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: nu
+name: blade spur serrated fighting sharpened leg
+shortdesc: a serrated fighting-blade
+desc: A sharpened leg spur digs into the ground.
+type: 5
+weight: 1.00
+cost: 120
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+extradesc: fighting-blade blade serrated spur sharpened 
+Tooth-like serrations give this blade a wicked edge. The sawing action
+of the teeth catches extra bits of flesh as it slashes. A tapered end
+forms a natural grip.
+~
+~~
+vnum: 408
+location: 23
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag
+name: shiny ornament ball orb
+shortdesc: an ornamental christmas ball
+desc: A small shining ornament sparkles on the ground.
+type: 1
+weight: 0.06
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+~~
+vnum: 5401
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tiny silver earring tiny-silver-earring
+shortdesc: a tiny silver earring
+desc: A small silver stud lies here.
+type: 9
+weight: 0.01
+cost: 10
+timer: 10
+level: 5
+effects: 0 0 0
+wear: 262145
+applies:
+24 -1
+~
+~~
+vnum: 18
+location: 26
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+81
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 55301
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gloves leather flimsy
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 36302
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: book-log log book black log-book
+shortdesc: the smuggler's log book
+desc: A black log book lies on a small table.
+type: 12
+weight: 1.10
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1
+extradesc: log book black
+The log book records the activities of the smugglers over the past few weeks:
+
+14 days ago: Smuggled 3 crates of glazed donuts to Helena.
+12 days ago: Helena needs 3 crates of jelly donuts and 2 crates of glazed
+             donuts.
+10 days ago: Smuggled 3 crates of jelly donuts and 2 crates of glazed donuts.
+ 9 days ago: Guard convention in Mielikki.  Helena needs 12 crates of
+             glazed donuts.
+ 7 days ago: Smuggled 10 crates of glazed donuts.
+ 2 days ago: Helena wants 2 crates of glazed donuts and 5 crates of jelly
+             donuts.
+
+Wow! You never realized there was such a market in smuggled donuts!
+
+~
+~~
+vnum: 55300
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gauntlets rusted
+shortdesc: rusted gauntlets
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.29
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55300
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gauntlets rusted
+shortdesc: rusted gauntlets
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.29
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55300
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gauntlets rusted
+shortdesc: rusted gauntlets
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.29
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sapphire gem crushed crushed-sapphire
+shortdesc: a crushed sapphire
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem dust dust-tourmaline
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55306
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: slippers decayed
+shortdesc: decayed slippers
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55300
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gauntlets rusted
+shortdesc: rusted gauntlets
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.29
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem dust dust-tourmaline
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55582
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem dust dust-lapis-lazuli
+shortdesc: some lapis-lazuli dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sapphire gem crushed crushed-sapphire
+shortdesc: a crushed sapphire
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55314
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: turban decayed
+shortdesc: a decayed turban
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55310
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracelet decayed
+shortdesc: a decayed bracelet
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55312
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: helm rusted
+shortdesc: a rusted helm
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 53015
+location: 127
+values:
+0
+2
+6
+3
+0
+0
+0
+~
+flags: gmnuvyz
+name: shortsword reptilian blade curving sword
+shortdesc: a gracefully curving shortsword
+desc: A long slightly curving blade lies in the dust.
+type: 5
+weight: 4.20
+cost: 400
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+2 2
+~
+extradesc: blade shortsword sword reptilian blade
+Long and elegantly curved, this finely made shortsword gleams
+with the polishing it's been given. Its hilt has short, curving,
+S-shaped crossguards, and a leather-wrapped hilt.
+~
+~~
+vnum: 53015
+location: 127
+values:
+0
+2
+6
+3
+0
+0
+0
+~
+flags: gmnuvyz
+name: shortsword reptilian blade curving sword
+shortdesc: a gracefully curving shortsword
+desc: A long slightly curving blade lies in the dust.
+type: 5
+weight: 4.20
+cost: 400
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+2 2
+~
+extradesc: blade shortsword sword reptilian blade
+Long and elegantly curved, this finely made shortsword gleams
+with the polishing it's been given. Its hilt has short, curving,
+S-shaped crossguards, and a leather-wrapped hilt.
+~
+~~
+vnum: 16110
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: d
+name: bronze sash small Questobject
+shortdesc: a small bronze sash
+desc: A bronze colored sash lies here, junked.
+type: 11
+weight: 1.20
+cost: 140
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2049
+applies:
+2 2
+5 1
+~
+extradesc: bronze sash small
+This is just a small bronze piece of fabric, woven into a colorful sash.    
+~
+triggers:
+5113
+~
+variables:
+sash_already_god 1
+~
+~~
+vnum: 55385
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: mnouvwxyz
+name: vambraces trainee
+shortdesc: trainee vambraces
+desc: A set of somewhat magical plate vambraces lies here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+13 5
+~
+extradesc: trainee vambraces
+Newly forged, these magical metal vambraces were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 1125
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: boots iron-banded-boots
+shortdesc: iron-banded boots
+desc: Some iron-banded boots have been left here.
+type: 9
+weight: 4.90
+cost: 350
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: iron boots
+This is one heavy pair of boots! Black iron strips are bolted to a pair  
+of black leather boots, making them immensely protective as well as
+cumbersome. They are unornamented, though they do bear some light dents,
+testimony to their usefulness.
+~
+~~
+vnum: 41007
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: plate chitinous-plate chitinous chitin flake
+shortdesc: a chitinous-plate
+desc: A large flake of chitin has fallen off a Hiver's thorax here.
+type: 9
+weight: 15.00
+cost: 45
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 9
+extradesc: chitinous-plate plate chitinous
+The rough platter of insectoid scales seems to have no distinct color.
+Shifting hues move across its surface as light strikes it from different
+angles. All colors? Or none? You shake your head in wonder.
+~
+~~
+vnum: 41009
+location: 127
+values:
+0
+400
+0
+0
+0
+0
+0
+~
+flags: ag
+name: eye jewelled fist-sized-gem fist sized gem jewelled-eye facets
+shortdesc: a jewelled eye
+desc: A fist-sized gem with multiple facets is embedded here.
+type: 1
+weight: 0.50
+cost: 140
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+applies:
+4 2
+28 8
+~
+extradesc: jewelled-eye eye faceted
+This is no natural gem! It's the eye of a Hiver Queen, detached from its
+socket. The many eye facets that once gazed upon the world with ambitious
+lust still gleam faintly in death.
+~
+~~
+vnum: 16101
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: shield hide
+shortdesc: a hide shield
+desc: A shield made of camel hide is on the ground.
+type: 9
+weight: 1.90
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 513
+applies:
+5 1
+~
+extradesc: shield hide-shield camel-hide
+Poorly constructed of rough wood with a thick layer of tightly stretched camel
+hide over it, this shield nevertheless does its job, standing between its
+wearer and attackers.  It appears to have seen quite the history of violence,
+with numerous gashes and dents in the hide, but still holds together somehow.
+~
+~~
+vnum: 55765
+location: 127
+values:
+0
+1
+8
+11
+0
+0
+0
+~
+flags: nrsuv
+name: dagger small yellow
+shortdesc: a small yellow dagger
+desc: A small yellow dagger lies here.
+type: 5
+weight: 0.75
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+applies:
+1 1
+2 1
+~
+~~
+vnum: 5402
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouvyz
+name: vambraces bracers dark red
+shortdesc: dark red vambraces
+desc: A set of dark red vambraces barely catch your attention.
+type: 9
+weight: 6.50
+cost: 200
+timer: 0
+level: 4
+effects: 0 0 0
+wear: 257
+applies:
+3 -1
+~
+~~
+vnum: 5402
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouvyz
+name: vambraces bracers dark red
+shortdesc: dark red vambraces
+desc: A set of dark red vambraces barely catch your attention.
+type: 9
+weight: 6.50
+cost: 200
+timer: 0
+level: 4
+effects: 0 0 0
+wear: 257
+applies:
+3 -1
+~
+~~
+vnum: 5402
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouvyz
+name: vambraces bracers dark red
+shortdesc: dark red vambraces
+desc: A set of dark red vambraces barely catch your attention.
+type: 9
+weight: 6.50
+cost: 200
+timer: 0
+level: 4
+effects: 0 0 0
+wear: 257
+applies:
+3 -1
+~
+~~
+vnum: 5402
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouvyz
+name: vambraces bracers dark red
+shortdesc: dark red vambraces
+desc: A set of dark red vambraces barely catch your attention.
+type: 9
+weight: 6.50
+cost: 200
+timer: 0
+level: 4
+effects: 0 0 0
+wear: 257
+applies:
+3 -1
+~
+~~
+vnum: 55765
+location: 127
+values:
+0
+1
+8
+11
+0
+0
+0
+~
+flags: nrsuv
+name: dagger small yellow
+shortdesc: a small yellow dagger
+desc: A small yellow dagger lies here.
+type: 5
+weight: 0.75
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+applies:
+1 1
+2 1
+~
+~~
+vnum: 16311
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: hauberk leather
+shortdesc: a leather hauberk
+desc: A leather hauberk lies on the ground.
+type: 9
+weight: 8.00
+cost: 300
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 9
+extradesc: hauberk leather
+   The hauberk is basically a piece of leather armour that would protect the
+upper torso of your body. Its not very good but sometimes you just have to make
+do.
+~
+~~
+vnum: 16101
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: shield hide
+shortdesc: a hide shield
+desc: A shield made of camel hide is on the ground.
+type: 9
+weight: 1.90
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 513
+applies:
+5 1
+~
+extradesc: shield hide-shield camel-hide
+Poorly constructed of rough wood with a thick layer of tightly stretched camel
+hide over it, this shield nevertheless does its job, standing between its
+wearer and attackers.  It appears to have seen quite the history of violence,
+with numerous gashes and dents in the hide, but still holds together somehow.
+~
+~~
+vnum: 17203
+location: 127
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.
+~
+~~
+vnum: 17203
+location: 127
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.
+~
+~~
+vnum: 17203
+location: 127
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.
+~
+~~
+vnum: 17203
+location: 127
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.
+~
+~~
+vnum: 17208
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gnoprtu
+name: robe magician velvet
+shortdesc: a magician's robe
+desc: A velvet robe lies in a crumpled heap here.
+type: 9
+weight: 1.00
+cost: 150
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1025
+applies:
+3 1
+13 -3
+~
+extradesc: robe magician velvet
+This robe is made of very high quality velvet and is decorated with various
+symbols of arcane importance.
+~
+~~
+vnum: 17200
+location: 127
+values:
+0
+1
+5
+6
+0
+0
+0
+~
+flags: gnoprtu
+name: staff magician
+shortdesc: magician's staff
+desc: A knobbed staff rests against the wall here.
+type: 5
+weight: 1.50
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+24 -1
+~
+extradesc: staff 
+This staff is made of a very fine and expensive wood.
+It has a prominent knob on one end.
+~
+~~
+vnum: 55309
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracer leather flimsy
+shortdesc: a flimsy leather bracer
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55318
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: sleeves decayed
+shortdesc: decayed sleeves
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 55301
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gloves leather flimsy
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55301
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gloves leather flimsy
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 41010
+location: 127
+values:
+20
+28
+0
+0
+0
+0
+0
+~
+flags: g
+name: jelly royal round bubble half jelled fluid wax
+shortdesc: a wax bubble of royal jelly
+desc: A round bubble containing a half-jelled fluid is here. 
+type: 10
+weight: 2.00
+cost: 45
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 16385
+extradesc: royal-jelly royal jelled bubble wax-bubble fluid
+The half-jelled fluid swirls sluggishly in the container.
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 23
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: D
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 53015
+location: 127
+values:
+0
+2
+6
+3
+0
+0
+0
+~
+flags: gmnuvyz
+name: shortsword reptilian blade curving sword
+shortdesc: a gracefully curving shortsword
+desc: A long slightly curving blade lies in the dust.
+type: 5
+weight: 4.20
+cost: 400
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+2 2
+~
+extradesc: blade shortsword sword reptilian blade
+Long and elegantly curved, this finely made shortsword gleams
+with the polishing it's been given. Its hilt has short, curving,
+S-shaped crossguards, and a leather-wrapped hilt.
+~
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+~
+extradesc: saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20
+location: 127
+values:
+256
+44
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 4.87
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 115
+location: 127
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pork chop seasoned food
+shortdesc: a seasoned pork chop
+desc: A juicy-looking pork chop escaped consumption.
+type: 19
+weight: 0.80
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: pork chop seasoned food
+As pork chops go, this one is on the large side.  It has been delicately
+seasoned with garlic, parsely, and black pepper.  It is still warm, and juices
+flow easily from it as it is handled.    
+~
+~~
+vnum: 115
+location: 127
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pork chop seasoned food
+shortdesc: a seasoned pork chop
+desc: A juicy-looking pork chop escaped consumption.
+type: 19
+weight: 0.80
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: pork chop seasoned food
+As pork chops go, this one is on the large side.  It has been delicately
+seasoned with garlic, parsely, and black pepper.  It is still warm, and juices
+flow easily from it as it is handled.    
+~
+~~
+vnum: 113
+location: 127
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ostrich hunk smoked meat food
+shortdesc: a hunk of smoked ostrich
+desc: A nice hunk of smoked meat sits here looking appetizing.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: ostrich hunk smoked meat food
+This is a chunk of meat about half the size of your fist.  It appears to have
+been steam-smoked, for it is slightly dry yet flexible, and has a strong smoky
+odor.    
+~
+~~
+vnum: 117
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: filet mignon cut superb meat food
+shortdesc: a superb cut of filet mignon
+desc: An interesting cut of meat lies on the ground.
+type: 19
+weight: 1.60
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: filet mignon cut superb meat food
+Occasionally, a cook will go too far, and cut quite the thick filet mignon.  
+It is no sin against the diner, however.  This steak is really quite large, and
+happily, cooked to perfection.    
+~
+~~
+vnum: 115
+location: 127
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pork chop seasoned food
+shortdesc: a seasoned pork chop
+desc: A juicy-looking pork chop escaped consumption.
+type: 19
+weight: 0.80
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: pork chop seasoned food
+As pork chops go, this one is on the large side.  It has been delicately
+seasoned with garlic, parsely, and black pepper.  It is still warm, and juices
+flow easily from it as it is handled.    
+~
+~~
+vnum: 113
+location: 127
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ostrich hunk smoked meat food
+shortdesc: a hunk of smoked ostrich
+desc: A nice hunk of smoked meat sits here looking appetizing.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: ostrich hunk smoked meat food
+This is a chunk of meat about half the size of your fist.  It appears to have
+been steam-smoked, for it is slightly dry yet flexible, and has a strong smoky
+odor.    
+~
+~~
+vnum: 115
+location: 127
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pork chop seasoned food
+shortdesc: a seasoned pork chop
+desc: A juicy-looking pork chop escaped consumption.
+type: 19
+weight: 0.80
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: pork chop seasoned food
+As pork chops go, this one is on the large side.  It has been delicately
+seasoned with garlic, parsely, and black pepper.  It is still warm, and juices
+flow easily from it as it is handled.    
+~
+~~

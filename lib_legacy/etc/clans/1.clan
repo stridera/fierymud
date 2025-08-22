@@ -1,0 +1,48 @@
+number: 1
+name: Keepers of the Future
+abbr: >>KotF<<&0
+motd:
+The days are long
+
+&b<--- NOTICE --->&0
+I hired some dwarven miners to extend KotF's cellar a little bit, but they
+got a little dig-happy and started digging tunnels to Meta-knows-where.
+The tunnels are dark, but seem sturdy enough.  I'm not sure where they lead
+though.  Let me know if we need to hire another crew to close them up again.
+-Laoris
+~
+dues: 5
+appfee: 30
+applevel: 30
+copper: 180000
+silver: 150675
+gold: 35200
+platinum: 56395
+title: 1 Keeper of Reality&0
+privilege: 1 desc motd grant ranks title enroll expel promote demote appfee applev dues withdraw alts chat
+title: 2 Keeper of Hope&0
+privilege: 2 alts chat
+title: 3 Keeper of Magicks&0
+privilege: 3 alts chat
+title: 4 Keeper of the Faith&0
+privilege: 4 alts chat
+title: 5 Keeper of the Still&0
+privilege: 5 alts chat
+title: 6 Keeper of the Future&0
+privilege: 6 alts chat
+title: 7 Keeper of the Present&0
+privilege: 7 alts chat
+title: 8 Keeper of the Past&0
+privilege: 8 alts chat
+title: 9 Keeper of the Clock&0
+privilege: 9 alts chat
+title: 10 Keeper of the Goals&0
+privilege: 10 alts chat
+title: 11 Keeper's Keeper&0
+privilege: 11 alts chat
+member: Sata 1 0 Eone
+member: Elron 2 0 Zhan Prer Ailiki Skaraki Sorak Fela Sligh Cnuck Mera Pyrak Suraki Torgak Lani Karon Puka Narak Norel Petch Oakie Korah Tolbrj Runrup Antiak Trajin
+member: Ehlissa 10 0 Pahtbelli Dimmy Prairiegirl
+member: Dimentio 11 0 Gyde Nodem Gyen Nuto Bleck Otun
+member: Petree 11 0 Kacor Lacak Sork Uchaaz Moet Zzig Nuk Darst Bomnor Nuxx Denuk Xedem Tarrk Ronuc Vchaz Zchaz
+member: Piffaron 201 1300023460

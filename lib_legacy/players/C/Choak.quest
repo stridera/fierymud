@@ -1,0 +1,83 @@
+61 2 2
+target1 0
+hunt 0
+56 1 1
+bounty running
+70 1 1
+hunt running
+45 255 5
+rest 9
+fight 16
+explore 6
+gear 15
+speech 3
+33 255 6
+48416 1
+spiders 11
+drop 10
+48029 1
+16213 1
+11812 1
+23 1 0
+21 1 0
+19 255 1
+choice 2
+10 255 0
+2 255 0
+17 1 2
+eg_faction 0
+bl_faction 0
+7 3 40
+55300_armor_acquired 1
+55358_armor_acquired 1
+55362_armor_acquired 1
+55366_armor_acquired 1
+55370_armor_acquired 1
+55354_armor_acquired 1
+55338_armor_acquired 1
+55342_armor_acquired 1
+55578_gems_acquired 3
+55582_gems_acquired 3
+55586_gems_acquired 3
+55590_gems_acquired 3
+55574_gems_acquired 3
+55570_gems_acquired 3
+55566_gems_acquired 3
+55320_armor_acquired 1
+55312_armor_acquired 1
+55308_armor_acquired 1
+55324_armor_acquired 1
+55607_gems_acquired 3
+55330_armor_acquired 1
+55596_gems_acquired 3
+55640_gems_acquired 3
+55662_gems_acquired 3
+55651_gems_acquired 3
+55629_gems_acquired 3
+55618_gems_acquired 3
+55346_armor_acquired 1
+55334_armor_acquired 1
+55350_armor_acquired 1
+55382_armor_acquired 1
+55374_armor_acquired 1
+55378_armor_acquired 1
+55717_gems_acquired 3
+55673_gems_acquired 3
+55706_gems_acquired 3
+55728_gems_acquired 3
+55695_gems_acquired 3
+55684_gems_acquired 3
+55739_gems_acquired 3
+9 255 0
+6 255 11
+num_spices 10
+got_spice:23753 1
+got_spice:23750 1
+got_spice:23758 1
+got_spice:23751 1
+got_spice:23757 1
+got_spice:23752 1
+got_spice:23760 1
+got_spice:23755 1
+got_spice:23754 1
+got_spice:23759 1

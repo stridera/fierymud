@@ -1,0 +1,81 @@
+name: Yasuo
+password: YaGFZxSWOU
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20921
+birthtime: 1738024831
+timeplayed: 2598
+lastlogintime: 1738383838
+host: 064.046.022.013
+height: 37
+weight: 126
+base_height: 37
+base_weight: 126
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxy
+effectflags: fk r 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 29/29
+mana: 1/0
+move: 110/110
+damroll: 3
+hitroll: 6
+strength: 66
+intelligence: 91
+wisdom: 90
+dexterity: 100
+constitution: 64
+charisma: 50
+cash: 0 10 68 69
+bank: 0 1 1 1
+experience: 12119
+quit_reason: 1
+saveroom: 3054
+skills:
+401 61
+403 70
+408 64
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+463 50
+464 52
+465 50
+493 60
+0 0
+trophy:
+1 36002 5.000000
+1 36001 1.000000
+1 36003 1.000000
+1 51900 1.000000
+0 0 0
+tells:
+$
+gossips:
+1738026734 Daed gossips, 'that should tell you who'
+1738026740 Someone gossips, 'tough to locate object on keys'
+1738026968 Eone gossips, 'mammoth tuck key is on trapper'
+1738026976 Someone gossips, 'tusk'
+1738027304 Discord gossips, 'Daedela: That doesn't get you into the tower'
+1738027396 Eone gossips, 'nothing like a random teleport to get you into hard to reach places:)'
+1738027409 Thort gossips, 'I love doing that! where did you use it?'
+1738027426 Eone gossips, 'doom'
+1738027426 Discord gossips, 'Chinok: especially now that you have local, and world teleports now'
+1738027481 Eone gossips, 'bypass all those pesky keys'
+$

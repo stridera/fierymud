@@ -1,0 +1,105 @@
+name: Dragnilu
+password: DrKJLk7EEq
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 9
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18861
+birthtime: 1425806924
+timeplayed: 111804
+lastlogintime: 1429285857
+host: 078.084.073.160
+height: 70
+weight: 125
+base_height: 70
+base_weight: 125
+base_size: 2
+natural_size: 2
+alignment: 695
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8006
+lastlevel: 0
+hitpoints: 66/66
+mana: 1/-1
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 95
+wisdom: 96
+dexterity: 68
+constitution: 58
+charisma: 56
+cash: 0 56 494 129
+bank: 0 23 170 50
+experience: 337443
+quit_reason: 7
+saveroom: 8006
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+39 1000
+100 1000
+101 1000
+415 50
+416 50
+423 150
+424 150
+438 50
+443 50
+444 50
+447 72
+451 127
+452 108
+453 134
+454 50
+459 55
+460 51
+462 50
+464 135
+0 0
+trophy:
+1 8020 0.500000
+1 8013 0.500000
+1 8800 0.500000
+1 8804 0.500000
+1 8014 0.500000
+1 1601 4.000000
+1 1602 5.500000
+1 2005 1.000000
+1 2003 1.000000
+1 2004 2.000000
+1 36002 1.000000
+1 36001 2.000000
+1 36003 1.000000
+1 8001 1.000000
+1 41013 1.000000
+1 8022 1.000000
+1 3509 1.000000
+1 3501 5.000000
+1 3500 6.000000
+1 3506 2.000000
+1 3503 2.000000
+0 0 0
+mem:
+32 1 4
+5 0 4
+5 1 4
+32 1 4
+32 1 4
+5 1 4
+39 0 9
+100 1 5
+0 0 0

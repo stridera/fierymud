@@ -1,0 +1,3896 @@
+1
+vnum: 23
+location: 0
+values:
+1
+150
+100
+0
+0
+0
+0
+~
+flags: D
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1025
+location: 6
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cap leather
+shortdesc: &3a small leather cap&0
+desc: &3A small leather cap lies on the ground here.&0
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+~~
+vnum: 1019
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: leggings leather
+shortdesc: &3a pair of leather leggings&0
+desc: &3A pair of leather leggings lies on the ground here.&0
+type: 9
+weight: 7.30
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+~~
+vnum: 55395
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz
+name: boots acolyte
+shortdesc: acolyte boots
+desc: A set of sligtly magical thin metal boots lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 65
+applies:
+14 5
+13 4
+~
+extradesc: acolyte boots
+Newly forged, these magical metal boots were made to reflect your acceptance to
+your god.  Treated well, they will carry you through your beginning trials and
+on to greater wisdom.
+~
+~~
+vnum: 1022
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: sleeves leather
+shortdesc: &3a pair of leather sleeves&0
+desc: &3A pair of leather sleeves lies on the ground here.&0
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+~~
+vnum: 16901
+location: 16
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: 0
+name: knife silver silver-knife
+shortdesc: a silver knife
+desc: A dulled, silver knife lies on the ground.
+type: 5
+weight: 0.75
+cost: 100
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 8193
+extradesc: knife silver
+The knife has ornate carvings on its' hilt, and the name McGuire is prominent
+on the hilt. It was probably part of the silver set of this house.
+~
+~~
+vnum: 3298
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: eqAD
+name: rose single-long-stemmed-black-rose
+shortdesc: a &9&bblack&0 rose
+desc: A single long-stemmed &8&9black&0 rose lies here in memory of Pergus.  Farewell friend.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 540673
+triggers:
+3298
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 19
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: rations ration iron food
+shortdesc: some iron rations
+desc: Some iron rations have been set here.
+type: 19
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: iron rations
+These lightweight rations aren't the best-tasting, but they are the traveler's
+best food for long trips -- they never spoil, and fill the stomach for many
+hours.  There is dried meat of unknown origin here, mixed with nuts.  The whole
+mess is glued together into a bar by means of some waxy, fatty substance.    
+~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 1027
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandals leather leather-sandals
+shortdesc: &0&3a pair of leather sandals&0
+desc: &0&3A pair of leather sandals lie here.&0
+type: 9
+weight: 1.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+~~
+vnum: 28
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: mowyz
+name: mace steel
+shortdesc: a steel mace
+desc: A steel mace lies on the ground, out of the way.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55314
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: turban decayed
+shortdesc: a decayed turban
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55322
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: leggings decayed
+shortdesc: decayed leggings
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem dust dust-tourmaline
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55313
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: cap leather flimsy
+shortdesc: a flimsy leather cap
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 61506
+location: -1
+values:
+1
+1
+3
+11
+0
+0
+0
+~
+flags: n
+name: knife small flint
+shortdesc: a small flint knife
+desc: A small yellowish knife is stuck in the turf.
+type: 5
+weight: 0.50
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: small flint knife
+This little knife was chipped from the yellowish, slightly translucent flint
+found in the hills.  It has a wooden handle, wound with sinew, attached to one
+end.  Though small, it is quite sharp.    
+~
+~~
+vnum: 55306
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: slippers decayed
+shortdesc: decayed slippers
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55302
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: mittens decayed
+shortdesc: decayed mittens
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55588
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem dust dust-citrine
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55310
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracelet decayed
+shortdesc: a decayed bracelet
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55591
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: diamond gem crushed crushed-diamond
+shortdesc: a crushed diamond
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55317
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: sleeves leather flimsy
+shortdesc: flimsy leather sleeves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55317
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: sleeves leather flimsy
+shortdesc: flimsy leather sleeves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55588
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem dust dust-citrine
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55587
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem dust dust-pearl
+shortdesc: some pearl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55309
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracer leather flimsy
+shortdesc: a flimsy leather bracer
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem dust dust-tourmaline
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55313
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: cap leather flimsy
+shortdesc: a flimsy leather cap
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55593
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: emerald gem crushed crushed-emerald
+shortdesc: a crushed emerald
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55583
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem dust dust-turquoise
+shortdesc: some turquoise dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55595
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem shard shard-turquoise
+shortdesc: a turquoise shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55587
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem dust dust-pearl
+shortdesc: some pearl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sapphire gem crushed crushed-sapphire
+shortdesc: a crushed sapphire
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55308
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracer plate rusted
+shortdesc: a rusted plate bracer
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55316
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: vambraces rusted
+shortdesc: rusted vambraces
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55316
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: vambraces rusted
+shortdesc: rusted vambraces
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55312
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: helm rusted
+shortdesc: a rusted helm
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55312
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: helm rusted
+shortdesc: a rusted helm
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55308
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracer plate rusted
+shortdesc: a rusted plate bracer
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55318
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: sleeves decayed
+shortdesc: decayed sleeves
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55306
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: slippers decayed
+shortdesc: decayed slippers
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55313
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: cap leather flimsy
+shortdesc: a flimsy leather cap
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55325
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tunic leather flimsy
+shortdesc: a flimsy leather tunic
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55582
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem dust dust-lapis-lazuli
+shortdesc: some lapis-lazuli dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55582
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem dust dust-lapis-lazuli
+shortdesc: some lapis-lazuli dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55620
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem flawed flawed-lapis-lazuli
+shortdesc: a flawed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55582
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem dust dust-lapis-lazuli
+shortdesc: some lapis-lazuli dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55589
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem dust dust-aquamarine
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55312
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: helm rusted
+shortdesc: a rusted helm
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sapphire gem crushed crushed-sapphire
+shortdesc: a crushed sapphire
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55582
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem dust dust-lapis-lazuli
+shortdesc: some lapis-lazuli dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55583
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem dust dust-turquoise
+shortdesc: some turquoise dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55583
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem dust dust-turquoise
+shortdesc: some turquoise dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55314
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: turban decayed
+shortdesc: a decayed turban
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55316
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: vambraces rusted
+shortdesc: rusted vambraces
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55582
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem dust dust-lapis-lazuli
+shortdesc: some lapis-lazuli dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem dust dust-tourmaline
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55583
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem dust dust-turquoise
+shortdesc: some turquoise dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 20
+location: 127
+values:
+256
+208
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 15.56
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

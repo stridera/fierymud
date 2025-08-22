@@ -1,0 +1,467 @@
+1
+vnum: 1025
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: skullcap crude-leather-skullcap skull-cap
+shortdesc: a crude leather skullcap
+desc: &0A &0&3leather&0 skullcap&0 lies here.
+type: 9
+weight: 2.60
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+2 -1
+~
+extradesc: crude-leather-skullcap skull-cap
+&0A small cap, crafted from thick leather.  It fits over the top area of the
+head, protecting it from glancing blows.  Most often employed by mages who do
+not wish to be encumbered by larger helmets.~
+~~
+vnum: 1019
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mqyz fgh
+name: pants crude-leather-pants
+shortdesc: crude leather pants
+desc: Some crude leather pants lie here.
+type: 9
+weight: 8.60
+cost: 250
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 -1
+~
+extradesc: crude-leather-pants
+Crafted of a crude leather, and studded with metal knobs for added protection
+against physical attacks.  They are a bit heavy, and far too encumbering for a
+sorcerer to wear.~
+~~
+vnum: 1027
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: sandals plain-leather-sandals
+shortdesc: some plain leather sandals
+desc: Some plain sandals sit here.
+type: 9
+weight: 1.90
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+extradesc: plain-leather-sandals
+&0A pair of simple sandals, woven from fine leather.  They are padded to
+provide comfort during long travels, though they offer no protection from
+hostile weather.~
+~~
+vnum: 1022
+location: 10
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: sleeves quilted-canvas-sleeves cloth hide glowing pile
+shortdesc: some quilted canvas sleeves
+desc: A pile of cloth and hide lies here glowing.
+type: 9
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+extradesc: quilted-canvas-sleeves cloth hide glowing pile
+These sleeves are remarkably light and offer a sense of protection unseen.  
+There is hide padding on the elbows to provide a little extra protection.~
+~~
+vnum: 1011
+location: 16
+values:
+0
+1
+5
+6
+0
+0
+0
+~
+flags: mqyz fgh
+name: mace crude-mace
+shortdesc: a crude mace
+desc: A crude mace lies here.
+type: 5
+weight: 6.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: crude-mace
+&0The head of this mace is forged from steel. A perfect ball, marred with only
+the scars of combat. It is attatched to a stout wooden rod, creating a
+weapon favored by most clerics.~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 19
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rations ration iron food
+shortdesc: some iron rations
+desc: Some iron rations have been set here.
+type: 19
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: iron rations
+These lightweight rations aren't the best-tasting, but they are the traveler's
+best food for long trips -- they never spoil, and fill the stomach for many
+hours.  There is dried meat of unknown origin here, mixed with nuts.  The whole
+mess is glued together into a bar by means of some waxy, fatty substance.    ~
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 23
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: D 0
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+triggers:
+51984
+51909
+51910
+~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map mielikki map-of-mielikki
+                  Mielikki, the forest town, by Kara-Sithri
+  
+                                                             &3***POINTS OF INTEREST***&0
+          &3#&0              &6&b2&0                                 |&6&b1&0: Temple to Mielikki
+          &9&b|              |&0                                 |&6&b2&0: Altar to Mielikki
+          &9&bSB&0         &B&1&b3&0 - &6&b1&0   &1???&0        &517&0 - &9&bNC&0            |&B&1&b3&0: Cleric Guild
+          &9&b|              |    |              |&0             |&B&1&b4&0: Warrior Guild
+      &521&0  &9&bSB        TC - TC - TC             NC -&0 &518&0       |&B&1&b5&0: Rogue Guild
+      &9&b|   |         |    |    |              |&0             |&B&1&b6&0: Sorcerer Guild
+      &2&b7&0 &9&b- SB -&0 &38&0    &9&bTC -&0 &C&4&b*&0 &9&b-  TC&0   &515&0 - &B&1&b4&0    &9&bNC -&0 &519&0       |&2&b7&0: Forest Inn
+          &9&b|         |    |    |    |         |&0             |&38&0: Post Office
+ &3#&0 &9&b- SQ - WM - WM - TC - TC - TC - EM - EM - CS - EM -&0 &3#&0   |&59&0: Drako's Bronze Shop
+     &9&b|          |   |         |              |&0             |&510&0: Garm's Shield Emporium
+ &59&0 &9&b- SR -&0 &510&0    &513&0  &514&0 &9&b-&0 &B&1&b5&0    &9&bDA - DA - DA   SC&0            |&511&0: Shauna's Hosue of Iron
+     &9&b|          |                  |    |    |&0             |&512&0: Beowyn's Steel
+&511&0 &9&b- SR -&0 &512&0    &B&1&b6&0        &3&b21&0        &516&0  &9&bdump  SC -&0 &520&0       |&513&0: Bigby's House of Magic
+     &9&b|                   |                   |&0             |&514&0: Fine Jewelry
+    &9&bNCP - NC - NC - NC - NC - NC - NC - NC - NCS&0           |&515&0: Santiago's Weapons
+          &9&b|              &0&1#&0&9&b         |&0                       |&516&0: Sloshed Squirrel Tavern
+     &9&bRP - RP - RP   TH - TH - TH   WW&0                      |&517&0: Helena's Bakery
+     &9&b|    |    |    |    |    |    |&0                       |&518&0: Aaron's General Store
+     &9&bRP -&0 &C&4&b*&0  &9&b- RP   TH - TH - TH   WW -&0 &1???&0                |&519&0: Lisa's House of Leather
+     &9&b|    |    |                   |&0                       |&520&0: Freddy's Toy Shop
+     &9&bRP - RP - RP                  WW&0                      |&521&0: Cartographer's Room
+          &9&b|                        |&0                       |&3&b22&0: Bank
+         &9&bGrey&0                      &3#&0                       |&C&4&b*&0: Fountain
+        &9&bCastle&0                                             |&3#&0: City Gates     
+                                                                 |&1???&0: New Adventures! 
+ 
+                                                               &9&b***ROADS***&0
+                                                           |SB: Sleepy Blvd.
+                                                           |SQ: Smelter's Sq.
+                                                           |WM: West main St.
+                                                           |TC: Town Center
+                                                           |EM: East Main St.
+                                                           |CS: Commerce Sq.
+                                                           |NC: N. Commerce Ave.
+                                                           |SC: S. Commerce Ave.
+                                                           |DA: Dark Alley
+                                                           |SR: Smelter's Row
+                                                           |NCP: New Castle Plaza
+                                                           |NC: New castle Rd.
+                                                           |NCS: New Castle Sq.
+                                                           |WW: Windy Way
+                                                           |RP: Royal Plaza
+                                                           |TH: Town Hall~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~

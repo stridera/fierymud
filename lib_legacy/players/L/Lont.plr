@@ -1,0 +1,110 @@
+name: Lont
+password: LojYoQxGYj
+prompt: %n%-&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_<&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 4
+race: 0
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18668
+birthtime: 1395074419
+timeplayed: 11437
+lastlogintime: 1435413313
+host: 075.117.224.036
+height: 75
+weight: 154
+base_height: 75
+base_weight: 154
+base_size: 2
+natural_size: 2
+alignment: 360
+playerflags: gxy
+effectflags: cm 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 2
+thirst: 4
+lastlevel: 0
+hitpoints: 144/144
+mana: 1/0
+move: 108/130
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 60
+wisdom: 89
+dexterity: 88
+constitution: 91
+charisma: 54
+cash: 0 64 685 353
+experience: 281045
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+16 1000
+402 50
+404 74
+407 50
+415 50
+416 50
+417 50
+421 70
+423 50
+424 50
+430 50
+434 50
+438 50
+443 50
+444 50
+451 50
+457 50
+458 50
+459 50
+463 50
+464 50
+465 114
+466 50
+468 50
+0 0
+trophy:
+1 16905 4.000000
+1 16906 5.000000
+1 16909 1.000000
+1 16902 6.000000
+1 16901 2.000000
+1 16900 22.000000
+1 8020 1.000000
+1 8023 1.000000
+1 8010 1.000000
+1 8013 2.000000
+1 8012 1.000000
+1 8011 2.000000
+1 8015 3.000000
+1 8014 2.000000
+1 8001 5.000000
+1 8002 2.000000
+1 36004 2.000000
+1 36003 9.000000
+1 36002 7.000000
+1 36001 6.000000
+1 8016 4.000000
+0 0 0
+aliases:
+df drink fountain
+lib look in bag
+k kill $1
+` get all from all.corpse
+lic look in corpse
+ds drink skin
+gg put all.gem bag
+well tell samun moonwell
+ew enter well
+sp help spell_paladin
+0

@@ -1,0 +1,365 @@
+1
+vnum: 36014
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring tiny-copper-ring thin-circle-copper-coin
+shortdesc: a tiny copper ring
+desc: A thin circle of copper resembles a coin.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: tiny-copper-ring thin-circle-copper-coin
+A thin copper wire bears the symbol of the Kaaz clan.
+~
+~~
+vnum: 36008
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.    
+~
+~~
+vnum: 36008
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.    
+~
+~~
+vnum: 36003
+location: 5
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: shirt grey cloth grey-cloth-shirt pile
+shortdesc: a grey cloth shirt
+desc: A pile of grey cloth lies here.
+type: 9
+weight: 0.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: shirt grey cloth grey-cloth-shirt pile
+A simple, non-descript grey cloth shirt.  The only noticeable part of the shirt
+is the symbol of an ancient clan embroidered on the chest.    
+~
+~~
+vnum: 36005
+location: 7
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pants pair-grey-canvas-pants
+shortdesc: a pair of grey canvas pants
+desc: Some grey canvas pants lie discarded here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: pair-grey-canvas-pants
+These pants offer you basic protection from the elements.  They are lightweight
+and allow you freedom of movement.    
+~
+~~
+vnum: 1027
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandals pair-reed-sandals
+shortdesc: some reed sandals
+desc: A pair of reed sandals lies here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: pair-reed-sandals
+These sandals are formed by neatly woven reeds and leather straps to cover the
+feet.    
+~
+~~
+vnum: 1022
+location: 10
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: sleeves quilted-canvas-sleeves quilted-sleeves pile-cloth-hide glowing
+shortdesc: some quilted canvas sleeves
+desc: A pile of cloth and hide lies here glowing.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+extradesc: sleeves quilted-canvas-sleeves quilted-sleeves pile-cloth-hide glowing
+These sleeves are remarkably light and offer a sense of protection unseen.  
+There is hide padding on the elbows to provide a little extra protection.    
+~
+~~
+vnum: 36004
+location: 12
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-kaaz-cloak simple-canvas-cloak ancient-symbol
+shortdesc: a cloak of the Kaaz
+desc: A simple canvas cloak with an ancient symbol lies here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: cloak cloak-kaaz-cloak simple-canvas-cloak ancient-symbol
+A heavy canvas cloak that can easily envelope you and protect you from the
+elements.  A large symbol of an ancient clan covers the center, marking its
+origin.    
+~
+~~
+vnum: 36004
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-kaaz-cloak simple-canvas-cloak ancient-symbol
+shortdesc: a cloak of the Kaaz
+desc: A simple canvas cloak with an ancient symbol lies here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: cloak cloak-kaaz-cloak simple-canvas-cloak ancient-symbol
+A heavy canvas cloak that can easily envelope you and protect you from the
+elements.  A large symbol of an ancient clan covers the center, marking its
+origin.    
+~
+~~
+vnum: 1027
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandals pair-reed-sandals
+shortdesc: some reed sandals
+desc: A pair of reed sandals lies here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: pair-reed-sandals
+These sandals are formed by neatly woven reeds and leather straps to cover the
+feet.    
+~
+~~
+vnum: 36005
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pants pair-grey-canvas-pants
+shortdesc: a pair of grey canvas pants
+desc: Some grey canvas pants lie discarded here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: pair-grey-canvas-pants
+These pants offer you basic protection from the elements.  They are lightweight
+and allow you freedom of movement.    
+~
+~~
+vnum: 36016
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: shirt bonemail-shirt bone-mail-shirt old-pile-small-bone-rings
+shortdesc: a bonemail shirt
+desc: An old pile of small bone rings lies heaped here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+applies:
+18 1
+~
+extradesc: bonemail-shirt bone-mail-shirt old-pile-small-bone-rings
+Gross!  This armor appears to me made of small circles of bone.  It seems
+rather protective though.    
+~
+~~
+vnum: 36008
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.    
+~
+~~

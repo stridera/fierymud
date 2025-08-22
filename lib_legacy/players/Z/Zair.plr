@@ -1,0 +1,88 @@
+name: Zair
+password: Za/PY9kNiS
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18374
+birthtime: 1351133551
+timeplayed: 35317
+lastlogintime: 1354343596
+host: 050.150.107.092
+height: 79
+weight: 186
+base_height: 79
+base_weight: 186
+base_size: 3
+natural_size: 3
+alignment: -31
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 5
+lastlevel: 0
+hitpoints: 159/139
+mana: 1/0
+move: 170/170
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 59
+wisdom: 74
+dexterity: 88
+constitution: 97
+charisma: 45
+cash: 0 197 1188 618
+experience: 329639
+quit_reason: 1
+saveroom: 3054
+skills:
+402 150
+404 150
+415 50
+416 50
+419 1000
+421 140
+427 1000
+430 72
+438 50
+443 50
+444 50
+463 50
+464 50
+465 102
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3500 0.333333
+1 18006 1.000000
+1 3505 2.000000
+1 61517 1.000000
+1 61510 1.000000
+1 61512 1.000000
+1 61508 2.000000
+1 61503 1.000000
+1 61500 1.000000
+1 17204 5.000000
+1 36306 1.000000
+1 36300 2.500000
+1 36303 4.000000
+1 36305 2.500000
+1 3061 2.000000
+1 41001 1.000000
+1 41003 1.000000
+1 41013 2.000000
+1 8021 1.000000
+1 8010 1.000000
+1 8002 1.000000
+0 0 0

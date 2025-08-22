@@ -1,0 +1,32 @@
+name: testuser~
+password: testpass~
+level: 1
+homeroom: 1000
+id: 2
+birthtime: 0
+timeplayed: 0
+lastlogintime: 0
+host: 127.0.0.1~
+sex: 1
+class: 0
+race: 0
+prompt: %hhp %vmv> ~
+title: the test subject~
+description: A test player for automated tests.~~
+short_descr: testuser~
+long_descr: testuser is standing here.~~
+playerflags: 0
+prefflags: 0
+privflags: 0
+quit_reason: 0
+wimpy: 0
+autoinvis: -1
+invislevel: 0
+pagelength: 22
+logview: 0
+badpasswords: 0
+freezelevel: 0
+wiztitle: ~
+poofin: ~
+poofout: ~
+~~

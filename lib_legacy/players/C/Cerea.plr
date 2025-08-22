@@ -1,0 +1,176 @@
+name: Cerea
+password: CeUp8ye9/0
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 2
+class: 5
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 15694
+birthtime: 1144618323
+timeplayed: 8127056
+lastlogintime: 1736095937
+host: 066.199.058.082
+height: 69
+weight: 147
+base_height: 69
+base_weight: 147
+base_size: 2
+natural_size: 2
+alignment: -995
+playerflags: glxyz
+effectflags: cn 0 0
+prefflags: hnosuxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 24
+lastlevel: 9
+hitpoints: 1249/1051
+mana: 980/980
+move: 138/144
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 75
+wisdom: 77
+dexterity: 82
+constitution: 100
+charisma: 46
+cash: 1028 216 750 754
+experience: 121676898
+quit_reason: 1
+saveroom: 3054
+skills:
+4 1000
+12 1000
+13 1000
+14 1000
+17 1000
+27 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+92 1000
+96 1000
+99 1000
+131 1000
+132 1000
+188 1000
+235 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+417 1000
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 1000
+445 1000
+450 1000
+451 1000
+452 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 50
+468 1000
+473 1000
+0 0
+trophy:
+1 5221 5.000000
+1 5220 3.000000
+1 5222 4.000000
+1 5223 1.000000
+1 59008 1.000000
+1 58406 1.000000
+1 58411 1.000000
+1 53309 1.000000
+1 53308 1.000000
+1 53311 5.000000
+1 53302 2.000000
+1 53303 1.000000
+1 53019 2.000000
+1 53009 1.000000
+1 53020 4.000000
+1 53008 1.000000
+1 53000 2.000000
+1 53024 1.000000
+1 53001 1.000000
+1 53005 5.000000
+1 53004 3.000000
+0 0 0
+tells:
+1731788724 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1731823656 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1731823659 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1731823660 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1731825270 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1731825272 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1731825786 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1731825807 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1736095464 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1736095467 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1731724753 Wehr gossips, 'Nice!'
+1731724757 Thort gossips, 'woop woop!'
+1731724759 Derrgon gossips, 'grats'
+1731823968 Derrgon gossips, 'grats!'
+1731823998 Derrgon gossips, 'sorry Im in and out right now...trying to fix some triggers'
+1731824015 Derrgon gossips, 'hey Soran and Cerea'
+1731824072 Derrgon gossips, 'not much!'
+1731824303 Tuskony gossips, 'Is there a world map or something that will let me find new areas such as the haunted house?'
+1731825557 Tuskony gossips, 'how to use scroll of recall? Can't recite it it just dissolves'
+1731825593 Tuskony gossips, 'Ohhh I see yes I was impatient lol ty'
+$
+effects:
+131 22 -12 24 0 0 0
+131 22 2 19 0 0 0
+131 22 0 0 0 0 16384
+0 0 0 0 0
+aliases:
+tt rescue soran
+ii rescue shikata
+rke rescue keric
+hh t soran hh
+smj t shikata mj
+sto t shikata stone
+bb t kresselack b
+jj wi chaos
+blind c 'blind'
+lc l in corpse
+gc g all.coins from all.corpse
+harm c 'harm'
+aqua rec aqua
+fhkr t soran fhkr
+fhsh t soran fhsh
+fhso t soran fhso
+masi t shikata masi
+stkr t shikata stkr
+rrk rescue kresselack
+ff t soran fh
+oi as illusion
+0

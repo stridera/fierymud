@@ -1,0 +1,130 @@
+name: Valiciousx
+password: VapgGZZEfA
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 2
+class: 20
+race: 32
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20517
+birthtime: 1683604108
+timeplayed: 29148
+lastlogintime: 1683694782
+host: 047.028.166.000
+height: 7
+weight: 9
+base_height: 7
+base_weight: 9
+base_size: 0
+natural_size: 0
+alignment: 985
+playerflags: gxy
+effectflags: u 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 58/58
+mana: 1/0
+move: 116/133
+damroll: 0
+hitroll: 6
+strength: 70
+intelligence: 100
+wisdom: 72
+dexterity: 73
+constitution: 95
+charisma: 55
+cash: 0 209 406 174
+bank: 20 228 0 0
+experience: 343323
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+19 1000
+20 1000
+39 1000
+100 1000
+101 1000
+157 1000
+158 1000
+200 1000
+415 50
+416 50
+423 150
+424 150
+438 50
+443 50
+444 50
+447 96
+451 62
+453 59
+455 50
+459 51
+460 50
+462 51
+464 57
+0 0
+trophy:
+1 17204 5.000000
+1 13333 0.500000
+1 13303 0.500000
+1 5120 1.500000
+1 5103 1.500000
+1 5403 0.500000
+1 5404 1.000000
+1 1803 0.333333
+1 1800 0.333333
+1 1815 1.000000
+1 1814 0.666667
+1 1810 1.333333
+1 1809 0.333333
+1 1805 1.333333
+1 1804 2.333333
+1 1801 2.333333
+1 1806 1.000000
+1 35014 0.333333
+1 35008 0.666667
+1 35003 0.333333
+1 35007 0.333333
+0 0 0
+tells:
+1683688571 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1683688571 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1683688572 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1683688572 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1683688572 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1683688572 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1683688572 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1683689564 @WMersh@W tells you, 'okay fol me and we will do directions at the same time@W'@0
+1683689574 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1683689579 @WMersh@W tells you, 'meet at fountain@W'@0
+$
+gossips:
+1683685091 Paver gossips, 'k let me get on some lower level chars and we can do some exploring give me a few minutes'
+1683685481 Jore gossips, 'ty!'
+1683686567 Chinok gossips, 'gratz Ladri!'
+1683686574 Chinok gossips, 'night all!!'
+1683686574 Ladri gossips, 'tks!'
+1683686576 Jaco gossips, 'gratz indeed!'
+1683686579 Jaco gossips, 'night Chinok'
+1683686589 Ladri gossips, 'night!'
+1683688366 Jaco gossips, 'gratz!'
+1683688374 Jaco gossips, 'how is your str?'
+$
+mem:
+157 0 8
+157 0 8
+5 0 4
+5 1 4
+5 1 4
+5 1 4
+5 1 5
+5 1 5
+5 1 5
+0 0 0

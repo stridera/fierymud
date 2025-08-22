@@ -1,0 +1,75 @@
+name: Iltrude
+password: Ild6jquBSi
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18592
+birthtime: 1382441937
+timeplayed: 8868
+lastlogintime: 1382703212
+host: 112.148.078.252
+height: 70
+weight: 131
+base_height: 70
+base_weight: 131
+base_size: 2
+natural_size: 2
+alignment: 999
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3500
+hunger: 20
+thirst: 16
+lastlevel: 0
+hitpoints: 73/73
+mana: 1/0
+move: 104/112
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 61
+wisdom: 82
+dexterity: 82
+constitution: 83
+charisma: 62
+cash: 0 0 133 122
+experience: 60500
+quit_reason: 7
+saveroom: 3500
+skills:
+402 50
+404 100
+415 50
+416 50
+421 91
+438 50
+443 50
+444 50
+463 50
+464 50
+465 79
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18004 0.500000
+1 18000 1.500000
+1 18002 1.000000
+1 18005 1.500000
+1 18007 2.000000
+1 18001 2.000000
+0 0 0
+aliases:
+gc get all corpse
+ab assist bhelliom
+0

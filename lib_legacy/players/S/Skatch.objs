@@ -1,0 +1,1832 @@
+1
+vnum: 52001
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: afgnopqrstuvwx
+name: ring protection elven elven-ring
+shortdesc: an elven ring
+desc: A ring with golden elven leaves lies here.
+type: 8
+weight: 0.50
+cost: 18090
+timer: 0
+level: 85
+effects: d 0 0
+wear: 3
+applies:
+3 3
+9 -12
+26 28
+~
+extradesc: ring protection elven elven-ring
+The golden elven leaves sparkle without reflecting any light.  The glinting
+appearance comes from the ring itself, and would probably serve to warm the
+finger it is worn on.    
+~
+~~
+vnum: 5201
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 23815
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant crystal ice hexagon hexagonal ice-crystal-pendant
+shortdesc: an ice crystal pendant
+desc: A hexagonal crystal glimmers in the light here.
+type: 11
+weight: 0.70
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 5
+applies:
+18 1
+19 1
+26 2
+~
+extradesc: pendant ice crystal hexagonal hexagon ice-crystal-pendant
+   A solid crystal attached to a silver chain looks like it is made of ice, and
+indeed it is cool to the touch.  It does not melt when worn, an indicator that
+it was probably made with magic.  The crystal itself has six-sided symmetry and
+is a translucent pale blue-white, distorting objects slightly if looked
+through.  The chain is rather long and would probably fit adventurers large and
+small.    
+~
+~~
+vnum: 23815
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant crystal ice hexagon hexagonal ice-crystal-pendant
+shortdesc: an ice crystal pendant
+desc: A hexagonal crystal glimmers in the light here.
+type: 11
+weight: 0.70
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 5
+applies:
+18 1
+19 1
+26 2
+~
+extradesc: pendant ice crystal hexagonal hexagon ice-crystal-pendant
+   A solid crystal attached to a silver chain looks like it is made of ice, and
+indeed it is cool to the touch.  It does not melt when worn, an indicator that
+it was probably made with magic.  The crystal itself has six-sided symmetry and
+is a translucent pale blue-white, distorting objects slightly if looked
+through.  The chain is rather long and would probably fit adventurers large and
+small.    
+~
+~~
+vnum: 4001
+location: 5
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: gjmprtuvz
+name: breastplate breastplate-shadows warping-shadow
+shortdesc: a breastplate of &9&bshadows&0
+desc: A warping shadow wavers upon the floor.
+adesc:
+At glance this appears to be liquid darkness.  Chaos within shape, as it's
+shape is always redefined.  Whatever it touches it molds perfectly to, crushing
+the light beneath it's grasp.    
+~
+type: 9
+weight: 6.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 9
+applies:
+5 -1
+9 5
+2 2
+~
+extradesc: breastplate plate shadows shadow
+At glance this appears to be liquid darkness.  Chaos within shape, as it's
+shape is always redefined.  Whatever it touches it molds perfectly to, crushing
+the light beneath it's grasp.    
+~
+~~
+vnum: 55531
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstuvwxz
+name: sallow face skullcap decay barbarian
+shortdesc: &5Skullcap of Decay&0
+desc: A sallow face stares up at you from the ground.
+type: 9
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+applies:
+2 3
+1 3
+~
+extradesc: sallow face skullcap decay barbarian
+This hideous face is like a mask, only the eyes and mouth have been sewn shut
+and the edges of this face have been bunched up, like it is meant to be worn
+without strings.  Much larger than a normal human face, and much more rugged,
+this face appears to have been peeled off whole from someone, then prepared to
+be worn as some kind of hat.  The face feels moist, as if it was freshly
+harvested.
+~
+~~
+vnum: 2215
+location: 7
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: leggings black shimmering shimmering-black-leggings
+shortdesc: a pair of shimmering black leggings
+desc: A pile of black plates lay discarded here.
+type: 9
+weight: 3.70
+cost: 100
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: leggings black shimmering shimmering-black-leggings
+Constructed from thick metallic plates, they shimmer from black to
+a dark charcoal gray.  The plates themselves are very light and oddly
+warm to the touch.  If you didn't know better, you would almost say
+they glow with an blackened aura.
+~
+~~
+vnum: 23799
+location: 8
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gqAD
+name: black leather drow intricate breathtaking boots
+shortdesc: black leather drow boots
+desc: Breathtakingly intricate black leather boots rest here.
+type: 11
+weight: 1.75
+cost: 0
+timer: 0
+level: 65
+effects: y 0 0
+wear: 65
+applies:
+18 2
+19 2
+14 40
+17 2
+~
+extradesc: black leather drow boots
+This grand pair of customized drow boots appears to have just been completed
+after many hours and days of labor.  The flawless leather straps glisten with
+every bit of light that crosses its surface.  The extra cushioning and soft
+padding along the sole ensure that these boots are not only comfortable, but
+very protective.    
+~
+~~
+vnum: 55537
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstuvwxz
+name: svelte human hands gloves decay
+shortdesc: &5Gloves of Decay&0
+desc: Svelte human hands lay here on the floor, chopped off at the wrists.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+1 2
+4 2
+~
+extradesc: svelte human hands gloves decay
+These hands are little more than skin now, having been cleaned and tanned to
+make gloves out of.  Necromantic magic makes it clear that these hands, while
+seeming fresh, were made to be used on a regular basis.  How horrible that
+someone would take another's hands, then rip them apart only to remake them as
+handwear!
+~
+~~
+vnum: 58433
+location: 10
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: bracers warder warders-bracers large pair
+shortdesc: the Warder's Bracers
+desc: A large pair of bracers lies here.
+type: 9
+weight: 1.50
+cost: 3500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 257
+applies:
+19 2
+~
+extradesc: bracers warder warders-bracers large pair
+You can tell that only royalty could have afforded to make these.
+Made of some dark-green metal alloy, these bracers, made to fit
+and buckle around a very large arm, are worked in a cunning
+scrolling design. They're obviously very old, as well; the metal
+feels worn in places, as though decades of contact with the same
+arms have altered their shape slightly.
+~
+~~
+vnum: 51009
+location: 11
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: shield water amorphous-shield
+shortdesc: the Amorphous Shield
+desc: A ripple of water shaped into a shield lies here waiting for an owner.
+type: 9
+weight: 7.00
+cost: 420
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 513
+applies:
+2 -1
+14 25
+~
+extradesc: amorphous shield
+As you look closer you notice that the shield isn't entirely clear; there is
+a light liquid filling the inside of the shield that is constantly in motion.
+As hits are taken, the filling liquid moves and reacts, giving great protection
+from attacks.
+~
+~~
+vnum: 58417
+location: 12
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~
+vnum: 58431
+location: 13
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: flowers plaited plaited-flowers belt
+shortdesc: some plaited flowers
+desc: Some plaited flowers form a sort of belt.
+type: 9
+weight: 0.75
+cost: 1000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+applies:
+6 3
+~
+extradesc: flowers belt plaited
+You see a loose belt made of braided wildflowers. The daisies and
+honeysuckles were connected by threading each flower through its
+neighbor somehow. They must be enchanted, for you cannot separate
+any of the flowers from the belt.
+~
+~~
+vnum: 55536
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstuvwxz
+name: small plump piece flesh crescent bracelet decay halfling
+shortdesc: &5Bracelet of Decay&0
+desc: A small plump piece of flesh rolls around here, molded into a crescent.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+applies:
+2 2
+13 10
+~
+extradesc: small plump piece flesh crescent bracelet decay halfling
+In addition to the powerful death magic radiating from this weird fleshy
+bracelet, some small inherent illusory power still lingers in this horrid
+thing.  The bracelet is still in the process of decaying, the process being
+prolonged indefinitely by the necromantic powers placed in it.
+~
+~~
+vnum: 16033
+location: 15
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracers charred pair odd black metal bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 16
+effects: 0 0 0
+wear: 4097
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred pair odd black metal bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    
+~
+~~
+vnum: 904
+location: 16
+values:
+3
+5
+6
+11
+0
+0
+0
+~
+flags: gjlmnprstuvz
+name: dagger dagger-shadows fragment-darkness
+shortdesc: a dagger of &9&bshadows&0
+desc: A fragment of darkness lies ill placed here.
+type: 5
+weight: 0.30
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+applies:
+2 2
+9 8
+5 1
+19 2
+~
+extradesc: dagger shadows fragment
+Darker than any night sky, this blade appears to be crafted from a solid piece
+of darkness.  Not a gleam nor sparkle, the blade seems to swallow light rather
+than repeal it.    
+~
+~~
+vnum: 502
+location: 21
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: gaze night
+shortdesc: &9&bthe Night Gaze&0
+desc: &9&bA dark path of matierial is floating just above the ground here.&0
+type: 9
+weight: 0.50
+cost: 4000
+timer: 0
+level: 30
+effects: k 0 0
+wear: 65537
+applies:
+19 2
+18 1
+~
+~~
+vnum: 8506
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring jet black ear ring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 9
+weight: 0.02
+cost: 250
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 262145
+applies:
+18 1
+19 1
+~
+extradesc: earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.
+~
+~~
+vnum: 8506
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring jet black ear ring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 9
+weight: 0.02
+cost: 250
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 262145
+applies:
+18 1
+19 1
+~
+extradesc: earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some if its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 49025
+location: 26
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tail griffin griffin-tail
+shortdesc: a griffin tail
+desc: The golden-brown tail of a griffin lies here seperated from its owner.
+type: 9
+weight: 1.25
+cost: 500
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1048577
+applies:
+3 1
+13 5
+~
+extradesc: tail
+It's long and rather strong, too. Maybe you could use it as a belt...~
+~~
+vnum: 23821
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tiara gleaming sapphire sapphire-tiara
+shortdesc: a sapphire tiara
+desc: A gleaming tiara lies here.
+type: 11
+weight: 0.80
+cost: 2000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 17
+applies:
+17 3
+24 -5
+23 -5
+13 20
+~
+extradesc: tiara gleaming sapphire sapphire-tiara
+Very cold to the touch, this circlet is made of silver worked into angular
+designs and inset with a large, teardrop-shaped sapphire at the crown.  The
+silver gleams brightly, showing no sign of tarnish, and the sapphire is a true
+deep blue with an inner radiance all its own.    
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 48104
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: head shrivelled severed-head
+shortdesc: a shrivelled, severed head
+desc: The shrivelled head of a jungle savage lies here.
+type: 12
+weight: 8.00
+cost: 50
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1064961
+applies:
+3 1
+17 5
+~
+extradesc: shrivelled head severed
+This grotesque trophy makes you want to puke. Why would you ever want to
+look at such a thing??
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55458
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: mnopqrstuvwxz
+name: putrid rotten slippers
+shortdesc: &2&bRotten Slippers&0
+desc: Molding on the ground is a pair of putrid slippers.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+applies:
+5 2
+13 25
+~
+extradesc: putrid rotten slippers
+Disgusting!  Made out of waste and refuse, these slippers are enchanted to
+eternally fester and rot.  As disgusting as something like this is, those that
+practice necromancy find that their powers are significantly improved when
+wearing clothing like this.
+~
+~~
+vnum: 52014
+location: 127
+values:
+0
+4
+3
+11
+0
+0
+0
+~
+flags: abhjmnrtu
+name: claw vampire vampire-claw
+shortdesc: a vampire claw
+desc: A claw with green goo dripping from its tips is here.
+type: 5
+weight: 2.40
+cost: 1200
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 8193
+applies:
+5 -3
+19 2
+~
+extradesc: claw vampire vampire-claw
+There seems to be an unending supply of greenish goo emanating from the tip of
+this claw.  Some of it has dried on the red hilt, leaving an oddly mixed color.
+~
+~~
+vnum: 52014
+location: 127
+values:
+0
+4
+3
+11
+0
+0
+0
+~
+flags: abhjmnrtu
+name: claw vampire vampire-claw
+shortdesc: a vampire claw
+desc: A claw with green goo dripping from its tips is here.
+type: 5
+weight: 2.40
+cost: 1200
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 8193
+applies:
+5 -3
+19 2
+~
+extradesc: claw vampire vampire-claw
+There seems to be an unending supply of greenish goo emanating from the tip of
+this claw.  Some of it has dried on the red hilt, leaving an oddly mixed color.
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 55700
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem shard shard-aquamarine
+shortdesc: an aquamarine shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 8000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55666
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ruby gem plain plain-ruby
+shortdesc: a ruby
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 15000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55628
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem cursed cursed-tourmaline
+shortdesc: a cursed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55535
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstuvwxz
+name: odd furry little slippers decay halfling
+shortdesc: &5Slippers of Decay&0
+desc: Odd furry little slippers have been tucked away out of sight here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+applies:
+2 3
+6 3
+~
+extradesc: odd furry little slippers decay halflin
+These are not so much slippers as they are actual hollowed out feet, chopped
+off at the ankle!  The fur on them was obviously grown naturally before the
+foot was severed, and has been expertly, if not magically, preserved.  
+Stitched together like shoes so as to allow anyone to wear them, the
+resemblance to halfling feet is unmistakable regardless.
+~
+~~
+vnum: 55532
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstuvwxz
+name: decomposing leather sleeves decay dwarf
+shortdesc: &5Sleeves of Decay&0
+desc: Decomposing leather sleeves have been tossed into a pile of trash.
+type: 9
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+applies:
+3 3
+5 2
+~
+extradesc: decomposing leather sleeves decay dwarf
+Upon closer inspection, these sleeves appear not to be normal leather, but much
+thinner and lighter than any other animal skin.  Also, they appear to have
+elbow joints already in them, and are turning putrid almost like they were
+taken straight from someone's arms and discarded.  Shorter than a human's, but
+larger around as well like a dwarf's, they look like they
+~
+~~
+vnum: 6015
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: jrtv
+name: pendant skull silver necklace
+shortdesc: a silver skull pendant
+desc: A silver necklace with a skull pendant rests here.
+type: 8
+weight: 0.23
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+24 -6
+~
+~~
+vnum: 1003
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: robe hooded-ebony-robe pile-ebony-cloth
+shortdesc: &0&9&ba hooded ebony robe&0
+desc: &0&9&bA pile of ebony cloth lies here.&0
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: hooded-ebony-robe pile-ebony-cloth
+&0&9&bA deep hood has been attatched to this black robe, increasing the
+wearer's ability to stay hidden within shadows. Its design is similiar
+to the robes worn by cultists and necromancers.&0
+~
+~~
+vnum: 3298
+location: 127
+values:
+0
+0
+-1
+0
+0
+0
+0
+~
+flags: abegiqAD
+name: rose single-long-stemmed-black-rose
+shortdesc: a &9&bblack&0 rose
+desc: A single long-stemmed &8&9black&0 rose lies here in memory of Pergus.  Farewell friend.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 540673
+triggers:
+3298
+~
+~~
+vnum: 1030
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: quill white-feather-quill
+shortdesc: a white feather quill
+desc: A white feather quill lies here.
+type: 21
+weight: 0.05
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: white-feather-quill
+&0A slender quill made from a white feather.  Its point is used to dunk in ink
+and write with.    
+~
+~~
+vnum: 5102
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring stone rock stone-ring rock-ring
+shortdesc: a stone ring
+desc: A small circular rock catches your eye.
+type: 12
+weight: 0.04
+cost: 120
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 3
+applies:
+1 -2
+2 -2
+~
+extradesc: ring stone rock stone-ring rock-ring
+It's a circular piece of stone that could probably fit around a small finger.
+It has a strange, unpolished part, though - maybe it was broken off of
+something?
+~
+~~
+vnum: 48018
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bg
+name: lich-ring eternity lich ring
+shortdesc: the Lich's ring
+desc: A ring engraved with the symbol of eternity lies here.
+type: 8
+weight: 0.02
+cost: 1100
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 3
+applies:
+1 2
+6 3
+~
+extradesc: ring Lich Lich-ring eternity
+This ring has numerous symbols carved onto its silvery surface. The most 
+prominent symbol is that of a snake eating its own tail.
+~
+~~
+vnum: 12520
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: E
+name: spellbook silver leather book
+shortdesc: a silver-trimmed leather spellbook
+desc: A silver-trimmed leather spellbook lies open, face down.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+applies:
+3 4
+1 -2
+~
+extradesc: spellbook silver leather book
+The leather is pale grey, very supple, and thin.  The silver trim is painted on
+in long, quick strokes.  No symbols or drawings adorn the spine or cover; only
+faint wrinkles criscross the leather.
+~
+spells:
+20 1
+32 1
+100 1
+5 1
+8 1
+19 1
+87 1
+101 1
+37 1
+39 1
+45 1
+106 1
+187 1
+30 1
+25 1
+38 1
+50 1
+76 1
+186 1
+21 1
+29 1
+188 1
+67 1
+68 1
+75 1
+62 1
+58 1
+52 1
+189 1
+213 1
+211 1
+212 1
+31 1
+~
+~~
+vnum: 3115
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3115
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potatoes delicious-plate-spiced-potatoes food
+shortdesc: a plate of spiced potatoes
+desc: A delicious-looking plate of spiced potatoes steams here.
+type: 19
+weight: 1.10
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: delicious-plate-spiced-potatoes
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 23887
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 10037
+location: 127
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin large-skin
+shortdesc: a large skin
+desc: A large skin leaks discolored liquid here.
+type: 17
+weight: 1.00
+cost: 70
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: large-skin
+It appears to be sewn from the hide of a large animal--a caribou from
+the scent of it.
+~
+~~
+vnum: 498
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: brooch fiery a
+shortdesc: &3a&0 &1&bfiery&0 &3brooch&0
+desc: &1&bA small metal brooch surrounded by fire is floating just above the ground here.&0
+type: 11
+weight: 0.21
+cost: 1700
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 524289
+applies:
+17 3
+19 2
+~
+extradesc: brooch fiery
+This brooch is made of a mysterious white metal.  The very strange thing about
+it is that it is on fire but it is not consumed or melted.  The dark monks must
+have taken it from a powerful pyromancer at one time and have stored it ever
+since.    
+~
+~~
+vnum: 52009
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: agmnpryz
+name: cloak elven elven-cloak
+shortdesc: an elven cloak
+desc: A semi-transparent cloak has been forsaken here.
+type: 9
+weight: 1.90
+cost: 5000
+timer: 0
+level: 81
+effects: p 0 0
+wear: 1025
+extradesc: cloak elven elven-cloak
+This cloak is long, likely to drape to the ground on nearly anyone.  It is a
+deep shade of green, with some light frills of purple on the edges.    
+~
+~~
+vnum: 4007
+location: 127
+values:
+2
+3
+7
+3
+0
+0
+0
+~
+flags: gjlmnpqrtuvz
+name: blade blade-chaos dark-sword
+shortdesc: a blade of &1Chaos&0
+desc: A dark sword lies here encased in black flames.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+applies:
+9 10
+2 1
+19 2
+5 -2
+~
+extradesc: dark sword blade chaos flames
+Created from only the purest of dark magick, the blade is light and seemingly
+quite strong.  Blackened flames erupt from all around the blade, surrounding it
+in serenity and chaos.    
+~
+~~
+vnum: 1004
+location: 127
+values:
+1
+240
+133
+0
+0
+0
+0
+~
+flags: 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern. It holds about fifteen hours worth of fuel.
+~
+~~

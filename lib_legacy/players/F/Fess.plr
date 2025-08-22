@@ -1,0 +1,98 @@
+name: Fess
+password: FeNVFogMQr
+currenttitle: (flike's swimmer)
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 11
+level: 22
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18146
+birthtime: 1331260979
+timeplayed: 164468
+lastlogintime: 1622694469
+host: 069.162.244.194
+height: 39
+weight: 127
+base_height: 39
+base_weight: 127
+base_size: 1
+natural_size: 1
+alignment: 803
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 279/279
+mana: 48/48
+move: 94/116
+damroll: 3
+hitroll: 6
+strength: 96
+intelligence: 63
+wisdom: 67
+dexterity: 97
+constitution: 91
+charisma: 52
+cash: 6 348 1275 1186
+experience: 2374254
+pagelength: 50
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 270
+407 121
+415 50
+416 50
+421 270
+430 60
+431 50
+438 54
+443 59
+444 164
+463 89
+464 62
+465 50
+466 50
+467 50
+468 84
+0 0
+trophy:
+1 8010 1.000000
+0 0 0
+tells:
+$
+gossips:
+1622692034 Wittawat gossips, 'do u 've other char?'
+1622692056 Wittawat gossips, '8laugh*'
+1622692061 Wittawat gossips, 'haha'
+1622692074 Wittawat gossips, 'ok tithink it is no need to advise u'
+1622692098 Wittawat gossips, 'i just saw, Flike swimmer'
+1622692131 Wittawat gossips, 'anyway i'll logout for a while'
+1622692135 Wittawat gossips, 'see ya later'
+1622692147 Wittawat gossips, '*shake*'
+1622692159 Wittawat gossips, 'ant idea on its?'
+1622692198 Wittawat gossips, 'never tounch that event'
+$
+aliases:
+4 ass ivcat
+3 rescue freo
+2 rescue frav
+1 ass frav
+` kill skull
+ba bash $*
+id recite identify $*
+all get all all.corpse
+0 drink water
+df drink fountain
+0

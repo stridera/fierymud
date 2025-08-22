@@ -1,0 +1,386 @@
+name: Faerylyn
+password: FaS2NYPP46
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 21
+race: 9
+level: 82
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19746
+birthtime: 1604816253
+timeplayed: 807070
+lastlogintime: 1613936843
+host: 069.181.183.053
+height: 75
+weight: 122
+base_height: 75
+base_weight: 122
+base_size: 2
+natural_size: 2
+alignment: 985
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hjnoxCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 4
+lastlevel: 0
+hitpoints: 426/427
+mana: 672/672
+move: 104/110
+damroll: 3
+hitroll: 3
+strength: 64
+intelligence: 99
+wisdom: 83
+dexterity: 69
+constitution: 82
+charisma: 66
+cash: 337 2127 6373 1986
+experience: 62204193
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+8 1000
+19 1000
+20 1000
+29 1000
+30 1000
+31 1000
+37 1000
+38 1000
+39 1000
+51 1000
+52 1000
+57 1000
+62 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+106 1000
+107 1000
+108 1000
+111 1000
+112 1000
+113 1000
+171 1000
+172 1000
+173 1000
+174 1000
+175 1000
+177 1000
+180 1000
+182 1000
+183 1000
+228 1000
+415 54
+416 50
+421 852
+423 868
+424 870
+438 114
+443 830
+444 800
+447 584
+451 823
+452 840
+454 866
+456 860
+458 863
+459 854
+460 846
+462 841
+464 843
+0 0
+trophy:
+1 49021 0.500000
+1 49035 1.000000
+1 49036 1.000000
+1 49034 1.000000
+1 49040 0.500000
+1 49006 6.000000
+1 49022 0.500000
+1 49004 0.500000
+1 49031 0.500000
+1 49001 0.500000
+1 49033 1.000000
+1 49030 2.500000
+1 49018 0.500000
+1 49009 1.500000
+1 49013 1.500000
+1 49025 4.500000
+1 53305 1.000000
+1 53303 2.000000
+1 53315 10.500000
+1 53314 3.500000
+1 53312 4.000000
+0 0 0
+tells:
+1613802493 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1613802509 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1613802518 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1613803413 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1613840077 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1613840078 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1613840078 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1613840078 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1613845995 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1613848273 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1613842779 Chinok gossips, 'GRATZ!!!'
+1613842783 Gruul gossips, 'ROAR!'
+1613845022 Chinok gossips, 'humm have to say, not 100% sure'
+1613845190 Gruul gossips, 'it's just south of here'
+1613931062 Gruul gossips, 'greetings'
+1613931093 Vawk gossips, 'hi'
+1613931763 Vawk gossips, 'any equipment recommends i need ac and dr'
+1613936393 Vawk gossips, 'nice'
+1613936398 Strider gossips, 'grats'
+1613936782 Gruul gossips, 'later all'
+1613936789 Vawk gossips, 'laters'
+1613936797 Strider gossips, 'Peace'
+$
+mem:
+100 1 2
+100 1 2
+100 1 2
+100 1 2
+100 1 2
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+113 1 1
+177 0 1
+177 0 1
+177 0 1
+111 1 1
+111 1 1
+111 1 1
+19 1 1
+19 1 2
+39 1 2
+37 1 1
+37 1 1
+76 1 2
+175 0 2
+175 1 2
+175 1 1
+175 1 1
+99 1 2
+99 1 2
+99 1 2
+51 1 2
+171 1 2
+171 1 2
+177 0 1
+108 1 1
+108 1 1
+31 1 1
+8 1 2
+8 1 2
+8 1 2
+8 1 2
+29 1 1
+29 1 1
+76 1 2
+76 1 2
+62 1 2
+180 1 5
+180 1 5
+180 1 5
+52 0 1
+52 0 1
+52 0 2
+52 1 1
+77 1 1
+77 1 1
+111 1 1
+175 1 1
+175 1 2
+180 1 5
+31 1 1
+180 1 3
+180 1 2
+177 0 2
+29 1 2
+19 1 2
+0 0 0
+aliases:
+cibg cast iceball griffin
+gbs get blue sack
+cng cast 'negate cold'
+cibd cast iceball drow
+fire remove wings; wear fire
+wings remove fire; wear wings
+cloak remove wings; wear cloak
+scarab remove carpet; remove rainbow; hold scarab
+carpet remove rainbow; remove scarab; hold carpet
+rainbow remove scarab; remove carpet; hold rainbow
+dagger remove wand; remove book; remove feather; wield dagger
+ash remove dagger; hold wand
+quest say north of Ickle 3 areas Tri-aspx
+cfs cast freeze samurai
+cla cast lightning ash
+volcano say buntoi nakkarri karisto
+fly4 sit; forget fly; mem chain lightning; med
+fly3 sit;mem;med
+cso cast stone orff
+cho cast haste orff
+cdmc cast 'dispel magic' chimera
+cis cast 'ice storm'
+cdmt cast 'dispel magic' tea
+csf cast stone
+csg cast stone gruul
+smm sit;mem;med
+hb hold book; hold feather
+ccs cast coldshield
+css cast shock spider
+fa first aid
+coc cast cone
+ccoc cast cone
+cmph cast 'minor paralysis' honor
+clbg cast lightning gatekeeper
+cocg cast cone gatekeeper
+coch cast cone honor
+clbm cast lightning man
+cocm cast cone man
+gotime n;unlock gate;open gate;n
+udp use pipe
+crew cast 'ray of enfeeblement' wyvern
+clbw cast lightning wyvern
+ccw cast chill wyvern
+cre cast 'ray of enfeeblement'
+rr recite recall
+fwf fill water fountain
+usd use 'sorcerer's wand' devil
+emw enter moonwell
+ag assist gruul
+em enter moonwell
+ky kill yagnoloth
+kv kill vaporighu
+cs cast shock
+cdi cast 'detect invisibility'
+fg follow gruul 
+ca cast 'ice armor'
+cd cast 'ice darts'
+hq hold feather
+rq remove feather
+cryomancer say the shrub suffers no longer
+cmcl cast 'minor creation' lantern
+df drink fountain
+cmcr cast 'minor creation' rations
+rd remove dagger
+rb remove book
+hd wield dagger
+gac get all corpse
+gac2 get all 2.corpse
+gac3 get all 3.corpse
+gac4 get all 4.corpse
+ex exam corpse
+ex2 exam 2.corpse
+ex3 exam 3.corpse
+ex4 exam 4.corpse
+cc cast chill 
+ud unlock door
+od open door
+dw drink water
+cid cast 'ice darts'
+gib get identify bag
+gds get donut sack
+ed eat donut
+hw hold wand
+use wand devil
+uwd use wand devil
+gss get sandwich sack
+es eat sandwich
+ks kill scorpion
+cww cast waterwalk
+cdig cast 'detect invisibility' gruul
+grs get ration sack
+er eat ration
+grb get recall bag
+ccb cast chill beast
+csb cast shock beast
+croe cast 'ray of enfeeblement'
+cl cast levitate
+sc sell crushed
+sd sell dust
+udpg remove shield; hold pipe; use 'druid's pipe' gruul
+kc kill crocodile
+rs remove staff;remove shield
+cmp cast 'minor paralysis'
+ci cast invis
+cig cast invis gruul
+ws wear shield; wield staff
+cmpg cast 'minor paralysis' gatekeeper
+clbs cast lightning samurai
+cocs cast cone samurai
+cssg cast stone gruul
+ad assist dena
+cdd cast 'dispel magic' demon
+cssi cast stone iteralde
+cssb cast stone balefore
+cls cast lightning slug
+clb cast lightning
+af assist felessan
+ai assist iteralde
+chg cast haste gruul
+cia cast 'ice armor'
+de disengage
+battlemode cast haste faerylyn; cast haste gruul; cast stone faerylyn; cast stone gruul
+csi cast shock initiate
+lookall look north; look east; look south; look west
+ab assist balefore
+gsb get sandwich bag
+ri recite identify &*
+ccg cast cone griffin
+invis cast invis
+clg cast levitate gruul
+ccd cast cone dagon
+cld cast lightning dagon
+agol assist golanth
+qp quaff potion
+cmcw cast 'minor creation' waterskin
+cct cast cone tiny
+fly1 forget chain lightning;sit;mem fly;med
+fly2 stand;cast fly;sit;med
+shell remove eye; remove shield; remove scarab; remove carpet; hold shell
+tundra remove cloak; wear tundra
+ccl cast chain
+flyboys cast fly; cast fly gruul
+eye remove pearl; remove scarab; remove carpet; hold eye
+pearl remove eye; remove carpet; remove scarab; hold pearl
+earle say Lirne sends me
+elementals say mist,
+cmi cast mass invis
+cfg cast fly gruul
+unseer remove skullcap; wear helmet; remove eye; hold rainbow
+battlemage remove skullcap; wear helmet; remove eye; remove rainbow; remove book; remove feather; wield dagger; hold scarab
+seer remove helmet; wear skullcap; remove rainbow; remove scarab; remove book; remove feather; wield dagger; hold eye
+cmgg cast 'major globe' gruul
+cmg cast 'major globe'
+cib cast iceball
+cnc cast 'negate cold'
+bg bandage gruul
+cddg cast 'dimension door' gruul
+cibb cast iceball blue
+cibm cast iceball mist
+cf cast freeze
+0

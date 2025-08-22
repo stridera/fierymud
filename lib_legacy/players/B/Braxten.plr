@@ -1,0 +1,49 @@
+name: Braxten
+password: BrQA9Z0EM3
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 0
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19299
+birthtime: 1513556154
+timeplayed: 0
+lastlogintime: 1513556154
+host: 073.081.145.053
+height: 103
+weight: 642
+base_height: 103
+base_weight: 642
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 0/0
+mana: 100/100
+move: 154/154
+damroll: 0
+hitroll: 0
+strength: 92
+intelligence: 72
+wisdom: 72
+dexterity: 82
+constitution: 88
+charisma: 66
+experience: 0
+quit_reason: 0
+saveroom: 0
+skills:
+419 1000
+427 1000
+0 0

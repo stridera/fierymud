@@ -1,0 +1,176 @@
+69 1 2
+elf 1
+shake 1
+61 255 2
+target1 0
+hunt 0
+59 255 2
+target1 0
+hunt 0
+36 255 4
+58415 1
+55003 1
+18505 1
+16209 1
+8 255 0
+35 255 42
+water6 1
+item6 1
+water2 1
+water4 1
+145 1
+6912 1
+12552 1
+12516 1
+12515 1
+2001 1
+8003 1
+5109 1
+61502 1
+61503 1
+61501 1
+61551 1
+8815 1
+113 1
+5205 1
+41011 1
+8816 1
+1606 1
+1605 1
+1008 1
+19 1
+6909 1
+6910 1
+6913 1
+6908 1
+18501 1
+18509 1
+hunger 205
+23755 1
+item4 1
+water3 1
+item3 1
+water7 1
+item7 1
+water8 1
+water1 1
+item2 1
+water5 1
+37 255 10
+58701 1
+37014 1
+55804 1
+53319 1
+58405 1
+3296 1
+region3 1
+region5 1
+region2 1
+region1 1
+19 255 1
+choice 2
+14 255 8
+final_item 53459
+ward_count 5
+ward_53453 1
+ward_53456 1
+ward_53454 1
+ward_53455 1
+ward_53457 1
+room 16063
+34 255 2
+blocks 20
+drop 20
+56 255 4
+target3 0
+target2 0
+target1 0
+bounty 0
+55 1 1
+path3 1
+10 255 0
+47 1 1
+gem_vnum 0
+51 255 7
+task5 0
+task4 1
+task3 1
+task2 1
+task1 1
+attack_counter 450
+greet 1
+7 3 42
+55745_gems_acquired 3
+55734_gems_acquired 3
+55723_gems_acquired 3
+55712_gems_acquired 3
+55701_gems_acquired 3
+55690_gems_acquired 3
+55679_gems_acquired 3
+55375_armor_acquired 1
+55359_armor_acquired 1
+55363_armor_acquired 1
+55379_armor_acquired 1
+55383_armor_acquired 1
+55371_armor_acquired 1
+55367_armor_acquired 1
+55335_armor_acquired 1
+55338_armor_acquired 1
+55343_armor_acquired 1
+55351_armor_acquired 1
+55347_armor_acquired 1
+55355_armor_acquired 1
+55331_armor_acquired 1
+55602_gems_acquired 3
+55613_gems_acquired 3
+55624_gems_acquired 3
+55635_gems_acquired 3
+55646_gems_acquired 3
+55657_gems_acquired 3
+55668_gems_acquired 3
+55575_gems_acquired 3
+55587_gems_acquired 3
+55591_gems_acquired 3
+55579_gems_acquired 3
+55571_gems_acquired 3
+55567_gems_acquired 3
+55583_gems_acquired 3
+55322_armor_acquired 1
+55306_armor_acquired 1
+55318_armor_acquired 1
+55302_armor_acquired 1
+55326_armor_acquired 1
+55310_armor_acquired 1
+55314_armor_acquired 1
+17 1 31
+5545_reward 1
+5535_reward 1
+5527_reward 1
+5531_reward 1
+5544_reward 1
+5529_reward 1
+5553_reward 1
+5525_reward 1
+5542_reward 1
+5523_reward 1
+5543_reward 2
+5515_reward 2
+5541_reward 2
+5539_reward 2
+5519_reward 2
+5521_reward 2
+5516_trophies 2
+5557_reward 2
+5512_trophies 14
+5540_reward 3
+5517_reward 2
+5533_reward 1
+5555_reward 3
+5514_trophies 12
+5508_trophies 9
+5510_trophies 15
+5506_trophies 11
+5504_trophies 19
+bl_ally 1
+eg_faction -1
+bl_faction 169

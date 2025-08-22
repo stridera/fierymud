@@ -1,0 +1,60 @@
+name: Ralendyr
+password: RalFAmpdZ3
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18816
+birthtime: 1425067041
+timeplayed: 506
+lastlogintime: 1425067556
+host: 083.082.043.057
+height: 67
+weight: 151
+base_height: 67
+base_weight: 151
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 10
+lastlevel: 0
+hitpoints: 28/28
+mana: 0/0
+move: 106/106
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 72
+wisdom: 67
+dexterity: 100
+constitution: 79
+charisma: 57
+experience: 952
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0
+trophy:
+1 18007 1.000000
+0 0 0

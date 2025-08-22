@@ -1,0 +1,70 @@
+name: Gipper
+password: Gi70YR1goO
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18216
+birthtime: 1334250753
+timeplayed: 893
+lastlogintime: 1334251652
+host: 075.164.203.044
+height: 76
+weight: 149
+base_height: 76
+base_weight: 149
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 12
+thirst: 22
+lastlevel: 0
+hitpoints: 34/34
+mana: 0/0
+move: 100/108
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 76
+wisdom: 63
+dexterity: 94
+constitution: 76
+charisma: 58
+experience: 5500
+quit_reason: 1
+saveroom: 3054
+skills:
+403 50
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+464 53
+465 50
+467 50
+0 0
+trophy:
+1 8020 1.000000
+1 8001 1.000000
+1 8011 1.000000
+1 8010 1.000000
+1 8014 1.000000
+1 8015 1.000000
+0 0 0
+aliases:
+tc take all corpse
+ah assist huggles
+0

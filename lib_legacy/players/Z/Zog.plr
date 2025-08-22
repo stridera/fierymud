@@ -1,0 +1,82 @@
+name: Zog
+password: ZodymPwFNq
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 9
+race: 6
+level: 99
+home: 61006
+lifeforce: 0
+composition: 0
+id: 15226
+birthtime: 1130538543
+timeplayed: 251059
+lastlogintime: 1336927265
+host: 050.206.102.120
+height: 42
+weight: 188
+base_height: 42
+base_weight: 188
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glnyz
+effectflags: k w 0
+prefflags: hnozD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+badpasswords: 1
+lastlevel: 9
+hitpoints: 1067/869
+mana: 100/100
+move: 168/168
+damroll: 4
+hitroll: 5
+strength: 92
+intelligence: 69
+wisdom: 64
+dexterity: 93
+constitution: 100
+charisma: 45
+cash: 367 2891 14498 15996
+bank: 0 1456 7336 7618
+experience: 105805999
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+404 1000
+405 1000
+408 1000
+410 1000
+411 1000
+412 1000
+415 1000
+416 1000
+418 1000
+420 1000
+421 1000
+438 1000
+440 1000
+443 1000
+444 1000
+464 1000
+465 1000
+477 1000
+0 0
+trophy:
+1 48409 0.681818
+1 48414 0.424242
+1 48400 1.272727
+1 48408 0.250000
+1 48402 0.439394
+1 48407 0.690909
+0 0 0
+tells:
+$
+gossips:
+$

@@ -1,0 +1,77 @@
+name: Kekoap
+password: Ke4VGLbdbY
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20426
+birthtime: 1674273758
+timeplayed: 840
+lastlogintime: 1674353281
+host: 072.130.075.127
+height: 87
+weight: 251
+base_height: 87
+base_weight: 251
+base_size: 3
+natural_size: 3
+alignment: 8
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 27/26
+mana: 1/0
+move: 146/146
+damroll: 5
+hitroll: 4
+strength: 94
+intelligence: 70
+wisdom: 72
+dexterity: 86
+constitution: 84
+charisma: 66
+cash: 0 2 14 30
+experience: 5097
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 51
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36001 2.000000
+1 36003 1.000000
+1 36002 2.000000
+0 0 0
+tells:
+$
+gossips:
+1674273797 Kra gossips, 'hey!'
+1674273968 Kra gossips, 'toggle autoloot'
+1674273974 Kra gossips, 'look means loot right?'
+1674352974 Daedela gossips, 'welcome back Kekoa!'
+1674352990 Daedela gossips, 'just so you know, you're allowed to play two characters at once if you like!'
+$

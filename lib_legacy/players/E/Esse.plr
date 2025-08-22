@@ -1,0 +1,77 @@
+name: Esse
+password: Es0.VyZ9VD
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19226
+birthtime: 1505029845
+timeplayed: 8194
+lastlogintime: 1505275975
+host: 175.195.068.159
+height: 63
+weight: 110
+base_height: 63
+base_weight: 110
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 63/63
+mana: 1/0
+move: 104/104
+damroll: 3
+hitroll: 3
+strength: 99
+intelligence: 70
+wisdom: 85
+dexterity: 74
+constitution: 77
+charisma: 55
+cash: 0 14 222 9
+experience: 36905
+quit_reason: 3
+saveroom: 0
+skills:
+402 56
+404 50
+415 50
+416 50
+421 79
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3062 1.000000
+1 36002 13.000000
+1 36001 4.000000
+1 36003 8.000000
+1 8011 1.000000
+1 8013 2.000000
+1 8002 1.000000
+1 8020 2.000000
+1 8010 3.000000
+1 8016 3.000000
+1 8001 2.000000
+1 8000 2.000000
+1 8021 1.000000
+1 8023 4.000000
+0 0 0

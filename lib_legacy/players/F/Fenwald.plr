@@ -1,0 +1,86 @@
+name: Fenwald
+password: FeGGJLl1by
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18540
+birthtime: 1373518699
+timeplayed: 4249
+lastlogintime: 1461220711
+host: 108.088.040.006
+height: 78
+weight: 176
+base_height: 78
+base_weight: 176
+base_size: 3
+natural_size: 3
+alignment: 46
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 68/60
+mana: 1/0
+move: 168/170
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 62
+wisdom: 77
+dexterity: 83
+constitution: 97
+charisma: 40
+cash: 0 9 107 149
+experience: 40978
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 52
+415 50
+416 50
+419 1000
+421 90
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 57
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 16902 1.000000
+1 16906 1.000000
+1 16900 2.000000
+1 16908 1.000000
+1 18005 2.000000
+1 18001 2.000000
+1 18000 1.000000
+1 18002 2.000000
+1 18007 3.000000
+1 3509 1.000000
+1 3508 4.000000
+1 3506 1.000000
+1 8014 1.000000
+1 36002 5.000000
+1 36003 6.000000
+1 36001 5.000000
+1 8016 1.000000
+1 8013 1.000000
+1 8012 1.000000
+1 8000 1.000000
+1 8001 1.000000
+0 0 0

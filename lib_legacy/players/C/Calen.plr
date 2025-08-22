@@ -1,0 +1,71 @@
+name: Calen
+password: CaqX8vPj4i
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18303
+birthtime: 1341598896
+timeplayed: 469
+lastlogintime: 1341599368
+host: 041.254.000.144
+height: 62
+weight: 145
+base_height: 62
+base_weight: 145
+base_size: 2
+natural_size: 2
+alignment: 6
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 11
+lastlevel: 0
+hitpoints: 25/25
+mana: 0/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 70
+wisdom: 72
+dexterity: 87
+constitution: 70
+charisma: 65
+cash: 0 1 10 4
+experience: 4310
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0
+trophy:
+1 36001 0.500000
+1 36003 0.500000
+1 8015 0.500000
+1 8020 0.500000
+1 8011 0.500000
+1 8014 0.500000
+1 3066 0.500000
+0 0 0
+aliases:
+2 assist cale
+1 get all corpse
+0

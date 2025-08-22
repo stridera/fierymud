@@ -1,0 +1,2530 @@
+1
+vnum: 36104
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: coral ring coral-ring
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lies on the ground.
+type: 9
+weight: 0.30
+cost: 200
+timer: 0
+level: 13
+effects: 0 0 0
+wear: 3
+applies:
+3 1
+24 -5
+~
+extradesc: coral ring coral-ring
+The coral ring seems totally flawless. It is made of the finest coral
+you have ever seen, and fades from a light pink on one side to white
+on the other. It is smoothed completely and coated with a clear substance
+so that it is not the least bit abrasive.~
+~~
+vnum: 16907
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring diamond
+shortdesc: a diamond ring
+desc: A sparkling diamond ring catches your eye.
+type: 8
+weight: 0.20
+cost: 320
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 3
+applies:
+6 3
+~
+extradesc: ring diamond
+The diamond sparkles with a merry light, as if it were alive.
+You can't help but admire the skill of the jeweler.
+~
+~~
+vnum: 36101
+location: 3
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mno 0
+name: neckguard rock heavy rock-neckguard
+shortdesc: a heavy rock neckguard
+desc: A neckguard constructed of tough stone lies here.
+type: 9
+weight: 4.00
+cost: 250
+timer: 0
+level: 13
+effects: 0 0 0
+wear: 5
+extradesc: rock neckguard
+The rock neckguard appears to be chipped and sculpted from a single
+large stone. Previously constructed for the huge Bozaks, it is almost
+too large for your neck. The neckguard is sturdy enough to withstand
+almost any attack.~
+~~
+vnum: 36101
+location: 4
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mno 0
+name: neckguard rock heavy rock-neckguard
+shortdesc: a heavy rock neckguard
+desc: A neckguard constructed of tough stone lies here.
+type: 9
+weight: 4.00
+cost: 250
+timer: 0
+level: 13
+effects: 0 0 0
+wear: 5
+extradesc: rock neckguard
+The rock neckguard appears to be chipped and sculpted from a single
+large stone. Previously constructed for the huge Bozaks, it is almost
+too large for your neck. The neckguard is sturdy enough to withstand
+almost any attack.~
+~~
+vnum: 58014
+location: 5
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: mo 0
+name: cuirass armor bamboo bamboo-armor strips strip
+shortdesc: a cuirass made of bamboo strips
+desc: You see a cuirass made, amazingly, of bamboo strips.
+type: 9
+weight: 10.00
+cost: 1200
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 9
+applies:
+19 1
+5 5
+~
+extradesc: cuirass bamboo strips armor
+This armor is so light that you wonder that it could be at all effective!
+Made from strips of bamboo cleverly lashed together with wire, it covers
+from the throat to the knees. It looks like it ties in the back.~
+~~
+vnum: 61516
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cap mushroom
+shortdesc: a mushroom cap
+desc: The cap of a mushroom lies flat on the ground.
+type: 9
+weight: 1.50
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+applies:
+5 1
+~
+extradesc: mushroom cap
+This looks like the cap of a rather large mushroom.  It's big enough to cover
+the top of a human's head!  It is dried, and the consistency of stiff leather.
+It's a pale orange color, with barely visible white spots.    
+~
+~~
+vnum: 36021
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m 0
+name: plates bone-leg-plates boneplates bone-pieces
+shortdesc: bone leg plates
+desc: A few pieces of bone lie about.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+applies:
+13 2
+~
+extradesc: plates bone leg boneplates leg-boneplates
+These are a few plates of bone that look as though you could fasten to your
+legs for a bit of protection.    
+~
+~~
+vnum: 55395
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: boots acolyte
+shortdesc: acolyte boots
+desc: A set of sligtly magical thin metal boots lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 65
+applies:
+14 5
+13 4
+~
+extradesc: acolyte boots
+Newly forged, these magical metal boots were made to reflect your acceptance to
+your god.  Treated well, they will carry you through your beginning trials and
+on to greater wisdom.
+~
+~~
+vnum: 55397
+location: 9
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: gauntlets acolyte
+shortdesc: acolyte gauntlets
+desc: A slightly magical set of thin plate gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 129
+applies:
+2 1
+13 3
+~
+extradesc: acolyte gauntlets
+Newly forged, these magical metal gauntlets were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.
+~
+~~
+vnum: 55392
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: vambraces acolyte
+shortdesc: acolyte vambraces
+desc: A slightly magical set of thin metal vambraces lies here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+13 5
+~
+extradesc: acolyte vambraces
+Newly forged, these magical metal vambraces were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.
+~
+~~
+vnum: 16101
+location: 11
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: shield hide
+shortdesc: a hide shield
+desc: A shield made of camel hide is on the ground.
+type: 9
+weight: 1.90
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 513
+applies:
+5 1
+~
+extradesc: shield hide-shield camel-hide
+Poorly constructed of rough wood with a thick layer of tightly stretched camel
+hide over it, this shield nevertheless does its job, standing between its
+wearer and attackers.  It appears to have seen quite the history of violence,
+with numerous gashes and dents in the hide, but still holds together somehow.
+~
+~~
+vnum: 20304
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cloak zebra skin
+shortdesc: a zebra skin cloak
+desc: A large striped cloak lies in the dust here.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+applies:
+1 2
+19 1
+~
+extradesc: cloak zebra skin
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.    
+~
+~~
+vnum: 12008
+location: 13
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo 0
+name: baldric emblazoned belt
+shortdesc: an emblazoned baldric
+desc: A large, ornamented belt lies coiled here.
+type: 9
+weight: 1.25
+cost: 225
+timer: 0
+level: 6
+effects: 0 0 0
+wear: 2049
+applies:
+19 1
+~
+extradesc: belt emblazoned baldric
+This large, wide belt goes around the waist, up over the shoulders,      
+to support a sword's sheath. A lion rampant adorns the front of
+it, where it goes across the stomach. The baldric seems very
+old; its owner hasn't taken good care of it -- the leather is
+cracked in places.
+~
+~~
+vnum: 2023
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr 0
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 2023
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr 0
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 8516
+location: 16
+values:
+0
+2
+5
+6
+0
+0
+0
+~
+flags: goprstwx 0
+name: staff vicar thorned
+shortdesc: a thorned staff
+desc: A thick, thorned staff carved with runes has been tossed here.
+type: 5
+weight: 6.00
+cost: 1000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+24 -5
+~
+extradesc: staff highpriest
+This long staff is made of some sort of dark wood that tapers from the
+top to the bottom, which is capped in black iron. Two sections of its
+length are wrapped in leather strips, though the rest of it is covered
+in a regular arrangement of thick thorns. The bulbous top of the staff
+is covered in them. This weapon, for weapon it must be, has a good weight
+and heft in the hand.
+~
+~~
+vnum: 18511
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: spectacles small
+shortdesc: small spectacles
+desc: A pair of little spectacles rests here.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65537
+applies:
+3 2
+28 20
+~
+extradesc: small spectacles eye wear
+These spectacles are small and likely used for reading.  They have an odd and
+unique hexagonal frame around the glass portions, but look strong and
+well-used.
+~
+~~
+vnum: 20301
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 20301
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 3040
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge mielikki-guard-badge small silver gold icon
+shortdesc: Badge of the Mielikki Guard
+desc: A small silver and gold icon lies here.
+type: 9
+weight: 0.01
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+1 3
+2 2
+24 3
+~
+~~
+vnum: 20300
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 41010
+location: -1
+values:
+20
+28
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: jelly royal round bubble half jelled fluid wax
+shortdesc: a wax bubble of royal jelly
+desc: A round bubble containing a half-jelled fluid is here. 
+type: 10
+weight: 2.00
+cost: 45
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 16385
+extradesc: royal-jelly royal jelled bubble wax-bubble fluid
+The half-jelled fluid swirls sluggishly in the container.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 1013
+location: 127
+values:
+0
+2
+7
+3
+0
+0
+0
+~
+flags: mn 0
+name: sword massive-two-handed-bastard-sword
+shortdesc: a two-handed bastard sword
+desc: A massive two-handed bastard sword lies here.
+type: 5
+weight: 8.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 32769
+extradesc: massive-two-handed-bastard-sword
+&0A six foot blade, crafted from heavy iron. Its long hilt is designed for
+two handed use. Its crafted of average quality metal, and seems durable
+enough to last several years of use.&0
+~
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+~
+extradesc: saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  
+~
+~~
+vnum: 16900
+location: -1
+values:
+15
+16
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion brown
+shortdesc: a brown potion
+desc: A brown potion lies in the dust.
+type: 10
+weight: 1.00
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: potion brown
+A viscous brown liquid sloshed in the vial as you hold it up to the light.
+It smells rather awful and looks disgusting so its probably good for you.
+~
+~~
+vnum: 55396
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: bracer acolyte
+shortdesc: an acolyte bracer
+desc: A slightly magical thin metal bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 4097
+applies:
+13 3
+6 1
+~
+extradesc: acolyte bracer
+Newly forged, this magical metal bracer was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.
+~
+~~
+vnum: 7002
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pendant zadash sword
+shortdesc: a silver sword pendant
+desc: A pendant shaped like a sword lies here.
+type: 8
+weight: 0.20
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+1 1
+24 -2
+~
+~~
+vnum: 5100
+location: -1
+values:
+20
+144
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: flask stone stone-flask
+shortdesc: a stone flask
+desc: A stone flask lies among the rocks here.
+type: 10
+weight: 1.00
+cost: 80
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 1
+extradesc: flask stone stone-flask
+Unlike the standard wizard's flask, which is made of glass, this flask is
+made of a heavy grey stone, making it difficult to see what is inside.
+~
+~~
+vnum: 7002
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pendant zadash sword
+shortdesc: a silver sword pendant
+desc: A pendant shaped like a sword lies here.
+type: 8
+weight: 0.20
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+1 1
+24 -2
+~
+~~
+vnum: 5104
+location: -1
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: gnu 0
+name: dagger stone stone-dagger
+shortdesc: a stone dagger
+desc: A stone dagger has been abandoned here.
+type: 5
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+~~
+vnum: 55325
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tunic leather flimsy
+shortdesc: a flimsy leather tunic
+desc: A pile of flimsy leather armor lies here unusable.
+type: 11
+weight: 5.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 9
+~~
+vnum: 55391
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: helm acolyte
+shortdesc: an acolyte helm
+desc: A slightly magical thin plate helm lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 17
+applies:
+3 1
+13 5
+~
+extradesc: acolyte helm
+Newly forged, this magical metal helm was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.
+~
+~~
+vnum: 18003
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 18003
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 55569
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 41009
+location: 127
+values:
+0
+400
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: eye jewelled fist-sized-gem fist sized gem jewelled-eye facets
+shortdesc: a jewelled eye
+desc: A fist-sized gem with multiple facets is embedded here.
+type: 1
+weight: 0.50
+cost: 140
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+applies:
+4 2
+28 8
+~
+extradesc: jewelled-eye eye faceted
+This is no natural gem! It's the eye of a Hiver Queen, detached from its
+socket. The many eye facets that once gazed upon the world with ambitious
+lust still gleam faintly in death.
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.69
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 140
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: acorn food
+shortdesc: an acorn
+desc: An acorn lies on the ground.
+type: 19
+weight: 0.05
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: acorn food
+Dried and roasted, some acorns are edible without much processing.  Hopefully,
+this is one of those, as a mouthful of tannin is nobody's idea of a nice snack.
+  
+~
+~~
+vnum: 140
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: acorn food
+shortdesc: an acorn
+desc: An acorn lies on the ground.
+type: 19
+weight: 0.05
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: acorn food
+Dried and roasted, some acorns are edible without much processing.  Hopefully,
+this is one of those, as a mouthful of tannin is nobody's idea of a nice snack.
+  
+~
+~~
+vnum: 142
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 142
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: apple green food
+shortdesc: a green apple
+desc: A smooth green apple has fallen to the ground.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: apple green food
+Green apples are just fine to eat, but don't try to make a meal of them, unless
+you have plenty of extra toilet paper handy.  This one is about the size of a
+halfling's fist.  It is bright green without any major blemishes.    
+~
+~~
+vnum: 140
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: acorn food
+shortdesc: an acorn
+desc: An acorn lies on the ground.
+type: 19
+weight: 0.05
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: acorn food
+Dried and roasted, some acorns are edible without much processing.  Hopefully,
+this is one of those, as a mouthful of tannin is nobody's idea of a nice snack.
+  
+~
+~~

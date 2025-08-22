@@ -1,0 +1,20 @@
+#484
+Severan's Doom~
+48699 27 2 100 0 0
+M 0 48413 1 48420 	(the Keeper of the Keys)
+D 0 48420 1 1 	(Hall of Nobility)
+M 0 48412 1 48421 	(the Oracle of the Sun)
+D 0 48421 3 4 	(Oracle of the Sun)
+M 0 48410 1 48424 	(the Oracle of Justice)
+M 0 48411 1 48426 	(the Oracle of the Wild Hunt)
+M 0 48636 1 48612 	(a troll)
+D 0 48400 1 1 	(The Hall of Legends)
+D 0 48410 3 1 	(The Courtyard)
+D 0 48423 0 1 	(Hall of Justice)
+D 0 48430 2 1 	(Along a Side of the Pyramid)
+D 0 48425 2 1 	(The Hall of the Hunt)
+D 0 48442 0 1 	(Along a Side of the Pyramid)
+D 0 48436 3 1 	(Along a Side of the Pyramid)
+D 0 48409 0 1 	(The Hall of Legends)
+S
+$

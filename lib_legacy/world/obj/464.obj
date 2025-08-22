@@ -1,0 +1,312 @@
+#46400
+aviary-fountain fountain marble~
+a beautiful marble fountain~
+A beautiful marble fountain stands in the clearing here.~
+~
+23 0 0 7
+99999 99999 0 0 0 0 0
+100004.00 0 0 0 0 0 0 0
+E
+fountain marble~
+     This beautiful fountain appears to have been carved from a single block of
+marble, rather amazing as it stands about twice your height and three times
+that wide.  A series of basins carry water down the sides as they fill and
+overflow, the glistening liquid eventually running out a large sluice on the
+western side where the vast volume of water becomes a swift brook.
+     All manner of the aviary's winged species wing about in the flowing water,
+splashing the life-giving fluid all about as they make fun of the simple task
+of bathing on this warm afternoon.  So many of the brilliantly-plumed creatures
+light upon the marble basins that the fountain looks more a floral arrangement
+than a sculpture.  Perhaps you wondered at first about the plainness of the
+white marble, but as a backdrop for the avians it makes a perfect picture.
+     Carved into the side of the fountain nearest you is some kind of
+inscription, though you'd need to take a closer look to make out what the
+letters say.  Just below the inscription is a circular carving of a beautiful
+woman set bas-relief in the gleaming white stone.~
+E
+inscription letters~
+
+                          For the bounty of nature:
+
+                  Shall you never forget the wonder of life
+
+
+                        Selinathalatretestra - 1998~
+E
+carving woman circular~
+     The carving appears to be an image of the goddess Selina.  The sculpture
+is surprisingly intricate, detailed so much so that you wonder what master
+craftsman captured her beauty and essence so in such a simple medium.
+     The scene rendered shows the goddess at home in her Waterfall Grotto.
+Seeing her home you can easily comprehend her love of all things of nature; it is
+of little wonder that she should touch the Aviary with her grace and grant the
+citizens of the bleak north a respite from winter's grasp within these walls.~
+E
+water~
+     The water spurts from the uppermost basin to first fill it and then flow
+down through a series of bowls, pools, and basins until it pours into a swift
+brook that moves off to the west.  The water is crystal-clear and refreshingly
+crisp to the touch, likely melted ice from beyond the walls of the aviary.  The
+liquid reminds you of your dry throat; surely the birds would not mind if you
+took a small drink from one of the sparkling basins.~
+#46401
+crest beautiful-feathered-crest feathers~
+a beautiful feathered crest~
+A beautiful feathered crest has been left here.~
+~
+9 536870912 17 1
+1 0 0 0 0 0 0
+0.50 300 0 0 0 0 0 0
+E
+beautiful-feathered-crest feather~
+Long yellow and grey feathers make up this piece of stylish headwear.  Upon the
+pate of some hapless bird it must have been beautifully expressive, as the
+crest itself would swing up or lie back against the bird's head to express
+interest, excitement, fear, and love.  Holding the feathered garment in your
+hands, you cannot help but feel sorry for the bird and wonder if you might be
+able to recreate even a degree of its vitality.~
+A
+18 1
+#46402
+bread rye rye-bread loaf food~
+a loaf of rye bread~
+A dry loaf of rye bread has been dropped here.~
+~
+19 0 1 1
+10 0 0 0 0 0 0
+1.00 10 0 0 0 0 0 0
+E
+loaf bread rye~
+     Baked apparently from grains harvested within the aviary itself, this loaf
+of bread is coarse and rather crude, but certainly looks appetizing to the
+empty of stomach.  Breaking the dark brown loaf open, there are quite a few
+whole kernels and seeds of grain still intact, and the flour certainly was
+barely crushed and sifted.  Perhaps this bread was intended as more of a treat
+for the birds above than for human consumption.~
+#46403
+shears nasty-garden-shears nasty-looking~
+a nasty pair of garden shears~
+A nasty-looking pair of garden shears has been forgotten here.~
+~
+5 0 8193 1
+0 1 4 11 0 0 0
+1.50 200 0 0 0 0 0 0
+E
+nasty-garden-shears nasty-looking~
+Though not exactly industrial-sized, these garden shears have a wickedly- sharp
+serrated edge to their blades and a handle that feels warm and heavy in your
+palm.  Certainly they could clip through the most stubborn of dragon- shaped
+shrubbery and perhaps even be turned to more gruesome ends - wouldn't those
+blades do a number on someone's arm or fingers, and wouldn't it be something to
+see the metal handles protruding from the back of yon adventurer?  Indeed, the
+shears make for a nasty weapon.
+ 
+There is an inscription of some sort along the handle.~
+E
+inscription handle~
+
+Mielikki Topiary Gardenworks~
+A
+19 1
+#46404
+cloak winged-cloak pile feathers~
+the winged cloak~
+A pile of feathers lies at your feet.~
+~
+9 536870912 1025 1
+2 0 0 0 0 0 0
+2.00 1000 0 0 0 0 0 0
+E
+winged-cloak pile feathers~
+This warm, large garment is tailored entirely from feathers.  Upon closer
+examination, the cloak looks to be made up of a long cape and two wings
+attached to the sides into which you could slip your arms.  Though somewhat
+restrictive of your movement, the wings give you a feeling of freedom, almost
+as if you could take to the skies and soar amongst the birds themselves.~
+A
+2 2
+#46405
+beak hookbill-beak hookbills-beak hook-bill bills sharp~
+the hookbill's beak~
+The sharp beak of a hookbill lies on the ground here.~
+~
+5 0 155649 1
+0 1 4 11 0 0 0
+1.50 100 0 0 0 0 0 0
+E
+hookbill-beak hookbills-beak hook-bill bills sharp~
+The beak of a parrot, this grey hook-shaped bill has razor-sharp edges honed
+daily by its former owner.  Though most birds are not aggressive, only the most
+foolhardy would not look to its own defense.  It looks as if someone has
+drilled two holes in the sides of the beak and run a leather thong through them
+so that you could tie the hookbill onto your head; it might also function well
+as a kind of dagger in hand.~
+A
+6 1
+#46406
+egg speckled speckled-egg~
+a speckled egg~
+Someone has forgotten a small, speckled egg here.~
+Nothing.~
+15 3 16385 5
+20 15 46410 0 0 0 0
+0.20 0 0 0 0 0 0 0
+E
+speckled egg~
+     About as big around as your fist, the smooth off-white surface of this egg
+is speckled with tiny flecks of blue and yellow, giving it an almost marbled
+appearance.  The egg is warm in your hand, and you can almost feel the beating
+of a tiny heart inside it.  Perhaps if kept properly warm and cared for, in a
+few days the most wonderful of treasures might be discovered inside.~
+A
+23 -2
+#46407
+droppings nasty-bird-droppings bit food~
+some nasty bird droppings~
+The grounds crew has neglected to clean up a bit of droppings here.~
+~
+19 0 81 1
+3 0 0 0 0 0 0
+0.20 0 0 0 0 0 0 0
+E
+nasty-bird-droppings bit~
+Yech!  Though the birds within the aviary's walls are far from domesticated - 
+much less housebroken - happening upon such a nasty bit of droppings is an 
+unpleasant surprise; generally the aviary grounds crew seem to do a pretty good
+job keeping the paths clean, turning such offal into the soil to act as 
+fertilizer for the exotic plant life.
+ 
+The core of the droppings is a greenish-grey snakelike solid, surrounded by an 
+off-white liquid that is quickly drying in the sun.  Though bird droppings do 
+not have the disgusting smell of other animal feces, they are still rather 
+repulsive nonetheless.~
+A
+17 1
+#46408
+millet spray food~
+a spray of millet~
+A tasty spray of millet grows before you here.~
+~
+19 0 16389 1
+3 0 0 0 0 0 0
+0.20 0 0 0 0 0 0 0
+E
+millet spray food~
+     A slender brown stem supports a wide blossom of tiny seeds, giving the
+millet spray the appearance of a cat's tail even down to the fuzzy filaments
+growing all about the seeds much like tiny hairs.  Though perhaps the millet
+does not look all that appetizing to you, to birds it is a treat on par with
+ice cream and other unhealthy sweets.  Many a feathered flier can be seen about
+the aviary picking away at the tiny but tasty seeds well into the evening
+hours.~
+A
+17 1
+A
+24 -1
+#46409
+breeches feather-breeches~
+a pair of feather breeches~
+A pair of feather breeches has been discarded here.~
+~
+9 536870912 33 1
+2 0 0 0 0 0 0
+1.00 400 0 0 0 0 0 0
+E
+feather-breeches~
+These fine pants are made of a light fabric to which are sewn hundreds of soft
+feathers.  The plumage looks to have come from all sorts of birds, with long
+blue and green feathers likely from parrots lined up beside the smaller browns,
+whites, and greys of birds like finches and budgerigars.  Though their value as
+armor might be questionable, the breeches do look to be rather warm and even
+comfortable - and a must-have for every dandy's wardrobe!~
+A
+2 1
+#46410
+bloodfeather blood feather~
+a long bloodfeather~
+A long feather whose tip oozes blood is on the ground at your feet.~
+~
+18 4 16385 3
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+bloodfeather blood feather~
+     Once a feather is completely grown and mature it is like human hair - dead
+and unfeeling.  However, as they grow in, a bird's feathers have their own
+blood supply and can indeed feel pain.  Occasionally something happens to cause
+a bird to break or otherwise lose one of these bloodfeathers.
+     Other than the dark vein of red down its center and its broken, uneven
+end, this feather seems like any other.  Whatever bird lost it must have had
+spectacular yellow and blue plumage... but what good is it to you?~
+A
+14 5
+#46411
+sleeves downy-sleeves feathers~
+a pair of downy sleeves~
+Someone has dropped a pair of downy sleeves here.~
+~
+9 536870912 257 2
+1 0 0 0 0 0 0
+1.25 400 0 0 0 0 0 0
+E
+sleeves downy-sleeves feathers~
+Made of a thin, stretchy material lined with a warm layer of fuzzy down, these
+sleeves would be perfect for keeping your arms warm beneath your overcoat.  
+However, the thin material would provide little benefit for warriors and might
+seem even a bit sissified for the more beastly of occupations.  The thin
+material has enough stretch to it that you might even be able to wear the
+sleeves about your legs like a pair of tights in a stretch (no pun intended!  
+)~
+A
+4 1
+#46412
+cockatiel beautiful-jeweled-cockatiel bird~
+a beautiful jeweled cockatiel~
+A beautiful jeweled cockatiel has been lost here!~
+~
+8 0 2113537 1
+0 0 0 0 0 0 0
+1.50 3000 0 0 0 0 0 0
+E
+beautiful-jeweled-cockatiel~
+Someone had to have paid thousands of gold pieces for such a spectacular piece
+of artwork - yet this wondrous little figurine came from within an actual
+bird's egg!  Accurate down to the smallest detail, this heavy metal statuette
+of a cockatiel is encrusted with jewels of all sorts: dark brown faceted
+tourmaline stares back as the bird's eyes, small citrines and rubies create the
+distinctive orange cheek patches, and smoky quartz and clear diamonds make up
+the feathers.~
+A
+13 5
+#46413
+bracelet small-feather-bracelet~
+a feather bracelet~
+A small feather bracelet lies forgotten here.~
+~
+8 536870977 4097 1
+0 0 0 0 0 0 0
+0.25 600 0 0 0 0 0 0
+E
+bracelet small-feather-bracelet~
+Though simple in appearance, there is something more to this small bracelet
+than meets the eye.  Simply holding this band of woven feathers in your hand
+makes you feel stronger both of body and of mind.  Slipping it about your wrist
+you discover a small sparkling gemstone mounted amidst the feathers.~
+A
+1 2
+#46414
+feather royal-blue-feather deep-blue-feather pen quill~
+a &4&broyal blue&0 feather~
+A deep blue feather is sitting here, getting dirty.~
+~
+21 536870912 16385 1
+0 0 0 0 0 0 0
+0.25 50 0 0 0 0 0 0
+E
+feather royal-blue-feather deep-blue-feather pen quill~
+This beautifully curving feather is a deep royal blue, just like the kingfisher
+it comes from.  It's a primary flight feather from the left wing, so it would
+probably make an excellent writing pen.~
+A
+6 1
+$~

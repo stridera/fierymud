@@ -1,0 +1,91 @@
+name: Setra
+password: SeEGbRqPNA
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 0
+level: 10
+home: 6015
+lifeforce: 0
+composition: 0
+id: 18538
+birthtime: 1372629709
+timeplayed: 42959
+lastlogintime: 1375075195
+host: 076.120.122.044
+height: 61
+weight: 150
+base_height: 61
+base_weight: 150
+base_size: 2
+natural_size: 2
+alignment: -31
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hno 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 35102
+lastlevel: 0
+hitpoints: 117/117
+mana: 1/-2
+move: 56/126
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 68
+wisdom: 78
+dexterity: 91
+constitution: 88
+charisma: 56
+cash: 0 6 15 42
+experience: 284987
+quit_reason: 7
+saveroom: 35102
+skills:
+401 111
+403 78
+405 131
+408 50
+415 53
+416 50
+421 143
+438 56
+443 50
+444 50
+464 129
+465 74
+467 50
+0 0
+trophy:
+1 35010 0.500000
+1 35018 0.500000
+1 35011 1.000000
+1 35017 0.500000
+1 35005 1.000000
+1 35015 1.000000
+1 35022 0.500000
+1 35012 1.000000
+1 35001 1.000000
+1 35025 1.500000
+1 35008 1.500000
+1 35014 3.000000
+1 35007 1.000000
+1 35026 1.500000
+1 35009 2.500000
+1 35003 0.500000
+1 35002 2.000000
+1 35023 2.000000
+1 35021 1.500000
+1 55214 1.000000
+1 61500 1.000000
+0 0 0
+aliases:
+kil backstab $1
+aj ass jayce
+as assist shinko
+ak assist koishi
+gac get all all.corpse
+sa scan
+0

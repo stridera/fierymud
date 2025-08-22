@@ -1,0 +1,3523 @@
+1
+vnum: 16006
+location: 0
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: agDE
+name: orb ball crystal globe wind winds orb-of-winds
+shortdesc: the Orb of Winds
+desc: A crystal orb floats around you.
+type: 1
+weight: 0.50
+cost: 1000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+18 2
+20 -2
+~
+extradesc: orb
+   The orb is totally weightless and possesses a very bright glow. Gazing 
+into its crystalline depths, there seems to be insubstantial forms 
+floating within it. Before you can decide what lies within, you are 
+forced to look away, lest its light blinds you.
+~
+~~
+vnum: 62513
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wolf tooth wolf-tooth ring fang
+shortdesc: a wolf-tooth ring
+desc: A ring carved from the fang of an enormous wolf is here in the dirt.
+type: 11
+weight: 0.50
+cost: 80000
+timer: 0
+level: 38
+effects: 0 0 0
+wear: 3
+applies:
+2 3
+5 3
+19 1
+14 20
+~
+triggers:
+62570
+~
+~~
+vnum: 62513
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wolf tooth wolf-tooth ring fang
+shortdesc: a wolf-tooth ring
+desc: A ring carved from the fang of an enormous wolf is here in the dirt.
+type: 11
+weight: 0.50
+cost: 80000
+timer: 0
+level: 38
+effects: 0 0 0
+wear: 3
+applies:
+2 3
+5 3
+19 1
+14 20
+~
+triggers:
+62570
+~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 1040
+location: 5
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: gkmnopqrsvwxyzA
+name: breastplate odd-breastplate-gaia breast-plate
+shortdesc: &0&3a breastplate of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3An odd breastplate lies here.&0
+type: 9
+weight: 14.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+applies:
+24 -5
+~
+extradesc: odd-breastplate-gaia breast-plate
+&0This odd looking breastplate appears to be crafted from a piece of solid wood,
+chiseled and sanded with a powerful magic to perfection. Glowing vines weave
+themselves around the wooden breastplate, adding their steel-like endurance
+to its powerful frame.&0
+~
+~~
+vnum: 5518
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz
+name: helm eldoria-reward discarded 3rd-eldorian-guard-helm
+shortdesc: a helm of the 3rd Eldorian Guard
+desc: A helm lies discarded nearby.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 17
+applies:
+14 5
+~
+extradesc: helm eldoria-reward discarded 3rd-eldorian-guard-helm
+It's a helmet of middling quality with the insignia of the 3rd Eldorian Guard
+imprinted on it.
+~
+~~
+vnum: 1042
+location: 7
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gkmnopqrsvwxyzA
+name: legplates leg-plates-gaia pair-odd-legplates
+shortdesc: &0&3some leg plates of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3A pair of odd legplates lie here.&0
+type: 9
+weight: 13.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+applies:
+13 5
+~
+extradesc: leg-plates-gaia pair-odd-legplates
+&0A pair of oddly carved legplates, designed to cover the upper and lower leg
+as well as the knee with a seperate plate. Vibrant green vines hold the armor
+together, keeping it securly in place while enforcing it with a mystical
+force.
+~
+~~
+vnum: 5534
+location: 8
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz
+name: boots eldoria-reward 3rd-eldorian-guard-boots
+shortdesc: boots of the 3rd Eldorian Guard
+desc: Some boots lie here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 65
+applies:
+2 2
+~
+~~
+vnum: 5526
+location: 9
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: k
+name: gloves eldoria-reward 3rd-eldorian-guard-gloves
+shortdesc: gloves of the 3rd Eldorian Guard
+desc: Some gloves lie discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 129
+applies:
+3 2
+13 5
+~
+~~
+vnum: 5522
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz
+name: sleeves eldoria-reward 3rd-eldorian-guard-leather-sleeves
+shortdesc: leather sleeves of the 3rd Eldorian Guard
+desc: Some leather sleeves lies discarded nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 16314
+location: 11
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: shield centaur centaur-shield
+shortdesc: a centaur shield
+desc: A horsehide shield lies here.
+type: 9
+weight: 2.10
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 513
+applies:
+5 1
+3 -1
+~
+extradesc: shield centaur centaur-shield
+   The shield is a round hide shield about 4.5 feet across. The material it
+is made of has a rather strange texture.
+~
+~~
+vnum: 20304
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak zebra skin
+shortdesc: a zebra skin cloak
+desc: A large striped cloak lies in the dust here.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+applies:
+1 2
+19 1
+~
+extradesc: cloak zebra skin
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.    
+~
+~~
+vnum: 58007
+location: 13
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: rtD
+name: belt ninja ninjas black length cloth
+shortdesc: the ninja's belt
+desc: You see a neatly folded length of black cloth.
+type: 9
+weight: 1.10
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 2049
+applies:
+14 20
+2 4
+~
+extradesc: ninjas ninja belt black cloth
+This is a very simple length of black cloth, hemmed all around very
+neatly. There's literally nothing impressive about it.~
+~~
+vnum: 2023
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 2023
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 16202
+location: 16
+values:
+0
+3
+5
+3
+0
+0
+0
+~
+flags: o
+name: scimitar long
+shortdesc: a long scimitar
+desc: A scimitar lies among the rocks here.
+type: 5
+weight: 1.70
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 8193
+applies:
+18 2
+~
+extradesc: scimitar sword
+The scimitar is very well crafted and has a fine balance. You detect an aura    holiness around it.~
+~~
+vnum: 12550
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 11
+weight: 0.07
+cost: 250
+timer: 1010
+level: 40
+effects: dx 0 0
+wear: 65537
+applies:
+4 2
+28 150
+~
+~~
+vnum: 5536
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: k
+name: faceguard eldoria-reward small face guard 3rd-eldorian-guard-faceguard
+shortdesc: a faceguard of the 3rd Eldorian Guard
+desc: A small faceguard lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 131073
+applies:
+18 1
+~
+~~
+vnum: 20301
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 20301
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 5516
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: holy symbol eldoria-reward small white 3rd-eldorian-guard-symbol
+shortdesc: a holy symbol of the 3rd Eldorian Guard
+desc: A small white symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+applies:
+13 30
+14 25
+26 10
+~
+extradesc: holy symbol eldoria-trophy small white 3rd-eldorian-guard-symbol
+A mild feeling of benevolence radiates from this white medal.
+~
+~~
+vnum: 62508
+location: 26
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: biowD
+name: glass bear figurine ursa prison spirit
+shortdesc: a glass bear
+desc: A hollow, yet sturdy, glass bear figurine is lying on the ground.
+type: 9
+weight: 1.00
+cost: 300000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 1064965
+applies:
+1 6
+5 5
+13 10
+26 6
+19 1
+~
+extradesc: glass bear figurine ursa prison spirit
+   Shaped in this glass is the face of a raging bear.  The mear sight of it's
+terrible eyes is disterbing.  It seems so real!  It hums with the power of the
+awful bear trapped inside it, barely contained.  You wonder if it's even safe
+to handle.
+~
+~~
+vnum: 16202
+location: 127
+values:
+0
+3
+5
+3
+0
+0
+0
+~
+flags: o
+name: scimitar long
+shortdesc: a long scimitar
+desc: A scimitar lies among the rocks here.
+type: 5
+weight: 1.70
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 8193
+applies:
+18 2
+~
+extradesc: scimitar sword
+The scimitar is very well crafted and has a fine balance. You detect an aura    holiness around it.~
+~~
+vnum: 16202
+location: 127
+values:
+0
+3
+5
+3
+0
+0
+0
+~
+flags: o
+name: scimitar long
+shortdesc: a long scimitar
+desc: A scimitar lies among the rocks here.
+type: 5
+weight: 1.70
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 8193
+applies:
+18 2
+~
+extradesc: scimitar sword
+The scimitar is very well crafted and has a fine balance. You detect an aura    holiness around it.~
+~~
+vnum: 2023
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 2023
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 20300
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 58105
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: kimono imperial-silk-robe thick red-embroidery
+shortdesc: an imperial silk robe
+desc: A thick kimono with red embroidery is lying here.
+type: 9
+weight: 1.10
+cost: 0
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 9
+applies:
+6 10
+~
+extradesc: kimono imperial-silk-robe thick red-embroidery
+This kimono is heavier than it looks!  Upon closer inspection, you see that it
+is really made of not one but twelve separate layers, from a golden silk
+embroidered with red on the outermost to a plain white cotton underkimono on
+the lowest layer.  How do people move wearing this many layers of clothing?  
+It is a good thing the kimono is made to a loose-fitting design, or else they
+wouldn't be able to.  Voluminous sleeves provide a hiding place for trinkets
+and small, useful items without all that fuss about pockets.  Just being seen
+in such a robe would surely elevate one's social status.    
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 8034
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 8034
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 8032
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: black drakling scale
+shortdesc: a black drakling scale
+desc: A small black scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 10
+~
+~~
+vnum: 8031
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: blue drakling scale
+shortdesc: a blue drakling scale
+desc: A small blue scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 5
+~
+~~
+vnum: 8033
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: green drakling scale
+shortdesc: a green drakling scale
+desc: A small green scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 10
+18 1
+~
+~~
+vnum: 36100
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 13647
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring green leaves
+shortdesc: a ring of green leaves
+desc: A ring made of tiny branches and leaves lies here.
+adesc:
+This ring is covered with thick leaves and acorns.
+~
+type: 11
+weight: 0.03
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+applies:
+4 2
+~
+extradesc: ring green leaves
+The ring is made of tiny, slender branches, still living, their
+equally tiny green leaves forming a wreath.
+~
+~~
+vnum: 3298
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: eqAD
+name: rose single-long-stemmed-black-rose
+shortdesc: a &9&bblack&0 rose
+desc: A single long-stemmed &8&9black&0 rose lies here in memory of Pergus.  Farewell friend.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 540673
+triggers:
+3298
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 55447
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqrstvwxyz
+name: cap leaves leather nature
+shortdesc: &2Cap of Nature&0
+desc: Fluttering in the wind is a cap made of leaves sewn on leather.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+applies:
+13 20
+3 1
+~
+extradesc: cap leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into a cap in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 16103
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 16103
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 18511
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: spectacles small
+shortdesc: small spectacles
+desc: A pair of little spectacles rests here.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65537
+applies:
+3 2
+28 30
+~
+extradesc: small spectacles eye wear
+These spectacles are small and likely used for reading.  They have an odd and
+unique hexagonal frame around the glass portions, but look strong and
+well-used.
+~
+~~
+vnum: 18511
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: spectacles small
+shortdesc: small spectacles
+desc: A pair of little spectacles rests here.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65537
+applies:
+3 2
+28 20
+~
+extradesc: small spectacles eye wear
+These spectacles are small and likely used for reading.  They have an odd and
+unique hexagonal frame around the glass portions, but look strong and
+well-used.
+~
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 17210
+location: -1
+values:
+15
+18
+20
+14
+0
+0
+0
+~
+flags: gD
+name: scroll yellowed
+shortdesc: a yellowed scroll
+desc: A scroll lies here.
+type: 2
+weight: 1.00
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: scroll yellowed
+This scroll seems to be very old. The parchment has already been yellowed
+with age.
+~
+~~
+vnum: 17210
+location: -1
+values:
+15
+18
+20
+14
+0
+0
+0
+~
+flags: gD
+name: scroll yellowed
+shortdesc: a yellowed scroll
+desc: A scroll lies here.
+type: 2
+weight: 1.00
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: scroll yellowed
+This scroll seems to be very old. The parchment has already been yellowed
+with age.
+~
+~~
+vnum: 41010
+location: -1
+values:
+20
+28
+0
+0
+0
+0
+0
+~
+flags: g
+name: jelly royal round bubble half jelled fluid wax
+shortdesc: a wax bubble of royal jelly
+desc: A round bubble containing a half-jelled fluid is here. 
+type: 10
+weight: 2.00
+cost: 45
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 16385
+extradesc: royal-jelly royal jelled bubble wax-bubble fluid
+The half-jelled fluid swirls sluggishly in the container.
+~
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 18511
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: spectacles small
+shortdesc: small spectacles
+desc: A pair of little spectacles rests here.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65537
+applies:
+3 2
+28 20
+~
+extradesc: small spectacles eye wear
+These spectacles are small and likely used for reading.  They have an odd and
+unique hexagonal frame around the glass portions, but look strong and
+well-used.
+~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 55453
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqrstvwxyz
+name: gloves leaves leather nature
+shortdesc: &2Gloves of Nature&0
+desc: Fluttering in the wind is a pair of gloves made of leaves sewn on leather.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+4 3
+~
+extradesc: gloves leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into gloves in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 58101
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: kmouvxyzD
+name: kimono dark-blue-silk-robe dragonflies embroidered dragonfly-robe
+shortdesc: a dark blue silk robe
+desc: A kimono embroidered with dragonflies has been abandoned here.
+type: 9
+weight: 1.20
+cost: 5000
+timer: 50
+level: 20
+effects: 0 0 0
+wear: 9
+applies:
+18 2
+~
+extradesc: kimono dark-blue-silk-robe
+So light it seems made out of cloud rather than fabric, the silk has been dyed
+a dark blue and covered with dragonfly embroidery.  Looking closer, it seems
+that the dark blue kimono is only the outermost of three layers - inside it are
+a light blue and white kimono.  No wonder it can be used as armor!    
+~
+extradesc: dragonflies dragonfly embroidered embroidery
+The dragonflies are swen on to the silk with a combination of silk and metallic
+thread.  Bodies of iridescent green and wings of silver are outlined in a
+simple black on the deep blue of the kimono.    
+~
+~~
+vnum: 1011
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: kmow
+name: mace tempered-steel-mace
+shortdesc: a steel mace
+desc: A tempered steel mace lies here.
+type: 5
+weight: 6.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 o
+wear: 8193
+extradesc: tempered-steel-mace
+&0The head of this mace is forged from steel. A perfect ball, marred with only
+the scars of combat. It is attatched to a stout wooden rod, creating a
+weapon favored by most clerics.
+~
+~~
+vnum: 20300
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 55451
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mnopqrstvwxyz
+name: boots leaves leather nature
+shortdesc: &2Boots of Nature&0
+desc: Fluttering in the wind are boots made of leaves sewn on leather.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+applies:
+3 4
+13 15
+~
+extradesc: boots leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into boots in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 16209
+location: 127
+values:
+70
+34
+35
+43
+0
+0
+0
+~
+flags: D
+name: book tome kings book-of-kings
+shortdesc: the Book of Kings
+desc: A large, leather bound tome sits on a shelf.
+type: 2
+weight: 2.00
+cost: 7000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+4 2
+~
+extradesc: book tome
+The book is large and heavy, and is sealed with red wax.  Large, golden words
+are set in its cover.  There is a tingling sensation as you touch this tome,
+making you realise that this must be a book of power.  One of its stories tells
+of a visit from a band of powerful sorcerers who were impressed with Neris'
+kindness and presented her with a holy scarab that has some power to it.  The
+leader of the sorcerers is shown speaking aloud to Neris refering to her as
+"Neris'Kaan", or "Neris the Kind".
+~
+~~
+vnum: 16209
+location: 127
+values:
+70
+34
+35
+43
+0
+0
+0
+~
+flags: D
+name: book tome kings book-of-kings
+shortdesc: the Book of Kings
+desc: A large, leather bound tome sits on a shelf.
+type: 2
+weight: 2.00
+cost: 7000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+4 2
+~
+extradesc: book tome
+The book is large and heavy, and is sealed with red wax.  Large, golden words
+are set in its cover.  There is a tingling sensation as you touch this tome,
+making you realise that this must be a book of power.  One of its stories tells
+of a visit from a band of powerful sorcerers who were impressed with Neris'
+kindness and presented her with a holy scarab that has some power to it.  The
+leader of the sorcerers is shown speaking aloud to Neris refering to her as
+"Neris'Kaan", or "Neris the Kind".
+~
+~~
+vnum: 16209
+location: 127
+values:
+70
+34
+35
+43
+0
+0
+0
+~
+flags: D
+name: book tome kings book-of-kings
+shortdesc: the Book of Kings
+desc: A large, leather bound tome sits on a shelf.
+type: 2
+weight: 2.00
+cost: 7000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+4 2
+~
+extradesc: book tome
+The book is large and heavy, and is sealed with red wax.  Large, golden words
+are set in its cover.  There is a tingling sensation as you touch this tome,
+making you realise that this must be a book of power.  One of its stories tells
+of a visit from a band of powerful sorcerers who were impressed with Neris'
+kindness and presented her with a holy scarab that has some power to it.  The
+leader of the sorcerers is shown speaking aloud to Neris refering to her as
+"Neris'Kaan", or "Neris the Kind".
+~
+~~
+vnum: 12509
+location: 127
+values:
+70
+1
+1
+66
+0
+0
+0
+~
+flags: 0
+name: fist crystal
+shortdesc: a yellow, fist shaped crystal
+desc: A yellow-tinged, fist-shaped crystal lies here, its purpose forgotten.
+adesc:
+The fist pulses with energy, and soars through the air.
+~
+type: 3
+weight: 0.75
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+extradesc: fist crystal 
+The crystal is a sickly yellow, and has been carved into a clenched fist, with
+part of the forearm intact.    
+~
+~~
+vnum: 16201
+location: 127
+values:
+0
+3000
+3000
+0
+0
+0
+0
+~
+flags: ag
+name: sceptre rod kings golden
+shortdesc: a golden sceptre
+desc: A golden sceptre glitters in the light.
+type: 1
+weight: 1.20
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+17 3
+~
+extradesc: sceptre rod kings
+The sceptre is made of pure gold, and is encrusted in jewels. Intricate carvingsdepicting wings snakes decorate this majestic rod.~
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.69
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20300
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 20305
+location: -1
+values:
+17
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: meat large-chunk-meat food
+shortdesc: a large chunk of meat
+desc: A large chunk of meat lies on the ground here.
+type: 19
+weight: 2.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: meat large-chunk-meat food
+This is a large, tasty-looking chunk of wildebeest meat.
+~
+~~
+vnum: 20305
+location: -1
+values:
+17
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: meat large-chunk-meat food
+shortdesc: a large chunk of meat
+desc: A large chunk of meat lies on the ground here.
+type: 19
+weight: 2.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: meat large-chunk-meat food
+This is a large, tasty-looking chunk of wildebeest meat.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 62503
+location: 127
+values:
+0
+4
+10
+5
+0
+0
+0
+~
+flags: mnosuvwyzD
+name: tree limb large forarm arm green mossy wood treeant
+shortdesc: the limb of the treeant
+desc: A very large forarm is lying limp on the ground, made of green, mossy wood.
+type: 5
+weight: 14.00
+cost: 0
+timer: 0
+level: 43
+effects: 0 0 0
+wear: 32769
+applies:
+4 7
+~
+~~

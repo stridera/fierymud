@@ -1,0 +1,316 @@
+1
+vnum: 16012
+location: 127
+values:
+30
+1
+-1
+0
+0
+0
+0
+~
+flags: f
+name: bag leather-bag
+shortdesc: a leather bag
+desc: A small leather bag lies on the ground.
+type: 15
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: leather bag
+   The bag is made of well cured leather, with a leather thong around its
+opening, allowing you to close it like a purse. Its just the right size to
+hang on your belt.
+~
+~~
+vnum: 58422
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: paper immortality secret quest piece nondescript
+shortdesc: a piece of paper with the secret of immortality on it
+desc: A nondescript paper lies here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+extradesc: paper immortality secret quest piece nondescript
+A pity you can't read anything on this paper. It's written
+in the language of the gods. If you could read it, you'd
+know exactly what magicks are required to become immortal.
+Of course, if you could read it, you'd also already be
+immortal.
+~
+~~
+vnum: 53003
+location: 127
+values:
+35
+0
+0
+0
+0
+0
+0
+~
+flags: afgiklmotu
+name: breastplate plate ethereal white metal
+shortdesc: an ethereal breastplate
+desc: A breastplate of gleaming white metal lies here.
+type: 9
+weight: 6.00
+cost: 4000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 9
+applies:
+14 20
+~
+~~
+vnum: 53016
+location: 127
+values:
+0
+6
+2
+3
+0
+0
+0
+~
+flags: afghiklmnuvyz
+name: sword ethereal sword mist blade
+shortdesc: an ethereal blade
+desc: A sword apparently made of mist rests here.
+type: 5
+weight: 0.13
+cost: 3000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+18 3
+2 2
+~
+~~
+vnum: 58402
+location: 127
+values:
+10
+15
+58403
+0
+0
+0
+0
+~
+flags: bg
+name: box goblins-box goblin goblin's plain-little-wooden-box tightly-closed
+shortdesc: the goblin's box
+desc: A plain little wooden box is tightly closed.
+type: 15
+weight: 1.00
+cost: 200
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+extradesc: box goblins-box goblin goblin's plain-little-wooden-box tightly-closed
+You behold a very simple wooden box. The tiny slats of the fist-sized 
+container are made of poorly cured wood that is warped and cracked in 
+places. A richly patina'd bronze clasp fastens the box's lid shut. 
+~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Sep 15 2010
+  To: Carvo
+From: Zzur
+
+ah glad to hear you are having fun man
+I'm not sure what's involved with r@0emorting
+so email
+laoris@@fierymud.org
+he'll know
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Sep 16 2010
+  To: Carvo
+From: Laoris
+
+Hi Carvo,
+
+There is a remove curse scroll; it's sold at Bigby's.
+
+Lao
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Sep 16 2010
+  To: Carvo
+From: Laoris
+
+Ok Carvo, here are ten randomly selected questions for you to prove
+your k@0nowledge of the realm.  When you think you have the answers, you
+may try to catch me online, or mudmail me.
+
+1. Name 5 swords which have blades specifically made of a material other than metal.
+2. Where can a silver skull pendant be found?
+3. What was Queen Neris called by her subjects?
+4. On what part of the body can a living crystal midget be worn?
+5. What is Borgan?
+6. What could turn you into "extra crispy adventurer nuggets"?
+7. Where can you find a sign with "8-)" on it?
+8. Name an item which has the symbol for "eternity" on it.
+9. Why is Black Lake black?
+10. A milgwn looks like a cross between a ______ and a _____.
+
+Good luck!
+
+-Lao
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20
+location: 127
+values:
+256
+228
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 16.87
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jan 11 2012
+  To: Carvo
+From: Zzur
+
+I am so sorry my friend.
+Being at work something suddenly came up, I was 5@0 minutes late
+to a meeting :(  I did not mean to suddenly go afk on ya.
+I'm glad to hear you are well.  My child is nearing 9 
+months old.
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~

@@ -1,0 +1,97 @@
+name: Keldara
+password: KeE4w5FEla
+currenttitle: bug slayer.
+prompt: <%hh(%HH) %vv(%VV)> <%aA> <%ih> <%df>%_<%t>:<%o>
+sex: 2
+class: 18
+race: 9
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 14331
+birthtime: 1106950332
+timeplayed: 17970958
+lastlogintime: 1365128208
+host: 184.042.029.181
+height: 67
+weight: 149
+base_height: 67
+base_weight: 149
+base_size: 2
+natural_size: 2
+alignment: -986
+playerflags: glxy
+effectflags: kt 0 0
+prefflags: hnoCD 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 9
+hitpoints: 872/872
+mana: 100/100
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 74
+wisdom: 74
+dexterity: 92
+constitution: 94
+charisma: 70
+cash: 22 495 2365 2534
+bank: 1140 4990 30559 39778
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+410 1000
+411 1000
+412 1000
+415 1000
+416 1000
+420 1000
+421 1000
+438 1000
+443 1000
+444 1000
+464 1000
+465 1000
+467 1000
+472 1000
+475 153
+476 1000
+477 1000
+478 1000
+0 0
+trophy:
+1 5120 1.000000
+1 5211 1.000000
+1 5200 1.000000
+1 5201 3.000000
+1 8012 12.000000
+1 8001 1.000000
+1 8030 1.000000
+1 8010 55.000000
+1 8021 31.000000
+1 8020 80.000000
+1 8015 132.000000
+1 8000 131.000000
+1 8022 63.000000
+1 8023 61.000000
+1 8016 111.000000
+1 8011 21.000000
+1 16003 1.000000
+1 16004 5.000000
+1 16002 5.000000
+1 16000 19.000000
+1 16001 12.000000
+0 0 0
+aliases:
+eb eat bread
+db drink skin
+0

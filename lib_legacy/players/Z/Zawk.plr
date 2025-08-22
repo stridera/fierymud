@@ -1,0 +1,188 @@
+name: Zawk
+password: ZaPtKRxlzD
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%ih&2&b>&0<%l>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 20
+race: 9
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17713
+birthtime: 1280019628
+timeplayed: 1388741
+lastlogintime: 1738970842
+host: 208.093.179.007
+height: 65
+weight: 101
+base_height: 65
+base_weight: 101
+base_size: 2
+natural_size: 2
+alignment: 871
+playerflags: gxyz
+effectflags: k 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 541/541
+mana: 980/980
+move: 122/122
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 93
+wisdom: 88
+dexterity: 74
+constitution: 90
+charisma: 38
+cash: 751 8773 39212 34320
+experience: 126967199
+pagelength: 50
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+19 1000
+20 1000
+26 1000
+29 1000
+31 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+65 1000
+67 1000
+68 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+107 1000
+108 1000
+112 1000
+113 1000
+157 1000
+158 1000
+159 1000
+160 1000
+161 1000
+162 1000
+163 1000
+164 1000
+165 1000
+166 1000
+167 1000
+168 1000
+169 1000
+170 1000
+200 1000
+220 1000
+228 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+447 1000
+451 1000
+452 1000
+453 1000
+455 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 1000
+0 0
+trophy:
+1 37000 0.500000
+1 43015 0.500000
+1 43005 0.500000
+1 43018 0.500000
+1 43004 1.500000
+1 43003 3.000000
+1 12304 1.000000
+0 0 0
+tells:
+1618474036 @WDavar@W tells you, 'Emawk requested i send a well Incoming@W'@0
+1618474720 @WDavar@W tells you, 'Vawk requested i send a well Incoming@W'@0
+1618799471 @WKost@W tells you, 'how do you like Pyro? seem to see more cryomancers around@W'@0
+1618862635 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1620676943 @WDavar@W tells you, 'Pawk requested i send a well Incoming@W'@0
+1737890375 @WDavar@W tells you, 'one gem please@W'@0
+1737892899 @WDavar@W tells you, 'one gem please@W'@0
+1738060600 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738348602 @WDavar@W tells you, 'one gem please@W'@0
+1738349094 @WDavar@W tells you, 'one gem please@W'@0
+$
+gossips:
+1738358863 Anexis gossips, 'quaff spam frfr'
+1738358911 Mogi gossips, 'oh... theres alignment on this game'
+1738358916 Mogi gossips, 'oops'
+1738359063 Mogi gossips, 'does wearing heavy armour mess with spellcasting?'
+1738359090 Mogi gossips, 'grats'
+1738359095 Antix gossips, 'no it shouldn't'
+1738359096 Pawk gossips, 'not that i know of mostly your class restriced from heavy armor'
+1738359099 Antix gossips, 'thank'
+1738359106 Discord gossips, 'Daedela: Nope!'
+1738359119 Mogi gossips, 'alright thanks'
+$
+aliases:
+dis c 'dis mag' $*
+minvis c 'm invis'
+yy ass smrt
+y ass pawk
+nova c 'supernova'
+blind c 'smoke' $*
+4 stone fylae
+3 stone anttily
+2 stone pawk
+crem c 'crem'
+goto c 'relocat' $*
+tel c 'teleport'
+globe c 'maj globe' $*
+mag c 'fire dar' $*
+invis c 'invis' $*
+x g all.coins
+` assist harnv
+1 ass fernley
+earthing is what bot for earth sphere is called
+stone c 'stone s' $*
+burn c 'burning h' $*
+gac g all all.corpse
+pra mem $*
+make c 'm c' $*
+id recite identify $*
+ball c 'fireball' $*
+ember c 'phosp embers' $*
+deto c 'deto' $*
+shock c 'pos f' $*
+door c 'd door' $*
+acid c 'acid burst' $*
+stor c 'firestor' $*
+pray mem $*
+gax g all.coins all
+haste c 'haste' $*
+melt c 'melt' $*
+storm c 'firestor' $*
+imm c 'imm' $*
+armor c 'mirage'
+smoke c 'smoke' $*
+met c 'meteor'
+super c 'supernova' 
+0

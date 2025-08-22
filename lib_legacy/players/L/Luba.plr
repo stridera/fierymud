@@ -1,0 +1,124 @@
+name: Luba
+password: Lud5BwSHRt
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%e&2&b><&0&2%df&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20147
+birthtime: 1644487746
+timeplayed: 1038149
+lastlogintime: 1667458316
+host: 208.093.179.103
+height: 76
+weight: 206
+base_height: 76
+base_weight: 206
+base_size: 3
+natural_size: 3
+alignment: 562
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: dhnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1414/1216
+mana: 980/980
+move: 83/170
+damroll: 5
+hitroll: 4
+strength: 96
+intelligence: 68
+wisdom: 77
+dexterity: 94
+constitution: 97
+charisma: 52
+cash: 1150 1561 9724 12626
+experience: 111576161
+pagelength: 44
+quit_reason: 1
+saveroom: 3054
+skills:
+402 652
+404 492
+407 1000
+411 679
+412 1000
+415 50
+416 50
+419 1000
+420 1000
+421 1000
+422 1000
+427 1000
+430 190
+431 50
+434 1000
+438 103
+441 981
+443 50
+444 719
+463 685
+464 394
+465 644
+466 1000
+467 97
+468 586
+473 399
+0 0
+trophy:
+1 49000 1.000000
+0 0 0
+tells:
+1667449132 @WLoap@W tells you, 'resc me@W'@0
+1667449664 @WLoap@W tells you, 'resc me@W'@0
+1667449668 @WLoap@W tells you, 'resc me@W'@0
+1667449668 @WLoap@W tells you, 'resc me@W'@0
+1667449668 @WLoap@W tells you, 'resc me@W'@0
+1667449668 @WLoap@W tells you, 'resc me@W'@0
+1667449669 @WLoap@W tells you, 'resc me@W'@0
+1667449669 @WLoap@W tells you, 'resc me@W'@0
+1667449669 @WLoap@W tells you, 'resc me@W'@0
+1667449669 @WLoap@W tells you, 'resc me@W'@0
+1667449670 @WLoap@W tells you, 'resc me@W'@0
+$
+gossips:
+1665815884 Daedela gossips, 'oh yeah, that's the Paladin and Priest quest master'
+1665930491 Choak gossips, 'what was that white light?'
+1665930510 Chinok gossips, 'not seen anything'
+1665930519 Choak gossips, 'I just read 'White light from no particular source suddenly fills the room, then vanishes.''
+1665930586 Chinok gossips, 'what room /'
+1665930600 Choak gossips, 'inn'
+1665930642 Chinok gossips, 'some of the new innates can do that, when they wear off. but I'd have to look closer for which one it is'
+1665930653 Choak gossips, 'I see must be one the L*s'
+1667359483 Discord gossips, 'blaz2009: Only if you want help'
+1667359527 Discord gossips, 'blaz2009: I've missed the last couple resets'
+1667359532 Discord gossips, 'blaz2009: Hahaha'
+$
+aliases:
+h hitall $*
+o order f $*
+3 resc lefa
+4 resc lempi
+2 resc lufa
+yy ass lyno
+start hp 30
+starthp 30
+gac get all all.corpse
+tel recite teleport
+y ass lefa
+id recite identify $*
+combatneed a crystal for some citrine dust
+combatneed2 a longsword of the 3rd Eldorian Guard for some garnet dust
+combatneed3 a robe of the 3rd Eldorian Guard for some aquamarine dust
+combatneed4 a spiked mace of the 3rd Eldorian Guard for some pearl dust
+gax g all.coins all.corpse
+alongscimitar skeleton pyramids
+5 resc loap
+0

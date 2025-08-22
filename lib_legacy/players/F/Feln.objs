@@ -1,0 +1,1681 @@
+1
+vnum: 1004
+location: 0
+values:
+1
+240
+146
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern. It holds about fifteen hours worth of fuel.
+~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 5528
+location: 5
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: jerkin eldoria-reward 3rd-eldorian-guard-leather-jerkin
+shortdesc: a leather jerkin of the 3rd Eldorian Guard
+desc: A leather jerkin lies discaded here.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+13 5
+~
+~~
+vnum: 5518
+location: 6
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: helm eldoria-reward discarded 3rd-eldorian-guard-helm
+shortdesc: a helm of the 3rd Eldorian Guard
+desc: A helm lies discarded nearby.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 17
+applies:
+14 5
+~
+extradesc: helm eldoria-reward discarded 3rd-eldorian-guard-helm
+It's a helmet of middling quality with the insignia of the 3rd Eldorian Guard
+imprinted on it.
+~
+~~
+vnum: 58819
+location: 7
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pants wool-pants woolen-pants
+shortdesc: a pair of dark grey wool pants
+desc: A pair of warm-looking wool pants lies here.
+type: 9
+weight: 1.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: wool pants woolen
+You see a simple pair of homespun woolen pants. The garment's been dyed
+a dark grey color. They seem very utilitarian.
+~
+~~
+vnum: 55201
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: m 0
+name: boots alligator skin reptile scales set
+shortdesc: alligator skin boots
+desc: A set of reptile scales looks abandoned here.
+type: 9
+weight: 3.00
+cost: 400
+timer: 0
+level: 6
+effects: 0 0 0
+wear: 65
+extradesc: alligator skin boots reptile scales
+These boots look to be excellently crafted from several alligator
+hides. They are water resistant, sturdy, and light.
+~
+~~
+vnum: 16034
+location: 9
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: muyz 0
+name: gauntlets charred black set chain linked
+shortdesc: charred gauntlets
+desc: A black set of chain linked gauntlets lies here.
+type: 9
+weight: 3.80
+cost: 0
+timer: 0
+level: 18
+effects: 0 0 0
+wear: 129
+applies:
+1 3
+13 15
+18 -2
+~
+extradesc: gauntlets charred black set chain linked
+These guantlets have smoldered in the heat of a black flame for many ages, as
+in apparent by the perpetual signs of soot lingering in all of the crevices.  
+They are solid and well fashioned, yet appear to have degraded in the flames
+over the years.    
+~
+~~
+vnum: 53018
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: mouwyz 0
+name: bracers coiled serpent
+shortdesc: the Serpent Bracers
+desc: Bracers formed like coiled serpents rest here.
+type: 9
+weight: 8.00
+cost: 1500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 257
+applies:
+1 2
+~
+~~
+vnum: 41117
+location: 11
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: agnopr 0
+name: singing-shield translucent singing shield energy
+shortdesc: the Singing Shield
+desc: A translucent wave of bowl-shaped energy floats here.
+type: 9
+weight: 5.00
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 513
+applies:
+19 1
+~
+extradesc: singing-shield translucent singing shield energy
+A shimmering wave of transluscent energy has been shaped into a concave
+bowl of protection. Faint swirls of gray, blue, and green wash through 
+it in pulses like waves past an ocean shore.
+~
+~~
+vnum: 20304
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cloak zebra skin
+shortdesc: a zebra skin cloak
+desc: A large striped cloak lies in the dust here.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+applies:
+1 2
+19 1
+~
+extradesc: cloak zebra skin
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.    
+~
+~~
+vnum: 16031
+location: 13
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: muyz 0
+name: girdle shadow-girdle wide-black-band-metallic-links
+shortdesc: a shadow girdle
+desc: A wide black band of metallic links is piled up here.
+type: 9
+weight: 3.30
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 2049
+applies:
+2 3
+5 3
+1 -3
+~
+extradesc: shadow girdle wide black band metallic links
+This girdle is little more than a thick shadow.  It is a black band of tightly
+interwoven, metalic links which are bound together to form the girdle.  Each
+link is made of an incoporeal substance, shrouded within a tangible frame.    
+~
+~~
+vnum: 2023
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr 0
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 2023
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr 0
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 5104
+location: 16
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: gnu 0
+name: dagger stone stone-dagger
+shortdesc: a stone dagger
+desc: A stone dagger has been abandoned here.
+type: 5
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+~~
+vnum: 4312
+location: 22
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: makeup stage-makeup kit
+shortdesc: stage makeup
+desc: Someone left their makeup kit behind.
+adesc:
+Nothing.
+~
+type: 11
+weight: 0.08
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 131073
+applies:
+6 2
+~
+extradesc: stage makeup kit
+This kit has everything an actor needs; base, blush, eyeliner, lipstick,
+highlights and shadows and even a stubble sponge.  Cheap and simple, but it
+covers all of an actor's base needs.    
+~
+~~
+vnum: 1607
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA 0
+name: viper fang
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 0.40
+cost: 1000
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+24 -1
+13 5
+~
+extradesc: fang viper
+About 2 inches long, and razor-sharp, this fang looks like it could
+pierce steel.  Or be worn as an earring...
+~
+~~
+vnum: 1607
+location: 24
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA 0
+name: viper fang
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 0.40
+cost: 1000
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+24 -1
+13 5
+~
+extradesc: fang viper
+About 2 inches long, and razor-sharp, this fang looks like it could
+pierce steel.  Or be worn as an earring...
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some if its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 48104
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: head shrivelled severed-head
+shortdesc: a shrivelled, severed head
+desc: The shrivelled head of a jungle savage lies here.
+type: 12
+weight: 8.00
+cost: 50
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1064961
+applies:
+3 1
+17 5
+~
+extradesc: shrivelled head severed
+This grotesque trophy makes you want to puke. Why would you ever want to
+look at such a thing??
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+184
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 14.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 17802
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe
+shortdesc: a canoe
+desc: A canoe lies abandoned here.
+type: 22
+weight: 25.00
+cost: 700
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+~~
+vnum: 17210
+location: 127
+values:
+15
+18
+20
+14
+0
+0
+0
+~
+flags: gD 0
+name: scroll yellowed
+shortdesc: a yellowed scroll
+desc: A scroll lies here.
+type: 2
+weight: 1.00
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: scroll yellowed
+This scroll seems to be very old. The parchment has already been yellowed
+with age.
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: quill feather feather-quill pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: feather quill
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)
+~
+~~
+vnum: 17213
+location: 127
+values:
+1
+31
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll rough graphed roughly-graphed
+shortdesc: a roughly-graphed scroll
+desc: A crude scroll with heavy graph lines lies here rolled up.
+type: 2
+weight: 1.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: scroll rough graphed roughly-graphed
+This appears to be the work of an apprentice, for crude lines are drawn roughly
+all across its surface.  The somewhat faint silvery lines have a discernable
+metallic gleam.  Most of the lines are drawn in one of two orthogonal
+directions, parallel to one or the other of the mostly rectangular edges of the
+document.  Four other lines drawn at acute angles create a diamond in the
+middle, albeit somewhat distorted.
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+18 9
+32 5
+16 9
+144 16
+8 7
+88 5
+~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55576
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55610
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: jade gem shard shard-jade
+shortdesc: a jade shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55616
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem shard shard-amber
+shortdesc: an amber shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 2307
+location: 127
+values:
+2
+4
+11
+3
+0
+0
+0
+~
+flags: mnuvyz 0
+name: sword broadsword alabaster-pommelled
+shortdesc: an alabaster-pommelled broadsword
+desc: A broadsword with an alabaster pommel lies here.
+type: 5
+weight: 2.20
+cost: 1000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 32769
+applies:
+6 3
+~
+extradesc: sword broadsword alabaster
+This large weapon is a two-handed sword with a very long blade made of steel
+with very little in the way of sharp edges, since it's meant for brute hacking.
+The hilt is made of bronze, with bronze crossguards and little ornamentation
+or decoration.  The pommel is weighted perfectly with a smooth white alabaster
+stone, opaque and milky-white.  There is no sign of what the stone signifies.
+~
+~~
+vnum: 23804
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hawk hawk's gaze hawks eyes bird disembodied hawk-gaze
+shortdesc: a hawk's gaze
+desc: A pair of disembodied bird eyes is sitting here.
+type: 11
+weight: 0.40
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 65537
+applies:
+4 3
+~
+extradesc: hawk hawk's gaze hawks eyes bird disembodied hawk-gaze
+When placed over the eyes, this extra set of eyes seems to focus one's vision
+more, lending detail to even the most plain-seeming objects.  They float in
+place magically, synchronizing perfectly with the eyes they are worn over.  
+Seems a little odd, but they do help.    
+~
+~~
+vnum: 37008
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: abemowyz 0
+name: boots thawkinixan-boots thawkinixan stone mineral
+shortdesc: a pair of thawkinixan boots
+desc: A pair of boots made out of some strange mineral lie here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 65
+applies:
+2 -3
+19 1
+~
+extradesc: boots stone mineral
+The boots look like rock, and feel like a rock, but are fairly light to
+be rock. The boots are clear in color. You imagine that they might be nice
+to wear in case a heavy object should fall on your feet. There appear
+to be some initials carved into the bottom of these boots.
+~
+extradesc: initials
+The initials read E.A.
+         21
+~
+~~
+vnum: 12538
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu 0
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 11
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    
+~
+~~
+vnum: 12538
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu 0
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 11
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~

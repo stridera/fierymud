@@ -1,0 +1,157 @@
+name: Thorfinn
+password: Th3EV2sFQy
+currenttitle: &4Weaver&0 of &2Fate&0&0 @M>>WoF<<&0
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 10
+race: 10
+level: 99
+home: 1500
+lifeforce: 0
+composition: 0
+id: 20611
+birthtime: 1693786038
+timeplayed: 700737
+lastlogintime: 1698800091
+host: 099.019.071.249
+height: 82
+weight: 183
+base_height: 82
+base_weight: 183
+base_size: 3
+natural_size: 3
+alignment: 946
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: hnouxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1474/1276
+mana: 980/980
+move: 333/333
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 60
+wisdom: 56
+dexterity: 93
+constitution: 93
+charisma: 56
+cash: 2304 21519 85258 27269
+bank: 0 0 1 1
+experience: 105805999
+clan: 4
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+402 872
+403 1000
+404 1000
+410 850
+411 875
+412 1000
+415 510
+416 510
+419 1000
+420 1000
+421 1000
+422 1000
+427 1000
+428 50
+430 870
+431 1000
+434 878
+438 370
+443 870
+444 938
+463 320
+464 876
+465 870
+466 50
+467 1000
+468 460
+473 876
+474 870
+0 0
+trophy:
+1 8030 1.000000
+1 53305 0.500000
+1 53314 1.500000
+1 53315 3.500000
+1 53313 0.500000
+1 53303 0.500000
+1 53312 1.500000
+1 53021 0.500000
+1 53009 0.500000
+1 53007 2.000000
+1 48008 0.200000
+1 48006 0.200000
+1 48007 0.400000
+1 48019 1.400000
+1 48027 0.200000
+1 48028 0.600000
+1 48010 0.200000
+1 48003 1.600000
+1 48017 0.200000
+1 48018 0.200000
+1 48016 0.800000
+0 0 0
+tells:
+1697889219 @WUlthar@W tells you, 'sorry@W'@0
+1697889224 @WUlthar@W tells you, 'later?@W'@0
+1697889304 @WUlthar@W tells you, 'okay, west house a bit south@W'@0
+1697889364 @WUlthar@W tells you, 'ugh blind@W'@0
+1697889410 @WUlthar@W tells you, 'bodyslam hasn't been working for me either, i always pass through them@W'@0
+1697889445 @WUlthar@W tells you, 'hate blind@W'@0
+1697940304 @WUlthar@W tells you, 'will do, good to see you@W'@0
+1697940337 @WUlthar@W tells you, 'he'll be good eventually@W'@0
+1697949521 @WChogg@W tells you, 'oh hiya...thanks!@W'@0
+1698635890 @WKathra@W tells you, 'Thanks for the deal.@W'@0
+$
+gossips:
+1698799627 Gorath gossips, 'me'
+1698799627 Porath gossips, 'me'
+1698799627 Dorath gossips, 'me'
+1698799745 Borath gossips, 'thx!'
+1698799763 Chinok gossips, 'everyone get their pumpkins ?'
+1698799782 Borath gossips, 'yeppers'
+1698799788 Borath gossips, 'festive'
+1698799803 Chinok gossips, 'happy halloween'
+1698799839 Borath gossips, 'Happy Halloween!'
+1698800039 Chinok gossips, 'if I give you calvin cline, I can't prevent you from wearing it on your head'
+1698800051 Chinok gossips, 'but -- if you have other chars, they can get one too if they log in'
+$
+aliases:
+body disengage; bodyslam $*; stand; b;
+as assist mersh; b;
+lvl d; e; s; e; e; s; sea; op c; e; d; level gain; u; w; n; w; w; n; w; u;
+am assist mer; b;
+rb remove boots
+wb wear boots
+gi get id 3.saddle
+gcc get all.gem all.corpse; get all.spice all.corpse;
+bsb body $*; stand;
+bl b l; kick;
+bh bash $1; stand;
+dw remove spear
+sw remove dagger
+wake wake
+wake; stand
+wak wake; stand; hide;
+fl flee; hide;
+big remove alab; hold fist; use fist $*; wield alab;
+qq quaff small;
+qi quaff vial;
+ch tell choak well
+en enter well; tell choak heal;
+enh enter well; hide;
+qp quaff clear;
+qc recite remove;
+we tell choak well;
+b backstab $*;
+ba remove spear; wear shield; wield fang; bash $*; remove fang; remove shield; wield spear; backstab $*;
+0

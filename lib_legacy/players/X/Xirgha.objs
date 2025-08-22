@@ -1,0 +1,651 @@
+1
+vnum: 55015
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring crystal crystal-ring ice circle
+shortdesc: a crystal ring
+desc: A small circle of ice catches your eye.
+type: 9
+weight: 0.02
+cost: 1200
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 3
+applies:
+1 1
+5 1
+~
+extradesc: ring crystal crystal-ring ice circle
+It looks as though it's a simple ring carved from ice, although upon closer
+inspection you notice that the small ring is made of tiny carved square
+ceremonial masks.  
+~
+~~
+vnum: 41109
+location: 3
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mt
+name: torc gold golden-torc golden
+shortdesc: a shining golden torc
+desc: A shining gold torc has been forgotten here.
+type: 9
+weight: 2.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+applies:
+3 2
+26 2
+~
+extradesc: gold-torc torc gold shining
+The brilliantly polished gold neckpiece has been inlaid with a repeating
+pattern of rowan leaves overlapping hemlock. It is incredibly heavy.
+~
+~~
+vnum: 48010
+location: 5
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: gkmotuwyz
+name: breastplate plate golden
+shortdesc: a golden breastplate
+desc: A shining golden breastplate has been left here.
+type: 9
+weight: 45.00
+cost: 4500
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 9
+applies:
+23 -3
+~
+extradesc: golden-breastplate golden breastplate breast plate
+Although the breastplate is over 2000 years old, it lacks any sign of age or 
+use; it has neither dents nor rust. It appears to be fantastic armor.
+~
+~~
+vnum: 58416
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: hood purple leather stolen youth
+shortdesc: the Hood of Stolen Youth
+desc: A hood made of purple leather glows with an eerie light.
+type: 9
+weight: 1.00
+cost: 1200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 17
+applies:
+9 -50
+~
+extradesc: hood stolen youth purple leather
+The hood is purple leather, soft as silk, ornamented with golden
+ribbon around the edges. Its lappets hang down the wearer's chest
+and back, allowing the hood to fall back. An attendant air of
+disaster seems to hang around this hood, but you must admit, it
+is very flattering.
+~
+~~
+vnum: 58430
+location: 7
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tights purple purple-tights snug-fitting pair rolled ball discarded
+shortdesc: a pair of snug-fitting purple tights
+desc: A pair of tights has been rolled into a ball and discarded.
+type: 9
+weight: 0.50
+cost: 750
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: tights purple purple-tights snug-fitting pair rolled ball discarded
+These tights look like they'd be a perfect fit! A tie-waist secures
+them at the waist, and the thick woolen material goes from there all the
+way down to your feet. They look quite old, and seem to glow with some
+kind of magical power. Perhaps they're enchanted!
+~
+~~
+vnum: 3226
+location: 12
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: robe black silk
+shortdesc: a black silk robe
+desc: A black silk robe lies heaped in one corner.
+type: 9
+weight: 2.00
+cost: 1300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: robe black silk
+The black robe is made with the finest silk known to man, just holding it
+make you feel richer.
+~
+~~
+vnum: 2803
+location: 13
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gj
+name: sash pirate golden cloth
+shortdesc: a golden pirate sash
+desc: A piece of golden cloth lies crumped on the ground here.
+type: 12
+weight: 1.00
+cost: 450
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 2049
+applies:
+17 5
+14 25
+~
+~~
+vnum: 58434
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 55002
+location: 15
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: jade-bracelet bracelet jade ring solid
+shortdesc: a jade bracelet
+desc: A large ring of solid jade lies here.
+type: 9
+weight: 1.00
+cost: 1700
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 4097
+applies:
+1 1
+13 -10
+~
+extradesc: jade-bracelet bracelet jade ring solid
+This is a large ring carved from a solid piece of jade.  It looks as though it
+is made up of many symbols that resemble squared cerimonial masks.  
+~
+~~
+vnum: 58020
+location: 16
+values:
+0
+2
+4
+11
+0
+0
+0
+~
+flags: jnrtu
+name: dagger ivory ivory-handled
+shortdesc: an ivory-handled dagger
+desc: A vicious-looking ivory dagger lies here.
+type: 5
+weight: 1.10
+cost: 5000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+5 2
+~
+extradesc: ivory dagger
+You see a plain cream-colored ivory dagger, very simply carved, with a
+leather-wrapped handle. It has a good balance, but other than that,
+it's nothing spectacular.~
+~~
+vnum: -1
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eyepatch leather
+shortdesc: a small eyepatch
+desc: A small leather eyepatch lies here.
+type: 11
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65537
+applies:
+5 50
+~
+~~
+vnum: 13662
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: dgi
+name: earring peridot-earring
+shortdesc: a peridot earring
+desc: A peridot earring lies here.
+adesc:
+Nothing.
+~
+type: 11
+weight: 0.01
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+applies:
+13 4
+~
+extradesc: earring peridot
+Made with a steel backing, this drop earring has a peridot pendant.
+The pale green stone is faceted to catch the light.
+~
+~~
+vnum: 17308
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjl
+name: flame black black-flame pillar fire Questobject
+shortdesc: a black flame
+desc: A small pillar of black fire flickers here.
+type: 1
+weight: 0.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+applies:
+4 -1
+19 2
+~
+extradesc: black flame black-flame
+  The fire seems at the same time both large, yet small, hot yet cold.
+Strangely, you are able to pick it up in your hand. It seems to light up
+the area, but somehow, seems to shed no light at all.
+~
+triggers:
+5207
+~
+~~
+vnum: 55700
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem shard shard-aquamarine
+shortdesc: an aquamarine shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 8000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55703
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sapphire gem shard shard-sapphire
+shortdesc: a sapphire shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 8000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55730
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sapphire gem enchanted enchanted-sapphire
+shortdesc: an enchanted sapphire
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 30000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55680
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem flawed flawed-citrine
+shortdesc: a flawed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 6000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 53313
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: gmo
+name: club yeti bone dragon yeti-club
+shortdesc: a yeti's club
+desc: A giant club made from the bone of a dragon lies here.
+type: 5
+weight: 12.00
+cost: 150
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 8193
+applies:
+5 3
+~
+extradesc: club dragon bone yeti
+This is a typical bone club used by yeti's of the arctic region.  It is
+fashioned from a large dragon's bone and is highly decorated with strange
+carvings.
+~
+~~
+vnum: 53322
+location: 127
+values:
+500
+3
+53304
+0
+0
+0
+0
+~
+flags: 0
+name: case
+shortdesc: a case
+desc: A box is fitted into the wall of ice.
+type: 15
+weight: 99999.00
+cost: 20
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 0
+extradesc: case
+This case is held closed by a small lock.  There seems to be ice covering some
+of the joints, making it difficult to open.    
+~
+extradesc: box fitted container
+The box is made of extremely hard wood that has been weathered.  It looks much
+like a case which might be carried, except is now fixed into the wall,
+hopelessly stuck in the grip of the ice.  Inspecting the case closely reveals a
+small lock in the side of it.  There is a strange shimmer coming from the
+inside which definately comes from something else being present, but it would
+take a dragon's eye to see for certain while the case is closed.    
+~
+~~
+vnum: 53324
+location: 127
+values:
+40
+15
+53317
+0
+0
+0
+0
+~
+flags: fBD
+name: cover sleeve
+shortdesc: a shield cover
+desc: The cover of a shield lies here.
+type: 15
+weight: 1.80
+cost: 170
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+extradesc: cover sleeve cloth
+This cover is holding a wonderful object, albeit hard to get at through the
+hard casing it is in.    
+~
+~~
+vnum: 53315
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: dragon-shield shield dragon's claw
+shortdesc: a dragon's cult shield
+desc: A shield with the image of a dragon's claw lies here.
+type: 9
+weight: 8.00
+cost: 2250
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 513
+applies:
+5 2
+2 2
+~
+extradesc: shield dragon's claw
+This white heater-shaped shield bears the symbol of the cult of Tri-Aszp
+on its front: a bleeding dragon's claw.  You notice that it is extremely
+well balanced.
+~
+~~
+vnum: 53314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~

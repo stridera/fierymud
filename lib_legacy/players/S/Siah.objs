@@ -1,0 +1,842 @@
+1
+vnum: 16201
+location: 0
+values:
+0
+3000
+3000
+0
+0
+0
+0
+~
+flags: ag
+name: sceptre rod kings golden
+shortdesc: a golden sceptre
+desc: A golden sceptre glitters in the light.
+type: 1
+weight: 1.20
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+17 3
+~
+extradesc: sceptre rod kings
+The sceptre is made of pure gold, and is encrusted in jewels. Intricate carvingsdepicting wings snakes decorate this majestic rod.~
+~~
+vnum: 37015
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bopwxD
+name: necklace hand carved hand-carved-necklace wood wooden
+shortdesc: a hand-carved necklace
+desc: A necklace carved from wood has been dropped here.
+type: 12
+weight: 0.70
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 5
+applies:
+9 -50
+3 2
+~
+extradesc: necklace hand carved hand-carved-necklace wood wooden
+The necklace's main pendant is carved in the shape of a tree. The tree
+appears to be growing...can this be? You notice at the bottom of the
+necklace that you can see the trees' rings...you count 50. On the side of
+the tree there appears to be an inscription. 
+~
+extradesc: inscription side
+Ciron the eternally enslaved.
+~
+~~
+vnum: 49027
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gnoprtD
+name: amulet crystal crystal-amulet
+shortdesc: a crystal amulet
+desc: A crystal amulet has scorched the ground!
+type: 9
+weight: 0.13
+cost: 5000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 5
+applies:
+4 3
+~
+extradesc: amulet crystal
+It causes a light burn wound when you touch it for too long.~
+~~
+vnum: 526
+location: 5
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: jlru
+name: vest shards pile broken glass
+shortdesc: a vest of shards
+desc: A pile of broken glass sits here.
+adesc:
+   When picked up the pieces assemble a vest of black glass.  Feeling oddly
+cold against the skin, it seems to numb as quickly as it is adjusted.    
+~
+type: 9
+weight: 12.00
+cost: 30000
+timer: 0
+level: 45
+effects: n 0 0
+wear: 9
+applies:
+5 -4
+2 -3
+~
+extradesc: vest shards black glass
+   This jumble of collected shards form a remarkable vest.  The twisted
+sensation of the armor numbs the skin quickly as the first touch.  It is
+apparent this is a powerful armor, mysterious and volatile.    
+~
+~~
+vnum: 58430
+location: 7
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tights purple purple-tights snug-fitting pair rolled ball discarded
+shortdesc: a pair of snug-fitting purple tights
+desc: A pair of tights has been rolled into a ball and discarded.
+type: 9
+weight: 0.50
+cost: 750
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: tights purple purple-tights snug-fitting pair rolled ball discarded
+These tights look like they'd be a perfect fit! A tie-waist secures
+them at the waist, and the thick woolen material goes from there all the
+way down to your feet. They look quite old, and seem to glow with some
+kind of magical power. Perhaps they're enchanted!
+~
+~~
+vnum: 587
+location: 8
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: e
+name: stockings long-pair-knee-high-stockings off-white-stockings
+shortdesc: a pair of knee-high stockings
+desc: A long pair of off-white stockings lies here, crumpled.
+type: 9
+weight: 0.30
+cost: 1000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65
+applies:
+6 -4
+2 4
+26 10
+~
+extradesc: long-pair-knee-high-stockings off-white-stockings
+Sewn from the finest off-white cotton threads, this well-worn pair of
+previously owned stockings promise its wearer warmth and comfort no
+matter the environment.  Some slight stains mar the stretchy fabric,
+but they are undoubtedly just an artifact of the production process.
+~
+~~
+vnum: 52003
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: goprt
+name: gloves black black-gloves
+shortdesc: a pair of black gloves
+desc: A pair of black gloves lies here.
+type: 9
+weight: 0.75
+cost: 500
+timer: 0
+level: 75
+effects: 0 0 0
+wear: 129
+applies:
+4 2
+~
+extradesc: gloves black black-gloves
+These gloves are jet black, nearly dark as the night sky with no moon.  There
+are even small twinkles like the stars.    
+~
+~~
+vnum: 2803
+location: 13
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjD
+name: sash pirate golden cloth
+shortdesc: a golden pirate sash
+desc: A piece of golden cloth lies crumped on the ground here.
+type: 12
+weight: 1.00
+cost: 450
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 2049
+applies:
+17 5
+14 25
+~
+~~
+vnum: 53325
+location: 18
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: white dragon scale white-dragon-scale
+shortdesc: a white dragon scale
+desc: A perfect white dragon scale lies here.
+type: 9
+weight: 2.00
+cost: 10000
+timer: 1000
+level: 40
+effects: 0 0 0
+wear: 16385
+applies:
+13 30
+18 1
+~
+extradesc: white dragon scale white-dragon-scale
+About as large as a human's palm, this pure white scale comes from the tender
+shoulder area of a white dragon.  It is a beautiful scale, shining brightly in
+the light and feeling slightly cool to the touch.  Dragons are very magical
+creatures, so the scale would probably be valuable to a researching sorcerer or
+anyone else interested in unlocking the power of a dragon's skin.    
+~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: mask imanhotep golden
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 9
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+applies:
+1 2
+4 2
+~
+extradesc: mask
+The mask is made of solid gold and is encrusted with jewels. It has an aura
+of power around it.~
+~~
+vnum: 23802
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snowflake lone earring snowflake-earring
+shortdesc: a snowflake earring
+desc: A lone snowflake glimmers on the floor.
+type: 11
+weight: 0.01
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 262145
+applies:
+13 5
+24 -3
+23 -5
+~
+extradesc: snowflake lone earring snowflake-earring
+It seems to be a snowflake set onto a tiny silver post.  The six-pointed flake
+is cool to the touch, though it does not melt.  Whatever crystal substance it
+is made of catches the light quite well, giving it an ever-present sparkle.  
+Its miniscule arms have hexagonal symmetry, and it is very detailed.    
+~
+~~
+vnum: 23802
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snowflake lone earring snowflake-earring
+shortdesc: a snowflake earring
+desc: A lone snowflake glimmers on the floor.
+type: 11
+weight: 0.01
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 262145
+applies:
+13 5
+24 -3
+23 -5
+~
+extradesc: snowflake lone earring snowflake-earring
+It seems to be a snowflake set onto a tiny silver post.  The six-pointed flake
+is cool to the touch, though it does not melt.  Whatever crystal substance it
+is made of catches the light quite well, giving it an ever-present sparkle.  
+Its miniscule arms have hexagonal symmetry, and it is very detailed.    
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 20300
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 47017
+location: 127
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: g
+name: lantern undead
+shortdesc: the Lantern of the Undead
+desc: A small forsaken lantern lies here in the bushes.
+type: 1
+weight: 5.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+3 2
+6 -3
+~
+extradesc: undead-lantern lantern undead
+This lantern glows a pale green light that makes you chill all over.  It is a
+permanent light source, originating from the world of the undead.  How it got
+here, no one knows.
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 1030
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: quill white-feather-quill
+shortdesc: a white feather quill
+desc: A white feather quill lies here.
+type: 21
+weight: 0.05
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: white-feather-quill
+&0A slender quill made from a white feather.  Its point is used to dunk in ink
+and write with.    
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+5 1
+101 2
+20 1
+32 1
+100 1
+8 1
+19 2
+39 1
+99 2
+186 1
+31 2
+37 1
+106 2
+105 2
+50 1
+103 2
+30 2
+107 2
+83 2
+102 2
+2 1
+10 2
+76 2
+62 2
+67 1
+29 2
+38 2
+26 2
+57 2
+68 2
+77 2
+52 2
+66 2
+111 2
+110 2
+108 3
+109 2
+112 2
+113 3
+65 3
+185 2
+184 2
+104 2
+~
+~~
+vnum: 48924
+location: 127
+values:
+100
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: case instrument-case oblong-black-case
+shortdesc: an instrument case
+desc: An oblong black case is propped up against the wall.
+type: 15
+weight: 3.00
+cost: 0
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 1025
+extradesc: instrument-case oblong-black-case
+A case of hard, oiled black leather provides a safe, waterproof environment for
+the precious instruments carried within.  A crescent moon has been worked into
+the leather casing and dyed a bright silver color, marking the case as
+originating from the stores of Lokari himself.  Shaped rather like a pear, it
+looks like it was made to contain some kind of stringed instrument with a short
+neck.  A black strap embroidered with patterns of stars attaches to either end
+of the case, and it looks like it could be comfortably worn slung over a
+shoulder.    
+~
+~~
+vnum: 43022
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-insanity something insanity
+shortdesc: the Cloak of Insanity
+desc: Something rests on the ground here, slowly corrupting reality.
+type: 12
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+applies:
+4 -3
+19 3
+~
+extradesc: cloak insanity
+Looking at the cloak too long gives you a headache.
+~
+~~
+vnum: 48127
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring ivory ivory-ring wedding wedding-band band
+shortdesc: an ivory wedding band
+desc: An ivory wedding band has been tossed here by a spiteful person.
+type: 11
+weight: 0.02
+cost: 3000
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 3
+applies:
+3 -2
+4 -2
+19 2
+~
+triggers:
+48111
+~
+~~
+vnum: 52016
+location: -1
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: abgmowyz
+name: skin armor dragon-skin dragon-armor
+shortdesc: a dragon skin
+desc: A set of scaled dragon armor lies here, apparently forgotten by the gods.
+type: 9
+weight: 18.00
+cost: 7810
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 9
+applies:
+23 -5
+24 -5
+~
+extradesc: skin armor dragon-skin dragon-armor
+Of all things, dragon skin is incredibly rare.  The scales are hard and a dark
+black color.  Each scale is the size of man's kneecap, connected from
+underneath solidly.    
+~
+~~
+vnum: 3161
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: kloprstwx
+name: doll miniature-mammoth-doll miniature-elephant
+shortdesc: a miniature mammoth doll
+desc: A miniature elephant with curved tusks and thick wooly hair sits here waiting for a hug.
+type: 12
+weight: 0.50
+cost: 200000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+applies:
+25 1
+~
+extradesc: doll miniature-mammoth-doll miniature-elephant
+Mammoths are gigantic elephants covered in thick wooly hair.  Although not
+gigantic, this doll is fairly true to form, with thick brownish wool covering
+its body.  It has two little pale wooden curved tusks, which are really the
+only danger to this cute, cuddly mammoth.
+~
+triggers:
+18887
+~
+~~
+vnum: 48902
+location: 127
+values:
+0
+16
+11
+3
+0
+0
+0
+~
+flags: abgmnorstuvwxyzA
+name: starsword star-sword glittering-steel-blade
+shortdesc: the Starsword
+desc: A glittering steel blade lies here.
+type: 5
+weight: 12.00
+cost: 500000
+timer: 0
+level: 95
+effects: 0 0 0
+wear: 32769
+extradesc: starsword star-sword glittering-steel-blade
+Your hand aches to wield this fabulous sword. Made of pure white steel, 
+glowing as if from some inner light, it pulses like the heart of legend 
+itself. This is the sword of the ancient heroes out of your land's 
+stories, the sword that destroyed armies almost of its own accord. This 
+is the sword of the god Lokari. It's lavishly decorated: an ivy-leaf 
+pattern along the blade. The quillons are short, but curved upward in a 
+continuation of that pattern, making a very effective looking basket 
+hilt. A huge onyx forms the pommel. You can detect in this amazing sword 
+that touch of greatness that has made its name revered -- and feared -- 
+by all great warriors.
+~
+triggers:
+18887
+~
+~~
+vnum: 51073
+location: 127
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag
+name: sun light bright miniature-sun
+shortdesc: a Miniature Sun
+desc: A ball of bright light is enclosed in an orb of glass.
+type: 1
+weight: 5.00
+cost: 600
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+26 2
+18 2
+~
+extradesc: small sun minature glowing orb glass ball
+This small ball of light is giving off an immense amount of light.
+It is enclosed in some type of a glass orb that seems to keep the outside
+of the ball cool to the touch and manageable.  The inside glows like a small
+sun, radiating bright light in all directions.  If you have this item,
+luck, determination and the Gods are with you.
+~
+~~

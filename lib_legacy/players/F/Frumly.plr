@@ -1,0 +1,137 @@
+name: Frumly
+password: FrM1xlwS0.
+description
+Your eyes become fixated on what has to be the most inhumane display 
+of all creation's dawn. Frumly, a lumbering idiot stands before you, mocking the
+essence of beauty itself.
+~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 67
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17299
+birthtime: 1236713163
+timeplayed: 431745
+lastlogintime: 1649040435
+host: 069.162.244.194
+height: 82
+weight: 224
+base_height: 82
+base_weight: 224
+base_size: 3
+natural_size: 3
+alignment: -919
+playerflags: gxy
+effectflags: t 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 726/592
+mana: 448/448
+move: 166/166
+damroll: 5
+hitroll: 4
+strength: 92
+intelligence: 59
+wisdom: 69
+dexterity: 90
+constitution: 95
+charisma: 60
+cash: 908 9476 37309 32223
+experience: 37370000
+pagelength: 50
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+401 710
+403 586
+405 288
+408 713
+410 429
+411 610
+415 58
+416 228
+419 1000
+420 150
+421 516
+427 1000
+438 91
+443 50
+444 310
+464 610
+465 306
+467 488
+472 617
+475 50
+476 718
+477 50
+478 50
+0 0
+trophy:
+1 53313 0.500000
+1 53305 1.500000
+1 53306 2.000000
+1 53303 1.500000
+1 53314 3.000000
+1 53315 9.000000
+1 53312 3.500000
+1 48632 0.500000
+1 11802 1.000000
+1 11813 0.333333
+1 11801 0.333333
+1 2809 0.333333
+1 2801 0.666667
+1 11704 1.000000
+1 11809 1.666667
+1 11703 2.000000
+1 11710 0.666667
+1 11702 2.000000
+1 2808 1.333333
+1 11701 2.666667
+1 2806 0.333333
+0 0 0
+tells:
+1618895597 @WFigh@W tells you, 'that will be 1 gem@W'@0
+1618895606 @WFigh@W tells you, 'that will be 1 gem@W'@0
+1618896256 @WFigh@W tells you, 'that will be 1 gem@W'@0
+1618896256 @WFigh@W tells you, 'that will be 1 gem@W'@0
+1618896767 @WFigh@W tells you, 'that will be 1 gem@W'@0
+1618896870 @WFigh@W tells you, 'that will be 1 gem@W'@0
+1618897083 @WFigh@W tells you, 'that will be 1 gem@W'@0
+1618897471 @WFigh@W tells you, 'that will be 1 gem@W'@0
+1649040095 @WLyft@W tells you, 'did you scroll back on your phone @W'@0
+1649040137 @WLyft@W tells you, 'you could check vawks last loging date to find an idea of when you should look@W'@0
+$
+gossips:
+1649040179 Flike gossips, 'oh, maybe I'll try a little less hard to get their ** :)'
+1649040187 Flike gossips, 'yeah, a few of those'
+1649040193 Chinok gossips, '.. lol night all!'
+1649040196 Flike gossips, 'later!'
+1649040197 Tensel gossips, 'night!'
+1649040377 Choak gossips, 'only see 12eq'
+1649040395 Flike gossips, '12 whats?'
+1649040408 Choak gossips, 'sorry had that typed from forever ago'
+1649040412 Choak gossips, 'looking for spices'
+1649040416 Flike gossips, 'lol, i hate that'
+$
+aliases:
+` ass zombie
+1 ass fayris
+2 ass fernley
+3 ass yawk
+4 ass glawk
+id recite identify $*
+df drink fountain
+all get all all.corpse
+h hide
+k gouge $*
+0 drink water
+0

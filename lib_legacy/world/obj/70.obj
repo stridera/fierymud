@@ -1,0 +1,26 @@
+#7000
+vest bright-red-woolen-vest bright-red-vest wool~
+a bright red woolen vest~
+A bright red vest lies tossed here.~
+~
+9 0 9 1
+2 0 0 0 0 0 0
+3.00 100 0 0 0 0 0 0
+E
+bright-red-woolen-vest bright-red-vest wool~
+It's a bright red vest made of densely woven wool, quilted for protection
+against the elements.  It has little cap sleeves and bright brass buttons to
+close it down the front.~
+#7002
+pendant silver-sword-pendant zadash necklace~
+a silver sword pendant~
+A pendant shaped like a sword lies here.~
+~
+8 0 5 1
+0 0 0 0 0 0 0
+0.20 300 0 0 0 0 0 0
+A
+1 1
+A
+24 -2
+$~

@@ -1,0 +1,69 @@
+name: Ghutter
+password: GhrVu/xW.q
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 28
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20411
+birthtime: 1673402960
+timeplayed: 240
+lastlogintime: 1679261091
+host: 136.062.036.102
+height: 73
+weight: 233
+base_height: 73
+base_weight: 233
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 12
+lastlevel: 0
+hitpoints: 30/29
+mana: 1/0
+move: 138/138
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 58
+wisdom: 71
+dexterity: 97
+constitution: 89
+charisma: 61
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+204 1000
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+455 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+488 58
+0 0
+tells:
+$
+gossips:
+1673402973 Porto gossips, 'Welcome Ghutter!'
+$

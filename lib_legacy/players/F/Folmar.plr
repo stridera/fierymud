@@ -1,0 +1,73 @@
+name: Folmar
+password: FojYQIp2Ab
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19220
+birthtime: 1504747843
+timeplayed: 3359
+lastlogintime: 1504754296
+host: 070.189.217.130
+height: 42
+weight: 187
+base_height: 42
+base_weight: 187
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 q
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -15/21
+mana: 1/0
+move: 92/100
+damroll: 4
+hitroll: 5
+strength: 81
+intelligence: 90
+wisdom: 99
+dexterity: 74
+constitution: 60
+charisma: 63
+experience: 1376
+quit_reason: 10
+saveroom: 3001
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 52
+424 56
+438 50
+443 50
+444 50
+451 51
+457 53
+458 50
+459 50
+460 51
+462 50
+463 52
+466 50
+0 0
+mem:
+16 0 9
+0 0 0

@@ -1,0 +1,129 @@
+name: Dagas
+password: DaNnwjUm22
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 1
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20376
+birthtime: 1668214145
+timeplayed: 16612
+lastlogintime: 1668230758
+host: 096.047.057.146
+height: 71
+weight: 187
+base_height: 71
+base_weight: 187
+base_size: 2
+natural_size: 2
+alignment: 9
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 1
+lastlevel: 0
+hitpoints: 54/54
+mana: 0/0
+move: 11/108
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 94
+wisdom: 90
+dexterity: 72
+constitution: 70
+charisma: 57
+cash: 0 305 315 202
+bank: 0 1 1 2
+experience: 58906
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 95
+424 66
+438 50
+443 50
+444 50
+451 59
+457 56
+458 54
+459 51
+460 55
+462 50
+463 66
+465 67
+466 50
+0 0
+trophy:
+1 7002 1.000000
+1 7051 1.000000
+1 6910 1.000000
+1 8021 1.000000
+1 8012 2.000000
+1 8020 1.000000
+1 8010 5.000000
+1 8011 4.000000
+1 8002 3.000000
+1 8023 1.000000
+1 8015 7.000000
+1 36001 0.500000
+1 36003 1.000000
+1 36002 1.000000
+1 8022 1.500000
+1 8013 5.500000
+1 8001 3.000000
+1 8016 2.000000
+1 8014 3.000000
+1 8000 5.500000
+1 51900 1.000000
+0 0 0
+tells:
+1668217220 @WDaedela@W tells you, 'do it!@W'@0
+1668217228 @WDaedela@W tells you, 'alright, you're now an elf!@W'@0
+1668217297 @WDaedela@W tells you, 'you're welcome!@W'@0
+1668217302 @WDaedela@W tells you, 'where are you from anyway?@W'@0
+1668217513 @WDaedela@W tells you, 'oh awesome!@W'@0
+1668217519 @WDaedela@W tells you, 'I'm up in San Francisco@W'@0
+1668217665 @WDaedela@W tells you, 'oh cool.  I don't know it@W'@0
+1668223829 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1668223869 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1668225091 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+$
+gossips:
+1668223643 Herix gossips, 'you have to rest pray again'
+1668223659 Herix gossips, 'once you level up you can get more slots for spells'
+1668224120 Daedela gossips, 'you should be able to ask the quest master about "progress" and they'll help you out!'
+1668224145 Ilish gossips, 'or status'
+1668226250 Ilish gossips, '*cheer*'
+1668226255 Ilish gossips, 'Congratz Dagas'
+1668228233 Daedela gossips, 'congratulations!'
+1668228786 Someone gossips, 'try east of town to'
+1668229619 Daedela gossips, 'the quest is designed to take you through level 20.  You won't get there quickly'
+1668229966 Daedela gossips, 'okay, time for Wakanda Forever!  See ya all later!'
+$
+effects:
+1 2 10 17 0 0 0
+0 0 0 0 0
+mem:
+16 0 7
+12 1 6
+1 0 7
+13 1 7
+206 1 6
+0 0 0

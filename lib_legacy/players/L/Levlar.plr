@@ -1,0 +1,105 @@
+name: Levlar
+password: LebpgWVR86
+prompt: <%hh(%HH) %vv(%VV)> <%ih> <%aA> <%e>%_<%t>:<%o>
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 90
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17413
+birthtime: 1247972424
+timeplayed: 305185
+lastlogintime: 1706281682
+host: 174.097.215.151
+height: 76
+weight: 208
+base_height: 76
+base_weight: 208
+base_size: 3
+natural_size: 3
+alignment: -530
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: d
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1128/948
+mana: 810/810
+move: 424/424
+damroll: 5
+hitroll: 4
+strength: 97
+intelligence: 59
+wisdom: 58
+dexterity: 100
+constitution: 100
+charisma: 43
+cash: 2 0 0 0
+bank: 29 2519 7757 4257
+experience: 77942148
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 392
+405 390
+408 398
+410 1000
+411 400
+412 50
+415 59
+416 50
+419 1000
+420 53
+421 317
+427 1000
+438 63
+443 50
+444 144
+463 50
+464 400
+465 54
+475 50
+476 50
+477 50
+478 147
+491 50
+492 50
+493 50
+0 0
+trophy:
+1 18500 1.000000
+1 18509 1.000000
+1 18517 2.000000
+1 8605 1.000000
+1 8030 16.000000
+1 8021 42.000000
+1 8016 52.000000
+1 8020 44.000000
+1 8001 107.000000
+1 8012 66.000000
+1 8023 25.000000
+1 17204 14.000000
+1 51002 0.500000
+1 51000 1.500000
+1 51020 1.500000
+1 8000 54.000000
+1 8002 93.000000
+1 8010 110.000000
+1 8011 86.000000
+1 8022 29.000000
+1 18507 14.000000
+0 0 0
+tells:
+$
+gossips:
+1706281630 Mersh gossips, 'he old levlar'
+$
+aliases:
+who who -w
+0

@@ -1,0 +1,105 @@
+name: Anupta
+password: An4B6Zz7Do
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19495
+birthtime: 1573596657
+timeplayed: 3042
+lastlogintime: 1573681368
+host: 173.230.129.180
+height: 62
+weight: 177
+base_height: 62
+base_weight: 177
+base_size: 2
+natural_size: 2
+alignment: 40
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: bghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 10
+loadroom: 3054
+hunger: 17
+thirst: 14
+lastlevel: 0
+hitpoints: 27/27
+mana: 1/-2
+move: 90/100
+damroll: 3
+hitroll: 3
+strength: 74
+intelligence: 98
+wisdom: 100
+dexterity: 62
+constitution: 58
+charisma: 64
+cash: 0 10 100 159
+experience: 19800
+pagelength: 40
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 77
+424 71
+438 50
+443 50
+444 50
+447 60
+451 53
+452 64
+453 58
+459 50
+460 51
+462 50
+464 50
+0 0
+trophy:
+1 5404 1.000000
+1 36004 2.000000
+1 36002 1.000000
+1 36003 2.000000
+1 36001 4.000000
+0 0 0
+tells:
+1573597261 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1573597845 @WBeowyn@W tells you, 'I only buy the finest steel armour.@W'@0
+1573597851 @WShauna@W tells you, 'I don't trade in such items.@W'@0
+1573597873 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1573597875 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1573597878 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1573597880 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1573597882 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1573597902 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1573597903 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+$
+gossips:
+$
+mem:
+32 1 8
+5 1 7
+100 1 7
+0 0 0
+aliases:
+gg get all.gem all.corpse
+ga get all all.corpse
+gc get all.coins all.corpse
+mm cast 'm m' $1
+burn cast 'burn' $1
+lic l i corpse
+0

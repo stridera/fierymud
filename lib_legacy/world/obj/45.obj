@@ -1,0 +1,22 @@
+#4500
+mask skull-mask~
+a skull mask~
+Resting on a stone is a mask made from the skull of some unfortunate person.~
+~
+8 0 131073 10
+1 0 0 0 0 0 0
+0.30 500 0 0 0 0 0 0
+E
+mask skull-mask~
+This mask is crafted from the chiseled off face of a humanoid skull.  It has
+several leather straps bolted to it as securing points to hold it on the head.
+The skull is painted with blood and other pigments around the eyes, teeth, and
+cheeks to accentuate the contours of the bone, amplifying its horrifying shock
+value.  Quite a grotesque trophy indeed!~
+A
+26 5
+A
+5 1
+A
+6 -3
+$~

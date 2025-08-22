@@ -1,0 +1,85 @@
+name: Lefi
+password: LeT6gMgKs5
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19485
+birthtime: 1569720263
+timeplayed: 3951
+lastlogintime: 1569724218
+host: 068.096.209.182
+height: 63
+weight: 158
+base_height: 63
+base_weight: 158
+base_size: 2
+natural_size: 2
+alignment: 972
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 23/23
+mana: 0/0
+move: 122/122
+damroll: 3
+hitroll: 3
+strength: 73
+intelligence: 92
+wisdom: 75
+dexterity: 67
+constitution: 91
+charisma: 67
+experience: 7809
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+447 60
+451 51
+452 50
+453 50
+459 50
+460 50
+462 50
+464 51
+0 0
+trophy:
+1 8002 0.666667
+1 8013 0.500000
+1 8000 0.333333
+1 8001 0.333333
+1 8016 1.000000
+1 8329 0.666667
+1 8331 0.333333
+1 8022 0.333333
+1 8011 0.333333
+1 8015 1.166667
+0 0 0
+mem:
+5 1 9
+0 0 0
+aliases:
+2 assist fet
+1 assist nefi
+0

@@ -1,0 +1,109 @@
+name: Odz
+password: OdMKOC8UcS
+description
+Odz will fight you so hard.
+~
+prompt: %n%-&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b> <&0%e&2&b>%_<&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 18
+race: 3
+level: 65
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18682
+birthtime: 1396966993
+timeplayed: 135513
+lastlogintime: 1488035658
+host: 067.140.081.023
+height: 41
+weight: 176
+base_height: 41
+base_weight: 176
+base_size: 2
+natural_size: 2
+alignment: 950
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 10
+thirst: 14
+lastlevel: 0
+hitpoints: 744/614
+mana: 422/422
+move: 147/156
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 55
+wisdom: 65
+dexterity: 95
+constitution: 93
+charisma: 53
+cash: 15 4 8 4
+bank: 700 0 0 0
+experience: 35237000
+quit_reason: 1
+saveroom: 3054
+skills:
+401 700
+403 700
+405 61
+408 700
+410 650
+411 689
+415 50
+416 50
+420 78
+421 100
+438 169
+443 50
+444 77
+464 328
+465 50
+467 50
+472 71
+475 51
+476 700
+477 50
+478 228
+0 0
+trophy:
+1 8034 1.000000
+1 12015 1.000000
+1 12016 1.000000
+1 3507 1.000000
+1 3503 1.000000
+1 3501 1.000000
+1 3502 1.000000
+1 17204 1.000000
+1 3500 1.000000
+1 3508 1.000000
+1 3506 1.000000
+1 3509 1.000000
+1 3062 1.000000
+1 18003 3.000000
+1 18004 1.000000
+1 18006 1.000000
+1 18001 1.000000
+1 18002 1.000000
+1 18005 1.000000
+1 18000 2.000000
+1 18007 3.000000
+0 0 0
+aliases:
+lib look in bag
+who who -w
+df drink fountain
+ds drink skin
+gg put all.gem bag
+` get all from all.corpse
+lic look in corpse
+k kill $1
+ew enter well
+well tell samun moonwell
+0

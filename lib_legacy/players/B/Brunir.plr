@@ -1,0 +1,113 @@
+name: Brunir
+password: BrvCiX8.ey
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 18
+race: 10
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 16381
+birthtime: 1171906866
+timeplayed: 23793780
+lastlogintime: 1625885743
+host: 166.175.190.155
+height: 88
+weight: 223
+base_height: 88
+base_weight: 223
+base_size: 3
+natural_size: 3
+alignment: -868
+playerflags: glxyz
+effectflags: t 0 0
+prefflags: hno 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3208
+lastlevel: 12
+hitpoints: 1060/862
+mana: 100/100
+move: 176/176
+damroll: 5
+hitroll: 4
+strength: 98
+intelligence: 62
+wisdom: 56
+dexterity: 87
+constitution: 100
+charisma: 56
+cash: 910 15415 93555 70022
+bank: 4600 0 0 0
+experience: 104667470
+quit_reason: 7
+saveroom: 3208
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+410 650
+411 1000
+412 1000
+415 1000
+416 1000
+419 1000
+420 1000
+421 1000
+427 1000
+438 1000
+443 1000
+444 1000
+464 1000
+465 1000
+467 1000
+472 1000
+475 1000
+476 1000
+477 1000
+478 1000
+0 0
+trophy:
+1 3075 0.416667
+0 0 0
+tells:
+1573565824 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1573566282 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1573566285 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574232134 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1574232139 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574232489 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574232489 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574232490 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574232490 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574232490 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1574306762 Xianga gossips, 'lol'
+1574307000 Chiron gossips, 'watching season III of "The Man in the High Castle"'
+1574307018 Chiron gossips, 'been a long time'
+1574307033 Chiron gossips, 'that last one wasnt meant for goss, my bad'
+1574307740 Chiron gossips, 'dak did  you see my tell and respond and I missed it or...'
+1574308147 Dakhod gossips, 'sorry was afk'
+1574308559 Dakhod gossips, 'well guys its past my bedtime'
+1574308566 Chinok gossips, 'night Dak'
+1574308571 Dakhod gossips, 'night all'
+1574308616 Andron gossips, 'night'
+$
+aliases:
+p enter portal
+2 shadow fox
+1 fol self
+z gsay z
+f gsay flee
+gccc get all.coins 2.corpse
+gcc get all.coins corpse
+who who -where
+gc get all.coins
+- enter well
+gs group self
+lic look in corpse
+df drink fountain
+0

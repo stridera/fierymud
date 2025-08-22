@@ -1,0 +1,189 @@
+name: Meilana
+password: Me4sva4Bjo
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 6
+race: 0
+level: 73
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18802
+birthtime: 1424986310
+timeplayed: 1017112
+lastlogintime: 1435884772
+host: 216.146.109.139
+height: 63
+weight: 143
+base_height: 63
+base_weight: 143
+base_size: 2
+natural_size: 2
+alignment: 767
+playerflags: gxy
+effectflags: x 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 804/804
+mana: 532/532
+move: 98/132
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 62
+wisdom: 72
+dexterity: 86
+constitution: 93
+charisma: 58
+cash: 143 3649 1874 8
+bank: 30 3358 4297 3396
+experience: 54485233
+quit_reason: 1
+saveroom: 3054
+skills:
+8 1000
+15 1000
+16 1000
+18 1000
+30 1000
+32 1000
+37 1000
+44 1000
+88 1000
+144 1000
+214 1000
+402 780
+404 780
+407 780
+410 760
+411 720
+412 780
+415 760
+416 760
+417 760
+420 780
+421 780
+422 780
+423 780
+424 780
+430 756
+438 720
+443 740
+444 780
+447 720
+451 780
+452 770
+454 773
+456 777
+457 765
+458 777
+459 764
+462 764
+463 720
+464 720
+465 720
+466 780
+467 720
+468 720
+0 0
+trophy:
+1 51102 0.666667
+1 51100 4.000000
+1 51101 2.333333
+1 7302 0.333333
+1 7300 1.000000
+1 7301 1.333333
+1 11702 0.333333
+1 2808 0.666667
+1 2806 0.666667
+1 11701 1.666667
+1 11750 0.333333
+1 11704 0.333333
+1 11809 1.000000
+0 0 0
+effects:
+52 0 8 0 4194304 0 0
+107 0 0 0 0 16384 0
+144 8 15 17 0 0 0
+39 5 11 1 0 0 0
+68 0 0 0 16777216 0 0
+0 0 0 0 0
+mem:
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+144 0 1
+8 1 1
+8 1 1
+8 1 1
+8 1 1
+88 1 1
+37 1 1
+37 1 1
+37 1 1
+37 1 1
+37 1 1
+37 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+15 1 1
+8 1 1
+44 1 1
+44 1 1
+44 1 1
+44 1 1
+44 1 1
+44 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+88 1 1
+214 1 2
+214 1 2
+214 1 2
+214 1 2
+214 1 2
+214 1 2
+32 1 1
+32 1 1
+32 1 1
+144 0 1
+16 1 1
+0 0 0
+aliases:
+af ass fernius
+rl resc lodalian
+ng c 'natures guid'
+az ass zydolia
+rz rescue zydolia
+aa ass anaconda
+ra rescue anaconda
+rm resc marculio
+rw resc wrinny
+rc resc croidin
+rf resc fernley
+al ass lodalian
+0

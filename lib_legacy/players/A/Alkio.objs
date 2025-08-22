@@ -1,0 +1,1968 @@
+1
+vnum: 1032
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: ring wide-bronze-ring
+shortdesc: a bronze ring
+desc: A wide bronze ring lies here.
+type: 9
+weight: 0.08
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: ring wide-bronze-ring
+&0A cheap little ring, forged from bronze.  It lacks any design, resembling a
+simple band of metal.  &0~
+~~
+vnum: 1032
+location: 2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: ring wide-bronze-ring
+shortdesc: a bronze ring
+desc: A wide bronze ring lies here.
+type: 9
+weight: 0.08
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: ring wide-bronze-ring
+&0A cheap little ring, forged from bronze.  It lacks any design, resembling a
+simple band of metal.  &0~
+~~
+vnum: 1038
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: scarf light-green-scarf
+shortdesc: &0a &0&2&blight green&0 scarf
+desc: &0A &0&2&blight green&0 scarf lies here.
+type: 9
+weight: 0.40
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+extradesc: light-green-scarf
+This scarf is crafted from a flowing light green material.  It is very light,
+though offers only minimal protection from physical attacks.~
+~~
+vnum: 1038
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: scarf light-green-scarf
+shortdesc: &0a &0&2&blight green&0 scarf
+desc: &0A &0&2&blight green&0 scarf lies here.
+type: 9
+weight: 0.40
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+extradesc: light-green-scarf
+This scarf is crafted from a flowing light green material.  It is very light,
+though offers only minimal protection from physical attacks.~
+~~
+vnum: 1002
+location: 5
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: robe flowing-crimson-robe bundle-crimson-cloth
+shortdesc: a flowing &1crimson&0 robe
+desc: A bundle of &1crimson cloth&0 lies here.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: flowing-crimson-robe bundle-crimson-cloth
+This long robe is crafted from a deep blood red crimson.  It comes with a
+matching sash, used to tighten it about the waist.  Not very effective in
+combat, but better then nothing.~
+~~
+vnum: 1003
+location: 6
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: hood pile-ebony-cloth ebony-hood
+shortdesc: &9&ban ebony hood&0
+desc: &0&9&bA pile of ebony cloth lies here.&0
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+extradesc: pile-ebony-cloth ebony-hood
+This deep hood increases the wearer's ability to stay hidden within shadows.  
+Its design is similiar to the those worn by cultists and necromancers.~
+~~
+vnum: 38
+location: 7
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: leggings black-linen-leggings
+shortdesc: black linen leggings
+desc: Some black linen leggings lie here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+extradesc: black-linen-leggings
+They are finely tailored of regular coarse linen and dyed black.  With their
+close-fitting form, they certainly cut a nice figure beneath a robe.~
+~~
+vnum: 1027
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: sandals plain-leather-sandals
+shortdesc: some plain leather sandals
+desc: Some plain sandals sit here.
+type: 9
+weight: 1.90
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+extradesc: plain-leather-sandals
+&0A pair of simple sandals, woven from fine leather.  They are padded to
+provide comfort during long travels, though they offer no protection from
+hostile weather.~
+~~
+vnum: 1023
+location: 9
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: gloves soft-purple-leather-gloves
+shortdesc: soft &5purple&0 leather gloves
+desc: A pair of soft &5purple&0 leather gloves lies here.
+type: 9
+weight: 1.10
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+extradesc: soft-purple-leather-gloves
+These gloves are sewn from a soft leather and dyed a rich purple.~
+~~
+vnum: 1000
+location: 12
+values:
+110
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: backpack heavy-backpack back-pack leather
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+extradesc: backpack heavy-backpack back-pack leather
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.~
+~~
+vnum: 61510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: buttercup flower
+shortdesc: a buttercup
+desc: A bright yellow flower lies here attached to a short stem.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 540673
+hiddenness: 0
+extradesc: buttercup flower
+The yellow of this flower is so deep and shiny that it's reflected off any
+surface brought near.  The stem is still green and unwilted, so it can't have
+been picked long ago.    ~
+~~
+vnum: 3021
+location: -1
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnuyz afghij
+name: shortsword short-sword
+shortdesc: a shortsword
+desc: A small sword lies here.
+adesc:
+Nothing.~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: shortsword short-sword
+The sword is rather small to be called a sword, but it's definitely bigger than
+a dagger.  It's rather simple in design.~
+~~
+vnum: 3021
+location: -1
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnuyz afghij
+name: shortsword short-sword
+shortdesc: a shortsword
+desc: A small sword lies here.
+adesc:
+Nothing.~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: shortsword short-sword
+The sword is rather small to be called a sword, but it's definitely bigger than
+a dagger.  It's rather simple in design.~
+~~
+vnum: 3021
+location: -1
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnuyz afghij
+name: shortsword short-sword
+shortdesc: a shortsword
+desc: A small sword lies here.
+adesc:
+Nothing.~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: shortsword short-sword
+The sword is rather small to be called a sword, but it's definitely bigger than
+a dagger.  It's rather simple in design.~
+~~
+vnum: 3021
+location: -1
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnuyz afghij
+name: shortsword short-sword
+shortdesc: a shortsword
+desc: A small sword lies here.
+adesc:
+Nothing.~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: shortsword short-sword
+The sword is rather small to be called a sword, but it's definitely bigger than
+a dagger.  It's rather simple in design.~
+~~
+vnum: 3021
+location: -1
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnuyz afghij
+name: shortsword short-sword
+shortdesc: a shortsword
+desc: A small sword lies here.
+adesc:
+Nothing.~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: shortsword short-sword
+The sword is rather small to be called a sword, but it's definitely bigger than
+a dagger.  It's rather simple in design.~
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-shard
+shortdesc: a malachite shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3500
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather cute-yellow-feather sparrow's-feather pen quill sparrows-feather
+shortdesc: a &3sparrow's&0 feather
+desc: A cute yellow feather is drifting around here.
+type: 21
+weight: 0.01
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+~
+extradesc: feather cute-yellow-feather sparrow's-feather pen quill sparrows-feather
+Aww, it's a cute little wing feather from a song sparrow.  It looks delicate,
+but could probably be used as a quill to scribe with in a pinch.~
+~~
+vnum: 3500
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather cute-yellow-feather sparrow's-feather pen quill sparrows-feather
+shortdesc: a &3sparrow's&0 feather
+desc: A cute yellow feather is drifting around here.
+type: 21
+weight: 0.01
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+~
+extradesc: feather cute-yellow-feather sparrow's-feather pen quill sparrows-feather
+Aww, it's a cute little wing feather from a song sparrow.  It looks delicate,
+but could probably be used as a quill to scribe with in a pinch.~
+~~
+vnum: 1032
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: ring wide-bronze-ring
+shortdesc: a bronze ring
+desc: A wide bronze ring lies here.
+type: 9
+weight: 0.08
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: ring wide-bronze-ring
+&0A cheap little ring, forged from bronze.  It lacks any design, resembling a
+simple band of metal.  &0~
+~~
+vnum: 1012
+location: 16
+values:
+0
+1
+3
+11
+0
+0
+0
+~
+flags: q 0
+name: dagger thin-dagger thin-blade
+shortdesc: a thin dagger
+desc: A dagger with a thin blade lies here.
+type: 5
+weight: 0.80
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: thin-dagger thin-blade
+A steel bladed dagger, with a plain wooden hilt.  Its blade has been forged
+much more thin than usual, creating a weapon adapt at bypassing heavy plate
+armor.~
+~~
+vnum: 1036
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: mask simple-wooden-mask
+shortdesc: a simple wooden mask
+desc: A simple wooden mask lies here.
+type: 9
+weight: 0.65
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+6 -1
+~
+extradesc: simple-wooden-mask
+&0This small mask is crafted of a dark wood, and is designed to slip easily
+over the face.  It has very littlte detail, save for a small etched mouth and
+two slits for eyes.  Quite uncomfortable, and not very stylish.~
+~~
+vnum: 1037
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: earring tin-earring
+shortdesc: a tin earring
+desc: A tin earring lies here.
+type: 8
+weight: 0.01
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+extradesc: tin-earring
+&0This earring is crafted from tin.  It is shaped like a small hoop, barely
+half an inch in length.~
+~~
+vnum: 1037
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: earring tin-earring
+shortdesc: a tin earring
+desc: A tin earring lies here.
+type: 8
+weight: 0.01
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+extradesc: tin-earring
+&0This earring is crafted from tin.  It is shaped like a small hoop, barely
+half an inch in length.~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+~~
+vnum: 3012
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: donut cream cream-donut delicious food
+shortdesc: a delicious cream donut
+desc: A delicious cream donut has been placed here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: donut cream
+The donut looks freshly made from the bakery. Mmmm...cream filling...~
+~~
+vnum: 3013
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: donut glazed glazed-donut delicious food
+shortdesc: a delicious glazed donut
+desc: A delicious glazed donut has been placed here. It looks scrumptious!
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: donut glazed
+The donut smells like it was freshly baked at the bakery. It has a sugar 
+glaze on its warm browned surface.~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.~
+~~
+vnum: 607
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-light-forest-map old-map forests
+shortdesc: a map of the Light Forest
+desc: There is an old map of the forests near the Town of Mielikki here.
+type: 12
+weight: 0.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-light-forest-map old-map forests
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  &2&bThe Light Forest&0  &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: \ / = up/down
+  
+                                                                &6to
+                                                         Enchanted Hollow&0
+                                                                 
+                                                                 &3^&0
+                          &6to                                     &3|&6
+                   Enchanted Hollow                          &3o - o - o
+                                                             |       |
+                           ^                                 o       o - o - o
+                           |                                &9&b/&0
+                           &3o         o - o - o       o     o
+                           |          &9&b\&0      &3|       |&9&b\&0    &3|
+               o - o - o - o - o - o - o     o - o - o o - o
+               |
+               o                                       &3&b***POINTS OF INTEREST***&0
+   &6to&3          |&0                                        |&2&b1&0 : The Ranger Guild
+ &6Town of&3   <-- &2o - o - o - o - o &3-->&0  &6to
+ Mielikki&2      |           |    &6the Misty Caverns&2
+               o - o - o   o
+               |   |   |   |
+       &b1&0&3 - o&2 - o - o - o   o
+               |           |
+               o   o - o - o
+               |   |       |
+               o   o       o - o - o - o
+               |   |           |       |
+               o - o       o - o       o
+                   |       |   |       |
+                   o       o   o - o   o - o
+                   |       |       |       |
+                   v       o       o - o - o
+                           |           |
+                  &6to&2       o - o - o - o -->  &6to Smuggler's Hideout
+            Twisted Forest   
+                           
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 624
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map mist-soaked-map map-misty-caverns-map
+shortdesc: a map of the Misty Caverns
+desc: A mist-soaked map of the Misty Caverns dries here.
+type: 12
+weight: 0.01
+cost: 150
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map mist-soaked-map map-misty-caverns-map
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- &2&bThe Misty Caverns&0 &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ 
+                                 o - - - o      &3&b***POINTS OF INTEREST***&0
+                                 |       |       |&1&b1&0: a flaming sign
+                             o - o - o   o       |&1&b2&0: a hovering puddle?
+                             |       |   |&9&b\&0
+                             o       o   | o
+                             |       |   |
+                         o - o   o - o   |
+                 &9&bD1&0      |   |   |       |
+                &9&b/&0        o   o - o - - - o   o - o
+               o         |   |               |   |
+              &9&b/&0          o - o - o       o - o - o
+         &6The Rocky&0           |  &9&b/&0        |
+         &6Tunnels&0             o &9&bD1&0    o - o - o - - o               o - o
+                             |       |       |     |               |   |
+&6The Light&3 <- o &5+&0 o - o - o - o - o   o   o - o - o o - &1&b1&0 - o - o - o   o - o
+&6Forest&0                   &9&b|&0   |   |   |       |   | |   |                   |
+                         &9&bv &0  o   o - o       o - o o - o                   o
+         &6The Misty&0       &9&b/&0   |       |           |     |                   |
+          &6Chasm&9&b ________/ <-&0 o - o   o - o       o     |                   o - &1&b2&0
+               &9&b/         ^&0   |   |       |             |
+              &9&b/  ^   ^&0   o - o   o - o   o       o - - o
+             &9&b/   |   |&0   |   |       |   |       |
+            &9&b/ <-&0 o - o - o   o   o - o   o - o - o   o - o
+        &9&b___/&0     |   |   |   |   |                   |   |
+                 o - o - o   o - o       o - o - o - o   o
+                 |   |   |               |           |   |
+                 o - o - o - o - o - o - o   o - o - o   o
+                                                        &9&b/&0
+                                                       o
+                                                      &9&b/&0
+                                                 &6The Rocky
+                                                  Tunnels&0
+ 
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 1004
+location: -1
+values:
+0
+240
+53
+0
+0
+0
+0
+~
+flags: q 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern.  It holds about fifteen hours worth of fuel.~
+~~
+vnum: 3011
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: donut jelly jelly-donut delicious food
+shortdesc: a delicious jelly donut
+desc: A delicious jelly donut has been placed here. It looks scrumptious!
+type: 19
+weight: 0.18
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: donut jelly
+It's the biggest jelly donut you've ever seen! It smells so fresh and
+yummy!~
+~~
+vnum: 55300
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gauntlets rusted-gauntlets armor
+shortdesc: rusted gauntlets
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.29
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55301
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves flimsy-leather-gloves armor
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 1028
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: cloak green-woolen-cloak
+shortdesc: a &2green&0 woolen cloak
+desc: A &2green&0 woolen cloak is draped here.
+type: 9
+weight: 2.90
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+extradesc: green-woolen-cloak
+A thick cloak crafted from a green cloth.  It is quite long, sweeping down
+almost four feet in length.  Its coloring blends in well with a forest
+background, offering a bit of camoflauge.~
+~~
+vnum: 3500
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather cute-yellow-feather sparrow's-feather pen quill sparrows-feather
+shortdesc: a &3sparrow's&0 feather
+desc: A cute yellow feather is drifting around here.
+type: 21
+weight: 0.01
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+~
+extradesc: feather cute-yellow-feather sparrow's-feather pen quill sparrows-feather
+Aww, it's a cute little wing feather from a song sparrow.  It looks delicate,
+but could probably be used as a quill to scribe with in a pinch.~
+~~
+vnum: 1006
+location: 127
+values:
+300
+284
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: waterskin well-crafted-leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: well-crafted-leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.  &0~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 1004
+location: 127
+values:
+0
+240
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern.  It holds about fifteen hours worth of fuel.~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map mielikki map-of-mielikki
+                  Mielikki, the forest town, by Kara-Sithri
+  
+                                                             &3***POINTS OF INTEREST***&0
+          &3#&0              &6&b2&0                                 |&6&b1&0: Temple to Mielikki
+          &9&b|              |&0                                 |&6&b2&0: Altar to Mielikki
+          &9&bSB&0         &B&1&b3&0 - &6&b1&0   &1???&0        &517&0 - &9&bNC&0            |&B&1&b3&0: Cleric Guild
+          &9&b|              |    |              |&0             |&B&1&b4&0: Warrior Guild
+      &521&0  &9&bSB        TC - TC - TC             NC -&0 &518&0       |&B&1&b5&0: Rogue Guild
+      &9&b|   |         |    |    |              |&0             |&B&1&b6&0: Sorcerer Guild
+      &2&b7&0 &9&b- SB -&0 &38&0    &9&bTC -&0 &C&4&b*&0 &9&b-  TC&0   &515&0 - &B&1&b4&0    &9&bNC -&0 &519&0       |&2&b7&0: Forest Inn
+          &9&b|         |    |    |    |         |&0             |&38&0: Post Office
+ &3#&0 &9&b- SQ - WM - WM - TC - TC - TC - EM - EM - CS - EM -&0 &3#&0   |&59&0: Drako's Bronze Shop
+     &9&b|          |   |         |              |&0             |&510&0: Garm's Shield Emporium
+ &59&0 &9&b- SR -&0 &510&0    &513&0  &514&0 &9&b-&0 &B&1&b5&0    &9&bDA - DA - DA   SC&0            |&511&0: Shauna's Hosue of Iron
+     &9&b|          |                  |    |    |&0             |&512&0: Beowyn's Steel
+&511&0 &9&b- SR -&0 &512&0    &B&1&b6&0        &3&b21&0        &516&0  &9&bdump  SC -&0 &520&0       |&513&0: Bigby's House of Magic
+     &9&b|                   |                   |&0             |&514&0: Fine Jewelry
+    &9&bNCP - NC - NC - NC - NC - NC - NC - NC - NCS&0           |&515&0: Santiago's Weapons
+          &9&b|              &0&1#&0&9&b         |&0                       |&516&0: Sloshed Squirrel Tavern
+     &9&bRP - RP - RP   TH - TH - TH   WW&0                      |&517&0: Helena's Bakery
+     &9&b|    |    |    |    |    |    |&0                       |&518&0: Aaron's General Store
+     &9&bRP -&0 &C&4&b*&0  &9&b- RP   TH - TH - TH   WW -&0 &1???&0                |&519&0: Lisa's House of Leather
+     &9&b|    |    |                   |&0                       |&520&0: Freddy's Toy Shop
+     &9&bRP - RP - RP                  WW&0                      |&521&0: Cartographer's Room
+          &9&b|                        |&0                       |&3&b22&0: Bank
+         &9&bGrey&0                      &3#&0                       |&C&4&b*&0: Fountain
+        &9&bCastle&0                                             |&3#&0: City Gates     
+                                                                 |&1???&0: New Adventures! 
+ 
+                                                               &9&b***ROADS***&0
+                                                           |SB: Sleepy Blvd.
+                                                           |SQ: Smelter's Sq.
+                                                           |WM: West main St.
+                                                           |TC: Town Center
+                                                           |EM: East Main St.
+                                                           |CS: Commerce Sq.
+                                                           |NC: N. Commerce Ave.
+                                                           |SC: S. Commerce Ave.
+                                                           |DA: Dark Alley
+                                                           |SR: Smelter's Row
+                                                           |NCP: New Castle Plaza
+                                                           |NC: New castle Rd.
+                                                           |NCS: New Castle Sq.
+                                                           |WW: Windy Way
+                                                           |RP: Royal Plaza
+                                                           |TH: Town Hall~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild~
+~~
+vnum: 607
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-light-forest-map old-map forests
+shortdesc: a map of the Light Forest
+desc: There is an old map of the forests near the Town of Mielikki here.
+type: 12
+weight: 0.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-light-forest-map old-map forests
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  &2&bThe Light Forest&0  &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: \ / = up/down
+  
+                                                                &6to
+                                                         Enchanted Hollow&0
+                                                                 
+                                                                 &3^&0
+                          &6to                                     &3|&6
+                   Enchanted Hollow                          &3o - o - o
+                                                             |       |
+                           ^                                 o       o - o - o
+                           |                                &9&b/&0
+                           &3o         o - o - o       o     o
+                           |          &9&b\&0      &3|       |&9&b\&0    &3|
+               o - o - o - o - o - o - o     o - o - o o - o
+               |
+               o                                       &3&b***POINTS OF INTEREST***&0
+   &6to&3          |&0                                        |&2&b1&0 : The Ranger Guild
+ &6Town of&3   <-- &2o - o - o - o - o &3-->&0  &6to
+ Mielikki&2      |           |    &6the Misty Caverns&2
+               o - o - o   o
+               |   |   |   |
+       &b1&0&3 - o&2 - o - o - o   o
+               |           |
+               o   o - o - o
+               |   |       |
+               o   o       o - o - o - o
+               |   |           |       |
+               o - o       o - o       o
+                   |       |   |       |
+                   o       o   o - o   o - o
+                   |       |       |       |
+                   v       o       o - o - o
+                           |           |
+                  &6to&2       o - o - o - o -->  &6to Smuggler's Hideout
+            Twisted Forest   
+                           
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 624
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map mist-soaked-map map-misty-caverns-map
+shortdesc: a map of the Misty Caverns
+desc: A mist-soaked map of the Misty Caverns dries here.
+type: 12
+weight: 0.01
+cost: 150
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map mist-soaked-map map-misty-caverns-map
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- &2&bThe Misty Caverns&0 &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ 
+                                 o - - - o      &3&b***POINTS OF INTEREST***&0
+                                 |       |       |&1&b1&0: a flaming sign
+                             o - o - o   o       |&1&b2&0: a hovering puddle?
+                             |       |   |&9&b\&0
+                             o       o   | o
+                             |       |   |
+                         o - o   o - o   |
+                 &9&bD1&0      |   |   |       |
+                &9&b/&0        o   o - o - - - o   o - o
+               o         |   |               |   |
+              &9&b/&0          o - o - o       o - o - o
+         &6The Rocky&0           |  &9&b/&0        |
+         &6Tunnels&0             o &9&bD1&0    o - o - o - - o               o - o
+                             |       |       |     |               |   |
+&6The Light&3 <- o &5+&0 o - o - o - o - o   o   o - o - o o - &1&b1&0 - o - o - o   o - o
+&6Forest&0                   &9&b|&0   |   |   |       |   | |   |                   |
+                         &9&bv &0  o   o - o       o - o o - o                   o
+         &6The Misty&0       &9&b/&0   |       |           |     |                   |
+          &6Chasm&9&b ________/ <-&0 o - o   o - o       o     |                   o - &1&b2&0
+               &9&b/         ^&0   |   |       |             |
+              &9&b/  ^   ^&0   o - o   o - o   o       o - - o
+             &9&b/   |   |&0   |   |       |   |       |
+            &9&b/ <-&0 o - o - o   o   o - o   o - o - o   o - o
+        &9&b___/&0     |   |   |   |   |                   |   |
+                 o - o - o   o - o       o - o - o - o   o
+                 |   |   |               |           |   |
+                 o - o - o - o - o - o - o   o - o - o   o
+                                                        &9&b/&0
+                                                       o
+                                                      &9&b/&0
+                                                 &6The Rocky
+                                                  Tunnels&0
+ 
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+100 5
+32 5
+101 12
+20 5
+5 5
+~
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: quill feather-quill long-white-feather pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill feather-quill long-white-feather pen
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+149
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 1036
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: mask simple-wooden-mask
+shortdesc: a simple wooden mask
+desc: A simple wooden mask lies here.
+type: 9
+weight: 0.65
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+6 -1
+~
+extradesc: simple-wooden-mask
+&0This small mask is crafted of a dark wood, and is designed to slip easily
+over the face.  It has very littlte detail, save for a small etched mouth and
+two slits for eyes.  Quite uncomfortable, and not very stylish.~
+~~
+vnum: 1012
+location: 127
+values:
+0
+1
+3
+11
+0
+0
+0
+~
+flags: q 0
+name: dagger thin-dagger thin-blade
+shortdesc: a thin dagger
+desc: A dagger with a thin blade lies here.
+type: 5
+weight: 0.80
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: thin-dagger thin-blade
+A steel bladed dagger, with a plain wooden hilt.  Its blade has been forged
+much more thin than usual, creating a weapon adapt at bypassing heavy plate
+armor.~
+~~
+vnum: 1028
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: cloak green-woolen-cloak
+shortdesc: a &2green&0 woolen cloak
+desc: A &2green&0 woolen cloak is draped here.
+type: 9
+weight: 2.90
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+extradesc: green-woolen-cloak
+A thick cloak crafted from a green cloth.  It is quite long, sweeping down
+almost four feet in length.  Its coloring blends in well with a forest
+background, offering a bit of camoflauge.~
+~~
+vnum: 1020
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: leggings crimson-wool-leggings cloth
+shortdesc: &1crimson&0 wool leggings
+desc: A pair of cloth &1crimson leggings&0 lie here, neatly folded
+type: 9
+weight: 2.40
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+extradesc: crimson-wool-leggings cloth
+A pair of loose fitting pants.  They are crafted of light cloth, offering
+little protection against physical attacks or the weather.~
+~~
+vnum: 1003
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: hood pile-ebony-cloth ebony-hood
+shortdesc: &9&ban ebony hood&0
+desc: &0&9&bA pile of ebony cloth lies here.&0
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+extradesc: pile-ebony-cloth ebony-hood
+This deep hood increases the wearer's ability to stay hidden within shadows.  
+Its design is similiar to the those worn by cultists and necromancers.~
+~~
+vnum: 1002
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: robe flowing-crimson-robe bundle-crimson-cloth
+shortdesc: a flowing &1crimson&0 robe
+desc: A bundle of &1crimson cloth&0 lies here.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: flowing-crimson-robe bundle-crimson-cloth
+This long robe is crafted from a deep blood red crimson.  It comes with a
+matching sash, used to tighten it about the waist.  Not very effective in
+combat, but better then nothing.~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+20 5
+32 5
+100 5
+101 12
+5 5
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.~
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: backpack heavy-backpack back-pack leather
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+extradesc: backpack heavy-backpack back-pack leather
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.~
+~~
+vnum: 1006
+location: 127
+values:
+300
+300
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: waterskin well-crafted-leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: well-crafted-leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.  &0~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+~~

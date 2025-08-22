@@ -1,0 +1,89 @@
+name: Morbin
+password: Monb2CNKQ5
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20352
+birthtime: 1663784091
+timeplayed: 2132
+lastlogintime: 1732940536
+host: 174.024.115.118
+height: 64
+weight: 172
+base_height: 64
+base_weight: 172
+base_size: 2
+natural_size: 2
+alignment: 1
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 2
+lastlevel: 0
+hitpoints: 27/26
+mana: 1/0
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 93
+intelligence: 68
+wisdom: 72
+dexterity: 82
+constitution: 90
+charisma: 59
+cash: 0 0 6 6
+bank: 0 1 1 1
+experience: 6049
+quit_reason: 1
+saveroom: 3054
+skills:
+402 56
+404 55
+415 50
+416 50
+421 53
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8021 1.000000
+1 8023 1.000000
+1 8012 1.000000
+1 3062 1.000000
+1 51900 1.000000
+0 0 0
+tells:
+1699908227 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1699908272 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1699908289 @WHelena@W tells you, 'I would love to give you this for free but I have rent to pay.@W'@0
+1699908290 @WHelena@W tells you, 'I would love to give you this for free but I have rent to pay.@W'@0
+1732940429 @WA half-elven maid@W tells you, 'If you want to rent a room, please go upstairs to the Reception Area.@W'@0
+$
+gossips:
+1699907602 Discord gossips, 'Cy: Oh maybe'
+1699907612 Ulthar gossips, 'ac 4, +3 hit regen, -3 savingspells, +5 dex +10 maxmove'
+1699907613 Discord gossips, 'Cy: Usually have detect invis on though'
+1699907619 Discord gossips, 'Cy: Thanks!'
+1699908358 Ulthar gossips, 'yeah Xanthos'
+1732940401 Someone gossips, 'same floor/level as the others?'
+1732940403 Someone gossips, 'Hello Morbin!'
+1732940406 Someone gossips, 'Yep'
+1732940499 Someone gossips, 'only see the usual dragon, beast, treasure rooms'
+1732940518 Someone gossips, 'make sure to check all the side halls'
+$

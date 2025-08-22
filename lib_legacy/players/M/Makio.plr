@@ -1,0 +1,125 @@
+name: Makio
+password: MaPH7etthT
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 28
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20492
+birthtime: 1681153252
+timeplayed: 54144
+lastlogintime: 1697415186
+host: 075.097.074.000
+height: 77
+weight: 266
+base_height: 77
+base_weight: 266
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3506
+lastlevel: 0
+hitpoints: 82/73
+mana: 1/0
+move: 158/158
+damroll: 3
+hitroll: 3
+strength: 75
+intelligence: 97
+wisdom: 71
+dexterity: 73
+constitution: 90
+charisma: 60
+cash: 0 307 1207 1223
+bank: 0 797 330 673
+experience: 299297
+quit_reason: 7
+saveroom: 3506
+cooldowns:
+10 7070/18000
+-1 0
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+39 1000
+100 1000
+101 1000
+204 1000
+415 50
+416 50
+423 140
+424 140
+438 63
+443 50
+444 137
+447 74
+451 79
+452 140
+453 55
+454 60
+455 50
+459 64
+460 68
+462 74
+464 74
+488 140
+0 0
+trophy:
+1 5403 1.000000
+1 5404 3.000000
+1 5420 20.000000
+1 5408 28.000000
+1 17200 1.000000
+1 17209 7.000000
+1 17208 4.000000
+1 17204 12.000000
+1 8023 1.000000
+1 8016 1.000000
+1 8000 1.000000
+0 0 0
+tells:
+1697414222 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1697414222 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1697414222 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1697414222 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1697414222 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1697414223 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1697414223 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
+1697414223 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
+1697414223 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
+1697414239 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+$
+gossips:
+1697413993 Someone gossips, 'it would be a shame if Tors were discovered next time LOL'
+1697414041 Someone gossips, 'bah, demon is dead'
+1697414165 Someone gossips, 'hmmmmmmmmmm, I'm not saying that was too easy, but y'all are overpowered for sure LOL'
+1697414170 Mersh gossips, 'haha'
+1697414323 Venath gossips, 'thanks for dying for your gains mersh'
+1697414329 Kresselack gossips, 'thanks again venath'
+1697414335 Venath gossips, 'thumbs up bros'
+1697414349 Venath gossips, 'next week, its 9 hells'
+1697414364 Cerea gossips, 'oh that place is nice'
+1697414375 Venath gossips, 'lol'
+$
+mem:
+8 1 9
+32 0 5
+32 1 5
+32 1 5
+32 1 5
+32 1 5
+32 1 5
+32 1 5
+0 0 0

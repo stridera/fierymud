@@ -1,0 +1,96 @@
+name: Kekoa
+password: Ke4VGLbdbY
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20422
+birthtime: 1674014139
+timeplayed: 18585
+lastlogintime: 1674270129
+host: 072.130.075.127
+height: 72
+weight: 120
+base_height: 72
+base_weight: 120
+base_size: 2
+natural_size: 2
+alignment: 39
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 11
+lastlevel: 0
+hitpoints: 42/45
+mana: 1/0
+move: 114/114
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 82
+wisdom: 97
+dexterity: 72
+constitution: 76
+charisma: 62
+experience: 39475
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 79
+424 59
+438 50
+443 50
+444 50
+451 51
+457 60
+458 50
+459 50
+460 50
+462 50
+463 64
+466 50
+0 0
+tells:
+1674016244 @WDaedela@W tells you, 'you can type "rent" to leave@W'@0
+1674019195 @WIsiac@W tells you, 'oh i forgot to tell you, Chinok is the 'creator' of fiery, he has great info too if you need dit@W'@0
+1674101087 @WDaedela@W tells you, 'are you using Mudlet?@W'@0
+1674101121 @WDaedela@W tells you, 'I can't hear you.  You'll have to use "tell daedela <message>"@W'@0
+1674101152 @WDaedela@W tells you, 'okay cool.  Is the map working for you?  It should help you see where to go to find your guild@W'@0
+1674101172 @WDaedela@W tells you, 'there should be a map on your screen if you're using mudlet@W'@0
+1674101198 @WDaedela@W tells you, 'hmmm, okay@W'@0
+1674101212 @WDaedela@W tells you, 'do you have a map in your inventory?@W'@0
+1674101232 @WDaedela@W tells you, 'good.  If you look at it, it will show you the layout of town@W'@0
+1674101685 @WDaedela@W tells you, 'there ya go@W'@0
+$
+gossips:
+1674191771 Isiac gossips, 'so a fresh stone skin could absorb 1000 dmg of a 2000 dmg hit?'
+1674191790 Isiac gossips, 'ty'
+1674191801 Chinok gossips, 'yes, but you never see that...'
+1674191823 Chinok gossips, 'when you have stone skin, you only see the damage the mob actually does'
+1674191838 Isiac gossips, 'got it, ty Chi'
+1674191848 Chinok gossips, 'not the damage it's 'avoided''
+1674191876 Isiac gossips, 'i like it, ty'
+1674191932 Chinok gossips, 'night all'
+1674192127 Discord gossips, 'Daedela: It does have a very short duration too.  It's by far the most important form of damage mitigation in the game'
+1674269719 Isiac gossips, 'wave'
+$
+mem:
+16 0 7
+0 0 0

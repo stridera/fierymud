@@ -1,0 +1,427 @@
+1
+vnum: 36014
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring tiny-copper-ring thin-circle
+shortdesc: a tiny copper ring
+desc: A thin circle of copper resembles a coin.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+applies:
+24 -1
+~
+extradesc: tiny-copper-ring thin-circle
+A thin copper wire bears the symbol of the Kaaz clan.
+~
+~~
+vnum: 1024
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mquyz ab
+name: helmet studded-leather-helmet
+shortdesc: a studded leather helmet
+desc: A studded leather helmet lies here.
+type: 9
+weight: 3.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+extradesc: studded-leather-helmet
+&0A simple helmet, designed to cover most of the head.  It leaves the face
+open, allowing the user a wide viewing arc.  It is crafted from a thick
+leather, and studded with inch long spikes to add further protection against
+attacks.
+~
+~~
+vnum: 1019
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mqyz 0
+name: pants crude-leather-pants
+shortdesc: crude leather pants
+desc: Some crude leather pants lie here.
+type: 9
+weight: 8.60
+cost: 250
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+applies:
+2 -1
+~
+extradesc: crude-leather-pants
+Crafted of a crude leather, and studded with metal knobs for added protection
+against physical attacks.  They are a bit heavy, and far too encumbering for a
+sorcerer to wear.
+~
+~~
+vnum: 1026
+location: 8
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mqyz 0
+name: boots crude-leather-boots
+shortdesc: crude leather boots
+desc: Some crude leather boots sit here.
+type: 9
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+applies:
+2 -1
+~
+extradesc: crude-leather-boots
+A pair of tall leather boots.  They reach about half way to the knee, providing
+protection against shallow puddles of water and mud.  Crafted from thick crude
+leather, these boots were designed to deflect attacks during combat.
+~
+~~
+vnum: 1022
+location: 10
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: sleeves quilted-canvas-sleeves cloth hide glowing pile
+shortdesc: some quilted canvas sleeves
+desc: A pile of cloth and hide lies here glowing.
+type: 9
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+extradesc: quilted-canvas-sleeves cloth hide glowing pile
+These sleeves are remarkably light and offer a sense of protection unseen.  
+There is hide padding on the elbows to provide a little extra protection.
+~
+~~
+vnum: 1150
+location: 11
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myzD a
+name: shield small-wooden-shield
+shortdesc: a wooden shield
+desc: A small wooden shield has been abandoned here.
+type: 9
+weight: 3.50
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+extradesc: shield small-wooden-shield
+A small wooden disc bolted along its edges, this shield is designed to be held
+close to the body.  A pair of leather handles on its back allows its user to
+hold it in a variety of ways.  The shield itself is undecorated.
+~
+~~
+vnum: 1014
+location: 16
+values:
+0
+1
+7
+3
+0
+0
+0
+~
+flags: mnquyz ac
+name: longsword crude longsword long-sword iron
+shortdesc: a crude longsword
+desc: A crude iron longsword lies here.
+type: 5
+weight: 5.00
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: crude-longsword long-sword iron
+A three foot long blade, forged from cold iron.  Its wooden hilt has been
+wrapped in thick leather, used to cushion the wielder's hand.  The sword is
+well-balanced, effective if used by a skilled warrior.
+~
+~~
+vnum: 36100
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace bat-tooth-necklace sharp teeth
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: bat-tooth-necklace sharp teeth
+When examined closely, it is easy to see the necklace was constructed hastily
+with clumsy hands.  The teeth vary in shape and size making you wonder if more
+than bat teeth were used.  Even with all of its flaws, you can tell the
+necklace held some significance to the owner.
+~
+~~
+vnum: 19
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rations ration iron food
+shortdesc: some iron rations
+desc: Some iron rations have been set here.
+type: 19
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: iron rations
+These lightweight rations aren't the best-tasting, but they are the traveler's
+best food for long trips -- they never spoil, and fill the stomach for many
+hours.  There is dried meat of unknown origin here, mixed with nuts.  The whole
+mess is glued together into a bar by means of some waxy, fatty substance.    
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+252
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.43
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem crushed-malachite
+shortdesc: a crushed malachite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem crushed-malachite
+shortdesc: a crushed malachite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-shard
+shortdesc: a malachite shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-shard
+shortdesc: a malachite shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem crushed-malachite
+shortdesc: a crushed malachite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~

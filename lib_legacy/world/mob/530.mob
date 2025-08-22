@@ -1,0 +1,650 @@
+#53000
+translucent female woman spectral form spectral-woman~
+the Spectral Woman~
+A translucent female form, draped in flowing robes, floats here.~
+This spectral female gives off an eerie bluish glow as she floats a few
+inches off the ground. Dressed in what was once, centuries ago, a wedding
+gown worn by a bride on her wedding day; an air of sadness and despair
+surrounds her. She seems to be intently looking for something.~
+33556936 1310732 0 E
+57 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+4 4 2 24 0 0 2
+Str: 30
+Dex: 82
+Int: 78
+Wis: 80
+Con: 30
+Cha: 74
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+#53001
+groom man spectral spectral-man~
+the Spectral Man~
+The spectral form of a man floats here dressed in finely tailored robes.
+He seems to have something clutched in his hands.~
+An eerie bluish light emanates from this ghost-like figure. Dressed in what
+was once, centuries ago, a wedding outfit he clutches a toy figure of a bride
+in his hands. The figure must have come from the wedding cake. A deep air
+of sadness surrounds him and a tear runs, eternally, down his check as he
+gazes at the little figure of the bride.~
+100665610 1052676 0 E
+58 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+4 4 1 24 0 0 2
+Str: 30
+Dex: 78
+Int: 66
+Wis: 74
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+T 8557
+T 8558
+#53002
+guard spectral-guard~
+a spectral guard~
+A spectral guard floats above his corpse here.~
+Outlined by a hazy blue light, this transparent spectral form is dressed
+in an ancient form of armor that has been unseen for centuries. Apparently
+unaware that he died long ago, he continues to diligently perform his
+duties as a guard.~
+33556746 1048588 500 E
+57 20 -7 0d0+100 0d0+0
+0 0 0 0 0 530
+4 4 1 3 0 0 2
+BareHandAttack: 12
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+#53003
+banshee~
+the Banshee~
+The form of a hideous woman is floating here.
+The Banshee is surrounded by an eerie grey light!~
+Only a great act of treachery or evil can warp a soul into the hideous
+monstrosity before you. Disheveled and dressed in tattered cloth this
+spectral form is destined to wander the earth forever for her 'crimes' A
+look of pain and horror has been stamped on her face.~
+69208140 1310724 -1000 E
+67 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+4 4 2 0 0 0 2
+BareHandAttack: 12
+Str: 30
+Dex: 78
+Int: 76
+Wis: 76
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+T 55699
+T 5314
+#53004
+weird water~
+the Water Weird~
+A shimmering light seems to be moving through the water.~
+The water forms into a long cylindrical shape which vaguely resembles
+a serpent. A blue light seems to emanate from within it.~
+100663310 1060 -500 E
+47 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 0 24 17 0 2
+BareHandAttack: 12
+Str: 30
+Dex: 81
+Int: 64
+Wis: 70
+Con: 30
+Cha: 60
+AFF2: 1
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 4
+Stance: 6
+E
+T 2805
+#53005
+spider giant-spider huge-red-eyes~
+a giant spider~
+Huge red eyes peer out of the darkness.. Five huge red eyes!~
+This huge spider is easily the size of a man, with a bloated body and
+tiny little head surmounted with red eyes. It has large mandibles which
+it clicks together frequently, and its legs are delicate and slender.~
+100663304 262180 0 E
+35 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 0 24 14 0 1
+BareHandAttack: 1
+Str: 30
+Dex: 82
+Int: 74
+Wis: 76
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 350
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 53001
+T 61554
+#53006
+lizard-man lesser lizard man reptilian humanoid~
+a lizard man~
+Crouched in the swamp, a reptilian humanoid watches you with glowing eyes.~
+Humanoid in shape, this green-scaled creature looks like a lizard
+that has stood up on its hind legs. Strong and sinister-looking,
+it flicks out a forked tongue to taste the air frequently. It lopes
+along easily on its almost-human legs.~
+100665548 1024 -300 E
+35 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 1 24 13 0 2
+BareHandAttack: 9
+Str: 30
+Dex: 80
+Int: 68
+Wis: 68
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#53007
+lizard-man elite lizard man guard lizard-elite-one reptilian elite-lizard-man~
+an Elite Lizard Man~
+A reptilian watches you carefully, breathing an air of confidence. ~
+This reptilian stands a proud seven feet tall. His scales are lighter
+than his smaller cousins and his posture more erect. Scars and missing
+scales on his body inform you he is a battle-hardened veteran.~
+6158 1024 -600 E
+38 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 1 3 13 0 3
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#53008
+lizard-man lizard man shaman~
+the Lizard Shaman~
+A reptilian in fine grey robes stares down at you.~
+Humanoid in shape, this creature resembles a lizard in almost every
+way possible, from his green scaled body to his small lizardlike head,
+with its forked tongue and slit-pupilled eyes. It is taller than a
+human man, and looks very commanding indeed.~
+100665352 1060 -800 E
+57 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 1 8 13 0 2
+BareHandAttack: 9
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 37052
+T 55698
+#53009
+lizard-man lizard-king lizard king~
+the Lizard King~
+A huge reptilian humanoid towers above you.
+An air of power and nobility surrounds him.~
+Over nine feet tall this huge reptilian is dressed in rich silk robes. A
+huge tail snakes out behind him. His scales, a lighter shade of green
+that the other lizard men, have blue highlights. A forked tongue flickers
+in and out of his mouth as he gazes down on you. Immense power radiates
+from him!~
+2698 1024 -600 E
+60 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 1 3 13 0 2
+BareHandAttack: 9
+Str: 30
+Dex: 70
+Int: 78
+Wis: 68
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55699
+T 6054
+#53010
+malebranche demon hideous creature~
+the Malebranche~
+A hideous creature looks down on you with utter contempt.~
+Covered in blood red scales, this huge creature could only have come from some
+unknown plane of pure evil.  Huge curved horns seem to sprout from his head,
+while huge bat-shaped wings are tucked tightly on his back.  A sense of pure
+evil emanates from him.  The look in his eyes is one of pure hatred.~
+100665416 1060 -850 E
+50 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 0 24 19 1 5
+BareHandAttack: 12
+Str: 30
+Dex: 80
+Int: 71
+Wis: 70
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 500
+Lifeforce: 4
+Composition: 0
+Stance: 6
+E
+#53011
+witch crazed old woman~
+the witch~
+A crazed old woman in tattered robes stares at you.~
+The woman before you is an utter mess. Her hair is stringy and unkempt.
+Her clothes tattered and reeking with some foul stench. She seems to
+babble incoherently and drool continually pours from her mouth.~
+3594 0 -500 E
+32 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 2 0 13 0 2
+Str: 30
+Dex: 78
+Int: 68
+Wis: 86
+Con: 30
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#53013
+statue male man~
+a male statue~
+     A statue of a horrified older man stands here.~
+Apparently crafted by an expert the look on the statues face has an air
+of reality you have never seen on a statue before. You can only guess
+that the artists intention was to display a moment of horror on this
+poor fellow's face as he was out hunting.~
+2314 1024 500 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 1 24 17 0 2
+Str: 30
+Dex: 84
+Int: 62
+Wis: 79
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 9
+Stance: 6
+E
+#53015
+statue female woman~
+a female statue~
+     A statue of a young woman in pain and fear stands here.~
+Dressed in what appears to be a flowing nightgown this woman appears to
+be in some sort of eternal pain. Her mouth is opened as if screaming,
+her body arched as if in pain. However, no sounds come from her mouth,
+only silence.~
+2314 1024 500 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 2 24 17 0 2
+Str: 30
+Dex: 85
+Int: 58
+Wis: 76
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 9
+Stance: 6
+E
+#53016
+statue female defiant~
+a female statue~
+     A statue of a defiant older woman stands here.~
+The statue of this woman seems to be standing up to some aggressor that
+only she can see. You can almost picture her children clutching her 
+skirt as she stands up bravely to someone who threatens their safety.~
+2314 1024 500 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 2 24 17 0 2
+Str: 30
+Dex: 76
+Int: 80
+Wis: 82
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 9
+Stance: 6
+E
+#53017
+golem iron humanoid massive~
+the Iron Golem~
+A massive iron humanoid stands here, guarding the room and its contents.~
+This massive humanoid, standing well over fifteen feet in height, is
+made of pure iron. His huge muscles seem all the more intimidating
+because they are made of metal. His eyes glow with a soft green light,
+and they seem to be following your movements. It might not be a good
+idea to touch anything in this room.~
+100663306 1060 0 E
+55 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 0 24 17 0 4
+BareHandAttack: 5
+Str: 30
+Dex: 84
+Int: 57
+Wis: 82
+Con: 30
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 8
+Stance: 6
+E
+T 53001
+#53018
+bride spectral woman spectral-bride~
+the Spectral Bride~
+An eerie transparent young woman lies on the bed.~
+Dressed in what was once considered a wedding gown, centuries ago, this
+strange form glows with an eerie blue light. Slightly transparent she
+seems oblivious to your presence, pre-occupied with her sorrow. She is
+extremely beautiful and a feeling of sadness passes over you as you
+realize that she must have been struck down on her wedding day.~
+266 4100 845 E
+57 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+0 0 2 24 0 0 2
+BareHandAttack: 12
+Str: 30
+Dex: 83
+Int: 69
+Wis: 72
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 4
+E
+#53019
+lurker lurker-above~
+the Lurker Above~
+The black ceiling is moving.~
+This strange creature vaguely resembles a giant manta ray. It has
+flat rubbery appearance to it. It has the ability to move about quite
+quickly and can float through the air. However its favored mode of
+attack is blend into the ceiling and wait for an unsuspecting victim
+to walk underneath.~
+100663306 1049604 0 E
+45 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+4 4 0 24 17 0 2
+Str: 30
+Dex: 90
+Int: 60
+Wis: 72
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 450
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 53002
+#53020
+roots animated~
+the animated roots~
+Thick roots snake from the wall and rest their tips in the pool.~
+The roots come out of the wall at various places around the wall, but
+concentrated generally to the west. They look like huge, flexible
+wooden tree trunks about two feet in diameter and over ten feet long.~
+100663306 0 0 E
+48 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 0 24 12 0 2
+BareHandAttack: 6
+Str: 30
+Dex: 76
+Int: 75
+Wis: 94
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+#53021
+lizard-man lizard man captain reptilian~
+the Lizard Captain~
+A large reptilian dressed in hardened leather armor watches you carefully.~
+This reptilian is slightly taller than the others and seems to be a leader
+of sorts judging from the way the others react to him. He is dressed in
+hardened leather armor and wears a flowing cape on his back. His scales
+have a tint of yellow in them and he bears many signs of combat. He is
+most likely a veteran of many fights.~
+2103372 1024 -500 E
+47 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 1 3 13 0 2
+BareHandAttack: 9
+Str: 30
+Dex: 80
+Int: 66
+Wis: 78
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55698
+#53022
+shade kingsman black shadow~
+the Kingsman's Shade~
+A black shadow seems to cling to the darkness.~
+He betrayed his king for the love of a woman thereby damning them both to 
+lives of eternal torment. This black shadowy creature seems unsure of
+his surroundings. Every few moments he screams a deathly wail of pain,
+torture, and sadness.~
+100665866 1048580 -800 E
+60 20 0 0d0+0 0d0+0
+0 0 0 0 0 530
+4 4 1 24 0 0 2
+Str: 30
+Dex: 84
+Int: 67
+Wis: 76
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+T 55698
+#53023
+reptilian elite lizard man elite-lizard-man lizard-elite second-elite~
+an Elite Lizard Man~
+A reptilian watches you carefully, breathing an air of confidence.~
+This reptilian stands a proud seven feet tall.  His scales are lighter than his
+smaller cousins and his posture more erect.  Scars and missing scales on his
+body inform you he is a battle-hardened veteran.    ~
+67110926 1024 -600 E
+38 0 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 1 3 13 0 2
+Str: 80
+Dex: 88
+Int: 67
+Wis: 72
+Con: 77
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#53024
+lizardess lizard woman female reptilian~
+the lizardess~
+A female reptilian is here muttering a strange mantra.~
+Slightly smaller and more frail then the male lizard guards, this female does
+not make eye contact with you.  Her scales are extremely ligh, almost a pale
+green color.  There seems to be more intelligence about her, at least more so
+then your average reptilian creature.    ~
+67179148 8421384 0 E
+36 0 0 0d0+0 0d0+0
+0 0 0 0 0 530
+3 3 2 0 13 0 2
+Str: 87
+Dex: 75
+Int: 83
+Wis: 80
+Con: 66
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

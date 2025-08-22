@@ -1,0 +1,251 @@
+name: Gizelle
+password: Gi.7KuAr.C
+currenttitle: Lflingzinger
+description
+   This spunky little gnome is no taller than a human toddler!  With long,
+nimble fingers, a bulbous nose, and a keen eye, she is likely a master of the
+arcane.  Her hair is plaited tightly to form a single circlet around a tidy
+bun, and her sharp amethyst eyes draw in her surroundings.  A wry little smile
+completes her look - sassy, but imposing enough to make you think twice before
+crossing her.~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 2
+level: 62
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17101
+birthtime: 1222045732
+timeplayed: 2962455
+lastlogintime: 1690566421
+host: 076.184.241.147
+height: 32
+weight: 80
+base_height: 32
+base_weight: 80
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 75
+loadroom: 10053
+lastlevel: 0
+hitpoints: 316/316
+mana: 384/384
+move: 110/110
+damroll: 2
+hitroll: 4
+strength: 73
+intelligence: 94
+wisdom: 92
+dexterity: 62
+constitution: 81
+charisma: 68
+cash: 310 1997 227 77
+bank: 404 6250 14609 5536
+experience: 36917745
+quit_reason: 3
+saveroom: 0
+skills:
+2 1000
+5 1000
+8 1000
+10 1000
+19 1000
+20 1000
+26 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+66 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+106 1000
+107 1000
+110 1000
+111 1000
+186 1000
+228 1000
+246 1000
+415 411
+416 438
+421 660
+423 1000
+424 1000
+438 370
+443 490
+444 660
+447 478
+451 670
+452 1000
+453 647
+454 662
+456 658
+458 670
+459 643
+460 491
+462 670
+464 661
+0 0
+trophy:
+1 55002 0.250000
+1 55015 0.500000
+1 55004 0.250000
+1 55016 0.500000
+1 55007 0.250000
+1 46409 0.750000
+1 46403 0.250000
+1 11809 0.250000
+1 11710 1.000000
+1 11704 0.750000
+1 11703 0.750000
+1 11750 0.250000
+1 11702 1.750000
+1 11701 1.250000
+1 5201 1.000000
+1 5211 1.000000
+1 5120 1.000000
+1 3508 2.000000
+1 3500 2.000000
+1 3503 1.000000
+1 3502 2.000000
+0 0 0
+tells:
+1689877858 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689877858 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689877858 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689877858 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689889526 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689919013 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690394030 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1690394031 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1690394031 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1690394031 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+$
+gossips:
+1690562622 Chinok gossips, 'I could run out and fix it, but I'd rather wait for D, and let him see what ahppened'
+1690562832 Mejna gossips, 'maybe a minor bug, the apprentice shaman did not assist the warrior, who assisted the golems.'
+1690563381 Mersh gossips, 'Hey Dreven'
+1690563387 Dreven gossips, 'morning'
+1690563697 Mejna gossips, 'is the key for the cauldron a reset item? *think*'
+1690563809 Chinok gossips, 'doubt it..'
+1690564096 Mejna gossips, 'ok i'm at the shaman'
+1690564586 Mejna gossips, 'are the guards actually in this zone? *think*'
+1690564637 Mejna gossips, 'hello Aahz :)'
+1690564639 Chinok gossips, 'yep, should be, I'll double check tho'
+1690564640 Aahz gossips, 'hello'
+1690564662 Aahz gossips, 'anyone grouping?'
+1690565519 Mersh gossips, 'sorry mostly working'
+$
+mem:
+8 1 1
+8 1 1
+8 1 1
+8 1 1
+19 1 1
+39 1 1
+107 1 1
+8 1 1
+20 1 1
+30 1 2
+30 1 2
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+111 1 2
+52 1 1
+52 1 1
+107 1 1
+107 1 2
+99 1 1
+111 1 2
+111 1 2
+100 1 1
+186 1 2
+186 1 2
+186 1 1
+31 0 1
+31 1 1
+31 1 1
+5 1 1
+5 1 1
+5 1 2
+5 1 1
+5 1 1
+111 1 2
+111 1 7
+106 1 1
+77 1 1
+77 1 1
+29 1 1
+52 1 1
+52 1 1
+76 1 1
+76 1 1
+76 1 1
+76 1 1
+76 1 1
+0 0 0
+aliases:
+nosenod emo holds a finger aside her nose and nods. What's she thinking?
+stoneup cas 'stone';cas 'stone' gennaire; cas 'stone' mejna
+buffm cas 'detect mag' mejna; cas 'detect invis' mejna; cas 'stone' mejna
+flyup cas fly meina
+bufffire cas fires; cas 'minor glob'; cas lev
+assu ass utaboshi
+lb cas 'lightn' $*
+mm cas 'magic miss' $*
+asm ass mejna
+waggle emo waggles her eyebrows. How outrageous!
+conc cas 'conceal'
+assn assist nauis
+assg assist gennaire
+lol laugh
+ol get all corpse
+assh assist harnv
+cmm cas 'magic miss' $*
+sh cas 'shocking' $*
+bh cas 'burning hands' $*
+cdm cas 'dispel magic' $*
+asst ass turgeron
+mg cas 'minor glob'
+fs cas 'firesh'
+infra cas 'infra'
+colds cas 'colds'
+assm ass mejna
+mfood cas 'minor creat' ration
+tp cas teleport
+cct cas 'chill touch' $*
+restup rest;med;mem
+assf ass fernley
+assgr assist griffette
+facepalm emo smacks her face with her palm, saying 'ay ay ay'.
+sniffle emo sniffles pitifully.
+0

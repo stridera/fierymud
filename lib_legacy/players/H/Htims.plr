@@ -1,0 +1,82 @@
+name: Htims
+password: HtY5peFcMv
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 11
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19435
+birthtime: 1556816959
+timeplayed: 1533
+lastlogintime: 1556818494
+host: 066.194.162.130
+height: 35
+weight: 128
+base_height: 35
+base_weight: 128
+base_size: 1
+natural_size: 1
+alignment: 995
+playerflags: y
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 3
+thirst: 10
+lastlevel: 0
+hitpoints: 53/53
+mana: 0/0
+move: 100/100
+damroll: 3
+hitroll: 6
+strength: 100
+intelligence: 65
+wisdom: 78
+dexterity: 86
+constitution: 72
+charisma: 58
+experience: 18150
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 61
+415 50
+416 50
+421 52
+438 50
+443 50
+444 50
+463 50
+464 50
+465 59
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3500 1.000000
+1 3502 1.000000
+1 18005 2.000000
+1 18002 3.000000
+1 18001 3.000000
+1 18007 3.000000
+1 8011 1.000000
+1 8015 1.000000
+1 8010 1.000000
+1 8002 1.000000
+1 8012 1.000000
+1 8001 1.000000
+1 8020 1.000000
+0 0 0
+aliases:
+df drink fountain
+gg get all corpse
+kk kick
+0

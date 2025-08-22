@@ -1,0 +1,96 @@
+name: Duey
+password: DueNwP1K6p
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19439
+birthtime: 1557260714
+timeplayed: 12426
+lastlogintime: 1557760132
+host: 216.241.197.068
+height: 64
+weight: 107
+base_height: 64
+base_weight: 107
+base_size: 2
+natural_size: 2
+alignment: 938
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 22
+lastlevel: 0
+hitpoints: 37/37
+mana: 1/-1
+move: 78/100
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 95
+wisdom: 92
+dexterity: 67
+constitution: 70
+charisma: 55
+cash: 0 908 7 3
+experience: 59341
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 90
+424 84
+438 50
+443 50
+444 50
+447 60
+451 54
+452 58
+453 66
+459 50
+460 50
+462 50
+464 51
+0 0
+trophy:
+1 3062 0.250000
+1 17205 0.250000
+1 17204 1.750000
+1 3503 0.250000
+1 3508 2.000000
+1 3501 0.500000
+1 55232 0.250000
+1 55237 0.250000
+1 55231 0.250000
+1 55239 0.500000
+1 55235 0.750000
+1 55233 0.250000
+1 55234 0.500000
+1 55222 2.500000
+1 55229 4.250000
+1 55240 3.250000
+1 55241 0.750000
+1 58802 0.250000
+1 58807 0.250000
+1 58808 0.250000
+1 58809 0.500000
+0 0 0
+mem:
+5 1 7
+32 1 7
+5 1 7
+0 0 0

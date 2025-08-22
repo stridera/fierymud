@@ -1,0 +1,159 @@
+name: Mirallison
+password: MiijYgqcJn
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 0
+level: 23
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20542
+birthtime: 1687273753
+timeplayed: 266548
+lastlogintime: 1689179207
+host: 068.134.081.168
+height: 69
+weight: 146
+base_height: 69
+base_weight: 146
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 109/109
+mana: 52/52
+move: 181/181
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 100
+wisdom: 86
+dexterity: 80
+constitution: 74
+charisma: 68
+cash: 0 0 0 1
+bank: 5 1890 3000 4000
+experience: 2684872
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+31 1000
+32 1000
+37 1000
+39 1000
+99 1000
+100 1000
+101 1000
+186 1000
+246 1000
+415 50
+416 50
+421 111
+423 274
+424 271
+438 123
+443 50
+444 270
+447 84
+451 140
+452 230
+453 225
+454 268
+456 97
+459 50
+460 103
+462 102
+464 271
+0 0
+trophy:
+1 36001 0.500000
+1 36004 0.250000
+1 36003 1.000000
+1 36002 0.250000
+1 50205 0.333333
+1 50210 0.250000
+1 50219 0.250000
+1 50215 0.500000
+1 50213 1.000000
+1 36305 0.500000
+1 12015 0.250000
+1 41115 0.250000
+1 41101 0.250000
+1 41118 0.250000
+1 41106 0.250000
+1 41120 0.250000
+1 41107 0.250000
+1 41105 0.750000
+1 41103 0.250000
+1 41109 0.250000
+1 41108 0.250000
+0 0 0
+tells:
+1687835503 @WChinok@W tells you, 'night!@W'@0
+1687867436 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1687885326 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1687969723 @WJore@W tells you, 'one of your alts?@W'@0
+1687975094 @WBigby@W tells you, 'No cash, no delivery.@W'@0
+1687975098 @WBigby@W tells you, 'No cash, no delivery.@W'@0
+1687975126 @WBigby@W tells you, 'No cash, no delivery.@W'@0
+1687975207 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1688740162 @WLisa@W tells you, 'Hrm, it doesn't look too worn, I suppose.@W'@0
+1689176685 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1689176699 Jaco gossips, 'grtaz!'
+1689176982 Amadan gossips, 'BAM!'
+1689176998 Jaco gossips, ':D'
+1689177088 Jaco gossips, 'congratdulations!'
+1689177099 Calin gossips, 'Thanks so much!'
+1689177364 Kella gossips, 'Oh yea! Nice!'
+1689178306 Daedela gossips, 'Weeelllll, looks like I have a fix for the spell queuing issue!'
+1689178371 Daedela gossips, 'and with that, i bid you farewell!'
+1689178382 Calin gossips, 'Thanks and Cya!!'
+1689179205 Kella gossips, 'ok, time for a break. Cya all later!'
+$
+mem:
+5 1 2
+32 1 1
+5 1 1
+5 1 1
+32 1 1
+32 1 1
+8 0 1
+8 1 1
+100 1 1
+19 1 2
+8 1 2
+8 1 2
+8 1 2
+37 1 5
+31 1 6
+37 1 5
+37 1 5
+37 1 5
+37 1 4
+0 0 0
+aliases:
+ct cast 'chill touch' $1
+ri recite identify $1
+gac get all corpse
+mm cast 'magic missile' $1
+bh cast 'burning hands' $1 
+test sit ; stand
+mc cast 'minor creation' $1
+di cast 'detect invisibility' $1
+sg cast 'shocking grasp' $1
+lo cast 'locate object' $1
+0

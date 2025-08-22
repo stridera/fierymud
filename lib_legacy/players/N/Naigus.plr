@@ -1,0 +1,138 @@
+name: Naigus
+password: NadgUs2H.p
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 2
+race: 0
+level: 24
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19447
+birthtime: 1561345016
+timeplayed: 220959
+lastlogintime: 1601959025
+host: 066.193.130.006
+height: 67
+weight: 142
+base_height: 67
+base_weight: 142
+base_size: 2
+natural_size: 2
+alignment: 752
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 24
+lastlevel: 0
+hitpoints: 259/259
+mana: 57/57
+move: 110/122
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 58
+wisdom: 74
+dexterity: 100
+constitution: 86
+charisma: 62
+cash: 53 1049 2904 464
+bank: 0 40 10 0
+experience: 2672603
+quit_reason: 1
+saveroom: 3054
+skills:
+401 290
+403 280
+405 190
+408 281
+409 50
+411 290
+415 56
+416 82
+421 215
+438 50
+443 120
+444 82
+464 237
+465 51
+467 50
+478 58
+0 0
+trophy:
+1 5520 0.333333
+1 5519 2.333333
+1 5518 1.333333
+1 5517 2.000000
+1 5516 2.333333
+1 5515 2.333333
+1 5514 1.000000
+1 5513 1.666667
+1 55214 0.333333
+1 7051 0.333333
+1 6910 0.666667
+1 7052 0.333333
+1 7001 0.333333
+1 8601 1.666667
+1 8600 0.333333
+1 8606 1.333333
+1 8604 4.333333
+1 8605 3.666666
+1 8016 0.333333
+1 8023 0.666667
+1 8001 1.000000
+0 0 0
+tells:
+1585683117 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1585683117 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1585683118 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1594092765 @WMejna@W tells you, 'have saigus follow me and i'll get her back to you@W'@0
+1594093639 @WShazz@W tells you, 'Take good care of that.@W'@0
+1594093641 @WShazz@W tells you, 'Take good care of that.@W'@0
+1594093642 @WShazz@W tells you, 'Take good care of that.@W'@0
+1594093642 @WShazz@W tells you, 'Take good care of that.@W'@0
+1594093657 @WShazz@W tells you, 'Take good care of that.@W'@0
+1594093658 @WShazz@W tells you, 'Take good care of that.@W'@0
+$
+gossips:
+1601956790 Nauis gossips, 'it's timeless!'
+1601956799 Meina gossips, 'uhUB22 vErsSzzsssIooOoN fFfoR liifFfe'
+1601956814 Meina gossips, 'GaOooEsSzzsss TOoo mmmmY hehad'
+1601956823 Meina gossips, 'HhhEhEhe'
+1601957920 Nauis gossips, 'Ooooh for the honor of grayskull'
+1601957922 Nauis gossips, 'noice'
+1601957941 Griffette gossips, 'right?!'
+1601958243 Nauis gossips, 'so where are cure poison potions located?'
+1601958880 Chinok gossips, 'in the magic shop, if memory serves'
+1601958999 Meina gossips, 'IiiTss sSssooo HahhhhRd tooo zzZzssZahhhhY gOooooodBye To YehzzZzssZtehrDAhY'
+$
+effects:
+3 83 2 18 0 0 0
+3 83 -102 24 0 0 0
+3 83 0 0 0 0 16384
+57 36 0 0 1048576 0 0
+39 7 127 1 0 0 0
+144 36 118 17 0 0 0
+0 0 0 0 0
+aliases:
+agg assist griffette
+ajj assist joscil
+gbb get 2 bread bag
+bs backstab $1
+gcc g all corpse
+lic look in corpse
+who who -w
+rr recite green
+amm assist meina
+amj assist mejna
+ann assist nauis
+ebb eat bread
+asd assist saigus
+ak assist krygus
+gac g all corpse
+agn assist gennaire
+0

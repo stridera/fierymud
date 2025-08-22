@@ -1,0 +1,127 @@
+name: Xanril
+password: XaG14wfHBI
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 18
+home: 6015
+lifeforce: 0
+composition: 0
+id: 18692
+birthtime: 1400344380
+timeplayed: 179378
+lastlogintime: 1608384884
+host: 174.248.046.249
+height: 74
+weight: 178
+base_height: 74
+base_weight: 178
+base_size: 2
+natural_size: 2
+alignment: 377
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 75
+loadroom: 6227
+hunger: 7
+thirst: 14
+drunkenness: 12
+lastlevel: 0
+hitpoints: 245/245
+mana: 32/32
+move: 129/130
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 67
+wisdom: 71
+dexterity: 81
+constitution: 91
+charisma: 62
+cash: 0 239 12 16
+bank: 0 700 800 0
+experience: 1295746
+quit_reason: 1
+saveroom: 6227
+skills:
+402 228
+404 230
+407 50
+415 180
+416 81
+421 228
+430 224
+438 96
+443 190
+444 220
+463 50
+464 195
+465 225
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3064 1.000000
+1 36300 1.000000
+1 36305 1.000000
+1 3507 1.000000
+1 3502 2.000000
+1 17204 5.000000
+1 3500 1.000000
+1 3501 2.000000
+1 3503 2.000000
+1 12016 1.000000
+1 12015 1.000000
+1 12011 1.000000
+1 12014 1.000000
+1 12001 1.000000
+1 12007 1.000000
+1 12010 2.000000
+1 12023 1.000000
+1 12025 2.000000
+1 12003 2.000000
+1 12012 1.000000
+1 36100 1.000000
+0 0 0
+tells:
+1608383670 @WSantiago@W tells you, 'I'll give you 0p, 0g, 1s, 4c for that!@W'@0
+1608383678 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1608383742 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1608383820 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1608383826 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1608383831 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1608383835 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1608383973 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1608384013 @WBigby@W tells you, 'I'll give you 0p, 3g, 8s, 7c for that!@W'@0
+1608384033 @WBigby@W tells you, 'I'll give you 0p, 3g, 1s, 2c for that!@W'@0
+$
+gossips:
+1608316901 Faerylyn gossips, 'thanks! you too'
+1608316904 Felessan gossips, 'where are you in from?'
+1608382613 The chief smuggler guard shouts, 'Ok, lets get those crates moving people.'
+1608382613 The chief smuggler guard shouts, 'Move it, move it, MOVE IT!'
+1608382793 The chief smuggler guard shouts, 'Ok, lets get those crates moving people.'
+1608382793 The chief smuggler guard shouts, 'Move it, move it, MOVE IT!'
+1608382883 The chief smuggler guard shouts, 'Ok, lets get those crates moving people.'
+1608382883 The chief smuggler guard shouts, 'Move it, move it, MOVE IT!'
+1608383083 The chief smuggler guard shouts, 'Ok, lets get those crates moving people.'
+1608383083 The chief smuggler guard shouts, 'Move it, move it, MOVE IT!'
+$
+aliases:
+db drink barrel
+fb fill barrel fountain
+df drink fountain
+lc look in corpse
+gc get coins corpse
+ga get all corpse
+wa wear all
+gb get bread bag
+eb eat bread
+rg recite green
+0

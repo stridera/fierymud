@@ -1,0 +1,92 @@
+name: Zardo
+password: ZaWOnD2NI7
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20600
+birthtime: 1693066752
+timeplayed: 12511
+lastlogintime: 1693087168
+host: 075.088.135.125
+height: 69
+weight: 136
+base_height: 69
+base_weight: 136
+base_size: 2
+natural_size: 2
+alignment: 38
+playerflags: gy
+effectflags: 0 0 0
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 61/58
+mana: 1/0
+move: 151/151
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 76
+wisdom: 82
+dexterity: 100
+constitution: 94
+charisma: 56
+cash: 0 28 119 129
+experience: 20206
+quit_reason: 3
+saveroom: 0
+skills:
+402 74
+404 77
+415 50
+416 50
+421 56
+438 50
+443 50
+444 55
+463 50
+464 50
+465 55
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36004 2.000000
+1 8011 2.000000
+1 36002 5.000000
+1 36003 6.000000
+1 36001 3.000000
+0 0 0
+tells:
+1693083715 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1693083739 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1693083760 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1693083767 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1693083775 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1693083881 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1693084084 @WGranite@W tells you, 'If it's not a shield then I am not interested.@W'@0
+1693084088 @WDrako@W tells you, 'I only deal in bronze at the moment, try Beowyn.@W'@0
+1693084094 @WShauna@W tells you, 'I don't trade in such items.@W'@0
+1693084099 @WBeowyn@W tells you, 'I only buy the finest steel armour.@W'@0
+$
+gossips:
+1693086222 Discord gossips, 'Daedela: You can check your quest journal!'
+1693086233 Discord gossips, 'Daedela: Use the "pray" command to pray for a spell'
+1693086241 Drentin gossips, 'ty Daedela'
+1693086255 Discord gossips, 'Daedela: The newbie academy has a walk through of basic commands if you like'
+1693086300 Discord gossips, 'Daedela: The help magic file will also give you a lot of info'
+1693086315 Drentin gossips, 'i should probably go through academy thanks :D'
+1693086347 Drentin gossips, 'i will read help magic as well , i appreciate your help :)'
+1693086762 Chinok gossips, 'and yell if you have any questions or need advice, we're happy to help'
+1693087055 Chinok gossips, 'zardo, you're level 3, he don't have a lot for level 3 :)'
+1693087160 Chinok gossips, 'get some more levels, and he'll have some stuff for you'
+$

@@ -1,0 +1,2119 @@
+#901
+bear~
+the brown bear~
+A big, brown, angry-looking bear is here.
+~
+The bear is a big, brown, furry animal with very large claws and very sharp
+teeth.  It doesn't resemble those cute little thingies from toy shops at all.
+~
+72 0 -50 E
+8 20 0 0d0+0 0d0+0
+0 0 0 9
+0 3 0 24 14 0 1
+Str: 78
+Dex: 78
+Int: 70
+Wis: 77
+Con: 78
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 4
+E
+#902
+rabbit~
+the ferocious rabbit~
+A ferocious rabbit is here, glaring hungrily at you.
+~
+This small, furry creature with long ears and big feet has been attacked by
+the dreaded rabbit rabies, a horrible disease that turns helpless and innocent
+rabbits into ferocious and bloodthirsty monsters.
+~
+72 0 -150 E
+3 20 0 0d0+0 0d0+0
+0 0 0 9
+0 3 0 24 14 0 1
+Str: 94
+Dex: 84
+Int: 66
+Wis: 76
+Con: 80
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 4
+E
+#905
+warg vicious~
+the vicious warg~
+A vicious warg is here, snarling angrily at you.
+~
+It is an exceptionally large wolf with thick, black fur.  Saliva is dripping
+quickly from its long, white fangs.  It looks quite dangerous and very angry.
+~
+72 0 -350 E
+5 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 14 0 1
+Str: 90
+Dex: 71
+Int: 73
+Wis: 67
+Con: 76
+Cha: 76
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#906
+warg ferocious~
+the ferocious warg~
+A ferocious warg is here, snarling angrily at you.
+~
+It is an exceptionally large wolf with thick, black fur.  Saliva is dripping
+quickly from its long, white fangs.  It looks quite dangerous and very angry.
+~
+72 0 -350 E
+5 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 14 0 1
+Str: 83
+Dex: 77
+Int: 74
+Wis: 71
+Con: 80
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#907
+wolf grey~
+the large, grey wolf~
+A large, grey wolf is here, glaring hungrily at you.
+~
+The large, grey wolf eyes you with interest while licking its lips.
+~
+72 0 -150 E
+3 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 14 0 1
+Str: 89
+Dex: 92
+Int: 62
+Wis: 76
+Con: 83
+Cha: 51
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#908
+wolf black~
+the large, black wolf~
+A large, black wolf is here, glaring hungrily at you.
+~
+The large, black wolf eyes you with interest while licking its lips.
+~
+72 0 -150 E
+3 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 14 0 1
+Str: 86
+Dex: 70
+Int: 74
+Wis: 73
+Con: 90
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#909
+tree ancient~
+a huge, ancient tree, walking on giant roots,~
+A huge, ancient tree towers above you.
+~
+Its roots are extremely big and large parts of them are above ground.
+
+>
+The enormous grey trunk shivers slightly, as if sighing deeply.
+~
+72 262148 0 E
+30 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 89
+Dex: 86
+Int: 58
+Wis: 72
+Con: 79
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#910
+tree ancient~
+a huge, ancient tree, walking on giant roots,~
+A huge, ancient tree towers above you.
+~
+Its roots are extremely big and large parts of them are above ground.
+
+>
+The enormous grey trunk emits a deep, moaning sound.
+~
+72 262148 0 E
+30 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 92
+Dex: 83
+Int: 73
+Wis: 68
+Con: 72
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#911
+elder druid~
+the Elder Druid~
+the elder druid is here ...he looks very upset about your presence in his home.
+~
+The druid looks quite old.  You would think of him as venerable but yet you know
+he would be a tough foe.
+~
+14 4 0 E
+17 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 85
+Dex: 83
+Int: 71
+Wis: 68
+Con: 78
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#912
+spider young~
+the young spider~
+The young spider is ballooning by you.
+~
+He looks freshly hatched and sprightly.  His young fangs are just
+growing in as of late.
+~
+76 4 0 E
+5 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 2 24 17 0 2
+Str: 97
+Dex: 92
+Int: 71
+Wis: 63
+Con: 66
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#913
+quasit~
+the quasit~
+The quasit blinks in and out, grinning at you.
+~
+Demonic in nature, but more mischievous.  He twiddles his thumbs
+and creates a magical treasure!
+~
+140 262150 1000 E
+10 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 19 1 1
+Str: 86
+Dex: 88
+Int: 68
+Wis: 72
+Con: 72
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 0
+Stance: 6
+E
+#914
+dwarven guard~
+dwarf guard~
+A dwarven guard is here.
+~
+The guard looks very tough and mean.
+~
+2058 4 500 E
+24 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 87
+Dex: 84
+Int: 61
+Wis: 68
+Con: 90
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#915
+dwarven worker~
+dwarf worker~
+A dwarven mining worker is here.
+~
+He is very dirty, and looks extremely over-worked.
+~
+2120 0 900 E
+17 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 97
+Dex: 76
+Int: 64
+Wis: 71
+Con: 75
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#916
+wraith~
+a wraith~
+A wraith is awaiting your first move here.
+~
+A black, almost transparent wraith.
+~
+10 4 -900 E
+29 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 0 0 2
+Str: 87
+Dex: 76
+Int: 70
+Wis: 79
+Con: 74
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+#917
+giant~
+the giant~
+A giant is here.
+~
+The giant is about 8 feet tall, with arms of steel, and looks very
+strong.
+~
+72 0 0 E
+16 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 16 0 5
+Str: 80
+Dex: 83
+Int: 75
+Wis: 80
+Con: 79
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#918
+giraffe~
+the giraffe~
+A giraffe is craning it's neck to see you here.
+~
+undefined~
+72 0 400 E
+0 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 96
+Dex: 72
+Int: 72
+Wis: 78
+Con: 72
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#919
+goat~
+the goat~
+A goat is mulling around here.
+~
+undefined~
+72 0 400 E
+0 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 92
+Dex: 92
+Int: 68
+Wis: 68
+Con: 76
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#920
+pelican~
+the pelican~
+A pelican is swimming around in a shallow pool here.
+~
+undefined~
+10 0 100 E
+0 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 86
+Dex: 84
+Int: 70
+Wis: 78
+Con: 80
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#921
+horse~
+the horse~
+A horse is standing here.
+~
+undefined~
+72 0 800 E
+0 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 88
+Dex: 81
+Int: 70
+Wis: 72
+Con: 74
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#922
+chicken~
+the chicken~
+A chicken is pecking at the dirt here.
+~
+undefined~
+72 0 500 E
+0 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 85
+Dex: 87
+Int: 71
+Wis: 72
+Con: 75
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#923
+kangaroo~
+the kangaroo~
+A kangaroo hops around here.
+~
+undefined~
+72 0 0 E
+0 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 87
+Dex: 97
+Int: 80
+Wis: 60
+Con: 62
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#924
+skunk~
+the skunk~
+A very smelly skunk is here.
+~
+undefined~
+72 0 -832 E
+0 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 84
+Dex: 87
+Int: 72
+Wis: 73
+Con: 72
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#925
+leopard~
+the leopard~
+A leopard is eyeing you up and down here.
+~
+undefined~
+72 0 0 E
+5 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 95
+Dex: 80
+Int: 64
+Wis: 66
+Con: 72
+Cha: 74
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#926
+lion~
+the lion~
+A ferocious lion is here.
+~
+undefined~
+72 0 0 E
+6 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 93
+Dex: 94
+Int: 61
+Wis: 68
+Con: 84
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#927
+bear~
+the bear~
+There is a bear here.
+~
+undefined~
+72 0 -300 E
+5 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 88
+Dex: 86
+Int: 78
+Wis: 84
+Con: 86
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#928
+elephant~
+the elephant~
+There is an elephant here.
+~
+undefined~
+72 0 0 E
+5 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 84
+Dex: 88
+Int: 62
+Wis: 85
+Con: 79
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#929
+bug~
+the computer bug~
+A little, hairy computer bug is here, trying to mess things up.
+~
+It is one of those irritating little creatures that like to infect innocent
+and defenceless programs, trying to make them act weird.  Programmers spend
+countless hours trying to eliminate them, but they are indeed very hardy.
+DikuMUD is known to be one of their favourite habitats.
+~
+73 0 -50 E
+1 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 86
+Dex: 68
+Int: 80
+Wis: 75
+Con: 82
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#930
+death reaper~
+Death~
+Death the Grim Reaper is observing you silently from empty eye sockets.
+~
+The dark-robed skeletal figure radiates an unendurable coldness.
+~
+2058 262148 -1000 E
+30 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 0 0 2
+Str: 100
+Dex: 75
+Int: 54
+Wis: 78
+Con: 68
+Cha: 80
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 10
+Stance: 6
+E
+#931
+bat~
+the small bat~
+The small fierce-looking bat is hanging from the ceiling, obviously sleeping.
+~
+You have never in your entire life seen such a mean looking small creature,
+though it looks rather peaceful, hanging there, sleeping. The thought of 
+arousing this cruel creaturedoesn'
+~
+72 262144 -500 E
+1 20 0 0d0+0 0d0+0
+0 0 0 9
+0 0 0 24 14 0 1
+Str: 86
+Dex: 82
+Int: 72
+Wis: 74
+Con: 76
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 4
+E
+#932
+spider~
+the small Spider~
+The small hairy Spider
+~
+undefined~
+8 262144 -700 E
+1 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 17 0 2
+Str: 88
+Dex: 83
+Int: 63
+Wis: 72
+Con: 84
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#933
+scaled basilisk~
+the scaled basilisk~
+The scaled Basilisk crawls towards you slowly.
+~
+The basilisk is a reptilian monster. It has eight legs, and a strong
+toothy jaws. It is dull brown with yellowish underbell. It's eyes are
+glowing pale green.
+~
+12 4 -250 E
+13 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 15 0 6
+Str: 96
+Dex: 82
+Int: 66
+Wis: 70
+Con: 80
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#934
+master mind mindflayer~
+the master mindflayer~
+The master mindflayer is here, looking at you with an evil look.
+~
+It's a seven foot tall humanoid dressed in a purple cloak, and swinging a
+black and purple rod above its head as if it was going to attack you any
+moment now. In the middle of its head are four tentacles with sharp points.
+~
+12 4 -800 E
+14 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 13 0 2
+Str: 80
+Dex: 83
+Int: 66
+Wis: 78
+Con: 81
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#935
+senior mind mindflayer~
+the senior mindflayer~
+The senior mindflayer walks around here, looking for something useful.
+~
+This is a horrifying monster indeed, 6'6" high. Dressed in purple and black,
+and carrying a large mace in its hand. In the center of its head are four large
+tentacles with very sharp points.
+~
+12 4 -600 E
+8 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 13 0 2
+Str: 83
+Dex: 86
+Int: 70
+Wis: 82
+Con: 79
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#936
+junior mind mindflayer~
+the junior mindflayer~
+The junior mindflayer is here, watching you carefully from the corner.
+~
+This mindflayer is six foot high. It has a small mace in its belt, and is
+dressed in purple and black cloth. It has four small tentacles in the 
+center of its head.
+~
+140 4 -350 E
+6 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 13 0 2
+Str: 82
+Dex: 80
+Int: 76
+Wis: 76
+Con: 80
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#937
+wererat rat were~
+the ugly wererat~
+An ugly wererat is here, looking at you with a strange flick in his eyes.
+~
+The wererat is about four foot tall. It looks very much like rat, exept
+that it is standing.
+~
+76 1024 -700 E
+6 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 94
+Dex: 87
+Int: 70
+Wis: 75
+Con: 79
+Cha: 48
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#938
+rat gigantic~
+the gigantic rat~
+There is a gigantic rat here, looking at you with a hungry look.
+~
+The gigantic rat is about ten foot long from head to tail and has claws
+the size of your head looking very nasty.
+~
+10 1024 -800 E
+12 20 0 0d0+0 0d0+0
+0 0 0 9
+0 3 1 24 14 0 1
+Str: 86
+Dex: 78
+Int: 72
+Wis: 74
+Con: 78
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 4
+E
+#939
+bug~
+the bug~
+A bug scuttles towards you, running in small circles around your feet.
+~
+It is a smallish creature, with too many legs to count, obviously
+very fast. It has a multicoloured carapace (looking much like an oil
+slick on a puddle), and bright red pinpoint eyes.
+~
+8 0 0 E
+1 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 80
+Dex: 80
+Int: 74
+Wis: 81
+Con: 76
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#940
+daemon~
+the Daemon~
+The Daemon looks at you expressionlessly, from the comfort of its
+chair (it feels that way, anyway... You can't see its eyes). Then its
+attention returns to the screens.
+~
+It appears to be a vaguely man-shaped (but larger than man-sized!) hole 
+in the fabric of reality... looking closely, you can see stars, either 
+inside it, or far beyond it...
+~
+2058 4 400 E
+10 20 0 0d0+0 0d0+0
+0 0 0 9
+1 1 0 24 17 0 2
+Str: 81
+Dex: 89
+Int: 67
+Wis: 70
+Con: 77
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 5
+E
+#941
+juggernaut~
+the Juggernaut~
+A Juggernaut a working its way methodically through this area.
+~
+It is _very_ large, some 10 yds in length, walking on several hundred 
+tiny legs. It is metallic-looking, with large spots of corrosion 
+marring its angular skin. On its sides are large signs, written in an 
+incomprehensible language. On its top, a small eye cluster swivels back 
+and forth continually. A number of tentacles sweeps the ground around 
+it.
+~
+76 0 400 E
+8 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 92
+Dex: 72
+Int: 69
+Wis: 80
+Con: 70
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#942
+butterfly fly~
+the butterfly~
+A beautiful, butterfly-like thing is fluttering around here.
+~
+It is, on closer inspection, not really an animal, but a variable
+number of brightly-coloured, translucent planes of breathtaking beauty
+and delicacy. The planes pulse, waver, sometimes disappear, but are
+always replaced by another. None of the planes move, but through
+continuous replacement, the butterfly does, in random sweeps.
+~
+72 0 1000 E
+1 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 84
+Dex: 78
+Int: 66
+Wis: 79
+Con: 79
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#943
+snake coral~
+the coral snake~
+A brightly colored snake slithers along the sands.
+~
+This relatively harmless snake has bright alternating bands of red, yellow
+and black.
+~
+72 0 -10 E
+4 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 14 0 1
+Str: 89
+Dex: 84
+Int: 64
+Wis: 78
+Con: 77
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#944
+scorpion small~
+the small scorpion~
+A small, red scorpion scuttles away at your approach.
+~
+The little tail is mighty dangerous for such a small creature.
+~
+72 0 -50 E
+3 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 78
+Dex: 81
+Int: 71
+Wis: 68
+Con: 84
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#945
+dracolich lich~
+the dracolich~
+A pile of bones rises up to form a skeletal dracolich.
+~
+The dracolich is now only bone with pieces of flesh hanging from it.
+Obviously it no longer fears death.
+~
+2058 132 -1000 E
+20 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 86
+Dex: 82
+Int: 64
+Wis: 76
+Con: 83
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#946
+drider drow~
+the drider~
+The drider looks at you viciously while it draws it's sword.
+~
+This half-spider, half-drow creature is a formidable opponent.
+~
+72 4 -1000 E
+8 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 2 24 17 0 2
+Str: 98
+Dex: 76
+Int: 74
+Wis: 69
+Con: 75
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#947
+duergar dwarf~
+the dark dwarf~
+A duergar is here mining precious stones with his pick.
+~
+The duergar could crush your head as easily as it does those rocks.
+~
+72 4 -850 E
+5 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 93
+Dex: 87
+Int: 78
+Wis: 76
+Con: 71
+Cha: 50
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#948
+Drow commoner~
+the Drow commoner~
+A drow commoner walks around on guard duty.
+~
+I doubt he is the type to give directions.
+~
+72 4 -1000 E
+10 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 84
+Dex: 82
+Int: 66
+Wis: 78
+Con: 80
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#949
+drow noble warrior~
+the drow warrior noble~
+The drow warrior noble stands here guarding his home.
+~
+He looks kind of p.o.ed!
+~
+10 4 -1000 E
+12 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 91
+Dex: 79
+Int: 76
+Wis: 73
+Con: 72
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#950
+drow noble mage~
+the drow mage noble~
+The drow mage noble is here protectng his home.
+~
+The mage prepares to cast a spell...at you!!
+~
+10 4 -1000 E
+15 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 86
+Dex: 83
+Int: 71
+Wis: 68
+Con: 76
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#951
+drow priestess~
+the drow priestess~
+The drow priestess is here shouting orders.
+~
+I wouldn't want go get on her bad side!
+~
+10 4 -1000 E
+17 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 2 24 13 0 2
+Str: 87
+Dex: 92
+Int: 61
+Wis: 78
+Con: 86
+Cha: 47
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#952
+drow master~
+the drow master~
+The drow master stares at you angrily.
+~
+The drow master is ALWAYS ready for a fight.
+~
+10 4 -1000 E
+21 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 100
+Dex: 86
+Int: 67
+Wis: 64
+Con: 80
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 23755
+#953
+drow weaponsmaster~
+the weaponsmaster~
+The drow weaponsmaster is here shadow boxing.
+~
+He definitely know his way around in combat.
+~
+10 4 -1000 E
+23 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 91
+Dex: 83
+Int: 62
+Wis: 71
+Con: 68
+Cha: 78
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#954
+drow matron mother~
+the Matron Mother~
+The Matron Mother of the house is standing here.
+~
+She looks really p.o.ed!!!!
+~
+10 4 -1000 E
+24 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 2 24 13 0 2
+Str: 89
+Dex: 93
+Int: 66
+Wis: 73
+Con: 77
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#955
+drow matron mother~
+the Matron Mother~
+The Matron Mother of the 1st house is waiting for you.
+~
+She looks like she is about to rip your head of and eat it.
+~
+10 132 -1000 E
+25 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 2 24 13 0 2
+Str: 99
+Dex: 100
+Int: 64
+Wis: 56
+Con: 64
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#956
+yochlol~
+the yochlol~
+A yochlol forms out of a swirling mist.
+~
+The yochlol is not in a good mood.
+~
+2058 132 -1000 E
+19 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 2 24 17 0 2
+Str: 88
+Dex: 76
+Int: 70
+Wis: 70
+Con: 81
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#957
+beholder~
+the mighty beholder~
+You meet a beholder's deadly gaze!
+~
+It has a large central eye that projects an anti-magic ray and ten
+eyestalks atop the round body which can do anything from charm you
+to disintegrate you.  Beholders are not known for their personality.
+~
+2186 4 -870 E
+25 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 90
+Dex: 80
+Int: 74
+Wis: 76
+Con: 78
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#958
+lamia beast~
+the lamia~
+A strange lamia stands here waiting for her next meal. 
+~
+This is a creature with the upper torso of a beautiful woman, but the lower
+body of a four-legged beast. She licks her lips as she looks at you greedily.
+~
+2124 0 -999 E
+9 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 2 24 17 0 2
+Str: 82
+Dex: 88
+Int: 66
+Wis: 71
+Con: 76
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#959
+mimic chest~
+the mimic~
+A strong chest lies in one corner of the room.
+~
+A strong, wooden chest bound with iron straps and a heavy pad-lock on the
+front.
+~
+10 0 10 E
+11 20 0 0d0+0 0d0+0
+0 0 0 9
+1 1 0 24 17 0 2
+Str: 90
+Dex: 86
+Int: 72
+Wis: 72
+Con: 82
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#960
+mimic boulder~
+the mimic~
+Two skeletons lie crushed under a large boulder.
+~
+undefined~
+10 0 -10 E
+11 20 0 0d0+0 0d0+0
+0 0 0 9
+1 1 0 24 17 0 2
+Str: 88
+Dex: 86
+Int: 70
+Wis: 74
+Con: 76
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#961
+mimic floor~
+the mimic~
+The stone floor of this house has been ripped apart.
+~
+undefined~
+10 0 -140 E
+11 20 0 0d0+0 0d0+0
+0 0 0 9
+1 1 0 24 17 0 2
+Str: 84
+Dex: 82
+Int: 74
+Wis: 76
+Con: 80
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#962
+mimic pottery~
+the mimic~
+Some broken shards of pottery lie strewn about the floor.
+~
+undefined~
+10 0 200 E
+11 20 0 0d0+0 0d0+0
+0 0 0 9
+1 1 0 24 17 0 2
+Str: 92
+Dex: 84
+Int: 76
+Wis: 76
+Con: 76
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#963
+mimic planks~
+the mimic~
+A few wooden planks lie stacked on a low shelf.
+~
+undefined~
+10 0 0 E
+11 20 0 0d0+0 0d0+0
+0 0 0 9
+1 1 0 24 17 0 2
+Str: 87
+Dex: 80
+Int: 73
+Wis: 72
+Con: 81
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#964
+lizard horned~
+the horned lizard~
+A small horned lizard flicks his tounge and slithers away.
+~
+A cute little lizard, that is, if you like reptiles!
+~
+136 0 0 E
+3 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 81
+Dex: 76
+Int: 73
+Wis: 70
+Con: 77
+Cha: 78
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#965
+golem stone~
+the stone golem~
+In the corner you see a large, stone golem faithfully standing watch.
+~
+It is a big chunk of rock that has been magically formed into a giant
+stone creature. He stands here still guarding the city.
+~
+10 0 600 E
+25 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 16 0 5
+Str: 92
+Dex: 74
+Int: 71
+Wis: 66
+Con: 78
+Cha: 74
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#966
+weird water~
+the water weird~
+This strange magical water seems to move and shape itself.
+~
+It looks like a very wet way to die.
+~
+10 0 -980 E
+7 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 90
+Dex: 88
+Int: 70
+Wis: 74
+Con: 78
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 70
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#967
+snake~
+the snake~
+A large dreadful snake.
+~
+It looks hungry.
+~
+11 4 -200 E
+11 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 14 0 1
+Str: 96
+Dex: 78
+Int: 63
+Wis: 69
+Con: 81
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#968
+snake~
+the green snake~
+A small green snake.
+~
+It looks harmless.
+~
+11 0 -100 E
+7 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 14 0 1
+Str: 100
+Dex: 83
+Int: 64
+Wis: 76
+Con: 79
+Cha: 52
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#969
+centipede~
+the centipede~
+A small centipede.
+~
+It looks complete harmless.
+~
+10 0 100 E
+3 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 91
+Dex: 94
+Int: 66
+Wis: 72
+Con: 73
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#970
+kobold~
+the kobold~
+A ugly kobold.
+~
+It looks ugly.
+~
+76 0 -100 E
+4 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 13 0 2
+Str: 88
+Dex: 77
+Int: 67
+Wis: 78
+Con: 83
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#971
+orc~
+the orc~
+The orc walks around, looking for someone to kill.
+~
+You notice an evil look in his eyes
+~
+76 0 -400 E
+5 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 80
+Dex: 81
+Int: 70
+Wis: 72
+Con: 72
+Cha: 78
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#972
+orc~
+the orc~
+A large orc, really mean.
+~
+He looks dreadful.
+~
+76 0 -500 E
+7 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 95
+Dex: 80
+Int: 67
+Wis: 68
+Con: 85
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#973
+hobgoblin~
+the hobgoblin~
+A small hobgoblin stands here.
+~
+The hobgoblin looks quite lost.
+~
+76 0 -300 E
+6 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 84
+Dex: 79
+Int: 72
+Wis: 77
+Con: 79
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#974
+snake~
+the snake~
+A brown snake watches you.
+~
+The snake looks quite mean.
+~
+11 0 -600 E
+10 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 14 0 1
+Str: 87
+Dex: 76
+Int: 74
+Wis: 68
+Con: 81
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#975
+centipede~
+the centipede~
+A white centipede is here.
+~
+The centipede doesn't really seem to notice you.
+~
+10 0 -100 E
+5 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 0 24 17 0 2
+Str: 95
+Dex: 82
+Int: 71
+Wis: 66
+Con: 72
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#976
+hobgoblin~
+the hobgoblin~
+A large hobgoblin is here.
+~
+The hobgoblin looks quite dangerous.
+~
+76 0 -500 E
+10 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 78
+Dex: 91
+Int: 61
+Wis: 77
+Con: 89
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#977
+orc~
+the orc~
+An orc is here, looking for something (or perhaps someone ? ) to eat.
+~
+Well he doesn't seem to be friendly.
+~
+76 0 -800 E
+8 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 89
+Dex: 87
+Int: 61
+Wis: 79
+Con: 79
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#978
+lion mountain~
+the mountain lion~
+A mountain lion is here growling at you.
+~
+The lion looks very nasty with huge claws and big teeth.
+~
+72 0 -100 E
+5 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 99
+Dex: 88
+Int: 58
+Wis: 67
+Con: 82
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#979
+giant hill~
+the hill giant~
+A hill giant is here tossing some rocks around.
+~
+The hill giant looks like he's about 9 feet tall. By his actions you 
+come to the conclusion that he's not very inteligent.
+~
+72 0 0 E
+13 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 16 0 5
+Str: 90
+Dex: 88
+Int: 78
+Wis: 80
+Con: 86
+Cha: 74
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#980
+troll~
+the troll~
+A large mean-looking troll is here.
+~
+Well looks dangerous.!
+~
+14 0 -800 E
+12 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 92
+Dex: 84
+Int: 67
+Wis: 73
+Con: 70
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#981
+snake~
+the snake~
+A large green snake, looks like a guardian for an evil force.
+~
+You see a evil creature.
+~
+15 0 -700 E
+10 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 14 0 1
+Str: 92
+Dex: 85
+Int: 62
+Wis: 82
+Con: 76
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#982
+kobold~
+the kobold~
+A green kobold is here.
+~
+It looks slimy..
+~
+76 0 -100 E
+7 20 0 0d0+0 0d0+0
+0 0 0 9
+3 3 1 24 13 0 2
+Str: 88
+Dex: 94
+Int: 62
+Wis: 66
+Con: 85
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

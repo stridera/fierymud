@@ -1,0 +1,1223 @@
+1
+vnum: 3031
+location: 0
+values:
+0
+250
+51
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 16907
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring diamond
+shortdesc: a diamond ring
+desc: A sparkling diamond ring catches your eye.
+type: 8
+weight: 0.20
+cost: 320
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 3
+applies:
+6 3
+~
+extradesc: ring diamond
+The diamond sparkles with a merry light, as if it were alive.
+You can't help but admire the skill of the jeweler.
+~
+~~
+vnum: 5505
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.
+~
+~~
+vnum: 36008
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.    
+~
+~~
+vnum: 41007
+location: 5
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: mo 0
+name: plate chitinous-plate chitinous chitin flake
+shortdesc: a chitinous-plate
+desc: A large flake of chitin has fallen off a Hiver's thorax here.
+type: 9
+weight: 15.00
+cost: 45
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 9
+extradesc: chitinous-plate plate chitinous
+The rough platter of insectoid scales seems to have no distinct color.
+Shifting hues move across its surface as light strikes it from different
+angles. All colors? Or none? You shake your head in wonder.
+~
+~~
+vnum: 12004
+location: 6
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hood tasseled-hood tasseled
+shortdesc: a tasseled hood
+desc: A tasseled hood lies crumpled on the ground.
+type: 9
+weight: 0.75
+cost: 150
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 17
+extradesc: hood tasseled
+The tasseled hood was once made of grey leather, though over
+time, the color was obscured into a kind of all-purpose light
+brown. It's a simple two-piece conical sort of hood, coming to
+a point well above the wearer's crown and falling back. A lively
+tassel made of leather fringe finishes the headgear.
+~
+~~
+vnum: 1126
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: leggings iron-banded-leggings set-iron-leggings
+shortdesc: iron-banded leggings
+desc: A set of iron leggings lies here unattended.
+type: 9
+weight: 15.50
+cost: 2600
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: iron leggings
+These heavy plates of iron are designed to strap around their wearer's
+legs, forming strong and durable protection. The knees feature cleverly
+worked joints, though apart from this, they're quite plain, just thick
+black iron.
+~
+~~
+vnum: 1125
+location: 8
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: boots iron-banded-boots
+shortdesc: iron-banded boots
+desc: Some iron-banded boots have been left here.
+type: 9
+weight: 4.90
+cost: 350
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: iron boots
+This is one heavy pair of boots! Black iron strips are bolted to a pair  
+of black leather boots, making them immensely protective as well as
+cumbersome. They are unornamented, though they do bear some light dents,
+testimony to their usefulness.
+~
+~~
+vnum: 41008
+location: 10
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz 0
+name: sleeves chitinous-sleeves chitinous narrow tubes chitin
+shortdesc: a set of chitinous-sleeves
+desc: Narrow tubes of chitin lie here, gathering dust.
+type: 9
+weight: 6.00
+cost: 200
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 257
+applies:
+2 -1
+~
+extradesc: chitinous-sleeves sleeves chitinous
+These stiff tubes of chitin look like they once graced the upper legs of
+some Hiver. They would make stiff but servicable sleeves for a human.
+~
+~~
+vnum: 1152
+location: 11
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: shield large metal large-metal-shield
+shortdesc: a large metal shield
+desc: A large metal shield has been left here.
+type: 9
+weight: 4.50
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+extradesc: large metal shield
+Beaten steel makes up the main part of this door-shaped shield. Large
+enough to protect most of its user's body, it is only lightly decorated
+along its edges with simple tooling. Three leather straps along its back
+provide a secure grip.
+~
+~~
+vnum: 36004
+location: 12
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cloak cloak-kaaz-cloak simple-canvas-cloak ancient-symbol
+shortdesc: a cloak of the Kaaz
+desc: A simple canvas cloak with an ancient symbol lies here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: cloak cloak-kaaz-cloak simple-canvas-cloak ancient-symbol
+A heavy canvas cloak that can easily envelope you and protect you from the
+elements.  A large symbol of an ancient clan covers the center, marking its
+origin.    
+~
+~~
+vnum: 1127
+location: 13
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: girth iron-banded-girth small-iron-girth
+shortdesc: an iron-banded girth
+desc: A small iron girth lies at your feet.
+type: 9
+weight: 2.10
+cost: 2100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+extradesc: iron girth
+This wide belt is made up of lots of slim, long pieces of heavy, cold
+black iron banded together with wire. It clasps at the front with a simple
+iron buckle. Other than the buckle's tooling, it is not decorated.
+~
+~~
+vnum: 16100
+location: 16
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnouvwyz 0
+name: scimitar
+shortdesc: a scimitar
+desc: A scimitar lies on the ground here.
+type: 5
+weight: 2.00
+cost: 200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+applies:
+2 1
+~
+extradesc: scimitar
+This scimitar is made of the finest steel in the land.  Its blade is keen and
+sharp.  
+~
+~~
+vnum: 58603
+location: 127
+values:
+100
+1
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: duffel duffel-bag bag satchel canvas-satchel canvas
+shortdesc: a duffel bag
+desc: A canvas satchel awaits its new owner.
+type: 15
+weight: 1.75
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+applies:
+17 4
+~
+extradesc: satchel canvas bag duffel
+A green sailcloth bag that closes at the top with a drawstring,
+this satchel seems like it'd hold a lot of stuff! Straps allow
+it to be worn as well as merely held.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 41011
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: honeycomb sticky comb sweet food chunk hiver honey
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: sticky-comb comb sweet food
+Hexagonal wax chambers are filled with an amber fluid. It covers your hands
+with sticky goodness as you examine it.
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 6121
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 0.40
+cost: 40
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+181
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 55755
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fruit dried food
+shortdesc: some dried fruit
+desc: Some dried fruit lies here in a heap.
+type: 19
+weight: 0.68
+cost: 8
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: fruit dried food
+Various kinds of dried fruit make up a sharp-sweet smelling medley of
+food. Cranberries, strawberries, and citrus fruits combine in this pile.
+~
+~~
+vnum: 6108
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: biscuits travel food
+shortdesc: some travel biscuits
+desc: A handful of travel biscuits lie here.
+type: 19
+weight: 0.10
+cost: 14
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: biscuits handful travel
+These small, hard biscuits are pale and smell of wheat flour.
+~
+~~
+vnum: 20
+location: -1
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.69
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20
+location: -1
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.69
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

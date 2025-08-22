@@ -1,0 +1,564 @@
+1
+vnum: -1
+location: 16
+values:
+20
+200
+20
+3
+0
+0
+0
+~
+flags: a
+name: light sabre wand metal beam
+shortdesc: a &6lightsabre&0
+desc: A small metal wand lies here innocently.
+adesc:
+Small in size at first glance it appears to be a light-weight steel wand.  
+About six inches in length it protrudes a single button towards an end that
+reveals an odd opening.    
+~
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 99
+effects: j 0 0
+wear: 8193
+applies:
+18 100
+19 100
+~
+~~
+vnum: 37077
+location: 17
+values:
+10
+100
+20
+3
+0
+0
+0
+~
+flags: b
+name: lightsaber saber
+shortdesc: a lightsaber
+desc: A small, sleek, cylindrical object has been misplaced here.
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 101
+effects: 0 0 0
+wear: 8193
+applies:
+3 5
+4 5
+18 10
+19 10
+~
+extradesc: lightsaber saber
+It appears to be metallic in composition. There is a small button located
+on one of the sides of the cylinder. Upon closer examination you notice
+an engraving, which reads...
+
+              Property of Ben Kenobi, Jedi-Master.
+
+~
+~~
+vnum: 23847
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bgkl
+name: rose formed sapphires sapphire sapphire-rose
+shortdesc: a sapphire rose
+desc: A rose formed from sapphire rests gently here.
+type: 8
+weight: 0.90
+cost: 10000
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 16385
+applies:
+19 3
+~
+extradesc: rose formed sapphires sapphire sapphire-rose
+A stem of silver with tiny thorns supports a gorgeous bud of sapphire, looking
+as though it has barely begun to bloom.  It has a slight scent similar to that
+of fresh rain wafting from the sapphire head, making it very pleasant to smell.
+Inscribed on the stem are tiny holy symbols.    
+~
+~~
+vnum: 33
+location: 127
+values:
+3009
+0
+0
+0
+0
+0
+0
+~
+flags: AD
+name: moonwell well gate portal
+shortdesc: a swirling moonwell
+desc: &7&bA swirling&0&5 moonwell&7&b ripples across your sight, leading to the unknown.&0
+type: 24
+weight: 0.00
+cost: 0
+timer: 5
+level: 1
+effects: 0 0 0
+wear: 0
+extradesc: well gate moonwell
+You can barely make out Town Center Fountain.
+~
+~~
+vnum: 12524
+location: 127
+values:
+6
+74
+0
+0
+0
+0
+0
+~
+flags: 0
+name: scroll yellow
+shortdesc: a yellow scroll
+desc: A bright yellow scroll faintly glows with energy.
+type: 2
+weight: 0.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+~~
+vnum: 59020
+location: 127
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: kmowxy
+name: chestplate hope chestplate-hope silver
+shortdesc: the Chestplate of Hope
+desc: A silver chestplate gleams in the light, forgotten on the ground.
+type: 9
+weight: 18.00
+cost: 2500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 9
+applies:
+26 3
+~
+extradesc: chestplate hope silver
+   The chestplate is pure silver in color, radiating in the light and
+reflecting it back with a bit more intensity.  The metal has been polished and
+kept very clean, even though there are minor imperfections such as sword marks
+and small dents.  There are markings along the sides, etched into the metal.  
+The markings bear the letters SH and are surrounded by runes of some sort.    
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 1106
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: boots leather leather-boots
+shortdesc: sturdy leather boots
+desc: A pair of leather boots stands off to the side.
+type: 9
+weight: 2.80
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: leather boots
+These work boots are made of dark brown leather. They go about calf-high,
+and though they're unornamented, the leather is finely worked and tooled
+along its edges. They have no cuffs, and a very low heel -- quite suitable
+for anybody wanting some basic protection.
+~
+~~
+vnum: 1700
+location: 127
+values:
+99
+20
+18
+42
+0
+0
+0
+~
+flags: 0
+name: ring glimmering-ring
+shortdesc: a glimmering ring
+desc: A small ring glimmers in the light here.
+adesc:
+
+~
+type: 3
+weight: 0.04
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16387
+applies:
+18 4
+14 30
+~
+extradesc: glimmering ring
+A silver ring with runes cut into its surface.
+~
+extradesc: rune runes
+If home is what you seek, the hold me now and use the power within.
+~
+~~
+vnum: 1098
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: strip color-quick-reference-strip
+shortdesc: a Color Quick-Reference Strip
+desc: A Color Quick-Reference Strip lays here!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+extradesc: color-quick-reference-strip
+&0&11  &0&1&b1b  &0&22  &0&2&b2b  &0&33  &0&3&b3b  &0&44  &0&4&b4b  &0&55  &0&5&b5b  &0&66  &0&6&b6b  &0&77  &0&7&b7b  &0&88  &0&8&b8b  &0&99  &0&9&b9b&0
+~
+~~
+vnum: 1099
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: book ansi-color-book-fiery-yay
+shortdesc: the ansi color book of fiery yay
+desc: A book describing ansi color lies here unattended.
+adesc:
+&0&7 & 1    - &0&1Red&0          & 1 & b - &0&1&bBright Red&0
+
+&0&7 & 2    - &0&2Green&0        & 2 & b - &0&2&bBright Green&0
+
+&0&7 & 3    - &0&3Brown&0        & 1 & b - &0&3&bYellow&0
+
+&0&7 & 4    - &0&4Blue&0         & 4 & b - &0&4&bBright Blue&0
+
+&0&7 & 5    - &0&5Purple&0       & 5 & b - &0&5&bBright Purple&0
+
+&0&7 & 6    - &0&6Teal&0         & 6 & b - &0&6&bBright Teal&0
+
+&0&7 & 7    - &0&7White&0        & 7 & b - &0&7&bBright White&0
+
+&0&7 & 8    - &0&8Unkown&0       & 8 & b - &0&8&bBright Unkown&0
+
+&0&7 & 9    - &0&9Black&0        & 9 & b - &0&9&bBright Black&0
+
+&0&7 remember to put & 0 at the end of each line to clear the ansi strings
+~
+type: 12
+weight: 0.50
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+extradesc: book
+ 1    - &1Red&0          1 b - &1&bBright Red&0
+&0&7 & 2    - &0&2Green&0        & 2 & b - &0&2&bBright Green&0
+.&73    - &3Brown&0        3 b - &3&bYellow&0
+&0&7 & 4    - &0&4Blue&0         & 4 & b - &0&4&bBright Blue&0
+&0&7 & 5    - &0&5Purple&0       & 5 & b - &0&5&bBright Purple&0
+&0&7 & 6    - &0&6Teal&0         & 6 & b - &0&6&bBright Teal&0
+&0&7 & 7    - &0&7White&0        & 7 & b - &0&7&bBright White&0
+&0&7 & 8    - &0&8Unknown&0      & 8 & b - &0&8&bBright Unknown&0
+&0&7 & 9    - &0&9Black&0        & 9 & b - &0&9&bBright Black&0
+
+ Remember to put &&0 at the end of each line to clear the ANSI strings!
+~
+~~
+vnum: 33
+location: 127
+values:
+1200
+0
+0
+0
+0
+0
+0
+~
+flags: AD
+name: moonwell well gate portal
+shortdesc: a swirling moonwell
+desc: &7&bA swirling&0&5 moonwell&7&b ripples across your sight, leading to the unknown.&0
+type: 24
+weight: 0.00
+cost: 0
+timer: 4
+level: 1
+effects: 0 0 0
+wear: 0
+extradesc: well gate moonwell
+You can barely make out The Meeting Room Of The Gods.
+~
+~~
+vnum: 1281
+location: 127
+values:
+100
+100
+20
+12
+0
+0
+0
+~
+flags: abeghAD
+name: bolt lightning
+shortdesc: a lightning bolt
+desc: A huge lightning bolt is coming at you!
+type: 5
+weight: 1.23
+cost: 2147483647
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 8193
+applies:
+14 1000
+~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Apr 24 2012
+  To: Arlian
+From: Marlia
+
+gt The postmaster told marlia I'll take 200 coins for the stamp.'
+gt the p@0ostmaster told marlia Write your message, (/s saves /h for help)'
+Hi Arlian,
+Am in the middle of my quest for Meteorstorm and have a couple of
+items that I need that are !rent.  Hence idling out.
+
+Unfortunately real life and work don't let me play much.  This is
+complicated by the fact that I'm in Australia, so my play time
+is most of you northern peoples work time :).
+
+Enjoy.
+
+Marlia
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 66
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: board quest-board bulletin-board
+shortdesc: a quest board
+desc: A bulletin board with player quests hangs from the wall.
+type: 29
+weight: 0.00
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 0
+extradesc: quest-board bulletin-board
+Remember to &3SET <PLAYER> QUEST ON&0 when assigning quests that involve the
+trophy.  Otherwise, it will be cleared upon player death!
+~
+~~
+vnum: 48
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: d
+name: board holy-bulletin-board god-board
+shortdesc: the holy bulletin board
+desc: &6The holy bulletin board stands here, outlined in&0 &1&bb&0&1ur&0&1&bni&0&1ng f&0&1&blame&0&1s.&0
+type: 29
+weight: 0.00
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: May 07 2012
+  To: Arlian
+From: Yuhen
+
+decomposing. all objects without the 'permanent' flag will do that.
+helps @0keep down the clutter. they implemented it when they got the muds
+average boottime to like a week or more.
+
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 33
+location: 127
+values:
+3054
+0
+0
+0
+0
+0
+0
+~
+flags: ADE
+name: moonwell well gate portal
+shortdesc: a swirling moonwell
+desc: &7&bA swirling&0&5 moonwell&7&b ripples across your sight, leading to the unknown.&0
+type: 24
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 0
+extradesc: well gate moonwell
+You can barely make out The Forest Inn Reception Area.
+~
+~~

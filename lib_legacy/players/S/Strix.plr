@@ -1,0 +1,103 @@
+name: Strix
+password: StDEag706Q
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19942
+birthtime: 1623898109
+timeplayed: 2200
+lastlogintime: 1623900310
+host: 050.233.193.162
+height: 62
+weight: 144
+base_height: 62
+base_weight: 144
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 11
+thirst: 14
+lastlevel: 0
+hitpoints: 30/30
+mana: 0/0
+move: 86/100
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 84
+wisdom: 100
+dexterity: 66
+constitution: 70
+charisma: 62
+experience: 13838
+quit_reason: 5
+saveroom: 3012
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 51
+438 50
+443 50
+444 50
+451 50
+457 50
+458 51
+459 50
+460 50
+462 50
+463 55
+466 50
+0 0
+trophy:
+1 8000 1.000000
+1 8022 1.000000
+1 8012 1.000000
+1 8001 2.000000
+1 8014 2.000000
+1 8021 2.000000
+1 8013 3.000000
+1 8015 1.000000
+1 8020 1.000000
+1 8023 1.000000
+1 3500 1.000000
+0 0 0
+tells:
+$
+gossips:
+1623899946 Chinok gossips, 'skill shows your current skills, and their levels'
+1623899959 Chinok gossips, 'help spell_cleric'
+1623899962 Chinok gossips, 'shows your spells'
+1623899976 Chinok gossips, 'help spell_circle'
+1623899994 Chinok gossips, 'shows what level all those circles happen'
+1623900111 Chinok gossips, 'becore you cast spells, you have to 'mem' them'
+1623900126 Chinok gossips, 'sorry, cor clerics, it's pray'
+1623900188 Chinok gossips, 'one trick with pray and cast .. some spells have spaces in their names ....'
+1623900200 Chinok gossips, 'to use them, you need to use 'magic quotes' :)'
+1623900217 Chinok gossips, 'cast 'detect invis' for example'
+$
+effects:
+1 9 10 17 0 0 0
+0 0 0 0 0
+mem:
+1 0 9
+0 0 0

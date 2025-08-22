@@ -1,0 +1,129 @@
+name: Fergus
+password: FeaATFNcJO
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 18
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18569
+birthtime: 1377018986
+timeplayed: 68698
+lastlogintime: 1719085791
+host: 075.167.014.153
+height: 86
+weight: 196
+base_height: 86
+base_weight: 196
+base_size: 3
+natural_size: 3
+alignment: 374
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 24
+lastlevel: 0
+hitpoints: 230/212
+mana: 32/32
+move: 208/208
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 58
+wisdom: 80
+dexterity: 91
+constitution: 80
+charisma: 46
+cash: 0 261 2111 1683
+bank: 40 440 1000 1500
+experience: 1271454
+quit_reason: 1
+saveroom: 3054
+skills:
+401 230
+403 50
+405 50
+408 50
+411 211
+415 50
+416 50
+419 1000
+421 205
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 224
+465 57
+491 50
+492 50
+493 50
+0 0
+trophy:
+1 16905 1.000000
+1 41003 1.000000
+1 41008 1.000000
+1 41011 1.000000
+1 41007 3.000000
+1 41005 5.000000
+1 41004 1.000000
+1 41001 8.000000
+1 41013 2.000000
+1 8607 1.000000
+1 8615 3.000000
+1 8612 6.000000
+1 8610 2.000000
+1 8609 1.000000
+1 8608 1.000000
+1 8613 2.000000
+1 8614 1.000000
+1 8611 3.000000
+1 8603 10.000000
+1 8602 1.000000
+1 8604 1.000000
+0 0 0
+tells:
+1717208455 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1717209088 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1718030131 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1718204106 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1718816156 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1718816259 @WChoak@W tells you, 'tell me well if you need a ride back to town.@W'@0
+1718819291 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1718819297 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1718819409 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1718819520 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1717208471 Discord gossips, 'Daedela: Hello!'
+1718205628 Chinok gossips, 'gratz Fergus'
+1718816152 Choak gossips, 'Hey fergus'
+1718816281 Choak gossips, ':D'
+1718817995 Discord gossips, 'Daedela: Hello!'
+1718818005 Chinok gossips, 'hello!'
+1718819444 Discord gossips, 'Daedela: Just say the skill you want him to train'
+1719085449 Lokar gossips, 'good crew today!'
+1719085724 Discord gossips, 'Daedela: Haha you had to say something didn't you'
+1719085781 Porath gossips, 'what is a "radiant_weapon"'
+$
+aliases:
+ec examine corpse
+rr recite recall
+sk backstab skeleton
+ww backstab worm
+df drink fountain
+bs backstab
+ga get all corpse
+dd assist dreven
+jj assist jaxe
+gg get coins corpse
+zz assist zray
+rs rescue
+0

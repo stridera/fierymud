@@ -1,0 +1,1415 @@
+#47211
+Dead End~
+   You look about and find yourself enclosed in a small room.  The door that
+you just came through appears to be your only exit from this dark room.  Upon
+closer examination, you see that the walls were cut straight out of the earth,
+and they reek of the undead.  It is so cold in this room that your limbs begin
+to get sore.    
+~
+472 520 0
+D1
+You see an outline of a door in the east wall.
+~
+door outline wall~
+1 47012 47212
+D2
+You see a door in the south wall that you hadn't noticed before.
+~
+door wall~
+2 47013 47221
+S
+#47212
+Secret Closet~
+   You are now standing in a small closet just north of the main stairwell.  
+The closet seems recently used, for there isn't a speck of dust anywhere.  A
+deep sense of coldness is coming from the west wall.  Discarded weapons and
+armor lay about this room, and they smell of the undead.  It seems as if the
+necromancer has more tricks up his sleeve than you thought.    
+~
+472 520 0
+D2
+You see a door set in the south wall.
+~
+door wall~
+1 47010 47222
+D3
+You see an outline of a door in the west wall.
+~
+door outline wall~
+2 47012 47211
+S
+#47213
+Hoard Room~
+   You walk into a glorious room, untouched for centuries on end.  Everything
+seems to glow with a pale blue light, and you feel safe.  In the back of the
+room you notice a small hoard of items, guarded by a powerful spectre.  You
+feel attracted to items that he is guarding.  It seems that this is the soul of
+the individual who was originally buried at this mausoleum, and he has come
+here to protect his possessions.  Over the years, he has increased in power,
+and is now a mighty force that you should not mess with.    
+~
+472 520 0
+D2
+A beautiful hallway sits to your south.
+~
+~
+0 -1 47223
+S
+#47221
+Skull Room~
+   You walk into this room and you are forced to hold your stomach.  Piles and
+piles of human bones lay against the wall, and it smells of rotting flesh.  
+You wonder why on earth you are here, and wish you were back in a nice soft bed
+in the reception area.  This seems to be the stockpile of corpses kept by the
+necromancer to feed his undead servants.  A small door lies in wall to the
+south.    
+~
+472 520 0
+D0
+You see a small door in the north wall.
+~
+door small~
+1 47013 47211
+D2
+You push the skulls aside to find a small door that you can crawl through.
+~
+door small~
+2 47011 47231
+S
+#47222
+Main Stairwell~
+   You are standing directly under the entrance to the mausoleum.  From what
+you can see, someone or something has created a rather intricate tunnel system
+for whatever reason.  As you look around, the walls seem to enclose about you,
+and you begin to feel claustrophobic.  You turn to look down the stairwell, and
+a deep sense of evil pulsates through your being.  You shudder to think what
+could be down there.    
+~
+472 8 0
+D0
+You see a door in the north wall.
+~
+door wall~
+2 47010 47212
+D4
+You see a small trapdoor leading up the entrance of the mausoleum.
+~
+trapdoor small~
+1 -1 47082
+D5
+You look but can't see anything because it so dark.
+~
+~
+0 -1 47253
+S
+#47223
+Dim Passageway~
+   As you move deeper into this secret area, you feel an increasing sense of
+good.  You feel at ease as warmth flows from the north.  The passageway is
+dimly lit, and well furnished with pictures on the wall, and carpeting.  The
+abundance of dust indicates that this area was untouched, even by the
+necromancer.  Perhaps he could never find it.    
+~
+472 520 0
+D0
+You see the spectre's hoard room to your north.
+~
+~
+0 -1 47213
+D2
+You see a bend in the passageway leading out of this secret area.
+~
+~
+0 -1 47233
+S
+#47231
+Dark Staircase~
+   You are standing at the top of a deathly dark staircase.  The only exit that
+you can find is down, for the door that you just came through in the north wall
+has ceased to exist from your view.  The smell from the bone room no longer
+seems to be here, as you smell an unfamiliar scent from the bottom of the
+staircase.  Curiosity builds as you realize that this area appears to be well
+used.    
+~
+472 520 0
+D0
+A small door is the wall to the north.
+~
+door small wall~
+1 47011 47221
+D1
+You feel the edges of a door in the east wall.
+~
+door edges wall~
+2 47014 47232
+D5
+You attempt to peer down below, but your eyes cannot adjust to the lack
+of light.
+~
+~
+0 -1 47262
+S
+#47232
+Secret Passageway~
+   As you walk through the wall, the deep sense of evil that has been bothering
+you for quite a long time now vanishes.  The passageway seems to be untouched,
+and perhaps the necromancer never found this area.  You feel comfortable in
+this dimly lit room, and now feel more confident about yourself.    
+~
+472 520 0
+D1
+The secret passageway continues to the east.
+~
+~
+0 -1 47233
+D3
+You see a hefty door in the wall to the west.
+~
+door hefty wall~
+2 47014 47231
+S
+#47233
+Bend in Passageway~
+   You are in a bend in the passageway that leads north and west from here.  A
+blue light seems to be coming from a distance to the north, and you start to
+feel drowsy as you take in the comfortable surroundings.  You hope that this
+safe feeling is for real, because if anything were to attack you, you'd
+definitely be off guard.    
+~
+472 520 0
+D0
+A sense of good emanates from the passageway to the north.
+~
+~
+0 -1 47223
+D3
+You see the entrance to this secret area.
+~
+~
+0 -1 47232
+S
+#47241
+Moist Bend~
+   You are standing inside a bend in a moist passageway, opening east into the
+stairwell leading into the depths, and south into another length of the moist
+passageway.  You notice holes in the walls, which bleed a putrid ooze.  You
+sense that this place is evil and filled with the animated and undead.  
+Somehow you will gain the courage to go on.    
+~
+472 520 0
+D1
+You see a stairwell.
+~
+~
+0 -1 47242
+D2
+The moist hallway continues to the south.
+~
+~
+0 -1 47251
+S
+#47242
+Moist Stairwell~
+   You are standing at the top of a damp staircase, leading down.  You hear
+echoes and sounds of pain and suffering coming from below.  A wretched flow of
+air comes from the darkness, and you must struggle to keep your lunch from
+coming up.  You can go down or west from here.    
+~
+472 520 0
+D3
+You see a hallway leading back the way you came.
+~
+~
+0 -1 47241
+D5
+You cannot adjust your eyes to the lack of light.  You see nothing.
+~
+~
+0 -1 47282
+S
+#47243
+North Stairwell~
+   You are standing on another staircase directly north of the main stairwell.
+You wonder if you will get lost among this framework of tunnels and stairwells.
+It seems that the necromancer has done this to trap any wandering fools, such
+that his servants can feed on their corpses.  You can go down into the depths
+of the this area, or go back south to the main stairwell.    
+~
+472 32776 0
+D2
+You see the main stairwell of this underground maze.
+~
+~
+0 -1 47253
+D5
+You see a well-lit passageway below you.
+~
+~
+0 -1 47283
+S
+#47251
+Moist Passageway~
+   You are now standing in a damp passageway that has little light.  You can
+feel every gland on your body releasing sweat as you begin to become drenched
+from head to toe.  Your begin to feel quite uncomfortable, and feel that the
+quicker you move on, the better.  Screams of terror echoes through the
+passageways, and you feel the walls closing in on you.  You can go north or
+south from here.    
+~
+472 520 0
+D0
+The moist passageway continues to the north.
+~
+~
+0 -1 47241
+D2
+The moist passageway stretches off to the south.
+~
+~
+0 -1 47261
+S
+#47252
+West Stairwell~
+   You are standing at the top of yet another staircase leading into the depths
+of darkness.  All light seems to be sucked away as you peer down the slope.  
+Even the main stairwell itself to your east provides more comfort that this
+wretched place.  Upon closer examination of the darkness, you notice shapes
+shifting back and forth, and slight screams from the distance echo in your
+head.  Kryzanthor seems to have done a good job creating this place to fill the
+human mind with terror.    
+~
+472 8 0
+D1
+You see the main stairwell of this underground maze.
+~
+~
+0 -1 47253
+D5
+Your eyes cannot adjust to the lack of light.  All you can see is that
+the passageway is extraordinarily dark.
+~
+~
+0 -1 47292
+S
+#47253
+Main Stairwell~
+   You are now standing a ways under the entrance to the mausoleum.  A faint
+hint of light comes from above, and leaves you with a little bit of hope.  
+That seems to fade quickly as you realize your situation, and the incredible
+stench of the undead permeates your being.  Screams of hatred and dismay come
+from the depths.  You close your hands to your ears, and close your eyes as you
+try to relieve yourself from the incredible terror.    
+~
+472 32776 0
+D0
+You see the northern stairwell leading into the depths.
+~
+~
+0 -1 47243
+D1
+You see another stairwell, although this one gives hints of light.
+~
+~
+0 -1 47254
+D2
+You see a stairwell leading far underground.
+~
+~
+0 -1 47263
+D3
+You see a stairwell that is completely devoid of light leading into the
+depths.
+~
+~
+0 -1 47252
+D4
+You look up and see the entrance to this maze.
+~
+~
+0 -1 47222
+S
+#47254
+East Stairwell~
+   You are standing directly east of the main stairwell to the tunnels.  As you
+look down the staircase, you see a faint sense of light, and a small hope fills
+your mind.  That disappears as the familiar stench of the undead knocks you
+back.  You vow that you'll show Kryzanthor the same terror he is showing you.
+You can go down towards death, or back west to the main stairwell.    
+~
+472 8 0
+D3
+You see the main stairwell to this underground tunnel system.
+~
+~
+0 -1 47253
+D5
+You look down to see a hint of light coming from a passageway.
+~
+~
+0 -1 47294
+S
+#47261
+Moist Bend~
+   It seems as if this personal hell will never end as your body becomes even
+more drenched with sweat.  All light is gone from the room, and a bad feeling
+is climbing up your spine.  Even the walls are wet and slimy from the
+incredible humidity.  To make it worse, the familiar smell of rotting flesh is
+ever so strong.    
+~
+472 520 0
+D0
+This disgusting hallway stretches off to the north.
+~
+~
+0 -1 47251
+D1
+You see the dark staircase that you came from.
+~
+~
+0 -1 47262
+S
+#47262
+Dark Staircase~
+   Standing at the bottom of a dark staircase, a mortal terror creeps into your
+soul, for you begin to realize that Kryzanthor might actually have some evil
+thing in store for you.  Could you possibly defeat a necromancer powerful
+enough to create all of this?  You shove those thoughts out of your mind as you
+push on.  You can go up or west into the increasing darkness.    
+~
+472 520 0
+D3
+Looking west you catch a waft of disgusting, humid air.  It is yet another
+passageway.
+~
+~
+0 -1 47261
+D4
+Your eyes cannot adjust to the lack of light as you attempt to peer up the
+staircase.
+~
+~
+0 -1 47231
+S
+#47263
+South Stairwell~
+   You are standing on another staircase directly south of the main stairwell.
+You wonder if you will get lost among this framework of tunnels and stairwells.
+It seems that the necromancer has done this to trap any wandering fools, such
+that his servants can feed on their corpses.  You can go down into the depths
+of the this area, or go back north to the main stairwell.    
+~
+472 8 0
+D0
+You peer north and see the main stairwell to this tunnel system.
+~
+~
+0 -1 47253
+D5
+Looking down the staircase you notice it leads far underground.
+~
+~
+0 -1 47303
+S
+#47271
+Well-Lit Stairwell~
+   You are at the top of a rather well-lit stairwell on the third level of
+Kryzanthor's tunnels.  You look around to find that the light source that is
+rather comforting at the moment a mystery, for you cannot determine the source
+of it.  It seems as if all the walls just glow in an iridescent hue.  >From
+here you can go down the staircase, or east into the passageway.    
+~
+472 8 0
+D1
+This strange hallway continues to the east.
+~
+~
+0 -1 47272
+D5
+You look down well-lit stairwell and see more shapes moving around.
+~
+~
+0 -1 47321
+S
+#47272
+Well-Lit Passageway~
+   Standing in a well-lit passageway, you realize that the source of the light
+is totally imponderable.  You search for a hidden lantern, or an orb, but you
+see nothing.  Everything just seems to glow with an eerie iridescence that
+gives you the chills.  You hope that it does not affect you in any way that
+would be permanent.  Perhaps Kryzanthor has put them there for the purpose of
+confusing wandering adventurers.    
+~
+472 8 0
+D1
+You see a bend in the passageway leading back to the main stairwell.
+~
+~
+0 -1 47273
+D3
+Looking west you see a stairwell leading down to another level.
+~
+~
+0 -1 47271
+S
+#47273
+Well-Lit Bend~
+   You are standing in the bend of a lighted passageway just north of the
+northern stairwell.  The passageway is lit in a mysterious manner, for you
+cannot perceive the source of the illumination.  As usual, the smell of
+decomposing corpses knocks you back almost out of your shoes.  From here you
+can go south to the stairwell, or west on into passageway.    
+~
+472 8 0
+D2
+To the south sits a stairwell leading back up to the main stairwell.
+~
+~
+0 -1 47283
+D3
+The passageway stretches off to the west.
+~
+~
+0 -1 47272
+S
+#47274
+Sunny Bend~
+   Looking around the bend, you notice that chunks of the wall have been broken
+down, as if someone were trying to escape.  Although there are holes, it
+appears that whoever or whatever trying to escape failed, for it is quite
+impossible for any human or undead to crawl through the holes.  The holes are
+not completely useless, for beams of sunlight are coming through, providing a
+small sense of hope among this personal hell provided by the one and only
+Kryzanthor the necromancer.    
+~
+472 0 0
+D1
+You see sunlight filling yet another similar passageway.
+~
+~
+0 -1 47275
+D2
+You see a stairwell leading down.
+~
+~
+0 -1 47284
+S
+#47275
+Sunny Bend~
+   Standing in the bend in a sunny passageway, you sense that you are not alone
+in this evil place.  You can hear screams and laughter from the depths, and you
+put your hands to head trying to block out any images of death that permeate
+your mind.  Chills run down your back as the evil laughter sounds like it is
+calling your name.  From here you can go south west to another bend, or south
+into the passageway.    
+~
+472 0 0
+D2
+The sunny passageway leads off to the south.
+~
+~
+0 -1 47285
+D3
+You see a bend leading a staircase.
+~
+~
+0 -1 47274
+S
+#47281
+Dark Stairwell~
+   You are standing at the top of an extremely gloomy stairwell leading into
+the depths of the tunnels.  Sounds of the undead screaming and yelling echo
+from below, and send a chill up your spine.  A swift air flows below knocking
+you back because of the horrible stench of decaying human corpses.  The
+combination of all this stuff is putting you out of your mind, and you
+personally would rather be in a nice soft bed in the reception area.  From here
+you can go down into the depths, or east to the moist stairwell.    
+~
+472 520 0
+D1
+You see a stairwell leading back up the way you came.
+~
+~
+0 -1 47282
+D5
+A sense of power emanates from below as you look down the stairwell.
+~
+~
+0 -1 47331
+S
+#47282
+Moist Stairwell~
+   You are standing at the bottom of an extremely humid stairwell.  The walls
+drip with a slimy ooze that does not look natural of any sort.  Every gland in
+your body starts to sweat.  To your west you see an extremely dark staircase
+from which a source of evil permeates.  You can go west into the darkness, or
+back up the moist stairwell.    
+~
+472 520 0
+D3
+The stairwell to your west leads further into the depths.
+~
+~
+0 -1 47281
+D4
+The stairwell leads back up the way came.
+~
+~
+0 -1 47242
+S
+#47283
+North Stairwell~
+   You are standing at the bottom of the north stairwell, just off of the main
+staircase.  Looking around you begin to understand the structure of the
+tunnels.  They actually seem to have some symmetry about them, so Kryzanthor
+could keep track of his servants easier.  The staircases are setup in a NSEW
+structure about the main staircase, and each one goes down into deeper tunnels.
+From here you can go back up the staircase, or north in the a dimly-lit tunnel.
+~
+472 32776 0
+D0
+A well-lit passageway begins north of here.
+~
+~
+0 -1 47273
+D4
+The top of this stairwell leads back to the main stairwell.
+~
+~
+0 -1 47243
+S
+#47284
+Sunny Stairwell~
+   You are standing at the top of a sun-filled stairwell.  Beams of sunlight
+hit your forehead, yet you still feel cold all the way to your soul.  The
+sunlight is dampened when you are knocked back by the familiar stench of
+rotting corpses and the undead.  From here you can go down towards death, or
+north into a sun-lit passageway.    
+~
+472 0 0
+D0
+The sunny passageway leads off to the north.
+~
+~
+0 -1 47274
+D5
+You hear more sounds of dragons as you direct your attention towards the
+stairwell.
+~
+~
+0 -1 47334
+S
+#47285
+Sunny Passageway~
+   You are standing amidst a million rays of sunlight peeping through small
+holes in the wall.  It seems as if the walls have either decayed or been broken
+down my someone or something.  You are glad to see sunlight for the first time
+in a long while, but that hope is only superficial, for the realization of your
+true danger sits heavily on your mind.  The screams of terror just make this
+place all the more pleasant.  Looking about you, you see that there are bends
+to both the north and south of you.    
+~
+472 0 0
+D0
+The sunny passage continues to the north.
+~
+~
+0 -1 47275
+D2
+The sunny passage continues to the south.
+~
+~
+0 -1 47295
+S
+#47291
+Black Bend~
+   Standing in a horribly dark room, you begin to lose your orientation and
+balance.  Your light source provides little help in this place, for with its
+help you can barely see your hand in front of your face.  It seems that
+Kryzanthor put all of his effort into making this place as wretched as he
+could.  From feeling the walls and such, you determine that you can go east to
+a stairwell, or south into more darkness.    
+~
+472 8 0
+D1
+You see the western stairwell.
+~
+~
+0 -1 47292
+D2
+It's too dark to see!
+~
+~
+0 -1 47301
+S
+#47292
+West Stairwell~
+   You are standing at the bottom of the western stairwell, just under the main
+staircase.  You look around and fear is struck into your soul as you realize
+that you are not alone.  Dark shapes are moving from shadow to shadow, and you
+can hear inhuman grunts and snarls.  You shudder at the thought of something
+grabbing hold of you and making you its dinner.  From what you can see, you can
+go back up the stairwell, or west into the utter darkness.    
+~
+472 8 0
+D3
+Darkness looms to the west.
+~
+~
+0 -1 47291
+D4
+The main stairwell is at the top of the staircase.
+~
+~
+0 -1 47252
+S
+#47293
+Hidden Staircase~
+   You are standing in a staircase used only by the necromancer and death
+knight.  It is unknown to any of his servants, except his body guard.  As you
+come from below, the trapdoor closes shut and disappears.  The only way out is
+to proceed upwards.  You look up and see light coming from above.    
+~
+472 8 0
+D4
+You see the familiar main stairwell when you look upwards.
+~
+~
+0 -1 47253
+S
+#47294
+East Stairwell~
+   You are standing at the bottom of the eastern stairwell.  You look around
+you and see a hint of light coming from the passageway to the east.  This gives
+you some hope, but then again that is destroyed as the ever familiar smell of
+decaying corpses knocks you back.  You fear of what may be in store for you as
+you venture through the forgotten tunnels of Kryzanthor.    
+~
+472 8 0
+D1
+The sunny passageway begins east of here.
+~
+~
+0 -1 47295
+D4
+You see light a small hint of light as you look up the stairwell.
+~
+~
+0 -1 47254
+S
+#47295
+Sunny Bend~
+   You are standing directly east of the bottom of the eastern stairwell.  
+Looking about, you find a superficial hope in sunlight coming through cracks
+and holes in the walls.  It is the first hint of sunlight that you have seen in
+a long time, and are glad to see it.  Unfortunately, the screams of dismay and
+the evil laughter have not ceased, so it is virtually impossible to have any
+real hope in a place so horrible.  From here you can go north into the
+passageway, or back west to the staircase.    
+~
+472 0 0
+D0
+The passageway continues to the north.
+~
+~
+0 -1 47285
+D3
+The stairwell leading out of this passageway sits to your west.
+~
+~
+0 -1 47294
+S
+#47301
+Black Passageway~
+   You are totally confused as you walk into this room, because everything
+seems to look the same in total darkness.  Human eyes just don't have the
+ability to see things in the dark, and that was Kryzanthor's purpose in making
+a place so miserable.  You back yourself against the wall to reorient yourself
+and you finally convince yourself that you can go either north or south from
+here.    
+~
+472 8 0
+D0
+It's too dark too see!
+~
+~
+0 -1 47291
+D2
+It's too dark to see!
+~
+~
+0 -1 47311
+S
+#47302
+Black Stairwell~
+   You are standing at the top of an incredibly dark staircase, completely
+devoid of light.  If it weren't for your light source, you'd stumble down the
+steps.  You examine the darkness as best you can, and notice shapes shifting
+back and forth, throwing fear into your being.  You vow that you will get
+revenge on Kryzanthor for this terror that he has provided you with.    
+~
+472 8 0
+D2
+It's too dark to see!
+~
+~
+0 -1 47312
+D5
+It's too dark to see!
+~
+~
+0 -1 47352
+S
+#47303
+South Stairwell~
+   You are at the bottom of the southern stairwell, just under the main
+staircase.  Screams of terror and dismay from the undead are echoing through
+the halls, and fear climbs in your heart.  The smell of the undead and rotting
+corpses is starting to get to you as you get deeper into the tunnel system of
+Kryzanthor.    
+~
+472 8 0
+D2
+You see the beginning of the underground passageway.  You are now far
+underneath the surface of the graveyard.
+~
+~
+0 -1 47313
+D4
+You see a large stairwell leading back out of the depths.
+~
+~
+0 -1 47263
+S
+#47304
+Underground Stairwell~
+   You are standing at the top of a stairwell leading into the depths of
+Kryzanthor's tunnels.  Sharpening your ears towards the depths, you hear evil
+laughter and howls coming from the undead waiting for you to become their
+dinner.  Not only do you hear the undead, but you smell them, for they reek of
+something so horrible that you can horribly stand the smell.  From here you can
+go down into the tunnels, or east into the passageway.    
+~
+472 8 0
+D1
+You look east and see a passageway you came from.
+~
+~
+0 -1 47305
+D5
+This stairwell leads even further into the depths.
+~
+~
+0 -1 47354
+S
+#47305
+Underground Bend~
+   You are standing in a bend in the passageway just east of the underground
+stairwell.  Your stomach is really starting to get to you as the smell of the
+undead and decomposing corpses just won't leave you.  The screams from the
+Kryzanthor's servants don't help either.  Their screams echo throughout the
+halls, and almost sound as if they are saying your name.  You wouldn't doubt
+that the necromancer has magic powerful enough to do such a thing.    
+~
+472 8 0
+D2
+The passageway continues to the south.
+~
+~
+0 -1 47315
+D3
+You see a stairwell leading deeper into the tunnels.
+~
+~
+0 -1 47304
+S
+#47311
+Black Bend~
+   Standing at the very corner of the tunnels, you begin to feel excruciatingly
+lonely.  The darkness just makes you lose any purpose in life, for all you want
+to do now is get out alive.  You had heard stories about this place, but never
+had you imagined what it was really like.  You pray to your deity that
+Kryzanthor is not that formidable of a foe, but somehow you wouldn't bet on it.
+From here you can go east or north.    
+~
+472 8 0
+D0
+It's too dark to see!
+~
+~
+0 -1 47301
+D1
+It's too dark to see!
+~
+~
+0 -1 47312
+S
+#47312
+Black Bend~
+   Standing directly south of the dark staircase, you hope that you get out of
+such a sorrowful place.  It seems that the quicker you get out the better, for
+if you stay in here much longer you'll go insane.  There is only so much terror
+that a single adventurer can handle.  Built upon this terror is the fact that
+you are here out of greed for artifacts and useful items.  None of these are
+important if you die.    
+~
+472 8 0
+D0
+It's too dark to see!
+~
+~
+0 -1 47302
+D3
+It's too dark to see!
+~
+~
+0 -1 47311
+S
+#47313
+Underground Bend~
+   You are standing directly south of the southern stairwell of Kryzanthor's
+tunnels.  You look about you and see ominous signs of the undead.  Not only can
+you see shapes moving in the dark, but the stench from them leaves no doubt in
+your mind that you are not alone.  Looking to the east you see that the
+passageway continues on, and to the north is yet another stairwell.    
+~
+472 8 0
+D0
+You see the south stairwell leading back up to the main stairwell.
+~
+~
+0 -1 47303
+D1
+This underground passageway stretches off to the east.
+~
+~
+0 -1 47314
+S
+#47314
+Underground Passageway~
+   As you walk into this room, you get an eerie feeling that you are not alone.
+The walls themselves are slimy and drip with ooze.  It is almost as if the
+darkness were alive, and ready to attack at any minute.  Being fully alert has
+tired you out, and you sure that a rest at the inn will be well needed when you
+return to town, if you ever do.  From here you can go east and west to bends in
+the passageway.    
+~
+472 8 0
+D1
+Peering east you see more of the same passageway you're in.
+~
+~
+0 -1 47315
+D3
+To the west lies the beginning of this underground passageway.
+~
+~
+0 -1 47313
+S
+#47315
+Underground Bend~
+   Standing in this bend in the passageway, you begin to realize what mortal
+danger you are actually in.  Surrounded by Kryzanthor and his servants doesn't
+give much hope as far as surviving is concerned.  Let's hope that he doesn't
+have too many tricks up his sleeve for you, because it would be bad if you were
+to die.  You look about you and see that you can go north to another bend, or
+back west into the passageway.    
+~
+472 8 0
+D0
+You see a bend leading to another stairwell.
+~
+~
+0 -1 47305
+D3
+The passageway stretches out before you to the west.
+~
+~
+0 -1 47314
+S
+#47321
+Well-Lit Stairwell~
+   You are standing at the bottom of a well-lit stairwell, but the source of
+the luminescence is a mystery.  You search about and find no torches or
+anything else.  Screams of terror are excruciatingly close as you stand at the
+bottom of this staircase.  The entire area reeks of the undead, and you really
+don't want to be here.  You can go east into darkness, or back up the
+stairwell.    
+~
+472 8 0
+D1
+You see a room designed specifically to house the undead.
+~
+~
+0 -1 47322
+D4
+The stairwell leads back up to a well-lit passageway.
+~
+~
+0 -1 47271
+S
+#47322
+Heucuva Chamber~
+   You walk into a room with shackles on every wall.  Corpses line the walls of
+unfortunate individuals who have ventured here in the past.  The smell of them
+make you cringe as your head starts to spin.  As you look closer, you notice
+that the corpses eyes and guts have been eaten out.  You wonder what disgusting
+perversion of nature lives here.    
+~
+472 8 0
+D3
+You see a stairwell leading away from this evil room.
+~
+~
+0 -1 47321
+S
+#47324
+Dracolich Chamber~
+   You walk into a room that is used by Kryzanthor to keep his animated
+servants.  As you look into the shadows of this room, incredibly large shapes
+are hunched over on their hind legs.  You realize with a mortal terror that you
+are standing in front of twenty feet tall Dracoliches!  Their claws are 6
+inches in length, and their teeth drip with acid waiting to bite into some
+unexpecting prey.    
+~
+472 8 0
+D1
+You see a passageway leading away from this evil room.
+~
+~
+0 -1 47325
+S
+#47325
+Deep Sunny Bend~
+   You are standing in a bend in the passageway that is surprisingly light.  
+It seems as if a portion of the wall has been knocked out, and rays of sunlight
+can be seen shining through.  The holes in the wall are too small for any human
+or undead to crawl through.  As you peer closer towards the west you notice
+rather large lurking figures in the darkness.  You can go west or south from
+the this room.    
+~
+472 0 0
+D2
+The passageway curves around to the south.
+~
+~
+0 -1 47335
+D3
+Humungous figures loom in the darkness.
+~
+~
+0 -1 47324
+S
+#47331
+Dark Stairwell~
+   You are standing at the bottom of an incredibly dark staircase.  Never
+before has the terror been greater than now, for a great power of evil is
+emanating from the south.  What is stranger, is that the familiar smell of
+rotting corpses is now gone, and that gives you a small sense of hope, but that
+soon disappears as you remember the evil creeping up your spine.  You begin to
+sweat, and you realize how moist this area really is.    
+~
+472 520 0
+D2
+A horrible sense of evil is flowing from the passageway to your south.
+~
+~
+0 -1 47341
+D4
+The stairwell would let you back the way you came.
+~
+~
+0 -1 47281
+S
+#47334
+Sunny Stairwell~
+   For once in a long time, you see a small light peeping from around the
+corner of the passageway.  At the bottom of a large staircase, you notice that
+the light is actually rays of sunlight being reflected on the walls of the
+passageway.  Even though it is somewhat heartening to see sunlight, fear still
+fills your mind as the screams of agony and dismay continue to echo through the
+halls of Kryzanthor.  You can go up the stairwell or east into the passageway.
+~
+472 0 0
+D1
+The deep sunny passageway curves around to the east.
+~
+~
+0 -1 47335
+D4
+This stairwell climbs back towards another sunny passageway.
+~
+~
+0 -1 47284
+S
+#47335
+Deep Sunny Bend~
+   As you go deeper into this passageway, a sense of power comes from the
+north, and you hope that it will not be directed towards you.  Any hope created
+from the appearing sunlight has been obliterated from the utter terror forced
+upon you from the cries of the undead.  Even though sun is shining on your
+forehead, it is quite cold down in these tunnels.  Kryzanthor sure has made it
+rough on wandering adventurers.  From here you can go either west or north.  
+~
+472 0 0
+D0
+The passageway curves to the north.
+~
+~
+0 -1 47325
+D3
+You see a stairwell leading up.
+~
+~
+0 -1 47334
+S
+#47341
+Deep Moist Bend~
+   As you walk deeper into the tunnels, you can sense of the power of
+Kryzanthor getting closer and closer.  Although you can feel his evil, another
+evil also permeates the area that perplexes you for quite a while.  This power
+is coming directly from the east as you realize that you are soaked with sweat
+all over from the incredible humidity.  The bend itself is barren and looks
+unused, but for a few footprints.  From the footprints you can decipher that
+two people use this area.    
+~
+472 520 0
+D0
+A stairwell leading out of the wretched place lies to your north.
+~
+~
+0 -1 47331
+D1
+Not only is it too dark to see to the east, but you feel the presence of
+an evil being.
+~
+~
+0 -1 47342
+S
+#47342
+Death Chamber~
+   You walk into a room well furnished for the living of a servant of
+Kryzanthor.  This is the room of his personal bodyguard, the death knight.  It
+seems as if the necromancer treats his closest servants well, for the death
+knight has everything an undead would ever want.  The walls are covered with
+tapestries of his past life, and the floor is stained with blood from previous
+adventurers who have wandered this way.    
+~
+472 520 0
+D1
+A horrible source of evil emanates from the east.
+~
+~
+0 -1 47343
+D3
+The passageway to the west leads back out of this wretched place.
+~
+~
+0 -1 47341
+S
+#47343
+Kryzanthor's Quarters~
+   You are now standing in the personal quarters of the master of this area.  
+Apparatuses fill this room used to create the undead.  A small cot is in the
+corner of the room, which looks to be well used.  Many dismembered skeletons
+and corpses are lying around waiting to be used by the necromancer to create
+more servants.  An incredible power emanates all around you, and you really
+hope that your life is not about to end.    
+~
+472 520 0
+D3
+You see the living quarters of Kryzanthor's personal bodyguard.
+~
+~
+0 -1 47342
+D4
+You see a small trapdoor above you.
+~
+trapdoor small~
+1 -1 47293
+S
+T 6207
+#47351
+Deep Black Bend~
+   Even with the use of your light source, you can hardly see a foot in front
+of you.  The walls suck in all the light, and your mind is in a state beyond
+fear.  You vow that you will get back at Kryzanthor for this terror that he has
+been so kind to show you.  Not only is the dark bothering you, but the screams
+of the undead don't help either.  To the east you can make out a staircase, but
+the south you can see nothing.    
+~
+472 8 0
+D1
+It's too dark to see!
+~
+~
+0 -1 47352
+D2
+It's too dark to see!
+~
+~
+0 -1 47361
+S
+#47352
+Black Stairwell~
+   You are standing at the bottom of a very dark staircase.  You put your back
+against the wall in an attempt to orient yourself, because you can barely see
+your own hand in front of your face.  You begin to crouch down near the bottom
+step in fear, but then muster up enough courage to stand and move on.  
+Somehow, you will get out of this place alive.  You can go back up the stairs
+or west into the darkness.    
+~
+472 8 0
+D3
+It's too dark to see!
+~
+~
+0 -1 47351
+D4
+It's too dark to see!
+~
+~
+0 -1 47302
+S
+#47354
+Underground Stairwell~
+   You are standing at the bottom of a rather large stairwell, and it appears
+as if you are at the bottom of the tunnels.  In this underground passageway,
+the air is quite musty, and it is actually difficult to breathe.  The smell of
+rotting corpses is also doing quite a good job choking you as you hold back
+your breath.  You can go back up the stairwell, or east into the passageway.
+~
+472 8 0
+D1
+Deep within the ground you see a passageway leading away.
+~
+~
+0 -1 47355
+D4
+You see a huge staircase leading up.
+~
+~
+0 -1 47304
+S
+#47355
+Deep Underground Bend~
+   Standing in a bend of the underground passageway, fear begins to mount in
+your soul.  What is coming?  Will you live through this peril, and you wonder
+if it is really worth all this trouble.  Let's hope that you have the handy
+dandy scroll of recall if needed.  You can't help thinking how much happier you
+would be back in a nice soft bed at the reception area.  Mustering up courage,
+you decide to stay and move on.  From here, you can go west back to the
+staircase, or south deeper into the passageway.    
+~
+472 8 0
+D2
+The passageway curves to the south.
+~
+~
+0 -1 47365
+D3
+You see a stairwell leading out of the depths.
+~
+~
+0 -1 47354
+S
+#47361
+Deep Black Bend~
+   Standing in the bend of a deathly black passageway, you realize how much of
+an idiot you must be to leave the sunlight.  You pray that you will eventually
+be able to return the favor to Kryzanthor of the terror that you are
+encountering.  At least you have a small light source which allows some sort of
+mobility.  To the east you see shapes moving in the darkness.  You can go east
+or north from here.    
+~
+472 8 0
+D0
+It's too dark to see!
+~
+~
+0 -1 47351
+D1
+It's too dark to see!
+~
+~
+0 -1 47362
+S
+#47362
+Wraith Chamber~
+   You are standing in the chambers of the wraith creatures.  Kryzanthor uses
+these undead particularly to kill all roaming adventurers who pose a threat to
+his kingdom.  It seems that at the moment they are being kept in this room for
+other purposes.  The familiar smell of rotting flesh fills this room.  The only
+exit is back west into the dark tunnels.    
+~
+472 8 0
+D3
+It's too dark to see!
+~
+~
+0 -1 47361
+S
+#47364
+Wight Chamber~
+   You walk into a room so foul that you can hardly stand being here.  The
+scent of rotting flesh is unbearable, and you realize that this is where some
+of Kryzanthor's servants must be kept.  You hope that whatever lives here will
+leave you alone, for you are not in the mood of dying.  The only exit from this
+room is back east into the darkness.    
+~
+472 8 0
+D1
+A passageway curves off to the east.
+~
+~
+0 -1 47365
+S
+#47365
+Deep Underground Bend~
+   As you round the final bend of this underground passage, you hear screams
+and bellows of evil laughter coming from the west.  The laugh is not of any
+human, or at least not one with blood flowing through its veins.  You see
+shapes shifting back and forth through the darkness of the tunnel, and you pray
+to your deity that they are not aggressive towards wandering fools.  You can go
+north towards the stairs out, or west into the unknown.    
+~
+472 8 0
+D0
+The passageway curves to the north.
+~
+~
+0 -1 47355
+D3
+You see a disgusting room designed specifically for housing the undead.
+~
+~
+0 -1 47364
+S
+#47400
+End of Grove~
+   As you walk into the end of the grove, you begin to wonder if it was such a
+great idea to come here.  Any light that you may have been able to perceive at
+one time is now gone.  The hedges appear to be towering over you in a menacing
+manner, and you wonder if they are only hedges.  You sense an invisible source
+of evil that just pulsates the entire area.  It would be wise to turn back.....
+If you can.    
+~
+472 8 0
+D1
+~
+~
+0 -1 47012
+D2
+The hedges are dark and looming.
+~
+indenture~
+2 47019 47401
+E
+hedges hedge~
+Standing high above you these hedges block all sunlight from sight.  Your
+light source is the only illumination.  Glancing about in your frenzy, you
+spot a small branch poking out from one of the hedges.
+~
+E
+branch~
+You grab ahold of the branch and tug on it.  A small tuft of foliage falls
+out of place to reveal what looks to be a door hidden behind the hedges.
+Upon examination of the door you notice it has no keyholes.  Instead it
+has a small indenture below the handle in the shape of a ring.
+~
+S
+#47401
+A Sunny Alcove~
+   As you squeeze through the hedges you fall a few feet onto a filthy wooden
+floor.  The hedges behind you close up leaving you no chance of returning to
+the grove.  Dusting yourself off and standing upright you are met by a steady
+stream of light bursting through the window in the west wall.  You are forced
+to shield your eyes at first after having been used to the dark graveyard.  
+This rooms seems somewhat out of place with respect to the rest of the
+graveyard.  You have a strong suspicion that Kryzanthor is not responsible for
+such a place of warmth.    
+~
+472 524 0
+D0
+~
+door~
+1 -1 47400
+D5
+Brushing the dust aside, you notice one of the floorboards is loose.
+~
+floorboard floor board~
+1 -1 47402
+E
+wooden floor~
+Brushing the dust aside, you notice one of the floorboards is loose.
+
+~
+S
+#47402
+Furnished Hallway~
+   You are certain now that this area was not conceived by the evil
+necromancer.  The walls are lined with a soft cloth that looks to be quite
+lavish indeed.  The air is warm and fragrant, leaving you overly curious as to
+where in Caelia you are.  The room would be completely dark if it weren't for
+an ornate lamp resting on a coffee table no higher than your waist.  The floor
+is made of an ancient Silvan oak that has held the test of time.  Peering down
+the hallway you see some sort of sitting room to the west.    
+~
+472 131724 0
+D3
+You see a small sitting room to the west.
+~
+folding-door folding door~
+1 -1 47403
+D4
+Looking up you realize you are standing underneath a room with a wooden
+floor.  It looks like one of the floorboards is loose and you can squeeze
+between the support beams.
+~
+floorboard floor board~
+1 -1 47401
+S
+#47403
+A Small Sitting Room~
+   Looking at the layer of dust that has collected on the furniture here you
+guess that this place has not been used in quite some time.  Against the walls
+sit a number of couches and chairs that appear to be rather comfortable.  
+Spotting a picture on the wall, it suddenly all makes sense.  It is a picture
+of a young couple very much in love.  The man in the picture looks a lot like
+the Spectre, except younger and alive.  The woman you have never seen before,
+but are rather astounded by her grace and beauty.  Perhaps this area was made
+by the Spectre himself so that his wife could live in peace away from the
+turmoil created by the necromancer.    
+~
+472 131592 0
+D0
+A small door lies in the north wall.
+~
+door~
+2 47019 47404
+D1
+You see the entrance hallway to the east.
+~
+folding-doors folding doors~
+1 -1 47402
+S
+#47404
+A Decorated Bedroom~
+   Amazed by the extravagant decorum, you realize your suspicions were true.  
+Standing before you is the ghost of the Spectre's wife.  Even though she is
+undead she has not lost any of her beauty.  It seems she spends her time in
+this bedroom created for her by her loving husband.  Standing in the middle of
+the room is an extravagantly large bed built out of Silvan oak, similar to that
+of the flooring.  The furniture is also made out of the finest wood Caelia has
+to offer.  You begin to wonder how a ghost can create all this, but you figure
+the Spectre has to be a couple centuries old.  The rest of the room is
+decorated with various arts, perhaps symbolic of the married couple's interests
+while they were still alive.    
+~
+472 131736 0
+D2
+You see a simple door leading out of the room.
+~
+door~
+2 47019 47403
+S
+$~

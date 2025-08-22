@@ -1,0 +1,255 @@
+name: Yiko
+password: Yic1LiomWE
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 7
+race: 9
+level: 99
+home: 3003
+lifeforce: 0
+composition: 0
+id: 6623
+birthtime: 986056377
+timeplayed: 481090
+lastlogintime: 1373079015
+host: 070.170.088.071
+height: 61
+weight: 148
+base_height: 61
+base_weight: 148
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: glxy
+effectflags: k 0 0
+prefflags: hno 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 3054
+thirst: 14
+lastlevel: 10
+hitpoints: 788/788
+mana: 100/100
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 93
+intelligence: 88
+wisdom: 90
+dexterity: 71
+constitution: 64
+charisma: 54
+cash: 3 5 4 0
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+6 1000
+11 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+27 1000
+28 1000
+30 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+51 1000
+70 1000
+71 1000
+73 1000
+74 1000
+88 1000
+89 1000
+90 1000
+91 1000
+99 1000
+144 1000
+145 1000
+146 1000
+147 1000
+148 1000
+149 1000
+150 1000
+151 1000
+152 1000
+153 1000
+154 1000
+155 1000
+156 1000
+206 1000
+207 1000
+215 1000
+415 1000
+416 1000
+417 301
+421 1000
+423 1000
+424 1000
+429 1000
+438 50
+443 424
+444 90
+451 1000
+452 85
+453 124
+454 50
+455 51
+456 117
+457 1000
+458 114
+459 109
+460 1000
+462 85
+463 1000
+466 50
+0 0
+trophy:
+1 12003 1.000000
+1 55216 1.000000
+1 36303 1.000000
+1 5421 4.000000
+1 5101 1.000000
+1 5100 1.000000
+1 5104 8.000000
+1 5408 12.000000
+1 5403 1.000000
+1 5404 9.000000
+1 3501 1.000000
+1 17807 1.000000
+1 55231 2.000000
+1 55239 1.000000
+1 5420 16.500000
+1 3503 0.500000
+1 3502 0.500000
+1 3506 0.500000
+1 18517 0.500000
+1 18507 0.500000
+1 16103 3.000000
+0 0 0
+mem:
+12 1 1
+12 1 1
+13 1 2
+144 1 1
+144 1 2
+89 1 2
+89 1 2
+20 1 2
+145 1 1
+18 1 2
+18 1 2
+16 1 2
+16 1 2
+90 1 2
+90 1 2
+90 1 2
+91 1 1
+91 1 2
+91 1 2
+88 1 2
+88 1 2
+146 1 2
+146 1 2
+15 1 2
+40 1 2
+42 1 1
+42 1 1
+147 1 2
+14 1 1
+40 1 2
+148 1 1
+148 1 1
+27 1 2
+30 1 1
+70 1 2
+28 1 1
+28 1 1
+28 1 1
+149 1 2
+74 1 1
+6 1 2
+6 1 2
+6 1 2
+6 1 2
+150 1 2
+151 1 2
+154 1 2
+99 1 2
+99 1 2
+99 1 2
+152 1 2
+152 1 2
+156 1 2
+155 1 2
+155 1 2
+155 1 2
+153 1 2
+28 1 2
+51 1 2
+146 1 2
+15 1 2
+6 1 2
+27 1 2
+99 1 2
+28 1 2
+89 1 2
+145 1 1
+6 1 2
+152 1 2
+71 1 1
+71 1 1
+71 1 1
+71 1 1
+71 1 1
+43 1 1
+27 1 2
+28 1 2
+35 1 1
+12 1 1
+21 1 2
+91 1 2
+27 1 2
+28 1 2
+6 1 2
+99 1 2
+40 1 2
+40 1 2
+148 1 2
+35 1 2
+35 1 2
+0 0 0
+aliases:
+cm cast 'moonw' $1
+cn cast 'nourish'
+ch cast 'heal' kria
+m mount mare
+, dism
+aa assist zia
+fb fill barrel fountain
+df drink fountain
+ggc get all.coins corpse
+ewe enter well
+ec exa corpse
+gac get all corpse
+gg get all.coins
+db drink barrel
+ccl cast 'cure light'
+g get all.crushed
+ws wield staff
+gs get staff
+cw cast 'word of recall'
+1 cast 'night vis'
+ds drink skin
+gb get bread bp; eat bread
+0

@@ -1,0 +1,63 @@
+name: Aldargon
+password: AlVajsDgMk
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18142
+birthtime: 1331232108
+timeplayed: 7927
+lastlogintime: 1331416445
+host: 184.053.040.130
+height: 64
+weight: 170
+base_height: 64
+base_weight: 170
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+badpasswords: 2
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 40/40
+mana: 1/0
+move: 122/122
+damroll: 3
+hitroll: 3
+strength: 89
+intelligence: 68
+wisdom: 67
+dexterity: 93
+constitution: 91
+charisma: 61
+experience: 12059
+quit_reason: 10
+saveroom: 18022
+skills:
+402 50
+404 50
+415 50
+416 50
+421 56
+438 50
+443 50
+444 50
+463 50
+464 50
+465 54
+466 50
+467 50
+468 50
+0 0

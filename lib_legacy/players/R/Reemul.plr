@@ -1,0 +1,117 @@
+name: Reemul
+password: Reph6OS.D/
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20670
+birthtime: 1699525463
+timeplayed: 19422
+lastlogintime: 1700131423
+host: 046.252.008.117
+height: 68
+weight: 163
+base_height: 68
+base_weight: 163
+base_size: 2
+natural_size: 2
+alignment: -1
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 12
+lastlevel: 0
+hitpoints: 70/70
+mana: 1/0
+move: 142/142
+damroll: 3
+hitroll: 3
+strength: 93
+intelligence: 64
+wisdom: 72
+dexterity: 93
+constitution: 76
+charisma: 61
+cash: 0 42 293 296
+experience: 115500
+quit_reason: 1
+saveroom: 3054
+skills:
+401 101
+403 52
+405 50
+408 51
+415 50
+416 50
+421 74
+438 50
+443 50
+444 50
+463 50
+464 70
+465 50
+493 50
+0 0
+trophy:
+1 3507 0.200000
+1 3503 0.800000
+1 3502 1.000000
+1 3506 0.600000
+1 3500 0.600000
+1 3508 1.600000
+1 3505 0.600000
+1 61508 0.200000
+1 61514 0.200000
+1 61510 0.400000
+1 61512 0.400000
+1 61506 0.200000
+1 61523 0.250000
+1 36002 1.000000
+1 36001 0.600000
+1 36003 0.600000
+1 8014 0.200000
+1 17204 2.000000
+1 3501 5.599999
+1 8012 0.200000
+1 8000 0.200000
+0 0 0
+tells:
+1699657619 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1699657635 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1699657641 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1699657647 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1699862603 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1699862605 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1699862607 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1699862831 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1699862831 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1699862831 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1699837925 Someone gossips, 'Sunken?'
+1699837937 Discord gossips, 'Daedela: That is a castle, yes'
+1699861573 Discord gossips, 'Daedela: Are you using Mudlet?'
+1699861608 Discord gossips, 'Daedela: Yes'
+1699861620 Discord gossips, 'Daedela: Ah okay'
+1699861643 Discord gossips, 'Daedela: It is!'
+1699861668 Discord gossips, 'Daedela: I think it's s s w w w s s w w from the  citadel gate'
+1699884488 Holk gossips, 'yep, just no more than 5'
+1699884568 Holk gossips, 'it's a 'slot' based system, so no mana.  You have to memorize/pray for spells before you use them'
+1699884596 Holk gossips, 'try 'help spell''
+$
+aliases:
+rid recite identify $1
+banr bandage reemul
+wk wake*stand
+lin look in corpse
+bs backstab $1
+gac get all all.corpse
+0

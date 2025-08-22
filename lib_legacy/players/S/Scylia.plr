@@ -1,0 +1,103 @@
+name: Scylia
+password: ScylptBc3c
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 21
+race: 2
+level: 18
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20594
+birthtime: 1692156700
+timeplayed: 379188
+lastlogintime: 1717726197
+host: 098.178.139.147
+height: 37
+weight: 75
+base_height: 37
+base_weight: 75
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -15/112
+mana: 36/32
+move: 173/176
+damroll: 2
+hitroll: 4
+strength: 66
+intelligence: 88
+wisdom: 86
+dexterity: 75
+constitution: 90
+charisma: 60
+bank: 1000 1041 3901 1
+experience: 1552527
+quit_reason: 10
+saveroom: 16372
+skills:
+8 1000
+19 1000
+20 1000
+31 1000
+37 1000
+39 1000
+51 1000
+99 1000
+100 1000
+101 1000
+171 1000
+172 1000
+182 1000
+415 240
+416 240
+423 240
+424 240
+438 50
+443 50
+444 240
+447 240
+451 111
+452 50
+454 240
+456 186
+458 240
+459 240
+460 50
+462 240
+464 160
+0 0
+tells:
+1704833605 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1704833607 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1704833609 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1704833971 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1704833984 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1704834119 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1713498806 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1713498808 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1717120088 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1717724550 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1704820506 Chinok gossips, 'everyone thought I was nuts, but were impressed with the results..'
+1704820576 Sadler gossips, 'be back soon, grabbing lunch :)'
+1704821482 Mouvar gossips, 'Hey everyone'
+1704821496 Chinok gossips, 'hey Mouvar'
+1713498638 Lokar gossips, 'Hey Scylia'
+1713498681 Lokar gossips, 'work while working sucks!'
+1715911787 Chinok gossips, 'hi Scylia!'
+1716516602 Chinok gossips, 'hes back :)'
+1716516613 Kresselack gossips, 'for a bit'
+1716516646 Kresselack gossips, 'seeing if my stupidity will wear off and figure this thing out lol'
+$

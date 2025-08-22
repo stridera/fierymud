@@ -1,0 +1,91 @@
+name: Limera
+password: LiyY2i6pQu
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 0
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19021
+birthtime: 1445403275
+timeplayed: 10246
+lastlogintime: 1446236556
+host: 098.192.233.138
+height: 62
+weight: 100
+base_height: 62
+base_weight: 100
+base_size: 2
+natural_size: 2
+alignment: 401
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 55712
+hunger: 7
+thirst: 14
+lastlevel: 0
+hitpoints: 148/148
+mana: 1/0
+move: 12/116
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 63
+wisdom: 72
+dexterity: 97
+constitution: 81
+charisma: 54
+cash: 0 125 738 906
+experience: 304383
+quit_reason: 7
+saveroom: 55712
+skills:
+402 58
+404 150
+415 50
+416 50
+421 74
+430 50
+438 55
+443 50
+444 50
+463 50
+464 50
+465 115
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 55216 2.000000
+1 2003 2.000000
+1 16908 1.000000
+1 16900 2.000000
+1 8023 2.000000
+1 8022 2.000000
+1 8011 2.000000
+1 8016 2.000000
+1 8002 5.000000
+1 8021 2.000000
+1 8012 4.000000
+1 8010 5.000000
+1 8014 7.000000
+1 8013 5.000000
+1 8020 3.000000
+1 8000 6.000000
+1 8015 5.000000
+1 8001 4.000000
+1 18003 5.000000
+1 18004 3.000000
+1 18000 5.000000
+0 0 0
+aliases:
+1 kill hedge
+gac get all from all.corpse
+0

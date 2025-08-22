@@ -1,0 +1,88 @@
+name: Malric
+password: MaZoR3g3ou
+description
+desc
+desc~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18234
+birthtime: 1335131335
+timeplayed: 8375
+lastlogintime: 1704823829
+host: 066.169.084.140
+height: 71
+weight: 171
+base_height: 71
+base_weight: 171
+base_size: 2
+natural_size: 2
+alignment: -6
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3547
+hunger: 14
+thirst: 4
+lastlevel: 0
+hitpoints: 68/68
+mana: 1/0
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 66
+wisdom: 72
+dexterity: 95
+constitution: 88
+charisma: 62
+cash: 0 31 25 20
+experience: 38899
+quit_reason: 7
+saveroom: 3547
+skills:
+402 50
+404 89
+415 50
+416 50
+421 68
+438 50
+443 50
+444 58
+463 50
+464 50
+465 62
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 12023 0.500000
+1 12025 0.500000
+1 12014 0.500000
+1 12024 0.500000
+1 12015 1.000000
+1 12016 1.000000
+1 17204 5.000000
+1 16900 1.000000
+1 3507 2.000000
+1 3506 0.500000
+1 3500 5.000000
+1 3503 3.500000
+1 3502 4.500000
+1 3501 9.500000
+1 3509 1.000000
+1 3508 4.500000
+0 0 0
+tells:
+$
+gossips:
+$

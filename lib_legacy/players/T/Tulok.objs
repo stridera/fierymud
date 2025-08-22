@@ -1,0 +1,1303 @@
+1
+vnum: 53323
+location: 0
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 1
+weight: 4.50
+cost: 800
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+2 2
+18 1
+~
+extradesc: white egg white-egg dragon
+As you look at the large white dragon's egg, you seem to remember something you
+heard long ago.  Something about how a dragon's egg had special powers.  Now
+what was that.    
+~
+~~
+vnum: 12538
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 11
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    
+~
+~~
+vnum: 12538
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 11
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    
+~
+~~
+vnum: 17212
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: jewel heart dusty little jewel-of-the-heart Questobject
+shortdesc: the jewel of the heart
+desc: A dusty little jewel lies here.
+type: 8
+weight: 0.20
+cost: 1782
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+13 20
+~
+extradesc: jewel heart dusty little jewel-of-the-heart Questobject
+This beautiful little jewel is shaped oddly, and appears to be very valuable to someone at least.
+~
+triggers:
+16307
+~
+variables:
+already_got_jewel 1
+~
+~~
+vnum: 17212
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: jewel heart dusty little jewel-of-the-heart Questobject
+shortdesc: the jewel of the heart
+desc: A dusty little jewel lies here.
+type: 8
+weight: 0.20
+cost: 1782
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+13 20
+~
+extradesc: jewel heart dusty little jewel-of-the-heart Questobject
+This beautiful little jewel is shaped oddly, and appears to be very valuable to someone at least.
+~
+triggers:
+16307
+~
+variables:
+already_got_jewel 1
+~
+~~
+vnum: 37005
+location: 5
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: robe thawkinixan-robe thawkinixan thick heavy cloth heap
+shortdesc: a thawkinixan robe
+desc: A heap of thick heavy cloth had been discarded here.
+type: 9
+weight: 6.50
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 9
+applies:
+18 -1
+~
+extradesc: robe thawkinixan-robe thawkinixan thick heavy cloth heap
+This robe has been made from small links of thawkinixa, and is slightly
+heavier then your average robe. On the back of the robe, a small picture
+has been painted.  The picture depicts a troll sorcerer holding his arms
+up to the heavens as lightning surrounds him in a barrage of bolts.
+~
+~~
+vnum: 23821
+location: 6
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tiara gleaming sapphire sapphire-tiara
+shortdesc: a sapphire tiara
+desc: A gleaming tiara lies here.
+type: 11
+weight: 0.80
+cost: 2000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 17
+applies:
+17 3
+24 -5
+23 -5
+13 20
+~
+extradesc: tiara gleaming sapphire sapphire-tiara
+Very cold to the touch, this circlet is made of silver worked into angular
+designs and inset with a large, teardrop-shaped sapphire at the crown.  The
+silver gleams brightly, showing no sign of tarnish, and the sapphire is a true
+deep blue with an inner radiance all its own.    
+~
+~~
+vnum: 23825
+location: 7
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gprstwx
+name: pants pale blue icy icy-blue loose icy-blue-pants folded
+shortdesc: a pair of loose, icy-blue pants
+desc: Pale blue pants lie neatly folded here.
+type: 11
+weight: 3.00
+cost: 0
+timer: 0
+level: 85
+effects: 0 0 0
+wear: 33
+applies:
+13 15
+23 -5
+3 2
+2 -6
+1 -4
+~
+extradesc: pants pale blue icy icy-blue loose icy-blue-pants folded
+   These pants are made out of a satiny material that feels soft and smooth,
+cold on the outside but comfortable when worn.  Large pockets should have
+enough room in them for as many oddments as one could desire, and a thin
+drawstring at the wait insures that they should fit anyone.  Given their
+shimmering appearance and comfortable fit, it is almost certain they are
+magical in nature.    
+~
+~~
+vnum: 23799
+location: 8
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gqAD
+name: black leather drow intricate breathtaking boots
+shortdesc: black leather drow boots
+desc: Breathtakingly intricate black leather boots rest here.
+type: 11
+weight: 1.75
+cost: 0
+timer: 0
+level: 65
+effects: y 0 0
+wear: 65
+applies:
+18 2
+19 2
+14 40
+17 2
+~
+extradesc: black leather drow boots
+This grand pair of customized drow boots appears to have just been completed
+after many hours and days of labor.  The flawless leather straps glisten with
+every bit of light that crosses its surface.  The extra cushioning and soft
+padding along the sole ensure that these boots are not only comfortable, but
+very protective.    
+~
+~~
+vnum: 52003
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: goprt
+name: gloves black black-gloves
+shortdesc: a pair of black gloves
+desc: A pair of black gloves lies here.
+type: 9
+weight: 0.75
+cost: 500
+timer: 0
+level: 75
+effects: 0 0 0
+wear: 129
+applies:
+4 2
+~
+extradesc: gloves black black-gloves
+These gloves are jet black, nearly dark as the night sky with no moon.  There
+are even small twinkles like the stars.    
+~
+~~
+vnum: 11797
+location: 10
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gAD
+name: myst vambraces vambrace bits long
+shortdesc: a pair of myst vambraces
+desc: Some long bits of myst lie here, seeming to conform to the ground.
+type: 9
+weight: 1.20
+cost: 40
+timer: 0
+level: 87
+effects: 0 0 0
+wear: 257
+applies:
+2 4
+24 -25
+3 -3
+18 1
+~
+extradesc: myst vambraces vambrace bits long
+These vambraces are of exceptional quality, and are simply bits of a magically
+bound myst.  They seem to conform to any shape of any arm which dons them, and
+seem to repel light and seem to absorb impacts and then quickly reform the
+dented portion.  The myst is a dull, absent grey color.    
+~
+~~
+vnum: 23823
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aAD
+name: wings dragon pair silver scales heap dragon-wings
+shortdesc: a pair of dragon wings
+desc: A heap of silver scales lies here.
+type: 11
+weight: 21.00
+cost: 10000
+timer: 0
+level: 85
+effects: u 0 0
+wear: 1025
+applies:
+19 2
+14 20
+13 20
+~
+extradesc: wings dragon pair silver scales heap dragon-wings
+A quicksilver mess of barely-defined scales and membranes resolves itself into
+a pair of wings upon closer inspection.  They seem to magically resize
+themselves if worn, becoming closer to the size of the wearer as though to fit
+them personally.  Once worn, they attach themselves seamlessly to the wearer's
+back and look like an extra set of limbs that could probably be used for their
+original purpose: flight.  Their value seems beyond reckoning.    
+~
+~~
+vnum: 8604
+location: 13
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: belt snakeskin
+shortdesc: a snakeskin belt
+desc: Some snakeskin sits here in a tight coil.
+type: 9
+weight: 0.95
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+extradesc: snakeskin belt
+This belt is made from the skin of a feared indigenous species of snake
+renowned for the accuracy and damage of their strikes.    
+~
+~~
+vnum: 905
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 905
+location: 19
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 493
+location: 22
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: mask neris slender-burial-mask golden
+shortdesc: the Mask of Neris
+desc: A slender burial mask gleams golden under a film of dust.
+type: 9
+weight: 0.58
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+applies:
+2 -2
+13 33
+24 -20
+9 200
+~
+extradesc: mask neris slender-burial-mask golden
+The mask is hammered from a large, single mass of smooth gold.  Various jewels
+glint in its surface, embedded carefully in its facial features.  Two large
+rubies form the eyes of the mask, perhaps the most prominent feature of the
+mask.  An aura of power seems to radiate from the mask, causing you to wonder
+who such a mask might have belonged to.
+~
+~~
+vnum: 23802
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snowflake lone earring snowflake-earring
+shortdesc: a snowflake earring
+desc: A lone snowflake glimmers on the floor.
+type: 11
+weight: 0.01
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 262145
+applies:
+13 5
+24 -3
+23 -5
+~
+extradesc: snowflake lone earring snowflake-earring
+It seems to be a snowflake set onto a tiny silver post.  The six-pointed flake
+is cool to the touch, though it does not melt.  Whatever crystal substance it
+is made of catches the light quite well, giving it an ever-present sparkle.  
+Its miniscule arms have hexagonal symmetry, and it is very detailed.    
+~
+~~
+vnum: 23802
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snowflake lone earring snowflake-earring
+shortdesc: a snowflake earring
+desc: A lone snowflake glimmers on the floor.
+type: 11
+weight: 0.01
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 262145
+applies:
+13 5
+24 -3
+23 -5
+~
+extradesc: snowflake lone earring snowflake-earring
+It seems to be a snowflake set onto a tiny silver post.  The six-pointed flake
+is cool to the touch, though it does not melt.  Whatever crystal substance it
+is made of catches the light quite well, giving it an ever-present sparkle.  
+Its miniscule arms have hexagonal symmetry, and it is very detailed.    
+~
+~~
+vnum: 49025
+location: 26
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tail griffin griffin-tail
+shortdesc: a griffin tail
+desc: The golden-brown tail of a griffin lies here seperated from its owner.
+type: 9
+weight: 1.25
+cost: 500
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1048577
+applies:
+3 1
+13 5
+~
+extradesc: tail
+It's long and rather strong, too. Maybe you could use it as a belt...~
+~~
+vnum: 12538
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 11
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    
+~
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55643
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem shard shard-citrine
+shortdesc: a citrine shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 5000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3053
+location: 127
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll blue remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 8034
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some if its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 6383
+location: 127
+values:
+1000
+0
+0
+0
+0
+0
+0
+~
+flags: hD
+name: grapesicle everlasting-grapesicle large-grape-icicle food
+shortdesc: an everlasting grapesicle
+desc: A large grape icicle lies here, melting.
+type: 19
+weight: 10.00
+cost: 1000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+extradesc: grapesicle everlasting-grapesicle large-grape-icicle food
+It's an icy popsicle of grape juice.
+~
+~~
+vnum: 51006
+location: 127
+values:
+0
+1800
+1800
+0
+0
+0
+0
+~
+flags: ag
+name: eyes balls ice-eyes
+shortdesc: a pair of Ice Eyes
+desc: Two balls of ice lie here, casting a magical glow of light all around.
+type: 1
+weight: 1.03
+cost: 500
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 65537
+applies:
+18 2
+14 20
+28 52
+~
+extradesc: ice eyes magical pair two
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.
+~
+~~
+vnum: 49017
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: shoes feathered
+shortdesc: a pair of feathered shoes
+desc: A pair of shoes with wings flutter around here!
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65
+applies:
+14 35
+~
+extradesc: shoes feathered
+These starry blue shoes seem to be alive! They have wings attached to them
+and make little loopings when they know you're looking at them.~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Feb 17 2010
+  To: Tulok
+From: Venath
+
+Original quest given March 19, 2009
+
+From: Laoris
+To  : Tulok
+
+For wiz@0ard eye, please trophy-spell OMNISCIENTMAGICSPELL from top to bottom.
+Mobs only, no players.
+
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1006
+location: 127
+values:
+300
+300
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 21.56
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 37015
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bopwxD
+name: necklace hand carved hand-carved-necklace wood wooden
+shortdesc: a hand-carved necklace
+desc: A necklace carved from wood has been dropped here.
+type: 12
+weight: 0.70
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 5
+applies:
+9 -50
+3 2
+~
+extradesc: necklace hand carved hand-carved-necklace wood wooden
+The necklace's main pendant is carved in the shape of a tree. The tree
+appears to be growing...can this be? You notice at the bottom of the
+necklace that you can see the trees' rings...you count 50. On the side of
+the tree there appears to be an inscription. 
+~
+extradesc: inscription side
+Ciron the eternally enslaved.
+~
+~~
+vnum: 37081
+location: 127
+values:
+50
+132
+131
+136
+0
+0
+0
+~
+flags: 0
+name: vial red dark dye liquid crystal abandoned red-dye red-vial troll_quest_item
+shortdesc: a vial of red dye
+desc: A crystal vial containing a dark red liquid has been abandoned here.
+type: 10
+weight: 0.20
+cost: 4500
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+extradesc: vial red dark dye liquid crystal abandoned red-dye red-vial troll_quest_item
+The vial is about as large as a troll's pinky and made of fine crystal,
+stoppered with wax and lead.  The liquid inside is a dark red, somewhere
+between old blood and pomegranate juice.  The quality of craftmanship seems
+very high, much higer than you would expect from such a primitive people.    
+~
+~~
+vnum: 12520
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook silver leather book
+shortdesc: a silver-trimmed leather spellbook
+desc: A silver-trimmed leather spellbook lies open, face down.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+applies:
+3 4
+1 -2
+~
+extradesc: spellbook silver leather book
+The leather is pale grey, very supple, and thin.  The silver trim is painted on
+in long, quick strokes.  No symbols or drawings adorn the spine or cover; only
+faint wrinkles criscross the leather.
+~
+spells:
+5 1
+101 1
+20 1
+32 1
+100 1
+8 1
+19 1
+39 1
+99 1
+186 1
+31 1
+37 1
+106 1
+105 1
+50 1
+103 1
+30 1
+107 1
+83 1
+102 1
+2 1
+10 1
+76 1
+62 1
+67 1
+29 1
+38 1
+26 1
+57 1
+68 1
+77 1
+52 1
+66 1
+111 1
+110 1
+108 1
+109 1
+112 1
+113 1
+65 1
+185 1
+184 1
+~
+~~

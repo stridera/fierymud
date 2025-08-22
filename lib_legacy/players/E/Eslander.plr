@@ -1,0 +1,137 @@
+name: Eslander
+password: EsNoUNk9Df
+description
+He is a BIG fatty /s@&@1Glowing Red@&@0~
+prompt: &0&5Aid: %df%_&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>&2&b<&0&2%aA&2&b>&2&b<&0&2%iH&2&b><&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 10
+race: 10
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19076
+birthtime: 1464992448
+timeplayed: 1305098
+lastlogintime: 1737598283
+host: 136.038.231.125
+height: 80
+weight: 183
+base_height: 80
+base_weight: 183
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: yz
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1171/1072
+mana: 980/980
+move: 214/214
+damroll: 5
+hitroll: 4
+strength: 97
+intelligence: 58
+wisdom: 80
+dexterity: 92
+constitution: 85
+charisma: 54
+cash: 36 5 0 9
+experience: 105805999
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+402 1000
+403 1000
+404 1000
+410 850
+411 1000
+412 1000
+415 1000
+416 592
+419 1000
+420 1000
+421 1000
+422 1000
+427 1000
+428 50
+430 1000
+431 1000
+434 1000
+438 1000
+443 1000
+444 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 1000
+468 1000
+473 1000
+474 1000
+0 0
+trophy:
+1 8608 1.000000
+1 61522 1.000000
+1 61507 1.000000
+1 61506 1.000000
+1 61505 1.000000
+1 18004 1.000000
+1 18007 2.000000
+1 12514 1.000000
+1 12515 1.000000
+1 47003 1.000000
+1 47002 1.000000
+1 47001 1.000000
+1 48002 0.333333
+1 8520 1.000000
+1 10301 1.000000
+1 53300 0.333333
+0 0 0
+tells:
+1668741254 @WLyft@W tells you, 'shrug all i can think of is to test the trainers but even that is iffy likely just saw that i could so i set a stupid high number@W'@0
+1672610911 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1672610945 @WDorath@W tells you, 'is translucent faerie wings still a thing?@W'@0
+1675696726 @WA vague figure@W tells you, 'You are too poor!@W'@0
+1675696751 @WA vague figure@W tells you, 'Just take it and go!@W'@0
+1675696779 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1681960094 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1681960278 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1695762027 @WBigby@W tells you, 'No cash, no delivery.@W'@0
+1695762047 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1697303333 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1697303707 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1697596593 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1682379804 Paver gossips, 'im not all that smart we've gone over this before :)'
+1682457511 Chinok gossips, 'gratz Senolo'
+1682457516 Senolo gossips, 'Thanks!'
+1695762114 Discord gossips, 'Daedela: Really??  I've never failed a doorbash against a door that could be bashed'
+1697303297 Thorfinn gossips, 'thats ok, I should try and make a homebrew set for fun'
+1697303367 Thorfinn gossips, 'whats up Z??'
+1697303400 Someone gossips, 'good man, just leveled up hitting my daily dose of the drow'
+1697303519 Thorfinn gossips, 'you busy? Let me know if you wanna get into something man'
+1697303866 Thorfinn gossips, 'nice dude!'
+1697303886 Thorfinn gossips, 'I will train solo today, goal is level 90'
+$
+aliases:
+db doorbash $*
+who who -w
+id get identify sack;recite identify $*
+fa first aid
+store put all.crushed $*;put all.flimsy $*;put all.corroded $*;put all.burned $*;put all.rusted $*;put all.decayed $*;put all.creased $*;put all.tarnished $*
+ul unlock $*;open $*
+gac get all corpse
+bs backstab $1
+ec examine corpse
+df drink fountain
+phole put $* hole
+0

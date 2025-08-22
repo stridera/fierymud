@@ -1,0 +1,166 @@
+name: Unoma
+password: UnFgMJiQdE
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 20
+race: 26
+level: 77
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20356
+birthtime: 1664741627
+timeplayed: 558908
+lastlogintime: 1720632281
+host: 136.038.104.232
+height: 79
+weight: 342
+base_height: 79
+base_weight: 342
+base_size: 2
+natural_size: 2
+alignment: 354
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 533/456
+mana: 592/592
+move: 206/206
+damroll: 3
+hitroll: 3
+strength: 68
+intelligence: 92
+wisdom: 83
+dexterity: 66
+constitution: 95
+charisma: 58
+cash: 42 1774 9904 9863
+experience: 65440211
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+19 1000
+20 1000
+26 1000
+29 1000
+31 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+67 1000
+68 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+107 1000
+108 1000
+112 1000
+157 1000
+158 1000
+159 1000
+160 1000
+161 1000
+162 1000
+163 1000
+164 1000
+165 1000
+166 1000
+168 1000
+169 1000
+170 1000
+200 1000
+201 1000
+220 1000
+228 1000
+415 66
+416 220
+421 500
+423 810
+424 820
+438 76
+443 50
+444 239
+447 50
+451 779
+452 60
+453 754
+455 52
+458 820
+459 568
+460 68
+462 59
+464 159
+486 137
+0 0
+tells:
+1672792581 @WCalken@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
+1672806091 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673105875 @WChinok@W tells you, 'nice of you to log in to help hackwriter@W'@0
+1673108111 @WHackwriter@W tells you, 'oh it says peridot shards what i had was peridot dust so i may not be as close as i though@W'@0
+1681309163 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1681309363 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1681508111 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1681761013 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1681762451 @WThe potter@W tells you, 'Um, yes, hmm.@W'@0
+1691262405 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1697258255 Snil gossips, 'haha I killed borgan already'
+1697258264 Snil gossips, 'ty!'
+1697258270 Daedela gossips, 'you welcome!'
+1697258319 Chinok gossips, 'hum, feeling like a pawn now'
+1697339038 Gorath gossips, 'grats'
+1697339047 Snil gossips, 'ty'
+1697339048 Thorfinn gossips, 'wooooo! xp train choo chooo'
+1697339328 Discord gossips, 'Daedela: Yaaaaay!'
+1697340138 Gorath gossips, 'grats'
+1697340141 Snil gossips, 'ty!'
+$
+aliases:
+dd cast 'dimension door' $*
+crem cast 'cremate'
+imm cast 'immolate' $*
+globe cast 'major globe' $*
+melt cast 'melt' $*
+fsh cast 'fireshield'
+fshield cast 'fireshield'
+ball cast 'fireball' $*
+fireball cast 'fireball' $*
+enhance cast 'enhance ability' $*
+locate cast 'locate object' $*
+pe cast 'phosphoric embers' $*
+fa first aid
+smoke cast 'smoke' $*
+id get identify sack;recite identify $*
+of order followers $*
+who who -w
+burn cast 'burning hands' $*
+bf breathe fire
+mm cast 'fire darts' $*
+ec examine corpse
+ul unlock $*;open $*
+df drink fountain
+mir cast 'mirage' me
+roe cast 'ray of enfeeblement' $*
+stone cast 'stone skin' $*
+fs cast 'firestorm'
+haste cast 'haste' $*
+invis cast 'invisibility' $*
+cfly cast 'fly' $*
+ia cast 'mass invisibility'
+fieryi say buntoi nakkarri karisto
+0

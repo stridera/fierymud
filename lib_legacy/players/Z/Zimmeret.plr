@@ -1,0 +1,113 @@
+name: Zimmeret
+password: ZiIgLSiEUQ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 2
+race: 11
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19760
+birthtime: 1604900193
+timeplayed: 89232
+lastlogintime: 1738232085
+host: 052.119.120.201
+height: 40
+weight: 102
+base_height: 40
+base_weight: 102
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxyz
+effectflags: fk 0 0
+prefflags: hnoxCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 879/879
+mana: 980/980
+move: 328/328
+damroll: 3
+hitroll: 6
+strength: 93
+intelligence: 79
+wisdom: 68
+dexterity: 92
+constitution: 100
+charisma: 50
+cash: 13296 2007 2883 2
+experience: 105805999
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+409 1000
+410 1000
+411 1000
+412 1000
+415 1000
+416 1000
+420 1000
+421 1000
+431 1000
+438 1000
+443 1000
+444 1000
+463 1000
+464 1000
+465 1000
+472 1000
+476 634
+478 1000
+494 1000
+0 0
+trophy:
+1 52017 0.250000
+1 52013 0.400000
+1 52012 0.200000
+1 52006 0.200000
+1 52005 0.400000
+1 52015 0.200000
+1 52010 0.200000
+1 52009 1.000000
+1 7004 0.200000
+1 53503 0.200000
+1 53502 0.200000
+0 0 0
+tells:
+1605530179 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1658983194 @WLord Dargo@W tells you, 'To show my gratitude, take this.@W'@0
+1676371362 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1676371364 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1676371366 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689697925 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1701663190 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1707545095 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1707545119 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1706671270 Ekon gossips, 'ty'
+1706671278 Chinok gossips, 'night all'
+1706671281 Ekon gossips, 'night!'
+1706673418 Ekon gossips, 'night all!'
+1706673421 Auvcan gossips, 'good night!'
+1706679900 Voltel gossips, 'Congrats!'
+1706679907 Karoth gossips, 'ty :)'
+1731232946 Xumecan gossips, 'it looks like it's just the large gremlins and the gremlin captains that aggr'
+1731232963 Derrgon gossips, 'thank you!!!'
+1731232966 Xumecan gossips, 'you're welcome!'
+$
+aliases:
+kill backstab $*
+ga get all
+gac get all corpse
+gat get all 2.corpse
+0

@@ -1,0 +1,77 @@
+name: Yorn
+password: YoGhwIF21o
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19963
+birthtime: 1626671371
+timeplayed: 510
+lastlogintime: 1626672544
+host: 024.004.128.218
+height: 32
+weight: 68
+base_height: 32
+base_weight: 68
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: xy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 18
+thirst: 12
+lastlevel: 0
+hitpoints: 19/19
+mana: 1/0
+move: 64/100
+damroll: 2
+hitroll: 4
+strength: 74
+intelligence: 98
+wisdom: 81
+dexterity: 85
+constitution: 71
+charisma: 60
+experience: 2791
+quit_reason: 5
+saveroom: 3014
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+447 50
+451 50
+452 50
+453 50
+459 50
+460 50
+462 50
+464 51
+0 0
+trophy:
+1 8015 1.000000
+1 8016 1.000000
+1 8014 1.000000
+0 0 0
+tells:
+$
+gossips:
+$

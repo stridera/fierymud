@@ -1,0 +1,127 @@
+name: Roric
+password: RoVZPKUGzE
+prompt: %n|%N|%h|%H|%ph|%v|%V|%pv|%a|%i|%o |%t |%x |%w|%W|%l |%r|%e|%di|%dd|%dm|%dl|%df|%dt|%ds|%dc|
+autoinvis: 0
+sex: 1
+class: 9
+race: 0
+level: 21
+home: 6015
+lifeforce: 0
+composition: 0
+id: 20123
+birthtime: 1642820915
+timeplayed: 502574
+lastlogintime: 1646761204
+host: 074.193.157.039
+height: 74
+weight: 131
+base_height: 74
+base_weight: 131
+base_size: 2
+natural_size: 2
+alignment: 57
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: fhnoxC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 241/241
+mana: 44/44
+move: 107/108
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 53
+wisdom: 78
+dexterity: 100
+constitution: 75
+charisma: 58
+cash: 8 23 53 37
+bank: 11 693 3644 2730
+experience: 1963309
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+401 270
+403 270
+405 237
+408 270
+410 112
+411 267
+415 230
+416 220
+420 153
+421 266
+438 80
+440 270
+443 80
+444 164
+464 263
+465 140
+0 0
+trophy:
+1 16102 0.200000
+1 16107 0.400000
+1 16100 0.200000
+1 16105 0.400000
+1 16110 3.800000
+1 16111 0.200000
+1 16103 0.200000
+1 2001 0.200000
+1 2005 0.200000
+1 2002 0.400000
+1 18510 0.200000
+1 18507 0.200000
+1 12003 0.200000
+1 12016 0.200000
+0 0 0
+tells:
+1644204198 @WThe rice vendor@W tells you, 'Hm..... All right.@W'@0
+1644204211 @WThe rice vendor@W tells you, 'Hm..... All right.@W'@0
+1644204213 @WThe rice vendor@W tells you, 'Hm..... All right.@W'@0
+1644204648 @WShazz@W tells you, 'You are too poor!@W'@0
+1644204668 @WShazz@W tells you, 'Take good care of that.@W'@0
+1644223197 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1646759924 @WChinok@W tells you, 'well that's not working.. hummm. @W'@0
+1646760438 @WChinok@W tells you, 'lol there is no strider end, that I can't see... @W'@0
+1646760903 @WChinok@W tells you, 'should work now.. it wanted 3 digits per octet@W'@0
+1646761174 @WChinok@W tells you, 'OK, thanks@W'@0
+$
+gossips:
+1646760360 Meina gossips, 'and now learning about mongoDB relationships!'
+1646760374 Meina gossips, 'which i kind of already know about because i read a blog entry about all the ways of doing relationships'
+1646760399 Meina gossips, 'meanwhile i'm planning out my girl scout meeting for sunday.  i'm committed to taking up to 16 girls camping in may :| send thoughts and prayers.'
+1646760407 Meina gossips, 'also i'm clearly insane.'
+1646760462 Chinok gossips, 'mongo ticked me off this morning...'
+1646760496 Chinok gossips, 'freespace on this mongodb was down to 2gb free.. so -- how does it respond -- it logs 10 times a sec that space is low, until it runs out of space.'
+1646760497 Meina gossips, 'oh good, cuz we're committed to it now. we had been on dynamoDB.'
+1646760517 Meina gossips, 'hahahaha omg that's too hilariously frustrating to believe'
+1646760699 Meina gossips, 'so besides mongo being stupid, how's work Chinnie? I got to chitchat with Strider late last night but I've missed you!'
+1646761008 Meina gossips, 'oooh an ostrich!'
+1646761053 Chinok gossips, 'hey Meina, you should go find that drunk '
+1646761064 Chinok gossips, 'the one you made a suggestion about ?'
+$
+aliases:
+gc get all.coins corpse
+fc fill skin fountain
+dc1 drop 1 copper
+wa wake;stand
+lc look in corpse
+ggc get all corpse
+dc drink skin
+dr drink skin
+k kill $1
+li list
+bi buy identify
+id recite identify $1
+- recite recall roric
+lg level gain
+. level gain
+qp quaff potion
+area help area
+un abandon
+0

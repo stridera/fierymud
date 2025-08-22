@@ -1,0 +1,3271 @@
+1
+vnum: 5553
+location: 0
+values:
+0
+800
+0
+0
+0
+0
+0
+~
+flags: j
+name: crystal light eldoria-reward small-cracked-crystal fractured-crystal
+shortdesc: a fractured crystal
+desc: A small, cracked crystal lies here.
+type: 1
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 5201
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 5519
+location: 3
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: torque eldoria-reward 3rd-black-legion-torque
+shortdesc: a torque of the 3rd Black Legion
+desc: A black torque lies nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward 3rd-black-legion-torque
+A torque made of twisted black metal, it looks fairly protective.
+~
+~~
+vnum: 5519
+location: 4
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: torque eldoria-reward 3rd-black-legion-torque
+shortdesc: a torque of the 3rd Black Legion
+desc: A black torque lies nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward 3rd-black-legion-torque
+A torque made of twisted black metal, it looks fairly protective.
+~
+~~
+vnum: 52022
+location: 5
+values:
+40
+0
+0
+0
+0
+0
+0
+~
+flags: abgmo
+name: skin armor dragon-skin dragon-armor
+shortdesc: a dragon skin
+desc: A set of scaled dragon armor lies here, apparently forgotten by the gods.
+type: 9
+weight: 19.00
+cost: 14000
+timer: 0
+level: 78
+effects: 0 0 0
+wear: 9
+applies:
+1 -5
+5 -5
+~
+extradesc: skin armor dragon-skin dragon-armor
+Of all things, dragon skin is incredibly rare.  The scales are hard and a dark
+black color.  Each scale is the size of a man's kneecap, connected
+mysteriously beneath.    
+~
+~~
+vnum: 55468
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agjmopqrstuvwxyz
+name: unholy helm fervent
+shortdesc: &1&bHelm of the Fervent&0
+desc: Tainting the area is an unholy helm.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+applies:
+3 3
+5 1
+~
+extradesc: unholy helm fervent
+The metal that makes up this helm is forged with the burning drive to spread
+the evil powers of the dark gods.  A mix of unhallowed power and superior
+craftsmanship, armor like this is given to evil priests to aid them in their
+efforts to blight the world.
+~
+~~
+vnum: 5531
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: leggings eldoria-reward 3rd-black-legion-leggings
+shortdesc: leggings of the 3rd Black Legion
+desc: Some leggings lie here.
+type: 9
+weight: 4.90
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 33
+applies:
+3 2
+~
+~~
+vnum: 5533
+location: 8
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: boots eldoria-reward 3rd-black-legion-boots
+shortdesc: boots of the 3rd Black Legion
+desc: Some black boots lie here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 65
+applies:
+2 2
+~
+~~
+vnum: 55551
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gjmopqrstuvwxyz
+name: blood-stained black gauntlets zealot
+shortdesc: &5Gauntlets of the Zealot&0
+desc: Blood stained black gauntlets lie upon a dark altar.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+2 3
+3 3
+~
+extradesc: blood-stained black gauntlets zealot
+These gauntlets are covered in the blood of many sacrifices, each one dedicated
+to the diabolist for whom these gauntlets were forged.  Scorched in Infernal
+fires and tempered with unholy magic, the gauntlets lend the wearer aide in
+ritual and, of course, slaughter.
+~
+~~
+vnum: 55469
+location: 10
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aghjmopqrstuvwxyz
+name: unholy vambraces fervent
+shortdesc: &1&bVambraces of the Fervent&0
+desc: Tainting the area is a set of unholy arm guards.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+applies:
+2 3
+4 2
+~
+extradesc: unholy vambraces fervent
+The metal that makes up these vambraces is forged with the burning drive to
+spread the evil powers of the dark gods.  A mix of unhallowed power and
+superior craftsmanship, armor like this is given to evil priests to aid them in
+their efforts to blight the world.
+~
+~~
+vnum: 55010
+location: 12
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: owyz
+name: pelt polar bear fur pure white polar-pelt cloak
+shortdesc: a polar bear pelt
+desc: A pure white cloak is hidden in the snow.
+type: 9
+weight: 2.10
+cost: 1100
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1025
+applies:
+4 1
+19 1
+~
+extradesc: pelt polar bear fur pure white polar-pelt cloak
+You hold a snow white short cloak.  It's just long and wide enough to cover
+your shoulders and half of your back.  Its fur lining keeps you warm and offers
+some protection.    
+~
+~~
+vnum: 55013
+location: 13
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: bg
+name: jade-girth jade belt jade girth green crystal
+shortdesc: a jade girth
+desc: A crystal green girth lies here folded into a pile.
+type: 9
+weight: 2.50
+cost: 5400
+timer: 0
+level: 54
+effects: 0 0 0
+wear: 2049
+applies:
+4 1
+~
+extradesc: jade-girth jade belt jade girth green crystal
+This heavy piece of armor seems to be made of pure green crystal.  It glows
+slightly and is warm to the touch.  Just looking at it make you feel brave.  
+~
+~~
+vnum: 5209
+location: 14
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agmprtu
+name: bracelet metallic reddish quickening quickening-bracelet
+shortdesc: a quickening bracelet
+desc: A reddish metallic bracelet is on the floor here.
+type: 12
+weight: 0.40
+cost: 450
+timer: 0
+level: 22
+effects: 0 0 0
+wear: 4097
+applies:
+13 -5
+2 1
+~
+extradesc: bracelet metallic reddish quickening quickening-bracelet
+It looks very light-weight and definately has a magical aura about
+it. The strange reddish metal is unlike anything you're used to.
+~
+~~
+vnum: 20306
+location: 15
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracelet snake-fang-bracelet small fangs
+shortdesc: a snake fang bracelet
+desc: A small bracelet made of snake fangs lies on the ground here.
+type: 9
+weight: 0.70
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 4097
+applies:
+19 1
+18 1
+1 1
+~
+extradesc: bracelet snake fang
+This bracelet is made out of a very durable weaved grass that has several
+spaced out snake fangs weaved into it.  The fangs are about an inch in length
+and give the bracelet a menacing look.  The grass is a dull green color and it
+is weaved tightly so it looks almost like it is one piece of grass.    
+~
+~~
+vnum: 51014
+location: 20
+values:
+0
+2
+5
+6
+0
+0
+0
+~
+flags: go
+name: staff winds long staff-winds
+shortdesc: the Staff of Winds
+desc: A long staff lies here, stirring up some blustery wind.
+type: 5
+weight: 4.00
+cost: 2100
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 32769
+applies:
+23 -2
+14 25
+~
+extradesc: staff wind staff-of-wind weather
+As you bring the staff closer to you, you notice a wind generate around you
+almost as though it was protecting you.  The staff makes you feel more
+agile, and gives you en energy boost when you hold it!
+~
+~~
+vnum: 10307
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: oprstwx
+name: glasses silver-trimmed-glasses pair abandoned
+shortdesc: a pair of glasses
+desc: A pair of silver-trimmed glasses has been abandoned here.
+type: 11
+weight: 0.10
+cost: 500
+timer: 5
+level: 40
+effects: 0 0 0
+wear: 65537
+applies:
+3 5
+28 40
+~
+extradesc: glasses silver-trimmed-glasses pair abandoned
+These finely ground lenses must be gnomish work, for they seem to be flawless.
+The rims are a thin silver and the nosepiece seems quite comfortable.  They
+would surely be a great help to someone who has no near-vision that wants to
+read a book or crochet or do anything else that requires them to see things
+close up.    
+~
+~~
+vnum: 5535
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: mask eldoria-reward 3rd-black-legion-black-mask
+shortdesc: a black mask of the 3rd Black Legion
+desc: A small black mask lies here.
+type: 9
+weight: 0.94
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 131073
+applies:
+18 1
+~
+~~
+vnum: 20301
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 20301
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 48104
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: head shrivelled severed-head
+shortdesc: a shrivelled, severed head
+desc: The shrivelled head of a jungle savage lies here.
+type: 12
+weight: 8.00
+cost: 50
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1064961
+applies:
+3 1
+17 5
+~
+extradesc: shrivelled head severed
+This grotesque trophy makes you want to puke. Why would you ever want to
+look at such a thing??
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 5545
+location: -1
+values:
+2
+2
+5
+5
+0
+0
+0
+~
+flags: jow
+name: mace spiked eldoria-reward 3rd-black-legion-spiked-mace
+shortdesc: a spiked mace of the 3rd Black Legion
+desc: A black spiked mace lies nearby.
+type: 5
+weight: 6.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 55472
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: agjmopqrstuvwxyz
+name: unholy boots fervent
+shortdesc: &1&bBoots of the Fervent&0
+desc: Tainting the area is a pair of unholy boots.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+applies:
+13 10
+~
+extradesc: unholy boots fervent
+The metal that makes up these boots is forged with the burning drive to spread
+the evil powers of the dark gods.  A mix of unhallowed power and superior
+craftsmanship, armor like this is given to evil priests to aid them in their
+efforts to blight the world.
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55471
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agjmopqrstuvwxyz
+name: unholy greaves fervent
+shortdesc: &1&bGreaves of the Fervent&0
+desc: Tainting the area is a set of unholy greaves.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 33
+applies:
+4 2
+1 3
+~
+extradesc: unholy greaves fervent
+The metal that makes up these greaves is forged with the burning drive to
+spread the evil powers of the dark gods.  A mix of unhallowed power and
+superior craftsmanship, armor like this is given to evil priests to aid them in
+their efforts to blight the world.
+~
+~~
+vnum: 12524
+location: -1
+values:
+6
+74
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll yellow
+shortdesc: a yellow scroll
+desc: A bright yellow scroll faintly glows with energy.
+type: 2
+weight: 0.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+~~
+vnum: 48123
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: l
+name: stone necklace
+shortdesc: a stone necklace
+desc: A small stone necklace lies here.
+type: 11
+weight: 0.80
+cost: 40
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 4101
+applies:
+1 1
+5 1
+19 -2
+~
+~~
+vnum: 48105
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gjmot
+name: necklace white bone-necklace
+shortdesc: a bone necklace
+desc: A necklace made of white stones gleams in the sun.
+type: 9
+weight: 0.80
+cost: 120
+timer: 0
+level: 34
+effects: 0 0 0
+wear: 5
+applies:
+23 10
+4 -1
+~
+extradesc: bone necklace white stone white-stone bone-necklace
+This necklace is composed of several die-sized pieces of bone connected by a
+stout throng. Each bone is crudely decorated with symbols that you assume
+are religious in nature.
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 59006
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: book worn poetry leather-bound-poetry-book
+shortdesc: a book of poetry
+desc: A tattered and worn out leather bound book stands on end.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+applies:
+4 1
+3 1
+~
+extradesc: book
+The worn out leather book binding is almost falling apart.  It is very old
+and the leather is well oiled from being handed by unclean hands.  The pages in
+the book are hand written with a variety of inks giving light to the idea that
+the pages were written on different days as if a journal would be.  You can
+read a few of the first pages: page1, page2 and page3.
+~
+extradesc: page3
+For all that are powerful
+Bringing fists down on the weak
+Smashing their souls
+And breaking the meek
+
+May they soon meet their maker
+Brought forth for their misdeed
+Wrought down into the ground
+Stomped flat their greed
+
+For soon the good will arise
+And bring evil to its end
+Stop our troubled existence 
+Then let us to ascend
+~
+extradesc: page1
+   The quaint sounds of spring fill my ears with a joy not found else where.  
+The breeze showers my skin with the sensations of the air.  This feeling
+empowers me with the creativity that is unrivaled by others.  Like floating on
+top of the world without the weight of gravity to pull me down.    
+~
+extradesc: page2
+............THOUGHTS............
+   Thoughts drain like water
+  Down into the consciousness 
+   Collected in a small form
+Then spread out to be recollected 
+  Rearranged and transformed 
+Until they collide with perfection 
+     Forming what would be
+          What could be
+ The greatest thought of them all
+~
+~~
+vnum: 55474
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: agjmopqrstuvwxyz
+name: unholy gauntlets fervent
+shortdesc: &1&bGauntlets of the Fervent&0
+desc: Tainting the area is a set of unholy gauntlets.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+13 15
+1 1
+~
+extradesc: unholy gauntlets fervent
+The metal that makes up these gauntlets is forged with the burning drive to
+spread the evil powers of the dark gods.  A mix of unhallowed power and
+superior craftsmanship, armor like this is given to evil priests to aid them in
+their efforts to blight the world.
+~
+~~
+vnum: 55470
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: agjmopqrstuvwxyz
+name: unholy chestguard fervent
+shortdesc: &1&bChestguard of the Fervent&0
+desc: Tainting the area is an unholy chestguard.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 9
+applies:
+13 10
+6 4
+~
+extradesc: unholy chestguard fervent
+The metal that makes up this chestguard is forged with the burning drive to
+spread the evil powers of the dark gods.  A mix of unhallowed power and
+superior craftsmanship, armor like this is given to evil priests to aid them in
+their efforts to blight the world.
+~
+~~
+vnum: 10314
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: robe neatly-folded-cotton-robe light-cotton-robe yukata
+shortdesc: a light cotton robe
+desc: A neatly folded cotton robe rests here.
+type: 11
+weight: 1.30
+cost: 700
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 9
+applies:
+4 3
+17 10
+~
+extradesc: robe neatly-folded-cotton-robe light-cotton-robe yukata
+This light blue robe is decorated with a feather pattern, identifying it as
+belonging to the Phoenix Feather Resort west of Ickle.  The style is familiar
+to anyone who knows the customs of Odaishyozen: it's meant to be worn in the
+same way as a kimono.  Because it's made of cotton rather than silk and
+designed for more casual wear, this style of robe is called a yukata.  It was
+probably designed by someone from the resort who visited the Emerald Isle.
+~
+~~
+vnum: 1246
+location: -1
+values:
+60
+3
+1247
+0
+0
+0
+0
+~
+flags: d
+name: box heart-shaped heart crimson beautiful valentine-quest-item
+shortdesc: a heart-shaped box
+desc: A crimson heart-shaped box rests here, concealing certain treats within.
+type: 15
+weight: 0.20
+cost: 2
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: box heart-shaped heart crimson beautiful valentine-quest-item
+A beautiful crimson velvet, the exterior of the box is finely decorated with
+silver inlay around the edges.  The box itself has a heart shape, with a cover
+that looks as if it could be flipped up.  A small hole on the box's top at the
+point of the heart looks as though it might hold the secret to removing the
+cover.  A large silver rune rests prominently in the center of cover.    
+~
+extradesc: rune
+The silver rune is printed on the velvet in an unfamiliar script, but in very
+small letters below it the word "Love" is written in common.    
+~
+~~
+vnum: 1219
+location: -2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: candy hard food
+shortdesc: a piece of sweet hard candy
+desc: A piece of sweet hard candy lies here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1248
+location: -2
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: strawberry chocolate chocolate-covered covered delicious delicious-looking candy food
+shortdesc: a chocolate-covered strawberry
+desc: A delicious-looking piece of candy is sitting here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: strawberry chocolate chocolate-covered covered delicious candy
+A plump, fresh, red strawberry has been dipped into chocolate, looking
+absolutely tantalizing.  It smells slightly fruity and very sweet, inducing the
+salivary glands to work their hardest.    
+~
+~~
+vnum: 1218
+location: -2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: candy chocolate food
+shortdesc: a piece of chocolate candy
+desc: A pice of candy lies here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 61501
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: peach plump food
+shortdesc: a plump peach
+desc: A plump, fuzzy peach hangs from a low branch.
+type: 19
+weight: 0.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: peach plump food
+This peach is a little on the small side.  It's rather soft, quite fuzzy, and
+has a large, faint red blotch on one side.  It smells delicious!    
+~
+~~
+vnum: 61502
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: apple spotted yellow food
+shortdesc: a spotted yellow apple
+desc: A yellow, spotted apple has fallen to the ground.
+type: 19
+weight: 0.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: spotted yellow apple
+This apple is large, round, and speckled with small brown spots.  It looks as
+though it hung in its tree for some time.  It smells as though it's a little
+past its peak ripeness, but is still good.    
+~
+~~
+vnum: 23757
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: garlic clove white spice herb food
+shortdesc: a clove of garlic
+desc: A clove of garlic sits here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: clove garlic white herb spice
+Garlic is said to be able to ward off vampires.  It certainly will ward off
+your friends if you eat too much of it, as it can cause very bad breath.  It
+is, however, excellent at curing minor illnesses such as the common cold.  
+~
+~~
+vnum: 23757
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: garlic clove white spice herb food
+shortdesc: a clove of garlic
+desc: A clove of garlic sits here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: clove garlic white herb spice
+Garlic is said to be able to ward off vampires.  It certainly will ward off
+your friends if you eat too much of it, as it can cause very bad breath.  It
+is, however, excellent at curing minor illnesses such as the common cold.  
+~
+~~
+vnum: 23757
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: garlic clove white spice herb food
+shortdesc: a clove of garlic
+desc: A clove of garlic sits here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: clove garlic white herb spice
+Garlic is said to be able to ward off vampires.  It certainly will ward off
+your friends if you eat too much of it, as it can cause very bad breath.  It
+is, however, excellent at curing minor illnesses such as the common cold.  
+~
+~~
+vnum: 6106
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: roll lemon light pastry pale small food
+shortdesc: a light lemon roll
+desc: A small pale pastry lies here.
+type: 19
+weight: 0.12
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: roll light lemon pastry pale small
+It is a small roll that smells of lemon -- finely baked, and light as
+thistledown.
+~
+~~
+vnum: 6106
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: roll lemon light pastry pale small food
+shortdesc: a light lemon roll
+desc: A small pale pastry lies here.
+type: 19
+weight: 0.12
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: roll light lemon pastry pale small
+It is a small roll that smells of lemon -- finely baked, and light as
+thistledown.
+~
+~~
+vnum: 50200
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lime wedge green lime-wedge fat little food
+shortdesc: a wedge of lime
+desc: A fat little wedge of lime lies on the ground.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: lime wedge green lime-wedge fat little food
+This bright green morsel is sure to keep away scurvy.  It's also good with
+certain drinks.    
+~
+~~
+vnum: 6106
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: roll lemon light pastry pale small food
+shortdesc: a light lemon roll
+desc: A small pale pastry lies here.
+type: 19
+weight: 0.12
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: roll light lemon pastry pale small
+It is a small roll that smells of lemon -- finely baked, and light as
+thistledown.
+~
+~~
+vnum: 6106
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: roll lemon light pastry pale small food
+shortdesc: a light lemon roll
+desc: A small pale pastry lies here.
+type: 19
+weight: 0.12
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: roll light lemon pastry pale small
+It is a small roll that smells of lemon -- finely baked, and light as
+thistledown.
+~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: meat boar boar-meat food
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: meat boar raw
+It's raw meat.
+~
+~~
+vnum: 10311
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fish meat tasty bit white polar-trout-filet food
+shortdesc: a filet of polar trout
+desc: A tasty bit of white fish meat is sitting here.
+type: 19
+weight: 0.40
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: fish meat tasty bit white polar-trout-filet food
+It's a bit of meat from the elusive polar trout.  Fry it up with dill or mince
+it into pies for the best flavor.  It's said that te natives of Odaishyozen eat
+raw fish with rice, but it would probably taste better cooked.
+~
+~~
+vnum: 10311
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fish meat tasty bit white polar-trout-filet food
+shortdesc: a filet of polar trout
+desc: A tasty bit of white fish meat is sitting here.
+type: 19
+weight: 0.40
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: fish meat tasty bit white polar-trout-filet food
+It's a bit of meat from the elusive polar trout.  Fry it up with dill or mince
+it into pies for the best flavor.  It's said that te natives of Odaishyozen eat
+raw fish with rice, but it would probably taste better cooked.
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 10305
+location: -1
+values:
+0
+100
+100
+0
+0
+0
+0
+~
+flags: ej
+name: lantern golden-lantern shining
+shortdesc: a golden lantern
+desc: A golden lantern shines with a pale light here.
+type: 1
+weight: 4.00
+cost: 1000
+timer: 100
+level: 10
+effects: 0 0 0
+wear: 16385
+extradesc: lantern golden-lantern shining
+This lanters glows with a strange, almost dark light.  A brass shielding lets
+the user focus the light on one side or, by lowering it, allows the light to
+spread around and illuminate everything.  Though ancient, the goldwork is plain
+and the only decoration is a dragon etched on the handle.    
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 43022
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-insanity something insanity
+shortdesc: the Cloak of Insanity
+desc: Something rests on the ground here, slowly corrupting reality.
+type: 12
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+applies:
+4 -3
+19 3
+~
+extradesc: cloak insanity
+Looking at the cloak too long gives you a headache.
+~
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 50213
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnuy
+name: briquet sabre short worn
+shortdesc: a briquet
+desc: A short, worn sabre is lying here.
+type: 5
+weight: 2.00
+cost: 900
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+extradesc: briquet sabre short worn
+This is fairly short sabre, suitable for slashing foes in close quarters.  It
+looks well-worn and somewhat tarnished.    
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 48102
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gk
+name: necklace pink coral-necklace
+shortdesc: a coral necklace
+desc: A fragile pink necklace catches your eye.
+type: 8
+weight: 0.30
+cost: 900
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 5
+applies:
+4 1
+3 -1
+13 15
+~
+extradesc: coral necklace coral-necklace fragile pink
+The coral necklace is made up of a variety of different pieces of coral.
+This coral is brightly colored; whether the coral's coloration is natural
+or the result of pigments applied by the savages, you are unsure of. In
+any event, it is a very pretty piece of jewelry.
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 11707
+location: 127
+values:
+7
+1
+3
+34
+0
+0
+0
+~
+flags: ag
+name: potion violet glowing
+shortdesc: a violet potion
+desc: A violet potion has been left here.
+type: 10
+weight: 0.30
+cost: 20
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+~~
+vnum: 5545
+location: 127
+values:
+2
+2
+5
+5
+0
+0
+0
+~
+flags: jow
+name: mace spiked eldoria-reward 3rd-black-legion-spiked-mace
+shortdesc: a spiked mace of the 3rd Black Legion
+desc: A black spiked mace lies nearby.
+type: 5
+weight: 6.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 11702
+location: 127
+values:
+12
+22
+16
+43
+0
+0
+0
+~
+flags: g
+name: potion white bright
+shortdesc: a bright white potion
+desc: A bright white potion is lying on the ground here.
+type: 10
+weight: 0.50
+cost: 1500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: bright white potion
+It is a bright, almost glowing white potion. The liquid in the glass
+vial is milky and opaque, and smells faintly of herbs.
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+240
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 17.65
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 11701
+location: 127
+values:
+7
+3
+35
+88
+0
+0
+0
+~
+flags: ag
+name: potion silty glowing
+shortdesc: a silty potion
+desc: A silty potion has been left here.
+type: 10
+weight: 0.20
+cost: 20
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3031
+location: 127
+values:
+1
+250
+242
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 55473
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aghjmopqrstuvwxyz
+name: unholy bracer fervent
+shortdesc: &1&bBracer of the Fervent&0
+desc: Tainting the area is an unholy bracer.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+applies:
+6 2
+3 3
+~
+extradesc: unholy bracer fervent
+The metal that makes up this bracer is forged with the burning drive to spread
+the evil powers of the dark gods.  A mix of unhallowed power and superior
+craftsmanship, armor like this is given to evil priests to aid them in their
+efforts to blight the world.
+~
+~~

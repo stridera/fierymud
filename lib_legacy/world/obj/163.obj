@@ -1,0 +1,476 @@
+#16300
+claymore heavy-claymore great-sword greatsword~
+a claymore~
+A heavy claymore is stuck in the ground.~
+~
+5 57700416 32769 15
+0 3 8 3 0 0 0
+20.00 800 0 0 0 0 0 0
+E
+claymore heavy-claymore great-sword greatsword~
+The claymore is a heavy broadsword but its craftsmanship is a little crude.  
+You find that its balance is quite good and the blade is keen.~
+A
+5 3
+X
+1011
+#16301
+spear war-spear long-spear~
+a war spear~
+A long spear lies discarded here.~
+~
+5 50344000 8193 15
+0 1 8 14 0 0 0
+1.90 300 0 0 0 0 0 0
+E
+war-spear long-spear~
+The spear is consists of a large, iron head attached to a 6' shaft.  It is
+rather easy to use and would come in handy in a fight.~
+A
+4 2
+X
+993
+#16302
+staff intricately-carved-yew-staff druidstaff druid-staff~
+an intricately carved yew staff~
+An intricately carved yew staff rests against a tree.~
+~
+5 13025352 8193 15
+0 2 4 6 0 0 0
+2.00 1000 0 0 0 0 0 0
+E
+staff druid druid-staff~
+   A mystical aura surrounds this simple piece of wood. Although it seems to
+be a simple staff, there is something more about it that you just cannot
+put your finger on.~
+A
+4 1
+A
+3 1
+A
+27 1
+A
+17 2
+X
+16
+#16303
+brew mistletoe-brew light-green-potion~
+the mistletoe brew~
+A light green potion lies among the grasses.~
+~
+10 0 1 30
+30 250 0 0 0 0 0
+0.75 2000 0 0 0 0 0 0
+E
+mistletoe-brew light-green-potion~
+You look at the messy green gunk in the crystal potion.  You wonder who would
+want to keep something like this.~
+#16304
+quarterstaff large-quarterstaff quarter-staff~
+a large quarterstaff~
+A large quarterstaff is here.~
+~
+5 64 8193 15
+0 2 4 6 0 0 0
+2.00 200 0 0 0 0 0 0
+E
+large-quarterstaff quarter-staff~
+The staff is about 8 feet long and seems to be rather easy to use.  In the
+hands of an expert, this would be devastating.~
+A
+4 2
+#16305
+druidstaff golden-druidstaff druid-staff gold-plated-staff questobject~
+the Golden Druidstaff~
+A gold plated staff is stuck in the ground.~
+~
+5 13025352 8193 50
+0 3 6 6 0 0 0
+2.00 2000 0 0 0 0 0 0
+E
+golden-druidstaff druid-staff gold-plated-staff questobject~
+The staff is made of wood, but there is an odd golden sheen to its surface.  A
+tingling sensation moves up your arm as you touch its surface.~
+A
+4 3
+A
+3 3
+A
+27 2
+X
+17
+#16306
+broadsword broad-sword~
+a broadsword~
+A broadsword is half buried in the earth.~
+~
+5 53489664 8193 20
+0 2 5 3 0 0 0
+2.10 500 0 0 0 0 0 0
+E
+broadsword broad-sword~
+The broadsword has the mark of a craftsman etched in its hilt.  The steel is of
+the finest quality and its balance superb.  This is truly the mark of a great
+warrior.~
+E
+mark craftsman~
+The mark on the hilt is of a hammer upon an anvil. Beneath it are the words:
+           fiat justitia, ruat coelum
+ 
+                 Mystwatch~
+A
+23 -10
+A
+19 1
+X
+993
+#16307
+buckler small-round-shield~
+a buckler~
+A small round shield is here.~
+~
+9 50335744 513 15
+5 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+buckler small-round-shield~
+The buckler is just a small hide shield, about 1.  5 feet across.  It couldn't
+possibly give too much protection in a heated battle.~
+A
+2 1
+X
+225
+#16308
+cloak wolf-fur-cloak heap~
+a wolf fur cloak~
+A cloak of wolf fur lies in a heap.~
+~
+9 536870912 1025 15
+3 0 0 0 0 0 0
+5.00 200 0 0 0 0 0 0
+E
+wolf-fur-cloak heap~
+The fur cloak is not very comfortable to wear but if it can protect you from
+the cold, well, you just aren't complaining.~
+A
+5 3
+A
+2 1
+#16309
+wand black-wand~
+a black wand~
+A black wand is here.~
+~
+3 0 16385 15
+15 3 2 29 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+wand black-wand~
+The wand is jet black in colour, and it seems to absorb all the light that
+falls on it. Etched on one end are the words:
+           May the eyes never set their sights on me.~
+#16310
+shield heater-shield~
+a heater shield~
+A heater shield lies here.~
+~
+9 50335744 513 20
+7 0 0 0 0 0 0
+2.10 300 0 0 0 0 0 0
+E
+heater-shield~
+The shield is of the design that knights usually use.  Upon it is the proud
+blazon of a gold eagle outspread upon a field of azure.~
+A
+1 -1
+A
+5 1
+X
+225
+#16311
+hauberk leather-hauberk~
+a leather hauberk~
+A leather hauberk lies on the ground.~
+~
+9 50335744 9 15
+7 0 0 0 0 0 0
+8.00 300 0 0 0 0 0 0
+E
+leather-hauberk~
+The hauberk is like a tunic with sleeves.  This one is a kind of long armored
+shirt that hangs above the knees providing protection to the torso.  It runs
+along the arms, under any additional armwear or sleeves.  It is collarless and
+split slightly at the center neck to allow the head through.  This one isn't
+very good but sometimes you just have to make do.~
+X
+224
+#16312
+pipe druid's-pipe reed-pipe druids-pipe~
+a druid's pipe~
+A reed pipe lies among the bushes.~
+The sound is wistful and somber.~
+30 0 16385 15
+15 2 2 247 0 0 0
+1.00 100 0 0 0 0 0 0
+T 58007
+E
+pipe druid's-pipe reed-pipe druids-pipe~
+The pipe is made of reeds you'd normally find on river banks.  A haunting sound
+seems to emit from it as the wind blows past you.~
+A
+27 1
+#16313
+spear boar-spear~
+a boar spear~
+A boar spear is here.~
+~
+5 50344000 8193 15
+0 1 8 14 0 0 0
+2.10 200 0 0 0 0 0 0
+E
+spear boar boar-spear~
+   The spear is about 8 feet long and has a cross bar about 2 feet from the
+point. This is to prevent the boar from climbing up the spear after it has been
+hit.~
+A
+3 2
+X
+993
+#16314
+shield centaur-shield horsehide horse-hide~
+a centaur shield~
+A horsehide shield lies here.~
+~
+9 50335744 513 15
+5 0 0 0 0 0 0
+2.10 200 0 0 0 0 0 0
+E
+centaur-shield horsehide horse-hide~
+The shield is a round hide shield about 4.  5 feet across.  The material it is
+made of has a rather strange texture.~
+A
+5 1
+A
+3 -1
+X
+225
+#16315
+tunic yellowed-linen-tunic~
+a yellowed linen tunic~
+A yellowed linen tunic lies in a heap.~
+~
+9 536870912 1033 15
+3 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+yellowed-linen-tunic~
+The tunic seems to be yellowed with age and constant use.  It is also rather
+threadbare in some spots.~
+A
+14 15
+#16316
+kilt philabeg leggings pile-cloth plaid-kilt~
+a plaid kilt~
+A pile of cloth lies in heap.~
+~
+9 0 33 15
+4 0 0 0 0 0 0
+1.00 100 0 0 0 0 0 0
+E
+philabeg leggings pile-cloth plaid-kilt~
+The pile of cloth seems to bear the markings of one of the highlander clans
+residing in the area.  This could be one of their philabegs or kilts they use
+to identify their loyalties.~
+A
+2 1
+A
+4 -1
+#16350
+vine vine-mielikki small-bit-vine-glows questobject~
+the Vine of Mielikki~
+A small bit of vine glows lightly here.~
+~
+8 63960649 5 70
+0 0 0 0 0 0 0
+0.20 1000 0 0 0 0 0 0
+T 16343
+E
+vine vine-mielikki small-bit-vine-glows questobject~
+A small circlet of glowing green vine, this vine although
+obviously cut from it's roots, still manages to survive
+throught some holy power.~
+X
+1011
+#16351
+map bark-map moonwell map1 questobject~
+a bark map~
+A piece of bark with a picture on it lies here.~
+~
+12 66056200 1 70
+0 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+map bark-map moonwell map1 questobject~
+                        / \
+                      / ( ) \
+                    / /     \ \
+                  / /         \ \
+                / /             \ \
+              / /                 \ \
+            / /                     \ \
+           <( )                     ( )>
+            \ \                     / /
+             \ \                   / /
+              \ \                 / /
+               \ \               / /
+                \ \_____________/ /
+                 \( )_________( )/~
+X
+1011
+#16352
+map bark-map moonwell map2 questobject~
+a bark map~
+A piece of bark with a picture on it lies here.~
+~
+12 66056200 1 70
+0 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+map bark-map moonwell map2 questobject~
+                        &1&b/ \&0
+                      &1&b/ (R) \&0
+                    &1&b/ /     \ \&0
+                  &1&b/ /         \ \&0
+                / /             \ \
+              / /                 \ \
+            / /                     \ \
+           <( )                     ( )>
+            \ \                     / /
+             \ \                   / /
+              \ \                 / /
+               \ \               / /
+                \ \_____________/ /
+                 \( )_________( )/~
+X
+1011
+#16353
+map bark-map moonwell map3 questobject~
+a bark map~
+A piece of bark with a picture on it lies here.~
+~
+12 66056200 1 70
+0 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+map bark-map moonwell map3 questobject~
+                        &1&b/ \&0
+                      &1&b/ (R) \&0
+                    &1&b/ /     \ \&0
+                  &1&b/ /         \ \&0
+                / /             \ \
+              / /                 \ \
+            / /                     \ \
+           <( )                     ( )>
+            \ \                     / /
+             \ \                   / /
+              \ \                 &6&b/ &0/
+               \ \               &6&b/ /&0
+                \ \_______&6&b______/ /&0
+                 \( )_____&6&b____(W)/&0~
+X
+1011
+#16354
+map bark-map moonwell map4 questobject~
+a bark map~
+A piece of bark with a picture on it lies here.~
+~
+12 66056200 1 70
+0 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+map bark-map moonwell map4 questobject~
+                        &1&b/ \&0
+                      &1&b/ (R) \&0
+                    &1&b/ /     \ \&0
+                  &1&b/ /         \ \&0
+                &4&b/ /&0             \ \
+              &4&b/ /&0                 \ \
+            &4&b/ /&0                     \ \
+           &4&b<(J)&0                     ( )>
+            &4&b\ \&0                     / /
+             &4&b\ \&0                   / /
+              &4&b\ &0\                 &6&b/ &0/
+               \ \               &6&b/ /&0
+                \ \_______&6&b______/ /&0
+                 \( )_____&6&b____(W)/&0~
+X
+1011
+#16355
+map bark-map moonwell map5 questobject~
+a bark map~
+A piece of bark with a picture on it lies here.~
+~
+12 66056200 1 70
+0 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+map bark-map moonwell map5 questobject~
+                        &1&b/ \&0
+                      &1&b/ (R) \&0
+                    &1&b/ /     \ \&0
+                  &1&b/ /         \ \&0
+                &4&b/ /&0             \ \
+              &4&b/ /&0                 \ \
+            &4&b/ /&0                     \ \
+           &4&b<(J)&0                     ( )>
+            &4&b\ \&0                     / /
+             &4&b\ \&0                   / /
+              &4&b\ &9&b\&0                 &6&b/ &0/
+               &9&b\ &0&1\&0               &6&b/ /&0
+                &1\ &9&b\_&0&1__&9&b__&0&1__&6&b______/ /&0
+                 &9&b\&0&1(C)&9&b__&0&1__&9&b_&6&b____(W)/&0~
+X
+1011
+#16356
+flask eleweiss water silver-flask flask-eleweiss~
+the Flask of Eleweiss~
+A silver flask shines in the light.~
+~
+17 66056200 1 70
+8 8 0 0 0 0 0
+0.20 0 0 0 0 0 0 0
+T 16346
+E
+flask eleweiss water silver-flask flask-eleweiss~
+This silver flask shines in the light.  The sound of water can be heard
+splashing around and if the cap is removed a holy glow eminates from the liquid
+within.~
+X
+1011
+#16366
+map bark-map moonwell map6 questobject~
+a bark map~
+A piece of bark with a picture on it lies here.~
+~
+12 66056200 1 70
+0 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+map bark-map moonwell map6 questobject~
+                        &1&b/ \&0
+                      &1&b/ (R) \&0
+                    &1&b/ /     \ \&0
+                  &1&b/ /         \ \&0
+                &4&b/ /&0             &2&b\ \&0
+              &4&b/ /&0                 &2&b\ \&0
+            &4&b/ /&0                     &2&b\ \&0
+           &4&b<(J)&0                     &2&b(G)>&0
+            &4&b\ \&0                     &2&b/ /&0
+             &4&b\ \&0                   &2&b/ /&0
+              &4&b\ &9&b\&0                 &6&b/ &2&b/&0
+               &9&b\ &0&1\&0               &6&b/ /&0
+                &1\ &9&b\_&0&1__&9&b__&0&1__&6&b______/ /&0
+                 &9&b\&0&1(C)&9&b__&0&1__&9&b_&6&b____(W)/&0~
+X
+1011
+$~

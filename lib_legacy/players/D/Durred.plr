@@ -1,0 +1,122 @@
+name: Durred
+password: Duwkhf3e/X
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 3
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20722
+birthtime: 1704751758
+timeplayed: 8152
+lastlogintime: 1706206066
+host: 207.194.163.074
+height: 40
+weight: 191
+base_height: 40
+base_weight: 191
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k w q
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8025
+lastlevel: 0
+hitpoints: 42/38
+mana: 1/0
+move: 162/162
+damroll: 4
+hitroll: 5
+strength: 69
+intelligence: 96
+wisdom: 77
+dexterity: 78
+constitution: 90
+charisma: 55
+cash: 0 10 53 73
+bank: 0 1 1 1
+experience: 55428
+quit_reason: 7
+saveroom: 8025
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 81
+424 90
+438 50
+443 50
+444 50
+447 54
+451 50
+452 90
+453 50
+459 50
+460 59
+462 50
+464 50
+0 0
+trophy:
+1 12024 1.000000
+1 12025 2.000000
+1 12014 1.000000
+1 12007 1.000000
+1 12001 3.000000
+1 12015 1.000000
+1 12016 1.000000
+1 3503 2.000000
+1 3506 2.000000
+1 3509 1.000000
+1 3507 5.000000
+1 3500 5.000000
+1 3508 3.000000
+1 3502 3.000000
+1 3501 5.000000
+1 8014 1.000000
+1 8000 1.000000
+1 8015 3.000000
+1 8016 1.000000
+1 8011 1.000000
+1 8021 2.000000
+0 0 0
+tells:
+1704933338 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1704933340 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1704933341 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1704933342 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1704933343 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1705001624 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1705003381 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1705003383 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1705003383 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1704934894 Chinok gossips, 'or you can camp'
+1704934903 Chinok gossips, 'you should have been born with a map'
+1705001586 Chinok gossips, 'welcome back Durred'
+1705001587 Holk gossips, 'Hey Durred'
+1705001904 Chinok gossips, 'gratz on 4!'
+1705001972 Holk gossips, 'you have to advance to a higher level, see "Help spell_circle"'
+1705002202 Chinok gossips, 'another tip -- if you need help, you can go to www.fierymud.org/help -- there is a much better 'search' feature there'
+1706205999 Teshi gossips, 'Welcome Durred'
+1706206059 Teshi gossips, 'l'
+1706206062 Teshi gossips, 'sorry :D'
+$
+aliases:
+0 c 'minor creation' $1
+k kill $1
+med rest;meditate
+/ scan
+m c 'magic missile' $1
+recall recite scroll
+0

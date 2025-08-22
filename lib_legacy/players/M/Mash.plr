@@ -1,0 +1,119 @@
+name: Mash
+password: Ma2nFoMUGK
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 35
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20140
+birthtime: 1643919428
+timeplayed: 221158
+lastlogintime: 1733417939
+host: 152.117.078.200
+height: 75
+weight: 147
+base_height: 75
+base_weight: 147
+base_size: 2
+natural_size: 2
+alignment: 848
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 431/431
+mana: 122/122
+move: 132/144
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 56
+wisdom: 62
+dexterity: 98
+constitution: 82
+charisma: 61
+cash: 92 596 2339 42
+experience: 7882303
+quit_reason: 1
+saveroom: 3054
+skills:
+402 360
+404 371
+407 360
+411 50
+412 61
+415 50
+416 50
+420 54
+421 84
+430 50
+431 50
+434 360
+438 50
+443 50
+444 74
+463 50
+464 50
+465 115
+466 50
+467 53
+468 50
+0 0
+trophy:
+1 2808 0.333333
+1 11701 0.666667
+1 17204 2.000000
+1 23816 0.333333
+1 58804 1.000000
+1 58809 1.000000
+1 58805 1.000000
+1 58803 1.000000
+1 58808 1.000000
+1 58806 1.000000
+1 58801 1.000000
+1 58811 1.000000
+1 36401 1.000000
+1 36400 1.000000
+1 46414 1.000000
+1 46413 2.000000
+1 46400 1.000000
+1 46406 1.000000
+1 46408 1.000000
+1 46402 3.000000
+1 46404 1.000000
+0 0 0
+tells:
+1699544607 @WAriana Shelti@W tells you, 'It is a pleasure doing business with you.@W'@0
+1701366465 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702416438 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702416438 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702416438 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702416439 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702416439 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702416439 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702416439 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702416439 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1699625079 Chinok gossips, 'there are identify scorlls available in the magic shot, that cna help you find these things out'
+1699625086 Reemul gossips, 'thank you'
+1699625091 Chinok gossips, 'just W, you'll find it from there.'
+1699625096 Reemul gossips, 'thanks again'
+1701366336 Ekon gossips, 'ty'
+1701367287 Chinok gossips, 'hey Abbil'
+1701367290 Abbil gossips, 'hello!'
+1702042221 Someone gossips, 'Can I get a hint on what continent 'Jemnon' is on?'
+1733417740 Krocrot gossips, 'I have collected some raw meat. What can I do with that? Not sure I should eat it, but can't seem to sell it or cook it either.'
+1733417812 Krocrot gossips, 'ok, I'll try eating it. thanks!'
+$
+effects:
+57 9 0 0 1048576 0 0
+52 0 11 0 4194304 0 0
+0 0 0 0 0

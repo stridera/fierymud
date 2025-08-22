@@ -1,0 +1,63 @@
+name: Modi
+password: MoF9s/v5VJ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18568
+birthtime: 1377006772
+timeplayed: 2035
+lastlogintime: 1377008810
+host: 066.236.066.066
+height: 42
+weight: 150
+base_height: 42
+base_weight: 150
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: xy
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 23/23
+mana: 0/0
+move: 94/100
+damroll: 3
+hitroll: 6
+strength: 94
+intelligence: 72
+wisdom: 64
+dexterity: 90
+constitution: 79
+charisma: 69
+experience: 5499
+quit_reason: 5
+saveroom: 3001
+skills:
+403 50
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+464 52
+465 50
+467 50
+0 0
+trophy:
+1 18007 1.000000
+1 8001 2.000000
+1 8015 1.000000
+1 8000 1.000000
+1 8022 1.000000
+0 0 0

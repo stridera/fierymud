@@ -1,0 +1,2667 @@
+1
+vnum: 53419
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring gleaming-sapphire-ring
+shortdesc: a sapphire ring
+desc: A gleaming sapphire ring lies forgotten here.
+type: 8
+weight: 0.02
+cost: 16000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+3 6
+2 3
+27 2
+14 15
+19 1
+18 1
+~
+extradesc: ring gleaming-sapphire-ring
+This ring is made of the purest gold with a large glowing sapphire
+set into it.  An inscription around the sapphire is expertly carved into
+the gold.  It reads,
+	"Tyme shalt only make myne love for thee stronger."~
+~~
+vnum: 12406
+location: 2
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring light circle undulating small ring-light
+shortdesc: a ring of &7&blight&0
+desc: A small circle of undulating light floats in midair.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+19 3
+3 3
+5 3
+2 3
+27 3
+~
+extradesc: ring light small circle undulating ring-light
+Warm to the touch and bright as the morning light, this small ring seems to
+have no physical structure or support.  It appears to have been made of light
+fused into a semi-solid and stable shape that adjusts naturally in size.~
+~~
+vnum: 58429
+location: 3
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pendant alicorn-pendant tip-spiral-horn-chain necklace
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant tip-spiral-horn-chain necklace
+This pendant is made of the very tip of a spiral horn.  It's been drilled so a
+primitive chain can support it.  The horn glows with power.~
+~~
+vnum: 58429
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pendant alicorn-pendant tip-spiral-horn-chain necklace
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant tip-spiral-horn-chain necklace
+This pendant is made of the very tip of a spiral horn.  It's been drilled so a
+primitive chain can support it.  The horn glows with power.~
+~~
+vnum: 55561
+location: 5
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: dgmnpqrstuvyz abfghij
+name: tunic-assassin lighter-than-air-studded-tunic
+shortdesc: &9&bTunic of the Assassin&0
+desc: A lighter-than-air studded tunic eludes your eyes here.
+type: 9
+weight: 9.30
+cost: 0
+timer: 0
+level: 41
+effects: y 0 0
+wear: 9
+hiddenness: 0
+applies:
+18 3
+19 2
+~
+extradesc: tunic-assassin lighter-than-air-studded-tunic
+It is hard to discern the edges of this tunic, for they fade and shift from
+sight, as if actively avoiding detection.  While apparently made from
+black, studded leather, the tunic is lighter than most cloth and can be violently
+shaken without making a sound.  Tunics of this kind are often presented to
+high-ranking rogue guild members and are not given away lightly.~
+~~
+vnum: 49061
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: abD 0
+name: helmet carefully-crafted-wooden-helmet beautiful-wooden-helmet
+shortdesc: a carefully crafted wooden helmet
+desc: A beautiful wooden helmet lies here gleaming slightly.
+type: 9
+weight: 4.00
+cost: 200
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+19 2
+24 -3
+13 10
+27 2
+~
+extradesc: helmet carefully-crafted-wooden-helmet beautiful-wooden-helmet
+Crafted from the finest wood, this helmet is both sturdy and comfortable.  It
+sits softer on the head than a metal helm, and provides extra insulation
+against the elements.  Intricate green artwork decorates its outer surface,
+depicting leaves and trees.~
+~~
+vnum: 55562
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: dgmnpqrstuvyz abfghij
+name: leggings-assassin silent-studded-leather-leggings
+shortdesc: &9&bLeggings of the Assassin&0
+desc: Magically silent studded leather leggings disappear on the ground.
+type: 9
+weight: 8.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+19 2
+18 2
+2 5
+1 5
+~
+extradesc: leggings-assassin silent-studded-leather-leggings
+Obviously enchanted, these leggings are made from a single leather sheet
+covered with small black studds, yet they make absolutely no sound.  They
+play tricks with the light, fading in and out of sight occasionally, making
+both them and their wearer difficult to detect.~
+~~
+vnum: 52008
+location: 8
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: dgmnprsyz cfghij
+name: boots elven-boots leather-laced-boots elf questobject
+shortdesc: a pair of elven boots
+desc: A pair of leather laced boots has been dropped here.
+type: 9
+weight: 1.40
+cost: 7200
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 50
+2 3
+~
+extradesc: boots elven-boots leather-laced-boots elf questobject
+These boots are fairly simple, nicely designed with high quality and precision,
+and laced in the center.~
+~~
+vnum: 413
+location: 9
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: hq 0
+name: gloves stryker's-gloves strykers-gloves gloves-striking striking-gloves
+shortdesc: a pair of Stryker's gloves
+desc: A pair of gloves of striking are lying here.
+type: 9
+weight: 1.10
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+1 3
+19 4
+18 2
+~
+extradesc: gloves stryker's-gloves strykers-gloves gloves-striking striking-gloves
+There is an eerie sort of quality to these gloves.  They are a cloudy grey
+color which traps the light shone upon them.  The fingers are long and the
+gloves appear to have been bent permanently, being most comfortable in the
+shape of a solid, firm fist.  The materials from which they were created seems
+rather unusual and could well be supernatural judging by the look of them.~
+~~
+vnum: 55560
+location: 10
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dgmnpqrstuvyz abfghij
+name: sleeves-assassin black-studded-leather-sleeves
+shortdesc: &9&bSleeves of the Assassin&0
+desc: Stuffed up into a small crevice is set of black, studded-leather sleeves.
+type: 9
+weight: 6.70
+cost: 0
+timer: 0
+level: 41
+effects: f 0 0
+wear: 257
+hiddenness: 0
+applies:
+18 2
+19 1
+5 3
+~
+extradesc: black studded leather sleeves assassin
+These sleeves flow like velvet but have the weight of a lighter fabric.  They
+rest quietly against any surface and allow for movement without making a sound.
+Magic was clearly involved in their creation for no normal leather offers these
+kinds of benefits without any drawbacks.~
+~~
+vnum: 443
+location: 12
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: shroud death-shroud cloak-thick-black-leather ancient
+shortdesc: the Death Shroud
+desc: A cloak of thick black leather lies here.
+type: 9
+weight: 3.00
+cost: 100
+timer: 0
+level: 85
+effects: tu w 0
+wear: 1025
+hiddenness: 0
+applies:
+13 100
+~
+extradesc: shroud death-shroud cloak-thick-black-leather ancient
+A thick leather cloak, with a skull pendant and chain for fastening around ones
+body, it is black like the heart of a lich lord and emits an aura of hate and
+death.  The blackened aura around the cloak wavers and encompasses all that
+comes within range.~
+~~
+vnum: 58432
+location: 13
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmuyz abefghij
+name: girth storm-giant's-girth storm-giants-girth blue-steel-girth lightning
+shortdesc: the Storm Giant's Girth
+desc: A blue steel girth flashes with its own lightning.
+type: 9
+weight: 3.00
+cost: 2500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+extradesc: girth storm-giant's-girth storm-giants-girth blue-steel-girth lightning
+You can see that this girth must be not only magical, but intrinsically strong,
+for though it is very old, there are no dents, dings, or scratches in its
+shockingly blue surface.  It reflects a fierce strike of lightning as you look
+at it.  But no lightning flashed right then in the sky....~
+~~
+vnum: 12417
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: silver-gold-twist-bracelet silver gold twist bracelet thin intertwining silver-bracelet gold-bracelet
+shortdesc: a &bsilver&0 and &3gold&0 twist bracelet
+desc: A thin bracelet of intertwining silver and gold lay discarded here.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 90
+effects: 0 k 0
+wear: 4097
+hiddenness: 0
+applies:
+6 3
+4 3
+1 2
+13 30
+27 3
+~
+extradesc: silver-gold-twist-bracelet silver gold twist bracelet thin intertwining silver-bracelet gold-bracelet
+Two thin strips of metal, one silver, one gold, twisted gently together form a
+simple, elegant bracelet.  Though it bears no signs of unique purpose, it would
+make an excellent accessory to just about any outfit.~
+~~
+vnum: 58434
+location: 15
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou 0
+name: fetter slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+19 2
+~
+extradesc: fetter slave-fetter steel
+This very old shackle's made of steel.  There are numerous little dents in its
+surface, but it still seems supernaturally strong.  It fastens with a steel
+clip.~
+~~
+vnum: 48405
+location: 16
+values:
+0
+6
+4
+11
+0
+0
+0
+~
+flags: mnuvyz afghij
+name: dagger barbed-dagger dagger-narrow-barbed-blade
+shortdesc: a barbed dagger
+desc: A dagger with a narrow barbed blade lies here.
+type: 5
+weight: 0.90
+cost: 2000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 3
+~
+extradesc: barbed-dagger dagger-narrow-barbed-blade
+The dagger's blade is so narrow it seems as though you could easily snap
+the weapon in two. However, when you test the strength of the weapon you find
+it is quite strong. The edge of the dagger is razor sharp. Clearly, this
+would make an ideal backstab weapon.~
+~~
+vnum: 48405
+location: 17
+values:
+0
+6
+4
+11
+0
+0
+0
+~
+flags: mnuvyz afghij
+name: dagger barbed-dagger dagger-narrow-barbed-blade
+shortdesc: a barbed dagger
+desc: A dagger with a narrow barbed blade lies here.
+type: 5
+weight: 0.90
+cost: 2000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 3
+~
+extradesc: barbed-dagger dagger-narrow-barbed-blade
+The dagger's blade is so narrow it seems as though you could easily snap
+the weapon in two. However, when you test the strength of the weapon you find
+it is quite strong. The edge of the dagger is razor sharp. Clearly, this
+would make an ideal backstab weapon.~
+~~
+vnum: 12550
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 8
+weight: 0.07
+cost: 250
+timer: 1010
+level: 40
+effects: dx 0 0
+wear: 65537
+hiddenness: 0
+applies:
+4 2
+28 150
+27 2
+~
+~~
+vnum: 359
+location: 22
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dmnoprstuvxyzAD abefghij
+name: mask mask-thousand-faces elaborate-mask-many-faces
+shortdesc: the Mask of a Thousand Faces
+desc: An elaborate mask of many faces lies tucked away.
+type: 9
+weight: 0.50
+cost: 10000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+18 4
+19 4
+~
+~~
+vnum: 8506
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring jet-earring ear-ring tiny-black-earring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 8
+weight: 0.02
+cost: 250
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+19 1
+18 1
+27 1
+~
+extradesc: earring jet-earring ear-ring tiny-black-earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.~
+~~
+vnum: 8506
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring jet-earring ear-ring tiny-black-earring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 8
+weight: 0.02
+cost: 250
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+19 1
+18 1
+27 1
+~
+extradesc: earring jet-earring ear-ring tiny-black-earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.~
+~~
+vnum: 549
+location: 25
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: ehiqAB 0
+name: crest crest-dragon-hunter dragon-crest
+shortdesc: &3&bCrest&2 of the &0&2Dragon&1&b Hunter&0
+desc: A dragon crest shines brightly from the ground.
+type: 8
+weight: 1.00
+cost: 0
+timer: 0
+level: 80
+effects: 0 i 0
+wear: 524289
+hiddenness: 0
+applies:
+13 80
+23 -20
+20 -10
+24 -10
+27 2
+19 1
+~
+~~
+vnum: 62508
+location: 26
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: biD 0
+name: bear glass-bear hollow-sturdy-glass-bear-figurine
+shortdesc: a glass bear
+desc: A hollow, yet sturdy, glass bear figurine is lying on the ground.
+type: 8
+weight: 1.00
+cost: 300000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 1064965
+hiddenness: 0
+applies:
+1 6
+5 5
+13 10
+26 6
+19 1
+27 1
+~
+extradesc: bear glass-bear hollow-sturdy-glass-bear-figurine
+Shaped in this glass is the face of a raging bear.  The mere sight of it's
+terrible eyes are disturbing.  It seems so real!  It hums with the power of the
+awful bear trapped inside it, barely contained.  You wonder if it's even safe
+to handle.~
+~~
+vnum: 12399
+location: 27
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: abgDE 0
+name: starseed star-seed single-pinpoint-light
+shortdesc: a starseed
+desc: A single pinpoint of light twinkles against the dome of the sky.
+adesc:
+A starseed twinkles brilliantly as you lift it aloft, illuminating your surroundings.~
+type: 1
+weight: 0.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 o
+wear: 3948545
+hiddenness: 0
+applies:
+13 50
+17 2
+5 1
+24 -10
+3 1
+27 3
+~
+extradesc: starseed star-seed single-pinpoint-light
+Examining this tiny light more closely, it becomes obvious this is no meager
+glass or crystal.  It is the heart of a newborn star, breathed into creation
+through divine providence.  Within it lay all the hopes and dreams of creation,
+which perhaps could become another legendary soul, or a cosmic array of life
+and potential.~
+~~
+vnum: 23806
+location: 127
+values:
+0
+4
+4
+11
+0
+0
+0
+~
+flags: dgnprsD afij
+name: icicle sharp-icicle
+shortdesc: an icicle
+desc: A sharp icicle lies here.
+type: 5
+weight: 0.60
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 v
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+27 2
+~
+extradesc: icicle sharp-icicle
+A sharp icicle seems to be magically preserved, for it does not melt even when
+taken to warm climates.  Thin string wrapped around the thick base acts as a
+grip, indicating that it could be used as a weapon.  Whether or not it would be
+a very effective weapon, however, is yet to be seen.~
+triggers:
+23804
+~
+~~
+vnum: 23806
+location: 127
+values:
+0
+4
+4
+11
+0
+0
+0
+~
+flags: dgnprsD afij
+name: icicle sharp-icicle
+shortdesc: an icicle
+desc: A sharp icicle lies here.
+type: 5
+weight: 0.60
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 v
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+27 2
+~
+extradesc: icicle sharp-icicle
+A sharp icicle seems to be magically preserved, for it does not melt even when
+taken to warm climates.  Thin string wrapped around the thick base acts as a
+grip, indicating that it could be used as a weapon.  Whether or not it would be
+a very effective weapon, however, is yet to be seen.~
+triggers:
+23804
+~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55029
+location: 127
+values:
+250
+1
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: 0.00
+cost: 600
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    ~
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 55564
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: dgmnpqrstuvyzD abfghij
+name: bracer-assassin large-black-scrap-leather
+shortdesc: &9&bBracer of the Assassin&0
+desc: A large black scrap of leather has been caught up in some tree branches here.
+type: 9
+weight: 0.74
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+19 1
+18 2
+1 2
+~
+extradesc: bracer-assassin large-black-scrap-leather
+This 'scrap' of leather is actually a perfect rectangle and has nicely finished
+edges and small, nearly invisible cords hanging from two sides.  In addition,
+it seems to be reinforced with bands of padding, making it comfortable to wear.
+It could easily be tied to the forearm, and would probably blend in well with
+the darkness.~
+~~
+vnum: 55011
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ajl 0
+name: eye jeweled-leopard's-eye jeweled-leopards-eye large-piece-jade-carved cat's-eye cats-eye
+shortdesc: a jeweled leopard's eye
+desc: A large piece of jade carved like a cat's eye hangs here on an strand of gold.
+type: 8
+weight: 0.25
+cost: 2400
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+3 5
+24 -3
+28 100
+27 2
+~
+extradesc: eye jeweled-leopard's-eye jeweled-leopards-eye large-piece-jade-carved cat's-eye cats-eye
+You hold a palm sized, polished dark green jade medallion.  It seems to be warm
+to the touch.  In the green of the medalion are two crystal blue veins forming
+what looks like a cats eye.~
+~~
+vnum: 55559
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dgmnpqrstuvyz bfghij
+name: hood-assassin invisible-hood
+shortdesc: &9&bHood of the Assassin&0
+desc: A nearly invisible hood blends into the darkest shadows of the room.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+18 2
+19 2
+~
+extradesc: hood-assassin invisible-hood
+Made out of pure shadow, a hood like this allows the wearer to do more than
+hide; they gain the senses of the shadows themselves.  Prized by rogues and
+assassins alike, a hood like this is rarely found, but given to a person who
+has advanced to the highest ranks in their guild.~
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 58420
+location: -1
+values:
+0
+5
+4
+3
+0
+0
+0
+~
+flags: gmnuvyz acfghij
+name: blade-forgotten-kings long-heavy-sword jewelled-pommel questobject
+shortdesc: the Blade of the Forgotten Kings
+desc: A long, heavy sword with a jewelled pommel rests here.
+type: 5
+weight: 2.50
+cost: 6000
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+4 2
+19 3
+27 1
+~
+extradesc: blade-forgotten-kings long-heavy-sword jewelled-pommel questobject
+This sword's easily the length of your entire arm, and the blade itself is
+thick and wide, with a blood groove deeply etched into its center.  It's
+clearly incredibly old.  You just can't find this kind of workmanship these
+days.~
+~~
+vnum: 55563
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmnpqrstuvyz abfghij
+name: boots-assassin black-studded-leather-boots
+shortdesc: &9&bBoots of the Assassin&0
+desc: A pair of black studded-leather boots hides here from those who seek to find them.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 41
+effects: p 0 0
+wear: 65
+hiddenness: 0
+applies:
+18 3
+19 1
+14 30
+~
+extradesc: boots-assassin black-studded-leather-boots
+These boots are made from hardened leather, dyed black and covered with steel
+studs.  Eerily not a creak or a whisper comes from these boots, which makes them
+perfect for sneaking while armored.  In addition, they are very light, which
+keeps them from impeding movement.  A pair of boots like this would be a
+perfect gift for anyone who valued stealth and quickness.~
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 23799
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gqAD 0
+name: boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots
+shortdesc: black leather drow boots
+desc: Breathtakingly intricate black leather boots rest here.
+type: 9
+weight: 1.75
+cost: 0
+timer: 0
+level: 65
+effects: y 0 0
+wear: 65
+hiddenness: 0
+applies:
+18 2
+19 2
+14 40
+~
+extradesc: boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots
+This grand pair of customized drow boots appears to have just been completed
+after many hours and days of labor.  The flawless leather straps glisten with
+every bit of light that crosses its surface.  The extra cushioning and soft
+padding along the sole ensure that these boots are not only comfortable, but
+very protective.~
+~~
+vnum: 11811
+location: -1
+values:
+0
+4
+8
+18
+0
+0
+0
+~
+flags: adprsD a
+name: bolt small-bolt-energy bolt-light
+shortdesc: a small bolt of energy
+desc: A bolt of light flickers rapidly here.
+type: 5
+weight: -2.00
+cost: 2000
+timer: 0
+level: 80
+effects: mn 0 0
+wear: 8193
+hiddenness: 0
+applies:
+2 3
+5 -2
+27 3
+~
+~~
+vnum: 11811
+location: -1
+values:
+0
+4
+8
+18
+0
+0
+0
+~
+flags: adprsD a
+name: bolt small-bolt-energy bolt-light
+shortdesc: a small bolt of energy
+desc: A bolt of light flickers rapidly here.
+type: 5
+weight: -2.00
+cost: 2000
+timer: 0
+level: 80
+effects: mn 0 0
+wear: 8193
+hiddenness: 0
+applies:
+2 3
+5 -2
+27 3
+~
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10315
+location: -1
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag 0
+name: emerald brilliant-emerald green-gem-remarkable-beauty beautiful
+shortdesc: a brilliant emerald
+desc: A green gem of remarkable beauty rests on the floor.
+type: 1
+weight: 0.02
+cost: 30000
+timer: 0
+level: 65
+effects: 0 j 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 10
+14 50
+27 3
+17 2
+~
+extradesc: emerald brilliant-emerald green-gem-remarkable-beauty beautiful
+It's a large emerald, about the size of a bean.  It glows with a brilliant
+green light, illuminating the area around it.  It is undoubtedly enchanted,
+since it's warm to the touch and gives off a faint sense of well-being to
+anyone who picks it up.  Looking closely, the very faint outline of a hawk is
+visible on one facet.~
+~~
+vnum: 52014
+location: -1
+values:
+0
+4
+5
+11
+0
+0
+0
+~
+flags: abjnrtu ij
+name: claw vampire-claw claw-green-goo
+shortdesc: a vampire claw
+desc: A claw with green goo dripping from its tips is here.
+type: 5
+weight: 2.40
+cost: 1200
+timer: 0
+level: 65
+effects: 0 0 x
+wear: 8193
+hiddenness: 0
+applies:
+5 -3
+19 2
+~
+extradesc: claw vampire-claw claw-green-goo
+There seems to be an unending supply of greenish goo emanating from the tip of
+this claw.  Some of it has dried on the red hilt, leaving an oddly mixed color.~
+~~
+vnum: 52014
+location: -1
+values:
+0
+4
+5
+11
+0
+0
+0
+~
+flags: abjnrtu ij
+name: claw vampire-claw claw-green-goo
+shortdesc: a vampire claw
+desc: A claw with green goo dripping from its tips is here.
+type: 5
+weight: 2.40
+cost: 1200
+timer: 0
+level: 65
+effects: 0 0 x
+wear: 8193
+hiddenness: 0
+applies:
+5 -3
+19 2
+~
+extradesc: claw vampire-claw claw-green-goo
+There seems to be an unending supply of greenish goo emanating from the tip of
+this claw.  Some of it has dried on the red hilt, leaving an oddly mixed color.~
+~~
+vnum: 55565
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmnpqrstuvyz abfghij
+name: gloves-assassin shadows-pool
+shortdesc: &9&bGloves of the Assassin&0
+desc: Shadows pool together here, giving form to a pair of gloves.
+type: 9
+weight: 1.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+19 2
+18 2
+~
+extradesc: gloves-assassin shadows-pool
+The shadows form into small metal studs spaced across the surface of these
+pure black gloves.  Clearly forged with magic, these gloves make no noise and are
+difficult to see.  They allow for a full range of motion with the hand, making
+them perfect for quick, deft tasks.~
+~~
+vnum: 20
+location: 127
+values:
+256
+208
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 55347
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves burned-sleeves armor
+shortdesc: burned sleeves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves burned-sleeves armor
+These sleeves are burned beyond use.~
+~~
+vnum: 23807
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracelet lightning-bracelet bracelet-lightning-crackles-energy
+shortdesc: a lightning bracelet
+desc: A bracelet of lightning crackles with energy here.
+type: 8
+weight: 0.09
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+26 3
+5 2
+27 2
+~
+extradesc: bracelet lightning-bracelet bracelet-lightning-crackles-energy
+A tingling feeling radiates from this bracelet, which appears to be made out of
+the elemental force of lightning.  It is colored a pale bluish-white, and
+beneath the sparking there seems to be some kind of hard base, so wearing it on
+the wrist would be quite possible.    ~
+~~
+vnum: 55640
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: moonstone gem plain-moonstone plain-moon-stone
+shortdesc: a moonstone
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 5000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 23801
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: dgoprswx ae
+name: ring sapphire-hawk-ring golden-ring-inset-sapphire
+shortdesc: a sapphire hawk ring
+desc: A golden ring inset with a sapphire lies here.
+type: 8
+weight: 0.03
+cost: 0
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+24 -5
+6 3
+18 2
+27 1
+~
+extradesc: ring sapphire-hawk-ring golden-ring-inset-sapphire
+A slender golden band with delicate whorls of knotwork is the setting for a
+rather remarkable gem.  Though it is a small sapphire, no bigger than a wheat
+kernel, it is shaped into the form of a hawk descending onto ints prey, talons
+outsretched.  It was surely crafted by magic, for what gemcrafter, no matter
+how skilled, could perfectly replicate something that small and detailed?~
+~~
+vnum: 55375
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves worn-sleeves armor
+shortdesc: worn sleeves
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves worn-sleeves armor
+These sleeves are worn beyond use.~
+~~
+vnum: 55372
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vambraces tarnished-vambraces armor
+These vambraces are tarnished beyond use.~
+~~
+vnum: 55364
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer tarnished-plate-bracer armor
+shortdesc: a tarnished plate bracer
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracer tarnished-plate-bracer armor
+This bracer is tarnished beyond use.~
+~~
+vnum: 23802
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 f
+name: earring ear-ring snowflake-earring snow-flake long-snowflake
+shortdesc: a snowflake earring
+desc: A lone snowflake glimmers on the floor.
+type: 8
+weight: 0.01
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+13 5
+24 -3
+23 -5
+27 2
+~
+extradesc: earring ear-ring snowflake-earring snow-flake long-snowflake
+It seems to be a snowflake set onto a tiny silver post.  The six-pointed flake
+is cool to the touch, though it does not melt.  Whatever crystal substance it
+is made of catches the light quite well, giving it an ever-present sparkle.  
+Its miniscule arms have hexagonal symmetry, and it is very detailed.~
+~~
+vnum: 23802
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 f
+name: earring ear-ring snowflake-earring snow-flake long-snowflake
+shortdesc: a snowflake earring
+desc: A lone snowflake glimmers on the floor.
+type: 8
+weight: 0.01
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+13 5
+24 -3
+23 -5
+27 2
+~
+extradesc: earring ear-ring snowflake-earring snow-flake long-snowflake
+It seems to be a snowflake set onto a tiny silver post.  The six-pointed flake
+is cool to the touch, though it does not melt.  Whatever crystal substance it
+is made of catches the light quite well, giving it an ever-present sparkle.  
+Its miniscule arms have hexagonal symmetry, and it is very detailed.~
+~~
+vnum: 23815
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 f
+name: pendant ice-crystal-pendant hexagonal-crystal
+shortdesc: an ice crystal pendant
+desc: A hexagonal crystal glimmers in the light here.
+type: 8
+weight: 0.70
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 1
+19 1
+26 2
+27 2
+~
+extradesc: pendant ice-crystal-pendant hexagonal-crystal
+A solid crystal attached to a silver chain looks like it is made of ice, and
+indeed it is cool to the touch.  It does not melt when worn, an indicator that
+it was probably made with magic.  The crystal itself has six-sided symmetry and
+is a translucent pale blue-white, distorting objects slightly if looked
+through.  The chain is rather long and would probably fit adventurers large and
+small.~
+~~
+vnum: 55359
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: mittens worn-mittens armor
+shortdesc: worn mittens
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mittens worn-mittens armor
+These mittes are worn beyond use.~
+~~
+vnum: 23821
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tiara sapphire-tiara gleaming-tiara silver
+shortdesc: a sapphire tiara
+desc: A gleaming tiara lies here.
+type: 8
+weight: 0.80
+cost: 2000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+24 -5
+23 -5
+13 20
+27 3
+~
+extradesc: tiara sapphire-tiara gleaming-tiara silver
+Very cold to the touch, this circlet is made of silver worked into angular
+designs and inset with a large, teardrop-shaped sapphire at the crown.  The
+silver gleams brightly, showing no sign of tarnish, and the sapphire is a true
+deep blue with an inner radiance all its own.~
+~~
+vnum: 23847
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bgkl 0
+name: rose sapphire-rose rose-formed-sapphire questobject
+shortdesc: a sapphire rose
+desc: A rose formed from sapphire rests gently here.
+type: 8
+weight: 0.90
+cost: 10000
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+19 3
+~
+extradesc: rose sapphire-rose rose-formed-sapphire questobject
+A stem of silver with tiny thorns supports a gorgeous bud of sapphire, looking
+as though it has barely begun to bloom.  It has a slight scent similar to that
+of fresh rain wafting from the sapphire head, making it very pleasant to smell.
+Inscribed on the stem are tiny holy symbols.~
+~~
+vnum: 48110
+location: 127
+values:
+0
+4
+4
+11
+0
+0
+0
+~
+flags: dgjlnprstuyA gij
+name: dagger fiery-dagger dagger-wreathed-flame
+shortdesc: a fiery dagger
+desc: A dagger wreathed in flame lies here.
+type: 5
+weight: 1.10
+cost: 5000
+timer: 0
+level: 45
+effects: 0 0 u
+wear: 8193
+hiddenness: 0
+applies:
+19 2
+~
+extradesc: dagger fiery-dagger dagger-wreathed-flame
+You watch in amazement as flickering tongues of flame race up and down this
+blade.  The blade of this dagger is hot to the touch and a dull red in color;
+the handle of the dagger itself, however, is surprisingly cool.~
+~~
+vnum: 48110
+location: 127
+values:
+0
+4
+4
+11
+0
+0
+0
+~
+flags: dgjlnprstuxyA gij
+name: dagger fiery-dagger dagger-wreathed-flame
+shortdesc: a fiery dagger
+desc: A dagger wreathed in flame lies here.
+type: 5
+weight: 1.10
+cost: 5000
+timer: 0
+level: 45
+effects: 0 0 u
+wear: 8193
+hiddenness: 0
+applies:
+19 2
+~
+extradesc: dagger fiery-dagger dagger-wreathed-flame
+You watch in amazement as flickering tongues of flame race up and down this
+blade.  The blade of this dagger is hot to the touch and a dull red in color;
+the handle of the dagger itself, however, is surprisingly cool.~
+~~
+vnum: 23823
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aAD 0
+name: wings dragon-wings heap-silver-scales
+shortdesc: a pair of dragon wings
+desc: A heap of silver scales lies here.
+type: 8
+weight: 21.00
+cost: 10000
+timer: 0
+level: 85
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+19 2
+14 20
+13 20
+~
+extradesc: wings dragon-wings heap-silver-scales
+A quicksilver mess of barely-defined scales and membranes resolves itself into
+a pair of wings upon closer inspection.  They seem to magically resize
+themselves if worn, becoming closer to the size of the wearer as though to fit
+them personally.  Once worn, they attach themselves seamlessly to the wearer's
+back and look like an extra set of limbs that could probably be used for their
+original purpose: flight.  Their value seems beyond reckoning.~
+~~
+vnum: 58418
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: wings translucent-faerie-wings questobject
+shortdesc: a pair of translucent faerie wings
+desc: A pair of translucent faerie wings scintillate.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+3 2
+24 -10
+27 3
+~
+extradesc: wings translucent-faerie-wings questobject
+These wings look so real!  A metallic golden frame supports two somewhat large
+wings made of some kind of silk that stretches to the point of being almost
+transparent.  Some kind of sparkly things are woven into the silk, making the
+wings shimmer as they move.~
+~~
+vnum: 58406
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tambourine gypsy-tambourine tam
+shortdesc: a gypsy tambourine
+desc: A gypsy tambourine plays itself sadly here.
+type: 8
+weight: 0.50
+cost: 1000
+timer: 0
+level: 70
+effects: d 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -15
+27 3
+~
+extradesc: tambourine gypsy-tambourine tam
+This tambourine is made of two wooden discs pegged together.  Through the gaps
+in between them, someone has thrust pairs of small brass circles.  The
+slightest movement makes the circles jingle together, producing a wild,
+mysterious cacophony.~
+~~
+vnum: 58414
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: crown gypsy-crown golden-crown-inlaid-emeralds emerald
+shortdesc: the Gypsy Crown
+desc: A golden crown inlaid with emeralds rolls around here.
+type: 8
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+5 8
+~
+extradesc: crown gypsy-crown golden-crown-inlaid-emeralds emerald
+This crown seems pretty heavy.  It's made of thick gold, and probably
+incredibly expensive.  The gold is shaped into the traditional peaks of crowns.
+A green emerald, marquise-cut, is set into each peak, and several of them in
+various cuts adorn the very front of the crown's tallest peak, which would be
+centered over the wearer's forehead.~
+~~
+vnum: 47004
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: DE 0
+name: bracelet ethereal-bracelet shimmering questobject
+shortdesc: an ethereal bracelet
+desc: A bracelet lies here shimmering in and out of view.
+type: 8
+weight: 0.70
+cost: 700
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+19 2
+2 1
+4 2
+1 2
+27 2
+~
+extradesc: bracelet ethereal-bracelet shimmering questobject
+As you look at the bracelet, you begin to wonder if it is really there.  It
+seems to shimmer in and out of view, as if it couldn't decide which plane it
+wants to be in.  All you know is that you like it.~
+~~
+vnum: 47006
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: fk 0
+name: circlet emerald-circlet
+shortdesc: an emerald circlet
+desc: A small circlet lies here glittering in the sunlight.
+type: 8
+weight: 1.80
+cost: 2300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+5 4
+2 -2
+13 20
+27 3
+~
+extradesc: emerald-circlet emerald circlet
+As you look at the small circlet you are awestruck by its beauty.  It sparkles
+in the sunlight and must be worth at least a million bucks.  The circlet 
+emanates a power of good, one that you wouldn't mind having for yourself.~
+~~
+vnum: 55365
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer creased-leather-bracer armor
+shortdesc: a creased leather bracer
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracer creased-leather-bracer armor
+This bracer is creased beyond use.~
+~~
+vnum: 55607
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pearl gem uncut-pearl
+shortdesc: an uncut pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 47018
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: fDE 0
+name: ring ethereal-ring-undead glowing-ring mystical questobject
+shortdesc: the Ethereal Ring of the Undead
+desc: A glowing ring lies hidden in the dust on the ground.
+type: 8
+weight: 0.01
+cost: 1400
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+19 1
+18 1
+6 3
+3 3
+27 3
+~
+extradesc: ring ethereal-ring-undead glowing-ring mystical questobject
+This ring was forged from the power of the Undead.  Feeling somewhat like the
+undead as you wear the ring, you become slower in your movements, slightly
+enraged, and you feel yourself slipping into the ethereal realm....~
+~~

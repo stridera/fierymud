@@ -1,0 +1,104 @@
+name: Tyam
+password: Tyxe/0SCbx
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 15
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19188
+birthtime: 1498555781
+timeplayed: 113117
+lastlogintime: 1502184133
+host: 064.231.236.124
+height: 61
+weight: 132
+base_height: 61
+base_weight: 132
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 40
+loadroom: 3054
+hunger: 21
+thirst: 24
+lastlevel: 0
+hitpoints: 82/208
+mana: 19/22
+move: 93/122
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 59
+wisdom: 67
+dexterity: 96
+constitution: 85
+charisma: 53
+cash: 0 592 1365 465
+experience: 802810
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 15650/18000
+-1 0
+skills:
+402 190
+404 200
+407 50
+415 53
+416 50
+421 195
+430 58
+438 180
+443 50
+444 196
+463 76
+464 50
+465 194
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 4102 1.000000
+1 4101 1.000000
+1 17202 2.000000
+1 36001 1.000000
+1 36003 3.000000
+1 36002 1.000000
+1 5485 1.000000
+1 5483 1.000000
+1 5475 3.000000
+1 5479 1.000000
+1 5404 6.000000
+1 5451 4.000000
+1 5403 2.000000
+1 3503 1.000000
+1 55224 1.000000
+1 55210 1.000000
+1 6909 2.000000
+1 7001 1.000000
+1 5501 2.000000
+1 5513 1.000000
+1 7052 1.000000
+0 0 0
+aliases:
+kk kick
+1 take all from corpse
+911 recite recall tyam
+id recite identify $1
+, take coins from corpse
+bb bash
+[ take all all.corpse
+qq take all all.corpse
+aa bash
+qf quaff flask
+0

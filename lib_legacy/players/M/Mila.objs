@@ -1,0 +1,1453 @@
+1
+vnum: 30101
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring test-ring testing
+shortdesc: the ring of testing
+desc: A softly glowing ring of white metal sits quietly in the sand.
+type: 8
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: w 0 0
+wear: 3
+hiddenness: 0
+~~
+vnum: 405
+location: 2
+values:
+99
+20
+20
+28
+0
+0
+0
+~
+flags: deq 0
+name: ring tanle's-ring-pride tanles-ring-pride extremely-valuable-ring-deity
+shortdesc: Tanle's ring of Pride
+desc: An extremely valuable ring of a deity lies here.
+type: 4
+weight: -5.00
+cost: 34975
+timer: 0
+level: 50
+effects: ce 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 100
+26 40
+27 3
+17 6
+~
+extradesc: ring tanle's-ring-pride tanles-ring-pride extremely-valuable-ring-deity
+This is the ring of a god, granted to one who has shown great courage and
+fortitude in retrieving items of certain value.  The Lord Tanle has, however
+reserved the right to call on the wearer of this ring if and when it suits his
+purpose, or may repossess the ring at any time.  The ring is a slender platinum
+band of rare, incalculable value with a small, pink, white, blue, green, and
+purple stone laid in the top.~
+~~
+vnum: 58429
+location: 3
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pendant alicorn-pendant tip-spiral-horn-chain necklace
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant tip-spiral-horn-chain necklace
+This pendant is made of the very tip of a spiral horn.  It's been drilled so a
+primitive chain can support it.  The horn glows with power.~
+~~
+vnum: 58429
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pendant alicorn-pendant tip-spiral-horn-chain necklace
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant tip-spiral-horn-chain necklace
+This pendant is made of the very tip of a spiral horn.  It's been drilled so a
+primitive chain can support it.  The horn glows with power.~
+~~
+vnum: 52051
+location: 5
+values:
+45
+0
+0
+0
+0
+0
+0
+~
+flags: ajmnqvyzA 0
+name: carapace demon-carapace skin piece-dark-red-leather
+shortdesc: the Demon Carapace
+desc: A piece of dark red leather glows slightly above the ground.
+type: 9
+weight: 28.00
+cost: 15000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+6 -5
+4 -3
+27 2
+~
+extradesc: carapace demon-carapace skin piece-dark-red-leather
+A demonic glow surrounds this dark red hide hinting to the great power
+contained within it.  The skin is extremely rough and durable making it
+excellent armor.~
+~~
+vnum: 514
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: mohawk bright-green-mohawk scalp-garl'lixxil-demon scalp-garllixxil-demon scalp-demon
+shortdesc: a bright green mohawk
+desc: The scalp of a Garl'lixxil demon lies here.
+type: 9
+weight: 1.00
+cost: 10000
+timer: 0
+level: 75
+effects: dfu 0 0
+wear: 17
+hiddenness: 0
+applies:
+18 3
+19 3
+28 400
+27 3
+~
+~~
+vnum: 4317
+location: 7
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: leggings tight-black-leggings tightly-fitting-black-leggings fabric
+shortdesc: a pair of tight black leggings
+desc: Some tightly fitting black leggings are hung over a chair here.
+adesc:
+Nothing.~
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 2
+6 1
+~
+extradesc: tight-black-leggings tightly-fitting-black-leggings fabric
+These black leggings fit snugly over your legs and lower body.  Though they
+don't give much protection, they do allow for an unrestricted range of motion,
+as well as a sleek look.~
+~~
+vnum: 23799
+location: 8
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gqAD 0
+name: boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots
+shortdesc: black leather drow boots
+desc: Breathtakingly intricate black leather boots rest here.
+type: 9
+weight: 1.75
+cost: 0
+timer: 0
+level: 65
+effects: y 0 0
+wear: 65
+hiddenness: 0
+applies:
+18 2
+19 2
+14 40
+~
+extradesc: boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots
+This grand pair of customized drow boots appears to have just been completed
+after many hours and days of labor.  The flawless leather straps glisten with
+every bit of light that crosses its surface.  The extra cushioning and soft
+padding along the sole ensure that these boots are not only comfortable, but
+very protective.~
+~~
+vnum: 400
+location: 9
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gAD 0
+name: gloves demonhide-gloves demon-hide-gloves
+shortdesc: a pair of demonhide gloves
+desc: A pair of demonhide gloves lay neatly folded upon the ground.
+type: 9
+weight: 2.00
+cost: 96903
+timer: 0
+level: 90
+effects: cdef w 0
+wear: 129
+hiddenness: 0
+applies:
+18 4
+19 4
+~
+extradesc: gloves demonhide-gloves demon-hide-gloves venath
+Though they are indeed solid black leather, these gloves appear to be covered
+in thick smoke which emanates from the pores of their surface.  The effect of
+the distortion from the smoke is akin to a heatwave passing through the desert.
+Although by appearances they should offer little in the way of protection,
+these gloves boast the strength and resilience of the demon whose skin they
+were made from.~
+~~
+vnum: 48426
+location: 10
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: gmuvyzAD 0
+name: bracers-loong embellished-sapphire-bracers chinese-dragon-bracers
+shortdesc: the Bracers of Loong
+desc: Highly embellished sapphire bracers lie here sparkling.
+type: 9
+weight: 8.23
+cost: 13490
+timer: 0
+level: 90
+effects: y 0 0
+wear: 257
+hiddenness: 0
+applies:
+19 1
+18 2
+27 1
+~
+extradesc: bracers-loong embellished-sapphire-bracers chinese-dragon-bracers
+Sparkling with some mysterious light, these bracers are indeed a work of art to
+behold.  Twin snake-like dragons are carved into the sapphire making up each
+bracer.  Each serpent has four claws and manes resembling bolts of lightning.
+A semicircular white diamond has been placed in each dragon's mouth, looking
+somewhat like a twisted crescent.  A tiny black dot appears slightly off-center
+in each diamond.  Beneath the sapphire exterior, layers of strong steel stand
+between the gemstone and the softer padding beneath.  There must be some sort
+of magical protection upon these bracers though, for such beautiful sapphire
+would never stand up against physical attack.~
+~~
+vnum: 58432
+location: 13
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmnou 0
+name: girth storm-giant's-girth storm-giants-girth blue-steel-girth lightning
+shortdesc: the Storm Giant's Girth
+desc: A blue steel girth flashes with its own lightning.
+type: 9
+weight: 3.00
+cost: 2500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+extradesc: girth storm-giant's-girth storm-giants-girth blue-steel-girth lightning
+You can see that this girth must be not only magical, but intrinsically strong,
+for though it is very old, there are no dents, dings, or scratches in its
+shockingly blue surface.  It reflects a fierce strike of lightning as you look
+at it.  But no lightning flashed right then in the sky....~
+~~
+vnum: 16033
+location: 14
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracers charred-bracers black-metal-bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred-bracers black-metal-bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    ~
+~~
+vnum: 16033
+location: 15
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracers charred-bracers black-metal-bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred-bracers black-metal-bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    ~
+~~
+vnum: 1270
+location: 16
+values:
+4
+4
+4
+3
+0
+0
+0
+~
+flags: gE 0
+name: dagger silver flame silver-flame
+shortdesc: a silver flame dagger
+desc: A glimmering flame of silver hovers above the ground here.
+adesc:
+&h~
+type: 5
+weight: 1.50
+cost: 0
+timer: 0
+level: 85
+effects: fnuyz 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 2
+~
+~~
+vnum: 4007
+location: 17
+values:
+2
+3
+7
+3
+0
+0
+0
+~
+flags: gjlmnpqrtuvz 0
+name: blade-chaos dark-sword black-flames
+shortdesc: a blade of &1Chaos&0
+desc: A dark sword lies here encased in black flames.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+2 1
+19 2
+5 -2
+27 2
+~
+extradesc: blade-chaos dark-sword black-flames
+Created from only the purest of dark magick, the blade is light and seemingly
+quite strong.  Blackened flames erupt from all around the blade, surrounding it
+in serenity and chaos.~
+~~
+vnum: 502
+location: 21
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: gaze night-gaze dark-path-material
+shortdesc: &9&bthe Night Gaze&0 
+desc: &9&bA dark path of material is floating just above the ground here.&0
+type: 9
+weight: 0.50
+cost: 4000
+timer: 0
+level: 30
+effects: k 0 0
+wear: 65537
+hiddenness: 0
+applies:
+19 2
+18 1
+28 30
+~
+~~
+vnum: 506
+location: 22
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: abeghD 0
+name: mask mask-betrayal dark-invisible-mask
+shortdesc: the Mask of Betrayal
+desc: A dark almost invisible mask lies here sending twisted beams of light all over the room.
+type: 9
+weight: 0.50
+cost: 5000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+5 2
+19 2
+~
+extradesc: mask mask-betrayal dark-invisible-mask
+This mask is one of the most unusual objects you have ever seen.  This mask is
+made of an almost invisible black material that emits a dark glow of twisted
+light throughout the room.  This material is very flexible and when worn
+conforms to your face and is quite hard to get off.  It is also quite durable
+and could easily withstand a blow from any weapon.~
+~~
+vnum: 903
+location: 23
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: fang legendary-ice-fang clear-fang snake
+shortdesc: a legendary ice fang
+desc: What looks like a clear fang of a snake lies here.
+type: 8
+weight: 0.20
+cost: 1900
+timer: 0
+level: 43
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+18 3
+19 3
+13 75
+~
+extradesc: fang legendary-ice-fang clear-fang snake
+This looks to be a piece of clear crystal constructed from magic to protect it
+owner in an attack.  It looks like the fang of a beast of prey.~
+~~
+vnum: 903
+location: 24
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: fang legendary-ice-fang clear-fang snake
+shortdesc: a legendary ice fang
+desc: What looks like a clear fang of a snake lies here.
+type: 8
+weight: 0.20
+cost: 1900
+timer: 0
+level: 43
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+18 3
+19 3
+13 75
+~
+extradesc: fang legendary-ice-fang clear-fang snake
+This looks to be a piece of clear crystal constructed from magic to protect it
+owner in an attack.  It looks like the fang of a beast of prey.~
+~~
+vnum: 582
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aejlAD 0
+name: dragonscale shard-red-dragonscale dragon-scale
+shortdesc: a shard of red dragonscale
+desc: A shard of a red dragonscale lies here, glowing faintly, like an ember.
+type: 8
+weight: 0.50
+cost: 1234567
+timer: 0
+level: 95
+effects: h 0 0
+wear: 524289
+hiddenness: 0
+applies:
+18 2
+19 3
+6 2
+27 3
+~
+extradesc: shard-red-dragonscale dragon-scale
+Merely a chip off a much larger dragonscale, this shard seems to have retained
+much of the resilience of its previous owner.  Faint ridges run across the
+shard's red surface, swirling and squiggling almost into recognizable images.
+The shard of dragonscale is very warm to the touch, apparently maintaining some
+of the heat from the dragon it once protected.  A tiny clip is attached to the
+back of the shard, allowing it to be fastened to a cloak or tunic.  A small
+dragon claw is etched into the clip.~
+extradesc: claw etching clip
+The dragon claw etching on the clip is minute, half the width of a pinky
+finger, but its detail is exquisite, with every scale on the claw painfully
+chiseled into the metal.  The claw has a burning blue color, its glow somehow
+drawing you in...~
+~~
+vnum: 501
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ajrtxD 0
+name: blackthorn large-black-thorn
+shortdesc: the Blackthorn
+desc: A large black thorn lies on the ground here.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+19 2
+18 1
+28 3
+27 1
+~
+extradesc: blackthorn large-black-thorn
+This large black thorn is the symbol of the dark monks.  It is a real thorn
+that grows wild only inside the living place of the dark monks.  This thorn
+belongs to the leader of the dark monks, Yix'Xyua.  He has had this thorn ever
+since he became the leader of the dark monks.  The thorn itself is about six
+inches in length and its long pointy thorns are as sharp as ever.  It has a
+mysterious dark glow to it that gives it a sense of magic and power.~
+~~
+vnum: 4003
+location: 27
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: agjqrtuvD 0
+name: orb chaos-orb sphere-pure-shade questobject
+shortdesc: a &1Chaos&b&0 orb
+desc: A sphere of pure shade glistens in the light.
+adesc:
+The orb glows deeply within, then burst into blackened flames!~
+type: 1
+weight: 2.00
+cost: 0
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+2 1
+19 2
+5 -2
+27 2
+~
+extradesc: orb chaos-orb sphere-pure-shade questobject
+A sphere of pure unlaced darkness.  The casing around it appears to be clear,
+letting the the view inside be known.  Black clouds seem to be moving within
+the orb, lighting threads around violently.  It is its own world of chaos.~
+~~
+vnum: 55029
+location: 127
+values:
+250
+1
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: 0.00
+cost: 600
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    ~
+~~
+vnum: 482
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horns krisenna's-horns krisennas-horns demon
+shortdesc: Krisenna's horns
+desc: The horns of a demon lie here, a trophy of the slaying of the demon. 
+type: 8
+weight: 10.00
+cost: 12000
+timer: 0
+level: 50
+effects: y 0 0
+wear: 17
+hiddenness: 0
+applies:
+19 4
+18 2
+14 20
+~
+~~
+vnum: 4003
+location: -1
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: agjqrtuvD 0
+name: orb chaos-orb sphere-pure-shade questobject
+shortdesc: a &1Chaos&b&0 orb
+desc: A sphere of pure shade glistens in the light.
+adesc:
+The orb glows deeply within, then burst into blackened flames!~
+type: 1
+weight: 2.00
+cost: 0
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+2 1
+19 2
+5 -2
+27 2
+~
+extradesc: orb chaos-orb sphere-pure-shade questobject
+A sphere of pure unlaced darkness.  The casing around it appears to be clear,
+letting the the view inside be known.  Black clouds seem to be moving within
+the orb, lighting threads around violently.  It is its own world of chaos.~
+~~
+vnum: 55507
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrtuvwxyz 0
+name: boots chaotic-boots wicked-looking-evil-knight's-boots knights
+shortdesc: &1&bChaotic Boots&0
+desc: A pair of wicked-looking evil knight's boots stand at attention.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+18 2
+3 2
+26 5
+27 3
+~
+extradesc: boots chaotic-boots wicked-looking-evil-knight's-boots knights
+These boots are an anomaly, for they have been polished smooth and clean, but
+they absorb all light and reflections, making them boots of palpable darkness.
+The occasional warp or buckle appears randomly on the surface, almost like the
+boots are straining to conform to their shape.~
+~~
+vnum: 55509
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrtuvwxyz 0
+name: gauntlets chaotic-gauntlets fiery-black-gauntlets
+shortdesc: &1&bChaotic Gauntlets&0
+desc: Fiery black gauntlets lie discarded, forgotten by the their demonic owner.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+2 3
+19 1
+27 3
+~
+extradesc: gauntlets chaotic-gauntlets fiery-black-gauntlets
+Wreathed in ever-burning flames, these gauntlets are horrible things indeed!  
+Spiked protrusions cover the back of the hands, and the fingers reach out to
+end in demonic, claw-like digits.  Hollow like a shell, but heavy like stone,
+these gauntlets could well have been crafted from the carapace of some minor
+devil or demon.~
+~~
+vnum: 55508
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrtuvwxyz 0
+name: bracer chaotic-bracer dark-knight's-bracer knights
+shortdesc: &1&bChaotic Bracer&0
+desc: A dark knight's bracer lies on the ground, pulsing.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+19 2
+4 2
+27 3
+~
+extradesc: bracer chaotic-bracer dark-knight's-bracer knights
+This black bracer pulses in time with your heart, as if sounding out in
+response to your life force.  Warm to the touch and slightly organic in feel,
+this thing seems more like a parasite than a piece of armor.  Still, it is
+solid enough that it perhaps could be worn without problems.~
+~~
+vnum: 55504
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrtuvwxyz 0
+name: vambraces chaotic-vambraces evil-paladin's-red-veined-obsidian-vambraces paladins
+shortdesc: &1&bChaotic Vambraces&0
+desc: Some evil paladin's red-veined obsidian vambraces twinkle with a dark gleam here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+18 2
+1 2
+27 3
+~
+extradesc: vambraces chaotic-vambraces evil-paladin's-red-veined-obsidian-vambraces paladins
+The obsidian of the vambraces is run through with dark red swirls and streaks,
+like unholy blood coursing through the veins of a demon's hide.  The sight of a
+warrior clad all in armor of this nature would be awe-inspiring and horrific at
+the same time.~
+~~
+vnum: 55506
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrtuvwxyz 0
+name: greaves chaotic-greaves nasty-jagged-looking-fiery-greaves
+shortdesc: &1&bChaotic Greaves&0
+desc: Nasty, jagged looking fiery greaves have been put out on prominent display.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+5 2
+6 4
+13 10
+18 2
+27 3
+~
+extradesc: greaves chaotic-greaves nasty-jagged-looking-fiery-greaves
+Faint black flame surrounds these greaves, though they leave no burns when
+touched.  Combine that with the sharp, jagged points along the edges, these
+greaves appear to have come straight from some underworld realm.  Probably made
+of enchanted onyx or obsidian, these greaves are excellent armor for a dark
+warrior.~
+~~
+vnum: 55505
+location: -1
+values:
+35
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrtuvwxyz 0
+name: chestplate chaotic-chestplate chest-plate dark-warrior's-grandiose-demonic-chestplate warriors
+shortdesc: &1&bChaotic Chestplate&0
+desc: A dark warrior's grandiose demonic chestplate hangs in the air here.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 41
+effects: n 0 0
+wear: 9
+hiddenness: 0
+applies:
+4 2
+24 -10
+27 3
+~
+extradesc: chestplate chaotic-chestplate chest-plate dark-warrior's-grandiose-demonic-chestplate warriors
+This chestplate bares the image of a huge demonic face, pounded out in
+bas-relief across the entire surface.  Forged from steel as burned as black as
+night, then molded and dedicated to a particular evil entity, the wearer is
+granted great unholy power, protecting them as they rain evil and chaos down on
+the realms.~
+~~
+vnum: 55503
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrtuvwxyz 0
+name: helm chaotic-helm jet-black-helm demonic-horns
+shortdesc: &1&bChaotic Helm&0
+desc: A jet-black helm with demonic horns scorches the ground here!
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+18 2
+5 2
+27 3
+~
+extradesc: helm chaotic-helm jet-black-helm demonic-horns
+This helm is forged from some Stygian-black metal that does not burn but
+leeches the life out of the world around it.  From the side of the helm winds
+two large horns, gleaming with a sinister life of their own.  Black flames burn
+about the horns, showing their truly Infernal nature.~
+~~
+vnum: 525
+location: -1
+values:
+90
+20
+20
+42
+0
+0
+0
+~
+flags: abAD 0
+name: pin nexus-cloak-pin blue-white-pin
+shortdesc: the Nexus Cloak Pin
+desc: A blue and white pin is floating just above the ground.
+type: 3
+weight: 0.08
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 540673
+hiddenness: 0
+applies:
+2 2
+5 2
+18 2
+19 2
+27 2
+~
+extradesc: pin nexus-cloak-pin blue-white-pin
+Only three inches long, this blue and white pin follows a trisecting path
+around itself.  From each of it's three points the pin extends following the
+body of the pin itself tightly.  The pin seems to have something written on it.~
+triggers:
+49299
+18888
+~
+~~
+vnum: 48801
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gopwxD 0
+name: stormcloak storm-cloak glittering-cloak
+shortdesc: the Stormcloak
+desc: Someone has dropped a glittering cloak here.
+type: 9
+weight: 4.00
+cost: 12000
+timer: 0
+level: 90
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: stormcloak storm-cloak glittering-cloak
+You behold the legendary Stormcloak, once worn by the mighty Stormlord, Holder
+of Tempests, himself.  The dark indigo cloth the cloak is made of scintillates,
+giving the impression of thousands of tiny indigo-colored gems woven right into
+its brocade surface.  It's quite heavy, with a handspan-wide collar held
+together by a bronze clasp, beautifully worked into the shape of a horned demon
+whose raised fists make the clasp circular in form.  The ankle-length cloak is
+lined in black silk and edged in crimson.  Your blood stirs inside you as you
+look at it, touch it.~
+~~
+vnum: 4007
+location: -1
+values:
+2
+3
+7
+3
+0
+0
+0
+~
+flags: gjlmnpqrtuvz 0
+name: blade-chaos dark-sword black-flames
+shortdesc: a blade of &1Chaos&0
+desc: A dark sword lies here encased in black flames.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+2 1
+19 2
+5 -2
+27 2
+~
+extradesc: blade-chaos dark-sword black-flames
+Created from only the purest of dark magick, the blade is light and seemingly
+quite strong.  Blackened flames erupt from all around the blade, surrounding it
+in serenity and chaos.~
+~~
+vnum: 23823
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aAD 0
+name: wings dragon-wings heap-silver-scales
+shortdesc: a pair of dragon wings
+desc: A heap of silver scales lies here.
+type: 8
+weight: 21.00
+cost: 10000
+timer: 0
+level: 85
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+19 2
+14 20
+13 20
+~
+extradesc: wings dragon-wings heap-silver-scales
+A quicksilver mess of barely-defined scales and membranes resolves itself into
+a pair of wings upon closer inspection.  They seem to magically resize
+themselves if worn, becoming closer to the size of the wearer as though to fit
+them personally.  Once worn, they attach themselves seamlessly to the wearer's
+back and look like an extra set of limbs that could probably be used for their
+original purpose: flight.  Their value seems beyond reckoning.~
+~~
+vnum: 58413
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: mo 0
+name: shield-mother's-love shield-mothers-love glows-pink glowing radiates-love-kindness
+shortdesc: a Shield of Mother's Love...It glows pink!
+desc: A shield radiates love and kindness...It glows pink!
+type: 9
+weight: 4.00
+cost: 3000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+13 30
+27 2
+~
+extradesc: shield-mother's-love shield-mothers-love glows-pink glowing radiates-love-kindness
+This shield is made of bright blue-white steel, but it glows with a faint pink
+aura.  The design on the front is ancient and very familiar, though you can't
+immediately place it for now.  And if you put your ear against its softly
+thrumming surface, you can hear what seems to be a lullaby, in a strong female
+voice touched with gentleness.~
+~~
+vnum: 55337
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer crushed-leather-bracer armor
+shortdesc: a crushed leather bracer
+desc: A pile of crushed leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracer crushed-leather-bracer armor
+This bracer is crushed beyond use.~
+~~
+vnum: 55340
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: helm crushed-helm armor
+shortdesc: a crushed helm
+desc: A pile of crushed armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: helm crushed-helm armor
+This helm is crushed beyond use.~
+~~
+vnum: 55621
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: agate gem flawed-agate
+shortdesc: a flawed agate
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55688
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: labradorite gem perfect-labradorite
+shortdesc: a perfect labradorite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 7000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 51017
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg 0
+name: magic small-piece-petrified-magic small-chunk-glittering-material questobject
+shortdesc: a small piece of petrified magic
+desc: A small chunk of glittering material is here changing colors.
+type: 8
+weight: 9.00
+cost: 40
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+20 1
+27 3
+23 -1
+24 -1
+~
+extradesc: magic small-piece-petrified-magic small-chunk-glittering-material questobject
+As you gaze at this remarkably heavy material you feel invigorated and
+more alive!  The material glows and hums softly while giving off a slight
+trace of smoke that smells sweet like candy.  ~
+triggers:
+51008
+~
+~~
+vnum: 51011
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: shawl tattered-shawl piece-tattered-cloth
+shortdesc: a tattered shawl
+desc: A piece of tattered cloth lies discarded on the ground.
+type: 9
+weight: 1.30
+cost: 25
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+9 20
+3 1
+~
+extradesc: shawl tattered-shawl piece-tattered-cloth
+You see an old tattered piece of cloth.  It's very beaten up and has been
+through many generations of owners.  You can feel it's age as you bring it near
+you.  Something about this cloth makes you feel just a little bit more
+knowledgeable.  You briefly wonder who first wove this old shawl.~
+~~
+vnum: 17307
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gjl 0
+name: cloak cloak-chaos heap
+shortdesc: the Cloak of Chaos
+desc: A cloak lies in a crumpled heap at your feet.
+type: 9
+weight: 2.70
+cost: 100
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+13 -2
+3 2
+4 -2
+27 1
+~
+extradesc: cloak-chaos heap
+The cloak seems to be jet black, and yet ...  Seems to be a swirling mass of
+colour.  You touch it, and it feels neither cold nor warm to your touch, yet at
+the same time, you get a strange sensation of burning and freezing.~
+triggers:
+150
+~
+~~

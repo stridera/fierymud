@@ -1,0 +1,83 @@
+name: Laich
+password: LamTiIohGB
+currenttitle: the &8Grey&0
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+poofin: A shadow boldly appears setting aflame as Laich steps out.
+poofout: Laich fades into the shadows.
+sex: 1
+class: 11
+race: 2
+level: 100
+home: 3046
+lifeforce: 0
+composition: 0
+id: 10019
+birthtime: 1023512218
+timeplayed: 14660175
+lastlogintime: 1279863325
+host: 208.107.072.243
+height: 69
+weight: 176
+base_height: 69
+base_weight: 176
+base_size: 3
+natural_size: 3
+alignment: 1000
+playerflags: ly
+effectflags: k 0 0
+prefflags: himnorvzAC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+invislevel: 100
+loadroom: 49500
+badpasswords: 9
+lastlevel: 3
+hitpoints: 646/543
+mana: 100/100
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 100
+intelligence: 100
+wisdom: 100
+dexterity: 100
+constitution: 100
+charisma: 100
+cash: 10199 10261 23824 1058063
+experience: 300000004
+wiztitle: &0   &1&bMalum&0    &0
+quit_reason: 10
+saveroom: 3054
+trophy:
+1 51101 4.000000
+1 51100 3.000000
+1 43002 3.000000
+1 43011 1.000000
+1 43010 1.000000
+1 0 0.333000
+1 45 1.000000
+1 17204 5.000000
+1 3068 2.667000
+1 36001 2.000000
+1 36002 4.000000
+1 36003 2.000000
+1 51003 2.000000
+1 18005 1.000000
+1 8330 1.000000
+1 46 2.000000
+1 49038 1.000000
+1 8021 1.000000
+1 8002 1.000000
+0 0 0
+aliases:
+lecho gecho [Laich] $*
+0 emote twitches.
+7 gecho You are trapped in &1&bHELL!!&0
+6 cast 'enlarge' $1
+5 cast 'haste' $1
+4 cast 'curse' $1
+3 gecho &1&bDIE!!&0
+2 goto 49536
+1 cast 'supernova'
+gc get all.coins from corpse
+0

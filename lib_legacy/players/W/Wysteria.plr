@@ -1,0 +1,147 @@
+name: Wysteria
+password: Wys3v99eGe
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 35
+level: 32
+home: 3001
+lifeforce: 0
+composition: 12
+id: 20908
+birthtime: 1737196607
+timeplayed: 78476
+lastlogintime: 1739091149
+host: 052.119.120.201
+height: 151
+weight: 1024
+base_height: 74
+base_weight: 309
+base_size: 2
+natural_size: 3
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoxCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 10
+lastlevel: 0
+hitpoints: 352/288
+mana: 102/102
+move: 161/161
+damroll: 3
+hitroll: 3
+strength: 76
+intelligence: 96
+wisdom: 92
+dexterity: 80
+constitution: 100
+charisma: 62
+cash: 79 872 2006 370
+experience: 6903929
+quit_reason: 10
+saveroom: 46239
+skills:
+2 1000
+5 1000
+8 1000
+19 1000
+20 1000
+30 1000
+31 1000
+32 1000
+37 1000
+39 1000
+50 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+106 1000
+107 1000
+186 1000
+228 1000
+246 1000
+415 50
+416 50
+419 1000
+421 359
+423 340
+424 361
+427 1000
+438 340
+443 340
+444 340
+447 340
+451 250
+452 340
+453 350
+454 352
+456 351
+458 340
+459 353
+460 341
+462 342
+464 340
+0 0
+trophy:
+1 46205 0.250000
+1 46214 1.000000
+1 46206 0.250000
+1 46207 0.250000
+1 46208 0.250000
+1 46202 1.250000
+1 46209 0.500000
+1 46215 0.500000
+1 46210 0.500000
+1 46211 2.500000
+1 46212 0.500000
+1 46200 2.000000
+1 46203 3.500000
+1 46213 1.500000
+1 4500 0.250000
+1 8711 0.750000
+1 8713 5.250000
+1 12007 1.000000
+1 2304 0.250000
+1 2301 0.500000
+1 59010 0.250000
+0 0 0
+tells:
+1738744491 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738744492 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738744515 @WAriana Shelti@W tells you, 'It is a pleasure doing business with you.@W'@0
+1738744799 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738919894 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738919928 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738920358 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738924479 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1738924577 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739090110 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+$
+gossips:
+1738567210 Knak gossips, 'Congrats!'
+1738567220 Peegu gossips, 'thanks'
+1738745521 An old man shouts, 'Woo Hoo!'
+1738916803 Lathyrus gossips, 'Hello!'
+1739089578 Doren shouts, 'Help!  Help!'
+1739090004 Rhodotheus gossips, 'Hello'
+1739090010 Rahem gossips, 'hey'
+1739090129 Rhodotheus gossips, 'How's it going?'
+1739090264 Knak gossips, 'Congrats!'
+1739090267 Selean gossips, 'thanks'
+$
+effects:
+3 21 -12 24 0 0 0
+3 21 2 19 0 0 0
+3 21 0 0 0 0 16384
+57 12 0 0 1048576 0 0
+69 3 0 0 33554432 0 0
+68 4 0 0 16777216 0 0
+0 0 0 0 0

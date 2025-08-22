@@ -1,0 +1,64 @@
+name: Jessrond
+password: Jec8zE18wv
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20342
+birthtime: 1662328511
+timeplayed: 4
+lastlogintime: 1662328520
+host: 024.006.220.138
+height: 40
+weight: 102
+base_height: 40
+base_weight: 102
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: y
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 17
+thirst: 10
+lastlevel: 0
+hitpoints: 24/24
+mana: 0/0
+move: 100/100
+damroll: 3
+hitroll: 6
+strength: 83
+intelligence: 66
+wisdom: 78
+dexterity: 95
+constitution: 76
+charisma: 65
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+0 0
+tells:
+$
+gossips:
+$

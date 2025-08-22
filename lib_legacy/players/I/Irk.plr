@@ -1,0 +1,121 @@
+name: Irk
+password: IrkI3lr/hX
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 23
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19987
+birthtime: 1628122242
+timeplayed: 130238
+lastlogintime: 1726408359
+host: 068.036.093.003
+height: 69
+weight: 224
+base_height: 69
+base_weight: 224
+base_size: 3
+natural_size: 3
+alignment: 1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC ae
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 5
+loadroom: 3054
+lastlevel: 0
+hitpoints: 110/304
+mana: 48/52
+move: 135/135
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 60
+wisdom: 80
+dexterity: 99
+constitution: 76
+charisma: 48
+cash: 1 433 1808 1245
+bank: 0 1268 13 9
+experience: 2490544
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 13490/18000
+-1 0
+skills:
+402 260
+404 273
+407 50
+415 52
+416 50
+419 1000
+421 280
+427 1000
+430 240
+431 50
+438 93
+443 250
+444 94
+463 50
+464 276
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 5101 1.000000
+1 5102 2.000000
+1 5104 1.000000
+1 5485 2.000000
+1 5483 2.000000
+1 5484 1.000000
+1 5479 1.000000
+1 5475 8.000000
+1 5403 1.000000
+1 5404 3.000000
+1 3501 1.000000
+1 3502 3.000000
+1 3500 2.000000
+1 3062 1.000000
+1 16908 4.000000
+1 3132 4.000000
+1 3131 5.000000
+1 3130 5.000000
+1 16907 3.000000
+1 16902 4.000000
+1 16906 4.000000
+0 0 0
+tells:
+1726406302 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1726406303 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1726406303 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1726406304 @WAaron@W tells you, 'You bring it to me when you get it and we'll talk.@W'@0
+1726406304 @WAaron@W tells you, 'You bring it to me when you get it and we'll talk.@W'@0
+1726406315 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1726406319 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1726406324 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1726406332 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1726406336 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+$
+gossips:
+1641185663 Chinok gossips, 'http://fierymud.org/storm.3gpp'
+1641185695 Validaria gossips, 'wow'
+1641185700 Chinok gossips, 'chrome will play it, firefix don't seem to like it, '
+1641186014 Falon gossips, 'that's file!'
+1641186017 Falon gossips, '*wild'
+1641186158 Validaria gossips, 'I'm surprised you're up!'
+1642646970 Chinok gossips, 'hahahah goodluck!'
+1653576853 Choak gossips, 'Morning'
+1705265135 Chinok gossips, 'gratz on 14 cylor'
+1705265141 Cylor gossips, 'thanks!'
+$
+aliases:
+who who -w
+0

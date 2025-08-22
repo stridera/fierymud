@@ -1,0 +1,83 @@
+name: Desandra
+password: DegY3D21iZ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 1
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20480
+birthtime: 1679777919
+timeplayed: 3272
+lastlogintime: 1679781192
+host: 071.088.236.096
+height: 63
+weight: 147
+base_height: 63
+base_weight: 147
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: xy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 20/20
+mana: 0/0
+move: 104/104
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 69
+wisdom: 74
+dexterity: 94
+constitution: 70
+charisma: 59
+experience: 931
+quit_reason: 5
+saveroom: 51903
+skills:
+401 50
+403 60
+408 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 87
+493 50
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+1679778475 @WDaedela@W tells you, 'type "give stick instructor"@W'@0
+1679778482 @WDaedela@W tells you, 'no "to"@W'@0
+1679778511 @WDaedela@W tells you, 'don't use the word "to"@W'@0
+1679778523 @WDaedela@W tells you, 'just "give stick instructor"@W'@0
+1679778528 @WDaedela@W tells you, 'good@W'@0
+1679778557 @WDaedela@W tells you, 'again, just type "put stick bag".  No "in"@W'@0
+1679780708 @WThe Combat Clerk@W tells you, 'Your trainer is down.@W'@0
+$
+gossips:
+1679779791 Cenolo gossips, 'Nope, different alt'
+1679779801 Mersh gossips, 'haha that is what I meant :D'
+1679779817 Mersh gossips, 'oh you mean not a Desandra alt?'
+1679779829 Cenolo gossips, 'nope, Denolo is my main'
+1679779846 Mersh gossips, 'Gotcha well welcome! Is this your first time in fiery?'
+1679779917 Cenolo gossips, 'first time on with this char'
+1679779957 Mersh gossips, 'well let us know if you have any questions or need help'
+1679779965 Cenolo gossips, 'Thanks! Will do'
+1679780063 Mersh gossips, 'Hey Norath!'
+1679780083 Gorath gossips, 'howdy'
+$

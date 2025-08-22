@@ -1,0 +1,115 @@
+name: Achaz
+password: Ac38YRA00U
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 30
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20196
+birthtime: 1647046316
+timeplayed: 174099
+lastlogintime: 1700482275
+host: 174.097.215.151
+height: 74
+weight: 242
+base_height: 74
+base_weight: 242
+base_size: 2
+natural_size: 2
+alignment: 2
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3510
+lastlevel: 0
+hitpoints: 59/53
+mana: 1/0
+move: 120/120
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 98
+wisdom: 80
+dexterity: 79
+constitution: 95
+charisma: 66
+cash: 10 1040 1172 1115
+experience: 110789
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 110
+424 110
+438 50
+443 50
+444 63
+447 80
+451 55
+452 67
+453 71
+459 50
+460 50
+462 50
+464 79
+489 88
+0 0
+trophy:
+1 3507 1.000000
+1 3502 1.000000
+1 3501 1.000000
+1 3503 5.000000
+1 17204 4.000000
+1 3509 2.000000
+1 3506 1.000000
+1 3500 2.000000
+1 3508 5.000000
+1 18001 1.000000
+1 18006 1.000000
+1 18004 1.000000
+1 18005 2.000000
+1 18007 1.000000
+1 18003 4.000000
+1 16902 1.000000
+1 16900 4.000000
+1 16908 3.000000
+1 3132 1.000000
+1 3130 1.000000
+1 3131 2.000000
+0 0 0
+tells:
+1699471870 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1699471871 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1699494192 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1699494287 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1699494287 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1699494287 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1699494287 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1699494288 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1699494289 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1699494289 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+$
+gossips:
+1699555790 Holk gossips, 'ugh...'
+1699555816 Discord gossips, 'Zaver: Ugh?'
+1699555864 Holk gossips, 'got my butt kicked in Dargentan's lair'
+1699555898 Chinok gossips, 'you got beat up by air'
+1699555905 Lokar gossips, 'He will do that.'
+1699555923 Holk gossips, 'if was a fierce looking cloud, I'll have you know'
+1699555937 Lokar gossips, 'haha oh sorry :D'
+1699555974 Holk gossips, 'thanks Lokar'
+1699556715 Chinok gossips, 'woo-hoo, fresh boot everybody'
+1699556766 Mersh gossips, 'oh boy!'
+$

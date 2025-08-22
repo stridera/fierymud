@@ -1,0 +1,137 @@
+1
+vnum: 18003
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 18003
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 17201
+location: 16
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 55569
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55300
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gauntlets rusted
+shortdesc: rusted gauntlets
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.29
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~

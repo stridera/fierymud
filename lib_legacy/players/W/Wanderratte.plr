@@ -1,0 +1,87 @@
+name: Wanderratte
+password: WawUWI.YnO
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18949
+birthtime: 1429989519
+timeplayed: 30180
+lastlogintime: 1431383122
+host: 084.073.132.016
+height: 40
+weight: 180
+base_height: 40
+base_weight: 180
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gy
+effectflags: k 0 q
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 12172
+badpasswords: 12
+lastlevel: 0
+hitpoints: 157/137
+mana: 1/0
+move: 160/160
+damroll: 4
+hitroll: 5
+strength: 98
+intelligence: 60
+wisdom: 58
+dexterity: 91
+constitution: 96
+charisma: 61
+cash: 0 15 69 91
+bank: 2 22 60 0
+experience: 355565
+quit_reason: 7
+saveroom: 12172
+skills:
+402 56
+404 150
+415 50
+416 50
+421 98
+430 58
+438 50
+443 50
+444 66
+463 50
+464 50
+465 69
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 12008 4.000000
+1 12009 5.000000
+1 12012 1.000000
+1 12002 4.000000
+1 12024 3.000000
+1 3502 5.000000
+1 3508 2.000000
+1 3500 3.000000
+1 3507 2.000000
+1 3501 6.000000
+1 11702 0.200000
+1 11809 0.400000
+1 2808 1.250000
+1 5501 0.400000
+1 12023 5.000000
+1 12011 9.000000
+1 12001 6.000000
+1 12025 4.000000
+1 12014 8.000000
+1 12007 9.000000
+1 12004 5.000000
+0 0 0

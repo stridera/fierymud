@@ -1,0 +1,88 @@
+name: Tyr
+password: Ty5ireGqhf
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20761
+birthtime: 1709517835
+timeplayed: 4890
+lastlogintime: 1709523698
+host: 146.070.186.150
+height: 74
+weight: 150
+base_height: 74
+base_weight: 150
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 21/21
+mana: 1/0
+move: 129/129
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 66
+wisdom: 74
+dexterity: 71
+constitution: 84
+charisma: 84
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+451 53
+457 50
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+tells:
+1709523422 @WHelena@W tells you, 'I would love to give you this for free but I have rent to pay.@W'@0
+1709523433 @WHelena@W tells you, 'I would love to give you this for free but I have rent to pay.@W'@0
+1709523686 @WA half-elven maid@W tells you, 'If you want to rent a room, please go upstairs to the Reception Area.@W'@0
+$
+gossips:
+1709519283 Jukarth gossips, 'hey, me average intelligence. so I must be a scholarly troll warrior....'
+1709519320 Chinok gossips, 'average intelligence for a troll is like the dumber than the dumbest elf by like 40%'
+1709519344 Jukarth gossips, 'elves are kind of tasty....not much meat though'
+1709519440 Chinok gossips, 'you should eat more chicken Jukarth'
+1709519443 Frila gossips, 'arg....'
+1709519470 Frila gossips, 'yeah I need to do some....um...work...why did I make these characters? LOL'
+1709519490 Chinok gossips, 'high expectations ?'
+1709519691 Chinok gossips, 'Mardox, you've at least done a little work'
+1709519694 Mardox gossips, 'oh my, I'm higher level than I thought I was lol'
+1709519725 Mardox gossips, 'I need to get a new computer'
+$
+aliases:
+ds drink from fountain
+0

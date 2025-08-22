@@ -1,0 +1,109 @@
+name: Snarkyshark
+password: SnyuOhg7JP
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 28
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20306
+birthtime: 1658712109
+timeplayed: 3439
+lastlogintime: 1658715548
+host: 172.056.027.037
+height: 72
+weight: 350
+base_height: 72
+base_weight: 350
+base_size: 2
+natural_size: 2
+alignment: -1
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 6
+lastlevel: 0
+hitpoints: 38/35
+mana: 0/0
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 72
+intelligence: 76
+wisdom: 83
+dexterity: 73
+constitution: 88
+charisma: 71
+cash: 0 0 0 9
+experience: 18583
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+204 1000
+206 1000
+415 50
+416 50
+423 53
+424 51
+438 50
+443 50
+444 50
+451 51
+453 50
+457 51
+458 50
+459 50
+460 50
+462 50
+463 56
+466 50
+488 72
+0 0
+trophy:
+1 3509 1.000000
+1 3501 7.000000
+1 3502 1.000000
+1 3508 2.000000
+1 3500 9.000000
+1 51900 1.000000
+0 0 0
+tells:
+1658713570 @WThe Academy Recruiter@W tells you, 'You seem to have a handle on what to do already anyway.@W'@0
+1658713570 @WThe Academy Recruiter@W tells you, 'You may come back and go through the training academy at any time.@W'@0
+1658714539 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1658714564 @WAaron@W tells you, 'Hmm, you appear to be a little short of cash for this item.@W'@0
+1658714622 @WSantiago@W tells you, 'No credit here, come back when you have some cash.@W'@0
+1658714772 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1658714774 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1658714774 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1658714774 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1658714776 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1658713083 Chinok gossips, 'not much.. just hoping tomorrow isn't monday'
+1658714427 Chinok gossips, 'nope, you stick at the same spot, til you go level'
+1658714459 Chinok gossips, 'NP, feel free to ask anything.'
+1658714688 Chinok gossips, 'you played here before ?'
+1658714723 Chinok gossips, 'well welcome.  did you hit the 'newbie training area' '
+1658714838 Chinok gossips, 'if not, no issue, but there are a few things we do differently than most places.'
+1658714884 Chinok gossips, 'well for one, we use spell slots, not mana.. .'
+1658714892 Chinok gossips, 'another would be, the trophy list'
+1658714928 Chinok gossips, 'it's meant to be more like 'real D&&D' '
+1658714972 Chinok gossips, 'did you get it worked out ? yell if you need ANY help'
+$
+mem:
+16 0 4
+16 0 8
+0 0 0

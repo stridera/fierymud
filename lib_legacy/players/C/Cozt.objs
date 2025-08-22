@@ -1,0 +1,7804 @@
+1
+vnum: 5212
+location: 0
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: 0 0
+name: flame gray-flame grey-flame small-pillar fire questobject
+shortdesc: a gray flame
+desc: A small pillar of gray flame flickers here.
+type: 1
+weight: 0.50
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 15
+2 1
+~
+extradesc: gray-flame grey-flame small-pillar questobject
+The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  Its luminosity is both too
+bright and too dim, yet seems to light the area perfectly.~
+triggers:
+5207
+~
+~~
+vnum: 16907
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring sparkling-diamond-ring
+shortdesc: a diamond ring
+desc: A sparkling diamond ring catches your eye.
+type: 8
+weight: 0.20
+cost: 320
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+6 3
+~
+extradesc: ring sparkling-diamond-ring
+The diamond sparkles with a merry light, as if it were alive.  You can't help
+but admire the skill of the jeweler.~
+~~
+vnum: 13647
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring ring-green-leaves tiny-branches
+shortdesc: a ring of green leaves
+desc: A ring made of tiny branches and leaves lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.03
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+4 2
+~
+extradesc: ring-green-leaves tiny-branches
+The ring is made of tiny, slender branches, still living, their equally tiny
+green leaves forming a wreath.~
+~~
+vnum: 5519
+location: 3
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: torque eldoria-reward 3rd-black-legion-torque black-torque iron third
+shortdesc: a torque of the 3rd Black Legion
+desc: A black torque lies nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+extradesc: eldoria-reward 3rd-black-legion-torque black-torque iron third
+A torque made of twisted black metal, it looks fairly protective.~
+~~
+vnum: 58005
+location: 4
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gop 0
+name: necklace striking-jade-necklace
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 8
+weight: 0.60
+cost: 4500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 2
+~
+extradesc: necklace striking-jade-necklace
+The necklace is made of several very large, flawless panels of jade.  You run
+your fingers over the smooth stone and can feel supernatural power contained
+inside this rare piece of art.~
+~~
+vnum: 49001
+location: 5
+values:
+14
+0
+0
+0
+0
+0
+0
+~
+flags: ajlmovwyz 0
+name: skin piece-griffin-skin piece-thick-scarred-leather questobject
+shortdesc: a piece of griffin-skin
+desc: A piece of thick, scarred leather lies on the floor.
+type: 9
+weight: 8.00
+cost: 300
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: skin piece-griffin-skin piece-thick-scarred-leather questobject
+It is very hard and has an irregular form, just big enough to use as a
+breastplate.~
+~~
+vnum: 5517
+location: 6
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: skullcap eldoria-reward black-skull-cap 3rd-black-legion-skullcap third iron
+shortdesc: a skullcap of the 3rd Black Legion
+desc: A black skullcap lies nearby.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+14 5
+~
+extradesc: eldoria-reward black-skull-cap 3rd-black-legion-skullcap third iron
+An iron skullcap, it bears the mark of the 3rd Black Legion.~
+~~
+vnum: 5531
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: leggings eldoria-reward 3rd-black-legion-leggings third
+shortdesc: leggings of the 3rd Black Legion
+desc: Some leggings lie here.
+type: 9
+weight: 4.90
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+3 2
+~
+~~
+vnum: 55430
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrtuvwxyz 0
+name: boots-disorder twisted-boots
+shortdesc: &1Boots of Disorder&0
+desc: A set of twisted boots has been tossed to the ground.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+13 15
+3 2
+14 15
+27 2
+~
+extradesc: boots-disorder twisted-boots
+Newly forged but warped in the forging process, these boots represent the
+spiritual twisting occurring the soul of the wearer anti-paladin for whom it
+was forged.  An obsidian inlay absorbs light, creating a terrifying sight!~
+~~
+vnum: 5525
+location: 9
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: gloves eldoria-reward 3rd-black-legion-gloves leather third
+shortdesc: gloves of the 3rd Black Legion
+desc: Some gloves lie discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+3 2
+13 5
+~
+~~
+vnum: 906
+location: 10
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracers legendary-serdryn's-bracers legendary-serdryns-bracers scale-plated-bracers,
+shortdesc: legendary Serdyrn's Bracers
+desc: A set of scale-plated bracers lies here.
+type: 9
+weight: 2.80
+cost: 100
+timer: 0
+level: 1
+effects: y 0 0
+wear: 257
+hiddenness: 0
+applies:
+5 3
+26 10
+6 -4
+~
+extradesc: bracers legendary-serdryn's-bracers legendary-serdryns-bracers scale-plated-bracers,
+Nothing.~
+~~
+vnum: 8603
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pelt brown-coyote-pelt brown-colored-coyote-pelt hide
+shortdesc: a brown coyote pelt
+desc: A brown colored coyote pelt has been tossed here.
+type: 9
+weight: 6.00
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+2 1
+13 5
+~
+extradesc: brown-coyote-pelt brown-colored-coyote-pelt
+This brown pelt looks as if it could impart the agility and vitality of its
+former owner.  It is well constructed and would offer some degree of protection
+against your foes.~
+~~
+vnum: 2023
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr 0
+name: bracelet-boar-images boar-bracelet boars questobject
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 8
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+18 2
+19 1
+~
+extradesc: bracelet-boar-images boar-bracelet boars questobject
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it.  You're now quite sure how, or even what exact material the bracelet is
+made of, though you suspect some kind of magically treated boar skin.~
+~~
+vnum: 55431
+location: 15
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrtuvwxyz 0
+name: bracer-disorder twisted-bracer
+shortdesc: &1Bracer of Disorder&0
+desc: A twisted bracer has been tossed to the ground.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+6 2
+4 2
+27 2
+~
+extradesc: bracer-disorder twisted-bracer
+Newly forged but warped in the forging process, this bracer represents the
+spiritual twisting occurring the soul of the wearer anti-paladin for whom it
+was forged.  An obsidian inlay absorbs light, creating a terrifying sight!~
+~~
+vnum: 16300
+location: 20
+values:
+0
+3
+8
+3
+0
+0
+0
+~
+flags: gmnouvwyz 0
+name: claymore heavy-claymore great-sword greatsword
+shortdesc: a claymore
+desc: A heavy claymore is stuck in the ground.
+type: 5
+weight: 20.00
+cost: 800
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 32769
+hiddenness: 0
+applies:
+5 3
+~
+extradesc: claymore heavy-claymore great-sword greatsword
+The claymore is a heavy broadsword but its craftsmanship is a little crude.  
+You find that its balance is quite good and the blade is keen.~
+~~
+vnum: 472
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: jmnrty 0
+name: mask grey-eye-mask thief's-vision thiefs-vision
+shortdesc: the thief's vision
+desc: A grey eye mask is lying here.
+type: 9
+weight: 0.30
+cost: 134
+timer: 0
+level: 20
+effects: 0 w 0
+wear: 65537
+hiddenness: 0
+applies:
+18 1
+26 8
+~
+extradesc: mask grey-eye-mask thief's-vision thiefs-vision
+It appears to be a grey cloth with eye slits that have black mesh covering
+them.  The mask should cover just about two inches of your face and eyes
+provide little real protection.~
+~~
+vnum: 10304
+location: 22
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: jmouwx 0
+name: mask demonic-mask frightening-mask
+shortdesc: a demonic mask
+desc: A frightening mask is sitting here.
+type: 8
+weight: 3.50
+cost: 5000
+timer: 100
+level: 35
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+13 5
+4 1
+27 1
+~
+extradesc: mask demonic-mask frightening-mask
+Made of beaten gold and shaped into the fearsome visage of a scowling demon,
+this mask is complete with curling white horns.  Sure to frighten anyone gazing
+upon it, the demon's face is both ugly and true to form.  Perhaps it was
+modeled after a real demon.~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 48104
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: head shrivelled-severed-head-jungle-tribesman
+shortdesc: a shrivelled, severed head
+desc: The shrivelled head of a Jungle tribesman lies here.
+type: 8
+weight: 8.00
+cost: 50
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+3 1
+~
+extradesc: head shrivelled-severed-head-jungle-tribesman
+This grotesque trophy makes you want to puke.  Why would you ever want to look
+at such a thing??~
+~~
+vnum: 16031
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: muyz 0
+name: girdle shadow-girdle wide-black-band-metallic-links
+shortdesc: a shadow girdle
+desc: A wide black band of metallic links is piled up here.
+type: 9
+weight: 3.30
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+2 3
+5 3
+1 -3
+27 1
+~
+extradesc: girdle shadow-girdle wide-black-band-metallic-links
+This girdle is little more than a thick shadow.  It is a black band of tightly
+interwoven, metalic links which are bound together to form the girdle.  Each
+link is made of an incoporeal substance, shrouded within a tangible frame.~
+~~
+vnum: 8506
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring jet-earring ear-ring tiny-black-earring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 8
+weight: 0.02
+cost: 250
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+19 1
+18 1
+27 1
+~
+extradesc: earring jet-earring ear-ring tiny-black-earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.~
+~~
+vnum: 8506
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring jet-earring ear-ring tiny-black-earring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 8
+weight: 0.02
+cost: 250
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+19 1
+18 1
+27 1
+~
+extradesc: earring jet-earring ear-ring tiny-black-earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.~
+~~
+vnum: 8034
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 55389
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz 0
+name: bracer trainee-bracer magical-plate-bracer magic
+shortdesc: a trainee bracer
+desc: A slightly magical plate bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+6 1
+13 5
+18 1
+~
+extradesc: bracer trainee-bracer magical-plate-bracer magic
+Newly forged, this magical metal bracer was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 55390
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz 0
+name: gauntlets trainee-gauntlets magical-gauntlets magic
+shortdesc: trainee gauntlets
+desc: A pair of slightly magical gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+14 5
+13 4
+~
+extradesc: gauntlets trainee-gauntlets magical-gauntlets magic
+Newly forged, these magical metal gauntlets were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 55429
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrtuvwxyz 0
+name: greaves-disorder twisted-greaves
+shortdesc: &1Greaves of Disorder&0
+desc: Twisted leg guards have been tossed to the ground.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+13 20
+27 2
+~
+extradesc: greaves-disorder twisted-greaves
+Newly forged but warped in the forging process, these greaves represent the
+spiritual twisting occurring the soul of the wearer anti-paladin for whom it
+was forged.  An obsidian inlay absorbs light, creating a terrifying sight!~
+~~
+vnum: 55384
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz 0
+name: helm trainee-helm magic-power
+shortdesc: a trainee helm
+desc: A helm of slight magic power lies here.
+type: 9
+weight: 4.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+18 1
+13 7
+~
+extradesc: helm trainee-helm magic-power
+Newly forged, this magical metal helm was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 58005
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gop 0
+name: necklace striking-jade-necklace
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 8
+weight: 0.60
+cost: 4500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 2
+~
+extradesc: necklace striking-jade-necklace
+The necklace is made of several very large, flawless panels of jade.  You run
+your fingers over the smooth stone and can feel supernatural power contained
+inside this rare piece of art.~
+~~
+vnum: 36008
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map mielikki map-of-mielikki
+                  Mielikki, the forest town, by Kara-Sithri
+  
+                                                             &3***POINTS OF INTEREST***&0
+          &3#&0              &6&b2&0                                 |&6&b1&0: Temple to Mielikki
+          &9&b|              |&0                                 |&6&b2&0: Altar to Mielikki
+          &9&bSB&0         &B&1&b3&0 - &6&b1&0   &1???&0        &517&0 - &9&bNC&0            |&B&1&b3&0: Cleric Guild
+          &9&b|              |    |              |&0             |&B&1&b4&0: Warrior Guild
+      &521&0  &9&bSB        TC - TC - TC             NC -&0 &518&0       |&B&1&b5&0: Rogue Guild
+      &9&b|   |         |    |    |              |&0             |&B&1&b6&0: Sorcerer Guild
+      &2&b7&0 &9&b- SB -&0 &38&0    &9&bTC -&0 &C&4&b*&0 &9&b-  TC&0   &515&0 - &B&1&b4&0    &9&bNC -&0 &519&0       |&2&b7&0: Forest Inn
+          &9&b|         |    |    |    |         |&0             |&38&0: Post Office
+ &3#&0 &9&b- SQ - WM - WM - TC - TC - TC - EM - EM - CS - EM -&0 &3#&0   |&59&0: Drako's Bronze Shop
+     &9&b|          |   |         |              |&0             |&510&0: Garm's Shield Emporium
+ &59&0 &9&b- SR -&0 &510&0    &513&0  &514&0 &9&b-&0 &B&1&b5&0    &9&bDA - DA - DA   SC&0            |&511&0: Shauna's Hosue of Iron
+     &9&b|          |                  |    |    |&0             |&512&0: Beowyn's Steel
+&511&0 &9&b- SR -&0 &512&0    &B&1&b6&0        &3&b22&0        &516&0  &9&bdump  SC -&0 &520&0       |&513&0: Bigby's House of Magic
+     &9&b|                   |                   |&0             |&514&0: Fine Jewelry
+    &9&bNCP - NC - NC - NC - NC - NC - NC - NC - NCS&0           |&515&0: Santiago's Weapons
+          &9&b|              &0&1#&0&9&b         |&0                       |&516&0: Sloshed Squirrel Tavern
+     &9&bRP - RP - RP   TH - TH - TH   WW&0                      |&517&0: Helena's Bakery
+     &9&b|    |    |    |    |    |    |&0                       |&518&0: Aaron's General Store
+     &9&bRP -&0 &C&4&b*&0  &9&b- RP   TH - TH - TH   WW -&0 &1???&0                |&519&0: Lisa's House of Leather
+     &9&b|    |    |                   |&0                       |&520&0: Freddy's Toy Shop
+     &9&bRP - RP - RP                  WW&0                      |&521&0: Cartographer's Room
+          &9&b|                        |&0                       |&3&b22&0: Bank
+         &9&bGrey&0                      &3#&0                       |&C&4&b*&0: Fountain
+        &9&bCastle&0                                             |&3#&0: City Gates     
+                                                           |&1???&0: New Adventures! 
+ 
+                                                               &9&b***ROADS***&0
+                                                           |SB: Sleepy Blvd.
+                                                           |SQ: Smelter's Sq.
+                                                           |WM: West main St.
+                                                           |TC: Town Center
+                                                           |EM: East Main St.
+                                                           |CS: Commerce Sq.
+                                                           |NC: N. Commerce Ave.
+                                                           |SC: S. Commerce Ave.
+                                                           |DA: Dark Alley
+                                                           |SR: Smelter's Row
+                                                           |NCP: New Castle Plaza
+                                                           |NC: New castle Rd.
+                                                           |NCS: New Castle Sq.
+                                                           |WW: Windy Way
+                                                           |RP: Royal Plaza
+                                                           |TH: Town Hall~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild~
+~~
+vnum: 8802
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: basket wicker-basket
+shortdesc: a wicker basket
+desc: A wicker basket rests here.
+type: 15
+weight: 1.00
+cost: 15
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: basket wicker-basket
+This large basket is made of many pieces of wicker woven together.  Its handle
+is wrapped with fabric at the top for ease of carrying, and its
+generously-sized bowl is lined with the same yellow-striped cloth.~
+~~
+vnum: 55308
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer rusted-plate-bracer armor
+shortdesc: a rusted plate bracer
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracer rusted-plate-bracer armor
+This bracer is rusted beyond use.  Perhaps the Cleric or Warrior guild master
+will know what to do with it.~
+~~
+vnum: 55300
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gauntlets rusted-gauntlets armor
+shortdesc: rusted gauntlets
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.29
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gauntlets rusted-gauntlets armor
+These gauntlets are rusted beyond use.  Perhaps the Cleric or Warrior guild
+master will know what to do with them.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5509
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: token eldoria-trophy small-black-token 3rd-black-legion-token third questobject
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5521
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: sleeves eldoria-reward 3rd-black-legion-leather-sleeves third black-leather-sleeves
+shortdesc: leather sleeves of the 3rd Black Legion
+desc: Some black leather sleeves lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 1
+~
+~~
+vnum: 32410
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: m 0
+name: tunic studded-leather-tunic
+shortdesc: a studded leather tunic
+desc: A studded leather tunic lies here.
+type: 9
+weight: 9.30
+cost: 1000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: studded-leather-tunic
+This tunic is made of hard leather, covered in metal armoring studs made of
+bronze.  It looks utilitarian and thoroughly uncomfortable.~
+~~
+vnum: 55301
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves flimsy-leather-gloves armor
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gloves flimsy-leather-gloves armor
+These gloves are flimsy beyond use.  Perhaps the Rogue guild master will know
+what to do with them.~
+~~
+vnum: 1019
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz 0
+name: pants crude-leather-pants
+shortdesc: crude leather pants
+desc: Some crude leather pants lie here.
+type: 9
+weight: 8.60
+cost: 250
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 -1
+~
+extradesc: crude-leather-pants
+Crafted of a crude leather, and studded with metal knobs for added protection
+against physical attacks.  They are a bit heavy, and far too encumbering for a
+sorcerer to wear.~
+~~
+vnum: 1022
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz 0
+name: sleeves quilted-canvas-sleeves cloth hide glowing pile
+shortdesc: some quilted canvas sleeves
+desc: A pile of cloth and hide lies here glowing.
+type: 9
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+extradesc: quilted-canvas-sleeves cloth hide glowing pile
+These sleeves are remarkably light and offer a sense of protection unseen.  
+There is hide padding on the elbows to provide a little extra protection.~
+~~
+vnum: 5544
+location: -1
+values:
+2
+2
+4
+3
+0
+0
+0
+~
+flags: jnuv 0
+name: longsword black-longsword long-sword eldoria-reward 3rd-black-legion-longsword third
+shortdesc: a longsword of the 3rd Black Legion
+desc: A black longsword lies discarded here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 5525
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: gloves eldoria-reward 3rd-black-legion-gloves leather third
+shortdesc: gloves of the 3rd Black Legion
+desc: Some gloves lie discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+3 2
+13 5
+~
+~~
+vnum: 5529
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: belt eldoria-reward 3rd-black-legion-belt third
+shortdesc: a belt of the 3rd Black Legion
+desc: A belt lies discaded here.
+type: 9
+weight: 0.96
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+1 2
+~
+~~
+vnum: 5533
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: boots eldoria-reward 3rd-black-legion-boots black-boots third
+shortdesc: boots of the 3rd Black Legion
+desc: Some black boots lie here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+2 2
+~
+~~
+vnum: 5515
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: gj 0
+name: symbol small-unholy-symbol eldoria-reward 3rd-black-legion-symbol third questobject
+shortdesc: an unholy symbol of the 3rd Black Legion
+desc: A small black symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 30
+14 25
+26 10
+27 1
+~
+extradesc: small-unholy-symbol eldoria-reward 3rd-black-legion-symbol third questobject
+A feeling of malevolence radiates from this black medal.~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-badge third questobject
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.~
+~~
+vnum: 5514
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wand eldoria-trophy white-wand 3rd-eldorian-guard-wand third questobject
+shortdesc: a wand of the 3rd Eldorian Guard
+desc: A white wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy white-wand 3rd-eldorian-guard-wand third questobject
+It's a simple white wand that probably belonged to a member of the 3rd Eldorian
+Guard.~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring third questobject
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token third questobject
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy small-white-token 3rd-eldorian-guard-token third questobject
+It's a small, white token with the insignia of the 3rd Eldorian Guard.~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull  eldoria-trophy white-skull 3rd-eldorian-guard-skull third questobject
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy white-skull 3rd-eldorian-guard-skull third questobject
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring third questobject
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token third questobject
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy small-white-token 3rd-eldorian-guard-token third questobject
+It's a small, white token with the insignia of the 3rd Eldorian Guard.~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-badge third questobject
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.~
+~~
+vnum: 5512
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: insignia eldoria-trophy small-white-insignia 3rd-eldoria-guard-insignia third questobject
+shortdesc: an insignia of the 3rd Eldorian Guard
+desc: A small white insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy small-white-insignia 3rd-eldoria-guard-insignia third questobject
+A small patch of white fabric with the insignia of the 3rd Eldorian Guard has
+been ripped off a larger peice of fabric.~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-badge third questobject
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.~
+~~
+vnum: 8033
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale green-drakling-scale small-green-scale
+shortdesc: a &2green&0 drakling scale
+desc: A small green scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+~~
+vnum: 16906
+location: 127
+values:
+15
+1
+3
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion murky-green-potion green-potion
+shortdesc: a green potion
+desc: A murky green potion is here.
+type: 10
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion murky-green-potion
+The liquid has an odd astringent odour which reminds you of castor oil from
+your youth.~
+~~
+vnum: 1803
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe bark-canoe
+shortdesc: a bark canoe
+desc: A bark canoe has been abandoned here.
+type: 22
+weight: 20.00
+cost: 1
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: canoe bark-canoe
+   &0It looks very heavy, but quite sturdy.  &0~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 5557
+location: 127
+values:
+16
+12
+4
+0
+0
+0
+0
+~
+flags: j 0
+name: dark-ale flagon-dark-brew
+shortdesc: a dark brew
+desc: A flagon of dark brew lies here.
+type: 17
+weight: 1.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55351
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings burned-leggings armor
+shortdesc: burned leggings
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: leggings burned-leggings armor
+These leggings are burned beyond use.~
+~~
+vnum: 59015
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: akl 0
+name: badge badge-holy-honor small-golden-badge circle gold
+shortdesc: the badge of holy honor
+desc: A small, golden badge in the shape of a circle has been dropped on the ground. 
+type: 9
+weight: 0.07
+cost: 2000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 5
+27 1
+~
+extradesc: badge badge-holy-honor small-golden-badge circle gold
+The badge is formed from solid gold, and is shaped into a circle, enclosing the
+letters S.  H.  It is very detailed with small leaves and flowers carved into
+the band forming the circle.  A small inscription is stamped into the gold on
+the back.~
+extradesc: inscription 
+   All who wear this badge have served the Sacred Haven with their utmost
+ability and proven themselves a great asset to the ranks of the holy.    ~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 5527
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz 0
+name: jerkin eldoria-reward 3rd-black-legion-leather-jerkin black-leather-jerkin third
+shortdesc: a leather jerkin of the 3rd Black Legion
+desc: A black leather jerkin lies here.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 2
+13 5
+~
+~~
+vnum: 55427
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrtuvwxyz 0
+name: vambraces-disorder twisted-vambraces
+shortdesc: &1Vambraces of Disorder&0
+desc: A twisted set of armguards have been tossed to the ground.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+5 3
+1 2
+18 2
+27 2
+~
+extradesc: vambraces-disorder twisted-vambraces
+Newly forged but warped in the forging process, these vambraces represent the
+spiritual twisting occurring the soul of the wearer anti-paladin for whom it
+was forged.  An obsidian inlay absorbs light, creating a terrifying sight!~
+~~
+vnum: 5537
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: robe eldoria-reward 3rd-black-legion-robe black-robe third fabric
+shortdesc: a robe of the 3rd Black Legion
+desc: A black robe lies discarded here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+3 2
+4 2
+13 5
+~
+~~
+vnum: 2007
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandals crude-sandals pilgrim's-sandals leather
+shortdesc: pilgrim's sandals
+desc: A pair of crude sandals rests here.
+type: 9
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 5
+24 -1
+~
+extradesc: crude-sandals pilgrim's-sandals leather
+Though of crude construction, with rough leather uppers and plain leather
+soles, these sandals look very durable.~
+~~
+vnum: 1150
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: moD 0
+name: shield small-wooden-shield
+shortdesc: a wooden shield
+desc: A small wooden shield has been abandoned here.
+type: 9
+weight: 3.50
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+extradesc: shield small-wooden-shield
+A small wooden disc bolted along its edges, this shield is designed to be held
+close to the body.  A pair of leather handles on its back allows its user to
+hold it in a variety of ways.  The shield itself is undecorated.~
+triggers:
+51934
+~
+~~
+vnum: 5542
+location: 127
+values:
+2
+2
+4
+5
+0
+0
+0
+~
+flags: jow 0
+name: flail black-flail eldoria-reward 3rd-black-legion-flail third
+shortdesc: a flail of the 3rd Black Legion
+desc: A black flail lies here.
+type: 5
+weight: 6.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 55428
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrtuvwxyz 0
+name: plate-disorder twisted-plate
+shortdesc: &1Plate of Disorder&0
+desc: A twisted plate has been tossed to the ground.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+13 13
+18 2
+27 2
+~
+extradesc: plate-disorder twisted-plate
+Newly forged but warped in the forging process, this plate represents the
+spiritual twisting occurring the soul of the anti-paladin for whom it was
+forged.  An obsidian inlay absorbs light, creating a terrifying sight!~
+~~
+vnum: 1805
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tattoo panther-claw-tattoo
+shortdesc: a panther claw tattoo
+desc: A tattoo glows in the air here.
+type: 9
+weight: 0.01
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+6 -3
+2 3
+14 10
+~
+extradesc: panther-claw-tattoo
+This large tattoo covers half the face, and is shaped like a cat's striking
+paw, claws extended as if about to rend across the cheek from eyebrow to
+jawline.  It's an impressive piece.~
+~~
+vnum: 20
+location: 127
+values:
+256
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 23712
+location: 127
+values:
+3
+2
+8
+11
+0
+0
+0
+~
+flags: jlmnouvwyz 0
+name: spear adamantine-spear spear-adamant-metal
+shortdesc: an adamantine spear
+desc: A spear made of adamant metal is resting here.
+type: 5
+weight: 5.00
+cost: 1000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: spear adamantine-spear spear-adamant-metal
+The spear is made entirely out of the pale adamantine metal that, according to
+superstition, never goes dull until its bearer is defeated in battle.  It is
+about six feet long and looks pretty unweildy to someone who has not trained
+with spears before.  Yet it would be extremely deadly in hands trained to use
+it properly.~
+~~
+vnum: 23712
+location: 127
+values:
+3
+2
+8
+11
+0
+0
+0
+~
+flags: jlmnouvwyz 0
+name: spear adamantine-spear spear-adamant-metal
+shortdesc: an adamantine spear
+desc: A spear made of adamant metal is resting here.
+type: 5
+weight: 5.00
+cost: 1000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: spear adamantine-spear spear-adamant-metal
+The spear is made entirely out of the pale adamantine metal that, according to
+superstition, never goes dull until its bearer is defeated in battle.  It is
+about six feet long and looks pretty unweildy to someone who has not trained
+with spears before.  Yet it would be extremely deadly in hands trained to use
+it properly.~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55597
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: turquoise gem uncut-turquoise
+shortdesc: an uncut turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55676
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: agate gem perfect-agate
+shortdesc: a perfect agate
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 6000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55676
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: agate gem perfect-agate
+shortdesc: a perfect agate
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 6000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55596
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: moonstone gem uncut-moonstone uncut-moon-stone
+shortdesc: an uncut moonstone
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem aquamarine-dust
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem aquamarine-dust
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem aquamarine-dust
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem tourmaline-dust
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem tourmaline-dust
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55600
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lapis-lazuli gem uncut-lapis-lazuli
+shortdesc: an uncut lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem crushed-malachite
+shortdesc: a crushed malachite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem aquamarine-dust
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem aquamarine-dust
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem tourmaline-dust
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem tourmaline-dust
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem tourmaline-dust
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem tourmaline-dust
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem aquamarine-dust
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem tourmaline-dust
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem aquamarine-dust
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem aquamarine-dust
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem crushed-peridot
+shortdesc: a crushed peridot
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem crushed-malachite
+shortdesc: a crushed malachite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem crushed-peridot
+shortdesc: a crushed peridot
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem aquamarine-dust
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55594
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hematite gem uncut-hematite
+shortdesc: an uncut hematite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-shard
+shortdesc: a malachite shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55597
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: turquoise gem uncut-turquoise
+shortdesc: an uncut turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-shard
+shortdesc: a citrine shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55598
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bloodstone gem uncut-bloodstone uncut-blood-stone
+shortdesc: an uncut bloodstone
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55604
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem uncut-citrine
+shortdesc: an uncut citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 5506
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring third questobject
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.~
+~~
+vnum: 5506
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring third questobject
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.~
+~~
+vnum: 5508
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-badge third questobject
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.~
+~~
+vnum: 50220
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: octant dull-gray-metal-instrument grey
+shortdesc: an octant
+desc: A dull, gray metal instrument is hidden in the rubble.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+3 2
+27 1
+~
+extradesc: octant dull-gray-metal-instrument grey
+Made of a gray metal, and tarnished with age, this small handheld artifact has
+seen better days.  It has two metal struts that are attached at one end and
+splay apart.  At their far end, a gradiated strip of brass curves from one to
+the other in an eighth of a circle.  It appears to be an octant, which is used
+to find one's location out at sea, with the help of the stars.~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 55578
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55574
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55581
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem crushed-peridot
+shortdesc: a crushed peridot
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 5508
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-badge third questobject
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~

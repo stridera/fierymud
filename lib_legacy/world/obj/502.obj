@@ -1,0 +1,370 @@
+#50200
+lime wedge green lime-wedge fat little food~
+a wedge of lime~
+A fat little wedge of lime lies on the ground.~
+~
+19 0 1 0
+3 0 0 0 0 0 0
+0.05 0 0 0 0 0 0 0
+E
+lime wedge green lime-wedge fat little food~
+This bright green morsel is sure to keep away scurvy.  It's also good with
+certain drinks.    ~
+#50201
+teacup cup white china elegant elegant-white-china-teacup~
+an elegant white china teacup~
+An elegant, white china teacup has been left here.~
+~
+17 0 16385 0
+4 4 0 0 0 0 0
+0.08 0 0 0 0 0 0 0
+E
+teacup cup white china elegant elegant-white-china-teacup~
+This is a fragile, white tea cup.  It is gilded on the upper edge, and painted
+with blue and pink flowers.  A single complex character is painted on its
+bottom.    ~
+E
+character symbol~
+It has several strokes, and resembles no letter with which you are familiar.~
+#50202
+teapot tea pot china fragile fragile-china-teapot~
+a fragile china teapot~
+A fragile china teapot is lying on the ground.~
+~
+17 0 16385 0
+40 40 0 0 0 0 0
+0.60 0 0 0 0 0 0 0
+E
+teapot tea pot china fragile fragile-china-teapot~
+It looks quite delicate, yet it has survived despite being in a shipwreck.  
+The spout and the upper rim are lightly gilded, while exquisite paintings of
+dragons and phoenixes adorn its side.  On the bottom, a few masterful strokes
+of an unknown artist's brush have left a pair of complex figures that are
+indecipherable to you.  The are encircled by an irregular line that appears to
+be the coast of an island.    ~
+#50203
+earring golden-crescent-shaped-earring bright-crescent-shaped-golden-earring gold questobject~
+a golden crescent-shaped earring~
+A bright, crescent-shaped golden earring is lying here.~
+~
+8 555659272 262145 20
+2 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+earring golden-crescent-shaped-earring bright-crescent-shaped-golden-earring gold questobject~
+This is a fat, heavy crescent of solid gold with an off-center curl at one end
+to go through a hole in the ear.  It shines brilliantly, and even seems to have
+an inner glow.    ~
+A
+5 1
+X
+994
+#50204
+bandanna purple-black-bandanna small-wadded-up-cloth-purple-black~
+a purple-and-black bandanna~
+A small wadded-up cloth of purple and black lies here.~
+~
+9 536870912 17 20
+6 0 0 0 0 0 0
+0.30 0 0 0 0 0 0 0
+E
+bandanna purple-black-bandanna small-wadded-up-cloth-purple-black~
+Bright purple skull-faces and assorted other bones are scattered across this
+black square of cloth in a whimsical pattern.  It looks like just the thing to
+keep the sun off your head.    ~
+A
+4 3
+A
+23 -1
+A
+6 1
+#50205
+shirt loose-linen-shirt weathered-linen-shirt~
+a loose linen shirt~
+A weathered linen shirt lies here discarded.~
+~
+9 536870912 9 1
+2 0 0 0 0 0 0
+2.70 0 0 0 0 0 0 0
+E
+shirt loose-linen-shirt weathered-linen-shirt~
+This is a slightly off-white shirt made of linen, with long sleeves.  It
+buttons down the front.~
+A
+14 5
+#50206
+breeches brown-leather-breeches dirty-leather-breeches~
+brown leather breeches~
+Dirty leather breeches lie here in a heap.~
+~
+9 0 33 1
+2 0 0 0 0 0 0
+5.00 0 0 0 0 0 0 0
+E
+breeches brown-leather-breeches dirty-leather-breeches~
+These breeches cover the legs down to the knees.  They are somewhat worn,
+though serviceable.~
+#50207
+pork hunk salt meat wizened salt-pork food~
+a hunk of salt pork~
+A hunk of wizened meat lies on the ground.~
+~
+19 0 1 0
+6 0 0 0 0 0 0
+0.50 0 0 0 0 0 0 0
+E
+pork hunk salt meat wizened salt-pork food~
+Salted meat isn't particularly appetizing, but at least it keeps longer.  This
+is no exception.  It's dried and tough like leather.    ~
+#50208
+keg portly little wooden portly-keg~
+a portly keg~
+A portly little wooden keg is stacked on the floor.~
+~
+17 536870912 1 0
+60 60 15 0 0 0 0
+2.50 0 0 0 0 0 0 0
+E
+keg portly little wooden portly-keg~
+This fat little keg is made of dark wood, and is fairly scratched up but
+intact.    ~
+#50209
+ring silver-onyx-studded-ring wide-silver-ring studded black stones~
+a silver, onyx-studded ring~
+A wide silver ring studded with black stones has been dropped here.~
+~
+8 0 3 15
+1 0 0 0 0 0 0
+0.02 2000 0 0 0 0 0 0
+E
+silver-onyx-studded-ring wide-silver-ring studded black stones~
+Small, round black studs protrude from the centerline of this wide silver band.
+They are polished, and gleam darkly.~
+A
+1 1
+A
+26 10
+A
+28 20
+#50210
+cask squat wooden squat-cask~
+a squat cask~
+A squat wooden cask is lying here on its side.~
+~
+17 536870912 1 0
+64 64 9 0 0 0 0
+2.50 0 0 0 0 0 0 0
+E
+cask squat wooden squat-cask~
+Banded with iron straps, this thick barrel looks quite strong.  The bottom is
+slightly smaller than the top.  On the underside is a faded but readable
+customs stamp.    ~
+E
+stamp customs~
+The black ink of this stamp has run a bit, and faded. In several lines, it reads:
+
+SPECULA PORT AUTHORITY
+Export Duty
+PAID~
+#50211
+bracelet flimsy-looking-fat-brass-bracelet fat-tarnished-brass-bracelet~
+a fat, tarnished brass bracelet~
+A flimsy-looking, fat brass bracelet lies here.~
+~
+8 0 4097 20
+2 0 0 0 0 0 0
+1.30 500 0 0 0 0 0 0
+E
+bracelet flimsy-looking-fat-brass-bracelet fat-tarnished-brass-bracelet~
+This gaudy accoutrement is fairly fat, but light.  It's also rather tarnished.
+  ~
+A
+13 5
+A
+2 1
+#50212
+sabre brilliant-sabre highly-polished-sabre~
+a brilliant sabre~
+A highly-polished sabre is lying here.~
+~
+5 51392512 8193 15
+0 3 3 3 0 0 0
+4.00 2000 0 0 0 0 0 0
+E
+brilliant-sabre highly-polished-sabre~
+A gentle curve of razor-sharp metal sweeps outward from the ornate hilt of this
+attractive weapon.  It is about two and a half feet long, and very
+dangerous-looking.~
+A
+19 1
+X
+997
+#50213
+briquet short-worn-sabre~
+a briquet~
+A short, worn sabre is lying here.~
+~
+5 51392512 8193 15
+0 3 3 3 0 0 0
+2.00 900 0 0 0 0 0 0
+E
+briquet short-worn-sabre~
+This is fairly short sabre, suitable for slashing foes in close quarters.  It
+looks well-worn and somewhat tarnished.~
+X
+997
+#50214
+cutlass worn-tarnished-cutlass~
+a tarnished cutlass~
+A worn and tarnished cutlass has been left here.~
+~
+5 51392512 8193 15
+3 3 3 3 0 0 0
+5.00 600 0 0 0 0 0 0
+E
+cutlass worn-tarnished-cutlass~
+This is a fairly cheap weapon, large but flimsy.  It would be very frightening
+to be attacked with it, however.  It resembles a large, single-edged sword with
+a large curve.~
+A
+19 1
+A
+18 -1
+X
+997
+#50215
+hoop crimson-tinged-electrum-hoop three-inch-silvery-gold-hoop earring~
+a &1crimson&0-tinged &3&belectrum&0 hoop~
+A three-inch, silvery-gold hoop lies in the dirt.~
+~
+8 54439945 262145 25
+2 0 0 0 0 0 0
+0.03 3000 0 0 0 0 0 0
+T 5324
+T 5332
+E
+hoop crimson-tinged-electrum-hoop three-inch-silvery-gold-hoop earring~
+About three inches in diameter, this flashy earring will surely attract
+attention.  It is silvery-yellow, but seems to glow with a subtle red color.~
+A
+18 2
+A
+5 1
+X
+992
+#50216
+key stout-looking hefty iron hefty-iron-key~
+a hefty iron key~
+A stout-looking iron key lies here.~
+~
+18 4 1 0
+0 0 0 0 0 0 0
+0.20 0 0 0 0 0 0 0
+E
+key stout-looking hefty iron hefty-iron-key~
+The business end of this key looks like a solid square of metal, out of which
+some holes were cut.  It seems quite solid.    ~
+#50217
+key rusty long iron somewhat long-rusty-iron-key~
+a long, rusty iron key~
+A somewhat long and rusty key has been dropped here.~
+~
+18 4 1 0
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+key rusty long iron somewhat long-rusty-iron-key~
+This key is constructed of a stout cylinder of iron with a few odd protrusions
+here and there.  It is an unusual design.    ~
+#50219
+stone sharpening-stone small-rectangular-stone metal-loop~
+a sharpening stone~
+A small rectangular stone with a metal loop lies in the debris.~
+~
+9 0 1048577 20
+1 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+stone sharpening-stone small-rectangular-stone metal-loop~
+This is a small, gray stone in a roughly rectangular shape.  It has a metal
+loop that runs through a hole near one end.  The stone is somewhat abrasive,
+and has light striations running nearly parallel to its length.~
+A
+18 2
+#50220
+octant dull-gray-metal-instrument grey~
+an octant~
+A dull, gray metal instrument is hidden in the rubble.~
+~
+8 0 1048577 20
+0 0 0 0 0 0 0
+0.40 0 0 0 0 0 0 0
+E
+octant dull-gray-metal-instrument grey~
+Made of a gray metal, and tarnished with age, this small handheld artifact has
+seen better days.  It has two metal struts that are attached at one end and
+splay apart.  At their far end, a gradiated strip of brass curves from one to
+the other in an eighth of a circle.  It appears to be an octant, which is used
+to find one's location out at sea, with the help of the stars.~
+A
+3 2
+A
+27 1
+H
+200
+#50221
+blindfold crumpled-black-linen-blindfold~
+a black linen blindfold~
+A crumpled black linen blindfold was left here.~
+~
+9 536870912 65537 1
+0 0 0 0 0 0 0
+0.10 0 0 1 0 0 0 0
+E
+blindfold crumpled-black-linen-blindfold~
+This is just a simple strip of cloth, which is somewhat wide but has been
+folded several times lengthwise to ensure that no light can pass through it.  
+It is long enough to tie around your head.~
+#50222
+tricorne battered-black-felt-tricorne crumpled-black-felt-tricorne fabric hat~
+a battered black felt tricorne~
+A somewhat crumpled black felt tricorne lies in the dirt.~
+~
+9 0 17 15
+2 0 0 0 0 0 0
+1.70 0 0 0 0 0 0 0
+E
+tricorne battered-black-felt-tricorne crumpled-black-felt-tricorne fabric hat~
+This triple-cornered hat has seen better days.  It was once decorated with
+silvery thread, but most of it has fallen out.  The hat has been crushed and
+stained by sea water.~
+A
+6 3
+A
+23 -1
+#50223
+box~
+a box~
+A little magic box sits here doing nothing.~
+~
+15 0 0 1
+100 0 0 0 0 0 0
+50.00 1 0 0 0 0 0 0
+E
+box magic~
+It looks rather ordinary, made of wood but without seams. It has no lid.~
+#50224
+tailfeather parrot's-tailfeather tail-feather bright-green-feather pen quill~
+a &2&bparrot's&0 tailfeather~
+A bright green feather lies here.~
+~
+21 536870912 16385 1
+0 0 0 0 0 0 0
+0.02 1 0 0 0 0 0 0
+E
+tailfeather parrot's-tailfeather tail-feather bright-green-feather pen quill~
+Looking rather tattered, this long tailfeather is too beat-up to look good in a
+hat.  It seems sturdy enough to use as a pen, though.~
+A
+6 2
+$~

@@ -1,0 +1,183 @@
+72 255 4
+target2 necro_fang
+target3 dia_fang
+target1 0
+bounty 0
+20 255 10
+52003 1
+52015 1
+51014 1
+51005 1
+53001 1
+53411 2
+53308 1
+4016 1
+4004 1
+4003 1
+32 255 8
+hoard 10001500
+52022 1
+52023 1
+52017 1
+52016 1
+sagece 1
+thelriki 1
+jerajai 1
+69 1 2
+elf 1
+shake 1
+25 1 0
+68 1 1
+feather 1
+19 255 1
+choice 2
+29 255 19
+bad5 0
+bad4 0
+bad3 0
+bad2 0
+bad1 0
+invoke 0
+summon 0
+prayer 0
+reliquary 0
+north 0
+west 1
+south 0
+east 0
+item5 0
+item3 0
+goblet 18512
+item2 0
+item1 0
+item4 0
+4 1 1
+ladder 1
+67 1 1
+cloak 1
+24 255 19
+58803 1
+46414 1
+18506 1
+12513 1
+43020 1
+18517 1
+18515 1
+18519 1
+18518 1
+18520 1
+total 5
+18516 1
+51007 1
+10308 1
+30003 1
+50203 1
+8307 1
+18512 1
+room 53178
+63 255 1
+step complete
+2 1 1
+shell 1
+10 255 0
+66 255 0
+48 7 4
+fire_ring 1
+sash 0
+charles 0
+lashes 0
+65 1 2
+scorpion 1
+lever 1
+17 1 30
+5515_reward 1
+5553_reward 1
+5529_reward 1
+5543_reward 1
+5533_reward 1
+5544_reward 1
+5531_reward 1
+5527_reward 1
+5535_reward 0
+5545_reward 0
+5525_reward 1
+5555_reward 1
+5557_reward 1
+5517_reward 1
+5540_reward 1
+5519_reward 1
+5539_reward 1
+5541_reward 1
+5523_reward 1
+5542_reward 1
+5521_reward 2
+5508_trophies 31
+5512_trophies 6
+5506_trophies 9
+5504_trophies 26
+5510_trophies 20
+5514_trophies 6
+bl_ally 1
+eg_faction -1
+bl_faction 155
+56 255 4
+target3 0
+target2 0
+target1 0
+bounty 0
+59 255 2
+target1 0
+hunt 0
+32770 3 1
+subclass_name diabolist
+7 3 42
+55380_armor_acquired 1
+55376_armor_acquired 1
+55364_armor_acquired 1
+55368_armor_acquired 1
+55372_armor_acquired 1
+55360_armor_acquired 1
+55356_armor_acquired 1
+55733_gems_acquired 3
+55722_gems_acquired 3
+55711_gems_acquired 3
+55700_gems_acquired 3
+55689_gems_acquired 3
+55678_gems_acquired 3
+55744_gems_acquired 3
+55667_gems_acquired 3
+55645_gems_acquired 3
+55656_gems_acquired 3
+55634_gems_acquired 3
+55623_gems_acquired 3
+55612_gems_acquired 3
+55601_gems_acquired 3
+55352_armor_acquired 1
+55340_armor_acquired 1
+55336_armor_acquired 1
+55332_armor_acquired 1
+55348_armor_acquired 1
+55328_armor_acquired 1
+55344_armor_acquired 1
+55324_armor_acquired 1
+55566_gems_acquired 3
+55590_gems_acquired 3
+55586_gems_acquired 3
+55582_gems_acquired 3
+55574_gems_acquired 3
+55578_gems_acquired 3
+55570_gems_acquired 3
+55308_armor_acquired 1
+55312_armor_acquired 1
+55304_armor_acquired 1
+55320_armor_acquired 1
+55300_armor_acquired 1
+55316_armor_acquired 1
+64 255 1
+got_cherry 0
+61 255 2
+target1 0
+hunt 0
+70 255 2
+treasure1 0
+hunt 0

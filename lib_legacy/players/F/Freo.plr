@@ -1,0 +1,200 @@
+name: Freo
+password: FrM1xlwS0.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 21
+race: 9
+level: 44
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18092
+birthtime: 1323471573
+timeplayed: 239635
+lastlogintime: 1616486151
+host: 199.167.089.022
+height: 67
+weight: 98
+base_height: 67
+base_weight: 98
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxBCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 249/249
+mana: 193/193
+move: 120/120
+damroll: 3
+hitroll: 3
+strength: 73
+intelligence: 98
+wisdom: 91
+dexterity: 66
+constitution: 89
+charisma: 55
+cash: 98 1089 5641 6141
+experience: 12678071
+pagelength: 50
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+8 1000
+19 1000
+20 1000
+29 1000
+30 1000
+31 1000
+37 1000
+38 1000
+39 1000
+51 1000
+52 1000
+62 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+106 1000
+107 1000
+171 1000
+172 1000
+173 1000
+174 1000
+182 1000
+183 1000
+228 1000
+415 54
+416 88
+421 210
+423 490
+424 490
+438 50
+443 50
+444 259
+447 460
+451 361
+452 51
+454 465
+456 368
+458 98
+459 236
+460 256
+462 230
+464 211
+0 0
+trophy:
+1 12518 0.500000
+1 12515 0.500000
+1 12514 0.500000
+1 12502 1.500000
+1 12511 1.000000
+1 12500 0.500000
+1 47003 6.500000
+1 47002 10.166666
+1 5212 0.250000
+1 5202 0.500000
+1 5203 0.750000
+1 5111 0.250000
+1 5103 0.500000
+1 5102 0.750000
+1 5104 1.000000
+1 5408 0.250000
+1 51001 0.500000
+1 51010 0.500000
+1 51100 0.500000
+1 7302 0.500000
+1 2809 0.500000
+0 0 0
+tells:
+1614747067 @WDaedela@W tells you, 'he reacts the same way to me honestly@W'@0
+$
+gossips:
+1614750501 Vawk gossips, 'nice'
+1614750502 Frumly gossips, 'um... gratz^4'
+1614750510 Kiash gossips, ':)'
+1616474304 Kell gossips, 'grats again'
+1616474313 Glawk gossips, 'thanks again'
+1616476546 Kell gossips, 'grats'
+$
+mem:
+100 1 1
+19 1 1
+8 1 1
+8 1 1
+171 1 1
+171 1 1
+171 1 1
+171 1 2
+171 1 2
+172 1 2
+37 1 2
+37 1 2
+8 1 1
+99 1 2
+37 1 2
+8 1 1
+103 1 2
+106 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+29 1 2
+29 1 2
+62 1 4
+76 1 2
+76 1 4
+76 1 4
+19 1 2
+19 1 2
+52 1 5
+52 1 5
+68 1 5
+20 1 2
+31 1 2
+52 1 8
+0 0 0
+aliases:
+3 ass yawk
+2 ass frumly
+22 c stone rot
+cone cast 'con o col' $*
+` ass skeleton
+dis c 'dispel m' $*
+sh cast shock $*
+4 ass syerr
+ch c 'chill' $*
+df drink fountain
+id recite identify $*
+0 drink water
+all get all all.corpse
+make c 'minor c' $*
+dart c 'ice dart' $*
+str c str $*
+di c 'det inv' $*
+lb c 'lightning' $*
+wind c 'freezing wind' $*
+stone c 'stone' $*
+door c 'dim door' $*
+cc c 'cone of cold' $*
+invis c 'invis' $*
+inv c 'invis' $*
+haste c haste $*
+1 ass kell
+11 c 'stone' kell
+0

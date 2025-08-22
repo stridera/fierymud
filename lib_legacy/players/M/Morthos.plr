@@ -1,0 +1,90 @@
+name: Morthos
+password: MoHFHUJK6k
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 8
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18743
+birthtime: 1410008957
+timeplayed: 31183
+lastlogintime: 1515138373
+host: 099.097.090.156
+height: 74
+weight: 113
+base_height: 74
+base_weight: 113
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 15
+thirst: 4
+lastlevel: 0
+hitpoints: 115/115
+mana: 1/0
+move: 91/122
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 73
+wisdom: 67
+dexterity: 91
+constitution: 91
+charisma: 48
+cash: 0 139 762 660
+experience: 175896
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 130
+415 50
+416 50
+421 104
+438 50
+443 50
+444 56
+463 54
+464 50
+465 93
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 17204 6.000000
+1 8020 1.000000
+1 8000 1.000000
+1 8014 1.000000
+1 8002 2.000000
+1 8021 1.000000
+1 8013 1.000000
+1 8023 1.000000
+1 8011 2.000000
+1 8015 2.000000
+1 8022 2.000000
+1 8010 1.000000
+1 3506 1.000000
+1 3503 1.000000
+1 3507 1.000000
+1 5420 1.000000
+1 5408 3.000000
+1 3501 1.000000
+1 3502 1.000000
+1 3505 1.000000
+1 3500 3.000000
+0 0 0
+aliases:
+gac get all all.corpse
+ll look in corpse
+0

@@ -1,0 +1,1737 @@
+1
+vnum: 1004
+location: 0
+values:
+0
+240
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern.  It holds about fifteen hours worth of fuel.~
+~~
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx 0
+name: ring glittering-ruby-ring questobject
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 8
+3 4
+4 4
+5 2
+~
+extradesc: ring glittering-ruby-ring questobject
+The ring has been formed of some mysterious reddish metal, the likes of which
+you are unfamiliar with.  A glittering ruby has been set in the ring.~
+~~
+vnum: 1700
+location: 2
+values:
+99
+20
+10
+42
+0
+0
+0
+~
+flags: 0 0
+name: ring glimmering-ring
+shortdesc: a glimmering ring
+desc: A small ring glimmers in the light here.
+type: 3
+weight: 0.04
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16387
+hiddenness: 0
+applies:
+18 4
+14 30
+~
+extradesc: glimmering ring
+A silver ring with runes cut into its surface.~
+extradesc: rune runes
+If home is what you seek, the hold me now and use the power within.~
+~~
+vnum: -1
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: eD 0
+name: wreath christmas-wreath large-green-wreath
+shortdesc: a Christmas wreath
+desc: A large green wreath is propped up here.
+type: 8
+weight: 4.00
+cost: 12345
+timer: 5000
+level: 1
+effects: 0 j 0
+wear: 5
+hiddenness: 0
+applies:
+28 25
+~
+extradesc: wreath christmas-wreath large-green-wreath
+Constructed from a large bough of an evergreen tree, twisted back upon itself
+into a large circle, this wreath smells with the wondrous winter scent of
+Christmas.  Various pine cones and berries are tied into the wreath, and a
+large red bow on one side adds a vibrant splash of color to the decoration.  
+The hole in the center is fairly wide, probably large enough to fit over your
+head...~
+~~
+vnum: 18001
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rose red-rose flower
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+hiddenness: 0
+applies:
+13 5
+~
+extradesc: red-rose flower
+The rose's scent fills your nostrils.  You get a feeling of euphoria just by
+touching the flower.~
+~~
+vnum: 55524
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyzD 0
+name: helm-glade wooden-helm
+shortdesc: &3&bHelm of the Glade&0
+desc: A wooden helm lies here tangled in vines.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+4 3
+13 30
+28 60
+~
+extradesc: helm-glade wooden-helm
+Unwilling to be dislodged, the vines have actually grown into and through the
+wood of this helm.  The helm itself appears to have been formed naturally, with
+very little if any human alteration.  Powerful natural magic emanates from this
+helm, indicating that it is more than what it seems.~
+~~
+vnum: 55527
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz 0
+name: pants leather-pants-glade furry-goat-hide-pants
+shortdesc: &3&bLeather Pants of the Glade&0
+desc: Furry goat-hide pants flap from a nearby tree.
+type: 9
+weight: 7.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 4
+1 3
+28 25
+~
+extradesc: pants leather-pants-glade furry-goat-hide-pants
+These are no ordinary goat-hide pants!  Strange, residual fae magic lingers on
+them, indicating that powerful magic resided in the creature these were taken
+from.  Sewn with great care, leggings like these are quite special indeed.~
+~~
+vnum: 23799
+location: 8
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gqAD 0
+name: boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots
+shortdesc: black leather drow boots
+desc: Breathtakingly intricate black leather boots rest here.
+type: 9
+weight: 1.75
+cost: 0
+timer: 0
+level: 65
+effects: y 0 0
+wear: 65
+hiddenness: 0
+applies:
+18 2
+19 2
+14 40
+~
+extradesc: boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots
+This grand pair of customized drow boots appears to have just been completed
+after many hours and days of labor.  The flawless leather straps glisten with
+every bit of light that crosses its surface.  The extra cushioning and soft
+padding along the sole ensure that these boots are not only comfortable, but
+very protective.~
+~~
+vnum: 55530
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrstvwxyzD 0
+name: gloves-glade glowing-mass-silver-spider-webbing silverspider
+shortdesc: &3&bGloves of the Glade&0
+desc: A glowing mass of silver spider webbing floats on the wind.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+1 3
+3 4
+13 20
+~
+extradesc: gloves-glade glowing-mass-silver-spider-webbing silverspider
+Crafted from the incredibly rare silk of the silver spider, webbing such as
+this is nearly indestructible, in addition to being able to hold the most
+powerful enchantments.  These gloves are both beautiful and blithe, as soft as
+the light that glimmers off them and as soft as the wind.~
+~~
+vnum: 55029
+location: 12
+values:
+250
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: 0.00
+cost: 600
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    ~
+~~
+vnum: 48102
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gik 0
+name: necklace coral-necklace fragile-pink-necklace
+shortdesc: a coral necklace
+desc: A fragile pink necklace catches your eye.
+type: 8
+weight: 0.30
+cost: 900
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+4 1
+3 -1
+13 15
+~
+extradesc: necklace coral-necklace fragile-pink-necklace
+The coral necklace is made up of a variety of different pieces of coral.  This
+coral is brightly colored; whether the coral's coloration is natural or the
+result of pigments applied by the savages, you are unsure of.  In any event, it
+is a very pretty piece of jewelry.~
+~~
+vnum: 32401
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: brooch emerald-brooch gold
+shortdesc: an &2emerald &0brooch
+desc: An emerald brooch lies here, glinting.
+type: 8
+weight: 0.40
+cost: 3000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 540673
+hiddenness: 0
+applies:
+14 25
+3 2
+~
+extradesc: emerald-brooch gold
+This brooch is large, with an inch-long emerald set in a gold cabuchon setting.
+Its pin is very secure.~
+~~
+vnum: 55678
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem perfect-amethyst
+shortdesc: a perfect amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 6000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55690
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem perfect-aquamarine
+shortdesc: a perfect aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 7000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55690
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem perfect-aquamarine
+shortdesc: a perfect aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 7000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55690
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem perfect-aquamarine
+shortdesc: a perfect aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 7000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem crushed-peridot
+shortdesc: a crushed peridot
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55583
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-shard
+shortdesc: an amber shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 41009
+location: -1
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: ag 0
+name: eye jewelled-eye fist-sized-gem multiple-facets
+shortdesc: a jewelled eye
+desc: A fist-sized gem with multiple facets is embedded here.
+type: 1
+weight: 0.50
+cost: 140
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+28 8
+~
+extradesc: jewelled-eye fist-sized-gem multiple-facets
+This is no natural gem!  It's the eye of a Hiver Queen, detached from its
+socket.  The many eye facets that once gazed upon the world with ambitious lust
+still gleam faintly in death.~
+~~
+vnum: 55013
+location: 13
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: bg 0
+name: girth jade-girth crystal-green-girth pile
+shortdesc: a jade girth
+desc: A crystal green girth lies here folded into a pile.
+type: 9
+weight: 2.50
+cost: 5400
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+4 1
+~
+extradesc: girth jade-girth crystal-green-girth pile
+This heavy piece of armor seems to be made of pure green crystal.  It glows
+slightly and is warm to the touch.  Just looking at it make you feel brave.~
+~~
+vnum: 20306
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracelet snake-fang-bracelet small fangs
+shortdesc: a snake fang bracelet
+desc: A small bracelet made of snake fangs lies on the ground here.
+type: 8
+weight: 0.70
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+19 1
+18 1
+1 1
+~
+extradesc: snake-fang-bracelet small fangs
+This bracelet is made out of a very durable weaved grass that has several
+spaced out snake fangs weaved into it.  The fangs are about an inch in length
+and give the bracelet a menacing look.  The grass is a dull green color and it
+is weaved tightly so it looks almost like it is one piece of grass.~
+~~
+vnum: 3122
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll chinok-doll chinok-rag-doll little-hooded-figure
+shortdesc: a Chinok rag doll
+desc: A little hooded figure is slumped here like a rag doll.
+type: 0
+weight: 1.70
+cost: 50000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: chinok-doll chinok-rag-doll little-hooded-figure
+The little doll is sewn together from scraps of cloth.  Facial features are
+stitched carefully on the head, depicting a mischevious smile.  Something about
+the doll just makes you want to pat it on the head!  A hooded cloak made of
+brown felt fits the doll nicely, covering the seams where the arms are
+attached.  Each arm has an odd little sword sewn on--the hilts are metallic,
+but the blades are a strange glowing material.  The swords' glow slowly
+alternates between subtle brightening and dimming, casting varying shadows on
+the doll's face which seem to make its eyes come alive.~
+triggers:
+3124
+3125
+~
+~~
+vnum: 12550
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 8
+weight: 0.07
+cost: 250
+timer: 1010
+level: 40
+effects: dx 0 0
+wear: 65537
+hiddenness: 0
+applies:
+4 2
+28 150
+~
+~~
+vnum: 1036
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: mask simple-wooden-mask
+shortdesc: a simple wooden mask
+desc: A simple wooden mask lies here.
+type: 9
+weight: 0.65
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+6 -1
+~
+extradesc: simple-wooden-mask
+&0This small mask is crafted of a dark wood, and is designed to slip easily
+over the face.  It has very littlte detail, save for a small etched mouth and
+two slits for eyes.  Quite uncomfortable, and not very stylish.~
+~~
+vnum: 8611
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tooth snake-tooth small-tooth earring
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 8
+weight: 0.01
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: snake-tooth small-tooth earring
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.~
+~~
+vnum: -1
+location: 24
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag 0
+name: ball ornamental-christmas-ball small-shining-ornament orb
+shortdesc: an ornamental christmas ball
+desc: A small shining ornament sparkles on the ground.
+type: 1
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1310721
+hiddenness: 0
+~~
+vnum: 1001
+location: 26
+values:
+60
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sack rough-cloth cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+extradesc: sack rough-cloth cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.~
+~~
+vnum: 23759
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: oregano packet herb spice food
+shortdesc: a packet of oregano
+desc: A small packet of oregano is sitting here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: oregano packet herb spice food
+Oregano is a rather mild herb used to add zest to otherwise plain dishes.  It
+is said to help in restoration spells and help someone with chronic weakness
+gain strength.  It goes well in tomato sauces with basil and garlic.    ~
+~~
+vnum: 23758
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: basil leaves herb spice stack food
+shortdesc: a stack of basil leaves
+desc: A small stack of basil leaves lies here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: basil leaves herb spice stack food
+Basil is a sweet, mintlike herb that can be ground into a fine spice.  It has
+no known magical properties, but it goes really well with tomatoes in sauces
+and other dishes.  The larger leaves can also be added to soup for a weaker
+flavor.    ~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 23752
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rosemary herb spice jar small food
+shortdesc: a jar of rosemary
+desc: A small jar of rosemary lies forgotten here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jar rosemary herb spice small
+A small glass jar is filled with rosemary, a pungent herb mostly used in the
+healing arts to soothe infections.  It also makes food taste better and
+supposedly makes you healthier if you eat it.    ~
+~~
+vnum: 23751
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sage delicious packet spice herb food
+shortdesc: a bit of sage
+desc: A delicious-smelling packet of spice is sitting here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sage delicious spice herb packet
+It's a small linen packet filled with the yummy-smelling herb sage.    ~
+~~
+vnum: 23750
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: parsley sprig herb spice food
+shortdesc: a sprig of parsley
+desc: A sprig of parsley is sitting here, ready to garnish a dish.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sprig parsley herb spice
+A fluffy little herb, parsley is often used to add flavor or color to
+otherwise unremarkable dishes.    ~
+~~
+vnum: 23754
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cinnamon spice herb stick food
+shortdesc: a stick of cinnamon
+desc: A brown stick of cinnamon sits here, smelling yummy.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: cinnamon spice herb stick food
+This long, slender brown object could be mistaken for a twig if it didn't smell
+so good.  Used to spice up apple cider, cinnamon is a local favorite in many
+other dishes as well.  Don't eat too much of it though--in high concentrations,
+it can be quite hot.    ~
+~~
+vnum: 1003
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: hood pile-ebony-cloth ebony-hood
+shortdesc: &9&ban ebony hood&0
+desc: &0&9&bA pile of ebony cloth lies here.&0
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+extradesc: pile-ebony-cloth ebony-hood
+This deep hood increases the wearer's ability to stay hidden within shadows.  
+Its design is similiar to the those worn by cultists and necromancers.~
+~~
+vnum: 55375
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves worn-sleeves armor
+shortdesc: worn sleeves
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 23823
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aAD 0
+name: wings dragon-wings heap-silver-scales
+shortdesc: a pair of dragon wings
+desc: A heap of silver scales lies here.
+type: 8
+weight: 21.00
+cost: 10000
+timer: 0
+level: 85
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+19 2
+14 20
+13 20
+~
+extradesc: wings dragon-wings heap-silver-scales
+A quicksilver mess of barely-defined scales and membranes resolves itself into
+a pair of wings upon closer inspection.  They seem to magically resize
+themselves if worn, becoming closer to the size of the wearer as though to fit
+them personally.  Once worn, they attach themselves seamlessly to the wearer's
+back and look like an extra set of limbs that could probably be used for their
+original purpose: flight.  Their value seems beyond reckoning.~
+~~
+vnum: 55525
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz 0
+name: sleeves-glade hollowed-oak-tubes
+shortdesc: &3&bSleeves of the Glade&0
+desc: Hollowed out oak tubes lie here, hidden under vines and leaves.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+13 20
+18 1
+5 3
+6 5
+~
+extradesc: sleeves-glade hollowed-oak-tubes
+Made from the holy oak, a symbol of strength and stability, these tubes are
+enhanced to act as natural armor.  Each sleeves is made of two smaller tubes,
+wrapped in leafy vines that act as threads and cords.  Not exactly a fashion
+statement, there is a raw natural beauty to these sleeves.~
+~~
+vnum: 23825
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gprstwx 0
+name: pants loose-icy-blue-pants pale-blue-pants satin
+shortdesc: a pair of loose, icy-blue pants
+desc: Pale blue pants lie neatly folded here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 85
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+13 15
+23 -5
+3 2
+2 -6
+1 -4
+~
+extradesc: pants loose-icy-blue-pants pale-blue-pants satin
+These pants are made out of a satiny material that feels soft and smooth, cold
+on the outside but comfortable when worn.  Large pockets should have enough
+room in them for as many oddments as one could desire, and a thin drawstring at
+the wait insures that they should fit anyone.  Given their shimmering
+appearance and comfortable fit, it is almost certain they are magical in
+nature.~
+~~
+vnum: -1
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: jD 0
+name: helmet hastily-crafted-paper-helmet poorly-constructed-paper-helmet
+shortdesc: a hastily crafted paper helmet
+desc: A poorly constructed paper helmet lies here, crumpled slightly.
+type: 9
+weight: 4.00
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+19 2
+23 -3
+13 10
+~
+extradesc: hastily-crafted-paper-helmet poorly-constructed-paper-helmet
+Crafted from the shoddiest paper, this helmet is both weak and uncomfortable.
+It sits lighter on the head than a regular helmet, and doesn't seem to provide
+any protection at all.  Large splotches of a reddish-brown ooze decorate its
+outer surface, looking like dirt and poop.~
+~~
+vnum: 43021
+location: 127
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: gnoprt 0
+name: orb-catastrophe gleaming-orb
+shortdesc: the Orb of Catastrophe
+desc: A gleaming orb floats a few feet off of the ground here.
+type: 1
+weight: 5.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+1 3
+3 2
+~
+extradesc: orb-catastrophe gleaming-orb
+The orb slowly spins on a random axis, even when held.  Looking deep within its
+depths, you can almost swear that you see its fluid core swirling about a
+solitary figure.~
+~~
+vnum: 58002
+location: 127
+values:
+12
+11
+17
+0
+0
+0
+0
+~
+flags: 0 0
+name: sake bottle ceramic tapered neck
+shortdesc: a ceramic sake bottle
+desc: A ceramic bottle has somehow not tipped over.
+adesc:
+Nothing.~
+type: 17
+weight: 0.20
+cost: 50
+timer: 5
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: sake ceramic bottle
+The bottle is white ceramic, painted with blue symbols and pictures you
+can't read or identify. It looks like it could hold a lot of liquid.~
+~~
+vnum: 1006
+location: 127
+values:
+300
+300
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: waterskin well-crafted-leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: well-crafted-leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.  &0~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sack rough-cloth cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+extradesc: sack rough-cloth cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: giklAB 0
+name: ring ring-verfasser sold-golden-ring gold
+shortdesc: the Ring of the Verfasser
+desc: A solid golden ring gleams in the light.
+adesc:
+Nothing.~
+type: 8
+weight: 0.00
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 o
+wear: 3
+hiddenness: 0
+applies:
+5 2
+18 2
+~
+extradesc: ring ring-verfasser sold-golden-ring gold
+A relief image on the face of the ring depicts a hunter among the trees.  The
+ring is heavy and thick, allowing it to be used as a seal.  The ring is
+encircled by a string of what appear to be musical notes.~
+~~
+vnum: 55379
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings worn-leeggings armor
+shortdesc: worn leggings
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 17203
+location: 127
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu 0
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.~
+~~
+vnum: 17203
+location: 127
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu 0
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.~
+~~
+vnum: 17300
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: jlmopt 0
+name: thurible censer incense questobject
+shortdesc: a thurible
+desc: A thurible is placed here.
+type: 15
+weight: 0.50
+cost: 50
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -1
+18 -1
+~
+extradesc: thurible censer incense questobject
+You see an ornately carved, bronze bowl with an ebony base.  You realise that
+this bowl is usually used for burning incense.  The design on it however, it
+almost painful to look at, as it seems to writhe and coil.~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 16100
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnouvwyz 0
+name: scimitar iron
+shortdesc: a scimitar
+desc: A scimitar lies on the ground here.
+type: 5
+weight: 2.00
+cost: 200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+2 1
+~
+extradesc: scimitar iron
+This scimitar is made of the finest steel in the land.  Its blade is keen and
+sharp.  ~
+~~
+vnum: 55313
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cal flimsy-leather-cap armor
+shortdesc: a flimsy leather cap
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55376
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves tarnished-greaves armor
+shortdesc: tarnished greaves
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55376
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves tarnished-greaves armor
+shortdesc: tarnished greaves
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55360
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots tarnished-plate-boots armor
+shortdesc: tarnished plate boots
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 3.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55372
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55372
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55376
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves tarnished-greaves armor
+shortdesc: tarnished greaves
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 48417
+location: 127
+values:
+0
+11
+12
+4
+0
+0
+0
+~
+flags: mowxyzD 0
+name: limb-maddened-tremaen fire-scorched-staff
+shortdesc: the limb of a maddened tremaen
+desc: A fire-scorched staff lies here, smoldering slightly.
+type: 5
+weight: 7.54
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 32769
+hiddenness: 0
+extradesc: limb-maddened-tremaen fire-scorched-staff
+This limb broke off during a tremaen during battle.  The limb is sturdy and
+could make an effective weapon in battle.~
+~~

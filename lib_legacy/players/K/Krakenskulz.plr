@@ -1,0 +1,84 @@
+name: Krakenskulz
+password: Kr/JTCQYlV
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 26
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20346
+birthtime: 1663213414
+timeplayed: 181
+lastlogintime: 1663213606
+host: 024.068.094.009
+height: 70
+weight: 359
+base_height: 70
+base_weight: 359
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 14
+thirst: 4
+lastlevel: 0
+hitpoints: 19/19
+mana: 0/0
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 68
+intelligence: 92
+wisdom: 85
+dexterity: 77
+constitution: 82
+charisma: 64
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+201 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+447 50
+451 50
+452 50
+453 50
+459 50
+460 50
+462 50
+464 50
+486 85
+0 0
+tells:
+1663213559 @WThe Instructor@W tells you, 'Well hello yourself!@W'@0
+1663213559 @WThe Instructor@W tells you, 'You're learning well!@W'@0
+1663213566 @WThe Instructor@W tells you, 'Do you have any questions about communication?@W'@0
+1663213582 @WThe Instructor@W tells you, 'But not actively wearing or using.@W'@0
+1663213582 @WThe Instructor@W tells you, 'You do not gain any benefits from items in your inventory.@W'@0
+1663213588 @WThe Instructor@W tells you, 'Go ahead and try it out!@W'@0
+1663213591 @WThe Instructor@W tells you, 'Good!  Now you can see everything you have.@W'@0
+1663213594 @WThe Instructor@W tells you, 'In order to gain benefits from items, you have to equip them.@W'@0
+1663213594 @WThe Instructor@W tells you, 'There are three commands to equip items:@W'@0
+1663213594 @WThe Instructor@W tells you, 'That includes instruments, wands, staves, magic orbs, etc.@W'@0
+$
+gossips:
+$

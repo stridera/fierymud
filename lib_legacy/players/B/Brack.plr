@@ -1,0 +1,89 @@
+name: Brack
+password: BrOvqfV85V
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20797
+birthtime: 1718656882
+timeplayed: 27510
+lastlogintime: 1719065098
+host: 073.079.218.238
+height: 72
+weight: 206
+base_height: 72
+base_weight: 206
+base_size: 3
+natural_size: 3
+alignment: 123
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -19/104
+mana: 1/0
+move: 124/182
+damroll: 5
+hitroll: 4
+strength: 90
+intelligence: 64
+wisdom: 72
+dexterity: 80
+constitution: 96
+charisma: 62
+bank: 0 1 1 1
+experience: 120449
+quit_reason: 10
+saveroom: 4103
+skills:
+402 52
+404 51
+415 50
+416 50
+419 1000
+421 71
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 70
+466 50
+467 50
+468 50
+0 0
+tells:
+1718938031 @WSantiago@W tells you, 'No credit here, come back when you have some cash.@W'@0
+1718938042 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1718938076 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1718999542 @WShauna@W tells you, 'Get out of my shop until you have some money!@W'@0
+1718999544 @WShauna@W tells you, 'Get out of my shop until you have some money!@W'@0
+1718999578 @WDrako@W tells you, 'Come back later when you have the money.@W'@0
+1718999614 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1718999731 @WBigby@W tells you, 'No cash, no delivery.@W'@0
+1718999734 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1718999738 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1719024453 Mersh gossips, 'yeah each class has different gems they need.'
+1719024460 Mersh gossips, 'and the gems drop randomly'
+1719024622 Mersh gossips, 'the higher the level the better the gem'
+1719024667 Marlia gossips, 'you will get them eventually'
+1719024667 Mersh gossips, 'which quest?'
+1719024710 Mersh gossips, 'you can get those items. and they are meant to be started now and worked on for many levels'
+1719024747 Marlia gossips, 'as you kill mobs occasionally gems and the phase quest armors will drop'
+1719024758 Marlia gossips, 'eventually you will get the ones you need'
+1719024759 Mersh gossips, 'just kill stuff and you will get gems. I mean quests usually mean you have to work for it'
+1719024784 Mersh gossips, 'Never done a quest in any mud where I just already had everything I needed'
+$

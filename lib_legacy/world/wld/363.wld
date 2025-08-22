@@ -1,0 +1,1343 @@
+#36300
+Light Mountain Trail~
+   You push through the brush and stumble upon a narrow trail that climbs up
+between two mountains.  The mountains rise up to the north and south and the
+path widens to the east.    
+~
+363 0 4
+D1
+~
+~
+0 -1 36302
+D3
+~
+~
+0 -1 3539
+S
+#36301
+Grassy Hill~
+   You are standing on a small hill covered in rich green grass.  This would
+make the perfect picnic spot.  From here you have a perfect view of the
+waterfall that lies off in the distance to the north.  Steep mountains surround
+this spot.  A mountain trail leads north, and a narrow pass goes south into the
+hills.    
+~
+363 0 4
+D0
+~
+~
+0 -1 36306
+D2
+~
+~
+0 -1 50248
+S
+#36302
+Light Mountain Trail~
+   The trail continues to wind between the two mountains, continuing off to the
+east and west.  Just under the wind, you think you hear a low, continuous roar.
+You can only wonder what lies ahead...    
+~
+363 0 4
+D1
+~
+~
+0 -1 36303
+D3
+~
+~
+0 -1 36300
+S
+#36303
+Light Mountain Trail~
+   The mountain trail continues between the two mountains to the north and
+south.  From here, the trail leads off to the east and west.  You can hear a
+low roar coming from the east.    
+~
+363 0 4
+D1
+~
+~
+0 -1 36304
+D3
+~
+~
+0 -1 36302
+S
+#36304
+T-Junction in Mountain Trail~
+   The mountain trail comes to a T-Junction here.  A small pool of sparkling
+water lies just to the northeast.  The path splits to circle around the pool to
+the north and west.  Off in the distance, to the northeast, you can see a huge
+waterfall.    
+~
+363 0 4
+D0
+~
+~
+0 -1 36314
+D1
+~
+~
+0 -1 36305
+D3
+~
+~
+0 -1 36303
+S
+#36305
+Light Mountain Trail~
+   The mountain trail continues between the sparkling pool to the north and the
+mountain range to the south.  The trail continues to the east and west.    
+~
+363 0 4
+D0
+~
+~
+0 -1 36312
+D1
+~
+~
+0 -1 36306
+D3
+~
+~
+0 -1 36304
+S
+#36306
+Light Mountain Trail~
+   The trail continues along the edge of the sparkling pool to the north.  A
+small hill covered in rich green grass lies just to the south.  The trail
+continues to the east and west.    
+~
+363 0 4
+D0
+~
+~
+0 -1 36313
+D1
+~
+~
+0 -1 36307
+D2
+~
+~
+0 -1 36301
+D3
+~
+~
+0 -1 36305
+S
+#36307
+Turn in Light Mountain Trail~
+   The trail turns here to follow along the shores of the small sparkling pool,
+which lies to the northwest.  The path leads to the north and west from here.
+The roar of the waterfall, which lies a ways to the north, is quite loud.    
+~
+363 0 4
+D0
+~
+~
+0 -1 36308
+D3
+~
+~
+0 -1 36306
+S
+#36308
+Light Mountain Trail~
+   You can hear the roar of the waterfall, which lies just to the north.  Off
+to the west the water of the small pool sparkles in the light.  The mountain
+trail continues to the north and south.    
+~
+363 0 4
+D0
+~
+~
+0 -1 36309
+D2
+~
+~
+0 -1 36307
+D3
+~
+~
+0 -1 36313
+S
+#36309
+Base of Waterfall~
+   A huge sheet of water comes crashing down to the north.  The water flows
+west to form a small pool of sparkling water.  A cavern opens up darkly just
+east of the waterfall, just beyond a little path edged with flowers.  The
+smells of fresh mist and wildflowers are pleasant.
+~
+363 4 4
+D0
+You notice a small crevice between the mountain and the falling water of
+the waterfall. You wonder if it is possible to walk behind the waterfall...
+~
+~
+0 -1 36315
+D2
+~
+~
+0 -1 36308
+D3
+~
+~
+0 -1 36310
+E
+flower flowers~
+They appear to be an ordinary assortment of wildflowers, though they do grow
+suspiciously thick near the path and the cavern entrance.  There are buttercups
+and paintbrush, among other plainer flowers.
+~
+E
+waterfall~
+It is tall, perhaps over one hundred feet.  Much of it has devolved into mist
+by the time it reaches the ground.  Far up near the top, on the opposite side,
+there seems to be a platform of some kind in the cliff wall.
+~
+S
+T 17218
+#36310
+Sparkling Pool (NE)~
+   You are floating in a small pool of sparkling water.  It is fed by the huge
+waterfall that comes crashing down just to the east.  The face of a huge
+mountain towers over you to the north.  The base of the waterfall is to the
+east, while to the south and west the pool surrounds you.    
+~
+363 0 7
+D1
+~
+~
+0 -1 36309
+D2
+~
+~
+0 -1 36313
+D3
+~
+~
+0 -1 36311
+S
+#36311
+Small Sparkling Pool (NW)~
+   You are floating in a small pool of sparkling water.  It is fed by a huge
+waterfall that is off a distance to the east.  To the north and west the huge
+cliffs of a mountain tower over you.  The pool surrounds you to the east and
+south.    
+~
+363 0 7
+D1
+~
+~
+0 -1 36310
+D2
+~
+~
+0 -1 36312
+S
+#36312
+Sparkling Pool (SW)~
+   You are floating in a small pool of sparkling water.  It is fed by the huge
+waterfall a ways to the northeast.  The pool surrounds you to the north and
+east.  To the south and west a small trail winds its way around the pool.    
+~
+363 0 7
+D0
+~
+~
+0 -1 36311
+D1
+~
+~
+0 -1 36313
+D2
+~
+~
+0 -1 36305
+D3
+~
+~
+0 -1 36314
+S
+#36313
+Sparkling Pool (SE)~
+   You are floating in a small pool of sparkling water.  It is fed by the huge
+waterfall a ways to the northeast.  The pool surrounds you to the north and
+west.  To the south and east a small trail winds its way around the pool.    
+~
+363 0 7
+D0
+~
+~
+0 -1 36310
+D1
+~
+~
+0 -1 36308
+D2
+~
+~
+0 -1 36306
+D3
+~
+~
+0 -1 36312
+S
+#36314
+Light Mountain Trail End~
+   The mountain trail ends here.  The steep face of a huge mountain rises up
+before you to the north and west.  To the east is the pool of sparkling water.
+The mountain trail leads back to the south.    
+~
+363 0 4
+D1
+~
+~
+0 -1 36312
+D2
+~
+~
+0 -1 36304
+S
+#36315
+Hidden Cavern~
+   You step through the small crevice between the mountain and the falling
+water and emerge in a large cavernous chamber hidden behind the waterfall.  
+The waterfall makes it really humid in here and it takes your eyes a second to
+adjust to the dimmer light.  The cavern stretches off to the north and west.  
+~
+363 8 12
+D0
+~
+~
+0 -1 36316
+D2
+~
+~
+0 -1 36309
+D3
+~
+~
+0 -1 36318
+S
+#36316
+Hidden Cavern~
+   The huge cavern stretches out to the south and west from here.  The roar of
+the waterfall echoes about the cavern making it hard to hear anything.  You
+notice that the floor of the cavern has been flattened.  This cavern is
+obviously used as a hideout of sorts.    
+~
+363 8 12
+D2
+~
+~
+0 -1 36315
+D3
+~
+~
+0 -1 36317
+S
+#36317
+Hidden Cavern~
+   The cavern stretches out around you to the south and east.  Someone has
+placed coarse mats on the ground here, perhaps to use for sleeping.  You notice
+a small tunnel leads off from this cavern to the west.    
+~
+363 8 12
+D1
+~
+~
+0 -1 36316
+D2
+~
+~
+0 -1 36318
+D3
+~
+~
+0 -1 36319
+S
+#36318
+Hidden Cavern~
+   The huge cavern stretches out to the north and west from here.  The roar of
+the waterfall echoes about the cavern making it hard to hear anything.  You
+notice that the floor of the cavern has been flattened.  This cavern is
+obviously used as a hideout of sorts.    
+~
+363 8 12
+D0
+~
+~
+0 -1 36317
+D1
+~
+~
+0 -1 36315
+S
+#36319
+Tunnel off Hidden Cavern~
+   A narrow tunnel carved out of the rock of the mountain leads off from the
+huge cavern to the east.  Thick wooden pillars support the roof in places.  
+The tunnel ends a thick wooden door to the west.  To the north another tunnel
+heads off into the darkness to the north.    
+~
+363 8 12
+D0
+~
+~
+0 -1 36344
+D1
+~
+~
+0 -1 36317
+D3
+A sturdy wooden door banded in metal blocks your passage to the
+east. A small barred window is set into the door and through it you
+can see a stone staircase rising up into the mountain.
+~
+door wooden sturdy~
+1 36305 36320
+S
+#36320
+Stairwell~
+   A stairway made of grey stone begins here and climbs up a stairwell that has
+been crudely carved out of the solid rock of the mountain.  A doorway stands in
+crude door frame to the east.    
+~
+363 264 0
+D1
+A sturdy wooden door reinforced with thick metal bands stands in a crude
+door frame made of stone. A small barred window offers you a view of what
+lies beyond the door. Through the window you can see a crudely carved
+tunnel leading off to the east.
+~
+door sturdy wooden~
+1 36305 36319
+D4
+~
+~
+0 -1 36321
+S
+#36321
+Stairwell~
+   A staircase made of stone spirals up through a stairwell that has been
+crudely carved out of the solid rock of the mountain.  The staircase leads both
+up and down from here.    
+~
+363 264 0
+D4
+~
+~
+0 -1 36322
+D5
+~
+~
+0 -1 36320
+S
+#36322
+Stairwell~
+   A staircase made of stone spirals up through a stairwell that has been
+crudely carved out of the solid rock of the mountain.  The staircase leads both
+up and down from here.    
+~
+363 264 0
+D4
+~
+~
+0 -1 36323
+D5
+~
+~
+0 -1 36321
+S
+#36323
+Stairwell~
+   A staircase made of stone spirals up through a stairwell that has been
+crudely carved out of the solid rock of the mountain.  The staircase leads both
+up and down from here.    
+~
+363 264 0
+D4
+~
+~
+0 -1 36324
+D5
+~
+~
+0 -1 36322
+S
+#36324
+Stairwell~
+   The staircase of grey stone ends at a sturdy wooden door which lies to the
+east.  Now that you have climbed all the way to the top, you realize that you
+have climbed quite a distance up inside the mountain.  You would estimate it
+has been at least a couple hundred feet.    
+~
+363 264 0
+D1
+A sturdy wooden door reinforced with thick metal bands blocks any passage
+to the east. A small barred window offers a view of what is beyond. Through
+the window you can see a stone hallway leading off to the east. Are you in
+some sort of building now?
+~
+door wooden sturdy~
+1 -1 36325
+D5
+~
+~
+0 -1 36323
+S
+#36325
+Stone Hallway~
+   You find yourself in a hallway made of stone.  It would appear you are in
+some sort of building.  During the day light shines through windows in the
+south wall.  You must have climbed all the way to the top of the mountain.  
+Outside you can hear the roar of the waterfall.  The hallway leads off to the
+east.    
+~
+363 8 0
+D1
+~
+~
+0 -1 36326
+D3
+A sturdy wooden door reinforced with thick metal bands stands in the
+wall to the west. A small barred window offers a view at what is behind
+the door. Through the window you can see a stone staircase that drops down
+into the heart of the mountain.
+~
+door wooden sturdy~
+1 -1 36324
+S
+#36326
+Stone Hallway~
+   The hallway turns here leading to the north and west.  Off to the east the
+hallway opens up into what appears to be some sort of dining or meeting hall.
+A small doorway is set into the south wall.    
+~
+363 8 0
+D0
+~
+~
+0 -1 36330
+D1
+~
+~
+0 -1 36327
+D2
+A small wooden doorway stands in the south wall. There is nothing on the
+door that would hint at what is behind it.
+~
+door wooden small~
+1 -1 36338
+D3
+~
+~
+0 -1 36325
+S
+#36327
+Dining Hall~
+   A massive wooden table dominates this huge dining hall which stretches off
+to the north.  At least 20 chairs are placed around the table which appears to
+be made of rare wood.  Windows along the east and south wall let light in into
+this hall during the daytime.    
+~
+363 8 0
+D0
+~
+~
+0 -1 36328
+D3
+~
+~
+0 -1 36326
+S
+#36328
+Dining Hall~
+   The dining hall continues here.  The hall is dominated by a huge wooden
+table made of rare wood.  Windows in the east wall let light into the hall
+during the daytime.  A wooden cabinet, its top stained from spilled water, sits
+below the window supporting several flowerpots.  A kitchen is off to the north.
+~
+363 8 0
+D0
+~
+~
+0 -1 36329
+D2
+~
+~
+0 -1 36327
+E
+flower flowers pot pots flowerpot flowerpots~
+These little pots contain an assortment of violets.  They are blue, red, and
+indeed, violet.  Their perfume drifts subtly in the air, competing with the
+aroma of baked bread.
+~
+S
+T 17218
+#36329
+Kitchen~
+   This small kitchen is stocked full of all manner of pots and pans.  A huge
+fireplace is set into the north wall and burns brightly.  A table stands in the
+middle of the kitchen and is covered with all sorts of uncooked food.  The
+dining hall is to the south.    
+~
+363 8 0
+D2
+~
+~
+0 -1 36328
+S
+#36330
+Stone Hallway~
+   This hallway made of grey stone leads north and south from here.  A small
+door is set into the west wall.  A ways to the north you can see a stairwell
+that leads up.    
+~
+363 8 0
+D0
+~
+~
+0 -1 36331
+D2
+~
+~
+0 -1 36326
+D3
+A simple wooden door is set into the west wall. A large iron ring allows
+you to open the door by pulling outward. There are no markings on the door.
+~
+door wooden simple~
+1 -1 36332
+S
+#36331
+Stone Hallway~
+   This hallway is made of grey stones and runs north to south.  A simple
+wooden door is set into the west wall.  To the north a stone staircase spirals
+up a tower.    
+~
+363 8 0
+D0
+~
+~
+0 -1 36334
+D2
+~
+~
+0 -1 36330
+D3
+A simple wooden door is set into the west wall. A huge iron ring allows
+you to open the door by pulling outward. There are no markings on the door.
+~
+door wooden simple~
+1 -1 36333
+S
+#36332
+Sleeping Quarters~
+   The walls of this room are lined with wooden bunk beds.  Ten men could sleep
+in this room.  At the base of each bunk is a huge wooden footlocker.  There
+doesn't appear to be anything valuable in any of them.    
+~
+363 8 0
+D1
+A simple wooden door is set into the east wall and leads back out to the
+hallway.
+~
+door wooden simple~
+1 -1 36330
+S
+#36333
+Sleeping Quarters~
+   The walls of this room are lined with wooden bunk beds.  Ten men could sleep
+in this room.  At the base of each bunk is a huge wooden footlocker.  There
+doesn't appear to be anything valuable in any of them.    
+~
+363 8 0
+D1
+A simple wooden door is set into the east wall and leads back out to the
+hallway.
+~
+door wooden simple~
+1 -1 36331
+S
+#36334
+Tower Staircase~
+   This stone staircase spirals up the sides of a huge round tower.  To the
+south a hallway cuts through the heart of the hideout.  You would guess that
+this tower is probably a lookout tower.    
+~
+363 8 0
+D2
+~
+~
+0 -1 36331
+D4
+~
+~
+0 -1 36335
+S
+#36335
+Tower Staircase~
+   This staircase winds its way around the inside of the lookout tower.  A
+small landing is here and a wooden door is set into the north wall.  The
+staircase continues both up and down.    
+~
+363 8 0
+D0
+A wooden door made of rare wood stands in the north wall of the tower. A
+handle made of brass allows you to open the door by pulling outward.
+~
+door wooden~
+1 -1 36336
+D4
+~
+~
+0 -1 36337
+D5
+~
+~
+0 -1 36334
+S
+#36336
+Smuggler Leader's Quarters~
+   This curved room is built around the tower.  Rich stained glass windows
+adorn the north wall.  Drapings of silk and thick rich rugs decorate the room.
+Looking out the windows you have a marvelous view of the mountains and the
+river that becomes the waterfall.  A huge bed covered in sheets of satin lies
+against the west wall.  The leader of the smugglers appears to have made a
+small fortune for himself.    
+~
+363 8 0
+D2
+A door made of rare wood leads back to the tower staircase.
+~
+door wooden wood rare~
+1 -1 36335
+S
+T 17213
+T 17212
+#36337
+Lookout~
+   You climb up to the top of the tower.  From here the smuggler's keep a
+lookout over the surrounding valley.  You can see the forest town of Mielikki
+off to the northwest.  A staircase leads back down into the smuggler's hideout.
+A few potted plants nestle in the crennelations: marigolds, snapdragons, and a
+buttercup.
+~
+363 8 0
+D5
+~
+~
+0 -1 36335
+E
+flower flowers plant plants marigold marigolds snapdragon snapdragons buttercup~
+The flowers are growing nicely in small clay pots.  They look a little out of
+place in this lawless hideout.  Nevertheless they brighten up the room with
+their colors and scents.
+~
+S
+T 17218
+#36338
+Balcony~
+   You are standing on a wide balcony connected to the mountain hideout.  
+Looking down you can see the sparkling pool of water hundreds of feet below.  
+You can see that the hideout is built onto the side of the mountain and there
+doesn't seem to be any path leading up to it.  Off to the east a river hurls
+itself over a cliff.  The balcony continues to the east, and to the north there
+is a small door in the wall.    
+~
+363 0 0
+D0
+A simple wooden door leads back into the mountain hideout.
+~
+door wooden simple~
+1 -1 36326
+D1
+~
+~
+0 -1 36339
+S
+#36339
+Balcony~
+   You are standing on a wide balcony connected to the mountain hideout.  
+Looking down you can see the sparkling pool of water hundreds of feet below.  
+Directly to the east a river hurls itself over a cliff.  You probably could
+make it across the river to the other side.    
+   Pots filled with wildflowers line the rear of the balcony, and the air
+is heavy with their scent.
+~
+363 0 0
+D1
+The balcony ends at the waterfall.  Oddly, there is no railing at this end.
+~
+~
+0 -1 36340
+D3
+~
+~
+0 -1 36338
+S
+T 17210
+T 17218
+#36340
+River~
+   The balcony to the west is an impossible distance away--below lies the
+waterfall, crashing down into the pool and the river that are all too far
+below. The stone tower is a sleek structure falling away to the ground.
+~
+363 0 9
+D3
+~
+~
+0 -1 36339
+D5
+~
+~
+0 -1 36341
+S
+#36341
+...and fall...~
+   Ack, falling in a waterfall is extremely unpleasant, the water flows around
+and over you, tumbling you roughly as you head towards the bottom.    
+~
+363 0 9
+D4
+~
+~
+0 -1 36340
+D5
+~
+~
+0 -1 36342
+S
+#36342
+...and fall...~
+   Ack, falling in a waterfall is extremely unpleasant, the water flows around
+and over you, tumbling you roughly as you head towards the bottom.    
+~
+363 0 9
+D4
+~
+~
+0 -1 36341
+D5
+~
+~
+0 -1 36343
+S
+#36343
+...and fall...~
+   Ack, falling in a waterfall is extremely unpleasant, the water flows around
+and over you, tumbling you roughly as you head towards the bottom.    
+~
+363 0 9
+D4
+~
+~
+0 -1 36342
+D5
+~
+~
+0 -1 36309
+S
+#36344
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see.  You wonder if this is the tunnel that the
+smugglers use to sneak their goods into Mielikki.  The tunnels off to the north
+and south from here.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36345
+D2
+~
+~
+0 -1 36319
+S
+#36345
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see.  You wonder if this is the tunnel that the
+smugglers use to sneak their goods into Mielikki.  The tunnels off to the north
+and south from here.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36346
+D2
+~
+~
+0 -1 36344
+S
+#36346
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see.  You wonder if this is the tunnel that the
+smugglers use to sneak their goods into Mielikki.  The tunnels off to the north
+and south from here.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36347
+D2
+~
+~
+0 -1 36345
+S
+#36347
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see.  You wonder if this is the tunnel that the
+smugglers use to sneak their goods into Mielikki.  The tunnels off to the north
+and south from here.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36348
+D2
+~
+~
+0 -1 36346
+S
+#36348
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see.  You wonder if this is the tunnel that the
+smugglers use to sneak their goods into Mielikki.  The tunnels off to the north
+and south from here.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36349
+D2
+~
+~
+0 -1 36347
+S
+#36349
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see.  You wonder if this is the tunnel that the
+smugglers use to sneak their goods into Mielikki.  The tunnels off to the north
+and south from here.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36350
+D2
+~
+~
+0 -1 36348
+S
+#36350
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see.  You wonder if this is the tunnel that the
+smugglers use to sneak their goods into Mielikki.  The tunnels off to the north
+and south from here.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36351
+D2
+~
+~
+0 -1 36349
+S
+#36351
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see.  You wonder if this is the tunnel that the
+smugglers use to sneak their goods into Mielikki.  The tunnels off to the north
+and south from here.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36352
+D2
+~
+~
+0 -1 36350
+S
+#36352
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see.  You wonder if this is the tunnel that the
+smugglers use to sneak their goods into Mielikki.  The tunnels off to the north
+and south from here.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36353
+D2
+~
+~
+0 -1 36351
+S
+#36353
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see.  You wonder if this is the tunnel that the
+smugglers use to sneak their goods into Mielikki.  The tunnels off to the north
+and south from here.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36354
+D2
+~
+~
+0 -1 36352
+S
+#36354
+Bend in Secret Tunnel~
+   The secret tunnel bends here leading off to the west and south.  You wonder
+if this is the tunnel that the smugglers use to sneak their goods into the
+forest town of Mielikki.    
+~
+363 264 12
+D2
+~
+~
+0 -1 36353
+D3
+~
+~
+0 -1 36355
+S
+#36355
+Another Bend in the Secret Tunnel~
+   The secret tunnel bends again here, leading off to the north and east.  You
+wonder who made this tunnel and how long it took.  It seems to go on forever.
+The tunnel heads off into the darkness to the north and east.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36356
+D1
+~
+~
+0 -1 36354
+S
+#36356
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see; it seems to go on forever.  The tunnel heads off
+into the darkness to the north and south.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36357
+D2
+~
+~
+0 -1 36355
+S
+#36357
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see; it seems to go on forever.  The tunnel heads off
+into the darkness to the north and south.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36358
+D2
+~
+~
+0 -1 36356
+S
+#36358
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see; it seems to go on forever.  The tunnel heads off
+into the darkness to the north and south.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36359
+D2
+~
+~
+0 -1 36357
+S
+#36359
+Secret Tunnel~
+   This secret tunnel runs roughly north to south.  It stretches out before you
+for as long as you can see; it seems to go on forever.  The tunnel heads off
+into the darkness to the north and south.    
+~
+363 264 12
+D0
+~
+~
+0 -1 36360
+D2
+~
+~
+0 -1 36358
+S
+#36360
+Bend in the Secret Tunnel~
+   The secret tunnel bends again here leading off to the west and south.  You
+wonder where this tunnel ends as it seems to just go on forever.  You have lost
+all sense of distance and you are beginning to doubt your sense of direction.
+~
+363 264 12
+D2
+~
+~
+0 -1 36359
+D3
+~
+~
+0 -1 36361
+S
+#36361
+Secret Tunnel~
+   You think the tunnel is now running east to west but without any sort of
+reference you cannot be certain.  Thick beams support the roof of this tunnel
+and the air has become very humid.    
+~
+363 264 12
+D1
+~
+~
+0 -1 36360
+D3
+~
+~
+0 -1 36362
+S
+#36362
+Secret Tunnel~
+   You think the tunnel is now running east to west but without any sort of
+reference you cannot be certain.  Thick beams support the roof of this tunnel
+and the air has become very humid.    
+~
+363 264 12
+D1
+~
+~
+0 -1 36361
+D3
+~
+~
+0 -1 36363
+S
+#36363
+Secret Tunnel~
+   You think the tunnel is now running east to west but without any sort of
+reference you cannot be certain.  Thick beams support the roof of this tunnel
+and the air has become very humid.    
+~
+363 264 12
+D1
+~
+~
+0 -1 36362
+D3
+~
+~
+0 -1 36364
+S
+#36364
+Secret Tunnel~
+   You think the tunnel is now running east to west but without any sort of
+reference you cannot be certain.  Thick beams support the roof of this tunnel
+and the air has become very humid.    
+~
+363 264 12
+D1
+~
+~
+0 -1 36363
+D3
+~
+~
+0 -1 36365
+S
+#36365
+Secret Tunnel~
+   You think the tunnel is now running east to west but without any sort of
+reference you cannot be certain.  Thick beams support the roof of this tunnel
+and the air has become very humid.    
+~
+363 264 12
+D1
+~
+~
+0 -1 36364
+D3
+~
+~
+0 -1 36366
+S
+#36366
+Secret Tunnel~
+   You think the tunnel is now running east to west but without any sort of
+reference you cannot be certain.  Thick beams support the roof of this tunnel
+and the air has become very humid.    
+~
+363 264 12
+D1
+~
+~
+0 -1 36365
+D3
+~
+~
+0 -1 36367
+S
+#36367
+Secret Tunnel~
+   You think the tunnel is now running east to west but without any sort of
+reference you cannot be certain.  Thick beams support the roof of this tunnel
+and the air has become very humid.    
+~
+363 264 12
+D1
+~
+~
+0 -1 36366
+D3
+~
+~
+0 -1 36368
+S
+#36368
+Secret Tunnel~
+   You think the tunnel is now running east to west but without any sort of
+reference you cannot be certain.  Thick beams support the roof of this tunnel
+and the air has become very humid.    
+~
+363 264 12
+D1
+~
+~
+0 -1 36367
+D3
+~
+~
+0 -1 36369
+S
+#36369
+Secret Tunnel~
+   You think the tunnel is now running east to west but without any sort of
+reference you cannot be certain.  Thick beams support the roof of this tunnel
+and the air has become very humid.    
+~
+363 264 12
+D1
+~
+~
+0 -1 36368
+D3
+~
+~
+0 -1 36370
+S
+#36370
+Secret Tunnel~
+   Relief floods your heart as you see a narrow staircase to the west leading
+up.  You pray that this is the end to the secret tunnel.  Finally you will get
+a chance to see where the tunnel leads.  The staircase leads up, or you could
+follow the secret tunnel back to the east.    
+~
+363 332 12
+D1
+~
+~
+0 -1 36369
+D4
+The staircase ends at a trapdoor. It has a strange locking mechanism and it
+looks like it can only be opened from this side. 
+~
+trapdoor~
+1 -1 3027
+S
+#36371
+Snaking Walkway~
+   The rush of the waterfall and the flying mist fill the air.  The walkway is
+wet, but traction is good due to its rough surface.  It snakes back and forth
+as if to fool any who would walk upon it without the ability to see it.  There
+is a wide balcony to the west, and the walkway continues east a bit.
+~
+363 772 1
+D1
+~
+~
+0 -1 36372
+D3
+~
+~
+0 -1 36339
+S
+#36372
+Snaking Walkway Corner~
+   The walkway takes an unexpected twist, and nearly curves in behind the
+waterfall to the north.  A cave entrance can be seen beside the rushing water.
+It looks as if it would be invisible from any other vantage point.  The walkway
+also continues west in front of the waterfall.
+~
+363 772 1
+D0
+~
+~
+0 -1 36373
+D3
+~
+~
+0 -1 36371
+S
+#36373
+Safe Room~
+   Is this room a sanctuary, or a repository for valuables?  It appears capable
+of both roles.  Sadly, there is very little of worth here.  A couple of
+wretched empty sacks lie in the corner under dust and cobwebs.  The only exit
+is south.
+~
+363 524 0
+D2
+Little light enters through this narrow slit in the rock.  Mist flows in
+constantly, leaving the walls and floor near the exit slick with moisture and
+algae.
+~
+~
+0 -1 36372
+S
+T 17211
+$~

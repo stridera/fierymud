@@ -1,0 +1,122 @@
+name: Selean
+password: SeH9jRyyzm
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 9
+race: 0
+level: 39
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17248
+birthtime: 1233929096
+timeplayed: 149648
+lastlogintime: 1739090276
+host: 066.199.058.082
+height: 66
+weight: 112
+base_height: 66
+base_weight: 112
+base_size: 2
+natural_size: 2
+alignment: -603
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnouxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 24
+lastlevel: 0
+hitpoints: 463/385
+mana: 144/152
+move: 140/150
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 62
+wisdom: 71
+dexterity: 88
+constitution: 100
+charisma: 43
+cash: 136 3094 2657 1980
+experience: 9173000
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 11690/18000
+-1 0
+skills:
+401 430
+403 430
+404 430
+405 170
+408 430
+410 263
+411 430
+415 50
+416 50
+418 51
+421 430
+438 90
+440 430
+443 50
+444 255
+463 50
+464 430
+465 50
+0 0
+trophy:
+1 5210 2.000000
+1 5211 2.000000
+1 36105 1.000000
+1 36104 1.000000
+1 58302 1.000000
+1 58304 1.000000
+1 58303 3.000000
+1 58013 1.000000
+1 58001 1.000000
+1 58037 2.000000
+1 18503 1.000000
+1 18509 1.000000
+1 13302 1.000000
+1 13313 2.000000
+1 13309 5.000000
+1 13312 2.000000
+1 18507 4.000000
+1 18500 3.000000
+1 18510 3.000000
+1 5200 5.000000
+1 5120 1.000000
+0 0 0
+tells:
+1715227369 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1715227369 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1715227370 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1715302874 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1715303964 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1715740144 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732470251 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732470281 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1733048043 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739089302 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1733048781 Jranor gossips, 'hey'
+1733048879 Orrun gossips, 'How are you doing?'
+1733048901 Orrun gossips, 'alright.  Getting pretty tired haha'
+1733048904 Orrun gossips, 'long work day'
+1733049057 Orrun gossips, 'Happy belated Thanksgiving, if you're state-side!'
+1735803319 Discord gossips, 'Daedela: Hello hello!'
+1739090004 Rhodotheus gossips, 'Hello'
+1739090010 Rahem gossips, 'hey'
+1739090129 Rhodotheus gossips, 'How's it going?'
+1739090264 Knak gossips, 'Congrats!'
+$
+aliases:
+aqua rec aqua
+lc l in corpse
+gc g all.coins from all.corpse
+gm g gem from all.corpse
+0

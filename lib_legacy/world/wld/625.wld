@@ -1,0 +1,627 @@
+#62500
+A Break in the Mist.~
+   You push your way into the wall of mist, leaving the trail behind you to the
+west.  You are surrounded by mist, unable to see more than a few feet in any
+direction.  You have no choice but to push farther east, into the mist or
+return to the trail, west of here.
+~
+625 4194308 3
+D1
+~
+~
+0 -1 62501
+D3
+~
+~
+0 -1 11726
+S
+#62501
+Edge of the Rhell Forest.~
+   There is a tall wall of blue fog to the west of you.  It looks like you
+could push through it if you tried, but why would you want to?  Aside from a
+few grey, twisted trees to the north there is a beautiful forest to the south,
+filled with the biggest trees you've ever seen.  The vivid greens and yellows
+are very encouraging after traveling in dull blues and greys.  You can continue
+east into the forest or west into the mist.
+~
+625 4 3
+D1
+~
+~
+0 -1 62502
+D3
+~
+~
+0 -1 62500
+S
+#62502
+Edge of the Rhell Forest.~
+   The dense undergrowth opens up a little here, allowing passage in three
+directions.  The forest continues on for as far as you can see to the east,
+the trees growing even larger.  To the north you can move into an area of the
+forest with smaller trees, many of them seem to be totally lifeless.  The west
+also looks gloomy, and has a soft blue haze covering it.
+~
+625 0 3
+D0
+~
+~
+0 -1 62540
+D1
+~
+~
+0 -1 62503
+D3
+~
+~
+0 -1 62501
+D5
+You see what could be an opening.
+~
+opening~
+1 0 62529
+S
+#62503
+Edge of the Rhell Forest.~
+   As you press further into the unknown, you can tell that whatever force is
+causing the blue mist and corruption of the trees loses it's grip in this
+section of the forest.  Mighty Rhell trees, now rare in other parts of the
+forest, become more and more common with each step.  If someone where so cruel
+as to cut one down, one of these Rhells would produce enough wood to rebuild
+the entire city of Mielikki.  You no longer feel as if some dark beast is
+hunting you.  But still, you can feel concealed eyes watching.  You can turn
+back to the blue mist to the west, or continue into peaceful seclusion to the
+east.
+~
+625 0 3
+D1
+~
+~
+0 -1 62504
+D3
+~
+~
+0 -1 62502
+S
+#62504
+Edge of the Rhell Forest.~
+   As you press further into the unknown, you can tell that whatever force is
+causing the blue mist and corruption of the trees loses it's grip in this
+section of the forest.  Mighty Rhell trees, now rare in other parts of the
+forest, become more and more common with each step.  If someone where so cruel
+as to cut one down, one of these Rhells would produce enough wood to rebuild
+the entire city of Mielikki.  You no longer feel as if some dark beast is
+hunting you.  But still, you can feel concealed eyes watching.  You can turn
+back to the blue mist to the west, or continue into peaceful seclusion to the
+south.
+~
+625 0 3
+D2
+~
+~
+0 -1 62505
+D3
+~
+~
+0 -1 62503
+S
+#62505
+Edge of the Rhell Forest.~
+   As you press further into the unknown, you can tell that whatever force is
+causing the blue mist and corruption of the trees loses it's grip in this
+section of the forest.  Mighty Rhell trees, now rare in other parts of the
+forest, become more and more common with each step.  If someone where so cruel
+as to cut one down, one of these Rhells would produce enough wood to rebuild
+the entire city of Mielikki.  You no longer feel as if some dark beast is
+hunting you.  But still, you can feel concealed eyes watching.  You can turn
+back to the blue mist to the north, or continue into peaceful seclusion to the
+east.
+~
+625 0 3
+D0
+~
+~
+0 -1 62504
+D1
+~
+~
+0 -1 62506
+S
+#62506
+Edge of the Rhell Forest.~
+   As you press further into the unknown, you can tell that whatever force is
+causing the blue mist and corruption of the trees loses it's grip in this
+section of the forest.  Mighty Rhell trees, now rare in other parts of the
+forest, become more and more common with each step.  If someone where so cruel
+as to cut one down, one of these Rhells would produce enough wood to rebuild
+the entire city of Mielikki.  You no longer feel as if some dark beast is
+hunting you.  But still, you can feel concealed eyes watching.  You can turn
+back to the blue mist to the west, or continue into peaceful seclusion to the
+south.
+~
+625 0 3
+D2
+~
+~
+0 -1 62507
+D3
+~
+~
+0 -1 62505
+S
+#62507
+Edge of the Rhell Forest.~
+   As you press further into the unknown, you can tell that whatever force is
+causing the blue mist and corruption of the trees loses it's grip in this
+section of the forest.  Mighty Rhell trees, now rare in other parts of the
+forest, become more and more common with each step.  If someone where so cruel
+as to cut one down, one of these Rhells would produce enough wood to rebuild
+the entire city of Mielikki.  You no longer feel as if some dark beast is
+hunting you.  But still, you can feel concealed eyes watching.  You can turn
+back to the blue mist to the north, or continue into peaceful seclusion to the
+west.
+~
+625 0 3
+D0
+~
+~
+0 -1 62506
+D3
+~
+~
+0 -1 62508
+S
+#62508
+Edge of the Rhell Forest.~
+   As you press further into the unknown, you can tell that whatever force is
+causing the blue mist and corruption of the trees loses it's grip in this
+section of the forest.  Mighty Rhell trees, now rare in other parts of the
+forest, become more and more common with each step.  If someone where so cruel
+as to cut one down, one of these Rhells would produce enough wood to rebuild
+the entire city of Mielikki.  You no longer feel as if some dark beast is
+hunting you.  But still, you can feel concealed eyes watching.  You can turn
+back to the blue mist to the east, or continue into peaceful seclusion to the
+west.
+~
+625 4 3
+D1
+~
+~
+0 -1 62507
+D3
+~
+~
+0 -1 62509
+S
+#62509
+Edge of the Rhell Forest.~
+   As you press further into the unknown, you can tell that whatever force is
+causing the blue mist and corruption of the trees loses it's grip in this
+section of the forest.  Mighty Rhell trees, now rare in other parts of the
+forest, become more and more common with each step.  If someone where so cruel
+as to cut one down, one of these Rhells would produce enough wood to rebuild
+the entire city of Mielikki.  You no longer feel as if some dark beast is
+hunting you.  But still, you can feel concealed eyes watching.  You can turn
+back to the blue mist to the west, or continue into peaceful seclusion to the
+east.
+~
+625 0 3
+D1
+~
+~
+0 -1 62508
+D2
+~
+~
+0 -1 62510
+D3
+~
+~
+0 -1 62519
+S
+#62510
+The Rhell Forest~
+   All traces of the previous corruption is gone now.  You are surrounded by
+awe-inspiring trees so large they command respect and adoration.  One would
+find it hard to believe just how numerous and healthy the Rhells are.  You
+ocationally hear light whispering, as if some timid creatures are watching
+you, reluctant to show themselves.  The question remains if they are accepting
+of visitors in their forest.  The path continues mostly north and south from
+here.
+~
+625 0 3
+D0
+~
+~
+0 -1 62509
+D2
+~
+~
+0 -1 62511
+S
+#62511
+The Rhell Forest~
+   All traces of the previous corruption is gone now.  You are surrounded by
+awe-inspiring trees so large they command respect and adoration.  One would
+find it hard to believe just how numerous and healthy the rhells are.  You
+occasionally hear light whispering, as if some timid creatures are watching
+you, reluctant to show themselves.  The question remains if they are accepting
+of visitors in their forest.  The path continues mostly north and south from
+here.
+~
+625 0 3
+D0
+~
+~
+0 -1 62510
+D3
+~
+~
+0 -1 62512
+S
+#62512
+The Rhell Forest~
+   All traces of the previous corruption is gone now.  You are surrounded by
+awe-inspiring trees so large they command respect and adoration.  One would
+find it hard to believe just how numerous and healthy the rhells are.  You
+occationally hear light whispering, as if some timid creatures are watching
+you, reluctant to show themselves.  The question remains if they are accepting
+of visitors in their forest.  The path continues mostly north and south from
+here.
+~
+625 0 3
+D1
+~
+~
+0 -1 62511
+D2
+~
+~
+0 -1 62513
+S
+#62513
+The Rhell Forest~
+   All traces of the previous corruption is gone now.  You are surrounded by
+awe-inspiring trees so large they command respect and adoration.  One would
+find it hard to believe just how numerous and healthy the rhells are.  You
+occasionally hear light whispering, as if some timid creatures are watching
+you, reluctant to show themselves.  The question remains if they are accepting
+of visitors in their forest.  The path continues mostly north and south from
+here.
+~
+625 0 3
+D0
+~
+~
+0 -1 62512
+D2
+~
+~
+0 -1 62514
+S
+#62514
+The Rhell Forest~
+   All traces of the previous corruption is gone now.  You are surrounded by
+awe-inspiring trees so large they command respect and adoration.  One would
+find it hard to believe just how numerous and healthy the rhells are.  You
+occasionally hear light whispering, as if some timid creatures are watching
+you, reluctant to show themselves.  The question remains if they are accepting
+of visitors in their forest.  The path continues mostly north and south from
+here.
+~
+625 0 3
+D0
+~
+~
+0 -1 62513
+D2
+~
+~
+0 -1 62515
+S
+#62515
+The Rhell Forest~
+   You are deep inside the forest now.  Ahead of you to the south you see signs
+of a fresh water source.  At your feet, you can see boot tracks.  Someone has
+been here recently.  The tracks only lead south.  Either that person met their
+demise further down this same tail, or they are still here in the forest.  You
+wonder what consequences there might be for disrupting their solitude.  The
+trail continues north and south.
+~
+625 68 3
+D0
+~
+~
+0 -1 62514
+D2
+~
+~
+0 -1 62520
+S
+#62519
+The Oldest of the Rhells.~
+   As you step into this closed section of the forest you find the mightiest of
+all the Rhell trees.  They have grown so large that though they must be
+centered a stones throw from one another they touch at the bases, leaving no
+room for passage.  In the center of this living mountain range is the tallest
+and broadest tree of them all.  You can only guess this is the oldest living
+Rhell.  The dirt here looks disturbed, as if there has been some small scale
+digging operation going on beneath the trees.
+~
+625 4 3
+D1
+~
+~
+0 -1 62509
+D5
+~
+opening~
+1 0 62530
+S
+#62520
+The Edge of a Sacred Spring~
+   Before you, a beautiful spring pool from nowhere.  The water doesn't seem
+to have a visible source or drainage, but nonetheless looks vibrant, alive and
+pure.  You gaze at the water, but dare not touch it, or enter it.  You sense
+much power here.
+~
+625 0 3
+D0
+~
+~
+0 -1 62515
+D1
+~
+~
+0 -1 62527
+D2
+~
+~
+0 -1 62528
+D3
+~
+~
+0 -1 62521
+S
+T 62504
+#62521
+The Edge of a Sacred Spring~
+   Before you, a beautiful spring pool from nowhere.  The water doesn't seem
+to have a visible source or drainage, but nonetheless looks vibrant, alive and
+pure.  You gaze at the water, but dare not touch it, or enter it.  You sense
+much power here.
+~
+625 0 3
+D1
+~
+~
+0 -1 62520
+D2
+~
+~
+0 -1 62522
+S
+T 62504
+#62522
+The Edge of a Sacred Spring~
+   Before you, a beautiful spring pool from nowhere.  The water doesn't seem
+to have a visible source or drainage, but nonetheless looks vibrant, alive and
+pure.  You gaze at the water, but dare not touch it, or enter it.  You sense
+much power here.
+~
+625 0 3
+D0
+~
+~
+0 -1 62521
+D1
+~
+~
+0 -1 62528
+D2
+~
+~
+0 -1 62523
+S
+T 62504
+#62523
+The Edge of a Sacred Spring~
+   Before you, a beautiful spring pool from nowhere.  The water doesn't seem
+to have a visible source or drainage, but nonetheless looks vibrant, alive and
+pure.  You gaze at the water, but dare not touch it, or enter it.  You sense
+much power here.
+~
+625 0 3
+D0
+~
+~
+0 -1 62522
+D1
+~
+~
+0 -1 62524
+S
+T 62504
+#62524
+The Edge of a Sacred Spring~
+   Before you, a beautiful spring pool from nowhere.  The water doesn't seem
+to have a visible source or drainage, but nonetheless looks vibrant, alive and
+pure.  You gaze at the water, but dare not touch it, or enter it.  You sense
+much power here.
+~
+625 0 3
+D0
+~
+~
+0 -1 62528
+D1
+~
+~
+0 -1 62525
+D3
+~
+~
+0 -1 62523
+S
+T 62504
+T 62550
+T 62549
+#62525
+The Edge of a Sacred Spring~
+   Before you, a beautiful spring pool from nowhere.  The water doesn't seem
+to have a visible source or drainage, but nonetheless looks vibrant, alive and
+pure.  You gaze at the water, but dare not touch it, or enter it.  You sense
+much power here.
+~
+625 0 3
+D0
+~
+~
+0 -1 62526
+D3
+~
+~
+0 -1 62524
+S
+T 62504
+#62526
+The Edge of a Sacred Spring~
+   Before you, a beautiful spring pool from nowhere.  The water doesn't seem
+to have a visible source or drainage, but nonetheless looks vibrant, alive and
+pure.  You gaze at the water, but dare not touch it, or enter it.  You sense
+much power here.
+~
+625 0 3
+D0
+~
+~
+0 -1 62527
+D2
+~
+~
+0 -1 62525
+D3
+~
+~
+0 -1 62528
+S
+T 62504
+#62527
+The Edge of a Sacred Spring~
+   Before you, a beautiful spring pool from nowhere.  The water doesn't seem
+to have a visible source or drainage, but nonetheless looks vibrant, alive and
+pure.  You gaze at the water, but dare not touch it, or enter it.  You sense
+much power here.
+~
+625 0 3
+D2
+~
+~
+0 -1 62526
+D3
+~
+~
+0 -1 62520
+S
+T 62504
+#62528
+The Sacred Spring~
+   You find yourself wading in the most beautiful pool you've ever seen.  The
+water is crystal clear.  As you step you turn up a bit of dirt under your
+feet, disrupting the calm, settled pool.  You don't belong here.  This is too
+sacred a place for anyone to be muddying up.
+~
+625 1024 6
+D0
+~
+~
+0 -1 62520
+D1
+~
+~
+0 -1 62526
+D2
+~
+~
+0 -1 62524
+D3
+~
+~
+0 -1 62522
+S
+#62529
+Entrance to the Tunnel~
+   You find yourself hunched over in the tunnels of a feral-dog colony.  Very
+large, as far as rodents go, they did not have you in mind when considering the
+size of these tunnels.  Hardly able to move, you would do well to avoid any
+confrontation here.  You can return up to the surface here, or continue south
+further into the tunnels.
+~
+625 264 12
+D2
+~
+~
+0 -1 62530
+D4
+~
+exit~
+1 -1 62502
+S
+#62530
+Entrance to the Tunnel~
+   You find yourself hunched over in the tunnels of a feral-dog colony.  Very
+large, as far as rodents go, they did not have you in mind when considering the
+size of these tunnels.  Hardly able to move, you would do well to avoid any
+confrontation here.  You can return up to the surface here, or continue west
+further into the tunnels.
+~
+625 264 12
+D0
+~
+~
+0 -1 62529
+D3
+~
+~
+0 -1 62535
+D4
+~
+exit~
+1 -1 62519
+S
+#62535
+The Den~
+   The tunnels open up here into the main den of the feral-dogs.  This cavern,
+though still hardly six foot high, is broader, allowing much more freedom of
+movement.  The inhabitants know you shouldn't be here, and they aren't happy
+about it.
+~
+625 8 12
+D1
+~
+~
+0 -1 62530
+S
+#62540
+Beyond the Twisted Forest.~
+   The erie blue haze is still visible farther west but starts to fade in this
+part of the woods.  Some of the trees here haven't been corrupted, giving you
+hope that you might escape the twisted section of the forest.
+~
+625 33554436 3
+D0
+~
+~
+0 -1 12116
+D2
+~
+~
+0 -1 62502
+S
+#62599
+Deep in the Soil~
+You are in an unfinished room.
+~
+625 525060 12
+S
+$~

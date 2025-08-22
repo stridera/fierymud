@@ -1,0 +1,223 @@
+name: Zard
+password: ZaXP51pbMC
+prompt: &0&5Pe1: %d1%_&0&5Pe2: %d2%_&0&5Pe3: %d3%_&0&5Bri: %dc%_&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>&2&b<&0&2%iH&2&b><&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 19
+race: 31
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20324
+birthtime: 1660765855
+timeplayed: 845157
+lastlogintime: 1735843401
+host: 172.056.051.165
+height: 34
+weight: 68
+base_height: 34
+base_weight: 68
+base_size: 1
+natural_size: 1
+alignment: -1000
+playerflags: yz
+effectflags: k w 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 887/887
+mana: 980/980
+move: 122/122
+damroll: 2
+hitroll: 4
+strength: 92
+intelligence: 86
+wisdom: 92
+dexterity: 94
+constitution: 90
+charisma: 64
+experience: 126330692
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+7 1000
+8 1000
+10 1000
+15 1000
+16 1000
+17 1000
+18 1000
+19 1000
+20 1000
+21 1000
+24 1000
+29 1000
+31 1000
+32 1000
+33 1000
+35 1000
+37 1000
+39 1000
+41 1000
+43 1000
+62 1000
+68 1000
+79 1000
+83 1000
+84 1000
+85 1000
+86 1000
+88 1000
+89 1000
+90 1000
+91 1000
+94 1000
+99 1000
+100 1000
+103 1000
+112 1000
+114 1000
+136 1000
+142 1000
+152 1000
+184 1000
+185 1000
+186 1000
+190 1000
+191 1000
+195 1000
+197 1000
+219 1000
+228 1000
+240 1000
+241 1000
+242 1000
+243 1000
+246 1000
+267 1000
+401 1000
+403 1000
+405 1000
+408 1000
+409 1000
+410 500
+411 1000
+412 1000
+415 1000
+416 1000
+420 1000
+421 1000
+423 749
+424 317
+438 1000
+443 1000
+444 1000
+447 1000
+451 816
+452 1000
+453 500
+454 500
+456 500
+457 750
+459 1000
+460 1000
+462 1000
+463 1000
+464 1000
+465 1000
+490 1000
+551 50
+552 50
+553 1000
+554 1000
+555 1000
+556 50
+557 50
+558 50
+559 50
+560 50
+0 0
+trophy:
+1 48910 0.100000
+0 0 0
+tells:
+1663896001 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1663898724 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1663901376 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1664285603 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1664292786 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1664295268 @WChinok@W tells you, 'normally, yes, but I'm pretty tied up at the moment@W'@0
+1664295295 @WChinok@W tells you, 'no problem@W'@0
+1665111579 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1665111581 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1665111643 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1672256374 Isiac gossips, '/wave'
+1672256922 Chinok gossips, 'welcome back Isiac'
+1672256930 Isiac gossips, '/wave'
+1672927118 Clern gossips, ';D'
+1672927911 Discord gossips, 'felessan: Fecil should train perform.  I've done it in my characters'
+1672928003 Clern gossips, 'is he in miel?'
+1672928026 Discord gossips, 'chinok: he is in melikki'
+1672928056 Discord gossips, 'chinok: doing a bunch of testing today, so most of my messages will be via discord..'
+1672928711 Clern gossips, 'how would one fine fecil? asking for a friend ><'
+1672928766 Discord gossips, 'chinok: track is handy, dim door works, relocate works, or you could just look around the mages guild'
+$
+effects:
+556 0 0 0 0 0 131072
+195 18 0 0 536870912 0 0
+551 5 4 18 0 0 0
+551 5 4 19 0 0 0
+551 5 -14 20 0 0 0
+551 5 -12 21 0 0 0
+551 5 -12 22 0 0 0
+551 5 -12 23 0 0 0
+551 5 -11 24 0 0 0
+551 5 8 17 0 0 0
+551 5 228 13 0 0 0
+0 0 0 0 0
+aliases:
+fieryi say buntoi nakkarri karisto
+shock cast 'shocking grasp' $*
+of order followers $*
+web cast 'web' $*
+charm cast 'charm person'$*
+mock cast 'vicious mockery' $*
+brill innate brill
+glory cast 'glory'
+enlarge cast 'enlarge' $*
+reduce cast 'reduce' $*
+enchant cast 'enchant weapon' $*
+wall cast 'illusory wall' $* stone
+ench cast 'enchant weapon' $*
+gg steal gold $*
+pi perform 'inspiration' $*
+mm cast 'magic missil' $*
+rpoison cast 'remove poison' $*
+bri innate brill
+id get identify sack;recite scroll $*
+ul unlock $*;open $*
+df drink fountain
+ec examine corpse
+cod cast 'cloud of daggers'
+vm cast 'vicious mockery' $*
+heal cast 'heal' $*
+hj perform 'heroic journey'
+cs cast 'color spray'
+chill cast 'chill touch' $*
+burn cast 'burning hands' $*
+harm cast 'harm' $*
+ter perform 'terror' $*
+tears perform 'ballad of tears'
+famil perform 'hearthsong'
+insan perform 'crown of madness'
+joy perform 'joyful noise'
+enrap perform 'enrapture'
+who who -w
+0

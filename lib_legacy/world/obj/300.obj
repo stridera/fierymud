@@ -1,0 +1,402 @@
+#30000
+trough watering water~
+the watering trough~
+A massive watering trough sits next to the stable, supported by posts.~
+~
+23 603979792 0 0
+9999 9999 0 0 0 0 0
+9999.00 0 0 0 0 0 0 0
+E
+trough watering water~
+The trough is made of thick blank planks pegged together in a long "V" shape.
+It is rather huge, and would have to be to supply the stream of orc soldiers
+who fill buckets from it frequently.  Though orcs are not known for their
+hygiene, the water appears to be clean and clear.  Naturally it is covered with
+graffiti.    ~
+E
+graffiti~
+Most of it is an incomprehensible orc scrawl, but some deep black lettering
+near the base catches your eye:
+
+Cronax 2006~
+#30001
+roll hard rye bread lump round food~
+a hard rye roll~
+A small round hard lump of bread lies here forgotten.~
+~
+19 0 1 0
+8 0 0 0 0 0 0
+2.00 10 0 0 0 0 0 0
+E
+roll hard rye bread lump round food~
+This is a dark, hard piece of bread. It looks like it was prepared
+by uninterested hands. Still, it contains much-needed energy.~
+#30002
+herring handful dried fish food~
+a handful of dried herring~
+A handful of dried fish gives off an interesting aroma.~
+~
+19 0 1 0
+7 0 0 0 0 0 0
+1.00 20 0 0 0 0 0 0
+E
+herring handful dried fish food~
+It takes a handful of these little fish to make a meal, especially when
+dried. These brown morsels don't look or smell particularly good, but
+at least they aren't spoiled.~
+#30003
+potatoes cake spicy potato cake food~
+a spicy potato cake~
+Someone lost their fried potato cake here.~
+~
+19 0 1 0
+15 0 0 0 0 0 0
+3.00 20 0 0 0 0 0 0
+E
+potatoes cake spicy potato cake food~
+Potatoes are notoriously easy to grow and useful for eating, but that
+doesn't make them any less bland.  Thankfully, it appears that a non-orc
+cook had a hand in the preparation of this cake, for it has been heavily
+flavored with strong but not offensive spices.~
+#30004
+liver raw slab meat food~
+a slab of raw liver~
+A glistening slab of brown meat lies here attracting flies.~
+~
+19 0 1 0
+20 0 0 0 0 0 0
+4.00 40 0 0 0 0 0 0
+E
+liver raw slab meat food~
+There's nothing simpler to prepare than raw liver: even a knife is
+optional. This is a recipe that even orcs couldn't screw up. Unfortunately,
+it takes a particular kind of palate to appreciate it... one that could
+pose a danger to the unwary.~
+#30005
+pemmican packet meat food~
+a packet of pemmican~
+A tightly-bound packet of dried spiced meat sits on the ground.~
+~
+19 0 1 0
+15 0 0 0 0 0 0
+1.00 40 0 0 0 0 0 0
+E
+pemmican packet meat food~
+The contents of this packet resemble a sort of mushy meaty grit with some green
+and brown spices mixed in.  It smells a bit like jerky, so this must be the
+good stuff.  It will keep forever and satisfies like a much larger meal.    ~
+#30006
+quill raven's-quill long-black-shiny-feather ravens-quill~
+a &9&braven's&0 quill~
+A long black shiny feather flutters in the breeze.~
+~
+21 536870912 16385 0
+0 0 0 0 0 0 0
+0.05 5 0 0 0 0 0 0
+#30007
+bag small-bag~
+a small bag~
+A small bag is crumpled on the floor.~
+~
+15 0 16385 0
+50 0 0 0 0 0 0
+0.50 20 0 0 0 0 0 0
+E
+bag small~
+This is a small simple bag made of cloth.~
+#30008
+lantern brass~
+a lantern~
+A brass lantern sits here on the ground.~
+~
+1 0 16385 0
+0 250 250 0 0 0 0
+1.50 50 0 0 0 0 0 0
+E
+lantern brass~
+This is a rather small brass lantern.  It is made entirely of thin sheets of
+brass, except for the handle which is wood.  Perforations around the combustion
+chamber let out the light, but cut back on the wind.    ~
+#30009
+torch large~
+a torch~
+A large torch lies here.~
+~
+1 0 1 0
+0 150 150 0 0 0 0
+3.00 10 0 0 0 0 0 0
+#30010
+scroll gray recall gray-recall~
+a gray scroll of recall~
+A gray scroll is lying here.~
+~
+2 536936512 16385 1
+0 221 0 0 0 0 0
+0.12 3000 0 0 0 0 0 0
+#30011
+ring platinum-wedding-band delicate-silvery-ring~
+a platinum wedding band~
+A delicate silvery ring was lost here.~
+~
+8 0 3 1
+0 0 0 0 0 0 0
+0.05 6000 0 0 0 0 0 0
+E
+ring platinum-wedding-band delicate-silvery-ring~
+Light and delicate, this silvery ring embodies fine workmanship.  The inner
+surface is smooth and polished.  The outside is slightly curved, and features a
+pair of intertwined lines that run the length of the ring's surface.~
+A
+6 2
+A
+24 -1
+#30012
+wristband ruby-encrusted-wristband silver-gold-wristband deep-red-rubies~
+a ruby-encrusted wristband~
+A silver and gold wristband encrusted with deep red rubies sits on the ground.~
+~
+8 0 4097 1
+0 0 0 0 0 0 0
+0.30 15000 0 0 0 0 0 0
+E
+ruby-encrusted-wristband ruby-encrusted silver gold deep-red-rubies~
+Smoothly polished silver and gold links intermingle in a vaguely serpentine
+pattern.  Small red rubies are set in a meandering row all down the middle,
+with three rather large rubies that glow deeply in any ambient light.  The
+effect is mesmerizing.~
+A
+6 3
+#30013
+hatchet battle-hatchet small-cracked-axe stained-handle~
+a battle hatchet~
+A small cracked axe with a stained handle lies here.~
+~
+5 50343936 8193 1
+0 1 8 3 0 0 0
+3.00 200 0 0 0 0 0 0
+E
+hatchet battle-hatchet small-cracked-axe stained-handle~
+This cruel implement looks to be forged from iron, though crudely.  It has a
+short shaft to which is attached the iron head.  A long "chin" extends downward
+a ways to give it a longer cutting edge, and it is rather heavy.  Given the
+chips and scratches, it has been used as much as a club as a slashing weapon.~
+A
+2 1
+X
+992
+#30014
+morningstar morning-star spiky-morningstar~
+a morningstar~
+A spiky morningstar lies in the mud.~
+~
+5 51384320 8193 1
+0 1 8 6 0 0 0
+10.00 250 0 0 0 0 0 0
+E
+morningstar morning-star spiky-morningstar~
+This weapon comprises a wooden handle to which is attached a short chain with a
+metal ball at the end.  The ball has had holes drilled into it and various
+spikes jammed in.  It is rusted and stained with many colors of ichorous
+liquid.    ~
+A
+18 -1
+X
+225
+#30015
+battleaxe battle-axe hefty-chipped-battleaxe~
+a battleaxe~
+A hefty chipped battleaxe waits for carnage.~
+~
+5 55603200 32769 1
+0 1 11 3 0 0 0
+10.00 500 0 0 0 0 0 0
+E
+battleaxe battle-axe hefty-chipped-battleaxe~
+This is a rather large weapon that must be held in both hands to be effective.
+A massive curved blade is mounted at the end of a pole, and a spike is attached
+at the end of the pole for thrusting.  It has seen many battles and repairs,
+and the blade is notched in several places.~
+X
+1011
+#30016
+waterskin skin hide horse horse-hide~
+a horse-hide waterskin~
+A banana-shaped waterskin made of pale hide was dropped here.~
+~
+17 0 1 0
+48 48 0 0 0 0 0
+1.80 15 0 0 0 0 0 0
+E
+waterskin skin hide horse horse-hide~
+Orcs, notoriously disdainful of horses, have no qualms about making tools from
+their body parts.  This is one example.  The workmanship is rough and the
+pieces oddly cut.  However, it will carry a quantity of water.    ~
+#30017
+mug beer~
+a mug~
+A crude pottery mug has been set here.~
+~
+17 0 16385 0
+8 8 1 0 0 0 0
+0.20 20 0 0 0 0 0 0
+E
+mug beer~
+This is a crudely made mug from a nearby potter's wheel.  A shapeless handle
+sticks out from the side.    ~
+#30018
+mug ale dark~
+a mug~
+A crude pottery mug has been set here.~
+~
+17 0 16385 0
+8 8 4 0 0 0 0
+0.20 30 0 0 0 0 0 0
+E
+mug ale dark~
+This is a crudely made mug from a nearby potter's wheel.  A shapeless handle
+sticks out from the side.    ~
+#30019
+bottle dark brown firebreather~
+a dark brown bottle~
+A bottle of dark brown glass lies on its side.~
+~
+17 0 1 0
+12 12 7 0 0 0 0
+0.30 45 0 0 0 0 0 0
+E
+bottle dark brown firebreather~
+This bottle is full of stretched bubbles and looks none too strong.  For the
+moment, however, it is not leaking, though it smells of powerful liquor.    ~
+#30020
+cup coffee~
+a cup~
+A brown-stained cup has been set here.~
+~
+17 0 16385 0
+8 8 12 0 0 0 0
+0.20 7 0 0 0 0 0 0
+E
+cup coffee~
+It's just a white ceramic cup with a small handle.  The inside is stained
+brown, and the bottom has scuff marks.    ~
+#30021
+cup tea~
+a cup~
+A little cup sits here.~
+~
+17 0 16385 0
+6 6 11 0 0 0 0
+0.20 7 0 0 0 0 0 0
+E
+cup tea~
+This small cup looks well-used but sturdy.  It is made of some kind of polished
+white porcelain, and is ever so slightly stained inside.    ~
+#30022
+stein mug metal ale~
+a stein~
+A metal mug with a handle sits on the ground.~
+~
+17 0 16385 0
+12 12 3 0 0 0 0
+0.30 40 0 0 0 0 0 0
+E
+stein mug metal ale~
+This is a rather large mug made of some dull gray metal.  A handle is riveted
+to one side.  The design of a mermaid is etched into one side, as if by a
+jeweler, but without a great deal of talent.    ~
+#30023
+glass shot whiskey~
+a shot glass~
+A shot glass has been set on the ground.~
+~
+17 0 1 0
+2 2 5 0 0 0 0
+0.10 20 0 0 0 0 0 0
+E
+glass shot whiskey~
+This is a small glass for holding a small but powerful drink.~
+#30024
+cask beer cask-beer~
+a large cask~
+A large wooden cask sits on its end.~
+~
+17 0 1 0
+256 256 1 0 0 0 0
+4.00 300 0 0 0 0 0 0
+E
+cask beer cask-beer~
+Iron bands hold together the slats of this large cask.  It smells of beer and
+has evidently been sitting in the dirt for some time.  Lichens are growing on
+one end and mold on the other.    ~
+#30026
+standard rallying-standard~
+the rallying standard~
+An orcish war standard stands in the mud at a slight angle.~
+~
+28 0 0 0
+0 0 0 0 0 0 0
+30.00 0 0 0 0 0 0 0
+E
+standard rallying-standard~
+This tall heavy standard dominates the area.  It is made from wrought iron.  
+Three twists run its length, and at the top is the ragged banner of the orcs.
+Two small halfling skulls have been cruelly hung on either side of the banner.
+Where its length is within the reach of the orcish soldiers, it has been rubbed
+smooth by constant touching.~
+#30101
+ring test-ring testing~
+the ring of testing~
+A softly glowing ring of white metal sits quietly in the sand.~
+~
+8 0 3 0
+0 0 0 0 0 0 0
+0.05 0 0 4194304 0 0 0 0
+#30102
+mousetrap trap wires board wire~
+the mousetrap~
+Some weird wiggly wires are attached to a little board.~
+~
+14 0 1 0
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+T 61571
+E
+mousetrap trap wires board wire~
+It's got a thick loop of wire that is bended into a spiral at one end.  This
+loop is temporarily bent down and fixed in place by a delicate trigger.  It
+could sure hurt your finger if you're not careful!    ~
+#30103
+potion test~
+a test potion~
+A potion lies here waiting to be quaffed!~
+~
+10 0 1 0
+999 180 0 0 0 0 0
+0.30 2000 0 0 0 0 0 0
+#30127
+decanter lead-crystal-decanter dark-glass-decanter~
+a lead crystal decanter~
+A dark glass decanter sits here looking stately.~
+~
+17 0 1 1
+20 20 38 0 0 0 0
+1.00 6000 0 0 0 0 0 0
+E
+lead-crystal-decanter dark-glass-decanter~
+It looks like dark, shiny glass, but seems a little heavier.  The decanter has
+a slightly metallic sheen, revealing its lead crystal material.  It is shaped
+like half an hourglass; the top quickly narrows from a wide, rounded base and
+is stopped by a small wooden cork.~
+#30128
+bottle dark-green-bottle~
+a dark green bottle~
+A dark green bottle labeled 'absinthites oinos' rests here.~
+~
+17 0 1 1
+30 30 41 0 0 0 0
+1.00 150 0 0 0 0 0 0
+E
+dark-green-bottle~
+The bottle is blown from dark green glass; a stained white label wraps around
+the bottle reading, 'absinthites oinos.'~
+$~

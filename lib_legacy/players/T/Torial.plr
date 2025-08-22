@@ -1,0 +1,123 @@
+name: Torial
+password: To/7vO.IDO
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 9
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20510
+birthtime: 1683399043
+timeplayed: 14880
+lastlogintime: 1683413926
+host: 099.107.091.063
+height: 70
+weight: 168
+base_height: 70
+base_weight: 168
+base_size: 2
+natural_size: 2
+alignment: 994
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 2008
+hunger: 13
+lastlevel: 0
+hitpoints: 43/51
+mana: 0/0
+move: 118/121
+damroll: 3
+hitroll: 3
+strength: 81
+intelligence: 86
+wisdom: 96
+dexterity: 71
+constitution: 65
+charisma: 65
+cash: 0 486 18 197
+bank: 0 32 104 277
+experience: 136251
+quit_reason: 7
+saveroom: 2008
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 120
+424 120
+438 70
+443 50
+444 54
+451 55
+457 120
+458 65
+459 79
+460 120
+462 70
+463 88
+466 50
+0 0
+trophy:
+1 2003 1.000000
+1 8020 1.000000
+1 8002 2.000000
+1 8021 2.000000
+1 8000 2.000000
+1 8015 2.000000
+1 8001 3.000000
+1 8012 6.000000
+1 8011 5.000000
+1 8030 1.000000
+1 8014 1.000000
+1 8013 6.000000
+1 8010 2.000000
+1 8016 4.000000
+1 8023 2.000000
+1 8022 4.000000
+1 16909 1.000000
+1 16907 1.000000
+1 16906 3.000000
+1 16902 2.000000
+1 16905 1.000000
+0 0 0
+tells:
+1683410026 @WGranite@W tells you, 'I hope it protects you well.@W'@0
+1683410977 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1683410996 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1683411072 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1683399823 Discord gossips, 'Daedela: Congratulations!'
+1683401576 Dreven gossips, 'is it in your inventory?'
+1683401595 Dreven gossips, 'i am not keen on that'
+1683402032 Discord gossips, 'Daedela: Try resizing the right panel.  It might need a kick to come up'
+1683402086 Discord gossips, 'Daedela: You're welcome!'
+1683402176 Discord gossips, 'Daedela: Congratulations!'
+1683408133 Discord gossips, 'Daedela: Use the search command.  It looks for hidden doors, objects, and creatures.  It's a percentage chance based on your perception.  If you type "search <door name>" and it matches the name of a hidden door, you'll find it automatically.'
+1683408210 Discord gossips, 'Daedela: You're welcome!'
+1683408270 Discord gossips, 'Daedela: Knowing to look in a direction though is a BIG help when scouting for secret doors.  Sometimes though the exits aren't described at all so you just have to type "search" and guess if there's a door in the room or not'
+$
+effects:
+20 2 0 0 16 0 0
+1 7 10 17 0 0 0
+0 0 0 0 0
+mem:
+1 0 5
+206 0 5
+206 1 5
+20 0 5
+20 1 5
+16 1 5
+0 0 0

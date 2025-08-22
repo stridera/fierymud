@@ -1,0 +1,138 @@
+name: Turkylirky
+password: Tu4J5yh6Rg
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 6
+race: 9
+level: 31
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19025
+birthtime: 1448544241
+timeplayed: 369718
+lastlogintime: 1451175577
+host: 067.061.203.133
+height: 65
+weight: 125
+base_height: 65
+base_weight: 125
+base_size: 2
+natural_size: 2
+alignment: 964
+playerflags: y
+effectflags: kx 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 16366
+lastlevel: 0
+hitpoints: 407/376
+mana: 96/96
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 82
+wisdom: 82
+dexterity: 92
+constitution: 100
+charisma: 58
+cash: 52 1908 4161 324
+experience: 5931657
+quit_reason: 3
+saveroom: 0
+skills:
+8 1000
+16 1000
+18 1000
+32 1000
+88 1000
+144 1000
+402 360
+404 337
+410 350
+411 267
+415 68
+416 50
+417 350
+420 53
+421 192
+423 357
+424 356
+430 266
+438 50
+443 250
+444 350
+447 72
+451 171
+452 340
+454 350
+457 353
+458 100
+462 62
+463 67
+464 50
+465 198
+466 190
+467 50
+468 50
+0 0
+trophy:
+1 16307 3.000000
+1 16306 1.500000
+1 5200 0.666667
+1 5211 0.333333
+1 5120 1.333333
+1 5103 0.500000
+1 5104 0.833333
+1 5404 0.333333
+1 16909 0.333333
+1 16908 13.333330
+1 3133 1.000000
+1 3503 1.000000
+1 3509 1.000000
+1 3502 1.000000
+1 3508 2.000000
+1 3501 6.000000
+1 3500 3.000000
+1 8020 1.000000
+1 8013 7.000000
+1 8015 5.000000
+1 8023 3.000000
+0 0 0
+effects:
+57 2 0 0 1048576 0 0
+0 0 0 0 0
+mem:
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+144 1 1
+8 1 2
+8 1 2
+18 1 1
+8 1 2
+16 1 1
+8 1 2
+88 1 4
+88 1 4
+88 1 4
+88 1 5
+88 1 5
+144 1 1
+0 0 0
+aliases:
+aa assist nomkey
+aaa assist slo
+0

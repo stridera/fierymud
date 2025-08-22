@@ -1,0 +1,1997 @@
+1
+vnum: 3232
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring iron iron-ring
+shortdesc: an iron ring
+desc: An iron ring has been left here.
+type: 9
+weight: 0.02
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: ring iron
+It is a quite heavy human-sized ring made from solid iron.  It lacks
+decorations of any kind.
+~
+~~
+vnum: 3232
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring iron iron-ring
+shortdesc: an iron ring
+desc: An iron ring has been left here.
+type: 9
+weight: 0.02
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: ring iron
+It is a quite heavy human-sized ring made from solid iron.  It lacks
+decorations of any kind.
+~
+~~
+vnum: 1128
+location: 5
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: plate iron-breast-plate
+shortdesc: an iron breast plate
+desc: An iron breast plate lies here.
+type: 9
+weight: 17.00
+cost: 4900
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: iron breast plate
+This large disc of cold black iron is designed to strap across its
+wearer's chest by way of leather straps. It's tooled across its edges,
+but other than that, it's undecorated. 
+~
+~~
+vnum: 1014
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mnouwyz
+name: helmet steel
+shortdesc: a steel-studded helmet
+desc: A steel-studded helmet lies on the ground.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+~~
+vnum: 1126
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: leggings iron-banded-leggings set-iron-leggings
+shortdesc: iron-banded leggings
+desc: A set of iron leggings lies here unattended.
+type: 9
+weight: 15.50
+cost: 2600
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: iron leggings
+These heavy plates of iron are designed to strap around their wearer's
+legs, forming strong and durable protection. The knees feature cleverly
+worked joints, though apart from this, they're quite plain, just thick
+black iron.
+~
+~~
+vnum: 1026
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouwyz
+name: boots steel steel-toed-boots
+shortdesc: steel-toed boots
+desc: &7A pair of steel boots lies on the ground here.&0
+type: 9
+weight: 5.10
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+~~
+vnum: 1123
+location: 9
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: gauntlets jointed-iron-gauntlets pair-iron-gauntlets
+shortdesc: jointed iron gauntlets
+desc: A pair of iron gauntlets rests on the ground.
+type: 9
+weight: 2.70
+cost: 1100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+extradesc: iron gauntlets
+These black iron gauntlets are designed to strap onto their wearer's
+hands. Mostly, they protect the back of the hand. Light tooling is worked
+across their edges.
+~
+~~
+vnum: 1124
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: sleeves iron-banded-sleeves set-iron-sleeves
+shortdesc: iron-banded sleeves
+desc: A set of iron sleeves lies on the ground.
+type: 9
+weight: 11.00
+cost: 1200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+extradesc: iron sleeves
+These heavy black cylinders of iron are designed to strap around their
+wearer's forearms. They bear light dents, testifying to their
+effectiveness, but other than that, are unmarked.
+~
+~~
+vnum: 36004
+location: 12
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-kaaz-cloak simple-canvas-cloak ancient-symbol
+shortdesc: a cloak of the Kaaz
+desc: A simple canvas cloak with an ancient symbol lies here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: cloak cloak-kaaz-cloak simple-canvas-cloak ancient-symbol
+A heavy canvas cloak that can easily envelope you and protect you from the
+elements.  A large symbol of an ancient clan covers the center, marking its
+origin.    
+~
+~~
+vnum: 1127
+location: 13
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: girth iron-banded-girth small-iron-girth
+shortdesc: an iron-banded girth
+desc: A small iron girth lies at your feet.
+type: 9
+weight: 2.10
+cost: 2100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+extradesc: iron girth
+This wide belt is made up of lots of slim, long pieces of heavy, cold
+black iron banded together with wire. It clasps at the front with a simple
+iron buckle. Other than the buckle's tooling, it is not decorated.
+~
+~~
+vnum: 1607
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA
+name: viper fang
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 0.40
+cost: 1000
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+24 -1
+13 5
+~
+extradesc: fang viper
+About 2 inches long, and razor-sharp, this fang looks like it could
+pierce steel.  Or be worn as an earring...
+~
+~~
+vnum: 1607
+location: 24
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA
+name: viper fang
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 0.40
+cost: 1000
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+24 -1
+13 5
+~
+extradesc: fang viper
+About 2 inches long, and razor-sharp, this fang looks like it could
+pierce steel.  Or be worn as an earring...
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+~
+extradesc: saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  
+~
+~~
+vnum: 3030
+location: -1
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 36304
+location: -1
+values:
+0
+1
+5
+14
+0
+0
+0
+~
+flags: mnou
+name: spetum spear
+shortdesc: a spetum
+desc: A spear with a long narrow point and barbs lies here.
+type: 5
+weight: 5.20
+cost: 200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+extradesc: spetum spear
+The spetum is a vastly improved spear.  It has a long narrow blade with two
+projections below the thrusting blade which are used to catch an opponent's 
+weapons and disarm her.  However, the spetum is much heavier than a normal
+spear.
+~
+~~
+vnum: 1101
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: jacket studded studded-leather-jacket
+shortdesc: a studded leather jacket
+desc: A studded leather jacket has been abandoned here.
+type: 9
+weight: 9.30
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: jacket leather studded
+This jacket is made of dark brown leather, studded all over with bits of
+metal to make it more protective. The hems are all double-stitched with
+wax thread, to make it durable. 
+~
+~~
+vnum: 1106
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: boots leather leather-boots
+shortdesc: sturdy leather boots
+desc: A pair of leather boots stands off to the side.
+type: 9
+weight: 2.80
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: leather boots
+These work boots are made of dark brown leather. They go about calf-high,
+and though they're unornamented, the leather is finely worked and tooled
+along its edges. They have no cuffs, and a very low heel -- quite suitable
+for anybody wanting some basic protection.
+~
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3118
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: figurine Kourrya-figurine tiny-figure-robed-woman toy
+shortdesc: a Kourrya figurine
+desc: Shadows wrap the tiny figure of a robed woman standing here.
+type: 12
+weight: 1.70
+cost: 50000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: Kourrya-figurine tiny-figure-robed-woman toy
+No matter how much light is shone on this female doll, it remains wreathed in
+shadow, the tiny delicate features difficult to make out.  Despite its small
+stature, power seems to emanate from its body, and its decoration is very real
+and lifelike.  The figurine is dressed in a extraordinarily detailed jet-black
+kimono concealing a little button in the figure's back.
+~
+triggers:
+3119
+3120
+~
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1019
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: leggings leather
+shortdesc: &3a pair of leather leggings&0
+desc: &3A pair of leather leggings lies on the ground here.&0
+type: 9
+weight: 7.30
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+~~
+vnum: 1022
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: sleeves leather
+shortdesc: &3a pair of leather sleeves&0
+desc: &3A pair of leather sleeves lies on the ground here.&0
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+~~
+vnum: 3090
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 23
+location: -1
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: D
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 18
+location: -1
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 55572
+location: -2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 36008
+location: -2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.    
+~
+~~
+vnum: 36003
+location: -2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: shirt grey cloth grey-cloth-shirt pile
+shortdesc: a grey cloth shirt
+desc: A pile of grey cloth lies here.
+type: 9
+weight: 0.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: shirt grey cloth grey-cloth-shirt pile
+A simple, non-descript grey cloth shirt.  The only noticeable part of the shirt
+is the symbol of an ancient clan embroidered on the chest.    
+~
+~~
+vnum: 36015
+location: -2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: p
+name: bracelet thin-copper-bracelet small
+shortdesc: a thin copper bracelet
+desc: A small bracelet of copper lies here collecting dust.
+type: 9
+weight: 0.07
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+applies:
+12 1
+~
+extradesc: bracelet thin-copper-bracelet small
+A band of copper is covered with runes depicting a tale of the magical battle
+of the rift wars...    
+~
+~~
+vnum: 1027
+location: -2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandals pair-reed-sandals
+shortdesc: some reed sandals
+desc: A pair of reed sandals lies here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: pair-reed-sandals
+These sandals are formed by neatly woven reeds and leather straps to cover the
+feet.    
+~
+~~
+vnum: 36003
+location: -2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: shirt grey cloth grey-cloth-shirt pile
+shortdesc: a grey cloth shirt
+desc: A pile of grey cloth lies here.
+type: 9
+weight: 0.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: shirt grey cloth grey-cloth-shirt pile
+A simple, non-descript grey cloth shirt.  The only noticeable part of the shirt
+is the symbol of an ancient clan embroidered on the chest.    
+~
+~~
+vnum: 36014
+location: -2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring tiny-copper-ring thin-circle-copper-coin
+shortdesc: a tiny copper ring
+desc: A thin circle of copper resembles a coin.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: tiny-copper-ring thin-circle-copper-coin
+A thin copper wire bears the symbol of the Kaaz clan.
+~
+~~
+vnum: 36014
+location: -2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring tiny-copper-ring thin-circle-copper-coin
+shortdesc: a tiny copper ring
+desc: A thin circle of copper resembles a coin.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: tiny-copper-ring thin-circle-copper-coin
+A thin copper wire bears the symbol of the Kaaz clan.
+~
+~~
+vnum: 36008
+location: -2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.    
+~
+~~
+vnum: 36015
+location: -2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: p
+name: bracelet thin-copper-bracelet small
+shortdesc: a thin copper bracelet
+desc: A small bracelet of copper lies here collecting dust.
+type: 9
+weight: 0.07
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+applies:
+12 1
+~
+extradesc: bracelet thin-copper-bracelet small
+A band of copper is covered with runes depicting a tale of the magical battle
+of the rift wars...    
+~
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 18001
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 8032
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: black drakling scale
+shortdesc: a black drakling scale
+desc: A small black scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 10
+~
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3104
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3104
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 36302
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: book-log log book black log-book
+shortdesc: the smuggler's log book
+desc: A black log book lies on a small table.
+type: 12
+weight: 1.10
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1
+extradesc: log book black
+The log book records the activities of the smugglers over the past few weeks:
+
+14 days ago: Smuggled 3 crates of glazed donuts to Helena.
+12 days ago: Helena needs 3 crates of jelly donuts and 2 crates of glazed
+             donuts.
+10 days ago: Smuggled 3 crates of jelly donuts and 2 crates of glazed donuts.
+ 9 days ago: Guard convention in Mielikki.  Helena needs 12 crates of
+             glazed donuts.
+ 7 days ago: Smuggled 10 crates of glazed donuts.
+ 2 days ago: Helena wants 2 crates of glazed donuts and 5 crates of jelly
+             donuts.
+
+Wow! You never realized there was such a market in smuggled donuts!
+
+~
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 16106
+location: -1
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: scimitar golden golden-scimitar
+shortdesc: a golden scimitar
+desc: A gleaming golden scimitar lies upon a large rock.
+type: 5
+weight: 2.00
+cost: 1000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+applies:
+19 2
+~
+extradesc: scimitar golden
+This weapon seems to be made of pure gold.  It is however extremely light and
+has a very good balance.  
+~
+~~
+vnum: 55304
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: boots plate rusted
+shortdesc: rusted plate boots
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 3.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3030
+location: -1
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+~~
+vnum: 3030
+location: -1
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+~~
+vnum: 3030
+location: -1
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+~~
+vnum: 3030
+location: -1
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+~~
+vnum: 3031
+location: 127
+values:
+1
+250
+138
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+132
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 10.61
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

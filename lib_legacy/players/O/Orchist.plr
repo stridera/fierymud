@@ -1,0 +1,95 @@
+name: Orchist
+password: Orbb6.0jLK
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 8
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20937
+birthtime: 1738991164
+timeplayed: 2238
+lastlogintime: 1739043459
+host: 064.046.022.013
+height: 61
+weight: 91
+base_height: 61
+base_weight: 91
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 50/50
+mana: 1/0
+move: 110/116
+damroll: 3
+hitroll: 3
+strength: 62
+intelligence: 94
+wisdom: 84
+dexterity: 78
+constitution: 66
+charisma: 100
+cash: 0 5 27 149
+bank: 0 1 1 1
+experience: 33000
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 7150/18000
+16 1410/5250
+-1 0
+skills:
+401 80
+403 80
+408 80
+415 50
+416 50
+421 62
+438 50
+443 50
+444 57
+463 50
+464 61
+465 50
+493 80
+0 0
+trophy:
+1 36001 1.000000
+1 8021 1.000000
+1 8000 4.000000
+1 8012 1.000000
+1 8011 1.000000
+1 8022 1.000000
+1 8030 1.000000
+1 8013 5.000000
+1 8014 3.000000
+1 8020 1.000000
+1 8010 3.000000
+1 8001 1.000000
+1 8002 5.000000
+1 8016 2.000000
+1 8015 2.000000
+1 51900 1.000000
+0 0 0
+tells:
+$
+gossips:
+1739038543 Emawk gossips, 'hi'
+1739043211 Chinok gossips, 'hi Orchist'
+1739043234 Chinok gossips, 'enjoying the game?'
+1739043254 Chinok gossips, 'played here before ?'
+1739043286 Chinok gossips, 'awesome, been lots of updates and changes, just yell if you need any help or advice'
+$
+effects:
+72 0 1 1 0 0 0
+0 0 0 0 0

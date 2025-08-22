@@ -1,0 +1,63 @@
+name: Cyn
+password: CyAQYWvo.Z
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 9
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18208
+birthtime: 1333333620
+timeplayed: 1244
+lastlogintime: 1376271647
+host: 074.108.054.158
+height: 75
+weight: 148
+base_height: 75
+base_weight: 148
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 5
+lastlevel: 0
+hitpoints: 32/30
+mana: 1/0
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 80
+wisdom: 55
+dexterity: 88
+constitution: 100
+charisma: 44
+cash: 0 2 20 26
+experience: 5500
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+421 57
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0
+trophy:
+1 36002 3.000000
+1 36003 2.000000
+1 8001 1.000000
+0 0 0

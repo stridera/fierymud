@@ -1,0 +1,99 @@
+name: Fyzkelfyd
+password: FyLTeOiB7t
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19413
+birthtime: 1548550182
+timeplayed: 47247
+lastlogintime: 1617376063
+host: 068.094.224.066
+height: 28
+weight: 68
+base_height: 28
+base_weight: 68
+base_size: 1
+natural_size: 1
+alignment: 844
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 74/74
+mana: 1/-1
+move: 93/100
+damroll: 2
+hitroll: 4
+strength: 73
+intelligence: 97
+wisdom: 87
+dexterity: 69
+constitution: 69
+charisma: 65
+cash: 0 297 947 722
+experience: 310274
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+39 1000
+100 1000
+101 1000
+415 50
+416 50
+423 150
+424 150
+438 50
+443 50
+444 50
+447 86
+451 69
+452 150
+453 50
+454 63
+459 50
+460 50
+462 50
+464 94
+0 0
+trophy:
+1 17204 1.000000
+0 0 0
+tells:
+$
+gossips:
+1617375049 Chinok gossips, 'let me see if I can find'
+1617375155 Chinok gossips, 'yeah, if you had another character, he wasn't logged in from your current IP'
+1617375188 Chinok gossips, 'yeah, IP is really all we have to tie poeple to characters'
+1617375267 Chinok gossips, '70 is pretty high..'
+1617375301 Chinok gossips, 'would you know the password , if I knew the character name ?'
+1617375377 Chinok gossips, 'yeah, pre-crash stuff is gone'
+1617375451 Chinok gossips, 'Comafy'
+1617375454 Chinok gossips, 'fanta'
+1617375532 Chinok gossips, 'Tyfane'
+1617375579 Tyfane gossips, 'no, i finished it'
+$
+mem:
+32 1 4
+32 1 4
+32 1 4
+32 1 4
+32 1 4
+32 1 4
+32 1 4
+8 0 8
+8 0 8
+0 0 0

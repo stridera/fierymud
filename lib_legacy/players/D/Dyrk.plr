@@ -1,0 +1,72 @@
+name: Dyrk
+password: Dy1NKYcigk
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 29
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20393
+birthtime: 1671218115
+timeplayed: 399
+lastlogintime: 1671218519
+host: 146.070.045.180
+height: 72
+weight: 363
+base_height: 72
+base_weight: 363
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: k 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 11
+lastlevel: 0
+hitpoints: 28/28
+mana: 0/0
+move: 134/134
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 69
+wisdom: 77
+dexterity: 84
+constitution: 86
+charisma: 60
+cash: 0 0 9 5
+experience: 931
+quit_reason: 3
+saveroom: 0
+skills:
+205 1000
+402 52
+404 51
+415 50
+416 50
+421 50
+435 78
+438 50
+443 50
+444 50
+456 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+$
+gossips:
+$

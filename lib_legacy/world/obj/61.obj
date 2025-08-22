@@ -1,0 +1,216 @@
+#6100
+boots armored-dwarven-boots dwarf bronze steel~
+armored dwarven boots~
+Some armored boots stand here.~
+~
+9 30937096 65 30
+6 0 0 0 0 0 0
+5.20 600 0 0 0 0 0 0
+E
+boots armored-dwarven-boots dwarf bronze steel~
+These boots are made of boiled leather with a linen lining, and all along their
+surface are riveted many bands of bronze for strength and protection.  The toes
+are also bronze-capped.  They buckle along the side.~
+X
+1049579
+#6101
+breastplate dwarven-steel-breastplate breast-plate dwarf~
+a dwarven steel breastplate~
+A dwarven steel breastplate lies here.~
+~
+9 64507912 9 30
+10 0 0 0 0 0 0
+17.00 900 0 0 0 0 0 0
+E
+breastplate dwarven-steel-breastplate breast-plate dwarf~
+This breastplate straps to the chest, with straps provided for sleeves, a belt,
+and leggings to attach.  It is clearly of dwarven manufacture, with tooling and
+all sorts of fancy, yet infinitely useful, embellishments.  It is made from the
+finest quality steel.~
+X
+1049595
+#6102
+sleeves dwarven-steel-sleeves dwarf tubes~
+some dwarven steel sleeves~
+Some steel sleeves lie here in tubes.~
+~
+9 64507912 257 30
+8 0 0 0 0 0 0
+11.00 700 0 0 0 0 0 0
+E
+sleeves dwarven-steel-sleeves dwarf tubes~
+These fine, shiny sleeves are obviously of dwarven make.  Finely articulated,
+with copped elbows and oiled hinges, they are easy to wear and strong enough to
+turn most injuries.  They have straps at the top to attach to a breastplate or
+vest, and other buckles close them under the arm, where the seam is.~
+X
+1049595
+#6103
+leggings dwarven-steel-leggings dwarf~
+dwarven steel leggings~
+Some steel leggings rest here.~
+~
+9 64507912 33 30
+8 0 0 0 0 0 0
+15.00 2500 0 0 0 0 0 0
+E
+leggings dwarven-steel-leggings dwarf~
+These shiny steel leggings are in the shape of two tubes, each one buckling at
+three points and again at the top, to fasten to a vest or belt.  They are
+obviously dwarf-made, being embossed and beautifully made.    ~
+X
+1049595
+#6104
+gauntlets fine-dwarven-steel-gauntlets fine-steel-gauntlets dwarf~
+fine dwarven steel gauntlets~
+Some fine steel gauntlets lie here.~
+~
+9 64507912 129 30
+8 0 0 0 0 0 0
+2.70 1500 0 0 0 0 0 0
+E
+gauntlets fine-dwarven-steel-gauntlets fine-steel-gauntlets dwarf~
+Finely articulated, these gauntlets cover the forearm to the back of the
+hand. Each joint is beautifully crafted, each one three parts. They are
+obviously dwarven-made, being embossed and shiny.~
+X
+1049595
+#6105
+helm shiny-dwarven-steel-half-helm dwarf~
+a shiny dwarven steel half-helm~
+A finely made half-helm rests here.~
+~
+9 64507912 17 30
+7 0 0 0 0 0 0
+4.10 1200 0 0 0 0 0 0
+E
+helm shiny-dwarven-steel-half-helm dwarf~
+It's a half-helm of excellent craftsmanship, made from light but strong steel.
+It covers most of the head, with a nosepiece to protect the nose and cheek
+guards.~
+X
+1049595
+#6106
+roll lemon light pastry pale small food~
+a light lemon roll~
+A small pale pastry lies here.~
+~
+19 0 1 1
+1 0 0 0 0 0 0
+0.12 3 0 0 0 0 0 0
+E
+roll light lemon pastry pale small~
+It is a small roll that smells of lemon -- finely baked, and light as
+thistledown.~
+#6107
+bread fine light loaf food~
+a small loaf of fine, light bread~
+A loaf of bread lies here.~
+~
+19 0 1 1
+5 0 0 0 0 0 0
+0.12 10 0 0 0 0 0 0
+E
+small loaf fine white light bread~
+It is a loaf of bread -- not very large, intended to be eaten by one
+person for one meal. The bread is light and smells delicious, with a
+crunchy outer crust.~
+#6108
+biscuits travel food~
+some travel biscuits~
+A handful of travel biscuits lie here.~
+~
+19 0 1 1
+6 0 0 0 0 0 0
+0.10 14 0 0 0 0 0 0
+E
+biscuits handful travel~
+These small, hard biscuits are pale and smell of wheat flour.~
+#6111
+axe wooden-handled-hand-axe handaxe~
+a hand-axe~
+A wooden-handled hand-axe lies here.~
+~
+5 50343936 8193 1
+0 1 7 3 0 0 0
+2.25 400 0 0 0 0 0 0
+E
+wooden-handled-hand-axe handaxe~
+It has a fairly short, sturdy wooden handle, and a good sturdy axehead on its
+end.  It's well-made, and though intended for wood, would double as a good
+weapon.~
+X
+993
+#6113
+fountain carved-fountain~
+a carved fountain~
+A fountain carved out of rock stands in the middle of the plaza.~
+~
+23 16 0 1
+9999 9999 0 0 0 0 0
+10004.00 20 0 0 0 0 0 0
+E
+fountain~
+This fountain appears to be a solid part of the ground, and is smoothly
+carved upward into a round, shallow fountain. The water inside the fountain
+looks quite safe.~
+#6116
+stew potato turnip bowl food~
+potato and turnip stew~
+A bowl of potato and turnip stew lies here.~
+Nothing.~
+19 0 1 1
+4 0 0 0 0 0 0
+0.70 8 0 0 0 0 0 0
+E
+bowl stew turnip potato~
+This plain wooden bowl holds a generous serving of stew. Diced potatoes
+and turnips are liberally laced with spices and then cooked in a milk
+based broth.~
+#6118
+broom~
+a broom~
+A broom lies flat on the ground here.~
+~
+4 0 24577 1
+0 1 1 1 0 0 0
+0.90 10 0 0 0 0 0 0
+E
+broom~
+It's a plain-looking broom with broomstraw bound to its lower tip by withes.~
+#6120
+jug~
+a jug~
+A large sealed jug sits here collecting dust.~
+~
+17 0 1 1
+32 32 22 0 0 0 0
+1.50 40 0 0 0 0 0 0
+E
+jug~
+The jug is cheaply made from clay, but looks watertight.~
+#6121
+waybread bread food~
+a waybread~
+Some waybread has been put here.~
+~
+19 64 1 0
+18 0 0 0 0 0 0
+0.40 40 0 0 0 0 0 0
+E
+waybread bread food~
+The waybread is the traditional feed of elves when travelling.  They
+call it lembas.  It is said to refresh the weary traveler greatly.~
+#6122
+glass tall-glass~
+a glass~
+A tall glass is sitting here, half full...or half empty.~
+~
+17 0 1 1
+20 10 35 0 0 0 0
+0.20 20 0 0 0 0 0 0
+E
+tall-glass~
+The glass is slightly cloudy.  Its tall form could easily hold more than enough
+alcohol to make one drunk...~
+$~

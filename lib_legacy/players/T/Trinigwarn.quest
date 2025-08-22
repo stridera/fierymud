@@ -1,0 +1,21 @@
+17 1 2
+eg_faction 0
+bl_faction 0
+18 1 1
+item4 1
+32775 255 1
+subclass_name mercenary
+23 1 5
+actor_level 5
+price 0
+skill_level 0
+word2 death
+skill_name sphere
+7 1 7
+55580_gems_acquired 2
+55576_gems_acquired 2
+55313_armor_acquired 1
+55572_gems_acquired 3
+55305_armor_acquired 1
+55568_gems_acquired 3
+55301_armor_acquired 1

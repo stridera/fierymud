@@ -1,0 +1,110 @@
+name: Slark
+password: SlqunprLkR
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 2
+race: 9
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19078
+birthtime: 1465099208
+timeplayed: 1813847
+lastlogintime: 1722544325
+host: 136.038.235.105
+height: 67
+weight: 107
+base_height: 67
+base_weight: 107
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: yz
+effectflags: kt 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 957/858
+mana: 980/980
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 61
+wisdom: 62
+dexterity: 96
+constitution: 100
+charisma: 54
+cash: 10 137 404 9
+experience: 105209274
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+409 1000
+410 600
+411 1000
+412 1000
+415 1000
+416 1000
+420 1000
+421 1000
+431 50
+438 1000
+443 1000
+444 1000
+463 50
+464 1000
+465 1000
+472 1000
+476 1000
+478 1000
+494 1000
+0 0
+tells:
+1676902253 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1682685386 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1682686244 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1695223293 @WUlthar@W tells you, 'from mielikki north?@W'@0
+1695223318 @WUlthar@W tells you, 'okay, I'll head there next@W'@0
+1696299425 @WBigby@W tells you, 'No cash, no delivery.@W'@0
+1696299444 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1696344395 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1698855058 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1709136050 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1696344748 Fril gossips, 'it is called the forest of shadows'
+1696344760 Ulthar gossips, 'i know that area...at least I think I've been there'
+1696344776 Ulthar gossips, ':)'
+1696344799 Ulthar gossips, 'I'll head there after I finish the spire'
+1698847762 Col gossips, 'gratz!'
+1698847773 Holk gossips, 'Gratz Moylen'
+1698852357 Ulthar gossips, 'hi all :)'
+1698852370 Chinok gossips, 'WB'
+1698852374 Ulthar gossips, 'thanks :)'
+1698852383 Ulthar gossips, 'back for just a few minutes, going to keep searching for awura'
+1706112259 Teshi gossips, 'sorry for loggin spam :D Used Unoma as a camper near Myrod for dragons health and then realized I couldn't take sagece without stoneskin'
+1706112330 Chinok gossips, 'lol'
+$
+aliases:
+fa first aid
+who who -w
+ga get all
+ul unlock $*;open $*
+df drink fountain
+bs backstab $1
+ec examine corpse
+gac get all all.corpse
+gg steal gold $*
+sfly remove swan;wear leopard
+well tell choak well
+eye gouge $*
+0

@@ -1,0 +1,105 @@
+name: Sarq
+password: SalSRGsamM
+description
+Sarq can't remember his companions name.
+~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 72
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17402
+birthtime: 1247961652
+timeplayed: 80133
+lastlogintime: 1359231785
+host: 076.027.031.103
+height: 81
+weight: 186
+base_height: 81
+base_weight: 186
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: d
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 799/655
+mana: 518/518
+move: 170/170
+damroll: 5
+hitroll: 4
+strength: 87
+intelligence: 68
+wisdom: 61
+dexterity: 97
+constitution: 97
+charisma: 55
+cash: 164 2373 12613 7063
+experience: 44926545
+pagelength: 50
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+401 681
+403 161
+405 56
+408 119
+410 50
+411 353
+412 115
+415 50
+416 50
+419 1000
+420 102
+421 132
+427 1000
+438 50
+443 50
+444 73
+464 288
+465 60
+467 50
+472 81
+475 78
+476 209
+477 50
+478 50
+0 0
+trophy:
+1 53305 1.000000
+1 53303 1.500000
+1 53314 2.000000
+1 53315 6.000000
+1 53312 3.000000
+1 41013 2.000000
+1 8314 1.000000
+1 8325 1.000000
+1 8326 1.000000
+1 8327 1.000000
+1 8328 1.000000
+1 8324 2.000000
+1 8323 2.000000
+1 8310 1.000000
+1 8313 1.000000
+1 8312 5.000000
+1 8308 1.000000
+1 8305 1.000000
+1 8311 3.000000
+1 8318 10.000000
+1 8300 2.000000
+0 0 0
+aliases:
+ri recite identify $*
+bs body $*
+dff drink fountain
+1 ass tium
+0

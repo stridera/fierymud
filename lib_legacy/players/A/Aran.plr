@@ -1,0 +1,150 @@
+name: Aran
+password: HaXHXhX9zw
+description
+Aran has a stern face, it looks as though he 
+has dedicated his life to a just cause.  His
+body seems to glow with a bright white aura 
+that causes evil to flee from his path. ~
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 4
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 15234
+birthtime: 1130871213
+timeplayed: 31748971
+lastlogintime: 1726705390
+host: 066.222.027.208
+height: 66
+weight: 155
+base_height: 66
+base_weight: 155
+base_size: 2
+natural_size: 2
+alignment: 895
+playerflags: glxy
+effectflags: cmn 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 13
+hitpoints: 1170/1071
+mana: 100/100
+move: 132/132
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 58
+wisdom: 91
+dexterity: 91
+constitution: 93
+charisma: 38
+cash: 352 16 50 54
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+21 1000
+22 1000
+28 1000
+34 1000
+43 1000
+88 1000
+92 1000
+97 1000
+99 1000
+191 200
+241 1000
+402 905
+404 1000
+407 955
+411 1000
+412 1000
+415 951
+416 999
+417 165
+420 1000
+421 1000
+422 1000
+423 999
+424 999
+430 266
+431 150
+434 150
+438 50
+441 209
+443 51
+444 60
+450 150
+451 665
+452 151
+457 999
+458 598
+459 664
+460 204
+461 613
+462 474
+463 50
+464 50
+465 1000
+466 50
+467 50
+468 50
+473 50
+0 0
+trophy:
+1 8023 1.000000
+1 8016 1.000000
+1 2808 1.000000
+1 11702 1.000000
+1 3055 0.500000
+1 3050 1.500000
+1 3062 1.000000
+1 3059 3.500000
+1 3060 5.000000
+1 49035 0.250000
+1 49037 0.583000
+1 49038 0.917000
+1 23812 0.143000
+1 23810 0.286000
+1 23811 0.143000
+1 23804 0.143000
+1 23821 0.286000
+1 23808 0.571000
+1 7051 1.000000
+1 8505 0.500000
+1 16011 1.000000
+0 0 0
+tells:
+$
+gossips:
+$
+aliases:
+b bash $*
+holy c 'holy'
+volcano say Buntoi nakkarri karisto
+soul c 'soulshield' $*
+bless c 'bless' $*
+he c 'cure ser' $*
+protect c ' protection from evil' $*
+evil c 'dispel evil ' $*
+hea c 'cure crit' $*
+water c 'crea water' $*
+armor c 'armor' $*
+cd close duffel
+od open duffel
+gsb get identify duffel
+heal c 'heal' $*
+gaac get all all corpse
+0

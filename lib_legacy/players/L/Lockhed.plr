@@ -1,0 +1,83 @@
+name: Lockhed
+password: Lo/S6pbpUj
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20189
+birthtime: 1646932561
+timeplayed: 5478
+lastlogintime: 1665175655
+host: 208.093.179.103
+height: 67
+weight: 167
+base_height: 67
+base_weight: 167
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 25/25
+mana: 1/0
+move: 97/116
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 82
+wisdom: 82
+dexterity: 92
+constitution: 86
+charisma: 93
+cash: 0 2806 5 0
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+1646977588 @WFreddy@W tells you, 'Yay, I hope you enjoy it!@W'@0
+1646977620 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1647438091 @WFreddy@W tells you, 'Yay, I hope you enjoy it!@W'@0
+1647438104 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1650916395 @WFreddy@W tells you, 'Yay, I hope you enjoy it!@W'@0
+1650916426 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1650916431 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1647438046 Meina gossips, 'i'm trying to take over maintenance of a state machine.'
+1647438058 Meina gossips, 'well, more so i am fucking bored.'
+1647438067 Meina gossips, 'and i'm tired of waiting for the dev team to like get shit done.'
+1647438078 Meina gossips, 'so i am poking my nose into other technology to see where i can make trouble :D'
+1647438088 Meina gossips, 'starting with the tech that is least known to anyone else on the team.'
+1647438116 Meina gossips, 'Welcome lockhed'
+1647438253 Meina gossips, 'gratz Fril!'
+1647438258 Fril gossips, 'ty'
+$
+aliases:
+id recite identify $* 
+0

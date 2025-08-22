@@ -1,0 +1,1207 @@
+1
+vnum: 1004
+location: 0
+values:
+0
+240
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern. It holds about fifteen hours worth of fuel.
+~
+~~
+vnum: 5506
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 18001
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 36007
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gop
+name: amulet red-amulet-kaaz small-red-medallion-necklace red-amulet
+shortdesc: a red amulet of Kaaz
+desc: A small red medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+14 2
+~
+extradesc: red-amulet-kaaz small-red-medallion-necklace red-amulet
+A magical token set into a leather band.  The symbol is of that of the Kaaz
+clan that disappeared at the end of the rift wars.    
+~
+~~
+vnum: 1003
+location: 5
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: robe hooded-ebony-robe pile-ebony-cloth
+shortdesc: &0&9&ba hooded ebony robe&0
+desc: &0&9&bA pile of ebony cloth lies here.&0
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: hooded-ebony-robe pile-ebony-cloth
+&0&9&bA deep hood has been attatched to this black robe, increasing the
+wearer's ability to stay hidden within shadows. Its design is similiar
+to the robes worn by cultists and necromancers.&0
+~
+~~
+vnum: 1025
+location: 6
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cap leather
+shortdesc: &3a small leather cap&0
+desc: &3A small leather cap lies on the ground here.&0
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+~~
+vnum: 38
+location: 7
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: leggings black linen
+shortdesc: black linen leggings
+desc: Some black linen leggings lie here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: black linen leggings
+They are finely tailored of regular coarse linen and dyed black.
+With their close-fitting form, they certainly cut a nice figure
+beneath a robe.
+~
+~~
+vnum: 1027
+location: 8
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandals plain-leather-sandals
+shortdesc: some plain leather sandals
+desc: Some plain sandals sit here.
+type: 9
+weight: 1.90
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: plain-leather-sandals
+&0A pair of simple sandals, woven from fine leather. They are padded to
+provide comfort during long travels, though they offer no protection from
+hostile weather.
+~
+~~
+vnum: 1028
+location: 12
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: ag
+name: cloak green
+shortdesc: a dark green cloak
+desc: A beautiful dark green cloak has been dropped by someone.
+type: 9
+weight: 2.40
+cost: 900
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+applies:
+13 5
+~
+extradesc: cloak green
+The cloak is the color of a dark forest green and is made out of a very
+heavy material. A beautiful design has been embroidered on the cloak.
+~
+~~
+vnum: 17205
+location: 13
+values:
+-3
+0
+0
+0
+0
+0
+0
+~
+flags: gh
+name: cord red
+shortdesc: a red cord
+desc: A blood red cord lies on the ground.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+applies:
+3 -5
+4 -5
+~
+extradesc: cord red
+This cord is made of fine red threads which feels slightly sticky. 
+~
+~~
+vnum: 2023
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 2023
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 41006
+location: 16
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: nu
+name: blade spur serrated fighting sharpened leg
+shortdesc: a serrated fighting-blade
+desc: A sharpened leg spur digs into the ground.
+type: 5
+weight: 1.00
+cost: 120
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+extradesc: fighting-blade blade serrated spur sharpened 
+Tooth-like serrations give this blade a wicked edge. The sawing action
+of the teeth catches extra bits of flesh as it slashes. A tapered end
+forms a natural grip.
+~
+~~
+vnum: 1036
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: mask simple-wooden-mask
+shortdesc: a simple wooden mask
+desc: A simple wooden mask lies here.
+type: 9
+weight: 0.65
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 131073
+applies:
+6 -1
+~
+extradesc: simple-wooden-mask
+&0This small mask is crafted of a dark wood, and is designed to slip easily
+over the face. It has very littlte detail, save for a small etched mouth and
+two slits for eyes. Quite uncomfortable, and not very stylish.
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 61504
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agA
+name: heart fiery-wisp-heart wisp fiery orange ember
+shortdesc: a fiery wisp heart
+desc: A slowly throbbing, glowing orange ember is burning a hole in the ground.
+type: 12
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: heart fiery-wisp-heart wisp fiery orange ember
+This tiny burning mote shines brightly with an orangey-yellow light.  Its light
+is so bright as to hurt the eyes, yet it is only a bit warm to the touch.  
+Though difficult to look at, it feels like a hard little pea, or perhaps a bead
+of glass.    
+~
+~~
+vnum: 61504
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agA
+name: heart fiery-wisp-heart wisp fiery orange ember
+shortdesc: a fiery wisp heart
+desc: A slowly throbbing, glowing orange ember is burning a hole in the ground.
+type: 12
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: heart fiery-wisp-heart wisp fiery orange ember
+This tiny burning mote shines brightly with an orangey-yellow light.  Its light
+is so bright as to hurt the eyes, yet it is only a bit warm to the touch.  
+Though difficult to look at, it feels like a hard little pea, or perhaps a bead
+of glass.    
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 1028
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: ag
+name: cloak green
+shortdesc: a dark green cloak
+desc: A beautiful dark green cloak has been dropped by someone.
+type: 9
+weight: 2.40
+cost: 900
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+applies:
+13 5
+~
+extradesc: cloak green
+The cloak is the color of a dark forest green and is made out of a very
+heavy material. A beautiful design has been embroidered on the cloak.
+~
+~~
+vnum: 1029
+location: -1
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+~~
+vnum: 8031
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: blue drakling scale
+shortdesc: a blue drakling scale
+desc: A small blue scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 5
+~
+~~
+vnum: 16102
+location: -1
+values:
+200
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+~
+extradesc: saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  
+~
+~~
+vnum: 17201
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: quill feather feather-quill pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: feather quill
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+121 5
+20 5
+32 5
+100 5
+5 5
+87 10
+101 12
+19 17
+8 7
+39 5
+33 5
+45 19
+~
+~~
+vnum: 17201
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 3021
+location: 127
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnu
+name: a-small-sword
+shortdesc: a small sword
+desc: A small sword lies here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: small sword
+The sword is rather small to be called a sword, but it's definitely bigger
+than a dagger. It's rather simple in design.
+~
+~~
+vnum: 8816
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cucumber green food
+shortdesc: a cucumber
+desc: A light-green cucumber grows among the flowering vines.
+type: 19
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: cucumber
+Hidden from the sun, the skin of this vegetable is only a light green color,
+with yellowish stripes in places.  Little points dot the surface.  It is shaped
+like a cigar, but much larger.  It feels crisp and ready to eat.
+~
+~~
+vnum: 17201
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 17201
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 17204
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: cord golden
+shortdesc: the golden cord
+desc: A golden cord lies on the ground.
+type: 9
+weight: 0.50
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+applies:
+3 1
+13 -1
+~
+extradesc: cord golden
+You look upon a length of cord made of finely spun gold threads. It seems to
+emanate a strange aura.
+~
+~~
+vnum: 17201
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 17201
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 55573
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 61504
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agA
+name: heart fiery-wisp-heart wisp fiery orange ember
+shortdesc: a fiery wisp heart
+desc: A slowly throbbing, glowing orange ember is burning a hole in the ground.
+type: 12
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: heart fiery-wisp-heart wisp fiery orange ember
+This tiny burning mote shines brightly with an orangey-yellow light.  Its light
+is so bright as to hurt the eyes, yet it is only a bit warm to the touch.  
+Though difficult to look at, it feels like a hard little pea, or perhaps a bead
+of glass.    
+~
+~~
+vnum: 1006
+location: 127
+values:
+300
+300
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 21.56
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 3020
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: 0
+name: dagger bronze
+shortdesc: a bronze dagger
+desc: A fancy bronze dagger is lying here on the ground.
+type: 5
+weight: 1.50
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: dagger bronze
+The dagger is fancy, with an ornate blood groove down the middle
+of its two-edged blade, and a black leather-wrapped hilt. The short
+crossguards are scrolled at their ends.
+~
+~~
+vnum: 1004
+location: 127
+values:
+1
+240
+217
+0
+0
+0
+0
+~
+flags: 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern. It holds about fifteen hours worth of fuel.
+~
+~~

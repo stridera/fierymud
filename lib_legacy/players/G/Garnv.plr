@@ -1,0 +1,98 @@
+name: Garnv
+password: GaZZYOzZbd
+currenttitle: (marlia's swimmer)
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 17
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18164
+birthtime: 1331294674
+timeplayed: 172305
+lastlogintime: 1672032693
+host: 058.169.025.071
+height: 75
+weight: 201
+base_height: 75
+base_weight: 201
+base_size: 3
+natural_size: 3
+alignment: 373
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 14
+lastlevel: 0
+hitpoints: 266/232
+mana: 28/28
+move: 152/152
+damroll: 5
+hitroll: 4
+strength: 89
+intelligence: 67
+wisdom: 66
+dexterity: 88
+constitution: 87
+charisma: 63
+cash: 3 465 409 458
+experience: 1211072
+quit_reason: 1
+saveroom: 3054
+skills:
+402 76
+404 211
+407 153
+415 50
+416 50
+419 1000
+421 220
+427 1000
+430 56
+438 65
+443 50
+444 111
+463 50
+464 50
+465 167
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8034 1.000000
+1 8033 1.000000
+1 8032 0.500000
+1 8031 0.500000
+1 36004 0.500000
+1 41012 0.500000
+1 41015 0.500000
+1 41014 0.500000
+1 41002 0.500000
+1 41011 0.500000
+1 41003 0.500000
+1 41010 0.500000
+1 41004 1.000000
+1 41008 0.500000
+1 41009 1.000000
+1 41001 0.500000
+1 41005 2.000000
+1 41013 1.000000
+1 8022 0.500000
+1 18515 0.333333
+1 18551 1.333333
+0 0 0
+tells:
+$
+gossips:
+$
+effects:
+210 7 581 13 0 0 0
+1 7 10 17 0 0 0
+0 0 0 0 0

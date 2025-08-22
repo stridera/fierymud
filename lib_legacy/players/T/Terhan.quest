@@ -1,0 +1,61 @@
+22 1 5
+actor_level 99
+price 25360
+skill_level 800
+word2 aid
+skill_name first
+23 1 0
+21 1 4
+actor_level 99
+price 820744
+skill_level 110
+skill_name douse
+19 4 1
+choice 2
+2 255 0
+15 1 0
+10 4 0
+32771 255 1
+subclass_name monk
+7 3 41
+55718_gems_acquired 3
+55338_armor_acquired 1
+55729_gems_acquired 3
+55362_armor_acquired 1
+55382_armor_acquired 1
+55358_armor_acquired 1
+55378_armor_acquired 1
+55674_gems_acquired 3
+55685_gems_acquired 3
+55696_gems_acquired 3
+55707_gems_acquired 3
+55366_armor_acquired 1
+55374_armor_acquired 1
+55370_armor_acquired 1
+55334_armor_acquired 1
+55342_armor_acquired 1
+55597_gems_acquired 3
+55608_gems_acquired 3
+55619_gems_acquired 3
+55630_gems_acquired 3
+55641_gems_acquired 3
+55652_gems_acquired 3
+55663_gems_acquired 3
+55330_armor_acquired 1
+55354_armor_acquired 1
+55346_armor_acquired 1
+55350_armor_acquired 1
+55593_gems_acquired 3
+55589_gems_acquired 3
+55316_armor_acquired 1
+55312_armor_acquired 1
+55577_gems_acquired 3
+55324_armor_acquired 1
+55304_armor_acquired 1
+55300_armor_acquired 1
+55569_gems_acquired 3
+55573_gems_acquired 3
+55585_gems_acquired 3
+55581_gems_acquired 3
+55308_armor_acquired 1
+55320_armor_acquired 1

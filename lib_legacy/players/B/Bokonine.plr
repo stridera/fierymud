@@ -1,0 +1,74 @@
+name: Bokonine
+password: BomX0jAJaU
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 1
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20432
+birthtime: 1674687551
+timeplayed: 119
+lastlogintime: 1674687679
+host: 164.055.254.106
+height: 63
+weight: 138
+base_height: 63
+base_weight: 138
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 11
+lastlevel: 0
+hitpoints: 23/23
+mana: 0/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 80
+intelligence: 96
+wisdom: 97
+dexterity: 77
+constitution: 64
+charisma: 56
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+447 50
+451 50
+452 50
+453 50
+459 50
+460 50
+462 50
+464 50
+465 59
+0 0
+tells:
+$
+gossips:
+1674687596 Chinok gossips, 'welcome Bokonine'
+1674687609 Chinok gossips, 'just yell if you need any help or advice'
+$

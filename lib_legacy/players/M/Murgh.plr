@@ -1,0 +1,111 @@
+name: Murgh
+password: Mupvx93Zcz
+prompt: Hp: &2%h&0 (&2&b%H&0) Mv: &2%v&0 (&2&b%V&0)&2&b Exp: [%e] Aff:[%l]%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 8
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20098
+birthtime: 1641219843
+timeplayed: 30111
+lastlogintime: 1642427474
+host: 084.250.235.220
+height: 61
+weight: 137
+base_height: 61
+base_weight: 137
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 100/94
+mana: 1/0
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 56
+wisdom: 64
+dexterity: 85
+constitution: 100
+charisma: 49
+cash: 0 125 330 198
+experience: 126301
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 64
+415 50
+416 50
+421 110
+438 110
+443 50
+444 50
+463 50
+464 50
+465 77
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 17208 1.000000
+1 17201 0.666667
+1 17202 1.666667
+1 17205 2.250000
+1 17203 1.416667
+1 17204 4.333333
+1 4101 0.500000
+1 61500 0.333333
+1 61506 0.333333
+1 61523 0.333333
+1 61507 0.333333
+1 61514 0.333333
+1 61510 0.666667
+1 61512 1.000000
+1 3505 1.500000
+1 3502 1.000000
+1 3500 0.916667
+1 3501 0.333333
+1 3506 0.333333
+1 3508 0.333333
+1 17200 0.333333
+0 0 0
+tells:
+1641293028 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1641293029 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1641293029 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1641305095 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1641305707 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641305708 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642421338 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1642421783 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1642421783 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1642421784 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1641303412 Chinok gossips, 'it's a 4-letter word'
+1641303420 Astrid gossips, 'agreed '
+1641305057 Risk gossips, 'congraz Merrick'
+1641305075 Astrid gossips, 'congraz'
+1641305081 Rokari gossips, 'congrats!'
+1641305295 Rokari gossips, 'douse'
+1641305300 Rokari gossips, 'if you douse at a fountain'
+1641305304 Risk gossips, 'douse '
+1641305306 Rokari gossips, 'it always works'
+1641305340 Rokari gossips, 'otherwise - you may have to douse like 10 times to get doused'
+$
+aliases:
+qq order merrick cast 'magic missile'
+0

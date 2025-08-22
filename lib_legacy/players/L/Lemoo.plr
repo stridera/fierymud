@@ -1,0 +1,76 @@
+name: Lemoo
+password: LeWuVMGtF.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 11
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19858
+birthtime: 1614643479
+timeplayed: 1046
+lastlogintime: 1667972481
+host: 208.093.179.103
+height: 36
+weight: 143
+base_height: 36
+base_weight: 143
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 12389
+hunger: 10
+lastlevel: 0
+hitpoints: 20/20
+mana: 1/0
+move: 112/112
+damroll: 3
+hitroll: 6
+strength: 84
+intelligence: 84
+wisdom: 94
+dexterity: 89
+constitution: 88
+charisma: 60
+experience: 1
+quit_reason: 7
+saveroom: 12389
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+451 50
+457 50
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+tells:
+$
+gossips:
+1614643497 Chinok gossips, 'welcome Lemoo'
+1614878215 Chinok gossips, 'welcome'
+1614878232 Chinok gossips, 'just yell if you need any help'
+$

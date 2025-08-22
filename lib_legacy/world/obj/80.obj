@@ -1,0 +1,157 @@
+#8001
+well~
+a little stone well~
+A little stone well stands here.~
+~
+23 0 0 1
+9999 9999 0 0 0 0 0
+10004.00 20 0 0 0 0 0 0
+E
+well~
+It's just a simply constructed stone well, made with an eye toward
+durability and ease of construction. The water inside seems clean
+and pure.~
+#8002
+carrot food~
+a carrot~
+A carrot grows here.~
+~
+19 0 1 1
+4 0 0 0 0 0 0
+0.20 5 0 0 0 0 0 0
+E
+carrot food~
+It's a reasonably healthy specimen, with a long orange root and
+a feathery green head.~
+#8003
+tomato food~
+a ripe red tomato~
+A ripe red tomato grows on a trellis.~
+~
+19 0 1 1
+4 0 0 0 0 0 0
+0.20 3 0 0 0 0 0 0
+E
+tomato food~
+It's round and red, just soft enough to be ripe. It smells inviting.~
+#8004
+wheat stalk food~
+a wheat stalk~
+A golden wheat stalk lies here in the corner.~
+~
+19 0 1 0
+2 0 0 0 0 0 0
+0.10 10 0 0 0 0 0 0
+#8005
+carrot food~
+a carrot~
+A carrot lies here.~
+~
+19 0 1 0
+2 0 0 0 0 0 0
+0.20 10 0 0 0 0 0 0
+#8006
+tomato food~
+a ripe tomato~
+A vine-ripened red tomato lies here.~
+Nothing.~
+19 0 1 0
+4 0 0 0 0 0 0
+0.20 10 0 0 0 0 0 0
+#8007
+rack~
+a wine rack~
+A wine rack collects dust and mold here.~
+~
+15 0 0 1
+1100 0 -1 0 0 0 0
+1000.00 0 0 0 0 0 0 0
+E
+rack~
+  A medium-sized wine rack sits here, part of the farmer's collection
+of vintage wines from over the years.  Perhaps there's some left
+inside!~
+#8008
+bottle wine~
+a vintage bottle of wine~
+A vintage bottle of wine rests here.~
+~
+17 0 1 1
+48 48 2 0 0 0 0
+1.50 0 0 0 0 0 0 0
+E
+bottle wine~
+  This bottle contains a rare, vintage wine.  It was carefully made
+from vine-ripened grapes, pressed, and fermented to produce a classic.~
+#8009
+beer barrel~
+a barrel of beer~
+A barrel of beer sits upright on the floor.~
+~
+17 0 1 0
+512 512 1 0 0 0 0
+8.00 300 0 0 0 0 0 0
+E
+barrel beer~
+  A well-constructed, watertight container, this barrel contains enough
+beer for a party!~
+#8031
+scale blue-drakling-scale small-blue-scale~
+a &4&bblue&0 drakling scale~
+A small blue scale lies here.~
+~
+9 64 524289 1
+5 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+A
+13 5
+#8032
+scale black-drakling-scale small-black-scale~
+a &9&bblack&0 drakling scale~
+A small black scale lies here.~
+~
+9 0 524289 1
+5 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+A
+13 10
+#8033
+scale green-drakling-scale small-green-scale~
+a &2green&0 drakling scale~
+A small green scale lies here.~
+~
+9 0 524289 1
+8 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+A
+13 10
+A
+18 1
+#8034
+scale fiery-red-drakling-scale small-fiery-red-scale~
+a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale~
+A small Fiery Red scale lies here.~
+~
+9 0 524289 1
+10 0 0 0 0 0 0
+0.50 0 0 0 0 0 0 0
+E
+fiery-red-drakling-scale~
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+A
+13 15
+A
+18 1
+A
+19 1
+#8050
+mandible fire-ant-mandible small-tusk~
+a fire ant mandible~
+A small tusk of some kind burns on the ground.~
+~
+5 0 8193 1
+0 1 4 11 0 0 0
+0.40 100 0 0 0 0 0 1048576
+$~

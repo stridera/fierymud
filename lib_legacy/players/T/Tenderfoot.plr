@@ -1,0 +1,89 @@
+name: Tenderfoot
+password: TeMmuE5Phx
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19351
+birthtime: 1525366755
+timeplayed: 3521
+lastlogintime: 1525393483
+host: 069.137.080.213
+height: 39
+weight: 185
+base_height: 39
+base_weight: 185
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 14
+thirst: 14
+lastlevel: 0
+hitpoints: 45/45
+mana: 1/-2
+move: 44/100
+damroll: 4
+hitroll: 5
+strength: 70
+intelligence: 83
+wisdom: 100
+dexterity: 74
+constitution: 56
+charisma: 81
+cash: 0 10 73 22
+experience: 35469
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 52
+438 50
+443 50
+444 50
+451 51
+457 52
+458 50
+459 50
+460 50
+462 50
+463 57
+466 50
+0 0
+trophy:
+1 8010 4.000000
+1 8023 3.000000
+1 8001 2.000000
+1 36002 6.000000
+1 36001 4.000000
+1 36003 5.000000
+1 8011 1.000000
+1 8015 3.000000
+1 8002 3.000000
+1 8012 2.000000
+1 8016 4.000000
+1 8021 4.000000
+0 0 0
+mem:
+16 1 8
+16 1 8
+0 0 0

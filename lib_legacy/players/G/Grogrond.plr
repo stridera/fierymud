@@ -1,0 +1,81 @@
+name: Grogrond
+password: GrzsUoj/GH
+prompt: >
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20779
+birthtime: 1714962305
+timeplayed: 2001
+lastlogintime: 1714964386
+host: 073.223.192.142
+height: 72
+weight: 142
+base_height: 72
+base_weight: 142
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 15
+thirst: 16
+lastlevel: 0
+hitpoints: 19/19
+mana: 0/0
+move: 113/113
+damroll: 3
+hitroll: 3
+strength: 74
+intelligence: 90
+wisdom: 82
+dexterity: 80
+constitution: 82
+charisma: 61
+cash: 0 0 9 4
+experience: 931
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 51
+424 51
+438 50
+443 50
+444 50
+447 50
+451 50
+452 51
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+$
+gossips:
+1714962412 Chinok gossips, 'welcome Grogrond'
+1714962452 Chinok gossips, 'if you need any advice or help, just yell (or gossip)'
+1714963180 Chinok gossips, 'brb..'
+1714963614 Chinok gossips, 'you doing ok Grogrond?'
+1714963788 Chinok gossips, 'awesome to hear, again, please yell if you have questions.  we are happy to help !'
+$

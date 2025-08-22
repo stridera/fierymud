@@ -1,0 +1,91 @@
+21 1 0
+22 1 4
+actor_level 99
+price 1135935
+skill_level 50
+skill_name mount
+23 1 0
+4 6 0
+6 255 8
+got_spice:23753 1
+got_spice:23757 1
+got_spice:23754 1
+got_spice:23760 1
+got_spice:23752 1
+got_spice:23751 1
+got_spice:23750 1
+num_spices 7
+16 1 1
+given_light 1
+2 255 0
+19 255 1
+choice 2
+10 255 0
+17 1 26
+5552_reward 1
+5536_reward 1
+5528_reward 1
+5532_reward 1
+5551_reward 1
+5516_reward 1
+5550_reward 1
+5534_reward 1
+5530_reward 3
+5558_reward 1
+5556_reward 1
+5522_reward 1
+5546_reward 1
+5548_reward 1
+5524_reward 4
+5547_reward 1
+5518_reward 2
+5511_trophies 8
+5515_trophies 5
+5513_trophies 12
+5509_trophies 20
+5507_trophies 23
+5503_trophies 43
+5505_trophies 21
+eg_faction 200
+bl_faction 0
+7 3 40
+55736_gems_acquired 3
+55340_armor_acquired 1
+55328_armor_acquired 1
+55604_gems_acquired 3
+55648_gems_acquired 3
+55344_armor_acquired 1
+55670_gems_acquired 3
+55659_gems_acquired 3
+55714_gems_acquired 3
+55725_gems_acquired 3
+55372_armor_acquired 1
+55703_gems_acquired 3
+55376_armor_acquired 1
+55692_gems_acquired 3
+55364_armor_acquired 1
+55360_armor_acquired 1
+55368_armor_acquired 1
+55681_gems_acquired 3
+55356_armor_acquired 1
+55589_gems_acquired 3
+55320_armor_acquired 1
+55352_armor_acquired 1
+55637_gems_acquired 3
+55348_armor_acquired 1
+55332_armor_acquired 1
+55615_gems_acquired 3
+55626_gems_acquired 3
+55336_armor_acquired 1
+55593_gems_acquired 3
+55585_gems_acquired 3
+55316_armor_acquired 1
+55573_gems_acquired 3
+55569_gems_acquired 3
+55577_gems_acquired 3
+55581_gems_acquired 3
+55300_armor_acquired 1
+55308_armor_acquired 1
+55304_armor_acquired 1
+55324_armor_acquired 1
+55312_armor_acquired 1

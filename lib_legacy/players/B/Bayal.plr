@@ -1,0 +1,75 @@
+name: Bayal
+password: Bagbh0NIHU
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20294
+birthtime: 1656719898
+timeplayed: 550
+lastlogintime: 1656720451
+host: 076.240.192.075
+height: 41
+weight: 134
+base_height: 41
+base_weight: 134
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: xy
+effectflags: fk 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 28/28
+mana: 0/0
+move: 102/102
+damroll: 3
+hitroll: 6
+strength: 82
+intelligence: 79
+wisdom: 72
+dexterity: 82
+constitution: 81
+charisma: 71
+experience: 931
+quit_reason: 5
+saveroom: 51907
+skills:
+403 51
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+1656720437 @WThe Master of the Revel@W tells you, 'When you log back in you'll return at the inn you rented at.@W'@0
+1656720437 @WThe Master of the Revel@W tells you, 'Scrolls of Recall will take you to different cities@W'@0
+1656720437 @WThe Master of the Revel@W tells you, 'Depending on their color.@W'@0
+1656720437 @WThe Master of the Revel@W tells you, 'To use a scroll, just have it in your inventory@W'@0
+1656720437 @WThe Master of the Revel@W tells you, 'Alternatively if you're far from town,@W'@0
+1656720437 @WThe Master of the Revel@W tells you, 'It takes a bit of time to set up camp.@W'@0
+1656720437 @WThe Master of the Revel@W tells you, 'Just like with renting you log in where you camped.@W'@0
+1656720437 @WThe Master of the Revel@W tells you, 'If you just disconnect,@W'@0
+1656720437 @WThe Master of the Revel@W tells you, 'You remain in the world until you idle out.@W'@0
+1656720437 @WThe Master of the Revel@W tells you, 'That leaves you vulnerable to attack and losing everything!@W'@0
+$
+gossips:
+$

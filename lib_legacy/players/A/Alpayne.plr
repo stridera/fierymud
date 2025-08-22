@@ -1,0 +1,83 @@
+name: Alpayne
+password: AlqiioBo1V
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19825
+birthtime: 1611276032
+timeplayed: 1259
+lastlogintime: 1611277292
+host: 072.255.133.094
+height: 69
+weight: 129
+base_height: 69
+base_weight: 129
+base_size: 2
+natural_size: 2
+alignment: 994
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 7
+lastlevel: 0
+hitpoints: 31/31
+mana: 0/0
+move: 94/100
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 100
+wisdom: 81
+dexterity: 70
+constitution: 70
+charisma: 61
+experience: 6600
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 57
+424 52
+438 50
+443 50
+444 50
+447 60
+451 50
+452 52
+453 50
+459 50
+460 50
+462 50
+464 52
+0 0
+trophy:
+1 8001 1.000000
+1 8013 1.000000
+1 8022 1.000000
+1 8023 2.000000
+1 8030 1.000000
+1 8000 1.000000
+0 0 0
+tells:
+$
+gossips:
+$
+mem:
+32 1 8
+5 1 8
+0 0 0

@@ -1,0 +1,1528 @@
+1
+vnum: 52130
+location: 0
+values:
+0
+500
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: figure dakhod-action-figure miniature-pirate doll toy seawater
+shortdesc: a Dakhod action figure
+desc: A miniature pirate lies in a pool of seawater here.
+type: 1
+weight: 0.50
+cost: 22000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: dakhod-action-figure miniature-pirate doll toy seawater
+This action figure appears to be an exact replica of Dakhod!  With a peg leg
+and a hook for a hand, the attention to detail is stunning.  This action figure
+comes complete with karate chop action when its legs are squeezed, and a
+pullstring on his back.    
+~
+triggers:
+52131
+52130
+52133
+52132
+~
+~~
+vnum: 36104
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: coral ring coral-ring
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lies on the ground.
+type: 9
+weight: 0.30
+cost: 200
+timer: 0
+level: 13
+effects: 0 0 0
+wear: 3
+applies:
+3 1
+24 -5
+~
+extradesc: coral ring coral-ring
+The coral ring seems totally flawless. It is made of the finest coral
+you have ever seen, and fades from a light pink on one side to white
+on the other. It is smoothed completely and coated with a clear substance
+so that it is not the least bit abrasive.~
+~~
+vnum: 41120
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring sea sea-ring blue clear
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 9
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 30
+~
+extradesc: sea-ring blue ring water dolphin clear
+A series of playful dolphins chase each other around the perimeter of
+the sea-blue ring. It is difficult to determine exactly what the ring
+is made of -- clear, yet neither crystal nor glass. 
+~
+~~
+vnum: 23708
+location: 3
+values:
+0
+590
+590
+0
+0
+0
+0
+~
+flags: agopuwx 0
+name: pendant necklace shining
+shortdesc: a shining pendant
+desc: A shining necklace lies in the dirt.
+type: 1
+weight: 1.00
+cost: 1000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+applies:
+3 2
+17 1
+5 1
+~
+extradesc: shining pendant necklace
+It looks as if someone caught a ball of pure light and set it on a fine chain.
+The form of the ball is constantly changing as it sparkles in different
+directions.    
+~
+~~
+vnum: 23708
+location: 4
+values:
+0
+590
+590
+0
+0
+0
+0
+~
+flags: agopuwx 0
+name: pendant necklace shining
+shortdesc: a shining pendant
+desc: A shining necklace lies in the dirt.
+type: 1
+weight: 1.00
+cost: 1000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+applies:
+3 2
+17 1
+5 1
+~
+extradesc: shining pendant necklace
+It looks as if someone caught a ball of pure light and set it on a fine chain.
+The form of the ball is constantly changing as it sparkles in different
+directions.    
+~
+~~
+vnum: 58014
+location: 5
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: mo 0
+name: cuirass armor bamboo bamboo-armor strips strip
+shortdesc: a cuirass made of bamboo strips
+desc: You see a cuirass made, amazingly, of bamboo strips.
+type: 9
+weight: 10.00
+cost: 1200
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 9
+applies:
+19 1
+5 5
+~
+extradesc: cuirass bamboo strips armor
+This armor is so light that you wonder that it could be at all effective!
+Made from strips of bamboo cleverly lashed together with wire, it covers
+from the throat to the knees. It looks like it ties in the back.~
+~~
+vnum: 53417
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: gmotuwyz 0
+name: camail chain-camail heap
+shortdesc: a chain camail
+desc: A chain camail lies in a heap.
+type: 9
+weight: 7.70
+cost: 400
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 17
+applies:
+1 1
+2 -1
+5 4
+~
+extradesc: chain-camail heap
+Fine chain links and flawless craftsmanship make up this chain camail.  It is
+surprisingly light for a camail and you wonder if perhaps some sort of magic
+went into its creation...    
+~
+~~
+vnum: 36005
+location: 7
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pants pair-grey-canvas-pants
+shortdesc: a pair of grey canvas pants
+desc: Some grey canvas pants lie discarded here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: pair-grey-canvas-pants
+These pants offer you basic protection from the elements.  They are lightweight
+and allow you freedom of movement.    
+~
+~~
+vnum: 55514
+location: 8
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: agkmopqrstuvwxyz 0
+name: shining radiant mythril saintly boots
+shortdesc: &5&bSaintly Boots&0
+desc: Shining, radiant mythril boots gleam in the light here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+applies:
+14 25
+6 2
+3 4
+~
+extradesc: shining radiant mythril saintly boots
+These boots more than reflect light, they radiate with their own inner
+sanctified illumination.  Exquisite angelic designs and celestial glyphs cover
+each boot, identifying the wearer as a holy being.  The beauty of these boots
+is surpassed only by their holy purity.
+~
+~~
+vnum: 55439
+location: 9
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: agmopqrstuvwxyz 0
+name: divine believer believers gauntlets believers-gauntlets
+shortdesc: &5Believer's Gauntlets&0
+desc: Resting on the ground is a divine pair of gauntlets.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+3 3
+1 2
+~
+extradesc: divine believer believers gauntlets believers-gauntlets
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 53018
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: mouwyz 0
+name: bracers coiled serpent
+shortdesc: the Serpent Bracers
+desc: Bracers formed like coiled serpents rest here.
+type: 9
+weight: 8.00
+cost: 1500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 257
+applies:
+1 2
+~
+~~
+vnum: 53408
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gk 0
+name: cloak velvet-cloak wolf-fur-lined heavy-cloak
+shortdesc: a velvet cloak, lined in wolf fur
+desc: A heavy cloak lined with wolf fur lies neatly folded here.
+type: 9
+weight: 5.00
+cost: 4000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+applies:
+5 3
+2 1
+~
+extradesc: velvet-cloak wolf-fur-lined heavy-cloak
+This cloak is made of very heavy, and warm, material.  The outer edges have
+been lined with thick reddish wolf fur.  It is an extremely beautiful
+cloak.  The image of a howling wolf has been sewn onto the back of the
+cloak with great skill and love.
+~
+~~
+vnum: 36010
+location: 13
+values:
+15
+1
+0
+0
+0
+0
+0
+~
+flags: opr 0
+name: belt small-belt-potions canvas-belt-canvas potions-belt
+shortdesc: a small belt of potions
+desc: A belt of canvas lies here.
+type: 15
+weight: 1.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+extradesc: small-belt-potions canvas-belt-canvas potions-belt
+A wide canvas belt with buttons along its borders is revealed to be a
+container.    
+~
+~~
+vnum: 3010
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 36015
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: p 0
+name: bracelet thin-copper-bracelet small
+shortdesc: a thin copper bracelet
+desc: A small bracelet of copper lies here collecting dust.
+type: 9
+weight: 0.07
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+applies:
+12 1
+~
+extradesc: bracelet thin-copper-bracelet small
+A band of copper is covered with runes depicting a tale of the magical battle
+of the rift wars...    
+~
+~~
+vnum: 36015
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: p 0
+name: bracelet thin-copper-bracelet small
+shortdesc: a thin copper bracelet
+desc: A small bracelet of copper lies here collecting dust.
+type: 9
+weight: 0.07
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+applies:
+12 1
+~
+extradesc: bracelet thin-copper-bracelet small
+A band of copper is covered with runes depicting a tale of the magical battle
+of the rift wars...    
+~
+~~
+vnum: 53017
+location: 16
+values:
+0
+2
+5
+6
+0
+0
+0
+~
+flags: goprstw 0
+name: staff fire yew knotted
+shortdesc: the Staff of Fire
+desc: A knotted yew staff leans against the wall.
+type: 5
+weight: 5.00
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+24 -3
+~
+~~
+vnum: 16201
+location: 18
+values:
+0
+3000
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: sceptre rod kings golden
+shortdesc: a golden sceptre
+desc: A golden sceptre glitters in the light.
+type: 1
+weight: 1.20
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+17 3
+~
+extradesc: sceptre rod kings
+The sceptre is made of pure gold, and is encrusted in jewels. Intricate carvingsdepicting wings snakes decorate this majestic rod.~
+~~
+vnum: 23804
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hawk hawk's gaze hawks eyes bird disembodied hawk-gaze
+shortdesc: a hawk's gaze
+desc: A pair of disembodied bird eyes is sitting here.
+type: 11
+weight: 0.40
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 65537
+applies:
+4 3
+28 100
+~
+extradesc: hawk hawk's gaze hawks eyes bird disembodied hawk-gaze
+When placed over the eyes, this extra set of eyes seems to focus one's vision
+more, lending detail to even the most plain-seeming objects.  They float in
+place magically, synchronizing perfectly with the eyes they are worn over.  
+Seems a little odd, but they do help.    
+~
+~~
+vnum: 49016
+location: 23
+values:
+0
+5000
+4836
+0
+0
+0
+0
+~
+flags: g 0
+name: earring crystal crystal-earring midget
+shortdesc: a crystal earring
+desc: A crystal midget stands here, his little cap radiating a clear white light.
+type: 1
+weight: 0.80
+cost: 420
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 262145
+applies:
+5 3
+1 3
+23 -4
+24 -5
+17 1
+~
+extradesc: crystal midget earring
+The crystal powers hold this little midget in their iron grasp! The midget
+wiggles his little legs, but he cannot run away!~
+~~
+vnum: 49016
+location: 24
+values:
+0
+5000
+5000
+0
+0
+0
+0
+~
+flags: g 0
+name: earring crystal crystal-earring midget
+shortdesc: a crystal earring
+desc: A crystal midget stands here, his little cap radiating a clear white light.
+type: 1
+weight: 0.80
+cost: 420
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 262145
+applies:
+5 3
+1 3
+23 -4
+24 -5
+17 1
+~
+extradesc: crystal midget earring
+The crystal powers hold this little midget in their iron grasp! The midget
+wiggles his little legs, but he cannot run away!~
+~~
+vnum: 48128
+location: 26
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: head severed-goats-head chimera-head goat
+shortdesc: a severed goat's head
+desc: The severed head of a goat sticks its tongue out, a final tidings to the world.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1064961
+applies:
+5 3
+6 -4
+~
+extradesc: head severed-goats-head chimera-head goat
+Grotesque and ugly, the severed goat's head oozes blood from its neck just
+below the jawbone.  Its whitish hair is stained and matted, clumping and
+sticking in knots.  A limp pinkish tongue droops out of its mouth between rows
+of vicious-looking teeth, forming a puddle of horrid-smelling drool beneath it.
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 1006
+location: 127
+values:
+30
+30
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 3.96
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 3220
+location: 127
+values:
+15
+18
+19
+20
+0
+0
+0
+~
+flags: gD 0
+name: scroll bound
+shortdesc: a bound scroll
+desc: A bound scroll of detection lies at your feet.
+type: 2
+weight: 0.15
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: scroll bound
+The scroll reads:
+	Detection sharpens perception!
+~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 36011
+location: 127
+values:
+0
+5
+0
+0
+0
+0
+0
+~
+flags: gDE 0
+name: sphere kaaz-sphere-thought orb
+shortdesc: the Kaaz sphere of thought
+desc: An orb floats by you on its trip home.
+type: 8
+weight: 5.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+applies:
+4 1
+~
+extradesc: kaaz-sphere-thought orb
+A sphere of pure crystal with a hint of blue color throughout.  It is warm to
+the touch and covered with odd runes depicting an ancient tale.    
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3031
+location: 127
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 3031
+location: 127
+values:
+0
+250
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 55312
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: fg 0
+name: helm rusted
+shortdesc: a rusted helm
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Nov 19 2020
+  To: Gallison
+From: Chinok
+
+Supplying your comrades with armor can be a grueling and thankless task. 
+@0Nonetheless, to do it efficiently can take some experience and talent 
+1 items of PROTECTION, and 1 item that casts 'armor' on the whole room. 
+To complete the training, have 14 mobs on your trophy that appear in groups of three or more. 
+One of whom must respond to ARMOR. Only one mob per zone, but they do not need to be 1.00 or anything. 
+So if you walked into a room and there were 3 seethers there, that would NOT count, but a mob such as
+the Sunken's Elite Lizard Man would. Good luck young cleric. 
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20
+location: 127
+values:
+256
+228
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 16.87
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

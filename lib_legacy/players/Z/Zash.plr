@@ -1,0 +1,78 @@
+name: Zash
+password: Zaf4.JHba4
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 1
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20366
+birthtime: 1666026604
+timeplayed: 5021
+lastlogintime: 1674092339
+host: 099.123.198.244
+height: 68
+weight: 132
+base_height: 68
+base_weight: 132
+base_size: 2
+natural_size: 2
+alignment: 978
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 12
+lastlevel: 0
+hitpoints: 82/82
+mana: 1/0
+move: 122/122
+damroll: 3
+hitroll: 3
+strength: 99
+intelligence: 58
+wisdom: 65
+dexterity: 93
+constitution: 96
+charisma: 53
+cash: 0 8 15 14
+experience: 60500
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 54
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 85
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 11703 0.750000
+1 11704 0.250000
+1 2806 0.333333
+1 11702 0.666667
+1 11750 1.000000
+0 0 0
+tells:
+$
+gossips:
+1666113964 Mersh gossips, 'Hey All'
+1666114060 Chinok gossips, 'welcome back '
+1666114407 Holk gossips, 'hey Mersh'
+1674092276 Someone gossips, 'hello!'
+1674092279 Mersh gossips, 'hey!'
+$

@@ -1,0 +1,108 @@
+name: Orff
+password: OrLukvKAI5
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 9
+race: 0
+level: 15
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19800
+birthtime: 1607230520
+timeplayed: 43369
+lastlogintime: 1616772839
+host: 073.063.163.022
+height: 69
+weight: 134
+base_height: 69
+base_weight: 134
+base_size: 2
+natural_size: 2
+alignment: -270
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 172/172
+mana: 22/21
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 77
+wisdom: 67
+dexterity: 100
+constitution: 69
+charisma: 56
+cash: 3 333 1099 375
+experience: 816584
+quit_reason: 3
+saveroom: 0
+skills:
+401 200
+403 182
+405 50
+408 61
+410 50
+411 50
+415 50
+416 50
+420 55
+421 183
+438 50
+440 86
+443 50
+444 66
+464 187
+465 50
+0 0
+trophy:
+1 8021 1.166667
+1 8012 0.500000
+1 8034 0.500000
+1 8033 0.833333
+1 8032 1.000000
+1 8031 0.666667
+1 8014 0.333333
+1 8023 1.000000
+1 8013 0.666667
+1 8011 0.333333
+1 8010 1.333333
+1 8000 1.166667
+1 36002 0.333333
+1 36001 0.666667
+1 36004 1.000000
+1 36003 1.666667
+1 16900 4.000000
+1 16908 4.000000
+1 48107 0.125000
+0 0 0
+tells:
+1607573395 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1607573604 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1607830673 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1607836391 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1607837321 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1607840213 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1607840237 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1607840240 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1611996064 @WSantiago@W tells you, 'What do you want to buy?@W'@0
+1614455693 @WTorranis@W tells you, 'well then@W'@0
+$
+gossips:
+1614458334 Vawk gossips, 'looking for a priest the darkseed and a dark cloaked woman'
+1614458344 Torranis gossips, 'Darkseed is in Twisted Forest'
+1614458360 Vawk gossips, 'in the center of the hidden area?'
+1614458365 Torranis gossips, 'I think so'
+1614458377 Torranis gossips, 'oh, no, that's the warden.  There's another hut out there'
+1614458392 Torranis gossips, 'the dark cloaked woman though... Ya got me!'
+1614458396 Vawk gossips, 'mutter i hate that area i always get turned around'
+1614458409 Torranis gossips, 'there's a hidden switch-back near the entrance'
+1614458436 Vawk gossips, 'ya room description gives you the hint right?'
+1614458442 Torranis gossips, 'Yep!'
+$

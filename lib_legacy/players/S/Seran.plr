@@ -1,0 +1,121 @@
+name: Seran
+password: SeH9jRyyzm
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 20
+race: 2
+level: 14
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18207
+birthtime: 1333065036
+timeplayed: 25375
+lastlogintime: 1734307487
+host: 066.199.058.082
+height: 38
+weight: 49
+base_height: 38
+base_weight: 49
+base_size: 1
+natural_size: 1
+alignment: 606
+playerflags: y
+effectflags: k 0 0
+prefflags: hnouC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 94/94
+mana: 19/19
+move: 109/109
+damroll: 2
+hitroll: 4
+strength: 70
+intelligence: 96
+wisdom: 92
+dexterity: 73
+constitution: 64
+charisma: 67
+cash: 12 716 2875 215
+experience: 838558
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+19 1000
+20 1000
+39 1000
+100 1000
+101 1000
+157 1000
+158 1000
+200 1000
+415 53
+416 50
+423 190
+424 190
+438 50
+443 50
+444 130
+447 72
+451 57
+453 190
+455 88
+459 50
+460 62
+462 51
+464 57
+0 0
+trophy:
+1 36100 1.000000
+1 5404 3.000000
+1 17204 2.000000
+1 17202 1.000000
+1 3509 1.000000
+1 3508 3.000000
+1 3500 2.000000
+1 8800 1.000000
+1 8804 1.000000
+1 8806 1.000000
+1 8014 2.000000
+1 8021 1.000000
+1 8002 1.000000
+1 8010 1.000000
+1 8011 1.000000
+1 8022 1.000000
+1 8013 1.000000
+1 8000 1.000000
+1 36004 1.000000
+1 36002 5.000000
+1 36003 1.000000
+0 0 0
+tells:
+1725426142 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725426148 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725426148 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725426149 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725426149 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725426149 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725426261 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725426264 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725832620 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725832622 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1618794560 Chinok gossips, 'why IS your 4 year old affraid of water in a bathtub ?'
+1724802369 Chinok gossips, 'Hi Seran'
+1724802397 Discord gossips, 'Daedela: Hellooooo'
+1725149881 Chinok gossips, 'welcome back Seran'
+1725149892 Kwaidan gossips, 'Hey!'
+1725235348 Chinok gossips, 'gratz on 14 Seran'
+1725832614 Chinok gossips, 'welcome back Seran'
+1727044660 Chinok gossips, 'hi Seran'
+$
+aliases:
+ggm get all.gem from all.corpse
+gc get all.coins from corpse
+lc l in corpse
+0

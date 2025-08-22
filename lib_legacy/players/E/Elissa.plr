@@ -1,0 +1,84 @@
+name: Elissa
+password: El4JtY0J.3
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 2
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20367
+birthtime: 1666228270
+timeplayed: 1053
+lastlogintime: 1666229323
+host: 070.235.038.235
+height: 30
+weight: 45
+base_height: 30
+base_weight: 45
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: xy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 10
+thirst: 22
+lastlevel: 0
+hitpoints: 19/19
+mana: 0/0
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 79
+intelligence: 88
+wisdom: 97
+dexterity: 66
+constitution: 64
+charisma: 75
+experience: 931
+quit_reason: 5
+saveroom: 51907
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 51
+424 51
+438 50
+443 50
+444 50
+447 54
+451 50
+452 51
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+$
+gossips:
+1666228288 Chinok gossips, 'welcome Elissa'
+1666228301 Chinok gossips, 'please yell if you have any questions or need any help'
+1666228324 Chinok gossips, 'you played here before ?'
+1666228384 Chinok gossips, 'awesome.. will leave you alone, and let you get to it, will tell you, sorc is the hardest class here, but also the most powerful.  highly reccomend you go through the newbie school to learn the casting info'
+1666228989 Chinok gossips, 'to scribe, you'll need to have the quill in your hand (grab quill) '
+1666229080 Chinok gossips, 'working on auto-complete, should be complete in a couple weeks. '
+$
+mem:
+32 0 9
+0 0 0

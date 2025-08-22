@@ -1,0 +1,174 @@
+1
+vnum: 1014
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mnouwyz
+name: helmet steel
+shortdesc: a steel-studded helmet
+desc: A steel-studded helmet lies on the ground.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+~~
+vnum: 1019
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: leggings leather
+shortdesc: &3a pair of leather leggings&0
+desc: &3A pair of leather leggings lies on the ground here.&0
+type: 9
+weight: 7.30
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+~~
+vnum: 1026
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouwyz
+name: boots steel steel-toed-boots
+shortdesc: steel-toed boots
+desc: &7A pair of steel boots lies on the ground here.&0
+type: 9
+weight: 5.10
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+~~
+vnum: 1022
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: sleeves leather
+shortdesc: &3a pair of leather sleeves&0
+desc: &3A pair of leather sleeves lies on the ground here.&0
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+~~
+vnum: 3022
+location: 16
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnovwyz
+name: longsword sword steel
+shortdesc: a steel longsword
+desc: A steel-bladed longsword lies on the ground, sheathed.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: longsword sword long steel
+It is a plain steel longsword, with a fairly sharp blade and a
+leather-wrapped hilt. Short bronze crossguards keep the hand a
+little safe.
+~
+~~
+vnum: 18003
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.69
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

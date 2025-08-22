@@ -1,0 +1,83 @@
+name: Jaenelle
+password: Ja5nACzm8V
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19637
+birthtime: 1592030768
+timeplayed: 4143
+lastlogintime: 1592311484
+host: 064.251.141.170
+height: 60
+weight: 110
+base_height: 60
+base_weight: 110
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: abfghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 30/30
+mana: 1/0
+move: 118/118
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 70
+wisdom: 69
+dexterity: 100
+constitution: 82
+charisma: 44
+experience: 5500
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+403 60
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+464 52
+465 50
+467 50
+0 0
+trophy:
+1 8013 1.000000
+1 8016 2.000000
+1 8011 1.000000
+1 8001 1.000000
+1 8002 3.000000
+1 8023 2.000000
+1 8015 3.000000
+1 8000 2.000000
+1 8014 4.000000
+0 0 0
+tells:
+1592179480 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1592031306 Strider gossips, 'available'
+1592031354 Glawk gossips, 'help pray might have some answers '
+1592031386 Glawk gossips, 'or forget a spell'
+1592031400 Glawk gossips, 'so i could type forget cure light'
+1592031412 Glawk gossips, 'then pray spellX'
+1592031472 Glawk gossips, 'forget is a command just like pray'
+1592179416 Davar gossips, 'no its hidden behind a curtain'
+1592179451 Davar gossips, 'you do you have to search '
+1592179465 Davar gossips, 'you can just search or you can search curtain'
+1592179483 Davar gossips, 'np'
+$

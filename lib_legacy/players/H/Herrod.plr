@@ -1,0 +1,100 @@
+name: Herrod
+password: HeWI5N9e.B
+currenttitle: (veruk's swimmer)
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18162
+birthtime: 1331273807
+timeplayed: 10971
+lastlogintime: 1411630684
+host: 050.206.102.120
+height: 71
+weight: 143
+base_height: 71
+base_weight: 143
+base_size: 2
+natural_size: 2
+alignment: 4
+playerflags: gy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 3
+lastlevel: 0
+hitpoints: 75/75
+mana: 1/0
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 79
+intelligence: 83
+wisdom: 82
+dexterity: 86
+constitution: 88
+charisma: 46
+experience: 115500
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+451 51
+457 50
+458 50
+459 50
+460 50
+462 50
+463 55
+466 50
+0 0
+trophy:
+1 1603 1.500000
+1 1602 3.000000
+1 1605 0.500000
+1 1601 8.000000
+1 13601 0.500000
+1 3062 0.500000
+1 8020 4.000000
+1 8013 8.000000
+1 8011 4.500000
+1 8000 8.000000
+1 8014 9.000000
+1 8001 8.500000
+1 8023 5.500000
+1 8015 12.500000
+1 8016 11.500000
+1 8002 11.500000
+1 8012 11.500000
+1 8021 7.500000
+1 8022 6.000000
+1 8010 9.500000
+0 0 0
+tells:
+$
+gossips:
+$
+aliases:
+1 assist elador
+heal c 'cure light' 
+0

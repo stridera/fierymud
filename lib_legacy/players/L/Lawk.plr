@@ -1,0 +1,177 @@
+name: Lawk
+password: LaKeMN5x0Y
+currenttitle: Rew Rew...
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ds&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 7
+race: 0
+level: 73
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17883
+birthtime: 1303874632
+timeplayed: 1870649
+lastlogintime: 1738978848
+host: 208.093.179.007
+height: 67
+weight: 134
+base_height: 67
+base_weight: 134
+base_size: 2
+natural_size: 2
+alignment: -25
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnosC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 594/594
+mana: 532/532
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 94
+wisdom: 92
+dexterity: 82
+constitution: 88
+charisma: 70
+cash: 1 9 108 61
+experience: 47959557
+pagelength: 50
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+6 1000
+11 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+27 1000
+28 1000
+30 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+51 1000
+70 1000
+71 1000
+73 1000
+74 1000
+88 1000
+89 1000
+90 1000
+91 1000
+99 1000
+118 1000
+144 1000
+145 1000
+146 1000
+147 1000
+148 1000
+149 1000
+150 1000
+151 1000
+152 1000
+153 1000
+154 1000
+155 1000
+156 1000
+206 1000
+207 1000
+215 1000
+241 1000
+243 1000
+245 1000
+247 1000
+263 1000
+415 50
+416 50
+417 50
+421 780
+423 780
+424 780
+429 50
+438 780
+443 60
+444 780
+451 780
+452 780
+453 780
+454 780
+455 780
+456 780
+457 780
+458 780
+459 780
+460 780
+462 780
+463 780
+464 50
+465 50
+466 780
+0 0
+trophy:
+1 12320 1.000000
+1 48115 1.000000
+1 58003 0.500000
+1 58029 0.500000
+1 16309 1.000000
+1 48501 0.333333
+0 0 0
+tells:
+1620504998 @WGlawk@W tells you, 'well@W'@0
+1620505284 @WGlawk@W tells you, 'well@W'@0
+1620506775 @WGlawk@W tells you, 'a@W'@0
+1620507986 @WGlawk@W tells you, 'well@W'@0
+1620509985 @WYawk@W tells you, 'well@W'@0
+1620512289 @WSomeone@W tells you, 'well@W'@0
+1620512324 @WDavar@W tells you, 'Yawk requested i send a well Incoming@W'@0
+1620512339 @WNawk@W tells you, 'well@W'@0
+1620567083 @WDavar@W tells you, 'one gem please@W'@0
+1737964847 @WXawk@W tells you, 'well@W'@0
+$
+gossips:
+1738774104 Popy gossips, 'congrats!'
+1738774113 Anexis gossips, 'thank'
+1738774182 Davar gossips, 'might be stat dependant takes me 2 rounds to cast harm for 250 in the same time i could hit 4 times for 90 +- 10'
+1738774210 Davar gossips, 'er nm i'm remorted so i have 100 stats'
+1738774286 Popy gossips, 'yeah, you're different as a druid and your equipment load out. I hit for like 15-25/round'
+1738774403 Davar gossips, 'most of my clerics hit around the same (granted i build them that way)'
+1738774483 Thort gossips, 'I'm sure I could build popy to hit harder. But I just don't use him as a damage dealer.'
+1738977923 Chinok gossips, 'what's going on here!?'
+1738977937 Anexis gossips, 'nothing good i tell you hwhat'
+1738978034 Yawk gossips, 'just useing my sorc for melee damage'
+1738978062 Chinok gossips, 'those things seem counter productive'
+$
+aliases:
+lig c 'call li' $*
+bolt c 'li bo' $*
+y ass fernley
+vit c 'g end' $*
+ray c 'sunray' $*
+id recite identify $*
+hierophant phase 3 quest master
+bark c 'barkskin' $*
+gac g all all.corpse
+word c 'word of r' 
+harm c 'harm' $* 
+heal c 'heal' $* 
+mem pra $*
+2 c 'heal' nakir
+well c 'moonw' $*
+summon c 'summon' $*
+0

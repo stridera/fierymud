@@ -1,0 +1,2648 @@
+1
+vnum: 49011
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: goprt
+name: ring jade stone precious jade-ring
+shortdesc: a jade ring
+desc: A ring of precious stone lies at your feet.
+type: 8
+weight: 0.02
+cost: 5000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+24 -10
+2 2
+~
+extradesc: jade ring
+It's a jade ring that once must have adorned the hand of a very special
+woman.~
+triggers:
+16347
+~
+~~
+vnum: 5201
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 1040
+location: 5
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: gA
+name: breastplate odd-breastplate-gaia breast-plate
+shortdesc: &0&3a breastplate of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3An odd breastplate lies here.&0
+type: 9
+weight: 14.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+applies:
+24 -5
+~
+extradesc: odd-breastplate-gaia breast-plate
+&0This odd looking breastplate appears to be crafted from a piece of solid wood,
+chiseled and sanded with a powerful magic to perfection. Glowing vines weave
+themselves around the wooden breastplate, adding their steel-like endurance
+to its powerful frame.&0
+~
+~~
+vnum: 55447
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqrstvwxyz
+name: cap leaves leather nature
+shortdesc: &2Cap of Nature&0
+desc: Fluttering in the wind is a cap made of leaves sewn on leather.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+applies:
+13 20
+3 1
+~
+extradesc: cap leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into a cap in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 55450
+location: 7
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqrstvwxyz
+name: pants leaves leather nature
+shortdesc: &2Pants of Nature&0
+desc: Fluttering in the wind is a pair of pants made of leaves sewn on leather.
+type: 9
+weight: 7.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 33
+applies:
+2 1
+13 20
+~
+extradesc: pants leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into pants in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 55528
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz
+name: pressed birth leaf leather boots glade
+shortdesc: &3&bBoots of the Glade&0
+desc: A pair of pressed birch leaf leather boots rests next to a dying fire.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+applies:
+4 2
+1 2
+~
+extradesc: pressed birch leaf leather boots glade
+Several layers of pressed birch leaves have been sewn on to tanned hide to
+create these boots.  These boots still seem to be in sturdy condition, ready to
+handle any climate or condition, even though they have seen years of use.  Odd
+that the leaves still seem to be fresh, as if picked from a tree and stitched
+on this morning.
+~
+~~
+vnum: 55453
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqrstvwxyz
+name: gloves leaves leather nature
+shortdesc: &2Gloves of Nature&0
+desc: Fluttering in the wind is a pair of gloves made of leaves sewn on leather.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+4 3
+~
+extradesc: gloves leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into gloves in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 55448
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqrstvwxyz
+name: sleeves leaves leather nature
+shortdesc: &2Sleeves of Nature&0
+desc: Fluttering in the wind is a set of sleeves made of leaves sewn on leather.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+applies:
+4 3
+2 3
+~
+extradesc: sleeves leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into sleeves in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 51009
+location: 11
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: shield water amorphous-shield
+shortdesc: the Amorphous Shield
+desc: A ripple of water shaped into a shield lies here waiting for an owner.
+type: 9
+weight: 7.00
+cost: 420
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 513
+applies:
+2 -1
+14 25
+~
+extradesc: amorphous shield
+As you look closer you notice that the shield isn't entirely clear; there is
+a light liquid filling the inside of the shield that is constantly in motion.
+As hits are taken, the filling liquid moves and reacts, giving great protection
+from attacks.
+~
+~~
+vnum: 1000
+location: 12
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55449
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqrstvwxyz
+name: jerkin leaves leather nature
+shortdesc: &2Jerkin of Nature&0
+desc: Fluttering in the wind is a jerkin made of leaves sewn on leather.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+1 3
+~
+extradesc: jerkin leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into a jerkin in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 55528
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyz
+name: pressed birth leaf leather boots glade
+shortdesc: &3&bBoots of the Glade&0
+desc: A pair of pressed birch leaf leather boots rests next to a dying fire.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+applies:
+4 2
+1 2
+~
+extradesc: pressed birch leaf leather boots glade
+Several layers of pressed birch leaves have been sewn on to tanned hide to
+create these boots.  These boots still seem to be in sturdy condition, ready to
+handle any climate or condition, even though they have seen years of use.  Odd
+that the leaves still seem to be fresh, as if picked from a tree and stitched
+on this morning.
+~
+~~
+vnum: 55525
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyz
+name: oak tubes vines leaves sleeves glade
+shortdesc: &3&bSleeves of the Glade&0
+desc: Hollowed out oak tubes lay here, hidden under vines and leaves.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+applies:
+5 2
+6 4
+~
+extradesc: oak tubes vines leaves sleeves glade
+Made from the holy oak, a symbol of strength and stability, these tubes are
+enhanced to act as natural armor.  Each sleeves is made of two smaller tubes,
+wrapped in leafy vines that act as threads and cords.  Not exactly a fashion
+statement, there is a raw natural beauty to these sleeves.
+~
+~~
+vnum: 55530
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyz
+name: glowing mass silver spider webbing gloves glade
+shortdesc: &3&bGloves of the Glade&0
+desc: A glowing mass of silver spider webbing floats on the wind.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+1 3
+3 4
+~
+extradesc: glowing mass silver spider webbing gloves glade
+Crafted from the incredibly rare silk of the silver spider, webbing such as
+this is nearly indestructible, in addition to being able to hold the most
+powerful enchantments.  These gloves are both beautiful and blithe, as soft as
+the light that glimmers off them and as soft as the wind.
+~
+~~
+vnum: 55527
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyz
+name: furry goat-hide leather pants glade
+shortdesc: &3&bLeather Pants of the Glade&0
+desc: Furry goat-hide pants flap from a nearby tree.
+type: 9
+weight: 7.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+applies:
+2 4
+1 3
+~
+extradesc: furry goat-hide leather pants glade
+These are no ordinary goat-hide pants!  Strange, residual fae magic lingers on
+them, indicating that powerful magic resided in the creature these were taken
+from.  Sewn with great care, leggings like these are quite special indeed.
+~
+~~
+vnum: 55524
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyz
+name: wooden vines helm glade
+shortdesc: &3&bHelm of the Glade&0
+desc: A wooden helm lays here tangled in vines.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+applies:
+4 3
+~
+extradesc: wooden vines helm glade
+Unwilling to be dislodged, the vines have actually grown into and through the
+wood of this helm.  The helm itself appears to have been formed naturally, with
+very little if any human alteration.  Powerful natural magic emanates from this
+helm, indicating that it is more than what it seems.
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 17204
+location: 13
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: cord golden
+shortdesc: the golden cord
+desc: A golden cord lies on the ground.
+type: 9
+weight: 0.50
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+applies:
+3 1
+13 -1
+~
+extradesc: cord golden
+You look upon a length of cord made of finely spun gold threads. It seems to
+emanate a strange aura.
+~
+~~
+vnum: 55529
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz
+name: single small lotus blossom bracer glade
+shortdesc: &3&bBracer of the Glade&0
+desc: A single small lotus blossom sits on top of a twisted stem here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+applies:
+13 10
+18 2
+~
+extradesc: single small lotus blossom bracer glade
+The stem of this lotus actually goes nowhere, ending in a simple knot.  
+However, it could easily be wrapped around the wrist, creating a beautiful and
+exotic bracer.  The lotus is the ultimate representation of the ability of
+nature to produce beauty and perfection from the darkest of places.  Such an
+ever-growing blossom as this is created only for very powerful druids.
+~
+~~
+vnum: 55452
+location: 15
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqrstvwxyz
+name: bracer leaves leather nature
+shortdesc: &2Bracer of Nature&0
+desc: Fluttering in the wind are bracers made of leaves sewn on leather.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: bracer leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into a bracer in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 16305
+location: 16
+values:
+0
+2
+5
+6
+0
+0
+0
+~
+flags: gow
+name: staff druidstaff golden-druidstaff
+shortdesc: the Golden Druidstaff
+desc: A gold plated staff is stuck in the ground.
+type: 5
+weight: 2.00
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+4 3
+3 3
+~
+extradesc: druidstaff golden staff golden-druidstaff
+   The staff is made of wood, but there is an odd golden sheen to its surface.
+A tingling sensation moves up your arm as you touch its surface.
+~
+~~
+vnum: 18511
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: spectacles small
+shortdesc: small spectacles
+desc: A pair of little spectacles rests here.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65537
+applies:
+3 2
+~
+extradesc: small spectacles eye wear
+These spectacles are small and likely used for reading.  They have an odd and
+unique hexagonal frame around the glass portions, but look strong and
+well-used.
+~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: mask imanhotep golden
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 9
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+applies:
+1 2
+4 2
+~
+extradesc: mask
+The mask is made of solid gold and is encrusted with jewels. It has an aura
+of power around it.~
+~~
+vnum: 8611
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 8611
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 498
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: brooch fiery a
+shortdesc: &3a&0 &1&bfiery&0 &3brooch&0
+desc: &1&bA small metal brooch surrounded by fire is floating just above the ground here.&0
+type: 11
+weight: 0.21
+cost: 1700
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 524289
+applies:
+17 3
+19 2
+~
+extradesc: brooch fiery
+This brooch is made of a mysterious white metal.  The very strange thing about
+it is that it is on fire but it is not consumed or melted.  The dark monks must
+have taken it from a powerful pyromancer at one time and have stored it ever
+since.    
+~
+~~
+vnum: 1001
+location: 26
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 49017
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: shoes feathered
+shortdesc: a pair of feathered shoes
+desc: A pair of shoes with wings flutter around here!
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65
+applies:
+14 35
+~
+extradesc: shoes feathered
+These starry blue shoes seem to be alive! They have wings attached to them
+and make little loopings when they know you're looking at them.~
+~~
+vnum: 11703
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agk
+name: bracelet blue misty glowing
+shortdesc: a misty blue bracelet
+desc: A misty blue bracelet is lying here, shimmering slightly.
+type: 12
+weight: 1.10
+cost: 200
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 4097
+applies:
+24 -3
+~
+~~
+vnum: 498
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: brooch fiery a
+shortdesc: &3a&0 &1&bfiery&0 &3brooch&0
+desc: &1&bA small metal brooch surrounded by fire is floating just above the ground here.&0
+type: 11
+weight: 0.21
+cost: 1700
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 524289
+applies:
+17 3
+19 2
+~
+extradesc: brooch fiery
+This brooch is made of a mysterious white metal.  The very strange thing about
+it is that it is on fire but it is not consumed or melted.  The dark monks must
+have taken it from a powerful pyromancer at one time and have stored it ever
+since.    
+~
+~~
+vnum: 46401
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crest feathered feathered-crest
+shortdesc: a beautiful feathered crest
+desc: A beautiful feathered crest has been left here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 17
+applies:
+18 1
+~
+extradesc: crest feathered
+     Long yellow and grey feathers make up this piece of stylish headwear.
+Upon the pate of some hapless bird it must have been beautifully expressive,
+as the crest itself would swing up or lay back against the bird's head to
+express interest, excitement, fear, and love.  Holding the feathered garment in
+your hands, you cannot help but feel sorry for the bird and wonder if you might
+be able to recreate even a degree of its vitality.
+~
+~~
+vnum: 53318
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aop
+name: gown white high priestess
+shortdesc: the high-priestess' gown
+desc: A flowing white gown made of silk lies forgotten here.
+type: 9
+weight: 1.30
+cost: 800
+timer: 0
+level: 54
+effects: 0 0 0
+wear: 9
+applies:
+3 2
+4 5
+9 -4
+~
+extradesc: gown
+This gown is the ceremonial clothing traditionally worn by the high-
+priestess of the cult of Tri-Aszp.
+~
+~~
+vnum: 6906
+location: 127
+values:
+0
+3
+3
+12
+0
+0
+0
+~
+flags: agoprstuwx
+name: staff green-staff-growing thin-hollow-staff wisdom
+shortdesc: the Green Staff of Growing
+desc: A thin hollow staff glows with a green aura.
+adesc:
+$n taps $p on the ground three times.
+~
+type: 4
+weight: 3.00
+cost: 25
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+applies:
+3 1
+~
+extradesc: green-staff-growing thin-hollow-staff wisdom
+The thin staff is as light as a hollowed out tube, but as strong as any metal
+sword picked off the forge.  The green glow radiating from the brown oak gives
+the impression that the stick is naturally green.  The glow seems to emanate a
+deep wisdom.    
+~
+~~
+vnum: 18505
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bgoprt
+name: book tome discipline book-of-discipline
+shortdesc: the Book of Discipline
+desc: A great tome is before you.
+type: 8
+weight: 1.30
+cost: 80
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+applies:
+4 1
+3 1
+~
+extradesc: book tome book-of-discipline
+   Before you is the great Book of Discipline. Written in it are the 
+teachings of the great St. George, to whom this monastery is dedicated to.
+It is said that great wisdom is held by the tome.
+~
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 23723
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fungus pink mushroom bulb shroom food
+shortdesc: a piece of pink fungus
+desc: A bulb of pink fungus grows out of the wall.
+type: 19
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: fungus pink mushroom shroom bulb
+This bright pink fungus actually smells quite appetizing.  It is not discolored
+by any bruises or spots--unless, of course, the pink that almost hurts the eyes
+is a discoloration.    
+~
+~~
+vnum: 23723
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fungus pink mushroom bulb shroom food
+shortdesc: a piece of pink fungus
+desc: A bulb of pink fungus grows out of the wall.
+type: 19
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: fungus pink mushroom shroom bulb
+This bright pink fungus actually smells quite appetizing.  It is not discolored
+by any bruises or spots--unless, of course, the pink that almost hurts the eyes
+is a discoloration.    
+~
+~~
+vnum: 16201
+location: 127
+values:
+1
+0
+3
+0
+0
+0
+0
+~
+flags: ag
+name: sceptre rod kings golden
+shortdesc: a golden sceptre
+desc: A golden sceptre glitters in the light.
+type: 1
+weight: 1.20
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+17 3
+~
+extradesc: sceptre rod kings
+The sceptre is made of pure gold, and is encrusted in jewels. Intricate carvingsdepicting wings snakes decorate this majestic rod.~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20
+location: 127
+values:
+256
+216
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 16.08
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

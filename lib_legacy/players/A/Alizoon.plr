@@ -1,0 +1,90 @@
+name: Alizoon
+password: AlywvPTaRp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 13
+race: 0
+level: 25
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18648
+birthtime: 1392649052
+timeplayed: 98653
+lastlogintime: 1735087399
+host: 104.228.087.146
+height: 69
+weight: 176
+base_height: 69
+base_weight: 176
+base_size: 2
+natural_size: 2
+alignment: 672
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ahnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+loadroom: 3054
+lastlevel: 0
+hitpoints: 359/334
+mana: 62/62
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 68
+wisdom: 60
+dexterity: 91
+constitution: 95
+charisma: 59
+cash: 322 3521 9323 8162
+experience: 4632749
+quit_reason: 1
+saveroom: 3054
+skills:
+404 113
+411 50
+415 50
+416 50
+420 165
+421 232
+422 179
+438 90
+443 50
+444 50
+446 50
+448 1000
+449 1000
+463 50
+601 50
+0 0
+trophy:
+1 53303 0.761904
+1 53312 1.928571
+1 53314 0.869047
+1 53315 2.678571
+1 5507 1.666667
+1 5506 1.000000
+1 5505 1.666667
+1 5504 2.000000
+1 5503 3.333333
+1 5502 3.000000
+1 5501 3.000000
+1 18509 0.500000
+1 18508 1.000000
+1 18503 0.333333
+1 18506 1.333333
+1 18502 1.000000
+1 18513 1.333333
+1 18500 0.333333
+1 18517 1.666667
+1 18511 0.666667
+1 18507 7.000001
+0 0 0
+tells:
+$
+gossips:
+$

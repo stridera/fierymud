@@ -1,0 +1,120 @@
+name: Ladri
+password: Lam3fFOT3Q
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 9
+race: 0
+level: 57
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20472
+birthtime: 1677967332
+timeplayed: 574065
+lastlogintime: 1696712195
+host: 070.249.169.036
+height: 63
+weight: 124
+base_height: 63
+base_weight: 124
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 100
+loadroom: 3054
+lastlevel: 0
+hitpoints: 540/573
+mana: 313/324
+move: 297/297
+damroll: 3
+hitroll: 3
+strength: 69
+intelligence: 74
+wisdom: 69
+dexterity: 90
+constitution: 88
+charisma: 75
+cash: 285 151 626 662
+bank: 150 0 0 10000
+experience: 24952657
+quit_reason: 1
+saveroom: 3054
+skills:
+401 620
+403 605
+404 620
+405 582
+408 611
+410 586
+411 620
+415 50
+416 50
+418 583
+420 463
+421 617
+438 97
+440 620
+443 57
+444 270
+463 295
+464 620
+465 617
+477 580
+0 0
+trophy:
+1 23736 2.000000
+1 23708 0.500000
+1 23734 2.500000
+1 23714 1.000000
+1 23711 0.500000
+1 23700 1.000000
+1 23737 3.000000
+1 23709 5.500000
+1 23715 1.000000
+1 23707 1.500000
+1 62509 1.000000
+1 58005 0.333333
+1 58006 0.333333
+1 58012 0.500000
+1 58032 0.333333
+1 58008 0.333333
+1 58030 0.333333
+1 58011 0.666666
+1 58009 1.000000
+1 58003 0.666666
+1 58010 0.333333
+0 0 0
+tells:
+1696381083 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1696381086 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1696381089 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1696381092 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1696381102 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1696381105 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1696381124 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1696381224 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1696381491 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1696381545 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1696380962 Discord gossips, 'Daedela: He's not far from the Hierophant.  Just read the room descriptions and look for clues for extra things to look at'
+1696380976 Zray gossips, 'ya'
+1696709380 Snil gossips, 'hey ladri'
+1696709424 Snil gossips, 'Working on any quests? Gonna grind a few levels? WHats the plan?'
+1696709892 Snil gossips, 'are you good or evil aligned?'
+1696709925 Snil gossips, 'Oh I was going to have you come with me to do a quest but you have to be at least neutral'
+1696709971 Snil gossips, 'you can still come with me drow is some good exp'
+1696710002 Snil gossips, 'always.'
+1696710014 Snil gossips, 'if you want a moonwell to someone else tell choak <name>'
+1696710437 Snil gossips, 'gratz!'
+$
+aliases:
+k kill $1
+g get all in corpse
+0

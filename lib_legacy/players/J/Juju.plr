@@ -1,0 +1,101 @@
+name: Juju
+password: JuHIDZdKSZ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20088
+birthtime: 1640746115
+timeplayed: 2478
+lastlogintime: 1640748594
+host: 152.105.227.025
+height: 67
+weight: 132
+base_height: 67
+base_weight: 132
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gy
+effectflags: k 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 6
+lastlevel: 0
+hitpoints: 63/63
+mana: 0/0
+move: 132/132
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 64
+wisdom: 80
+dexterity: 94
+constitution: 98
+charisma: 64
+cash: 0 5 30 32
+experience: 36300
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 62
+415 50
+416 50
+421 65
+438 50
+443 50
+444 50
+463 50
+464 50
+465 61
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 16902 1.000000
+1 16906 4.000000
+1 16901 1.000000
+1 16905 1.000000
+1 16908 3.000000
+1 16900 11.000000
+1 3507 1.000000
+1 3508 3.000000
+1 3509 1.000000
+1 3500 7.000000
+1 3502 2.000000
+1 3501 6.000000
+1 8013 1.000000
+1 8020 1.000000
+1 8000 1.000000
+1 8016 1.000000
+1 8012 2.000000
+0 0 0
+tells:
+1640746738 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1640747529 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1640748563 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1640746736 Chinok gossips, 'juju got #2'
+1640747091 Chinok gossips, 'about to start the matrix.. saw it once at the movies monday.. it needs a 2nd watch before I can fully say if i liked it or not.'
+1640747312 Chinok gossips, 'woah, bobba fet starts tomorrow!'
+1640747793 Chinok gossips, 'gratz Mersh and Juju'
+1640747804 Mersh gossips, 'ty'
+1640748269 Chinok gossips, 'any luck on porto's quest ?'
+1640748503 Chinok gossips, 'any luck on porto's quest ?'
+1640748561 Porto gossips, 'no. I found lots of items. None cast Energy Drain'
+1640748572 Porto gossips, 'Fiddled with that book for a while that is trapped'
+1640748579 Mersh gossips, 'congratz!'
+$
+aliases:
+ec examine corpse
+0

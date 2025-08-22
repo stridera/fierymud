@@ -1,0 +1,91 @@
+name: Xerius
+password: XeH84A9b.x
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 19
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19141
+birthtime: 1488123759
+timeplayed: 233276
+lastlogintime: 1492471502
+host: 075.177.135.171
+height: 74
+weight: 169
+base_height: 74
+base_weight: 169
+base_size: 2
+natural_size: 2
+alignment: 183
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 25
+loadroom: 20312
+lastlevel: 0
+hitpoints: 212/212
+mana: 36/36
+move: 82/128
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 62
+wisdom: 66
+dexterity: 98
+constitution: 89
+charisma: 60
+cash: 2 201 672 500
+bank: 5 582 1964 1025
+experience: 1489803
+quit_reason: 7
+saveroom: 20312
+skills:
+401 240
+403 240
+405 96
+408 240
+411 240
+415 50
+416 50
+421 145
+438 50
+443 50
+444 50
+464 240
+465 56
+467 50
+472 236
+0 0
+trophy:
+1 20314 0.500000
+1 20301 0.500000
+1 16103 0.500000
+1 16100 0.500000
+1 16102 1.000000
+1 5502 3.000000
+1 5501 5.000000
+1 18501 1.000000
+1 18550 0.500000
+1 18520 0.500000
+1 18519 0.500000
+1 3501 0.333333
+1 3507 0.333333
+1 3502 0.666667
+1 36303 0.333333
+1 36305 1.666667
+1 17204 2.333333
+1 20300 0.500000
+1 20311 1.000000
+1 20318 3.000000
+1 16111 0.500000
+0 0 0
+aliases:
+aa assist araxus
+gac get all corpse
+0

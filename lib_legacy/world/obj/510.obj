@@ -1,0 +1,720 @@
+#51000
+key rubber flimsy-rubber-key~
+a small flimsy rubber key~
+A flimsy looking key lies here.~
+~
+18 4 16385 25
+0 0 0 0 0 0 0
+0.20 20 0 0 0 0 0 0
+E
+key rubber~
+This key, although very flimsy, is under the influence of magic.  As you hold
+it in your hand the key expands to fit the contours of your hand.  You imagine
+the key would be able to expand into a keyhole and allow you to unlock a door.~
+#51001
+glass shot-glass~
+a shot glass from the Flirting Puppy~
+One of the Flirting Puppy Pub's shot glasses lies on the ground here.~
+~
+17 0 16385 30
+2 2 7 0 0 0 0
+0.10 80 0 0 0 0 0 0
+E
+shot glass~
+You see a shot glass made of very thick glass.  It's from the notorious
+Flirting Puppy Pub.  Its fine quality makes it a collector's item.~
+#51002
+key wax-key~
+a wax key~
+A key made of hardened wax lies here.~
+~
+18 4 16385 25
+0 0 0 0 0 0 0
+0.09 20 0 0 0 0 0 0
+E
+wax key~
+As you look at the key, you notice it's made entirely of wax.
+Even though the key is made of wax, it magically hardened and won't break
+even under the most intense pressure you can apply.~
+#51003
+bag gristle-bag food~
+a large rank-smelling bag of gristle~
+A discarded leather bag is here, stinking up the area.~
+~
+19 0 16385 30
+24 0 0 0 0 0 0
+5.00 45 0 0 0 0 0 0
+E
+bag gristle~
+You look in the putrid smelling bag.  It smells horrid and it's filled with
+gristle.  It's not gourmet food, but there's a huge portion inside and it
+will keep you full for a while.~
+#51004
+key pearly-key~
+a pearly key~
+A key made from a giant pearl lies here.~
+~
+18 4 16385 25
+0 0 0 0 0 0 0
+0.10 20 0 0 0 0 0 0
+E
+key pearly~
+This key was crafted out of a giant pearl and then buffed to a high shine.
+The key looks incredibly sturdy and could stand up to a lot of abuse. It is
+probably worth a lot of money.~
+#51005
+key opal-key~
+a small opal key~
+A beautiful key crafted out of opal lies here.~
+~
+18 4 16385 25
+0 0 0 0 0 0 0
+0.11 20 0 0 0 0 0 0
+E
+key opal~
+You see a key made out of opal.  This beautiful key lures your eyes up 
+and down the length of it, almost entrancing you.  Its beauty is 
+overwhelming; you wish you could keep it forever.~
+#51006
+eyes ice-eyes two-balls-ice~
+a pair of Ice Eyes~
+Two balls of ice lie here, casting a magical glow of light all around.~
+~
+1 65 65537 50
+0 1800 1800 0 0 0 0
+1.03 500 0 0 0 0 0 0
+E
+eyes ice-eyes two-balls-ice~
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.~
+A
+5 2
+A
+2 2
+A
+18 1
+A
+24 -5
+A
+27 2
+#51007
+whip barbed-whipe small-coil-leather~
+a barbed whip~
+There is a small coil of leather drying in the sun here.~
+~
+5 55603264 8193 60
+0 2 7 2 0 0 0
+5.40 180 0 0 0 0 0 0
+E
+whip barbed-whipe small-coil-leather~
+This small coil of leather with a metal spike on the end could be used as a
+whip in close combat.  It's very sturdy and could probably go through many
+battles without harm.~
+A
+6 3
+X
+1008
+#51008
+vial nordus water-vial~
+a small vial~
+A small vial lies partially hidden on the ground.~
+~
+10 0 16385 45
+66 19 67 0 0 0 0
+0.15 140 0 0 0 0 0 0
+E
+water vial~
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. ~
+#51009
+shield amorphous-shield ripple-water-shaped-shield~
+the Amorphous Shield~
+A ripple of water shaped into a shield lies here waiting for an owner.~
+~
+9 536870912 513 55
+10 0 0 0 0 0 0
+7.00 420 0 0 0 0 0 0
+E
+shield amorphous-shield ripple-water-shaped-shield~
+As you look closer you notice that the shield isn't entirely clear; there is a
+light liquid filling the inside of the shield that is constantly in motion.  
+As hits are taken, the filling liquid moves and reacts, giving great protection
+from attacks.~
+A
+2 -1
+A
+14 25
+#51010
+axe rainbow-axe rain-bow colorful-rainbow~
+the Rainbow Axe~
+A colorful rainbow reflects some color into your eyes.~
+~
+5 57700352 32769 55
+0 10 9 3 0 0 0
+9.00 5000 0 0 0 0 0 0
+E
+axe rainbow-axe rain-bow colorful-rainbow~
+You look at this wondrous piece of weaponry.  It's as hard as steel, but it's
+light and versatile.  It has a comfortable grip, you feel like you are holding
+on to, well a rainbow.  It's light opacity almost lets you see right through
+the axe and the marvelous colors shine through.  Reds, greens, purples and soft
+white colors seem to warm you as you hold this great weapon.  It had to have
+been crafted by magical means, and you take time to admire its craftsmanship,
+as well as quality.~
+A
+18 -4
+X
+1011
+#51011
+shawl tattered-shawl piece-tattered-cloth~
+a tattered shawl~
+A piece of tattered cloth lies discarded on the ground.~
+~
+9 536870912 5 30
+2 0 0 0 0 0 0
+1.30 25 0 0 0 0 0 0
+E
+shawl tattered-shawl piece-tattered-cloth~
+You see an old tattered piece of cloth.  It's very beaten up and has been
+through many generations of owners.  You can feel it's age as you bring it near
+you.  Something about this cloth makes you feel just a little bit more
+knowledgeable.  You briefly wonder who first wove this old shawl.~
+A
+9 20
+A
+3 1
+#51012
+hook meat-hook~
+a meat hook~
+A hook used for hanging meat is here.~
+~
+5 55586944 1081345 45
+0 7 8 8 0 0 0
+8.00 70 0 0 0 0 0 0
+E
+hook meat-hook~
+Blood drips from the tip of this large hook, as though it was recently used.  
+The large size of this hook, makes it a formidable weapon.  You feel a tingling
+sensation when you hold it in your hands, and feel much weaker and have much
+less energy.~
+A
+2 -10
+A
+26 -2
+X
+1011
+#51013
+cape silken-cap shiny-smooth-piece-cloth radiating-warm-inviting-aura silk red~
+a silken cape~
+A shiny and smooth piece of cloth is here, radiating a warm and inviting aura.~
+~
+9 550420553 1025 60
+7 0 0 0 0 0 0
+3.00 230 0 0 0 0 0 0
+E
+cape silken-cap shiny-smooth-piece-cloth radiating-warm-inviting-aura silk red~
+As you look at the cape, you notice that it is very shiny, almost a shine like
+that of metal.  The silk is of fine quality and seems to withstand anything
+that is thrown its way.  As you bring it closer to you, you notice that it has
+a soft glowing aura, that makes you feel invigorated and stronger.  This cape
+surely is magical in nature.~
+A
+5 2
+A
+2 2
+A
+18 -1
+A
+24 -5
+X
+17
+#51014
+staff-winds long-staff wind~
+the Staff of Winds~
+A long staff lies here, stirring up some blustery wind.~
+~
+5 4194368 32769 55
+0 5 10 6 0 0 0
+4.00 2100 0 0 0 0 0 16777216
+E
+staff wind staff-of-wind weather~
+As you bring the staff closer to you, you notice a wind generate around you
+almost as though it was protecting you.  The staff makes you feel more
+agile, and gives you en energy boost when you hold it!~
+A
+23 -2
+A
+14 25
+X
+18
+#51015
+key lavender-key~
+a lavender key~
+A small lavender colored key lies here.~
+~
+18 4 16385 25
+0 0 0 0 0 0 0
+0.12 20 0 0 0 0 0 0
+E
+lavender key~
+You can see a small key that has a beautiful shade of lavender covering its
+surface.  The key is warm to the touch and has perfectly round edges.
+It was surely crafted by a master key-maker.~
+#51016
+candy piece yummy-candy food~
+a yummy piece of candy~
+A yummy looking piece of candy is here begging to be eaten!~
+~
+19 0 16385 1
+1 0 0 0 0 0 0
+0.07 20 0 0 0 0 0 0
+E
+candy piece yummy~
+This piece of candy is small and wonderfully wrapped.  It emits a sweet
+aroma that fills your senses with joy, you can hardly wait to open this
+treat and let your taste buds do the talking!~
+#51017
+magic small-piece-petrified-magic small-chunk-glittering-material questobject~
+a small piece of petrified magic~
+A small chunk of glittering material is here changing colors.~
+~
+8 67 16385 50
+0 0 0 0 0 0 0
+9.00 40 0 0 0 0 0 0
+T 51008
+E
+magic small-piece-petrified-magic small-chunk-glittering-material questobject~
+As you gaze at this remarkably heavy material you feel invigorated and
+more alive!  The material glows and hums softly while giving off a slight
+trace of smoke that smells sweet like candy.  ~
+A
+20 1
+A
+27 3
+A
+23 -1
+A
+24 -1
+#51018
+arch stone~
+a stone arch~
+A large arch of stone stands in the middle of the room.~
+~
+24 67 0 30
+51058 0 0 0 0 0 0
+1030.00 20 -1 0 0 0 0 0
+#51019
+book codes slender-volume~
+a book about codes~
+A slender volume entitled 'Ciphers and Magic for the Novice' lies here.~
+~
+12 536870912 1 45
+0 0 0 0 0 0 0
+0.50 200 0 0 0 0 0 0
+E
+book codes slender-volume~
+Some of the pages seem to be marked, in particular page16 and page37
+which talk about future directions for more powerful spellcasters and
+how to encode a simple cipher respectively.
+
+The preface briefly states how essential it is for a spellcaster to
+protect his spells against accidental or deliberate theft, by encoding
+them.~
+E
+page16~
+A passage has been circled on this page, it reads:
+    ...so in order to ensure that the magic user has a copious supply of
+willing subjects for his experiments, he must first ingratiate himself with
+his chosen town by generous acts. An intelligent mage will try and get
+himself accepted into the council, and perhaps even move for a law which can
+be used to aid him. This could state that all mad people be locked up, or
+all criminals be killed. We all know how easy it is to turn a mind to madness
+and the mage may then take these subjects 'under his protection' and
+experiment on them without worry, as the populace soon forget what has
+happened to them...
+
+There is also a note in the margin which seems to be a calculation of some
+sort and a reference to page23.~
+E
+page23~
+Ack, its a recipe for unlimited power, but it involves several unsavoury
+ingredients including human organs. A passage has been circled on this page
+too, and it reads:
+    ...obviously in order to get this many human hearts is impossible
+which is why this spell still remains theoretical, although if one were
+to perfect some sort of cloning technique, coupled with a spell for creation
+of a human, then it might be possible to create a human with many vestigial
+organs which would presumably still be valid for the recipe...
+
+Your skin crawls as you continue to read, anyone who really thought this
+sort of stuff would work would have to be mad right?~
+E
+page37~
+There are some simple ciphers on the page here, and some notes in the margin
+which look like the would have continued onto page 38, only that page has
+been torn out of the book! You read the notes anyway and puzzle over the
+missing data:
+    ...and as has been known through history the simplest cipher is a
+substitution whereby one letter is substituted for another (for example
+the next letter in the alphabet) and the message is rewritten. The decoder
+knows that the letters are shifted by a certain number of positions and
+can easily decode the message. This is known as a monoalphabetic cipher. A
+more complex 'polyalphabetic' cipher such as the Vigenere cipher may also
+be used. The illustration on the next page shows this in action, but basically
+the implementation is as follows:
+     1) the keyword is chosen and repeatedly written below the phrase to be encoded
+     2) the combination of keyword letter and phrase letter are used to index  the Vigenere tableau
+     3) the indexed letters form the encoded phrase
+And the decryption works in reverse, going down the column indexed by the
+keyword letter to the encoded letter, and determining which letter heads that
+row. Obviously a keyword of all 'a' would not encrypt at all.
+The page ends here!~
+E
+page38~
+Unfortunately, this page has been ripped from the book.~
+H
+500
+#51020
+page leaf paper page38 margin~
+a page from a book~
+It looks like a page from a book has been torn out and left here.~
+~
+12 536870912 1 45
+0 0 0 0 0 0 0
+0.01 20 0 0 0 0 0 0
+E
+page leaf paper page38~
+The page has a large table of letters on it that look like this:
+
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+BCDEFGHIJKLMNOPQRSTUVWXYZA
+CDEFGHIJKLMNOPQRSTUVWXYZAB
+DEFGHIJKLMNOPQRSTUVWXYZABC
+EFGHIJKLMNOPQRSTUVWXYZABCD
+FGHIJKLMNOPQRSTUVWXYZABCDE
+GHIJKLMNOPQRSTUVWXYZABCDEF
+HIJKLMNOPQRSTUVWXYZABCDEFG
+IJKLMNOPQRSTUVWXYZABCDEFGH
+JKLMNOPQRSTUVWXYZABCDEFGHI
+KLMNOPQRSTUVWXYZABCDEFGHIJ
+LMNOPQRSTUVWXYZABCDEFGHIJK
+MNOPQRSTUVWXYZABCDEFGHIJKL
+NOPQRSTUVWXYZABCDEFGHIJKLM
+OPQRSTUVWXYZABCDEFGHIJKLMN
+PQRSTUVWXYZABCDEFGHIJKLMNO
+QRSTUVWXYZABCDEFGHIJKLMNOP
+RSTUVWXYZABCDEFGHIJKLMNOPQ
+STUVWXYZABCDEFGHIJKLMNOPQR
+TUVWXYZABCDEFGHIJKLMNOPQRS
+UVWXYZABCDEFGHIJKLMNOPQRST
+VWXYZABCDEFGHIJKLMNOPQRSTU
+WXYZABCDEFGHIJKLMNOPQRSTUV
+XYZABCDEFGHIJKLMNOPQRSTUVW
+YZABCDEFGHIJKLMNOPQRSTUVWX
+ZABCDEFGHIJKLMNOPQRSTUVWXY
+
+there is also some writing below this table as follows:
+
+this is the phrase
+keyk ey key keykey
+
+DLGCM QDLCZ LPKWC
+
+DLGCM QDLCZ LPKWC
+keyke ykeyk eykey
+
+THISI STHEP HRASE
+
+There is a page number below this, Page 38.
+You turn the page over and are confronted with the logical inconsistency
+'This page intentionally left blank'
+yeesh..~
+#51021
+case display-case glass~
+a glass display case~
+A large engraved glass display case stands solidly in the centre of the room.~
+~
+15 67 0 50
+100 2 -1 0 0 0 0
+120.00 410 0 0 0 0 0 0
+E
+case display glass~
+The engravings are so dense on the case that you can see nothing inside which
+kind of defeats the purpose of the case you feel.~
+E
+engraving engravings writing~
+It seems to be some ancient spell of containment. As you examine the construction
+of the spell you realise that somehow you know the way to collapse the magic
+and open the case.~
+E
+spell construction~
+You see that if you can determine the name of the spell writer, you only need
+to say their name backwards to collapse the spell.~
+E
+under beneath~
+Heh, you were right, the creator couldn't resist signing their masterpiece!  
+It says here 'Glass engraved by Rufiaans to a pattern supplied by Shema'.    ~
+#51022
+spellbook book large tome book-of-healing~
+a large book~
+A large old book lies here.~
+~
+8 536870979 16385 45
+0 0 0 0 0 0 0
+1.00 20 0 0 0 0 0 0
+T 51009
+E
+spellbook book large tome~
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and you can see a piece of it is missing.  That little piece would probably
+protect the holder against most spells, the whole book can protect a town
+against all but the most concerted attacks.    ~
+A
+3 1
+A
+4 1
+A
+14 -100
+A
+9 5
+#51023
+spellbook book large tome book-of-healing large-book~
+a large book~
+A large old book lies here.~
+~
+8 536870979 16385 45
+0 0 0 0 0 0 0
+10.00 20 0 0 0 0 0 0
+T 51009
+E
+spellbook book large tome~
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.~
+A
+26 10
+A
+13 50
+A
+1 -5
+A
+2 -5
+A
+27 2
+#51024
+wand statue~
+a small pink statue~
+A small pink statue stands here.~
+~
+3 603897921 16385 50
+50 3 3 7 0 0 0
+0.40 480 0 0 0 0 0 0
+E
+wand statue~
+This small statue actually looks to be made of flesh - or at least has had
+human skin wrapped over it.    ~
+A
+4 -1
+A
+3 -1
+A
+6 3
+X
+17
+#51025
+wand statue~
+a small grey statue~
+A small grey statue lies here.~
+~
+3 603897921 16385 55
+40 3 3 38 0 0 0
+0.60 300 0 0 0 0 0 0
+E
+wand statue~
+The statue looks like a stone carving of a sleeping person.~
+A
+3 -1
+A
+4 -1
+A
+17 -2
+X
+17
+#51026
+gloves thick-gloves powdery-white-fabric questobject~
+a pair of thick gloves~
+A pair of thick gloves made of a powdery white fabric lie here.~
+~
+9 50335744 129 50
+2 0 0 0 0 0 0
+1.90 180 0 0 0 0 0 0
+E
+gloves thick-gloves powdery-white-fabric questobject~
+These gloves seem very thick and would probably protect the wearer from heat.
+Most useful for a smith or armourer.  They seem to give off small puffs of
+white powder when they are beaten though?~
+E
+white powder asbestos~
+Hmm, the white powder seems to be asbestos.  Lovely.  Course with your
+lifestyle I wouldn't think that would be the cause of your demise >;-)~
+A
+1 -1
+A
+5 -1
+X
+224
+#51027
+ashes phoenix~
+the ashes of the phoenix~
+A pile of ashes lies here.~
+~
+15 1 1 55
+10 0 -1 0 0 0 0
+1.00 75 0 0 0 0 0 0
+#51028
+heart phoenix-heart charred-lump-flesh questobject~
+a phoenix heart~
+A slightly charred lump of flesh lies here.~
+~
+12 1 1 55
+0 0 0 0 0 0 0
+5.00 200 0 0 0 0 0 0
+T 51014
+#51029
+statue green~
+a small green statue~
+A small green statue lies here.~
+~
+3 33464385 16385 60
+30 3 3 94 0 0 0
+3.00 450 0 0 0 0 0 0
+E
+statue green~
+It looks like a regular person except without a mouth.~
+X
+769
+#51031
+key steel~
+an unadorned steel key~
+A plain steel key lies here.~
+~
+18 4 1 25
+0 0 0 0 0 0 0
+0.50 20 0 0 0 0 0 0
+#51070
+chest small battered-chest~
+a small battered chest~
+A small battered chest sits in the middle of the room.~
+~
+15 67 0 30
+2 5 -1 0 0 0 0
+50.00 20 0 0 0 0 0 0
+E
+small-tattered-chest tattered-chest small-chest small tattered chest~
+As you look closer at the chest you notice that it seems to be firmly attached
+to the floor.  You try and release it but you cannot seem to free it.  The
+chest is very tattered and worn down but it is sturdy anyhow.   You look
+at the chest a second time and notice that there's a small engraving on it.~
+E
+engraving~
+You look at then engraving and notice that there is a mere one word on it.
+The word "TELEPORT" is engraved deeply into the side of the chest.~
+#51071
+box intricate-box~
+a small box~
+A small box with intricate carvings sits alone here.~
+~
+18 4 16385 30
+0 0 0 0 0 0 0
+1.00 20 0 0 0 0 0 0
+E
+small-intricate-box small-box small box intricate~
+This box can't be more than 2 inches square.  You can't make out what any
+of the carvings mean, but the box seems to hold some importance as there
+was a lot of time and effort put into the making of this box.~
+A
+3 -3
+A
+24 5
+#51072
+chest silver-chest~
+a small silver chest~
+A small silver chest is here softly glowing.~
+~
+15 67 0 30
+2 15 51071 0 0 0 0
+85.00 20 0 0 0 0 0 0
+E
+small-silver-chest small silver chest~
+This chest is beautiful.  There are designs in the chest that suggest that
+a lot of craftsmanship went into its making.  The chest alone must be worth
+a fortune!  Unfortunantely, you can't seem to pick the heavy chest up.
+There is a small square-shaped hole in the back of the chest.~
+E
+square shaped hole~
+This small square shaped hole, looks like it could be used to open this chest.
+But a square key?  Nonsense!~
+#51073
+sun miniature-sun ball-bright-light mini~
+a Miniature Sun~
+A ball of bright light is enclosed in an orb of glass.~
+~
+1 1610612801 2113537 60
+0 -1 -1 0 0 0 0
+5.00 600 0 0 0 0 0 0
+E
+sun miniature-sun ball-bright-light mini~
+This small ball of light is giving off an immense amount of light.  It is
+enclosed in some type of a glass orb that seems to keep the outside of the ball
+cool to the touch and manageable.  The inside glows like a small sun, radiating
+bright light in all directions.  If you have this item, luck, determination and
+the Gods are with you.~
+A
+26 2
+A
+18 2
+A
+27 3
+#51074
+coins pile-coins~
+a pile of coins~
+A pile of coins is here.~
+~
+20 0 1 30
+10 20 10 40 0 0 0
+1.00 600 0 0 0 0 0 0
+#51075
+mask-human-skin small-floppy-piece-skin~
+a mask of human skin~
+A small floppy piece of skin lies here.~
+~
+8 13617800 131073 60
+2 0 0 0 0 0 0
+2.00 40 0 0 0 0 0 0
+E
+mask skin human~
+How grotesque.  Some person's face - sex now indistinguishable - was stripped
+to provide this awful covering.  No hairs remain on it anywhere, and it has
+been tanned to prevent deterioration and to give it a supple, smooth feel.  
+The eyelids are missing, and small strings are attached which go around the
+wearer's ears.~
+A
+4 3
+A
+3 3
+A
+5 2
+A
+6 -10
+A
+27 3
+A
+13 15
+X
+17
+$~

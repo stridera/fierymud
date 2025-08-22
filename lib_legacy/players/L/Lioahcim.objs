@@ -1,0 +1,4522 @@
+1
+vnum: 1004
+location: 0
+values:
+1
+240
+82
+0
+0
+0
+0
+~
+flags: 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern. It holds about fifteen hours worth of fuel.
+~
+~~
+vnum: 16103
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 1032
+location: 2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring wide-bronze-ring
+shortdesc: a bronze ring
+desc: A wide bronze ring lies here.
+type: 9
+weight: 0.08
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: wide-bronze-ring
+&0A cheap little ring, forged from bronze. It lacks any design, resembling a
+simple band of metal.&0
+~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 5519
+location: 4
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: torque eldoria-reward 3rd-black-legion-torque
+shortdesc: a torque of the 3rd Black Legion
+desc: A black torque lies nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward 3rd-black-legion-torque
+A torque made of twisted black metal, it looks fairly protective.
+~
+~~
+vnum: 5537
+location: 5
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: robe eldoria-reward 3rd-black-legion-robe
+shortdesc: a robe of the 3rd Black Legion
+desc: A black robe lies discarded here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 9
+applies:
+3 2
+4 2
+13 5
+~
+~~
+vnum: 5517
+location: 6
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: skullcap eldoria-reward black-skull-cap 3rd-black-legion-skullcap
+shortdesc: a skullcap of the 3rd Black Legion
+desc: A black skullcap lies nearby.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 17
+applies:
+14 5
+~
+extradesc: skullcap eldoria-reward black-skull-cap 3rd-black-legion-skullcap
+An iron skullcap, it bears the mark of the 3rd Black Legion.
+~
+~~
+vnum: 55401
+location: 7
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: noprstuvwx
+name: pants apprentice
+shortdesc: some apprentice pants
+desc: A pair of cloth pants emitting a slight magical power have been left here.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 33
+applies:
+3 1
+13 5
+~
+extradesc: apprentice pants
+Newly sewn, these magical cloth pants were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!
+~
+~~
+vnum: 5533
+location: 8
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: boots eldoria-reward 3rd-black-legion-boots
+shortdesc: boots of the 3rd Black Legion
+desc: Some black boots lie here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 65
+applies:
+2 2
+~
+~~
+vnum: 55460
+location: 9
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrstuvwxz
+name: putrid rotten gloves
+shortdesc: &2&bRotten Gloves&0
+desc: Molding on the ground is a putrid set of gloves.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+18 3
+13 15
+~
+extradesc: putrid rotten gloves
+Disgusting!  Made out of waste and refuse, these gloves are enchanted to
+eternally fester and rot.  As disgusting as something like this is, those that
+practice necromancy find that their powers are significantly improved when
+wearing clothing like this.
+~
+~~
+vnum: 5521
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: sleeves eldoria-reward 3rd-black-legion-leather-sleeves
+shortdesc: leather sleeves of the 3rd Black Legion
+desc: Some black leather sleeves lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 16314
+location: 11
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: shield centaur centaur-shield
+shortdesc: a centaur shield
+desc: A horsehide shield lies here.
+type: 9
+weight: 2.10
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 513
+applies:
+5 1
+3 -1
+~
+extradesc: shield centaur centaur-shield
+   The shield is a round hide shield about 4.5 feet across. The material it
+is made of has a rather strange texture.
+~
+~~
+vnum: 1000
+location: 12
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 55599
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem uncut uncut-chrysoberyl
+shortdesc: an uncut chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55594
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem uncut uncut-tourmaline
+shortdesc: an uncut tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55590
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ruby gem crushed crushed-ruby
+shortdesc: a crushed ruby
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55589
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem dust dust-aquamarine
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55601
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem dust dust-topaz
+shortdesc: some topaz dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sapphire gem crushed crushed-sapphire
+shortdesc: a crushed sapphire
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55592
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: opal gem crushed crushed-opal
+shortdesc: a crushed opal
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem dust dust-tourmaline
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55596
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem uncut uncut-amber
+shortdesc: an uncut amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55582
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem dust dust-lapis-lazuli
+shortdesc: some lapis-lazuli dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55595
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem shard shard-turquoise
+shortdesc: a turquoise shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 5514
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy white 3rd-eldorian-guard-wand
+shortdesc: a wand of the 3rd Eldorian Guard
+desc: A white wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: wand eldoria-trophy white 3rd-eldorian-guard-wand
+It's a simple white wand that probably belonged to a member of the 3rd Eldorian
+Guard.
+~
+~~
+vnum: 5514
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy white 3rd-eldorian-guard-wand
+shortdesc: a wand of the 3rd Eldorian Guard
+desc: A white wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: wand eldoria-trophy white 3rd-eldorian-guard-wand
+It's a simple white wand that probably belonged to a member of the 3rd Eldorian
+Guard.
+~
+~~
+vnum: 5514
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy white 3rd-eldorian-guard-wand
+shortdesc: a wand of the 3rd Eldorian Guard
+desc: A white wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: wand eldoria-trophy white 3rd-eldorian-guard-wand
+It's a simple white wand that probably belonged to a member of the 3rd Eldorian
+Guard.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55599
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem uncut uncut-chrysoberyl
+shortdesc: an uncut chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 55600
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem uncut uncut-amethyst
+shortdesc: an uncut amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55597
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem uncut uncut-turquoise
+shortdesc: an uncut turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55599
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem uncut uncut-chrysoberyl
+shortdesc: an uncut chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55590
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ruby gem crushed crushed-ruby
+shortdesc: a crushed ruby
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55594
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem uncut uncut-tourmaline
+shortdesc: an uncut tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55612
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: opal gem uncut uncut-opal
+shortdesc: an uncut opal
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55587
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem dust dust-pearl
+shortdesc: some pearl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 17204
+location: 13
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: cord golden
+shortdesc: the golden cord
+desc: A golden cord lies on the ground.
+type: 9
+weight: 0.50
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+applies:
+3 1
+13 -1
+~
+extradesc: cord golden
+You look upon a length of cord made of finely spun gold threads. It seems to
+emanate a strange aura.
+~
+~~
+vnum: 5523
+location: 14
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: wristguards wristguard eldoria-reward leather 3rd-black-legion-wristguards wrist
+shortdesc: wristguards of the 3rd Black Legion
+desc: A pair of black leather wristguards lies discarded here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 4097
+applies:
+1 1
+~
+~~
+vnum: 5523
+location: 15
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: wristguards wristguard eldoria-reward leather 3rd-black-legion-wristguards wrist
+shortdesc: wristguards of the 3rd Black Legion
+desc: A pair of black leather wristguards lies discarded here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 4097
+applies:
+1 1
+~
+~~
+vnum: 5543
+location: 16
+values:
+2
+3
+3
+11
+0
+0
+0
+~
+flags: jnuv
+name: shiv eldoria-reward small 3rd-black-legion-shiv
+shortdesc: a shiv of the 3rd Black Legion
+desc: A small black shiv lies nearly unnoticed.
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 8193
+applies:
+29 10
+~
+~~
+vnum: 18511
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: spectacles small
+shortdesc: small spectacles
+desc: A pair of little spectacles rests here.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65537
+applies:
+3 2
+28 20
+~
+extradesc: small spectacles eye wear
+These spectacles are small and likely used for reading.  They have an odd and
+unique hexagonal frame around the glass portions, but look strong and
+well-used.
+~
+~~
+vnum: 1607
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA
+name: viper fang
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 0.40
+cost: 1000
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+24 -1
+13 5
+~
+extradesc: fang viper
+About 2 inches long, and razor-sharp, this fang looks like it could
+pierce steel.  Or be worn as an earring...
+~
+~~
+vnum: 1607
+location: 24
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA
+name: viper fang
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 0.40
+cost: 1000
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+24 -1
+13 5
+~
+extradesc: fang viper
+About 2 inches long, and razor-sharp, this fang looks like it could
+pierce steel.  Or be worn as an earring...
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 6207
+location: 127
+values:
+30
+75
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll runes runed
+shortdesc: a runed scroll
+desc: A runed scroll lies here, rolled up.
+type: 2
+weight: 0.23
+cost: 1200
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+extradesc: scroll runed
+It is written with many languages and scripts, but each one tugs at the
+reader with almost insistent familiarity....
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 5557
+location: 127
+values:
+16
+16
+4
+0
+0
+0
+0
+~
+flags: j
+name: dark-ale flagon-dark-brew
+shortdesc: a dark brew
+desc: A flagon of dark brew lies here.
+type: 17
+weight: 2.04
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 5555
+location: 127
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 1218
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: candy chocolate food
+shortdesc: a piece of chocolate candy
+desc: A pice of candy lies here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55203
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: iron-bracelet iron bracelet forged band forged-band
+shortdesc: an iron bracelet
+desc: A crudely forged band of red metal lies here.
+type: 9
+weight: 1.40
+cost: 800
+timer: 0
+level: 6
+effects: 0 0 0
+wear: 4097
+extradesc: iron-bracelet iron bracelet forged band
+This crudely forged band of heavy iron looks to be very 
+protective. It is inscribed with many mysterious runes.
+~
+~~
+vnum: 5525
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: gloves eldoria-reward 3rd-black-legion-gloves
+shortdesc: gloves of the 3rd Black Legion
+desc: Some gloves lie discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 129
+applies:
+3 2
+13 5
+~
+~~
+vnum: 55403
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: noprstuvwx
+name: bracelet apprentice
+shortdesc: an apprentice bracelet
+desc: A small cloth bracelet pattern lies nearby.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 4097
+applies:
+6 1
+13 1
+~
+extradesc: apprentice bracelet
+Newly sewn, this magical cloth bracelet was made just for you.  Proof of your
+beginning training, it will protect you as you adventure!
+~
+~~
+vnum: 55330
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gloves burned
+shortdesc: burned gloves
+desc: A pile of burned armor lies here unusable.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+121 4
+20 4
+32 4
+100 4
+5 4
+101 10
+19 14
+87 8
+45 15
+8 5
+33 4
+39 4
+187 9
+125 7
+~
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: quill feather feather-quill pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: feather quill
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)
+~
+~~
+vnum: 8031
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: blue drakling scale
+shortdesc: a blue drakling scale
+desc: A small blue scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 5
+~
+~~
+vnum: 8033
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: green drakling scale
+shortdesc: a green drakling scale
+desc: A small green scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 10
+18 1
+~
+~~
+vnum: 55585
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55599
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem uncut uncut-chrysoberyl
+shortdesc: an uncut chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 55582
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem dust dust-lapis-lazuli
+shortdesc: some lapis-lazuli dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 13607
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: dnop
+name: hat tall pointed black-and-gold wizard-hat wizard's
+shortdesc: a black-and-gold wizard's hat
+desc: A tall, pointed, black-and-gold hat rests here.
+type: 9
+weight: 0.75
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+applies:
+12 5
+3 3
+~
+extradesc: hat tall pointed black-and-gold wizard-hat wizard's
+This tall, pointed, conical hat is made of black wool, stiffened
+until it stands straight up. It is appliqued all over with bright
+golden stars. The brim is round and not very wide.
+~
+~~
+vnum: 1029
+location: -1
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+103 8
+30 10
+107 14
+83 13
+102 13
+10 13
+76 12
+62 9
+67 6
+~
+~~
+vnum: 1029
+location: -1
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+5 4
+101 8
+20 4
+32 4
+100 4
+8 5
+19 12
+39 3
+99 9
+186 3
+31 7
+37 6
+106 10
+105 10
+50 6
+~
+~~
+vnum: 1029
+location: -1
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+29 10
+38 11
+26 12
+57 10
+68 11
+77 13
+52 11
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1006
+location: 127
+values:
+300
+68
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 6.43
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 16103
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 16907
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring diamond
+shortdesc: a diamond ring
+desc: A sparkling diamond ring catches your eye.
+type: 8
+weight: 0.20
+cost: 320
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 3
+applies:
+6 3
+~
+extradesc: ring diamond
+The diamond sparkles with a merry light, as if it were alive.
+You can't help but admire the skill of the jeweler.
+~
+~~
+vnum: 2023
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~

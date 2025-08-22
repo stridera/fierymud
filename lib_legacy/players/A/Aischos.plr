@@ -1,0 +1,92 @@
+name: Aischos
+password: AiAlzaiwbM
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 32
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20345
+birthtime: 1663142003
+timeplayed: 15144
+lastlogintime: 1663240510
+host: 199.247.254.211
+height: 8
+weight: 7
+base_height: 8
+base_weight: 7
+base_size: 0
+natural_size: 0
+alignment: 994
+playerflags: y
+effectflags: u 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -15/45
+mana: 1/0
+move: 75/100
+damroll: 0
+hitroll: 6
+strength: 84
+intelligence: 100
+wisdom: 90
+dexterity: 78
+constitution: 60
+charisma: 58
+bank: 0 21 81 51
+experience: 70256
+quit_reason: 10
+saveroom: 7083
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 100
+424 100
+438 50
+443 50
+444 50
+447 60
+451 51
+452 100
+453 50
+459 50
+460 53
+462 50
+464 51
+0 0
+tells:
+1663142905 @WThe Master of the Revel@W tells you, 'Bring back what they ask for@W'@0
+1663142905 @WThe Master of the Revel@W tells you, 'and you'll be well rewarded!@W'@0
+1663142919 @WThe Master of the Revel@W tells you, 'Congratulations again, graduate!@W'@0
+1663142919 @WThe Master of the Revel@W tells you, 'May you climb to ever greater fortune!@W'@0
+1663143368 @WBigby@W tells you, 'What do you want to buy?@W'@0
+1663143379 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1663143463 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1663145488 @WBigby@W tells you, 'What do you want to sell??@W'@0
+1663145499 @WBigby@W tells you, 'Hmmm, you had my hopes up for a second there.@W'@0
+1663158637 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1663158412 Zaver gossips, 'gratz!'
+1663232788 Lann gossips, 'hi'
+$
+mem:
+32 0 6
+32 0 6
+32 0 6
+32 0 6
+32 0 6
+0 0 0

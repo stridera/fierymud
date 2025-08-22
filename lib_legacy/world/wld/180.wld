@@ -1,0 +1,891 @@
+#18000
+Cobblestone Path~
+   You are on a well tended cobblestone path leading north towards a large
+metal gate.  There is a strong smell of flowers here.  At the side of the path
+are low hedges, just up to your knees in height.    
+~
+180 0 1
+D0
+~
+~
+0 -1 18001
+D2
+~
+~
+0 -1 3007
+S
+#18001
+Cobblestone Path~
+   You are on a well tended cobblestone path leading north towards a large
+metal gate.  There is a strong smell of flowers here.  At the side of the path
+are low hedges, just up to your knees in height.    
+~
+180 0 1
+D0
+~
+~
+0 -1 18002
+D2
+~
+~
+0 -1 18000
+S
+#18002
+Metal Gate~
+   You stand before a large and magnificently decorated iron gate.  It is the
+only entrance into the topiary.  A dense hedge around 8 feet high surrounds the
+place.  A large sign on top of the gate proclaims: Welcome To Mielikki's
+Topiary
+~
+180 0 1
+D0
+The gate is made of a very shiny material which
+seems to be resistant to damage and rust.
+~
+gate metal~
+1 -1 18005
+D2
+~
+~
+0 -1 18001
+S
+#18003
+Western Path~
+   The path at the western end of the topiary goes on to the north.  You see
+that it is parallel to the main path.  The hedges form paths that are
+perpendicular to this path.  The way to the west is blocked by tall hedges.  
+~
+180 0 1
+D0
+~
+~
+0 -1 18008
+D1
+~
+~
+0 -1 18004
+S
+#18004
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18005
+D3
+~
+~
+0 -1 18003
+S
+#18005
+Topiary Entrance~
+   You are inside the topiary.  Hedges line the way to the east and west.  A
+cobblestone path leads to the north.  Far to the north, you can see a gazebo.
+The gateway leading out is to the south.    
+~
+180 0 1
+D0
+~
+~
+0 -1 18010
+D1
+~
+~
+0 -1 18006
+D2
+This end of the gate somehow seems different. There are small spots
+splattered on the surface. You wonder why you never noticed that from
+the outside.
+~
+gate metal~
+1 -1 18002
+D3
+~
+~
+0 -1 18004
+S
+#18006
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18007
+D3
+~
+~
+0 -1 18005
+S
+#18007
+Eastern Path~
+   The path at the eastern end of the topiary goes on to the north.  You see
+that it is parallel to the main path.  The hedges form paths that are
+perpendicular to this path.  The way to the east is blocked by tall hedges.  
+~
+180 0 1
+D0
+~
+~
+0 -1 18012
+D3
+~
+~
+0 -1 18006
+S
+#18008
+Western Path~
+   The path at the western end of the topiary goes on to the north.  You see
+that it is parallel to the main path.  The hedges form paths that are
+perpendicular to this path.  The way to the west is blocked by tall hedges.  
+~
+180 0 1
+D0
+~
+~
+0 -1 18013
+D1
+~
+~
+0 -1 18009
+D2
+~
+~
+0 -1 18003
+S
+#18009
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18010
+D3
+~
+~
+0 -1 18008
+S
+#18010
+Cobblestone Path~
+   The cobblestone path leads towards the north.  Hedges to the west and east
+form shaded paths.  Here and there you see large hedges trimmed to resemble
+animals.  Far to the north, you see a small, white gazebo.    
+~
+180 0 1
+D0
+~
+~
+0 -1 18015
+D1
+~
+~
+0 -1 18011
+D2
+~
+~
+0 -1 18005
+D3
+~
+~
+0 -1 18009
+S
+#18011
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off the
+feeling that there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18012
+D3
+~
+~
+0 -1 18010
+S
+#18012
+Eastern Path~
+   The path at the eastern end of the topiary goes on to the north.  You see
+that it is parallel to the main path.  The hedges form paths that are
+perpendicular to this path.  The way to the east is blocked by tall hedges.  
+~
+180 0 1
+D0
+~
+~
+0 -1 18017
+D2
+~
+~
+0 -1 18007
+D3
+~
+~
+0 -1 18011
+S
+#18013
+Western Path~
+   The path at the western end of the topiary goes on to the north.  You see
+that it is parallel to the main path.  The hedges form paths that are
+perpendicular to this path.  The way to the west is blocked by tall hedges.  
+~
+180 0 1
+D0
+~
+~
+0 -1 18018
+D1
+~
+~
+0 -1 18014
+D2
+~
+~
+0 -1 18008
+S
+#18014
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18015
+D3
+~
+~
+0 -1 18013
+S
+#18015
+Cobblestone Path~
+   The cobblestone path leads towards the north.  Hedges to the west and east
+form shaded paths.  Here and there you see large hedges trimmed to resemble
+animals.  Far to the north, you see a small, white gazebo.    
+~
+180 0 1
+D0
+~
+~
+0 -1 18020
+D1
+~
+~
+0 -1 18016
+D2
+~
+~
+0 -1 18010
+D3
+~
+~
+0 -1 18014
+S
+#18016
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18017
+D3
+~
+~
+0 -1 18015
+S
+#18017
+Eastern Path~
+   The path at the eastern end of the topiary goes on to the north.  You see
+that it is parallel to the main path.  The hedges form paths that are
+perpendicular to this path.  The way to the east is blocked by tall hedges.  
+~
+180 0 1
+D0
+~
+~
+0 -1 18022
+D2
+~
+~
+0 -1 18012
+D3
+~
+~
+0 -1 18016
+S
+#18018
+End Of Western Path~
+   You have come to the northern end of the western path.  A tall hedge blocks
+your passage to the north.  The only way out is towards the east and back to
+the south.  Through the hedges, you can see another path extending further
+towards the north.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18019
+D2
+~
+~
+0 -1 18013
+S
+#18019
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18020
+D3
+~
+~
+0 -1 18018
+S
+#18020
+Near The Gazebo~
+   There is a gazebo forming the partition between the north and south part of
+this topiary.  You have to go through it to get to the other side.  You wonder
+what could have prompted such a strange design.  Perhaps the landscaper had a
+little too much to drink that day.    
+~
+180 0 1
+D0
+~
+~
+0 -1 18023
+D1
+~
+~
+0 -1 18021
+D2
+~
+~
+0 -1 18015
+D3
+~
+~
+0 -1 18019
+E
+gazebo~
+The gazebo is a rather large, white open structure. There are whitewashed
+benches in it. Planted around the gazebo are sweet smelling flowering plants.
+~
+S
+#18021
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18022
+D3
+~
+~
+0 -1 18020
+S
+#18022
+End Of Eastern Path~
+   You have come to the northern end of the eastern path.  A tall hedge blocks
+your passage to the north.  The only way out is towards the west and back to
+the south.  Through the hedges, you can see another path extending further
+towards the north.    
+~
+180 0 1
+D2
+~
+~
+0 -1 18017
+D3
+~
+~
+0 -1 18021
+S
+#18023
+The Gazebo~
+   A cool breeze always seems to be passing through this gazebo.  Its large
+roof provides shelter from even the worst weather.  This is a perfect place to
+relax and smell the flowers.  There are entrances to the topiary to the north
+and south.  However, it seems like no one has been here for some time.  There
+is a fine film of dust on the benches, and the floorboards creak beneath your
+feet.
+~
+180 33554444 0
+D0
+~
+~
+0 -1 18026
+D2
+~
+~
+0 -1 18020
+D5
+A board here comes loose, revealing a small trapdoor.
+~
+trapdoor~
+1 -1 18044
+S
+#18024
+End Of Western Path~
+   You have come to the southern end of the western path.  A tall hedge blocks
+your passage to the south.  The only way out is towards the east and back to
+the north.  Through the hedges, you can see another path extending further
+towards the south.    
+~
+180 0 1
+D0
+~
+~
+0 -1 18029
+D1
+~
+~
+0 -1 18025
+S
+#18025
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18026
+D3
+~
+~
+0 -1 18024
+S
+#18026
+Near The Gazebo~
+   A large wooden gazebo stands right in the center of a wide garden path.
+One must go into the gazebo to get from the southern part of it to the
+northern part of it. The structure is whitewashed, with a dome-shaped
+roof overhead and a pretty view of the surrounding topiary.
+~
+180 0 1
+D0
+~
+~
+0 -1 18031
+D1
+~
+~
+0 -1 18027
+D2
+~
+~
+0 -1 18023
+D3
+~
+~
+0 -1 18025
+E
+gazebo~
+The gazebo is a rather large, white open structure. There are whitewashed
+benches in it. Planted around the gazebo are sweet smelling flowering plants.
+~
+S
+#18027
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18028
+D3
+~
+~
+0 -1 18026
+S
+#18028
+End Of Eastern Path~
+   You have come to the southern end of the eastern path.  A tall hedge blocks
+your passage to the south.  The only way out is towards the west and back to
+the north.  Through the hedges, you can see another path extending further
+towards the south.    
+~
+180 0 1
+D0
+~
+~
+0 -1 18033
+D3
+~
+~
+0 -1 18027
+S
+#18029
+Western Path~
+   The path at the western end of the topiary goes onwards towards the south.
+You see that it is parallel to the main path.  The hedges form paths that are
+perpendicular to this path.  The way to the west is blocked by tall hedges.  
+~
+180 0 1
+D0
+~
+~
+0 -1 18034
+D1
+~
+~
+0 -1 18030
+D2
+~
+~
+0 -1 18024
+S
+#18030
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18031
+D3
+~
+~
+0 -1 18029
+S
+#18031
+Cobblestone Path~
+   The cobblestone path leads towards the south.  Hedges to the west and east
+form shaded paths.  Here and there you see large hedges trimmed to resemble
+animals.  Far to the south, you see a small, white gazebo.    
+~
+180 0 1
+D0
+~
+~
+0 -1 18036
+D1
+~
+~
+0 -1 18032
+D2
+~
+~
+0 -1 18026
+D3
+~
+~
+0 -1 18030
+S
+#18032
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18033
+D3
+~
+~
+0 -1 18031
+S
+#18033
+Eastern Path~
+   The path at the eastern end of the topiary goes onwards towards the south.
+You see that it is parallel to the main path.  The hedges form paths that are
+perpendicular to this path.  The way to the east is blocked by tall hedges.  
+~
+180 0 1
+D0
+~
+~
+0 -1 18038
+D2
+~
+~
+0 -1 18028
+D3
+~
+~
+0 -1 18032
+S
+#18034
+Western Path~
+   The path at the western end of the topiary goes onwards towards the south.
+You see that it is parallel to the main path.  The hedges form paths that are
+perpendicular to this path.  The way to the west appears to be blocked by tall
+hedges.  However, you notice a slight parting between a few of the branches
+within the hedges.    
+~
+180 0 1
+D0
+~
+~
+0 -1 18039
+D1
+~
+~
+0 -1 18035
+D2
+~
+~
+0 -1 18029
+S
+#18035
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18036
+D3
+~
+~
+0 -1 18034
+S
+#18036
+Cobblestone Path~
+   The cobblestone path leads towards the south.  Hedges to the west and east
+form shaded paths.  Here and there you see large hedges trimmed to resemble
+animals.  Far to the south, you see a small, white gazebo.    
+~
+180 0 1
+D0
+~
+~
+0 -1 18041
+D1
+~
+~
+0 -1 18037
+D2
+~
+~
+0 -1 18031
+D3
+~
+~
+0 -1 18035
+S
+#18037
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18038
+D3
+~
+~
+0 -1 18036
+S
+#18038
+Eastern Path~
+   The path at the eastern end of the topiary goes onwards towards the south.
+You see that it is parallel to the main path.  The hedges form paths that are
+perpendicular to this path.  The way to the east is blocked by tall hedges.  
+~
+180 0 1
+D0
+~
+~
+0 -1 18043
+D2
+~
+~
+0 -1 18033
+D3
+~
+~
+0 -1 18037
+S
+#18039
+Western Path~
+   The path at the western end of the topiary goes onwards towards the south.
+You see that it is parallel to the main path.  The hedges form paths that are
+perpendicular to this path.  The way to the west is blocked by tall hedges.  
+~
+180 0 1
+D1
+~
+~
+0 -1 18040
+D2
+~
+~
+0 -1 18034
+S
+#18040
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18041
+D3
+~
+~
+0 -1 18039
+S
+#18041
+Cobblestone Path~
+   The cobblestone path leads towards the south.  Hedges to the west and east
+form shaded paths.  Here and there you see large hedges trimmed to resemble
+animals.  Far to the south, you see a small, white gazebo.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18042
+D2
+~
+~
+0 -1 18036
+D3
+~
+~
+0 -1 18040
+S
+#18042
+Cool Path~
+   You are on an east-west path running perpendicularly to the main cobblestone
+path.  Tall hedges line the path and flowers are blooming everywhere.  Their
+heavy scent gives the impression of peace but you are unable to shake off that
+there is something sinister here.    
+~
+180 0 1
+D1
+~
+~
+0 -1 18043
+D3
+~
+~
+0 -1 18041
+S
+#18043
+Eastern Path~
+   The path at the eastern end of the topiary goes on to the south.  You see
+that it is parallel to the main path.  The hedges form paths that are
+perpendicular to this path.  The way to the east is blocked by tall hedges.  
+~
+180 0 1
+D2
+~
+~
+0 -1 18038
+D3
+~
+~
+0 -1 18042
+S
+#18044
+Dark Tunnel~
+   You find yourself in a dark, tunnel with strange, cobweb like material
+hanging from the walls.  A strange smell permeates the air.  You are reminded
+of cut grass and freshly dug earth.    
+~
+180 8 0
+D2
+~
+~
+0 -1 18045
+D4
+You see that there is some sort of green substance stuck to the bottom
+of the trapdoor. You recoil from the pungent stench emitted by it.
+~
+trapdoor~
+1 -1 18023
+S
+#18045
+Dark Tunnel~
+   You find yourself in a dark, tunnel with strange, cobweb like material
+hanging from the walls.  A strange smell permeates the air.  You are reminded
+of cut grass and freshly dug earth.    
+~
+180 8 0
+D0
+~
+~
+0 -1 18044
+D2
+~
+~
+0 -1 18046
+S
+#18046
+Hedge Wizard's Chamber~
+   You find yourself in a very cozy circular room.  The walls of the room are
+trees with roots growing out of them.  A green, mushy material covers the
+ground, like a grass carpet.    
+~
+180 8 0
+D0
+~
+~
+0 -1 18045
+S
+$~

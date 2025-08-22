@@ -1,0 +1,59 @@
+number: 8
+alias: code
+title: Coding Board
+privilege: 0 level 100 105
+privilege: 1 level 101 105
+privilege: 2 level 101 105
+privilege: 3 level 101 105
+privilege: 4 level 104 105
+privilege: 5 level 104 105
+privilege: 6 level 103 105
+privilege: 7 level 103 105
+~~
+level: 103
+poster: Laoris
+time: 1244654060
+subject: !false
+message:
+One of the countless things that the Internet has introduced is the rampant
+abuse of the exclamation point.  Before blogs, IMs, and message boards, the 
+"."-to-"!"  Ratio was something like 100-to-1.  Now that we're in the   
+"OMG!!!!LOL!!!!!!"-days, it's hard enough to find a single punctuation
+mark, let alone a period.
+
+Thankfully, there's still some sanity left.  Some people are so fed up with
+this overuse that they refuse to use the exclamation point anywhere.  For
+anything.  Even when writing code.  Sure, it may make their code look a bit
+strange, but every little bit counts...
+
+/**
+ * @@return  true | false
+ * @@param $val bool The bool to invert
+ * @@desc Returns the
+ */
+function invert_bool($val){
+  if($val == true)
+    return false;
+  if($val == false)
+    return true;
+}
+~
+~~
+level: 104
+poster: Laoris
+time: 1352828765
+subject: IDEA: add thread functionality to boards; archive command
+message:
+It would be cool if it were possible for players to reply to posts on boards,
+and we could show the whole message thread together.
+
+Another idea: add a 'board move <src> <dest>' to move posts from one board
+from one board to another.  Maybe allow referencing specific post numbers
+so we wouldn't have to move all the messages at once.  Something like
+    board move mortal:1-25 archive
+    board move mortal:26 spam
+    board move quest qhistory
+
+Also, it would be nice if the /f and /fi commands were paragraph-aware.
+~
+~~

@@ -1,0 +1,109 @@
+name: Shamgar
+password: ShixLoqqmR
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 54
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17686
+birthtime: 1276579765
+timeplayed: 161948
+lastlogintime: 1510778366
+host: 216.241.207.010
+height: 84
+weight: 210
+base_height: 84
+base_weight: 210
+base_size: 3
+natural_size: 3
+alignment: 1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 24
+lastlevel: 0
+hitpoints: 593/682
+mana: 280/291
+move: 147/160
+damroll: 5
+hitroll: 4
+strength: 94
+intelligence: 78
+wisdom: 84
+dexterity: 88
+constitution: 92
+charisma: 74
+cash: 139 1189 6805 140
+bank: 92 2286 5406 178
+experience: 23979622
+pagelength: 50
+clan: 3
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 8920/18000
+-1 0
+skills:
+402 220
+404 187
+407 78
+411 582
+412 581
+415 50
+416 50
+419 1000
+420 581
+421 583
+422 279
+427 1000
+430 86
+431 50
+434 51
+438 69
+441 498
+443 50
+444 170
+463 580
+464 50
+465 236
+466 50
+467 55
+468 88
+0 0
+trophy:
+1 53303 1.500000
+1 53312 2.500000
+1 53314 1.000000
+1 53315 2.500000
+1 17204 5.000000
+1 3509 2.000000
+1 3500 1.000000
+1 3508 4.000000
+1 36002 4.000000
+1 8022 1.000000
+1 8013 1.000000
+1 8011 1.000000
+1 8021 1.000000
+1 8016 1.000000
+1 8010 1.000000
+1 8012 1.000000
+1 36003 6.000000
+1 36001 7.000000
+1 8014 1.000000
+1 5451 1.000000
+1 23708 1.000000
+0 0 0
+aliases:
+dff drink fountain
+ri recite identify $*
+gac get all all.corpse
+bs bodysl $*
+1 ass tium
+0

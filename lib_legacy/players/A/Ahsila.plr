@@ -1,0 +1,92 @@
+name: Ahsila
+password: AhdvEzxuYm
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 0
+level: 14
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18519
+birthtime: 1370107447
+timeplayed: 81898
+lastlogintime: 1399869450
+host: 050.125.075.089
+height: 65
+weight: 123
+base_height: 65
+base_weight: 123
+base_size: 2
+natural_size: 2
+alignment: 522
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -28/128
+mana: 21/18
+move: 76/100
+damroll: 3
+hitroll: 3
+strength: 74
+intelligence: 92
+wisdom: 94
+dexterity: 69
+constitution: 60
+charisma: 76
+experience: 712649
+quit_reason: 10
+saveroom: 17321
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 190
+416 50
+423 200
+424 200
+438 50
+443 50
+444 55
+451 116
+457 200
+458 132
+459 81
+460 162
+462 50
+463 195
+466 50
+0 0
+mem:
+1 0 1
+12 0 1
+16 0 1
+16 0 2
+84 0 1
+84 0 2
+88 0 5
+88 0 5
+85 0 5
+12 0 1
+88 0 5
+85 0 5
+0 0 0

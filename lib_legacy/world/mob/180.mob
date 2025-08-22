@@ -1,0 +1,225 @@
+#18000
+gardener~
+a gardener~
+A gardener is busy trimming the bushes.~
+   The gardener is a middle-aged man, dressed in a one-piece, brown 
+coveralls. With a quick hand and precise cuts, he expertly trims the 
+hedge he is working on into the likeness of an animal. Too engrossed in 
+his work, he doesn't notice you admiring his handiwork.~
+72 0 0 E
+3 0 0 0d0+0 0d0+0
+0 0 0 180
+3 3 1 24 0 0 2
+Str: 30
+Dex: 89
+Int: 64
+Wis: 71
+Con: 30
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#18001
+raven-hedge hedge raven~
+the raven hedge~
+A large, black hedge trimmed to resemble a raven is planted here.~
+   As black as night, the leaves of this fine specimen does resemble
+feathers, making this hedge look exactly like a huge raven. You wonder
+where this plant came from, as you've never seen black leaves before.  
+The hedge seems to be swaying a bit. Must be the wind, or is it?~
+584 262144 0 E
+1 0 0 0d0+0 0d0+0
+0 0 0 180
+3 3 0 24 12 0 1
+BareHandAttack: 10
+Str: 30
+Dex: 95
+Int: 69
+Wis: 69
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+#18002
+unicorn-hedge hedge unicorn~
+the unicorn hedge~
+A white hedge trimmed like a unicorn stands proudly before you.~
+   Fine, silvery white leaves makes you suspect this magnificent plant was 
+acquired from elven hands. You peer at the plant, amazed at its sparkling 
+colours, from its shimmering white foliage, to its bright gold branches.  
+The hedge seems to be swaying a bit. Must be the wind, or is it?~
+328 262144 0 E
+3 0 0 0d0+0 0d0+0
+0 0 0 180
+3 3 0 24 12 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 83
+Int: 80
+Wis: 64
+Con: 30
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+#18003
+lion-hedge hedge lion~
+the lion hedge~
+A majestic hedge in the form of a lion is before you.~
+   Bright, golden leaves convinces you this plant is an acquisition from 
+far off lands, as you've never seen its like before. The light dancing 
+off its leaves gives it an aura of majesty, befitting the form the 
+gardener has given it.
+The hedge seems to be swaying a bit. Must be the wind, or is it?~
+840 262144 0 E
+6 0 0 0d0+0 0d0+0
+0 0 0 180
+3 3 0 24 12 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 84
+Int: 62
+Wis: 75
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+T 55694
+#18004
+dragon-hedge hedge dragon~
+the dragon hedge~
+A fearsome, fiery red dragon hedge dominates the path.~
+   The bright red and yellow leaves somehow projects a feeling of rage, 
+hate and fear in you. You marvel at the skill of the gardeners, to be 
+able to capture the essense of this beast whose form the hedge represents.
+The hedge seems to be swaying a bit. Must be the wind, or is it?~
+840 262144 0 E
+9 0 0 0d0+0 0d0+0
+0 0 0 180
+3 3 0 24 12 0 3
+BareHandAttack: 10
+Str: 30
+Dex: 80
+Int: 74
+Wis: 78
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+T 55695
+T 3084
+#18005
+dolphin-hedge hedge dolphin~
+the dolphin hedge~
+A playful looking dolphin hedge stands at the side of the path.~
+   The gentle form of this wonderful creature of the sea is accurately 
+captured by the hand of man. It almost seems to be alive, joyfully 
+dancing to the song of the sea, and laughing at the antics of man.
+The hedge seems to be swaying a bit. Must be the wind, or is it?~
+328 262144 0 E
+5 0 0 0d0+0 0d0+0
+0 0 0 180
+3 3 0 24 12 0 2
+Str: 30
+Dex: 82
+Int: 63
+Wis: 80
+Con: 30
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+#18006
+hedge-wizard wizard hedge robed~
+the Hedge Wizard~
+A robed wizard walks around, watering the roots in the room.~
+   A harmless, middle-aged man walks about the room, a water-can in his 
+hand. Occassionally, he stops to water the roots which grow in his 
+abode. He wears a shimmering green robe, which in spite of all the dirt 
+here, doesn't seem to be soiled.~
+2058 0 0 E
+10 0 0 0d0+0 0d0+0
+0 0 0 180
+3 3 1 0 0 0 2
+Str: 30
+Dex: 78
+Int: 74
+Wis: 76
+Con: 30
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55695
+#18007
+creeping-vine vines vine creeping~
+a creeping vine~
+There is a vine lying on the ground.~
+   A rather large vine is lying here. You can't see where it starts but it 
+does seem to be coming closer and closer towards you.~
+840 262144 -180 E
+2 0 0 0d0+0 0d0+0
+0 0 0 180
+3 3 0 24 12 0 1
+BareHandAttack: 9
+Str: 30
+Dex: 76
+Int: 70
+Wis: 71
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+$

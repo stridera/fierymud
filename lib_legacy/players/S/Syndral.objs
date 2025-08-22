@@ -1,0 +1,1860 @@
+1
+vnum: 3031
+location: 0
+values:
+1
+250
+87
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 16103
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 16103
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 36008
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.    
+~
+~~
+vnum: 5519
+location: 4
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: torque eldoria-reward 3rd-black-legion-torque
+shortdesc: a torque of the 3rd Black Legion
+desc: A black torque lies nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward 3rd-black-legion-torque
+A torque made of twisted black metal, it looks fairly protective.
+~
+~~
+vnum: 5527
+location: 5
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: jerkin eldoria-reward 3rd-black-legion-leather-jerkin
+shortdesc: a leather jerkin of the 3rd Black Legion
+desc: A black leather jerkin lies here.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+13 5
+~
+~~
+vnum: 5517
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: skullcap eldoria-reward black-skull-cap 3rd-black-legion-skullcap
+shortdesc: a skullcap of the 3rd Black Legion
+desc: A black skullcap lies nearby.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 17
+applies:
+14 5
+~
+extradesc: skullcap eldoria-reward black-skull-cap 3rd-black-legion-skullcap
+An iron skullcap, it bears the mark of the 3rd Black Legion.
+~
+~~
+vnum: 5531
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: leggings eldoria-reward 3rd-black-legion-leggings
+shortdesc: leggings of the 3rd Black Legion
+desc: Some leggings lie here.
+type: 9
+weight: 4.90
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 33
+applies:
+3 2
+~
+~~
+vnum: 5533
+location: 8
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: boots eldoria-reward 3rd-black-legion-boots
+shortdesc: boots of the 3rd Black Legion
+desc: Some black boots lie here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 65
+applies:
+2 2
+~
+~~
+vnum: 55474
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: agjmopqrstuvwxyz
+name: unholy gauntlets fervent
+shortdesc: &1&bGauntlets of the Fervent&0
+desc: Tainting the area is a set of unholy gauntlets.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+13 15
+1 1
+~
+extradesc: unholy gauntlets fervent
+The metal that makes up these gauntlets is forged with the burning drive to
+spread the evil powers of the dark gods.  A mix of unhallowed power and
+superior craftsmanship, armor like this is given to evil priests to aid them in
+their efforts to blight the world.
+~
+~~
+vnum: 5521
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz
+name: sleeves eldoria-reward 3rd-black-legion-leather-sleeves
+shortdesc: leather sleeves of the 3rd Black Legion
+desc: Some black leather sleeves lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 20304
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak zebra skin
+shortdesc: a zebra skin cloak
+desc: A large striped cloak lies in the dust here.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+applies:
+1 2
+19 1
+~
+extradesc: cloak zebra skin
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.    
+~
+~~
+vnum: 18556
+location: 13
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: thick rope belt
+shortdesc: a brown rope belt
+desc: A long, tied piece of rope lies on the ground here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 0.32
+cost: 45
+timer: 0
+level: 18
+effects: 0 0 0
+wear: 2049
+applies:
+2 2
+4 3
+13 10
+~
+extradesc: thick rope belt
+This belt made from rope is very plain and simlistic.  Just the kind of thing a
+monk would wear.    
+~
+~~
+vnum: 55473
+location: 14
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agjmopqrstuvwxyz
+name: unholy bracer fervent
+shortdesc: &1&bBracer of the Fervent&0
+desc: Tainting the area is an unholy bracer.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+applies:
+6 2
+3 3
+~
+extradesc: unholy bracer fervent
+The metal that makes up this bracer is forged with the burning drive to spread
+the evil powers of the dark gods.  A mix of unhallowed power and superior
+craftsmanship, armor like this is given to evil priests to aid them in their
+efforts to blight the world.
+~
+~~
+vnum: 16033
+location: 15
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracers charred pair odd black metal bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 16
+effects: 0 0 0
+wear: 4097
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred pair odd black metal bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    
+~
+~~
+vnum: 58601
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ap
+name: spyglass cylindrical object
+shortdesc: a spyglass
+desc: A cylindrical object rolls out of reach.
+type: 8
+weight: 0.75
+cost: 2000
+timer: 0
+level: 10
+effects: x 0 0
+wear: 16385
+applies:
+2 5
+~
+extradesc: spyglass cylindrical object
+This object is made up of many cylinders in progressive sizes
+that collapse to make a little object the size of a drinking cup,
+and expands to form a long, narrowing tube with glass at either
+end. When you look through it, you can see things close up, or
+so the legends go.
+~
+~~
+vnum: 5535
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: mask eldoria-reward 3rd-black-legion-black-mask
+shortdesc: a black mask of the 3rd Black Legion
+desc: A small black mask lies here.
+type: 9
+weight: 0.94
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 131073
+applies:
+18 1
+~
+~~
+vnum: 8611
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 8611
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 55301
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gloves leather flimsy
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55596
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem uncut uncut-amber
+shortdesc: an uncut amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem dust dust-tourmaline
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem dust dust-tourmaline
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55598
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem uncut uncut-lapis-lazuli
+shortdesc: an uncut lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55597
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem uncut uncut-turquoise
+shortdesc: an uncut turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sapphire gem crushed crushed-sapphire
+shortdesc: a crushed sapphire
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55600
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem uncut uncut-amethyst
+shortdesc: an uncut amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+~
+extradesc: saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  
+~
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 16033
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracers charred pair odd black metal bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 16
+effects: 0 0 0
+wear: 4097
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred pair odd black metal bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+224
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 16.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

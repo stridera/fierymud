@@ -1,0 +1,193 @@
+name: Sawk
+password: Sa4Nb2CAfQ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b><%df>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 1
+race: 3
+level: 99
+home: 1401
+lifeforce: 0
+composition: 0
+id: 14680
+birthtime: 1113868933
+timeplayed: 10756331
+lastlogintime: 1738985213
+host: 208.093.179.007
+height: 42
+weight: 187
+base_height: 42
+base_weight: 187
+base_size: 2
+natural_size: 2
+alignment: 947
+playerflags: glxyz
+effectflags: k w q
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 2610
+lastlevel: 5
+hitpoints: 784/784
+mana: 980/980
+move: 104/104
+damroll: 4
+hitroll: 5
+strength: 94
+intelligence: 82
+wisdom: 92
+dexterity: 75
+constitution: 62
+charisma: 55
+cash: 20 416 2504 470
+experience: 105805999
+pagelength: 50
+clan: 3
+quit_reason: 7
+saveroom: 2610
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+27 1000
+28 1000
+33 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+47 1000
+48 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+74 1000
+81 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+95 1000
+96 1000
+97 1000
+99 1000
+131 1000
+206 1000
+207 1000
+208 1000
+209 1000
+210 1000
+235 1000
+241 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 56
+444 859
+451 1000
+452 1000
+453 149
+455 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+463 1000
+466 1000
+0 0
+trophy:
+1 5508 1.000000
+1 51012 1.000000
+1 48922 0.236111
+1 11811 0.342857
+1 53315 3.000000
+1 53314 1.000000
+1 53313 1.000000
+1 53312 1.000000
+1 53303 2.000000
+0 0 0
+tells:
+1737736455 @WDavar@W tells you, 'one gem please@W'@0
+1737899298 @WDavar@W tells you, 'one gem please@W'@0
+1737973131 @WDavar@W tells you, 'one gem please@W'@0
+1738068489 @WDavar@W tells you, 'one gem please@W'@0
+1738252242 @WDavar@W tells you, 'one gem please@W'@0
+1738708665 @WDavar@W tells you, 'Offa requested i send a well Incoming@W'@0
+$
+gossips:
+1618528303 Tavsan gossips, 'oh no!'
+1620863335 Krax gossips, 'I just... I can't think of how to go south from the west gate... both morgan hill and the rocky outback just sort of end'
+1620863383 Krax gossips, 'looool'
+1620863392 Chinok gossips, 'there's only ONE set of west gates from melikki'
+1620863411 Krax gossips, 'welp'
+1620863429 Chinok gossips, 'OH!! yeah those are FARRR away'
+1620863476 Krob gossips, 'gosh there are so many areas off of arabel'
+1620863505 Krob gossips, 'I'm trying to remember there was some place I died first time I poked around there'
+1620863515 Tinawk gossips, 'or ogakh'
+1738985191 Chinok gossips, 'Sawk, not seen that one in a while'
+$
+aliases:
+clericdisarming is the name of the tiggerset for clerics
+sil c 'sil' $*
+druid tell druid(name) taksi please'
+9 c ' g v' vitkus
+8 c 'greater v' hortur
+0 c 'grea vit' gilgal
+4 c 'ful heal' mecke
+armor c 'armor' $*
+clangate 'aderci
+1 drink skin
+undead c 'de und' $*
+evil c 'dis evil' $*
+blind c 'blind' $*
+fh c 'full heal' $*
+word c 'word of rec'
+gag g all.gem all.corpse
+heal c 'heal' $*
+harm c 'f harm' $*
+unh c 'unholy'
+vig c 'vig c' $*
+hol c 'holy'
+gac g all all.corpse
+x g all.coins 
+pain c 'g v' $*
+cvb c 'cure critic' $*
+id recite identify $*
+gax g all.coins all.corpse
+gh c 'grou heal'
+summon c 'summon' $*
+bless c 'bless' $*
+dis c 'dis mag' $*
+vit c 'd h' $*
+t c 'word of r'
+r rest
+res c 'res' $*
+y ass faegern
+0

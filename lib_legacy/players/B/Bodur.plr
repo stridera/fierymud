@@ -1,0 +1,99 @@
+name: Bodur
+password: BoxmyFOK6c
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 2
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20469
+birthtime: 1677944141
+timeplayed: 4936
+lastlogintime: 1677949081
+host: 088.227.077.147
+height: 30
+weight: 53
+base_height: 30
+base_weight: 53
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 12
+thirst: 20
+lastlevel: 0
+hitpoints: 27/27
+mana: 0/0
+move: 50/106
+damroll: 2
+hitroll: 4
+strength: 73
+intelligence: 84
+wisdom: 100
+dexterity: 66
+constitution: 71
+charisma: 65
+cash: 0 4 14 10
+bank: 0 1 1 1
+experience: 16499
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 70
+424 69
+438 50
+443 50
+444 50
+451 50
+457 62
+458 54
+459 50
+460 52
+462 51
+463 51
+466 50
+0 0
+trophy:
+1 8023 1.000000
+1 8002 1.000000
+1 8000 1.000000
+1 8021 2.000000
+1 8014 1.000000
+1 8016 1.000000
+1 8001 4.000000
+1 8012 3.000000
+1 8010 1.000000
+1 51900 1.000000
+0 0 0
+tells:
+$
+gossips:
+1677944159 Chinok gossips, 'welcome Bodur'
+1677944199 Chinok gossips, 'played here before ?'
+1677946374 Denolo gossips, 'Grats!'
+$
+effects:
+20 2 0 0 16 0 0
+1 4 10 17 0 0 0
+0 0 0 0 0
+mem:
+84 1 8
+20 0 8
+0 0 0

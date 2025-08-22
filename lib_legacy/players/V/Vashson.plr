@@ -1,0 +1,110 @@
+name: Vashson
+password: VaCVfKEU5k
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20486
+birthtime: 1680282182
+timeplayed: 16176
+lastlogintime: 1682444448
+host: 050.227.163.212
+height: 64
+weight: 147
+base_height: 64
+base_weight: 147
+base_size: 2
+natural_size: 2
+alignment: 30
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 83/83
+mana: 1/0
+move: 123/136
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 72
+wisdom: 75
+dexterity: 76
+constitution: 78
+charisma: 68
+cash: 0 32 293 206
+bank: 0 1 1 1
+experience: 117291
+quit_reason: 1
+saveroom: 3054
+skills:
+402 52
+404 51
+415 50
+416 50
+421 102
+438 50
+443 50
+444 50
+463 50
+464 50
+465 77
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8021 1.000000
+1 8011 1.000000
+1 36002 3.000000
+1 36003 5.000000
+1 36001 11.000000
+1 18007 1.000000
+1 7002 1.000000
+1 8606 5.000000
+1 8605 7.000000
+1 8604 3.000000
+1 7051 5.000000
+1 6909 3.000000
+1 3130 2.000000
+1 3131 2.000000
+1 3507 1.000000
+1 3503 4.000000
+1 3500 10.000000
+1 3509 4.000000
+1 3508 4.000000
+1 3506 3.000000
+1 3501 5.000000
+0 0 0
+tells:
+1680887612 @WPaver@W tells you, 'yeah@W'@0
+1680887626 @WPaver@W tells you, 'you will  need to 'search' in the rooms to find a spot@W'@0
+1680888337 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1680888348 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1680888357 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1680888406 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1680888421 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1680888945 @WPaver@W tells you, 'some shops in town buy stuff but most of the time I just leave it on the floor@W'@0
+1681242799 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1681243669 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1680285376 Chinok gossips, 'well done!'
+1680885302 Paver gossips, 'Hey vashson'
+1680885517 Paver gossips, 'sorry?'
+1680885520 Paver gossips, 'oh for the double :D'
+1680886864 Chinok gossips, 'depends on the situation.. there is a compare command.. but it's a bit limited in what it checks'
+1680886886 Chinok gossips, 'identify scrolls are available at the magic shop, and they are the best way to 'get what you want''
+1680886964 Paver gossips, 'I did not know about the compare command...'
+1680887001 Paver gossips, 'but to Chinok's point if you want to know more about the item identify scrolls or the spell is a more specific option.'
+1680887083 Paver gossips, 'yeah You may have 2 rings one with hr and one with 5 hp. If you want more hp you would want that if you want more hr you want the other. Which is better is a hard question to ask and compare might not tell you want you want but
+1680887083 it thinks based on level im guessing'
+1680887147 Paver gossips, 'np :D'
+$

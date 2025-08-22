@@ -1,0 +1,110 @@
+name: Bruhskony
+password: BrUMTE92f0
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20864
+birthtime: 1731830480
+timeplayed: 13951
+lastlogintime: 1731972841
+host: 024.071.136.115
+height: 80
+weight: 195
+base_height: 80
+base_weight: 195
+base_size: 3
+natural_size: 3
+alignment: 168
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 102/96
+mana: 1/0
+move: 158/158
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 61
+wisdom: 76
+dexterity: 77
+constitution: 84
+charisma: 61
+cash: 0 44 279 611
+experience: 106986
+quit_reason: 3
+saveroom: 0
+skills:
+402 110
+404 105
+415 50
+416 50
+419 1000
+421 69
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 61
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 7003 1.000000
+1 7051 1.000000
+1 7053 3.000000
+1 6909 1.000000
+1 7052 2.000000
+1 7001 2.000000
+1 6910 1.000000
+1 7002 1.000000
+1 16903 3.000000
+1 16905 5.000000
+1 16907 14.000000
+1 16902 12.000000
+1 16901 4.000000
+1 16906 8.000000
+1 16908 11.000000
+1 16900 41.000000
+1 8021 2.000000
+1 8023 2.000000
+1 8022 2.000000
+1 8015 2.000000
+1 8030 1.000000
+0 0 0
+tells:
+1731830676 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1731831129 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1731832437 @WA half-elven maid@W tells you, 'If you want to rent a room, please go upstairs to the Reception Area.@W'@0
+1731878090 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1731905970 @WFlynt@W tells you, 'I'm also Thort and Popy so I'm in advanced places. But at your level you can get a lot of good work done by killing bugs west of town, hedges in the topiary just north east of the temple, and in the haunted house. but bug
+1731905970 probably the best, but most boring.@W'@0
+1731907665 @WBigby@W tells you, 'What do you want to sell??@W'@0
+1731907670 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
+1731907758 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1731907764 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+$
+gossips:
+1731909244 Daedela gossips, 'I tried using Blowtorch and Mukluk on my Android and I just can't'
+1731909291 Vesaria gossips, 'i used to use mudlet, before my kids stole all my computers'
+1731909580 Derrgon gossips, 'i posted it on discord in gossip'
+1731910083 Derrgon gossips, 'grats'
+1731910086 Flynt gossips, 'thanks!'
+1731910222 Zuriak gossips, 'dang dude'
+1731910227 Zuriak gossips, 'grats'
+1731910238 Flynt gossips, 'armor quests. It pays to be a hoarder'
+1731910262 Daedela gossips, 'It sure does'
+1731911473 Zuriak gossips, 'thort, u test the gray recall yet?'
+$

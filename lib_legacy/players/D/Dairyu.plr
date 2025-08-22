@@ -1,0 +1,138 @@
+name: Dairyu
+password: Da/uB4kB3L
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 13
+race: 0
+level: 99
+home: 6015
+lifeforce: 0
+composition: 0
+id: 19305
+birthtime: 1513914776
+timeplayed: 1148211
+lastlogintime: 1739077175
+host: 067.167.192.166
+height: 63
+weight: 180
+base_height: 63
+base_weight: 180
+base_size: 2
+natural_size: 2
+alignment: -972
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: hnoxC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 58709
+thirst: 24
+lastlevel: 0
+hitpoints: 1253/1154
+mana: 980/980
+move: 138/138
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 48
+wisdom: 66
+dexterity: 100
+constitution: 96
+charisma: 59
+cash: 458 4850 14539 87
+bank: 10758 0 0 0
+experience: 137547799
+quit_reason: 1
+saveroom: 58709
+skills:
+404 1000
+411 271
+412 1000
+414 51
+415 141
+416 310
+420 1000
+421 1000
+422 1000
+430 804
+438 61
+443 50
+444 55
+446 1000
+448 1000
+449 1000
+463 50
+475 122
+495 1000
+601 50
+602 50
+603 50
+604 50
+605 50
+606 50
+608 50
+617 990
+618 990
+0 0
+trophy:
+1 58602 0.250000
+1 58606 0.250000
+1 58607 0.250000
+1 58608 0.250000
+1 12003 0.250000
+1 12007 0.250000
+1 51011 0.250000
+1 51009 0.250000
+1 51008 0.250000
+1 51003 0.250000
+1 51006 0.250000
+1 51101 0.500000
+1 51100 0.750000
+1 7300 0.500000
+1 7301 0.500000
+1 43017 0.250000
+1 43013 1.000000
+1 43003 1.000000
+1 43012 2.000000
+1 43011 0.250000
+1 43009 0.250000
+0 0 0
+tells:
+1738007201 @WThort@W tells you, 'hi sorry i got pulled into a call that didn't want to die@W'@0
+1738007275 @WThort@W tells you, 'wanna grab the banshee? should be pretty quick!@W'@0
+1738007310 @WThort@W tells you, 'yep! going invis@W'@0
+1738007323 @WSomeone@W tells you, 'shout when you're in sunken@W'@0
+1738009916 @WTynder@W tells you, 'yep!@W'@0
+1738011583 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738020617 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738169612 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738643177 @WShazz@W tells you, 'Take good care of that.@W'@0
+1739074786 @WShazz@W tells you, 'Take good care of that.@W'@0
+1739075755 @WShazz@W tells you, 'Take good care of that.@W'@0
+$
+gossips:
+1739070530 Risa gossips, 'thx :)'
+1739070730 Nawk gossips, 'should have know better then to afk in the rat room after i cleared them'
+1739070758 Chinok gossips, 'ROFL yeah, I have limited sympathy for you on that one :)'
+1739070796 Nawk gossips, 'if your not diein your not tryin :)'
+1739072807 Discord gossips, 'venath.2005: Brutha Kress'
+1739072811 Kresselack gossips, 'sup'
+1739072826 Chinok gossips, 'hey Kress'
+1739073397 Chinok gossips, 'gratz on 79!'
+1739073404 Anexis gossips, 'thank'
+1739077172 Anexis gossips, 'night fiery!'
+$
+aliases:
+aan ass antix
+chtr chant 'tremors of st augustine'
+chw chant 'war cry'
+chb chant 'battle hymn'
+gac get all all.corpse
+chr chant regen
+exa exam corpse
+gcc get coins all.corpse
+ggc get all.gem all.corpse
+who who -w
+aar assi risa
+0

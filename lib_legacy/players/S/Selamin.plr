@@ -1,0 +1,91 @@
+name: Selamin
+password: SeMzoxeqPd
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18581
+birthtime: 1379814316
+timeplayed: 15317
+lastlogintime: 1380502573
+host: 050.071.235.039
+height: 73
+weight: 165
+base_height: 73
+base_weight: 165
+base_size: 2
+natural_size: 2
+alignment: -31
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 10
+loadroom: 3054
+thirst: 18
+lastlevel: 0
+hitpoints: 82/82
+mana: 1/0
+move: 83/102
+damroll: 3
+hitroll: 3
+strength: 87
+intelligence: 75
+wisdom: 77
+dexterity: 91
+constitution: 71
+charisma: 62
+cash: 0 2 2 0
+bank: 83 0 0 0
+experience: 60500
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 53
+415 50
+416 50
+421 89
+438 50
+443 50
+444 50
+463 50
+464 56
+465 61
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 5404 1.000000
+1 3509 1.000000
+1 3066 2.000000
+1 61523 1.000000
+1 61507 1.000000
+1 61508 1.000000
+1 61510 1.000000
+1 61512 2.000000
+1 61509 1.000000
+1 3505 3.000000
+1 61502 1.000000
+1 61500 2.000000
+1 61525 1.000000
+1 61501 1.000000
+1 3508 3.000000
+1 3506 2.000000
+1 3507 2.000000
+1 3500 5.000000
+1 3503 5.000000
+1 3501 6.000000
+1 3502 3.000000
+0 0 0
+aliases:
+ga get all
+gac get all corpse
+0

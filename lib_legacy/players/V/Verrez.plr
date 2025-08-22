@@ -1,0 +1,77 @@
+name: Verrez
+password: VeYADtmWFE
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19743
+birthtime: 1604283021
+timeplayed: 825
+lastlogintime: 1604283847
+host: 068.050.084.052
+height: 76
+weight: 124
+base_height: 76
+base_weight: 124
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 12
+lastlevel: 0
+hitpoints: 23/23
+mana: 0/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 79
+intelligence: 94
+wisdom: 95
+dexterity: 74
+constitution: 67
+charisma: 58
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+447 50
+451 51
+452 50
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+tells:
+$
+gossips:
+1604283036 Chinok gossips, 'welcome Verrez'
+1604283048 Chinok gossips, 'let me know if you need any help with how things work here'
+1604283076 Chinok gossips, 'right now, yes'
+1604283092 Chinok gossips, 'it's hit or miss, '
+1604283113 Chinok gossips, 'some days there are 4-5 people on.. '
+1604283118 Chinok gossips, 'it's been a slow week'
+$

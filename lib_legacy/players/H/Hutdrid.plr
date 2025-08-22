@@ -1,0 +1,83 @@
+name: Hutdrid
+password: HuwnBIuJNP
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19772
+birthtime: 1604985423
+timeplayed: 6977
+lastlogintime: 1604992535
+host: 135.180.084.032
+height: 42
+weight: 170
+base_height: 42
+base_weight: 170
+base_size: 2
+natural_size: 2
+alignment: 988
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 54/54
+mana: 1/0
+move: 120/120
+damroll: 4
+hitroll: 5
+strength: 80
+intelligence: 68
+wisdom: 88
+dexterity: 82
+constitution: 72
+charisma: 69
+cash: 0 4 17 16
+experience: 18150
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 55
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 4300 0.200000
+1 4302 0.400000
+1 4307 0.200000
+1 4306 0.200000
+1 4351 0.200000
+1 4310 0.200000
+1 4311 0.200000
+1 4309 0.400000
+1 4399 0.200000
+1 4305 0.200000
+1 4303 0.200000
+1 4313 0.200000
+1 4354 0.200000
+0 0 0
+tells:
+$
+gossips:
+1604986776 Faerylyn gossips, 'woo hoo'
+1604986777 Felessan gossips, 'Good job!!'
+1604987703 Faerylyn gossips, 'woot!'
+$

@@ -1,0 +1,70 @@
+name: Kentar
+password: KejtKEuv6b
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18548
+birthtime: 1374236929
+timeplayed: 727
+lastlogintime: 1495472015
+host: 174.193.157.190
+height: 88
+weight: 218
+base_height: 88
+base_weight: 218
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8024
+hunger: 14
+thirst: 14
+lastlevel: 0
+hitpoints: 30/30
+mana: 1/0
+move: 126/126
+damroll: 5
+hitroll: 4
+strength: 99
+intelligence: 74
+wisdom: 74
+dexterity: 90
+constitution: 72
+charisma: 54
+experience: 6049
+quit_reason: 7
+saveroom: 8024
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 51
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 52
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18005 1.000000
+1 18002 1.000000
+1 18001 3.000000
+1 18007 2.000000
+0 0 0

@@ -1,0 +1,58 @@
+name: Lorar
+password: LoOJpjB0d8
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18957
+birthtime: 1430940673
+timeplayed: 453
+lastlogintime: 1430941130
+host: 204.209.044.014
+height: 72
+weight: 153
+base_height: 72
+base_weight: 153
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -15/26
+mana: 0/0
+move: 121/122
+damroll: 3
+hitroll: 3
+strength: 87
+intelligence: 66
+wisdom: 66
+dexterity: 98
+constitution: 90
+charisma: 55
+experience: 1
+quit_reason: 10
+saveroom: 3101
+skills:
+403 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+464 51
+465 50
+467 50
+0 0

@@ -1,0 +1,1918 @@
+1
+vnum: 36104
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: ring coral-ring barely-visible-circle smooth-coral
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lies on the ground.
+type: 8
+weight: 0.30
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+3 2
+24 -5
+27 1
+~
+extradesc: coral-ring barely-visible-circle smooth-coral
+The coral ring seems totally flawless.  It is made of the finest coral you have
+ever seen, and fades from a light pink on one side to white on the other.  It
+is smoothed completely and coated with a clear substance so that it is not the
+least bit abrasive.~
+~~
+vnum: 36104
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: ring coral-ring barely-visible-circle smooth-coral
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lies on the ground.
+type: 8
+weight: 0.30
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+3 2
+24 -5
+27 1
+~
+extradesc: coral-ring barely-visible-circle smooth-coral
+The coral ring seems totally flawless.  It is made of the finest coral you have
+ever seen, and fades from a light pink on one side to white on the other.  It
+is smoothed completely and coated with a clear substance so that it is not the
+least bit abrasive.~
+~~
+vnum: 41109
+location: 3
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: torc shining-golden-torc shining-gold-torc
+shortdesc: a shining golden torc
+desc: A shining gold torc has been forgotten here.
+type: 8
+weight: 2.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+3 2
+26 2
+27 1
+~
+extradesc: torc shining-golden-torc shining-gold-torc
+The brilliantly polished gold neckpiece has been inlaid with a repeating
+pattern of rowan leaves overlapping hemlock.  It is incredibly heavy.~
+~~
+vnum: 41109
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: torc shining-golden-torc shining-gold-torc
+shortdesc: a shining golden torc
+desc: A shining gold torc has been forgotten here.
+type: 8
+weight: 2.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+3 2
+26 2
+27 1
+~
+extradesc: torc shining-golden-torc shining-gold-torc
+The brilliantly polished gold neckpiece has been inlaid with a repeating
+pattern of rowan leaves overlapping hemlock.  It is incredibly heavy.~
+~~
+vnum: 59013
+location: 5
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: dkopstwxy e
+name: robe golden-robe heap-golden-material
+shortdesc: a golden robe
+desc: A heap of golden material is lying on the ground, unused at the moment. 
+type: 9
+weight: 3.00
+cost: 500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+3 2
+27 2
+~
+extradesc: robe golden-robe heap-golden-material
+The golden color of the robe is so close to real gold that is almost seems to
+be made out of it.  The robe is very durable and appears to be incredibly old.
+The ends of the sleeves and the neckline are lined with green emeralds that
+catch and hold the light, reflecting it back out into a greenish haze.  There
+are no noticeable seams in it, as if it were woven out of a continuous thread.~
+~~
+vnum: 55475
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: adghnopqrstuvwxyz abeij
+name: coif-magician arcane-energy magical-coif
+shortdesc: &4&bCoif of the Magician&0
+desc: Pulsing here with arcane energy is a magical coif.
+type: 9
+weight: 0.85
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: coif-magician arcane-energy magical-coif
+Heavily enchanted cloth has been woven together to create this magical coif.  
+Pieces of clothing like this focus mystical energies, making them easier to
+manipulate.  Most sorcerers find clothing like this can strengthen almost any
+arcane workings.~
+~~
+vnum: 55401
+location: 7
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: pants apprentice-pants cloth-pants magical-power magic
+shortdesc: some apprentice pants
+desc: A pair of cloth pants emitting a slight magical power have been left here.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 1
+13 7
+27 1
+~
+extradesc: pants apprentice-pants cloth-pants magical-power magic
+Newly sewn, these magical cloth pants were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 55479
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: adghnopqrstuvwxyz abeij
+name: slippers-magician arcane-energy magical-slippers
+shortdesc: &4&bSlippers of the Magician&0
+desc: Pulsing here with arcane energy is a set of magical slippers.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+3 1
+5 3
+14 15
+27 2
+~
+extradesc: slippers-magician arcane-energy magical-slippers
+Heavily enchanted cloth has been woven together to create these magical
+slippers.  Pieces of clothing like this focus mystical energies, making them
+easier to manipulate.  Most sorcerers find clothing like this can strengthen
+almost any arcane workings.~
+~~
+vnum: 55481
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: adghnopqrstuvwxyz abeij
+name: gloves-magician arcane-energy magical-gloves
+shortdesc: &4&bGloves of the Magician&0
+desc: Pulsing here with arcane energy is a magical pair of gloves.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+13 10
+2 3
+27 2
+~
+extradesc: gloves-magician arcane-energy magical-gloves
+Heavily enchanted cloth has been woven together to create these magical gloves.
+Pieces of clothing like this focus mystical energies, making them easier to
+manipulate.  Most sorcerers find clothing like this can strengthen almost any
+arcane workings.~
+~~
+vnum: 55399
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: sleeves apprentice-sleeves cloth-sleeves magical-power magic
+shortdesc: apprentice sleeves
+desc: A set of cloth sleeves emitting slight magical power have been left here.
+type: 9
+weight: 1.90
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 1
+13 7
+27 1
+~
+extradesc: sleeves apprentice-sleeves cloth-sleeves magical-power magic
+Newly sewn, these magical cloth sleeves were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 17208
+location: 12
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dgnoprstuwx aeij
+name: robe magician's-robe magicians-robe velvet-robe heap
+shortdesc: a magician's robe
+desc: A velvet robe lies in a crumpled heap here.
+type: 9
+weight: 1.00
+cost: 150
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+3 1
+13 -3
+27 1
+~
+extradesc: robe magician's-robe magicians-robe velvet-robe heap
+This robe is made of very high quality velvet and is decorated with various
+symbols of arcane importance.~
+~~
+vnum: 17204
+location: 13
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cord golden-cord
+shortdesc: the golden cord
+desc: A golden cord lies on the ground.
+type: 9
+weight: 0.50
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+3 1
+18 -1
+27 1
+~
+extradesc: cord golden-cord
+You look upon a length of cord made of finely spun gold threads.  It seems to
+emanate a strange aura.~
+~~
+vnum: 55403
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: bracelet apprentice-bracelet small-cloth-bracelet pattern
+shortdesc: an apprentice bracelet
+desc: A small cloth bracelet pattern lies nearby.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+6 2
+13 5
+27 1
+~
+extradesc: apprentice-bracelet small-cloth-bracelet-pattern
+Newly sewn, this magical cloth bracelet was made just for you.  Proof of your
+beginning training, it will protect you as you adventure!~
+~~
+vnum: 59022
+location: 15
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agk 0
+name: bracelet bracelet-consecrated-spirit small-bracelet-stone-gold-beads
+shortdesc: the bracelet of the consecrated spirit
+desc: A small bracelet made of stone and gold beads is lying on the ground.
+type: 9
+weight: 0.30
+cost: 1300
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+24 -4
+13 5
+14 5
+27 1
+~
+extradesc: bracelet bracelet-consecrated-spirit small-bracelet-stone-gold-beads
+The bracelet is formed from small beads of gold and grayish colored stones.  
+It is very old and shows the marks from years of use.  The stone beads are
+cracked and worn down on the edges and a few of them have chipped apart.  The
+gold beads are starting to tarnish and fade, almost matching the dull luster of
+the stone, from prolonged contact with the sweat from the skin.~
+~~
+vnum: 323
+location: 16
+values:
+0
+4
+4
+16
+0
+0
+0
+~
+flags: dnoprstuvwx abcij
+name: wand greater-wand-ice-wand wand-greater-ice-wand wand-willow-pearls pearl
+shortdesc: a greater wand of ice
+desc: A wand of willow and pearls lays here.
+type: 5
+weight: 1.00
+cost: 4000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+17 4
+27 1
+~
+extradesc: wand greater-wand-ice-wand wand-greater-ice-wand wand-willow-pearls pearl
+This wand is made of a long willow rod.  Small freshwater pearls are set into
+the polished tan wood.  Each pearl is set in a crystalline snowflake motif,
+showing off the magic activating the wand.  A small freshwater pearl caps the
+pommel.~
+triggers:
+309
+303
+304
+305
+~
+~~
+vnum: 58006
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: kl 0
+name: whisk tea-whisk chasen
+shortdesc: a tea whisk
+desc: A tea whisk has somehow fallen to the ground here.
+type: 8
+weight: 0.20
+cost: 30
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 1
+5 2
+~
+extradesc: whisk tea-whisk chasen
+The whisk is only as large as a woman's hand, and made of bamboo.  Several
+pieces of light bamboo have been woven together at the handle, their ends
+allowed to fray to form a whisk.  It's lightweight, and its whorled strands of
+bamboo would make it an excellent whisk for the powdered tea of the tea
+ceremony of Odaishyozen.~
+~~
+vnum: 10307
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: doprstwx ae
+name: glasses silver-trimmed-glasses
+shortdesc: a pair of glasses
+desc: A pair of silver-trimmed glasses has been abandoned here.
+type: 8
+weight: 0.10
+cost: 500
+timer: 5
+level: 40
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+3 3
+28 80
+27 1
+~
+extradesc: glasses silver-trimmed-glasses
+These finely ground lenses must be gnomish work, for they seem to be flawless.
+The rims are a thin silver and the nosepiece seems quite comfortable.  They
+would surely be a great help to someone who has no near-vision that wants to
+read a book or crochet or do anything else that requires them to see things
+close up.    ~
+~~
+vnum: 17809
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mask-self-knowledge clear-mask
+shortdesc: the mask of self-knowledge
+desc: A clear mask is lying on the ground.
+type: 8
+weight: 0.50
+cost: 150
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+3 2
+6 2
+27 1
+~
+extradesc: mask-self-knowledge clear-mask
+The mask shimmers slightly as you hold it up and you see yourself reflected.  
+There seems to be a subtle difference between what you see and how you remember
+yourself to appear to others.  Perhaps this is the real you.~
+~~
+vnum: 13662
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: earring peridot-earring
+shortdesc: a peridot earring
+desc: A peridot earring lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.01
+cost: 20
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+13 5
+3 1
+27 1
+~
+extradesc: peridot-earring
+Made with a steel backing, this drop earring has a peridot pendant.
+The pale green stone is faceted to catch the light.~
+~~
+vnum: 13662
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: earring peridot-earring
+shortdesc: a peridot earring
+desc: A peridot earring lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.01
+cost: 20
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+13 5
+3 1
+27 1
+~
+extradesc: peridot-earring
+Made with a steel backing, this drop earring has a peridot pendant.
+The pale green stone is faceted to catch the light.~
+~~
+vnum: 32401
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: brooch emerald-brooch gold
+shortdesc: an &2emerald &0brooch
+desc: An emerald brooch lies here, glinting.
+type: 8
+weight: 0.40
+cost: 3000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 540673
+hiddenness: 0
+applies:
+14 25
+3 2
+27 1
+~
+extradesc: emerald-brooch gold
+This brooch is large, with an inch-long emerald set in a gold cabuchon setting.
+Its pin is very secure.~
+~~
+vnum: 48101
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: shell rainbow-shell seashell-glittering-rainbow-hues
+shortdesc: the Rainbow Shell
+desc: A seashell glittering with rainbow hues uplifts your spirit.
+type: 8
+weight: 2.00
+cost: 3000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+26 5
+13 20
+27 1
+~
+extradesc: shell rainbow-shell seashell-glittering-rainbow-hues
+You can't help but be entranced by this beautiful shell.  As large as your
+hand, it is striated with rainbow colors that glitter in the light.  You know
+this shell would sell for a high price in any market, but do you really want to
+part with the sea's breathtaking work of art?~
+triggers:
+5324
+5332
+~
+~~
+vnum: 2327
+location: 27
+values:
+0
+300
+300
+0
+0
+0
+0
+~
+flags: DE c
+name: lightstone light-stone elven-lightstone elf
+shortdesc: an elven lightstone
+desc: An elven lightstone glares brightly here.
+type: 1
+weight: 0.30
+cost: 3000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+24 -3
+27 1
+~
+extradesc: lightstone light-stone elven-lightstone elf
+Made of glittery opaque white stone dotted with flecks of gold, this stone can
+be made to glow with a mere thought.~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+107 18
+68 15
+~
+triggers:
+51949
+~
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: quill feather-quill long-white-feather pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill feather-quill long-white-feather pen
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)~
+triggers:
+51990
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+62 13
+174 17
+83 17
+38 15
+52 15
+77 18
+~
+triggers:
+51949
+~
+~~
+vnum: 55341
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: hood crushed-hood armor
+shortdesc: a crushed hood
+desc: A pile of crushed leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: hood crushed-hood armor
+This hood is crushed beyond use.~
+~~
+vnum: 55623
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem flawed-amethyst
+shortdesc: a flawed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+102 19
+263 19
+30 15
+2 10
+228 10
+76 16
+67 8
+~
+triggers:
+51949
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+186 5
+246 20
+171 7
+182 10
+172 12
+99 14
+106 15
+29 14
+~
+triggers:
+51949
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+100 5
+5 5
+101 13
+20 5
+32 5
+8 7
+19 18
+39 5
+37 9
+31 12
+99 14
+~
+triggers:
+51949
+~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 5323
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mission
+shortdesc: a mission to complete the Three-Falls Canyon vision quest
+desc: A mission to complete the Three-Falls Canyon vision quest lays here.
+type: 12
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+5339
+~
+~~
+vnum: 3060
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: raft
+shortdesc: a raft
+desc: A raft has been left here.
+type: 22
+weight: 75.00
+cost: 400
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: raft
+The raft looks very primitive, but appears to be safe enough to use.~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 6053
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: contract
+shortdesc: a contract for the Frakati Leader
+desc: A contract for someone's head has been accidentally left out!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+6055
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 55337
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer crushed-leather-bracer armor
+shortdesc: a crushed leather bracer
+desc: A pile of crushed leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracer crushed-leather-bracer armor
+This bracer is crushed beyond use.~
+~~
+vnum: 55348
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves crushed-greaves armor
+shortdesc: crushed greaves
+desc: A pile of crushed armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: greaves crushed-greaves armor
+These greaves are crushed beyond use.~
+~~
+vnum: 55357
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves creased-leather-gloves armor
+shortdesc: creased leather gloves
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gloves creased-leather-gloves armor
+These gloves are creased beyond use.~
+~~
+vnum: 55351
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings burned-leggings armor
+shortdesc: burned leggings
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: leggings burned-leggings armor
+These leggings are burned beyond use.~
+~~
+vnum: 55653
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: onyx gem plain-onyx
+shortdesc: an onyx
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 5313
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: order
+shortdesc: an order for a crimson-tinged electrum hoop
+desc: An search order for a treasure hunt lays here.
+type: 12
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+5327
+~
+~~
+vnum: 11705
+location: 127
+values:
+0
+2500
+2500
+0
+0
+0
+0
+~
+flags: agD 0
+name: splinter ruby-splinter
+shortdesc: a ruby splinter
+desc: Someone has dropped a ruby splinter here.
+type: 1
+weight: 0.01
+cost: 480
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 10
+14 -20
+27 2
+~
+extradesc: splinter ruby-splinter
+If it weren't for its bright red color, this precious splinter would go
+unnoticed because of its tiny size.  However, as soon as it is picked up it
+begins to emit a magical light.  It has clearly been enchanted.~
+~~
+vnum: 55629
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pearl gem flawed-pearl
+shortdesc: a flawed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 1004
+location: 127
+values:
+1
+240
+152
+0
+0
+0
+0
+~
+flags: q 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern.  It holds about fifteen hours worth of fuel.~
+~~
+vnum: 55350
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: pants burned-pants armor
+shortdesc: burned pants
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: pants burned-pants armor
+These pants are burned beyond use.~
+~~
+vnum: 55631
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: onyx gem flawed-onyx
+shortdesc: a flawed onyx
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55596
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: moonstone gem uncut-moonstone uncut-moon-stone
+shortdesc: an uncut moonstone
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~

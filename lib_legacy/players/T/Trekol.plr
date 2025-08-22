@@ -1,0 +1,66 @@
+name: Trekol
+password: TrwfdeRvMO
+prompt: %_%_%_%_%_[First%dfAid]%_%_[Insta%diKill]%_%_[Dis%ddArm]%_%_[Throat%dtCut]%_%_[%e][%a]%_%_[%w][%W]%x%_%_[(%h)%Hhp%-{%ph}%-(%v)%Vmv%-{%pv}]%_%_%_
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19120
+birthtime: 1484339569
+timeplayed: 127634
+lastlogintime: 1485521653
+host: 069.127.225.031
+height: 65
+weight: 167
+base_height: 65
+base_weight: 167
+base_size: 2
+natural_size: 2
+alignment: 69
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 43/43
+mana: 1/-2
+move: 132/132
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 86
+wisdom: 82
+dexterity: 91
+constitution: 92
+charisma: 74
+cash: 0 21 5 7
+experience: 18312
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+421 60
+438 50
+443 50
+444 50
+464 62
+465 50
+467 50
+0 0
+trophy:
+1 16908 0.500000
+1 16900 1.000000
+1 36002 0.500000
+1 36001 3.000000
+0 0 0
+aliases:
+where who -w
+0

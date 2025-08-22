@@ -1,0 +1,912 @@
+#50200
+Soggy Marsh~
+   The marshy ground descends into wet, swampy land.  Willow trees begin to
+give way to cypresses.  A mist can be seen slowly creeping in from the east.  
+Calls of birds can be heard in the distance.  It looks like passage is possible
+to the east.    
+~
+502 0 14
+D1
+~
+~
+0 -1 50201
+D3
+~
+~
+0 -1 50245
+E
+mist~
+The mist sits motionless over all the land, as far as the eye
+can see.
+~
+S
+#50201
+Soggy Marsh~
+   Long, sharp-edged grasses grow in thick tufts wherever the earth
+pokes up through the water, which saturates the ground nearly
+everywhere.  A path leads east-west through the middle of a great
+thicket of willows and brambles.  These short trees and bushes take
+advantage of the dry ground and lack of competition here. The water
+grows deeper to the east, where tall trees stand in the mist.
+~
+502 0 14
+D1
+~
+~
+0 -1 50203
+D3
+~
+~
+0 -1 50200
+S
+#50202
+Between the Wrecks~
+   Shipwrecks lie to either side here in the boggy ground.  A heavy mist moves
+slowly between them.  The eastern ship is lying upside down, only a few feet
+from the western ship, which lies on its side.  Its forecastle is fairly
+intact, though covered with fungi and mosses.  It may be possible to enter the
+western wreck to the south.    
+~
+502 0 14
+D0
+~
+~
+0 -1 50212
+D2
+~
+~
+0 -1 50244
+S
+#50203
+Bayou~
+   Tall cypress trees rise out of a layer of mist that covers the
+shallow, brown waters of the bayou.  A few straggly willows grow
+among the more resilient bramble bushes, but the lack of light, for
+the most part, makes this area unsuitable for their growth.  What
+little ground pokes out of the water is saturated and mushy.
+~
+502 0 14
+D1
+~
+~
+0 -1 50204
+D3
+~
+~
+0 -1 50201
+E
+object~
+   The object is barely visible through the mist.  It appears to have sharp
+corners; it may be an artifact of some kind.    
+~
+S
+#50204
+Bayou~
+   A dinghy is wedged in the fork of a cypress about forty feet up.  A somewhat
+clear passage curves around it going south and west, through the everpresent
+bushes and a tangle of dead young cypresses.  Deep mists drift through the
+darkness, carrying the echoing sounds of laughing birds.
+~
+502 0 14
+D2
+~
+~
+0 -1 50205
+D3
+~
+~
+0 -1 50203
+E
+dinghy~
+This small boat is broken and rotted. Strangely, it looks like an
+accessory to an oceangoing vessel--not the sort of craft that would
+ply these waters.
+~
+S
+#50205
+Bayou~
+   Few sounds are heard from the surroundings here, and even the water barely
+sloshes as it's stepped in.  Far off to the south, a darkened hulk can be
+glimpsed, though there is no way to approach it directly.
+~
+502 0 14
+D0
+~
+~
+0 -1 50204
+D1
+~
+~
+0 -1 50206
+E
+hulk~
+All that can be seen is a large, dark object far off through
+the trees. It appears to be as large as a building.
+~
+S
+#50206
+Hillock~
+   A hillock covered with straggly weeds pokes out of the muck here.  The
+lonely calls of hunting birds echo across the water.  The brambly
+undergrowth, though stunted and twisted from the lack of light, is nearly
+impenetrable. Tall cypresses grow everywhere, their high canopies blocking
+out the sun.
+~
+502 0 14
+D0
+~
+~
+0 -1 50207
+D3
+~
+~
+0 -1 50205
+S
+#50207
+Bayou~
+   Tall cypresses cluster together, and the way through them is difficult.
+Nothing but trees and dark water can be seen in any direction.  A heavy
+mist permeates the air and dampens everything. Bird calls and other strange
+noises can be heard all around, but the soggy atmosphere blunts the sounds
+and makes it difficult to judge their distance or direction.
+~
+502 0 14
+D1
+~
+~
+0 -1 50208
+D2
+~
+~
+0 -1 50206
+S
+#50208
+Bayou~
+   Cypresses and stunted bushes cluster up against a natural wall of rock
+to the east, which rises up out of reach.  The rock is covered with lichens
+and moss, and is as damp as everything else in the moisture-laden air.  A
+narrow passage between the stiff undergrowth and the wall leads south into
+deepening shadows.
+~
+502 0 14
+D2
+~
+~
+0 -1 50209
+D3
+~
+~
+0 -1 50207
+S
+#50209
+Lookout Post~
+   Little light penetrates the gloom between giant tree trunks.  Mossy, slimy
+stones poke out here and there.  The mast of a ship, its crow's nest strangely
+intact, leans against two cypresses.    
+~
+502 0 14
+D0
+~
+~
+0 -1 50208
+D2
+~
+~
+0 -1 50210
+E
+mast nest crow's~
+The crow's nest is broken, and all of the wood is rotted and mossy.
+No trace of any sail may be seen.
+~
+S
+#50210
+Bayou~
+   A wall of rock rises to the east, covered with moss, lichens, and dark
+stains.  Broken trunks and branches crisscross the water, making movement
+difficult.  Oddly, bits of pottery poke out of the earth near the base of a
+large cypress.  To the southwest is what appears to be the keel of a ship.    
+~
+502 0 14
+D0
+~
+~
+0 -1 50209
+D2
+~
+~
+0 -1 50214
+D3
+~
+~
+0 -1 50211
+E
+trunk branch~
+The branches on the ground are somewhat thicker here.
+~
+E
+ship keel~
+It's either lying on its side or its top--it is impossible to tell
+which from this distance. The more important qustion is: what is it
+doing so far from the sea?
+~
+E
+pottery~
+Most of the pottery is dull and brown, with a wide curve indicating
+a large vessel. However, a hint of dark blue on some fragile gray
+pieces hints at finer wares. All of it is broken and worthless.
+~
+S
+#50211
+Before the Prow~
+   The sunken and rotted timbers of an oceangoing ship rise out of the muck
+here.  This is the prow, and the once-mighty keel curves forward smoothly, down
+under the water's surface.  The ship lies upside down and to the south.  There
+is no opening here, but it is possible to walk around the mouldering hulk.  
+Another wreck lies west of here.    
+~
+502 0 14
+D1
+~
+~
+0 -1 50210
+D3
+~
+~
+0 -1 50212
+S
+#50212
+Among the Wrecks~
+   Not two, but three hunting corsairs lie wrecked in this place.  Or two lie
+here, for the third is propped against a stand of cypresses to the south.  The
+western wreck lies on its side, the deck facing you; it may be possible to
+enter it a bit south of here.  A towering thicket of brambles, branches, and
+felled trees prevents westward movement.    
+~
+502 4 14
+D1
+~
+~
+0 -1 50211
+D2
+~
+~
+0 -1 50202
+S
+#50213
+Between the Wrecks~
+   Two wrecked corsairs lie on either side of this spot, where broken branches
+and rubble create a dry mound.  A third ship stands on its end to the south,
+supported by long-suffering cypresses.  The western ship's deck stands at a
+steep angle; there is a gaping hole where the main mast once stood.    
+~
+502 0 14
+D0
+~
+~
+0 -1 50244
+D3
+~
+~
+0 -1 50217
+S
+#50214
+Beside a Wreck~
+   Dark, shallow water laps silently at an overturned wreck to the west.  How
+it came to rest here is anyone's guess.  Fungi jut out from the dark, soaked
+wood in shelves just above the surface of the water.  To the east, a break in a
+stony hillside reveals an open channel.    
+~
+502 0 14
+D0
+~
+~
+0 -1 50210
+D1
+~
+~
+0 -1 50215
+D2
+~
+~
+0 -1 50216
+S
+#50215
+Soggy Alcove~
+   Walls of natural rock form an alcove here.  They are far too steep and
+slippery from moss to climb.  Short, stunted pines grow on the hillside
+above, crouching in the slowly drifting mists.
+~
+502 4 14
+D3
+~
+~
+0 -1 50214
+S
+#50216
+Beside a Wreck~
+   An oceangoing corsair is curiously propped up against some tress to the
+west.  The water seems shallower here, as if the ground were rising gently to
+the south.  It seems less shadowy there, as if the trees were thinned, but a
+rocky ridge and thick underbrush prevent movement, except to the north.    
+~
+502 4 14
+D0
+~
+~
+0 -1 50214
+S
+T 50206
+#50217
+Near Forecastle~
+   The inner wall of the fore deck stands to the north.  A large door is just
+visible behind a clutter of damp tree trunks.  The poop deck may be approached
+to the south, and a dark, gaping hole to the west allows entrance to the hold.
+The other wrecks lie to the east.    
+~
+502 0 2
+D0
+~
+~
+0 -1 50225
+D1
+~
+~
+0 -1 50213
+D2
+~
+~
+0 -1 50232
+D3
+~
+~
+0 -1 50218
+S
+#50218
+Main Hold~
+   The hold would have been over ten feet wide when in use, but rubble has
+narrowed it to half that.  Movement is difficult.  Shattered bunks and round
+ballast stones shift underfoot.    
+~
+502 8 0
+D0
+~
+~
+0 -1 50223
+D1
+~
+~
+0 -1 50217
+D2
+~
+~
+0 -1 50220
+D3
+~
+~
+0 -1 50219
+S
+#50219
+Main Hold~
+   This is a very narrow space at the bottom (or what was the bottom) of the
+ship.  Some ballast stones remain wedged between the timbers, and a slick black
+mat of fungus grows over exposed wooden surfaces.    
+~
+502 8 0
+D1
+~
+~
+0 -1 50218
+D2
+~
+~
+0 -1 50221
+S
+#50220
+Main Hold~
+   Here at the rear of the hold, piles of mouldering wood and rubbish are
+heaped about.  Miraculously, the door south to the stores remains intact.    
+~
+502 8 0
+D0
+~
+~
+0 -1 50218
+D2
+~
+door~
+1 -1 50229
+D3
+~
+~
+0 -1 50221
+S
+#50221
+Main Hold~
+   This is the bottom aft corner of the main hold.  The remains of a few bunks
+are pegged near the top, but most were knocked down by displaced ballast
+stones.    
+~
+502 8 0
+D0
+~
+~
+0 -1 50219
+D1
+~
+~
+0 -1 50220
+S
+#50222
+Fore Hold~
+   Instead of bunks, simple benches adorn the walls here.  The rusted remains
+of manacles still hang from some of them.  Though the floor of this room
+appears to be too high to be soaked by groundwater, everything is moist,
+perhaps due to the misty air.  Fungi grow in streaks where wood has
+splintered away from the walls.
+~
+502 8 0
+D1
+~
+hatch~
+1 -1 50223
+S
+#50223
+Fore Hold~
+   Rude wooden benches are bolted to the wall, with short chains attached every
+few feet.  An abundance of bones litters the floor.  At the north end of the
+hold, a door with a barred window is set in a bulkhead.    
+~
+502 12 0
+D0
+~
+door~
+2 50216 50224
+D2
+~
+~
+0 -1 50218
+D3
+~
+hatch~
+1 -1 50222
+S
+#50224
+Brig~
+   This small, oddly-shaped room must be in the prow of the ship.  The floor
+(now the west wall) is triangular, as is the larger ceiling.  No benches or
+other furniture are to be found here.    
+~
+502 8 0
+D2
+~
+door~
+1 50216 50223
+S
+#50225
+Forecastle~
+   A bulkhead runs through this wide room, which evidently had many sailors'
+bunks mounted in it.  They all lie in broken, rotting piles against the
+starboard wall (now the floor).  Open doorways lead both north and south.
+~
+502 8 0
+D0
+~
+~
+0 -1 50226
+D2
+~
+~
+0 -1 50217
+S
+#50226
+Galley~
+   A large iron stove, its flue long since rusted away, leans against the wall.
+There is a light current of air moving through the room, drawn in where smoke
+was once expelled from the cooking fire.  Broken pottery and smashed furniture
+peeks out of the dark water underfoot, rotting.
+~
+502 8 0
+D2
+~
+~
+0 -1 50225
+E
+stove iron~
+This stove looks very heavy in spite of extensive corrosion. Moss
+and fungi grow in its damp interior.
+~
+S
+#50227
+Captain's Cabin~
+   The remains of a few paintings adorn the walls here, along with a broken,
+spotted mirror.  A rather nice oaken chest of drawers and a bed lie in a heap.
+The vault is to the west and the first mate's cabin is north.    
+~
+502 8 0
+D0
+~
+~
+0 -1 50228
+D3
+~
+~
+0 -1 50231
+E
+mirror~
+You see only pale shadows...
+~
+E
+chest drawer drawers~
+The drawers have all fallen out. They are empty.
+~
+E
+painting paintings~
+The paintings appear to depict games played with cards, but they
+are quite decayed, and only a few scraps remain.
+~
+S
+#50228
+First Mate's Cabin~
+   It's as if a maelstrom passed through this small, enclosed space.  Bits of
+cloth and broken knives are strewn about.  A bed and table have been reduced to
+splinters.  The fore door has been nailed shut with boards.  The captain's
+cabin is to the south.
+~
+502 8 0
+D0
+Several thick boards are securely nailed across this door.
+It appears to be impenetrable.
+~
+door~
+2 -1 50232
+D2
+~
+~
+0 -1 50227
+S
+#50229
+Aft Hold~
+   Here are stored many kegs and sacks, most of them broken and split.  A
+bulkhead with a stout door separates this room from the far aft portion of the
+hold.    
+~
+502 12 0
+D0
+~
+door~
+1 -1 50220
+D2
+~
+door~
+1 50217 50231
+D3
+~
+~
+0 -1 50230
+S
+#50230
+Musty Crawl~
+   This space was once filled with ballast, some of which has fallen downward
+to the west.  Scrape marks lead from the darkness back into the ship.    
+~
+502 8 0
+D1
+~
+~
+0 -1 50229
+D3
+There appears to be a loose board next to the keel; it might
+be moved enough to pass out of the ship.
+~
+board~
+1 -1 50233
+S
+#50231
+Vault~
+   Bundles of tapestries, stacks of chests, and numerous vases and pots fill
+this small room.  Unfortunately, the tapestries have rotted, the vases are
+shattered, and the chests have been ransacked.  The ceiling, to the east, has a
+gaping hole.    
+~
+502 8 0
+D0
+~
+door~
+1 50217 50229
+D1
+Chop marks and smashed spots testify to the very intentional
+attack that opened the hole.
+~
+~
+0 -1 50227
+E
+ceiling hole~
+Chop marks and smashed spots testify to the very intentional
+attack that opened the hole.
+~
+S
+#50232
+Between the Corsairs~
+   Great masses of vines have grown up, covering the aft section of the main
+deck to the west.  The bulkhead of the poop deck has nails and spikes driven
+out from the inside, evidently in an attempt to secure the door.    
+~
+502 0 3
+D0
+~
+~
+0 -1 50217
+D2
+The tips of spikes and nails protrude from the other side. It looks
+as though the door was well-secured.
+~
+door~
+2 -1 50228
+S
+#50233
+Behind the Ship~
+   Dark water covers the ground here, and laps up aginst the broken keel of a
+sailing ship lying to the east.  The ship appears to be mostly intact, though
+it has lain in the water for some time, and is covered with moss.  Though this
+area is thick with vines and trees, a path does lead west.    
+~
+502 512 3
+D1
+A loose board might allow entrance to the bottom of the ship.
+~
+board~
+1 -1 50230
+D3
+~
+~
+0 -1 50234
+S
+#50234
+Misty Wood~
+   Giant cypresses and sea pines are scattered about, appearing as eerie
+sentinels in the salt-scented mists.  Large stumps may be seen here and there.
+The path leads east-west.    
+~
+502 512 3
+D1
+~
+~
+0 -1 50233
+D3
+~
+~
+0 -1 50235
+E
+stump stumps~
+They appear to have been hewn down with a large, hand-held saw.
+None appear to have been cut recently.
+~
+S
+#50235
+Misty Wood~
+   Thick, stunted pine trees stand on the high points of this gently rolling
+grassland.  Occasionally, a massive red sequoia towers over all, but their
+stumps outnumber the living specimens.  A small building is visible in a
+cleared space to the west.
+~
+502 512 3
+D1
+~
+~
+0 -1 50234
+D3
+~
+~
+0 -1 50236
+S
+#50236
+Outside the Hovel~
+   A dilapidated hovel is just to the west.  It looks as though it could house
+a family, though in its state of disrepair, it is doubtful that anyone lives
+there.  Stacks of rotting wood stand a few feet from it, as well as a long, low
+mound of charcoal, through which has sprouted a healthy stand of milkweed.  A
+path leading east goes deeper into the bayou.    
+~
+502 512 3
+D1
+~
+~
+0 -1 50235
+D3
+~
+~
+0 -1 50237
+S
+#50237
+Woodcutter's Hovel~
+   The hut is obviously deserted: the furniture is all broken, the windows'
+shutters are missing, and worse, the skeletal remains of several humans lie
+among the rubble on the floor.  Whatever struggle occurred as they were killed
+happened some time ago, for there is no trace of flesh under the rotted and
+tattered remains of their clothing.  The back door is open.    
+~
+502 520 0
+D1
+~
+~
+0 -1 50236
+D2
+~
+~
+0 -1 50238
+S
+#50238
+Back Yard~
+   This is a little yard just south of a broken-down hovel.  A wooden fence
+surrounds it, except for an opening to the south.  Beyond the fence, sea pines
+poke their twisted heads up through light mists.  The smell of salt air is
+unmistakable.    
+~
+502 512 2
+D0
+~
+~
+0 -1 50237
+D2
+~
+~
+0 -1 50239
+D3
+~
+gate~
+1 -1 12040
+S
+#50239
+Narrow Path~
+   Stunted pines and stinging brambles grow on either side of this north-south
+path.  It is difficult to see far due to the omnipresent salt-scented mist.  
+The mist seems to muffle all sounds as well, making it eerily silent.    
+~
+502 544 3
+D0
+~
+~
+0 -1 50238
+D2
+~
+~
+0 -1 50240
+S
+#50240
+Misty Inlet~
+   Salty mist drifts slowly across a brackish pool of water just to the south.
+Little twisted pine trees grow here and there in clumps among hardy grasses.  
+The ground feels somewhat sandy, and has a light color.  A path leads north and
+south.    
+~
+502 512 3
+D0
+~
+~
+0 -1 50239
+D2
+~
+~
+0 -1 50241
+S
+#50241
+Brackish Pool~
+   Peaceful water lies here in a shallow ocean inlet, overladen with a salty
+mist.  Treetops are just visible to the north, poking out of the rolling fog.
+An embankment is also visible in that direction.    
+~
+502 516 7
+D0
+~
+~
+0 -1 50240
+S
+#50242
+Secluded Meadow~
+   A wall of stone to the east and towering cypresses surround this place.  
+The land is higher here, and green grass grows in the limited sunlight.  A path
+leads north.    
+~
+502 0 2
+D0
+~
+~
+0 -1 50216
+S
+#50243
+A Pocket in the Void~
+   This is a small space in an infinite void.  Nothing much happens here.    
+~
+502 1769656 0
+D5
+~
+~
+0 -1 50242
+S
+#50244
+Between the Wrecks~
+   Tangled vines grow over the soggy, muddy ground of the bayou here, in a
+narrow spot between two wrecked ships.  To the south is an open area between
+the fore and aft decks of the western ship.  It is also possible to go north.
+~
+502 0 14
+D0
+~
+~
+0 -1 50202
+D2
+~
+~
+0 -1 50213
+S
+#50245
+Marsh~
+   Thickets of willows grow everywhere in this wide marsh.  The sounds of
+buzzing insects fill the air, but stranger bird calls can be heard from the
+east.  To the north, the land begins to slope upward toward nearby mountains.
+Low-hanging mists surround the area.    
+~
+502 0 14
+D0
+~
+~
+0 -1 50246
+D1
+~
+~
+0 -1 50200
+S
+#50246
+Foothills~
+   These are the low-lying foothills of a mountain range that rises to the
+north.  It is misty here, and low, rounded pines grow on rocky outcroppings.  
+Game trails descend south into the mist.  A break in the mountains, possibly
+usable as a pass, is directly north of here.    
+~
+502 4 4
+D0
+~
+~
+0 -1 50247
+D2
+~
+~
+0 -1 50245
+S
+#50247
+Trail on a Mountainside~
+   This is the southern slope of a mountain range.  The foothills are just
+below, to the south.  A trail rises from them, then turns west here toward a
+pass through the mountains.  Tall, straight pines grow all around.  Broad
+layers of mist lie quietly over the land to the south, beyond which the endless
+sea is barely visible.    
+~
+502 0 5
+D2
+~
+~
+0 -1 50246
+D3
+~
+~
+0 -1 50248
+S
+#50248
+Mountain Pass~
+   A little-used path meanders among the ridges and low hills of this pass.  
+Tall mountains rise to the east and west, though the pass itself continues to
+the east, avoiding a deadly drop to the south.  A cold wind blows north.  It
+brings moisture laden with the scent of decaying plants and the barest hint of
+the sea.    
+~
+502 4 5
+D0
+~
+~
+0 -1 36301
+D1
+~
+~
+0 -1 50247
+S
+$~

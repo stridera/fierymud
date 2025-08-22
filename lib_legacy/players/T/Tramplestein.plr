@@ -1,0 +1,66 @@
+name: Tramplestein
+password: TrDBeiOFPH
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19687
+birthtime: 1597971037
+timeplayed: 43
+lastlogintime: 1597971080
+host: 073.100.152.009
+height: 40
+weight: 178
+base_height: 40
+base_weight: 178
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: xy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 27/26
+mana: 0/0
+move: 130/146
+damroll: 4
+hitroll: 5
+strength: 97
+intelligence: 56
+wisdom: 70
+dexterity: 91
+constitution: 87
+charisma: 64
+experience: 1
+quit_reason: 5
+saveroom: 3043
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+$

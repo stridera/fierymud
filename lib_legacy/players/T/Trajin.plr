@@ -1,0 +1,116 @@
+name: Trajin
+password: Tr1hInY7o5
+currenttitle: (Elron's swimmer)
+prompt: <%hh(%HH) %vv(%VV)> <%aA> <%ih> <%df>%_<%t>:<%o>
+autoinvis: 0
+sex: 2
+class: 10
+race: 3
+level: 38
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18153
+birthtime: 1331261430
+timeplayed: 505791
+lastlogintime: 1368820089
+host: 184.042.031.241
+height: 41
+weight: 155
+base_height: 41
+base_weight: 155
+base_size: 2
+natural_size: 2
+alignment: 996
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnouxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 450/412
+mana: 144/144
+move: 144/144
+damroll: 4
+hitroll: 5
+strength: 92
+intelligence: 87
+wisdom: 84
+dexterity: 92
+constitution: 86
+charisma: 74
+cash: 7 359 1404 1507
+bank: 223 9783 32720 17317
+experience: 8636646
+clan: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+401 428
+402 410
+403 430
+404 422
+410 410
+411 430
+415 420
+416 420
+421 423
+428 50
+431 50
+434 50
+438 160
+443 420
+444 420
+463 410
+464 422
+465 410
+466 410
+467 420
+468 401
+0 0
+trophy:
+1 16312 1.000000
+1 43020 1.000000
+1 58302 1.000000
+1 58301 2.000000
+1 58303 4.000000
+1 58304 4.000000
+1 5201 1.000000
+1 5210 3.000000
+1 5200 4.000000
+1 5211 3.000000
+1 5121 2.000000
+1 5122 2.000000
+1 5120 9.000000
+1 5104 4.000000
+1 5101 2.000000
+1 5103 9.000000
+1 5102 12.000000
+1 5100 2.000000
+1 5408 10.000000
+1 5420 8.000000
+1 12005 3.000000
+0 0 0
+aliases:
+mh mount horse
+khum kill humanoid
+gfb g food basket
+ks kill skeleton
+ef eat food
+kr kill rabbit
+kh kill hedgehog
+gaac g all.coins all.corpse
+kg kill gremlin
+db drink skin
+gac get all corpse
+df drink fountain
+bh b hedgehog
+bg b gremlin
+br b rabbit
+bhum b humanoid
+invi q invisibility
+gfc g food corpse
+gafc g all.food all.corpse
+brep b reptilian
+0

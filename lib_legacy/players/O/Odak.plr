@@ -1,0 +1,80 @@
+name: Odak
+password: OdrPehHMey
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19253
+birthtime: 1506548713
+timeplayed: 3949
+lastlogintime: 1506553098
+host: 169.241.065.029
+height: 38
+weight: 50
+base_height: 38
+base_weight: 50
+base_size: 1
+natural_size: 1
+alignment: 908
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 22/22
+mana: 1/0
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 76
+intelligence: 97
+wisdom: 100
+dexterity: 65
+constitution: 54
+charisma: 68
+experience: 3388
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 60
+424 54
+438 50
+443 50
+444 50
+447 58
+451 60
+452 50
+453 52
+459 50
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 8329 0.535714
+1 8331 0.250000
+1 8330 0.375000
+1 18002 0.111111
+1 18007 0.222222
+0 0 0
+mem:
+5 1 8
+0 0 0
+aliases:
+bh cast 'burning hands' $*
+mc 'minor creation' $*
+0

@@ -1,0 +1,344 @@
+CircleMUD v3.0 Shop File~
+#10012~
+3025 0
+3024 0
+3023 0
+3022 0
+3021 0
+3020 0
+30014 0
+30015 0
+3225 0
+-1
+1.80
+0.10
+5
+7
+6
+-1
+%s Sorry, I don't stock that item.~
+%s You don't seem to have that.~
+%s I don't trade in such items.~
+%s I can't afford that!~
+%s You are too poor!~
+%s, Thanks for the deal.~
+%s, Good doing business with you.~
+0
+2
+10020
+0
+10012
+-1
+0
+28
+0
+0
+#10027~
+1106 0
+1105 0
+1104 0
+1103 0
+1102 0
+1101 0
+1100 0
+1024 0
+-1
+1.80
+0.12
+9leather
+11leather
+9hide
+11hide
+9fur
+11fur
+9feather
+11feather
+9feathers
+11feathers
+-1
+%s Sorry, I don't stock that item.~
+%s You don't seem to have that.~
+%s I don't trade in such items.~
+%s I can't afford that!~
+%s You are too poor!~
+%s, Thanks for the deal.~
+%s, Good doing business with you.~
+0
+2
+10021
+0
+10027
+-1
+0
+28
+0
+0
+#10029~
+10029 0
+10028 0
+3001 0
+10038 0
+10027 0
+-1
+1.75
+0.13
+17
+15
+-1
+%s Nope, I don't got none of those.~
+%s Hey what are you trying to pull, you don't have any.~
+%s Come on, this is a pub. I don't sell that kinda stuff.~
+%s I don't carry that kinda cash!~
+%s I ain't runnin' a charity here!~
+%s Here you go... sucker.~
+%s Next!~
+0
+2
+10022
+0
+10029
+-1
+0
+28
+0
+0
+#10031~
+3030 0
+3031 0
+3032 0
+1154 0
+10037 0
+58820 0
+-1
+1.85
+0.09
+25
+1
+15
+21
+22
+9
+11
+19
+8
+-1
+%s I am all out. Next shipment in a week.~
+%s Come on I have things to do!~
+%s What! I don't trade in those goods.~
+%s I am just starting out here, I don't have that kind of cash.~
+%s Come back when you have some money.~
+%s It is a pleasure doing business with you.~
+%s Alright a sale, I am on my way.~
+0
+2
+10024
+0
+10031
+-1
+0
+28
+0
+0
+#10035~
+10032 0
+10031 0
+10030 0
+-1
+1.75
+0.20
+-1
+%s Sorry, I am all out.~
+%s Dear, you don't have any.~
+%s I have no use for that. Sorry.~
+%s I can't, I am a simple woman with very little money.~
+%s Dear, you can't afford that.~
+%s Thank you for the good deal. I shall remember it.~
+%s Enjoy, they are made with lots of love and care.~
+0
+2
+10023
+0
+10035
+-1
+0
+28
+0
+0
+#10037~
+10035 0
+10033 0
+10034 0
+-1
+1.80
+0.14
+9fur
+11fur
+9feathers
+11feathers
+9feather
+11feather
+-1
+%s Perhaps you should use the 'list' command to views the items I sell.~
+%s Surely you are mistaken traveller. You have no such item to sell.~
+%s I have no use for such trinkets.~
+%s I do not have the resources to purchase such a fine item.~
+%s Leave my sight peasant! Return with the proper funds.~
+%s Ah! Such exquisite craftsmanship.~
+%s Well chosen traveller, you have fine taste.~
+0
+2
+10025
+0
+10037
+-1
+0
+28
+0
+0
+#10049~
+10013 0
+10012 0
+3050 0
+3058 0
+3059 0
+3053 0
+49035 0
+3027 0
+3253 0
+3263 0
+320 0
+-1
+2.10
+0.10
+3
+4
+2
+10
+26
+-1
+%s This supposed to be some kind of joke?~
+%s Listen I play the pranks around here!~
+%s I don't want your junk.~
+%s If I had the money, it would be mine.~
+%s What are you gonna pay with, a smile?~
+%s Good deal chump, stop again some time.~
+%s Nice buy sucker, don't complain to me if it breaks.~
+0
+2
+10027
+0
+10049
+-1
+0
+28
+0
+0
+#10050~
+1152 0
+1151 0
+1150 0
+-1
+1.60
+0.15
+11shield
+9shield
+9buckler
+11buckler
+-1
+%s Sorry, I can't help you with that.~
+%s I don't see that item, what are you trying to sell?~
+%s I am a shield guy, I deal only in fine shields.~
+%s Sorry friend, I am tapped out.~
+%s You don't have that kinda money.~
+%s Wow! Now that is nice!~
+%s Good doing business with you, drop by again and say hi!~
+0
+2
+10026
+0
+10050
+-1
+0
+28
+0
+0
+#10054~
+-1
+1.80
+0.90
+-1
+%s Sorry, I don't stock that item.~
+%s You don't seem to have that.~
+%s I don't trade in such items.~
+%s I can't afford that!~
+%s You are too poor!~
+%s, Thanks for the deal.~
+%s, Good doing business with you.~
+0
+3
+10029
+0
+10054
+-1
+0
+28
+0
+0
+#10056~
+-1
+9.00
+9.00
+-1
+%s Sorry, I don't stock that item.~
+%s You don't seem to have that.~
+%s I don't trade in such items.~
+%s I can't afford that!~
+%s You are too poor!~
+%s, Thanks for the deal.~
+%s, Good doing business with you.~
+0
+3
+10029
+0
+10056
+-1
+0
+28
+0
+0
+#10058~
+617 0
+620 0
+626 0
+634 0
+633 0
+641 0
+645 0
+646 0
+647 0
+648 0
+651 0
+667 0
+-1
+1.10
+0.90
+12map
+-1
+%s Sorry, I don't stock that item.~
+%s You don't seem to have that.~
+%s I don't trade in such items.~
+%s I can't afford that!~
+%s You are too poor!~
+%s Thanks for the deal.~
+%s Good doing business with you.~
+0
+0
+602
+0
+10058
+-1
+0
+28
+0
+0
+$~

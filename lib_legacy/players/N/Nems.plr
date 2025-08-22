@@ -1,0 +1,108 @@
+name: Nems
+password: NekMxEvdSz
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 9
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17870
+birthtime: 1301354757
+timeplayed: 64114
+lastlogintime: 1328748355
+host: 076.111.037.080
+height: 61
+weight: 128
+base_height: 61
+base_weight: 128
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 4
+lastlevel: 0
+hitpoints: 73/73
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 80
+intelligence: 92
+wisdom: 91
+dexterity: 79
+constitution: 68
+charisma: 51
+cash: 0 36 167 219
+bank: 0 25 416 389
+experience: 198000
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 50
+416 50
+423 140
+424 139
+438 130
+443 50
+444 55
+451 67
+457 138
+458 71
+459 130
+460 122
+462 50
+463 130
+466 50
+0 0
+trophy:
+1 18004 3.000000
+1 18003 8.000000
+1 18005 3.000000
+1 18007 2.000000
+1 8023 1.000000
+1 2005 0.500000
+0 0 0
+mem:
+206 1 5
+16 0 5
+16 0 5
+84 0 5
+84 0 5
+84 0 5
+0 0 0
+aliases:
+bar cast 'cure light' barrzy
+ddd cast 'cause light'
+dd cast 'cause light' $1
+rpm rest;pray;med
+gac get all corpse
+ggc get coins corpse;get all.gem corpse
+who who -w
+m look map
+le cast 'lesser endurance'
+cl cast 'cure light'
+cln cast 'cure light' Nemla
+clb cast 'cure light' blanka
+0

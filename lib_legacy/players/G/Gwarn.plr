@@ -1,0 +1,96 @@
+name: Gwarn
+password: GwL2qIjRVP
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20817
+birthtime: 1721793410
+timeplayed: 2868
+lastlogintime: 1721825267
+host: 174.224.116.072
+height: 37
+weight: 148
+base_height: 37
+base_weight: 148
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: ahnoxBC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 43/43
+mana: 1/0
+move: 131/136
+damroll: 3
+hitroll: 6
+strength: 85
+intelligence: 73
+wisdom: 66
+dexterity: 100
+constitution: 91
+charisma: 48
+cash: 0 3 67 108
+experience: 33000
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 11700/18000
+-1 0
+skills:
+401 80
+403 80
+408 74
+415 50
+416 50
+421 61
+438 50
+443 50
+444 55
+463 50
+464 60
+465 50
+493 80
+0 0
+trophy:
+1 8014 1.000000
+1 8020 1.000000
+1 36002 2.000000
+1 36003 3.000000
+1 36001 4.000000
+1 8023 2.000000
+1 8001 2.000000
+1 8010 4.000000
+1 8016 2.000000
+1 8012 2.000000
+1 8015 4.000000
+1 8011 4.000000
+1 8000 1.000000
+1 8013 2.000000
+1 8002 7.000000
+0 0 0
+tells:
+1721794535 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1721794773 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1721794792 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1721795084 @WA half-elven maid@W tells you, 'If you want to rent a room, please go upstairs to the Reception Area.@W'@0
+$
+gossips:
+1721824173 Discord gossips, 'Daedela: Hey there'
+1721824193 Chinok gossips, 'hi Gwarn'
+1721824395 Discord gossips, 'Daedela: No'
+$
+aliases:
+gac get all corpse
+hh first aid
+ss scan
+0

@@ -1,0 +1,399 @@
+#10300
+pendant spirit-crystal-pendant pale-blue-crystal silver-chain~
+a spirit crystal pendant~
+A pale blue crystal on a silver chain rests here.~
+~
+8 0 5 1
+0 0 0 0 0 0 0
+0.70 0 0 0 0 0 0 0
+E
+pendant spirit-crystal-pendant pale-blue-crystal silver-chain~
+It shimmers of its own light, constantly reflecting the emotional state of its
+owner.  The setting is a delicate filgiree net that encases the crystal and
+keeps it safe while still allowing it to be visible.  A strange energy shocks
+anyone who tries to touch it directly unless the crystal is their own.    ~
+#10301
+towel white-towel head-towel~
+a white towel~
+A white towel is folded here.~
+~
+9 536870912 17 1
+0 0 0 0 0 0 0
+0.80 500 10 0 0 0 0 0
+E
+white-towel head-towel cloth~
+This is a simple, fuzzy white towel.  It looks quite water-absorbant and is the
+kind of thing you'd want to wear around your head to keep your hair from
+getting soaked, or to dry off your hair in case it's already wet.  There's a
+small tag on one end that reads, "Property of Phoenix Feather Hot Springs".~
+#10302
+towel green-men's-towel green-mens-towel fabric~
+a green men's towel~
+A green towel has been tossed on the ground here.~
+~
+9 536870912 33 1
+0 0 0 0 0 0 0
+0.80 0 0 0 0 0 0 0
+E
+towel green-men's-towel green-mens-towel fabric~
+This is a large, fluffy towel dyed dark green.  Though it is well-made, it
+looks like it's seen plenty of use and has a slight sulfur smell from the
+mineral water.  Still, it would be good either to dry oneself off or to wear
+around the waist to preserve decency while bathing.  A small tag on one of the
+hems says "Phoenix Feather Hot Springs".~
+#10303
+towel light-blue-women's-towel light-blue-womens-towel light-blue-towel~
+a light blue women's towel~
+A neatly folded light blue towel has been left here.~
+~
+9 536870912 9 1
+0 0 0 0 0 0 0
+0.80 0 0 0 0 0 0 0
+E
+towel light-blue-women's-towel light-blue-womens-towel light-blue-towel~
+This cute towel is the pure blue of a winter sky.  Made of fine cotton, it
+would be ideal for covering oneself in the hot springs or for drying off
+afterwards.  Though well-used, it seems to be in good condition.  A white tag
+on the hem says, "Property of Phoenix Feather Hot Springs".~
+#10304
+mask demonic-mask frightening-mask~
+a demonic mask~
+A frightening mask is sitting here.~
+~
+8 49994240 131073 35
+2 0 0 0 0 0 0
+3.50 5000 100 0 0 0 0 0
+E
+mask demonic-mask frightening-mask~
+Made of beaten gold and shaped into the fearsome visage of a scowling demon,
+this mask is complete with curling white horns.  Sure to frighten anyone gazing
+upon it, the demon's face is both ugly and true to form.  Perhaps it was
+modeled after a real demon.~
+A
+13 5
+A
+4 1
+A
+27 1
+X
+243
+#10305
+lantern golden-lantern gold~
+a golden lantern~
+A golden lantern shines with a pale light here.~
+~
+1 528 16385 1
+0 100 100 0 0 0 0
+4.00 1000 100 0 0 0 0 0
+E
+golden-lantern~
+This lanters glows with a strange, almost dark light.  A brass shielding lets
+the user focus the light on one side or, by lowering it, allows the light to
+spread around and illuminate everything.  Though ancient, the goldwork is plain
+and the only decoration is a dragon etched on the handle.~
+#10306
+apple tasty-green-apple food~
+an apple~
+A tasty green apple rolls around on the floor.~
+~
+19 0 16385 0
+3 0 0 0 0 0 0
+0.20 0 0 0 0 0 0 0
+E
+apple tasty-green-apple food~
+It's a scrumptious-looking apple, dripping with yummy apple juice and crunching
+noisily when bitten into.  It looks quite fresh, and would surely taste
+excellent.  It's nice and round and has nary a wormhole, so what are you
+waiting for??  Eat it!    ~
+#10307
+glasses silver-trimmed-glasses~
+a pair of glasses~
+A pair of silver-trimmed glasses has been abandoned here.~
+~
+8 13549576 65537 40
+0 0 0 0 0 0 0
+0.10 500 5 0 0 0 0 0
+E
+glasses silver-trimmed-glasses~
+These finely ground lenses must be gnomish work, for they seem to be flawless.
+The rims are a thin silver and the nosepiece seems quite comfortable.  They
+would surely be a great help to someone who has no near-vision that wants to
+read a book or crochet or do anything else that requires them to see things
+close up.    ~
+A
+3 3
+A
+28 80
+A
+27 1
+X
+17
+#10308
+cloak tundra-cloak pile snowy-white-cloth~
+a tundra cloak~
+A pile of snowy white cloth has been carelessly dropped here.~
+~
+9 536870977 1025 25
+4 0 0 0 0 0 0
+8.00 5000 0 0 0 0 0 0
+E
+cloak tundra-cloak pile snowy-white-cloth~
+This finely woven cloak is made of pure white satin with cotton embroidery
+marking out an abstract bird symbol on the back which, though it is also in
+white, shows up in string light due to the difference in luster between the two
+fabrics.  Long ties at the neck can be used to fasten the cloak against the
+chill winds of the north.  It looks like it would also make great camoflauge in
+the snow.~
+A
+13 5
+A
+14 10
+A
+4 3
+#10309
+pitcher cool-water cool-drinking-water~
+a pitcher of cool water~
+A pitcher of cool drinking water sits on a shelf.~
+~
+23 536870928 0 1
+100 100 0 0 0 0 0
+105.00 0 0 0 0 0 0 0
+E
+pitcher cool-water cool-drinking-water~
+A sizeable pitcher made of some dwarven alloy that won't rust or tarnish even
+in the steam from the hot springs sits on a stone shelf.  Condensation has
+formed on the outside of the pitcher, and it has a little cap to prevent the
+water inside from evaporating.  It must be magically cooled as well, but then,
+the resort IS owned and managed by a cryomancer.~
+#10310
+spoon master-chef's-wooden-spoon slender-wooden-spoon master-chefs-wooden-spoon~
+the master chef's wooden spoon~
+A slender wooden spoon has been lost here.~
+~
+5 536870912 16385 1
+0 1 2 5 0 0 0
+0.20 0 0 0 0 0 0 0
+E
+spoon master-chef's-wooden-spoon slender-wooden-spoon master-chefs-wooden-spoon~
+An ordinary kitchen utensil...  Or is it?~
+A
+11 5
+#10311
+fish meat tasty bit white polar-trout-filet food~
+a filet of polar trout~
+A tasty bit of white fish meat is sitting here.~
+~
+19 0 1 1
+5 0 0 0 0 0 0
+0.40 100 0 0 0 0 0 0
+E
+fish meat tasty bit white polar-trout-filet food~
+It's a bit of meat from the elusive polar trout.  Fry it up with dill or mince
+it into pies for the best flavor.  It's said that te natives of Odaishyozen eat
+raw fish with rice, but it would probably taste better cooked.~
+#10312
+wrap brown-fur-wrap pile~
+a brown fur wrap~
+A pile of brown fur sits on the ground.~
+~
+9 536870912 1025 20
+5 0 0 0 0 0 0
+6.00 500 1 0 0 0 0 0
+E
+brown-fur-wrap pile~
+A style popular in Ickle, this length of warm fur looks like it's made
+fromgrizzly bear hide, which is excellent at keeping in the warmth.  On the
+inside is a small sigil burned into the leather: a stylized four-pointed sun,
+symbol of the tribe of the Bear in the Canyons.~
+#10314
+yukata light-cotton-yukata cotton-robe~
+a light cotton yukata~
+A neatly folded cotton robe rests here.~
+Nothing.~
+9 536870912 9 25
+7 0 0 0 0 0 0
+1.30 700 0 0 0 0 0 0
+E
+yukata light-cotton-yukata cotton-robe~
+This light blue robe is decorated with a feather pattern, identifying it as
+belonging to the Phoenix Feather Resort west of Ickle.  The style is familiar
+to anyone who knows the customs of Odaishyozen: it's meant to be worn in the
+same way as a kimono.  Because it's made of cotton rather than silk and
+designed for more casual wear, this style of robe is called a yukata.  It was
+probably designed by someone from the resort who visited the Emerald Isle.~
+A
+4 3
+#10315
+emerald brilliant-emerald green-gem-remarkable-beauty beautiful~
+a brilliant emerald~
+A green gem of remarkable beauty rests on the floor.~
+~
+1 65 2113537 65
+0 -1 -1 0 0 0 0
+0.02 30000 0 0 0 0 512 0
+E
+emerald brilliant-emerald green-gem-remarkable-beauty beautiful~
+It's a large emerald, about the size of a bean.  It glows with a brilliant
+green light, illuminating the area around it.  It is undoubtedly enchanted,
+since it's warm to the touch and gives off a faint sense of well-being to
+anyone who picks it up.  Looking closely, the very faint outline of a hawk is
+visible on one facet.~
+A
+13 10
+A
+14 50
+A
+27 3
+A
+17 2
+#10316
+mug phoenix-feather-hot-springs~
+a mug~
+A mug with the insignia of Phoenix Feather Hot Springs is sitting here.~
+~
+17 0 1 1
+6 0 5 1 0 0 0
+0.30 15 0 0 0 0 0 0
+E
+insignia~
+The symbol is that of a single red feather slanting diagonally against a
+snowflake.~
+E
+mug phoenix-feather-hot-springs~
+It's a large cermaic mug with enough room for a few drinks of liquid.  It's
+marked with the insignia of Phoenix Feather Hot Springs.~
+#10317
+mug phoenix-feather-hot-springs-mug~
+a mug~
+A mug with the insignia of Phoenix Feather Hot Springs is sitting here.~
+~
+17 0 1 1
+8 8 12 0 0 0 0
+0.30 15 0 0 0 0 0 0
+E
+mug phoenix-feather-hot-springs~
+It's a large cermaic mug with enough room for a few drinks of liquid.  It's
+marked with the insignia of Phoenix Feather Hot Springs.~
+E
+insignia~
+The symbol is that of a single red feather slanting diagonally against a
+snowflake.~
+#10318
+mug phoenix-feather-hot-springs-mug~
+a mug~
+A mug with the insignia of Pheonix Feather Hot Springs is sitting here.~
+~
+17 0 1 1
+8 8 18 0 0 0 0
+0.30 20 0 0 0 0 0 0
+E
+mug phoenix-feather-hot-springs~
+It's a large cermaic mug with enough room for a few drinks of liquid.  It's
+marked with the insignia of Phoenix Feather Hot Springs.~
+E
+insignia~
+The symbol is that of a single red feather slanting diagonally against a
+snowflake.~
+#10319
+mug phoenix-feather-hot-springs~
+a mug~
+A mug with the insignia of Phoenix Feather Hot Springs is sitting here.~
+~
+17 0 1 1
+6 6 21 0 0 0 0
+0.30 21 0 0 0 0 0 0
+E
+insignia~
+The symbol is that of a single red feather slanting diagonally against a
+snowflake.~
+E
+mug phoenix-feather-hot-springs~
+It's a large cermaic mug with enough room for a few drinks of liquid.  It's
+marked with the insignia of Phoenix Feather Hot Springs.~
+#10320
+mug phoenix-feather-hot-springs~
+a mug~
+A mug with the insignia of Phoenix Feather Hot Springs is sitting here.~
+~
+17 0 1 1
+8 8 28 0 0 0 0
+0.30 25 0 0 0 0 0 0
+E
+mug phoenix-feather-hot-springs~
+It's a large cermaic mug with enough room for a few drinks of liquid.  It's
+marked with the insignia of Phoenix Feather Hot Springs.~
+E
+insignia~
+The symbol is that of a single red feather slanting diagonally against a
+snowflake.~
+#10321
+cup small-cup shot-glass-cup~
+a small cup~
+A small cup about the size of a shot glass sits here.~
+~
+17 0 1 1
+4 4 29 0 0 0 0
+0.10 35 0 0 0 0 0 0
+E
+cup small-cup shot-glass-cup~
+This cute little cup is made of white porcelain, delicately painted with
+snowflakes.  The white and blue coloring is strongly reminiscent of
+Odaishyozen.  Perhaps it was imported, though the potential cost of bringing
+pottery across most of Caelia is staggering.~
+#10322
+glass tall-glass handle proud~
+a tall glass~
+A tall glass with a handle sits here proudly.~
+~
+17 0 1 1
+16 16 30 0 0 0 0
+0.30 45 0 0 0 0 0 0
+E
+glass tall-glass handle proud~
+Much taller than a regular drinking glass, it has a base and stem and handle
+like a mug.  Perhaps it's made to hold hot liquids?~
+#10323
+teacup cup painted phoenix~
+a teacup~
+A teacup painted with a phoenix sits here.~
+~
+17 0 1 1
+6 6 33 0 0 0 0
+0.20 35 0 0 0 0 0 0
+E
+teacup cup painted phoenix~
+This beautiful porcelain teacup is painted with a phoenix in the style of
+Odaishyozen.  Its handle is small enough that it doesn't detract from the
+artistry, but large enough that a hot drink could be consumed without any
+danger of burning one's fingers.~
+#10324
+teacup painted phoenix cup~
+a teacup~
+A teacup painted with a phoenix sits here.~
+~
+17 0 1 1
+6 6 34 0 0 0 0
+0.20 35 0 0 0 0 0 0
+E
+teacup cup phoenix painted~
+This beautiful porcelain teacup is painted with a phoenix in the style of
+Odaishyozen.  Its handle is small enough that it doesn't detract from the
+artistry, but large enough that a hot drink could be consumed without any
+danger of burning one's fingers.~
+#10325
+tome aqua-mundi gold-trimmed-leather-bound-tome spells book~
+Aqua Mundi~
+A gold-trimmed leather-bound tome of spells rests on a nearby shelf.~
+~
+26 0 16385 0
+250 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+tome aqua-mundi gold-trimmed-leather-bound-tome spells book~
+This softly glowing book contains some of the most miraculous and dangerous
+magic known to Cryomancers.  Embossed with gold and written with golden ink,
+the magic radiating from the tome is palpable.  Flipping through it, the book
+has many long-lost spells like To Bring Winter on Water, Fisher of the Polar
+Deep, Blood Bender, Phantom's Gondola, the Burning Rain of Death, Watergate,
+and more.~
+$~

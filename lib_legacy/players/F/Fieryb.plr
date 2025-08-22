@@ -1,0 +1,93 @@
+name: Fieryb
+password: Fi1tNNqClN
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 28
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20833
+birthtime: 1725842622
+timeplayed: 8348
+lastlogintime: 1725910190
+host: 073.184.140.125
+height: 76
+weight: 276
+base_height: 76
+base_weight: 276
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 2
+lastlevel: 0
+hitpoints: 46/43
+mana: 1/0
+move: 150/150
+damroll: 3
+hitroll: 3
+strength: 87
+intelligence: 71
+wisdom: 64
+dexterity: 94
+constitution: 89
+charisma: 62
+cash: 0 4 6 67
+bank: 0 1 1 1
+experience: 16500
+quit_reason: 3
+saveroom: 0
+skills:
+204 1000
+401 50
+403 51
+408 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+455 50
+463 50
+464 52
+465 50
+488 50
+493 50
+0 0
+trophy:
+1 8015 1.000000
+1 8001 2.000000
+1 8022 1.000000
+1 8000 1.000000
+1 8016 2.000000
+1 8012 1.000000
+1 8011 2.000000
+1 8010 2.000000
+1 51900 1.000000
+0 0 0
+tells:
+1725858390 @WBeowyn@W tells you, 'I am afraid I do not have that in stock right now.@W'@0
+1725858472 @WBeowyn@W tells you, 'I am afraid I do not have that in stock right now.@W'@0
+1725858478 @WBeowyn@W tells you, 'I am afraid I do not have that in stock right now.@W'@0
+1725858581 @WShauna@W tells you, 'If you don't see it I don't have it.@W'@0
+1725858590 @WShauna@W tells you, 'If you don't see it I don't have it.@W'@0
+1725858597 @WShauna@W tells you, 'If you don't see it I don't have it.@W'@0
+1725860006 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1725860112 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1725860158 @WShauna@W tells you, 'If you don't see it I don't have it.@W'@0
+1725860165 @WShauna@W tells you, 'What do you want to buy?@W'@0
+$
+gossips:
+1725842730 Chinok gossips, 'welcome Fieryb'
+1725845736 Chinok gossips, 'gratz on level 2 Fieryb!'
+1725845763 Chinok gossips, 'if you need ay help or advice, just yell'
+$

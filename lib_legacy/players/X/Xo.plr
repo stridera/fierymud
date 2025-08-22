@@ -1,0 +1,121 @@
+name: Xo
+password: Xo/.rUAeVt
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 30
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19441
+birthtime: 1557372158
+timeplayed: 110976
+lastlogintime: 1737834924
+host: 067.167.192.166
+height: 85
+weight: 260
+base_height: 85
+base_weight: 260
+base_size: 3
+natural_size: 3
+alignment: -204
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 10053
+thirst: 20
+lastlevel: 0
+hitpoints: 462/402
+mana: 90/90
+move: 168/171
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 52
+wisdom: 69
+dexterity: 92
+constitution: 96
+charisma: 50
+cash: 123 2647 7207 1
+bank: 50 0 0 0
+experience: 5379996
+quit_reason: 1
+saveroom: 10053
+skills:
+402 52
+404 350
+407 350
+411 350
+415 50
+416 50
+419 1000
+420 74
+421 302
+427 1000
+430 50
+431 50
+434 328
+438 50
+443 50
+444 50
+463 50
+464 207
+465 304
+466 50
+467 50
+468 60
+0 0
+trophy:
+1 18552 0.333333
+1 18518 0.666667
+1 18501 0.666667
+1 18551 1.000000
+1 18515 0.333333
+1 18520 0.666667
+1 18519 1.000000
+1 18507 0.666667
+1 18510 0.333333
+1 17209 0.666667
+1 17204 1.666667
+1 4119 0.666667
+1 4120 0.666667
+1 4121 0.666667
+1 4110 0.333333
+1 4107 0.333333
+1 4109 0.333333
+1 4103 0.333333
+1 4104 0.333333
+1 4102 1.666667
+1 4101 0.333333
+0 0 0
+tells:
+1737512124 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1737554952 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737560218 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1737562672 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737562684 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737678042 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1737678046 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1737739162 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737739163 @WBigby@W tells you, 'You can only hold 3.@W'@0
+1737739163 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1737563325 Tynder gossips, 'Hi Beldawk!'
+1737563341 Beldawk gossips, 'hi'
+1737563354 Tynder gossips, 'Are you new to Fiery?'
+1737563366 Beldawk gossips, 'na one of the many awks'
+1737563377 Tynder gossips, 'Well this is awk.'
+1737563388 Chinok gossips, 'lol'
+1737563439 Beldawk gossips, 'ya i do AWKward very'
+1737564013 Unoliph gossips, 'mutter got all excited for my new ring its !ranger'
+1737564518 Yote gossips, 'aww dang..'
+1737739071 Thort gossips, 'yawwwwwn'
+$
+aliases:
+who who -w
+0

@@ -1,0 +1,112 @@
+name: Kinto
+password: Kigl8m8Jj3
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17581
+birthtime: 1267116943
+timeplayed: 194553
+lastlogintime: 1312702466
+host: 070.184.120.151
+height: 70
+weight: 172
+base_height: 70
+base_weight: 172
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: ghnoxzC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1227/1227
+mana: 980/980
+move: 134/134
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 74
+wisdom: 80
+dexterity: 86
+constitution: 94
+charisma: 62
+cash: 931 7618 15778 7898
+experience: 116386599
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 80
+407 110
+411 50
+412 1000
+415 50
+416 50
+420 1000
+421 1000
+422 1000
+430 60
+431 50
+434 52
+438 50
+441 1000
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 1000
+473 50
+0 0
+trophy:
+1 5523 1.000000
+1 5522 4.000000
+1 5521 3.500000
+1 5520 3.000000
+1 5519 4.000000
+1 5518 4.000000
+1 5517 3.500000
+1 5516 4.000000
+1 5515 4.000000
+1 5514 4.000000
+1 5513 4.000000
+1 18517 0.500000
+1 18513 1.000000
+1 18511 1.000000
+1 18507 0.500000
+1 18509 0.500000
+1 18510 1.000000
+1 8020 0.500000
+1 8010 1.000000
+1 8000 0.500000
+1 8012 0.500000
+0 0 0
+aliases:
+hh hitall all
+aa kill lizard
+z kill bloody
+` fol deax
+`` group deax
+- level gain
+0 enter well
+9 tell petree well
+qq kill woman
+, tell remorhaz hi
+h hitall all
+dd drink skin
+a hital all
+q put all.gem sack
+1 give crushed marka
+2 give dust marka
+0

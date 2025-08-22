@@ -1,0 +1,4300 @@
+#39001
+Off the Shore~
+   Directly behind you, enshrouded in misty whisps of blue-grey fog, lies the
+familar sanctuary of the mainland.  The run-down streets, and tired buildings
+of Specula seem safe and comforting in the face of the awesome ocean spread out
+before you.  The panoramic views that enticed you from the beach are now more
+than a little frightening - yet still beautiful.  The currents dictate your
+passage here: South takes you out to sea, while North carries you back towards
+safety and the shore.    ~
+390 4 7
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39002
+S
+#39002
+Far Off the Coast of Specula~
+   A distant smoky mirage is all that can be seen of the now far-off shoreline
+to your North.  Dominating your field of view is the enormous sea of fog and
+water that seems infinite from your vantage point here among the waves.  To
+your West are dangerous and impassable rocks, and nothing but salt-water lies
+to your North, South and East.    ~
+390 0 7
+D0
+Faint lights and bizarre shapes possibly denote land.~
+~
+0 -1 39001
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39003
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39004
+S
+#39003
+Off the Coast of Specula~
+   A distant smoky mirage is all that can be seen of the now far-off shoreline
+behind you.  Dominating your field of view is the enormous sea of fog and water
+that seems infinite from your vantage point here amongst the waves.  To your
+North and East are dangerous and impassable rocks, and nothing but salt-water
+lies to the South and West.    ~
+390 0 7
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39005
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39002
+S
+#39004
+Among the Waves of the Blue Fog Sea~
+   A thin misty line to the North could possibly be land, but your eye is drawn
+to other things: to the fiery sun above, to the crashing waves around you, and
+to the countless variations of brilliantly coloured aquatic life swarming below
+the surface of the clear green water.  A dangerous reef lies to your West and
+open sea greets you in every other direction.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39002
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39005
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39009
+S
+#39005
+Among the Waves of the Blue Fog Sea~
+   A thin misty line to the North could possibly be land, but your eye is drawn
+to other things: to the fiery sun above, to the crashing waves around you, and
+to the countless variations of brilliantly coloured aquatic life swarming below
+the surface of the clear green water.  The open sea greets you in every
+direction.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39003
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39006
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39010
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39004
+S
+#39006
+Among the Waves of the Blue Fog Sea~
+   A thin misty line far to the North could be land, but your eye is drawn to
+other things: to the fiery sun above to the crashing waves around you, and to
+the countless variations of brilliantly coloured aquatic life swarming just
+below the surface of the clear green water.  A dangerous reef lies to your
+North, and open sea greets you in every other direction.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39007
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39011
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39005
+S
+#39007
+Among the Waves of the Blue Fog Sea~
+   A thin misty line far to the North could be land, but your eye is drawn to
+other things: to the fiery sun above to the crashing waves around you, and to
+the countless variations of brilliantly coloured aquatic life swarming just
+below the surface of the clear green water.  A dangerous reef lies to your
+North, and open sea greets you in every other direction.    ~
+390 0 7
+D0
+~
+~
+0 0 36135
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39006
+S
+#39008
+Off the Reefs~
+   To your West and North lie the Great Reefs: treacherous and impassable rocks
+known as the "Sailor's Bane".  Barely visible far off to your South-West shines
+a great green emerald jutting from the sea to sparkle in the sun - Perhaps
+landfall could be made on this fabulous isle?  To the South and East the great
+ocean stretches on into oblivion.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39009
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39013
+S
+#39009
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39004
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39010
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39014
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39008
+S
+#39010
+The Blue Fog Sea~
+   Before you and on all sides lies a vast expanse of cool colours.  Where your
+eyes blur and the horizon begins, the greys, the greens, and the blues of the
+ocean blend into the sky.  Struck by the beauty and by the sheer immensity of
+your surroundings, you feel unimportant, you feel insignificant, and most of
+all, you feel so terribly vulnerable.  North, South, East, West, it doesn't
+seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39005
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39011
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39015
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39009
+S
+#39011
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39006
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39016
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39010
+S
+#39012
+Off the Reefs~
+   To your West and North lie the Great Reefs: treacherous and impassable rocks
+known as the "Sailor's Bane".  Barely visible far off to your South-West shines
+a great green emerald jutting from the sea to sparkle in the sun - Perhaps
+landfall could be made on this fabulous isle?  To the South and East the great
+ocean stretches on into oblivion.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39013
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39018
+S
+#39013
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39008
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39014
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39019
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39012
+S
+#39014
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39009
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39015
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39020
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39013
+S
+#39015
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39010
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39016
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39021
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39014
+S
+#39016
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39011
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39022
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39015
+S
+#39017
+Bordering the Great Reefs~
+   To your North, South, and West, lie the Great Reefs: treacherous and
+impassable rocks known as the "Sailor's Bane".  Barely visible past the reefs
+is the "Shining City" of Odaishyozen.  With the sun beating down, it appears to
+be a great emerald on the face of the huge volcano that forms the island.  If
+only the reef wasn't directly in your path, perhaps you could make your way to
+the jungle that spreads across the north face of the island.  As it is, you can
+only return East to the great emptiness of the ever-present sea.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39018
+S
+#39018
+Off the Rocks~
+   Great shards of rock jut violently from the sea to your South as the Great
+Reefs continue in that direction.  Still further to the South is the Eastern
+face of a fantastically beautiful island.  From here you can only see the steep
+cliff-like rocks that are it's border, but you have heard many a tale of the
+isle's natural beauty in both flora and fauna.  If the rocks did not mar your
+path, perhaps you could witness these sights yourself.  As it is you can only
+sail on to the North, West, and East, following the sun, or maybe a star in
+your travels.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39012
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39019
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39017
+S
+#39019
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39013
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39020
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39026
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39018
+S
+#39020
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39014
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39021
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39027
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39019
+S
+#39021
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39015
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39022
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39028
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39020
+S
+#39022
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39016
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39023
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39029
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39021
+S
+#39023
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39030
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39022
+S
+T 1500
+T 1502
+T 1503
+#39024
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39025
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39032
+S
+#39025
+Off the Coast of Fiery Island~
+   Treacherously beautiful, brilliantly coloured coral reefs surround you to
+the North and East.  Almost as if they were designed to, the reefs form a
+protective barrier around the paradise-like isle that lies to your distant
+East.  Beyond the coral, the island reaches beyond the grasp of the sea to
+stretch towards the sky in the shape of a great, foreboding, volcanic mound.  
+Despite the fiery nature of this tropical island, it is covered in luscious
+greenery and its soft beaches and wild jungles are curiously inviting.  
+Unfortunately, because of the sharp coral, the land is inaccessible from this
+part of the ocean.  To your South and West the waves continue, inevitably,to
+some far-off shore.    ~
+390 0 7
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39033
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39024
+S
+#39026
+Bordering the Great Reefs~
+   To your West and South lie the Great Reefs: treacherou and impassable rocks
+known as the "Sailor's Bane.  " Barely visible past the reefs is the "Shining
+City" of Odaishyozen.  With the sun beating down it appears to be a great
+emerald on the face of the huge volcano that forms the basis for the island.  
+If only the reef wasn't directly in your path, perhaps you could make your way
+to the jungle that is visible to your West, spreading across the North face of
+the island.  As it is, you can only return East or North to the great emptiness
+of the sea.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39019
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39027
+S
+#39027
+Off the Southern Tip of the Great Reefs~
+   Violent currents caused by the narrow water-passages of the Great Reefs to
+your South rage and spit as they course around you.  Seagulls circle noisily
+overhead and sea-breeze whips your hair into submission.  Nowhere in the great
+Blue Fog Sea nor in all the lands it touches is the great power of the goddess
+of nature so apparent.  Death on the rocks lies to the South and deathly
+tedious miles of homogenous ocean roll on in every other direction.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39020
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39028
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39026
+S
+#39028
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39021
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39029
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39035
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39027
+S
+#39029
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39022
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39030
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39036
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39028
+S
+#39030
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39023
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39031
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39037
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39029
+S
+#39031
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39032
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39038
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39030
+S
+#39032
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39024
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39033
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39039
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39031
+S
+#39033
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39025
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39034
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39040
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39032
+S
+#39034
+Off the Coast of Fiery Island~
+   Treacherously beautiful, brilliantly coloured coral reefs surround you to
+the North and East.  Almost as if they were designed to, the reefs form a
+protective barrier around the paradise-like isle that lies to your distant
+East.  Beyond the coral, the island reaches beyond the grasp of the sea to
+stretch towards the sky in the shape of a great, foreboding, volcanic mound.  
+Despite the fiery nature of this tropical island, it is covered in luscious
+greenery and its soft beaches and wild jungles are curiously inviting.  
+Unfortunately, because of the sharp coral, the land is inaccessible from this
+part of the ocean.  To your South and West the waves continue, inevitably, to
+some far-off shore.    ~
+390 0 7
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39041
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39033
+S
+#39035
+Off the Southern Tip of the Great Reefs~
+   Violent currents caused by the narrow water-passages of the Great Reefs to
+your West rage and spit as they course around you.  Seagulls circle noisily
+overhead and the sea-breeze whips your hair into wild submission.  Nowhere in
+the great Blue Fog Sea, nor in all the lands it touches, does the great power
+of the goddess of nature seem so apparent.  Death on the rocks lies to the
+West, and deathly tedious miles of homogenous ocean roll on in every other
+direction.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39028
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39036
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39043
+S
+#39036
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39029
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39037
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39044
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39035
+S
+#39037
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39030
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39038
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39045
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39036
+S
+#39038
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39031
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39039
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39046
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39037
+S
+#39039
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39032
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39040
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39047
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39038
+S
+#39040
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and
+theblues of the ocean blend into the sky.  Struck by the beauty and by the
+sheer immensity of your surroundings, you feel unimportant, you feel
+insignificant, and most of all, you feel so terribly vulnerable.  North, South,
+East, West, it doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39033
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39041
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39048
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39039
+S
+#39041
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39034
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39042
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39049
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39040
+S
+#39042
+Off the Coast of Fiery Island~
+   Treacherously beautiful, brilliantly coloured coral reefs surround you to
+the North and East.  Almost as if they were designed to, the reefs form a
+protective barrier around the paradise-like isle that lies to your distant
+East.  Beyond the coral, the island reaches beyond the grasp of the sea to
+stretch towards the sky in the shape of a great, foreboding, volcanic mound.  
+Despite the fiery nature of this tropical island, it is covered in luscious
+greenery and its soft beaches and wild jungles are curiously inviting.  
+Unfortunately, because of the sharp coral, the land is inaccessible from this
+part of the ocean.  To your South and West the waves continue, inevitably, to
+some far-off shore.    ~
+390 0 7
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39050
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39041
+S
+#39043
+Off the Southern Tip of the Great Reefs~
+   Violent currents caused by the narrow water-passages of the Great Reefs to
+your West rage and spit as they course around you.  Seagulls circle noisily
+overhead and the sea-breeze whips your hair into wild submission.  Nowhere in
+the great Blue Fog Sea, nor in all the lands it touches, does the great power
+of the goddess of nature seem so apparent.  Death on the rocks lies to the West
+and deathly tedious miles of homogenous ocean roll on in every other direction.
+  ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39035
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39044
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39053
+S
+#39044
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39036
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39045
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39054
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39043
+S
+#39045
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39037
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39046
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39055
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39044
+S
+#39046
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39038
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39047
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39056
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39045
+S
+#39047
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39039
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39048
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39057
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39046
+S
+#39048
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39040
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39049
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39058
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39047
+S
+#39049
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the
+sheerimmensity of your surroundings, you feel unimportant, you feel
+insignificant, and most of all, you feel so terribly vulnerable.  North, South,
+East, West, it doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39041
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39050
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39059
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39048
+S
+#39050
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39042
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39051
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39060
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39049
+S
+#39051
+Off the Coast of Fiery Island~
+   Treacherously beautiful, brilliantly coloured coral reefs surround you to
+the North and East.  Almost as if they were designed to, the reefs form a
+protective barrier around the paradise-like isle that lies to your distant
+East.  Beyond the coral, the island reaches beyond the grasp of the sea to
+stretch towards the sky in the shape of a great, foreboding, volcanic mound.  
+Despite the fiery nature of this tropical island, it is covered in luscious
+greenery and its soft beaches and wild jungles are curiously inviting.  
+Unfortunately, because of the sharp coral, the land is inaccessible from this
+part of the ocean.  To your South and West the waves continue, inevitably, to
+some far-off shore.    ~
+390 0 7
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39061
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39050
+S
+#39052
+Off the Cliffs of the Emerald Isle~
+   A great wall of vertical rock slices its way to the sky from out of the
+water that crashes fiercely against it to your West.  Glimmering high above
+this natural cliff is the fabled "Shining City" of Odaishyozen.  You wish so
+that you could explore its riches but from here you can only stare up the face
+of these jagged rocks and dream.  Perhaps if the Great Reefs didn't extend this
+far down South you could make your way onto the island to the North.  Alas,
+this is not possible, but there is still a chance that the key to the
+mysterious entrance to the isle is to be found to the South or to the East
+where the seemingly infinite ocean rolls on and on...    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39053
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39066
+S
+#39053
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39043
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39054
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39067
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39052
+S
+#39054
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39044
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39055
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39068
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39053
+S
+#39055
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39045
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39056
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39069
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39054
+S
+#39056
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39046
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39057
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39070
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39055
+S
+#39057
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and
+theblues of the ocean blend into the sky.  Struck by the beauty and by the
+sheer immensity of your surroundings, you feel unimportant, you feel
+insignificant, and most of all, you feel so terribly vulnerable.  North, South,
+East, West, it doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39047
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39058
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39071
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39056
+S
+#39058
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39048
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39059
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39072
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39057
+S
+#39059
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39049
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39060
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39073
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39058
+S
+#39060
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39050
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39061
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39074
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39059
+S
+#39061
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39051
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39062
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39075
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39060
+S
+#39062
+South of the Lagoon~
+   Directly beyond the vibrant and vicious coral reef to your North is a
+peaceful looking lagoon who's tranquil waters contrast sharply with the
+smashing waves of the ocean around you.  Perhaps this little lagoon is the way
+in to the fabulous beauty of the fiery island that stretches beyond it to your
+North and East.  Still the point is moot, as the coral continues to bar your
+path, leaving possible paths to your South, West, and East, but not North
+towards the islands shores.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39063
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39076
+D3
+The Blue Fog Sea rolls on to the West~
+~
+0 -1 39061
+S
+#39063
+South of the Lagoon~
+   Directly beyond the vibrant and vicious coral reef to your North is a
+peaceful looking lagoon who's tranquil waters contrast sharply with the
+smashing waves of the ocean around you.  Perhaps this little lagoon is the way
+in to the fabulous beauty of the fiery island that stretches beyond it to your
+North and East.  Still the point is moot, as the coral continues to bar your
+path, leaving possible paths to your South, West, and East, but not North
+towards the islands shores.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39064
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39077
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39062
+S
+#39064
+In Sight of the Lagoon~
+   A short distance to your North there is a break in the barrier of coral reef
+that has restricted your progress thus far - perhaps this is your chance to
+gain access to the lagoon and the tropical beaches to your North.  Still the
+water there is somehow darker than you've seen it elsewhere and as you recall
+tales of sharks among the reefs you begin to question whether it's worth
+venturing or not.  The safety and monotony of the open sea beckons to your West
+and hidden rocks impede progress to your South and East.    ~
+390 0 7
+D0
+The Ocean narrows and the lagoon begins to your North.~
+~
+0 -1 39065
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39063
+S
+#39065
+At the Entrance to the Fiery Lagoon~
+   On either side to your East and West are fabulous coral reefs - where you
+stand appears to be the only place where access to the lagoon, and through it
+to the island, is possible.  The waters of the lagoon to your North are deathly
+still when compared to the chaotic swirling of the tumultuous sea around you.
+It's almost as if the water is paying tribute to the god of mayhem, but that
+his realm extends not to the North, but to the South where the ocean stretches
+its arms languidly towards infinity.    ~
+390 0 7
+D0
+~
+~
+0 -1 48100
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39064
+S
+#39066
+Off the Cliffs of the Emerald Isle~
+   A great wall of vertical rock slices its way to the sky from out of the
+water that crashes fiercely against it to your West.  Glimmering high above
+this natural cliff is the fabled "Shining City" of Odaishyozen.  You wish so
+that you could explore its riches but from here you can only stare up the face
+of these jagged rocks and dream.  Perhaps if the Great Reefs didn't extend this
+far down South you could make your way onto the island to the North.  Alas,
+this is not possible, but there is still a chance that the key to the
+mysterious entrance to the isle is to be found to the South or to the East
+where the seemingly infinite ocean rolls on and on...    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39052
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39067
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39078
+S
+#39067
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39053
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39068
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39079
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39066
+S
+#39068
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39054
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39069
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39080
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39067
+S
+#39069
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39055
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39070
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39081
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39068
+S
+#39070
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39056
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39071
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39082
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39069
+S
+#39071
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39057
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39072
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39083
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39070
+S
+#39072
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39058
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39073
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39084
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39071
+S
+#39073
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39059
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39074
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39085
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39072
+S
+#39074
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39060
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39075
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39086
+D3
+The Blue Fog Sea rolls on to the West~
+~
+0 -1 39073
+S
+#39075
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39061
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39076
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39087
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39074
+S
+#39076
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39062
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39077
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39088
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39075
+S
+#39077
+Bordering the Eastern Rocks~
+   Surrounding you to your South and East are a great scattering of sharp rocks
+and gigantic boulders piercing through the sea's cool cloak to menace your
+path.  To the West and North the ocean sings a lullaby on the breeze that
+floats on down to caress your ear.  Since South and East are out, your path
+here isn't hard to find.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39063
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39076
+S
+#39078
+Off the Cliffs of the Emerald Isle~
+   A great wall of vertical rock slices its way to the sky from out of the
+water that crashes fiercely against it to your West.  Glimmering high above
+this natural cliff is the fabled "Shining City" of Odaishyozen.  You wish so
+that you could explore its riches but from here you can only stare up the face
+of these jagged rocks and dream.  Perhaps if the Great Reefs didn't extend this
+far down South you could make your way onto the island to the North.  Alas,
+this is not possible, but there is still a chance that the key to the
+mysterious entrance to the isle is to be found to the South or to the East
+where the seemingly infinite ocean rolls on and on...    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39066
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39079
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39090
+S
+#39079
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39067
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39080
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39091
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39078
+S
+#39080
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39068
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39081
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39092
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39079
+S
+#39081
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39069
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39082
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39093
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39080
+S
+#39082
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39070
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39083
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39094
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39081
+S
+#39083
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39071
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39084
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39095
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39082
+S
+#39084
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39072
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39085
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39096
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39083
+S
+#39085
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39073
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39086
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39097
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39084
+S
+#39086
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and
+theblues of the ocean blend into the sky.  Struck by the beauty and by the
+sheer immensity of your surroundings, you feel unimportant, you feel
+insignificant, and most of all, you feel so terribly vulnerable.  North, South,
+East, West, it doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39074
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39087
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39098
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39085
+S
+#39087
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39075
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39088
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39086
+S
+#39088
+Bordering the Eastern Rocks~
+   To your immediate East is a great scattering of sharp rocks and gigantic
+boulders that are piercing through the sea's cool cloak to menace your path.  
+To the West and North the ocean sings a lullaby on the breeze that floats on
+down to caress your ear.  In every direction but East, the water is open to
+your gaze, and to your body should you decide to travel on.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39076
+D1
+~
+~
+0 -1 36200
+D2
+The Blue Fog Sea extends to your South in a narrow water-way between the
+rocks.~
+~
+0 -1 39099
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39087
+S
+#39089
+Off the Cliffs of the Emerald Isle~
+   A great wall of vertical rock slices its way up to the sky from out of the
+water that crashes fiercely against it to the North and West.  Glimmering high
+above this natural cliff is the fabled "Shining City" of Odaishyozen.  You wish
+so that you could explore its riches, but from here you can only stare up the
+face of these jagged rocks and dream.  Perhaps if the Great Reefs didn't extend
+this far down South, you could make your way onto the island to the North or
+West.  Alas, this is not possible - perhaps the key to the mysterious island's
+entrance lies to your East - in any case the jagged rocks surrounding you make
+this your only choice.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39090
+S
+#39090
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39078
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39091
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39089
+S
+#39091
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39079
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39092
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39110
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39090
+S
+#39092
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39080
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39093
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39111
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39091
+S
+#39093
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39081
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39094
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39112
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39092
+S
+#39094
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39082
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39095
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39113
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39093
+S
+#39095
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39083
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39096
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39114
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39094
+S
+#39096
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39084
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39097
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39115
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39095
+S
+#39097
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39085
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39098
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39116
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39096
+S
+#39098
+Bordering the Southern Rocks~
+   Surrounding you to your South and East are a great scattering of sharp rocks
+and gigantic boulders piercing through the sea's cool cloak to menace your
+path.  To the West and North the ocean sings a lullaby on the breeze that
+floats on down to caress your ear.  Since South and East are out, your path
+here isn't hard to find.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39086
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39097
+S
+#39099
+Bordering the Southern Rocks~
+   Surrounding you to your South and West are a great scattering of sharp rocks
+and gigantic boulders piercing through the sea's cool cloak to menace your
+path.  To the East and North the ocean sings a lullaby on the breeze that
+floats on down to caress your ear.  Since South and West are out, your path
+here isn't hard to find.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39088
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39100
+S
+#39100
+Bordering the Southern Rocks~
+   To your North your field of view is filled with a great scattering of sharp
+rocks and gigantic boulders piercing through the sea's cool cloak to menace
+your path.  To the South, West, and East the ocean sings a lullaby on the
+breeze that floats on down to caress your ear.  Since North is out, you may
+sail on to the South or to the East or West.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39101
+D2
+~
+~
+0 -1 39117
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39099
+S
+#39101
+Bordering the Southern Rocks~
+   To your North your field of view is filled with a great scattering of sharp
+rocks and gigantic boulders piercing through the sea's cool cloak to menace
+your path.  To the South, West, and East the ocean sings a lullaby on the
+breeze that floats on down to caress your ear.  Since North is out, you may
+sail on to the South or to the East or West.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39102
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39118
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39100
+S
+#39102
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39103
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39107
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39119
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39101
+S
+#39103
+Bordering the Southern Rocks~
+   To your North and West, your field of view is filled with a great scattering
+of sharp rocks and gigantic boulders piercing the sea's cool cloak to menace
+your path.  To the South and East, the ocean sings a lullaby on the breeze that
+floats down to caress your ear.  Since North and West are out, you may sail on
+to the South or to the East.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39104
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39102
+S
+#39104
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39105
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39106
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39107
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39103
+S
+#39105
+Bordering the Southern Rocks~
+   To your North and West, your field of view is filled with a great scattering
+of sharp rocks and gigantic boulders piercing the sea's cool cloak to menace
+your path.  To the South and East, the ocean sings a lullaby on the breeze that
+floats down to caress your ear.  Since North and West are out, you may sail on
+to the South or to the East.    ~
+390 0 7
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39104
+S
+#39106
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39108
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39104
+S
+#39107
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39104
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39108
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39120
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39102
+S
+#39108
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39106
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39109
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39121
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39107
+S
+#39109
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39108
+S
+#39110
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39091
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39111
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39123
+S
+#39111
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and
+theblues of the ocean blend into the sky.  Struck by the beauty and by the
+sheer immensity of your surroundings, you feel unimportant, you feel
+insignificant, and most of all, you feel so terribly vulnerable.  North, South,
+East, West, it doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39092
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39112
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39124
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39110
+S
+#39112
+Off the Southern Rocks~
+   To your immediate South lies an impassable barrier of rocky scree.  The huge
+stones seem to jut out from the ocean as if stretching vainly upwards to the
+heavens.  In all other directions the huge un-ending ocean rolls on.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39093
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39113
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39111
+S
+#39113
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39094
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39114
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39125
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39112
+S
+#39114
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39095
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39115
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39126
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39113
+S
+#39115
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39096
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39116
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39114
+S
+#39116
+Bordering the Southern Rocks~
+   Surrounding you to your South and East are a great scattering of sharp rocks
+and gigantic boulders piercing through the sea's cool cloak to menace your
+path.  To the West and North the ocean sings a lullaby on the breeze that
+floats on down to caress your ear.  Since South and East are out, your path
+here isn't hard to find.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39097
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39115
+S
+#39117
+Bordering the Southern Rocks~
+   To your immediate West are a great scattering of sharp rocks and gigantic
+boulders piercing through the sea's cool cloak to menace your path.  In all
+other directions the ocean sings a lullaby on the breeze that floats on down to
+caress your ear.  Since the West is out, your possible paths are to the North,
+to the South and to the East.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39100
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39118
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39127
+S
+#39118
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39101
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39119
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39128
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39117
+S
+#39119
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39102
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39120
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39129
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39118
+S
+#39120
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39107
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39121
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39130
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39119
+S
+#39121
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39108
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39131
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39120
+S
+#39122
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39123
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39134
+S
+#39123
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39110
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39124
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39122
+S
+#39124
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39111
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39123
+S
+#39125
+North of the Southern Reefs~
+   The ocean seems to pull you in an Easterly direction here, and the rapid and
+dangerous currents prevent you from venturing any further South.  You find this
+dismaying, as you can see a gorgeous sandy beach of fine white sand in the
+not-too-far-off distance to your South.  On a comforting note, there are
+rumored to be deadly flying creatures that infest that self-same beach so you
+are probably safer where you are.  Though it would be difficult, you could
+escape the currents to your North or follow them with abandon to your East.  ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39113
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39126
+S
+#39126
+North of the Southern Reefs~
+   The ocean seems to pull you in an Easterly direction here, towards a violent
+rock outcrop that would spell catastrophe to any venturing in that direction by
+sea.  The dangerously rapid currents here also prevent you from venturing any
+further South.  You find this dismaying, as you can see a gorgeous sandy beach
+of fine white sand and what appears to be a wrecked ship to the not too far off
+South.  On a more comforting note, there are rumored to be deadly flying
+creatures making their home on that self-same beach so you are probably safer
+where you are.  Though it would be difficult, you could escape the currents to
+your North.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39114
+D3
+~
+~
+0 -1 39125
+S
+#39127
+Beneath the Crumbling Arch~
+   The cool breeze and cooler water extend, as ever, around you; what catches
+your eye, however, is not the ocean beneath you, but the massive stone column
+arching above your head.  It appears to have once stretched on further than you
+can see to your North; but over time, it seems to have fallen victim to the
+slow assault of wind and rain, and is now eroded and crumbling - a frail and
+broken shadow of it's former mass and beauty.  Perhaps the many reefs and rocks
+that seem to infest this sea were caused by the destruction of this once-great
+bridge?  The overhead stone shadow continues to your South and fallen rocks to
+your West make that way inaccessible.  As you have come to expect, the great
+and inevitable sea stretches out further than your eyes can see to your East
+and North.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39117
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39128
+D2
+The Blue Fog Sea rolls on to the South as does the crumbling arch.~
+~
+0 -1 39135
+S
+#39128
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39118
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39129
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39127
+S
+#39129
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39119
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39130
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39136
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39128
+S
+#39130
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39120
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39131
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39137
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39129
+S
+#39131
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39121
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39132
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39138
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39130
+S
+#39132
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and
+theblues of the ocean blend into the sky.  Struck by the beauty and by the
+sheer immensity of your surroundings, you feel unimportant, you feel
+insignificant, and most of all, you feel so terribly vulnerable.  North, South,
+East, West, it doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39139
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39131
+S
+#39133
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39134
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39140
+S
+#39134
+East of the Southern Reefs~
+   To your dismay, but not to your surprise, the great Southern Reefs do indeed
+reach this far West, just as you feared they might.  However the freedom of
+movement inherent in the open sea is readily available to your North, South and
+West.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39122
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39141
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39133
+S
+#39135
+Below the Stone Arch~
+   You stand in semi-darkness with a great stone arch over you blocking the
+sun's fiery warmth and bright light.  The arch continues on over the sea to
+your North and seems to have its beginnings on some rocky terrain to your
+South.  Beyond it's base on either side there appears to be firm, dry land that
+extends for some distance all around...  An island perhaps?  Certainly worth
+exploring, anyway.  The sea stretches on to your North and giant rocks impede
+any potential progress to your East and West.    ~
+390 0 7
+D0
+The Blue Fog Sea and the great stone arch extend further to your North.~
+~
+0 -1 39127
+D4
+You see the base of the great spanning arch above you, and beyond it, land...~
+~
+0 -1 49000
+S
+#39136
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the
+sheerimmensity of your surroundings, you feel unimportant, you feel
+insignificant, and most of all, you feel so terribly vulnerable.  A glance to
+your South only reinforces this feeling of vulnerability as you notice the
+water there is somehow a little less clear, almost dim, and is twisting and
+thrashing about wildly like the edge of a gigantic liquid vortex.  You'd better
+stick to the North, West or East.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39129
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39137
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 58690
+S
+#39137
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  A glance to your South only
+reinforces this feeling of vulnerability as you notice the water there is
+somehow a little less clear, almost dim, and is twisting and thrashing about
+wildly like the edge of a gigantic liquid vortex.  You'd better stick to the
+North, West or East.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39130
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39138
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39136
+S
+#39138
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  A glance to your South only
+reinforces this feeling of vulnerability as you notice the water there is
+somehow a little less clear, almost dim, and is twisting and thrashing about
+wildly like the edge of a gigantic liquid vortex.  You'd better stick to the
+North, West or East.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39131
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39139
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39137
+S
+#39139
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  A glance to your South only
+reinforces this feeling of vulnerability as the water there appears to be
+somehow darker, almost dim, as it twists and thrashes about wildly like the
+edge of some gigantic liquid vortex.  The edges of these incredibly strong
+currents seem to drag you to the South, and you are almost powerless to resist
+their urgent demands; however, should you try, the great sea is open to you in
+every direction.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39132
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39138
+S
+#39140
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39133
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39141
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39149
+S
+#39141
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39134
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39142
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39150
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39140
+S
+#39142
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39151
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39141
+S
+#39143
+In the Clutch of the Whirlpool~
+   Deep in the greedy clutch of the swirling liquid around you, you can only
+pray to the god or goddess of your choice for some mercy as the currents carry
+you faster and faster to your inevitable demise.  You cannot fight it, East
+with the flow is your only option.    ~
+390 0 7
+D1
+The water rushes on to the East, dragging you with it.~
+~
+0 -1 39144
+S
+#39144
+In the Clutch of the Whirlpool~
+   Deep in the greedy clutch of the swirling liquid around you, you can only
+pray to the god or goddess of your choice for some mercy as the currents carry
+you faster and faster to your inevitable demise.  You cannot fight it, East
+with the flow is your only option.    ~
+390 0 7
+D1
+The water rushes on to the East, dragging you with it.~
+~
+0 -1 39145
+S
+#39145
+In the Clutch of the Whirlpool~
+   Deep in the greedy clutch of the swirling liquid around you, you can only
+pray to the god or goddess of your choice for some mercy as the currents carry
+you faster and faster to your inevitable demise.  The dreadful circle bends
+here, and the water courses violently to the South - you cannot fight it, South
+is where you must go.    ~
+390 0 7
+D2
+Carrying through with the dreadful circular motion of the vortex, the water
+flows South.~
+~
+0 -1 39154
+S
+#39146
+Entrance to the Vortex~
+   Violent currents reach out and grab at you pulling you incessantly to the
+South and down into the whirlpool's deadly center.  This is your last chance to
+fight it, and return to the North; however, you are curiously compelled to
+abandon your will and let the water carry you to the darkness of the vortex's
+center where some bizarre phenomenon must be occuring.    ~
+390 0 7
+D0
+Freedom from the currents is visible not far off, fight and you might make it~
+~
+0 -1 39139
+D2
+The rapidly swirling waters curve ahead, and drag you with them fiercely.~
+~
+0 -1 39155
+S
+#39147
+Entrance to a Narrow Inlet~
+   A rocky outcrop to your West appears to be the beginning of a narrow inlet
+that flows North towards a wider bay at it's base.  Further, beyond the bay,
+lie sandy white beaches the likes of which your eyes have never beheld.  
+Sparkling in the sun the beaches could be granulated diamond dust for all their
+beauty.  The beaches appear to extend up towards firmer land that is covered in
+lush greenery - truly this is a beautiful island.  Rocks bar your path to the
+West, but this is of no consequence, as the beauty to the North calls you in
+that direction, and that direction only.  Theoretically, it would be possible
+to sail on to your South or East, but who would want to, in the face of such
+paradise?    ~
+390 4 7
+D0
+A narrow inlet extends towards a wider bay here.~
+~
+0 -1 58210
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39148
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39157
+S
+#39148
+East of the Inlet~
+   The Blue Fog Sea, as ever, presses on around you...  To your North, however,
+there appears to be the rocky outcrop of an inlet's natural border.  This way
+is closed, but perhaps to your West there is an entrance to this fine sparkling
+clear-watered bay.  The inlet itself seems to stretch on to meet soft sandy
+beaches a ways to the North.  Possibly, this could be the famed semi-tropical
+isle of Odaishyozen, of which you have heard so many wild tales.  At any rate,
+it deserves a closer look.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39149
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39158
+D3
+The inlet appears to have an entrance here.~
+~
+0 -1 39147
+S
+#39149
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39140
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39150
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39159
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39148
+S
+#39150
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39141
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39151
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39160
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39149
+S
+#39151
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39142
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39161
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39150
+S
+#39152
+In the Clutch of the Whirlpool~
+Deep in the greedy clutch of the dark swirling liquid around you, you can only
+pray to the god or goddess of your choice for some mercy as the currents carry
+you faster and faster to your inevitable demise.  You cannot fight it, North
+with the flow is your only option.~
+390 0 7
+D0
+The currents drag you incessantly to the North, resistance is futile...~
+~
+0 -1 39143
+S
+#39153
+The Raging Liquid Vortex~
+   To your horror and shock, the great chaotic vortex that has swept you this
+far is the effect of a great swarm of vicious Barracuda swimming in vast manic
+circles to trap their prey!  The darkness of the water was not merely caused by
+a lack of sun, but by the drained blood of the countless creatures who have
+fallen prey to the deadly fish here.  The dragging sensation that has forced
+you this far has not let up, and you are now faced with two possible deaths:
+you will drown, or be devoured...  A sarcastic voice in your head asks you,
+"And what manner of death will you be having tonight, sir?  "~
+390 0 7
+D5
+The currant is pulling you under the water!~
+The currant~
+0 -1 36133
+S
+#39154
+In the Clutch of the Whirlpool~
+   Deep in the greedy clutch of the swirling liquid around you, you can only
+pray to the god or goddess of your choice for some mercy as the currents carry
+you faster and faster to your inevitable demise.  The dreadful circle bends
+here, and the water courses violently to the West, towards the horrible eye of
+this twisting rush of oppressive water - you cannot fight it, West, to your
+death, is where you must go.    ~
+390 0 7
+D3
+Carrying through with the dreadful circular motion of the vortex, the water
+flows West.~
+~
+0 -1 39153
+S
+#39155
+In the Clutch of the Whirlpool~
+   Deep in the greedy clutch of the dark swirling liquid around you, you can
+only pray to the god or goddess of your choice for some mercy as the currents
+carry you faster and faster to your inevitable demise.  You cannot fight it,
+South with the flow is your only option.    ~
+390 0 7
+D2
+The currents drag you incessantly to the South, resistance is futile...~
+~
+0 -1 39165
+S
+#39156
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39157
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39167
+S
+#39157
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39147
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39158
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39168
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39156
+S
+#39158
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39148
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39159
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39169
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39157
+S
+#39159
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39149
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39160
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39170
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39158
+S
+#39160
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39150
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39161
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39171
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39159
+S
+#39161
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39151
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39160
+S
+#39162
+In the Clutch of the Whirlpool~
+   Deep in the greedy clutch of the dark swirling liquid around you, you can
+only pray to the god or goddess of your choice for some mercy as the currents
+carry you faster and faster to your inevitable demise.  You cannot fight it,
+North with the flow is your only option.    ~
+390 0 7
+D0
+The currents drag you incessantly to the North, resistance is futile...~
+~
+0 -1 39152
+S
+#39163
+In the Clutch of the Whirlpool~
+   Deep in the greedy clutch of the dark swirling liquid around you, you can
+only pray to the god or goddess of your choice for some mercy as the currents
+carry you faster and faster to your inevitable demise.  You cannot fight it,
+West with the flow is your only option.    ~
+390 0 7
+D3
+The currents drags on to your West, and so there you must go.~
+~
+0 -1 39162
+S
+#39164
+In the Clutch of the Whirlpool~
+   Deep in the greedy clutch of the dark swirling liquid around you, you can
+only pray to the god or goddess of your choice for some mercy as the currents
+carry you faster and faster to your inevitable demise.  You cannot fight it,
+West with the flow is your only option.    ~
+390 0 7
+D3
+The currents drags on to your West, and thither you must go...~
+~
+0 -1 39163
+S
+#39165
+In the Clutch of the Whirlpool~
+   Deep in the greedy clutch of the dark swirling liquid around you, you can
+only pray to the god or goddess of your choice for some mercy as the currents
+carry you faster and faster to your inevitable demise.  You cannot fight it,
+the water twists violently to the West, dragging you with it.    ~
+390 0 7
+D3
+In keeping with the dreadful circular motion of the vortex, the water twists to
+the West.~
+~
+0 -1 39164
+S
+#39166
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39167
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39173
+S
+#39167
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39156
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39168
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39174
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39166
+S
+#39168
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39157
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39169
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39175
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39167
+S
+#39169
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39158
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39170
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39176
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39168
+S
+#39170
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39159
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39171
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39177
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39169
+S
+#39171
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39160
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39178
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39170
+S
+#39172
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39173
+S
+#39173
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39166
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39174
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39179
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39172
+S
+#39174
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39167
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39175
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39180
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39173
+S
+#39175
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39168
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39176
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39181
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39174
+S
+#39176
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39169
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39177
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39182
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39175
+S
+#39177
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39170
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39178
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39183
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39176
+S
+#39178
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39171
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39177
+S
+#39179
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39173
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39180
+S
+#39180
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39174
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39181
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39184
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39179
+S
+#39181
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39175
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39182
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39185
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39180
+S
+#39182
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39176
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39183
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39186
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39181
+S
+#39183
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39177
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39182
+S
+#39184
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39180
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39185
+S
+#39185
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39181
+D1
+The Blue Fog Sea rolls on to the East.~
+~
+0 -1 39186
+D2
+The Blue Fog Sea rolls on to the South.~
+~
+0 -1 39187
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39184
+S
+#39186
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39182
+D3
+The Blue Fog Sea rolls on to the West.~
+~
+0 -1 39185
+S
+#39187
+The Blue Fog Sea~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, East, and West lead
+to vast watery currents.  South is a massive wooden gate leading to a small
+coastal settlement beyond.~
+390 0 7
+D0
+The Blue Fog Sea rolls on to the North.~
+~
+0 -1 39185
+D2
+A sturdy gate holds back the sea.
+~
+~
+3 -1 -1
+S
+T 39012
+T 39013
+#39188
+DELETE ME~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 512 0
+D0
+~
+~
+0 -1 39172
+D1
+~
+~
+0 -1 39166
+D2
+~
+~
+0 -1 39172
+D3
+~
+~
+0 -1 39166
+S
+#39189
+DELETE ME~
+   Before you, and on all sides, extends a vast expanse of cool colours.  
+Where your eyes blur and the horizon begins, the greys, the greens, and the
+blues of the ocean blend into the sky.  Struck by the beauty and by the sheer
+immensity of your surroundings, you feel unimportant, you feel insignificant,
+and most of all, you feel so terribly vulnerable.  North, South, East, West, it
+doesn't seem to matter much - the water is everywhere.    ~
+390 512 0
+D0
+~
+~
+0 -1 39184
+D1
+~
+~
+0 -1 39187
+D2
+~
+~
+0 -1 39184
+D3
+~
+~
+0 -1 39187
+S
+$~

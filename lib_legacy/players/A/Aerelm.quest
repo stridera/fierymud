@@ -1,0 +1,41 @@
+22 1 4
+actor_level 11
+price 842
+skill_level 50
+skill_name mount
+64 1 1
+got_cherry 1
+58 1 1
+armor_vnum 0
+47 1 1
+gem_vnum 0
+63 1 1
+step totem
+59 2 2
+target1 0
+hunt running
+72 2 2
+target1 0
+bounty running
+61 2 2
+target1 buck
+hunt dead
+70 1 1
+hunt running
+7 1 11
+55326_armor_acquired 1
+55322_armor_acquired 1
+55302_armor_acquired 1
+55306_armor_acquired 1
+55318_armor_acquired 1
+55575_gems_acquired 3
+55579_gems_acquired 1
+55310_armor_acquired 1
+55587_gems_acquired 1
+55571_gems_acquired 3
+55567_gems_acquired 3
+45 255 4
+money complete
+rest complete
+loot complete
+fight complete

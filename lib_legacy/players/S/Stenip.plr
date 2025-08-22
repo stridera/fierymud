@@ -1,0 +1,118 @@
+name: Stenip
+password: St/BwRMDG3
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 2
+race: 11
+level: 17
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20160
+birthtime: 1645332042
+timeplayed: 171513
+lastlogintime: 1648861436
+host: 069.162.244.194
+height: 36
+weight: 130
+base_height: 36
+base_weight: 130
+base_size: 1
+natural_size: 1
+alignment: -511
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 5572
+lastlevel: 0
+hitpoints: 172/172
+mana: 28/28
+move: 116/116
+damroll: 3
+hitroll: 6
+strength: 85
+intelligence: 65
+wisdom: 72
+dexterity: 95
+constitution: 91
+charisma: 58
+cash: 10 993 3995 2669
+experience: 1134213
+pagelength: 40
+quit_reason: 7
+saveroom: 5572
+skills:
+401 220
+403 220
+405 185
+408 220
+409 68
+411 220
+415 50
+416 50
+421 109
+438 50
+443 50
+444 67
+464 211
+465 50
+467 190
+478 50
+0 0
+trophy:
+1 5515 0.750000
+1 5514 1.500000
+1 5513 2.000000
+1 18506 1.000000
+1 17204 7.666668
+1 8034 0.250000
+1 8012 0.333333
+1 8033 0.250000
+1 8032 0.250000
+1 8031 0.333333
+1 36004 0.250000
+1 5211 0.500000
+1 5121 0.500000
+1 5122 0.500000
+1 5120 3.000000
+1 5103 3.250000
+1 5100 1.500000
+1 5112 1.750000
+1 5101 2.250000
+1 5104 5.000000
+1 5102 3.500000
+0 0 0
+tells:
+1645498609 @WLyno@W tells you, 'wheres your gnome slave driver@W'@0
+1645498878 @WLyno@W tells you, 'talked to zaver hes jase@W'@0
+1646187202 @WSerena@W tells you, 'What do you want to buy?@W'@0
+1646189064 @WShazz@W tells you, 'Take good care of that.@W'@0
+1646462852 @WLaird@W tells you, 'ie we did all this stuff so that we could do other stuff to end with the same slot count with dif names@W'@0
+1647208197 @WMuleard@W tells you, 'Thanks for the deal.@W'@0
+1647208198 @WMuleard@W tells you, 'Thanks for the deal.@W'@0
+1647208199 @WMuleard@W tells you, 'Thanks for the deal.@W'@0
+1647208199 @WMuleard@W tells you, 'Thanks for the deal.@W'@0
+1647208201 @WMuleard@W tells you, 'Thanks for the deal.@W'@0
+$
+gossips:
+1648861276 Vasel gossips, 'my characters are sometimes seeing eachothers feed'
+1648861293 Chinok gossips, 'what feed ?'
+1648861293 Vasel gossips, 'when they all check score at the same time, they all see larix's'
+1648861324 Chinok gossips, 'that's a client thing... '
+1648861329 Chinok gossips, 'it's not the mud, sorry'
+1648861329 Vasel gossips, 'and i've seen messages of seeing myself do stuff, like I'm not vasel'
+1648861369 Vasel gossips, 'hmm, straqnge. maybe it'll act right with a reconnect or a restart'
+1648861390 Vasel gossips, 'anyway, off to watch Dr horrible's singalong blog'
+1648861394 Vasel gossips, 'later guys'
+1648861396 Chinok gossips, 'that's what I'd try'
+$
+aliases:
+3 ass larix
+2 ass ketten
+all get all all.corpse
+1 ass vasel
+h hide
+0

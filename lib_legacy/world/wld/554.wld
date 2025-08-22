@@ -1,0 +1,978 @@
+#55402
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs upward and
+southward from here.    
+~
+554 0 5
+D2
+The trail continues to the south.
+~
+~
+0 -1 55393
+D4
+The trail continues upward.
+~
+~
+0 -1 55405
+S
+#55404
+Above the Falls~
+   A narrow pool sits here, well up the sides of these dark hills.  A stream
+flows in from the north and slows briefly before plunging down to the south.  
+The sound of thunder rushes up from below, where great sheets of mist drift
+southeast in the prevailing breeze.    
+~
+554 0 6
+D0
+~
+~
+0 -1 55420
+S
+#55405
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail continues upward
+and downward.    
+~
+554 0 5
+D4
+The trail continues upwards.
+~
+~
+0 -1 55406
+D5
+The trail continues downward.
+~
+~
+0 -1 55402
+S
+#55406
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs northward
+and downward from here.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55407
+D5
+The trail continues downward.
+~
+~
+0 -1 55405
+S
+#55407
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail continues
+southward and upward from here.    
+~
+554 0 5
+D2
+The trail continues to the south.
+~
+~
+0 -1 55406
+D4
+The trail continues upward.
+~
+~
+0 -1 55408
+S
+#55408
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail continues upward
+and downward from here.    
+~
+554 0 5
+D4
+The trail continues upward.
+~
+~
+0 -1 55409
+D5
+The trail continues downward.
+~
+~
+0 -1 55407
+S
+#55409
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail continues
+northward and downward from here.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55410
+D5
+The trail continues downward.
+~
+~
+0 -1 55408
+S
+#55410
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs south- west
+from here.    
+~
+554 0 5
+D2
+The trail continues to the south.
+~
+~
+0 -1 55409
+D3
+The trail continues to the west.
+~
+~
+0 -1 55411
+S
+#55411
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs east- west
+from here.    
+~
+554 0 5
+D1
+The trail continues to the east.
+~
+~
+0 -1 55410
+D3
+The trail continues to the west.
+~
+~
+0 -1 55412
+S
+#55412
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs north- east
+from here.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55413
+D1
+The trail continues to the east.
+~
+~
+0 -1 55411
+S
+#55413
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs north- south
+from here.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55414
+D2
+The trail continues to the south.
+~
+~
+0 -1 55412
+S
+#55414
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs north- south
+from here.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55415
+D2
+The trail continues to the south.
+~
+~
+0 -1 55413
+S
+#55415
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs south- east
+from here.    
+~
+554 0 5
+D1
+The trail continues to the east.
+~
+~
+0 -1 55416
+D2
+The trail continues to the south.
+~
+~
+0 -1 55414
+S
+#55416
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs east- west
+here.    
+~
+554 0 5
+D1
+The trail continues to the east.
+~
+~
+0 -1 55417
+D3
+The trail continues to the west.
+~
+~
+0 -1 55415
+S
+#55417
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs south- west
+from here.    
+~
+554 0 5
+D2
+The trail continues to the south.
+~
+~
+0 -1 55418
+D3
+The trail continues to the west.
+~
+~
+0 -1 55416
+S
+#55418
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs north- east
+from here.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55417
+D1
+The trail continues to the east.
+~
+~
+0 -1 55419
+S
+#55419
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs east- west
+from here.    
+~
+554 0 5
+D1
+The trail continues to the east.
+~
+~
+0 -1 55420
+D3
+The trail continues to the west.
+~
+~
+0 -1 55418
+S
+#55420
+A Ford~
+   An ancient roadway crosses a brisk mountain stream here.  The stream flows
+out of impenetrable mountains to the northwest.  It widens here where the land
+briefly flattens, and collects briefly in a pool to the south.  An oddly loud
+rushing sound comes from beyond the pool.  The roadway, old but serviceable,
+runs east and west.    
+~
+554 0 6
+D1
+The trail continues to the east.
+~
+~
+0 -1 55421
+D2
+~
+~
+0 -1 55404
+D3
+The trail continues to the west.
+~
+~
+0 -1 55419
+S
+#55421
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs east- west
+from here.    
+~
+554 0 5
+D1
+The trail continues to the east.
+~
+~
+0 -1 55423
+D2
+You see a trail winding off to overlook some magnificent
+waterfalls.
+~
+~
+0 -1 55422
+D3
+The trail continues to the west.
+~
+~
+0 -1 55420
+S
+#55422
+The trail overlooking the falls~
+   This is an offshoot of the Nikozian Trail, which passes by to the north.  A
+high waterfall begins just west of here.  Its top is a little lower and to the
+north, and the entire waterfall, from the small stream that feeds it to the
+roiling mist at its base, is clearly visible from here.  The water at the
+bottom flows in a tiny glistening stream, far below, into wide fields and a
+distant lake to the south.    
+~
+554 0 5
+D0
+You see an ancient trail to the north.
+~
+~
+0 -1 55421
+S
+T 6207
+#55423
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs south- west
+from here.    
+~
+554 0 5
+D2
+The trail continues to the south.
+~
+~
+0 -1 55424
+D3
+The trail continues to the west.
+~
+~
+0 -1 55421
+S
+#55424
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs north- east
+from here.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55423
+D1
+The trail continues to the east.
+~
+~
+0 -1 55425
+S
+#55425
+The Nikozian Trail outside the falls~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs north- west
+from here.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55426
+D3
+The trail continues to the west.
+~
+~
+0 -1 55424
+S
+#55426
+The Nikozian Trail under the falls~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs south- east
+from here.    
+~
+554 0 5
+D1
+The trail continues to the east.
+~
+~
+0 -1 55427
+D2
+The trail continues to the south.
+~
+~
+0 -1 55425
+S
+#55427
+The Nikozian Trail outside the falls~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs north- west
+from here.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55428
+D3
+The trail continues to the west.
+~
+~
+0 -1 55426
+S
+#55428
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs south- west
+from here.    
+~
+554 0 5
+D2
+The trail continues to the south.
+~
+~
+0 -1 55427
+D3
+The trail continues to the west.
+~
+~
+0 -1 55429
+S
+#55429
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs north- east
+from here.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55432
+D1
+The trail continues to the east.
+~
+~
+0 -1 55428
+D3
+A side trail begins here.
+~
+~
+0 -1 55430
+S
+#55430
+A path overlooking the trail ~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.    
+~
+554 0 5
+D1
+You see an ancient road to the east.
+~
+~
+0 -1 55429
+S
+#55431
+Inside a small cave~
+   You step away from the cold of the trail into a small cave.  It is spartanly
+decorated with simple armors and weapons.  By the size of this place it looks
+to be owned by a dwarf of some kind.  Mysterious evil looking runes dominate
+the other furnishings.  A small hallway continues to the north.  The door leads
+back outside to the west.    
+~
+554 8 12
+D0
+The cave continues to the north.
+~
+~
+0 -1 55437
+D3
+A door is carved right into the wall of the cave.
+~
+door~
+1 -1 55432
+S
+#55432
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.    
+   There is a slight variation in the surface of the rockface to the east.
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55438
+D1
+~
+door~
+1 -1 55431
+D2
+The trail continues to the south.
+~
+~
+0 -1 55429
+S
+#55433
+Red Rock Path~
+   You are walking between two ridges in the mountains.  These mountains are
+rich in a red ore that has eroded into the soil over the millenia causing the
+entire area to look red.  The area seems bare in places like it can't support
+life but trees and other vegetation dominates the ridges and pathway.  The
+pathway is narrow and continues between the ridges.    
+~
+554 0 5
+D1
+~
+~
+0 -1 55610
+D3
+~
+~
+0 -1 55434
+S
+#55434
+Red Rock Path~
+   You are walking between two ridges in the mountains.  These mountains are
+rich in a red ore that has eroded into the soil over the millenia causing the
+entire area to look red.  The area seems bare in places like it can't support
+life but trees and other vegetation dominates the ridges and pathway.  The
+pathway is narrow and continues between the ridges.    
+~
+554 0 5
+D1
+~
+~
+0 -1 55433
+D3
+~
+~
+0 -1 55435
+S
+#55435
+Red Rock Path~
+   You are walking between two ridges in the mountains.  These mountains are
+rich in a red ore that has eroded into the soil over the millenia causing the
+entire area to look red.  The area seems bare in places like it can't support
+life but trees and other vegetation dominates the ridges and pathway.  The
+pathway is narrow and continues between the ridges.    
+~
+554 0 5
+D1
+~
+~
+0 -1 55434
+D3
+~
+~
+0 -1 55436
+S
+#55436
+Red Rock Path~
+   You are walking between two ridges in the mountains.  These mountains are
+rich in a red ore that has eroded into the soil over the millenia causing the
+entire area to look red.  The area seems bare in places like it can't support
+life but trees and other vegetation dominates the ridges and pathway.  The
+pathway is narrow and continues between the ridges.    
+~
+554 0 5
+D0
+~
+~
+0 -1 55439
+D1
+~
+~
+0 -1 55435
+S
+#55437
+The Home of the Ancient One~
+   The hallway opens up into a larger ornate bedroom, its walls covered in many
+treasures of past victories of its owner.  A magnificent oaken desk sits by the
+east wall, constructed from the same wood as a canopied bed by the opposite
+wall.    
+~
+554 8 12
+D2
+The cave continues to the south.
+~
+~
+0 -1 55431
+S
+#55438
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs north- south
+from here.  Northward, the road intersects with another.    
+~
+554 0 5
+D0
+You see an intersection of two roads.
+~
+~
+0 -1 55441
+D2
+The trail continues to the south.
+~
+~
+0 -1 55432
+S
+#55439
+Red Rock Path~
+   You are walking between two ridges in the mountains.  These mountains are
+rich in a red ore that has eroded into the soil over the millenia causing the
+entire area to look red.  The area seems bare in places like it can't support
+life but trees and other vegetation dominates the ridges and pathway.  The
+pathway is narrow and continues between the ridges.    
+~
+554 0 5
+D2
+~
+~
+0 -1 55436
+D3
+~
+~
+0 -1 55440
+S
+#55440
+Red Rock Path~
+   You are walking between two ridges in the mountains.  These mountains are
+rich in a red ore that has eroded into the soil over the millenia causing the
+entire area to look red.  The area seems bare in places like it can't support
+life but trees and other vegetation dominates the ridges and pathway.  The
+pathway is narrow and continues between the ridges.    
+~
+554 4 5
+D1
+~
+~
+0 -1 55439
+D3
+~
+~
+0 -1 55441
+S
+#55441
+The Nikozian Trail Intersection~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail intersects
+another path here and a sign facing north beckons for your attention.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55443
+D1
+A narrow path begins here.
+~
+~
+0 -1 55440
+D2
+The trail continues to the south.
+~
+~
+0 -1 55438
+E
+sign~
+     ________________________________________________________________
+    |                                                                |
+    |    /\  North to the Arctic Village of Ickle                    |
+    |    ||                                                          |
+    |                                                                | 
+    |   ==>  East to the Iron Hills                                  |
+    |                                                                |
+    |                                                                |
+    |    ||  South to the Forest Village of Mielikki                 |
+    |    \/                                                          |
+    |        Be ye ware of dangers and bandits on ye travels.        |
+    |                                     --The Iron Dwarves         |
+    |                                                                |
+     ----------------------------------------------------------------
+~
+S
+#55442
+A Path Overlooking the Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.    
+~
+554 0 5
+D3
+You see an ancient road.
+~
+~
+0 -1 55443
+S
+#55443
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The road runs south- west
+from here.    
+~
+554 0 5
+D1
+A path begins here.
+~
+~
+0 -1 55442
+D2
+The trail continues to the south, where it intersects with
+another road.
+~
+~
+0 -1 55441
+D3
+The trail continues to the west.
+~
+~
+0 -1 55444
+S
+#55444
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs north- east
+from here.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55445
+D1
+The trail continues to the east.
+~
+~
+0 -1 55443
+S
+#55445
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs south- west
+from here.    
+~
+554 0 5
+D2
+The trail continues to the south.
+~
+~
+0 -1 55444
+D3
+The trail continues to the west.
+~
+~
+0 -1 55446
+S
+#55446
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs east- west
+from here.    
+~
+554 0 5
+D1
+The trail continues to the east.
+~
+~
+0 -1 55445
+D3
+The trail continues to the west.
+~
+~
+0 -1 55447
+S
+#55447
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs east- west
+from here.    
+~
+554 0 5
+D1
+The trail continues to the east.
+~
+~
+0 -1 55446
+D3
+The trail continues to the west.
+~
+~
+0 -1 55448
+S
+#55448
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs north- east
+from here.    
+~
+554 0 5
+D0
+The trail continues to the north.
+~
+~
+0 -1 55449
+D1
+The trail continues to the east.
+~
+~
+0 -1 55447
+S
+#55449
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs south- west
+from here.    
+~
+554 4 2
+D0
+You see fields of tundra.
+~
+~
+0 -1 55565
+D1
+You see fields of tundra.
+~
+~
+0 -1 55554
+D2
+The trail continues.
+~
+~
+0 -1 55448
+D3
+The trail continues.
+~
+~
+0 -1 55450
+S
+#55450
+The Nikozian Trail~
+   You stand along a well traveled path that looks worn in the surrounding
+earth for many hundreds of years.  It's rocky in most places as though it were
+purposefully lined in stone to preserve the pathway for many years.  From here
+the view of the surrounding lands is breathtaking.  The trail runs north- east
+from here.    
+~
+554 0 2
+D0
+The trail continues.
+~
+~
+0 -1 55566
+D1
+The trail continues.
+~
+~
+0 -1 55449
+S
+$~

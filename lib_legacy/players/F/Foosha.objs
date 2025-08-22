@@ -1,0 +1,2801 @@
+1
+vnum: 58401
+location: 0
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: gprt 0
+name: feather glowing-phoenix-feather delicate long starlike glowing
+shortdesc: a glowing phoenix feather
+desc: A long, delicate phoenix feather glows like a star here.
+type: 1
+weight: 0.00
+cost: 30000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+applies:
+6 5
+~
+extradesc: feather glowing-phoenix-feather delicate long starlike glowing
+This delicate golden feather is about as long as your forearm. The
+long, lacy fronds of the feather's plumage waft slightly in the breeze. 
+Oh, and it also glows like the sun. Just touching it makes your spirit 
+soar!
+~
+~~
+vnum: 4008
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agjlpqrtuvxz 0
+name: ring ring-souls small-shadowed-onyx-ring
+shortdesc: a ring of souls
+desc: A small shadowed onyx ring lies here along the floor.
+type: 11
+weight: 0.03
+cost: 23000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 3
+applies:
+1 -2
+4 3
+9 5
+26 -5
+6 6
+~
+extradesc: shadowed onyx ring souls Ring
+Crafted from a solid shard of hardened night, the ring refuses to let even
+light caress it.  The band is thin yet does not seem weak by far.  A small
+place at the top feels very thick and round.  At a straight look it is almost
+like one could see movement from inside.    
+~
+triggers:
+4005
+18887
+~
+~~
+vnum: 402
+location: 2
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: abeD 0
+name: ring silver silvery
+shortdesc: a silvery ring
+desc: A non-descript silver ring glimmers in the dirt.
+type: 9
+weight: 0.04
+cost: 500
+timer: 0
+level: 5
+effects: mnx 0 0
+wear: 3
+applies:
+2 5
+3 5
+13 25
+~
+~~
+vnum: 20303
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace tooth crocodile
+shortdesc: a crocodile-tooth necklace
+desc: A large crocodile-tooth necklace lies discarded here.
+type: 9
+weight: 1.20
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+applies:
+13 12
+~
+extradesc: necklace crocodile tooth
+This is a very interesting and intricate necklace.  It is made of an
+intricately braided green material and a has a large crocodile tooth at the
+very center.  It must have taken many hours to make this amazing necklace.    
+~
+~~
+vnum: 53317
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjop 0
+name: amulet silver dragon's eye
+shortdesc: a dragon's eye amulet
+desc: A silver amulet embedded with a dragon's eye lies here.
+type: 8
+weight: 1.50
+cost: 1100
+timer: 0
+level: 53
+effects: 0 0 0
+wear: 5
+applies:
+3 2
+2 -1
+28 53
+~
+extradesc: amulet silver eye
+This amulet is made of pure silver and in its center is embedded the huge
+eye of a dragon.  A gold chain allows it it be worn around the neck.
+~
+~~
+vnum: 526
+location: 5
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: jlru 0
+name: vest shards pile broken glass
+shortdesc: a vest of shards
+desc: A pile of broken glass sits here.
+adesc:
+   When picked up the pieces assemble a vest of black glass.  Feeling oddly
+cold against the skin, it seems to numb as quickly as it is adjusted.    
+~
+type: 9
+weight: 12.00
+cost: 30000
+timer: 0
+level: 45
+effects: n 0 0
+wear: 9
+applies:
+5 -4
+2 -3
+~
+extradesc: vest shards black glass
+   This jumble of collected shards form a remarkable vest.  The twisted
+sensation of the armor numbs the skin quickly as the first touch.  It is
+apparent this is a powerful armor, mysterious and volatile.    
+~
+~~
+vnum: 23821
+location: 6
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tiara gleaming sapphire sapphire-tiara
+shortdesc: a sapphire tiara
+desc: A gleaming tiara lies here.
+type: 11
+weight: 0.80
+cost: 2000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 17
+applies:
+17 3
+24 -5
+23 -5
+13 20
+~
+extradesc: tiara gleaming sapphire sapphire-tiara
+Very cold to the touch, this circlet is made of silver worked into angular
+designs and inset with a large, teardrop-shaped sapphire at the crown.  The
+silver gleams brightly, showing no sign of tarnish, and the sapphire is a true
+deep blue with an inner radiance all its own.    
+~
+~~
+vnum: 55555
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: agnopqrstuvwxyz 0
+name: enchanted leggings seer
+shortdesc: &3&bLeggings of the Seer&0
+desc: Folded neatly in a bag here is a pair of deeply enchanted leggings.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+applies:
+5 3
+6 3
+18 2
+~
+extradesc: enchanted leggings seer
+These long velvet leggings are given to very wise mages to assist in their
+pursuit of magical knowledge.  Usually crafted for a formal dedication
+ceremony, much room for magical development is left with these leggings,
+allowing them to grow with their wearer as a caster's magic grows in power.
+~
+~~
+vnum: 562
+location: 8
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: egiAD 0
+name: boots white-snow-boots blinding-white-boots
+shortdesc: a pair of white snow boots
+desc: Blinding white boots sit here getting dirty.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 90
+effects: 0 j 0
+wear: 65
+applies:
+14 20
+26 4
+~
+extradesc: white-snow-boots blinding-white-boots
+These boots are made from bright white fabric stuffed with amazingly
+warm cotton.  They offer a good amount of protection, but promise to
+become scuffed easily.
+~
+~~
+vnum: 55558
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyz 0
+name: gloves seer
+shortdesc: &3&bGloves of the Seer&0
+desc: Gloves adorned with mystical runes lie next to an experiment station here.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+2 3
+13 10
+28 20
+~
+extradesc: gloves seer
+These gloves are used in magical experimentation and during mystic rituals.  
+The runes on each glove represent different spheres of creation, enhancing a
+sorcerer's connection to said powers.  Sewn from simple cloth, then painted and
+decorated with pearls, these gloves are a mark of a very powerful sorcerer.
+~
+~~
+vnum: 11797
+location: 10
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gAD 0
+name: myst vambraces vambrace bits long
+shortdesc: a pair of myst vambraces
+desc: Some long bits of myst lie here, seeming to conform to the ground.
+type: 9
+weight: 1.20
+cost: 40
+timer: 0
+level: 87
+effects: 0 0 0
+wear: 257
+applies:
+2 4
+24 -25
+3 -3
+18 1
+~
+extradesc: myst vambraces vambrace bits long
+These vambraces are of exceptional quality, and are simply bits of a magically
+bound myst.  They seem to conform to any shape of any arm which dons them, and
+seem to repel light and seem to absorb impacts and then quickly reform the
+dented portion.  The myst is a dull, absent grey color.    
+~
+~~
+vnum: 58417
+location: 12
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~
+vnum: 2803
+location: 13
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gj 0
+name: sash pirate golden cloth
+shortdesc: a golden pirate sash
+desc: A piece of golden cloth lies crumped on the ground here.
+type: 12
+weight: 1.00
+cost: 450
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 2049
+applies:
+17 5
+14 25
+~
+~~
+vnum: 16033
+location: 14
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracers charred pair odd black metal bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 16
+effects: 0 0 0
+wear: 4097
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred pair odd black metal bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    
+~
+~~
+vnum: 23807
+location: 15
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracelet lightning crackles energy lightning-bracelet
+shortdesc: a lightning bracelet
+desc: A bracelet of lightning crackles with energy here.
+type: 11
+weight: 0.09
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 4097
+applies:
+26 3
+5 2
+17 5
+~
+extradesc: bracelet lightning crackles energy lightning-bracelet
+A tingling feeling radiates from this bracelet, which appears to be made out of
+the elemental force of lightning.  It is colored a pale bluish-white, and
+beneath the sparking there seems to be some kind of hard base, so wearing it on
+the wrist would be quite possible.    
+~
+~~
+vnum: 569
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gijAD 0
+name: vision dark-vision pair-black-lenses
+shortdesc: the Dark Vision
+desc: A pair of black lenses sits here.
+type: 11
+weight: 0.00
+cost: 0
+timer: 0
+level: 90
+effects: cdefx w 0
+wear: 65537
+applies:
+28 100
+~
+extradesc: dark-vision pair-black-lenses
+This pair of glasses is odd in that both its lenses are almost pitch
+black.  Facing them, it is impossible to see through them, but from
+behind the lenses, vision is clear, if slightly darkened.  Some things
+appear visible through the lenses that are invisible otherwise.
+~
+~~
+vnum: 903
+location: 23
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: fang-earring fang earring ice ice-fang snake
+shortdesc: an ice fang
+desc: What looks like a clear fang of a snake lies here.
+type: 9
+weight: 0.20
+cost: 1900
+timer: 0
+level: 43
+effects: 0 0 0
+wear: 262145
+applies:
+18 3
+19 2
+13 10
+~
+extradesc: fang-earring fang earring ice ice-fang snake
+This looks to be a piece of clear crystal constructed from magic to protect it
+owner in an attack.  It looks like the fang of a beast of prey.  
+~
+~~
+vnum: 903
+location: 24
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: fang-earring fang earring ice ice-fang snake
+shortdesc: an ice fang
+desc: What looks like a clear fang of a snake lies here.
+type: 9
+weight: 0.20
+cost: 1900
+timer: 0
+level: 43
+effects: 0 0 0
+wear: 262145
+applies:
+18 3
+19 2
+13 10
+~
+extradesc: fang-earring fang earring ice ice-fang snake
+This looks to be a piece of clear crystal constructed from magic to protect it
+owner in an attack.  It looks like the fang of a beast of prey.  
+~
+~~
+vnum: 409
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale dragonscale wug
+shortdesc: a Dragonscale of Wug
+desc: A large dragonscale lies here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 1.50
+cost: 0
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 524289
+applies:
+3 5
+13 100
+24 -10
+4 5
+~
+~~
+vnum: 20300
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 905
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg 0
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+variables:
+alreadyrun 1
+~
+~~
+vnum: 48126
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: anoprstuvwxyA 0
+name: cloak fire fiery-cloak
+shortdesc: a cloak of fire
+desc: A cloak burns here and yet is not consumed.
+type: 11
+weight: 2.00
+cost: 8234
+timer: 0
+level: 50
+effects: 0 m 0
+wear: 1025
+applies:
+3 1
+4 1
+24 3
+~
+~~
+vnum: 58418
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: E 0
+name: wings pair-translucent-faerie-wings
+shortdesc: a pair of translucent faerie wings
+desc: A pair of translucent faerie wings scintillate.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+3 2
+24 -10
+~
+extradesc: wings translucent pair faerie
+These wings look so real! A metallic golden frame supports two
+somewhat large wings made of some kind of silk that stretches to
+the point of being almost transparent. Some kind of sparkly things
+are woven into the silk, making the wings shimmer as they move.
+~
+~~
+vnum: 48503
+location: 127
+values:
+100
+1
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: map-case map case ivory tube
+shortdesc: a map case
+desc: A stiff tube of ivory and silver lies here.
+type: 15
+weight: 1.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: map case ivory tube
+The tube is stiff so its contents will not get folded or torn. The tube
+has an opening at one end, perhaps you should glance inside?
+~
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 48501
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map mielikki town
+shortdesc: a map of the forest town of Mielikki
+desc: A beautiful map, created with painstaking detail, has been dropped here.
+type: 12
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki town
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+~
+extradesc: side2
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: thief guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+
+~
+~~
+vnum: 48502
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map ickle village
+shortdesc: a map of the village of Ickle
+desc: A tattered map lies here.
+type: 12
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map ickle village
+                     Ickle, Village of the Frozen North
+=== The Key ===                by Kara-Sithri
+
+AT: Arctic Temple
+AS: Arctic Square             AT---Altar---AT
+FT: the Fountain               |     |     |
+SB: Snowy Blvd.          *1---AT----AT-----AT
+FA: Frost Ave.                       |
+PL: Polar Lane                AS-----AS----AS       bank      shop
+IW: Icy Way                    |     |     |         |         |
+*1: Cleric Guild         *2---AS----FTN----AS---SB---SB---SB---SB---E.Gate
+*2: Warrior Guild              |     |     |                   |
+*3: Ranger Guild              AS-----AS----AS                 shop
+*4: Mage Guild                       |
+                                     FA       pub
+===============                      |         |
+                              shop---FA---PL---PL---shop
+                                     |         |
+                 *4       shop       FA       Inn
+                 |         |         |
+       W.Gate---IW---IW---IW---IW---I.CF---*3
+                 |         |         |
+                shop      shop      S.Gate
+~
+~~
+vnum: 48500
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map caelian caelia
+shortdesc: a map of the Caelian Region
+desc: A travel-stained map has been dropped here.
+type: 12
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map caelian caelia
+The Caelian Region  |           -Nikozia-
+by Kara-Sithri      |                  ..............
+--------------------               ..........................
+^^^    ^^^ [Anduin]        .................. Sunken Castle ...
+   Graveyard                .....................................
+ ^^^         ^^^         ..... The Northern Swamp ............
+      Temple ^^               ................................
+              ^^^          ..................................
+^^^  ^^ ^^^             .............. Mystwatch ........
+   ^^^^^   ^^^^           .....................
+   Old Merchant Trail       .. The Swamp ..........
+      ^^^   ^^^          .............      The
+Desert    ^^^                .........    Citadel     Misty
+      ^^^^                   [Mielikki]               Cavern    ^^^^^^^^
+       Abbey                                   %%%%%           ^^^^^^
+                The           Blue     %%%%%%%%%%%%%%%%%%%% Smugglers
+^^^^^^^      Farmlands         Fog    %%%%%%%%%%%%%%%%%%%%%%% ^^^  ^^^
+ ^^^^                              %% Twisted %%%%%%%%%%%%%%% ^^^^   ^^^
+                                    %% Forest %%%%%%%%%%%%%% ^^^^^
+~
+~~
+vnum: 35010
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map brush brushlands
+shortdesc: a map of the brushlands
+desc: A map with extra features on the back gathers dust here.
+type: 12
+weight: 0.20
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map brush brushlands
+Pog's guide to the Brushlands-
+
+
+     mmmmmmmttggggggg
+     mmmmmmmttggggggg
+     mmmmmmmtgggggggg  ppp    ppp
+     mmmmmmttgggggggg  p p    p p
+     mmmmmtttggggggggppp pppppp ppp
+     mmmmmttggggggggg             ppp
+     mmmmmttggggggggg
+   mmmmmmmttggggggggg
+   mmmmmmmt
+   mmmmmmmt
+   mmmmmmmm
+   mmmmmmmm
+   mmmm
+   mmmm
+
+Legend: m- meadow area
+        t- deep trench
+        g- tall grasses
+        p- trail pass near Anduin
+~
+extradesc: features back extra
+Pog's notes on the Brushland Region:
+Many creatures make these grasses their home.
+Abundant water in the southwest, and plenty of food
+make this area a haven for all sorts of creatures of the forest.
+
+My soul is happy to see this.
+~
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 0
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 1
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: -1
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Apr 25 2011
+  To: Foosha
+From: Laoris
+
+The day of destruction is soon upon us!
+Meteors and brimstone shall break @0wall and truss.
+So yet you have just but shed your wedding gown,
+We must call upon you to stop this countdown.
+ 
+Extinguish eight @GFLAME@0s to stave off disaster.
+Find seven @CMACE@0s befitting a caster;
+And employ these to defeat six @GPALADIN@0s.
+Then we'll need five @CBROADSWORD@0s to ensure your wins
+Against four @GBEING@0s who would stand in your way.
+Gather three @CANCIENT@0 trinkets without delay
+That the two @GTORNADO@0s shall bend before you.
+And last, a @CFLAMING@0 item will stop the slew.
+ 
+With trinkets found and enemies defeated
+The apocalypse is surely unseated
+By one who would control meteors above:
+Foosha, whom the poets shall surely write of.
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: -1
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jan 07 2014
+  To: Foosha
+From: Ramah
+
+To learn the art of a wizard's eye you must first equip yourself and make t@0he necessary sacrifices first you will need 6 items that provide detect invisibility 3 for the sacrifices and 3 that you must keep. Likewise you will need 4 items that provide 30 o
+Last of all to pay homage to the wizard Sauron who first created an all seeing eye. You must seek his revenge kill 4 Halfling races 1 dwarf 1 elf 1 ranger 1 human warrior and an old wizard. Thus the fellowship of destruction may not fall upon you. 
+As for the dwarf elf ranger human warrior and wizard keep them above level 60 
+
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: -1
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jan 07 2014
+  To: Foosha
+From: Ramah
+
+To learn the art of a wizard's eye you must first equip yourself and make t@0he necessary sacrifices.
+first you will need 6 items that provide detect invisibility 3 for the sacrifices and 3 that you must keep.
+Likewise you will need 4 items that provide 30 or more perception 2 for the sacrifices and 2 that you must keep. 
+You will also need to sacrifice to the fire 1 item that casts sense life and an item that allows you to Farsee.
+Last of all to pay homage to the wizard Sauron who first created an all seeing eye. 
+You must seek his revenge kill 4 Halfling races 1 dwarf 1 elf 1 ranger 1 human warrior and an old wizard. 
+Thus the fellowship of destruction may not fall upon you. 
+As for the dwarf elf ranger human warrior and wizard keep them above level 60 
+
+sorry about the first try hope this goes better :)
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: -1
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Aug 29 2014
+  To: Foosha
+From: Ramah
+
+spell LUCKYCHARMS on trophy.
+Kill 1 mobile with charm in the description.@0
+Kill 2 mobiles with lucky in the description.
+Bring me 2 objects that respond to charm.
+Bring me 1 object that responds to lucky.
+
+if finding the mobs proves to difficult i am willing to tell you the areas so your not searching the world
+ramah
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 52004
+location: -1
+values:
+80
+5
+5
+42
+0
+0
+0
+~
+flags: agoprt 0
+name: wand recall sagece recall-wand sagece-wand
+shortdesc: the Wand of Sagece
+desc: A dusty, cracked, old wand sits here.
+type: 3
+weight: 0.60
+cost: 1400
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+extradesc: wand recall sagece recall-wand sagece-wand
+This is a wonderful, magical wand, capable of acts beyond normal imagination.
+It is about two feet long, with a small dragon head at the top.    
+~
+~~
+vnum: 52021
+location: -1
+values:
+80
+3
+3
+2
+0
+0
+0
+~
+flags: agoprt 0
+name: wand recall sagece recall-wand sagece-wand
+shortdesc: the Wand of Sagece
+desc: A dusty, cracked, old wand sits here.
+type: 3
+weight: 2.30
+cost: 900
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+extradesc: wand recall sagece recall-wand sagece-wand
+This is a wonderful, magical wand, capable of acts beyond normal imagination.
+It is about two feet long, with a small, broken dragon head at the top.    
+~
+~~
+vnum: 1006
+location: 127
+values:
+300
+200
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 15.04
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 55326
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: robe decayed
+shortdesc: a decayed robe
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 2.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 8341
+location: 127
+values:
+15
+16
+16
+16
+0
+0
+0
+~
+flags: a 0
+name: potion strong herbal small
+shortdesc: a small potion
+desc: A strong herbal potion lies here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: potion herbal healing strong small
+This old and small potion has been brewed directly from the freshest Frakati
+plants around.  The green particles you see in the potion shows signs that this
+herb is not only one of the healing kind, but a strong one.    
+~
+~~
+vnum: 8341
+location: 127
+values:
+15
+16
+16
+16
+0
+0
+0
+~
+flags: a 0
+name: potion strong herbal small
+shortdesc: a small potion
+desc: A strong herbal potion lies here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: potion herbal healing strong small
+This old and small potion has been brewed directly from the freshest Frakati
+plants around.  The green particles you see in the potion shows signs that this
+herb is not only one of the healing kind, but a strong one.    
+~
+~~
+vnum: 8341
+location: 127
+values:
+15
+16
+16
+16
+0
+0
+0
+~
+flags: a 0
+name: potion strong herbal small
+shortdesc: a small potion
+desc: A strong herbal potion lies here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: potion herbal healing strong small
+This old and small potion has been brewed directly from the freshest Frakati
+plants around.  The green particles you see in the potion shows signs that this
+herb is not only one of the healing kind, but a strong one.    
+~
+~~
+vnum: 8342
+location: 127
+values:
+15
+15
+15
+15
+0
+0
+0
+~
+flags: 0 0
+name: potion dark herbal
+shortdesc: a dark potion
+desc: A dark herbal potion lies here.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: potion dark blue
+This small potion has chunks of fresh herbs and plants floating all about it.
+It is a mostly dark liquid which emits an incredible scent from the strong
+leaves it is made from.    
+~
+~~
+vnum: 8342
+location: 127
+values:
+15
+15
+15
+15
+0
+0
+0
+~
+flags: 0 0
+name: potion dark herbal
+shortdesc: a dark potion
+desc: A dark herbal potion lies here.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: potion dark blue
+This small potion has chunks of fresh herbs and plants floating all about it.
+It is a mostly dark liquid which emits an incredible scent from the strong
+leaves it is made from.    
+~
+~~
+vnum: 37006
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: rock thawkinixa piece colors rock-thawkinixa
+shortdesc: a piece of thawkinixa
+desc: A rock pulsating with colors hypnotizes you.
+type: 8
+weight: 4.00
+cost: 10000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+applies:
+4 -1
+~
+extradesc: rock thawkinixa piece colors rock-thawkinixa
+You are holding a piece of a legendary mineral known as Thawkinixa. Its
+existence was thought to be non-existence, at least until now. As you watch
+the colors pulsate thoughout the rock, your soul fills with greed. For
+many years this mineral was thought to be mythical, but now you hold the
+only known piece. Think of what it must be worth!
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+66 5
+111 6
+110 4
+108 7
+109 6
+112 5
+113 7
+185 6
+184 6
+65 8
+7 3
+228 1
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+5 1
+26 2
+101 2
+57 2
+20 1
+68 2
+32 1
+77 3
+100 1
+52 2
+8 1
+66 3
+19 2
+39 1
+111 3
+110 2
+99 2
+108 3
+186 1
+31 1
+37 1
+109 3
+112 2
+113 3
+106 2
+105 2
+50 1
+65 3
+103 1
+30 2
+107 2
+185 3
+83 2
+184 3
+102 2
+104 2
+2 1
+10 2
+76 2
+62 1
+67 1
+29 2
+38 2
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+19 1
+100 1
+5 1
+20 1
+39 1
+101 1
+50 1
+29 1
+38 1
+62 1
+67 1
+68 1
+8 3
+87 4
+37 3
+45 7
+30 5
+106 5
+187 4
+25 6
+76 6
+186 2
+21 4
+188 5
+75 5
+32 2
+33 1
+213 3
+212 2
+211 2
+52 3
+31 2
+226 3
+224 3
+222 3
+125 2
+121 1
+223 2
+~
+~~
+vnum: 46406
+location: 127
+values:
+20
+3
+46410
+0
+0
+0
+0
+~
+flags: ab 0
+name: egg speckled speckled-egg
+shortdesc: a speckled egg
+desc: Someone has forgotten a small, speckled egg here.
+adesc:
+Nothing.
+~
+type: 15
+weight: 0.20
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+applies:
+23 -2
+~
+extradesc: speckled egg
+     About as big around as your fist, the smooth off-white surface of this egg
+is speckled with tiny flecks of blue and yellow, giving it an almost marbled
+appearance.  The egg is warm in your hand, and you can almost feel the beating
+of a tiny heart inside it.  Perhaps if kept properly warm and cared for, in a
+few days the most wonderful of treasures might be discovered inside.
+~
+~~
+vnum: 11811
+location: -1
+values:
+3
+4
+5
+11
+0
+0
+0
+~
+flags: adprstD 0
+name: bolt energy small light
+shortdesc: a small bolt of energy
+desc: A bolt of light flickers rapidly here.
+type: 5
+weight: -2.00
+cost: 2000
+timer: 0
+level: 65
+effects: mn 0 0
+wear: 8193
+applies:
+2 3
+5 -2
+~
+~~
+vnum: 55604
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sapphire gem dust dust-sapphire
+shortdesc: some sapphire dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sapphire gem crushed crushed-sapphire
+shortdesc: a crushed sapphire
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sapphire gem crushed crushed-sapphire
+shortdesc: a crushed sapphire
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55634
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ruby gem dust dust-ruby
+shortdesc: some ruby dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55693
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: jade gem handful handful-jade
+shortdesc: a handful of jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 8000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55646
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: diamond gem uncut uncut-diamond
+shortdesc: an uncut diamond
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 5000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55625
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem shard shard-tourmaline
+shortdesc: a tourmaline shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55598
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lapis-lazuli gem uncut uncut-lapis-lazuli
+shortdesc: an uncut lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55596
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem uncut uncut-amber
+shortdesc: an uncut amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55595
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: turquoise gem shard shard-turquoise
+shortdesc: a turquoise shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55595
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: turquoise gem shard shard-turquoise
+shortdesc: a turquoise shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55597
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: turquoise gem uncut uncut-turquoise
+shortdesc: an uncut turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1006
+location: 127
+values:
+300
+220
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 16.34
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~

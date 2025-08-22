@@ -1,0 +1,1078 @@
+1
+vnum: 3030
+location: 0
+values:
+0
+150
+149
+0
+0
+0
+0
+~
+flags: 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+~~
+vnum: 18003
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 18003
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 16901
+location: 16
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: 0
+name: knife silver silver-knife
+shortdesc: a silver knife
+desc: A dulled, silver knife lies on the ground.
+type: 5
+weight: 0.75
+cost: 100
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 8193
+extradesc: knife silver
+The knife has ornate carvings on its' hilt, and the name McGuire is prominent
+on the hilt. It was probably part of the silver set of this house.
+~
+~~
+vnum: 1029
+location: 18
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+32 5
+100 5
+5 5
+101 12
+20 5
+8 7
+19 18
+39 5
+~
+~~
+vnum: 18003
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 18001
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+240
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 17.65
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55313
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: cap leather flimsy
+shortdesc: a flimsy leather cap
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55310
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracelet decayed
+shortdesc: a decayed bracelet
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: quill feather feather-quill pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: feather quill
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)
+~
+~~
+vnum: 3104
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3104
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3104
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3104
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3104
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3104
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3104
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3104
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3104
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3104
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3104
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3104
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: claw scrumptious-bear-claw semicircular-donut food
+shortdesc: a scrumptious bear claw
+desc: A semicircular donut is lying here, its aroma filling the room.
+type: 19
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: donut scrumptious-bear-claw rectangular-donut
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+~~
+vnum: 55309
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracer leather flimsy
+shortdesc: a flimsy leather bracer
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55304
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: boots plate rusted
+shortdesc: rusted plate boots
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 3.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55309
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracer leather flimsy
+shortdesc: a flimsy leather bracer
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55301
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gloves leather flimsy
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+~~
+vnum: 3021
+location: 127
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnu
+name: a-small-sword
+shortdesc: a small sword
+desc: A small sword lies here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: small sword
+The sword is rather small to be called a sword, but it's definitely bigger
+than a dagger. It's rather simple in design.
+~
+~~
+vnum: 18002
+location: 127
+values:
+0
+1
+5
+7
+0
+0
+0
+~
+flags: mwyz
+name: shovel
+shortdesc: a shovel
+desc: A large shovel is stuck in the ground.
+type: 5
+weight: 5.00
+cost: 10
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 8193
+extradesc: shovel
+   The shovel is large and unwieldy. It would probably be difficult to use this
+properly if you aren't strong enough.
+~
+~~
+vnum: 18000
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: 0
+name: scissors
+shortdesc: a pair of scissors
+desc: A large pair of gardening scissors lies among the bushes.
+type: 5
+weight: 3.00
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: scissors
+   The scissors is rather large and sharp, highly suitable to trim hedges. In
+the hands of a skilled user, it could really cut life down to size.
+~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+~~
+vnum: 3021
+location: 127
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnu
+name: a-small-sword
+shortdesc: a small sword
+desc: A small sword lies here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: small sword
+The sword is rather small to be called a sword, but it's definitely bigger
+than a dagger. It's rather simple in design.
+~
+~~
+vnum: 3020
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: nu
+name: dagger
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: dagger
+The dagger's blade is razor sharp.
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 55569
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~

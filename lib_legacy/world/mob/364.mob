@@ -1,0 +1,131 @@
+#36400
+arctic-fox white-fox arctic white fox~
+an arctic fox~
+A white fox with bright black eyes tries to evade you.~
+This is no ordinary fox. Its coat is a lustrous, pearly white,
+shot through with fine silver hairs. It's a lithe, muscular beast,
+whose camouflage is broken only by a pair of glittering black eyes
+that regard you with almost human intelligence.~
+72 262144 0 E
+3 20 0 0d0+0 0d0+0
+0 0 0 0 0 364
+3 3 1 24 14 0 1
+BareHandAttack: 9
+Str: 80
+Dex: 85
+Int: 58
+Wis: 64
+Con: 30
+Cha: 88
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#36401
+small-bird small bird quail~
+a shivering quail~
+A small bird darts for cover as you approach.~
+This is one fast little bird. Standing no more than knee high, this
+quail is nevertheless a fierce little fighter. Perhaps she is defending a 
+nest. She squawks at you while she tries to peck your eyes out with her 
+beak and claw you with her little yellow feet.~
+200 1310720 0 E
+2 20 0 0d0+0 0d0+0
+0 0 0 0 0 364
+3 3 2 24 14 0 1
+BareHandAttack: 10
+Str: 70
+Dex: 86
+Int: 58
+Wis: 70
+Con: 30
+Cha: 87
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#36402
+post-commander-lyara woman retired-military-officer ruzhana~
+Post Commander Lyara~
+A retired military officer warms herself by the fire.~
+A half-Elven woman of some age, Post Commander Lyara carries herself with the
+poise and confidence of a well-trained soldier, but softened some by years in
+retirement.  Her overall appearance is well maintained but unadorned, much like
+her home, indicating a concentration on function over appearance.  Her grey
+hair is pulled back and neat, perfectly framing her gently aging face.  The
+only truly unsual part of her appearance is her scintillating purple irises,
+suggesting there is more to her than meets the eye.~
+-2147459046 1024 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 364
+1 1 2 22 9 0 2
+Str: 76
+Dex: 75
+Int: 83
+Wis: 76
+Con: 83
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 36400
+T 36401
+T 36402
+T 36403
+T 36404
+T 36406
+T 36419
+#36430
+hjordis-howlingbear barbarian-woman~
+Hjordis Howlingbear~
+A barbarian woman dressed entirely in pelts tends the lodge.~
+The barbarian woman who stands before you is a respected member of the
+Berserker Guild, a loose comradery of frenzied warriors.  She is dressed head
+to toe in rough animal pelts, surely not warm enough to keep the freezing
+arctic winds from chilling her bones.  But perhaps external warmth is
+unnecessary for one such as her.  It is said the berserk rage from which the
+guild takes its name stokes the inner fires of the soul and keeps one alive
+through fire, frost, or frenzy.~
+-2013208566 0 0 E
+100 20 0 0d0+0 0d0+0
+0 0 0 0 0 364
+3 3 2 14 10 0 3
+Str: 70
+Dex: 86
+Int: 50
+Wis: 68
+Con: 82
+Cha: 97
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 36408
+T 36409
+T 36410
+T 36411
+T 36412
+T 36413
+T 36420
+$

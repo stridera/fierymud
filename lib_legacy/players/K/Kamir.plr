@@ -1,0 +1,62 @@
+name: Kamir
+password: Ka643h.lIq
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19594
+birthtime: 1588884610
+timeplayed: 114
+lastlogintime: 1588884725
+host: 176.221.121.006
+height: 46
+weight: 189
+base_height: 46
+base_weight: 189
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 22/22
+mana: 0/0
+move: 124/124
+damroll: 4
+hitroll: 5
+strength: 94
+intelligence: 80
+wisdom: 69
+dexterity: 88
+constitution: 74
+charisma: 65
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0
+tells:
+$
+gossips:
+$

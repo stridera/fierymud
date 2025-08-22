@@ -1,0 +1,208 @@
+name: Mord
+password: MoKgwI9aEX
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 11
+race: 0
+level: 76
+home: 3046
+lifeforce: 0
+composition: 0
+id: 16391
+birthtime: 1172702049
+timeplayed: 1373520
+lastlogintime: 1434393990
+host: 050.206.102.120
+height: 71
+weight: 146
+base_height: 71
+base_weight: 146
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gly
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 51101
+badpasswords: 2
+hunger: 24
+thirst: 24
+lastlevel: 3
+hitpoints: 423/423
+mana: 100/100
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 83
+intelligence: 100
+wisdom: 94
+dexterity: 81
+constitution: 50
+charisma: 50
+cash: 0 12 32 21
+experience: 67581413
+quit_reason: 7
+saveroom: 51101
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+21 1000
+25 1000
+29 1000
+31 1000
+32 1000
+33 1000
+38 1000
+39 1000
+45 1000
+50 1000
+62 1000
+67 1000
+68 1000
+76 1000
+87 1000
+100 1000
+101 1000
+106 1000
+121 1000
+125 1000
+186 1000
+187 1000
+188 1000
+211 1000
+213 1000
+222 1000
+223 1000
+224 1000
+226 1000
+415 99
+416 109
+421 806
+423 810
+424 650
+438 50
+443 50
+444 50
+447 668
+451 185
+452 101
+453 50
+454 50
+458 50
+459 96
+460 524
+461 78
+462 112
+464 810
+0 0
+trophy:
+1 51004 0.500000
+1 51003 1.000000
+1 51002 3.000000
+1 51000 3.000000
+1 16905 1.000000
+1 51101 82.500000
+1 51100 111.833000
+1 8332 0.500000
+1 8308 3.000000
+1 8314 0.500000
+1 8312 2.000000
+1 8315 0.500000
+1 8311 3.000000
+1 8318 5.500000
+1 8300 1.000000
+1 8301 0.500000
+1 18509 0.500000
+1 18517 0.500000
+1 18507 1.000000
+1 18504 0.333000
+1 5223 1.500000
+0 0 0
+tells:
+$
+gossips:
+$
+mem:
+100 0 2
+19 1 2
+45 0 2
+186 1 2
+29 1 2
+68 1 2
+62 1 2
+213 1 4
+211 1 8
+100 0 2
+19 1 2
+45 0 2
+186 1 2
+29 1 2
+68 1 2
+62 1 2
+213 1 4
+211 1 8
+100 0 2
+19 1 2
+45 1 2
+186 1 2
+29 1 2
+68 1 2
+62 1 2
+213 1 4
+211 1 8
+100 0 2
+19 1 2
+45 1 2
+186 1 2
+29 1 2
+68 1 2
+62 1 2
+213 1 4
+211 1 8
+100 0 2
+19 1 2
+45 1 2
+186 1 2
+29 1 2
+68 1 2
+62 1 2
+213 1 4
+100 0 2
+19 1 2
+45 1 2
+186 1 2
+29 1 2
+68 1 2
+62 1 2
+213 1 4
+100 0 2
+19 1 2
+45 1 2
+100 1 2
+0 0 0
+aliases:
+3 as ogg
+1 rem staff; wield dagger; hold staff
+5 exam corpse
+`` gt flee
+4 sell gem
+55 g all all.corpse
+8 dri skin; dri skin; eat food; eat food;
+0 r; medi; mem
+dd cast 'dim do' $1
+9 cast 'mi c' ration; g ration
+` flee
+id cast 'ident' $1
+mc cast 'mi cr' $1
+2 gt hitall
+13 rem dagger
+33 o zombie as ogg
+an cast 'animate' $1
+inv cast 'invis' $1
+di cast 'd i' $1
+0

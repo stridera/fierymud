@@ -1,0 +1,85 @@
+name: Tempo
+password: Tef89OPxO3
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19274
+birthtime: 1510919397
+timeplayed: 12165
+lastlogintime: 1556419820
+host: 071.201.188.013
+height: 72
+weight: 115
+base_height: 72
+base_weight: 115
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 16
+thirst: 24
+lastlevel: 0
+hitpoints: 71/71
+mana: 1/0
+move: 108/114
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 64
+wisdom: 75
+dexterity: 92
+constitution: 85
+charisma: 56
+cash: 0 2 6 2
+experience: 60500
+quit_reason: 1
+saveroom: 3054
+skills:
+402 52
+404 90
+415 50
+416 50
+421 90
+438 50
+443 50
+444 50
+463 50
+464 50
+465 69
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 16903 0.333333
+1 16905 0.666667
+1 16908 1.000000
+1 16900 1.333333
+1 16902 0.333333
+1 3502 0.333333
+1 3501 0.333333
+1 3507 0.333333
+1 18003 1.333333
+1 18004 1.000000
+1 18001 0.333333
+1 18002 0.666667
+1 18007 2.333333
+1 8030 0.500000
+1 41013 0.500000
+1 8014 0.500000
+1 8001 0.500000
+1 12007 0.500000
+1 12001 1.000000
+1 12015 0.500000
+0 0 0

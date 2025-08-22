@@ -1,0 +1,982 @@
+#55101
+An Icen Tunnel~
+   You struggle as you make your way through a tunnel that hasn't been traveled
+for what looks like thousands of years.  There is crushed stone and rubble
+everywhere and the passage is difficult.  You notice it is much colder down
+here and you question your sanity as you wonder what could be in this dark
+forgotten place.  You notice a partially crushed monolith in the ice.  The
+tunnel continues to the west and south.    
+~
+551 520 0
+D2
+~
+~
+0 -1 55102
+D3
+~
+~
+0 -1 55044
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55102
+An Icen Tunnel~
+   You struggle as you make your way through a tunnel that hasn't been traveled
+for what looks like thousands of years.  There is crushed stone and rubble
+everywhere and the passage is difficult.  You notice it is much colder down
+here and you question your sanity as you wonder what could be in this dark
+forgotten place.  You can't help but notice a mammoth monolith in the ice.  
+The tunnel continues to the north and south.    
+~
+551 520 0
+D0
+~
+~
+0 -1 55101
+D2
+~
+~
+0 -1 55103
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55103
+An Icen Tunnel~
+   You struggle as you make your way through a tunnel that hasn't been traveled
+for what looks like thousands of years.  There is crushed stone and rubble
+everywhere and the passage is difficult.  You notice it is much colder down
+here and you question your sanity as you wonder what could be in this dark
+forgotten place.  You notice a partially crushed monolith in the ice.  The
+tunnel continues to the north and east.    
+~
+551 520 0
+D0
+~
+~
+0 -1 55102
+D1
+~
+~
+0 -1 55125
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55104
+Huitzipa's Lair~
+   You slide and crawl your way into a huge opening in the ice.  This room
+looks as though it were carved from three levels of the surrounding pyramid
+that have long been buried in ice.  This place looks like a prison of sorts and
+you see two giant jade stones fixed in the walls humming.  The stones resemble
+the eyes of a cat and are keeping a mass in the center of the room imprisoned
+by their gaze.  It is very cold here.    
+~
+551 720904 0
+D5
+~
+~
+0 -1 55132
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55105
+The Altar of The Snow Leopard Order~
+   You stand before a giant statue of the Snow Leopard.  It looks down upon an
+an open arena where the warriors of the order practice their skills under the
+gaze of their god.  There are jewels and gold adorning the walls and statue.  
+On the walls you see murals and carvings of many battles fought long ago under
+the blessings of the Snow Leopard.  Many heroes of the Snow Leopard Order gave
+their lives in fierce battle.  You hope not to face any this day.    
+~
+551 8 1
+D2
+~
+~
+0 -1 55098
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55106
+Steps of Silence~
+   You struggle to stand as you notice you are on a long ice-covered granite
+stairway.  You look ahead to make your way through a tunnel that hasn't been
+traveled for what looks like thousands of years.  There is crushed stone and
+rubble everywhere and the passage is difficult.  You notice it is much colder
+down here and you question your sanity as you wonder what could be in this dark
+forgotten place.  Ice covers everything and you realize that as you move you
+make no sound, it must be the configuration of the passage.  You notice a
+partially crushed monolith in the ice.  The stairs continue to downward.    
+~
+551 8 0
+D1
+~
+mural~
+1 -1 55124
+D5
+~
+~
+0 -1 55107
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+E
+monolith~
+You can't quite make it out but it looks like a frightened person carved into
+the granite.
+~
+S
+#55107
+Steps of Silence~
+   You struggle to stand as you notice you are on a long ice-covered granite
+stairway.  You look ahead to make your way through a tunnel that hasn't been
+traveled for what looks like thousands of years.  There is crushed stone and
+rubble everywhere and the passage is difficult.  You notice it is much colder
+down here and you question your sanity as you wonder what could be in this dark
+forgotten place.  Ice covers everything and you realize that as you move you
+make no sound, it must be the configuration of the passage.  The stairs
+continue downward.    
+~
+551 8 0
+D4
+~
+~
+0 -1 55106
+D5
+~
+~
+0 -1 55108
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55108
+Steps of Silence~
+   You struggle to stand as you notice you are below a long ice-covered granite
+stairway.  You look ahead to make your way through a tunnel that hasn't been
+traveled for what looks like thousands of years.  There is crushed stone and
+rubble everywhere and the passage is difficult.  You notice it is much colder
+down here and you question your sanity as you wonder what could be in this dark
+forgotten place.  Ice covers everything and you realize that as you move you
+make no sound, it must be the configuration of the passage.  The tunnel
+continues to the south.    
+~
+551 8 0
+D2
+~
+~
+0 -1 55109
+D4
+~
+~
+0 -1 55107
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55109
+Hall of Silence~
+   You struggle to stand as you notice you are in a long ice-covered granite
+hallway.  You look ahead to make your way through a tunnel that hasn't been
+traveled for what looks like thousands of years.  There is crushed stone and
+rubble everywhere and the passage is difficult.  You notice it is much colder
+down here and you question your sanity as you wonder what could be in this dark
+forgotten place.  Ice covers everything and you realize that as you move you
+make no sound, it must be the configuration of the passage.  You notice a large
+monolith in the ice.  The tunnel continues to the north and south.    
+~
+551 8 0
+D0
+~
+~
+0 -1 55108
+D1
+~
+monolith~
+1 -1 55111
+D2
+~
+~
+0 -1 55110
+E
+monolith~
+You notice a frightened person and a huge creature in the monolith.
+~
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55110
+Hall of Silence~
+   You struggle to stand as you notice you are in a long ice-covered granite
+hallway.  You look ahead to make your way through a tunnel that hasn't been
+traveled for what looks like thousands of years.  There is crushed stone and
+rubble everywhere and the passage is difficult.  You notice it is much colder
+down here and you question your sanity as you wonder what could be in this dark
+forgotten place.  Ice covers everything and you realize that as you move you
+make no sound, it must be the configuration of the passage.    
+~
+551 8 0
+D0
+~
+~
+0 -1 55109
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55111
+An Ornate Hall~
+   Leaving the bleak faceless granite of the other tunnels, this cramped
+chamber is covered in runes and pictograms.  There was an immense amount of
+death in this land many years ago.  The runes and pictures seem to continue the
+tale of the ones in the other passages.  You notice a giant cat forcing an evil
+looking giant into banishment.  The passage to the east looks guarded.    
+~
+551 1769480 0
+D1
+You are amazed by an intricately carved talisman into the granite wall.
+The talisman is crying, but missing a tear?
+~
+talisman~
+1 55023 55112
+D3
+~
+monolith~
+1 -1 55109
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55112
+Altar of Xapizo~
+   You slide and crawl your way into a huge opening in the ice.  This room
+looks as though it were carved from three surrounding rooms of the pyramid that
+have long been buried in ice.  It is very cold here and a strange mist clings
+to the ceiling.  There are symbols carved into huge monoliths in every wall and
+a large bloodstained stone table dominates the center of the room, and icen
+statues surround it.  The statues look irritated by your presence.    
+~
+551 1769992 0
+D3
+~
+wall talisman~
+1 -1 55111
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55114
+Lair of Xapizo~
+   You crawl you way into an almost totally black room.  This room looks as
+though it is absorbing all the light of your light source.  This place looks
+like a prison of sorts and you see two giant jade stones fixed in the wall
+humming.  The stones resemble the eyes of a cat and are keeping a mass in the
+center of the room imprisoned by their gaze.  It is very cold here.    
+~
+551 720904 0
+D5
+~
+~
+0 0 55137
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55117
+The Order Gauntlet~
+   You stand just inside the pyramid from the guard station.  It's slightly
+warmer here and you see torches lining the wall along the passage.  You see
+statues of battle-scarred warriors along each wall of the hallway.  The statues
+look as though they are inspecting you as you pass them.  The passage continues
+to the north.    
+~
+551 8 0
+D0
+~
+~
+0 -1 55118
+D3
+~
+door~
+1 -1 55123
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55118
+The Order Gauntlet~
+   You stand in a spartan hallway of many statues of the heroes of the Leopard
+Order.  The faces of the once mighty warriors tell a tale of honor and
+nobility.  It's slightly warmer here and there is no ice.  You see torches
+lining the wall along the passage.  As you travel the passage you realize the
+statues look as though they are inspecting you as you pass them.  Immaculately
+clean steps of black granite lead upward.  The passage also continues to the
+south.    
+~
+551 8 0
+D2
+~
+~
+0 -1 55117
+D4
+~
+~
+0 -1 55119
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55119
+The Order Gauntlet~
+   You stand in a spartan hallway of many statues of the heroes of the Leopard
+Order.  The faces of the once mighty warriors tell a tale of honor and
+nobility.  It's slightly warmer here and there is no ice.  You see torches
+lining the wall along the passage.  As you travel the passage you realize the
+statues look as though they are inspecting you as you pass them.  Immaculately
+clean steps of black granite lead downward.  The passage also continues to the
+north.    
+~
+551 8 0
+D0
+~
+~
+0 -1 55120
+D5
+~
+~
+0 -1 55118
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55120
+The Order Gauntlet~
+   You stand in a spartan hallway of many statues of the heroes of the Leopard
+Order.  The faces of the once mighty warriors tell a tale of honor and
+nobility.  It's warmer here and there is no ice.  You see torches lining the
+wall along the passage.  As you travel the passage you realize the statues look
+as though they are inspecting you as you pass them.  Immaculately clean steps
+of black granite lead upward.  The passage also continues to the south.    
+~
+551 8 0
+D2
+~
+~
+0 -1 55119
+D4
+~
+~
+0 -1 55121
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55121
+The Order Gauntlet~
+   You stand in a spartan hallway of many statues of the heroes of the Leopard
+Order.  The faces of the once mighty warriors tell a tale of honor and
+nobility.  It's warmer here and there is no ice.  You see torches lining the
+wall along the passage.  As you travel the passage you realize the statues look
+as though they are inspecting you as you pass them.  Immaculately clean steps
+of black granite lead downward.  The passage also continues to the east.    
+~
+551 8 0
+D1
+~
+~
+0 -1 55082
+D5
+~
+~
+0 -1 55120
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55122
+In the Air...~
+You float above the plaza fountain.
+~
+551 28 9
+D5
+~
+~
+0 -1 55089
+S
+#55123
+The Leopard Guard Station~
+   You stand on a flat landing extending away from the steppe of the pyramid.
+The wind and cold are greater here as the walls of the pyramid do not protect
+you.  All around you, on the landing, are statues buried in ice that have no
+features and barely any form.  You can determine that most of the statues are
+of men wielding weapons in poses of battle.  The entire landing is covered in
+ice, as is everything else in sight.  You notice a small exit leading downward
+between the blocks of the pyramid and a guarded door to the east.    
+~
+551 0 13
+D1
+~
+door~
+1 -1 55117
+D5
+~
+~
+0 -1 55043
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55124
+The Leopard Plaza~
+   This part of the plaza resembles the rest.  It is well lit by large oil
+lamps placed along the wall and on the columns that support the weight of the
+ceiling.  There are symbols and murals on the walls and columns.  The murals
+depict the giant snow leopard and its teachings to the peoples of this land.  
+The plaza continues east, west, and south.    
+~
+551 8 0
+D1
+~
+~
+0 -1 55093
+D2
+~
+~
+0 -1 55087
+D3
+The murals depict the giant snow leopard.
+~
+mural~
+1 -1 55106
+E
+snow ice~
+You seem to be losing this snowball fight.
+~
+S
+#55125
+An Ornate Antechamber~
+   Leaving the bleak faceless granite of the other tunnels this cramped chamber
+is covered in runes and pictograms.  There was an immense amount of death in
+this land many years ago.  The runes and pictures seem to continue the tale of
+the ones in the other passages.  You notice a giant cat forcing an evil looking
+giant into banishment.  The passage to the east looks guarded.    
+~
+551 520 0
+D1
+~
+~
+0 0 55126
+D3
+~
+~
+0 0 55103
+S
+#55126
+Altar of Huitzipa~
+   The guarded tunnel ends into this large room of decoratively carved black
+granite.  There is a sacrificial table in the center of the room and a glow
+coming from the behind it.  There is a large pool carved into the granite floor
+containing a mysterious silver liquid.    
+~
+551 520 0
+D3
+~
+~
+0 0 55125
+S
+#55127
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D1
+~
+~
+0 0 55128
+S
+#55128
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55129
+D1
+~
+~
+0 0 55130
+D2
+~
+~
+0 0 55131
+D3
+~
+~
+0 0 55127
+S
+#55129
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55132
+D2
+~
+~
+0 0 55128
+S
+#55130
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D3
+~
+~
+0 0 55128
+S
+#55131
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55128
+S
+#55132
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D2
+~
+~
+0 0 55129
+D4
+~
+~
+0 0 55104
+S
+#55133
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D1
+~
+~
+0 0 55134
+S
+#55134
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55135
+D1
+~
+~
+0 0 55136
+D2
+~
+~
+0 0 55137
+D3
+~
+~
+0 0 55133
+S
+#55135
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D2
+~
+~
+0 0 55134
+S
+#55136
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D3
+~
+~
+0 0 55134
+S
+#55137
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55134
+D4
+~
+~
+0 0 55114
+S
+#55138
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 17
+D1
+~
+~
+0 0 55128
+S
+#55139
+On the Demon Plane~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 17
+D1
+~
+~
+0 0 55128
+S
+#55140
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D1
+~
+~
+0 0 55141
+S
+#55141
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55142
+D1
+~
+~
+0 0 55144
+D2
+~
+~
+0 0 55145
+D3
+~
+~
+0 0 55140
+S
+#55142
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D1
+~
+~
+0 0 55143
+D2
+~
+~
+0 0 55141
+S
+#55143
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D1
+~
+~
+0 0 55147
+D2
+~
+~
+0 0 55144
+D3
+~
+~
+0 0 55142
+S
+#55144
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55143
+D1
+~
+~
+0 0 55148
+D2
+~
+~
+0 0 55146
+D3
+~
+~
+0 0 55141
+S
+#55145
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55141
+D1
+~
+~
+0 0 55146
+S
+#55146
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55144
+D1
+~
+~
+0 0 55149
+D3
+~
+~
+0 0 55145
+S
+#55147
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55152
+D1
+~
+~
+0 0 55151
+D2
+~
+~
+0 0 55148
+D3
+~
+~
+0 0 55143
+S
+#55148
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55147
+D1
+~
+~
+0 0 55150
+D2
+~
+~
+0 0 55149
+D3
+~
+~
+0 0 55144
+S
+#55149
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55148
+D3
+~
+~
+0 0 55146
+S
+#55150
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55151
+D3
+~
+~
+0 0 55148
+S
+#55151
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D0
+~
+~
+0 0 55153
+D2
+~
+~
+0 0 55150
+D3
+~
+~
+0 0 55147
+S
+#55152
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D1
+~
+~
+0 0 55153
+D2
+~
+~
+0 0 55147
+S
+#55153
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D1
+~
+~
+0 0 55154
+D2
+~
+~
+0 0 55151
+D3
+~
+~
+0 0 55152
+S
+#55154
+On the Outer Planes~
+   The realm around you is nebulous and difficult to focus on.  Passages of
+stone appear to fold in on themselves and the smell of brimstone and death
+permeates the air.    
+~
+551 720904 0
+D3
+~
+~
+0 0 55153
+S
+$~

@@ -1,0 +1,65 @@
+name: Themaker
+password: ThIQtssrbr
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18971
+birthtime: 1433413699
+timeplayed: 146
+lastlogintime: 1433413848
+host: 223.194.072.153
+height: 46
+weight: 173
+base_height: 46
+base_weight: 173
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 15
+thirst: 6
+lastlevel: 0
+hitpoints: 27/25
+mana: 0/0
+move: 158/158
+damroll: 4
+hitroll: 5
+strength: 87
+intelligence: 62
+wisdom: 76
+dexterity: 95
+constitution: 95
+charisma: 57
+experience: 952
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18007 1.000000
+0 0 0

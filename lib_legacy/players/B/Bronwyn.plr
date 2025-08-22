@@ -1,0 +1,101 @@
+name: Bronwyn
+password: Br7.Tw6ZlP
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 27
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20169
+birthtime: 1645648847
+timeplayed: 4013
+lastlogintime: 1694803715
+host: 035.002.002.066
+height: 78
+weight: 364
+base_height: 78
+base_weight: 364
+base_size: 2
+natural_size: 2
+alignment: 21
+playerflags: xy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 56/61
+mana: 1/0
+move: 105/133
+damroll: 3
+hitroll: 3
+strength: 99
+intelligence: 64
+wisdom: 58
+dexterity: 99
+constitution: 84
+charisma: 67
+experience: 46099
+quit_reason: 5
+saveroom: 5303
+skills:
+203 1000
+402 62
+404 82
+415 50
+416 50
+421 67
+438 50
+443 50
+444 50
+454 50
+463 50
+464 50
+465 63
+466 50
+467 50
+468 50
+487 50
+0 0
+trophy:
+1 8023 1.000000
+1 3130 5.000000
+1 3131 2.000000
+1 8001 1.000000
+1 8021 1.000000
+1 36004 1.000000
+1 36003 4.000000
+1 36002 3.000000
+1 36001 2.000000
+1 8000 2.000000
+1 8010 3.000000
+1 8015 3.000000
+1 8014 2.000000
+1 8013 3.000000
+1 8016 2.000000
+1 8002 3.000000
+1 8012 3.000000
+1 8011 3.000000
+1 6909 1.000000
+1 18004 1.000000
+1 18003 1.000000
+0 0 0
+tells:
+1645649132 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1645650569 Daedela gossips, 'search trapdoor is what she needed'
+1645650571 Strider gossips, 'or ring/door/wood'
+1645650583 Daedela gossips, 'good to know someone knows about the look trick!'
+1694801690 Serapheem gossips, 'gratz'
+1694802486 Serapheem gossips, 'it's in a secret area in the sewers.'
+1694802524 Serapheem gossips, 'pay attention to the water and the trash'
+1694802542 Chinok gossips, 'typically, if there is soemthing hidden, there will be clues that you need to search'
+1694802579 Chinok gossips, 'also .. a generic search command is like 30% chance of finding stuff... but SERCH KEYWORD ALWAYS works'
+1694802737 Serapheem gossips, 'so what if you just use the search command... like 3-4x?'
+1694802819 Chinok gossips, 'it has a timer, so you're stuck for a few secs, -- and that's totally OK'
+$

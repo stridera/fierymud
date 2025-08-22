@@ -1,0 +1,104 @@
+name: Polare
+password: Poojt5zqK4
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19063
+birthtime: 1462422483
+timeplayed: 5136
+lastlogintime: 1462559609
+host: 050.053.057.026
+height: 39
+weight: 183
+base_height: 39
+base_weight: 183
+base_size: 2
+natural_size: 2
+alignment: 929
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 6
+thirst: 16
+lastlevel: 0
+hitpoints: 48/48
+mana: 1/0
+move: 108/108
+damroll: 4
+hitroll: 5
+strength: 90
+intelligence: 84
+wisdom: 93
+dexterity: 74
+constitution: 65
+charisma: 57
+cash: 0 6 33 15
+experience: 36962
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 68
+424 59
+438 50
+443 50
+444 50
+451 51
+457 53
+458 52
+459 50
+460 53
+462 50
+463 62
+466 50
+0 0
+trophy:
+1 61502 0.500000
+1 61500 0.500000
+1 61525 0.500000
+1 61506 0.500000
+1 61523 0.500000
+1 61508 0.500000
+1 61517 1.000000
+1 61507 0.500000
+1 61510 1.000000
+1 61512 0.500000
+1 61503 1.000000
+1 61501 1.000000
+1 3508 0.500000
+1 3507 0.500000
+1 12016 0.500000
+1 12015 0.500000
+1 3509 0.500000
+1 3503 0.500000
+1 3502 2.500000
+1 3500 2.500000
+1 3501 2.000000
+0 0 0
+effects:
+206 1 17 13 0 0 0
+1 4 10 17 0 0 0
+0 0 0 0 0
+mem:
+16 1 7
+16 1 7
+1 1 7
+16 1 7
+0 0 0

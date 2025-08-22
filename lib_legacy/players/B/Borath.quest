@@ -1,0 +1,111 @@
+70 1 1
+hunt running
+19 255 1
+choice 2
+17 1 3
+bl_ally 1
+eg_faction 0
+bl_faction 0
+6 5 10
+got_spice:23750 1
+got_spice:23758 1
+got_spice:23755 1
+got_spice:23754 1
+got_spice:23751 1
+got_spice:23757 1
+got_spice:23759 1
+got_spice:23752 1
+got_spice:23753 1
+num_spices 9
+5 255 3
+boots 1
+ring 1
+cloak 1
+4 3 1
+oak 1
+65 1 2
+scorpion 1
+lever 1
+62 2 5
+trophytask2 17806
+trophytask4 0
+trophytask3 55591
+trophytask1 1
+attack_counter 0
+59 7 2
+target1 0
+hunt running
+61 7 2
+target1 0
+hunt running
+63 255 1
+step totem
+29 255 19
+bad5 0
+bad4 0
+bad3 0
+bad2 0
+bad1 0
+invoke 0
+summon 0
+prayer 0
+reliquary 0
+north 0
+west 0
+south 0
+east 1
+item5 0
+item4 0
+item3 0
+goblet 18512
+item2 0
+item1 0
+2 9 1
+chimera dead
+47 1 1
+gem_vnum 0
+10 255 0
+1 112 0
+7 3 42
+55732_gems_acquired 3
+55666_gems_acquired 3
+55633_gems_acquired 3
+55644_gems_acquired 3
+55655_gems_acquired 3
+55611_gems_acquired 3
+55688_gems_acquired 3
+55721_gems_acquired 3
+55743_gems_acquired 3
+55710_gems_acquired 3
+55699_gems_acquired 3
+55677_gems_acquired 3
+55381_armor_acquired 1
+55357_armor_acquired 1
+55373_armor_acquired 1
+55369_armor_acquired 1
+55361_armor_acquired 1
+55365_armor_acquired 1
+55377_armor_acquired 1
+55600_gems_acquired 3
+55622_gems_acquired 3
+55353_armor_acquired 1
+55349_armor_acquired 1
+55345_armor_acquired 1
+55341_armor_acquired 1
+55337_armor_acquired 1
+55333_armor_acquired 1
+55329_armor_acquired 1
+55589_gems_acquired 3
+55593_gems_acquired 3
+55577_gems_acquired 3
+55581_gems_acquired 3
+55573_gems_acquired 3
+55569_gems_acquired 3
+55585_gems_acquired 3
+55316_armor_acquired 1
+55312_armor_acquired 1
+55308_armor_acquired 1
+55304_armor_acquired 1
+55300_armor_acquired 1
+55324_armor_acquired 1
+55320_armor_acquired 1

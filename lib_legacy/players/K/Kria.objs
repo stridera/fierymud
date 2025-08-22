@@ -1,0 +1,2989 @@
+1
+vnum: 16103
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 16103
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 58429
+location: 3
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant alicorn-pendant alicorn horn tip spiral chain
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 9
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant alicorn horn tip spiral chain
+This pendant is made of the very tip of a spiral horn. It's been drilled
+so a primitive chain can support it. The horn glows with power.
+~
+~~
+vnum: 58429
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant alicorn-pendant alicorn horn tip spiral chain
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 9
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant alicorn horn tip spiral chain
+This pendant is made of the very tip of a spiral horn. It's been drilled
+so a primitive chain can support it. The horn glows with power.
+~
+~~
+vnum: 58425
+location: 5
+values:
+23
+0
+0
+0
+0
+0
+0
+~
+flags: mnotuwyz
+name: breastpiece scale mail plate
+shortdesc: a scale mail breastpiece
+desc: A breastpiece of scale mail glints with hidden power.
+type: 9
+weight: 8.00
+cost: 2500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 9
+extradesc: scale mail breast breastpiece piece
+This mail is made of some sort of steel alloy worked into fish
+scale-shaped pieces that interlace together, providing a light 
+but very strong protection against damage. Each scale is embossed
+along its edges.
+~
+~~
+vnum: 58414
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crown golden gypsy-crown gypsy
+shortdesc: the Gypsy Crown
+desc: A golden crown inlaid with emeralds rolls around here.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 17
+applies:
+5 8
+~
+extradesc: crown gypsy
+This crown seems pretty heavy. It's made of thick gold, and probably
+incredibly expensive. The gold is shaped into the traditional peaks of 
+crowns. A green emerald, marquise-cut, is set into each peak, and several 
+of them in various cuts adorn the very front of the crown's tallest peak,
+which would be centered over the wearer's forehead.
+~
+~~
+vnum: 58430
+location: 7
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tights purple purple-tights snug-fitting pair rolled ball discarded
+shortdesc: a pair of snug-fitting purple tights
+desc: A pair of tights has been rolled into a ball and discarded.
+type: 9
+weight: 0.50
+cost: 750
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: tights purple purple-tights snug-fitting pair rolled ball discarded
+These tights look like they'd be a perfect fit! A tie-waist secures
+them at the waist, and the thick woolen material goes from there all the
+way down to your feet. They look quite old, and seem to glow with some
+kind of magical power. Perhaps they're enchanted!
+~
+~~
+vnum: 55465
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmnoqrstuvwxyz
+name: neophyte boots
+shortdesc: &9&bBoots of the Neophyte&0
+desc: Waiting for their owner is pair of boots of a monk's order.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+applies:
+2 1
+5 2
+~
+extradesc: boots neophyte
+These cloth boots are enchanted but unadorned and simply created, reflecting
+the simple life of a monastic order.  It bears a seal indicated the owner's
+name and order.
+s/
+~
+~~
+vnum: 55467
+location: 9
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnoqrstuvwxyz
+name: neophyte fistwraps
+shortdesc: &9&bFistwraps of the Neophyte&0
+desc: Waiting for their owner here are fistwraps of a monk's order.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+19 4
+~
+extradesc: fistwraps neophyte
+These cloth strips can be easily wrapped around the hands and are enchanted but
+unadorned, reflecting the simple life of a monastic order.  It bears a seal
+indicated the owner's name and order.
+~
+~~
+vnum: 58433
+location: 10
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: bracers warder warders-bracers large pair
+shortdesc: the Warder's Bracers
+desc: A large pair of bracers lies here.
+type: 9
+weight: 1.50
+cost: 3500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 257
+applies:
+19 2
+~
+extradesc: bracers warder warders-bracers large pair
+You can tell that only royalty could have afforded to make these.
+Made of some dark-green metal alloy, these bracers, made to fit
+and buckle around a very large arm, are worked in a cunning
+scrolling design. They're obviously very old, as well; the metal
+feels worn in places, as though decades of contact with the same
+arms have altered their shape slightly.
+~
+~~
+vnum: 20304
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak zebra skin
+shortdesc: a zebra skin cloak
+desc: A large striped cloak lies in the dust here.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+applies:
+1 2
+19 1
+~
+extradesc: cloak zebra skin
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.    
+~
+~~
+vnum: 16110
+location: 13
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: d
+name: bronze sash small Questobject
+shortdesc: a small bronze sash
+desc: A bronze colored sash lies here, junked.
+type: 11
+weight: 1.20
+cost: 140
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2049
+applies:
+2 2
+5 1
+~
+extradesc: bronze sash small
+This is just a small bronze piece of fabric, woven into a colorful sash.    
+~
+triggers:
+5113
+~
+variables:
+sash_already_god 1
+~
+~~
+vnum: 58434
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 58434
+location: 15
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 53314
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~
+vnum: 12550
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 11
+weight: 0.07
+cost: 250
+timer: 1010
+level: 40
+effects: dx 0 0
+wear: 65537
+applies:
+4 2
+28 80
+~
+~~
+vnum: 1036
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: mask simple-wooden-mask
+shortdesc: a simple wooden mask
+desc: A simple wooden mask lies here.
+type: 9
+weight: 0.65
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 131073
+applies:
+6 -1
+~
+extradesc: simple-wooden-mask
+&0This small mask is crafted of a dark wood, and is designed to slip easily
+over the face. It has very littlte detail, save for a small etched mouth and
+two slits for eyes. Quite uncomfortable, and not very stylish.
+~
+~~
+vnum: 8506
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring jet black ear ring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 9
+weight: 0.02
+cost: 250
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 262145
+applies:
+18 1
+19 1
+~
+extradesc: earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.
+~
+~~
+vnum: 8506
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring jet black ear ring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 9
+weight: 0.02
+cost: 250
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 262145
+applies:
+18 1
+19 1
+~
+extradesc: earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 20300
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 5100
+location: -1
+values:
+20
+144
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flask stone stone-flask
+shortdesc: a stone flask
+desc: A stone flask lies among the rocks here.
+type: 10
+weight: 1.00
+cost: 80
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 1
+extradesc: flask stone stone-flask
+Unlike the standard wizard's flask, which is made of glass, this flask is
+made of a heavy grey stone, making it difficult to see what is inside.
+~
+~~
+vnum: 5100
+location: -1
+values:
+20
+144
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flask stone stone-flask
+shortdesc: a stone flask
+desc: A stone flask lies among the rocks here.
+type: 10
+weight: 1.00
+cost: 80
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 1
+extradesc: flask stone stone-flask
+Unlike the standard wizard's flask, which is made of glass, this flask is
+made of a heavy grey stone, making it difficult to see what is inside.
+~
+~~
+vnum: 5100
+location: -1
+values:
+20
+144
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flask stone stone-flask
+shortdesc: a stone flask
+desc: A stone flask lies among the rocks here.
+type: 10
+weight: 1.00
+cost: 80
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 1
+extradesc: flask stone stone-flask
+Unlike the standard wizard's flask, which is made of glass, this flask is
+made of a heavy grey stone, making it difficult to see what is inside.
+~
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 0
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 1
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 0
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 1
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 49032
+location: -1
+values:
+20
+1
+1
+14
+0
+0
+0
+~
+flags: b
+name: misthorn horn
+shortdesc: a misthorn
+desc: There's a horn lying in front of you.
+type: 3
+weight: 1.10
+cost: 2000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: horn misthorn
+Once used by a man with powerful lungs, it will never again make a sound.
+A big rock is firmly stuck inside.~
+~~
+vnum: 10012
+location: -1
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55015
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring crystal crystal-ring ice circle
+shortdesc: a crystal ring
+desc: A small circle of ice catches your eye.
+type: 9
+weight: 0.02
+cost: 1200
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 3
+applies:
+1 1
+5 1
+~
+extradesc: ring crystal crystal-ring ice circle
+It looks as though it's a simple ring carved from ice, although upon closer
+inspection you notice that the small ring is made of tiny carved square
+ceremonial masks.  
+~
+~~
+vnum: 3025
+location: -1
+values:
+0
+2
+4
+7
+0
+0
+0
+~
+flags: m
+name: flail large
+shortdesc: a flail
+desc: A large flail is here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 5.00
+cost: 625
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: flail large
+The flail is a nice, easy to use weapon, for people who weren't trained
+in the art of sword fighting.
+~
+~~
+vnum: 3025
+location: -1
+values:
+0
+2
+4
+7
+0
+0
+0
+~
+flags: m
+name: flail large
+shortdesc: a flail
+desc: A large flail is here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 5.00
+cost: 625
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: flail large
+The flail is a nice, easy to use weapon, for people who weren't trained
+in the art of sword fighting.
+~
+~~
+vnum: 48003
+location: -1
+values:
+0
+2
+8
+3
+0
+0
+0
+~
+flags: agklmuvwyz
+name: sword blade indigo indigo-blade
+shortdesc: an indigo blade
+desc: An ancient blade has been left here.
+type: 5
+weight: 12.00
+cost: 3700
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+applies:
+19 3
+~
+extradesc: indigo-blade indigo blade
+One glance at this weapon is enough to tell you that it has been 
+powerfully enchanted. Black runes run the length of the sword, and a 
+dull white flame surrounds the blade. The blade itself has an odd purple 
+hue.
+~
+~~
+vnum: 12524
+location: -1
+values:
+6
+74
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll yellow
+shortdesc: a yellow scroll
+desc: A bright yellow scroll faintly glows with energy.
+type: 2
+weight: 0.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+~~
+vnum: 12524
+location: -1
+values:
+6
+74
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll yellow
+shortdesc: a yellow scroll
+desc: A bright yellow scroll faintly glows with energy.
+type: 2
+weight: 0.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+~~
+vnum: 12508
+location: -1
+values:
+50
+94
+94
+94
+0
+0
+0
+~
+flags: D
+name: brown scroll
+shortdesc: a brown scroll
+desc: A brown scroll lying on the ground is bound with plain twine.
+type: 2
+weight: 0.10
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+extradesc: scroll brown paper
+The scroll is made of delicate brown paper, and has been rolled into a tube.  
+The tube has been tied together with a single piece of brown twine.    
+~
+~~
+vnum: 12524
+location: -1
+values:
+6
+74
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll yellow
+shortdesc: a yellow scroll
+desc: A bright yellow scroll faintly glows with energy.
+type: 2
+weight: 0.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+~~
+vnum: 12524
+location: -1
+values:
+6
+74
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll yellow
+shortdesc: a yellow scroll
+desc: A bright yellow scroll faintly glows with energy.
+type: 2
+weight: 0.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55017
+location: -1
+values:
+40
+2
+2
+4
+0
+0
+0
+~
+flags: g
+name: crystal-wand ice crystal wand
+shortdesc: a crystal wand
+desc: A wand of crystal lies here in the snow.
+type: 3
+weight: 3.00
+cost: 150
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+extradesc: crystal-wand ice crystal wand
+You hold a simple, small crystal stick.  It has a brilliant streak of red
+running through its center.  The red glows slightly.  
+~
+~~
+vnum: 55017
+location: -1
+values:
+40
+2
+2
+4
+0
+0
+0
+~
+flags: g
+name: crystal-wand ice crystal wand
+shortdesc: a crystal wand
+desc: A wand of crystal lies here in the snow.
+type: 3
+weight: 3.00
+cost: 150
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+extradesc: crystal-wand ice crystal wand
+You hold a simple, small crystal stick.  It has a brilliant streak of red
+running through its center.  The red glows slightly.  
+~
+~~
+vnum: 12533
+location: -1
+values:
+80
+4
+3
+26
+0
+0
+0
+~
+flags: 0
+name: wand smoking ash
+shortdesc: an ash wand
+desc: An ash wand gives off wisps of dark smoke. 
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+extradesc: wand ash smoking
+The ash wand is blackened near its tip, and wisps of smoke curl from that end.
+The wand is warm to the touch, but not hot enough to be painful.    
+~
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 5206
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.
+~
+~~
+vnum: 5206
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.
+~
+~~
+vnum: 5206
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.
+~
+~~
+vnum: 11704
+location: -1
+values:
+50
+10
+9
+1
+0
+0
+0
+~
+flags: g
+name: stick hardened leather
+shortdesc: a stick made of hardened leather
+desc: A small stick made of hardened leather lies here.
+type: 3
+weight: 1.00
+cost: 45
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 11704
+location: -1
+values:
+50
+10
+8
+1
+0
+0
+0
+~
+flags: g
+name: stick hardened leather
+shortdesc: a stick made of hardened leather
+desc: A small stick made of hardened leather lies here.
+type: 3
+weight: 1.00
+cost: 45
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55544
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmnoqrstuvwxyz
+name: pliable tough strips leather monastic scriptures fistwraps master
+shortdesc: &3Fistwraps of the Master&0
+desc: Dropped here are pliable but tough strips of leather with monastic scriptures on them.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+1 4
+6 4
+~
+extradesc: pliable tough strips leather monastic scriptures fistwraps master
+The most powerful weapon a monk master can ever use is his fists, and these
+wrappings prove that.  Meditation chants and order scriptures are written all
+over these strips which can be laced around the hands, protecting them like
+gloves and focusing all of a monk's energy into their strikes.  Written on one
+strap is a dedication to the original bearer.
+~
+~~
+vnum: 55466
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agmnoqrstuvwxyz
+name: neophyte bracer
+shortdesc: &9&bBracer of the Neophyte&0
+desc: Waiting for its owner here is a bracer of a monk's order.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+applies:
+13 15
+1 2
+~
+extradesc: bracer neophyte
+This cloth bracer is enchanted but unadorned and simply created, reflecting the
+simple life of a monastic order.  It bears a seal indicated the owner's name
+and order.
+~
+~~
+vnum: 55008
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gl
+name: cloak snow-leopard-cloak snow leopard pelt fur pure white dark spots
+shortdesc: the Snow Leopard Cloak
+desc: A pelt of pure white fur and dark spots is piled in a corner.
+type: 9
+weight: 2.10
+cost: 5900
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 1025
+applies:
+1 1
+2 -2
+~
+extradesc: cloak snow-leopard-cloak snow leopard pelt fur pure white dark spots
+In your hands is the cloak made from the pelt of a snow leopard, valuable
+beyond anything else to the people of Technitzitlan.  It is said that those who
+wear such a cloak are closer to the great Snow Leopard herself than anyone
+else.    
+~
+~~
+vnum: 55464
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agmnoqrstuvwxyz
+name: neophyte leggings
+shortdesc: &9&bLeggings of the Neophyte&0
+desc: Waiting for their owner is a set of leggings of a monk's order.
+type: 9
+weight: 7.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 33
+applies:
+1 2
+6 6
+~
+extradesc: leggings neophyte
+These cloth leggings are enchanted but unadorned and simply created, reflecting
+the simple life of a monastic order.  It bears a seal indicated the owner's
+name and order.
+~
+~~
+vnum: 58408
+location: -1
+values:
+5
+1
+-1
+0
+0
+0
+0
+~
+flags: a
+name: locket golden-locket golden filigree gold chain
+shortdesc: a golden locket on a filigree chain
+desc: A gold locket on a filigree chain lies here.
+type: 15
+weight: 0.10
+cost: 1200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+6 5
+~
+extradesc: golden locket chain filigree gold
+You've never seen such exquisite goldworking. This locket, on its
+whisper-thin golden link necklace, seems very old. The hinges on
+it are coming a bit loose, but it's still pretty tightly closed.
+~
+~~
+vnum: 58409
+location: -2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: portrait miniature-painting hand-painted-miniature-portrait
+shortdesc: a hand-painted miniature portrait
+desc: A hand-painted portrait the size of your palm lies here.
+type: 8
+weight: 0.40
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: portrait miniature-painting hand-painted-miniature-portrait
+The woman in this painting is amazingly beautiful, but in the same
+way that a deadly sword is beautiful. She's exactly like a sword --
+whipcord-lithe, slender, well-muscled, and seems as if she is about
+to strike. Her eyes seem incredibly intelligent and perceptive. The
+portrait is no bigger than the palm of your hand, making the artistry
+of the representation seem all the more amazing. 
+   The woman in the painting is looking right out at the viewer. As
+you watch, her full, lush lips move, and you hear words: "My little
+Frederick, remember that I am always watching over you." You hear no
+more.
+~
+~~
+vnum: 55539
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnoqrstuvwxyz
+name: tough thick strips leather armwraps master
+shortdesc: &3Armwraps of the Master&0
+desc: Tough thick strips of leather coil around the arm of a monastic statue here.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+applies:
+1 2
+4 3
+~
+extradesc: tough thick strips leather armwraps master
+Armwraps like these would make for poor armor in any other situation, but in
+the hands of a truly dedicated monk, they function as a focus for internal
+strength and power.  The natural abilities of one such person come to the
+forefront, increasing their defensive and offensive capabilities.
+~
+~~
+vnum: 5206
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.
+~
+~~
+vnum: 48003
+location: -1
+values:
+0
+2
+8
+3
+0
+0
+0
+~
+flags: agklmuvwyz
+name: sword blade indigo indigo-blade
+shortdesc: an indigo blade
+desc: An ancient blade has been left here.
+type: 5
+weight: 12.00
+cost: 3700
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+applies:
+19 3
+~
+extradesc: indigo-blade indigo blade
+One glance at this weapon is enough to tell you that it has been 
+powerfully enchanted. Black runes run the length of the sword, and a 
+dull white flame surrounds the blade. The blade itself has an odd purple 
+hue.
+~
+~~
+vnum: 48003
+location: -1
+values:
+0
+2
+8
+3
+0
+0
+0
+~
+flags: agklmuvwyz
+name: sword blade indigo indigo-blade
+shortdesc: an indigo blade
+desc: An ancient blade has been left here.
+type: 5
+weight: 12.00
+cost: 3700
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+applies:
+19 3
+~
+extradesc: indigo-blade indigo blade
+One glance at this weapon is enough to tell you that it has been 
+powerfully enchanted. Black runes run the length of the sword, and a 
+dull white flame surrounds the blade. The blade itself has an odd purple 
+hue.
+~
+~~
+vnum: 55462
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmnoqrstuvwxyz
+name: neophyte sleeves
+shortdesc: &9&bSleeves of the Neophyte&0
+desc: Waiting for their owner is a pair of sleeves of a monk's order.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+applies:
+13 20
+~
+extradesc: sleeves neophyte
+These cloth sleeves are enchanted but unadorned and simply created, reflecting
+the simple life of a monastic order.  It bears a seal indicated the owner's
+name and order.
+~
+~~
+vnum: 58418
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: wings pair-translucent-faerie-wings
+shortdesc: a pair of translucent faerie wings
+desc: A pair of translucent faerie wings scintillate.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+3 2
+24 -10
+~
+extradesc: wings translucent pair faerie
+These wings look so real! A metallic golden frame supports two
+somewhat large wings made of some kind of silk that stretches to
+the point of being almost transparent. Some kind of sparkly things
+are woven into the silk, making the wings shimmer as they move.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 55463
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: agmnoqrstuvwxyz
+name: neophyte tunic
+shortdesc: &9&bTunic of the Neophyte&0
+desc: Waiting for its owner is a tunic of a monk's order.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 9
+applies:
+2 3
+18 3
+~
+extradesc: tunic neophyte
+This cloth tunic is enchanted but unadorned and simply created, reflecting the
+simple life of a monastic order.  It bears a seal indicated the owner's name
+and order.
+~
+~~
+vnum: 55461
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: agmnoqrstuvwxyz
+name: cap neophyte
+shortdesc: &9&bCap of the Neophyte&0
+desc: Waiting for its owner is a cap of a monk's order.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+applies:
+4 3
+5 2
+~
+extradesc: cap neophyte
+This cloth cap is enchanted but unadorned and simply created, reflecting the
+simple life of a monastic order.  It bears a seal indicated the owner's name
+and order.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 10032
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: food ration bread
+shortdesc: a bread ration
+desc: A dense bread ration sits here.
+type: 19
+weight: 0.60
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: ration bread dense food
+It's a very densely baked piece of ship's-wafer, almost impossible
+to chew without dunking in hot liquid first. But it has, mixed in
+with it, various spices that make it tolerable.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 18508
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waybread piece-waybread alms bread food
+shortdesc: a piece of waybread
+desc: A piece of waybread is here.
+type: 19
+weight: 0.80
+cost: 8
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: waybread
+   The waybread may not look too appetising, but it would sustain you in times
+of hardship. The fact this it is almost as hard as rock doesn't help it go 
+down well with your tender stomach.
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55017
+location: 127
+values:
+40
+2
+0
+4
+0
+0
+0
+~
+flags: g
+name: crystal-wand ice crystal wand
+shortdesc: a crystal wand
+desc: A wand of crystal lies here in the snow.
+type: 3
+weight: 3.00
+cost: 150
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+extradesc: crystal-wand ice crystal wand
+You hold a simple, small crystal stick.  It has a brilliant streak of red
+running through its center.  The red glows slightly.  
+~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1004
+location: 127
+values:
+1
+240
+92
+0
+0
+0
+0
+~
+flags: 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern. It holds about fifteen hours worth of fuel.
+~
+~~
+vnum: 55011
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ajl
+name: eye jade jeweled leopard leopard's cat large piece cat's strand gold jeweled-leopards-eye
+shortdesc: a jeweled leopard's eye
+desc: A large piece of jade carved like a cat's eye hangs here on an strand of gold.
+type: 9
+weight: 0.25
+cost: 2400
+timer: 0
+level: 48
+effects: 0 0 0
+wear: 65537
+applies:
+3 9
+24 -3
+28 48
+~
+extradesc: eye jade jeweled leopard leopard's cat large piece cat's strand gold jeweled-leopards-eye
+You hold a palm sized, polished dark green jade medallion.  It seems to be warm
+to the touch.  In the green of the medalion are two crystal blue veins forming
+what looks like a cats eye.  
+~
+~~
+vnum: 1006
+location: 127
+values:
+300
+136
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 10.87
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 55541
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gmnoqrstuvwxyzD
+name: short wooden leg plates leather legwraps master
+shortdesc: &3Legwraps of the Master&0
+desc: Short wooden leg plates tied together with long pieces of leather lie in a pile.
+type: 9
+weight: 7.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+applies:
+4 3
+5 3
+~
+extradesc: short wooden leg plates leather legwraps master
+The leather straps at the top and bottom of each plate are much longer than
+they should be, allowing each to be wrapped around the entire leg once, then
+tightened and tied off.  Such an armor style is very unique and actually
+functions fairly well as armor, as well as being a reflection of the simplicity
+of monastic life.
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~

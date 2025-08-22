@@ -1,0 +1,94 @@
+name: Yanec
+password: YatRE2q8UW
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 10
+race: 10
+level: 14
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18128
+birthtime: 1330358483
+timeplayed: 195428
+lastlogintime: 1338727113
+host: 077.008.110.154
+height: 82
+weight: 177
+base_height: 82
+base_weight: 177
+base_size: 3
+natural_size: 3
+alignment: 192
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnosC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 191/163
+mana: 19/19
+move: 128/162
+damroll: 5
+hitroll: 4
+strength: 97
+intelligence: 59
+wisdom: 65
+dexterity: 97
+constitution: 93
+charisma: 54
+cash: 0 67 238 258
+bank: 0 199 735 993
+experience: 680777
+quit_reason: 1
+saveroom: 3054
+skills:
+401 50
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 100
+427 1000
+434 57
+438 74
+443 56
+444 76
+463 50
+464 149
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8010 0.500000
+1 8011 0.500000
+1 8023 1.500000
+1 8016 2.500000
+1 8012 12.000000
+1 1603 1.000000
+1 1601 10.500000
+1 8001 0.500000
+1 8020 1.500000
+1 8015 5.500000
+1 8000 6.000000
+1 12007 0.500000
+1 12011 0.500000
+1 12025 0.500000
+1 12001 4.000000
+1 12023 1.000000
+1 12015 1.500000
+1 12016 1.500000
+1 8022 1.000000
+1 17200 0.500000
+1 17209 2.500000
+0 0 0
+aliases:
+fsf fill skin fountain
+df drink fountain
+ds drink skin
+0

@@ -1,0 +1,134 @@
+name: Rasth
+password: Rax1VFTb4f
+currenttitle: Todesengel
+prompt: %n%-&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b>%_<&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 3
+race: 10
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 8721
+birthtime: 1006987509
+timeplayed: 3049587
+lastlogintime: 1735232012
+host: 067.147.032.078
+height: 78
+weight: 214
+base_height: 78
+base_weight: 214
+base_size: 3
+natural_size: 3
+alignment: 941
+playerflags: aglxyz
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 23
+thirst: 20
+lastlevel: 11
+hitpoints: 1842/1644
+mana: 100/100
+move: 470/470
+damroll: 5
+hitroll: 4
+strength: 97
+intelligence: 60
+wisdom: 76
+dexterity: 95
+constitution: 100
+charisma: 54
+cash: 43 20 73 104
+bank: 18923 7 0 0
+experience: 116386599
+title: Todesengel
+quit_reason: 1
+saveroom: 3054
+skills:
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+419 1000
+420 1000
+421 1000
+422 1000
+427 1000
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 1000
+468 1000
+473 1000
+0 0
+trophy:
+1 3066 1.000000
+1 5408 1.000000
+1 5420 1.000000
+1 5403 1.000000
+1 3503 1.000000
+1 3507 1.000000
+1 3502 1.000000
+1 3501 1.000000
+1 17204 5.000000
+1 3506 1.000000
+1 3509 1.000000
+1 3500 1.000000
+1 3508 1.000000
+1 18000 1.000000
+1 18004 1.000000
+1 18003 1.000000
+1 18006 1.000000
+1 18001 1.000000
+1 18005 1.000000
+1 18002 1.000000
+1 18007 2.000000
+0 0 0
+tells:
+1585608754 @WChinok@W tells you, 'beep beep @W'@0
+$
+gossips:
+1585607939 Chinok gossips, 'hi Rasth'
+$
+aliases:
+rp rescue polando
+rn rescue nold
+gb put all.gem bag
+well tell samun moonwell
+ew enter well
+ds drink water
+haa hitall all
+ha hitall
+wingsoff rem wings;wear cloak;put wings bag
+id get identify bag;rec identify $1
+wingson get wings bag;rem cloak;wear wings;fly
+lib look in bag
+f flee
+lic look in corpse
+rr recite recall
+` get all from all.corpse
+df drink fountain
+g get all.coins from all.corpse
+ss look s;look n;look e;look w;look d;look u
+k kill $1
+who who -w
+detal tell samun det align
+ra rescue alatar
+ro rescue oki
+gg put all.gem bag
+roo rescue odz
+0

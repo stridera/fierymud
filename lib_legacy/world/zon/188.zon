@@ -1,0 +1,23 @@
+#188
+Clandestine Cathedral (TCD Clanhall)~
+18899 30 0 100 0 0
+D 0 18807 1 1 	(Supplies Repository)
+M 0 18807 1 18807 	(the Degree Warden)
+G 1 3050 50 -1 	(a scroll of identify)
+G 1 58603 50 -1 	(a duffel bag)
+G 1 18802 50 -1 	(a small cake of elven waybread)
+G 1 18803 50 -1 	(a large jug)
+M 0 18896 1 18896 	(the FieryTag announcer)
+M 0 18897 1 18896 	(the FieryTag controller)
+M 0 18898 1 18896 	(the FieryTag announcer)
+D 0 18803 0 1 	(Quiet Seclusion)
+D 0 18805 1 1 	(Chamber of Sending)
+D 0 18802 2 1 	(Chamber of Vigilance)
+D 0 18804 0 1 	(Marble Narthex)
+D 0 18804 3 1 	(Marble Narthex)
+D 0 18806 3 1 	(Marble Narthex)
+D 0 18806 2 1 	(Marble Narthex)
+D 0 18809 1 1 	(Shadowy Hallway)
+D 0 18809 5 5 	(Shadowy Hallway)
+S
+$

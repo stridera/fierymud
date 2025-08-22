@@ -1,0 +1,134 @@
+name: Tallia
+password: Tayn5/NwnS
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 9
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19464
+birthtime: 1563938408
+timeplayed: 32837
+lastlogintime: 1564432703
+host: 141.149.063.134
+height: 65
+weight: 100
+base_height: 65
+base_weight: 100
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 13
+thirst: 22
+lastlevel: 0
+hitpoints: 52/71
+mana: 1/0
+move: 95/100
+damroll: 3
+hitroll: 3
+strength: 73
+intelligence: 100
+wisdom: 84
+dexterity: 66
+constitution: 72
+charisma: 67
+cash: 0 17 98 148
+bank: 0 94 916 717
+experience: 318489
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+39 1000
+100 1000
+101 1000
+415 50
+416 50
+423 150
+424 150
+438 50
+443 50
+444 54
+447 86
+451 60
+452 148
+453 145
+454 52
+459 58
+460 65
+462 50
+464 141
+0 0
+trophy:
+1 17201 1.000000
+1 17208 1.000000
+1 17205 1.000000
+1 17203 1.000000
+1 17202 1.000000
+1 17204 5.000000
+1 18005 6.000000
+1 18000 13.000000
+1 18003 10.000000
+1 18004 6.000000
+1 18001 11.000000
+1 18007 15.000000
+1 16908 20.000000
+1 16901 3.000000
+1 16905 6.000000
+1 16907 8.000000
+1 16900 59.000000
+1 16902 18.000000
+1 16903 7.000000
+1 16906 12.000000
+0 0 0
+effects:
+3 0 1 18 0 0 0
+3 0 -3 24 0 0 0
+3 0 0 0 0 0 16384
+0 0 0 0 0
+mem:
+32 1 4
+32 1 4
+32 1 4
+5 1 4
+5 1 4
+5 1 4
+5 1 4
+39 1 8
+8 1 8
+0 0 0
+aliases:
+rgr recite green
+recite green
+ccm cast chill magician
+cmm cast 'magic missile'
+cbh cast 'burning hands'
+pbb put book bag
+gbb get book bag
+pqb put quill bag
+gqb get quill bag
+hb hold book
+rb rem book
+kl kill lion
+kd kill dragon
+cmr cast minor rations
+wk wield knife
+rk rem knife
+rd remove dagger
+wd wield dagger
+gcc get all.coins corpse
+ggg get all corpse
+0

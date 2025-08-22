@@ -1,0 +1,72 @@
+name: Dokai
+password: Do1PQREiNv
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 3
+class: 3
+race: 9
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20639
+birthtime: 1697279879
+timeplayed: 6051
+lastlogintime: 1697285948
+host: 077.138.246.134
+height: 71
+weight: 102
+base_height: 71
+base_weight: 102
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 41/41
+mana: 0/0
+move: 130/130
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 61
+wisdom: 77
+dexterity: 86
+constitution: 92
+charisma: 52
+cash: 0 3 9 13
+bank: 0 1 1 1
+experience: 6050
+quit_reason: 1
+saveroom: 3054
+skills:
+402 52
+404 51
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+1697284266 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1697285478 @WSantiago@W tells you, 'What do you want to buy?@W'@0
+1697285542 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+$

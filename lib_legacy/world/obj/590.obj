@@ -1,0 +1,748 @@
+#59000
+cap ballcap chief~
+a &9&bChief GotJacked&0 ballcap~
+A worn out ballcap is lying here.~
+~
+9 0 17 100
+0 0 0 0 0 0 0
+0.70 0 1 32768 0 0 0 0
+#59001
+fountain dream-fountain~
+fountain~
+A &6&bDream&0 Fountain sits here.~
+~
+23 0 0 0
+999 999 1 0 0 0 0
+1004.00 0 0 0 0 0 0 0
+#59002
+earring dragons-blood-earring dragon small-drop-blood faint-trail-smoke~
+&9&ba&0 &1dragons&0&9&b-&0&1&bblood&0 &9&bearring&0~
+A small drop of &1&bblood&0 lies on the ground, emitting a faint trail of smoke.~
+~
+8 67 262145 35
+2 0 0 0 0 0 0
+0.10 15000 0 0 0 0 0 0
+E
+earring dragons-blood-earring dragon small-drop-blood faint-trail-smoke~
+The earring is brilliant red, shimmering in the light.  The material that
+comprises the red color covers most of the earring except the stud, which is a
+dull silver color.  It emits a small trail of smoke, which seems to come from
+the dried on blood that forms the outer layer of the earring.~
+A
+13 10
+A
+18 2
+#59003
+broadsword broad-sword kinship-broadsword brilliant-shining-broadsword~
+the Kinship Broadsword~
+A brilliant shining broadsword is strewn on the ground.~
+Nothing.~
+5 53490689 8193 35
+1 3 4 3 0 0 0
+5.00 1500 0 0 0 0 0 0
+E
+broadsword broad-sword kinship-broadsword brilliant-shining-broadsword~
+The sword feels light in your hands as you inspect it.  There are many
+scratches and dents in it, but it remains razor sharp to the touch.  The
+gleaming metal that it has been forged from is superior to most other materials
+used for swords.  The handle is layered in gold and silver, with very detailed
+designs of ivy leaves.  There is an inscription on the handle.~
+E
+inscription~
+   Melted together from the swords of three brothers, mixed and forged into
+two, for the lost third brother will forever be remembered.    ~
+A
+19 1
+X
+997
+#59004
+key rusted-cell-key~
+a rusted cell key~
+A rusted key lies on the ground, almost out of sight.~
+Nothing.~
+18 4 1048577 0
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+key rusted cell~
+   The rusted key is flaking off metal in spots, giving it a very rough feel.
+The wooden handle is cracked and splintered, as if the key has seen a lot of
+use.    ~
+#59005
+key stone-wall stone~
+a stone wall key~
+A grey stone key lies here, almost out of sight.~
+~
+18 4 1064961 0
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+key stone wall~
+   The key is carved of a dull grey stone, and seems to be well worn at the
+edges.  It is rather large and heavy, being that it is made from stone.~
+#59006
+book worn poetry leather-bound-poetry-book~
+a book of poetry~
+A tattered and worn out leather bound book stands on end.~
+~
+8 536870912 16385 5
+0 0 0 0 0 0 0
+0.40 0 0 0 0 0 0 0
+T 5342
+E
+book~
+The worn out leather book binding is almost falling apart.  It is very old
+and the leather is well oiled from being handed by unclean hands.  The pages in
+the book are hand written with a variety of inks giving light to the idea that
+the pages were written on different days as if a journal would be.  You can
+read a few of the first pages: page1, page2 and page3.~
+E
+page3~
+For all that are powerful
+Bringing fists down on the weak
+Smashing their souls
+And breaking the meek
+
+May they soon meet their maker
+Brought forth for their misdeed
+Wrought down into the ground
+Stomped flat their greed
+
+For soon the good will arise
+And bring evil to its end
+Stop our troubled existence 
+Then let us to ascend~
+E
+page1~
+   The quaint sounds of spring fill my ears with a joy not found else where.  
+The breeze showers my skin with the sensations of the air.  This feeling
+empowers me with the creativity that is unrivaled by others.  Like floating on
+top of the world without the weight of gravity to pull me down.    ~
+E
+page2~
+............THOUGHTS............
+   Thoughts drain like water
+  Down into the consciousness 
+   Collected in a small form
+Then spread out to be recollected 
+  Rearranged and transformed 
+Until they collide with perfection 
+     Forming what would be
+          What could be
+ The greatest thought of them all~
+A
+4 1
+A
+3 1
+#59007
+well small-stone-well~
+a small well~
+A small, stone well is built into the ground, with flowers growing at its base.~
+~
+23 0 0 0
+100 25 0 0 0 0 0
+120.00 0 0 0 0 0 0 0
+E
+well small-stone-well~
+   The small well is built from the same faded, grey stone that encompasses the
+surrounding wall.  A small wooden roof covers the top of the well, but still
+allows you to reach down and access the water inside.  As you look in you can
+see that the water is very shallow and a small carved passage in written in the
+wood on the cover.  It reads: Take only what you need.    ~
+#59008
+key sky blue sky-blue~
+a sky-blue key~
+A key with a sky-blue handle rests on the ground.~
+~
+18 4 1048577 15
+0 0 0 0 0 0 0
+0.10 200 0 0 0 0 0 0
+E
+key sky-blue sky blue~
+   The handle of the large brass key is made of a sky-blue colored stone, with
+small veins of red that run throughout it.  The handle is well worn and the
+brass is starting to tarnish.  A small inscription is engraved into the brass.
+  ~
+E
+inscription~
+-The Key Of Cyrus-~
+A
+3 1
+#59009
+key apatite apatite-key~
+a apatite key~
+A key with handle of fine apatite rests on the ground.~
+~
+18 4 5 15
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+key apatite~
+The key is crafted with a apatite handle and a golden shank.  It looks to be faded and dirty, due to
+the amount of use it gets.  A small inscription is carved into the handle.  ~
+E
+inscription~
+-The Key Of Belward-~
+A
+4 1
+#59010
+key armory armory-key~
+an armory key~
+The sparkle of a key resting on the ground catches your eye.~
+~
+18 4 1 10
+0 0 0 0 0 0 0
+0.13 0 0 0 0 0 0 0
+E
+key armory armory-key~
+   The key is forged of a shiny platinum like metal, with the handle part
+shaped into the letters SH.  The key sparkles in the light, but still seems to
+be very well used.    ~
+#59011
+key cell cell-key~
+a cell key~
+A detailed cell key rest upon the ground.~
+~
+18 4 1 0
+0 0 0 0 0 0 0
+0.13 50 0 0 0 0 0 0
+#59012
+dagger radiant-dagger blade-gleaming-radiantly radiantly-gleaming-blade questobject~
+a radiant dagger~
+A dagger lies on the ground, its blade gleaming radiantly. ~
+~
+5 21795850 8193 30
+0 5 2 11 0 0 0
+0.50 600 0 0 0 0 0 33554432
+E
+dagger radiant-dagger blade-gleaming-radiantly radiantly-gleaming-blade questobject~
+This dagger has been made with an exceptional craftsmanship as the handle is
+hardened wood inlaid with jewels and gold that glistens in the light.  The
+blade shimmers with a radiant light, reflecting the smallest amounts of light
+that hit it.~
+A
+4 1
+A
+3 1
+A
+27 1
+X
+226
+#59013
+robe golden-robe heap-golden-material~
+a golden robe~
+A heap of golden material is lying on the ground, unused at the moment. ~
+~
+9 30196744 9 30
+7 0 0 0 0 0 0
+3.00 500 0 0 0 0 0 0
+E
+robe golden-robe heap-golden-material~
+The golden color of the robe is so close to real gold that is almost seems to
+be made out of it.  The robe is very durable and appears to be incredibly old.
+The ends of the sleeves and the neckline are lined with green emeralds that
+catch and hold the light, reflecting it back out into a greenish haze.  There
+are no noticeable seams in it, as if it were woven out of a continuous thread.~
+A
+3 2
+A
+27 2
+X
+16
+#59014
+bread wheat loaf loaf-wheat-bread food~
+a loaf of wheat bread~
+A loaf of dark wheat bread lies on the ground.~
+~
+19 0 1 0
+15 0 0 0 0 0 0
+1.00 10 0 0 0 0 0 0
+E
+bread wheat loaf loaf-wheat-bread food~
+   The loaf of dark wheat bread has been baked to perfection.  It has a few
+spices and crushed nuts cooked into the top.  The crispy crust could only be
+matched by soft, moist insides.    ~
+#59015
+badge badge-holy-honor small-golden-badge circle gold~
+the badge of holy honor~
+A small, golden badge in the shape of a circle has been dropped on the ground. ~
+~
+9 3073 524289 20
+3 0 0 0 0 0 0
+0.07 2000 0 0 0 0 0 0
+E
+badge badge-holy-honor small-golden-badge circle gold~
+The badge is formed from solid gold, and is shaped into a circle, enclosing the
+letters S.  H.  It is very detailed with small leaves and flowers carved into
+the band forming the circle.  A small inscription is stamped into the gold on
+the back.~
+E
+inscription ~
+   All who wear this badge have served the Sacred Haven with their utmost
+ability and proven themselves a great asset to the ranks of the holy.    ~
+A
+13 5
+A
+27 1
+#59016
+longsword gleaming-longsword long-sword~
+a gleaming longsword~
+A gleaming longsword has fallen out of use and is lying on the ground.~
+~
+5 51393536 8193 20
+0 2 5 3 0 0 0
+3.00 0 0 0 0 0 0 0
+E
+longsword gleaming-longsword long-sword~
+The longsword has seen its time in battle, for the metal is nicked, dented and
+has some minor spots of rust.  Although the metal is worn and abused, it has
+been kept very well polished and gleams in the light.  You can see a dried,
+black substance splattered on the grey cloth of the hilt, and the pommel is
+scratched and broken.~
+A
+18 1
+A
+5 1
+X
+997
+#59017
+blade-eternity brilliant-looking-blade amazingly-clean~
+the Blade of Eternity~
+A brilliant looking blade rests on the ground, amazingly clean for being tossed down. ~
+~
+5 55849984 8193 30
+0 2 5 3 0 0 0
+3.50 1200 0 0 0 0 0 0
+E
+blade-eternity brilliant-looking-blade amazingly-clean~
+The Blade of Eternity is in perfect condition, with no scratches, dents or
+evidence of use.  It is shorter than most swords and is marked with runes of
+some kind down its blade.  The hilt is forged with the blade as one piece
+making the blade very durable.  An inscription is marked into the guard of the
+blade.~
+E
+inscription ~
+May the way of the righteous lead your journey ~
+A
+19 1
+A
+5 -1
+A
+27 1
+X
+997
+#59018
+helm bluish-silver-helm shimmering-blues-greys grays~
+a bluish-silver helm~
+A helm lies on the ground, shimmering in blues and greys.~
+~
+9 55596096 17 35
+7 0 0 0 0 0 0
+6.75 700 0 0 0 0 0 0
+E
+helm bluish-silver-helm shimmering-blues-greys grays~
+The helm is forged of a silver metal of the highest quality, giving it extreme
+strength.  It appears to have been painted or layered with a blue colored
+metallic substance, giving off a bluish tinted shine.  The back of the helm
+comes down to cover the neckline and at the front there is a piece that drops
+downward to cover the nasal area.~
+A
+18 1
+A
+2 2
+A
+27 1
+X
+755
+#59019
+chest wooden gold silver gold-silver-wooden-chest~
+a wooden chest~
+A large wooden chest bound with gold and silver lies in the middle of the room.~
+~
+15 536870912 0 0
+400 15 59038 0 0 0 0
+400.00 0 0 0 0 0 0 0
+E
+chest wooden gold-silver-wooden-chest~
+   The large chest is built of a dark grained wood and is held together with
+thick bands of gold and silver.  The lid is covered in gemstones and hand
+carved designs, as well as a layer of dust.  A large black metal lock is
+fastened to the side and looks to be unbreakable.    ~
+#59020
+chestplate-hope chest-plate silver-chestplate~
+the Chestplate of Hope~
+A silver chestplate gleams in the light, forgotten on the ground.~
+~
+9 31216648 9 30
+15 0 0 0 0 0 0
+18.00 2500 0 0 0 0 0 0
+E
+chestplate-hope chest-plate silver-chestplate~
+The chestplate is pure silver in color, radiating in the light and reflecting
+it back with a bit more intensity.  The metal has been polished and kept very
+clean, even though there are minor imperfections such as sword marks and small
+dents.  There are markings along the sides, etched into the metal.  The
+markings bear the letters SH and are surrounded by runes of some sort.~
+A
+26 3
+A
+27 1
+X
+1049587
+#59021
+case glass dusty dusty-glass-case~
+a dusty glass case~
+A large glass case rests in the middle of the room, covered in a think layer of dust.~
+~
+15 0 0 0
+1000 14 -1 0 0 0 0
+104.00 0 0 0 0 0 0 0
+T 59004
+T 59002
+E
+case dusty glass~
+   The glass case rests under a layer of dust.  The seams in the glass look to
+be sealed with silver solder of some kind and there is no apparent latch or
+lock of any kind.  Inside the case an iridescent glow lights up the walls of
+glass, but is too bright to tell what is giving off the light.  With a strong
+blow, the glass may be breakable.    ~
+#59022
+bracelet bracelet-consecrated-spirit small-bracelet-stone-gold-beads~
+the bracelet of the consecrated spirit~
+A small bracelet made of stone and gold beads is lying on the ground.~
+~
+9 1089 20481 20
+0 0 0 0 0 0 0
+0.30 1300 0 0 0 0 0 0
+E
+bracelet bracelet-consecrated-spirit small-bracelet-stone-gold-beads~
+The bracelet is formed from small beads of gold and grayish colored stones.  
+It is very old and shows the marks from years of use.  The stone beads are
+cracked and worn down on the edges and a few of them have chipped apart.  The
+gold beads are starting to tarnish and fade, almost matching the dull luster of
+the stone, from prolonged contact with the sweat from the skin.~
+A
+24 -4
+A
+13 5
+A
+14 5
+A
+27 1
+#59023
+mask mask-enmity thick-dark-mask cloud-smoke~
+the mask of enmity~
+A thick, dark mask is lying on the ground, with a small cloud of smoke surrounding it.~
+~
+8 2 131073 25
+1 0 0 0 0 0 0
+4.00 2500 0 0 0 0 0 0
+T 59001
+E
+mask mask-enmity thick-dark-mask cloud-smoke~
+The mask is not built from a solid material, but formed from a thick, dark
+cloud of smoke.  The outline of the mask, as well as the eye holes can be seen
+and even felt, giving it the illusion of being solid.  The smoke that swirls
+around it is vividly dark and gloomy, creating a supernatural look.  There are
+no apparent straps used to leash it to your face.  It seems that the smoke is
+wrapping around your hands as if to hold on, so it might do the same for your
+face.~
+A
+1 1
+A
+18 1
+A
+27 1
+#59024
+sword iridescent-sword pristine-sword~
+an iridescent sword~
+A pristine sword is lying on the ground, iridescent in the light.~
+~
+5 51393601 8193 35
+2 2 8 3 0 0 0
+3.00 3000 0 0 0 0 0 0
+E
+sword iridescent-sword pristine-sword~
+The iridescent sword gleams in the light, almost like its giving off some light
+of its own.  The brilliant Damascus forged two sided blade is split down the
+middle with a blood groove, from tip to shoulder.  The handle of the sword is
+wrapped in what looks to be dragon skin, sewn together with a golden twine.  
+There is a small inscription on the pommel.~
+E
+inscription ~
+   May the Iridescent Sword guide your way to victory against the wicked.    ~
+A
+1 1
+A
+19 1
+A
+27 1
+X
+997
+#59025
+test~
+a test~
+Testing...testing...1..2..3..~
+~
+15 0 1 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+T 59003
+T 61599
+#59026
+adornment-light shimmering-glint small-chain~
+an adornment of light~
+A shimmering glint of light shines from a small chain on the ground.~
+~
+8 65 524293 15
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+adornment-light shimmering-glint small-chain~
+A small ball of light glows from an unknown source, but somehow still remains
+attached to a shining platinum chain.  It looks like a common necklace, except
+for the small glint of light that emits tiny beams that illuminate the palm of
+your hand.  Occasionally the light grows brighter for an instant, then fades
+back to normal.~
+A
+4 1
+A
+2 -1
+A
+6 1
+A
+27 1
+#59027
+key bent bent-key~
+a bent key~
+A key is stuck into the ground, teetering with a small bend.~
+~
+18 4 1 15
+0 0 0 0 0 0 0
+0.12 0 0 0 0 0 0 0
+E
+key bent~
+   The key is molded out of thick steel that has been worn and weathered down
+to a dark haze color.  There is a small bend in the round shank of the key,
+that just might prevent if from opening the lock it was crafted for.    ~
+#59028
+vial dull red blood vial-dragons-blood vial-dragon's-blood~
+a vial of dragon's blood~
+A vial containing a dull red liquid rests here, attached to a leather strap. ~
+~
+10 0 16389 20
+25 131 0 0 0 0 0
+0.07 2000 0 0 0 0 0 0
+E
+vial dull red blood vial-dragons-blood vial-dragon's-blood~
+The red liquid inside the vial is very thick and slowly slides around when
+moved.  The glass that it is constructed from shows its age, for it holds many
+scratches and chips, but yet is unbroken.  At the point of attachment of the
+strap there is a thick piece of leather, pressed with a symbol of a dragon,
+which wraps around the cap, sealed with some sort of wax like substance.  
+There is some small print on the strap.~
+E
+print~
+A vial of blood, captured and sealed, from a dying dragon.  ~
+A
+1 1
+#59029
+trinket tattered leather trinket-tattered-leather~
+a trinket of tattered leather~
+A small trinket of tattered leather has been discarded onto the ground. ~
+~
+8 1 16385 20
+0 0 0 0 0 0 0
+0.10 100 0 0 0 0 0 0
+E
+trinket leather tattered~
+   The small scrap of leather has been worn beyond belief.  Its edges are
+frayed and it is very soft to the touch.  There is a very small portion of a
+picture that is crafted onto it, lending to the certainty that it is from a
+larger piece of artwork.  Judging from the condition of the leather, this has
+been around a long time, and held regularly as someone's good luck trinket.  ~
+A
+26 -5
+#59030
+earring shadow-forged-earring dark-dull-earring shadows questobject~
+a shadow-forged earring~
+A dark and dull earring lies on the ground, covered with shadows.~
+~
+8 2560 262145 25
+2 0 0 0 0 0 0
+0.01 400 0 0 0 0 0 0
+E
+earring shadow-forged-earring dark-dull-earring shadows questobject~
+The earring looks to be formed from some sort of mist or shadow like substance,
+but is still firm to the touch.  It emits a very small quantity of smoke, which
+would go unnoticed without careful examination.  The earring is constantly
+changing shape, flowing and varying in an ominous way.~
+#59031
+key dingy dingy-key~
+a dingy key~
+A dingy key lies on the ground, almost out of sight.~
+~
+18 4 1 10
+0 0 0 0 0 0 0
+0.09 0 0 0 0 0 0 0
+E
+dingy-key~
+This key has been out of use for some time.  It looks as if it were stashed in a wet location for years, as the mildew and mold has taken control of its surface.~
+#59032
+chest grey-stone-chest~
+a grey stone chest~
+A chest built of grey stone rests along the wall, lit by candles at its base.~
+~
+15 0 0 0
+600 15 59027 0 0 0 0
+700.00 0 0 0 0 0 0 0
+E
+chest grey stone grey-stone-chest~
+   The stone in this chest is the same drab grey stone from the walls of the
+Sacred Haven.  The layer of dust covering the top of the chest is extremely
+thick, having not been opened for years.    ~
+#59033
+chest burnt-blackened-chest~
+a burnt wooden chest~
+A burnt wooden chest, blackened by soot, rests in the middle of the chamber.~
+~
+15 0 0 0
+400 15 59036 0 0 0 0
+350.00 0 0 0 0 0 0 0
+E
+chest wooden burnt blackened~
+   The chest was once a beautiful wooden masterpiece with intricate carvings
+and inlaid symbols, but it has been burnt and blacked by some sort of fire.  
+All of the wood has been charred black and the metal latches seem to have been
+melted somewhat.  The chest is still very sturdy and shows no signs of being
+forced open.    ~
+#59034
+rack weapons weapon-rack cast-iron-weapons-rack~
+a weapon rack~
+A cast-iron weapons rack rests against the wall, collecting dust.~
+~
+15 0 0 0
+400 5 -1 0 0 0 0
+800.00 0 0 0 0 0 0 0
+E
+rack weapons weapon-rack cast-iron-weapons-rack~
+The cast iron rack is dull black and is very clean.  There are signs of heavy
+use, as the hinges and some of the metal have started to wear down.  You can
+see just a lone sword resting in the rack, barely visible behind the clasp that
+holds the weapons in place.~
+#59035
+levers lever three large silver large-silver-levers~
+a set of levers~
+Three large silver levers stick out of the ground beside the door to the south.~
+~
+14 0 0 0
+0 0 0 0 0 0 0
+150.00 0 0 0 0 0 0 0
+E
+levers lever three silver large ~
+   The three levers are the locking mechanism for the door to the south.  Each
+are built of finely polished silver and have a black leather handle on top.  
+In order to unlock the door, it seems you must pull them in a specific order.
+They are labeled left, center and right.    ~
+#59036
+key carved wooden dark-black-wooden-key black-wooden-key~
+a black wooden key~
+A carved piece of dark black wood lies on the ground. ~
+~
+18 536870916 16385 0
+0 0 0 0 0 0 0
+0.14 0 0 0 0 0 0 0
+E
+key dark-black-key~
+   The dark grains of the wood spiral throughout the length of the key,
+creating a very striking contrast to the lighter colors of wood that they wrap
+through.  The key has been carved very thick and the teeth are somewhat squared
+off.  It is so large that it sticks out of both sides of you hand when you grip
+it.    ~
+H
+200
+#59037
+key jeweled-key multicolored-glints ~
+a jeweled key~
+Some multicolored glints catch your eye, sparkling up at you from the ground.~
+~
+18 69 16385 15
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+key jeweled~
+   The jewels that are inlaid into this key are flawless.  There are at least
+five different colored gems that make up the head and there are smaller sized
+gems that are set into the metal all the way down to the tip.  Even the teeth
+of the key are formed from small square cut gemstones.    ~
+#59038
+key black metal black-metal-key~
+a black metal key~
+A dark black, metal key lies here waiting to be picked up.~
+~
+18 4 16385 30
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+key black metal~
+   The large, dark black key is very clean, and looks almost to be new.  The
+black casting of the metal gives it a very durable finish and it looks to be
+unused.  Whoever was the keeper of this key did a very good job of protecting
+it from the elements.~
+A
+2 -5
+#59039
+mystic-forging-hammer consecrated~
+a mystic forging hammer~
+A well-balanced consecrated hammer stands here.~
+Nothing.~
+5 1 1 0
+0 4 5 6 0 0 0
+5.00 100000 0 0 0 0 0 0
+E
+mystic-forging-hammer consecrated~
+This hammer is not a weapon, but a tool.  Although it could do some serious
+damage in a fight, the weight is misaligned for combat and the head too small
+for solid hits.  A trained eye can spot that is because the hammer's true
+purpose is creation, not destruction.  Blessed by spirits of the earth for
+working on grand design of the universe, this hammer is a perfect tool for a
+true forgemaster.~
+#59040
+trumpet long-trumpet polished-trumpet~
+a long trumpet~
+A polished trumpet stands proudly here.~
+The fanfare is glorious!~
+30 0 1064961 30
+40 5 5 40 0 0 0
+1.00 0 0 0 0 0 0 0
+T 327
+E
+trumpet long-trumpet polished-trumpet~
+This kind of trumpet is traditionally used for heraldry to announce the coming
+of knights or kings.  While well cared for, it bears clear signs of regular
+use.  If it could speak, what stories of nobility and honor would it tell?~
+A
+17 1
+A
+6 2
+A
+5 4
+A
+1 4
+A
+27 1
+#59098
+staff electric electricity rydack~
+a staff of pure electricity~
+A long staff formed of electricity sparks and sizzles on the ground.~
+~
+5 536870979 24577 100
+10 3 10 12 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+staff electricity~
+   The blue and white bolts crackle and sizzle, but still are bound together to
+form a staff.  The top of the staff burns the brightest and emits an occasional
+shower of sparks.  It is constantly shifting colors and shape, allowing the
+user to control it actions to achieve maximum damage.~
+$~

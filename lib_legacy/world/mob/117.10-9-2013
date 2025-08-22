@@ -1,0 +1,614 @@
+#11701
+traveler mist mist-traveler humanoid shape~
+the Mist Traveler~
+You see a vaguely humanoid shape moving through the mists.
+~
+It's difficult to make out the shape of the creature before you.
+Though roughly humanoid in form, it stands taller than most humans,
+with its features and exact nature shrouded in a kind of grey mist.
+It moves with a quiet, cunning grace.
+~
+69208140 263172 -734 E
+35 0 0 0d0+0 0d0+0
+0 0 0 117
+4 4 0 24 13 0 2
+Str: 30
+Dex: 80
+Int: 72
+Wis: 78
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 6
+Stance: 6
+E
+#11702
+beast mist mist-beast wolf shape~
+the Mist Beast~
+You see a vaguely wolf-like shape moving through the mists.
+~
+Constantly snarling, this beast almost appears lupine in nature,
+though its exact form and features are shrouded in a sort of grey
+mist that makes it appear to be almost a silhouette, perhaps of some
+wolf's shadow.
+~
+102762568 263172 -750 E
+27 0 0 0d0+0 0d0+0
+0 0 0 117
+3 3 0 24 14 0 1
+BareHandAttack: 9
+Str: 30
+Dex: 83
+Int: 73
+Wis: 70
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 6
+Stance: 6
+E
+#11710
+illithid mind flayer octopus creature~
+the Illithid~
+A hideous creature with an octopus-like head stands here.
+~
+You see a young-looking, but hideous, creature standing about 5 feet tall
+with mauve colored skin that glistens with slime. Its head resembles an
+octopus, with white eyes and four tentacles where a mouth should be.
+~
+69206044 0 -1000 E
+38 0 0 0d0+0 0d0+0
+0 0 0 117
+3 3 0 24 13 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 76
+Int: 73
+Wis: 77
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55585
+#11750
+merchant mild mannered~
+a mild mannered merchant~
+A mild mannered merchant walks about here.
+~
+You see a mild mannered merchant walking through the Blue Fog. He
+may be a little lost as he wanders to and fro, but he's certain that
+he will reach his destination eventually as long as he doesn't stray
+too far from the beaten trail. He looks harmless enough.
+~
+204 0 750 E
+35 0 0 0d0+0 0d0+0
+0 0 0 117
+3 3 1 24 13 0 2
+Str: 30
+Dex: 74
+Int: 66
+Wis: 75
+Con: 30
+Cha: 76
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#11797
+storm guardian guard turbulent swirl cloud swirling~
+a storm guardian~
+A turbulent, swirling cloud mingles with the surroundings.
+~
+This cloud is a deep mixture of swirling grey and silver tendrils.  She seems
+to reach out toward everything and everyone nearby, scarcely settling on simple
+contact.  Her entire body is quite important, since there is nothing which can
+be described as a central portion of her being.  There are occasional black
+welts, floating among her cloudy form, which do not seem to serve any specific
+purpose.    
+~
+67110938 1310732 -234 E
+65 0 0 0d0+0 0d0+0
+0 1 0 117
+4 4 2 0 0 0 2
+BareHandAttack: 2
+Str: 77
+Dex: 75
+Int: 81
+Wis: 85
+Con: 76
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 650
+Lifeforce: 5
+Composition: 6
+Stance: 6
+E
+#11798
+mysa cloudy shaded myst dragon myst-dragon her~
+Mysa~
+A cloudy shaded myst dragon rests here upon her treasure.
+~
+This fierce female dragon is colossal.  She has mottled grey skin and dull,
+piercing eyes.  Her underbelly is a lighter, white color, leading down to her
+vicious tail with a sharp tip.  Mysa's claws are many and pointed.  She rests
+atop vast piles of treasure which fills the entirety of her home.  She has a
+few dark colored patches of skin struggling to push their way through her
+otherwise dull shades.    
+~
+100771966 45096 -150 E
+90 20 0 0d0+0 30d8+50
+0 0 0 117
+3 3 2 3 15 0 7
+BareHandAttack: 8
+Str: 95
+Dex: 76
+Int: 62
+Wis: 74
+Con: 73
+Cha: 74
+AFF2: 1536
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 11798
+#11799
+myst guardian guard myst-guardian thick cloud mist~
+a myst guardian~
+A thick cloud is here, enveloping the surroundings.
+~
+This myst guardian is rather clear and tall, yet seems to spread out over a
+large area.  He surrounds what comes near, yet can nearly be seen through
+without any special effort.  He is vaguely humanoid, yet really possessing none
+of the common humanoid features.  The myst guardian does not even seem to have
+what could be described as a head, but rather seems to reguard his entire being
+as important.    
+~
+100667466 17825800 0 E
+60 0 0 0d0+0 0d0+0
+0 0 0 117
+4 4 1 3 17 0 2
+BareHandAttack: 6
+Str: 88
+Dex: 86
+Int: 64
+Wis: 78
+Con: 80
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 6
+Stance: 6
+E
+#11800
+no-kill~
+&7&bthe mist&0~
+&7&bA thick cloud is here enveloping the surroundings.&0
+~
+The mist is thick and sometimes thin, never seeming to hold still.    
+~
+16777226 1344544 0 E
+100 0 5 0d0+0 -2d-4+-6
+0 0 0 117
+4 4 0 12 17 0 2
+BareHandAttack: 1
+Str: 80
+Dex: 76
+Int: 85
+Wis: 84
+Con: 66
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 1000
+Lifeforce: 5
+Composition: 6
+Stance: 6
+E
+T 11801
+T 11800
+#11801
+mist demon gray swirling~
+a gray mist demon~
+A swirling gray colored mist demon floats here.
+~
+This gray swirling mist demon is rather oddly shaped.  There is no discernible
+head or other extremities and it simply floats around.  It would almost seem to
+vanish into any fog which might be around, able to strike at any time.  There
+are no special markings on it, other than one large crescent shaped black
+streak on the right side of the demon's body.    
+~
+2097992 1318916 -300 E
+55 20 0 0d0+0 0d0+0
+0 0 0 117
+4 4 0 3 19 1 5
+BareHandAttack: 3
+Str: 98
+Dex: 84
+Int: 66
+Wis: 70
+Con: 72
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 550
+Lifeforce: 4
+Composition: 6
+Stance: 6
+E
+#11802
+tree vicious torn ugly planted~
+a vicious tree~
+A torn and ugly tree stands here firmly planted.
+~
+This tree is hideous.  It has no redeeming look about it at all.  The trunk is
+narrow and blackened, and appears to be perpetually damp from the surrounding
+countryside.  There are some small holes in the wood, which seem to be filled
+with something unknown.  The branches are a lighter shade of black, and the
+leaves are a sickly color of green, dark and unattractive.    
+~
+4938 0 -250 E
+50 20 0 0d0+0 0d0+0
+0 0 0 117
+3 3 0 24 12 0 2
+BareHandAttack: 6
+Str: 89
+Dex: 74
+Int: 69
+Wis: 71
+Con: 83
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+#11803
+slender guard temple~
+a slender temple guard~
+A slender temple guard stands here, partially blocking the entrance.
+~
+This guard is a pale blue color.  His skin is aged beyond recognizable years,
+and is stretched tightly over his bony frame.  He looks like a typical humanoid
+might, two legs and two arms and a head between his shoulders, with a noticable
+difference.  He has a large hollow in the center of his stomach, yet nothing
+from within his body leaks out.    
+~
+4170 294952 0 E
+30 0 0 0d0+0 0d0+0
+0 0 0 117
+3 3 1 3 17 0 2
+BareHandAttack: 6
+Str: 78
+Dex: 89
+Int: 69
+Wis: 69
+Con: 77
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#11804
+mist stream mist-demon~
+the mist~
+A stream of mist, weaving back and forth.
+~
+The mist is a thick fog, almost substantial in substance, yet not quite
+tangible to grab hold of.  There is a bright red contrasting glow from the
+center of the demon.    
+~
+6186 1048616 -300 E
+45 0 0 0d0+0 0d0+0
+0 0 0 117
+3 3 0 24 19 1 5
+BareHandAttack: 12
+Str: 92
+Dex: 86
+Int: 70
+Wis: 70
+Con: 72
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 6
+Stance: 6
+E
+T 11839
+#11805
+wave gentle graceful little~
+a gentle wave~
+A graceful little wave laps calmly at the walls.
+~
+This simple little wave gently laps against the walls, causing no erosion of
+any kind.  The color of the water is a delicate blue, darker than the color of
+the sky and far more brilliant than the color of the water on the walls.  The
+wave sways left to right, right to left, and occasionally swirls about as if it
+is enjoying itself.    
+~
+90 12352 0 E
+42 0 0 0d0+0 0d0+0
+0 0 0 117
+3 3 0 24 17 0 2
+BareHandAttack: 12
+Str: 84
+Dex: 80
+Int: 78
+Wis: 78
+Con: 80
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 4
+Stance: 6
+E
+#11806
+air swirl vast wind~
+a swirl of air~
+A vast swirl of air whisps around.
+~
+The air swirls in circles, not paying any attention to anything or not minding
+when it bumps into a wall.  The windy swirls seem confined and unmoving, yet
+oddly free and mobile.    
+~
+2058 1114120 -250 E
+52 0 0 0d0+0 0d0+0
+0 0 0 117
+4 4 0 24 17 0 2
+BareHandAttack: 2
+Str: 82
+Dex: 81
+Int: 69
+Wis: 76
+Con: 79
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 2
+Stance: 6
+E
+#11807
+fog thick thick-fog~
+a thick fog~
+A thick fog floats around, lingering about all within reach.
+~
+This creature is nothing more than a rich coalescence of fog which obviously
+has accumulated from the vast amounts of mist around here.  There is no
+discernible anatomy to the creature, simply a large mass that could pass for
+the bulk of the creature.  It is a dark grey color, with a few whisps of silver
+swirling about the mass.  There are a few massive tendrils stemming out from
+the center of the creature.    
+~
+69208136 16777216 -450 E
+40 0 0 0d0+0 0d0+0
+0 0 0 117
+3 3 0 24 17 0 2
+BareHandAttack: 2
+Str: 85
+Dex: 83
+Int: 66
+Wis: 72
+Con: 79
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 6
+Stance: 6
+E
+#11808
+squirrel wise cunning sharp-eyed puffy tailed critter~
+a wise squirrel~
+A cunning, sharp-eyed puffy-tailed critter sits here atop the peak.
+~
+With a large, bushy tail, this squirrel sits atop the peek of the Mountain
+of Mist keeping an eye out upon all of the surrounding lands.
+The squirrel appears to be quite knowledgable and astute.  Around its
+mouth the already grey hairs seem a little more white with age than
+the rest of its silky fur.
+~
+268494938 16777252 0 E
+65 0 0 0d0+0 0d0+0
+0 0 0 117
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 72
+Dex: 83
+Int: 69
+Wis: 68
+Con: 93
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#11809
+quajit qua jit qua_jit small circular creature~
+a small qua-jit~
+A small, circular creature rocks back and forth here.
+~
+This creature is a small bundle of fur with a hole through its center.  The
+qua-jit is rather fluffy and has the ability to nestle its face deeply into its
+fur and then make it resurface elsewhere.  It has an odd collection of
+claw-tipped toes attached to five legs which seem to protrude from its body
+randomly.  The qua-jit's fur is a fiery bloom of red and orange, with streaks
+of golden-yellow mingled in periodically.    
+~
+1054744 294944 0 E
+55 20 0 0d0+0 0d0+0
+0 0 0 117
+3 3 0 24 17 0 2
+BareHandAttack: 8
+Str: 84
+Dex: 82
+Int: 72
+Wis: 72
+Con: 82
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#11810
+ooze tremendous great translucent green cube~
+a tremendous ooze~
+A great translucent green cube jiggles back and forth here.
+~
+This is a large cube of green slime.  This ooze is an odd construction of a
+curious, gelatinous mixture.  There are small bits of plant and animal visible
+deep within the goo of this creature, which have the apperance of being
+partially digested.  The ooze seems to lean toward any living tissue near it.
+~
+102983704 4 -900 E
+65 20 -1 0d0+0 0d0+0
+0 0 0 117
+3 3 0 24 17 0 2
+BareHandAttack: 12
+Str: 92
+Dex: 92
+Int: 66
+Wis: 76
+Con: 78
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#11811
+lightning streak intermittent flash blue light~
+a streak of lightning~
+An intermittent flash of blue light wavers about here.
+~
+This appears to be a continual bolt of energy from a storm.  The lightning
+flickers brighter and darker in a completely random pattern, never seeming to
+hold at one tint or in any one phase for more than a brief instant.  The light
+is a crystaline-blue color.    
+~
+2164888 1310760 0 E
+60 20 0 0d0+0 0d0+0
+0 0 0 117
+4 4 0 24 17 0 2
+BareHandAttack: 11
+Str: 87
+Dex: 81
+Int: 73
+Wis: 62
+Con: 99
+Cha: 50
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 600
+Lifeforce: 5
+Composition: 2
+Stance: 6
+E
+#11812
+vine assassin gnarled vines~
+an assassin vine~
+Some gnarled vines lay twisted about the ground.
+~
+This is just a large mass of vines, jumbled about and interwoven with
+themselves.  They are rather scruffy and beaten, looking as though they have
+often been attacked and stepped upon.  The vines are thick and green, with a
+sporadic assortment of black smudges all about them.    
+~
+100663386 262152 -850 E
+85 20 0 0d0+0 0d0+0
+0 0 0 117
+3 3 0 9 12 0 2
+BareHandAttack: 1
+Str: 63
+Dex: 86
+Int: 87
+Wis: 93
+Con: 61
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+T 11812
+$

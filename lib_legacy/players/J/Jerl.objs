@@ -1,0 +1,1262 @@
+1
+vnum: 16201
+location: 0
+values:
+0
+3000
+3000
+0
+0
+0
+0
+~
+flags: ag
+name: sceptre rod kings golden
+shortdesc: a golden sceptre
+desc: A golden sceptre glitters in the light.
+type: 1
+weight: 1.20
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+17 3
+~
+extradesc: sceptre rod kings
+The sceptre is made of pure gold, and is encrusted in jewels. Intricate carvingsdepicting wings snakes decorate this majestic rod.~
+~~
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 5201
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 17212
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: jewel heart dusty little jewel-of-the-heart Questobject
+shortdesc: the jewel of the heart
+desc: A dusty little jewel lies here.
+type: 8
+weight: 0.20
+cost: 1782
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+13 20
+~
+extradesc: jewel heart dusty little jewel-of-the-heart Questobject
+This beautiful little jewel is shaped oddly, and appears to be very valuable to someone at least.
+~
+triggers:
+16307
+~
+variables:
+already_got_jewel 1
+~
+~~
+vnum: 20303
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: necklace tooth crocodile
+shortdesc: a crocodile-tooth necklace
+desc: A large crocodile-tooth necklace lies discarded here.
+type: 9
+weight: 1.20
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+applies:
+13 12
+~
+extradesc: necklace crocodile tooth
+This is a very interesting and intricate necklace.  It is made of an
+intricately braided green material and a has a large crocodile tooth at the
+very center.  It must have taken many hours to make this amazing necklace.    
+~
+~~
+vnum: 58104
+location: 5
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjmprtuz
+name: kimono black-cotton jet-black-kimono
+shortdesc: a jet-black kimono
+desc: A black cotton kimono lies forgotten on the floor.
+type: 11
+weight: 1.20
+cost: 20000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 9
+applies:
+17 8
+18 2
+26 2
+~
+extradesc: kimono black-cotton jet-black-kimono
+Made of thin black cotton, this kimono blends in perfectly with the shadows of
+night.  Silk would provide a telltale sheen, though it would also be lighter,
+but the black-dyed cotton absorbs light rather than reflecting it.  It is
+utterly silent, not even giving the usual "whoosh" of fabric when moved.  The
+sleeves fall only to the elbows, providing plenty of room to swing a weapon.  
+
+~
+~~
+vnum: 5517
+location: 6
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: skullcap eldoria-reward black-skull-cap 3rd-black-legion-skullcap
+shortdesc: a skullcap of the 3rd Black Legion
+desc: A black skullcap lies nearby.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 17
+applies:
+14 5
+~
+extradesc: skullcap eldoria-reward black-skull-cap 3rd-black-legion-skullcap
+An iron skullcap, it bears the mark of the 3rd Black Legion.
+~
+~~
+vnum: 55394
+location: 7
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz
+name: greaves acolyte
+shortdesc: acolyte greaves
+desc: A slightly magical set of thin metal greaves lies here.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 33
+applies:
+1 1
+13 5
+~
+extradesc: acolyte greaves
+Newly forged, these magical metal greaves were made to reflect your acceptance
+to your god.  Treated well, they will carry you through your beginning trials
+and on to greater wisdom.
+~
+~~
+vnum: 5533
+location: 8
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: boots eldoria-reward 3rd-black-legion-boots
+shortdesc: boots of the 3rd Black Legion
+desc: Some black boots lie here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 65
+applies:
+2 2
+~
+~~
+vnum: 55474
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: aghjmopqrstuvwxyz
+name: unholy gauntlets fervent
+shortdesc: &1&bGauntlets of the Fervent&0
+desc: Tainting the area is a set of unholy gauntlets.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+13 15
+1 1
+~
+extradesc: unholy gauntlets fervent
+The metal that makes up these gauntlets is forged with the burning drive to
+spread the evil powers of the dark gods.  A mix of unhallowed power and
+superior craftsmanship, armor like this is given to evil priests to aid them in
+their efforts to blight the world.
+~
+~~
+vnum: 5521
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: sleeves eldoria-reward 3rd-black-legion-leather-sleeves
+shortdesc: leather sleeves of the 3rd Black Legion
+desc: Some black leather sleeves lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 55208
+location: 11
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: mu
+name: leather-buckler leather buckler shield mythril
+shortdesc: a leather shield rimmed in mythril
+desc: A well-oiled leather buckler rimmed in a brilliant silver rests here.
+type: 9
+weight: 1.50
+cost: 1000
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 513
+applies:
+24 1
+~
+extradesc: leather-buckler leather buckler shield mythril
+This covering seem to act well as a shield. It's well made 
+and is supported by a silvery metal. The leather is thick
+and hard against a battle.
+~
+~~
+vnum: 43022
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-insanity something insanity
+shortdesc: the Cloak of Insanity
+desc: Something rests on the ground here, slowly corrupting reality.
+type: 12
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+applies:
+4 -3
+19 3
+~
+extradesc: cloak insanity
+Looking at the cloak too long gives you a headache.
+~
+~~
+vnum: 58007
+location: 13
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: rtD
+name: belt ninja ninjas black length cloth
+shortdesc: the ninja's belt
+desc: You see a neatly folded length of black cloth.
+type: 9
+weight: 1.10
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 2049
+applies:
+14 20
+2 4
+~
+extradesc: ninjas ninja belt black cloth
+This is a very simple length of black cloth, hemmed all around very
+neatly. There's literally nothing impressive about it.~
+~~
+vnum: 55396
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz
+name: bracer acolyte
+shortdesc: an acolyte bracer
+desc: A slightly magical thin metal bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 4097
+applies:
+13 3
+6 1
+~
+extradesc: acolyte bracer
+Newly forged, this magical metal bracer was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.
+~
+~~
+vnum: 55473
+location: 15
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aghjmopqrstuvwxyz
+name: unholy bracer fervent
+shortdesc: &1&bBracer of the Fervent&0
+desc: Tainting the area is an unholy bracer.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+applies:
+6 2
+3 3
+~
+extradesc: unholy bracer fervent
+The metal that makes up this bracer is forged with the burning drive to spread
+the evil powers of the dark gods.  A mix of unhallowed power and superior
+craftsmanship, armor like this is given to evil priests to aid them in their
+efforts to blight the world.
+~
+~~
+vnum: 53305
+location: 16
+values:
+0
+3
+3
+5
+0
+0
+0
+~
+flags: gmo
+name: mace dragon fist
+shortdesc: a dragon's fist mace
+desc: A mace carved to look like a dragon's fist lies here.
+type: 5
+weight: 7.00
+cost: 2000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 8193
+applies:
+18 3
+19 3
+~
+extradesc: mace dragon's claw
+This mace is made of shiny metal similar to steel only much lighter.  The
+head of the mace is ornately carved to look like a curled dragon's claw.
+The detail and workmanship are outstanding.
+~
+~~
+vnum: 51006
+location: 21
+values:
+0
+1800
+1800
+0
+0
+0
+0
+~
+flags: ag
+name: eyes balls ice-eyes
+shortdesc: a pair of Ice Eyes
+desc: Two balls of ice lie here, casting a magical glow of light all around.
+type: 1
+weight: 1.03
+cost: 500
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 65537
+applies:
+18 2
+14 20
+28 52
+~
+extradesc: ice eyes magical pair two
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.
+~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: mask imanhotep golden
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 9
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+applies:
+1 2
+4 2
+~
+extradesc: mask
+The mask is made of solid gold and is encrusted with jewels. It has an aura
+of power around it.~
+~~
+vnum: 49016
+location: 23
+values:
+0
+3000
+3000
+0
+0
+0
+0
+~
+flags: g
+name: earring crystal crystal-earring midget
+shortdesc: a crystal earring
+desc: A crystal midget stands here, his little cap radiating a clear white light.
+type: 1
+weight: 0.80
+cost: 420
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+~
+extradesc: crystal midget earring
+The crystal powers hold this little midget in their iron grasp! The midget
+wiggles his little legs, but he cannot run away!~
+~~
+vnum: 53325
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: white dragon scale white-dragon-scale
+shortdesc: a white dragon scale
+desc: A perfect white dragon scale lies here.
+type: 9
+weight: 2.00
+cost: 10000
+timer: 1000
+level: 50
+effects: 0 0 0
+wear: 540673
+applies:
+13 30
+18 2
+~
+extradesc: white dragon scale white-dragon-scale
+About as large as a human's palm, this pure white scale comes from the tender
+shoulder area of a white dragon.  It is a beautiful scale, shining brightly in
+the light and feeling slightly cool to the touch.  Dragons are very magical
+creatures, so the scale would probably be valuable to a researching sorcerer or
+anyone else interested in unlocking the power of a dragon's skin.    
+~
+~~
+vnum: 48104
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: head shrivelled severed-head
+shortdesc: a shrivelled, severed head
+desc: The shrivelled head of a jungle savage lies here.
+type: 12
+weight: 8.00
+cost: 50
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1064961
+applies:
+3 1
+17 5
+~
+extradesc: shrivelled head severed
+This grotesque trophy makes you want to puke. Why would you ever want to
+look at such a thing??
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+184
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 14.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 16305
+location: 127
+values:
+0
+2
+5
+6
+0
+0
+0
+~
+flags: gow
+name: staff druidstaff golden-druidstaff
+shortdesc: the Golden Druidstaff
+desc: A gold plated staff is stuck in the ground.
+type: 5
+weight: 2.00
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+4 3
+3 3
+~
+extradesc: druidstaff golden staff golden-druidstaff
+   The staff is made of wood, but there is an odd golden sheen to its surface.
+A tingling sensation moves up your arm as you touch its surface.
+~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 16213
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: scarab ruby
+shortdesc: a ruby scarab
+desc: A ruby scarab lies at your feet.
+type: 9
+weight: 0.25
+cost: 5000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+1 3
+13 25
+~
+extradesc: scarab ruby
+The ruby was cut in the shape of a scarab, one of the holy symbols of this land.
+~
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 49004
+location: 127
+values:
+100
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack leather black leather-backpack pack
+shortdesc: a leather backpack
+desc: A backpack of tough black leather has lost its owner.
+type: 15
+weight: 6.00
+cost: 50
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1025
+applies:
+17 4
+~
+extradesc: backpack leather
+A vast amount of stuff can fit into this sturdy backpack.~
+~~
+vnum: 55328
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gauntlets crushed
+shortdesc: crushed gauntlets
+desc: A pile of crushed armor lies here unusable.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+~~
+vnum: 55337
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracer leather crushed
+shortdesc: a crushed leather bracer
+desc: A pile of crushed leather armor lies here unusable.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 2049
+~~
+vnum: 55329
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gloves leather crushed
+shortdesc: crushed leather gloves
+desc: A pile of crushed leather armor lies here unusable.
+type: 9
+weight: 0.86
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+~~
+vnum: 55372
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: vambraces tarnished
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 9
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+~~
+vnum: 55361
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: boots leather creased
+shortdesc: creased leather boots
+desc: A pile of creased leather armor lies here unusable.
+type: 9
+weight: 1.80
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1004
+location: 127
+values:
+1
+240
+191
+0
+0
+0
+0
+~
+flags: 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern. It holds about fifteen hours worth of fuel.
+~
+~~

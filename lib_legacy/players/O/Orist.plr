@@ -1,0 +1,66 @@
+name: Orist
+password: OrbAJgDiyR
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20237
+birthtime: 1650406166
+timeplayed: 77
+lastlogintime: 1650406264
+host: 107.139.176.194
+height: 65
+weight: 151
+base_height: 65
+base_weight: 151
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 28/28
+mana: 0/0
+move: 110/114
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 73
+wisdom: 68
+dexterity: 97
+constitution: 85
+charisma: 50
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+$

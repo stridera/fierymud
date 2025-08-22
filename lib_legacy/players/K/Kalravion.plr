@@ -1,0 +1,101 @@
+name: Kalravion
+password: KaZqOnPhsx
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 8
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20509
+birthtime: 1683392898
+timeplayed: 12405
+lastlogintime: 1703099098
+host: 099.107.091.063
+height: 70
+weight: 144
+base_height: 70
+base_weight: 144
+base_size: 2
+natural_size: 2
+alignment: 24
+playerflags: xy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 106/106
+mana: 1/0
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 68
+wisdom: 62
+dexterity: 89
+constitution: 79
+charisma: 68
+bank: 0 1 1 1
+experience: 175101
+quit_reason: 5
+saveroom: 61500
+skills:
+402 130
+404 128
+415 120
+416 53
+421 85
+438 100
+443 50
+444 61
+463 50
+464 50
+465 79
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 17204 5.000000
+1 6913 3.000000
+1 6908 1.000000
+1 6904 1.000000
+1 6909 1.000000
+1 6910 2.000000
+1 7004 1.000000
+1 7001 3.000000
+1 7051 1.000000
+1 7050 2.000000
+1 1603 2.000000
+1 8803 2.000000
+1 8804 1.000000
+1 8802 1.000000
+1 8800 1.000000
+1 8806 1.000000
+1 16909 1.000000
+1 16901 1.000000
+1 16907 2.000000
+1 16902 5.000000
+1 16906 1.000000
+0 0 0
+tells:
+1683395197 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1683432791 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1683432803 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+$
+gossips:
+1683429327 Chinok gossips, 'how's it going'
+1683429351 Chinok gossips, 'feel free to ask anything...'
+1683429455 Chinok gossips, 'the other help bit I can give is--- http://www.fierymud.org/help -- is the in-game help file, search-able on-line'
+1683429517 Chinok gossips, 'the in-game syntax can be a bit tricky.. the on-line one is a lot easier'
+1683429565 Chinok gossips, 'for example -- help skill_warrior shows your skills available'
+1683429578 Chinok gossips, 'but online, you can just do skills warrior'
+1683429610 Chinok gossips, 'yup, :)'
+1683430111 Tors gossips, 'gratz!'
+1683431373 Fril gossips, 'night all'
+1703099093 Chinok gossips, 'welcome Kalravion'
+$

@@ -1,0 +1,948 @@
+#10000
+highpriest high-priest-zalish highpriest-zalish guildmaster~
+the High Priest Zalish~
+Zalish the High Priest, your guildmaster, is floating here.~
+An aura of power surrounds this man, the leader of the Arctic Temple.  Each
+move he makes is deliberate, giving no doubt as to the forces mundane and holy
+that he controls.  He looks favorably upon those who study the ways of the
+gods, taking especial care to be fair no matter if they follow the path of
+good, evil, or neutrality.~
+18442 1048712 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 15 0 0 2
+Str: 30
+Dex: 77
+Int: 70
+Wis: 77
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55717
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 316
+T 315
+T 3155
+T 3159
+T 326
+T 55706
+T 318
+#10001
+coach warrior guildmaster warrior-coach~
+the Warrior Coach~
+The Warrior Coach, your guildmaster, is standing here.~
+This guildmaster, as are most, is a colossus.  He is incredibly strong, with
+bulging muscles.  He is battle-torn as proven by the many scars on his arms and
+upper body.  Experience and might are worn into his face, making him calm and
+collected.~
+18442 136 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 3 10 0 3
+Str: 30
+Dex: 74
+Int: 79
+Wis: 84
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55724
+T 106
+T 107
+T 108
+T 109
+T 110
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#10002
+archmage mage guildmaster master~
+the Archmage~
+The Archmage, your guildmaster, is floating here.~
+There is a shimmering blue-green aura encasing this dark and powerful mage.  
+Wisdom and power are obvious just from looking upon his features.  The robes
+worn by this guildmaster are black and sleek.  He wears only one other obvious
+thing: a smirk of confidence.~
+536889354 1049768 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+4 4 1 0 10 0 3
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55711
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#10003
+elite mercenary guildmaster elite-mercenary~
+an Elite Mercenary~
+The Elite Mercenary, your guildmaster, is standing here.~
+This Mercenary guildmaster is not for hire any longer, though it is apperant
+that she has been in the past.  She looks sleek and agile, and would be a
+wonderful teacher.~
+18442 136 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 2 10 10 0 3
+Str: 30
+Dex: 84
+Int: 66
+Wis: 73
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55735
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#10004
+clydesdale horse sturdy sturdy-clydesdale~
+a sturdy clydesdale~
+A sturdy clydesdale stands here on wide hooves.~
+A rather thick coat and large size protect this beast from the cold of northern
+climes.  The sturdy clydesdale is muscular and calm, and has easily-
+recognizable thick hooves.~
+268697608 0 0 E
+1 20 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 2 3 14 0 3
+BareHandAttack: 9
+Str: 84
+Dex: 94
+Int: 70
+Wis: 72
+Con: 72
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10005
+mustang nordic horse nordic-mustang~
+a nordic mustang~
+A spirited mustang with a pale coat stands nearby.~
+Recently reclaimed from a feral herd, this proud horse permits itself to be
+ridden even though its spirit is not broken.  It is well-muscled and its shoes
+are in good repair, though it seems to resent the bit somewhat.    ~
+268697608 0 0 E
+8 20 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 3 14 0 3
+BareHandAttack: 9
+Str: 95
+Dex: 75
+Int: 76
+Wis: 71
+Con: 75
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10006
+stallion frost horse frost-stallion~
+a frost stallion~
+A tall, proud white horse stands calmly to one side.~
+This slender-legged, bright white creature has a look of nobility in its pale
+brown eyes.  Powerful muscles ripple under his skin as he moves with grace and
+assuredness.    ~
+268697608 0 0 E
+15 20 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 3 14 0 3
+BareHandAttack: 9
+Str: 96
+Dex: 83
+Int: 67
+Wis: 74
+Con: 76
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10010
+templar knight holy knight-templar holy-templar~
+the Knight Templar~
+The Holy Templar is guarding this entrance. Infidels Beware!~
+This knight is a specially-trained warrior belonging to the military order of
+the worshippers of the northern gods.  His duty is to protect the faithful from
+persecution and infidel attacks.  His religious devotion combined with his
+superior skill make him a deadly opponent.~
+18442 128 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 3 0 0 2
+Str: 30
+Dex: 81
+Int: 67
+Wis: 87
+Con: 30
+Cha: 51
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10011
+knight mighty mighty-knight~
+the Mighty Knight~
+The Mighty Knight is guarding this entrance.~
+This knight is an expert warrior who has attained knighthood through countless
+chivalrous deeds.  His duty is to protect the Guild of Swordsmen and his
+extreme skill combined with his experience in warfare make him a deadly
+opponent.~
+18442 128 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 4 0 0 2
+Str: 30
+Dex: 76
+Int: 68
+Wis: 70
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10012
+sorcerer mystical mystical-sorcerer~
+the Mystical Sorcerer~
+The Mystical Sorcerer is guarding this entrance.~
+This sorcerer is an experienced mage who has specialized in the field of Combat
+Magic.  He is here to guard the Mage's Guild and his superior knowledge of
+offensive as well as defensive spells makes him a deadly opponent.~
+18442 1160 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 0 9 0 2
+Str: 30
+Dex: 87
+Int: 66
+Wis: 73
+Con: 30
+Cha: 44
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 306
+T 307
+T 308
+T 311
+T 314
+#10013
+mercenary guardian mercenary-guardian~
+the Mercenary Guardian~
+The Mercenary Guardian stands here, protecting his guild.~
+This powerful man has been recruited to watch and keep guard over this
+mercenary guildhouse.  His duty is to protect those inside the inner sanctum,
+and keep the peace around him.  He is a powerful and highly skilled fighter,
+and would be a formidable ally in battle, as well as a formidable opponent.~
+18442 128 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 10 10 0 3
+Str: 30
+Dex: 82
+Int: 72
+Wis: 76
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10020
+traldi trumward shopkeeper~
+Traldi Trumward~
+Traldi Trumward, Legend with a Long Sword, is here tending his shop.~
+Traldi Trumward is legendary for his skill with the long sword.  It is reputed
+that he even defeated the mighty Santiago in battle long ago.  Of course,
+Santiago had a knack for picking the winning side of a battle, unlike Traldi,
+so he has fared better in the long run.  Make no mistake, however.  Traldi is
+one of the best there is.~
+18442 0 900 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 3 0 0 2
+Str: 30
+Dex: 86
+Int: 71
+Wis: 70
+Con: 30
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#10021
+vran varied shopkeeper-100 barbarian hides~
+Vran the Varied~
+A barbarian in hides stands here, arranging inventory.~
+This tall, muscular barbarian is scarred from here to there, though most of it
+is covered up by the extensive hides he wears.  He doesn't look in the
+slightest mild-mannered, but more like a wolf that has chosen to play nicely
+for a while.~
+18442 0 1000 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 14 10 0 3
+Str: 30
+Dex: 79
+Int: 66
+Wis: 77
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#10022
+karr nojj karrnojj shopkeeper~
+Karr Nojj~
+Karr Nojj is here, tending bar and keeping the peace.~
+Karr Nojj looks like the perfect barkeep.  He is large and cunning, yet willing
+to lend an ear and listen to those who have a story to tell.  Though he is
+kindly, he still seems like he would fight hard and be capable of easily
+handling any unruly patrons in his establishment.~
+18442 0 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 10 0 0 2
+Str: 30
+Dex: 90
+Int: 73
+Wis: 73
+Con: 30
+Cha: 51
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#10023
+mara baker shopkeeper~
+Mara the Baker~
+Mara the Baker is here, baking fresh bread in her many ovens.~
+Mara is an attractive young woman who seems to genuinely love her work.  With
+little spots of flour and dough here and there on her apron, you are sure she
+works hard feeding the village.~
+18442 0 900 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 2 3 0 0 2
+Str: 30
+Dex: 83
+Int: 69
+Wis: 68
+Con: 30
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#10024
+ariana shelti shopkeeper~
+Ariana Shelti~
+Ariana Shelti is walking about here taking inventory.~
+This young barbarian woman is strong and proud, with energy to spare.  Her dark
+hair is well-kept, and out of her face, and her youthful body is hidden beneath
+her clothes.~
+18442 0 700 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 2 24 10 0 3
+Str: 30
+Dex: 86
+Int: 74
+Wis: 68
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#10025
+surr aged shopkeeper~
+Surr the Aged~
+Surr the Aged stands here, keeping a close eye on his customers.~
+Surr the Aged has that scholarly air about him that makes you sure he's never
+worked outside of a library before in his life.  Still, he is all the rage in
+fur design these days, so perhaps all that studying has paid off.  He's
+obviously enjoying his recent successes.~
+18442 0 1000 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 6 0 0 2
+Str: 30
+Dex: 83
+Int: 71
+Wis: 70
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#10026
+garm shopkeeper~
+Garm~
+Garm stands here, smiling warmly at his customers.~
+Garm is a most unusual dwarf.  He doesn't seem to be the grumpy sort.  If you
+know anything about dwarves, you know that they are always in a grumpy mood.  
+However, Garm seems to be genuinely happy in Ickle as the village's one and
+only shield craftsman.~
+18442 0 500 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 3 3 0 2
+Str: 30
+Dex: 94
+Int: 64
+Wis: 70
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#10027
+kilaxi trickster shopkeeper~
+Kilaxi the Trickster~
+Kilaxi the Trickster is floating here with a mischievious grin on his face!~
+You can't help but notice the impish gleam in his eye.  Kilaxi surely looks the
+part of a trickster extraordinare.  Perhaps that is what got Kilaxi involved in
+magic.  He is reputed to have played many a grand joke on all the world's most
+famous and revered inhabitants.~
+18442 8 750 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 4 1 0 1 0 2
+Str: 30
+Dex: 90
+Int: 68
+Wis: 75
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 53459
+T 53460
+T 30006
+#10028
+clerk store general~
+a store clerk~
+One of Ariana's clerks is here cleaning up.~
+This kindly-looking clerk of the general store wanders about cleaning up and
+offering you assistance.~
+22554 0 300 E
+80 20 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 2 24 10 0 3
+Str: 86
+Dex: 84
+Int: 70
+Wis: 72
+Con: 74
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10029
+faric uncleaned shopkeeper~
+Faric~
+An unclean stable keeper named Faric is here.~
+Faric is not the hottest of merchants around.  He is growing a beer belly,
+which is not improving to his already unsightly physique.  There is immediately
+notable about this man other than grubby clothing and unkept hair.~
+26714 16777224 750 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 3 10 0 3
+Str: 82
+Dex: 78
+Int: 66
+Wis: 83
+Con: 79
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#10036
+mob unfinished~
+the unfinished mob~
+An unfinished mob stands here.
+~
+It looks unfinished.
+~
+8 8 0 E
+0 20 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 0 24 17 0 2
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10040
+guard barbaric powerful barbaric-guard~
+a Barbaric Guard~
+A powerfully built Barbaric Guard stands here watching you.~
+The Barbaric Guard is simply enormous.  His fierceness is readily apparent to
+all.  Deep in his ice-blue eyes there is a fire burning, just waiting for an
+excuse to be released.~
+2099288 4 0 E
+90 0 0 0d0+0 0d0+5
+0 0 0 0 0 100
+3 3 1 3 10 0 3
+Str: 30
+Dex: 88
+Int: 68
+Wis: 78
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10041
+guard barbaric powerful large barbaric-guard~
+a Barbaric Guard~
+An incredibly large Barbaric Guard raises his eyes, watching.~
+The Barbaric Guard is simply enormous.  His fierceness is readily apparent to
+all.  Deep in his ice-blue eyes there is a fire burning, just waiting for an
+excuse to be released.~
+2074 4 0 E
+90 0 0 0d0+0 0d0+5
+0 0 0 0 0 100
+3 3 1 3 10 0 3
+Str: 30
+Dex: 84
+Int: 85
+Wis: 61
+Con: 30
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10050
+wanderer~
+the wanderer~
+There is a wanderer standing here, watching you silently.~
+This wanderer is a permanent resident of these arctic regions.  He doesn't seem
+to have any particular destination in mind.  He merely wishes to see it all
+before leaving this mortal coil.~
+2252 0 0 E
+50 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 24 0 0 2
+Str: 30
+Dex: 78
+Int: 74
+Wis: 79
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10051
+penguin playful playful-penguin~
+the playful penguin~
+A playful penguin waddles along here.~
+This penguin seems to be the curious sort.  He is wandering about from place to
+place here, fascinated by everything he can see.~
+8 0 0 E
+0 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 24 14 0 1
+Str: 30
+Dex: 88
+Int: 64
+Wis: 64
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10052
+drunk shivering old~
+the drunk~
+A shivering old drunk is here.~
+Drunks of the arctic seem to all think that there is a simple answer to
+fighting the cold: alcohol.~
+8 0 0 E
+2 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 24 0 0 2
+Str: 86
+Dex: 76
+Int: 68
+Wis: 77
+Con: 30
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 10000
+T 6001
+#10053
+banker~
+the Ickle Banker~
+A small man buried in furs stands behind the counter.~
+This man looks miserable.  Though he is wrapped in thick furs, it is obvious
+that he is freezing in this arctic climate.  He seems frightened at being alone
+with so many barbarians.~
+18442 0 0 E
+81 20 -10 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 24 0 0 2
+Str: 81
+Dex: 70
+Int: 86
+Wis: 90
+Con: 66
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#10054
+receptionist~
+the receptionist~
+The receptionist of the Yeti Inn greets you warmly.~
+The receptionist sits behind her counter, looking towards the patrons of the
+inn.  She is eager to help on and all, and though her coy and innocent look,
+she seems powerful and strong-minded.  Her beauty is exemplified by her
+stunning smile.~
+18442 8 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 2 24 0 0 2
+Str: 87
+Dex: 85
+Int: 59
+Wis: 79
+Con: 75
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 1000
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 3000
+T 30006
+#10055
+postmaster small man ickle~
+the Ickle Postmaster~
+A small man shivers behind the counter.~
+This guy looks nearly frozen solid!  He looks to be darker skinned and not as
+stout as the inhabitants of this region.  His thin moustache is nearly frozen
+and the ice in his eyebrows makes it nearly impossible for him to see.~
+188426 0 0 E
+70 0 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 24 11 0 1
+Str: 90
+Dex: 74
+Int: 65
+Wis: 83
+Con: 83
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#10056
+cloaked figure ranger elf mysteriously~
+a mysteriously cloaked figure~
+A cloaked figure leans on a snow drift.~
+A tall, slender elf is trying to adjust his snowshoes for the fresh powder.  
+His clothes are made of the finest fur.  The white garments blend so well with
+the surrounding landscape that it is amazing he is visible at all.  Even the
+great longbow resting over his shoulder is wrapped in the excellent material.
+Steadily he adjusts his gear and garments for the open tundra.~
+134406154 33554440 1000 E
+90 20 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 6 1 0 2
+Str: 80
+Dex: 81
+Int: 69
+Wis: 74
+Con: 79
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 306
+T 307
+T 308
+T 311
+T 314
+#10057
+cloaked figure ranger elf mysteriously~
+a mysterious ranger from the north~
+A cloaked figure leans on a snow drift.~
+A tall, slender elf is trying to adjust his snowshoes for the fresh powder.  
+His clothes are made of the finest fur.  The white garments blend so well with
+the surrounding landscape that it is amazing he is visible at all.  Even the
+great longbow resting over his shoulder is wrapped in the excellent material.
+Steadily he adjusts his gear and garments for the open tundra.~
+134406154 33554440 1000 E
+90 20 0 0d0+0 0d0+0
+0 0 0 0 0 100
+3 3 1 6 1 0 2
+Str: 80
+Dex: 81
+Int: 69
+Wis: 74
+Con: 79
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

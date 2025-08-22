@@ -1,0 +1,93 @@
+name: Ironicus
+password: IranJf6AzI
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 11
+home: 6015
+lifeforce: 0
+composition: 0
+id: 18385
+birthtime: 1352681344
+timeplayed: 61749
+lastlogintime: 1353383880
+host: 099.097.089.045
+height: 85
+weight: 193
+base_height: 85
+base_weight: 193
+base_size: 3
+natural_size: 3
+alignment: 358
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 9
+thirst: 20
+lastlevel: 0
+hitpoints: 169/147
+mana: 12/12
+move: 175/176
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 55
+wisdom: 65
+dexterity: 92
+constitution: 100
+charisma: 54
+cash: 0 30 148 147
+bank: 0 200 400 500
+experience: 418976
+quit_reason: 1
+saveroom: 3054
+skills:
+402 78
+404 160
+415 50
+416 50
+419 1000
+421 119
+427 1000
+430 74
+438 54
+443 62
+444 50
+463 50
+464 50
+465 126
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 12003 0.333333
+1 12006 0.333333
+1 12017 0.333333
+1 12012 1.833333
+1 12009 3.500000
+1 12002 1.000000
+1 12008 2.000000
+1 12004 2.000000
+1 12024 2.000000
+1 12011 3.666666
+1 12025 1.000000
+1 12001 4.666667
+1 12023 3.166667
+1 12007 3.166667
+1 12014 5.000000
+1 12015 1.666667
+1 12016 1.666667
+1 41008 0.333333
+1 41010 0.333333
+1 41004 0.666667
+1 41011 0.666667
+0 0 0
+effects:
+1 4 10 17 0 0 0
+0 0 0 0 0

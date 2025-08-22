@@ -1,0 +1,117 @@
+name: Mardox
+password: MaapOeK5HB
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 11
+race: 33
+level: 29
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20634
+birthtime: 1696194003
+timeplayed: 30706
+lastlogintime: 1709519875
+host: 156.146.194.021
+height: 6
+weight: 10
+base_height: 6
+base_weight: 10
+base_size: 0
+natural_size: 0
+alignment: -999
+playerflags: gxy
+effectflags: u 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 101/101
+mana: 84/84
+move: 187/187
+damroll: 0
+hitroll: 6
+strength: 56
+intelligence: 95
+wisdom: 74
+dexterity: 70
+constitution: 76
+charisma: 96
+cash: 107 9 9 9
+experience: 5579692
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+33 1000
+39 1000
+45 1000
+87 1000
+100 1000
+101 1000
+106 1000
+121 1000
+125 1000
+187 1000
+415 50
+416 50
+421 51
+423 82
+424 50
+438 50
+443 50
+444 50
+447 112
+451 74
+452 50
+453 50
+454 50
+458 50
+459 50
+460 50
+461 50
+462 50
+464 50
+0 0
+trophy:
+1 51010 0.333333
+1 51012 0.500000
+1 51009 0.833333
+1 51005 1.500000
+1 51011 1.000000
+1 51006 0.833333
+1 51000 2.000000
+1 51004 2.500000
+1 51008 2.500000
+1 51020 4.000000
+1 51002 6.000000
+1 51023 0.500000
+1 51003 8.000000
+1 51014 0.500000
+1 51021 0.500000
+1 51001 6.000000
+1 51024 1.000000
+0 0 0
+tells:
+1696194107 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1696256405 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1696541563 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1696542741 Ulthar gossips, '#3 down'
+1696542846 Snil gossips, 'gratz!'
+1696542860 Ulthar gossips, 'moving along'
+1696543054 Ulthar gossips, 'okay, so I've killed three ancient dryads...made it to the middle...what's there?'
+1696543072 Snal gossips, 'the fouth one?'
+1696543076 Ulthar gossips, 'hidden?'
+1696543279 Someone gossips, 'welcoem back :D'
+1696543299 Jalor gossips, 'bro'
+1696544181 Snil gossips, 'which is better pleveler anti in nordus or assassin?'
+1709519691 Chinok gossips, 'Mardox, you've at least done a little work'
+$

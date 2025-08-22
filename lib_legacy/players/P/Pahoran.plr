@@ -1,0 +1,154 @@
+name: Pahoran
+password: PaPjMWpxq9
+description
+Nothing.~
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 5
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 13760
+birthtime: 1093630259
+timeplayed: 8162699
+lastlogintime: 1704511873
+host: 136.036.067.132
+height: 70
+weight: 157
+base_height: 70
+base_weight: 157
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxyz
+effectflags: cn 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 100
+loadroom: 3054
+lastlevel: 14
+hitpoints: 1158/1059
+mana: 980/980
+move: 132/132
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 67
+wisdom: 68
+dexterity: 92
+constitution: 92
+charisma: 57
+cash: 0 9 9 5
+bank: 10 0 0 0
+experience: 103722647
+pagelength: 35
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+4 1000
+12 1000
+13 1000
+14 1000
+17 1000
+27 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+92 1000
+96 1000
+99 1000
+131 1000
+132 1000
+188 1000
+235 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 520
+416 1000
+417 234
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 382
+431 150
+434 453
+438 58
+441 1000
+443 78
+444 169
+445 1000
+450 150
+451 1000
+452 211
+457 214
+458 289
+459 302
+460 238
+461 952
+463 85
+464 497
+465 1000
+466 50
+467 50
+468 50
+473 150
+0 0
+trophy:
+1 8011 1.000000
+1 18504 1.000000
+1 18510 1.000000
+1 53400 0.500000
+1 8510 1.000000
+1 53304 1.000000
+1 53312 1.000000
+0 0 0
+tells:
+$
+gossips:
+$
+aliases:
+2 rescue xawk
+1 rescue gilgal
+aa assist ashyer
+4 kill gesonom
+rv rescue vitkus
+key get all.key all.corpse
+dp cast 'dark presence' $*
+rp rescue panchi
+ra rescue ashyer
+rt rescue tium
+az assist zeteram
+dg c 'dispel good' $*
+myst s3w7n2e4nw3n2e2n2enesen
+balava eessssswwwwwssssswwwnnnwnwnnnuuuwss
+gem put all.gem bag
+lava nnedddsssesessseeennnnneeeeennnnnww
+food cast 'create food'
+sos c 'soulshield'
+av assist vitkus
+gac get all all.corpse
+cur cast 'curse' $*
+drow eseenneeeeeeseeeeeenesesesse
+id recite identify $*
+uh c 'unholy word'
+harm cast 'cause serious' $*
+ggc get all.gem all.corpse
+ds c 'demonskin' $*
+gcc get coins all.corpse
+dff drink from fountain
+af assist faegern
+rg rescue gilgal
+rs rescue siah
+rn rescue nehor
+0

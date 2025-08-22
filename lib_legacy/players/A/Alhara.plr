@@ -1,0 +1,78 @@
+name: Alhara
+password: AlgaFxpq6P
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 26
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20679
+birthtime: 1699837833
+timeplayed: 4704
+lastlogintime: 1699924211
+host: 073.208.158.157
+height: 75
+weight: 300
+base_height: 75
+base_weight: 300
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 38/48
+mana: 1/0
+move: 98/131
+damroll: 3
+hitroll: 3
+strength: 83
+intelligence: 70
+wisdom: 70
+dexterity: 100
+constitution: 79
+charisma: 66
+cash: 0 4 15 13
+bank: 0 1 1 1
+experience: 27665
+quit_reason: 1
+saveroom: 3054
+skills:
+402 54
+404 54
+415 50
+416 50
+421 61
+438 50
+443 50
+444 50
+463 50
+464 50
+465 60
+466 50
+467 50
+468 50
+486 78
+0 0
+trophy:
+1 3501 6.000000
+1 3509 3.000000
+1 3508 5.000000
+1 3500 20.000000
+1 51900 1.000000
+0 0 0
+tells:
+$
+gossips:
+1699837893 Discord gossips, 'Daedela: Hey there!'
+1699837909 Discord gossips, 'Daedela: Yes, the chunk of malachite comes from a shaman in a castle'
+1699837925 Someone gossips, 'Sunken?'
+1699837937 Discord gossips, 'Daedela: That is a castle, yes'
+$

@@ -1,0 +1,128 @@
+name: Faus
+password: FaaauFq2V9
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 4
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 16932
+birthtime: 1209686530
+timeplayed: 5408206
+lastlogintime: 1713047990
+host: 097.120.082.157
+height: 61
+weight: 172
+base_height: 61
+base_weight: 172
+base_size: 2
+natural_size: 2
+alignment: 647
+playerflags: yz
+effectflags: cm 0 0
+prefflags: ahnouxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1066/1066
+mana: 980/980
+move: 118/118
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 78
+wisdom: 86
+dexterity: 87
+constitution: 82
+charisma: 72
+cash: 513 1224 450 240
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+21 1000
+22 1000
+28 1000
+34 1000
+43 1000
+88 1000
+92 1000
+97 1000
+99 1000
+241 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+417 1000
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 540
+431 66
+434 1000
+438 351
+441 1000
+443 70
+444 287
+450 50
+451 1000
+452 140
+457 983
+458 1000
+459 466
+460 143
+461 763
+462 50
+463 1000
+464 1000
+465 1000
+466 50
+467 50
+468 50
+473 114
+0 0
+trophy:
+1 48 1.000000
+1 3160 0.200000
+1 3165 0.200000
+1 11703 1.000000
+1 2808 0.500000
+1 11809 0.500000
+1 2806 0.500000
+1 6013 0.333333
+1 18003 2.000000
+1 18006 1.000000
+1 18001 2.000000
+1 18007 3.000000
+1 59022 2.000000
+1 59023 1.000000
+1 59002 1.000000
+1 59000 2.000000
+1 59004 1.000000
+1 16310 1.000000
+1 4000 4.200000
+1 8012 1.000000
+1 10010 0.250000
+0 0 0
+tells:
+$
+gossips:
+1590814596 Nawk gossips, 'boo missed everyone with my tunnel vision'
+$

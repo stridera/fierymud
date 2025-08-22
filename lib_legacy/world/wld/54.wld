@@ -1,0 +1,1719 @@
+#5400
+An unfinished room~
+You are in an unfinished room.
+~
+54 0 12
+S
+#5401
+The Misty Dark Passage~
+   You are in a dark, misty passageway.  To the west, you see what appears to
+be a forest path and normal life.  To the east, the passageway descends into a
+misty darkness.  The entire area appears to have been constructed recently by
+someone or something that simply decided to burn its way through to the surface
+world.  There is some writing on the wall.  A shimmering portal lies to the
+east.    
+~
+54 12 12
+D1
+~
+portal~
+1 -1 5402
+D3
+~
+~
+0 -1 3506
+E
+sign plaque writing wall~
+ 
+Beware! Unknown evils lie below...
+  --Stratos GreyCloak
+~
+E
+portal gate gateway opening door~
+The portal appears to shimmer in and out of existance, as if not entirely of
+this world. Perhaps it leads to some OTHER world? Looks easy enough to open.
+~
+S
+#5402
+The Misty Entrance Room~
+   You have entered a room filled with mists not of this world.  It is
+difficult to see very well in here, but the only exit appears to be to the
+east.  You do notice a shimmering portal to the west, the way back to your own
+world.    
+~
+54 12 12
+D1
+~
+~
+0 -1 5403
+D3
+~
+portal~
+1 -1 5401
+E
+portal gate gateway door opening~
+The portal appears to shimmer in and out of existance, as if not entirely of
+this world. Perhaps it leads to some OTHER world? Looks easy enough to open.
+~
+S
+#5403
+The Misty Rough-Hewn Passage~
+   This area is also filled with other-worldly mists, but the entire surface of
+the room appears to be very rough-hewn, even more so than the entrance to this
+strange foreboding place.  As you enter, the floor squishes beneath your feet
+and you hear slithering sounds from somewhere in or nearby this room.  You get
+the feeling that someone or something is observing you as you walk about.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5404
+D3
+~
+~
+0 -1 5402
+S
+#5404
+The Edge of the Misty Chasm~
+   You are now certain that you have left your own world far behind.  The sheer
+thickness of the air makes breathing difficult, but you know you do not want to
+turn back now.  You can continue your descent to the east or retreat this
+strange place by returning west.  The mists rise from a chasm to the south.  
+It doesn't look like going south would be a particularly good idea.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5407
+D2
+~
+~
+0 -1 12701
+D3
+~
+~
+0 -1 5403
+S
+#5405
+An unfinished room~
+You are in an unfinished room.
+~
+54 0 12
+S
+#5406
+An unfinished room~
+You are in an unfinished room.
+~
+54 0 12
+S
+#5407
+The Misty Intersection~
+   This is a misty intersection, with the northern exit sloping sharply upwards
+out of the mists.  The misty passages continue to the south, east, and west.  
+~
+54 8 12
+D0
+~
+~
+0 -1 5408
+D1
+~
+~
+0 -1 5430
+D2
+~
+~
+0 -1 5461
+D3
+~
+~
+0 -1 5404
+S
+#5408
+The Bone-White Archway~
+   You are standing in a bone-white archway.  The walls here glow eerily.  
+Another bone-white passageway continues to the north.  To the south the tunnel
+roughens and descends into the mists.    
+~
+54 12 12
+D0
+~
+~
+0 -1 5409
+D2
+~
+~
+0 -1 5407
+S
+#5409
+The Bone-White Intersection~
+   You are standing in a bone-white four-way intersection.  The walls here glow
+eerily.  White passageways continue on to the west and south.  The passages to
+the north and east are not as well lit, seeming almost murky in atmosphere.  
+~
+54 8 12
+D0
+~
+~
+0 -1 5414
+D1
+~
+~
+0 -1 5410
+D2
+~
+~
+0 -1 5408
+D3
+~
+~
+0 -1 5411
+S
+#5410
+The Murky Well Room~
+   This is a murky little room of seemingly little significance, but you notice
+what appears to be a well of some sort descending into the darkness below.  
+There is a ladder in the well.  You should be able to climb out of the well
+later, should you decide to go down now.    
+~
+54 8 12
+D3
+~
+~
+0 -1 5409
+D5
+~
+~
+0 -1 5429
+S
+#5411
+The Bone-White Turn in the Passage~
+   You are standing in a bone-white passageway with exits to the north and
+east.  The total silence here is very disturbing.  It's almost as if something
+is just waiting to happen here soon.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5412
+D1
+~
+~
+0 -1 5409
+S
+#5412
+The Bone-White Passage~
+   You are standing in another bone-white passageway, running north to south.
+~
+54 8 12
+D0
+~
+~
+0 -1 5413
+D2
+~
+~
+0 -1 5411
+S
+#5413
+The Bone-White Bend in the Passage~
+   You are standing in a bone-white passageway with exits to the south and
+east.  Like the rest of the bone-white areas you have encountered so far, this
+area is also bone dry.  Very odd considering the mists you saw when you
+entered.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5415
+D2
+~
+~
+0 -1 5412
+S
+#5414
+The Murky T-Crossing~
+   This murky T-crossing appears quite odd.  The walls appear to be made of the
+same substance as the bony-white glowing areas you have already seen, but the
+walls here seem to have been converted, so to speak, to absorb light, rather
+than radiate it.  The walls seem to absorb even the light you carry with you.
+The murkiness continues to the east, or you can return to the light by the
+north and south exits.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5415
+D1
+~
+~
+0 -1 5418
+D2
+~
+~
+0 -1 5409
+S
+#5415
+The Bone-White T-Cross~
+   You are standing in a bone-white T-crossing with exits to the north, south,
+and west.  The southern exit appears to be not as well lit as this area, or the
+areas to the north and west for that matter.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5416
+D2
+~
+~
+0 -1 5414
+D3
+~
+~
+0 -1 5413
+S
+#5416
+The Bone-White Passageway~
+   This bone-white passageway runs straight north and south.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5417
+D2
+~
+~
+0 -1 5415
+S
+#5417
+The Bone-White Echo Chamber~
+   This bone-white room has exits to the south and east.  Sorrowful moaning can
+be heard echoing from the eastern exit, which is dark and murky.  The way to
+the south appears to be lit by the same eerily glowing walls that light this
+room.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5423
+D2
+~
+~
+0 -1 5416
+S
+#5418
+The Murky T-Cross~
+   This T-Cross is quite difficult to see in.  To the east you can just barely
+make out some light and the murkiness continues to the north and west.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5419
+D1
+~
+~
+0 -1 5427
+D3
+~
+~
+0 -1 5414
+S
+#5419
+The Murky Corner~
+   You nearly walk into a wall as you enter this dark murky area.  You find
+yourself facing into a corner.  This area is definitely damp, unlike the
+bony-white areas you have seen previously.  The murkiness continues on to the
+south and the east.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5420
+D2
+~
+~
+0 -1 5418
+S
+#5420
+The Murky Depths~
+   This appears to be a room, but the murkiness makes it difficult to see
+anything at all.  This is definitely the murkiest room of them all.  You can
+barely see the outline of your light source as you move around the room.  The
+floor is covered by a thin sheet of freezing cold water.  The cold causes your
+toes to tingle..  There is more murkiness to the north and west of here,
+although it is difficult to see much else.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5421
+D3
+~
+~
+0 -1 5419
+S
+#5421
+The Murky Room~
+   The walls of this room are made of the same murky substance as the
+surrounding areas.  It almost seems to be a living entity as it seeks to
+extinguish your light source.  It is definitely wet in here.  Your ankles can
+attest to that fact, as they are now underwater.  You can just make out the
+murkiness continuing to the north and south.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5422
+D2
+~
+~
+0 -1 5420
+S
+#5422
+The Murky Bend~
+   This bend in the passageway goes west and south from here.  Unlike the other
+bony-white areas you have seen so far, this area appears to be slightly damp.
+The murky walls seem almost alive as they reach out to snuff the light daring
+to intrude into the living darkness of this area.    
+~
+54 8 12
+D2
+~
+~
+0 -1 5421
+D3
+~
+~
+0 -1 5423
+S
+#5423
+The Murky Entrance~
+   This room is very different from the bone-white areas you have seen.  
+Although the walls appear to have been made of the same ivory like substance,
+they seem to have been "converted" to absorb light, rather than provide it.  
+Even the light source you carry appears to be weakened in this room.  The
+murkiness continues to the north and east, or you can return to the light to
+the west.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5424
+D1
+~
+~
+0 -1 5422
+D3
+~
+~
+0 -1 5417
+S
+#5424
+The Murky Turn in the Passageway~
+   Even with the light you have brought with you, this area is difficult to
+see.  It is murky here.  The walls seemingly absorbing whatever light enters.
+To the south the murkiness continues.  From the east you can just make out the
+sounds of crunching, as if something were being trod under weighty feet.  
+Dimly, you can see light entering this area from the east as well.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5425
+D2
+~
+~
+0 -1 5423
+S
+#5425
+The Skeletal Passageway~
+   The floor of this passageway is covered by bony debris.  The walls seem to
+be made from solid ivory, covered by intricate carvings of skeletal figures of
+all kinds.  Your light flickers wildly in the mild breeze, seeming to give the
+figures a life of their own.    
+~
+54 8 12
+D2
+~
+~
+0 -1 5426
+D3
+~
+~
+0 -1 5424
+S
+#5426
+The Skeletal Arena~
+   The first thing you notice about this room is its pearly white walls and
+floor.  The ceiling vaults high above, far beyond the range of your vision.  
+Carved into every inch of the walls are skeletal figures of every kind.  Your
+light flickers wildly in the mild breeze, seeming to give the figures a life of
+their own.  They seem to be moving slowly towards you.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5425
+D2
+~
+~
+0 -1 5427
+D5
+~
+pile bones grate grating~
+1 -1 5428
+S
+#5427
+The Skeletal Entrance~
+   The floor of this room is covered by bony debris.  The walls appear to have
+been carved from ivory, with ghoulish looking skeletons carved into every inch
+of the room.  Your light flickers wildly in a gentle breeze, which seems to
+give the carvings a life of their own.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5426
+D3
+~
+~
+0 -1 5418
+S
+#5428
+The Skeletal Treasure Vault~
+   You are in a rather bare looking vault.  It has been obviously looted
+several times before, leaving little behind for you to discover here.    
+~
+54 8 12
+D4
+~
+grating grate door~
+1 -1 5426
+S
+#5429
+Inside the Murky Well~
+   You are holding on to a ladder set into the side of a murky well.  You can
+easily climb up or down from here to see what lies beyond.    
+~
+54 8 12
+D4
+~
+~
+0 -1 5410
+D5
+~
+~
+0 -1 5128
+S
+#5430
+The Bend in the Misty Passage~
+   You have entered a bend in the misty tunnels, with exits to the west and
+south.  The mists are no longer bright here, becoming a dark vapourous mass,
+almost as if they were free-floating shadows drifting through the area.    
+~
+54 12 12
+D2
+~
+~
+0 -1 5431
+D3
+~
+~
+0 -1 5407
+S
+#5431
+The Dark Bend in the Tunnels~
+   This is another bend in the dark tunnels, with exits to the north and east.
+~
+54 8 12
+D0
+~
+~
+0 -1 5430
+D1
+~
+~
+0 -1 5432
+S
+#5432
+The Dark T-Crossing~
+   The dark tunnels T here, with exits to the north, south, and west.  From the
+north, low sorrowful moaning can be heard.  To the south, all seems quiet.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5433
+D2
+~
+~
+0 -1 5460
+D3
+~
+~
+0 -1 5431
+S
+#5433
+The Dark Tunnel~
+   The dark tunnel runs north to south here.  You continue to hear low inhuman
+moaning sounds emanating from the northern tunnels.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5434
+D2
+~
+~
+0 -1 5432
+S
+#5434
+The Turn in the Dark Tunnels~
+   The dark vapours are quite dense here, in the turning passageway.  Exits
+lead to the east and south, with strange sounds drifting into this area from
+the tunnel entrance to the east.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5435
+D2
+~
+~
+0 -1 5433
+S
+#5435
+The Dark T-Cross~
+   The dark tunnels T here, with exits to the north, east, and west.  Inhuman
+moaning sounds can be heard coming from the northern tunnel while other strange
+inhuman sounds are emanating from the eastern tunnels.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5436
+D1
+~
+~
+0 -1 5441
+D3
+~
+~
+0 -1 5434
+S
+#5436
+The Entrance to the Shadowy Lair~
+   You have entered the entrance to a shadowy looking lair.  You can catch no
+more than a quick glimpse of the shadowy creatures within, as they quickly slip
+in and out of the shadows within.  The lair is to the east, or you can retreat
+back into the tunnels to the south.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5437
+D2
+~
+~
+0 -1 5435
+S
+#5437
+The Shadowy Lair (SW)~
+   You are now inside of the shadowy lair, but the creatures you saw are no
+easier to see from here.  You catch only occassional glimpses of untold numbers
+of these shadowy figures as they seem to step in and out of this realm of
+existance.  Their dark eyes seem to track your every step.  The lair continues
+on to the north and east, or you can leave the lair from here by entering the
+tunnels to the west.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5440
+D1
+~
+~
+0 -1 5438
+D3
+~
+~
+0 -1 5436
+S
+#5438
+The Shadowy Lair (SE)~
+   The floor is covered in what feels like gravel here, and the entire area is
+cloaked by shadowy mists.  The lair continues on to the north and west.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5439
+D3
+~
+~
+0 -1 5437
+S
+#5439
+The Shadowy Lair (NE)~
+   The ceiling appears to have collapsed here a very long time ago, leaving
+gravel-like fragments strewn across the floor here, as well as to the south and
+western parts of the lair.  The shadows seem darkest on top of a large pile of
+gravel in the center of this area.    
+~
+54 8 12
+D2
+~
+~
+0 -1 5438
+D3
+~
+~
+0 -1 5440
+S
+#5440
+The Shadowy Lair (NW)~
+   The floor is covered with what feels like gravel here, and the entire area
+is cloaked in dark shadowy mists.  The lair continues on to the south and east.
+  
+~
+54 8 12
+D1
+~
+~
+0 -1 5439
+D2
+~
+~
+0 -1 5437
+S
+#5441
+The Entrance to the Cackling Cavern~
+   To the south of here you can hear the evil inhuman cackling of some
+otherworldly creature or creatures.  The dark tunnels run east and west from
+this entranceway.  To the west, you can hear low moaning noises and from the
+east emanates the sounds of scraping and scratching.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5448
+D2
+~
+~
+0 -1 5443
+D3
+~
+~
+0 -1 5435
+S
+#5442
+The Lair of the Large Shades~
+   The shadowy vapours are especially thick here, some of them seem to be more
+than just shadows, though.  They appear to be very much aware of the area and
+the intruders (you) that have entered their domain.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5443
+S
+#5443
+The Cackling Cavern (NW)~
+   You have now entered the Cackling Caverns.  You are surrounded by the sounds
+of inhuman cackling as you watch creatures slip in and out of the shadowy
+vapours that seem to common to this area.  The caverns continue on to the east
+and south or you can enter a smaller cavern to the west.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5441
+D1
+~
+~
+0 -1 5444
+D2
+~
+~
+0 -1 5445
+D3
+~
+~
+0 -1 5442
+S
+#5444
+The Cackling Cavern (NE)~
+   Inhuman cackling seems to emanate from the very walls of this cavern, or
+perhaps it's only the terrible echoing that makes it seem this way.  The
+caverns continue on to the south and west.    
+~
+54 8 12
+D2
+~
+~
+0 -1 5446
+D3
+~
+~
+0 -1 5443
+S
+#5445
+The Cackling Cavern (SW)~
+   Creatures continue to slip in and out of the shadows here as the cackling
+echoes on around you.  The caverns continue on to the north and east.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5443
+D1
+~
+~
+0 -1 5446
+S
+#5446
+The Cackling Cavern (SE)~
+   The cackling is especially loud here and the strange shadowy creatures you
+have seen elsewhere in this cavern are here as well.  They seem to be able to
+slip in and out of this shadowy world at will.  To the south, the darkness
+seems especially evil.  The caverns continue on to the north and west as well.
+~
+54 8 12
+D0
+~
+~
+0 -1 5444
+D2
+~
+~
+0 -1 5447
+D3
+~
+~
+0 -1 5445
+S
+#5447
+The Lair of the Great Shade~
+   The overwhelming evil emanating from every square inch of this room is so
+powerful it makes you feel sick to your stomach.  An evil low chuckling sound
+seems to come from some unknown part of the room and you are certain that
+someone or something is observing you for its evil amusement.  Whatever it is,
+you are certain that it does not feel the least bit threatened by you...    
+~
+54 8 12
+D0
+~
+~
+0 -1 5446
+S
+#5448
+The North Entrance to the Scraping Tunnels~
+   You can hear scraping and scratching noises from the south.  To the west,
+cackling and moaning can be heard.  In both directions, the ever-present dark
+mists can be seen floating through the tunnels.    
+~
+54 8 12
+D2
+~
+~
+0 -1 5449
+D3
+~
+~
+0 -1 5441
+S
+#5449
+The Scraping Tunnels (NW)~
+   The sound of scraping and scratching seem to surround you here.  Where they
+come from is impossible to determine.  The floors here are soft and squishy,
+though.  The strange tunnels continue on to the south and east, or you can
+leave this strange area to the north.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5448
+D1
+~
+~
+0 -1 5450
+D2
+~
+~
+0 -1 5451
+S
+#5450
+The Scraping Tunnels (NE)~
+   Scratching and scraping sounds continue to surround you in these strange
+tunnels, coming from some mysterious source.  The floors are soft and squishy
+here as well.  The strange tunnels continue on to the west and south.    
+~
+54 8 12
+D1
+~
+~
+0 -1 23701
+D2
+~
+~
+0 -1 5452
+D3
+~
+~
+0 -1 5449
+S
+#5451
+The Scraping Tunnels (SW)~
+   It seems fairly obvious to you now that something lives here that burrows
+through the squishy substance you are standing on, causing the mysterious
+echoing scraping and scratching noises.  The strange tunnels continue on to the
+north and east from here.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5449
+D1
+~
+~
+0 -1 5452
+S
+#5452
+The Scraping Tunnels (SE)~
+   Scraping and scratching noises seem to emanate from the very walls of these
+tunnels, echoing wildly in all directions.  The floor here is strangely soft
+and squishy as well.  You can continue through the tunnels to the north or
+west, or you can leave this area by heading south.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5450
+D2
+~
+~
+0 -1 5453
+D3
+~
+~
+0 -1 5451
+S
+#5453
+The South Entrance to the Scraping Tunnels~
+   To the north, you can hear strange scraping and scratching sounds.  The dark
+tunnels continue on to the west from here as well.  The dark mists surround
+you.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5452
+D3
+~
+~
+0 -1 5454
+S
+#5454
+The Bend in the Soft Tunnel~
+   The tunnel bends here, with exits to the east and south.  Mysterious
+scraping and scratching noises are emanating from the tunnels to east.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5453
+D2
+~
+~
+0 -1 5455
+S
+#5455
+The Turn in the Soft Tunnel~
+   The floor in this turn of the tunnel is soft, obviously not solid stone.  
+From the north you hear scraping and scratching sounds from some unknown
+creature.  All is quiet to the west.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5454
+D3
+~
+~
+0 -1 5456
+S
+#5456
+The Soft Tunnel~
+   The floor here is soft, as if it were not made entirely of stone.  From the
+west, you hear the faint sounds of scraping or scratching.  To the east, all is
+deathly still and quiet.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5455
+D3
+~
+~
+0 -1 5457
+S
+#5457
+The Bend in the Quiet Tunnel~
+   The tunnel bends here, with exits to the north and east.  Not a sound is to
+be heard here, it is completely quiet.  You can even hear your own heartbeat.
+~
+54 8 12
+D0
+~
+~
+0 -1 5458
+D1
+~
+~
+0 -1 5456
+S
+#5458
+The Quiet Tunnel~
+   All is deathly quiet in this north-south tunnel.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5459
+D2
+~
+~
+0 -1 5457
+S
+#5459
+The Turn in the Quiet Tunnel~
+   The tunnel turns here, with exits to the west and south.  All is quiet.    
+~
+54 8 12
+D2
+~
+~
+0 -1 5458
+D3
+~
+~
+0 -1 5460
+S
+#5460
+The Bend in the Dark Tunnels~
+   The dark tunnels bend here, with exits to the north and east.  To the north,
+you can hear the faint sounds of moaning, but to the east everything seems
+strangely quiet -- almost too quiet.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5432
+D1
+~
+~
+0 -1 5459
+S
+#5461
+Writing on the Walls~
+   The mists in this room bog you down as much as any of the rooms you have
+seen up until now.  There is some glowing writing inscribed on the western
+wall.  The passageway continues on to the north and south.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5407
+D2
+~
+~
+0 -1 5462
+E
+writing glowing inscription sign plaque wall west western~
+ 
+The evil seems to be strongest to the south. Be careful!
+  --Stratos GreyCloak
+~
+S
+#5462
+The Dark Intersection~
+   You are standing in a dark intersection.  The mists seem to be lighter here,
+but not a lot lighter.  You can hear the echoing of the chasm to the west, and
+the tunnels continue on north, south, and east of here.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5461
+D1
+~
+~
+0 -1 5463
+D2
+~
+~
+0 -1 5471
+D3
+~
+~
+0 -1 12702
+S
+#5463
+A Turn in the Winding Tunnel~
+   You are standing in a turn in a winding passageway.  The passage ends just
+west of here at an intersection, or you can continue on to the south.  The
+mists are noticably lighter to the south and are slightly thicker to the west
+of this area.    
+~
+54 8 12
+D2
+~
+~
+0 -1 5464
+D3
+~
+~
+0 -1 5462
+S
+#5464
+A Turn in the Winding Tunnel~
+   You are standing in a turn in a long, winding tunnel.  The mists are
+noticable lighter here.  The tunnel continues on to the north and east.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5463
+D1
+~
+~
+0 -1 5465
+S
+#5465
+Another Turn in the Winding Tunnel~
+   You are standing in another turn in a long, winding tunnel.  Perhaps that is
+WHY they call this a winding tunnel!  The mists are noticably lighter here,
+almost non-existant.  The tunnel continues on to the west and south from this
+spot.    
+~
+54 8 12
+D2
+~
+~
+0 -1 5466
+D3
+~
+~
+0 -1 5464
+S
+#5466
+Yet Another Turn in the Winding Tunnel~
+   You are standing in yet another turn in this long winding passageway.  The
+mists are almost totally non-existant here, but they seem to be a bit stronger
+to the north and west of this area.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5465
+D3
+~
+~
+0 -1 5467
+S
+#5467
+Another Turn in the Winding Tunnel~
+   You are standing in another turn in this long, winding tunnel.  The mists
+are much lighter here, but still heavy enough to slow down your progress.  The
+winding tunnel continues on to the east and south of here.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5466
+D2
+~
+~
+0 -1 5468
+S
+#5468
+Another Turn in the Winding Tunnel~
+   You are standing in another turn in this long, winding passageway.  The
+mists are a bit lighter here, but still thick enough to slow down your movement
+quite a bit.  The winding tunnel continues on to the north and west from here.
+~
+54 8 12
+D0
+~
+~
+0 -1 5467
+D3
+~
+~
+0 -1 5469
+S
+#5469
+A Turn in the Winding Tunnel~
+   You are standing in a turn in a long, winding passageway.  The mists are
+slightly lighter here, but not enough to make your movement any easier.  The
+winding tunnel continues on to the north and east.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5470
+D1
+~
+~
+0 -1 5468
+S
+#5470
+The End of the Winding Tunnel~
+   You are standing at the end, or start, of a long, winding passageway.  To
+the north, you can see some dark tunnels, with heavy mists in them, or you can
+follow the winding tunnel to the south.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5471
+D2
+~
+~
+0 -1 5469
+S
+#5471
+The Dark T-Crossing~
+   You are standing in at a T-crossing in the Dark Tunnel.  The tunnels
+continue on to the north, south, and west of here.  The mists look like they
+might be lighter to the south, for some reason.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5462
+D2
+~
+~
+0 -1 5470
+D3
+~
+~
+0 -1 5472
+S
+#5472
+The Entrance to the Mist Temple~
+   You are standing in the entrance to a dark temple.  The temple proper is
+just south of this spot, and a dark tunnel is to the east.  Thick mists roll
+into this area from the north and west.    
+~
+54 12 12
+D0
+~
+~
+0 -1 12702
+D1
+~
+~
+0 -1 5471
+D2
+~
+~
+0 -1 5473
+D3
+~
+~
+0 -1 12705
+S
+#5473
+The Mist Temple~
+   You are standing in a dark and evil temple.  The mist seems to thrive here,
+taking on an evil life of its own.  The floor is pure obsidian, pure blackness.
+You can venture deeper into this small temple of evil to the west or south, or
+you can retreat to the north.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5472
+D2
+~
+~
+0 -1 5480
+D3
+~
+~
+0 -1 5474
+S
+#5474
+The Mist Temple~
+   You are standing in a dark and evil temple.  The floor here is of the very
+purest obsidian and utterly black in colour.  The mist rises thickly from the
+north, flooding into this room like a sentient being.  You can work your way
+around the temple's edge to the east and west, or you can also go south, but
+the feeling of pure evil emanating from that direction may cause you to rethink
+that course of action...  More than a couple times!    
+~
+54 8 12
+D0
+~
+~
+0 -1 12705
+D1
+~
+~
+0 -1 5473
+D2
+~
+~
+0 -1 5479
+D3
+~
+~
+0 -1 5475
+S
+#5475
+The Mist Temple~
+   You are standing in a dark and evil temple.  The feelings of pure evil
+surround you here.  The mist rolls into this room from the north and west,
+making the black obsidian floor here very slippery.  You can work your way
+around the outskirts of the temple by heading east or south from this spot.  
+~
+54 12 12
+D0
+~
+~
+0 -1 12707
+D1
+~
+~
+0 -1 5474
+D2
+~
+~
+0 -1 5476
+D3
+~
+~
+0 -1 12709
+S
+#5476
+The Mist Temple~
+   You are standing in a dark and evil temple.  The floor here is pure obsidian
+and the very purest black in colour, absorbing as much light as it can.  The
+mist billows into this room from the west.  You can skirt around the edge of
+the temple to the north and south, or you can march directly into the heart of
+this evil temple to the east.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5475
+D1
+~
+~
+0 -1 5479
+D2
+~
+~
+0 -1 5477
+S
+#5477
+The Mist Temple~
+   You are standing in a dark and evil temple.  From the west, mists swirl up
+into this room, moving as if it had a life of its own.  Pure black in colour,
+the obsidian floor obliterates all light that reaches it.  From here, you can
+continue to skirt around the edge of the temple to the north and east.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5476
+D1
+~
+~
+0 -1 5478
+S
+#5478
+The Mist Temple~
+   You are standing in a dark and evil temple.  The mists here seem to slowly
+sway to and fro, dancing almost hypnotically.  You can skirt around the edge of
+the temple to the east and west, or you can get to the heart of the matter to
+the north.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5479
+D1
+~
+~
+0 -1 5481
+D3
+~
+~
+0 -1 5477
+S
+#5479
+The Mist Temple Altar~
+   You are standing in the heart of a dark and evil temple.  The mist seems to
+be drawn into this room from all the surrounding areas and the smell of fresh
+blood fills the air.  Your light sources flicker and are nearly extinguished by
+some combination of the mists and winds in here.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5474
+D1
+~
+~
+0 -1 5480
+D2
+~
+~
+0 -1 5478
+D3
+~
+~
+0 -1 5476
+S
+#5480
+The Mist Temple~
+   You are standing in a dark and evil temple.  The mists here are dense, but
+not much worse than you have seen in other areas.  However, these mists make
+the black obsidian floor slippery and footing treacherous.  You can continue
+skirting about the edge of the temple to the north and south, or you can make
+for the heart of the temple to the west.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5473
+D2
+~
+~
+0 -1 5481
+D3
+~
+~
+0 -1 5479
+S
+#5481
+The Mist Temple~
+   You are standing in a dark and evil temple.  The floor here is made of the
+purest black obsidian you have ever seen.  The mists here swirl and hinder your
+movement, as they have since you came into this area.  You can leave the temple
+from here by heading east, or you can make your way around the outskirts of the
+temple to the north and west.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5480
+D1
+~
+~
+0 -1 5482
+D3
+~
+~
+0 -1 5478
+S
+#5482
+The Mist Temple Exit~
+   You are standing just beyond a dark and evil temple here.  You can enter the
+temple to the west, or you can make your way deeper into the caverns to the
+east.  The mists seem to be getting thinner to the east.    
+~
+54 12 12
+D1
+~
+~
+0 -1 5483
+D3
+~
+~
+0 -1 5481
+S
+#5483
+The Beginning of the Obsidian Tunnel~
+   You are standing at the beginning of a long obsidian passageway.  The tunnel
+runs off well into the distance to the east, and ends at the exit to the Dark
+Temple to the west.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5484
+D3
+~
+~
+0 -1 5482
+S
+#5484
+The Obsidian Tunnel~
+   You are standing in an east to west running obsidian tunnel.  This tunnel
+begins just west of here, and there is a turn in the tunnel just east of this
+spot.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5485
+D3
+~
+~
+0 -1 5483
+S
+#5485
+A Turn in the Obsidian Tunnel~
+   The obsidian tunnel turns here, and continues on to the north and west.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5486
+D3
+~
+~
+0 -1 5484
+S
+#5486
+A Bend in the Obsidian Tunnel~
+   There is a bend in the obsidian tunnel here.  You can continue on to the
+south and east from this spot.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5487
+D2
+~
+~
+0 -1 5485
+S
+#5487
+The Obsidian Tunnel~
+   You are standing in an east to west running section of an obsidian tunnel.
+To the west, the tunnel turns south, or you can continue on to the east from
+here.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5489
+D3
+~
+~
+0 -1 5486
+S
+#5488
+The Obsidian Tunnel Dead-End~
+   The obsidian tunnel ends suddenly here.  The only exit is to the east.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5492
+S
+#5489
+The Obsidian Tunnel~
+   You are standing in an east to west running section of an obsidian tunnel
+here.  There is a T-crossing a short ways to the east.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5490
+D3
+~
+~
+0 -1 5487
+S
+#5490
+The Obsidian Tunnel T-crossing~
+   The obsidian tunnel splits here, running off in three directions.  From
+here, you can follow the tunnel north, south, or west.  The tunnel turns
+suddenly to the north and south, but continues on to the west for a bit.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5493
+D2
+~
+~
+0 -1 5491
+D3
+~
+~
+0 -1 5489
+S
+#5491
+A Turn in the Obsidian Tunnel~
+   You are standing in a turn in an obsidian tunnel.  From here, the tunnel
+runs to the north and west.  Just north of here is a T-crossing.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5490
+D3
+~
+~
+0 -1 5492
+S
+#5492
+The Obsidian Tunnel~
+   The obsidian tunnels continues on to the east and west from here.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5491
+D3
+~
+~
+0 -1 5488
+S
+#5493
+A Bend in the Obsidian Tunnel~
+   The obsidian tunnel turns here, running on to the east and south.  There is
+a T-crossing just south of here, and the tunnel turns again to the east.    
+~
+54 8 12
+D1
+~
+~
+0 -1 5494
+D2
+~
+~
+0 -1 5490
+S
+#5494
+A Turn in the Obsidian Tunnel~
+   You are standing in a turn in the obsidian tunnel.  From here, the tunnel
+runs on to the south and west, where is turns again.    
+~
+54 8 12
+D2
+~
+~
+0 -1 5495
+D3
+~
+~
+0 -1 5493
+S
+#5495
+The Obsidian Tunnel~
+   You are standing in a north to south running section of the obsidian tunnel.
+The tunnel turns to the north and appears to end south of here.    
+~
+54 8 12
+D0
+~
+~
+0 -1 5494
+D2
+~
+~
+0 -1 5496
+S
+#5496
+The End of the Obsidian Tunnel~
+   The obsidian tunnel ends here, running on to the north.  There is a metal
+ladder here, descending into the depths from here, but maybe using it wouldn't
+be such a good idea..    
+~
+54 8 12
+D0
+~
+~
+0 -1 5495
+D5
+~
+~
+0 -1 5497
+S
+#5497
+On a Ladder in a Hot Pit~
+   You are hanging onto a hot metal ladder, slowly descending into the depths.
+You can climb up and out of this pit, or you can continue on down into the
+depths below.    
+~
+54 12 12
+D4
+~
+~
+0 -1 5496
+D5
+~
+~
+0 -1 5100
+S
+$~

@@ -1,0 +1,331 @@
+#62501
+vine long-vine whip belt rope~
+a long vine~
+A long vine is lying here.~
+~
+5 0 14337 35
+0 2 5 2 0 0 0
+1.00 0 0 262144 0 0 0 0
+A
+18 2
+#62502
+branch minor-branch-rhell-tree limb club~
+a minor branch of a Rhell tree~
+A branch is lying here, having been severed from a Rhell tree.~
+~
+5 591400960 32769 25
+0 5 4 5 0 0 0
+8.00 0 0 0 0 0 0 0
+A
+18 2
+A
+27 1
+X
+242
+#62503
+limb-treant very-large-forearm green-mossy-wood fore-arm~
+the limb of the treant~
+A very large forearm is lying limp on the ground, made of green, mossy wood.~
+~
+5 594571264 32769 45
+0 5 11 5 0 0 0
+14.00 0 0 0 0 0 0 0
+A
+4 4
+A
+27 2
+X
+1010
+#62504
+hide ferrel-dog-hide pelt skin fur questobject~
+a feral dog hide~
+A pelt from a feral dog is laying on the ground~
+~
+8 536870912 4097 25
+2 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+#62506
+badge-treant piece-bark~
+the badge of the treant~
+A piece of bark goes unnoticed on the ground.~
+~
+9 536870912 524289 35
+6 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+A
+18 3
+A
+19 2
+A
+27 1
+#62507
+sword misty-blue-sword~
+a misty blue sword~
+A misty blue sword has been dropped here.~
+~
+5 536871232 8193 45
+0 4 4 3 0 0 0
+3.00 700000 0 0 0 0 0 0
+A
+19 2
+A
+27 1
+X
+4
+#62508
+bear glass-bear hollow-sturdy-glass-bear-figurine~
+a glass bear~
+A hollow, yet sturdy, glass bear figurine is lying on the ground.~
+~
+8 536871170 1064965 45
+3 0 0 0 0 0 0
+1.00 300000 0 0 0 0 0 0
+E
+bear glass-bear hollow-sturdy-glass-bear-figurine~
+Shaped in this glass is the face of a raging bear.  The mere sight of it's
+terrible eyes are disturbing.  It seems so real!  It hums with the power of the
+awful bear trapped inside it, barely contained.  You wonder if it's even safe
+to handle.~
+A
+1 6
+A
+5 5
+A
+13 10
+A
+26 6
+A
+19 1
+A
+27 1
+#62509
+staff redeeming-staff thin-smooth-staff~
+&2the Redeeming Staff&0~
+A thin, smooth staff stands erect from the ground, unsupported.~
+~
+5 536871168 49153 45
+0 4 9 5 0 0 0
+6.00 600000 0 4128 0 0 0 0
+A
+13 50
+A
+14 75
+A
+26 20
+A
+27 3
+A
+17 4
+#62510
+sinister note letter evil blood black blackmourne~
+a sinister letter~
+A black letter, with a blood-red seal of Blackmourne lies forgotten on the ground.~
+~
+16 0 1 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+sinister note letter evil blood black blackmourne~
+   Written in blood by a cool, calm hand.  This letter was written by the cult
+leader of Blackmourne.  It describes a dark ritual to purge oneself of
+Lycanthropy.~
+#62511
+white epistle good emperor letter note~
+a white epistle~
+A folded white note, is lying lightly on the ground.~
+~
+16 0 1 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+#62512
+crumpled note mud ash hermit ugly letter parchment~
+a crumpled note~
+A crumpled piece of parchment lies trodden underfoot, covered in mud and ash.~
+~
+16 0 1 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+crumpled note mud ash hermit ugly letter parchment~
+Nothing.
+   Obviously whoever wrote this note lacks the linguistic skills needed to write
+legibly and convey coherent thought.  It seems very disorganised, and drifts
+upward as you read.  It was scribled with charcoal onto the back of a 30 year
+old eviction notice.  The paper is crumpled, and dirty.~
+E
+note crumpled ash~
+   Obviously whoever wrote this note lacks the linguistic skills needed to write
+legibly and convey coherent thought.  It seems very disorganised, and drifts
+upward as you read.  It was scribled with charcoal onto the back of a 30 year
+old eviction notice.  The paper is crumpled, and dirty.~
+#62513
+ring wolf-tooth-ring carved fang-enormous-wolf~
+a wolf-tooth ring~
+A ring carved from the fang of an enormous wolf is here in the dirt.~
+~
+8 0 3 35
+0 0 0 0 0 0 0
+0.50 80000 0 0 0 0 0 0
+A
+2 3
+A
+5 3
+A
+19 1
+A
+14 20
+X
+1040384
+#62551
+mask imanhotep golden maks ihmanotep~
+he Maks of Ihmanotep~
+A misshapen mask lays on the ground here, strangely beautiful in its asymmetry.~
+This mask is a mangeled wreck. Who did this?!~
+8 0 131073 0
+2 0 0 0 0 0 0
+1.00 0 0 8388608 0 0 0 0
+A
+25 1
+A
+24 -5
+A
+28 200
+A
+5 7
+#62552
+punchknuckles knuckles pit-fiend curse cursed red-mattalic-shackles demonic-symbol link chain~
+the Pit Fiends Shackles~
+Red, metallic shackles lay on the ground here, a strange demonic symbol forms the center link of the chain.~
+   The shackles look other-worldly, an unidentifiable metal stained an
+impossible shining red.  The shackles are held together by a chain of the same
+metal, just over a hands width in length.  Forming the central link of the
+chain is a large currious shape of the metal.  You hesitate to peer closer at
+the dark symbol, because it induces a sickening feeling, instinctually
+recognised as demonic evil.~
+8 75520448 16385 1
+0 0 0 0 0 0 0
+3.00 0 0 0 0 0 0 16392
+T 62575
+E
+dark-symbol strange demonic rune center-link~
+   Upon closer inspection the central link is sized to fit each of your hands,
+gripping on either side of it.  Then length of the central chain places the
+ruin comfortably between your two wrists such that this grip is easy and
+natural to form while wearing the shackles.  The rune has a vertical
+double-line doen the center, with sharp cylindrical knobs jutting outward
+toward the holders hands.  The inner edges of these two virticle lines are
+spaced by eight tightly packed horizontal spikes, pointing in alternating
+dirrections, their wicked points tucked safely into the opposing wall of the
+cage they form.  You can see that when gripped, the symbol would easily slide
+into what seems like two spiked knuckles, though the backward-facing
+cylindrical knobs would make then impractical, even dangerous, to the users
+exposed knuckles.  What a strange design.~
+A
+19 10
+A
+18 5
+A
+1 10
+A
+2 -3
+X
+240
+#62569
+purity-ring recharging~
+Purity~
+The ring of purity lies forgoten on the ground, recharging it's strngth.~
+~
+11 66880 3 60
+0 0 0 0 0 0 0
+0.02 0 0 0 0 0 0 0
+T 62572
+T 62573
+A
+13 10
+A
+17 2
+#62575
+hobo-gloves mitten mittens glove convertible-fingerless-gloves~
+&4&ba pair of convertible fingerless gloves&0~
+Someone has lost a pair of hobo gloves here.~
+~
+9 491520 129 50
+0 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+A
+17 3
+A
+23 -5
+A
+19 2
+#62576
+kusari-katabira chain-jacket~
+kusari katabira~
+A light chain jacket rests here, nearly folded.~
+~
+9 53981440 9 60
+12 0 0 0 0 0 0
+5.00 0 0 0 0 0 0 0
+A
+2 10
+A
+1 4
+A
+19 3
+A
+18 2
+X
+992
+#62577
+chain weighted-chain~
+a weighted chain~
+A weighted chain is draped here.~
+~
+5 53489920 32769 5
+1 8 2 5 0 0 0
+3.00 3627 0 0 0 0 0 0
+X
+994
+#62578
+staff-power~
+staff of Gaia~
+An unfinished object is lying here.~
+~
+5 600830272 32769 0
+0 2 16 5 0 0 0
+3.00 0 0 0 0 0 0 0
+X
+1008
+#62580
+mask solemn molded-obsidian hot facade restraint~
+&9&ba facade of restraint&0~
+A solemn looking mask of molded obsidian lies here, looking quite hot still.~
+~
+9 67109184 131073 0
+0 0 0 0 0 0 0
+4.00 0 0 0 0 0 0 0
+T 62581
+T 62582
+A
+30 9
+#62584
+crest-dragon-hunter~
+&3&bCrest &2&bof the &0&2Ramah &1&bHunter~
+A Ramah crest shines brightly from the ground.~
+~
+8 259092736 524289 80
+0 0 0 0 0 0 0
+1.00 0 0 0 0 0 256 0
+A
+17 14
+A
+13 80
+A
+23 -20
+A
+20 -10
+A
+24 -10
+X
+1008
+$~

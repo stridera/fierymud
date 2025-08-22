@@ -1,0 +1,71 @@
+name: Ovina
+password: Ov4WqQKTbq
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20825
+birthtime: 1723797657
+timeplayed: 281
+lastlogintime: 1723797974
+host: 046.034.239.140
+height: 62
+weight: 169
+base_height: 62
+base_weight: 169
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 20
+thirst: 16
+lastlevel: 0
+hitpoints: 28/30
+mana: 0/0
+move: 148/148
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 69
+wisdom: 71
+dexterity: 63
+constitution: 97
+charisma: 73
+experience: 3806
+quit_reason: 5
+saveroom: 61536
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3508 1.000000
+1 3500 1.000000
+1 3509 2.000000
+0 0 0
+tells:
+$
+gossips:
+$

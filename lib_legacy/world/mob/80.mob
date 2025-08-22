@@ -1,0 +1,561 @@
+#8000
+beetle small-green-beetle small-innocent-green-beetle~
+the small green beetle~
+A small innocent looking green beetle is here.~
+Its small and harmless looking.~
+200 0 0 E
+0 0 0 0d0+0 0d0+0
+3 0 0 0 0 80
+3 3 0 24 14 0 1
+BareHandAttack: 1
+Str: 30
+Dex: 78
+Int: 78
+Wis: 78
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8001
+firefly small-firefly small-innocent-firefly fire-fly~
+the small firefly~
+A small innocent looking firefly is hovering here.~
+It's just a small, harmless looking little firefly. Like all
+fireflies, it's very plain-looking, till dusk.~
+200 1048576 0 E
+0 0 0 0d0+0 0d0+0
+3 0 0 0 0 80
+4 4 0 24 14 0 1
+BareHandAttack: 1
+Str: 30
+Dex: 84
+Int: 70
+Wis: 77
+Con: 30
+Cha: 51
+AFF2: 1
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8002
+fly bluebottle-fly blue-bottle-fly brilliant-blue-bug~
+a bluebottle fly~
+A brilliant blue bug buzzes past.~
+It's a tiny bug that almost looks like a dragonfly, except it's
+a brilliant shining blue all over.~
+200 1048576 0 E
+0 0 0 0d0+0 0d0+0
+3 0 0 0 0 80
+4 4 0 24 14 0 1
+BareHandAttack: 4
+Str: 30
+Dex: 82
+Int: 68
+Wis: 76
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8010
+spider jumping-spider ugly-mottled-brown-jumping-spider~
+the jumping spider~
+There is an ugly mottled brown jumping spider here.~
+It's rather large for a spider -- about the size of a dog. It doesn't
+seem to take any particular interest in you, preferring to nibble on the
+farmer's crops instead.~
+72 0 0 E
+1 0 0 0d0+0 0d0+0
+6 0 0 0 0 80
+3 3 0 24 14 0 1
+BareHandAttack: 1
+Str: 30
+Dex: 80
+Int: 72
+Wis: 72
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8011
+cockroach ugly-cockroach roach~
+an ugly cockroach~
+There is an extremely ugly cockroach scurrying through the crops here.~
+Every woman's nightmare, a 3-foot long cockroach!~
+72 0 0 E
+1 0 0 0d0+0 0d0+0
+6 0 0 0 0 80
+3 3 0 24 14 0 1
+BareHandAttack: 9
+Str: 30
+Dex: 84
+Int: 67
+Wis: 62
+Con: 30
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8012
+grasshopper large-green-grasshopper grass-hopper~
+a large green grasshopper~
+There is a large green grasshopper hopping around here.~
+Have you ever seen such a BIG grasshopper? It seems to think that the
+grass around here is quite tasty.~
+72 0 0 E
+1 0 0 0d0+0 0d0+0
+6 0 0 0 0 80
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 30
+Dex: 71
+Int: 81
+Wis: 74
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8013
+cricket annoying-cricket loud-cricket~
+the annoying cricket~
+There is an annoying cricket chirping loudly here.~
+You see a brown, long-legged insect that never seems to stop making
+an infernal "chirp, chirp, CHIRP" sort of noise. It's quite loud.~
+72 0 0 E
+1 0 0 0d0+0 0d0+0
+6 0 0 0 0 80
+3 3 0 24 14 0 1
+BareHandAttack: 9
+Str: 30
+Dex: 86
+Int: 63
+Wis: 71
+Con: 30
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8014
+ladybug cute-young-ladybug lady-bug~
+the cute young ladybug~
+There is a cute young ladybug sunning herself here.~
+Her bright red body with black polkadots is surprisingly fashionable
+for an insect. She doesn't seem to be hurting anything.~
+72 0 0 E
+1 0 0 0d0+0 0d0+0
+6 0 0 0 0 80
+3 3 2 24 14 0 1
+BareHandAttack: 4
+Str: 30
+Dex: 77
+Int: 76
+Wis: 68
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8015
+beetle black-orange-striped-beetle~
+the striped beetle~
+There is a black and orange striped beetle here.~
+The striped beetle is busily chewing the leaves of nearby plants. It
+hasn't noticed you as it begins to eat yet another leaf.~
+72 0 0 E
+1 0 0 0d0+0 0d0+0
+6 0 0 0 0 80
+3 3 0 24 14 0 1
+BareHandAttack: 8
+Str: 30
+Dex: 89
+Int: 72
+Wis: 72
+Con: 30
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8016
+ant large-black-ant~
+the large black ant~
+There is a large black ant here looking for food.~
+The large black ant appears to be too busy searching the fields
+for food to be bothered by the likes of you.~
+72 0 0 E
+1 0 0 0d0+0 0d0+0
+6 0 0 0 0 80
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 30
+Dex: 77
+Int: 68
+Wis: 74
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8020
+beetle large-brown-beetle~
+the large brown beetle~
+A large brown beetle is here, looking for some flowers to chew up.~
+This grotesquely long beetle has a shiny, chitinous shell. It
+moves in a ponderous way, swaying this way and that on segmented
+legs. Long feelers jut out in front of its huge body.~
+72 0 0 E
+2 0 0 0d0+0 0d0+0
+0 1 0 0 0 80
+3 3 0 24 14 0 1
+BareHandAttack: 8
+Str: 30
+Dex: 79
+Int: 80
+Wis: 70
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8021
+spider huge-black-spider~
+the huge black spider~
+A huge black spider is here, looking for insect prey.~
+This huge spider is quite black, and oddly enough, appears covered in
+dark fuzz. Its tiny head is dominated by multi-faceted eyes, and its
+thorax pinches off to almost nothing, to grow into a huge, distended
+belly typical of arachnids. Its eight legs bear it in a delicate
+manner, though its massive size -- easily shoulder-high to any human --
+makes it slower.~
+72 0 0 E
+2 0 0 0d0+0 0d0+0
+0 1 0 0 0 80
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 30
+Dex: 82
+Int: 70
+Wis: 72
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8022
+ant red-fire-ant~
+the fire ant~
+A red fire ant scurries through the field.~
+This ant is much larger than most creatures of its kind, being
+nearly the size of a rat. Its red exoskeleton is quite shiny.
+Long mandibles poke out of its mouth.~
+72 0 0 E
+2 0 0 0d0+0 0d0+0
+0 1 0 0 0 80
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 30
+Dex: 86
+Int: 70
+Wis: 72
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+T 8030
+#8023
+ant tough-army-ant armyant~
+the army ant~
+A tough looking army ant is here.~
+This large ant is much bigger than most ants of its species, being
+almost the size of a rat. Moving quickly and determinedly through
+whatever obstacles lie in its path, it seeks food with long mandibles.~
+72 0 0 E
+2 0 0 0d0+0 0d0+0
+0 1 0 0 0 80
+3 3 0 24 14 0 1
+BareHandAttack: 6
+Str: 30
+Dex: 85
+Int: 73
+Wis: 68
+Con: 30
+Cha: 52
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#8030
+mantis majestic-praying-mantis~
+the majestic praying mantis~
+The majestic praying mantis stands here, surveying the fields.~
+You have never before seen such a regal looking insect as this creature
+that now stands before you. These insect friends to the farmers are not
+often seen by human eyes. Standing nearly 7 feet tall, the praying mantis
+surveys the fields, looking for insect prey, while leaving the farmers and
+their crops undisturbed.~
+72 4 350 E
+5 0 0 0d0+0 0d0+0
+2 1 0 0 0 80
+3 3 1 24 14 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 80
+Int: 66
+Wis: 78
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+T 55695
+#8031
+drakling ice-drakling small-blue-dragon~
+an Ice Drakling~
+A small blue dragon is flapping about freezing everything in sight!~
+A chilly mist flows continually from its nostrils as it flaps its wings to stay
+aloft.  Its hide is a light blue, and it hisses viciously at lost newbies.    ~
+100673608 8 0 E
+7 0 0 0d0+0 0d0+0
+0 0 0 0 0 80
+4 4 1 3 22 0 6
+BareHandAttack: 8
+Str: 92
+Dex: 82
+Int: 67
+Wis: 76
+Con: 66
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 8031
+T 8035
+#8032
+drakling ash-drakling small-black-dragon~
+an Ash Drakling~
+A small black dragon is flapping about burning everything in sight!~
+The Drakling is a glossy black, its shiny scales reflecting its young age.  
+Gouts of flame flare from its nostrils, burning the crops around it.    ~
+100673608 8 0 E
+9 0 0 0d0+0 0d0+0
+0 0 0 0 0 80
+4 4 1 3 23 0 6
+BareHandAttack: 8
+Str: 93
+Dex: 82
+Int: 71
+Wis: 70
+Con: 74
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 8032
+T 8035
+#8033
+drakling emerald-drakling small-green-dragon~
+an Emerald Drakling~
+A small green dragon is flapping about mesmerizing everything in sight!~
+Flapping its vibrant green wings, this small green drakling projects a
+mesmerizing aura around itself, drawing newbies unaware to their demise.    ~
+100673608 8 0 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 80
+4 4 1 3 25 0 6
+BareHandAttack: 8
+Str: 87
+Dex: 81
+Int: 67
+Wis: 80
+Con: 81
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 8033
+T 8035
+#8034
+wug wug-fiery-drakling small-red-dragon~
+Wug the Fiery Drakling~
+A small red dragon named Wug is flapping about eating all the newbies. &1&bRUN AWAY!&0~
+Small for a dragon, Wug is nontheless quite voracious, with a full mouth of
+razor-sharp teeth.  It looks around hungrily, ready to chomp on the next newbie
+coming his way.    ~
+100673608 12 0 E
+15 0 0 0d0+0 0d0+0
+0 0 0 0 0 80
+4 4 1 3 21 0 6
+BareHandAttack: 8
+Str: 87
+Dex: 79
+Int: 71
+Wis: 85
+Con: 70
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 8034
+T 8035
+T 3084
+#8039
+ranger cloaked mysterious~
+a mysterious cloaked ranger~
+A mysterious cloaked ranger stands in the shadows.~
+A tall, slender elf stands here silently.  He wears a dark green cloak that
+gracefully drapes to his ankles.  A handcrafted longbow is slung over his
+shoulder.  There are glowing runes covering the length of the great weapon.  
+The ranger makes no attempt to hide an elven holy symbol that hangs around his
+neck from a thin, silver cord of silk.  His facial expression is solemn as he
+surveys the area.~
+-2147481574 33554472 0 E
+90 20 -10 0d0+17440 30d0+0
+0 0 0 0 0 80
+3 3 1 6 17 0 2
+Str: 97
+Dex: 77
+Int: 70
+Wis: 71
+Con: 75
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 8039
+$

@@ -1,0 +1,240 @@
+name: Mejna
+password: MeHk4AhtGo
+currenttitle: Silverleaf
+description
+   The first thing you notice are her intensely blue eyes, which give her a
+serious look even when she is otherwise relaxed.  Her honey blond hair is
+pulled into a ponytail, but still flows well below her waist, almost to her
+knees.  Long blond tendrils frame her face, and though tell-tale pointy ears
+peak out through her hair, she is clearly not a full-blood elf.  She towers
+over her elven kindred, standing 5' 9", and her more robust frame gives away
+her human heritage.  Still, she sports the pale complexion common amongst
+elves, along with slightly haughty eyebrows and cheekbones.  She might look
+overly somber if not for her cute little button nose.~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 6
+race: 9
+level: 69
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19446
+birthtime: 1561045582
+timeplayed: 3484240
+lastlogintime: 1690566421
+host: 076.184.241.147
+height: 69
+weight: 139
+base_height: 69
+base_weight: 139
+base_size: 2
+natural_size: 2
+alignment: 979
+playerflags: gy
+effectflags: kx 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 10053
+lastlevel: 0
+hitpoints: 762/762
+mana: 476/476
+move: 114/114
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 75
+wisdom: 76
+dexterity: 80
+constitution: 84
+charisma: 64
+cash: 550 4435 12529 2105
+bank: 100 2500 7000 1000
+experience: 47898514
+quit_reason: 3
+saveroom: 0
+skills:
+8 1000
+15 1000
+16 1000
+18 1000
+30 1000
+32 1000
+37 1000
+44 1000
+68 1000
+88 1000
+144 1000
+214 1000
+264 1000
+266 1000
+402 698
+404 740
+407 740
+410 740
+411 740
+412 740
+415 692
+416 505
+417 396
+420 740
+421 740
+422 740
+423 740
+424 1000
+430 730
+434 254
+438 265
+443 592
+444 713
+447 564
+451 740
+452 721
+454 740
+456 740
+457 698
+458 740
+459 740
+462 739
+463 683
+464 92
+465 740
+466 566
+467 100
+468 687
+0 0
+trophy:
+1 55002 0.250000
+1 55015 0.500000
+1 55004 0.250000
+1 55016 0.500000
+1 55007 0.250000
+1 46409 0.750000
+1 46403 0.250000
+1 11809 0.250000
+1 11710 1.000000
+1 11704 0.750000
+1 11703 0.750000
+1 11750 0.250000
+1 11702 1.750000
+1 11701 1.250000
+1 1604 3.000000
+1 1603 1.000000
+1 1602 1.000000
+1 1601 3.500000
+1 1605 1.000000
+1 8002 1.000000
+1 8016 4.000000
+0 0 0
+tells:
+1689298630 @WGorath@W tells you, 'yeah i'm looking through my list of things i've ID@W'@0
+1689298637 @WGorath@W tells you, 'i must have picked it up to ID it@W'@0
+1689298814 @WGorath@W tells you, 'item type needs to be container?@W'@0
+1689448222 @WDreven@W tells you, 'could use it, yes@W'@0
+1689448251 @WDreven@W tells you, 'currently dressed very lightly@W'@0
+1689482796 @WStrider@W tells you, 'come back@W'@0
+1689658574 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1689711484 @WMuleard@W tells you, 'Welcome to my store.@W'@0
+1689711485 @WMuleard@W tells you, 'You can call me Mule.@W'@0
+1689794994 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1690562473 Chinok gossips, 'hum, I thought he had to ask for it ?'
+1690562478 Gennaire gossips, 'he did ask for it'
+1690562483 Gennaire gossips, 'well, he partially asked for it.'
+1690562490 Gennaire gossips, 'that's the bit that cut off.'
+1690562622 Chinok gossips, 'I could run out and fix it, but I'd rather wait for D, and let him see what ahppened'
+1690563381 Mersh gossips, 'Hey Dreven'
+1690563387 Dreven gossips, 'morning'
+1690563809 Chinok gossips, 'doubt it..'
+1690564639 Chinok gossips, 'yep, should be, I'll double check tho'
+1690564640 Aahz gossips, 'hello'
+1690564662 Aahz gossips, 'anyone grouping?'
+1690565519 Mersh gossips, 'sorry mostly working'
+$
+mem:
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+18 1 1
+16 1 1
+8 1 1
+8 1 1
+16 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+8 1 1
+37 1 1
+37 1 1
+37 1 1
+37 1 1
+37 1 1
+8 1 1
+37 1 1
+8 1 1
+144 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+8 1 1
+44 1 1
+44 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+264 1 1
+68 1 1
+266 1 1
+68 1 1
+68 1 1
+68 1 1
+214 1 3
+266 1 1
+214 1 3
+0 0 0
+aliases:
+tilt emo tilts her head to one side, puzzled.
+sniffle emo sniffles pitifully.
+buffme cas 'detect align';cas 'barks'; cas 'sense'; cas 'nimble';cas 'haste'; cas 'displ'
+restup rest;mem;med
+lb cas 'lightning bolt' $*
+assf ass fernley
+assk ass kilop
+waggle emo waggles her eyebrows outrageously!
+res rescue $*
+sh cas 'shock' $*
+cs cas 'cure serious' $*
+ol get all corpse
+ast ass turgeron
+lol emo laughs out loud.
+assn ass nauis
+facepalm emo facepalms. Oy.
+asst ass turgeron
+mm cas 'magic miss' $*
+k cas 'cure light' $*
+asg ass gennaire
+buff cas 'detect align'
+bs kick $*
+assu ass utaboshi
+cc cas 'cure crit' $*
+cct cas 'chill touch' $*
+0

@@ -1,0 +1,66 @@
+name: Rokisha
+password: RoUywZBQzL
+prompt: &0&b[&0&1%h&0/&1%H&0HP &2%v&0/&2%V&0MV][&3%w&0/&3%W&0][&6%e&0TNL]%_&0[%t&0Tank]:[&0%o&0Nme]
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19125
+birthtime: 1485398096
+timeplayed: 6376
+lastlogintime: 1485984249
+host: 099.160.008.092
+height: 35
+weight: 110
+base_height: 35
+base_weight: 110
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 10
+loadroom: 3054
+lastlevel: 0
+hitpoints: 25/25
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 6
+strength: 91
+intelligence: 72
+wisdom: 68
+dexterity: 99
+constitution: 69
+charisma: 65
+experience: 5499
+quit_reason: 1
+saveroom: 3054
+skills:
+403 50
+415 50
+416 50
+421 54
+438 50
+443 50
+444 50
+464 57
+465 50
+467 50
+0 0
+trophy:
+1 8014 1.000000
+1 8015 1.000000
+1 8013 1.000000
+1 18007 2.000000
+1 8001 2.000000
+1 8000 1.000000
+1 8011 1.000000
+0 0 0

@@ -1,0 +1,84 @@
+name: Daedra
+password: DapzAYReYr
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 26
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20877
+birthtime: 1732912705
+timeplayed: 721
+lastlogintime: 1732913433
+host: 046.131.084.179
+height: 75
+weight: 209
+base_height: 75
+base_weight: 209
+base_size: 2
+natural_size: 2
+alignment: -8
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 3
+lastlevel: 0
+hitpoints: 30/29
+mana: 1/0
+move: 148/148
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 69
+wisdom: 78
+dexterity: 75
+constitution: 94
+charisma: 48
+cash: 0 4 14 28
+experience: 6049
+quit_reason: 3
+saveroom: 0
+skills:
+201 1000
+402 50
+404 56
+415 50
+416 50
+421 55
+438 50
+443 50
+444 50
+453 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+486 50
+0 0
+trophy:
+1 3501 2.000000
+1 3507 1.000000
+1 3500 1.000000
+1 3061 2.000000
+0 0 0
+tells:
+$
+gossips:
+1732912782 Derrgon gossips, 'ty!'
+1732912784 Chinok gossips, 'the blackest of Fridays to you, and your recent death :)'
+1732912810 Derrgon gossips, 'haha'
+1732912852 Derrgon gossips, 'oh hi Daedra'
+1732912877 Derrgon gossips, 'welcome to fiery!'
+1732912959 Derrgon gossips, 'hmm?'
+1732912959 Chinok gossips, 'well if you're not here to slay the mobs of the realm, or socialize, then I dunno!'
+1732913048 Derrgon gossips, 'dont think so'
+1732913074 Discord gossips, 'Chinok: we have done PK weekends, but not in a while, that's not typically our way'
+$

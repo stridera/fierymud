@@ -1,0 +1,62 @@
+name: Gildire
+password: GiCRKW7W7s
+prompt: &6Opponent&8: &4%o &8/ &6Tank&8: &4%t%_&1%h&8(&1%H&8)hitp &2%v&8(&2%V&8)move> &8
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19197
+birthtime: 1504129850
+timeplayed: 51600
+lastlogintime: 1515376121
+host: 208.184.137.154
+height: 71
+weight: 105
+base_height: 71
+base_weight: 105
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 6
+lastlevel: 0
+hitpoints: 79/79
+mana: 1/0
+move: 110/110
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 68
+wisdom: 72
+dexterity: 87
+constitution: 82
+charisma: 64
+cash: 0 18 30 12
+experience: 85253
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 102
+438 50
+443 50
+444 66
+463 63
+464 54
+465 63
+466 50
+467 50
+468 50
+0 0

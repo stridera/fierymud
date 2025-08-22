@@ -1,0 +1,97 @@
+name: Pokula
+password: PoOsWCU./d
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 2
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20070
+birthtime: 1639180088
+timeplayed: 3876
+lastlogintime: 1639184029
+host: 066.018.044.209
+height: 34
+weight: 66
+base_height: 34
+base_weight: 66
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 6
+lastlevel: 0
+hitpoints: 33/33
+mana: 1/0
+move: 78/100
+damroll: 2
+hitroll: 4
+strength: 70
+intelligence: 100
+wisdom: 97
+dexterity: 86
+constitution: 56
+charisma: 55
+experience: 5500
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 52
+438 50
+443 50
+444 50
+451 51
+457 51
+458 51
+459 50
+460 50
+462 50
+463 54
+466 50
+0 0
+trophy:
+1 8012 1.000000
+1 8022 2.000000
+1 8002 2.000000
+1 8001 1.000000
+1 8000 1.000000
+1 8014 2.000000
+0 0 0
+tells:
+$
+gossips:
+1639182624 Mand gossips, 'I suualy stick to 4'
+1639182727 Mand gossips, 'tell him to grow an imagination!'
+1639182744 Mand gossips, 'and to log on! It is more fun with peepe'
+1639182748 Mand gossips, 'haha *peeps'
+1639182756 Daedela gossips, 'true that!  Reading is fundamental!'
+1639182988 Tors gossips, 'cast 'cure light' me'
+1639182994 Tors gossips, 'just like that'
+1639183016 Tors gossips, 'sometimes it will pick it up without the tics but not always'
+1639183199 Zaver gossips, 'Congratz'
+1639183306 Tors gossips, 'ty'
+$
+mem:
+12 1 9
+0 0 0
+aliases:
+ec examine corpse
+0

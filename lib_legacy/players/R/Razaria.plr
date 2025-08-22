@@ -1,0 +1,140 @@
+name: Razaria
+password: Ra6yyg/buf
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 9
+race: 0
+level: 41
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20071
+birthtime: 1639236194
+timeplayed: 1487371
+lastlogintime: 1646007673
+host: 052.232.177.117
+height: 60
+weight: 178
+base_height: 60
+base_weight: 178
+base_size: 2
+natural_size: 2
+alignment: 675
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 30009
+lastlevel: 0
+hitpoints: 376/376
+mana: 168/168
+move: 57/118
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 71
+wisdom: 76
+dexterity: 97
+constitution: 82
+charisma: 71
+cash: 166 4422 15714 3753
+bank: 0 0 5 5
+experience: 11164999
+quit_reason: 1
+saveroom: 30009
+skills:
+401 424
+403 254
+404 50
+405 308
+408 246
+410 227
+411 460
+415 220
+416 220
+418 57
+420 460
+421 460
+438 84
+440 419
+443 220
+444 230
+464 460
+465 460
+477 50
+0 0
+trophy:
+1 59014 0.200000
+1 59012 0.400000
+1 59013 0.200000
+1 59006 0.200000
+1 59026 0.400000
+1 59015 0.200000
+1 59016 0.200000
+1 59023 0.400000
+1 59022 0.800000
+1 59002 0.200000
+1 59000 0.400000
+1 59011 0.600000
+1 59007 0.200000
+1 59035 0.200000
+1 59009 0.200000
+1 59008 1.000000
+1 59010 0.600000
+1 59001 0.200000
+1 59004 0.200000
+1 2328 0.600000
+1 2320 0.200000
+0 0 0
+tells:
+1644925625 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644925626 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644925719 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645637432 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1645637433 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1645637434 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1645637646 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645982541 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645982541 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645982543 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1646006371 Lanik gossips, 'the rapiers that have 2h and 2d would be nice hold items but why hold when you should wield....'
+1646007451 Kaylara gossips, 'congrats!'
+1646007455 Lanik gossips, 'ty'
+1646007498 Lanik gossips, 'can thiefs identify shop items?'
+1646007507 Daedela gossips, 'not until you buy them, unfortunately'
+1646007544 Lanik gossips, 'but if they were on the ground they anyone could recite a scroll right?'
+1646007549 Kaylara gossips, 'correct'
+1646007579 Lanik gossips, 'is makeing un pickupable items easyer then the other plan for identifying shop items?'
+1646007599 Daedela gossips, 'I'm sorry, what?'
+1646007659 Lanik gossips, 'chinok is making some method of geting stats for shop items, i was wondering if just makeing shop keepers have there items on the ground would work as long as people couldn't take them'
+$
+effects:
+57 1 0 0 1048576 0 0
+0 0 0 0 0
+aliases:
+stoneme say stoneme
+healme say healme
+qh quaff healing
+blessme gs blessme
+armorme gs armorme
+df drink fountain
+cureme say cureme
+ap assist pashku
+gtf say 'go to fountain'
+cp consent Pashku
+bs backstab $1
+rice recite identify
+gac get all corpse
+ri recite identify $1
+rc recite recall self
+ass assist bahia
+yum get sandwich belt
+dw drink water
+ec examine corpse
+tc throatcut $1
+fwf fill water fountain
+0

@@ -1,0 +1,6030 @@
+1
+vnum: 23
+location: 0
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: D
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 16103
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 16103
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 55386
+location: 5
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz
+name: plate trainee
+shortdesc: a trainee plate
+desc: A slightly magical plate lies here.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 9
+applies:
+5 1
+13 10
+~
+extradesc: trainee plate
+Newly forged, this magical metal plate was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 55384
+location: 6
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz
+name: helm trainee
+shortdesc: a trainee helm
+desc: A helm of slight magic power lies here.
+type: 9
+weight: 4.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 17
+applies:
+1 1
+13 7
+~
+extradesc: helm trainee
+Newly forged, this magical metal helm was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 1019
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: leggings leather
+shortdesc: &3a pair of leather leggings&0
+desc: &3A pair of leather leggings lies on the ground here.&0
+type: 9
+weight: 7.30
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+~~
+vnum: 1026
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouwyz
+name: boots steel steel-toed-boots
+shortdesc: steel-toed boots
+desc: &7A pair of steel boots lies on the ground here.&0
+type: 9
+weight: 5.10
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+~~
+vnum: 55390
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz
+name: gauntlets trainee
+shortdesc: trainee gauntlets
+desc: A pair of slightly magical gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 129
+applies:
+14 5
+13 4
+~
+extradesc: trainee gauntlets
+Newly forged, these magical metal gauntlets were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 16101
+location: 11
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: shield hide
+shortdesc: a hide shield
+desc: A shield made of camel hide is on the ground.
+type: 9
+weight: 1.90
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 513
+applies:
+5 1
+~
+extradesc: shield hide-shield camel-hide
+Poorly constructed of rough wood with a thick layer of tightly stretched camel
+hide over it, this shield nevertheless does its job, standing between its
+wearer and attackers.  It appears to have seen quite the history of violence,
+with numerous gashes and dents in the hide, but still holds together somehow.
+~
+~~
+vnum: 1615
+location: 12
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: labcoat coat white
+shortdesc: a white labcoat
+desc: A white labcoat lies unused.
+adesc:
+<not set>
+~
+type: 9
+weight: 3.00
+cost: 100
+timer: 10
+level: 3
+effects: 0 0 0
+wear: 1033
+applies:
+3 2
+~
+extradesc: labcoat white coat
+Made of soft cotton, this coat is stained from various unknown chemicals.
+Two buttons on the left side appear freshly sewn on, as if unused.
+~
+~~
+vnum: 58007
+location: 13
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: rtD
+name: belt ninja ninjas black length cloth
+shortdesc: the ninja's belt
+desc: You see a neatly folded length of black cloth.
+type: 9
+weight: 1.10
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 2049
+applies:
+14 20
+2 4
+~
+extradesc: ninjas ninja belt black cloth
+This is a very simple length of black cloth, hemmed all around very
+neatly. There's literally nothing impressive about it.~
+~~
+vnum: 8301
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: bracelet light fluffy moisture raining cumulus bracelet cumulus-bracelet
+shortdesc: a cumulus bracelet
+desc: A light, fluffy ring of moisture is floating here, raining upon the ground below.
+type: 9
+weight: 0.00
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+applies:
+2 1
+1 1
+~
+extradesc: bracelet light fluffy moisture raining cumulus bracelet cumulus-bracelet
+Almost insubstantial, this moist little bracelet is made of fluffy cumulus
+clouds.  It drips continuously, never seeming to run out of water.  When placed
+on the wrist, it magically resizes itself to fit, whether it be for arms
+slender of massive.    
+~
+~~
+vnum: 8301
+location: 15
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: bracelet light fluffy moisture raining cumulus bracelet cumulus-bracelet
+shortdesc: a cumulus bracelet
+desc: A light, fluffy ring of moisture is floating here, raining upon the ground below.
+type: 9
+weight: 0.00
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+applies:
+2 1
+1 1
+~
+extradesc: bracelet light fluffy moisture raining cumulus bracelet cumulus-bracelet
+Almost insubstantial, this moist little bracelet is made of fluffy cumulus
+clouds.  It drips continuously, never seeming to run out of water.  When placed
+on the wrist, it magically resizes itself to fit, whether it be for arms
+slender of massive.    
+~
+~~
+vnum: 16106
+location: 16
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: scimitar golden golden-scimitar
+shortdesc: a golden scimitar
+desc: A gleaming golden scimitar lies upon a large rock.
+type: 5
+weight: 2.00
+cost: 1000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+applies:
+19 2
+~
+extradesc: scimitar golden
+This weapon seems to be made of pure gold.  It is however extremely light and
+has a very good balance.  
+~
+~~
+vnum: 20301
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 20301
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 20300
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55589
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem dust dust-aquamarine
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55589
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem dust dust-aquamarine
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem dust dust-tourmaline
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem dust dust-tourmaline
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55579
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem dust dust-tourmaline
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55604
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sapphire gem dust dust-sapphire
+shortdesc: some sapphire dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 8031
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: blue drakling scale
+shortdesc: a blue drakling scale
+desc: A small blue scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 5
+~
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 6216
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: ribbon hair
+shortdesc: a blue hair-ribbon
+desc: A blue silk hair-ribbon flutters over the ground.
+type: 11
+weight: 0.05
+cost: 15
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 17
+applies:
+6 2
+~
+extradesc: blue silk hair ribbon
+It is a simple blue hair ribbon.
+~
+~~
+vnum: 1022
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: sleeves leather
+shortdesc: &3a pair of leather sleeves&0
+desc: &3A pair of leather sleeves lies on the ground here.&0
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+~~
+vnum: 16101
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: shield hide
+shortdesc: a hide shield
+desc: A shield made of camel hide is on the ground.
+type: 9
+weight: 1.90
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 513
+applies:
+5 1
+~
+extradesc: shield hide-shield camel-hide
+Poorly constructed of rough wood with a thick layer of tightly stretched camel
+hide over it, this shield nevertheless does its job, standing between its
+wearer and attackers.  It appears to have seen quite the history of violence,
+with numerous gashes and dents in the hide, but still holds together somehow.
+~
+~~
+vnum: 16106
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: scimitar golden golden-scimitar
+shortdesc: a golden scimitar
+desc: A gleaming golden scimitar lies upon a large rock.
+type: 5
+weight: 2.00
+cost: 1000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+applies:
+19 2
+~
+extradesc: scimitar golden
+This weapon seems to be made of pure gold.  It is however extremely light and
+has a very good balance.  
+~
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+~
+extradesc: saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  
+~
+~~
+vnum: 2023
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+~
+extradesc: saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5514
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy white 3rd-eldorian-guard-wand
+shortdesc: a wand of the 3rd Eldorian Guard
+desc: A white wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: wand eldoria-trophy white 3rd-eldorian-guard-wand
+It's a simple white wand that probably belonged to a member of the 3rd Eldorian
+Guard.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5514
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy white 3rd-eldorian-guard-wand
+shortdesc: a wand of the 3rd Eldorian Guard
+desc: A white wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: wand eldoria-trophy white 3rd-eldorian-guard-wand
+It's a simple white wand that probably belonged to a member of the 3rd Eldorian
+Guard.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5512
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+shortdesc: an insignia of the 3rd Eldorian Guard
+desc: A small white insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+A small patch of white fabric with the insignia of the 3rd Eldorian Guard has
+been ripped off a larger peice of fabric.
+~
+~~
+vnum: 5512
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+shortdesc: an insignia of the 3rd Eldorian Guard
+desc: A small white insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+A small patch of white fabric with the insignia of the 3rd Eldorian Guard has
+been ripped off a larger peice of fabric.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 8602
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: badge guards guard
+shortdesc: a guard's badge
+desc: A badge belonging to one of the guards has been dropped here.
+type: 9
+weight: 0.04
+cost: 300
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 524289
+extradesc: badge guards
+A small red badge with a picture of the MeerCat Royal family stitched onto
+it.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5512
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+shortdesc: an insignia of the 3rd Eldorian Guard
+desc: A small white insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+A small patch of white fabric with the insignia of the 3rd Eldorian Guard has
+been ripped off a larger peice of fabric.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5512
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+shortdesc: an insignia of the 3rd Eldorian Guard
+desc: A small white insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+A small patch of white fabric with the insignia of the 3rd Eldorian Guard has
+been ripped off a larger peice of fabric.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5512
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+shortdesc: an insignia of the 3rd Eldorian Guard
+desc: A small white insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+A small patch of white fabric with the insignia of the 3rd Eldorian Guard has
+been ripped off a larger peice of fabric.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 55590
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ruby gem crushed crushed-ruby
+shortdesc: a crushed ruby
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55587
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem dust dust-pearl
+shortdesc: some pearl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy 3rd-black-legion-ring
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.
+~
+~~
+vnum: 5509
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small 3rd-black-legion-token
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy 3rd-black-legion-badge
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 55325
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tunic leather flimsy
+shortdesc: a flimsy leather tunic
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55301
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gloves leather flimsy
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55321
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: leggings leather flimsy
+shortdesc: flimsy leather leggings
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55325
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tunic leather flimsy
+shortdesc: a flimsy leather tunic
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5512
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+shortdesc: an insignia of the 3rd Eldorian Guard
+desc: A small white insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+A small patch of white fabric with the insignia of the 3rd Eldorian Guard has
+been ripped off a larger peice of fabric.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5514
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy white 3rd-eldorian-guard-wand
+shortdesc: a wand of the 3rd Eldorian Guard
+desc: A white wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: wand eldoria-trophy white 3rd-eldorian-guard-wand
+It's a simple white wand that probably belonged to a member of the 3rd Eldorian
+Guard.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5514
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy white 3rd-eldorian-guard-wand
+shortdesc: a wand of the 3rd Eldorian Guard
+desc: A white wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: wand eldoria-trophy white 3rd-eldorian-guard-wand
+It's a simple white wand that probably belonged to a member of the 3rd Eldorian
+Guard.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 1013
+location: 127
+values:
+0
+2
+7
+3
+0
+0
+0
+~
+flags: mnouvwyz
+name: sword massive-two-handed-bastard-sword
+shortdesc: a two-handed bastard sword
+desc: A massive two-handed bastard sword lies here.
+type: 5
+weight: 8.00
+cost: 10
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 32769
+extradesc: massive-two-handed-bastard-sword
+&0A six foot blade, crafted from heavy iron. Its long hilt is designed for
+two handed use. Its crafted of average quality metal, and seems durable
+enough to last several years of use.&0
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 18501
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 16308
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak fur wolf wolf-fur-cloak
+shortdesc: a wolf fur cloak
+desc: A cloak of wolf fur lies in a heap.
+type: 9
+weight: 5.00
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+applies:
+5 1
+~
+extradesc: cloak fur wolf wolf-fur-cloak
+   The fur cloak is not very comfortable to wear but if it can protect you
+from the cold, well, you just aren't complaining.
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3031
+location: 127
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.69
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 16100
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnouvwyz
+name: scimitar
+shortdesc: a scimitar
+desc: A scimitar lies on the ground here.
+type: 5
+weight: 2.00
+cost: 200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+applies:
+2 1
+~
+extradesc: scimitar
+This scimitar is made of the finest steel in the land.  Its blade is keen and
+sharp.  
+~
+~~
+vnum: 16100
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnouvwyz
+name: scimitar
+shortdesc: a scimitar
+desc: A scimitar lies on the ground here.
+type: 5
+weight: 2.00
+cost: 200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+applies:
+2 1
+~
+extradesc: scimitar
+This scimitar is made of the finest steel in the land.  Its blade is keen and
+sharp.  
+~
+~~
+vnum: 55578
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 16100
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnouvwyz
+name: scimitar
+shortdesc: a scimitar
+desc: A scimitar lies on the ground here.
+type: 5
+weight: 2.00
+cost: 200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+applies:
+2 1
+~
+extradesc: scimitar
+This scimitar is made of the finest steel in the land.  Its blade is keen and
+sharp.  
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 2005
+location: 127
+values:
+1
+1
+5
+5
+0
+0
+0
+~
+flags: 0
+name: staff walking walking-staff
+shortdesc: a walking-staff
+desc: A staff rests here.
+type: 5
+weight: 2.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+applies:
+14 30
+~
+extradesc: staff walking
+This plain wooden staff is imbued with a peaceful feeling, making
+it useless in combat. But it does help one walk rather nicely.
+~
+~~
+vnum: 18506
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: gmo
+name: maul
+shortdesc: a maul
+desc: A maul lies on the ground.
+type: 5
+weight: 6.50
+cost: 400
+timer: 0
+level: 14
+effects: 0 0 0
+wear: 8193
+applies:
+4 2
+~
+extradesc: maul
+   A large and heavy maul, this has the potential to severely hurt anybody
+who gets in its way.
+~
+~~
+vnum: 55580
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 18506
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: gmo
+name: maul
+shortdesc: a maul
+desc: A maul lies on the ground.
+type: 5
+weight: 6.50
+cost: 400
+timer: 0
+level: 14
+effects: 0 0 0
+wear: 8193
+applies:
+4 2
+~
+extradesc: maul
+   A large and heavy maul, this has the potential to severely hurt anybody
+who gets in its way.
+~
+~~
+vnum: 55597
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem uncut uncut-turquoise
+shortdesc: an uncut turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 5507
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy 3rd-black-legion-badge
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 5509
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small 3rd-black-legion-token
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 5505
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy 3rd-black-legion-ring
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.
+~
+~~
+vnum: 5503
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5503
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5505
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy 3rd-black-legion-ring
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.
+~
+~~
+vnum: 5513
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy 3rd-black-legion-wand
+shortdesc: a wand of the 3rd Black Legion
+desc: A black wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+extradesc: wand eldoria-trophy 3rd-black-legion-wand
+A simple black wand, it probably belonged to a member of the 3rd Black Legion.
+~
+~~

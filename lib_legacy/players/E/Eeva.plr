@@ -1,0 +1,83 @@
+name: Eeva
+password: Eesrhm6DrY
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 2
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19613
+birthtime: 1590206428
+timeplayed: 1508
+lastlogintime: 1590207940
+host: 166.170.041.172
+height: 38
+weight: 58
+base_height: 38
+base_weight: 58
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 3
+lastlevel: 0
+hitpoints: 23/23
+mana: 0/0
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 74
+intelligence: 93
+wisdom: 84
+dexterity: 75
+constitution: 71
+charisma: 64
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+451 50
+457 50
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+tells:
+$
+gossips:
+1590206855 Strider gossips, 'Sheesh, I'll program a thor class into the game for far less than that!'
+1590206873 Chinok gossips, 'not cool to undercut me man, I'd have cut you in!'
+1590206880 Strider gossips, 'hehe'
+1590206919 Strider gossips, 'Also, Eeva, we allow multi-playing.  So you can create a warrior to fight alongside your cleric.'
+1590207001 Chinok gossips, 'well fair warning, clerics are probably the hardest class to solo at low levels '
+1590207053 Chinok gossips, 'well it's not unusual here... but ... could be elsewhere.'
+1590207098 Chinok gossips, 'but the 'low levs' bit is important there.. clerics are extremely useful, and fairly powerful in higher levels'
+1590207132 Chinok gossips, 'the idea here being.. groups of characters are needed to tackle the hard areas.'
+1590207908 Strider gossips, 'Oh no... don't void out!'
+1590207913 Strider gossips, 'We'll miss ya!'
+$

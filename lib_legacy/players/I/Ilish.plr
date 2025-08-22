@@ -1,0 +1,215 @@
+name: Ilish
+password: IlMYAXdJhF
+prompt: &2&b<&0&2%aA&2&b><&0%l&2&b>%_&0&5Aid: %df%_&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 2
+class: 20
+race: 8
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20066
+birthtime: 1638673336
+timeplayed: 2934812
+lastlogintime: 1735785402
+host: 136.038.231.125
+height: 68
+weight: 112
+base_height: 68
+base_weight: 112
+base_size: 2
+natural_size: 2
+alignment: -991
+playerflags: yz
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 983/785
+mana: 980/980
+move: 232/232
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 100
+wisdom: 100
+dexterity: 100
+constitution: 100
+charisma: 100
+cash: 559 3819 23363 30188
+experience: 126967199
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+19 1000
+20 1000
+26 1000
+29 1000
+31 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+65 1000
+67 1000
+68 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+107 1000
+108 1000
+112 1000
+113 1000
+157 1000
+158 1000
+159 1000
+160 1000
+161 1000
+162 1000
+163 1000
+164 1000
+165 1000
+166 1000
+167 1000
+168 1000
+169 1000
+170 1000
+200 1000
+220 1000
+228 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+447 1000
+451 1000
+452 1000
+453 1000
+455 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 1000
+0 0
+trophy:
+1 58403 0.125000
+1 58413 0.125000
+1 58410 0.250000
+1 58415 0.125000
+1 58419 0.250000
+1 58404 0.500000
+1 58409 0.250000
+1 48633 0.250000
+1 48406 0.250000
+1 48401 0.500000
+1 48403 0.500000
+1 48402 1.750000
+1 48408 2.750000
+1 48414 5.750000
+1 48400 17.250000
+1 48407 7.250000
+1 48409 7.583333
+1 48632 0.750000
+1 48630 22.500000
+1 48635 0.500000
+1 23808 2.000000
+0 0 0
+tells:
+1690395650 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690396047 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690461563 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690550018 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690550024 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1690558026 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694923903 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694926033 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1696261523 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1696261559 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+$
+gossips:
+1735784989 Thort gossips, 'KoD'
+1735784989 Mersh gossips, 'KoD'
+1735784990 Gargath gossips, 'he usually does'
+1735784992 Gargath gossips, 'oh my!'
+1735784996 Mersh gossips, 'well at inn'
+1735785019 Gargath gossips, 'oh we're not ready for that yet haha'
+1735785022 Mersh gossips, ':D'
+1735785036 Thort gossips, 'you wanna hit the tower?'
+1735785040 Mersh gossips, 'He was here when I got on :D'
+1735785042 Urog gossips, 'yes please!'
+1735785057 Urog gossips, 'We have to kill something deep in the tower'
+1735785070 Urog gossips, 'Mystwatch is after that'
+1735785391 Mersh gossips, 'you guys go without me for now. I will try to get back on'
+$
+effects:
+52 0 12 0 4194304 0 0
+210 0 587 13 0 0 0
+0 0 0 0 0
+aliases:
+tele cast 'teleport'
+blue get blue-recall sack
+rc get curse sack;recite curse $*
+ball cast 'fireball' $*
+enhance cast 'enhance ability' $*
+who who -w
+dinvis cast 'detect invisibility' $*
+neg cast 'negate heat'
+imm cast 'immolate' $*
+relo cast 'relocate' $*
+c1 cast 'detonation' $*
+gcc get all.coins all.corpse
+st st;fly
+acid cast 'acid burst' $*
+id get identify sack;recite identify $*
+ul unlock $*;open $*
+storm cast 'firestorm'
+dispel cast 'dispel magic' $*
+locate cast 'locate object' $*
+mm cast 'fire darts' $*
+burn cast 'burning hands' $*
+fb cast 'fireball' $*
+ec examine corpse
+rmm rest;meditate;mem
+ltorch cast 'magic torch'
+pe cast 'phosphoric embers' $*
+fs cast 'fireshield'
+mirage cast 'mirage'
+dd cast 'dimension door' $*
+invis cast 'invisibility' $*
+field cast 'positive field' $*
+stone cast 'stone skin' $*
+haste cast 'haste' $*
+dmagic cast 'detect magic' $*
+fire cast 'fireball' $*
+globe cast 'major globe' $*
+melt cast 'melt' $*
+ia cast 'mass invisibility'
+crem cast 'cremate'
+cof cast 'circle of fire'
+met cast 'meteorswarm'
+cfly cast 'fly' $*
+nova cast 'supernova'
+df drink fountain
+roe cast 'ray of enfeeblement' $*
+smoke cast 'smoke' $*
+fa first aid
+str innate chaz
+pf cast 'positive field' $*
+green get gree-recall sack
+0

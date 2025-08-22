@@ -1,0 +1,242 @@
+#58701
+The End of a Path Through the Dunes~
+   Golden sands form a pathway that ends here, in front of a tall wall that
+runs around a complex of buildings.  One seems large, while a second's roof
+barely clears the wall.  Southward, the path continues, while to the north, you
+can see a gate.  Dunes lie westward.  To the east you can see only raw forest.
+~
+587 20 2
+D0
+A wooden building is surrounded by a tall wall. A gate
+stands just to the north, barring the way.
+~
+gate~
+1 -1 58702
+D2
+The trail extends far to the south.
+~
+~
+0 -1 58664
+E
+gate~
+The gate is adorned with a brightly-colored painting of a
+dolphin (a mythological fish) cresting a wave. The creature
+has the most outlandish smile on its face.
+~
+S
+#58702
+The Entrance of the Dancing Dolphin~
+   A wall to the south runs around the outside of this large compound, which is
+composed of two buildings.  One, to the west, is obviously a stable of some
+kind.  To the north, though, is a larger building with many additions and wings
+that looks like the main part of the inn.  A large wooden sign mounted beside
+the gate displays a grinning dolphin cresting a wave -- the symbol of the inn.
+~
+587 0 1
+D1
+The entrance empties into a courtyard to the east.
+~
+~
+0 -1 58703
+D2
+A large gate in the wall around the inn compound lies southward.
+~
+gate~
+1 -1 58701
+D3
+A stable invites you to put up your animals.
+~
+~
+0 -1 58711
+S
+#58703
+The Courtyard of the Dancing Dolphin~
+   You wander through a cobbled courtyard in the southern part of a large
+compound.  The main part of the inn lies to the north, adorned with the
+ubiquitous logo of the inn, a dolphin in the water.  Amused by the smile on the
+mythological animal's face, you note that the courtyard extends to the east,
+while, to the west, you see the entranceway.    
+~
+587 0 1
+D0
+To the north, you can see the open door of the Inn inviting you in.
+~
+~
+0 -1 58706
+D1
+To the east you see a well in the corner of the courtyard.
+~
+~
+0 -1 58704
+D3
+Past the courtyard, you see the entrance of the compoud. Further on, you
+see a small building that must be a stable.
+~
+~
+0 -1 58702
+S
+#58704
+A Well in the Courtyard~
+   This cobbled courtyard seems spacious enough.  The wall around the compound
+runs just beyond it to the east and south; it's quite high, obscuring your view
+of the surrounding land.  A shop to the north is open for business, though it's
+just part of a larger building.  And in the center of this corner of the
+courtyard, you see a well.    
+~
+587 0 1
+D0
+You see the open door of a shop to the north.
+~
+~
+0 -1 58705
+D3
+You see the main part of the courtyard to the west.
+~
+~
+0 -1 58703
+S
+#58705
+Meg's Supplies Shop~
+   This small shop is built into the southern end of the larger of the two
+buildings of the compound.  It's more a room than a whole shop, with a few
+shelves here and there displaying various products.  It's clean, but sparse;
+you surmise that Meg's inventory is severely limited by lack of proximity to
+the northern continent's industrial base.  Thus, her wares are more intended
+for survival than gourmetism.    
+~
+587 24 0
+D2
+You see a well in the corner of a courtyard to the south. Further on, you
+see the walls that surround the complex.
+~
+~
+0 -1 58704
+S
+#58706
+The Main Room of the Dancing Dolphin~
+   Sounds of laughter and talk precede you as you enter the inn's main room.  
+It's a large chamber with a high ceiling and, oddly, no windows.  A haze of
+oily smoke seems to hang over everything, from the several small, round tables
+to the bar up against the eastern wall.    
+~
+587 8 0
+D0
+A hallway leads off to a small room further on.
+~
+~
+0 -1 58708
+D2
+To the south, an open door leads to a courtyard.
+~
+~
+0 -1 58703
+D3
+A quiet chamber lies westward through an archway.
+~
+~
+0 -1 58707
+E
+bar~
+The bar's made of wood that's been polished over decades to
+achieve a high gloss. Numerous stools pull up to it, though
+not many are occupied. Behind the bar, shelves of liquor 
+bottles cluster together.
+~
+S
+#58707
+A Chapel in the Inn~
+   Two quiet rows of two long pews face the western wall of this sombre
+chamber.  A runner extends the length of the room, all the way to the little
+altar up against the wall.  A wall sconce lights the room dimly; there are no
+windows.    
+~
+587 24 0
+D1
+You can leave the chapel and enter the inn's main room.
+~
+~
+0 -1 58706
+E
+altar~
+The altar is made of marble. It looks tremendously heavy! It's
+carved with numerous scrolling designs and the occasional god
+or goddess. You can't recognize any of them; perhaps they're
+the gods of the new continent.
+~
+S
+#58708
+A Hallway in the Dancing Dolphin~
+   The wooden floor and walls run north-south through the center of this large
+building.  Things are quiet here, as well as to the north and east, but to the
+south you can clearly hear noises.    
+~
+587 8 0
+D0
+A small room to the north is filled with bookcases.
+~
+~
+0 -1 58710
+D1
+You see the Inn's reception desk to the east.
+~
+~
+0 -1 58709
+D2
+The Inn's common room lies to the south.
+~
+~
+0 -1 58706
+S
+#58709
+The Reception Room of the Dancing Dolphin~
+   A red carpet runs east from the hallway to a large, ornate desk near the
+eastern end of this large building.  The chamber's quite large, with lots of
+room for travellers to relax before taking to their private rooms.  A hallway
+behind the desk looks inviting, but there's no way you're getting into there!
+~
+587 24 0
+D1
+A bead curtain obscures the hallway leading off to the private rooms.
+When you get too near that curtain, some sort of force prevents you
+from getting too close.
+~
+~
+3 -1 -1
+D3
+The room empties into a hallway to the west.
+~
+~
+0 -1 58708
+S
+#58710
+A Quiet Reading Room~
+   You enter a sombre, quiet chamber lined with bookshelves.  There aren't many
+books on the shelves, but the few there are seem old and well-thumbed.  The
+floor, which is carpeted with hand-woven beige fabric, muffles your footsteps a
+bit.  A window on the northern wall, high up, lets in a little bit of light,
+but you're not tall enough to see outside of it.    
+~
+587 8 0
+D2
+The room empties into a hallway that runs to the south. Further beyond
+this, you see the Inn's common room.
+~
+~
+0 -1 58708
+S
+#58711
+A Small Stable~
+   The various scents and sounds of horses greet you as you enter the small,
+modest building.  The ceiling is quite low; there is no hayloft.  Four or five
+stalls are clean and well-tended, and a pile of hay and barrels of what is
+probably horse feed are stacked up against the rear wall, where you see tack
+and saddles mounted.    
+~
+587 8 0
+D1
+You can leave the stable's open door to reach the Compound's entrance.
+~
+~
+0 -1 58702
+S
+$~

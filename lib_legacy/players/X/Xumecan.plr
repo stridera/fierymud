@@ -1,0 +1,180 @@
+name: Xumecan
+password: Xu4dzF9P4E
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 3
+class: 1
+race: 3
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20699
+birthtime: 1700717044
+timeplayed: 575431
+lastlogintime: 1737962936
+host: 052.119.120.201
+height: 40
+weight: 174
+base_height: 40
+base_weight: 174
+base_size: 2
+natural_size: 2
+alignment: 752
+playerflags: gxyz
+effectflags: k w q
+prefflags: hnoxCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1395/1197
+mana: 980/980
+move: 368/368
+damroll: 4
+hitroll: 5
+strength: 65
+intelligence: 92
+wisdom: 94
+dexterity: 91
+constitution: 100
+charisma: 64
+cash: 969 1030 4264 5057
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+27 1000
+28 1000
+33 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+47 1000
+48 1000
+49 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+74 1000
+81 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+95 1000
+96 1000
+97 1000
+99 1000
+131 1000
+206 1000
+207 1000
+208 1000
+209 1000
+210 1000
+235 1000
+241 1000
+415 50
+416 50
+421 1000
+423 411
+424 1000
+438 480
+443 390
+444 514
+451 1000
+452 930
+453 931
+455 510
+457 1000
+458 1000
+459 1000
+460 1000
+461 884
+462 395
+463 1000
+466 390
+0 0
+trophy:
+1 48922 0.200000
+1 48921 0.750000
+1 48912 0.250000
+1 48902 0.200000
+1 48903 0.200000
+1 48905 0.200000
+1 48911 0.200000
+1 48913 0.250000
+1 48919 0.850000
+1 48917 0.450000
+1 48918 0.750000
+1 48906 0.200000
+1 48909 0.450000
+1 48908 0.200000
+1 48806 0.200000
+1 48803 0.200000
+1 48805 0.200000
+1 48812 0.200000
+1 48810 0.400000
+1 48802 0.400000
+1 48807 0.200000
+0 0 0
+tells:
+1732580737 @WShazz@W tells you, 'Take good care of that.@W'@0
+1732581125 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1732582194 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1732584356 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1732601711 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1732610589 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1732663861 @WShazz@W tells you, 'Take good care of that.@W'@0
+1732700761 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732702284 @WShazz@W tells you, 'Take good care of that.@W'@0
+1732867676 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1733120547 Derrgon gossips, 'awesome to see'
+1733120671 Derrgon gossips, 'question: freezing wind - it says enemies of the caster...is that all mobs in the room or just the ones im currently fighting?'
+1733120683 Suraya gossips, 'I don't remember'
+1733120692 Suraya gossips, 'probably everything in the room'
+1733120759 Derrgon gossips, 'ok, i got ice storm coming up next and that seems to be the same, just wondering if it will make me aggro whole room. guess i have to try it.'
+1733120799 Suraya gossips, 'that one I know will aggro the whole room'
+1733120812 Derrgon gossips, 'ok, haha'
+1733121053 Derrgon gossips, 'grats again'
+1733121058 Suraya gossips, 'Thank you'
+1733125125 Someone gossips, 'Welcome Morrissey'
+1733301041 The Lord of the Realm shouts, 'It has been long since I have taken this form! Beware--this time I will be the victorious one!'
+$
+effects:
+34 1 0 0 4096 0 0
+108 2 0 0 0 32768 0
+0 0 0 0 0
+aliases:
+ga get all
+gac get all corpse
+gat get all 2.corpse
+0

@@ -1,0 +1,104 @@
+name: Nidoz
+password: NibAFAlY2g
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 6
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19458
+birthtime: 1563299276
+timeplayed: 139352
+lastlogintime: 1703814991
+host: 104.228.087.146
+height: 50
+weight: 180
+base_height: 50
+base_weight: 180
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: k w 0
+prefflags: ahnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 111/111
+mana: 16/16
+move: 121/122
+damroll: 4
+hitroll: 5
+strength: 80
+intelligence: 92
+wisdom: 94
+dexterity: 79
+constitution: 73
+charisma: 58
+cash: 0 265 1534 1344
+experience: 530299
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+131 1000
+206 1000
+415 50
+416 50
+423 180
+424 180
+438 50
+443 50
+444 50
+451 57
+457 180
+458 74
+459 50
+460 50
+462 50
+463 60
+466 50
+0 0
+trophy:
+1 16107 2.500000
+1 3505 0.500000
+1 61509 0.500000
+1 61508 0.500000
+1 61510 1.000000
+1 61512 1.000000
+1 61519 0.500000
+1 61526 1.000000
+1 61504 0.500000
+1 61502 1.000000
+1 61501 1.000000
+1 61525 2.500000
+1 61500 2.000000
+1 61503 1.500000
+1 17204 3.500000
+1 17202 0.500000
+1 36300 1.000000
+1 36303 3.500000
+1 36305 2.500000
+1 8610 1.000000
+1 8609 0.500000
+0 0 0
+tells:
+$
+gossips:
+$

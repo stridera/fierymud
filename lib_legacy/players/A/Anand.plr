@@ -1,0 +1,96 @@
+name: Anand
+password: AnhA9kU7sp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19719
+birthtime: 1601525013
+timeplayed: 3710
+lastlogintime: 1601528724
+host: 068.098.010.236
+height: 61
+weight: 141
+base_height: 61
+base_weight: 141
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+loadroom: 3503
+lastlevel: 0
+hitpoints: 22/22
+mana: 0/0
+move: 94/100
+damroll: 3
+hitroll: 3
+strength: 76
+intelligence: 94
+wisdom: 93
+dexterity: 72
+constitution: 72
+charisma: 57
+cash: 0 1 11 17
+experience: 4750
+quit_reason: 7
+saveroom: 3503
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 52
+438 50
+443 50
+444 50
+451 51
+457 52
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+trophy:
+1 16909 0.333333
+1 16906 0.666667
+1 16902 0.333333
+1 16908 0.666667
+1 16901 0.666667
+1 16900 0.333333
+1 16905 0.666667
+0 0 0
+tells:
+$
+gossips:
+1601525072 Chinok gossips, 'welcome Anand'
+1601525264 Chinok gossips, 'let me know if you have any questions.'
+1601525319 Chinok gossips, 'welcome back Buan'
+1601525330 Buan gossips, 'Hiya!'
+1601525452 Buan gossips, 'anand is my sister ;)'
+1601525483 Chinok gossips, 'I figured that out :)'
+$
+mem:
+16 0 9
+0 0 0
+aliases:
+kk assist buan
+a scan
+0

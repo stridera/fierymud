@@ -1,0 +1,85 @@
+name: Corsa
+password: CojnFoNkW6
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20311
+birthtime: 1659325031
+timeplayed: 22081
+lastlogintime: 1659734909
+host: 174.081.235.132
+height: 48
+weight: 196
+base_height: 48
+base_weight: 196
+base_size: 2
+natural_size: 2
+alignment: 986
+playerflags: y
+effectflags: k w q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+aggression: 10
+loadroom: 3001
+lastlevel: 0
+hitpoints: 60/57
+mana: 1/0
+move: 136/136
+damroll: 4
+hitroll: 5
+strength: 88
+intelligence: 73
+wisdom: 76
+dexterity: 90
+constitution: 82
+charisma: 68
+experience: 30253
+quit_reason: 3
+saveroom: 0
+skills:
+402 60
+404 83
+415 50
+416 50
+421 80
+438 50
+443 50
+444 50
+463 50
+464 56
+465 52
+466 50
+467 50
+468 50
+0 0
+tells:
+1659331140 @WDaedela@W tells you, 'it's just east of Town Center, behind the weapon shop@W'@0
+1659331511 @WDaedela@W tells you, 'west@W'@0
+1659331546 @WDaedela@W tells you, 'that's the east side :)@W'@0
+1659331579 @WDaedela@W tells you, 'good, head out the west gate@W'@0
+1659331621 @WDaedela@W tells you, 'west from West Main Street@W'@0
+1659333412 @WDaedela@W tells you, 'I haven't seen you go out the west gate of town yet@W'@0
+1659333433 @WDaedela@W tells you, 'what do you mean?@W'@0
+1659333451 @WDaedela@W tells you, 'the west gate...?@W'@0
+1659333791 @WSomeone@W tells you, 'you're in the best place.  The stuff should be quick to kill and get you xp pretty quickly@W'@0
+1659333836 @WSomeone@W tells you, 'though the haunted house is pretty good too@W'@0
+$
+gossips:
+1659329793 Daedela gossips, 'are you still needing to level?'
+1659331222 Daedela gossips, 'congratulations!!!'
+1659331225 Kaylara gossips, 'well done!'
+1659332384 Someone gossips, 'congrats!!'
+1659332389 Someone gossips, 'look at you go!'
+1659334441 Daedela gossips, 'oh my, I see you got all the way to the Abbey'
+1659334446 Gir gossips, 'ooo, ouch'
+1659392922 Strider gossips, 'Hi'
+1659393061 Strider gossips, 'Your corpse is straight west from the gate'
+1659393880 Strider gossips, 'wb'
+$

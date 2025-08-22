@@ -1,0 +1,40 @@
+65 1 2
+scorpion 1
+lever 1
+32797 255 1
+subclass_name paladin
+17 1 10
+5511_trophies 2
+5513_trophies 3
+5509_trophies 5
+5515_trophies 1
+5505_trophies 3
+5503_trophies 12
+5507_trophies 13
+eg_ally 1
+eg_faction 51
+bl_faction -1
+59 2 2
+target1 0
+hunt running
+70 1 1
+hunt running
+72 3 2
+target1 0
+bounty 0
+58 1 1
+armor_vnum 0
+7 1 13
+55581 2
+55585_gems_acquired 3
+55589_gems_acquired 3
+55581_gems_acquired 3
+55573_gems_acquired 3
+55593_gems_acquired 3
+55312_armor_acquired 1
+55569_gems_acquired 3
+55316_armor_acquired 1
+55300_armor_acquired 1
+55304_armor_acquired 1
+55324_armor_acquired 1
+55320_armor_acquired 1

@@ -1,0 +1,1685 @@
+#41001
+The Foot of the Mound~
+   Small chunks of debris have been piled high to form an earthen mound.  It
+angles steeply upward from here but looks climbable.  You spy a set of circular
+tracks leading upwards along a narrow ledge and a thick forest path to the      
+north.
+~
+410 0 4
+D0
+~
+~
+0 -1 8300
+D2
+A break in the forest is concealed behind a mat of woven brush.
+~
+~
+0 -1 41092
+D4
+The path runs straight up the slope with inhuman precision.
+~
+~
+0 -1 41002
+E
+track tracks~
+The tracks are perfectly circular with a deep depression in the center 
+of each.
+~
+E
+path trail~
+The path has no switchbacks.
+~
+E
+debris chunks~
+Each hunk of dirt is approximately the size of your fist. They are slightly
+molded into hourglass figures.
+~
+S
+#41002
+The Side of the Mound~
+   A sudden shower of loose debris narrowly misses your head.  Most of the
+rubble has been packed hard by the passage of many feet.  But what kind of feet
+would leave perfectly circular tracks?  The path runs up and down the mount in
+an inhumanly precise line.    
+~
+410 4 4
+D4
+The top of the mound is just visible.
+~
+~
+0 -1 41003
+D5
+The foot of the mound lies just below.
+~
+~
+0 -1 41001
+E
+track tracks~
+The tracks are perfectly circular with a deeper depression in the center
+of each.
+~
+E
+path trail~
+The path runs straight up and down the steep side of the mound with no 
+switchbacks. 
+~
+S
+#41003
+The Top of the Mound~
+   The barren earth is still loose and shifting.  Much of it looks freshly dug.
+Only the well-trodden path you are on has been packed down.  A small pit yawns
+open to your south.  The narrow path leads down.    
+~
+410 4 2
+D2
+An insectoid creature stands guard in front of the pit.
+~
+~
+0 -1 41004
+D5
+A path of firmly packed bits of debris leads down at a very steep angle.
+It looks more suited to mountain goats than to humans.
+~
+~
+0 -1 41002
+S
+#41004
+A Small Pit~
+   A subtle, lemony scent sweeps up from the dark depths of this crater.  The
+air is warm and laden with moisture like a breath from a citrus sauna.  A
+narrow path runs north across the top of the mound.    
+~
+410 8 12
+D0
+The path plunges down the exterior of the mound.
+~
+~
+0 -1 41003
+D5
+The dark maw of the pit waits to swallow you into its depths.
+~
+~
+0 -1 41005
+E
+small-pit pit crater~
+The perfectly circular hole descends through a narrow tunnel into darkness.
+~
+S
+#41005
+A Paper-lined Tunnel~
+   The narrow tunnel has been lined with plant fibers chewed and mixed with an
+unknown substance until it resembles lumpy paper.  It's a wonderful mixture
+because even in this heated moisture, it feels dry and is not disintegrating.
+The entrance to the mound lies just up while the paper lining continues down.
+~
+410 12 12
+D4
+Open sky is just visible through the narrow, pit-like entrance to the Hive.
+~
+~
+0 -1 41004
+D5
+The papery lining continues down the tunnel as far as you can see.
+~
+~
+0 -1 41006
+E
+paper-lining paper lining~
+Very rough to the touch, it is amazingly tough. Your sweaty palms are
+thoroughly dry after just a brief contact. It seems to absorb the moisture
+from the surrounding air and dissipate it into the soil, keeping the
+humidity level well-regulated.
+~
+S
+#41006
+A Paper-lined Tunnel~
+   Paper-like lumps form a rough surface, making walking difficult.  The
+elusive lemon scent of the Hive seems stronger at this level.  The paper lined
+tunnel continues up and west.    
+~
+410 8 12
+D3
+The tunnel flattens out briefly before plunging downwards again.
+~
+~
+0 -1 41007
+D4
+A tiny glimpse of the outside world is barely visible a ways up the tunnel.
+~
+~
+0 -1 41005
+E
+paper-lining paper lining~
+Very rough to the touch, it is amazingly tough. Your sweaty palms are
+thoroughly dry after just a brief contact. It seems to absorb the moisture
+from the surrounding air and dissipate it into the soil, keeping the
+humidity level well-regulated.
+~
+S
+#41007
+A Paper-lined Tunnel~
+   Hivers with paper lumps attached to their feet march past you in a solemn
+line.  Their sticky feet pull up tiny lumps of lining from the tunnel floor.  
+The gooey trail enters a chamber to your south.  You can follow the intact
+coating down into a larger room or east towards the surface.    
+~
+410 8 12
+D1
+The tunnel makes an abrupt rise just ahead.
+~
+~
+0 -1 41006
+D2
+Waxy packages of fluid cover the walls in the chamber just ahead.
+~
+~
+0 -1 41008
+D5
+Four tunnels lead from the central hub just below.
+~
+~
+0 -1 41012
+E
+hiver hivers~
+The line of Workers marches past you without a single glance. They move
+together in perfect coordination as though they share a single thought.
+Each is fully aware of the job the Hive needs her to perform and you
+just aren't on the list.
+~
+E
+trail gooey~
+A clear amber fluid drips slowly from their feet, forming a small trail.
+A few of the Workers stop briefly to clean a bit of it up, but it's a 
+futile effort. Each one leaves a little more in passing.
+~
+E
+paper-lining paper lining coating~
+The tough coat of the tunnel has been damaged by the sticky fluid. Bits
+and pieces have been lifted and carried away. It will take the workers
+some real effort to repair the damage here.
+~
+S
+#41008
+A Sticky Room~
+   A hard waxy coat covers the floor of this chamber.  Wax packages of some
+substance are attached to the walls.  The floor is sticky in spite of the wax
+coating.  You notice a distinct drop in the heat and humidity in this room.  
+The Hivers must have a good grasp of the fundamentals of heat regulation!  The
+chamber continues to the east and south or you can re-enter the tunnel to the
+north.    
+~
+410 8 12
+D0
+A narrow tunnel passes by just outside of this large chamber.
+~
+~
+0 -1 41007
+D1
+More packages line the walls ahead.
+~
+~
+0 -1 41009
+D2
+More packages line the walls ahead.
+~
+~
+0 -1 41011
+E
+wax floor coat hard waxy~
+A yellowish wax has been liberally applied to all surfaces of the chamber.
+The seal helps give this area it's own environment, distinct from the
+rest of the Hive. A light, cinnamony odor assaults your nostrils from
+the southeast.
+~
+E
+packages package~
+Spherical containers of wax are filled with a clear, amber colored fluid
+and stuck into the wax seal of the chamber for storage. The containers
+look like they've been melted into place to ensure their safety.
+It's quite a food store!
+~
+S
+#41009
+A Sticky Room~
+   A hard, waxy coat covers the floor of this chamber.  Wax packages of some
+substance are attached to the walls.  The floor is sticky in spite of the wax
+coating.  It appears that some of the Workers have been a bit sloppy about
+filling the containers!    
+~
+410 8 12
+D2
+Large cracks are visible in the sealing wax to the south.
+~
+~
+0 -1 41010
+D3
+The exit from this gooey room is just ahead.
+~
+~
+0 -1 41008
+E
+wax floor coat hard waxy~
+A yellowish wax has been liberally applied to all surfaces of the chamber.
+The seal helps give this area it's own environment, distinct from the
+rest of the Hive. A light, cinnamony odor assaults your nostrils from
+the south.
+~
+E
+packages package~
+Spherical containers of wax are filled with a clear, amber colored fluid   
+and stuck into the wax seal of the chamber for storage. The containers
+look like they've been melted into place to ensure their safety.
+It's quite a food store!
+~
+S
+#41010
+A Sticky Room~
+   A disturbance in the earth mound has opened thick cracks in the wax lining
+of the wall.  A sweet, sticky substance is leaking steadily out of several of
+the packages.  The mixture of earth and fluid is sending out a very strong odor
+similar to cinnamon.    
+~
+410 8 12
+D0
+More wax containers line the wall.
+~
+~
+0 -1 41009
+D3
+More wax containers line the wall.
+~
+~
+0 -1 41011
+E
+packages package~
+Spherical containers of wax are filled with a clear, amber colored fluid   
+and stuck into the wax seal of the chamber for storage. The containers
+look like they've been melted into place to ensure their safety.
+It's quite a food store!
+~
+E
+wax floor coat hard waxy~
+The natural settling of the earth mound has opened several deep pressure
+cracks in the wax sealing here. Many of the food storage packages have
+been broken open. One has been displaced and lies on the floor.
+~
+S
+#41011
+A Sticky Room~
+   A hard waxy coat covers the floor of this chamber.  Wax packages of some
+substance are attached to the walls.  A lone Worker approaches one of the
+packages, clamps its jaws tightly to its side, and regurgitates a clear fluid.
+It gives you a quizzical look as it finishes and scuttles away.    
+~
+410 8 12
+D0
+The wax packages cover the walls ahead.
+~
+~
+0 -1 41008
+D1
+Wax packages line the walls ahead of you.
+~
+~
+0 -1 41010
+E
+packages package~
+Spherical containers of wax are filled with a clear, amber colored fluid   
+and stuck into the wax seal of the chamber for storage. The containers
+look like they've been melted into place to ensure their safety.
+It's quite a food store!
+~
+E
+wax floor coat hard waxy~
+A yellowish wax has been liberally applied to all surfaces of the chamber.
+The seal helps give this area it's own environment, distinct from the
+rest of the Hive. A light, cinnamony odor assaults your nostrils from
+the east.
+~
+S
+#41012
+A Paper-lined Chamber~
+   Tunnels radiate in five directions from this chamber.  The lumpy paper
+coating runs uphill, while four tunnels of different colors extend to the
+north, the east, the south, and the west.  You're beginning to get a headache
+from the overpowering lemon scent.    
+~
+410 8 12
+D0
+Yellow gems surround the entrance arch of the tunnel.
+~
+~
+0 -1 41016
+D1
+Red gems surround the entrance arch of the tunnel.
+~
+~
+0 -1 41013
+D2
+Blue gems surround the entrance arch of the tunnel.
+~
+~
+0 -1 41031
+D3
+Green gems surround the entrance arch of the tunnel.
+~
+~
+0 -1 41022
+D4
+The paper-lined tunnel slopes upward toward the surface.
+~
+~
+0 -1 41007
+D5
+You see a hidden plug set in the floor.
+~
+plug~
+1 -1 41043
+E
+gem gems~
+The gems pulse faintly with colored light... After a second glance,
+you realize that you've been deceived. They aren't gems. They're
+Hiver eyes, plucked from their owners and mounted like trophies in
+the wall.
+~
+S
+#41013
+A Red Tunnel~
+   Large red flakes of chitin have been mixed with the plant fibers to give
+this tunnel section its coloration.  The coating looks very fresh and hasn't
+hardened completely.  The tunnel continues east or you can return to the paper
+lined chamber to the west.    
+~
+410 8 12
+D1
+The red tunnel goes a short distance east, then switches south around a bend.
+~
+~
+0 -1 41014
+D3
+The large, paper-lined chamber lies just ahead.
+~
+~
+0 -1 41012
+E
+flakes lining tunnel~
+Flakes of chitin as large as your head dot the walls and floor of the 
+tunnel. Their crimson hue gives you an eerie feeling as they crumble
+between your fingers like dried cakes of blood.
+~
+S
+#41014
+A Bend in the Red Tunnel~
+   The freshly applied red coating is very rough.  You can still see tiny gaps
+where the bare earth peeks through this imperfect job.  This must be a very new
+section of the Hive.  The tunnel continues west or you can enter a chamber to
+the south.    
+~
+410 8 12
+D2
+An indistinct beat echoes from the chamber. 
+~
+~
+0 -1 41015
+D3
+The new, red tunnel leads you back to the center of the Hive.
+~
+~
+0 -1 41013
+S
+#41015
+Red's Chambers~
+   This small chamber is still being expanded.  Only a newly emergent queen
+would find the cramped quarters accomodating.  A vague, intermittent pulse
+echoes through your bones.  The west wall shows signs of recent digging.  The
+coating on the south wall looks extra thick.    
+~
+410 8 12
+D0
+A narrow tunnel leads from this chamber.
+~
+~
+0 -1 41014
+S
+#41016
+A Yellow Tunnel~
+   Yellow flakes of chitin have been mulched together with plant fibers to line
+this tunnel section.  Whatever it is mixed with has given it a rock hard
+consistency.  The tunnel continues north or you can re-enter the paper-lined
+chamber to the south.    
+~
+410 8 12
+D0
+The tunnel breaks into a T-intersection just ahead.
+~
+~
+0 -1 41017
+D2
+The large, paper-lined hub is just ahead. You feel a shiver run 
+down your spine at the sight of the blue gems pulsing at you on
+the other side of the chamber. Their pulsations are speeding up...
+~
+~
+0 -1 41012
+S
+#41017
+A Yellow Intersection~
+   The feet of the Hivers make faint scritching sounds as they move through the
+surrounding tunnels.  The noise seems to be louder down the eastern tunnel.  A
+rough chamber lies west.    
+~
+410 8 12
+D1
+The frantic sounds of many Workers speeding about on some chore is
+concentrated in this direction.
+~
+~
+0 -1 41019
+D2
+The yellow tunnel leads back to the paper-lined chamber. You can just
+see the glow of the tunnel-markers that line each arch.
+~
+~
+0 -1 41016
+D3
+The damp smell of freshly turned and watered earth is a welcome change
+from the ever-present citrus scent of the Hivers.
+~
+~
+0 -1 41018
+S
+#41018
+An Unfinished Chamber~
+   Bare earth greets your eye as you enter the chamber.  This room is so new
+that the Hivers have not had the chance to line it as yet.  The rich scent of
+freshly-turned earth tickles your nose.  It's considerably cooler in this
+incomplete room.  No temperature regulating modifications have been installed
+yet.  The Hivers must find this room unbearably cold.  You can re-enter the
+completed yellow section to the east.    
+~
+410 8 12
+D1
+A completed tunnel section runs east for some distance.
+~
+~
+0 -1 41017
+S
+#41019
+A Yellow Tunnel~
+   The mulch lining this east-west tunnel is rock hard.  The sound of many
+workers chittering comes from the east.  A T-intersection lies to the west.  
+~
+410 8 12
+D1
+A bend in the tunnel will lead you toward the south. 
+~
+~
+0 -1 41020
+D3
+A fresh, earth scented breath of air strokes your face.
+~
+~
+0 -1 41017
+E
+mulch lining~
+Chewed plant fibers, flakes of yellow chitin, and some sort of adhesive
+have been mixed to perfection, laid down, and allowed to harden. The
+surface is very rough to the touch. A few crags stick out and grab at
+your clothing as you pass down the tunnel.
+~
+S
+#41020
+A Bend in the Yellow Tunnel~
+   Workers have made an effort to smooth the fibrous lumps from this tunnel,
+but the floor is still uneven.  The commotion of many busy Workers emanates
+from a chamber to the south or you can continue down the tunnel to the west.  
+~
+410 8 12
+D2
+Bodies flash past the entrance as several Workers scurry through the
+chamber on some indiscernible task.
+~
+~
+0 -1 41021
+D3
+The rough tunnel continues toward an intersection.
+~
+~
+0 -1 41019
+S
+#41021
+Yellow's Chambers~
+   Excavations continue to expand this immature queen's chamber to the west.  
+Small, yellow gems are being implanted in the other walls and a contoured earth
+mound is being built up in the center.  It will make a very restful spot for
+the young Queen to recline upon.  Several Workers stand near the wall, spitting
+something at it.    
+~
+410 8 12
+D0
+I'm sure it's much quieter in the tunnel you see.
+~
+~
+0 -1 41020
+E
+spit spitting spittle~
+Well, now you know how the Hivers line their tunnels. The Workers scoop
+a mouthful of plant fiber from a nearby pile, add a scoop from a pile
+of cast-off chitin from the queen, and chew. Their own saliva is the 
+unknown adhesive that binds it all together. When the mix has just the 
+right consistency, they spit it at the wall and pack it down with four
+of their eight legs. 
+~
+S
+#41022
+A Green Tunnel~
+   Reflective green flakes of chitin color the walls of this east-west tunnel.
+Scratches in the hard floor tell the tale of much recent traffic.    
+~
+410 8 12
+D1
+The paper-lined chamber lies just ahead.
+~
+~
+0 -1 41012
+D3
+A deep set of scratches leads west toward an intersection.
+~
+~
+0 -1 41023
+E
+scratch scratches~
+The marks are very fresh. No worker has had the chance to begin repairs.
+~
+S
+#41023
+A Green Intersection~
+   Workers have begun repair work on a damaged section of the floor.  The green
+territory continues to the north, the south, and the east.    
+~
+410 8 12
+D0
+A very soft suss suss suss whisper wanders furtively down the tunnel.
+~
+~
+0 -1 41027
+D1
+This short section of tunnel will lead you back to the paper-lined
+center of the Hive.
+~
+~
+0 -1 41022
+D2
+The tunnel runs into an bend some distance ahead. The deep scratches
+in the flooring lead in this direction.
+~
+~
+0 -1 41024
+E
+scratch scratches flooring gouge gouges~
+Narrow but incredibly deep gouges have been sliced out of the walls and
+floor here. It almost looks like someone took a sword and hacked 
+randomly. Or... maybe blows were deflected in some mighty battle...
+~
+S
+#41024
+A Green Tunnel~
+   Deep gouges mar the surface of the tunnel floor as though some large
+creature dug in as it was pushed south against its will.  The tunnel continues
+north to an intersection or south to a corner.    
+~
+410 8 12
+D0
+A T-intersection is just ahead.
+~
+~
+0 -1 41023
+D2
+The deep gouges in the floor continue south.
+~
+~
+0 -1 41025
+E
+depression depressions deep~
+The blades penetrated through the entire layer of lining to the bare earth
+underlying the tunnel.
+~
+E
+scratch scratches gouge gouges floor~
+A thin, incredibly sharp blade has scooped out a deep depression. Actually,
+eight depressions run in a nearly straight line to the south. 
+~
+S
+#41025
+A Bend in the Green Tunnel~
+   Green's tunnel is much darker here, deepening to blue.  Smashed light gems
+cover the floor.  It looks like they fell from the south wall.  More scratches
+deface this chamber.  You can re-enter the tunnels to the north or enter a
+small chamber to the west.    
+~
+410 8 12
+D0
+You shiver slightly as the thought crosses your mind -- you would feel 
+much safer up the tunnel, away from this destruction.
+~
+~
+0 -1 41024
+D3
+A musky odor roils from the darkness of this unseen chamber.
+~
+~
+0 -1 41026
+E
+patch plug plug-like opening~
+This plug once served as a door to let something through, but the new
+patch holds it securely shut. None of your efforts can open it.
+~
+E
+scratches scratch gouge gouges~
+The deep lines seem to pass into the south wall.
+~
+S
+#41026
+A Drone's Chamber~
+   A sickly sweet odor fills your nostrils as you enter the room.  A large bulk
+lying against the west wall proves to be the body of an exceptionally large
+Hiver.    
+~
+410 8 12
+D1
+The narrow green tunnel looks pretty inviting, compared to this 
+nightmare massacre.
+~
+~
+0 -1 41025
+E
+hiver large drone~
+Something has ripped the legs and budding wings from the immature body of the 
+Drone. The body has been so mangled by the ferocity of the attack that you
+cannot tell what color the young male was in life. Green would probably be
+a good guess, based on the Hivers' tendency to color-code everything.
+~
+S
+#41027
+A Bend in the Green Tunnel~
+   A dark stain disfigures the perfection of the wall.  The suss suss suss is
+still little more than a whisper from the west.  The tunnel continues to the
+west and the south.    
+~
+410 8 12
+D2
+An intersection lies just ahead.
+~
+~
+0 -1 41023
+D3
+The tunnel takes another turn, like a snake wandering through a maze.
+~
+~
+0 -1 41028
+E
+stain dark~
+A fluid foreign to the usual coating mixture has left a permanent spray
+mark. The deep musky odor catches in the back of your throat as your
+eyes begin to water.
+~
+S
+#41028
+A Bend in the Green Tunnel~
+   Small green gems dry in fresh mountings along the ceiling.  The efforts of
+the workers have resulted in a nearly smooth corridor.  The tunnel continues to
+the north and the east.    
+~
+410 8 12
+D0
+A soft green glow comes from a small chamber, possibly the source of
+that odd sussing whisper.
+~
+~
+0 -1 41029
+D1
+Another bend in the tunnel will carry you south.
+~
+~
+0 -1 41027
+E
+gems gem small green~
+On closer examination, you realize that they aren't gems. They're the 
+multi-faceted eyes of Hivers.
+~
+S
+#41029
+An Antechamber~
+   Soft green light escapes the gems lining the walls.  A low barrier dividing
+this room from the chamber east of here is still under construction.    
+~
+410 8 12
+D1
+A narrow entrance has been left to allow passage into a chamber beyond.
+~
+~
+0 -1 41030
+D2
+The bend in the tunnel is softly lit by the glow of the Hivers' 
+light gems.
+~
+~
+0 -1 41028
+E
+barrier low entrance passage~
+The Workers are busily narrowing the entrance to the next chamber,
+leaving just enough open space for their narrow bodies to slide through.
+~
+S
+#41030
+Green's Chambers~
+   A specially contoured earth mound dominates the center of the room.  Green
+gems shine steadily, filling the room with a soothing glow that beats in time
+with the heartbeat of the young Queen who resides here.  A muted sussing comes
+from the Queen herself, falling into the chamber like the sound of a weeping
+maiden.    
+~
+410 8 12
+D3
+A narrow passage leads into the Queen's Antechamber.
+~
+~
+0 -1 41029
+S
+#41031
+A Blue Tunnel~
+   Dark blue flakes gather the meager light and cast it back out in a sparkling
+shimmer.  This passage is remarkable.  For the first time since entering the
+Hive, you find yourself lost in total silence.  Of course, release from the
+intense heat and humidity would be nice, too.  The tunnel continues to the
+north and the south.    
+~
+410 8 12
+D0
+A paper-lined chamber lies just ahead.
+~
+~
+0 -1 41012
+D2
+This passage ends in a T-intersection just ahead.
+~
+~
+0 -1 41032
+S
+#41032
+A Blue Intersection~
+   Blue flakes of chitin sparkle along the walls and ceiling of the passage.  
+They are darker to the north than to the east or west.    
+~
+410 8 12
+D0
+Darker flakes of chitin line the passage back to the paper-lined intersection.
+~
+~
+0 -1 41031
+D1
+Chitin so pale as to be almost white lines the tunnel. A faint glow
+comes around a corner some distance ahead.
+~
+~
+0 -1 41033
+D3
+Chitin so pale as to be almost white lines the tunnel.
+~
+~
+0 -1 41040
+S
+#41033
+A Blue Tunnel~
+   This east-west tunnel has been smoothed to perfection.  You can see your
+reflection in the floor and walls.  It wavers in time with a pulsing beat
+coming from your east.    
+~
+410 8 12
+D1
+A faint glow sneaks around the corner just ahead.
+~
+~
+0 -1 41034
+D3
+The polished blue facing continues west.
+~
+~
+0 -1 41032
+S
+#41034
+A Bend in the Blue Tunnel~
+   The chitin flakes seem to be pulsing faintly in time to some unknown rhythm.
+The passage slips around a corner here, continuing south and west.    
+~
+410 8 12
+D2
+Another bend lies just ahead.
+~
+~
+0 -1 41036
+D3
+The polished perfection of blue steers a straight course.
+~
+~
+0 -1 41033
+S
+#41035
+An unfinished room~
+You are in an unfinished room.
+~
+0 0 12
+S
+#41036
+A Bend in the Blue Tunnel~
+   Pale blue gems gather the meager light and send a barely detectable glow
+along the passage to the north and the west.  The pounding beat continues to
+throb through your body.    
+~
+410 8 12
+D0
+The tunnel twists to the west.
+~
+~
+0 -1 41034
+D3
+The tunnel twists south.
+~
+~
+0 -1 41037
+E
+gems gem small blue~
+On closer examination, you realize that they aren't gems. They're the
+multi-faceted eyes of Hivers.
+~
+S
+#41037
+A Bend in the Blue Tunnel~
+   A pale blue light beams gently down from gems embedded in the walls.  A
+small chamber lies to your south or you can re-enter the tunnel to the east.  
+
+~
+410 8 12
+D1
+The blue tunnel slides around a bend just ahead.
+~
+~
+0 -1 41036
+D2
+A softly lit chamber opens before you.
+~
+~
+0 -1 41038
+E
+gems gem small blue~
+On closer examination, you realize that they aren't gems. They're the
+multi-faceted eyes of Hivers.
+~
+S
+#41038
+An Antechamber~
+   Pale blue light gems pulsate from their wall-settings.  A low barrier has
+been built up to constrict the entrance of the room to your east.  The tunnel
+opens to your north.    
+~
+410 8 12
+D0
+The polished tunnel sweeps through a curve to the east.
+~
+~
+0 -1 41037
+D1
+An intermittent, low-pitched buzzing interrupts the pulsing throb coming
+out of this chamber. It's accompanied by a slight, musk-laden breeze.
+~
+~
+0 -1 41039
+E
+gems gem small blue~
+On closer examination, you realize that they aren't gems. They're the
+multi-faceted eyes of Hivers.
+~
+S
+#41039
+Blue's Chambers~
+   The dimensions of this wide chamber are revealed in the soothing glow of the
+Queen's eyes.  Gems line the chamber, throbbing with her lifeforce.  An open
+patch on the ceiling indicates where she has begun to dig her own passage out.
+She is much too large to fit through the narrow entrance to the west.    
+~
+410 8 12
+D3
+A constricted tunnel leads to Blue's Antechamber.
+~
+~
+0 -1 41038
+S
+#41040
+A Bend in the Blue Tunnel~
+   Hive Workers must have spent weeks smoothing and polishing this passage to
+perfection.  You are distracted from your reflections by a carrion tainted
+breeze that fills the area, causing you to gag.  The tunnel continues to the
+south and the east.    
+~
+410 8 12
+D1
+The polished tunnel leads to an intersection just ahead.
+~
+~
+0 -1 41032
+D2
+The terrible smell seems to be coming from this direction.
+~
+~
+0 -1 41041
+S
+#41041
+An Antechamber~
+   The passage has been slightly widened to form a small antechamber.  It has
+not been very well attended by the Hive workers.  Trash has built up in the
+corners and cast-off flakes lie loose on the floor.  Another small chamber is
+to your west or you can follow the tunnel north.    
+~
+410 8 12
+D0
+It might be safer to go back north into this lovely tunnel.
+~
+~
+0 -1 41040
+D3
+The awful stench seeps from the chamber just ahead! Listening carefully,
+you detect a low chewing sound.
+~
+~
+0 -1 41042
+S
+#41042
+A Drone's Chamber~
+   The dark, malevolent blue light pulsates in time with a chewing sound.  
+Hiver body parts lie strewn about the room.  A few legs rest against the west
+wall and you recognize a wing-case pressed into the floor.  You can exit this
+chamber of cannibalism to the east.    
+~
+410 8 12
+D0
+A concealed line outlines a plug-like door.
+~
+plug line~
+1 -1 41025
+D1
+The air is much fresher in the Antechamber!
+~
+~
+0 -1 41041
+E
+parts body legs wing-case~
+The green coloration has nearly faded from the dismembered pieces.
+~
+E
+line plug concealed~
+The Blue Drone evidently tried to conceal his secret passage. He
+hasn't done a very good job. Of course, tunnelling isn't exactly his
+main purpose in life.
+~
+S
+#41043
+An Opalescent Tunnel~
+   Milky pale gems line the walls of the tunnel.  The air is damp and heavy
+with moisture.  A soft sussing sound slips past your ears from an indeterminate
+direction.  More passages branch to the north, the east, and the west.    
+~
+410 12 12
+D0
+Multi-colored light fleck the walls of the Opalescent Tunnel ahead.
+~
+~
+0 -1 41052
+D1
+Multi-colored light fleck the walls of the Opalescent Tunnel ahead.
+~
+~
+0 -1 41045
+D3
+Multi-colored light fleck the walls of the Opalescent Tunnel ahead.
+~
+~
+0 -1 41049
+D4
+A rough plug of earth opens up like a hatch.
+~
+plug door trapdoor~
+1 -1 41012
+E
+gem gems milky~
+Eyes, plucked from various Hivers, gleam with gem-like facets
+from the walls. Their light waxes and wanes in concert. Even 
+now, these Hivers work together in perfect cooperation.
+~
+S
+#41044
+An unfinished room~
+You are in an unfinished room.
+~
+0 0 12
+S
+#41045
+An Opalescent Tunnel~
+   Faint flecks of light dance through the gems on the walls in time to the
+soft breathy sussurations passing out of the chambers that lie to your north
+and south.    
+~
+410 8 12
+D0
+Sauna-like air sweeps over you relentlessly as it escapes the 
+close confines of the chamber just ahead.
+~
+~
+0 -1 41046
+D2
+Sauna-like air sweeps over you relentlessly as it escapes the
+close confines of the chamber just ahead.
+~
+~
+0 -1 41047
+D3
+Multi-colored light fleck the walls of the Opalescent Tunnel ahead.
+~
+~
+0 -1 41043
+E
+gem gems milky~
+Eyes, plucked from various Hivers, gleam with gem-like facets
+from the walls. Their light waxes and wanes in concert. Even
+now, these Hivers work together in perfect cooperation.
+~
+S
+#41046
+A Nursery~
+   The humidity and heat of this room almost overwhelm you as you enter.  Egg
+sacks rest atop tiers of earth along the sides of the room.  There's not room
+for many more.  Grub-like Hiver larvae swarm over food in a small pit.  You can
+find relief from the steam by exiting south.    
+~
+410 8 12
+D2
+A convection current sweeps cooler air into the nursery from the 
+Opalescent Tunnels. You bask in the relief from the sauna-like
+atmosphere and wish you had a few less clothes on. 
+~
+~
+0 -1 41045
+E
+egg eggs egg-sacks sacks~
+They feel warm to the touch and shift beneath your hand as though
+the unborn larvae can sense your presence.
+~
+E
+larvae larva swarm~
+Newly hatched and still wet from the egg-casing, these larvae are ravenous.
+~
+S
+#41047
+A Nursery~
+   Huge chrysali are suspended from the ceiling by narrow strands of chitin.  
+They dwarf the Hiver Nurses tending to them.  Several of the hardened
+metamorphosis cases swing about on their anchors as though the young are
+impatient to emerge into adulthood.    
+~
+410 8 12
+D0
+A convection current sweeps cooler air into the nursery from the
+Opalescent Tunnels. You bask in the relief from the sauna-like
+atmosphere and wish you were wearing fewer clothes.
+~
+~
+0 -1 41045
+E
+chrysali chrysalis cases~
+The pearly chrysali are warm to the touch.
+~
+S
+#41048
+An unfinished room~
+You are in an unfinished room.
+~
+0 0 12
+S
+#41049
+An Opalescent Tunnel~
+   Faint flecks of light dance through the gems on the walls in time to the
+soft breathy sussurations passing out of the chambers that lie to your north
+and south.    
+~
+410 8 12
+D0
+Sauna-like air sweeps over you relentlessly as it escapes the
+close confines of the chamber just ahead.
+~
+~
+0 -1 41050
+D1
+Multi-colored light fleck the walls of the Opalescent Tunnel ahead.
+~
+~
+0 -1 41043
+D2
+Sauna-like air sweeps over you relentlessly as it escapes the
+close confines of the chamber just ahead.
+~
+~
+0 -1 41051
+E
+gem gems milky~
+Eyes, plucked from various Hivers, gleam with gem-like facets
+from the walls. Their light waxes and wanes in concert. Even
+now, these Hivers work together in perfect cooperation.
+~
+S
+#41050
+A Nursery~
+   The room is a mess, filled with the discarded chrysali of newly emerged
+Hivers.  A few unsuccessful pupae still hang from the ceiling.  One glance at
+the sheer number of empty chrysali makes you wonder where all these young
+Hivers have gone.    
+~
+410 8 12
+D2
+A convection current sweeps cooler air into the nursery from the
+Opalescent Tunnels. You bask in the relief from the sauna-like
+atmosphere and wish you had were wearing fewer clothes.
+~
+~
+0 -1 41049
+E
+chrysali chrysalis~
+The discarded chrysali are a vibrant blue-green in color, reminding you of
+the color of the sky on the clearest winter mornings. Their split sides
+reveal their construction of overlapping fibers.
+~
+E
+pupae pupa~
+The hapless offspring remain suspended... their birth-shells transformed
+by fate into their coffins.
+~
+S
+#41051
+A Royal Nursery~
+   Two unusually large egg cases lie in state on an earthen shelf in this muggy
+room.  A single chrysalis hangs from the ceiling in one corner.  This is
+quite an exclusive nursery.    
+~
+410 8 12
+D0
+~
+~
+0 -1 41049
+D5
+Several fresh scratches reveal the location of a plug-like trapdoor.
+~
+plug~
+1 -1 41054
+E
+egg-cases egg-case egg eggs~
+All the colors of the rainbow ripple across the surface of the cases in 
+quick succession as the unborn larvae squirm and twist, locked in the 
+dreams of the restless.
+~
+E
+chrysalis~
+The pearly chrysalis is vaguely tinted with red. It is warm to the touch
+and throbs softly beneath your fingers, pulsating with the beat of the Hive.
+~
+S
+#41052
+An Opalescent Tunnel~
+   Faint flecks of light dance through the gems on the walls.  A breath of
+sultry air from the chamber to your north caresses your face.    
+~
+410 8 12
+D0
+Warm air blows from the darkness ahead of you.
+~
+~
+0 -1 41053
+D2
+Multi-colored light fleck the walls of the Opalescent Tunnel ahead.
+~
+~
+0 -1 41043
+E
+gem gems milky~
+Eyes, plucked from various Hivers, gleam with gem-like facets
+from the walls. Their light waxes and wanes in concert. Even
+now, these Hivers work together in perfect cooperation.
+~
+S
+#41053
+An Unfinished Nursery~
+   If the rest of the Hive is any indication, no Hiver would ever consider this
+room ready for occupation.  Rough walls and mounds of unmolded dirt mark this
+room as incomplete.    
+~
+410 8 12
+D2
+The multi-colored flecks of the Opalescent Tunnel twinkle invitingly.
+~
+~
+0 -1 41052
+S
+#41054
+A Prismatic Tunnel~
+   The Hivers have taken special care to smooth this tunnel to perfection.  
+You cannot detect any bumps or flaws in its construction.  Clear white gems
+throw cascades of red, yellow, green, and blue around the room.    
+~
+410 8 12
+D2
+Whispers echo through the chamber to your south, then die out on a
+breath of stale air.
+~
+~
+0 -1 41055
+D4
+A rough plug of earth can be opened like a hatch.
+~
+plug rough hatch earth~
+1 -1 41051
+S
+#41055
+The Faded Hall~
+   Dull gray crystals absorb what little light reaches the wall.  Dry, dusty
+air clogs your nostrils as you move through the room.  Bare earth is visible
+through large cracks in the plant fiber coating.    
+~
+410 8 12
+D0
+Brilliant prisms of light  shower through the hall ahead.
+~
+~
+0 -1 41054
+D1
+A dark bulk lies next to a smaller one in the corner ahead.
+~
+~
+0 -1 41057
+D2
+Only the rustle of your movements disturbs the stale air in this
+faded hall to your south.
+~
+~
+0 -1 41058
+S
+#41056
+An unfinished room~
+You are in an unfinished room.
+~
+0 0 12
+S
+#41057
+The Chamber of the Dead~
+   The immense bulk of a Hiver Queen's colorless corpse overshadows your
+insignificant presence.  The dried husk gazes at you through darkened lenses.
+One antenna waves slowly back and forth with the movement of the dusty air in
+the chamber.  The lesser corpse of her Attendant lies at her side.    
+~
+410 8 12
+D2
+No breath of air disturbs the sleep of the dead here or to the south.
+~
+~
+0 -1 41060
+D3
+No breath of air disturbs the sleep of the dead here or to the west.
+~
+~
+0 -1 41055
+E
+lesser~
+The Attendant's body has been violently dismembered. It looks like she died
+in a valiant effort to protect her Queen.
+~
+E
+husk dead dried~
+Scratches and holes cover the Queen's once magnificent chitin. Stains mark
+trails where the blood flowed from her body in her final death throes. Her
+mandibles are locked as though still biting at her attacker.
+~
+S
+#41058
+The Faded Hall~
+   Dull gray crystals absorb what little light reaches the wall.  Dry, dusty
+air clogs your nostrils as you move through the room.  Bare earth is visible
+through large cracks in the plant fiber coating.    
+~
+410 8 12
+D0
+Even whispers fall dead in the still air filling the chamber in all
+directions.
+~
+~
+0 -1 41055
+D1
+Shush! You wish you could move in total silence through this chamber. Every
+slight sound seems a sacrilege. The quiet sense of reverence extends to 
+the east...
+~
+~
+0 -1 41060
+S
+#41059
+An unfinished room~
+You are in an unfinished room.
+~
+0 0 12
+S
+#41060
+The Faded Hall~
+   Dull gray crystals absorb what little light reaches the wall.  Dry, dusty
+air clogs your nostrils as you move through the room.  Bare earth is visible
+through large cracks in the plant fiber coating.    
+~
+410 8 12
+D0
+A quiet bulk lies in the corner to your north.
+~
+~
+0 -1 41057
+D2
+Brilliant prisms of light shower the tunnel with rainbows.
+~
+~
+0 -1 41061
+D3
+Not even echoes penetrate the faded gloom ahead.
+~
+~
+0 -1 41058
+S
+#41061
+A Prismatic Tunnel~
+   The Hivers have taken special care to smooth this tunnel to perfection.  
+You cannot detect any bumps or flaws in its construction.  Clear white gems
+throw cascades of red, yellow, green, and blue around the room.    
+~
+410 8 12
+D0
+All sounds seem to be absorbed into quiet reverence in the large hall ahead.
+~
+~
+0 -1 41060
+D4
+A rough plug of earth can be opened like a hatch.
+~
+plug rough hatch earth~
+1 -1 41062
+S
+#41062
+A Prismatic Tunnel~
+   One pure shaft of red reflections concentrates on the south wall.  A plug in
+the floor secures this chamber from intruders from below.    
+~
+410 8 12
+D2
+The shaft of red light highlights a narrow opening just the right size
+for a Hiver leg spur.
+~
+shaft red light~
+1 41001 41063
+D5
+A rough plug of earth can open like a hatch.
+~
+plug earth rough down~
+1 -1 41061
+S
+#41063
+A Prismatic Tunnel~
+   Sparkling triangles of crystal-clear chitin radiate a rainbow of colors.  
+One pure yellow figure glows brightly on the east wall.    
+~
+410 8 12
+D0
+A red crystal plug blocks your passage.
+~
+plug north red shaft crystal~
+1 41001 41062
+D1
+One glowing yellow triangle is pierced by a narrow opening just the right
+size for a Hiver leg spur.
+~
+triangle figure yellow~
+1 41002 41064
+S
+#41064
+A Prismatic Tunnel~
+   Sparkling triangles of crystal-clear chitin radiate a rainbow of colors.  A
+bright green starburst highlights the south wall.    
+~
+410 8 12
+D2
+A brilliant green starburst shimmers above a narrow opening just the right
+size for a Hiver leg spur.
+~
+starburst green~
+1 41003 41065
+D3
+A yellow crystal plug blocks your passage.
+~
+plug triangle figure yellow west crystal~
+1 41002 41063
+S
+#41065
+A Prismatic Tunnel~
+   Rainbow hued motes of light twinkle like stars all around you.  A dusting of
+pale blue glimmers on the south wall.    
+~
+410 8 12
+D0
+A green crystal plug blocks your passage.
+~
+plug starburst green north crystal~
+1 41003 41064
+D2
+A dusting of blue sparks wink above a narrow opening just the right size
+for a Hiver leg spur. 
+~
+dusting blue sparks spark~
+1 41004 41066
+S
+#41066
+An Antechamber~
+   A subdued pulse vibrates through the chamber like the echo of blood running
+through your veins.  A huge, multi-faceted gem dominates the south wall.    
+~
+410 8 12
+D0
+A blue crystal plug blocks your passage.
+~
+plug blue dusting crystal north~
+1 41004 41065
+D2
+The single large jewel casts rainbows of light about the room. Patterns of
+green, red, blue, and yellow light cover the walls. Its only flaw is a
+tiny dark spot in its exact center.
+~
+jewel multi-faceted faceted huge slot large~
+1 41005 41069
+E
+spot tiny-spot dark-spot tiny-dark-spot~
+The spot is actually an opening! Something has drilled into the very
+heart of the gem, creating a hole just the right size for a Hiver to
+reach inside.
+~
+E
+gem ~
+The single large gem casts rainbows of light about the room. Patterns of
+green, red, blue, and yellow light cover the walls. Its only flaw is a
+tiny dark spot in its exact center.
+~
+S
+#41067
+An unfinished room~
+You are in an unfinished room.
+~
+0 0 12
+S
+#41068
+An unfinished room~
+You are in an unfinished room.
+~
+0 0 12
+S
+#41069
+A Prismatic Chamber~
+   The rhythmic pulsations are strong here.  A faint, musty scent reaches you
+from the west.    
+~
+410 12 12
+D0
+A jewel resembling an eye serves as a door through this wall.
+~
+jewel eye door north~
+1 41005 41066
+D2
+A pulsating throb echoes through the tunnel from the south. It shakes you
+to the bone as it courses through your body.
+~
+~
+0 -1 41072
+D3
+Nothing is visible in the chamber to the west. No sound, no scent, no light.
+~
+~
+0 -1 41070
+S
+#41070
+The Chamber of Honor~
+   The body of a mighty drone lies in state.  Even in death, the prismatic
+father has an air of quiet nobility.    
+~
+410 8 12
+D1
+A sparkling tunnel lies just ahead.
+~
+~
+0 -1 41069
+E
+gems gem~
+On closer examination, you realize they aren't gems at all. They are
+the faceted eyes of Hivers.
+~
+E
+drone prismatic father body~
+The father of the race sleeps peacefully in death. No hint of violence
+mars his body.
+~
+S
+#41071
+A Prismatic Chamber~
+   Tiny prisms are embedded on every surface in the chamber.  A mighty hill of
+gems dominates the center of the room and throbs deeply -- reverberating
+through your body in time with the life force of the Hive.    
+~
+410 8 12
+D1
+A sparkling tunnel lies just ahead.
+~
+~
+0 -1 41072
+E
+gems gem~
+On closer examination, you realize they aren't gems at all. They
+are the faceted eyes of Hivers.
+~
+S
+#41072
+A Prismatic Chamber~
+   The beat is so strong that you feel it vibrating through your bones.  You
+must be nearing the very heart of the Hive.    
+~
+410 8 12
+D0
+An extension of this tunnel ends in a wall ahead.
+~
+~
+0 -1 41069
+D1
+A sweet scent fills your nostrils from this darkened chamber.
+~
+~
+0 -1 41073
+D3
+The booming pulsations rattle you to the core as they wash over you
+from this vast chamber.
+~
+~
+0 -1 41071
+S
+#41073
+The Queen's Larder~
+   Specially preserved wax packages of food fill the hive mother's private
+larder to maximum capacity.  No one could ever starve this Queen from her hive!
+  
+~
+410 8 12
+D3
+A sparkling tunnel lies just ahead.
+~
+~
+0 -1 41072
+S
+#41090
+A Narrow Break~
+   You find yourself pressed into a narrow break in the seemingly impenetrable
+forest wall just north of the Farmer's Row.  Something large has formed the gap
+but managed to conceal it fairly well.  The break continues to the east.    
+~
+410 68 3
+D1
+The narrow break continues ahead.
+~
+~
+0 -1 41091
+D2
+You can see Farmer's Row through a thin line of concealing brush.
+~
+~
+0 -1 8009
+S
+#41091
+A Narrow Break~
+   Something large has carefully cut branches from this thick forest to form a
+low, narrow pathway.  You find yourself ducking in reflex to prevent a nasty
+bump on the head.  The break continues west and twists off to the north.    
+~
+410 68 3
+D0
+The break narrows ahead to your north, but you see light streaming through
+the branches in the distance.
+~
+~
+0 -1 41092
+D3
+The break continues to the west.
+~
+~
+0 -1 41090
+S
+#41092
+A Narrow Break~
+   Cut branches press in from all sides as the break narrows.  To the south, it
+twists around a turn.  To the north, light streams down into a clearing.  It
+looks like whoever made this break tried to conceal that, too.    
+~
+410 0 3
+D0
+Woven branches obscure your view of the clearing ahead.
+~
+~
+0 -1 41001
+D2
+The break twists away.
+~
+~
+0 -1 41091
+S
+$~

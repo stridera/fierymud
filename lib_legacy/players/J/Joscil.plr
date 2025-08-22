@@ -1,0 +1,151 @@
+name: Joscil
+password: JozSOPOoA0
+currenttitle: Verus
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 4
+race: 0
+level: 16
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19527
+birthtime: 1580781139
+timeplayed: 73705
+lastlogintime: 1609558288
+host: 066.193.130.006
+height: 65
+weight: 112
+base_height: 65
+base_weight: 112
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: cm 0 0
+prefflags: hnosxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 217/217
+mana: 25/25
+move: 111/118
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 66
+wisdom: 86
+dexterity: 85
+constitution: 83
+charisma: 49
+cash: 2 406 1492 1550
+experience: 920500
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+16 1000
+402 52
+404 210
+407 50
+415 50
+416 50
+417 50
+421 167
+423 112
+424 77
+430 52
+434 50
+438 50
+443 50
+444 69
+450 50
+451 98
+457 59
+458 61
+459 58
+463 162
+464 50
+465 59
+466 50
+468 50
+0 0
+trophy:
+1 13615 0.500000
+1 13620 1.500000
+1 13612 2.000000
+1 13623 0.500000
+1 13625 1.000000
+1 13624 0.500000
+1 13622 1.500000
+1 13609 0.500000
+1 13616 1.000000
+1 13607 1.000000
+1 13602 1.500000
+1 13611 3.500000
+1 13603 1.000000
+1 13601 2.000000
+1 13610 1.000000
+1 8010 1.000000
+1 8015 0.500000
+1 12014 0.666667
+1 12004 0.333333
+1 12024 0.666667
+1 12011 0.333333
+0 0 0
+tells:
+1580783219 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1581201813 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1581204720 @WSerena@W tells you, 'I don't trade in such items.@W'@0
+1581204809 @WShazz@W tells you, 'Take good care of that.@W'@0
+1581569228 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1581569232 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1581569588 @WGarm@W tells you, 'Wow! Now that is nice!@W'@0
+1581748573 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1582389107 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1582389154 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1609557901 Chinok gossips, 'it's what would happen if you took Marvel's 'infinity war', and made into a halmark movie.. '
+1609557913 Nauis gossips, 'oh boy'
+1609557926 Chinok gossips, 'the whole gold armor thing is pointless'
+1609557932 Nauis gossips, 'i'll stick with my comics from rucka's run'
+1609558021 Meina gossips, 'hehehehe that's too bad.'
+1609558236 Golanth gossips, 'it's really uneven'
+1609558262 Chinok gossips, 'the middle 90minutes of the movie could be removed :)'
+1609558269 Golanth gossips, 'like, it feels like an 80's superhero movie, but kind of unintentionally'
+1609558275 Meina gossips, 'heh'
+1609558283 Golanth gossips, 'yes, definitely could have been cut by an hour at least'
+$
+mem:
+3 1 1
+1 1 6
+1 1 5
+1 1 5
+16 1 1
+16 1 2
+16 1 2
+16 1 2
+16 1 2
+3 1 1
+1 1 5
+1 1 5
+1 1 5
+0 0 0
+aliases:
+agn assist gennaire
+amj assist mejna
+gcc get all.coins all.corpse
+who who -w
+lic look in corpse
+ds drink waterskin
+ebb eat bread
+gbb get 2.bread bag
+asg assist saigus
+ang assist naigus
+cl cast 'cure light'
+nn assist nauis
+0

@@ -1,0 +1,2143 @@
+#5500
+A Destroyed Meadow~
+   The hills gently subside into the forest of the south but here the trees are
+all destroyed as if chewed on by large beasts.  The ground is all trampled as
+if massive numbers of men have been on constant march through the roadway.
+~
+55 4 3
+D0
+~
+~
+0 0 55803
+D2
+~
+~
+0 0 5501
+S
+#5501
+A Destroyed Meadow~
+   The hills gently subside into the forest of the south but here the trees are
+all destroyed as if chewed on by large beasts.  The ground is all trampled as
+if massive numbers of men have been on constant march through the roadway.
+~
+55 0 3
+D0
+~
+~
+0 0 5500
+D2
+~
+~
+0 0 5502
+S
+#5502
+A Destroyed Swath through the Forest~
+   The hills gently subside into the forest of the south but here the trees are
+all destroyed as if chewed on by large beasts.  The ground is all trampled as
+if massive numbers of men have been on constant march through the roadway.
+~
+55 0 3
+D0
+~
+~
+0 0 5501
+D3
+~
+~
+0 0 5503
+S
+#5503
+A Destroyed Swath through the Forest~
+   The hills gently subside into the forest of the south but here the trees are
+all destroyed as if chewed on by large beasts.  The ground is all trampled as
+if massive numbers of men have been on constant march through the roadway.
+~
+55 0 3
+D1
+~
+~
+0 0 5502
+D3
+~
+~
+0 0 5504
+S
+#5504
+A Destroyed Swath through the Forest~
+   The hills gently subside into the forest of the south but here the trees are
+all destroyed as if chewed on by large beasts.  The ground is all trampled as
+if massive numbers of men have been on constant march through the roadway.  A
+larger hill is visible to the south with smaller east west running ridges
+sloping away from it.
+~
+55 0 3
+D1
+~
+~
+0 0 5503
+D2
+~
+~
+0 0 5505
+S
+#5505
+A Destroyed Meadow~
+   The hills gently subside into the forest of the south but here the trees are
+all destroyed as if chewed on by large beasts.  The ground is all trampled as
+if massive numbers of men have been on constant march through the roadway.  A
+larger hill is visible to the south with smaller east west running ridges
+sloping away from it.  The roadway splits to the north, east, and west.
+~
+55 33554448 3
+D0
+~
+~
+0 0 5504
+D1
+~
+~
+0 0 5510
+D3
+~
+~
+0 0 5509
+E
+sign signpost post~
+* * * * * WARNING! * * * * *
+
+You are entering an area of active combat between the forces of good and
+evil. We don't care which side you are on just know that goodies should
+go east and evils should go west.  We're not helping you get your dead
+stinkin carcass back either so don't come crying to us.
+~
+S
+#5507
+A Swath of Destroyed Forest~
+   The hills gently subside into the forest of the south but here the trees are
+all destroyed as if chewed on by large beasts.  The ground is all trampled as
+if massive numbers of men have been on constant march through the roadway.
+~
+55 0 3
+D1
+~
+~
+0 0 5508
+D2
+~
+~
+0 0 5513
+S
+#5508
+A Swath of Destroyed Forest~
+   The hills gently subside into the forest of the south but here the trees are
+all destroyed as if chewed on by large beasts.  The ground is all trampled as
+if massive numbers of men have been on constant march through the roadway.
+~
+55 0 3
+D1
+~
+~
+0 0 5509
+D3
+~
+~
+0 0 5507
+S
+#5509
+A Swath of Destroyed Forest~
+   The hills gently subside into the forest of the south but here the trees are
+all destroyed as if chewed on by large beasts.  The ground is all trampled as
+if massive numbers of men have been on constant march through the roadway.
+~
+55 0 3
+D1
+~
+~
+0 0 5505
+D3
+~
+~
+0 0 5508
+S
+#5510
+A Swath of Destroyed Forest~
+   The hills gently subside into the forest of the south but here the trees are
+all destroyed as if chewed on by large beasts.  The ground is all trampled as
+if massive numbers of men have been on constant march through the roadway.
+~
+55 0 3
+D1
+~
+~
+0 0 5511
+D3
+~
+~
+0 0 5505
+S
+#5511
+A Swath of Destroyed Forest~
+   The hills gently subside into the forest of the south but here the trees are
+all destroyed as if chewed on by large beasts.  The ground is all trampled as
+if massive numbers of men have been on constant march through the roadway.
+~
+55 0 3
+D1
+~
+~
+0 0 5512
+D3
+~
+~
+0 0 5510
+S
+#5512
+A Swath of Destroyed Forest~
+   The hills gently subside into the forest of the south but here the trees are
+all destroyed as if chewed on by large beasts.  The ground is all trampled as
+if massive numbers of men have been on constant march through the roadway.
+~
+55 0 3
+D2
+~
+~
+0 0 5514
+D3
+~
+~
+0 0 5511
+S
+#5513
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+~
+55 0 3
+D0
+~
+~
+0 0 5507
+D2
+~
+~
+0 0 5520
+S
+#5514
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+~
+55 0 3
+D0
+~
+~
+0 0 5512
+D2
+~
+~
+0 0 5521
+S
+#5515
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southeast and the higher ridge can be passed slightly
+south of here.
+~
+55 0 3
+D1
+~
+~
+0 0 5516
+D2
+~
+~
+0 0 5527
+S
+#5516
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southeast and the higher ridge can be passed slightly
+southwest of here.
+~
+55 0 3
+D1
+~
+~
+0 0 5517
+D2
+~
+~
+0 0 5528
+D3
+~
+~
+0 0 5515
+S
+#5517
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southeast and the higher ridge can be passed slightly
+southwest of here.
+~
+55 0 3
+D1
+~
+~
+0 0 5518
+D2
+~
+~
+0 0 5529
+D3
+~
+~
+0 0 5516
+S
+#5518
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southeast and the higher ridge can be passed slightly
+southwest of here.
+~
+55 0 3
+D1
+~
+~
+0 0 5519
+D2
+~
+~
+0 0 5530
+D3
+~
+~
+0 0 5517
+S
+#5519
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the south and the higher ridge can be passed slightly
+southwest of here.
+~
+55 0 3
+D1
+~
+~
+0 0 5520
+D2
+~
+~
+0 0 5531
+D3
+~
+~
+0 0 5518
+S
+#5520
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the south and the higher ridge can be passed slightly
+southwest of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5513
+D2
+~
+~
+0 0 5532
+D3
+~
+~
+0 0 5519
+S
+#5521
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the south and the higher ridge can be passed slightly
+southeast of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5514
+D1
+~
+~
+0 0 5522
+D2
+~
+~
+0 0 5533
+S
+#5522
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the south and the higher ridge can be passed slightly
+southeast of here.
+~
+55 0 3
+D1
+~
+~
+0 0 5523
+D2
+~
+~
+0 0 5534
+D3
+~
+~
+0 0 5521
+S
+#5523
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southwest and the higher ridge can be passed slightly
+southeast of here.
+~
+55 0 3
+D1
+~
+~
+0 0 5524
+D2
+~
+~
+0 0 5535
+D3
+~
+~
+0 0 5522
+S
+#5524
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southwest and the higher ridge can be passed slightly
+southeast of here.
+~
+55 0 3
+D1
+~
+~
+0 0 5525
+D2
+~
+~
+0 0 5536
+D3
+~
+~
+0 0 5523
+S
+#5525
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southwest and the higher ridge can be passed slightly
+south of here.
+~
+55 0 3
+D1
+~
+~
+0 0 5526
+D2
+~
+~
+0 0 5537
+D3
+~
+~
+0 0 5524
+S
+#5526
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southwest and the higher ridge can be passed slightly
+southeast of here.
+~
+55 0 3
+D2
+~
+~
+0 0 5538
+D3
+~
+~
+0 0 5525
+S
+#5527
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southeast and the higher ridge can be passed slightly
+east of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5515
+D1
+~
+~
+0 0 5528
+S
+#5528
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southeast and the higher ridge can be passed here to
+the south.
+~
+55 0 3
+D0
+~
+~
+0 0 5516
+D1
+~
+~
+0 0 5529
+D2
+~
+~
+0 0 5539
+D3
+~
+~
+0 0 5527
+S
+#5529
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southeast and the higher ridge can be passed slightly
+west of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5517
+D1
+~
+~
+0 0 5530
+D3
+~
+~
+0 0 5528
+S
+#5530
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the south and the higher ridge can be passed slightly
+west of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5518
+D1
+~
+~
+0 0 5531
+D3
+~
+~
+0 0 5529
+S
+#5531
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the south and the higher ridge can be passed slightly
+west of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5519
+D1
+~
+~
+0 0 5532
+D3
+~
+~
+0 0 5530
+S
+#5532
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the south and the higher ridge can be passed slightly
+west of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5520
+D3
+~
+~
+0 0 5531
+S
+#5533
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the south and the higher ridge can be passed slightly
+east of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5521
+D1
+~
+~
+0 0 5534
+S
+#5534
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the south and the higher ridge can be passed slightly
+east of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5522
+D1
+~
+~
+0 0 5535
+D3
+~
+~
+0 0 5533
+S
+#5535
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southwest and the higher ridge can be passed slightly
+east of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5523
+D1
+~
+~
+0 0 5536
+D3
+~
+~
+0 0 5534
+S
+#5536
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southwest and the higher ridge can be passed slightly
+east of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5524
+D1
+~
+~
+0 0 5537
+D3
+~
+~
+0 0 5535
+S
+#5537
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southwest and the higher ridge can be passed south
+of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5525
+D1
+~
+~
+0 0 5538
+D2
+~
+~
+0 0 5546
+D3
+~
+~
+0 0 5536
+S
+#5538
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The larger hill is to the southwest and the higher ridge can be passed slightly
+west of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5526
+D3
+~
+~
+0 0 5537
+S
+#5539
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The high ridge line extends eastward just north of here and the roadway opens
+eastward into an open vale razed of any vegetation by open warfare.
+~
+55 0 3
+D0
+~
+~
+0 0 5528
+D1
+~
+~
+0 0 5540
+S
+#5540
+The Western Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the 
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and east and a roadway can be seen climbing the west side at the base of 
+Tarelithis.
+~
+55 0 3
+D1
+~
+~
+0 0 5541
+D2
+~
+~
+0 0 5547
+D3
+~
+~
+0 0 5539
+S
+#5541
+The Western Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and east and a roadway can be seen climbing the west side at the base of
+Tarelithis.
+~
+55 0 3
+D1
+~
+~
+0 0 5542
+D2
+~
+~
+0 0 5548
+D3
+~
+~
+0 0 5540
+S
+#5542
+The Western Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and a roadway can be seen climbing the west side at the base of Tarelithis.
+~
+55 0 3
+D2
+~
+~
+0 0 5549
+D3
+~
+~
+0 0 5541
+S
+#5543
+The Eastern Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and east and a roadway can be seen climbing the east side at the base of
+Tarelithis south of here.
+~
+55 0 3
+D1
+~
+~
+0 0 5544
+D2
+~
+~
+0 0 5550
+S
+#5544
+The Eastern Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and west and a roadway can be seen climbing the east side at the base of
+Tarelithis.
+~
+55 0 3
+D1
+~
+~
+0 0 5545
+D2
+~
+~
+0 0 5551
+D3
+~
+~
+0 0 5543
+S
+#5545
+The Eastern Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and west and a roadway can be seen climbing the east side at the base of
+Tarelithis.
+~
+55 0 3
+D1
+~
+~
+0 0 5546
+D2
+~
+~
+0 0 5552
+D3
+~
+~
+0 0 5544
+S
+#5546
+A Swath of Destroyed Forest~
+   The forest has been beaten into submission by constant warfare.  Though the
+area is engulfed in the larger Eldorian forest this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.
+The high ridge line extends westward just north of here and the roadway opens
+westward into an open vale razed of any vegetation by open warfare.
+~
+55 0 3
+D0
+~
+~
+0 0 5537
+D3
+~
+~
+0 0 5545
+S
+#5547
+The Western Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and east and a roadway can be seen climbing the west side at the base of
+Tarelithis.
+~
+55 0 3
+D0
+~
+~
+0 0 5540
+D1
+~
+~
+0 0 5548
+S
+#5548
+The Western Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and east and a roadway can be seen climbing the west side at the base of
+Tarelithis.
+~
+55 0 3
+D0
+~
+~
+0 0 5541
+D1
+~
+~
+0 0 5549
+D2
+~
+~
+0 0 5553
+D3
+~
+~
+0 0 5547
+S
+#5549
+The Western Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and a roadway can be seen climbing the west side at the base of Tarelithis.
+~
+55 0 3
+D0
+~
+~
+0 0 5542
+D2
+~
+~
+0 0 5554
+D3
+~
+~
+0 0 5548
+S
+#5550
+The Eastern Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and east and a roadway can be seen climbing the east side at the base of
+Tarelithis south of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5543
+D1
+~
+~
+0 0 5551
+D2
+~
+~
+0 0 5555
+S
+#5551
+The Eastern Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and west and a roadway can be seen climbing the east side at the base of
+Tarelithis.
+~
+55 0 3
+D0
+~
+~
+0 0 5544
+D1
+~
+~
+0 0 5552
+D2
+~
+~
+0 0 5556
+D3
+~
+~
+0 0 5550
+S
+#5552
+The Eastern Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and west and a roadway can be seen climbing the east side at the base of
+Tarelithis.
+~
+55 0 3
+D0
+~
+~
+0 0 5545
+D3
+~
+~
+0 0 5551
+S
+#5553
+The Western Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and east and a roadway can be seen climbing the west side at the base of
+Tarelithis.
+~
+55 0 3
+D0
+~
+~
+0 0 5548
+D1
+~
+~
+0 0 5554
+D2
+~
+~
+0 0 5557
+S
+#5554
+The Western Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and a roadway can be seen climbing the west side at the base of Tarelithis.
+~
+55 0 3
+D0
+~
+~
+0 0 5549
+D2
+~
+~
+0 0 5558
+D3
+~
+~
+0 0 5553
+S
+#5555
+The Eastern Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and east and a roadway can be seen climbing the east side at the base of
+Tarelithis south of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5550
+D1
+~
+~
+0 0 5556
+D2
+~
+~
+0 0 5559
+S
+#5556
+The Eastern Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and west and a roadway can be seen climbing the east side at the base of
+Tarelithis.
+~
+55 0 3
+D0
+~
+~
+0 0 5551
+D2
+~
+~
+0 0 5560
+D3
+~
+~
+0 0 5555
+S
+#5557
+The western destroyed vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and east and a roadway can be seen climbing the west side at the base of
+Tarelithis.
+~
+55 0 3
+D0
+~
+~
+0 0 5553
+D1
+~
+~
+0 0 5558
+D2
+~
+~
+0 0 5561
+S
+#5558
+The Western Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and a roadway can be seen climbing the west side at the base of Tarelithis.
+~
+55 0 3
+D0
+~
+~
+0 0 5554
+D2
+~
+~
+0 0 5562
+D3
+~
+~
+0 0 5557
+S
+#5559
+The Eastern Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and east and a roadway can be seen climbing the east side at the base of
+Tarelithis south of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5555
+D1
+~
+~
+0 0 5560
+D2
+~
+~
+0 0 5563
+S
+#5560
+The Eastern Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the south
+and west and a roadway can be seen climbing the east side at the base of
+Tarelithis.
+~
+55 0 3
+D0
+~
+~
+0 0 5556
+D2
+~
+~
+0 0 5564
+D3
+~
+~
+0 0 5559
+S
+#5561
+The Western Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the north
+and east and a roadway can be seen climbing the west side at the base of
+Tarelithis just east of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5557
+D1
+~
+~
+0 0 5562
+S
+#5562
+The Western Base of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the north
+and west and the roadway can be seen climbing the west side of Tarelithis just
+east of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5558
+D1
+~
+~
+0 0 5576
+D3
+~
+~
+0 0 5561
+S
+#5563
+The Eastern Base of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the north
+and east and the roadway can be seen climbing the east side of Tarelithis just
+west of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5559
+D1
+~
+~
+0 0 5564
+D3
+~
+~
+0 0 5584
+S
+#5564
+The Eastern Destroyed Vale of Tarelithis~
+   The forest has been beaten into submission by constant warfare.  Though the
+vale of this hill, called Tarelithis by the Eldorians, is engulfed in the
+larger Eldorian forest this area is definitely in contest by constantly
+battling forces.  Old bones are arrayed as if they were in combat and the area
+is littered with broken swords and split shields.  The vale opens to the north
+and west and a roadway can be seen climbing the east side at the base of
+Tarelithis just west of here.
+~
+55 0 3
+D0
+~
+~
+0 0 5560
+D3
+~
+~
+0 0 5563
+S
+#5565
+The Third Black Legion Command Tent~
+   The inside of the tent has been quickly arrayed to provide tables and maps 
+in order to plan out battles and sorties agains the Third Eldorian Guard. There
+is a lone command chair and several smaller chairs arrayed about a meeting   
+table so that captains may parlay plans for war.  Weapons and other important
+supplies are garrisoned along the walls.
+~
+55 0 3
+D1
+~
+~
+0 0 5566
+D2
+~
+~
+0 0 5571
+S
+#5566
+The Third Black Legion Command Tent~
+   The inside of the tent has been quickly arrayed to provide tables and maps
+in order to plan out battles and sorties agains the Third Eldorian Guard. There
+is a lone command chair and several smaller chairs arrayed about a meeting
+table so that captains may parlay plans for war.  Weapons and other important
+supplies are garrisoned along the walls.
+~
+55 0 3
+D2
+~
+~
+0 0 5572
+D3
+~
+~
+0 0 5565
+S
+#5567
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easly seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the south.
+~
+55 0 3
+D1
+~
+~
+0 0 5568
+D2
+~
+~
+0 0 5573
+S
+#5568
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easily seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of Mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the south.
+~
+55 0 3
+D1
+~
+~
+0 0 5569
+D2
+~
+~
+0 0 5574
+D3
+~
+~
+0 0 5567
+S
+#5569
+Climbing the Eastern Side of Tarelithis~
+   The glade climbing the side of the hill has been razed of any vegetation.
+Tracks of men and machine mar the hillside as the tools of war have ploughed
+their way up the hillside.  Though the area is engulfed in the larger Eldorian
+forest this area is definitely in contest by constantly battling forces.  Old
+bones are arrayed as if they were in combat and the area is littered with
+broken swords and split shields.  This hill climbs upward and you can see it
+level near the top.  The smoke and fire of battle obscure some of your vision.
+~
+55 0 3
+D1
+~
+~
+0 0 5570
+D3
+~
+~
+0 0 5568
+S
+#5570
+Climbing the Eastern Side of Tarelithis~
+   The glade climbing the side of the hill has been razed of any vegetation.
+Tracks of men and machine mar the hillside as the tools of war have ploughed
+their way up the hillside.  Though the area is engulfed in the larger Eldorian
+forest this area is definitely in contest by constantly battling forces.  Old
+bones are arrayed as if they were in combat and the area is littered with
+broken swords and split shields.  This hill climbs upward and you can see it
+level near the top.  The smoke and fire of battle obscure some of your vision.
+~
+55 0 3
+D2
+~
+~
+0 0 5575
+D3
+~
+~
+0 0 5569
+S
+#5571
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easly seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the north.
+~
+55 0 3
+D0
+~
+~
+0 0 5565
+D1
+~
+~
+0 0 5572
+D2
+~
+~
+0 0 5578
+S
+#5572
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easly seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the north.
+~
+55 0 3
+D0
+~
+~
+0 0 5566
+D2
+~
+~
+0 0 5579
+D3
+~
+~
+0 0 5571
+S
+#5573
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easily seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of Mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the south.
+~
+55 0 3
+D0
+~
+~
+0 0 5567
+D1
+~
+~
+0 0 5574
+D2
+~
+~
+0 0 5581
+S
+#5574
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easly seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the south.
+~
+55 0 3
+D0
+~
+~
+0 0 5568
+D2
+~
+~
+0 0 5582
+D3
+~
+~
+0 0 5573
+S
+#5575
+Climbing the Eastern Side of Tarelithis~
+   The glade climbing the side of the hill has been razed of any vegetation.
+Tracks of men and machine mar the hillside as the tools of war have ploughed
+their way up the hillside.  Though the area is engulfed in the larger Eldorian
+forest this area is definitely in contest by constantly battling forces.  Old
+bones are arrayed as if they were in combat and the area is littered with
+broken swords and split shields.  This hill climbs upward and you can see it
+level near the top.  The smoke and fire of battle obscure some of your vision.
+~
+55 0 3
+D0
+~
+~
+0 0 5570
+D2
+~
+~
+0 0 5583
+S
+#5576
+Climbing the Western Side of Tarelithis~
+   The glade climbing the side of the hill has been razed of any vegetation.
+Tracks of men and machine mar the hillside as the tools of war have ploughed
+their way up the hillside.  Though the area is engulfed in the larger Eldorian
+forest this area is definitely in contest by constantly battling forces.  Old
+bones are arrayed as if they were in combat and the area is littered with
+broken swords and split shields.  This hill climbs upward and you can see it
+level near the top.  The smoke and fire of battle obscure some of your vision.
+~
+55 0 3
+D1
+~
+~
+0 0 5577
+D3
+~
+~
+0 0 5562
+S
+#5577
+Climbing the Western Side of Tarelithis~
+   The glade climbing the side of the hill has been razed of any vegetation.
+Tracks of men and machine mar the hillside as the tools of war have ploughed
+their way up the hillside.  Though the area is engulfed in the larger Eldorian
+forest this area is definitely in contest by constantly battling forces.  Old
+bones are arrayed as if they were in combat and the area is littered with
+broken swords and split shields.  This hill climbs upward and you can see it
+level near the top.  The smoke and fire of battle obscure some of your vision.
+~
+55 0 3
+D2
+~
+~
+0 0 5585
+D3
+~
+~
+0 0 5576
+S
+#5578
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easly seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the north.
+~
+55 0 3
+D0
+~
+~
+0 0 5571
+D1
+~
+~
+0 0 5579
+D2
+~
+~
+0 0 5586
+S
+#5579
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easly seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the north.
+~
+55 0 3
+D0
+~
+~
+0 0 5572
+D1
+~
+~
+0 0 5580
+D2
+~
+~
+0 0 5587
+D3
+~
+~
+0 0 5578
+S
+#5580
+Between the Backs of Tarelithis~
+   There is an east-west pathway between the double hills of this area and it 
+has been completly obliterated.  The rocks are slagged from exchanges of fire
+by sorcererous beings so much that even the metal of melee weapons has fused 
+with the now black rock in various locations.  There is no combat here for now.
+~
+55 0 3
+D1
+~
+~
+0 0 5581
+D3
+~
+~
+0 0 5579
+S
+#5581
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easly seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the south.
+~
+55 0 3
+D0
+~
+~
+0 0 5573
+D1
+~
+~
+0 0 5582
+D2
+~
+~
+0 0 5588
+D3
+~
+~
+0 0 5580
+S
+#5582
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easly seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the south.
+~
+55 0 3
+D0
+~
+~
+0 0 5574
+D2
+~
+~
+0 0 5589
+D3
+~
+~
+0 0 5581
+S
+#5583
+Climbing the Eastern Side of Tarelithis~
+   The glade climbing the side of the hill has been razed of any vegetation.
+Tracks of men and machine mar the hillside as the tools of war have ploughed
+their way up the hillside.  Though the area is engulfed in the larger Eldorian
+forest this area is definitely in contest by constantly battling forces.  Old
+bones are arrayed as if they were in combat and the area is littered with
+broken swords and split shields.  This hill climbs upward and you can see it
+level near the top.  The smoke and fire of battle obscure some of your vision.
+~
+55 0 3
+D0
+~
+~
+0 0 5575
+D1
+~
+~
+0 0 5584
+S
+#5584
+Climbing the Eastern Side of Tarelithis~
+   The glade climbing the side of the hill has been razed of any vegetation.
+Tracks of men and machine mar the hillside as the tools of war have ploughed
+their way up the hillside.  Though the area is engulfed in the larger Eldorian
+forest this area is definitely in contest by constantly battling forces.  Old
+bones are arrayed as if they were in combat and the area is littered with
+broken swords and split shields.  This hill climbs upward and you can see it
+level near the top.  The smoke and fire of battle obscure some of your vision.
+~
+55 0 3
+D1
+~
+~
+0 0 5563
+D3
+~
+~
+0 0 5583
+S
+#5585
+Climbing the Western Side of Tarelithis~
+   The glade climbing the side of the hill has been razed of any vegetation.
+Tracks of men and machine mar the hillside as the tools of war have ploughed
+their way up the hillside.  Though the area is engulfed in the larger Eldorian
+forest this area is definitely in contest by constantly battling forces.  Old
+bones are arrayed as if they were in combat and the area is littered with
+broken swords and split shields.  This hill climbs upward and you can see it
+level near the top.  The smoke and fire of battle obscure some of your vision.
+~
+55 0 3
+D0
+~
+~
+0 0 5577
+D2
+~
+~
+0 0 5590
+S
+#5586
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easly seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the north.
+~
+55 0 3
+D0
+~
+~
+0 0 5578
+D1
+~
+~
+0 0 5587
+D2
+~
+~
+0 0 5592
+S
+#5587
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easily seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of Mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the north.
+~
+55 0 3
+D0
+~
+~
+0 0 5579
+D2
+~
+~
+0 0 5593
+D3
+~
+~
+0 0 5586
+S
+#5588
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easly seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the south.
+~
+55 0 3
+D0
+~
+~
+0 0 5581
+D1
+~
+~
+0 0 5589
+D2
+~
+~
+0 0 5594
+S
+#5589
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easily seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of Mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the south.
+~
+55 0 3
+D0
+~
+~
+0 0 5582
+D2
+~
+~
+0 0 5595
+D3
+~
+~
+0 0 5588
+S
+#5590
+Climbing the Western Side of Tarelithis~
+   The glade climbing the side of the hill has been razed of any vegetation.
+Tracks of men and machine mar the hillside as the tools of war have ploughed
+their way up the hillside.  Though the area is engulfed in the larger Eldorian
+forest this area is definitely in contest by constantly battling forces.  Old
+bones are arrayed as if they were in combat and the area is littered with
+broken swords and split shields.  This hill climbs upward and you can see it
+level near the top.  The smoke and fire of battle obscure some of your vision.
+~
+55 0 3
+D0
+~
+~
+0 0 5585
+D1
+~
+~
+0 0 5591
+S
+#5591
+Climbing the Western Side of Tarelithis~
+   The glade climbing the side of the hill has been razed of any vegetation.
+Tracks of men and machine mar the hillside as the tools of war have ploughed
+their way up the hillside.  Though the area is engulfed in the larger Eldorian
+forest this area is definitely in contest by constantly battling forces.  Old
+bones are arrayed as if they were in combat and the area is littered with
+broken swords and split shields.  This hill climbs upward and you can see it
+level near the top.  The smoke and fire of battle obscure some of your vision.
+~
+55 0 3
+D1
+~
+~
+0 0 5592
+D3
+~
+~
+0 0 5590
+S
+#5592
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been 
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easly seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range 
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command 
+tent to the north.
+~
+55 0 3
+D0
+~
+~
+0 0 5586
+D1
+~
+~
+0 0 5593
+D3
+~
+~
+0 0 5591
+S
+#5593
+The Top of Tarelithis~
+   Though once heavily forested the double backed top of this hill has been
+burned and nearly decapitated.  Though the hill is engulfed in the larger
+Eldorian forest, easly seen for miles around, this area is definitely in
+contest by constantly battling forces.  Old bones are arrayed as if they were
+in combat and the area is littered with broken swords and split shields.  A
+large walled town can be seen to the west a ways away.  Between the smoke and
+cloud of war, the north west shows a very large snow capped mountain range
+running northwest to southeast tailing down into a vast plain leading into
+the forests.  A river flows out of the mountain range into a swampy area that
+seems to hold a black fortress.  South of that looks like what would probably
+be the forest town of mielikki and the large lake just to the south.  There
+seems to be a pathway between the double backs on the hilltop and a command
+tent to the north.
+~
+55 0 3
+D0
+~
+~
+0 0 5587
+D3
+~
+~
+0 0 5592
+S
+#5594
+The Third Eldorian Guard Command Tent~
+   The inside of the tent has been quickly arrayed to provide tables and maps
+in order to plan out battles and sorties agains the Third Eldorian Guard. There
+is a lone command chair and several smaller chairs arrayed about a meeting
+table so that captains may parlay plans for war.  Weapons and other important
+supplies are garrisoned along the walls.
+~
+55 0 3
+D0
+~
+~
+0 0 5588
+D1
+~
+~
+0 0 5595
+S
+#5595
+The Third Eldorian Guard Command Tent~
+   The inside of the tent has been quickly arrayed to provide tables and maps
+in order to plan out battles and sorties agains the Third Eldorian Guard. There
+is a lone command chair and several smaller chairs arrayed about a meeting
+table so that captains may parlay plans for war.  Weapons and other important
+supplies are garrisoned along the walls.
+~
+55 0 3
+D0
+~
+~
+0 0 5589
+D3
+~
+~
+0 0 5594
+S
+$~

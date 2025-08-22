@@ -1,0 +1,5049 @@
+1
+vnum: 58005
+location: 3
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace jade striking
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 9
+weight: 0.60
+cost: 4500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+~
+extradesc: striking jade necklace
+The necklace is made of several very large, flawless panels of jade. You
+run your fingers over the smooth stone and can feel supernatural power
+contained inside this rare piece of art.~
+~~
+vnum: 58005
+location: 4
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace jade striking
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 9
+weight: 0.60
+cost: 4500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+~
+extradesc: striking jade necklace
+The necklace is made of several very large, flawless panels of jade. You
+run your fingers over the smooth stone and can feel supernatural power
+contained inside this rare piece of art.~
+~~
+vnum: 58104
+location: 5
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: kimono black-cotton jet-black-kimono
+shortdesc: a jet-black kimono
+desc: A black cotton kimono lies forgotten on the floor.
+adesc:
+Nothing.
+~
+type: 11
+weight: 1.20
+cost: 20000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 9
+applies:
+17 8
+18 2
+26 2
+~
+extradesc: kimono black-cotton jet-black-kimono
+Made of thin black cotton, this kimono blends in perfectly with the shadows of
+night.  Silk would provide a telltale sheen, though it would also be lighter,
+but the black-dyed cotton absorbs light rather than reflecting it.  It is
+utterly silent, not even giving the usual "whoosh" of fabric when moved.  The
+sleeves fall only to the elbows, providing plenty of room to swing a weapon.  
+
+~
+~~
+vnum: 1024
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mquyz ab
+name: helmet studded-leather-helmet
+shortdesc: a studded leather helmet
+desc: A studded leather helmet lies here.
+type: 9
+weight: 3.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+extradesc: studded-leather-helmet
+&0A simple helmet, designed to cover most of the head.  It leaves the face
+open, allowing the user a wide viewing arc.  It is crafted from a thick
+leather, and studded with inch long spikes to add further protection against
+attacks.
+~
+~~
+vnum: 5532
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: leggings eldoria-reward 3rd-eldorian-guard-leggings
+shortdesc: leggings of the 3rd Eldorian Guard
+desc: Some leggings lie discarded nearby.
+type: 9
+weight: 4.90
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 33
+applies:
+3 2
+~
+~~
+vnum: 5534
+location: 8
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: boots eldoria-reward 3rd-eldorian-guard-boots
+shortdesc: boots of the 3rd Eldorian Guard
+desc: Some boots lie here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 65
+applies:
+2 2
+~
+~~
+vnum: 5522
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: sleeves eldoria-reward 3rd-eldorian-guard-leather-sleeves
+shortdesc: leather sleeves of the 3rd Eldorian Guard
+desc: Some leather sleeves lies discarded nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 20304
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cloak zebra skin
+shortdesc: a zebra skin cloak
+desc: A large striped cloak lies in the dust here.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+applies:
+1 2
+19 1
+~
+extradesc: cloak zebra skin
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.    
+~
+~~
+vnum: 5530
+location: 13
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: belt eldoria-reward 3rd-eldorian-guard-belt
+shortdesc: a belt of the 3rd Eldorian Guard
+desc: A small belt lies here.
+type: 9
+weight: 0.96
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 2049
+applies:
+1 2
+~
+~~
+vnum: 2023
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 2023
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 47002
+location: 16
+values:
+0
+2
+5
+20
+0
+0
+0
+~
+flags: akmnyz a
+name: blade bright-white-blade
+shortdesc: a bright white blade
+desc: You see a bright blade lying here on the ground.
+type: 5
+weight: 4.00
+cost: 1200
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: blade bright-white-blade
+This blade shines with a bright light whenever it is in the presence of 
+something or someone good.  It is used by the Undead Lord to protect his
+mausoleum and afterlife.  Being so white it is difficult to perceive exactly
+where the edges are, so I'd be careful with it.
+~
+~~
+vnum: 47002
+location: 17
+values:
+0
+2
+5
+20
+0
+0
+0
+~
+flags: akmnyz a
+name: blade bright-white-blade
+shortdesc: a bright white blade
+desc: You see a bright blade lying here on the ground.
+type: 5
+weight: 4.00
+cost: 1200
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: blade bright-white-blade
+This blade shines with a bright light whenever it is in the presence of 
+something or someone good.  It is used by the Undead Lord to protect his
+mausoleum and afterlife.  Being so white it is difficult to perceive exactly
+where the edges are, so I'd be careful with it.
+~
+~~
+vnum: 13305
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: goggles pair mining mining-goggles
+shortdesc: a pair of goggles
+desc: A pair of mining goggles is sitting on the ground here.
+type: 11
+weight: 1.20
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 65537
+applies:
+17 3
+28 30
+~
+extradesc: goggles pair mining mining-goggles
+This is a pair of fine goggles, made of expertly tanned leather and lenses of
+thick glass.  Excellent for protecting the eyes from the loose dust and
+occasional hazards in a mine, they would probably also be useful outdoors in a
+sandstorm, though underwater use would probably ruin the leather and is not
+recommended.    
+~
+~~
+vnum: 5536
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: faceguard eldoria-reward small face guard 3rd-eldorian-guard-faceguard
+shortdesc: a faceguard of the 3rd Eldorian Guard
+desc: A small faceguard lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 131073
+applies:
+18 1
+~
+~~
+vnum: 20301
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 20301
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 50219
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: stone sharpening-stone sharpening sharp small rectangular
+shortdesc: a sharpening stone
+desc: A small rectangular stone with a metal loop lies in the debris.
+type: 11
+weight: 0.10
+cost: 0
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1048577
+applies:
+18 2
+~
+extradesc: stone sharpening-stone sharpening sharp small rectangular
+This is a small, gray stone in a roughly rectangular shape. It has
+a metal loop that runs through a hole near one end. The stone is
+somewhat abrasive, and has light striations running nearly
+parallel to its length.
+~
+~~
+vnum: 5211
+location: 27
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: 0 0
+name: flame white-flame small-pillar white-fire questobject
+shortdesc: a white flame
+desc: A small pillar of white fire flickers here.
+type: 1
+weight: 0.50
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2113537
+applies:
+1 -1
+18 2
+~
+extradesc: white-flame small-pillar white-fire questobject
+The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  Its brightness is nearly
+unbearable to look at, but somehow seems to cast a cool glow across the area.
+~
+triggers:
+5207
+~
+variables:
+retriever Lefa
+~
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: saddle leather-saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+~
+extradesc: leather-saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  
+~
+~~
+vnum: 5524
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: wristguards wristguard eldoria-reward leather 3rd-eldorian-guard-wristguards wrist
+shortdesc: wristguards of the 3rd Eldorian Guard
+desc: Some leather wristguards lie discarded nearby.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 4097
+applies:
+1 1
+~
+~~
+vnum: 5518
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: helm eldoria-reward discarded 3rd-eldorian-guard-helm
+shortdesc: a helm of the 3rd Eldorian Guard
+desc: A helm lies discarded nearby.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 17
+applies:
+14 5
+~
+extradesc: helm eldoria-reward discarded 3rd-eldorian-guard-helm
+It's a helmet of middling quality with the insignia of the 3rd Eldorian Guard
+imprinted on it.
+~
+~~
+vnum: 5536
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: faceguard eldoria-reward small face guard 3rd-eldorian-guard-faceguard
+shortdesc: a faceguard of the 3rd Eldorian Guard
+desc: A small faceguard lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 131073
+applies:
+18 1
+~
+~~
+vnum: 5548
+location: -1
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: kowx 0
+name: warhammer eldoria-reward large 3rd-eldorian-guard-warhammer hammer
+shortdesc: a warhammer of the 3rd Eldorian Guard
+desc: A large warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5549
+location: -1
+values:
+2
+2
+4
+6
+0
+0
+0
+~
+flags: kow 0
+name: flail eldoria-reward 3rd-eldorian-guard-flail
+shortdesc: a flail of the 3rd Eldorian Guard
+desc: A flail lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5550
+location: -1
+values:
+2
+3
+3
+11
+0
+0
+0
+~
+flags: knuv 0
+name: shiv eldoria-reward small 3rd-eldorian-guard-shiv
+shortdesc: a shiv of the 3rd Eldorian Guard
+desc: A small shiv lies here.
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+applies:
+29 10
+~
+~~
+vnum: 5524
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: wristguards wristguard eldoria-reward leather 3rd-eldorian-guard-wristguards wrist
+shortdesc: wristguards of the 3rd Eldorian Guard
+desc: Some leather wristguards lie discarded nearby.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 4097
+applies:
+1 1
+~
+~~
+vnum: 5524
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: wristguards wristguard eldoria-reward leather 3rd-eldorian-guard-wristguards wrist
+shortdesc: wristguards of the 3rd Eldorian Guard
+desc: Some leather wristguards lie discarded nearby.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 4097
+applies:
+1 1
+~
+~~
+vnum: 5538
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: robe eldoria-reward 3rd-eldorian-guard-robe
+shortdesc: a robe of the 3rd Eldorian Guard
+desc: A robe lies here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 9
+applies:
+3 2
+4 2
+13 5
+~
+~~
+vnum: 5548
+location: -1
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: kowx 0
+name: warhammer eldoria-reward large 3rd-eldorian-guard-warhammer hammer
+shortdesc: a warhammer of the 3rd Eldorian Guard
+desc: A large warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5546
+location: -1
+values:
+2
+4
+2
+7
+0
+0
+0
+~
+flags: kow 0
+name: staff eldoria-reward long 3rd-eldorian-guard-staff
+shortdesc: a staff of the 3rd Eldorian Guard
+desc: A long staff lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5546
+location: -1
+values:
+2
+4
+2
+7
+0
+0
+0
+~
+flags: kow 0
+name: staff eldoria-reward long 3rd-eldorian-guard-staff
+shortdesc: a staff of the 3rd Eldorian Guard
+desc: A long staff lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5530
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: belt eldoria-reward 3rd-eldorian-guard-belt
+shortdesc: a belt of the 3rd Eldorian Guard
+desc: A small belt lies here.
+type: 9
+weight: 0.96
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 2049
+applies:
+1 2
+~
+~~
+vnum: 5549
+location: -1
+values:
+2
+2
+4
+6
+0
+0
+0
+~
+flags: kow 0
+name: flail eldoria-reward 3rd-eldorian-guard-flail
+shortdesc: a flail of the 3rd Eldorian Guard
+desc: A flail lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5526
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: gloves eldoria-reward 3rd-eldorian-guard-gloves
+shortdesc: gloves of the 3rd Eldorian Guard
+desc: Some gloves lie discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 129
+applies:
+3 2
+13 5
+~
+~~
+vnum: 5526
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: gloves eldoria-reward 3rd-eldorian-guard-gloves
+shortdesc: gloves of the 3rd Eldorian Guard
+desc: Some gloves lie discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 129
+applies:
+3 2
+13 5
+~
+~~
+vnum: 5532
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: leggings eldoria-reward 3rd-eldorian-guard-leggings
+shortdesc: leggings of the 3rd Eldorian Guard
+desc: Some leggings lie discarded nearby.
+type: 9
+weight: 4.90
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 33
+applies:
+3 2
+~
+~~
+vnum: 5549
+location: -1
+values:
+2
+2
+4
+6
+0
+0
+0
+~
+flags: kow 0
+name: flail eldoria-reward 3rd-eldorian-guard-flail
+shortdesc: a flail of the 3rd Eldorian Guard
+desc: A flail lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5520
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: torque eldoria-reward small 3rd-eldorian-guard-torque discarded
+shortdesc: a torque of the 3rd Eldorian Guard
+desc: A small torque lies discarded nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward small 3rd-eldorian-guard-torque discarded
+It's a torque made of twisted metal.  It looks fairly protective.
+~
+~~
+vnum: 5520
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: torque eldoria-reward small 3rd-eldorian-guard-torque discarded
+shortdesc: a torque of the 3rd Eldorian Guard
+desc: A small torque lies discarded nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward small 3rd-eldorian-guard-torque discarded
+It's a torque made of twisted metal.  It looks fairly protective.
+~
+~~
+vnum: 5550
+location: -1
+values:
+2
+3
+3
+11
+0
+0
+0
+~
+flags: knuv 0
+name: shiv eldoria-reward small 3rd-eldorian-guard-shiv
+shortdesc: a shiv of the 3rd Eldorian Guard
+desc: A small shiv lies here.
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+applies:
+29 10
+~
+~~
+vnum: 5530
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: belt eldoria-reward 3rd-eldorian-guard-belt
+shortdesc: a belt of the 3rd Eldorian Guard
+desc: A small belt lies here.
+type: 9
+weight: 0.96
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 2049
+applies:
+1 2
+~
+~~
+vnum: 5520
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: torque eldoria-reward small 3rd-eldorian-guard-torque discarded
+shortdesc: a torque of the 3rd Eldorian Guard
+desc: A small torque lies discarded nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward small 3rd-eldorian-guard-torque discarded
+It's a torque made of twisted metal.  It looks fairly protective.
+~
+~~
+vnum: 5546
+location: -1
+values:
+2
+4
+2
+7
+0
+0
+0
+~
+flags: kow 0
+name: staff eldoria-reward long 3rd-eldorian-guard-staff
+shortdesc: a staff of the 3rd Eldorian Guard
+desc: A long staff lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 51073
+location: 127
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag 0
+name: sun light bright miniature-sun
+shortdesc: a Miniature Sun
+desc: A ball of bright light is enclosed in an orb of glass.
+type: 1
+weight: 5.00
+cost: 600
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 2113537
+applies:
+26 2
+18 2
+~
+extradesc: small sun minature glowing orb glass ball
+This small ball of light is giving off an immense amount of light.
+It is enclosed in some type of a glass orb that seems to keep the outside
+of the ball cool to the touch and manageable.  The inside glows like a small
+sun, radiating bright light in all directions.  If you have this item,
+luck, determination and the Gods are with you.
+~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+                  Mielikki, the forest town, by Kara-Sithri
+ 
+                                                             &3***POINTS OF INTEREST***&0
+          &3#&0              &6&b2&0                                 |&6&b1&0: Temple to Mielikki
+          &9&b|              |&0                                 |&6&b2&0: Altar to Mielikki
+          &9&bSB&0         &B&1&b3&0 - &6&b1&0   &1???&0        &517&0 - &9&bNC&0            |&B&1&b3&0: Cleric Guild
+          &9&b|              |    |              |&0             |&B&1&b4&0: Warrior Guild
+          &9&bSB        TC - TC - TC             NC -&0 &518&0       |&B&1&b5&0: Rogue Guild
+          &9&b|         |    |    |              |&0             |&B&1&b6&0: Sorcerer Guild
+      &2&b7&0 &9&b- SB -&0 &38&0    &9&bTC -&0 &C&4&b*&0 &9&b-  TC&0   &515&0 - &B&1&b4&0    &9&bNC -&0 &519&0       |&2&b7&0: Forest Inn
+          &9&b|         |    |    |    |         |&0             |&38&0: Post Office
+ &3#&0 &9&b- SQ - WM - WM - TC - TC - TC - EM - EM - CS - EM -&0 &3#&0   |&59&0: Drako's Bronze Shop
+     &9&b|          |   |         |              |&0             |&510&0: Garm's Shield Emporium
+ &59&0 &9&b- SR -&0 &510&0    &513&0  &514&0 &9&b-&0 &B&1&b5&0    &9&bDA - DA - DA   SC&0            |&511&0: Shauna's Hosue of Iron
+     &9&b|          |                  |    |    |&0             |&512&0: Beowyn's Steel
+&511&0 &9&b- SR -&0 &512&0    &B&1&b6&0                  &516&0  &9&bdump  SC -&0 &520&0       |&513&0: Bigby's House of Magic
+     &9&b|                                       |&0             |&514&0: Fine Jewelry
+    &9&bNCP - NC - NC - NC - NC - NC - NC - NC - NCS&0           |&515&0: Santiago's Weapons
+          &9&b|                        |&0                       |&516&0: Sloshed Squirrel Tavern
+     &9&bRP - RP - RP                  WW&0                      |&517&0: Helena's Bakery
+     &9&b|    |    |                   |&0                       |&518&0: Aaron's General Store
+     &9&bRP -&0 &C&4&b*&0  &9&b- RP                  WW -&0 &1???&0                |&519&0: Lisa's House of Leather
+     &9&b|    |    |                   |&0                       |&520&0: Freddy's Toy Shop
+     &9&bRP - RP - RP                  WW&0                      |&C&4&b*&0: Fountain
+          &9&b|                        |&0                       |&3#&0: City Gates 
+         &9&bGrey&0                      &3#&0                       |&1???&0: New Adventures!
+        &9&bCastle&0                                             
+                                                               &9&b***ROADS***&0
+                                                           |SB: Sleepy Blvd.
+                                                           |SQ: Smelter's Sq.
+                                                           |WM: West main St.
+                                                           |TC: Town Center
+                                                           |EM: East Main St.
+                                                           |CS: Commerce Sq.
+                                                           |NC: N. Commerce Ave.
+                                                           |SC: S. Commerce Ave.
+                                                           |DA: Dark Alley
+                                                           |SR: Smelter's Row
+                                                           |NCP: New Castle Plaza
+                                                           |NC: New castle Rd.
+                                                           |NCS: New Castle Sq.
+                                                           |WW: Windy Way
+                                                           |RP: Royal Plaza
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+~
+extradesc: saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  
+~
+~~
+vnum: 20301
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 32403
+location: -1
+values:
+0
+1
+8
+11
+0
+0
+0
+~
+flags: gmnuy a
+name: rapier sword bright ornate
+shortdesc: an ornate, swept-hilt rapier
+desc: A bright, ornate sword lies here.
+type: 5
+weight: 3.00
+cost: 4500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+18 2
+19 2
+~
+extradesc: rapier sword ornate bright
+This slender rapier is long, its blade not sharp but is point wickedly so.
+It is made of some very bright alloy of steel that looks almost silvery,
+and its hilt is wrapped in blue leather. The crossguard is the traditional
+basket hilt, but very ornately done, sweeping and scrolling.
+~
+~~
+vnum: 32403
+location: -1
+values:
+0
+1
+8
+11
+0
+0
+0
+~
+flags: gmnuy a
+name: rapier sword bright ornate
+shortdesc: an ornate, swept-hilt rapier
+desc: A bright, ornate sword lies here.
+type: 5
+weight: 3.00
+cost: 4500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+18 2
+19 2
+~
+extradesc: rapier sword ornate bright
+This slender rapier is long, its blade not sharp but is point wickedly so.
+It is made of some very bright alloy of steel that looks almost silvery,
+and its hilt is wrapped in blue leather. The crossguard is the traditional
+basket hilt, but very ornately done, sweeping and scrolling.
+~
+~~
+vnum: 3059
+location: -1
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3059
+location: -1
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3059
+location: -1
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3059
+location: -1
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3059
+location: -1
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3059
+location: -1
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 50219
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: stone sharpening-stone sharpening sharp small rectangular
+shortdesc: a sharpening stone
+desc: A small rectangular stone with a metal loop lies in the debris.
+type: 11
+weight: 0.10
+cost: 0
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1048577
+applies:
+18 2
+~
+extradesc: stone sharpening-stone sharpening sharp small rectangular
+This is a small, gray stone in a roughly rectangular shape. It has
+a metal loop that runs through a hole near one end. The stone is
+somewhat abrasive, and has light striations running nearly
+parallel to its length.
+~
+~~
+vnum: 55305
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots flimsy-leather-boots armor
+shortdesc: flimsy leather boots
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55301
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves flimsy-leather-gloves armor
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55313
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cal flimsy-leather-cap armor
+shortdesc: a flimsy leather cap
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55301
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves flimsy-leather-gloves armor
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55301
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves flimsy-leather-gloves armor
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55302
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: mittens decayed-mittens armor
+shortdesc: decayed mittens
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55302
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: mittens decayed-mittens armor
+shortdesc: decayed mittens
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55302
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: mittens decayed-mittens armor
+shortdesc: decayed mittens
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55310
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet decayed-bracelet armor
+shortdesc: a decayed bracelet
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 5104
+location: -1
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: g 0
+name: dagger stone stone-dagger
+shortdesc: a stone dagger
+desc: A stone dagger has been abandoned here.
+type: 5
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+~~
+vnum: 5104
+location: -1
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: g 0
+name: dagger stone stone-dagger
+shortdesc: a stone dagger
+desc: A stone dagger has been abandoned here.
+type: 5
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+~~
+vnum: 59012
+location: -1
+values:
+0
+5
+2
+20
+0
+0
+0
+~
+flags: bdkmpstwxy b
+name: dagger radiant-dagger blade-gleaming-radiantly radiantly-gleaming-blade questobject
+shortdesc: a radiant dagger
+desc: A dagger lies on the ground, its blade gleaming radiantly. 
+type: 5
+weight: 0.50
+cost: 600
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+4 1
+3 1
+~
+extradesc: dagger radiant-dagger blade-gleaming-radiantly radiantly-gleaming-blade questobject
+This dagger has been made with an exceptional craftsmanship as the handle is
+hardened wood inlaid with jewels and gold that glistens in the light.  The
+blade shimmers with a radiant light, reflecting the smallest amounts of light
+that hit it.
+~
+~~
+vnum: 5541
+location: -1
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: jmyz a
+name: warhammer black-warhammer eldoria-reward war-hammer 3rd-black-legion-warhammer third
+shortdesc: a warhammer of the 3rd Black Legion
+desc: A black warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5542
+location: -1
+values:
+2
+2
+4
+5
+0
+0
+0
+~
+flags: jmyz a
+name: flail black-flail eldoria-reward 3rd-black-legion-flail third
+shortdesc: a flail of the 3rd Black Legion
+desc: A black flail lies here.
+type: 5
+weight: 6.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5527
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz 0
+name: jerkin eldoria-reward 3rd-black-legion-leather-jerkin black-leather-jerkin third
+shortdesc: a leather jerkin of the 3rd Black Legion
+desc: A black leather jerkin lies here.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+13 5
+~
+~~
+vnum: 5531
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz 0
+name: leggings eldoria-reward 3rd-black-legion-leggings third
+shortdesc: leggings of the 3rd Black Legion
+desc: Some leggings lie here.
+type: 9
+weight: 4.90
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 33
+applies:
+3 2
+~
+~~
+vnum: 5533
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz 0
+name: boots eldoria-reward 3rd-black-legion-boots black-boots third
+shortdesc: boots of the 3rd Black Legion
+desc: Some black boots lie here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 65
+applies:
+2 2
+~
+~~
+vnum: 5543
+location: -1
+values:
+2
+3
+3
+11
+0
+0
+0
+~
+flags: j 0
+name: shiv eldoria-reward small-black-shiv 3rd-black-legion-shiv third dagger knife
+shortdesc: a shiv of the 3rd Black Legion
+desc: A small black shiv lies nearly unnoticed.
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+applies:
+29 10
+~
+~~
+vnum: 5535
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: mask small-black-mask eldoria-reward 3rd-black-legion-black-mask third
+shortdesc: a black mask of the 3rd Black Legion
+desc: A small black mask lies here.
+type: 9
+weight: 0.94
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 131073
+applies:
+18 1
+~
+~~
+vnum: 5521
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz 0
+name: sleeves eldoria-reward 3rd-black-legion-leather-sleeves third black-leather-sleeves
+shortdesc: leather sleeves of the 3rd Black Legion
+desc: Some black leather sleeves lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 5545
+location: -1
+values:
+2
+2
+5
+5
+0
+0
+0
+~
+flags: jmyz a
+name: mace black-spiked-mace eldoria-reward 3rd-black-legion-spiked-mace third
+shortdesc: a spiked mace of the 3rd Black Legion
+desc: A black spiked mace lies nearby.
+type: 5
+weight: 6.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5539
+location: -1
+values:
+2
+4
+2
+7
+0
+0
+0
+~
+flags: j 0
+name: staff eldoria-reward 3rd-black-legion-staff third
+shortdesc: a staff of the 3rd Black Legion
+desc: A staff lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5540
+location: -1
+values:
+2
+4
+2
+3
+0
+0
+0
+~
+flags: jmnuvyz a
+name: shortsword black-shortsword short-sword eldoria-reward 3rd-black-legion-shortsword third
+shortdesc: a shortsword of the 3rd Black Legion
+desc: A black shortsword lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5523
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: wristguards eldoria-reward leather 3rd-black-legion-wristguards wrist-guards guard third wristguard
+shortdesc: wristguards of the 3rd Black Legion
+desc: A pair of black leather wristguards lies discarded here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 4097
+applies:
+1 1
+~
+~~
+vnum: 5529
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: belt eldoria-reward 3rd-black-legion-belt third
+shortdesc: a belt of the 3rd Black Legion
+desc: A belt lies discaded here.
+type: 9
+weight: 0.96
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 2049
+applies:
+1 2
+~
+~~
+vnum: 5525
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: gloves eldoria-reward 3rd-black-legion-gloves leather third
+shortdesc: gloves of the 3rd Black Legion
+desc: Some gloves lie discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 129
+applies:
+3 2
+13 5
+~
+~~
+vnum: 5519
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: jmyz 0
+name: torque eldoria-reward 3rd-black-legion-torque black-torque iron third
+shortdesc: a torque of the 3rd Black Legion
+desc: A black torque lies nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+extradesc: eldoria-reward 3rd-black-legion-torque black-torque iron third
+A torque made of twisted black metal, it looks fairly protective.
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+48
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 5.13
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 55029
+location: 127
+values:
+250
+1
+-1
+0
+0
+0
+0
+~
+flags: g 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: -0.00
+cost: 600
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    
+~
+~~
+vnum: 55004
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bmnuvyzD b
+name: codex-war tome ancient-book questobject
+shortdesc: the Codex of War
+desc: An ancient book lies here on the edge of destruction.
+type: 8
+weight: 4.00
+cost: 400
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 16385
+applies:
+1 4
+2 -4
+19 1
+~
+extradesc: codex-war tome ancient-book questobject
+You look upon a powerful verse of war and destruction.~
+~~
+vnum: 55011
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ajl 0
+name: eye jeweled-leopard's-eye jeweled-leopards-eye large-piece-jade-carved cat's-eye cats-eye
+shortdesc: a jeweled leopard's eye
+desc: A large piece of jade carved like a cat's eye hangs here on an strand of gold.
+type: 9
+weight: 0.25
+cost: 2400
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 65537
+applies:
+3 9
+24 -3
+28 100
+~
+extradesc: eye jeweled-leopard's-eye jeweled-leopards-eye large-piece-jade-carved cat's-eye cats-eye
+You hold a palm sized, polished dark green jade medallion.  It seems to be warm
+to the touch.  In the green of the medalion are two crystal blue veins forming
+what looks like a cats eye.
+~
+~~
+vnum: 55316
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces rusted-vambraces armor
+shortdesc: rusted vambraces
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55361
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots leather creased
+shortdesc: creased leather boots
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55369
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: hood creased leather
+shortdesc: a creased leather hood
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55369
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: hood creased leather
+shortdesc: a creased leather hood
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55365
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer creased leather
+shortdesc: a creased leather bracer
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55373
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves creased leather
+shortdesc: creased leather sleeves
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55357
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves creased leather
+shortdesc: creased leather gloves
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55357
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves creased leather
+shortdesc: creased leather gloves
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55365
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer creased leather
+shortdesc: a creased leather bracer
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55357
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves creased-leather-gloves armor
+shortdesc: creased leather gloves
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55365
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer creased leather
+shortdesc: a creased leather bracer
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55373
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves creased leather
+shortdesc: creased leather sleeves
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55357
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves creased-leather-gloves armor
+shortdesc: creased leather gloves
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55377
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings creased-leather-leggings armor
+shortdesc: creased leather leggings
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55377
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings creased-leather-leggings armor
+shortdesc: creased leather leggings
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55357
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves creased-leather-gloves armor
+shortdesc: creased leather gloves
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55361
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots creased-leather-boots armor
+shortdesc: creased leather boots
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55369
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: hood creased-leather-hood armor
+shortdesc: a creased leather hood
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55374
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces corroded
+shortdesc: corroded vambraces
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55362
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots corroded
+shortdesc: corroded boots
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55370
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cap corroded
+shortdesc: a corroded cap
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55358
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves corroded
+shortdesc: corroded gloves
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55370
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cap corroded
+shortdesc: a corroded cap
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55378
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: pants corroded
+shortdesc: corroded pants
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55378
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: pants corroded-pants armor
+shortdesc: corroded pants
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55366
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: wristband corroded
+shortdesc: a corroded wristband
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55362
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots corroded
+shortdesc: corroded boots
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55366
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: wristband corroded
+shortdesc: a corroded wristband
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55358
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves corroded-gloves armor
+shortdesc: corroded gloves
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55382
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: jerkin corroded-jerkin armor
+shortdesc: a corroded jerkin
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55366
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: wristband corroded-wristband wrist-band armor
+shortdesc: a corroded wristband
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55366
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: wristband corroded-wristband wrist-band armor
+shortdesc: a corroded wristband
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55358
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves corroded
+shortdesc: corroded gloves
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55377
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings creased-leather-leggings armor
+shortdesc: creased leather leggings
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55361
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots creased-leather-boots armor
+shortdesc: creased leather boots
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55369
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: hood creased-leather-hood armor
+shortdesc: a creased leather hood
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55369
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: hood creased-leather-hood armor
+shortdesc: a creased leather hood
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55361
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots creased-leather-boots armor
+shortdesc: creased leather boots
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55369
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: hood creased-leather-hood armor
+shortdesc: a creased leather hood
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55365
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer creased-leather-bracer armor
+shortdesc: a creased leather bracer
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55374
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces corroded-vambraces armor
+shortdesc: corroded vambraces
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55378
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: pants corroded-pants armor
+shortdesc: corroded pants
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55374
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces corroded-vambraces armor
+shortdesc: corroded vambraces
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55374
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces corroded-vambraces armor
+shortdesc: corroded vambraces
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55374
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces corroded-vambraces armor
+shortdesc: corroded vambraces
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55373
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves creased-leather-sleeves armor
+shortdesc: creased leather sleeves
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55361
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots creased-leather-boots armor
+shortdesc: creased leather boots
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55377
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings creased-leather-leggings armor
+shortdesc: creased leather leggings
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55358
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves corroded-gloves armor
+shortdesc: corroded gloves
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55366
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: wristband corroded-wristband wrist-band armor
+shortdesc: a corroded wristband
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55374
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces corroded-vambraces armor
+shortdesc: corroded vambraces
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55374
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces corroded-vambraces armor
+shortdesc: corroded vambraces
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55378
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: pants corroded-pants armor
+shortdesc: corroded pants
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55370
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cap corroded-cap armor
+shortdesc: a corroded cap
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55374
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces corroded-vambraces armor
+shortdesc: corroded vambraces
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55378
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: pants corroded-pants armor
+shortdesc: corroded pants
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55371
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban worn
+shortdesc: worn turban
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 5
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55371
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban worn
+shortdesc: worn turban
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 5
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55371
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban worn-turban armor
+shortdesc: worn turban
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 5
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55371
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban worn
+shortdesc: worn turban
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 5
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55383
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: robe worn-robe armor
+shortdesc: a worn robe
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 2.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55379
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings worn-leeggings armor
+shortdesc: worn leggings
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55363
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: slippers worn-slippers armor
+shortdesc: worn slippers
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55363
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: slippers worn
+shortdesc: worn slippers
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55367
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet worn
+shortdesc: a worn bracelet
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55367
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet worn-bracelet armor
+shortdesc: a worn bracelet
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55379
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings worn-leeggings armor
+shortdesc: worn leggings
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55379
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings worn-leeggings armor
+shortdesc: worn leggings
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55379
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings worn-leeggings armor
+shortdesc: worn leggings
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55375
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves worn-sleeves armor
+shortdesc: worn sleeves
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55375
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves worn-sleeves armor
+shortdesc: worn sleeves
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55375
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves worn-sleeves armor
+shortdesc: worn sleeves
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55371
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban worn-turban armor
+shortdesc: worn turban
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 5
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55375
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves worn-sleeves armor
+shortdesc: worn sleeves
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55368
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: helm tarnished
+shortdesc: a tarnished helm
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55376
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves tarnished
+shortdesc: tarnished greaves
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55360
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots plate tarnished
+shortdesc: tarnished plate boots
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 3.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55376
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves tarnished
+shortdesc: tarnished greaves
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55356
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gauntlets tarnished-gauntlets armor
+shortdesc: tarnished gauntlets
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55364
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer plate tarnished
+shortdesc: a tarnished plate bracer
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55356
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gauntlets tarnished
+shortdesc: tarnished gauntlets
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55376
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves tarnished-greaves armor
+shortdesc: tarnished greaves
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55364
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer tarnished-plate-bracer armor
+shortdesc: a tarnished plate bracer
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55364
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer tarnished-plate-bracer armor
+shortdesc: a tarnished plate bracer
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55372
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55376
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves tarnished-greaves armor
+shortdesc: tarnished greaves
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55376
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves tarnished-greaves armor
+shortdesc: tarnished greaves
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55356
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gauntlets tarnished-gauntlets armor
+shortdesc: tarnished gauntlets
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55368
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: helm tarnished-helm armor
+shortdesc: a tarnished helm
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55372
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55376
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves tarnished-greaves armor
+shortdesc: tarnished greaves
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55368
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: helm tarnished-helm armor
+shortdesc: a tarnished helm
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55376
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves tarnished-greaves armor
+shortdesc: tarnished greaves
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55372
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55368
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: helm tarnished-helm armor
+shortdesc: a tarnished helm
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55360
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots tarnished-plate-boots armor
+shortdesc: tarnished plate boots
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 3.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55372
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55378
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: pants corroded-pants armor
+shortdesc: corroded pants
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55360
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots tarnished-plate-boots armor
+shortdesc: tarnished plate boots
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 3.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55376
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves tarnished-greaves armor
+shortdesc: tarnished greaves
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55364
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer tarnished-plate-bracer armor
+shortdesc: a tarnished plate bracer
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55372
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55372
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55356
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gauntlets tarnished-gauntlets armor
+shortdesc: tarnished gauntlets
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55371
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban worn-turban armor
+shortdesc: worn turban
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 5
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55375
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves worn-sleeves armor
+shortdesc: worn sleeves
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55381
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tunic creased-leather-tunic armor
+shortdesc: a creased leather tunic
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55377
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings creased-leather-leggings armor
+shortdesc: creased leather leggings
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55369
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: hood creased-leather-hood armor
+shortdesc: a creased leather hood
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55377
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings creased-leather-leggings armor
+shortdesc: creased leather leggings
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~

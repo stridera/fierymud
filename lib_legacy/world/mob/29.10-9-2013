@@ -1,0 +1,266 @@
+#2801
+reptile ripples water reptilian creature blue alligator bg~
+the Blue Alligator~
+There are ripples in the water here.
+~
+You can just make out a reptilian creature beneath the waves. Its
+eyes glow evilly and you have no doubt that the powers of evil have
+corrupted this being. Razor-sharp teeth glinting, the creature looks
+at you and moves in for the kill!
+~
+102760520 262212 -750 E
+35 20 0 0d0+0 0d0+0
+0 0 0 28
+3 3 1 24 14 0 1
+BareHandAttack: 9
+Str: 30
+Dex: 82
+Int: 67
+Wis: 77
+Con: 30
+Cha: 50
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2802
+pirate blue-fog-pirate~
+the Blue-Fog Pirate~
+There is a Blue-Fog Pirate here!
+~
+Obviously this pirate isn't scared of anything! He makes his living by
+ambushing unwary travellers of the Blue-Fog region like you and has no
+fear of the other inhabitants of the fog. Tall, strong, and ugly, he's
+more than happy to make himself richer by ending your life!
+~
+100665420 0 -450 E
+35 20 0 0d0+0 0d0+0
+0 0 0 28
+3 3 1 10 13 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2803
+pirate blue-fog bluefog~
+the Blue-Fog Pirate~
+There is a Blue-Fog Pirate here!
+~
+Obviously this pirate isn't scared of anything! She makes her living by
+ambushing unwary traveller of the Blue-Fog region like you and has no
+fear of the other inhabitants of the fog. Tall, quick, and fierce, she
+will be more than happy to make herself richer by ending your life!
+~
+100665420 0 -450 E
+35 20 0 0d0+0 0d0+0
+0 0 0 28
+3 3 2 10 13 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2804
+pirate blue-fog bluefog captain bluefog-pirate-leader~
+the Blue-Fog Pirate Captain~
+There is a Blue-Fog Pirate Captain here!
+~
+Before you stands a weather-beaten and scarred pirate. You can see the
+grim fierceness burnt into his eyes after decades of slaughtering anyone
+who had something he wanted. You are no different to him. Just another
+face that will soon be floating in a pool of blood.
+~
+102762572 0 -900 E
+45 20 0 0d0+0 0d0+0
+0 0 0 28
+3 3 1 10 13 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55591
+#2805
+blue wave large water~
+the Blue Wave~
+A large wave in the water is circling you.
+~
+This looks like more than just a ripple in the water. The wave circles
+the people in the room and does not simply fade away like a natural wave.
+The water itself seems to be alive!
+~
+2120 262212 0 E
+35 20 0 0d0+0 0d0+0
+0 0 0 28
+3 3 0 24 17 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 74
+Int: 69
+Wis: 72
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 4
+Stance: 6
+E
+#2806
+elemental mist mist-elemental blob~
+the Mist Elemental~
+A huge blob of solid mist hovers nearby.
+~
+This large patch of fog moves on its own -- it's definitely
+alive! It's almost completely opaque, but looks vaguely 
+humanoid.
+~
+100665352 1311748 -250 E
+42 20 0 0d0+0 0d0+0
+0 0 0 28
+4 4 0 24 17 0 2
+BareHandAttack: 12
+Str: 30
+Dex: 86
+Int: 80
+Wis: 69
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 6
+Stance: 6
+E
+T 53457
+#2807
+lord elemental mist mist-elemental-lord blob~
+the Mist Elemental Lord~
+A monstrous blob of solid mist hovers nearby.
+~
+Enough fog to envelop a small house happily, this nearly opaque
+cloud appears to be moving of its own volition. Not even vaguely
+humanoid, the fog is just a blob of mist.
+~
+100665356 1311748 -250 E
+50 20 0 0d0+0 0d0+0
+0 0 0 28
+4 4 0 24 17 0 2
+BareHandAttack: 12
+Str: 30
+Dex: 80
+Int: 72
+Wis: 74
+Con: 30
+Cha: 72
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 6
+Stance: 6
+E
+T 55597
+#2808
+elemental water crest~
+the Water Elemental~
+A huge crest of water has raised itself up here.
+~
+This certainly isn't a natural phenomenon! You can sense the raw power
+and rage of the most savage rivers and oceans flowing through this being.
+~
+2056 1092 -250 E
+47 20 0 0d0+0 0d0+0
+0 0 0 28
+3 3 0 24 17 0 2
+BareHandAttack: 12
+Str: 30
+Dex: 77
+Int: 62
+Wis: 76
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 4
+Stance: 6
+E
+T 53457
+#2809
+lord elemental water~
+the Water Elemental Lord~
+A monstrous creature of living water stands here.
+~
+This certainly isn't a natural phenomenon! You can sense the raw power
+and rage of the most savage rivers and oceans flowing through this being.
+~
+100665352 1092 -500 E
+57 20 0 0d0+0 0d0+0
+0 0 0 28
+3 3 0 24 17 0 2
+BareHandAttack: 12
+Str: 30
+Dex: 76
+Int: 78
+Wis: 79
+Con: 30
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 4
+Stance: 6
+E
+T 55599
+$

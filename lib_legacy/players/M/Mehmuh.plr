@@ -1,0 +1,73 @@
+name: Mehmuh
+password: Me3DZyiLKw
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 27
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20796
+birthtime: 1718655859
+timeplayed: 2416
+lastlogintime: 1718658288
+host: 069.162.225.053
+height: 73
+weight: 300
+base_height: 73
+base_weight: 300
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8024
+hunger: 8
+lastlevel: 0
+hitpoints: 26/25
+mana: 0/0
+move: 152/152
+damroll: 3
+hitroll: 3
+strength: 79
+intelligence: 71
+wisdom: 65
+dexterity: 99
+constitution: 96
+charisma: 58
+experience: 1861
+quit_reason: 7
+saveroom: 8024
+skills:
+203 1000
+401 50
+403 50
+408 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+454 50
+463 50
+464 50
+465 50
+487 50
+493 50
+0 0
+trophy:
+1 8002 1.000000
+1 8000 1.000000
+0 0 0
+tells:
+$
+gossips:
+1718656113 Discord gossips, 'Daedela: Hello there!'
+1718657962 Someone gossips, 'Daedela: Congratulations!!'
+$

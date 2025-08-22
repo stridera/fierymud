@@ -1,0 +1,110 @@
+name: Daegara
+password: DafX35gQCr
+currenttitle: Nitegara
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 9
+race: 6
+level: 1
+home: 3038
+lifeforce: 0
+composition: 0
+id: 16383
+birthtime: 1172023539
+timeplayed: 11185847
+lastlogintime: 1645240755
+host: 162.233.153.155
+height: 44
+weight: 158
+base_height: 44
+base_weight: 158
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: clyz
+effectflags: k w 0
+prefflags: hno 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 104
+loadroom: 3038
+hunger: 24
+thirst: 24
+lastlevel: 11
+hitpoints: -15/3
+mana: 100/0
+move: 162/162
+damroll: 4
+hitroll: 5
+strength: 86
+intelligence: 64
+wisdom: 63
+dexterity: 93
+constitution: 97
+charisma: 57
+bank: 2400 0 0 0
+experience: 1
+quit_reason: 10
+saveroom: 3038
+skills:
+401 1000
+403 1000
+408 1000
+410 750
+415 1000
+416 1000
+420 1000
+421 1000
+438 1000
+440 1000
+443 1000
+444 1000
+464 1000
+465 1000
+0 0
+tells:
+1644766376 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644766735 @WFreddy@W tells you, 'Yay, I hope you enjoy it!@W'@0
+1644766767 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644766788 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644766788 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644766799 @WFreddy@W tells you, 'Yay, I hope you enjoy it!@W'@0
+1645236903 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645236992 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645237085 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1645237977 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1645240653 Luba gossips, 'well thats not normal'
+1645240666 Morris gossips, 'Drum Rool Please'
+1645240669 Wavum gossips, '*oh we have to change this*'
+1645240673 Chinok gossips, 'ok, heard about enough of the same complaint for multiple days'
+1645240680 Chinok gossips, 'you've had it explained'
+1645240685 Chinok gossips, 'multiple time'
+1645240687 Wavum gossips, 'its dumb AF'
+1645240697 Daedela gossips, 'alright, you don't have ot put up with it'
+1645240706 Chinok gossips, 'any more? '
+1645240721 Daedela gossips, 'also, really unacceptable language there'
+$
+aliases:
+bc back child
+bw back woman
+bb back beast
+b back faerie
+3 back 3.guardian
+2 back 2.guardian
+1 back guardian
+z back mist
+gc get all.coins
+gs group self
+- enter well
+gccc get all.coins 2.corpse
+gcc get all.coins corpse
+lic look in corpse
+df drink fountain
+who who -where
+stoner tell signeus stone
+rr recite recall
+bl backstab lokari
+bm backstab maid
+0

@@ -1,0 +1,68 @@
+name: Coquin
+password: CoITvaVpi.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18503
+birthtime: 1367632217
+timeplayed: 628
+lastlogintime: 1367632851
+host: 174.237.008.029
+height: 43
+weight: 188
+base_height: 43
+base_weight: 188
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: xy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 15
+thirst: 6
+lastlevel: 0
+hitpoints: 25/24
+mana: 0/0
+move: 134/136
+damroll: 4
+hitroll: 5
+strength: 96
+intelligence: 67
+wisdom: 72
+dexterity: 96
+constitution: 82
+charisma: 53
+experience: 5499
+quit_reason: 5
+saveroom: 8046
+skills:
+403 60
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+464 51
+465 50
+467 50
+0 0
+trophy:
+1 8015 1.000000
+1 8002 1.000000
+1 8012 1.000000
+1 8022 1.000000
+1 8014 2.000000
+0 0 0
+aliases:
+gc get all corpse
+0

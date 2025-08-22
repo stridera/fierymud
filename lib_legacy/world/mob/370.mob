@@ -1,0 +1,360 @@
+#37000
+mesmeriz troll sorcerer~
+Mesmeriz~
+A troll sorcerer glares in your direction.~
+Before you is Mesmeriz, the troll sorcerer who is lord of the Minithawkin
+Mines.  Much taller than a human, though on the short side for a troll, his
+green skin is painted with purple and red symbols to enhance his arcane magic.
+One of his horns curls back, like a ram's, but the other has been broken off a
+few inches away from his head.  His expression is very intelligent, and
+therefore very dangerous.    ~
+174094 1311780 -1000 E
+55 0 0 0d0+0 0d0+0
+0 0 0 0 0 370
+3 3 1 0 4 1 3
+Str: 78
+Dex: 70
+Int: 80
+Wis: 82
+Con: 30
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 37001
+T 37014
+T 37018
+T 55699
+T 30221
+#37001
+phantom guardian phantom-guardian~
+a phantom guardian~
+A phantom guardian halts your progress.~
+A constantly shifting creature, the phantom guardian phases back and forth from
+the astral plane at will.  Looking at it too long would probably induce some
+kind of nausea, since it is completely inhuman.  If it detects anything that
+does not belong in the mines (such as yourself), it phases completely into this
+plane and shifts itself into the form of a wall.    ~
+190478 9256 -500 E
+40 0 0 0d0+0 0d0+0
+0 0 0 0 0 370
+3 3 0 3 19 1 5
+BareHandAttack: 9
+Str: 98
+Dex: 95
+Int: 78
+Wis: 68
+Con: 30
+Cha: 42
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 0
+Stance: 6
+E
+T 37002
+T 37000
+T 37016
+T 37015
+#37002
+phantom guardian phantom-guardian-two~
+a phantom guardian~
+A phantom guardian flickers to and from the astral plane.~
+This phantom makes sniffing sounds as if trying to detect intruders, floating
+around and constantly shifting its shape by phasing in and out of the astral
+plane.  It totally ignores the creatures that are supposed to be in the mines,
+but snarls in an inhuman voice if it encounters anything else.    ~
+1226828 271394 -500 E
+40 0 0 0d0+0 0d0+0
+0 0 0 0 0 370
+3 3 0 9 19 1 5
+BareHandAttack: 10
+Str: 70
+Dex: 75
+Int: 98
+Wis: 94
+Con: 30
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 0
+Stance: 6
+E
+#37003
+engaja slender woman well-built~
+Engaja~
+A slender well-built woman cautiously eyes you.~
+As you gaze upon this woman, her deteriorated face makes you shiver. Through
+the wrinkles on her face, and her well-built body, she gives you a sense of
+tranquility. She patiently continues working hard and only briefly looks
+up to acknowledge your presence. ~
+2062 1056 700 E
+38 0 0 0d0+0 0d0+0
+0 0 0 0 0 370
+3 3 2 6 0 0 2
+Str: 98
+Dex: 85
+Int: 66
+Wis: 72
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 37003
+T 37004
+T 55696
+#37004
+cirion~
+Cirion~
+Cirion stands here creating magical flowers.~
+As you look upon this humble man, he smiles in your direction.  He's wearing
+what looks like it used to be a white robe, but it has been soiled by dirt.  
+His face looks old, and exhausted.  You notice a few strands of white hair
+sticking out from his hood.    ~
+2190 1066 750 E
+38 0 0 0d0+0 0d0+0
+0 0 0 0 0 370
+3 3 1 1 0 0 2
+Str: 80
+Dex: 78
+Int: 82
+Wis: 82
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 37005
+T 37006
+T 37007
+T 55696
+#37005
+baldathor huge human warrior~
+Baldathor~
+A huge human warrior growls angrily at you.~
+He is a very well built human, though somewhat past his prime judging from his
+graying hair and wrinkled face.  He looks somehow familiar, but his eyes seem
+blank.  His clothing was probably very fine once, but it is now frayed and torn
+in many places.  Muscles hard as rock ripple when he moves, so messing with him
+would probably be unwise.    ~
+67614 0 700 E
+42 0 0 0d0+0 0d0+0
+0 0 0 0 0 370
+3 3 1 3 0 0 2
+Str: 86
+Dex: 89
+Int: 70
+Wis: 70
+Con: 30
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 37013
+T 55698
+#37006
+skeleton haldir~
+Haldir's skeleton~
+A skeleton walks about minding its own business.~
+As you look upon the skeleton, the skeleton turns to you and tilts his
+head, and then proceeds to scratch his head in muse. The skeleton sits
+down, and takes a bone from his leg and begins to write on the dirt floor.
+                   \  \  / \ \    \--\  --- \--\
+                    \--\ \--\ \    \   \  \  \ /
+                     \  \ \  \ \--- \--\  --- \  \
+Then he points to himself, and continues to write out, 'free us please!'~
+200 1048588 0 E
+45 0 0 0d0+0 0d0+0
+0 0 0 0 0 370
+3 3 1 11 0 0 2
+Str: 79
+Dex: 74
+Int: 82
+Wis: 82
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 10
+Stance: 6
+E
+T 55698
+#37007
+dwarf dwarven miner dwarven-miner chipping~
+a dwarven miner~
+A dwarven miner is chipping away at the side of the mine.~
+A short, stocky humanoid is standing in front of you.  His eyes are cloudy and
+he appears to be in a zombie-like trance, for he hasn't noticed you.  This
+miner looks rather old and exhausted, but continues to work with precision, and
+wholeheartedness.    ~
+2124 1024 650 E
+35 0 0 0d0+0 0d0+0
+0 0 0 0 0 370
+3 3 1 3 3 0 2
+Str: 86
+Dex: 79
+Int: 70
+Wis: 65
+Con: 30
+Cha: 80
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#37008
+miner troll-miner~
+a troll miner~
+A troll miner is wandering about looking for more work.~
+A large green humaniod towers above you.  His eyes are cloudy and he appears to
+be in a zombie like trance, for he hasn't noticed you.  As you get closer the
+smell of unwashed troll threatens to overwhelm your fragile senses with its
+reek.    ~
+2124 1056 -650 E
+35 0 0 0d0+0 0d0+0
+0 0 0 0 0 370
+3 3 1 14 4 1 3
+Str: 83
+Dex: 93
+Int: 62
+Wis: 72
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#37009
+messenger running messenger-minithawkin~
+the messenger~
+A messenger is aimlessly running around in circles here.~
+A man dressed in shabby worn-out clothes is running around in circles.  His
+face shows confusion, frustration and depression.  His feet are filthy.  It
+appears as if he's been wandering this mine for years.  Though his quest seems
+fruitless, he does not give up and is constantly moving.    ~
+204 1056 1000 E
+30 0 0 0d0+0 0d0+0
+0 0 0 0 0 370
+3 3 1 2 0 0 2
+Str: 81
+Dex: 76
+Int: 65
+Wis: 77
+Con: 30
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 37008
+T 37010
+T 37011
+T 37009
+#37010
+phantom guardian phantom-guardian~
+a phantom guardian~
+A phantom guardian halts your progress.~
+A constantly shifting creature, the phantom guardian phases back and forth from
+the astral plane at will.  Looking at it too long would probably induce some
+kind of nausea, since it is completely inhuman.  If it detects anything that
+does not belong in the mines (such as yourself), it phases completely into this
+plane and shifts itself into the form of a wall.    ~
+10 0 -500 E
+45 20 0 0d0+0 0d0+0
+0 0 0 0 0 370
+3 3 0 3 19 1 5
+Str: 78
+Dex: 82
+Int: 75
+Wis: 75
+Con: 75
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 0
+Stance: 6
+E
+T 37002
+T 37017
+#37060
+shape phantasmic phantom wisp shadow phantasmic-phantom~
+a phantasmic shape~
+Without form or mass, the wisp of a shadow flitters through the stale air.~
+Obviously a being from a world beyond this one, the shadow seems to have no
+substance or form to it, merely hovering ethereally in the air.  Perhaps it
+would be better described as a nonbeing.    ~
+81946 262144 0 E
+40 20 -10 0d0+0 0d0+0
+0 0 0 0 0 370
+3 3 0 24 17 0 2
+BareHandAttack: 12
+Str: 80
+Dex: 76
+Int: 73
+Wis: 75
+Con: 74
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 400
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+$

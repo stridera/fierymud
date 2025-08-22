@@ -1,0 +1,121 @@
+name: Gilawk
+password: GivSdV6hY.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <%e><%l>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 2
+class: 3
+race: 3
+level: 14
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19912
+birthtime: 1620470208
+timeplayed: 62204
+lastlogintime: 1737567531
+host: 208.093.179.007
+height: 38
+weight: 163
+base_height: 38
+base_weight: 163
+base_size: 2
+natural_size: 2
+alignment: 992
+playerflags: gxy
+effectflags: k w q
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 55923
+thirst: 12
+lastlevel: 0
+hitpoints: 221/193
+mana: 19/19
+move: 156/156
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 58
+wisdom: 70
+dexterity: 94
+constitution: 94
+charisma: 44
+cash: 1 89 300 206
+experience: 709583
+clan: 3
+quit_reason: 7
+saveroom: 55923
+skills:
+402 62
+404 72
+415 50
+416 50
+421 122
+430 70
+438 50
+443 50
+444 69
+463 50
+464 52
+465 141
+466 50
+467 71
+468 50
+0 0
+trophy:
+1 55244 0.500000
+1 55214 7.000000
+1 1604 2.000000
+1 1682 0.500000
+1 12007 1.000000
+1 12005 0.500000
+1 12023 0.500000
+1 12003 2.500000
+1 36107 1.500000
+1 36101 1.500000
+1 5404 0.500000
+1 5403 0.500000
+1 17306 0.500000
+1 17303 0.500000
+1 17304 0.500000
+1 17300 1.000000
+1 55216 0.500000
+1 3143 0.500000
+1 8013 1.000000
+1 8002 1.000000
+1 8020 1.000000
+0 0 0
+tells:
+1620935339 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620935347 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620935359 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620935380 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620935396 @WBigby@W tells you, 'You can only afford 1.@W'@0
+1620935396 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620935413 @WBigby@W tells you, 'No cash, no delivery.@W'@0
+1620943351 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1620943354 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1620948794 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1620950534 Tatabutataka gossips, 'whats the black and white flames'
+1620950535 Tatabutataka gossips, 'whats the black and white flames'
+1620950540 Tatabutataka gossips, 'what slot*'
+1620950554 Tinawk gossips, 'light 2hr white 2dr black'
+1620950627 Tatabutataka gossips, 'im not sure what some of that means'
+1620950634 Tatabutataka gossips, 'a light that lasts 2hours and has 2dr?'
+1621006625 Chinok gossips, 'anyone else laggy ?'
+1621006734 Tatabutataka gossips, 'test'
+1621006737 Tatabutataka gossips, 'no lag here'
+1621006738 Chinok gossips, 'def some weird stuff going on out there'
+$
+aliases:
+id recite identify $*
+gax g all.coins all.corpse
+gac get all all.corpse
+tel recite teleport
+pra mem $*
+pray mem $*
+y ass tinawk
+h hitall
+0

@@ -1,0 +1,2711 @@
+1
+vnum: 48109
+location: 0
+values:
+0
+2400
+2043
+0
+0
+0
+0
+~
+flags: gA
+name: fiery fiery-eye eye jewel
+shortdesc: the fiery eye
+desc: A jewel burning with an intense inner light lies here.
+type: 1
+weight: 0.40
+cost: 900
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+18 -1
+13 20
+28 45
+~
+extradesc: fiery fiery-eye eye jewel
+This jewel is the size of your fist! Beneath its multifaced surface you
+perceive an intense reddish light so intense it seems a reflection of
+Vulcera's fiery passion and hot desires.
+~
+~~
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 5201
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 53317
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjop
+name: amulet silver dragon's eye
+shortdesc: a dragon's eye amulet
+desc: A silver amulet embedded with a dragon's eye lies here.
+type: 8
+weight: 1.50
+cost: 1100
+timer: 0
+level: 53
+effects: 0 0 0
+wear: 5
+applies:
+3 2
+2 -1
+28 53
+~
+extradesc: amulet silver eye
+This amulet is made of pure silver and in its center is embedded the huge
+eye of a dragon.  A gold chain allows it it be worn around the neck.
+~
+~~
+vnum: 53317
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjop
+name: amulet silver dragon's eye
+shortdesc: a dragon's eye amulet
+desc: A silver amulet embedded with a dragon's eye lies here.
+type: 8
+weight: 1.50
+cost: 1100
+timer: 0
+level: 53
+effects: 0 0 0
+wear: 5
+applies:
+3 2
+2 -1
+28 53
+~
+extradesc: amulet silver eye
+This amulet is made of pure silver and in its center is embedded the huge
+eye of a dragon.  A gold chain allows it it be worn around the neck.
+~
+~~
+vnum: 52022
+location: 5
+values:
+40
+0
+0
+0
+0
+0
+0
+~
+flags: abgmo
+name: skin armor dragon-skin dragon-armor
+shortdesc: a dragon skin
+desc: A set of scaled dragon armor lies here, apparently forgotten by the gods.
+type: 9
+weight: 19.00
+cost: 14000
+timer: 0
+level: 78
+effects: 0 0 0
+wear: 9
+applies:
+1 -5
+5 -5
+~
+extradesc: skin armor dragon-skin dragon-armor
+Of all things, dragon skin is incredibly rare.  The scales are hard and a dark
+black color.  Each scale is the size of a man's kneecap, connected
+mysteriously beneath.    
+~
+~~
+vnum: 58414
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crown golden gypsy-crown gypsy
+shortdesc: the Gypsy Crown
+desc: A golden crown inlaid with emeralds rolls around here.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 17
+applies:
+5 8
+~
+extradesc: crown gypsy
+This crown seems pretty heavy. It's made of thick gold, and probably
+incredibly expensive. The gold is shaped into the traditional peaks of 
+crowns. A green emerald, marquise-cut, is set into each peak, and several 
+of them in various cuts adorn the very front of the crown's tallest peak,
+which would be centered over the wearer's forehead.
+~
+~~
+vnum: 55527
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyz
+name: furry goat-hide leather pants glade
+shortdesc: &3&bLeather Pants of the Glade&0
+desc: Furry goat-hide pants flap from a nearby tree.
+type: 9
+weight: 7.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+applies:
+2 4
+1 3
+~
+extradesc: furry goat-hide leather pants glade
+These are no ordinary goat-hide pants!  Strange, residual fae magic lingers on
+them, indicating that powerful magic resided in the creature these were taken
+from.  Sewn with great care, leggings like these are quite special indeed.
+~
+~~
+vnum: 55451
+location: 8
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mnopqrstvwxyz
+name: boots leaves leather nature
+shortdesc: &2Boots of Nature&0
+desc: Fluttering in the wind are boots made of leaves sewn on leather.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+applies:
+3 4
+13 15
+~
+extradesc: boots leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into boots in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 55530
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrstvwxyzD
+name: glowing mass silver spider webbing gloves glade
+shortdesc: &3&bGloves of the Glade&0
+desc: A glowing mass of silver spider webbing floats on the wind.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+1 3
+3 4
+~
+extradesc: glowing mass silver spider webbing gloves glade
+Crafted from the incredibly rare silk of the silver spider, webbing such as
+this is nearly indestructible, in addition to being able to hold the most
+powerful enchantments.  These gloves are both beautiful and blithe, as soft as
+the light that glimmers off them and as soft as the wind.
+~
+~~
+vnum: 1022
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: sleeves leather
+shortdesc: &3a pair of leather sleeves&0
+desc: &3A pair of leather sleeves lies on the ground here.&0
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+~~
+vnum: 53315
+location: 11
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: dragon-shield shield dragon's claw
+shortdesc: a dragon's cult shield
+desc: A shield with the image of a dragon's claw lies here.
+type: 9
+weight: 8.00
+cost: 2250
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 513
+applies:
+5 2
+2 2
+~
+extradesc: shield dragon's claw
+This white heater-shaped shield bears the symbol of the cult of Tri-Aszp
+on its front: a bleeding dragon's claw.  You notice that it is extremely
+well balanced.
+~
+~~
+vnum: 58417
+location: 12
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: fD
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~
+vnum: 58007
+location: 13
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: rtD
+name: belt ninja ninjas black length cloth
+shortdesc: the ninja's belt
+desc: You see a neatly folded length of black cloth.
+type: 9
+weight: 1.10
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 2049
+applies:
+14 20
+2 4
+~
+extradesc: ninjas ninja belt black cloth
+This is a very simple length of black cloth, hemmed all around very
+neatly. There's literally nothing impressive about it.~
+~~
+vnum: 23807
+location: 14
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracelet lightning crackles energy lightning-bracelet
+shortdesc: a lightning bracelet
+desc: A bracelet of lightning crackles with energy here.
+type: 11
+weight: 0.09
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 4097
+applies:
+26 3
+5 2
+17 5
+~
+extradesc: bracelet lightning crackles energy lightning-bracelet
+A tingling feeling radiates from this bracelet, which appears to be made out of
+the elemental force of lightning.  It is colored a pale bluish-white, and
+beneath the sparking there seems to be some kind of hard base, so wearing it on
+the wrist would be quite possible.    
+~
+~~
+vnum: 23807
+location: 15
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracelet lightning crackles energy lightning-bracelet
+shortdesc: a lightning bracelet
+desc: A bracelet of lightning crackles with energy here.
+type: 11
+weight: 0.09
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 4097
+applies:
+26 3
+5 2
+17 5
+~
+extradesc: bracelet lightning crackles energy lightning-bracelet
+A tingling feeling radiates from this bracelet, which appears to be made out of
+the elemental force of lightning.  It is colored a pale bluish-white, and
+beneath the sparking there seems to be some kind of hard base, so wearing it on
+the wrist would be quite possible.    
+~
+~~
+vnum: 53420
+location: 16
+values:
+0
+2
+6
+3
+0
+0
+0
+~
+flags: gmnvyz
+name: blade thin-elven-blade
+shortdesc: an elven blade
+desc: A thin elven blade has been left here.
+type: 5
+weight: 2.10
+cost: 745
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 1056769
+applies:
+18 2
+2 1
+~
+extradesc: thin-elven-blade
+This blade looks quite similar to a regular longsword, but is much thinner and
+the metal seems much stronger.  It is extremely light, and a few test swings
+prove it to be a fine, expertly crafted weapon.    
+~
+~~
+vnum: 12550
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 11
+weight: 0.07
+cost: 250
+timer: 1010
+level: 40
+effects: dx 0 0
+wear: 65537
+applies:
+4 2
+28 80
+~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: mask imanhotep golden
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 9
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+applies:
+1 2
+4 2
+~
+extradesc: mask
+The mask is made of solid gold and is encrusted with jewels. It has an aura
+of power around it.~
+~~
+vnum: 20301
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 20301
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some if its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 48128
+location: 26
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: head severed-goats-head chimera-head goat
+shortdesc: a severed goat's head
+desc: The severed head of a goat sticks its tongue out, a final tidings to the world.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1064961
+applies:
+5 3
+6 -4
+~
+extradesc: head severed-goats-head chimera-head goat
+Grotesque and ugly, the severed goat's head oozes blood from its neck just
+below the jawbone.  Its whitish hair is stained and matted, clumping and
+sticking in knots.  A limp pinkish tongue droops out of its mouth between rows
+of vicious-looking teeth, forming a puddle of horrid-smelling drool beneath it.
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 48125
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: paper parchment-paper
+shortdesc: a piece of parchment
+desc: A sheet of parchment lies here.
+type: 16
+weight: 0.06
+cost: 20
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+extradesc: parchment paper
+You can make out a series of words on the parchment but they are in no
+language you recognise.
+~
+triggers:
+48104
+~
+~~
+vnum: 55529
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyz
+name: single small lotus blossom bracer glade
+shortdesc: &3&bBracer of the Glade&0
+desc: A single small lotus blossom sits on top of a twisted stem here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+applies:
+13 10
+18 2
+~
+extradesc: single small lotus blossom bracer glade
+The stem of this lotus actually goes nowhere, ending in a simple knot.  
+However, it could easily be wrapped around the wrist, creating a beautiful and
+exotic bracer.  The lotus is the ultimate representation of the ability of
+nature to produce beauty and perfection from the darkest of places.  Such an
+ever-growing blossom as this is created only for very powerful druids.
+~
+~~
+vnum: 55524
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyzD
+name: wooden vines helm glade
+shortdesc: &3&bHelm of the Glade&0
+desc: A wooden helm lies here tangled in vines.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+applies:
+4 3
+~
+extradesc: wooden vines helm glade
+Unwilling to be dislodged, the vines have actually grown into and through the
+wood of this helm.  The helm itself appears to have been formed naturally, with
+very little if any human alteration.  Powerful natural magic emanates from this
+helm, indicating that it is more than what it seems.
+~
+~~
+vnum: 55525
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyz
+name: oak tubes vines leaves sleeves glade
+shortdesc: &3&bSleeves of the Glade&0
+desc: Hollowed out oak tubes lie here, hidden under vines and leaves.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+applies:
+5 2
+6 4
+~
+extradesc: oak tubes vines leaves sleeves glade
+Made from the holy oak, a symbol of strength and stability, these tubes are
+enhanced to act as natural armor.  Each sleeves is made of two smaller tubes,
+wrapped in leafy vines that act as threads and cords.  Not exactly a fashion
+statement, there is a raw natural beauty to these sleeves.
+~
+~~
+vnum: 55528
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyz
+name: pressed birth leaf leather boots glade
+shortdesc: &3&bBoots of the Glade&0
+desc: A pair of pressed birch leaf leather boots rests next to a dying fire.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+applies:
+4 2
+1 2
+~
+extradesc: pressed birch leaf leather boots glade
+Several layers of pressed birch leaves have been sewn on to tanned hide to
+create these boots.  These boots still seem to be in sturdy condition, ready to
+handle any climate or condition, even though they have seen years of use.  Odd
+that the leaves still seem to be fresh, as if picked from a tree and stitched
+on this morning.
+~
+~~
+vnum: 55526
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyz
+name: painted embroidered deer-hide leather tunic glade
+shortdesc: &3&bLeather Tunic of the Glade&0
+desc: A painted and embroidered deer-hide tunic lies folded in the grass.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 9
+applies:
+4 4
+5 3
+13 25
+~
+extradesc: painted embroidered deer-hide leather tunic glade
+This tunic is decorated with many natural images, ranging from leaves to great
+beasts.  Made from the hide of a stag, to the druids the most holy and
+respected of beasts, such a garment is granted only to high druids who have
+done much to spread the causes of nature.
+~
+~~
+vnum: 55450
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqrstvwxyz
+name: pants leaves leather nature
+shortdesc: &2Pants of Nature&0
+desc: Fluttering in the wind is a pair of pants made of leaves sewn on leather.
+type: 9
+weight: 7.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 33
+applies:
+2 1
+13 20
+~
+extradesc: pants leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into pants in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 55453
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqrstvwxyz
+name: gloves leaves leather nature
+shortdesc: &2Gloves of Nature&0
+desc: Fluttering in the wind is a pair of gloves made of leaves sewn on leather.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+4 3
+~
+extradesc: gloves leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into gloves in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 12500
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gk
+name: amulet aegis shield protection
+shortdesc: an Aegis amulet
+desc: A shield shaped amulet here seems to have failed to protect its previous user.
+type: 11
+weight: 0.30
+cost: 3000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 5
+applies:
+17 5
+~
+extradesc: amulet aegis shield protection
+A polished silver and gold checkered shield is attached to a fine silver chain.
+The amulet is about the size of an eyeball, and shimmer faintly in the light.
+  
+~
+~~
+vnum: 12500
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gk
+name: amulet aegis shield protection
+shortdesc: an Aegis amulet
+desc: A shield shaped amulet here seems to have failed to protect its previous user.
+type: 11
+weight: 0.30
+cost: 3000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 5
+applies:
+17 5
+~
+extradesc: amulet aegis shield protection
+A polished silver and gold checkered shield is attached to a fine silver chain.
+The amulet is about the size of an eyeball, and shimmer faintly in the light.
+  
+~
+~~
+vnum: 5551
+location: -1
+values:
+2
+2
+4
+3
+0
+0
+0
+~
+flags: knuv
+name: sword eldoria-reward longsword-3rd-eldorian-guard
+shortdesc: a longsword of the 3rd Eldorian Guard
+desc: A longsword lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5551
+location: -1
+values:
+2
+2
+4
+3
+0
+0
+0
+~
+flags: knuv
+name: sword eldoria-reward longsword-3rd-eldorian-guard
+shortdesc: a longsword of the 3rd Eldorian Guard
+desc: A longsword lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 5528
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz
+name: jerkin eldoria-reward 3rd-eldorian-guard-leather-jerkin
+shortdesc: a leather jerkin of the 3rd Eldorian Guard
+desc: A leather jerkin lies discaded here.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+13 5
+~
+~~
+vnum: 5528
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz
+name: jerkin eldoria-reward 3rd-eldorian-guard-leather-jerkin
+shortdesc: a leather jerkin of the 3rd Eldorian Guard
+desc: A leather jerkin lies discaded here.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+13 5
+~
+~~
+vnum: 5536
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: k
+name: faceguard eldoria-reward small face guard 3rd-eldorian-guard-faceguard
+shortdesc: a faceguard of the 3rd Eldorian Guard
+desc: A small faceguard lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 131073
+applies:
+18 1
+~
+~~
+vnum: 5534
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: k
+name: boots eldoria-reward 3rd-eldorian-guard-boots
+shortdesc: boots of the 3rd Eldorian Guard
+desc: Some boots lie here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 65
+applies:
+2 2
+~
+~~
+vnum: 58007
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: rtD
+name: belt ninja ninjas black length cloth
+shortdesc: the ninja's belt
+desc: You see a neatly folded length of black cloth.
+type: 9
+weight: 1.10
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 2049
+applies:
+14 20
+2 4
+~
+extradesc: ninjas ninja belt black cloth
+This is a very simple length of black cloth, hemmed all around very
+neatly. There's literally nothing impressive about it.~
+~~
+vnum: 53325
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: white dragon scale white-dragon-scale
+shortdesc: a white dragon scale
+desc: A perfect white dragon scale lies here.
+type: 9
+weight: 2.00
+cost: 10000
+timer: 1000
+level: 40
+effects: 0 0 0
+wear: 16385
+applies:
+13 30
+18 1
+~
+extradesc: white dragon scale white-dragon-scale
+About as large as a human's palm, this pure white scale comes from the tender
+shoulder area of a white dragon.  It is a beautiful scale, shining brightly in
+the light and feeling slightly cool to the touch.  Dragons are very magical
+creatures, so the scale would probably be valuable to a researching sorcerer or
+anyone else interested in unlocking the power of a dragon's skin.    
+~
+~~
+vnum: 5552
+location: -1
+values:
+2
+2
+5
+5
+0
+0
+0
+~
+flags: kowx
+name: mace eldoria-reward spiked-mace-3rd-eldorian-guard
+shortdesc: a spiked mace of the 3rd Eldorian Guard
+desc: A spiked mace lies here.
+type: 5
+weight: 6.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 12523
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: kmosuvwxyz
+name: shield blue kite
+shortdesc: a blue kite shield
+desc: A blue kite shield lies here, collecting dust.
+type: 9
+weight: 4.50
+cost: 0
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 513
+applies:
+19 2
+~
+extradesc: shield blue kite
+The shield is painted a bright blue, with silver trim about the edges.  The
+shield once held a crest of some sort, but all that is left are a few specks of
+silver and gold here and there.    
+~
+~~
+vnum: 5550
+location: -1
+values:
+2
+3
+3
+11
+0
+0
+0
+~
+flags: knuv
+name: shiv eldoria-reward small 3rd-eldorian-guard-shiv
+shortdesc: a shiv of the 3rd Eldorian Guard
+desc: A small shiv lies here.
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 8193
+applies:
+29 10
+~
+~~
+vnum: 16366
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: mnopqrstvwxyz
+name: bark moonwell map map6
+shortdesc: a bark map
+desc: A piece of bark with a picture on it lies here.
+type: 12
+weight: 2.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 1
+extradesc: bark moonwell map map6
+                        &1&b/ \&0
+                      &1&b/ (R) \&0
+                    &1&b/ /     \ \&0
+                  &1&b/ /         \ \&0
+                &4&b/ /&0             &2&b\ \&0
+              &4&b/ /&0                 &2&b\ \&0
+            &4&b/ /&0                     &2&b\ \&0
+           &4&b<(J)&0                     &2&b(G)>&0
+            &4&b\ \&0                     &2&b/ /&0
+             &4&b\ \&0                   &2&b/ /&0
+              &4&b\ &9&b\&0                 &6&b/ &2&b/&0
+               &9&b\ &0&1\&0               &6&b/ /&0
+                &1\ &9&b\_&0&1__&9&b__&0&1__&6&b______/ /&0
+                 &9&b\&0&1(C)&9&b__&0&1__&9&b_&6&b____(W)/&0
+~
+~~
+vnum: 53409
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: cloak giant-lynx-fur
+shortdesc: a cloak of lynx fur
+desc: A cloak made out of the fur of a giant lynx lies here.
+type: 9
+weight: 3.00
+cost: 2500
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+applies:
+5 3
+~
+extradesc: giant-lynx-fur-cloak
+This large cloak is made from the fur of a giant lynx.  The material
+is smooth and the workmanship is flawless.  The interior of the cloak
+is lined with a white fur, maybe snow rabbit or snow leopard.  The
+clasp is made of gold and is carved to appear like some sort of winged
+snake.  This cloak appears very, very valuable.
+~
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 16205
+location: -1
+values:
+14
+13
+1
+0
+0
+0
+0
+~
+flags: 0
+name: beer flagon
+shortdesc: a flagon
+desc: A clay flagon sits in a corner.
+type: 17
+weight: 1.25
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 16201
+location: -1
+values:
+0
+3000
+0
+0
+0
+0
+0
+~
+flags: ag
+name: sceptre rod kings golden
+shortdesc: a golden sceptre
+desc: A golden sceptre glitters in the light.
+type: 1
+weight: 1.20
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+17 3
+~
+extradesc: sceptre rod kings
+The sceptre is made of pure gold, and is encrusted in jewels. Intricate carvingsdepicting wings snakes decorate this majestic rod.~
+~~
+vnum: 37015
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bopwxD
+name: necklace hand carved hand-carved-necklace wood wooden
+shortdesc: a hand-carved necklace
+desc: A necklace carved from wood has been dropped here.
+type: 12
+weight: 0.70
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 5
+applies:
+9 -50
+3 2
+~
+extradesc: necklace hand carved hand-carved-necklace wood wooden
+The necklace's main pendant is carved in the shape of a tree. The tree
+appears to be growing...can this be? You notice at the bottom of the
+necklace that you can see the trees' rings...you count 50. On the side of
+the tree there appears to be an inscription. 
+~
+extradesc: inscription side
+Ciron the eternally enslaved.
+~
+~~
+vnum: 55653
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem cursed cursed-citrine
+shortdesc: a cursed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55658
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem radiant radiant-tourmaline
+shortdesc: a radiant tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55664
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: emeralds gem handful handful-emeralds emerald
+shortdesc: a handful of emeralds
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 15000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55722
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: opal gem flawed flawed-opal
+shortdesc: a flawed opal
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 17000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 4003
+location: 127
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: agjqrtuvD
+name: chaos orb sphere ball
+shortdesc: a &1Chaos&b&0 orb
+desc: A sphere of pure shade glistens in the light.
+adesc:
+The orb glows deeply within, then burst into blackened flames!
+~
+type: 1
+weight: 2.00
+cost: 0
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 16385
+applies:
+2 2
+4 -2
+9 5
+17 2
+~
+extradesc: orb sphere chaos ball
+A sphere of pure unlaced darkness.  The casing around it appears to be clear,
+letting the the view inside be known.  Black clouds seem to be moving within
+the orb, lighting threads around violently.  It is its own world of chaos.    
+~
+~~
+vnum: 53315
+location: 127
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: dragon-shield shield dragon's claw
+shortdesc: a dragon's cult shield
+desc: A shield with the image of a dragon's claw lies here.
+type: 9
+weight: 8.00
+cost: 2250
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 513
+applies:
+5 2
+2 2
+~
+extradesc: shield dragon's claw
+This white heater-shaped shield bears the symbol of the cult of Tri-Aszp
+on its front: a bleeding dragon's claw.  You notice that it is extremely
+well balanced.
+~
+~~
+vnum: 1006
+location: 127
+values:
+300
+296
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 21.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 30010
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

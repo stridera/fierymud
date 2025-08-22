@@ -1,0 +1,221 @@
+name: Bleck
+password: BlICoMEz62
+prompt: &2&b%ph <&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 11
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17264
+birthtime: 1235413934
+timeplayed: 545014
+lastlogintime: 1429667006
+host: 098.231.133.187
+height: 72
+weight: 141
+base_height: 72
+base_weight: 141
+base_size: 2
+natural_size: 2
+alignment: 737
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: hjnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 993/527
+mana: 980/980
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 73
+intelligence: 87
+wisdom: 81
+dexterity: 69
+constitution: 95
+charisma: 65
+cash: 158 463 9 1
+bank: 998 1566 543 16
+experience: 137547799
+clan: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+21 1000
+25 1000
+29 1000
+31 1000
+32 1000
+33 1000
+38 1000
+39 1000
+45 1000
+50 1000
+52 1000
+62 1000
+67 1000
+68 1000
+76 1000
+87 1000
+100 1000
+101 1000
+106 1000
+121 1000
+125 1000
+186 1000
+187 1000
+188 1000
+189 1000
+211 1000
+212 1000
+213 1000
+222 1000
+223 1000
+224 1000
+226 1000
+415 51
+416 50
+421 818
+423 1000
+424 1000
+438 325
+443 73
+444 211
+447 996
+451 1000
+452 1000
+453 1000
+454 1000
+458 1000
+459 1000
+460 511
+461 1000
+462 1000
+464 317
+0 0
+trophy:
+1 51025 0.333333
+1 6904 0.500000
+1 49016 0.500000
+1 41112 1.000000
+1 4008 0.500000
+1 16903 1.000000
+1 16906 1.500000
+1 48116 0.500000
+1 48131 2.500000
+1 48115 3.500000
+1 59023 1.000000
+1 2345 0.500000
+1 51005 1.000000
+1 52010 0.500000
+1 52009 0.500000
+1 36003 2.000000
+1 58005 0.333333
+1 58006 0.333333
+1 58012 0.333333
+1 58033 1.333333
+1 58010 0.333333
+0 0 0
+mem:
+100 1 1
+5 1 1
+5 1 1
+5 1 1
+19 1 1
+87 1 1
+45 1 1
+39 1 1
+20 1 1
+5 1 1
+187 1 1
+106 1 1
+100 1 2
+25 1 1
+87 1 1
+188 1 1
+188 1 1
+29 1 1
+29 1 1
+76 1 1
+76 1 1
+76 1 1
+76 1 1
+45 1 1
+68 1 1
+33 1 1
+62 1 1
+62 1 1
+68 1 1
+213 1 1
+213 1 1
+213 1 1
+213 1 1
+213 1 1
+211 1 1
+211 1 1
+5 1 1
+25 1 1
+31 1 1
+52 1 1
+52 1 1
+52 1 1
+52 1 1
+5 1 1
+76 1 1
+213 1 2
+213 1 1
+31 1 1
+76 1 1
+19 1 1
+20 1 2
+212 1 1
+212 1 1
+212 1 1
+212 1 1
+212 1 1
+189 1 2
+189 1 2
+189 1 2
+0 0 0
+aliases:
+5 ca 'degen' $1
+4 ca 'soul t' $1
+iden get identify case;recite identify $1
+333 ca 'stone' $1
+st stand;fly
+templace w;w;n;n;w;w;n;n;w;w;n;n;w;w;n;n;n;w;w;w;n;n;n;e;e;n;e;e;s;e;n;n;w;n;w;n;w;n;w;w;w;n;w;s;w;w;n;n;n;n;n;e;e;n;e;e;e;e;s;e;e;e;n;n;n;w;w;n;w;w;w;w;w;w;w;w;w;w;w
+well s;s;s;s;s;s;s;s;e;e;e;e;e;e;e;e;s;s;e;e;e;s;s;s;s;s;s;e;s;s;s;e;s;s;s;w;s;s;e;e;e;e;s;e;e;s;s;s;s;e;n;e;n;e;s;s;w;s;s;s;u;s;d;e;e;s;s;w;s;s;e;s;s;w;s;s;s;w;s;s;s;s;op gate;s;s;s;s
+doom w;w;n;n;w;w;n;n;w;w;n;n;w;w;n;n;n;w;w;w;n;n;n;w;w;w;s;w;w;n;d;n;n;w;w;n;n;n;n;e;e;e;n;n;w;n;n;n;e;e;n;n;n;n;e;e;e;e;e;e;e;n;n;n;op door
+jetty s;e;e;e;e;e;e;e;e;s;s;s;s;s;e;s;s;s;e;s;s;w;w;w;w;s;s;s;s;s;s;e;s;e;s;w;s;e;e;n;e;s;s;w;s;s;e;s;w;d;w;s;w
+lair n;w;u;w;s;s;s;e;u;n;w;s;s;e;u;n;w;w;s;s;w;u
+wall s;w;w;w;n;n;n;n;n;n;n;e;e;n;n;n;n;w;n;n;n;e;e;n;n;e;e;n;e;s;e;n;n;n;e;n;n;n;n;w;n;n;n;n;e;e;e;e;n;n;n;n;w;w;s;e;s;s;w;w;n;n;n;n;n;n
+barrow s;s;s;s;s;s;s;s;s;s;w;s;w;w;s;s;s;w;w;w;s;w;w;s;w;s;w;s;e;s;e;s;e;e;e;s;e;s;e;e;s;e;e;e;e;s;e;e;n;e;u;n;e;e;e;e;s;e;e;n;n;e;e
+gy u;e;d;e;s;e;e;n;d;n;n;e;e;e;e;s;s;w;s;s;s;e;d
+waste s;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;n;n;n;w;w;w;w;w;w;w;w;w;w;n;n;w;n;u;w;w;n;u;e;n;w;n;n;n;n;w;w;s;w;n;n
+9 assist medon
+gac get all corpse
+gcc get coins all.corpse
+ppp follow $1;consent $1
+who who -w
+ccc l i corpse
+r rest;mem;medi
+fountain d;sea mirror;op mirror w;w;op door w;w;n;w;d;op door w;w;w;w;n;n;e;n;n;n;w;w;w;w;w;w;s;buy green;n;e;e;n;dri fountain;dri fountain;dri fountain;fill water fountain
+0 or follower rescue bleck
+hoo say buntoi nakkarri karisto
+haa say floor phrase is eingang bitte
+hee say floor phrase is open sesame
+hit or follower hit $1
+3 ca 'energy drain' $1
+7 ca 'li b' $1
+6 ca 'cone' $1
+hii say darkness hear my call unto you
+0

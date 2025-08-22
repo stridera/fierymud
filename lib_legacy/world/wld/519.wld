@@ -1,0 +1,237 @@
+#51900
+The Gates of Ethilien Training Academy~
+   You stand before the gates of Ethilien Training Academy, the training ground
+for the realm's newest adventurers.  The crest of Ethilien Training Academy, a
+dragon curled around a tree, stands proudly on the gates.  The entrance sits
+below the Forest Temple in the small town of Mielikki, the central hub of the
+world.  The Academy offers basic training in systems from communication to
+combat.~
+519 34079240 0
+D1
+Before you stand the towering iron gates of Ethilien Training Academy~
+gates~
+2 51901 51901
+D4
+~
+~
+0 -1 3001
+E
+academy-crest~
+The Ethilien Training Academy crest is a dragon curled around a tree, its mouth
+open in a roar.~
+S
+#51901
+The Welcome Hall of Ethilien Training Academy~
+   Neat rows of tables and chairs fill the yawning hall of the Academy.  
+Towering walls lead up to a ceiling many stories above.  Large windows let in
+light from the small forest town surrounding the Academy grounds.  On the east
+wall hangs a large purple curtain.~
+519 34079240 0
+D1
+The curtain conceals a hidden door to the east!~
+curtain~
+1 -1 51902
+D3
+~
+~
+0 -1 51900
+E
+academy-crest~
+The Ethilien Training Academy crest is a dragon curled around a tree, its mouth
+open in a roar.~
+E
+purple curtain~
+The heavy purple velvet curtain is embroidered with the Ethilien Training
+Academy crest.  It seems to hide a door of some kind.~
+E
+tables chairs~
+The furniture in the room is old and worn from centuries of use.  Impressions
+from thousands of notes mark the tables' surfaces.~
+S
+#51902
+The Combat Registrar's Office~
+   A huge desk dominates the room.  Around it are hundreds of filing cabinets
+filled to overflowing with student records dating back centuries.  Various arms
+and armor stand propped up amongst the cabinets.  A large directory sign stands
+in the corner.~
+519 34079240 0
+D0
+~
+~
+0 -1 51906
+D1
+~
+~
+0 -1 51905
+D2
+~
+~
+0 -1 51904
+D3
+~
+~
+0 -1 51901
+D5
+~
+~
+0 -1 51903
+E
+academy-crest~
+The Ethilien Training Academy crest is a dragon curled around a tree, its mouth
+open in a roar.~
+E
+large-directory-sign~
+North - Academy Arena
+East - The Chapel
+South - Laboratory of Applied Arcanics
+Down - Stealth Studies Classroom~
+S
+T 51922
+#51903
+Stealth Studies Classroom~
+   This classroom is rife with hiding places, shadowy corners, and misleading
+junk.  It forms the ideal lair for a person up to no good, or perhaps just a
+little chaotic.  Or maybe it's just a hoarder's den, who knows?  An old
+tapestry baring Ethilien Academy's crest hangs on the wall, partially obscured
+by all the rubbish.~
+519 34079240 0
+D1
+~
+~
+0 -1 51907
+E
+academy-crest~
+The Ethilien Training Academy crest is a dragon curled around a tree, its mouth
+open in a roar.~
+S
+#51904
+Laboratory of Applied Arcanics~
+   The laboratory is ringed by three rows of auditorium-style seating.  Scorch
+marks cover nearly every surface and strange smells fill the air.  The floor is
+covered in hundreds of runes and sigils, marked out with an impossible number
+of different substances.  Barely discernible under it all is the Academy's
+crest.~
+519 34079240 0
+D1
+~
+~
+0 -1 51907
+E
+academy-crest~
+The Ethilien Training Academy crest is a dragon curled around a tree, its mouth
+open in a roar.~
+S
+#51905
+The Chapel~
+   More a universal Academy worship space than a dedicated holy site, icons of
+deities from dozens of pantheons fill the chapel.  Though the space is clearly
+very old, it is well maintained and cared for.  Rows of pews provide resting
+places for quiet contemplation.  The Academy's crest hangs at the far end of
+the room.~
+519 34079240 0
+D1
+~
+~
+0 -1 51907
+E
+academy-crest~
+The Ethilien Training Academy crest is a dragon curled around a tree, its mouth
+open in a roar.~
+S
+#51906
+Academy Arena~
+   The Arena is one of the few outdoor spaces in the whole Academy.  Students
+partaking in training duels kick dust into the wind, blurring the eyes and
+drying the mouth.  Blood spatters on the ground as grunts and shouts fill the
+air.  Gear emblazoned with the Academy's crest gleams in the sun.~
+519 34079240 0
+D1
+~
+~
+0 -1 51907
+E
+academy-crest~
+The Ethilien Training Academy crest is a dragon curled around a tree, its mouth
+open in a roar.~
+S
+#51907
+The Banquet Hall~
+   Two massive long tables run the length of the hall, flanked on both sides by
+benches.  At the far end of the room stands a speaker's podium.  The banquet
+hall is full of feasting cadets taking their meal breaks between courses.~
+519 34144792 0
+D1
+~
+~
+0 -1 3001
+S
+#51908
+The Combat Registrar's Holding Room~
+   A huge desk dominates the room.  Around it are hundreds of filing cabinets
+filled to overflowing with student records dating back centuries.  Various arms
+and armor stand propped up amongst the cabinets.  A large directory sign stands
+in the corner.~
+519 34079240 0
+D0
+~
+~
+0 -1 51906
+D1
+~
+~
+0 -1 51905
+D2
+~
+~
+0 -1 51904
+D5
+~
+~
+0 -1 51903
+E
+academy-crest~
+The Ethilien Training Academy crest is a dragon curled around a tree, its mouth
+open in a roar.~
+E
+large-directory-sign~
+North - Academy Arena
+East - The Chapel
+South - Laboratory of Applied Arcanics
+Down - Stealth Studies Classroom~
+S
+#51909
+Welcome Hall Holding Room~
+   Neat rows of tables and chairs fill the yawning hall of the Academy.  
+Towering walls lead up to a ceiling many stories above.  Large windows let in
+light from the small forest town surrounding the Academy grounds.  On the east
+wall hangs a large purple curtain.~
+519 34079240 0
+D1
+The curtain conceals a hidden door to the east!~
+curtain~
+1 -1 51902
+E
+academy-crest~
+The Ethilien Training Academy crest is a dragon curled around a tree, its mouth
+open in a roar.~
+E
+purple curtain~
+The heavy purple velvet curtain is embroidered with the Ethilien Training
+Academy crest.  It seems to hide a door of some kind.~
+E
+tables chairs~
+The furniture in the room is old and worn from centuries of use.  Impressions
+from thousands of notes mark the tables' surfaces.~
+S
+#51910
+Banquet Hall Holding Room~
+   Two massive long tables run the length of the hall, flanked on both sides by
+benches.  At the far end of the room stands a speaker's podium.  The banquet
+hall is full of feasting cadets taking their meal breaks between courses.~
+519 34144792 0
+D1
+~
+~
+0 -1 51907
+S
+$~

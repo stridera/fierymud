@@ -1,0 +1,83 @@
+name: Marrat
+password: Ma3dgpPlJx
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20377
+birthtime: 1668336744
+timeplayed: 2538
+lastlogintime: 1668339430
+host: 068.185.121.152
+height: 49
+weight: 187
+base_height: 49
+base_weight: 187
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k w q
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 16
+lastlevel: 0
+hitpoints: 57/54
+mana: 1/0
+move: 135/146
+damroll: 4
+hitroll: 5
+strength: 85
+intelligence: 71
+wisdom: 71
+dexterity: 82
+constitution: 87
+charisma: 68
+cash: 0 0 15 31
+bank: 0 2 2 1
+experience: 18150
+quit_reason: 1
+saveroom: 3054
+skills:
+402 58
+404 61
+415 50
+416 50
+421 55
+438 50
+443 50
+444 50
+463 50
+464 50
+465 53
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 5420 3.000000
+1 5408 1.500000
+1 5404 0.500000
+1 3502 1.000000
+1 3501 0.500000
+1 3500 2.000000
+0 0 0
+tells:
+1668337368 @WCalken@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
+1668339399 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1668339401 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+$
+gossips:
+$
+effects:
+3 3 1 18 0 0 0
+3 3 -2 24 0 0 0
+3 3 0 0 0 0 16384
+0 0 0 0 0

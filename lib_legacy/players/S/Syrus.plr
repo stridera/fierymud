@@ -1,0 +1,112 @@
+name: Syrus
+password: SyYQaunNpj
+currenttitle: Seerojima
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 9
+race: 0
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 15270
+birthtime: 1132775622
+timeplayed: 873589
+lastlogintime: 1562709827
+host: 075.111.176.241
+height: 67
+weight: 142
+base_height: 67
+base_weight: 142
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 104
+loadroom: 3054
+lastlevel: 9
+hitpoints: 865/865
+mana: 100/100
+move: 128/128
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 76
+wisdom: 70
+dexterity: 100
+constitution: 90
+charisma: 54
+cash: 0 0 6 5
+experience: 103589440
+title: Seerojima
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 941
+404 1000
+405 926
+408 1000
+410 750
+411 1000
+412 1000
+415 999
+416 999
+418 371
+420 1000
+421 1000
+438 54
+440 1000
+443 83
+444 146
+464 1000
+465 57
+477 192
+0 0
+trophy:
+1 3061 2.000000
+1 3501 2.000000
+1 3500 1.000000
+1 3502 1.000000
+1 8013 1.000000
+1 36002 2.000000
+1 36001 1.000000
+1 36003 1.000000
+1 11701 0.500000
+1 11710 0.500000
+1 11750 1.000000
+1 11702 2.000000
+1 18518 1.500000
+1 18515 0.500000
+1 18501 0.500000
+1 18520 1.000000
+1 18551 1.500000
+1 16300 0.500000
+1 16303 1.500000
+1 16302 0.500000
+1 16305 4.500000
+0 0 0
+aliases:
+4 b mist
+ga g all from corpse
+2 b illithid
+1 b merchant
+3 b beast
+bw b warrior
+9 wear band
+' assist rugon
+. gt 747
+8 g band
+] assist seljin
+; assist atagi
+kc b cricket
+kb b beetle
+h hide
+, assist rugon
+[ drink fountain
+lg level gain
+0

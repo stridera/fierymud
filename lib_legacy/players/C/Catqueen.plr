@@ -1,0 +1,47 @@
+name: Catqueen
+password: Caw8CAT.4m
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 0
+level: 0
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19114
+birthtime: 1482204189
+timeplayed: 0
+lastlogintime: 1482204189
+host: 045.033.141.029
+height: 82
+weight: 64
+base_height: 82
+base_weight: 64
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 0/0
+mana: 100/100
+move: 104/104
+damroll: 0
+hitroll: 0
+strength: 100
+intelligence: 67
+wisdom: 62
+dexterity: 99
+constitution: 73
+charisma: 63
+experience: 0
+quit_reason: 0
+saveroom: 0
+skills:
+0 0

@@ -1,0 +1,254 @@
+name: Shorana
+password: ShixLoqqmR
+description
+Shorana kneels in silent meditation.
+Her long, damp, jet black hair tumbles carelessly over her pale white skin.
+You initially question if she is still alive, But the faint pulse of
+her body suggests she has not yet passed into the realm of the living dead.
+Her frail body shivers slightly in the cold air, but she makes no attempt
+to warm herself, as if she hasn't yet noticed she is suffering.
+You wonder if she should be alone, and so exposed in a place like this
+but as you approach her, you sense something within her. It is hidden,
+concealed, but not faint or weak. Indeed, despite her appearance, there
+is an undeniable power within her, that suggests she is capable of great
+destruction.
+~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 2
+class: 11
+race: 0
+level: 99
+home: 3046
+lifeforce: 0
+composition: 0
+id: 13800
+birthtime: 1094758705
+timeplayed: 12598540
+lastlogintime: 1493445235
+host: 174.023.084.079
+height: 64
+weight: 96
+base_height: 64
+base_weight: 96
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxyz
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 3
+hitpoints: 2627/522
+mana: 980/980
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 64
+intelligence: 92
+wisdom: 72
+dexterity: 72
+constitution: 65
+charisma: 100
+cash: 4111 137 2333 58
+bank: 0 3 6 0
+experience: 134922857
+pagelength: 50
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+21 1000
+25 1000
+29 1000
+31 1000
+32 1000
+33 1000
+38 1000
+39 1000
+45 1000
+50 1000
+52 1000
+62 1000
+67 1000
+68 1000
+76 1000
+87 1000
+100 1000
+101 1000
+106 1000
+121 1000
+125 1000
+186 1000
+187 1000
+188 1000
+191 200
+211 1000
+212 1000
+213 1000
+222 1000
+223 1000
+224 1000
+226 1000
+415 261
+416 434
+421 1000
+423 1000
+424 1000
+438 107
+443 50
+444 92
+447 640
+451 756
+452 57
+453 57
+454 171
+458 1000
+459 240
+460 1000
+461 1000
+462 1000
+464 320
+0 0
+trophy:
+1 3052 0.500000
+1 16905 1.000000
+1 53408 1.000000
+1 53404 1.000000
+1 53414 2.500000
+1 53400 0.500000
+1 8010 1.000000
+1 8020 1.000000
+1 8016 1.000000
+1 3060 1.500000
+0 0 0
+mem:
+87 0 2
+87 1 2
+87 1 2
+19 1 2
+19 1 2
+19 1 2
+45 1 2
+188 1 2
+188 1 2
+33 1 2
+33 1 2
+33 1 2
+31 1 2
+31 1 2
+25 1 2
+76 1 2
+76 1 2
+76 1 2
+67 1 2
+39 1 2
+39 1 2
+45 1 2
+213 1 1
+213 1 1
+213 1 1
+213 1 1
+213 1 1
+213 1 1
+226 1 2
+226 1 2
+226 1 2
+226 1 2
+223 1 2
+223 1 2
+223 1 2
+223 1 2
+223 1 2
+226 1 2
+52 1 4
+52 1 4
+19 1 2
+87 1 2
+45 1 2
+31 1 2
+226 1 2
+52 1 4
+52 1 4
+223 1 2
+31 1 2
+29 1 2
+62 1 2
+224 1 2
+224 1 2
+224 1 2
+224 1 2
+224 1 2
+224 1 2
+224 1 2
+19 1 2
+19 1 2
+45 1 2
+45 1 2
+76 1 2
+76 1 2
+29 1 2
+29 1 2
+223 1 2
+223 1 2
+213 1 1
+222 1 2
+222 1 2
+222 1 2
+222 1 2
+222 1 2
+100 1 2
+212 1 2
+212 1 2
+212 1 2
+212 1 2
+212 1 2
+100 1 2
+100 1 2
+100 1 2
+100 1 2
+100 1 2
+100 1 2
+100 1 2
+100 1 2
+100 1 2
+187 0 2
+187 1 2
+187 1 2
+187 1 2
+0 0 0
+aliases:
+bone c 'bone draw' $*
+stone c 'stone' $*
+keys get all.key all.corpse
+im c 'iron' $*
+1 c 'minor crea' ration
+bo c 'bone ar'
+tap c 'soul tap' $*
+cc c 'cone o cold' $*
+drain c 'energy drain' $*
+animate c 'animate dead' $*
+inv c 'invis' $*
+of order followers $*
+ri recite identify $*
+invis c 'invisibility' $*
+bolt c 'lightning bolt' $*
+os order skeleton $*
+oz order zombie $*
+chill c 'chill touch' $*
+create c 'minor creation' $*
+mm c 'magic missile' $*
+gcc get coins all.corpse
+dff drink from fountain
+ac c 'animate dea' corpse
+" order followers $*
+di c 'detect in' $*
+2 c 'sou ta' mage
+fra c 'frac' $*
+degen c 'degen' $*
+0

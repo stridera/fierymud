@@ -1,0 +1,104 @@
+name: Tanle
+password: Ta/Qlooths
+currenttitle: Father of Mysa
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
+poofin: The &4&bmoisture&0 in the &6air&0 coalesces into Tanle.
+poofout: Tanle &4freezes&6 solid&0, then &6&bmelts&0.
+sex: 1
+class: 0
+race: 11
+level: 101
+home: 1222
+lifeforce: 0
+composition: 0
+id: 3069
+birthtime: 946422410
+timeplayed: 50565721
+lastlogintime: 1571978835
+host: 069.161.004.062
+height: 1
+weight: 1
+base_height: 61
+base_weight: 169
+base_size: 3
+natural_size: 0
+alignment: 996
+playerflags: loy
+effectflags: fk 0 0
+prefflags: ahimnorvABCD bc
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 104
+aggression: -1
+loadroom: 1222
+lastlevel: 4
+hitpoints: 12345/12335
+mana: 1020/1020
+move: 12345/12345
+damroll: 3
+hitroll: 6
+strength: 84
+intelligence: 94
+wisdom: 99
+dexterity: 69
+constitution: 74
+charisma: 46
+cash: 127717 430 9543 4381
+experience: 300000000
+pagelength: 50
+logview: 40
+wiztitle: &5&bLord&8&0
+quit_reason: 10
+saveroom: 3002
+trophy:
+1 17202 1.000000
+1 17204 4.000000
+1 16007 1.000000
+1 55230 1.000000
+1 4013 0.500000
+1 52009 106.500000
+1 53301 0.500000
+1 53300 0.500000
+1 11798 0.500000
+1 48014 1.500000
+1 8021 0.500000
+1 48015 1.000000
+1 8016 0.500000
+1 8010 0.500000
+1 48003 16.000000
+1 30067 1.000000
+1 10028 1.000000
+1 3068 1.000000
+1 52003 1.000000
+1 52016 4.000000
+1 52006 1.000000
+0 0 0
+tells:
+1571975213 @WChinok@W tells you, 'hi@W'@0
+$
+gossips:
+1571975215 Chinok gossips, 'hi'
+$
+aliases:
+asdf at $1 give $2 gold $1
+nd set file $1 nodelete on
+specula bfr and 39001
+brea fire gas acid frost water lightning
+moo emote moos.
+secho gecho [Someone] $*
+tanle test online 3926hr
+sil bday 13 april (27), dreya 9 dec (24)
+unl unl $1;open $1
+eastway hamster named cacella -- his now ercodiem
+techo gecho [Tanle] $*
+user users -i
+stable in 32150
+zz goto zantir
+x goto xirgha
+z goto zz
+df drink fountain
+h goto 1222
+who who -w
+rp rescue pahtbelli
+rrp restore pahtbelli
+0

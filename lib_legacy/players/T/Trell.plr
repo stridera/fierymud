@@ -1,0 +1,85 @@
+name: Trell
+password: TrkRN39BMg
+description
+desc
+desc
+desc
+~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19001
+birthtime: 1440809001
+timeplayed: 25083
+lastlogintime: 1440873630
+host: 073.181.087.126
+height: 75
+weight: 122
+base_height: 75
+base_weight: 122
+base_size: 2
+natural_size: 2
+alignment: 52
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 34/34
+mana: 1/0
+move: 114/114
+damroll: 3
+hitroll: 3
+strength: 81
+intelligence: 80
+wisdom: 86
+dexterity: 69
+constitution: 80
+charisma: 68
+cash: 0 15 93 70
+experience: 19915
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 54
+438 50
+443 50
+444 50
+451 54
+457 51
+458 50
+459 50
+460 50
+462 50
+463 54
+466 50
+0 0
+trophy:
+1 16902 4.000000
+1 16901 2.000000
+1 16900 4.000000
+1 8015 1.000000
+0 0 0
+mem:
+1 1 8
+84 1 8
+16 1 8
+0 0 0

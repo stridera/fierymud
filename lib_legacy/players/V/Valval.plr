@@ -1,0 +1,76 @@
+name: Valval
+password: VapgGZZEfA
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20521
+birthtime: 1683692932
+timeplayed: 860
+lastlogintime: 1683693794
+host: 047.028.166.000
+height: 65
+weight: 135
+base_height: 65
+base_weight: 135
+base_size: 2
+natural_size: 2
+alignment: -1
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 12
+lastlevel: 0
+hitpoints: 44/42
+mana: 0/0
+move: 138/158
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 57
+wisdom: 72
+dexterity: 99
+constitution: 99
+charisma: 42
+experience: 12901
+quit_reason: 1
+saveroom: 3054
+skills:
+401 60
+403 61
+408 56
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 53
+465 50
+493 52
+0 0
+trophy:
+1 8022 1.000000
+1 8000 2.000000
+1 8001 3.000000
+1 8012 1.000000
+1 8011 1.000000
+1 8015 2.000000
+1 8016 1.000000
+1 8030 1.000000
+1 8014 2.000000
+0 0 0
+tells:
+1683693465 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+$

@@ -1,0 +1,69 @@
+name: Granidine
+password: GrdXpjlhM2
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19069
+birthtime: 1464203801
+timeplayed: 3675
+lastlogintime: 1464207769
+host: 104.251.243.206
+height: 50
+weight: 190
+base_height: 50
+base_weight: 190
+base_size: 2
+natural_size: 2
+alignment: 964
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8146
+lastlevel: 0
+hitpoints: 25/25
+mana: 1/0
+move: 132/132
+damroll: 4
+hitroll: 5
+strength: 96
+intelligence: 64
+wisdom: 73
+dexterity: 80
+constitution: 79
+charisma: 71
+experience: 6049
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8012 1.000000
+1 8002 1.000000
+1 8013 2.000000
+1 8010 3.000000
+1 8021 2.000000
+1 3066 1.000000
+1 3061 2.500000
+0 0 0

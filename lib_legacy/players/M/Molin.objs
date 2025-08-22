@@ -1,0 +1,3478 @@
+1
+vnum: 5212
+location: 0
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: 0
+name: flame gray-flame small-pillar gray-fire questobject gray
+shortdesc: a gray flame
+desc: A small pillar of gray flame flickers here.
+type: 1
+weight: 0.50
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+applies:
+13 15
+2 1
+~
+extradesc: flame gray-flame small-pillar gray-fire questobject gray
+   The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  Its luminosity is
+both too bright and too dim, yet seems to light the area perfectly.    
+~
+triggers:
+5207
+~
+variables:
+retriever Molin
+~
+~~
+vnum: 16103
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 16103
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 58005
+location: 3
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gop
+name: necklace jade striking
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 9
+weight: 0.60
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+~
+extradesc: striking jade necklace
+The necklace is made of several very large, flawless panels of jade. You
+run your fingers over the smooth stone and can feel supernatural power
+contained inside this rare piece of art.~
+~~
+vnum: 58005
+location: 4
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gop
+name: necklace jade striking
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 9
+weight: 0.60
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+~
+extradesc: striking jade necklace
+The necklace is made of several very large, flawless panels of jade. You
+run your fingers over the smooth stone and can feel supernatural power
+contained inside this rare piece of art.~
+~~
+vnum: 58014
+location: 5
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: cuirass armor bamboo bamboo-armor strips strip
+shortdesc: a cuirass made of bamboo strips
+desc: You see a cuirass made, amazingly, of bamboo strips.
+type: 9
+weight: 10.00
+cost: 1200
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 9
+applies:
+19 1
+5 5
+~
+extradesc: cuirass bamboo strips armor
+This armor is so light that you wonder that it could be at all effective!
+Made from strips of bamboo cleverly lashed together with wire, it covers
+from the throat to the knees. It looks like it ties in the back.~
+~~
+vnum: 55384
+location: 6
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz
+name: helm trainee
+shortdesc: a trainee helm
+desc: A helm of slight magic power lies here.
+type: 9
+weight: 4.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 17
+applies:
+1 1
+13 7
+~
+extradesc: helm trainee
+Newly forged, this magical metal helm was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 55387
+location: 7
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz
+name: greaves trainee
+shortdesc: trainee greaves
+desc: A set of slightly magical plate greaves lies here.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 33
+applies:
+4 1
+13 7
+~
+extradesc: trainee greaves
+Newly forged, these magical metal greaves were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 55388
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz
+name: boots trainee
+shortdesc: trainee boots
+desc: A pair of slightly magical plate boots lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 65
+applies:
+3 1
+13 5
+~
+extradesc: trainee boots
+Newly forged, these magical metal boots were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 55467
+location: 9
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnoqrstuvwxyz
+name: neophyte fistwraps
+shortdesc: &9&bFistwraps of the Neophyte&0
+desc: Waiting for their owner here are fistwraps of a monk's order.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+19 4
+~
+extradesc: fistwraps neophyte
+These cloth strips can be easily wrapped around the hands and are enchanted but
+unadorned, reflecting the simple life of a monastic order.  It bears a seal
+indicated the owner's name and order.
+~
+~~
+vnum: 5521
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: sleeves eldoria-reward 3rd-black-legion-leather-sleeves
+shortdesc: leather sleeves of the 3rd Black Legion
+desc: Some black leather sleeves lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 3041
+location: 11
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: shield bark-mielikki-guard-shield section wood
+shortdesc: a bark Mielikki Guard Shield
+desc: A large section of wood lined with metal bands lies here.
+type: 9
+weight: 10.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 513
+applies:
+13 5
+18 1
+~
+~~
+vnum: 20304
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak zebra skin
+shortdesc: a zebra skin cloak
+desc: A large striped cloak lies in the dust here.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+applies:
+1 2
+19 1
+~
+extradesc: cloak zebra skin
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.    
+~
+~~
+vnum: 58007
+location: 13
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: rtD
+name: belt ninja ninjas black length cloth
+shortdesc: the ninja's belt
+desc: You see a neatly folded length of black cloth.
+type: 9
+weight: 1.10
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 2049
+applies:
+14 20
+2 4
+~
+extradesc: ninjas ninja belt black cloth
+This is a very simple length of black cloth, hemmed all around very
+neatly. There's literally nothing impressive about it.~
+~~
+vnum: 2023
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 2023
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 12015
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: seashell shard seashell-shard piece shell
+shortdesc: a seashell shard
+desc: A broken piece of seashell lies unnoticed in the grass.
+type: 8
+weight: 0.40
+cost: 15
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+applies:
+13 2
+18 1
+~
+extradesc: piece seashell shard
+This bit of seashell is obviously a piece of a huge shell; you 
+can tell by the size of the rills on its other side. The shard,
+vaguely conical in shape, fits comfortably in your hand. Now you
+just need to figure out where it could have come from.
+~
+~~
+vnum: 51006
+location: 21
+values:
+0
+1800
+1800
+0
+0
+0
+0
+~
+flags: ag
+name: eyes balls ice-eyes
+shortdesc: a pair of Ice Eyes
+desc: Two balls of ice lie here, casting a magical glow of light all around.
+type: 1
+weight: 1.03
+cost: 500
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 65537
+applies:
+18 2
+14 20
+28 52
+~
+extradesc: ice eyes magical pair two
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.
+~
+~~
+vnum: 5535
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: mask eldoria-reward 3rd-black-legion-black-mask
+shortdesc: a black mask of the 3rd Black Legion
+desc: A small black mask lies here.
+type: 9
+weight: 0.94
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 131073
+applies:
+18 1
+~
+~~
+vnum: 1607
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA
+name: viper fang
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 0.40
+cost: 1000
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+24 -1
+13 5
+~
+extradesc: fang viper
+About 2 inches long, and razor-sharp, this fang looks like it could
+pierce steel.  Or be worn as an earring...
+~
+~~
+vnum: 1607
+location: 24
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA
+name: viper fang
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 0.40
+cost: 1000
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+24 -1
+13 5
+~
+extradesc: fang viper
+About 2 inches long, and razor-sharp, this fang looks like it could
+pierce steel.  Or be worn as an earring...
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 20300
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+~
+extradesc: saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  
+~
+~~
+vnum: 2023
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 5206
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.
+~
+~~
+vnum: 55353
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tunic leather crushed
+shortdesc: a crushed leather tunic
+desc: A pile of crushed leather armor lies here unusable.
+type: 11
+weight: 5.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 9
+~~
+vnum: 55341
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: hood crushed
+shortdesc: a crushed hood
+desc: A pile of crushed leather armor lies here unusable.
+type: 9
+weight: 1.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+~~
+vnum: 3033
+location: -1
+values:
+20
+1
+1
+3
+0
+0
+0
+~
+flags: 0
+name: cane mayor short mayors-cane questobject
+shortdesc: the mayor's cane
+desc: A short cane is resting here in the way.
+type: 3
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: cane mayor short mayors-cane questobject
+The mayor's cane is simply a short piece of wood to help him with walking in
+his old age.  It is probably worthless otherwise.    
+~
+triggers:
+6019
+~
+variables:
+gotcain 1
+~
+~~
+vnum: 5212
+location: -1
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: 0
+name: flame gray-flame small-pillar gray-fire questobject gray
+shortdesc: a gray flame
+desc: A small pillar of gray flame flickers here.
+type: 1
+weight: 0.50
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+applies:
+13 15
+2 1
+~
+extradesc: flame gray-flame small-pillar gray-fire questobject gray
+   The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  Its luminosity is
+both too bright and too dim, yet seems to light the area perfectly.    
+~
+triggers:
+5207
+~
+variables:
+retriever Molin
+~
+~~
+vnum: 3033
+location: -1
+values:
+20
+1
+1
+3
+0
+0
+0
+~
+flags: 0
+name: cane mayor short mayors-cane questobject
+shortdesc: the mayor's cane
+desc: A short cane is resting here in the way.
+type: 3
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: cane mayor short mayors-cane questobject
+The mayor's cane is simply a short piece of wood to help him with walking in
+his old age.  It is probably worthless otherwise.    
+~
+triggers:
+6019
+~
+variables:
+gotcain 1
+~
+~~
+vnum: 3033
+location: -1
+values:
+20
+1
+1
+3
+0
+0
+0
+~
+flags: 0
+name: cane mayor short mayors-cane questobject
+shortdesc: the mayor's cane
+desc: A short cane is resting here in the way.
+type: 3
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: cane mayor short mayors-cane questobject
+The mayor's cane is simply a short piece of wood to help him with walking in
+his old age.  It is probably worthless otherwise.    
+~
+triggers:
+6019
+~
+variables:
+gotcain 1
+~
+~~
+vnum: 55461
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: agmnoqrstuvwxyz
+name: cap neophyte
+shortdesc: &9&bCap of the Neophyte&0
+desc: Waiting for its owner is a cap of a monk's order.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+applies:
+4 3
+5 2
+~
+extradesc: cap neophyte
+This cloth cap is enchanted but unadorned and simply created, reflecting the
+simple life of a monastic order.  It bears a seal indicated the owner's name
+and order.
+~
+~~
+vnum: 23711
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: jl
+name: pendant black-spider-pendant
+shortdesc: a spider pendant
+desc: A black spider crawls on a small necklace here.
+type: 9
+weight: 1.25
+cost: 1000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 5
+extradesc: spider black necklace pendant
+The black stone spider on the end of the necklace chain seems to be alive.  It
+crawls back and forth on the chain whenever it senses danger.    
+~
+~~
+vnum: 5206
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.
+~
+~~
+vnum: 5206
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.
+~
+~~
+vnum: 5206
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.
+~
+~~
+vnum: 51003
+location: -1
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag gristle-bag food
+shortdesc: a large rank-smelling bag of gristle
+desc: A discarded leather bag is here, stinking up the area.
+type: 19
+weight: 5.00
+cost: 45
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+extradesc: bag gristle
+You look in the putrid smelling bag.  It smells horrid and it's filled with
+gristle.  It's not gourmet food, but there's a huge portion inside and it
+will keep you full for a while.
+~
+~~
+vnum: 51003
+location: -1
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag gristle-bag food
+shortdesc: a large rank-smelling bag of gristle
+desc: A discarded leather bag is here, stinking up the area.
+type: 19
+weight: 5.00
+cost: 45
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+extradesc: bag gristle
+You look in the putrid smelling bag.  It smells horrid and it's filled with
+gristle.  It's not gourmet food, but there's a huge portion inside and it
+will keep you full for a while.
+~
+~~
+vnum: 51003
+location: -1
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag gristle-bag food
+shortdesc: a large rank-smelling bag of gristle
+desc: A discarded leather bag is here, stinking up the area.
+type: 19
+weight: 5.00
+cost: 45
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+extradesc: bag gristle
+You look in the putrid smelling bag.  It smells horrid and it's filled with
+gristle.  It's not gourmet food, but there's a huge portion inside and it
+will keep you full for a while.
+~
+~~
+vnum: 20306
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracelet snake-fang-bracelet small fangs
+shortdesc: a snake fang bracelet
+desc: A small bracelet made of snake fangs lies on the ground here.
+type: 9
+weight: 0.70
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 4097
+applies:
+19 1
+18 1
+1 1
+~
+extradesc: bracelet snake fang
+This bracelet is made out of a very durable weaved grass that has several
+spaced out snake fangs weaved into it.  The fangs are about an inch in length
+and give the bracelet a menacing look.  The grass is a dull green color and it
+is weaved tightly so it looks almost like it is one piece of grass.    
+~
+~~
+vnum: 55385
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: mnouvwxyz
+name: vambraces trainee
+shortdesc: trainee vambraces
+desc: A set of somewhat magical plate vambraces lies here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+13 5
+~
+extradesc: trainee vambraces
+Newly forged, these magical metal vambraces were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 5518
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: k
+name: helm eldoria-reward discarded 3rd-eldorian-guard-helm
+shortdesc: a helm of the 3rd Eldorian Guard
+desc: A helm lies discarded nearby.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 17
+applies:
+14 5
+~
+extradesc: helm eldoria-reward discarded 3rd-eldorian-guard-helm
+It's a helmet of middling quality with the insignia of the 3rd Eldorian Guard
+imprinted on it.
+~
+~~
+vnum: 5519
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: torque eldoria-reward 3rd-black-legion-torque
+shortdesc: a torque of the 3rd Black Legion
+desc: A black torque lies nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward 3rd-black-legion-torque
+A torque made of twisted black metal, it looks fairly protective.
+~
+~~
+vnum: 41009
+location: -1
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: ag
+name: eye jewelled fist-sized-gem fist sized gem jewelled-eye facets
+shortdesc: a jewelled eye
+desc: A fist-sized gem with multiple facets is embedded here.
+type: 1
+weight: 0.50
+cost: 140
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+applies:
+4 2
+28 8
+~
+extradesc: jewelled-eye eye faceted
+This is no natural gem! It's the eye of a Hiver Queen, detached from its
+socket. The many eye facets that once gazed upon the world with ambitious
+lust still gleam faintly in death.
+~
+~~
+vnum: 41009
+location: -1
+values:
+0
+400
+296
+0
+0
+0
+0
+~
+flags: ag
+name: eye jewelled fist-sized-gem fist sized gem jewelled-eye facets
+shortdesc: a jewelled eye
+desc: A fist-sized gem with multiple facets is embedded here.
+type: 1
+weight: 0.50
+cost: 140
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+applies:
+4 2
+28 8
+~
+extradesc: jewelled-eye eye faceted
+This is no natural gem! It's the eye of a Hiver Queen, detached from its
+socket. The many eye facets that once gazed upon the world with ambitious
+lust still gleam faintly in death.
+~
+~~
+vnum: 41009
+location: -1
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: ag
+name: eye jewelled fist-sized-gem fist sized gem jewelled-eye facets
+shortdesc: a jewelled eye
+desc: A fist-sized gem with multiple facets is embedded here.
+type: 1
+weight: 0.50
+cost: 140
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+applies:
+4 2
+28 8
+~
+extradesc: jewelled-eye eye faceted
+This is no natural gem! It's the eye of a Hiver Queen, detached from its
+socket. The many eye facets that once gazed upon the world with ambitious
+lust still gleam faintly in death.
+~
+~~
+vnum: 5537
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: robe eldoria-reward 3rd-black-legion-robe
+shortdesc: a robe of the 3rd Black Legion
+desc: A black robe lies discarded here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 9
+applies:
+3 2
+4 2
+13 5
+~
+~~
+vnum: 55465
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmnoqrstuvwxyz
+name: neophyte boots
+shortdesc: &9&bBoots of the Neophyte&0
+desc: Waiting for their owner is pair of boots of a monk's order.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+applies:
+2 1
+5 2
+~
+extradesc: boots neophyte
+These cloth boots are enchanted but unadorned and simply created, reflecting
+the simple life of a monastic order.  It bears a seal indicated the owner's
+name and order.
+s/
+~
+~~
+vnum: 16312
+location: 127
+values:
+15
+2
+2
+16
+0
+0
+0
+~
+flags: 0
+name: pipe druid
+shortdesc: a druid's pipe
+desc: A reed pipe lies among the bushes.
+type: 4
+weight: 1.00
+cost: 100
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+extradesc: pipe druid reed
+   The pipe is made of reeds you'd normally find on river banks. A haunting
+sound seems to emit from it as the wind blows past you.
+~
+~~
+vnum: 16312
+location: 127
+values:
+15
+2
+2
+16
+0
+0
+0
+~
+flags: 0
+name: pipe druid
+shortdesc: a druid's pipe
+desc: A reed pipe lies among the bushes.
+type: 4
+weight: 1.00
+cost: 100
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+extradesc: pipe druid reed
+   The pipe is made of reeds you'd normally find on river banks. A haunting
+sound seems to emit from it as the wind blows past you.
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 8346
+location: -1
+values:
+20
+39
+39
+39
+0
+0
+0
+~
+flags: 0
+name: vial blue old
+shortdesc: a blue vial
+desc: An old blue vial lies here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: vial blue old
+This small vial contains a murky blue potion.  It starts to bubble as you move
+it around, showing that it has quite a high potency for its size.    
+~
+~~
+vnum: 8346
+location: -1
+values:
+20
+39
+39
+39
+0
+0
+0
+~
+flags: 0
+name: vial blue old
+shortdesc: a blue vial
+desc: An old blue vial lies here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: vial blue old
+This small vial contains a murky blue potion.  It starts to bubble as you move
+it around, showing that it has quite a high potency for its size.    
+~
+~~
+vnum: 5100
+location: -1
+values:
+20
+144
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flask stone stone-flask
+shortdesc: a stone flask
+desc: A stone flask lies among the rocks here.
+type: 10
+weight: 1.00
+cost: 80
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 1
+extradesc: flask stone stone-flask
+Unlike the standard wizard's flask, which is made of glass, this flask is
+made of a heavy grey stone, making it difficult to see what is inside.
+~
+~~
+vnum: 5100
+location: -1
+values:
+20
+144
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flask stone stone-flask
+shortdesc: a stone flask
+desc: A stone flask lies among the rocks here.
+type: 10
+weight: 1.00
+cost: 80
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 1
+extradesc: flask stone stone-flask
+Unlike the standard wizard's flask, which is made of glass, this flask is
+made of a heavy grey stone, making it difficult to see what is inside.
+~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf heavy food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: a heavy loaf of bread
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.
+~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf heavy food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: a heavy loaf of bread
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.
+~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf heavy food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: a heavy loaf of bread
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.
+~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf heavy food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: a heavy loaf of bread
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.
+~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf heavy food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: a heavy loaf of bread
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.
+~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf heavy food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: a heavy loaf of bread
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.
+~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf heavy food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: a heavy loaf of bread
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.
+~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf heavy food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: a heavy loaf of bread
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 5100
+location: -1
+values:
+20
+144
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flask stone stone-flask
+shortdesc: a stone flask
+desc: A stone flask lies among the rocks here.
+type: 10
+weight: 1.00
+cost: 80
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 1
+extradesc: flask stone stone-flask
+Unlike the standard wizard's flask, which is made of glass, this flask is
+made of a heavy grey stone, making it difficult to see what is inside.
+~
+~~
+vnum: 5100
+location: -1
+values:
+20
+144
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flask stone stone-flask
+shortdesc: a stone flask
+desc: A stone flask lies among the rocks here.
+type: 10
+weight: 1.00
+cost: 80
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 1
+extradesc: flask stone stone-flask
+Unlike the standard wizard's flask, which is made of glass, this flask is
+made of a heavy grey stone, making it difficult to see what is inside.
+~
+~~
+vnum: 5100
+location: -1
+values:
+20
+144
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flask stone stone-flask
+shortdesc: a stone flask
+desc: A stone flask lies among the rocks here.
+type: 10
+weight: 1.00
+cost: 80
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 1
+extradesc: flask stone stone-flask
+Unlike the standard wizard's flask, which is made of glass, this flask is
+made of a heavy grey stone, making it difficult to see what is inside.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf heavy food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: a heavy loaf of bread
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf heavy food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: a heavy loaf of bread
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.
+~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf heavy food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: a heavy loaf of bread
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.
+~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf heavy food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: a heavy loaf of bread
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 5100
+location: -1
+values:
+20
+144
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flask stone stone-flask
+shortdesc: a stone flask
+desc: A stone flask lies among the rocks here.
+type: 10
+weight: 1.00
+cost: 80
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 1
+extradesc: flask stone stone-flask
+Unlike the standard wizard's flask, which is made of glass, this flask is
+made of a heavy grey stone, making it difficult to see what is inside.
+~
+~~
+vnum: 51008
+location: -1
+values:
+66
+19
+67
+0
+0
+0
+0
+~
+flags: 0
+name: vial nordus water-vial
+shortdesc: a small vial
+desc: A small vial lies partially hidden on the ground.
+type: 10
+weight: 0.15
+cost: 140
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: water vial
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. 
+~
+~~
+vnum: 51008
+location: -1
+values:
+66
+19
+67
+0
+0
+0
+0
+~
+flags: 0
+name: vial nordus water-vial
+shortdesc: a small vial
+desc: A small vial lies partially hidden on the ground.
+type: 10
+weight: 0.15
+cost: 140
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: water vial
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. 
+~
+~~
+vnum: 51008
+location: -1
+values:
+66
+19
+67
+0
+0
+0
+0
+~
+flags: 0
+name: vial nordus water-vial
+shortdesc: a small vial
+desc: A small vial lies partially hidden on the ground.
+type: 10
+weight: 0.15
+cost: 140
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: water vial
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. 
+~
+~~
+vnum: 51008
+location: -1
+values:
+66
+19
+67
+0
+0
+0
+0
+~
+flags: 0
+name: vial nordus water-vial
+shortdesc: a small vial
+desc: A small vial lies partially hidden on the ground.
+type: 10
+weight: 0.15
+cost: 140
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: water vial
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. 
+~
+~~
+vnum: 51008
+location: -1
+values:
+66
+19
+67
+0
+0
+0
+0
+~
+flags: 0
+name: vial nordus water-vial
+shortdesc: a small vial
+desc: A small vial lies partially hidden on the ground.
+type: 10
+weight: 0.15
+cost: 140
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: water vial
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. 
+~
+~~
+vnum: 51008
+location: -1
+values:
+66
+19
+67
+0
+0
+0
+0
+~
+flags: 0
+name: vial nordus water-vial
+shortdesc: a small vial
+desc: A small vial lies partially hidden on the ground.
+type: 10
+weight: 0.15
+cost: 140
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: water vial
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. 
+~
+~~
+vnum: 51008
+location: -1
+values:
+66
+19
+67
+0
+0
+0
+0
+~
+flags: 0
+name: vial nordus water-vial
+shortdesc: a small vial
+desc: A small vial lies partially hidden on the ground.
+type: 10
+weight: 0.15
+cost: 140
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: water vial
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. 
+~
+~~
+vnum: 51008
+location: -1
+values:
+66
+19
+67
+0
+0
+0
+0
+~
+flags: 0
+name: vial nordus water-vial
+shortdesc: a small vial
+desc: A small vial lies partially hidden on the ground.
+type: 10
+weight: 0.15
+cost: 140
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: water vial
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. 
+~
+~~
+vnum: 51008
+location: -1
+values:
+66
+19
+67
+0
+0
+0
+0
+~
+flags: 0
+name: vial nordus water-vial
+shortdesc: a small vial
+desc: A small vial lies partially hidden on the ground.
+type: 10
+weight: 0.15
+cost: 140
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: water vial
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. 
+~
+~~
+vnum: 41010
+location: -1
+values:
+20
+28
+0
+0
+0
+0
+0
+~
+flags: g
+name: jelly royal round bubble half jelled fluid wax
+shortdesc: a wax bubble of royal jelly
+desc: A round bubble containing a half-jelled fluid is here. 
+type: 10
+weight: 2.00
+cost: 45
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 16385
+extradesc: royal-jelly royal jelled bubble wax-bubble fluid
+The half-jelled fluid swirls sluggishly in the container.
+~
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 41011
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: honeycomb sticky comb sweet food chunk hiver honey
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: sticky-comb comb sweet food
+Hexagonal wax chambers are filled with an amber fluid. It covers your hands
+with sticky goodness as you examine it.
+~
+~~
+vnum: 41011
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: honeycomb sticky comb sweet food chunk hiver honey
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: sticky-comb comb sweet food
+Hexagonal wax chambers are filled with an amber fluid. It covers your hands
+with sticky goodness as you examine it.
+~
+~~
+vnum: 58019
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 58019
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 58019
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 58019
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 58019
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 58019
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 58019
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 5206
+location: 127
+values:
+1
+500
+230
+0
+0
+0
+0
+~
+flags: 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.
+~
+~~
+vnum: 58019
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 5553
+location: 127
+values:
+0
+800
+800
+0
+0
+0
+0
+~
+flags: j
+name: crystal light eldoria-reward small-cracked-crystal fractured-crystal
+shortdesc: a fractured crystal
+desc: A small, cracked crystal lies here.
+type: 1
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 55672
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem perfect perfect-tourmaline
+shortdesc: a perfect tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 6000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 58420
+location: -1
+values:
+0
+2
+8
+3
+0
+0
+0
+~
+flags: gmnouvwyz
+name: blade forgotten-kings long-heavy-sword jewelled-pommel
+shortdesc: the Blade of the Forgotten Kings
+desc: A long, heavy sword with a jewelled pommel rests here.
+type: 5
+weight: 2.50
+cost: 6000
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 8193
+applies:
+4 2
+19 3
+~
+extradesc: blade forgotten-kings long-heavy-sword jewelled-pommel
+This sword's easily the length of your entire arm, and the blade itself
+is thick and wide, with a blood groove deeply etched into its center.
+It's clearly incredibly old. You just can't find this kind of workmanship
+these days.
+~
+~~
+vnum: 36100
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.69
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

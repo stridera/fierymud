@@ -1,0 +1,167 @@
+#1500
+ring soul gem valuable soul-gem wof-clan-item~
+a &5Soul Gem&0~
+A valuable ring has been lost here! Pick it up quick!~
+~
+8 604045456 3 1
+0 0 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+ring soul gem valuable soul-gem wof-clan-item~
+   A large purple gem is set on a polished silver band.  There appears to be a
+small storm raging inside of the gem, and you become slightly transfixed by it.
+A feeling of protectiveness washes over you, and you feel that losing this ring
+would be the end of your life.    ~
+#1501
+lease agreement wof-lease-agreement parchment piece~
+the WoF lease agreement~
+A piece of parchment titled with the initials WoF lies here abandoned.~
+~
+12 603979856 16385 0
+0 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+lease agreement wof-lease-agreement parchment piece~
+This deed entitles the clan known as the Weavers of Fate to the
+following items as paid for in their initial construction costs so long as
+they continue to pay maintainance costs of 10% of the total construction
+costs by the 5th of each month. At the time dues are collected the seal on
+this lease shall be updated to reflect the date the next collection shall
+take place.
+ 
+Note- Lease agreements may be inspected at any time to verify that all dues
+      are up-to-date.
+ 
+Clan Construction details follow and a Holy Seal is placed at the bottom.~
+E
+seal holy~
+A holy seal is stamped at the bottom of this parchment.
+
+            |
+      \_____|_____/
+      /\____|____/\
+     / /\___|___/\ \
+    / / /\__|__/\ \ \
+   / / / /\_|_/\ \ \ \
+__/_/_/_/_/WoF\_\_\_\_\__
+  \ \ \ \ \___/ / / / / 
+   \ \ \ \/_|_\/ / / /
+    \ \ \/__|__\/ / /
+     \ \/___|___\/ /
+      \/____|____\/
+      /     |     \
+            |
+Dues paid through: February 5
+Collected by: Laoris~
+E
+details~
+The following are details surrounding the costs and maintenance of the
+clan's hall and item:
+
+Inital Construction cost (2 rooms)   - 15K
+Additional rooms (3)                 -  9K
+Bulletin Boards (3)                  -  6k
+Guild Fountain                       -  2k
+One basic clan item (1500)           -  3K
+--------------------------------------------
+Total                                - 35K
+ 
+Upkeep is 10% of total cost          - 3.5K~
+#1502
+board wof announcement clan~
+the WoF announcement board~
+A clan announcements board hovers just above the fountain. ~
+~
+29 1073741824 0 1
+4 0 0 0 0 0 0
+30.00 0 0 0 0 0 0 0
+#1503
+board wof clan records book huge leather bount leatherbound~
+the WoF clan records book~
+A huge leather-bound book lies open on the large loom.~
+~
+29 536870912 0 0
+5 0 0 0 0 0 0
+30.00 0 0 0 0 0 0 0
+#1504
+clipboard board meeting agenda wof~
+the WoF meeting agenda~
+A clipboard with the meeting agenda floats around the room.~
+~
+29 1073741824 1 0
+6 0 0 0 0 0 0
+30.00 0 0 0 0 0 0 0
+#1505
+fountain stone large wof-fountain~
+a stone fountain~
+A large stone fountain stands proudly in the middle of the room.~
+~
+23 0 0 1
+999 999 0 0 0 0 0
+99999.00 0 0 0 0 0 0 0
+E
+fountain stone large wof-fountain~
+Five uniquely chiseled statues stand in a perfect circle in the middle of the
+fountain.  The five beings stand back to back touching at the shoulders.  A
+figure of a charismatic druidess, an image of a terrifying dark warrior, the
+visage of a cunning ranger, an engraving of a stern priestess, and a carving of
+a twisted sorceress make up the body of the fountain.  Water flows from spouts
+below each statues feet into the trough encircling the circle of figures.    ~
+E
+engraving priestess stern~
+The image of Cerworn is one of a compassionate but serious woman, her eyes
+fixed steadily on an image you cannot see.  Her face is fixed in a gentle but
+firm motherly expression, a reflection of her beliefs in loving control.  The
+priestess is shown to be wearing a simple white dress, her hands folded in
+prayer.    ~
+E
+figure charismatic druidess~
+   Tall, but slim, Janara is a beautiful half-elf with long flowing auburn hair
+that reaches down to her waist.  Green foliage is wrapped around her exposing
+bits of tanned flesh, but covering up the essentials.  A large anaconda is
+wrapped around her body, with its head held by her hand, mouth wide open.    ~
+E
+image terrifying warrior~
+A creature of pure and unadulterated evil, Nuggz stands in an intimidating
+stance, ready to bash anything that comes his way.  He wears a permanent scowl
+on his face, the product of years of living a corrupted life style.    ~
+E
+visage cunning ranger~
+Wehr is leaning on a longbow, his hair long and wild looking.  A gentle
+expression on his face makes you relax, and feel all warm inside.  His eyes
+seem to be fixed directly upon you, and you feel as if your soul is being
+looked at.  A small wolf is standing next to him, looking up into his face as
+if asking for direction.    ~
+E
+carving twisted sorceress~
+Glimmering silver hair falls down to the shoulders of this otherwise beautiful
+sorceress.  Cold piercing blue eyes indicate that Krytonius is not as nice as
+she looks.    ~
+#1506
+egg copper-tinged shulien-egg~
+an egg~
+A copper-tinged egg is sitting here.~
+~
+12 0 1 1
+0 0 0 0 0 0 0
+40.00 0 0 0 0 0 0 0
+E
+egg copper-tinged shulien-egg~
+The shell is leathery and tough, but it lacks the warm pulse of life one
+expects from a living egg.  Though its species can only be guessed at, it is
+probably something that will grow up to be large in size.  The egg itself looks
+to be made of copper metal, though its leathery skin feels nothing like metal.
+It looks quite heavy, though, since it is about as large as the average gnome.
+  ~
+#1507
+portal crackling-portal floating~
+a crackling portal~
+A portals floats in midair, crackling madly!~
+~
+24 1073741824 0 1
+2215 0 0 0 0 0 0
+0.00 0 100 0 0 0 0 0
+E
+portal crackling-portal floating~
+You can barely make out A Diseased Battlefield.~
+$~

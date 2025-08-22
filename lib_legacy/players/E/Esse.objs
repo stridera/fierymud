@@ -1,0 +1,363 @@
+1
+vnum: 36014
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring tiny-copper-ring thin-circle-copper-coin
+shortdesc: a tiny copper ring
+desc: A thin circle of copper resembles a coin.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: tiny-copper-ring thin-circle-copper-coin
+A thin copper wire bears the symbol of the Kaaz clan.
+~
+~~
+vnum: 36014
+location: 2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring tiny-copper-ring thin-circle-copper-coin
+shortdesc: a tiny copper ring
+desc: A thin circle of copper resembles a coin.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: tiny-copper-ring thin-circle-copper-coin
+A thin copper wire bears the symbol of the Kaaz clan.
+~
+~~
+vnum: 36008
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.    
+~
+~~
+vnum: 36008
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.    
+~
+~~
+vnum: 36016
+location: 5
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: shirt bonemail-shirt bone-mail-shirt old-pile-small-bone-rings
+shortdesc: a bonemail shirt
+desc: An old pile of small bone rings lies heaped here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+applies:
+18 1
+~
+extradesc: bonemail-shirt bone-mail-shirt old-pile-small-bone-rings
+Gross!  This armor appears to me made of small circles of bone.  It seems
+rather protective though.    
+~
+~~
+vnum: 36017
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: coif chainmail-coif chain-mail-coif small-pile-metal-circles
+shortdesc: a chainmail coif
+desc: A small pile of metal circles is heaped here.
+type: 9
+weight: 7.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+extradesc: chainmail-coif chain-mail-coif small-pile-metal-circles
+A grey pile of steel circles lined with cloth that will easily cover your head.
+  
+~
+~~
+vnum: 36005
+location: 7
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pants pair-grey-canvas-pants
+shortdesc: a pair of grey canvas pants
+desc: Some grey canvas pants lie discarded here.
+type: 9
+weight: 2.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: pair-grey-canvas-pants
+These pants offer you basic protection from the elements.  They are lightweight
+and allow you freedom of movement.    
+~
+~~
+vnum: 1027
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandals pair-reed-sandals
+shortdesc: some reed sandals
+desc: A pair of reed sandals lies here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: pair-reed-sandals
+These sandals are formed by neatly woven reeds and leather straps to cover the
+feet.    
+~
+~~
+vnum: 1022
+location: 10
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: sleeves quilted-canvas-sleeves quilted-sleeves pile-cloth-hide glowing
+shortdesc: some quilted canvas sleeves
+desc: A pile of cloth and hide lies here glowing.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+extradesc: sleeves quilted-canvas-sleeves quilted-sleeves pile-cloth-hide glowing
+These sleeves are remarkably light and offer a sense of protection unseen.  
+There is hide padding on the elbows to provide a little extra protection.    
+~
+~~
+vnum: 36004
+location: 12
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-kaaz-cloak simple-canvas-cloak ancient-symbol
+shortdesc: a cloak of the Kaaz
+desc: A simple canvas cloak with an ancient symbol lies here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: cloak cloak-kaaz-cloak simple-canvas-cloak ancient-symbol
+A heavy canvas cloak that can easily envelope you and protect you from the
+elements.  A large symbol of an ancient clan covers the center, marking its
+origin.    
+~
+~~
+vnum: 3022
+location: 16
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnouvwyz
+name: sword long long-sword longsword
+shortdesc: a longsword
+desc: A longsword has been left here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 3.00
+cost: 240
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: sword long
+The sword is about three and a half feet in length, and the blade is
+very sharp. It's plain and undecorated, allowing its steel to speak for 
+itself.
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 3021
+location: 127
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnu
+name: a-small-sword
+shortdesc: a small sword
+desc: A small sword lies here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: small sword
+The sword is rather small to be called a sword, but it's definitely bigger
+than a dagger. It's rather simple in design.
+~
+~~

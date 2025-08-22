@@ -1,0 +1,156 @@
+name: Xianga
+password: Xis1bwXbky
+currenttitle: Xian
+description
+She has learned to embrace hate, evil, and the hunger for torturing souls. She is fairly young, and on the path to becoming the purist of evil. She is deleterious, and carries everything out with remorseless rigor.~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 5
+race: 0
+level: 40
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18946
+birthtime: 1429642702
+timeplayed: 263056
+lastlogintime: 1737904604
+host: 195.252.220.094
+height: 60
+weight: 145
+base_height: 60
+base_weight: 145
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: cmn 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 100
+loadroom: 3054
+lastlevel: 0
+hitpoints: 454/454
+mana: 160/160
+move: 128/128
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 67
+wisdom: 81
+dexterity: 74
+constitution: 89
+charisma: 57
+cash: 35 987 2506 561
+bank: 230 4000 10000 1000
+experience: 9812000
+quit_reason: 1
+saveroom: 3054
+skills:
+12 1000
+13 1000
+17 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+131 1000
+132 1000
+235 1000
+402 80
+404 359
+407 149
+411 440
+415 64
+416 350
+417 50
+420 125
+421 392
+422 50
+423 59
+424 450
+430 102
+434 55
+438 167
+443 50
+444 67
+450 50
+451 65
+457 65
+458 226
+459 218
+460 54
+461 50
+463 340
+464 81
+465 196
+466 50
+467 50
+468 100
+0 0
+trophy:
+1 58003 0.142857
+1 58029 1.000000
+1 58021 0.142857
+1 58022 0.142857
+1 58026 0.285714
+1 58023 0.142857
+1 58150 0.142857
+1 58020 0.142857
+1 58028 0.142857
+1 58025 0.142857
+1 58016 0.142857
+1 58017 0.142857
+1 58031 0.142857
+1 58019 0.285714
+1 58011 0.285714
+1 58008 0.142857
+1 58030 0.285714
+1 58010 0.428571
+1 58009 0.428571
+1 58015 2.342857
+1 58033 0.428571
+0 0 0
+tells:
+1577656029 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1577656031 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1577658407 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1577658408 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1577847078 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1577847079 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1578501531 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1578501532 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1604690367 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1604690367 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+$
+gossips:
+1578504608 Mejna gossips, 'kk, no worries'
+1578505122 Mejna gossips, 'Gratz Xianga!!!'
+1582252401 Chinok gossips, 'looks liek you disconnected luxx'
+1582252413 Meina gossips, 'do you have two tabs across the top?'
+1582252424 Meina gossips, 'that shows the name of the profile you have saved?'
+1582252440 Meina gossips, 'yeah, you have to have the profiles open. one profile = one connection'
+1604690526 Chinok gossips, 'those are scheduled after some other stuff, that will make building classes etc easier'
+1604690573 Andron gossips, 'Sounds good! Hopefully a new class will be in the works!'
+1631976683 Chinok gossips, 'hi Xianga'
+1640644667 Daedela gossips, 'hmm, I don't recognize the character.  Who else do you play as?'
+$
+effects:
+131 2 -4 24 0 0 0
+131 2 0 0 0 0 16384
+0 0 0 0 0
+aliases:
+gs recite green
+cl cast 'cause light'
+dp cast 'dark presence' self
+cs cast 'cause serious'
+curse cast 'curse' 
+ak assist kilop
+skina cast 'demonskin' andron
+dpa cast 'dark presence' andron
+ds cast 'demonskin' self
+cc cast 'cause critical' 
+0

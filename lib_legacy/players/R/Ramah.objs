@@ -1,0 +1,2327 @@
+1
+vnum: 432
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: A 0
+name: ring ring-krystophus silver-ring small-silver-band
+shortdesc: the ring of Krystophus
+desc: Lost and forgotten here, is a small band of silver.
+type: 8
+weight: 0.00
+cost: 1000
+timer: 0
+level: 50
+effects: y 0 0
+wear: 3
+hiddenness: 0
+applies:
+5 2
+2 2
+27 4
+~
+extradesc: ring ring-krystophus silver-ring small-silver-band
+A broad band of silver, the legendary ring of Krystophus appears quite ordinary
+save for a some runic engravings that run the course of the ring.  The ring
+itself is rather warm and fills your head with a strange, accelerated sensation
+and low humming as you touch it.~
+triggers:
+2272
+~
+~~
+vnum: 8708
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: uw 0
+name: necklace badger-tooth-necklace teeth cord
+shortdesc: a badger tooth necklace
+desc: A cord with many teeth is lying here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.50
+cost: 23
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 1
+13 10
+1 1
+~
+~~
+vnum: 8756
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: locket first born firstborn 
+shortdesc: the locket of the firstborn
+desc: A locket is lying here in the dust.
+type: 11
+weight: 0.13
+cost: 64570
+timer: 0
+level: 95
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+5 45
+26 10
+~
+extradesc: locket first born firstborn 
+This locket is quite cheep like something you would expect to find in a child's jewelery   box but there must  be more then meets the eye. It must have been a gift from a powerful mage to his firstborn.~
+~~
+vnum: 55505
+location: 5
+values:
+35
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrtuvwxyz 0
+name: chestplate chaotic-chestplate chest-plate dark-warrior's-grandiose-demonic-chestplate warriors
+shortdesc: &1&bChaotic Chestplate&0
+desc: A dark warrior's grandiose demonic chestplate hangs in the air here.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 41
+effects: n 0 0
+wear: 9
+hiddenness: 0
+applies:
+4 2
+24 -10
+27 3
+~
+extradesc: chestplate chaotic-chestplate chest-plate dark-warrior's-grandiose-demonic-chestplate warriors
+This chestplate bares the image of a huge demonic face, pounded out in
+bas-relief across the entire surface.  Forged from steel as burned as black as
+night, then molded and dedicated to a particular evil entity, the wearer is
+granted great unholy power, protecting them as they rain evil and chaos down on
+the realms.~
+~~
+vnum: 55555
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyz 0
+name: leggings-seer enchanted-leggings
+shortdesc: &3&bLeggings of the Seer&0
+desc: Folded neatly in a bag here is a pair of deeply enchanted leggings.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+5 3
+27 3
+18 2
+~
+extradesc: leggings-seer enchanted-leggings
+These long velvet leggings are given to very wise mages to assist in their
+pursuit of magical knowledge.  Usually crafted for a formal dedication
+ceremony, much room for magical development is left with these leggings,
+allowing them to grow with their wearer as a caster's magic grows in power.~
+~~
+vnum: 55563
+location: 8
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnpqrstuvyz 0
+name: boots-assassin black-studded-leather-boots
+shortdesc: &9&bBoots of the Assassin&0
+desc: A pair of black studded-leather boots hides here from those who seek to find them.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 41
+effects: p 0 0
+wear: 65
+hiddenness: 0
+applies:
+18 3
+19 1
+14 30
+~
+extradesc: boots-assassin black-studded-leather-boots
+These boots are made from hardened leather, dyed black and covered with steel
+studs.  Eerily not a creak or a whisper comes from these boots, which makes them
+perfect for sneaking while armored.  In addition, they are very light, which
+keeps them from impeding movement.  A pair of boots like this would be a
+perfect gift for anyone who valued stealth and quickness.~
+~~
+vnum: 55495
+location: 9
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnoqrstuvwxyz 0
+name: gauntlets-champion brightly-polished-jointed-steel-gauntlets
+shortdesc: &6&bGauntlets of the Champion&0
+desc: Brightly polished jointed steel gauntlets lie collapsed on the ground.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+19 1
+1 2
+~
+extradesc: gauntlets-champion brightly-polished-jointed-steel-gauntlets
+A true champion uses these gloves for all purposes from slaying mighty
+creatures to jousting in a grand arena, and they are designed to fit all those
+purposes.  Each plate is enchanted and joined together with extreme care and
+magical precision, making these dwarven steel gauntlets the perfect rewards for
+diligent warriors.~
+~~
+vnum: 55525
+location: 10
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz 0
+name: sleeves-glade hollowed-oak-tubes
+shortdesc: &3&bSleeves of the Glade&0
+desc: Hollowed out oak tubes lie here, hidden under vines and leaves.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+13 20
+18 1
+5 3
+6 3
+27 3
+~
+extradesc: sleeves-glade hollowed-oak-tubes
+Made from the holy oak, a symbol of strength and stability, these tubes are
+enhanced to act as natural armor.  Each sleeves is made of two smaller tubes,
+wrapped in leafy vines that act as threads and cords.  Not exactly a fashion
+statement, there is a raw natural beauty to these sleeves.~
+~~
+vnum: 47015
+location: 13
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: m 0
+name: belt heavy-leather-belt
+shortdesc: a leather belt
+desc: A heavy leather belt is here hanging on a tree.
+type: 9
+weight: 0.95
+cost: 320
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+1 1
+~
+extradesc: belt heavy-leather-belt
+You are looking at the belt of some unfortunate human that was killed.  
+Through the transformation of life to undead, this belt has gained some power.
+It is 3 feet in length, and 2 inches wide.~
+~~
+vnum: 55536
+location: 14
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstuvwxz 0
+name: bracelet-decay small-plump-piece-flesh crescent gnome
+shortdesc: &5Bracelet of Decay&0
+desc: A small plump piece of flesh rolls around here, molded into a crescent.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+2 2
+13 20
+28 10
+27 3
+~
+extradesc: bracelet-decay small-plump-piece-flesh crescent gnome
+In addition to the powerful death magic radiating from this weird fleshy
+bracelet, some small inherent illusory power still lingers in this horrid
+thing.  The bracelet is still in the process of decaying, the process being
+prolonged indefinitely by the necromantic powers placed in it.~
+~~
+vnum: 55522
+location: 15
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrsuvwxyz 0
+name: bracer-protector iridescent-bracer
+shortdesc: &2&bBracer of the Protector&0
+desc: An iridescent bracer shines up from a small pool of water.
+type: 9
+weight: 0.91
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+2 2
+19 1
+18 2
+27 3
+~
+extradesc: bracer-protector iridescent-bracer
+Made from a single large shell that must be grown for years, a bracer like this
+is given to rangers who have demonstrated their dedication to protecting the
+wilderness.  An abalone shell such as the one this is made from would be worth
+a fortune on the market, but that value pales in comparison to the magical
+enchantments it could contain.~
+~~
+vnum: 474
+location: 20
+values:
+3
+18
+7
+11
+0
+0
+0
+~
+flags: gmnuvwyz 0
+name: spear dragon-spear long-dragon handle broad-spear
+shortdesc: a dragon spear
+desc: A long dragon twists around the handle of a broad spear that is resting here.
+type: 5
+weight: 0.20
+cost: 90000000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 32769
+hiddenness: 0
+applies:
+18 3
+19 2
+2 2
+1 3
+23 -5
+~
+extradesc: spear dragon-spear long-dragon handle broad-spear
+Nothing.~
+triggers:
+18888
+~
+~~
+vnum: 476
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: eyes dragon-eyes small-pair-green-dragon-eyes
+shortdesc: dragon eyes
+desc: A small pair of green dragon eyes rest here.
+type: 8
+weight: 0.08
+cost: 30000
+timer: 0
+level: 70
+effects: cdef 0 0
+wear: 65537
+hiddenness: 0
+applies:
+28 400
+14 20
+6 -6
+27 5
+~
+~~
+vnum: 475
+location: 22
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: eg 0
+name: mask white-mask emotionless-white-mask
+shortdesc: a white mask
+desc: An emotionless white mask lies forgotten here.
+type: 9
+weight: 0.08
+cost: 30000
+timer: 0
+level: 50
+effects: dfx 0 0
+wear: 131073
+hiddenness: 0
+applies:
+28 400
+4 5
+3 3
+6 -10
+~
+triggers:
+8758
+~
+~~
+vnum: 473
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: eimyzA 0
+name: badge badge-templace-guard old-badge two-swords-crossing-shield crossed
+shortdesc: a badge of the Templace Guard
+desc: An old badge with two swords crossing a shield lay here.
+type: 8
+weight: 1.00
+cost: 47890
+timer: 0
+level: 75
+effects: x 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 100
+18 4
+19 3
+26 17
+2 4
+27 3
+~
+extradesc: badge badge-templace-guard old-badge two-swords-crossing-shield crossed
+It's a small octagonal shield about the size of a human's hand with a two
+ornate swords criss crossing over the top of it.  The bronze finish could use a
+good cleaning one third of the shield and swords have been corroded, as if the
+badge fell from its owner during the great battle for Templace and it was only
+recently discovered partially buried.  The magic once lent to the guards still
+courses through the badge bestowing its power to those who wear it.~
+~~
+vnum: 478
+location: 26
+values:
+40
+1
+0
+0
+0
+0
+0
+~
+flags: ajlmopvwxyzD a
+name: sporran grey-sporran simple-grey-leather-belt-purse
+shortdesc: a grey &9&bsporran&0
+desc: A simple grey leather belt purse lay forgotten here.
+type: 15
+weight: 0.60
+cost: 0
+timer: 0
+level: 65
+effects: 0 0 p
+wear: 1064961
+hiddenness: 0
+applies:
+19 4
+18 2
+14 20
+27 3
+17 2
+28 30
+~
+~~
+vnum: 55510
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gkmopqrstuvwxyz 0
+name: helm saintly-helm symbols-divine-clarity mythril-helm
+shortdesc: &5&bSaintly Helm&0
+desc: Symbols of divine clarity adorn a mythril helm resting here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+13 15
+28 45
+27 3
+~
+extradesc: helm saintly-helm symbols-divine-clarity mythril-helm
+Large, decorative symbols for sight and clarity cover this sanctified helm.  
+Both symbols are stylistically enclosed in the sign of the original wearer's
+patron spirit.  Blessed by the gods, this helm grants clerics a closer
+connection to their deities in their travels.~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jan 07 2014
+  To: Ramah
+From: Ramah
+
+To learn the art of a wizard's eye you must first equip yourself and make t@0he necessary sacrifices first you will need 6 items that provide detect invisibility 3 for the sacrifices and 3 that you must keep. Likewise you will need 4 items that provide 30 o
+Last of all to pay homage to the wizard Sauron who first created an all seeing eye. You must seek his revenge kill 4 Halfling races 1 dwarf 1 elf 1 ranger 1 human warrior and an old wizard. Thus the fellowship of destruction may not fall upon you. 
+As for the dwarf elf ranger human warrior and wizard keep them above level 60 ~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jan 17 2014
+  To: Ramah
+From: Yuhen
+
+   I fixed it in production.  Each ghpost needs the speach-to trigger and t@0he
+death trigger and he only had the first so it was recognizing the words and
+remembering the quester, but not recording his death to the questers file.  
+Should work now.~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Sep 05 2012
+  To: Ramah
+From: Lanelot
+
+i have completed the quest and need to talk to you
+s
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Sep 15 2012
+  To: Ramah
+From: Lanelot
+
+i would like to quest for the viridain dragonscale please give me that ques@0t/s
+s
+s
+?s~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Sep 23 2012
+  To: Ramah
+From: Lanelot
+
+can you specify that i have to kill either 12 diffetrent dragfons or 12 dra@0gon m=obs that dont have to be all dragons?s~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Sep 24 2012
+  To: Ramah
+From: Lanelot
+
+i need help finding a hidden area in ice warriors compound ive looked all l@0ast night and today nothing please help and see if the area is really hidden~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Sep 29 2012
+  To: Ramah
+From: Lanelot
+
+i would like to know if i can kill maybe 3 dragon priest,dragon cult guardi@0na,3 wyvern,3 dragon eggs or 3 blue dragons from tower to get the dragon mobs i need/s
+?s~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Oct 04 2012
+  To: Ramah
+From: Lanelot
+
+i need you to check my trophy list i think i have at least 10 maybe 11 drag@0on mobs if the hydras head counts/s
+?s~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Oct 06 2012
+  To: Ramah
+From: Lanelot
+
+im done with the quest finally please log on so we can completet the quest@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Oct 09 2012
+  To: Ramah
+From: Lanelot
+
+ill be on around 8pm every night except for sunday and monday nights/s
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Oct 19 2012
+  To: Ramah
+From: Chinok
+
+hey, let me know the names of the characters that have had name changes and@0 that happened.
+that don't sound right, because once a character has had a name change, and they get auto-saved, it should save with the new name, but I will look at it.~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Oct 19 2012
+  To: Ramah
+From: Chinok
+
+I see Ogawk's player file (Ija has player file too, but it's not been touch@0ed 
+in a long time.  I'd say try changing your password, then reset it back to your normal 
+password on those characters, and let me know.  It's strange, 
+When passwords are encrypted, part of the encryption used is the name, and it's almost like it's using the old name for the password encryption.. if it is, I may need to do some tweeking
+thanks for finding that tho.
+chinok~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Dec 18 2012
+  To: Ramah
+From: Marlia
+
+gt The postmaster told marlia I'll take 200 coins for the stamp.'
+gt the p@0ostmaster told marlia Write your message, (/s saves /h for help)'
+Hi Ramah,
+
+Figured I'd get my $0.02 in for an item.
+
+I know it's a bit of a cliche, but I am suggesting a cloak of invisibility.  
+
+I see a couple of alternatives for stats for such an item.  Version 1 would
+include a degree of hiddenness - something like hide, a fairly good AC, and maybe
+a dexterity boost, and be targetted at mid levels - say 40 - 60.
+
+Version 2 would be targetted at higher levels, and include a good AC, some dam roll -
+because you can't defend against what you can't see, and intrinsic INVIS.
+Perhaps this would be a level 70+ item that may also include some hitroll.
+
+Anyway ... that is my first idea ... and should be tempered with the fact that
+I've just finished a bottle of wine :).
+
+
+Enjoy :)
+
+Marlia
+.~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Mar 27 2013
+  To: Ramah
+From: Yuhen
+
+   I'm made the rooms for the trainers, and set up the zone files.  They al@0l
+now have lvl 55-60 items found nowhere else in the game.  One is my peice of
+rogue armor, calmed down a bit.  The other two i just made.  Calken has a 2h
+bludgeoning weapon.  I'm ok with this getting disarmed, because its lower
+leveled, so if a person disarmed it at a level worth using it, its well earned.~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Apr 13 2013
+  To: Ramah
+From: Flike
+
+i discovered a potential exploit for Tr'ven. pretty sure you could get free@0
+wand/staff recharges from him. we should bar all wand/staff type items from
+exchange.~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Apr 17 2013
+  To: Ramah
+From: Marlia
+
+gt The postmaster told marlia I'll take 200 coins for the stamp.'
+gt the p@0ostmaster told marlia Write your message, (/s saves /h for help)'
+Hi Ramah,
+
+Thanks for your mail.  I'm struggling to even remember what I mud mailed you
+for my original ideas but I'll have a think and let you know next time I see
+you on.
+
+Enjoy.
+
+Marlia~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Apr 22 2013
+  To: Ramah
+From: Krizzik
+
+Hello!  I'm mudmailing you because I've misplaced a phase 3 armor piece.  T@0he saintly greaves specifically.  Thank you kindly!~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Apr 26 2013
+  To: Ramah
+From: Krizzik
+
+got the letter but no greaves.  no hurry or anything, if i catch you on i'l@0l holler.
+thank you though.~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: May 28 2013
+  To: Ramah
+From: Zhan
+
+M'Lord.  I am afraid I need your help in order for me to understand your de@0sires for my kills.  I am somewhat confused to begin with and the deeper I go into it, the more confused I get.
+If you would look at my trophy, you could tell me whether or not I am on the right track.
+ In the meantime I am afraid to kill anything else cause I don't want to mess up the trophy list
+respectfully,
+Zhan Darque~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Nov 27 2013
+  To: Ramah
+From: Mericon
+
+] hey there Ramah. I'm writing in regards to a posting on the news saying t@0hat
+ you can recover 'lost' level 3 armor quest items. I have quite a few misplaced 
+armors for the characters I have. I guess I'll just list em off. Mericon: studde
+d gauntlet, boots, helm, sleeves. Denon: vambraces. Terhan: fistwraps, slippers,
+ bracer. Dagross: gauntlets, greaves, bracer. Grimlon: slippers, skullcap. I'm n
+ot sure if these can all be recovered or not, but if they could it'd be great. L
+ookin forward to hearing back. Thanks Ramah!~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 1098
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: strip color-quick-reference-strip
+shortdesc: a Color Quick-Reference Strip
+desc: A Color Quick-Reference Strip lies here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: color-quick-reference-strip
+&1&&1 &b&&1&&b &0&2&&2 &b&&2&&b &0&3&&3 &b&&3&&b &0&4&&4 &b&&4&&b &0&5&&5 &b&&5&&b &0&6&&6 &b&&6&&b &0&7&&7 &b&&7&&b &0&8&&8 &b&&8&&b &0&9&&9 &b&&9&&b&0
+@r@@r @R@@R   @g@@g @G@@G   @y@@y @Y@@Y   @b@@b @B@@B   @m@@m @M@@M   @c@@c @C@@C   @w@@w @W@@W              @L@@L@0~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jan 18 2014
+  To: Ramah
+From: Yuhen
+
+   Those might be ok.  What would the price for each be?
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jan 19 2014
+  To: Ramah
+From: Ramah
+
+So i charged 5k p per point except perception which i charged 1k plat for
+@0  and 12k plat for the de invis and gave ultra vision in trade for the infa light
+  GoT has  87,000 p at this time and the warriior version costs 187,000
+  p and the cleric costs 185,000 p i fear i am chargeing tomuch for perc it
+  is more then half the cost of the cleric version and 1/4 the cost of the
+  warrior
+  cleric version cost is 70,000 for stats 100,000 for perc and 3,000 core item cost 12,000 for de invis
+  warrior version cost is 120,000 for stats 52,000 for perc, 3,000 core item cost and 12,000 for de invis
+ramah~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jan 19 2014
+  To: Ramah
+From: Yuhen
+
+try halfing the perception cost but be sure to bill for ultravision
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jan 24 2014
+  To: Ramah
+From: Foosha
+
+done
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jan 24 2014
+  To: Ramah
+From: Foosha
+
+   *boggle*.  I thought about killing one of the lowbee-blocking rangers ju@0st
+to keep the quest interesting.  The sack of items is the stuff you can take.  
+I forgot to put 3 phase helms in there, but you know i have at least 3 and they
+all count.  Pretty sure those were the only items i get to keep, so you can
+take the rest.~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jan 28 2014
+  To: Ramah
+From: Fasq
+
+done with res and wiz eye. on to shift corpse for fayris
+.s
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jan 30 2014
+  To: Ramah
+From: Fayris
+
+To the Dark Magic's Keeper:
+
+   I have a petition of the most secret and @0serious nature.  I have mastered
+the art of animation and manipulation of the once-living, both bone and flesh.
+I wish now to discuss with you the art of dematerializing and rematerializing
+such a body.  With such a spell, one could cause a body to move even great
+distances, bringing it into existance before my feet, for me to do as I wish.
+I have reason to believe that such a spell exists.  Teach me this spell, and I
+will searve you to the cold end.
+
+Your Faithful Acolyte,
+Fayris Ice-Dealer of Nymrill~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Aug 25 2014
+  To: Ramah
+From: Yuhen
+
+I need 2 more completed cahracters to do a second remort. can you please gi@0ve me any one of the following:
+a shift quest for fayris
+aword of command quest for Fasq
+a charm quest for Foosha
+Thanks.. I'll hurry and pound it out. dont go finishing your remort before i start mine.~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Aug 28 2014
+  To: Ramah
+From: Fayris
+
+   Your victims await you .
+-Fayris
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Aug 28 2014
+  To: Ramah
+From: Chinok
+
+all you ask is possible, without renaming files, or anything special.
+ther@0e are commands to do everything you've asked.
+which will do the file renaming as you have commented on.
+
+if there's anyting specific you're tyring to do, let me know, and I'll help
+if there's anyting specific you're tyring to do, let me know, and I'll help
+
+chinok~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Oct 10 2014
+  To: Ramah
+From: Polando
+
+Hmmm... the first 2 are ones I've not thought of. Thank you very much!
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Apr 19 2015
+  To: Ramah
+From: Chinok
+
+well, you have certainly called me out, wanting to or not.
+the very simple@0, and very point is you should not create a character that someone might mistake for a god, PERIOD.
+I don't care if you call a character fartmuffin
+as long as you play, and have fun, I don't care~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jul 15 2015
+  To: Ramah
+From: Marlia
+
+gt The postmaster told marlia I'll take 200 coins for the stamp.'
+gt the p@0ostmaster told marlia Write your message, (/s saves /h for help)'
+Hi Ramah,
+
+Ages ago you were asking for item ideas.
+
+Well it's way late, but I think I have a good one.
+
+A cloak of hiding.  It periodically adds to your concealment level.
+So you will eventually become practically invisible if you don't move
+or if you have sneak.
+
+I have no idea of the balance, or what other properties it would need
+to fit in with things, but thought it was an interesting idea.
+
+Maybe I'll see you around again one day.
+
+Marlia~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Apr 09 2016
+  To: Ramah
+From: Chinok
+
+hi Ramah
+I was able to log in fine just a min ago, 
+so I can only assume @0it's something with your computer, maybe a messed up 
+cookie or something
+
+do your friends that are game developers have money ? :P
+
+I might be interested in doing something, but there iwll be a few stipulations.
+
+Thanks
+Chinok~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Mar 19 2017
+  To: Ramah
+From: Tyfane
+
+hi there, Davar told me you might be able to help me, the druid quest seems@0 to be broken, Eleweiss wont tell me what the quest is, i've tried every word option, and i also recently did the ranger quest with no trouble with a different char, so i know i kn
+mail ramah
+so i know i know how to do it, i even tried getting the jewel of the heart and giving it to him but he wont take it, not sure how to proceed~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Mar 20 2017
+  To: Ramah
+From: Tyfane
+
+thanks! i'll let you know if it doesnt work
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Oct 08 2019
+  To: Ramah
+From: Chinok
+
+Hey man, wanted to let you know that I was pretty peeved earlier this morni@0ng when Strider and Yuhen started slaughtering my characters (or otherwise trolling
+ them) because they said the didnt want me killing town guard anymore. 
+Pretty sure that there are no rules against doing this since its
+Not that easy to do (as evidenced by the dozens of corpses of 
+practically ever character of mine that Ive accrued since I started
+unning all my players at once, which in and of itself seems like a 
+positive (since if peeps see that other peeps are playing whether they know its all one person or not others will likely come back, 
+as I have). Additionally, if they or you want to thwart a players 
+efforts to kill in town, a think a policy change should be made 
+guards strengthened or more are made to pop in one area) rather than their simply meddling and chopping me to pieces. 
+
+Anyway, Id like to be able to continue what Im doing unbothered (again, Ive died many time doing it, and as you know, I dont have resurrect 
+yet  so my deaths and the time and effort needed to regain the xp, 
+should be seen as consequence enough for my evil ways)... and my 
+multiplayer activities should be seen as a good thing.
+
+If you guys want to make what Im doing harder to do, to the point that 
+the costs outweigh the benefits, so be it, but to do what they did to me 
+this morning (basically threatened and then followed through on a threat 
+to kill one of my mortals for every additional guard I killed is, in 
+my mind, bad for business IF: you dont want to piss people off and have 
+them not play which youd mentioned to me was not a personal goal of 
+yours as head administrator of the mud.
+yours as head administrator of the mud
+
+anyway, thanks for listening.~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Feb 06 2018
+  To: Ramah
+From: Venath
+
+Got a discord server set up for fierymud.
+
+ https://discord.gg/guyvjxf
+@0
+just paste and go.
+create an account
+log in
+join server
+ping me or direct message me and I'll get you all set up.
+-V~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: May 15 2020
+  To: Ramah
+From: Emawk
+
+the mask of dupicity sucks!!!! fix this if at all possable 43017 
+
+ija
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jun 10 2020
+  To: Ramah
+From: Fernley
+
+I'd like a quest for a badge with hex, so that I can keep my
+spell on me e@0ven through long fights. Will this be permited
+even though I have a character on remort?~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 1030
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: quill white-feather-quill pen
+shortdesc: a white feather quill
+desc: A white feather quill lies here.
+type: 21
+weight: 0.05
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill white-feather-quill pen
+&0A slender quill made from a white feather.  Its point is used to dunk in ink
+and write with.    ~
+~~
+vnum: 62576
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: imnpqrsuvyz 0
+name: kusari-katabira chain-jacket
+shortdesc: kusari katabira
+desc: A light chain jacket rests here, nearly folded.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+2 10
+1 4
+19 3
+18 2
+~
+~~
+vnum: 55561
+location: 127
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnpqrstuvyz 0
+name: tunic-assassin lighter-than-air-studded-tunic
+shortdesc: &9&bTunic of the Assassin&0
+desc: A lighter-than-air studded tunic eludes your eyes here.
+type: 9
+weight: 9.30
+cost: 0
+timer: 0
+level: 41
+effects: y 0 0
+wear: 9
+hiddenness: 0
+applies:
+18 3
+19 2
+~
+extradesc: tunic-assassin lighter-than-air-studded-tunic
+It is hard to discern the edges of this tunic, for they fade and shift from
+sight, as if actively avoiding detection.  While apparently made from
+black, studded leather, the tunic is lighter than most cloth and can be violently
+shaken without making a sound.  Tunics of this kind are often presented to
+high-ranking rogue guild members and are not given away lightly.~
+~~
+vnum: 40
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: life brooch
+shortdesc: a minor life brooch
+desc: A small minor life brooch glows gently on the ground.
+type: 8
+weight: 0.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+triggers:
+40
+~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jun 24 2020
+  To: Ramah
+From: Fernley
+
+   Ping
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 53504
+location: 127
+values:
+0
+10
+6
+6
+0
+0
+0
+~
+flags: gklmopstvwxyz 0
+name: staff elaborately-chiseled-staff deep-brown-maple-staff
+shortdesc: an elaborately chiseled staff
+desc: Complex elven runes run up and down a deep-brown maple staff resting here.
+type: 5
+weight: 3.00
+cost: 8340
+timer: 0
+level: 75
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 50
+14 50
+24 -8
+21 -8
+~
+extradesc: elaborately-chiseled-staff deep-brown-maple-staff
+The staff has intricate elven runes across its length, telling of histories
+long ago past.  Finely chiseled from a heavy dark brown maple wood, it has a
+carved handle two-thirds of the way up so it may be held without covering any
+of the runes.    ~
+triggers:
+53504
+~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: May 08 2021
+  To: Ramah
+From: Witta
+
+Hi Ramah,
+Ok, i just collect once game rest and also pass some to low leve@0l char aif they reach level of item
+i also help a lot of low level char with a quest armor ltier-1/2/3 with raw stauff and gem.
+i also collect quite a lot of ring i mean other ring and earring also
+this game still need to encourage new lovelevl char witha fruitful older char~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 1220
+location: 127
+values:
+10
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pumpkin bag container
+shortdesc: a &1&bpumpkin&0 &6&bca&3n&5dy&0 container
+desc: A small orange pumpkin lies here.
+type: 15
+weight: 1.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16401
+hiddenness: 0
+~~
+vnum: 1207
+location: 127
+values:
+100000
+1
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: hole portable-hole large-black-hole
+shortdesc: a portable hole
+desc: A large black hole lies here folded upon itself.
+type: 15
+weight: 15.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+~~
+vnum: 49037
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aD 0
+name: branch oak small-oak-branch
+shortdesc: a small oak branch
+desc: A small branch from an oak tree lies here.
+type: 12
+weight: 0.75
+cost: 0
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: branch oak
+   This is no ordinary branch, it feels warm to the touch and you can only
+surmise that it has come from one of the druid's fabled holy oaks.    ~
+~~

@@ -1,0 +1,125 @@
+name: Mirna
+password: MikLQoDk2U
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 0
+level: 12
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19432
+birthtime: 1555439154
+timeplayed: 42748
+lastlogintime: 1557428781
+host: 136.165.138.235
+height: 60
+weight: 126
+base_height: 60
+base_weight: 126
+base_size: 2
+natural_size: 2
+alignment: 823
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 10053
+hunger: 5
+thirst: 10
+lastlevel: 0
+hitpoints: 106/106
+mana: 13/13
+move: 64/104
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 85
+wisdom: 90
+dexterity: 66
+constitution: 73
+charisma: 65
+cash: 0 0 391 0
+experience: 434936
+quit_reason: 1
+saveroom: 10053
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 50
+416 50
+423 170
+424 170
+438 100
+443 50
+444 62
+451 53
+457 143
+458 63
+459 65
+460 138
+462 79
+463 151
+466 50
+0 0
+trophy:
+1 46415 0.500000
+1 46409 1.000000
+1 46403 0.500000
+1 18006 0.500000
+1 18007 1.000000
+1 3133 0.500000
+1 3130 2.500000
+1 3131 4.500000
+1 3132 3.000000
+1 12016 0.500000
+1 12015 0.500000
+1 17204 5.000000
+1 5403 1.000000
+1 5404 1.500000
+1 5421 0.500000
+1 5420 4.000000
+1 5408 6.000000
+1 8022 1.000000
+1 41003 1.500000
+1 41005 0.500000
+1 41001 3.000000
+0 0 0
+mem:
+16 1 3
+16 1 3
+20 0 3
+12 1 3
+1 1 3
+12 1 3
+16 1 3
+3 1 7
+18 1 7
+88 1 7
+88 1 7
+0 0 0
+aliases:
+ccsa cast 'cure serious' airic
+blessup cast 'armor' $1; cast 'bless' $1; cast 'detect alignment' $1; cast 'detect magic' $1
+causel cast 'cause light' $1
+cdm cast 'detect magic'
+ccf cast 'create food'
+assa ass airic
+gac get all corpse
+ccl cast 'cure light'
+ccla cast 'cure light' airic
+0

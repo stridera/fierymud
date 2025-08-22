@@ -1,0 +1,218 @@
+name: Jiw
+password: JiPTWstJOI
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 33
+level: 94
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20518
+birthtime: 1683658834
+timeplayed: 1081464
+lastlogintime: 1697476383
+host: 050.230.122.077
+height: 10
+weight: 7
+base_height: 10
+base_weight: 7
+base_size: 0
+natural_size: 0
+alignment: -1000
+playerflags: y
+effectflags: u 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 567/567
+mana: 864/883
+move: 342/342
+damroll: 0
+hitroll: 6
+strength: 84
+intelligence: 86
+wisdom: 81
+dexterity: 83
+constitution: 91
+charisma: 40
+cash: 3 27 118 140
+experience: 87240563
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+27 1000
+28 1000
+33 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+74 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+95 1000
+96 1000
+97 1000
+99 1000
+131 1000
+206 1000
+207 1000
+208 1000
+209 1000
+235 1000
+241 1000
+415 50
+416 50
+421 283
+423 377
+424 965
+438 67
+443 50
+444 181
+451 637
+452 50
+453 50
+455 50
+457 957
+458 54
+459 287
+460 52
+461 50
+462 51
+463 227
+466 50
+0 0
+trophy:
+1 49025 0.500000
+1 49009 1.000000
+1 49029 0.500000
+1 49022 0.500000
+1 53407 3.500000
+1 53414 1.500000
+1 53410 0.500000
+1 53424 1.500000
+1 53401 0.500000
+1 53406 1.000000
+1 53400 2.000000
+1 11702 0.500000
+1 2806 0.500000
+1 11701 0.500000
+1 53300 0.250000
+1 53301 2.083333
+1 53309 0.250000
+1 53310 1.500000
+1 53307 0.750000
+1 53308 0.250000
+1 53304 0.833333
+0 0 0
+tells:
+1688092243 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1688093398 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1688180005 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1688182537 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1688268314 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1688395619 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1688574807 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689254845 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689274393 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689862964 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1697475949 Zaver gossips, 'I didn't realize how many deaths tors and mand had. I have a few of the top spots :D'
+1697475958 Venath gossips, 'appreciate daedela whenever you see him, cuz that boi been working hard'
+1697475961 Thorfinn gossips, 'lmaooo'
+1697476038 Zaver gossips, 'drill only had 100 that is supprising'
+1697476060 Zaver gossips, 'kra 30 is every crazier! I thought my berserkers died a lot more!'
+1697476133 Thorfinn gossips, 'merc armor idea: guerilla napper- sleeping will no longer break hide'
+1697476146 Someone gossips, 'lmao'
+1697476258 Thorfinn gossips, 'merc armor idea #2 fast slammer, you may act after bashing or slamming immediately'
+1697476308 Thorfinn gossips, '(that one would be to make bodyslam -> backstab a combo while tanking a mob)'
+1697476316 Thorfinn gossips, 'might be op'
+1697476354 Thorfinn gossips, 'its risky as heck tho, you really do eat alot of damage when you fall in combat'
+$
+mem:
+84 1 2
+1 1 2
+16 1 1
+18 1 1
+131 1 2
+1 1 1
+87 1 1
+42 1 1
+4 1 1
+43 1 1
+95 1 1
+40 1 1
+34 1 1
+95 1 1
+28 1 1
+28 1 1
+28 1 1
+94 1 2
+70 1 1
+53 1 2
+53 1 2
+53 1 2
+53 1 2
+54 1 2
+53 1 2
+99 1 2
+99 1 2
+0 0 0
+aliases:
+level enter well;d;e;s;e;e;e;n;n;n;w;n;level gain;s;e;s;s;s;w;w;w;n;w;u;enter well
+summon cast 'summon' $*
+fharm cast 'full harm' $*
+fheal cast 'full heal' $*
+blind cast 'blindness' $*
+harn innate 'harness'
+dp cast 'dark presence' $*
+fa first aid
+gac get all corpse
+ec examine corpse
+armor cast 'armor' $*
+who who -w
+df drink fountain
+ul unlock $*;open $*
+wor cast 'word of recall'
+db cast 'dark presence' $*
+prot cast 'protect from evil' $*
+heal cast 'heal' $*
+sil cast 'silence' $*
+fs cast 'flamestrike' $*
+dd innate 'faerie step' $*
+0

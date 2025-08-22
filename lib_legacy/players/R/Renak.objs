@@ -1,0 +1,1077 @@
+1
+vnum: 1032
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring wide-bronze-ring
+shortdesc: a bronze ring
+desc: A wide bronze ring lies here.
+type: 9
+weight: 0.08
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: wide-bronze-ring
+&0A cheap little ring, forged from bronze. It lacks any design, resembling a
+simple band of metal.&0
+~
+~~
+vnum: 1032
+location: 2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring wide-bronze-ring
+shortdesc: a bronze ring
+desc: A wide bronze ring lies here.
+type: 9
+weight: 0.08
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: wide-bronze-ring
+&0A cheap little ring, forged from bronze. It lacks any design, resembling a
+simple band of metal.&0
+~
+~~
+vnum: 18001
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 18001
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 1003
+location: 5
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: robe hooded-ebony-robe pile-ebony-cloth
+shortdesc: &0&9&ba hooded ebony robe&0
+desc: &0&9&bA pile of ebony cloth lies here.&0
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: hooded-ebony-robe pile-ebony-cloth
+&0&9&bA deep hood has been attatched to this black robe, increasing the
+wearer's ability to stay hidden within shadows. Its design is similiar
+to the robes worn by cultists and necromancers.&0
+~
+~~
+vnum: 1014
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mnouwyz
+name: helmet steel
+shortdesc: a steel-studded helmet
+desc: A steel-studded helmet lies on the ground.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+~~
+vnum: 1104
+location: 7
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: pants leather leather-pants
+shortdesc: thick leather pants
+desc: A pair of leather pants is lying in a heap on the ground.
+type: 9
+weight: 8.10
+cost: 150
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: leather pants
+These pants are full-cut, made from good solid tan leather. Though hardly
+fashionable, at least with the dignified crowd, they're oddly appealing to
+most people. At least they'll afford their wearer's legs with some
+protection.
+~
+~~
+vnum: 1106
+location: 8
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: boots leather leather-boots
+shortdesc: sturdy leather boots
+desc: A pair of leather boots stands off to the side.
+type: 9
+weight: 2.80
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: leather boots
+These work boots are made of dark brown leather. They go about calf-high,
+and though they're unornamented, the leather is finely worked and tooled
+along its edges. They have no cuffs, and a very low heel -- quite suitable
+for anybody wanting some basic protection.
+~
+~~
+vnum: 1102
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: gloves leather leather-gloves
+shortdesc: leather gloves
+desc: A pair of leather gloves lies neatly folded out of the way.
+type: 9
+weight: 1.30
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+extradesc: gloves leather
+Beige leather makes up these soft gloves. They're made to fit just about
+anybody's hands.
+~
+~~
+vnum: 1105
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: sleeves leather leather-sleeves
+shortdesc: thick leather sleeves
+desc: A pair of leather sleeves lies curled up together on the ground.
+type: 9
+weight: 5.90
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+extradesc: sleeves leather
+Cylinders of leather form a pair of sleeves, designed to hook onto a vest
+of whatever type you please. They're made of tan leather, and are
+completely unornamented.
+~
+~~
+vnum: 1016
+location: 11
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: mouvwyzD
+name: shield small-wooden-shield circular-wooden-shield
+shortdesc: &0a &0&3small wooden&0 shield
+desc: &0&3A circular wooden shield lies here.&0
+type: 9
+weight: 4.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+extradesc: small-wooden-shield circular-wooden-shield
+&0This simple wooden shield has been designed with cost in mind.  It consists
+of a circular face, with two steel straps upon its back to use as grips.  
+Light, yet not very effective.
+~
+~~
+vnum: 1000
+location: 12
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 16907
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring diamond
+shortdesc: a diamond ring
+desc: A sparkling diamond ring catches your eye.
+type: 8
+weight: 0.20
+cost: 320
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 3
+applies:
+6 3
+~
+extradesc: ring diamond
+The diamond sparkles with a merry light, as if it were alive.
+You can't help but admire the skill of the jeweler.
+~
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1031
+location: 13
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: belt braided-leather-belt
+shortdesc: a braided leather belt
+desc: A braided leather belt lies here.
+type: 9
+weight: 0.85
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+extradesc: braided-leather-belt
+&0A thick belt, crafted from brown leather. It is adorned with a simple
+bronze buckle, which shines like new. Several notches run along the belt's
+length, allowing it to be adjusted for a wide assortment of sizes.
+~
+~~
+vnum: 1039
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: bracer leather-bracer
+shortdesc: a leather bracer
+desc: A leather bracer lies here.
+type: 9
+weight: 0.65
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+extradesc: leather-bracer
+&0A simple leather bracer, about two feet in length. It offers protection to
+the lower arm, with its padded surface.
+~
+~~
+vnum: 1039
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: bracer leather-bracer
+shortdesc: a leather bracer
+desc: A leather bracer lies here.
+type: 9
+weight: 0.65
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+extradesc: leather-bracer
+&0A simple leather bracer, about two feet in length. It offers protection to
+the lower arm, with its padded surface.
+~
+~~
+vnum: 17201
+location: 16
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 1037
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring tin-earring
+shortdesc: a tin earring
+desc: A tin earring lies here.
+type: 9
+weight: 0.01
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+extradesc: tin-earring
+&0This earring is crafted from tin. It is shaped like a small hoop, barely
+half an inch in length.
+~
+~~
+vnum: 1037
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring tin-earring
+shortdesc: a tin earring
+desc: A tin earring lies here.
+type: 9
+weight: 0.01
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+extradesc: tin-earring
+&0This earring is crafted from tin. It is shaped like a small hoop, barely
+half an inch in length.
+~
+~~
+vnum: 18
+location: 26
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 1004
+location: 127
+values:
+1
+240
+78
+0
+0
+0
+0
+~
+flags: 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern. It holds about fifteen hours worth of fuel.
+~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+251
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.36
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55570
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55301
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gloves leather flimsy
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~

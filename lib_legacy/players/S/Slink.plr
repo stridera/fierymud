@@ -1,0 +1,123 @@
+name: Slink
+password: SlkR3mpVSn
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 15
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20363
+birthtime: 1665463203
+timeplayed: 195405
+lastlogintime: 1665888581
+host: 207.138.195.049
+height: 40
+weight: 103
+base_height: 40
+base_weight: 103
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: y
+effectflags: fk 0 0
+prefflags: ghnoxC ae
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+loadroom: 3054
+lastlevel: 0
+hitpoints: 164/164
+mana: 22/22
+move: 112/112
+damroll: 3
+hitroll: 6
+strength: 91
+intelligence: 65
+wisdom: 69
+dexterity: 98
+constitution: 88
+charisma: 50
+cash: 46 156 244 157
+bank: 10005 0 0 0
+experience: 817572
+quit_reason: 3
+saveroom: 0
+skills:
+401 162
+403 52
+405 102
+408 133
+411 89
+415 50
+416 50
+421 64
+438 89
+443 110
+444 50
+463 50
+464 146
+465 50
+472 57
+0 0
+trophy:
+1 55700 0.200000
+1 17301 0.200000
+1 17302 0.200000
+1 17308 1.250000
+1 17305 0.400000
+1 17307 2.800000
+1 17300 0.900000
+1 55702 0.166667
+1 55216 0.983333
+1 2001 0.166667
+1 18520 0.200000
+1 23731 0.200000
+1 5451 2.000000
+1 5443 0.733333
+1 5414 2.100000
+1 5421 0.600000
+1 5420 0.800000
+1 5408 1.800000
+1 5404 0.400000
+1 12014 0.400000
+1 12025 0.200000
+0 0 0
+tells:
+1665869984 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1665873208 @WFril@W tells you, 'you get everything you needed? Since we don't have mana I have to memorize between each spell and the commands can sometimes get lost@W'@0
+1665873259 @WFril@W tells you, 'okay cool. Ill leave them both on. :D Hope it makes you feel a bit more at home from burning :D@W'@0
+1665878208 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1665879983 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1665883472 @WZaver@W tells you, 'did you start it?@W'@0
+1665883534 @WZaver@W tells you, 'ah yeah okay. that is in an area called cathedral of betrayal. I gotta get the kids fed@W'@0
+1665883547 @WZaver@W tells you, 'go north of the abbey@W'@0
+1665883561 @WZaver@W tells you, 'there is an exit north before the gothra desert it is up there somewhere.@W'@0
+1665883569 @WZaver@W tells you, 'i will help you if you are on when I get back :D@W'@0
+$
+gossips:
+1665888439 Chinok gossips, 'awww, I'm sorry I said mean things.. *ROFL* does your damage ego feel better now'
+1665888459 Chinok gossips, 'I judge you based of of what you say -- WOW , what a thought'
+1665888489 Chinok gossips, 'so, in grown-up land -- we say -- WE DONT LIKE X.. can it be changed ?or is that how it is...'
+1665888497 Chinok gossips, 'your version is - 'this fucking suxks'
+1665888524 Chinok gossips, 'yes, I want people that can speak their mind, without being abusive'
+1665888540 Chinok gossips, 'I've not seen a single bit of constructive feedback'
+1665888554 Chinok gossips, 'omg, you need to get out of your moms basement.. rofl'
+1665888569 Blonk gossips, 'im retired at 40'
+1665888571 Blonk gossips, 'hah'
+1665888572 Blonk gossips, 'moms basement'
+$
+aliases:
+who who -w
+j gt drink barrel
+o backstab
+jr gt assist rayman
+ki backstab
+js gt assist slink
+jt gt assist trinok
+jb gt assist blonk
+g group
+k backstab $1
+0

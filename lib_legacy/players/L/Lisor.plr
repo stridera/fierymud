@@ -1,0 +1,125 @@
+name: Lisor
+password: LiidOWkdyv
+currenttitle: Incarninum
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 11
+race: 0
+level: 50
+home: 3046
+lifeforce: 0
+composition: 0
+id: 15476
+birthtime: 1138287007
+timeplayed: 392451
+lastlogintime: 1706322511
+host: 071.051.179.156
+height: 64
+weight: 140
+base_height: 64
+base_weight: 140
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: ly
+effectflags: 0 0 0
+prefflags: hnozC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 103
+loadroom: 3054
+lastlevel: 8
+hitpoints: 283/283
+mana: 260/250
+move: 109/118
+damroll: 3
+hitroll: 3
+strength: 70
+intelligence: 92
+wisdom: 94
+dexterity: 68
+constitution: 82
+charisma: 56
+cash: 12 181 738 678
+bank: 71 803 3818 4110
+experience: 23465174
+title: Incarninum
+quit_reason: 1
+saveroom: 3054
+spellcasts:
+1 25
+0 0
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+21 1000
+25 1000
+29 1000
+31 1000
+32 1000
+33 1000
+38 1000
+39 1000
+45 1000
+50 1000
+67 1000
+68 1000
+76 1000
+87 1000
+100 1000
+101 1000
+106 1000
+121 1000
+125 1000
+186 1000
+187 1000
+188 1000
+222 1000
+223 1000
+415 358
+416 570
+421 491
+423 570
+424 570
+438 150
+443 185
+444 152
+447 570
+451 372
+452 174
+453 152
+454 206
+458 155
+459 494
+460 322
+461 377
+462 261
+464 187
+0 0
+tells:
+1706320618 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1706321699 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1706321700 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1706321907 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1706322290 Chinok gossips, 'something we did away with a long time ago..'
+1706322301 Discord gossips, 'Cy: Is the one in Anduin gone too?'
+1706322314 Chinok gossips, 'I didn't check the anduin one, but I suspect so'
+1706322330 Discord gossips, 'Cy: That explains why I couldn't find it'
+1706322367 Chinok gossips, 'so -- back when we moved all the lowbie areas (excluding a few) closer to melikki, we got rid of the 'easy travel' dude that could send newbs between cities'
+1706322423 Discord gossips, 'Cy: That the same as when you died you pop ip in Anduin if you touched the statue?'
+1706322435 Chinok gossips, 'not the same, but they were tied together'
+1706322444 Discord gossips, 'Cy: So both gone?'
+1706322456 Chinok gossips, 'pretty sure, yes'
+1706322473 Discord gossips, 'Cy: That explains it, was wondering why I couldn't find it in Anduin'
+$
+aliases:
+dw drink waterskin
+gac get all corpse
+gcc get coins corpse
+mh mount horse
+dm dismount
+0

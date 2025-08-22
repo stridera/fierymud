@@ -1,0 +1,84 @@
+name: Draenara
+password: DrQ.FsNjhI
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 9
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20126
+birthtime: 1642953170
+timeplayed: 3322
+lastlogintime: 1642956506
+host: 174.083.028.028
+height: 66
+weight: 155
+base_height: 66
+base_weight: 155
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3500
+lastlevel: 0
+hitpoints: 36/36
+mana: 1/0
+move: 110/110
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 77
+wisdom: 69
+dexterity: 87
+constitution: 81
+charisma: 60
+experience: 6050
+quit_reason: 7
+saveroom: 3500
+skills:
+402 60
+404 60
+415 50
+416 50
+421 59
+438 50
+443 50
+444 50
+463 50
+464 50
+465 54
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18003 1.000000
+1 18001 2.000000
+1 18007 5.000000
+0 0 0
+tells:
+1642955736 @WMorgen@W tells you, 'I don't trade in such items.@W'@0
+1642956306 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1642953329 Astrid gossips, 'ok be back later.'
+1642955700 Adohi gossips, 'just relized druids dont have last 2 circles of spells. Guessing thats to offset shapechange?'
+1642955803 Chinok gossips, 'yeah, kinda'
+1642956154 Pashku gossips, 'hmm - Snake Princess roars and disperses party to different directions =- that is nasy'
+1642956170 Pashku gossips, 'nasty - hard to write a trigger to fix that...'
+1642956241 Adohi gossips, 'jsut means we need more people to level so you dont have an army of bots lol'
+1642956267 Pashku gossips, 'definitely more fun to group with real people!'
+1642956364 Pashku gossips, 'Adohi I think I can make you invis'
+1642956371 Pashku gossips, 'and you can heal me without getting hit'
+1642956446 Pashku gossips, 'Astrid!!!'
+$
+aliases:
+gac get all from corpse
+0

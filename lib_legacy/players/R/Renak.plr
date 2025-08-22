@@ -1,0 +1,88 @@
+name: Renak
+password: RerX3MebJc
+prompt: %_%_%o%_%_[%h/%Hhp][%v/%Vmv][%a]%_%_[%w][%W]%_%_[%E]%_
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19334
+birthtime: 1520035793
+timeplayed: 25717
+lastlogintime: 1520276539
+host: 024.228.181.046
+height: 71
+weight: 147
+base_height: 71
+base_weight: 147
+base_size: 2
+natural_size: 2
+alignment: 249
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 137/137
+mana: 1/0
+move: 73/134
+damroll: 3
+hitroll: 3
+strength: 87
+intelligence: 54
+wisdom: 94
+dexterity: 84
+constitution: 94
+charisma: 52
+cash: 0 76 568 258
+experience: 279950
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 140
+415 71
+416 65
+421 140
+430 50
+438 50
+443 50
+444 80
+463 50
+464 50
+465 139
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36001 1.000000
+1 36003 1.000000
+1 3066 1.000000
+1 3132 2.000000
+1 3130 3.000000
+1 3131 3.000000
+1 18001 1.000000
+1 18002 2.000000
+1 18007 2.000000
+1 17204 2.000000
+1 3508 1.000000
+1 3509 1.000000
+1 3501 1.000000
+1 3500 1.000000
+1 3502 2.000000
+1 3503 1.500000
+1 8013 0.500000
+1 8020 1.000000
+1 8022 0.500000
+1 8000 1.000000
+1 2001 0.500000
+0 0 0
+aliases:
+where who -w
+0

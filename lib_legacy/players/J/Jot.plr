@@ -1,0 +1,122 @@
+name: Jot
+password: JoFHLhT7wL
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 9
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20246
+birthtime: 1651013914
+timeplayed: 14058
+lastlogintime: 1651808279
+host: 198.027.190.093
+height: 67
+weight: 101
+base_height: 67
+base_weight: 101
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxBC e
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 70/70
+mana: 1/0
+move: 102/102
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 92
+wisdom: 96
+dexterity: 80
+constitution: 76
+charisma: 89
+cash: 0 43 222 243
+experience: 138805
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 95
+438 50
+443 50
+444 50
+451 52
+457 66
+458 61
+459 50
+460 66
+462 50
+463 120
+466 50
+0 0
+trophy:
+1 36003 8.000000
+1 36002 15.000000
+1 36001 11.000000
+1 8015 2.000000
+1 8010 4.000000
+1 8022 2.000000
+1 8012 5.000000
+1 8000 6.000000
+1 8002 8.000000
+1 8013 8.000000
+1 8011 9.000000
+1 16907 3.000000
+1 16902 9.000000
+1 16901 3.000000
+1 16906 6.000000
+1 16905 5.000000
+1 16908 7.000000
+1 16900 10.000000
+1 8001 9.000000
+1 8016 7.000000
+1 8023 6.000000
+0 0 0
+tells:
+1651015525 @WAaron@W tells you, 'Hmm, you appear to be a little short of cash for this item.@W'@0
+1651019706 @WDrako@W tells you, 'Come back later when you have the money.@W'@0
+$
+gossips:
+1651356083 Chinok gossips, 'lol'
+1651356096 Chinok gossips, 'linux'
+1651356129 Strider gossips, 'Ubunut: a quality that includes the essential human virtues; compassion and humanity.'
+1651356314 Strider gossips, 'kaaz (north directly out of the west gate, haunted house, more bugs, topiary (ne of fountain in town)'
+1651356460 Strider gossips, 'help area is a good resource'
+1651356581 Chinok gossips, 'also .. every area in help-area has a help entry, to help you find it, and find out what's going on there.'
+1651368787 Chinok gossips, 'welcome back Jot'
+1651452902 Vorth gossips, 'sup'
+1651453038 Vorth gossips, 'if you have any questions just ask'
+1651807804 Chinok gossips, 'hey hey'
+$
+effects:
+1 3 10 17 0 0 0
+0 0 0 0 0
+mem:
+16 1 6
+1 0 6
+12 1 6
+206 1 6
+13 1 6
+20 1 6
+0 0 0
+aliases:
+food stand;c 'create food';sit;pray
+0

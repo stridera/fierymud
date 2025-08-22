@@ -1,0 +1,126 @@
+name: Poak
+password: PoSsq/hanF
+prompt: %_%_%n%_%E%_<&1%h&0(%H)hp%-&2%v&0(%V)mv><%a>%_%w%_%W%_[%t]%-[%o]%_%_
+autoinvis: 0
+sex: 2
+class: 15
+race: 0
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20737
+birthtime: 1706470277
+timeplayed: 23570
+lastlogintime: 1706742290
+host: 071.051.179.156
+height: 70
+weight: 119
+base_height: 70
+base_weight: 119
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: c 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 80/81
+mana: 1/0
+move: 134/166
+damroll: 3
+hitroll: 3
+strength: 76
+intelligence: 86
+wisdom: 98
+dexterity: 78
+constitution: 84
+charisma: 64
+cash: 0 26 279 89
+experience: 279597
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+115 1000
+206 1000
+415 50
+416 50
+423 50
+424 112
+438 50
+443 50
+444 50
+451 60
+457 103
+458 50
+459 50
+460 57
+462 51
+463 99
+466 50
+0 0
+trophy:
+1 5102 0.500000
+1 5101 0.500000
+1 5100 0.500000
+1 5104 1.500000
+1 5408 6.000000
+1 5420 4.500000
+1 5403 1.000000
+1 5404 1.000000
+1 8021 0.500000
+1 36004 0.500000
+1 36003 5.000000
+1 36001 7.000000
+1 36002 6.500000
+1 18004 1.000000
+1 18003 1.000000
+1 18001 0.500000
+1 18007 2.500000
+1 12024 0.500000
+1 12005 1.500000
+1 12003 1.500000
+1 12023 2.500000
+0 0 0
+tells:
+1706471619 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1706480792 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1706489842 @WA half-elven maid@W tells you, 'If you want to rent a room, please go upstairs to the Reception Area.@W'@0
+$
+gossips:
+1706493055 Kaop gossips, 'ty'
+1706493409 Discord gossips, 'Daedela: Yeah that one you can't really fix on your end'
+1706493429 Discord gossips, 'Daedela: It's because of how we run shapechange on the back end'
+1706493449 Chinok gossips, 'shapechange has a few little bugs, we're still trying to work out :)'
+1706494282 Chinok gossips, 'gratz on 35'
+1706494286 Lorath gossips, 'Thanks!'
+1706494545 Kaop gossips, 'good night fiery'
+1706494552 Chinok gossips, 'night Kaop'
+1706740984 Chinok gossips, 'hey Kaop'
+1706740989 Kaop gossips, 'hey'
+$
+effects:
+1 9 10 17 0 0 0
+0 0 0 0 0
+aliases:
+gac get all corpse
+gcc get coins corpse
+arm cast armor
+cl cast 'cure light'
+0

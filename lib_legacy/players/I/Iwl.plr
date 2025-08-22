@@ -1,0 +1,129 @@
+name: Iwl
+password: Iw0.axEsgf
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 32
+level: 21
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20892
+birthtime: 1733957100
+timeplayed: 196293
+lastlogintime: 1737432300
+host: 104.228.087.146
+height: 9
+weight: 8
+base_height: 9
+base_weight: 8
+base_size: 0
+natural_size: 0
+alignment: 996
+playerflags: gxy
+effectflags: u 0 0
+prefflags: ahC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 134/134
+mana: 40/44
+move: 197/197
+damroll: 0
+hitroll: 6
+strength: 68
+intelligence: 82
+wisdom: 91
+dexterity: 77
+constitution: 93
+charisma: 52
+cash: 50 291 1116 3038
+experience: 1831019
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+33 1000
+34 1000
+42 1000
+43 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+131 1000
+206 1000
+207 1000
+235 1000
+415 50
+416 50
+421 72
+423 50
+424 257
+438 50
+443 50
+444 50
+451 93
+457 251
+458 144
+459 101
+460 51
+462 50
+463 50
+466 50
+0 0
+trophy:
+1 8011 0.500000
+1 8002 0.500000
+1 8000 0.500000
+1 8605 5.500000
+1 8606 2.500000
+1 8604 6.500000
+1 8610 2.000000
+1 8609 1.000000
+1 8612 1.500000
+1 8614 1.000000
+1 8615 1.000000
+1 8611 0.500000
+1 8613 1.500000
+1 8603 10.000000
+1 8602 1.500000
+1 1602 1.000000
+1 12003 0.500000
+1 12025 0.500000
+1 12007 0.500000
+1 12023 1.000000
+1 12011 0.500000
+0 0 0
+tells:
+1733975700 @WThort@W tells you, 'wait@W'@0
+$
+gossips:
+1737429280 Discord gossips, 'Daedela: Oh right I was going to look into that...'
+1737429445 Discord gossips, 'Daedela: okay, you should be able to cast it on any weapon that isn't glowing, humming, "magic", cursed, invisible, or !good'
+1737429663 Teomner gossips, 'interesting i've always assumed it had to do with if the weapon gave stats'
+1737429827 Discord gossips, 'Daedela: I mean, it can't already be blessed too'
+1737429865 Discord gossips, 'Daedela: And the level of the item is limited by your skill level'
+1737429970 Teomner gossips, 'i wonder if you can dispel magic like you can invis'
+1737430007 Teomner gossips, 'before casting bless i've never tryed to have a epic weapon as my bless item'
+1737430035 Teomner gossips, 'but if you can remove 2 of the limmiters might make for some really good items'
+1737430089 Discord gossips, 'Daedela: I don't think you can remove any of those except curse or invis...  I might be wrong though'
+1737430977 Teomner gossips, 'daedela is there a key to door that goes to the mayors area?'
+1737430989 Discord gossips, 'Daedela: Nope!'
+1737431040 Teomner gossips, 'balls just figured out that i can bless a dagger with his cane but unoliph is human ranger so ..... teleport scrolls'
+1737431056 Discord gossips, 'Daedela: True'
+$

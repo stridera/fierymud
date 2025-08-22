@@ -1,0 +1,107 @@
+name: Hakage
+password: HaK1NutYFw
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 13
+race: 0
+level: 30
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18720
+birthtime: 1406924738
+timeplayed: 419121
+lastlogintime: 1515128842
+host: 099.097.090.156
+height: 61
+weight: 175
+base_height: 61
+base_weight: 175
+base_size: 2
+natural_size: 2
+alignment: 834
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 392/392
+mana: 90/90
+move: 119/132
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 63
+wisdom: 67
+dexterity: 93
+constitution: 93
+charisma: 49
+cash: 5 419 1782 1914
+bank: 77 3180 11446 11431
+experience: 7017396
+quit_reason: 1
+saveroom: 3054
+skills:
+404 350
+411 243
+412 109
+415 57
+416 50
+420 283
+421 344
+422 229
+438 50
+443 54
+444 172
+446 200
+448 1000
+449 1000
+463 124
+601 50
+602 50
+605 50
+0 0
+trophy:
+1 18552 1.000000
+1 18550 1.000000
+1 18551 1.000000
+1 18505 1.000000
+1 18503 1.000000
+1 18500 1.000000
+1 18502 1.000000
+1 18509 1.000000
+1 18507 9.666667
+1 18510 0.333333
+1 8011 0.333333
+1 8016 0.333333
+1 8034 0.500000
+1 8013 0.333333
+1 8033 0.333333
+1 8022 0.333333
+1 8032 0.333333
+1 8031 0.333333
+1 8000 0.666667
+1 8023 0.333333
+1 8021 0.333333
+0 0 0
+effects:
+601 0 19 26 0 0 0
+0 0 0 0 0
+aliases:
+ks kill skeletal
+rr rescue raylen
+gac get all all.corpse
+cf consent gilden
+cs consent gilden
+gg assist gilden
+df drink fountain
+fs fill skin fountain
+ll look in corpse
+gcc get all.coins all.corpse
+km kill monk
+0

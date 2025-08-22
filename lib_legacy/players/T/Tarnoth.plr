@@ -1,0 +1,118 @@
+name: Tarnoth
+password: TaQBN7jtqu
+prompt: &0Tank:%t%-%-%-%-Mob:%o&0%_&0&5&b%n&0%-%-&2&b<&0&1%hh&0(&1&b%HH&0)%-%-&2%vmv&0(&2&b%Vmv&0)&0%-%-&6&bAlign:%a%_&0&*&bFirst Aid Timer:%df%_%&0&8&b%l
+autoinvis: 0
+sex: 1
+class: 3
+race: 29
+level: 15
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20221
+birthtime: 1649725870
+timeplayed: 140639
+lastlogintime: 1650657182
+host: 107.139.176.194
+height: 76
+weight: 297
+base_height: 76
+base_weight: 297
+base_size: 2
+natural_size: 2
+alignment: -252
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 221/206
+mana: 22/22
+move: 92/148
+damroll: 3
+hitroll: 3
+strength: 99
+intelligence: 54
+wisdom: 81
+dexterity: 96
+constitution: 96
+charisma: 38
+cash: 90 115 289 307
+experience: 830272
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 1340/18000
+-1 0
+skills:
+205 1000
+402 142
+404 103
+407 50
+415 50
+416 50
+421 200
+430 128
+435 88
+438 50
+443 50
+444 96
+456 50
+463 55
+464 50
+465 200
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18506 0.800000
+1 18514 1.000000
+1 18508 2.800000
+1 18510 1.000000
+1 18505 1.200000
+1 18507 14.249990
+1 4309 0.200000
+1 4306 0.200000
+1 4351 0.200000
+1 4310 0.200000
+1 4307 0.200000
+1 55700 0.200000
+1 18509 0.250000
+1 18001 1.000000
+1 18002 1.000000
+1 18007 1.050000
+1 18006 0.400000
+1 18511 0.600000
+1 41004 0.200000
+1 41001 0.400000
+1 41003 0.400000
+0 0 0
+tells:
+1650394176 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1650394176 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1650399327 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1650402685 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1650420741 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1650420748 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1650583124 @WBigby@W tells you, 'You can only hold 21.@W'@0
+1650583124 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1650583132 @WBigby@W tells you, 'You can only hold 21.@W'@0
+1650583132 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1650656841 Catan gossips, 'ty'
+1650656853 Leddie gossips, '""'
+1650656891 Aaver gossips, 'how are you liking the dragons?'
+1650656935 Leddie gossips, 'i like them well enough but not in love with this group i wanted to mirror my pal sorc monk and druid group'
+1650656967 Leddie gossips, 'but its not working very well'
+1650657015 Aaver gossips, 'that sucks what is worse about this group?'
+1650657054 Leddie gossips, 'healing i think is my biggest problem'
+1650657093 Aaver gossips, 'yeah need a healler at least until level 40 :D'
+1650657094 Leddie gossips, 'for now i'm getting less damage from swaping druid for warrior but i didn't want to deal with the alimnment'
+1650657152 Aaver gossips, 'that is my farvorite thing about antis '
+$

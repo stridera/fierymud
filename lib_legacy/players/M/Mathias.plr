@@ -1,0 +1,69 @@
+name: Mathias
+password: MaHueZjpT3
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 29
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20731
+birthtime: 1705944240
+timeplayed: 329
+lastlogintime: 1705944576
+host: 074.040.193.042
+height: 76
+weight: 215
+base_height: 76
+base_weight: 215
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: xy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 19
+thirst: 14
+lastlevel: 0
+hitpoints: 21/21
+mana: 0/0
+move: 107/124
+damroll: 3
+hitroll: 3
+strength: 89
+intelligence: 76
+wisdom: 69
+dexterity: 93
+constitution: 78
+charisma: 62
+experience: 952
+quit_reason: 5
+saveroom: 8013
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+421 50
+435 74
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+493 50
+0 0
+trophy:
+1 8022 1.000000
+0 0 0
+tells:
+$
+gossips:
+$

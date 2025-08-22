@@ -1,0 +1,38 @@
+32771 255 1
+subclass_name monk
+17 1 16
+5514_trophies 1
+5506_trophies 1
+5508_trophies 4
+5504_trophies 2
+5510_trophies 2
+5516_reward 0
+5546_reward 1
+5558_reward 1
+5511_trophies 6
+5513_trophies 4
+5507_trophies 9
+5509_trophies 11
+5503_trophies 11
+5505_trophies 10
+eg_faction 61
+bl_faction 13
+22 1 4
+actor_level 21
+price 333
+skill_level 250
+skill_name rescue
+7 2 13
+55334_armor_acquired 1
+55619_gems_acquired 1
+55608_gems_acquired 3
+55330_armor_acquired 1
+55597_gems_acquired 3
+55573_gems_acquired 3
+55581_gems_acquired 3
+55569_gems_acquired 3
+55304_armor_acquired 1
+55312_armor_acquired 1
+55308_armor_acquired 1
+55300_armor_acquired 1
+55577_gems_acquired 3

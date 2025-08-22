@@ -1,0 +1,126 @@
+name: Anexis
+password: An7PwiZ6zC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 9
+race: 0
+level: 79
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19291
+birthtime: 1512078611
+timeplayed: 672627
+lastlogintime: 1739077175
+host: 067.167.192.166
+height: 69
+weight: 134
+base_height: 69
+base_weight: 134
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 58709
+thirst: 24
+lastlevel: 0
+hitpoints: 733/733
+mana: 608/624
+move: 152/152
+damroll: 3
+hitroll: 3
+strength: 99
+intelligence: 57
+wisdom: 82
+dexterity: 97
+constitution: 84
+charisma: 47
+cash: 351 1979 3849 95
+bank: 2030 0 0 0
+experience: 57863315
+quit_reason: 1
+saveroom: 58709
+skills:
+401 840
+403 775
+404 239
+405 267
+408 810
+410 304
+411 840
+412 625
+415 85
+416 380
+418 360
+420 476
+421 433
+438 50
+440 840
+443 50
+444 50
+463 50
+464 840
+465 53
+477 50
+0 0
+trophy:
+1 58602 0.250000
+1 58606 0.250000
+1 58607 0.250000
+1 58608 0.250000
+1 12003 0.250000
+1 12007 0.250000
+1 51011 0.250000
+1 51009 0.250000
+1 51008 0.250000
+1 51003 0.250000
+1 51006 0.250000
+1 51101 0.500000
+1 51100 0.750000
+1 7300 0.500000
+1 7301 0.500000
+1 43017 0.250000
+1 43013 1.000000
+1 43003 1.000000
+1 43012 2.000000
+1 43011 0.250000
+1 43009 0.250000
+0 0 0
+tells:
+1738990508 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1738990522 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1738990526 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1738990534 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1739074786 @WShazz@W tells you, 'Take good care of that.@W'@0
+1739074803 @WShazz@W tells you, 'Take good care of that.@W'@0
+1739075755 @WShazz@W tells you, 'Take good care of that.@W'@0
+1739076707 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1739076714 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1739076755 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+$
+gossips:
+1739070501 Chinok gossips, 'poor Nawk'
+1739070505 Chinok gossips, 'and gratz Risa'
+1739070530 Risa gossips, 'thx :)'
+1739070730 Nawk gossips, 'should have know better then to afk in the rat room after i cleared them'
+1739070758 Chinok gossips, 'ROFL yeah, I have limited sympathy for you on that one :)'
+1739070796 Nawk gossips, 'if your not diein your not tryin :)'
+1739072807 Discord gossips, 'venath.2005: Brutha Kress'
+1739072811 Kresselack gossips, 'sup'
+1739072826 Chinok gossips, 'hey Kress'
+1739073397 Chinok gossips, 'gratz on 79!'
+$
+aliases:
+aan assist antix
+gac get all all.corpse
+who who -w
+exa exam corpse
+h hide
+aar ass risa
+aad ass dairyu
+0

@@ -1,0 +1,80 @@
+name: Eisa
+password: Ei0LSkGhMw
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 0
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18087
+birthtime: 1323197227
+timeplayed: 26313
+lastlogintime: 1327339907
+host: 134.250.242.177
+height: 67
+weight: 108
+base_height: 67
+base_weight: 108
+base_size: 2
+natural_size: 2
+alignment: 14
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 51/51
+mana: 1/0
+move: 110/110
+damroll: 3
+hitroll: 3
+strength: 75
+intelligence: 99
+wisdom: 99
+dexterity: 60
+constitution: 77
+charisma: 53
+experience: 75230
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 93
+424 100
+438 50
+443 50
+444 50
+447 60
+451 57
+452 90
+453 100
+459 50
+460 57
+462 50
+464 52
+0 0
+mem:
+5 0 7
+5 0 7
+32 0 7
+32 0 7
+32 0 7
+0 0 0
+aliases:
+make c 'minor creation' $*
+mack c 'minor creation' $*
+mis c 'magic missile' $*
+burn c 'burning hands' $*
+1 assist shaevra
+0

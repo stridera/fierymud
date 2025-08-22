@@ -1,0 +1,76 @@
+name: Derix
+password: DeK15B399R
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19852
+birthtime: 1614412068
+timeplayed: 142
+lastlogintime: 1614412210
+host: 178.043.253.151
+height: 88
+weight: 248
+base_height: 88
+base_weight: 248
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 22
+thirst: 20
+lastlevel: 0
+hitpoints: 30/29
+mana: 0/0
+move: 146/146
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 60
+wisdom: 74
+dexterity: 83
+constitution: 84
+charisma: 54
+experience: 1
+quit_reason: 5
+saveroom: 3009
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1614412088 Daedela gossips, 'hello Derix, welcome to Fiery!'
+1614412093 Strider gossips, 'This was the first mud I played.  First online game I played even.  Found it from a gopher terminal at the library.  Librarians loved me just standing there at their computer for hours a day'
+1614412103 Kiash gossips, 'hah nice'
+1614412106 Daedela gossips, 'aaaaawwww, Gopher!'
+1614412112 Strider gossips, 'Back in the early 90s'
+1614412116 Daedela gossips, 'it was mine too.  A friend introduced me at 12'
+1614412125 Kiash gossips, 'my cousin showed me mudding when i was about 13-14...still the funnest games 20+ years later'
+1614412160 Daedela gossips, 'I think I was mid-90's.  95 is my guess, though I've forgotten exactly when'
+$

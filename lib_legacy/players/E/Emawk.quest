@@ -1,0 +1,129 @@
+2 255 2
+reward yes
+chimera dead
+4 255 1
+oak 1
+51 10 7
+wandtask5 0
+wandtask4 0
+wandtask3 0
+greet 1
+wandtask1 0
+attack_counter 0
+wandtask2 0
+52 6 7
+wandtask5 0
+wandtask4 0
+wandtask3 1
+greet 1
+wandtask1 1
+attack_counter 250
+wandtask2 0
+50 10 7
+wandtask5 0
+wandtask4 0
+wandtask3 0
+greet 1
+wandtask1 0
+attack_counter 0
+wandtask2 0
+47 1 1
+gem_vnum 55577
+49 10 7
+wandtask5 0
+wandtask4 0
+wandtask3 0
+wandtask1 0
+attack_counter 0
+wandtask2 0
+greet 0
+19 255 1
+choice 2
+18 6 7
+item7 0
+item6 0
+item5 0
+item4 0
+item3 0
+item2 0
+item1 0
+8 255 0
+14 255 8
+final_item 53459
+ward_count 5
+ward_53453 1
+ward_53457 1
+ward_53456 1
+ward_53455 1
+ward_53454 1
+room 16063
+17 1 36
+5505_trophies 6
+5513_trophies 5
+5509_trophies 28
+5503_trophies 21
+5507_trophies 22
+5511_trophies 8
+5512_trophies 1
+5545_reward 1
+5521_reward 1
+5523_reward 1
+5525_reward 1
+5529_reward 1
+5531_reward 1
+5527_reward 1
+5543_reward 1
+5544_reward 1
+5537_reward 1
+5541_reward 2
+5515_reward 1
+5553_reward 1
+5517_reward 1
+5519_reward 1
+5540_reward 1
+5557_reward 1
+5542_reward 1
+5533_reward 3
+5539_reward 2
+5555_reward 1
+5535_reward 1
+5514_trophies 7
+5504_trophies 33
+5508_trophies 46
+5506_trophies 27
+5510_trophies 20
+eg_faction 131
+bl_faction 69
+7 3 32
+55383_armor_acquired 1
+55745_gems_acquired 3
+55635_gems_acquired 3
+55646_gems_acquired 3
+55347_armor_acquired 1
+55339_armor_acquired 1
+55690_gems_acquired 3
+55363_armor_acquired 1
+55701_gems_acquired 3
+55367_armor_acquired 1
+55734_gems_acquired 3
+55723_gems_acquired 3
+55712_gems_acquired 3
+55679_gems_acquired 3
+55379_armor_acquired 1
+55371_armor_acquired 1
+55359_armor_acquired 1
+55375_armor_acquired 1
+55624_gems_acquired 3
+55338_armor_acquired 1
+55631_gems_acquired 3
+55343_armor_acquired 1
+55602_gems_acquired 3
+55331_armor_acquired 1
+55657_gems_acquired 3
+55351_armor_acquired 1
+55668_gems_acquired 3
+55355_armor_acquired 1
+55613_gems_acquired 3
+55335_armor_acquired 1
+55314_armor_acquired 1
+55579_gems_acquired 3

@@ -1,0 +1,953 @@
+1
+vnum: 36104
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: ring coral-ring barely-visible-circle smooth-coral
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lies on the ground.
+type: 8
+weight: 0.30
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+3 2
+24 -5
+27 1
+~
+extradesc: coral-ring barely-visible-circle smooth-coral
+The coral ring seems totally flawless.  It is made of the finest coral you have
+ever seen, and fades from a light pink on one side to white on the other.  It
+is smoothed completely and coated with a clear substance so that it is not the
+least bit abrasive.~
+~~
+vnum: 36104
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: ring coral-ring barely-visible-circle smooth-coral
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lies on the ground.
+type: 8
+weight: 0.30
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+3 2
+24 -5
+27 1
+~
+extradesc: coral-ring barely-visible-circle smooth-coral
+The coral ring seems totally flawless.  It is made of the finest coral you have
+ever seen, and fades from a light pink on one side to white on the other.  It
+is smoothed completely and coated with a clear substance so that it is not the
+least bit abrasive.~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace bat-tooth-necklace sharp teeth
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+extradesc: bat-tooth-necklace sharp teeth
+When examined closely, it is easy to see the necklace was constructed hastily
+with clumsy hands.  The teeth vary in shape and size making you wonder if more
+than bat teeth were used.  Even with all of its flaws, you can tell the
+necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace bat-tooth-necklace sharp teeth
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+extradesc: bat-tooth-necklace sharp teeth
+When examined closely, it is easy to see the necklace was constructed hastily
+with clumsy hands.  The teeth vary in shape and size making you wonder if more
+than bat teeth were used.  Even with all of its flaws, you can tell the
+necklace held some significance to the owner.~
+~~
+vnum: 55393
+location: 5
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: plate acolyte-plate magical-thin-metal-plate magic
+shortdesc: an acolyte plate
+desc: A slightly magical thin metal plate lies here.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 2
+13 10
+27 1
+~
+extradesc: acolyte-plate slight-magical-thin-metal-plate
+Newly forged, this magical metal plate was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.~
+~~
+vnum: 12004
+location: 6
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hood tasseled-hood crumpled fabric
+shortdesc: a tasseled hood
+desc: A tasseled hood lies crumpled on the ground.
+type: 9
+weight: 0.75
+cost: 150
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: tasseled-hood crumpled fabric
+The tasseled hood was once made of grey leather, though over time, the color
+was obscured into a kind of all-purpose light brown.  It's a simple two-piece
+conical sort of hood, coming to a point well above the wearer's crown and
+falling back.  A lively tassel made of leather fringe finishes the headgear.~
+~~
+vnum: 55395
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: boots acolyte-boots magical-thin-metal-boots magic
+shortdesc: acolyte boots
+desc: A set of sligtly magical thin metal boots lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 10
+13 4
+27 1
+~
+extradesc: acolyte-boots slightly-magical-thin-metal-boots
+Newly forged, these magical metal boots were made to reflect your acceptance to
+your god.  Treated well, they will carry you through your beginning trials and
+on to greater wisdom.~
+~~
+vnum: 55397
+location: 9
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: gauntlets acolyte-gauntlets magical-thin-plate-gauntlets magic
+shortdesc: acolyte gauntlets
+desc: A slightly magical set of thin plate gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+2 1
+13 5
+27 1
+~
+extradesc: acolyte-gauntlets slightly-magical-thin-plate-gauntlets
+Newly forged, these magical metal gauntlets were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.~
+~~
+vnum: 41008
+location: 10
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz 0
+name: sleeves chitinous-sleeves narrow-tubes-chitin
+shortdesc: a set of chitinous-sleeves
+desc: Narrow tubes of chitin lie here, gathering dust.
+type: 9
+weight: 6.00
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 -1
+~
+extradesc: chitinous-sleeves narrow-tubes-chitin
+These stiff tubes of chitin look like they once graced the upper legs of some
+Hiver.  They would make stiff but servicable sleeves for a human.~
+~~
+vnum: 5523
+location: 14
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: wristguards eldoria-reward leather 3rd-black-legion-wristguards wrist-guards guard third wristguard
+shortdesc: wristguards of the 3rd Black Legion
+desc: A pair of black leather wristguards lies discarded here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+1 1
+~
+~~
+vnum: 5523
+location: 15
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: wristguards eldoria-reward leather 3rd-black-legion-wristguards wrist-guards guard third wristguard
+shortdesc: wristguards of the 3rd Black Legion
+desc: A pair of black leather wristguards lies discarded here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+1 1
+~
+~~
+vnum: 5539
+location: 16
+values:
+2
+4
+2
+7
+0
+0
+0
+~
+flags: j 0
+name: staff eldoria-reward 3rd-black-legion-staff third
+shortdesc: a staff of the 3rd Black Legion
+desc: A staff lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 2005
+location: 18
+values:
+1
+1
+5
+5
+0
+0
+0
+~
+flags: 0 0
+name: staff walking-staff
+shortdesc: a walking-staff
+desc: A staff rests here.
+type: 5
+weight: 2.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 30
+~
+extradesc: walking-staff
+This plain wooden staff is imbued with a peaceful feeling, making it useless in
+combat.  But it does help one walk rather nicely.~
+~~
+vnum: 5515
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gj 0
+name: symbol small-unholy-symbol eldoria-reward 3rd-black-legion-symbol third questobject
+shortdesc: an unholy symbol of the 3rd Black Legion
+desc: A small black symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 30
+14 25
+26 10
+27 1
+~
+extradesc: small-unholy-symbol eldoria-reward 3rd-black-legion-symbol third questobject
+A feeling of malevolence radiates from this black medal.~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 5515
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gj 0
+name: symbol small-unholy-symbol eldoria-reward 3rd-black-legion-symbol third questobject
+shortdesc: an unholy symbol of the 3rd Black Legion
+desc: A small black symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 30
+14 25
+26 10
+27 1
+~
+extradesc: small-unholy-symbol eldoria-reward 3rd-black-legion-symbol third questobject
+A feeling of malevolence radiates from this black medal.~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3005
+location: 127
+values:
+512
+488
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: water barrel water-barrel
+shortdesc: a barrel
+desc: A water barrel has been left here.
+type: 17
+weight: 8.00
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: water barrel
+This barrel looks like it would be good to hold large amounts of water.~
+~~

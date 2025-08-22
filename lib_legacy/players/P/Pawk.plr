@@ -1,0 +1,152 @@
+name: Pawk
+password: Pa4ZUn7xIY
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>&0<%dl><%l>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 4
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17803
+birthtime: 1292894887
+timeplayed: 1654589
+lastlogintime: 1739084416
+host: 208.093.179.007
+height: 65
+weight: 178
+base_height: 65
+base_weight: 178
+base_size: 2
+natural_size: 2
+alignment: 978
+playerflags: gjxyz
+effectflags: cm 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 11
+lastlevel: 0
+hitpoints: 1157/1058
+mana: 980/980
+move: 130/138
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 66
+wisdom: 63
+dexterity: 91
+constitution: 97
+charisma: 55
+cash: 1591 1720 14440 13027
+experience: 121002078
+pagelength: 50
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+21 1000
+22 1000
+28 1000
+34 1000
+43 1000
+88 1000
+92 1000
+97 1000
+99 1000
+241 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+417 1000
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 1000
+450 50
+451 1000
+452 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 50
+468 1000
+473 1000
+0 0
+tells:
+1738358395 @WDavar@W tells you, 'one gem please@W'@0
+1738359882 @WDavar@W tells you, 'one gem please@W'@0
+1738360914 @WDavar@W tells you, 'one gem please@W'@0
+1738363529 @WDavar@W tells you, 'one gem please@W'@0
+1738367269 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738369133 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738861459 @WDavar@W tells you, 'Offa requested i send a well Incoming@W'@0
+1738966153 @WDavar@W tells you, 'one gem please@W'@0
+1739038859 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739084396 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1738760996 Choak gossips, 'Don't for get to vote for us https://www.mudverse.com/vote/536'
+1738800827 Lacse gossips, 'gratz Risa'
+1738800834 Risa gossips, 'thx'
+1738861259 Chinok gossips, 'ahhh, doom run!'
+1738861279 Yixx gossips, 'I AM BORN'
+1738861286 Davar gossips, 'figured out lastnight that the mask on levathin isn't a reset item'
+1738861287 Chinok gossips, 'I'd say hatched, but ok'
+1738861289 Yixx gossips, 'and afk :P'
+1738861304 Yixx gossips, 'hatched! I like it'
+1738861307 Davar gossips, 'got bags to fill'
+$
+aliases:
+yy ass zawk
+y ass glawk
+3 resc zawk
+2 resc glawk
+5 resc dominio
+soul c 'soulshiel'
+h hitall
+hol c 'holy word'
+armor c 'armor' $*
+bless c 'bless' $*
+0 drink water
+all get all all.corpse
+` ass fawk
+id recite identify $*
+gac g all all.corpse
+1 ass cohor
+curel c 'cure l' $*
+cures c 'cure s' $*
+curec c 'cure c' $*
+heal c 'heal' $*
+souls c 'souls'
+4 resc foosha
+of order foll $*
+0

@@ -1,0 +1,1008 @@
+#10300
+Before the Gates of a Stone Building~
+   A crushed gravel path leads away from the great road carved into the ice
+that lies north and towards a stone building.  Large metal gates with wooden
+handles block entry into the building, but beyond them is a cheerful light that
+seems to welcome anyone who comes out this far.  A strange smell, almost
+reminiscent of rotten eggs, comes from the south and, beyond the building, what
+looks like clouds of smoke or steam is barely visible.  In any event, the
+inside of the building must surely be warmer than the chill of this frozen
+land, so investigating it might not be a bad idea.    
+~
+103 524356 10
+D0
+   Sirestis' Folly, leading back to the Arctic Village of Ickle, lies to the
+north.    
+~
+~
+0 0 36421
+D2
+   Grand gates, made of metal but with wooden handles so the chill of the
+northern climate won't freeze the hands of anyone who tries to open them, lead
+into a warmly lit stone building to the south.  Carved into the gates in the
+Common script is the word "Welcome".    
+~
+gate~
+1 0 10301
+S
+#10301
+The Coat Room~
+   The gate to the north opens up into this pleasant room.  Benches on either
+side of the hall provide a place to sit and take off heavy, snow-covered boots
+and cloaks, and brass hangars are attached to the walls to hold heavy outer
+garments.  Written on the wall above the passageway to the large room that lies
+south are the words "Phoenix Feather Resort" in large, blocky letters of the
+Common script.  A short flight of steps leads there as well, no doubt so that
+the floors of the building aren't resting directly on the cold ground.  
+Indeed, it is much warmer in here than it is outside, and the light of a fire
+beckons travelers with the promise of comfort.    
+~
+103 33554440 0
+D0
+   Wind sneaks in from time to time, but the metal gates leading north to
+Sirestis' Folly and the resort's exit are likely magically enchanted not to let
+any cold air pass their boundary, since the room stays nice and warm regardless
+of whether or not they're closed.    
+~
+gate~
+1 0 10300
+D2
+   The narrow confines of the coat room open up into a great hall to the south.
+  
+~
+~
+0 0 10303
+S
+#10302
+The Hearth~
+   Set into the western wall is a massive stone hearth.  Taking up nearly the
+entire wall, it is constructed of stones collected from everywhere in the
+world.  Obsidian from Fiery Island, jade from Odaishyozen, granite from the
+quarries near Toldar's Keep, basalt from Anduin, marble from Nikozia, and even
+the rare crystals from Technitzitlan can all be found here.  A shelf above the
+fire holds small sculptures of many styles, and the fire itself has the rich
+scent of juniper wood.  Cushions scattered on the ground invite people to sit
+and watch the fire or read by its light, and low tables further encourage
+sitting on the floor.  Many rugs made from the pelts of local animals keep the
+floor soft, for it is bare wood underneath.  The great hall lies to the east,
+and there is a smaller room to the south.    
+~
+103 33554440 0
+D1
+   To the east is the main hall of the resort, which branches out to all other
+sections including the exit.    
+~
+~
+0 0 10303
+D2
+   To the south is a parlor with odd-looking chairs and the scent of incense.
+  
+~
+~
+0 0 10306
+E
+sculptures~
+   One sculpture really catches the eye: a purple teardrop shed from a blue
+eye.  The artist's signature on the piece says "Kourrya 2006".    
+~
+S
+#10303
+The Great Hall~
+   Lush, imported carpets cover the pine floorboards in this spacious hall.  
+Comfortable-looking chairs and low tables provide several places to relax and
+hold conversations, and the walls are hung with paintings and tapestries.  
+Delicious smells come in from the east, where the hall opens up into a dining
+room.  The crackle of a fire comes from the great hearth to the west, and fresh
+air sneaks in whenever the gates past the coat room to the north are opened.  
+To the south, a counter detailing the various services the resort offers can be
+seen.  This particular hall is active even at the strangest hours, whether
+being utilized by visiting guests or cleaned by the impeccable staff, but it is
+never too racous.    
+~
+103 33554440 0
+D0
+   Leading out of the building, the smaller hallway to the north ends in a coat
+room, where travelers can prepare themselves for the frigid temperatures
+outside without getting in the way of those who just want to relax in the Great
+Hall.    
+~
+~
+0 0 10301
+D1
+   The hall narrows a bit, then widens up again into a large dining room set
+with many tables to the east.    
+~
+~
+0 0 10304
+D2
+   To the south, a large desk is visible.    
+~
+~
+0 0 10307
+D3
+   To the west, the warm glow of a large hearth invites a tired traveler to sit
+down and relax.    
+~
+~
+0 0 10302
+S
+#10304
+The Dining Hall~
+   A large, well-lit hall stretches out here and to the east and south, filled
+with wide tables and high-backed chairs placed around them in a comfortable
+arrangement for dining.  The tables are set with fine, white silk tablecoths
+and beautiful plates from around the world.  Pitchers of sweet water and pots
+of hot tea are on carts around the room in case a visitor gets thirsty, and
+delicious smells are coming from the south.  The main hall lies back to the
+west.    
+~
+103 33554440 0
+D1
+   The dining hall stretches off to the east.    
+~
+~
+0 0 10305
+D2
+   The dining hall continues to the south.    
+~
+~
+0 0 10308
+D3
+   To the west, the hall narrows a bit before opening up wider into the main
+hall of the resort.  Far off, the hearth sheds its inviting glow.    
+~
+~
+0 0 10303
+S
+#10305
+The Dining Hall Overlooking the Cold Hills~
+   Set with many small tables, this section of the dining hall looks like it
+was designed with smaller parties in mind.  Soft velvet curtains line the glass
+windows that overlook the hills blanketed in pure, white snow rising to the
+east.  The chilly-looking, snow-covered view is beautiful, especially when
+viewed from the comfortable, warm interior of the resort.  A small hearth is
+set in the south wall, keeping many pots of tea at the perfect drinking
+temperature.  The only exit is to the west, where the dining hall continues
+before opening up into the main hall.    
+~
+103 33554456 0
+D1
+   Snow-covered hills begin to rise to the southeast through a set of large
+glass windows hung with warm-looking velvet curtains.  A birdfeeder set right
+outside the window is almost constantly visited by hardy songbirds that live up
+here as well as the rare Northern White Raven.  Small, hardy pine trees line
+the hills.    
+~
+~
+3 -1 -1
+D3
+   The dining hall continues to the west, where it opens up onto the main hall.
+  
+~
+~
+0 0 10304
+S
+#10306
+The Massage Parlor~
+   This peaceful room is, unlike the rest of the resort, fully carpeted with a
+grey shag that muffles the sound of footsteps.  A window on the western wall is
+bordered by thick white velvet curtains, and the entire room seems to be lit by
+a white, magical light.  A cushioned table rests in one corner and there are
+three oddly-shaped chairs, all suitable for relaxing in when being given a
+massage.  Several folded-up tables and chairs on the south wall suggest that
+this room can be used as a conference room if necessary.  In the southeastern
+corner is a large altar made of striped black-and-white marble where incense
+burns, filling the room with its pleasant smoke.  Yellow light from the north
+illuminates the room's only exit.    
+~
+103 33554440 0
+D0
+   The great hearth lies to the north.    
+~
+~
+0 0 10302
+E
+altar~
+   A single flame has been carved into the stone of the altar and embossed with
+silver.  Below it in tiny Elven runes is the inscription: "Lost, but never
+forgotten.  Rick Sala 6-21-2006"
+~
+S
+#10307
+The Counter~
+   This spacious, warm extension of the Great Hall leads to a polished wooden
+counter set near the middle of the room that blocks passage south.  A large
+sign on the wall lists the various services available for purchase here, and a
+few chairs line the walls for those who wish to rest and consider before
+deciding on an activity.  Candles in tall glass casings provide a warm, yellow
+light, and the skylight lets in the light of moon or sun to help brighten the
+room as well.  The main hall of the resort is back to the north.    
+~
+103 33554588 0
+D0
+   To the north is the Great Hall.  The carpeted floor between here and there
+looks like it has seen quite a bit of use.    
+~
+~
+0 0 10303
+D2
+   A low, swinging wooden gate leads to the south and what looks like a small
+shop.    
+~
+gate~
+1 0 10311
+E
+sign list prices price services~
+Hot Springs -    Red Token
+Massage -        Blue Token
+Gourmet Meal -   Green Token
+~
+S
+#10308
+The Dining Hall~
+   Brightly colored paintings and tapestries line the walls in this busy
+section of the dining hall.  Booths set into the wall offer privacy for those
+who wish to dine here, but a large festival table on the south wall looks big
+enough to hold even the most populous party.  The light in this room comes from
+a gorgeous, crystalline chandelier as well as smaller candles set on each
+table.  The hall stretches out to the north, but a set of swinging doors
+constantly in use block the way east.    
+~
+103 33554440 0
+D0
+   The dining hall continues to the north.    
+~
+~
+0 0 10304
+D1
+   A great set of swinging, metal doors lies to the east.  Light and heat and
+delicious smells come from the other side at all hours of day and night, and a
+small window is set into the center of each door.  Through the window can be
+seen the shine of metal and many scurrying figures bent on activity.  It's
+probably the resort's kitchen.    
+~
+door~
+1 0 10309
+S
+#10309
+The Kitchen~
+   Activity surrounds every part of this large, clean kitchen.  Cabinets upon
+cabinets of supplies, pots and pans, utensils, and more line the walls.  Three
+different range tops make it possible to work on many different dishes at once,
+and a bread oven set into the east wall sends out tantalizing scents to tempt
+travelers.  Though seemingly chaotic, this kitchen is in fact quite orderly -
+it must be, or it would surely collapse under the weight of all that bustling
+around.  A set of swinging doors leads back west into the dining hall.    
+~
+103 33554440 0
+D2
+   Through a slight maze of boxes, kitchen tools, and other paraphanelia, a
+door blends in with the stone walls.    
+~
+door~
+1 0 10313
+D3
+   To the east, a set of large metal double-doors seperates the kitchen from
+the dining hall.  Windows set in each of the doors give a decent view of
+diners, wooden tables, and the decorations of the room, though occasionally the
+windows cloud up due to the humidity in the kitchen.  Their main function is to
+block the noise of the kitchen from intruding on the peaceful atmosphere of the
+dining hall.    
+~
+door~
+1 0 10308
+S
+T 10305
+#10310
+Women's Dressing Room~
+   Several curtained stalls provide privacy for those who wish to change into
+bathing outfits (or out of them as the case may be).  A vent of warm air blows
+down from the ceiling to dry off people and clothing, and tubs of warm and cool
+water rest along the east wall for anyone wishing to rinse off before entering
+the hot springs.  A solid pine door blocks intrusion from those of the male
+persuasion to the east and a crisscrossing wooden barrier lies to the south,
+obstructing view but not movement.    
+~
+103 33554440 0
+D1
+   A solid pine door leads back to the main hall of the resort, away from the
+hot springs.    
+~
+door~
+1 0 10311
+D2
+   A crisscrossing series of wooden panels blocks direct vision, but the fresh
+air coming in from the south suggests that it leads outside to the springs.  
+
+~
+~
+0 0 10315
+S
+T 10307
+#10311
+Gift Shop~
+   Warm, humid air only occasionally interrupted by a cool draft from the north
+pervades this spacious room, which lies between the counter to the north and
+the dressing rooms to the east and west.  Towels, soap, and other bathing
+accessories are displayed on the walls for purchase in case a prospective
+customer has forgotten to bring such necessaries to the resort.  The women's
+room is to the west; its counterpart lies to the east.  Both dressing rooms are
+blocked by large doors and a twisting hall so that they cannot be intruded.  A
+few wicker chairs are set in the room in case guests wish to pause before
+entering or exiting the dressing rooms.    
+~
+103 33554440 0
+D0
+   A low wooden gate at one end of the counter leads out to the Great Hall.  
+
+~
+gate~
+1 0 10307
+D1
+   A large symbol - a circle with a slightly off-center arrow pointing upwards
+- is followed by the Elven rune for "male", marking this as the door to the
+men's room.    
+~
+door~
+2 0 10312
+D3
+   The large symbol of a circle atop a cross is followed by the Elven rune for
+"female", marking this as the door to the women's room.    
+~
+door~
+2 0 10310
+S
+#10312
+Men's Dressing Room~
+   Used towels litter the floor in this dressing room, making it rather
+difficult to navigate.  Curtained stalls line the east wall, for those who wish
+to have a little privacy while changing, and a full-length mirror is hanging on
+one of the walls in case anyone needs to inspect their physique before joining
+the rest of the hot springs.  Tubs of water both warm and cool sit in one
+corner for anyone who feels the need to rinse off before or after their visit
+to the mineral springs.  A heavy pine door leading back to the gift shop guards
+the western wall, and a crisscrossing series of wooden panels prevents vision
+but not progress to the south, where the pools lie.
+~
+103 33554440 0
+D2
+   A crisscrossing series of wooden panels blocks direct vision, but the fresh
+air coming in from the south suggests that it leads outside to the springs.  
+
+~
+~
+0 0 10317
+D3
+   A solid pine door leads away from the springs and back into the main hall of
+the resort.    
+~
+door~
+1 0 10311
+S
+T 10306
+#10313
+The Pantry~
+   Cool despite its proximity to the kitchen fires, the pantry is dark and
+stocked full of supplies both from the north and from far away lands.  Shelves
+full of vegetables and dried fruits cover the walls and cured meats hang from
+the ceiling, with grains in bags stacked on the floor.  A niche in the eastern
+wall looks like it has been dug into the surrounding permafrost, and that is
+where perishable items like fresh fruits and some vegetables are kept.  Faint
+scents permeate the cool air, of spices and sweets and other tantalizing
+tastes.  The kitchen lies through a door to the north.    
+~
+103 8 0
+D0
+   To the north, a small door leads out of the quiet pantry and back into the
+noisy kitchen.    
+~
+door~
+1 0 10309
+S
+#10314
+A Private Pool~
+   Chill air feels delightfully cold against the warm waters of the private
+pool, screened by stone walls on three sides and a wooden panel to the east
+that blocks view but allows entrance by walking along its twisted path.  Stone
+ledges in the pool itslef on the north and south edges provide benches for
+those who wish to sit and relax in the water, and it gets slightly deeper near
+the middle in case one wants to go for full-body submersion.  Pitchers of cold
+water are available near the steps leading into the pool so that bathers won't
+get dehydrated - a common pitfall of hot springs.    
+~
+103 33554432 6
+D1
+   Shallow stone steps lead up to interweaving panels of wood and away from the
+private spring back up to the wooden walkway.  The panels block vision but
+allow passage.    
+~
+~
+0 0 10315
+S
+T 10307
+#10315
+A Wooden Walkway~
+   This wooden walkway is warm on bare feet, heated from below by some magic or
+perhaps some clever use of the area's geothermal heat.  If it weren't, it would
+soon become quite icy and slick from the steam and the water dripping off
+guests, but as it is the walkway remains dry.  It is constructed of a dark-hued
+wood that doesn't seem to come from around here, smoothly lacquered so as to
+prevent splinters on bare feet.  There is a private pool to the west, and the
+main pool is through a gate to the south.  North is the women's dressing room.
+The dressing room and the private pool are both obscured by wooden panels, but
+the main pool can be seen clearly.    
+~
+103 0 1
+D0
+   A mazelike series of panels blocks sight north but allows passage back into
+the dressing room.  The panels are made of white pine - a soft, yet abundant,
+wood that emits a slight fragrance.  The steam from the hot springs has left a
+slight layer of ice on the wood, however.    
+~
+~
+0 0 10310
+D2
+   A gate made of thin branches of wood leads south.  The branches are spaced
+enough apart that the shallow steps down to the main hot pool are clearly
+visible through the slats, and it latches with a wooden mechanism rather than a
+metal one.  This is likely due to the cold temperatures of the air and the
+probability of wet hands - freezing one's fingers to a metal gate would be
+quite unpleasant!    
+~
+gate~
+1 0 10319
+D3
+   A series of interweaving wooden panels blocks the view west, but steam
+billows in from that direction and a sign on the panels reads, in Common,
+"Private Pool".    
+~
+~
+0 0 10314
+S
+T 10307
+#10316
+A Bubbling Hotspring~
+   It is dangerously hot here at the source of the Phoenix Feather Hot Springs.
+Still, from time to time the brave, foolish, or pyromantic guests decide they
+want to experience the pinnacle of heat.  For them, the resort has formed the
+hot spring into a cozy little pool.  A great cloud of steam rises up as the
+scalding water touches the chill air, covering the nearby walls of the resort
+with condensation that sometimes turns to ice and sometimes simply falls back
+into the pool.  A stone shelf on the north wall, which is the south wall of the
+resort, holds a pitcher of drinking water so that foolish patrons don't get
+dehydrated and pass out.  After a guest has reached their limit, they may
+retreat into the main pool down the cascade to the south.    
+~
+103 4194308 6
+D2
+   Tumbling cheerfully down a series of slightly slippery stones, the hot water
+goes out from here to the rest of the pool, supplying the resort with the
+mineral water this place is famous for.    
+~
+~
+0 0 10320
+S
+T 10308
+T 6207
+#10317
+A Wooden Walkway~
+   This railed walkway is set several feet above the ground, for this far north
+the earth is cold no matter what season it is.  The wooden panels of the
+walkway are made from a dark, imported wood that has been lacquered to prevent
+it from letting any splinters into a guest's bare feet.  Magic keeps it warm
+and dry - or perhaps it is only a clever use of this place's natural geothermal
+energy.  In any case, it is neither icy nor slippery.  The resort building and
+the men's dressing room lies to the north, blocked from view by a series of
+wooden panels, and there is a private pool to the east beyond a similar
+barrier.  The main pool lies through a gate to the south and down a few steps.
+There seems to be quite a bit of noise coming from that direction.    
+~
+103 0 1
+D0
+   A mazelike series of panels blocks sight north but allows passage back into
+the dressing room.  The panels are made of white pine - a soft, yet abundant,
+wood that emits a slight fragrance.  The steam from the hot springs has left a
+slight layer of ice on the wood, however.    
+~
+~
+0 0 10312
+D1
+   A series of interweaving wooden panels blocks the view east, but steam
+billows in from that direction and a sign on the panels reads, in Common,
+"Private Pool".    
+~
+~
+0 0 10318
+D2
+   A gate made of thin branches of wood leads south.  The branches are spaced
+enough apart that the shallow steps down to the main hot pool are clearly
+visible through the slats, and it latches with a wooden mechanism rather than a
+metal one.  This is likely due to the cold temperatures of the air and the
+probability of wet hands - freezing one's fingers to a metal gate would be
+quite unpleasant!    
+~
+gate~
+1 0 10321
+S
+T 10306
+#10318
+A Private Pool~
+   A wooden panel blocks view to the west, the southern wall of the resort lies
+north, and a bamboo divider seperates this private pool from the one to the
+south, but the eastern view is open, giving a view of the rising hills that
+stretch from north to south here.  The occasional caribou or camouflaged rabbit
+can be seen weaving in and out of the pine forests if one stops to look, and
+occasionally there are glimpses of rarer animals like the arctic fox.  The pool
+itself is blissfully hot, steaming at all hours of day and night.  Stone ledges
+around the sides provide places to sit and relax, or the center of the pool is
+deep enough for full-body immersion.  It is nice and quiet here, perfect for a
+moment's reflection on the joys of life.    
+~
+103 33554432 6
+D3
+~
+~
+0 0 10317
+S
+T 10306
+#10319
+A Steaming Pool~
+   Shallow, grooved wooden stheps lead down from the gate to the north, turning
+to stone steps about a foot above the water's surface and continuing to the
+bottom of the pool.  The water is gloriously warm in contrast to the chill air,
+and the pool here is quite deep.  The bottom is a rough sand, not unpleasant to
+walk on and surely less prone to accidets than a smooth floor would be.  The
+water coming in from the east is very hot, but it is both cooler and shallower
+to the south.  The women's dressing rooms lie to the north through a gate.
+~
+103 0 6
+D0
+   Shallow, grooved wooden steps lead up to a wooden gate with a sign.  The
+sign has the symbol of a circle atop a cross, and the elven rune for "Female".
+  
+~
+gate~
+1 0 10315
+D1
+   The water coming in from the east is hotter than that circulating in this
+particular section of the pool, and it looks like it continues for a while in
+that direction.    
+~
+~
+0 0 10320
+D2
+   The pool continues south, but gets a little shallower in that direction.  
+
+~
+~
+0 0 10323
+S
+#10320
+A Very Hot Section of the Steaming Pool~
+   A beautiful cascade of water sends billows of steam down from the north, and
+the water it adds to the pool is HOT!  Though blissfully theraputic, it's
+dangerous to stay in water this hot without working your way up to it by
+spending some time in the cooler sections of the pool first.  Still, for the
+adventurous, there is no greater thrill than standing right underneath the
+pounding waterfall.  Rocks have been piled up to direct the force of the water
+into that one cascade, probably to encourage this kind of behavior.  The pool
+gets a little deeper, but cooler, to the east and west.  South is a little
+island to dry off on if the hot water should become too much to bear.    
+~
+103 0 6
+D0
+   The scalding waterfall comes down from a steep, yet probably scaleable,
+series of rocks placed to look like a natural waterfall.  The water for the
+entire pool looks like it's coming from that direction, so entering the hot
+spring might not be the brightest idea.    
+~
+~
+0 0 10316
+D1
+   The pool gets a little bit deeper to the east, but the water isn't quite as
+scalding hot in that direction.    
+~
+~
+0 0 10321
+D2
+   To the south is a little sandy island where one could get out of the hot
+water for a while and cool down.    
+~
+~
+0 0 10324
+D3
+   The pool is a little deeper and a little cooler - though still quite
+pleasantly warm!  - to the west.    
+~
+~
+0 0 10319
+S
+#10321
+A Steaming Pool~
+   Ahh, the hot springs at last!  Shallow wooden steps lead down from the
+northern gate into the pool, becoming stone once they are near, and then under,
+the water.  The air is chilly and full of steam from the springs, making it
+hard to see too far.  The smell of sulphur is strong, but one gets acclimated
+to it after a few minutes.  The water circulating in from the west is very
+warm.  The pool also continues south, though it is fairly shallow in that
+direction - perfect for easing one's way in so as not to overheat.    
+~
+103 0 6
+D0
+   Shallow, grooved wooden steps lead up to a wooden gate with a sign.  The
+sign has the symbol of a circle with a slightly off-center arrow pointing
+upwards and the elven rune for "Male".    
+~
+gate~
+1 0 10317
+D2
+   The pool gets a little shallower to the south.    
+~
+~
+0 0 10325
+D3
+   Hot water seems to be flowing in from the west, where the pool continues for
+some distance.    
+~
+~
+0 0 10320
+S
+#10322
+A Steaming Pool~
+   Narrow, yet ledged, this place is ideal for semi-private conversation or the
+simple joys of being nice and warm while all around you it's nice and cold.  
+The surrounding landscape is a light pine forest, usually snowbound but full of
+gorgeous colors and scents in the summer.  A hush seems to cover the land, and
+loud noises are swallowed up by the forest.  The pool continues back to the
+east.
+~
+103 0 6
+D1
+   The pool widens up to the east, and a little ways out there is a sandy
+island.    
+~
+~
+0 0 10323
+S
+#10323
+A Steaming Pool~
+   This wide section of the hot pool is somewhat shallower than the sections
+around it, and to the east it breaks free of the water entirely to form a
+small, sandy island.  The swirling waters move in a general north-south
+direction, washing away dirt and cares alike, relaxing body and soul.  An
+isolated arm lies to the west, and the pool continues north and south.  To the
+south the sound of cascading water is strong.    
+~
+103 0 6
+D0
+   The water coming in from the north is slightly warmer, and the pool seems a
+little deeper in that direction as well.    
+~
+~
+0 0 10319
+D1
+   To the east is a little sandy island.    
+~
+~
+0 0 10324
+D2
+   The water flows south into a holding pool for a little waterfall, from which
+the pool drains out into a river farther south.    
+~
+~
+0 0 10327
+D3
+   A little arm of the pool stretches off to the west.    
+~
+~
+0 0 10322
+S
+#10324
+The Sandy Island~
+   This little island is set with chairs for those who wish to escape the warm
+water for a little bit before jumping back in.  The sand is large-grained, so
+it doesn't stick to wet guests as much as one might think.  This spot also
+offers a great vantage point for all the different parts of the hot springs,
+from the gates to the north to the waterfall southwest.  The sand itself is
+warm, heated by the surrounding waters.  The island deepens into water again in
+all directions.    
+~
+103 0 15
+D0
+   The hottest section of the pool is to the north.    
+~
+~
+0 0 10320
+D1
+   The pool extends for a ways east, a bit shallower and cooler than the
+section to the north.    
+~
+~
+0 0 10325
+D2
+   A secluded pool lies to the south, excellent for those who prefer partial
+privacy.    
+~
+~
+0 0 10328
+D3
+   An arm of the pool reaches out to the west, looking a bit shallower than the
+section to the north.    
+~
+~
+0 0 10323
+S
+#10325
+A Steaming Pool~
+   The hot pool is rather shallow here, its gritty bottom rising towards the
+small island to the west.  Hot steam rises, ghostlike, but it only provides a
+slight barrier to sight.  To the east, an isolated arm of the pool gets deeper
+again, and the gate to the Men's Dressing Room lies a little ways north.  To
+the south is a lip of the pool, and a view of the serene cold fields that make
+the water seem warmer by comparison.    
+~
+103 0 6
+D0
+   A little deeper and warmer, the pool continues to the north.    
+~
+~
+0 0 10321
+D1
+   An isolated arm of the hot pool stretches out to the east.    
+~
+~
+0 0 10326
+D3
+   There's a sandy island to the west that looks like it would be fun to cool
+off on when the water gets too hot.    
+~
+~
+0 0 10324
+S
+#10326
+A Steaming Pool~
+   The hot springs have been shaped into a small, oval arm here which overlooks
+the scenery in all directions.  The mass of the resort lies north, shedding its
+warm glow on the countryside.  A series of mountains rises to the east,
+eventually turning into the familiar peaks of Nikozia far to the south.  Small
+hills and pine groves dot the land, verdant in summer but snowbound the rest of
+the year.  The pool itself is designed for relaxation, with stone ledges on the
+side to sit on and getting quite deep elsewhere for full submersion.    
+~
+103 0 6
+D3
+   The pool continues to the east.  A little ways off, there is a sandy island.
+  
+~
+~
+0 0 10325
+S
+#10327
+The Steaming Falls~
+   The pool ends here.  A wooden sluice acts as a wall on the southern end of
+the pool, but the water continues down in a beautiful cascade before joining
+the creek which heads off to the south.  A set of stairs leads down for those
+patrons who feel inclined to follow the waters for a little ways.  Billows of
+steam rise up from the cascade, making it difficult to see exactly what lies
+along the creek.    
+~
+103 4 6
+D0
+   The hot pool continues to the north, where it widens up quite a bit.    
+~
+~
+0 0 10323
+D5
+   A gentle cascade leads down into a much cooler-looking creek and away from
+the resort.  There is a bit of a wooden sluice rigged up to prevent any
+important items from floating downstream, but it doesn't impede the water too
+much unless completely blocked.    
+~
+~
+0 0 10330
+S
+#10328
+A Secluded Pool~
+   The ground below slopes down dramatically, leaving this secluded pool on
+something of a cliff.  Trickles of mineral water flow down the sides of the
+cliff, forming oddly smooth-looking rivulets.  Far to the south, a creek can be
+seen winding through the mountains and forests to some unknown destination.  
+The pool itself is deep and has several terraced ledges for sitting, and the
+sandy island is to the north.    
+~
+103 0 6
+D0
+   There's a little sandy island to the north.    
+~
+~
+0 0 10324
+S
+#10329
+A Warm, Icy Stream~
+   Though the creek is shallow, its current begins to pick up a bit here.  The
+water is warm, even steaming a bit from the hot springs, but near the
+slower-moving water of the creekside it loses its heat quickly and may even
+turn into patches of ice.  The water is flowing in from the east and turns
+sharply to the south as it continues downstream.    
+~
+103 0 6
+D1
+   The water flows in from the east, and the resort lies farther upstream.    
+~
+~
+0 0 10330
+D2
+   The creek continues to the south.    
+~
+~
+0 0 10331
+S
+#10330
+A Warm, Icy Stream~
+   Someone has set rocks into a circle under the falls here, marking the last
+boundaries of the comfort of the hot springs.  The water is about waist-deep
+within the circle, though it shallows out quickly as it continues to flow west.
+As it gets farther away from the resort, the water begins to take on the chill
+of the northlands, so that here and there are patches of ice along the very
+edge of the creek.  Stairs cut into the stone lead back up to the resort.    
+~
+103 0 6
+D3
+   The stream continues of to the west, each bank covered with eager, green
+plants that seek the heat of the warm water.    
+~
+~
+0 0 10329
+D4
+   A slender wooden sluice stands firmly in the path of the water, but it looks
+like you could scramble up the rocks on either side of the cascade without much
+difficulty.  It would be just as much fun to sit under the waterfall, though.
+  
+~
+~
+0 0 10327
+S
+#10331
+A Warm, Icy Stream~
+   The stream takes another sharp turn here, leading east.  The chill bite of
+cold air is more apparent here, and there is more ice along the sides of the
+stream, but the main current is still comfortably warm from the hot springs,
+though it smells slightly of sulphur.  The resort lies upstream to the north.
+The creekbed turns again not too far downstream, so it's difficult to tell
+where exactly it is leading.    
+~
+103 0 6
+D0
+   To the northeast, above a small cascade, the lights of a building glimmer.
+It would be easy to reach it from here by simply heading upstream.    
+~
+~
+0 0 10329
+D1
+   The stream bends again here, leading to the east.    
+~
+~
+0 0 10332
+S
+#10332
+A Warm, Icy Stream~
+   It's definately getting chillier as the water loses heat this far from its
+warm source, but it's still fairly comfortable.  Bending again here, the stream
+is coming in from the west and then heading south.  Chunks of ice occasionally
+break away from the sides of the creek and flow a little ways in the main
+current before melting under the heat.    
+~
+103 0 6
+D2
+   The stream continues south for a little ways before turning again.    
+~
+~
+0 0 10333
+D3
+   The water flowing in from the west is quite warm.    
+~
+~
+0 0 10331
+S
+#10333
+A Warm, Icy River~
+   A gorgeous cascade of water from the east adds enough to this little stream
+that it becomes a little river.  The chilly cascade mingles with the warm flow
+of the main current, making a little steam to mix with the mist of the
+waterfall.  As a result, all the surrounding plants and rocks are covered in
+tiny ice crystals that form when the mist touches them.  It is very beautiful.
+The stream is passable both north and south.    
+~
+103 0 6
+D0
+   The current from the north is not too strong to make headway against, should
+one wish to continue in that direction.    
+~
+~
+0 0 10332
+D1
+Another creek, perhaps a little smaller than the one to the north, find its way
+to the lip of a cliff here and falls crashing down into the river.  A few large
+rocks break it up into several small cascades, but it still represents a good
+amount of water.  It's quite loud, but very pretty.    
+~
+~
+3 -1 -1
+D2
+   The creek goes south for a little ways before bending again.    
+~
+~
+0 0 10334
+S
+#10334
+An Icy River~
+   This river is tough to navigate - it's deep, the current is fast, there are
+rocks everywhere, and there is barely a trace of warmth left from the hot
+springs far to the north.  Trees hang along the steep banks of the river, some
+looking quite strange with trunks going in all directions - probably a result
+of heavy snows as a sapling.  This chilly river heads downstream to the east
+and upstream to the north.    
+~
+103 0 6
+D0
+   The water flowing in from the north is warmer than one would expect for this
+climate.    
+~
+~
+0 0 10333
+D1
+   The river chills off as it heads east.    
+~
+~
+0 0 10335
+S
+#10335
+Icy Rapids~
+   Here at last is the end of the passable section of the icy river.  To the
+east lie sharp rocks and swift rapids, too many and too dangerous to navigate
+around.  The water is cold, very cold, and there is ice along its edges where
+the water moves slowly.  Though the current moves steadily, it is not too
+strong to swim against.  The only exit is upstream, to the west.    
+~
+103 0 6
+D1
+   The ice-filled rapids look much too dangerous to navigate, especially for
+someone without a canoe.    
+~
+~
+3 -1 -1
+D3
+   It should be possible to continue upstream for some distance, as the water
+looks much calmer than it does downstream.    
+~
+~
+0 0 10334
+S
+#10336
+A Guest Room at Phoenix Feather Resort~
+   This is one of the rooms that Phoenix Feather Resort rents out to its
+patrons for a small fee, since many of them travel here to vacation from much
+farther away than Ickle.  Narrow windows along each wall provide a glimpse of
+the excellent views without letting too much cold in, though the south window
+is rather foggy from overlooking the hot springs.  On the east wall is an
+extension of the main hearth with a happily burning fire lending its warmth to
+the room.  Set into the wall is a cute little cubby-bed piled high with quilts
+and pillows that just begs to be napped in.  The staircase leading down isn't
+very noticeable from below...  For that matter, how does one get into this room
+in the first place?
+~
+103 33554444 0
+D5
+A discreet staircase leads down t the main hall of the resort.
+~
+~
+0 -1 10303
+E
+bed pillow pillows quilt quilts~
+This single bed is set into the wall of the room under the north window.  
+Piled high with handmade quilts and embroidered pillows, it would make a superb
+reading nook or napping spot.  The colors of the quilts and pillows don't seem
+to have any pattern to them, as nearly every color imaginable is represented.
+~
+S
+$~

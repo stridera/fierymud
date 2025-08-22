@@ -1,0 +1,83 @@
+name: Akamai
+password: AkML903NVh
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 11
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20029
+birthtime: 1633235894
+timeplayed: 1896
+lastlogintime: 1633237791
+host: 184.166.117.018
+height: 40
+weight: 108
+base_height: 40
+base_weight: 108
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: y
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 8
+thirst: 8
+lastlevel: 0
+hitpoints: 23/23
+mana: 0/0
+move: 106/106
+damroll: 3
+hitroll: 6
+strength: 84
+intelligence: 85
+wisdom: 84
+dexterity: 100
+constitution: 84
+charisma: 72
+experience: 5499
+quit_reason: 3
+saveroom: 0
+skills:
+403 54
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+464 53
+465 50
+467 50
+0 0
+trophy:
+1 8022 1.000000
+1 8013 1.000000
+1 8012 1.000000
+1 8015 2.000000
+1 8001 2.000000
+1 8016 1.000000
+1 8002 3.000000
+1 3065 1.000000
+0 0 0
+tells:
+1633236921 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1633237046 Chinok gossips, 'if he's invisible for example'
+1633237080 Chinok gossips, 'search won't show the NPC if you search'
+1633237149 Chinok gossips, 'when you walked into the room, the master should have said something about quests'
+1633237181 Chinok gossips, 'ah, my mistake, you might have to level once before he will tell you '
+1633237313 Chinok gossips, 'help skill rogue -- will show all the skills oyu will get'
+1633237356 Chinok gossips, 'whoops .. help skill_rogue'
+1633237377 Chinok gossips, 'it's why I built the online page --- help command can be a pain :)'
+1633237544 Chinok gossips, 'once you max a skill (for your current level) it will get a * on the right side'
+1633237570 Chinok gossips, 'look in corpse .. '
+1633237787 Chinok gossips, 'sure.. any time'
+$

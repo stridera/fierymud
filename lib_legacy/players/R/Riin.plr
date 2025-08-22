@@ -1,0 +1,89 @@
+name: Riin
+password: RitvxtNopr
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 9
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18764
+birthtime: 1411383537
+timeplayed: 14457
+lastlogintime: 1505142457
+host: 178.165.130.039
+height: 73
+weight: 114
+base_height: 73
+base_weight: 114
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8050
+lastlevel: 0
+hitpoints: 46/46
+mana: 1/0
+move: 118/118
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 92
+wisdom: 92
+dexterity: 84
+constitution: 87
+charisma: 70
+cash: 0 18 7 2
+experience: 36811
+quit_reason: 7
+saveroom: 8050
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 62
+424 50
+438 50
+443 50
+444 50
+451 50
+457 50
+458 50
+459 50
+460 50
+462 50
+463 65
+466 50
+0 0
+trophy:
+1 8002 1.000000
+1 8010 4.000000
+1 8001 3.000000
+1 8014 4.000000
+1 8021 2.000000
+1 8015 3.000000
+1 8016 9.000000
+1 8000 4.000000
+1 8012 4.000000
+1 8020 4.000000
+1 8013 3.000000
+1 8011 4.000000
+0 0 0
+mem:
+1 1 7
+1 1 7
+16 1 7
+16 1 7
+0 0 0

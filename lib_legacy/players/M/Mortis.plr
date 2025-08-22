@@ -1,0 +1,82 @@
+name: Mortis
+password: Mo6lpdroNb
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 32
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20808
+birthtime: 1720663843
+timeplayed: 565
+lastlogintime: 1720664413
+host: 107.115.206.082
+height: 10
+weight: 9
+base_height: 10
+base_weight: 9
+base_size: 0
+natural_size: 0
+alignment: 1000
+playerflags: xy
+effectflags: u 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 18/18
+mana: 0/0
+move: 103/103
+damroll: 0
+hitroll: 6
+strength: 63
+intelligence: 100
+wisdom: 88
+dexterity: 81
+constitution: 87
+charisma: 48
+experience: 1
+quit_reason: 5
+saveroom: 3002
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+447 50
+451 50
+452 50
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+tells:
+$
+gossips:
+1720664175 Chinok gossips, 'help necro should give you more info..'
+1720664238 Chinok gossips, 'NP, our help files are pretty good.. and -- if you hit the website https://fierymud.org/help'
+1720664249 Chinok gossips, 'you can search the in-game help-file on-line'
+1720664315 Chinok gossips, 'items stay in your inventory, and you can rent or camp to keep them'
+1720664352 Chinok gossips, 'we currently don't have 'offline' item storage... but something on our list to-do'
+1720664377 Chinok gossips, 'it's preffered'
+1720664379 Chinok gossips, 'not required'
+1720664398 Calimar gossips, 'most muds i've played the bank is not just coins, it's items too'
+1720664405 Chinok gossips, 'it can just be a little dangerous.'
+1720664409 Calimar gossips, 'that what you mean?'
+$

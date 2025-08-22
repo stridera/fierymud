@@ -1,0 +1,122 @@
+name: Arcanjo
+password: ArGoRl2HCF
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 1
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20610
+birthtime: 1693780159
+timeplayed: 21666
+lastlogintime: 1734802330
+host: 189.061.043.190
+height: 69
+weight: 115
+base_height: 69
+base_weight: 115
+base_size: 2
+natural_size: 2
+alignment: 999
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 29/29
+mana: 1/0
+move: 115/115
+damroll: 3
+hitroll: 3
+strength: 61
+intelligence: 95
+wisdom: 92
+dexterity: 74
+constitution: 79
+charisma: 57
+cash: 0 5 26 33
+bank: 0 14 140 220
+experience: 66000
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 99
+424 90
+438 50
+443 50
+444 50
+447 58
+451 59
+452 90
+453 50
+459 50
+460 50
+462 50
+464 52
+465 57
+0 0
+trophy:
+1 8016 1.000000
+1 18000 2.000000
+1 18003 3.000000
+1 18005 2.000000
+1 18004 2.000000
+1 3066 1.000000
+1 18002 3.000000
+1 18001 1.000000
+1 18007 7.000000
+1 8022 1.000000
+1 8013 2.000000
+1 8014 1.000000
+1 8011 5.000000
+1 8012 6.000000
+1 8000 6.000000
+1 8001 4.000000
+1 8021 4.000000
+1 8023 2.000000
+1 8015 6.000000
+1 8010 3.000000
+1 8002 4.000000
+0 0 0
+tells:
+1694302843 @WLinera@W tells you, 'isso eh um spell chamado barkskin...eh tipo armor de druida. Melhora seu AC.@W'@0
+1694302921 @WLinera@W tells you, 'sim@W'@0
+1694302969 @WLinera@W tells you, 'qual?@W'@0
+1694303038 @WLinera@W tells you, 'mais ou menos. Farm eh melhor. E depois Temple of kaaz@W'@0
+1694303153 @WLinera@W tells you, 'vc nao grupa os 2?@W'@0
+1694303421 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1694303606 @WPrini@W tells you, 'wear amulet@W'@0
+1694304162 @WPrini@W tells you, 'vc lembra do consider?@W'@0
+1694304492 @WPrini@W tells you, 'uma coisa q eu nao gosto daqui eh ter que voltar pra guild pra subir de nivel@W'@0
+1694304966 @WPrini@W tells you, 'tenho q sair agora@W'@0
+$
+gossips:
+1694277919 Lyy gossips, 'gratz Arcanjo'
+1694278004 Thorfinn gossips, 'breaks over, happy hunting folks'
+1694283978 Chinok gossips, 'gratz on 4 Arcanjo'
+1695511773 Someone gossips, 'If you can't find your body is there no way to recover your lost items?'
+1695511796 Gorath gossips, 'consent lokar'
+1695511812 Chinok gossips, 'the red cross helps too'
+1695511816 Chinok gossips, 'for a small fee'
+1695511850 Terol gossips, 'I am not sure I can afford health care prices'
+1695512227 Someone gossips, 'You stab a little mayor in the back and his guards throw you out of town. That is rude.'
+1695512377 Chinok gossips, 'if you're trying to become an assassin, you should be able to do it without getting caught!'
+$
+aliases:
+cb cast 'burning hands' $1
+cm cast 'magic missile' $1
+xx tell Choak moonwell; enter portal
+mm rest; meditate; memo
+0

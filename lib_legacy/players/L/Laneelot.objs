@@ -1,0 +1,1110 @@
+1
+vnum: 5206
+location: 0
+values:
+1
+500
+443
+0
+0
+0
+0
+~
+flags: 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.
+~
+~~
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 5201
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 58005
+location: 3
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gop
+name: necklace jade striking
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 9
+weight: 0.60
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+~
+extradesc: striking jade necklace
+The necklace is made of several very large, flawless panels of jade. You
+run your fingers over the smooth stone and can feel supernatural power
+contained inside this rare piece of art.~
+~~
+vnum: 58005
+location: 4
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gop
+name: necklace jade striking
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 9
+weight: 0.60
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+~
+extradesc: striking jade necklace
+The necklace is made of several very large, flawless panels of jade. You
+run your fingers over the smooth stone and can feel supernatural power
+contained inside this rare piece of art.~
+~~
+vnum: 1128
+location: 5
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: plate iron-breast-plate
+shortdesc: an iron breast plate
+desc: An iron breast plate lies here.
+type: 9
+weight: 17.00
+cost: 4900
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: iron breast plate
+This large disc of cold black iron is designed to strap across its
+wearer's chest by way of leather straps. It's tooled across its edges,
+but other than that, it's undecorated. 
+~
+~~
+vnum: 55433
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: aghmopqrstuvwxyz
+name: divine believer believers helm believers-helm
+shortdesc: &5Believer's Helm&0
+desc: Resting on the ground is a divine helm.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+applies:
+4 2
+13 5
+~
+extradesc: divine believer believers helm believers-helm
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 6103
+location: 7
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: motuvwyz
+name: leggings steel dwarven
+shortdesc: steel dwarven leggings
+desc: Some steel leggings rest here.
+type: 9
+weight: 15.00
+cost: 2500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 33
+extradesc: leggings steel dwarven
+These shiny steel leggings are in the shape of two tubes, each one buckling at
+three points and again at the top, to fasten to a vest or belt.  They are
+obviously dwarf-made, being embossed and beautifully made.    
+~
+~~
+vnum: 55437
+location: 8
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: aghmopqrstuvwxyz
+name: divine believer believers boots believers-boots
+shortdesc: &5Believer's Boots&0
+desc: Resting on the ground is a pair of divine boots.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+applies:
+1 2
+13 15
+~
+extradesc: divine believer believers boots believers-boots
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 55439
+location: 9
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: aghmopqrstuvwxyz
+name: divine believer believers gauntlets believers-gauntlets
+shortdesc: &5Believer's Gauntlets&0
+desc: Resting on the ground is a divine pair of gauntlets.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+3 3
+1 2
+~
+extradesc: divine believer believers gauntlets believers-gauntlets
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 6102
+location: 10
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: muvwyz
+name: sleeves dwarven steel tubes
+shortdesc: some steel dwarven sleeves
+desc: Some steel sleeves lie here in tubes.
+type: 9
+weight: 11.00
+cost: 700
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 257
+extradesc: sleeves steel tubes dwarven
+These fine, shiny sleeves are obviously of dwarven make. Finely
+articulated, with copped elbows and oiled hinges, they are easy to
+wear and strong enough to turn most injuries. They have straps at the 
+top to attach to a breastplate or vest, and other buckles close them
+under the arm, where the seam is.
+~
+~~
+vnum: 16101
+location: 11
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: shield hide
+shortdesc: a hide shield
+desc: A shield made of camel hide is on the ground.
+type: 9
+weight: 1.90
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 513
+applies:
+5 1
+~
+extradesc: shield hide-shield camel-hide
+Poorly constructed of rough wood with a thick layer of tightly stretched camel
+hide over it, this shield nevertheless does its job, standing between its
+wearer and attackers.  It appears to have seen quite the history of violence,
+with numerous gashes and dents in the hide, but still holds together somehow.
+~
+~~
+vnum: 20304
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak zebra skin
+shortdesc: a zebra skin cloak
+desc: A large striped cloak lies in the dust here.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+applies:
+1 2
+19 1
+~
+extradesc: cloak zebra skin
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.    
+~
+~~
+vnum: 58007
+location: 13
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: rtD
+name: belt ninja ninjas black length cloth
+shortdesc: the ninja's belt
+desc: You see a neatly folded length of black cloth.
+type: 9
+weight: 1.10
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 2049
+applies:
+14 20
+2 4
+~
+extradesc: ninjas ninja belt black cloth
+This is a very simple length of black cloth, hemmed all around very
+neatly. There's literally nothing impressive about it.~
+~~
+vnum: 58015
+location: 14
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: kl
+name: goddess-bracelet bracelet pearl pearl-bracelet goddess
+shortdesc: the goddess' bracelet
+desc: A bracelet made of one piece of pearl has been dropped here.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 20481
+applies:
+26 4
+1 6
+~
+extradesc: pearl bracelet goddess
+   It is a fine bracelet that looks like it was carved from one
+large pearl, with a twisting whorled design inlaid with gold. It
+fits over the wrist, sliding on without a clasp or hinge. It glows
+with the lustrous inner light that only the finest pearls have.
+~
+~~
+vnum: 55438
+location: 15
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aghmopqrstuvwxyz
+name: divine believer believers bracer believers-bracer
+shortdesc: &5Believer's Bracer&0
+desc: Resting on the ground is a small divine bracer.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+applies:
+5 2
+13 20
+~
+extradesc: divine believer belivers bracer believers-bracer
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 16305
+location: 16
+values:
+0
+2
+5
+6
+0
+0
+0
+~
+flags: gow
+name: staff druidstaff golden-druidstaff
+shortdesc: the Golden Druidstaff
+desc: A gold plated staff is stuck in the ground.
+type: 5
+weight: 2.00
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+4 3
+3 3
+~
+extradesc: druidstaff golden staff golden-druidstaff
+   The staff is made of wood, but there is an odd golden sheen to its surface.
+A tingling sensation moves up your arm as you touch its surface.
+~
+~~
+vnum: 20301
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 20301
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fang lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 20300
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1006
+location: 127
+values:
+300
+84
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 7.48
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+240
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 17.65
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+~
+extradesc: saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  
+~
+~~
+vnum: 30010
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 30010
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20
+location: 127
+values:
+256
+180
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 13.74
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 58015
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: kl
+name: goddess-bracelet bracelet pearl pearl-bracelet goddess
+shortdesc: the goddess' bracelet
+desc: A bracelet made of one piece of pearl has been dropped here.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 20481
+applies:
+26 4
+1 6
+~
+extradesc: pearl bracelet goddess
+   It is a fine bracelet that looks like it was carved from one
+large pearl, with a twisting whorled design inlaid with gold. It
+fits over the wrist, sliding on without a clasp or hinge. It glows
+with the lustrous inner light that only the finest pearls have.
+~
+~~

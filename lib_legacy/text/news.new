@@ -1,0 +1,182 @@
+  ~~~~~~~ FieryMUD News (oldest to newest) ~~~~~~~
+
+Jan 04 2022
+   -- The Jewlers and Pawn brokers in the world of fiery have found a new
+      source for gems. There must be some congestion in the supply chain,
+      as the gems available vary greatly. Make sure you check often for
+      those phase armor gems.
+
+Jan 10 2022
+   -- It was brought up that the labels when rolling a character were
+      slightly ambiguous. As such, the labels have been updated slightly.
+      In-order: Fantastic, Very Good, Good, fair, bad are the new labels.
+      Very good replaces pretty good, and Good replaces Not bad.
+      You will notice these new labels in your score display as well.
+     -Chinok
+
+Jan 11 2022
+   -- Charm person is now an in-game quest.
+      Some dedicate their whole lives to charming and entertaining others.
+      Some are even willing to share their knowledge with others - for a
+      price. Certain new secrets are available in entertaining houses
+      of ill-repute.
+
+Jan 16 2022
+   -- Monks -- I have good news and bad news.
+      -- GOOD -- the amount of XP monks need to level has been reduced!
+      -- BAD --- The bug that prevented the !monk tag from working has been
+                 fixed, meaning LOTS of equipment is now !monk. Existing
+                 equipment will keep the existing restrictions.
+   -- A few other classes also had XP amounts adjusted slightly.
+ --Chinok
+
+Jan 30 2022
+   -- Fiery has been moved to a new server, DNS change should sync in less
+      than 2 hours, but on the odd case it don't just use
+      servername: www.fierymud.org -- instead of fierymud.org for today
+
+Feb 4 2022
+   -- Hellfire and Brimstone is now an in-game quest. For a hint on where to
+      start this quest, check the help entry.
+
+Feb 9 2022
+   -- Blur quest is now in game!!!
+      good luck finding it (or check the help blur command)
+--Chinok
+
+Feb 22 2022
+   -- NEW BUILD 501
+   -- spells Simulacrum and Phantasm have been fixed.
+   -- Illusionists have had a slight XP adjustment, to align with other races.
+   -- Illusory wall spell is now in-game (help to be updated soon)
+
+Mar 09 2022
+   -- NEW BUILD, dragonborns are back, test away.
+
+May 29 2022
+   -- New Build, updates for The Ethilien Training Academy.
+   -- The previously mentioned Ethilien Training Academy is now available.
+      you should test it out.
+
+Jun 29 2022
+   -- Someone asked me a question that peaked my currisoty, So here it is
+      Who are the richest players in fiery? find out now.
+      https://www.fierymud.org/money
+      Only current as of June 29, and won't update, I just thought it was
+      a fun question to answer.
+--Chinok
+
+Oct 14 2022
+   -- New build -- couple updates
+   -- You can now pick up items that are up to 15 levels above your current
+      level, but you still can't use them.
+   -- Slight increase in gem drop rates for armor quests.
+   -- Elf is now a playable class!!
+
+Nov 10 2020
+   -- New elemental wand weapons are selling at the magic shops across
+      Ethilien.  The wands kick off four 90-level game-wide upgrade
+      quests! The master crafters are a whole host of familiar faces.
+
+      These are similar to the armor quests given by guild masters and use
+      a variety of the armor gems and additional tasks and components.
+      Unlike the armor quests though, the wands themselves are the base
+      components for all future steps, so don't lose them!
+
+Nov 22-2022
+   -- Be aware -- coming VERY SOON -- RTM  (Ratical Test Mode)
+      We have a code version update to test. so RTM is-- we take a
+      backup of current MUD.  We upload the new code, test for 48+
+      hours. When we're done, we restore, and everything goes back
+      to that point. So anything you ever wanted to try, but were
+      scared, that would be the time!!
+ NOTE:: You will see a RATICAL TEST MODE banner when you log in--
+        if you don't -- it's not in radical test mode yet!
+
+Dec 06-2022
+   -- RTM is now done.  You are back to living with death, and
+      no restore command.  Appreciate your help with testing.
+   -- Fiery is running on fancy updated code now.  New fancy
+      features comming soon!
+
+Dec 11 2022
+   -- Several minor display bug fixes implemeted.
+   -- ** HUGE UPGRADE ** -- target matching. What this means is:
+      if there is an astronomically large demon in the room, and
+      you type kill ast -- it will attack that demon.
+      *BUT BE WARRNED* if there is also a astral guard in the room
+      as well, you will attack whichever is 'first in the room'
+      With great power, comes great responsibility!
+
+Dec 17, 2022
+   --Santiago has come into possession of a mysterious new mace.  Clerics
+     and priests might find it worthwhile to bring it to the Holy Templar
+     Magistrate in Mielikki.
+  -- New challenges have been added to the thief and assassin subclass
+     quests to make them a little spicier.  But don't worry - if you fail
+     you can always try again.
+   Daedela
+
+Dec 18, 2022
+   -- The Town of Mielikki has built a new City Hall.  The Illusionist's
+      Guild has moved slightly to make room for it.  The Mayor has taken
+      up residence in his swanky new office.
+      Good luck getting in to see him though...
+
+Dec 26, 2022
+   -- The Bloody Red Cross has begun providing services to assist
+      unfortunate adventurers who have met their untimely demise.
+      They operate out of the basement of Bigby's Magic Shop.
+   -- updates to the website, check it out, comments are appreciated.
+      race updates are also coming, just felt more important to get
+      the new updates live.
+
+Jan 09, 2023
+   -- Added equipment all command (eq all)
+   -- New build, lot of bug fixes
+      smoke fixed
+      item update fixed
+      tons of back-end fixes
+   -- Please let us know if you see anything that don't look right
+  -Chinok
+
+Jan 19, 2023
+   -- Void times have been greatly increased. Should be 10 mins
+      to void, and 5 to disconnect now.
+   -- Several other minor bug fixes in this build, mainly display related
+
+Jan 25, 2023
+   --The roads west of Anlun Vale have begun to reopen!
+     The western coastal road through the Ulgran Pine Barrens is now
+     passable for travel again.
+     But be careful, in addition to the normal forest critters, some
+     dangerous swamp trolls have been spotted in the area.
+     Urchet Pass has been cleared as well.  The roads beyond are still
+     under construction
+   --Beyond the Pine Barrens looms Nukreth Spire.  A pack of gnolls claim
+     the spire as their home and have been launching raids throughout the
+     southern continent.
+For further details, visit the player board.
+--Daedela
+
+Feb 03, 2023
+   -- New class restrictions have been created for items.  All classes now have their own unique restriction.
+      Class restrictions have not yet changed but some will in the immediate future.
+   -- Halflings have new racial abilities, including Increased hiding, perception, and a new skill called "tripup".
+   -- Rogue and thief skills have been switched up a bit to make them more distinct and functional.
+   -- A new spell called Water Blast has been added for cryomancer, ranger, and druid.
+   -- players now gain a small amount of maximum movement from level 1 to 50 based on their Dex!  If you would like
+      to claim your movement bonus, check with a god.
+   -- Since 1991, Fiery has held on to the max width of 80 characters wide. As of this news update, (and what you are
+      reading right now) we are testing a new width of 120 characters. We will slowly be expanding this width to
+      other areas of the game in the coming months.  IF anything looks off, please report.
+--The Gods of Fiery--
+
+Feb 08, 2023
+   -- Cartwheel fixed
+   -- Clerics gained some extra MV
+   -- Fixed underlines on some messages
+   -- BIG UPDATE to Mudlet gui -- Let us know what you think. -- more updates coming soon.
+   -- Cure Blind can now be cast during combat
+
+ ~~~~~~~ FieryMUD News ~~~~~~~

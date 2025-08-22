@@ -1,0 +1,96 @@
+name: Alizone
+password: AlywvPTaRp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 22
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18491
+birthtime: 1366218270
+timeplayed: 104138
+lastlogintime: 1735087227
+host: 104.228.087.146
+height: 88
+weight: 240
+base_height: 88
+base_weight: 240
+base_size: 3
+natural_size: 3
+alignment: -245
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ahnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 316/294
+mana: 48/48
+move: 144/144
+damroll: 5
+hitroll: 4
+strength: 96
+intelligence: 74
+wisdom: 56
+dexterity: 93
+constitution: 82
+charisma: 62
+cash: 330 1020 2973 3424
+experience: 2180750
+quit_reason: 1
+saveroom: 3054
+skills:
+402 104
+404 260
+407 51
+415 58
+416 71
+419 1000
+421 171
+427 1000
+430 50
+431 50
+438 115
+443 50
+444 50
+463 50
+464 50
+465 137
+466 50
+467 50
+468 104
+0 0
+trophy:
+1 53303 0.428571
+1 53314 0.285714
+1 53315 0.928571
+1 53312 0.928571
+1 18551 0.500000
+1 18500 0.500000
+1 18517 2.500000
+1 18511 5.500000
+1 18508 3.500000
+1 18506 2.000000
+1 18507 19.000000
+1 18509 1.000000
+1 18512 2.500000
+1 18502 2.500000
+1 18510 3.500000
+1 8014 1.000000
+1 8022 1.000000
+1 8012 1.000000
+1 8010 1.000000
+1 8011 1.000000
+1 16103 1.000000
+0 0 0
+tells:
+1703812031 @WA half-elven maid@W tells you, 'If you want to rent a room, please go upstairs to the Reception Area.@W'@0
+$
+gossips:
+1735087206 Discord gossips, 'venath.2005: I just want 3 ho's in stockings....'
+1735087214 Marlia gossips, 'merry christmas everyone ...'
+$

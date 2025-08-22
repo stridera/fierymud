@@ -1,0 +1,118 @@
+name: Blod
+password: BlLpVspkQf
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20783
+birthtime: 1715305855
+timeplayed: 22284
+lastlogintime: 1716064609
+host: 071.077.136.032
+height: 80
+weight: 180
+base_height: 80
+base_weight: 180
+base_size: 3
+natural_size: 3
+alignment: 266
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+loadroom: 3054
+hunger: 18
+lastlevel: 0
+hitpoints: 104/101
+mana: 1/0
+move: 151/184
+damroll: 5
+hitroll: 4
+strength: 97
+intelligence: 56
+wisdom: 68
+dexterity: 95
+constitution: 95
+charisma: 54
+cash: 3 60 395 405
+experience: 127049
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 2930/18000
+-1 0
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 85
+427 1000
+438 50
+443 50
+444 66
+463 50
+464 50
+465 91
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 17204 1.000000
+1 17202 2.000000
+1 3506 1.000000
+1 3502 2.000000
+1 3508 7.000000
+1 3500 16.000000
+1 3501 13.000000
+1 3509 5.000000
+1 3503 6.000000
+1 36003 3.000000
+1 36002 3.000000
+1 36001 2.000000
+1 8002 1.000000
+1 8020 1.000000
+1 8023 1.000000
+1 8014 1.000000
+1 8012 3.000000
+1 8010 3.000000
+1 8021 2.000000
+1 8001 3.000000
+1 8011 2.000000
+0 0 0
+tells:
+1716063612 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1716063616 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1716063623 @WAaron@W tells you, 'You bring it to me when you get it and we'll talk.@W'@0
+1716063626 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1716063634 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1716063645 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
+1716063951 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1716063952 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1716063953 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1716063954 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+$
+gossips:
+1716058580 Jod gossips, 'who does this service?'
+1716058603 Rogkali gossips, 'underneath the shop that sells identify scrolls etc..'
+1716058695 Jod gossips, 'not even close lol'
+1716058702 Jod gossips, 'how do I make money with no weapon'
+1716058770 Rogkali gossips, 'no idea but if it would help, I will give you some coin'
+1716058783 Jod gossips, 'can I borrow 2 plat?'
+1716058808 Rogkali gossips, 'jod sure.  where are you?'
+1716058818 Jod gossips, 'at the basemenbt of the magic shop'
+1716058996 Rogkali gossips, 'anyone have a hint on where I might find 'a jewel of my heart'?'
+1716059407 Rogkali gossips, 'how is the gem update conversion table used?'
+$
+aliases:
+ggg get all from corpse
+0

@@ -1,0 +1,105 @@
+name: Mogi
+password: Mo.yHrbsjN
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20915
+birthtime: 1737674697
+timeplayed: 13478
+lastlogintime: 1738377990
+host: 078.146.141.119
+height: 72
+weight: 136
+base_height: 72
+base_weight: 136
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 26/26
+mana: 1/0
+move: 112/112
+damroll: 3
+hitroll: 3
+strength: 60
+intelligence: 100
+wisdom: 87
+dexterity: 69
+constitution: 78
+charisma: 72
+cash: 0 43 63 30
+experience: 21765
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 52
+424 78
+438 50
+443 50
+444 50
+447 60
+451 51
+452 52
+453 70
+459 54
+460 50
+462 52
+464 50
+0 0
+trophy:
+1 8011 1.000000
+1 18000 4.000000
+1 18004 1.000000
+1 18003 3.000000
+1 18005 2.000000
+1 18001 2.000000
+1 18007 8.000000
+1 51900 1.000000
+0 0 0
+tells:
+1738359378 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1738359384 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1738359392 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1738359401 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1738360272 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1738360402 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1738360405 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1738360447 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1738360453 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1738360456 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+$
+gossips:
+1738358335 Someone gossips, 'grats!'
+1738358676 Peegu gossips, 'thanks'
+1738358806 Anexis gossips, 'I think somewhere around 3-5 rl minutes, not long'
+1738358812 Pawk gossips, 'not sure if you use a bound scroll from the shop it should have detect magic that will give you an idea'
+1738358851 Anexis gossips, 'me too.. meeeetooooo :P'
+1738358863 Anexis gossips, 'quaff spam frfr'
+1738359095 Antix gossips, 'no it shouldn't'
+1738359096 Pawk gossips, 'not that i know of mostly your class restriced from heavy armor'
+1738359099 Antix gossips, 'thank'
+1738359106 Discord gossips, 'Daedela: Nope!'
+$
+aliases:
+dm cast 'detect magic'
+cm cast 'conceal'
+0

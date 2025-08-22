@@ -1,0 +1,2277 @@
+#12501
+Northern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+south.  To the north, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the east and south.    ~
+125 0 2
+D1
+~
+~
+0 -1 12502
+D2
+~
+~
+0 -1 12511
+S
+#12502
+Northern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+south.  To the north, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the west, east, and south.    ~
+125 0 2
+D1
+~
+~
+0 -1 12503
+D2
+~
+~
+0 -1 12512
+D3
+~
+~
+0 -1 12501
+S
+#12503
+Northern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+south.  To the north, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the west, east, and south.    ~
+125 0 2
+D1
+~
+~
+0 -1 12504
+D2
+~
+~
+0 -1 12513
+D3
+~
+~
+0 -1 12502
+S
+#12504
+Northern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+south.  To the north, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the west, east, and south.    ~
+125 0 2
+D1
+~
+~
+0 -1 12505
+D2
+~
+~
+0 -1 12514
+D3
+~
+~
+0 -1 12503
+S
+#12505
+Northern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+south.  To the north, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the west, east, and south.    ~
+125 0 2
+D1
+~
+~
+0 -1 12506
+D2
+~
+~
+0 -1 12515
+D3
+~
+~
+0 -1 12504
+S
+#12506
+Northern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+south.  To the north, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the west, east, and south.    ~
+125 0 2
+D1
+~
+~
+0 -1 12507
+D2
+~
+~
+0 -1 12516
+D3
+~
+~
+0 -1 12505
+S
+#12507
+Northeastern Border of the Wastes~
+   With the haze that permeates the area, it is hard to see too far to the
+south.  To the north, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the west and south.    ~
+125 0 2
+D1
+~
+window~
+1 -1 12508
+D2
+~
+~
+0 -1 12517
+D3
+~
+~
+0 -1 12506
+S
+#12508
+Northeastern Watchroom~
+   A small room is set somewhat high in the cliff here.  Large windows of
+rough, dark glass are set into the southern and western walls, blending in to
+the cliffs, and allowing an observer in the room to look out upon the wastes
+without being noticed.  A layer of dust upon the floor seems relatively
+untouched, and the air seems stale, suggesting that the room had not been
+opened in quite a while.  There seems to be only the one exit to the west.    ~
+125 0 0
+D3
+~
+window~
+1 -1 12507
+S
+T 12501
+#12509
+The Great Hall~
+   The stairs open up into a great hall, which extends to the south and east.
+Four evenly spaced pillars support the next floor, or rather what's left of it.
+The sky, or rather the gray haze, is visible through a gaping hole in the
+ceiling to the east.  For that matter, it is visible at the top of the wall to
+the west, where it seems a chunk of rock has been destroyed.  Three large
+windows are set in the south wall, each with a set of stone shutters which are,
+at the moment, open.    ~
+125 8 0
+D1
+~
+~
+0 -1 12529
+D2
+~
+~
+0 -1 12519
+D5
+~
+~
+0 -1 12543
+S
+#12510
+Western Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+east.  To the west, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the east and south.    ~
+125 0 2
+D1
+~
+~
+0 -1 12511
+D2
+~
+~
+0 -1 12520
+S
+#12511
+North of the Tower~
+   With the haze that permeates the area, it is hard to see too far to the
+south.  To the north, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the north, west, east, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12501
+D1
+~
+~
+0 -1 12512
+D2
+~
+~
+0 -1 12521
+D3
+~
+~
+0 -1 12510
+S
+#12512
+North of the Tower~
+   The haze is a good deal thicker towards the north than to the south, where a
+tower is barely visible.  From here, little detail about the tower is actually
+actually discernable, except that the tower is at least two stories tall.  To
+the north, the cliffs are also faintly visible through the haze.  Various
+chunks of white marble are strewn about, ranging from human size blocks to
+pebbles, to a fine white dust that seems to cover most everything.  The
+wasteland extends in all directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12502
+D1
+~
+~
+0 -1 12513
+D2
+~
+~
+0 -1 12522
+D3
+~
+~
+0 -1 12511
+S
+#12513
+North of the Tower~
+   The haze is a good deal thicker towards the north than to the south, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  To the north,
+the cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12503
+D1
+~
+~
+0 -1 12514
+D2
+~
+~
+0 -1 12523
+D3
+~
+~
+0 -1 12512
+S
+#12514
+North of the Tower~
+   The haze is a good deal thicker towards the north than to the south, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  To the north,
+the cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12504
+D1
+~
+~
+0 -1 12515
+D2
+~
+~
+0 -1 12524
+D3
+~
+~
+0 -1 12513
+S
+#12515
+North of the Tower~
+   The haze is a good deal thicker towards the north than to the south, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  To the north,
+the cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12505
+D1
+~
+~
+0 -1 12516
+D2
+~
+~
+0 -1 12525
+D3
+~
+~
+0 -1 12514
+S
+#12516
+North of the Tower~
+   The haze is a good deal thicker towards the north than to the south, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  To the north,
+the cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12506
+D1
+~
+~
+0 -1 12517
+D2
+~
+~
+0 -1 12526
+D3
+~
+~
+0 -1 12515
+S
+#12517
+North of the Tower~
+   With the haze that permeates the area, it is hard to see too far to the
+south.  To the north, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the north, west, east, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12507
+D1
+~
+~
+0 -1 12518
+D2
+~
+~
+0 -1 12527
+D3
+~
+~
+0 -1 12516
+S
+#12518
+Northeastern Border of the Wastes~
+   With the haze that permeates the area, it is hard to see too far to the
+southwest.  To the northeast, however, a large black cliff is clearly visible.
+The cliff rises into the fog as high as is visible, making it nearly impossible
+for any light to filter through from the sky.  Though hazy, the air is quite
+dry and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the west and south.    ~
+125 0 2
+D2
+~
+~
+0 -1 12528
+D3
+~
+~
+0 -1 12517
+S
+#12519
+The Great Hall~
+   The hall continues to the north, where a staircase descends to the ground
+floor of the tower.  To the east, the hall continues along the southern wall.
+From here, part of the wasteland surrounding the tower is visible, including
+what appears to be a trail leading to the east.  The shutters on the window are
+made of stone, and open outward; in their open state, it is hard to get a grip
+on them, and their heft makes it difficult to close them.    ~
+125 8 0
+D0
+~
+~
+0 -1 12509
+D1
+~
+~
+0 -1 12539
+S
+#12520
+Western Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+east.  To the west, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the north, east, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12510
+D1
+~
+~
+0 -1 12521
+D2
+~
+~
+0 -1 12530
+S
+#12521
+West of the Tower~
+   The haze is a good deal thicker towards the west than to the east, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  From here, it
+seems as though the northeast part of the tower is taller than the southwest;
+it looks as though something has destroyed part of the tower.  To the west, the
+cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12511
+D1
+~
+~
+0 -1 12522
+D2
+~
+~
+0 -1 12531
+D3
+~
+~
+0 -1 12520
+S
+#12522
+North of the Tower~
+   The haze is a good deal thicker towards the north than to the south, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  To the north,
+the cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12512
+D1
+~
+~
+0 -1 12523
+D2
+~
+~
+0 -1 12532
+D3
+~
+~
+0 -1 12521
+S
+#12523
+North of the Tower~
+   The tower looms above to the south.  The tower has a rounded rectangular
+base that slopes slightly inward as it goes up.  The walls are quite thick, and
+made of a highly polished white marble with sparse, bluish-black veins swirling
+throughout.  Oddly, in the immediate vicinity of the tower there is none of the
+dust characteristic of the area, nor the rock.  The haze is so scant here, that
+it almost seems to be gone; however, the apex of the tower is still blurry.  
+Looking back to the north, it is impossible to see anything in the dense haze
+farther from the tower.  The courtyard continues in all directions except for
+the south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12513
+D1
+~
+~
+0 -1 12524
+D3
+~
+~
+0 -1 12522
+S
+T 12533
+#12524
+Above a Pit ~
+   The tower looms above to the south.  The tower has a rounded rectangular
+base that slopes slightly inward as it goes up.  The walls are quite thick, and
+made of a highly polished white marble with sparse, bluish-black veins swirling
+throughout.  Oddly, in the immediate vicinity of the tower there is none of the
+dust characteristic of the area, nor the rock.  For that matter, there is no
+floor!  A large portion of this area is an entrance to a large pit!  The wastes
+extend to the north, west, and east, and obviously there is a pit below.    ~
+125 4 9
+D0
+~
+~
+0 -1 12514
+D1
+~
+~
+0 -1 12525
+D3
+~
+~
+0 -1 12523
+D4
+~
+~
+0 -1 12595
+D5
+~
+~
+0 -1 12596
+S
+#12525
+North of the Tower~
+   The tower looms above to the south.  The tower has a rounded rectangular
+base that slopes slightly inward as it goes up.  The walls are quite thick, and
+made of a highly polished white marble with sparse, bluish-black veins swirling
+throughout.  Oddly, in the immediate vicinity of the tower there is none of the
+dust characteristic of the area, nor the rock.  The haze is so scant here, that
+it almost seems to be gone; however, the apex of the tower is still blurry.  
+Looking back to the north, it is impossible to see anything in the dense haze
+farther from the tower.  The courtyard continues in all directions except for
+the south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12515
+D1
+~
+~
+0 -1 12526
+D3
+~
+~
+0 -1 12524
+S
+T 12533
+#12526
+Northern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+south.  To the north, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the north, west, east, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12516
+D1
+~
+~
+0 -1 12527
+D2
+~
+~
+0 -1 12536
+D3
+~
+~
+0 -1 12525
+S
+#12527
+East of the Tower~
+   The haze is a good deal thicker towards the east than to the west, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  To the east,
+the cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12517
+D1
+~
+~
+0 -1 12528
+D2
+~
+~
+0 -1 12537
+D3
+~
+~
+0 -1 12526
+S
+#12528
+Eastern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+west.  To the east, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the north, west, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12518
+D2
+~
+~
+0 -1 12538
+D3
+~
+~
+0 -1 12527
+S
+#12529
+The Great Hall~
+   The great hall continues to the west, south, and east.  To the east, a dais
+raises above the floor.  To the west, a spiral staircase descends to the ground
+floor.  The ceiling above is nonexistant.  Evidently, this is the last floor of
+the tower that is intact.  The gray haze of the sky outside blends with with
+the swirl in the marble of whats left of the ceiling nicely.  A doorway, now
+devoid of door, is set in the northern wall.    ~
+125 8 0
+D0
+~
+~
+0 -1 12579
+D1
+~
+~
+0 -1 12549
+D2
+~
+~
+0 -1 12539
+D3
+~
+~
+0 -1 12509
+S
+#12530
+Western Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+east.  To the west, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the north, east, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12520
+D1
+~
+~
+0 -1 12531
+D2
+~
+~
+0 -1 12540
+S
+#12531
+West of the Tower~
+   The haze is a good deal thicker towards the west than to the east, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  From here, it
+seems as though the northeast part of the tower is taller than the southwest;
+it looks as though something has destroyed part of the tower.  To the west, the
+cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12521
+D1
+~
+~
+0 -1 12532
+D2
+~
+~
+0 -1 12541
+D3
+~
+~
+0 -1 12530
+S
+#12532
+West of the Tower~
+   The tower looms above to the east.  The tower has a rounded rectangular base
+that slopes slightly inward as it goes up.  The walls are quite thick, and made
+of a highly polished white marble with sparse, bluish-black veins swirling
+throughout.  Oddly, in the immediate vicinity of the tower there is none of the
+dust characteristic of the area, nor the rock.  The haze is so scant here, that
+it almost seems to be gone; however, the apex of the tower is still blurry.  
+Looking back to the west, it is impossible to see anything in the dense haze
+farther from the tower.  The courtyard continues in all directions except for
+the east.    ~
+125 0 2
+D0
+~
+~
+0 -1 12522
+D2
+~
+~
+0 -1 12542
+D3
+~
+~
+0 -1 12531
+S
+T 12533
+#12533
+A Strange Laboratory~
+   This room is half laboratory, and half torture chamber.  The northern
+portion of the room is dominated by a large glass appartus full of various
+colored liquids, while the southern half has several sets of manacles attached
+to the walls.  Several burnt out torches line the room, most dense to the
+north.  With no windows in the room, almost no light filters in from the
+outside world.    ~
+125 1048585 0
+D1
+Nothing special there...~
+wall ~
+2 12501 12534
+S
+T 12502
+T 12518
+#12534
+The End of the Hall~
+   The hallway ends with doors leading to your east and west.  A greenish-brown
+discoloartion stains the floor around the door to the east, as if a liquid had
+oozed it way out of the room.  The door to the west seems rather odd, as it is
+made of stone, unlike the other doors in the area, which are made of wood.  
+The hallway leads back to the south.    ~
+125 8 0
+D1
+~
+door~
+2 -1 12535
+D2
+~
+~
+0 -1 12544
+D3
+A stone door is set into the wall to the west. ~
+door stone wall~
+2 12501 12533
+E
+door doors~
+The door is a single block seemingly carved from the wall mass itself.  Three
+protrusions extend from the door into the wall, and in the cracks between the
+protrusions and the wall, a stone rod goes through the protrusions and the
+wall, forming a giant stone hinge.    
+(No pun intended)~
+E
+stone stones circle inset~
+There are fourteen stones set in a circle.  Each stone has a rune carved out of it, filled with 
+gold. ~
+S
+#12535
+An Indoor Garden~
+   The ceiling of this room glows unnaturally, giving off a warm, gentle light.
+Rows of tables have various fruits and vegetables growing from within pots of
+glowing liquid.  The fact that the plants themselves are glowing might begin to
+explain why they haven't been looted.  The only exit appears to be to the west,
+through the door.    ~
+125 8 0
+D3
+~
+door~
+1 -1 12534
+S
+#12536
+East of the Tower~
+   The tower looms above to the west.  The tower has a rounded rectangular base
+that slopes slightly inward as it goes up.  The walls are quite thick, and made
+of a highly polished white marble with sparse, bluish-black veins swirling
+throughout.  Oddly, in the immediate vicinity of the tower there is none of the
+dust characteristic of the area, nor the rock.  The haze is so scant here, that
+it almost seems to be gone; however, the apex of the tower is still blurry.  
+Looking back to the east, it is impossible to see anything in the dense haze
+farther from the tower.  The courtyard continues in all directions except for
+the west.    ~
+125 0 2
+D0
+~
+~
+0 -1 12526
+D1
+~
+~
+0 -1 12537
+D2
+~
+~
+0 -1 12546
+S
+T 12533
+#12537
+East of the Tower~
+   The haze is a good deal thicker towards the east than to the west, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  To the east,
+the cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12527
+D1
+~
+~
+0 -1 12538
+D2
+~
+~
+0 -1 12547
+D3
+~
+~
+0 -1 12536
+S
+#12538
+Eastern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+west.  To the east, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the north, west, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12528
+D2
+~
+~
+0 -1 12548
+D3
+~
+~
+0 -1 12537
+S
+#12539
+The Great Hall~
+   The hall continues to the north, south, and west.  To the east there is a
+dais, and to the south a large window with twin stone shutters.  Outside, a
+path leading to the east is visible.  The southeastern pillar has been defaced.
+Although there appears to be no actual damage to the pillar, something brown
+has been smeared across it.    ~
+125 8 0
+D0
+~
+~
+0 -1 12529
+D1
+~
+~
+0 -1 12559
+D3
+~
+~
+0 -1 12519
+E
+writing~
+The writing says, "Jelos was here, 2002".~
+E
+stain pillar something~
+There seems to be some writing on the pillar, although it is hard to make out. ~
+S
+#12540
+Western Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+east.  To the west, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the north, east, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12530
+D1
+~
+~
+0 -1 12541
+D2
+~
+~
+0 -1 12550
+S
+#12541
+West of the Tower~
+   The haze is a good deal thicker towards the west than to the east, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  From here, it
+seems as though the northeast part of the tower is taller than the southwest;
+it looks as though something has destroyed part of the tower.  To the west, the
+cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12531
+D1
+~
+~
+0 -1 12542
+D2
+~
+~
+0 -1 12551
+D3
+~
+~
+0 -1 12540
+S
+#12542
+West of the Tower~
+   The tower looms above to the east.  The tower has a rounded rectangular base
+that slopes slightly inward as it goes up.  The walls are quite thick, and made
+of a highly polished white marble with sparse, bluish-black veins swirling
+throughout.  Oddly, in the immediate vicinity of the tower there is none of the
+dust characteristic of the area, nor the rock.  The haze is so scant here, that
+it almost seems to be gone; however, the apex of the tower is still blurry.  
+Looking back to the west, it is impossible to see anything in the dense haze
+farther from the tower.  The courtyard continues in all directions except for
+the east.    ~
+125 0 2
+D0
+~
+~
+0 -1 12532
+D2
+~
+~
+0 -1 12552
+D3
+~
+~
+0 -1 12541
+S
+T 12533
+#12543
+A Spiral Staircase~
+   A spiral staircase starts to the west, and heads up to the next floor of the
+tower.  The staircase seems to be one solid piece of stone; More amazingly, it
+seems to be part of the same rock that makes up the floor.  The banister has no
+support posts besides at the bottom and top of the staircase.  However, even
+without other support, the rail seems quite stable, as it too, seems to be
+carved out of the same chunk of rock.    ~
+125 8 0
+D1
+~
+~
+0 -1 12544
+D4
+~
+~
+0 -1 12509
+S
+#12544
+An Intersection of Hallways~
+   Here, two hallways intersect, giving the option of going north, south, east,
+or west.  To the west, a spiral staircase rises to the next level.  To the
+north and south, the hallway leads to doors on either side.  To the east, the
+hallway dead ends.    ~
+125 8 0
+D0
+~
+~
+0 -1 12534
+D1
+~
+~
+0 -1 12545
+D2
+~
+~
+0 -1 12554
+D3
+~
+~
+0 -1 12543
+S
+#12545
+The End of the Hall~
+   The hallway comes to an end here, with no apparant doors or other exits.  A
+wide circle is inset in the ground, with around a dozen stones surrounding it.
+Other than that, there is nothing of note at this end of the hallway, other
+than a window set in the east wall, looking out into the wasteland.    ~
+125 12 0
+D3
+~
+~
+0 -1 12544
+E
+circle stones~
+A full circle is depressed in the in the ground.  Twelve trapezoidal stones are
+spaced evenly about the circle, with a thirteenth spot open.  Each of the
+stones has an rune carved into it, and filled with gold.    ~
+S
+T 12504
+#12546
+East of the Tower~
+   The tower looms above to the west.  The tower has a rounded rectangular base
+that slopes slightly inward as it goes up.  The walls are quite thick, and made
+of a highly polished white marble with sparse, bluish-black veins swirling
+throughout.  Oddly, in the immediate vicinity of the tower there is none of the
+dust characteristic of the area, nor the rock.  The haze is so scant here, that
+it almost seems to be gone; however, the apex of the tower is still blurry.  
+Looking back to the east, it is impossible to see anything in the dense haze
+farther from the tower.  The courtyard continues in all directions except for
+the west.    ~
+125 0 2
+D0
+~
+~
+0 -1 12536
+D1
+~
+~
+0 -1 12547
+D2
+~
+~
+0 -1 12556
+S
+T 12533
+#12547
+East of the Tower~
+   The haze is a good deal thicker towards the east than to the west, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  To the east,
+the cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12537
+D1
+~
+~
+0 -1 12548
+D2
+~
+~
+0 -1 12557
+D3
+~
+~
+0 -1 12546
+S
+#12548
+Eastern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+west.  To the east, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the north, west, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12538
+D2
+~
+~
+0 -1 12558
+D3
+~
+~
+0 -1 12547
+S
+#12549
+The Dais~
+   A large dais rises about a foot above the rest of the hall.  No trace
+remains of what it had originally been used for.  The hallway continues to the
+west, and the dais extends to the south.  The floor here is exceptionally
+smooth, looking almost as if it had never even been walked on.  Although the
+ceiling above you is intact, the ceiling to your west seems to be entirely
+destroyed.  The ceiling above looks to be in rather good shape, and gives no
+indications as to what happened to the rest of that floor.    ~
+125 8 0
+D2
+~
+~
+0 -1 12559
+D3
+~
+~
+0 -1 12529
+S
+#12550
+Western Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+east.  To the west, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the north, east, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12540
+D1
+~
+~
+0 -1 12551
+D2
+~
+~
+0 -1 12560
+S
+#12551
+West of the Tower~
+   The haze is a good deal thicker towards the west than to the east, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  From here, it
+seems as though the northeast part of the tower is taller than the southwest;
+it looks as though something has destroyed part of the tower.  To the west, the
+cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12541
+D1
+~
+~
+0 -1 12552
+D2
+~
+~
+0 -1 12561
+D3
+~
+~
+0 -1 12550
+S
+#12552
+West of the Tower~
+   The tower looms above to the east.  The tower has a rounded rectangular base
+that slopes slightly inward as it goes up.  The walls are quite thick, and made
+of a highly polished white marble with sparse, bluish-black veins swirling
+throughout.  Oddly, in the immediate vicinity of the tower there is none of the
+dust characteristic of the area, nor the rock.  The haze is so scant here, that
+it almost seems to be gone; however, the apex of the tower is still blurry.  
+Looking back to the west, it is impossible to see anything in the dense haze
+farther from the tower.  The courtyard continues in all directions except for
+the east.    ~
+125 0 2
+D0
+~
+~
+0 -1 12542
+D2
+~
+~
+0 -1 12562
+D3
+~
+~
+0 -1 12551
+S
+T 12533
+#12553
+A Library~
+   A large stone table occupies the center of the room.  The flat, polished
+surface would make an excellent surface to study or plan.  Shallow shelves are
+carved into every wall, perfect for storing books.  Scraps of paper litter the
+floor from books that were deemed worthless during prior raids.    ~
+125 12 0
+D1
+~
+door~
+1 -1 12554
+S
+T 53455
+#12554
+A Hallway~
+   In stark contrast to the world outside, the inside of the tower seems to be
+in good shape.  The structure seems relatively unscathed, and no rocks are dust
+have made their way into the tower, which make the tower much more inhabitable
+than the outlying area.  The walls in the tower are highly polished, and though
+the floor is somewhat worn, it is still in good condition.  The hallway
+continues to the north, and the outside door hangs off of its hinge to the
+south.    ~
+125 72 0
+D0
+~
+~
+0 -1 12544
+D1
+~
+door~
+1 -1 12555
+D2
+The eastern door hangs off of its lower hinge, its upper hinge totally gone.  
+The western door is nowhere to be seen.  /fi~
+~
+0 -1 12564
+D3
+~
+door~
+1 -1 12553
+S
+#12555
+A Storage Room~
+   There is barely enough room here to maneuver through the shelves that line
+the walls.  Nothing of value is left, long since picked clean by looters, but
+various bits of glass and powder dust the room.  The walls are windowless,
+presumably to keep sunlight away from whatever was stored on the shelves.    ~
+125 8 0
+D3
+~
+door~
+1 -1 12554
+S
+#12556
+East of the Tower~
+   The tower looms above to the west.  The tower has a rounded rectangular base
+that slopes slightly inward as it goes up.  The walls are quite thick, and made
+of a highly polished white marble with sparse, bluish-black veins swirling
+throughout.  Oddly, in the immediate vicinity of the tower there is none of the
+dust characteristic of the area, nor the rock.  The haze is so scant here, that
+it almost seems to be gone; however, the apex of the tower is still blurry.  
+Looking back to the east, it is impossible to see anything in the dense haze
+farther from the tower.  The courtyard continues in all directions except for
+the west.    ~
+125 0 2
+D0
+~
+~
+0 -1 12546
+D1
+~
+~
+0 -1 12557
+D2
+~
+~
+0 -1 12566
+S
+T 12533
+#12557
+East of the Tower~
+   The haze is a good deal thicker towards the east than to the west, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  To the east,
+the cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12547
+D1
+~
+~
+0 -1 12558
+D2
+~
+~
+0 -1 12567
+D3
+~
+~
+0 -1 12556
+S
+#12558
+Eastern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+west.  To the east, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the north, west, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12548
+D2
+~
+~
+0 -1 12568
+D3
+~
+~
+0 -1 12557
+S
+#12559
+The Dais~
+   The dais is raised about a foot above the rest of the hall, and extends to
+the north.  Minding the step, the hall extends to the west.  A large window set
+in the south wall provides a view of the wasteland outside, as well as a trail
+leading off to the east, around a boulder.  Large stone shutters are set on
+either side of the window, fully open.    ~
+125 8 0
+D0
+~
+~
+0 -1 12549
+D3
+~
+~
+0 -1 12539
+S
+#12560
+Western Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+east.  To the west, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the north, east, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12550
+D1
+~
+~
+0 -1 12561
+D2
+~
+~
+0 -1 12570
+S
+#12561
+West of the Tower~
+   The haze is a good deal thicker towards the west than to the east, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  From here, it
+seems as though the northeast part of the tower is taller than the southwest;
+it looks as though something has destroyed part of the tower.  To the west, the
+cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12551
+D1
+~
+~
+0 -1 12562
+D2
+~
+~
+0 -1 12571
+D3
+~
+~
+0 -1 12560
+S
+#12562
+South of the Tower~
+   The haze is a good deal thicker towards the south than to the north, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  From here, it
+seems as though the northeast part of the tower is taller than the southwest;
+it looks as though something has destroyed part of the tower.  Also visible is
+the tower entrance, which seems to be in the center of the south wall of the
+tower.  To the south, the cliffs are also faintly visible through the haze.  
+Various chunks of white marble are strewn about, ranging from human size blocks
+to pebbles, to a fine white dust that seems to cover most everything.  The
+wasteland extends in all directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12552
+D1
+~
+~
+0 -1 12563
+D2
+~
+~
+0 -1 12572
+D3
+~
+~
+0 -1 12561
+S
+#12563
+West of the Tower Entrance~
+   The tower looms above to the north.  The tower has a rounded rectangular
+base that slopes slightly inward as it goes up.  The walls are quite thick, and
+made of a highly polished white marble with sparse, bluish-black veins swirling
+throughout.  Oddly, in the immediate vicinity of the tower there is none of the
+dust characteristic of the area, nor the rock.  The haze is so scant here, that
+it almost seems to be gone however, the apex of the tower is still blurry.  
+Looking back to the south, it is impossible to see anything in the dense haze
+farther from the tower.  The trail leads into the covered entrance to the tower
+to the east and to the south.  The wasteland extends to the west and south.  ~
+125 0 2
+D1
+~
+~
+0 -1 12564
+D2
+~
+~
+0 -1 12573
+D3
+~
+~
+0 -1 12562
+S
+T 12533
+#12564
+Entrance to the Tower~
+   A small entryway protrudes from the tower here.  A ceiling hangs overhead,
+spanning between the tower itself, and a wall to the south.  The entire
+structure seems to be made of the same white marble as the tower itself in
+fact, you can see no seam where the tower itself ends, and the ceiling or wall
+begins.  The enclosure would ostensibly provide shelter for visitors waiting to
+be let in.  A set of double doors are the main entrance to the tower.  Well,
+now there is only one door, and it is hanging off of its bottom hinge.  It
+looks as though the hinge has rusted into solidity, perhaps explaining why the
+door is still there.  The entry continues into the tower to the north, and the
+wasteland opens up to the east and west.    ~
+125 0 2
+D0
+A single door, hanging off of its hinge, fails to bar your way into the tower. ~
+~
+0 -1 12554
+D1
+~
+~
+0 -1 12565
+D3
+~
+~
+0 -1 12563
+S
+T 12533
+#12565
+East of the Tower Entrance~
+   The tower looms above to the north.  The tower has a rounded rectangular
+base that slopes slightly inward as it goes up.  The walls are quite thick, and
+made of a highly polished white marble with sparse, bluish-black veins swirling
+throughout.  Oddly, in the immediate vicinity of the tower there is none of the
+dust characteristic of the area, nor the rock.  The haze is so scant here, that
+it almost seems to be gone however, the apex of the tower is still blurry.  
+Looking back to the south, it is impossible to see anything in the dense haze
+farther from the tower.  The trail leads into the covered entrance to the tower
+to the west and to the south.  The wasteland extends to the east and south.  ~
+125 0 2
+D1
+~
+~
+0 -1 12566
+D2
+~
+~
+0 -1 12575
+D3
+~
+~
+0 -1 12564
+S
+T 12533
+#12566
+South of the Tower~
+   The haze is a good deal thicker towards the south than to the north, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  From here, it
+seems as though the northeast part of the tower is taller than the southwest;
+it looks as though something has destroyed part of the tower.  Also visible is
+the tower entrance, which seems to be in the center of the south wall of the
+tower.  To the south, the cliffs are also faintly visible through the haze.  
+Various chunks of white marble are strewn about, ranging from human size blocks
+to pebbles, to a fine white dust that seems to cover most everything.  The
+wasteland extends in all directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12556
+D1
+~
+~
+0 -1 12567
+D2
+~
+~
+0 -1 12576
+D3
+~
+~
+0 -1 12565
+S
+#12567
+East of the Tower~
+   The haze is a good deal thicker towards the east than to the west, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  To the east,
+the cliffs are also faintly visible through the haze.  Various chunks of white
+marble are strewn about, ranging from human size blocks to pebbles, to a fine
+white dust that seems to cover most everything.  The wasteland extends in all
+directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12557
+D1
+~
+~
+0 -1 12568
+D2
+~
+~
+0 -1 12577
+D3
+~
+~
+0 -1 12566
+S
+#12568
+Eastern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+west.  To the east, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the north, west, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12558
+D2
+~
+~
+0 -1 12578
+D3
+~
+~
+0 -1 12567
+S
+#12569
+A Stairway~
+   A grand staircase lines this room, following the east wall, then the north,
+around the west, across the south, and finishing back at the east wall the
+floor above.  The center of the room was reserved for a pillar, on which a
+portion of a statue rests.  A larger than life set of legs rests upon the
+pillar.  The legs end just above the knees, but they appear to be feminine.  ~
+125 8 0
+D1
+~
+~
+0 -1 12579
+D4
+~
+~
+0 -1 12599
+S
+T 12508
+#12570
+Western Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+east.  To the west, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the north and east.    ~
+125 0 2
+D0
+~
+~
+0 -1 12560
+D1
+~
+~
+0 -1 12571
+S
+#12571
+South of the Tower~
+   With the haze that permeates the area, it is hard to see too far to the
+north.  To the south, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the north, west, east, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12561
+D1
+~
+~
+0 -1 12572
+D2
+~
+~
+0 -1 12581
+D3
+~
+~
+0 -1 12570
+S
+#12572
+South of the Tower~
+   The haze is a good deal thicker towards the south than to the north, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  From here, it
+seems as though the northeast part of the tower is taller than the southwest;
+it looks as though something has destroyed part of the tower.  Also visible is
+the tower entrance, which seems to be in the center of the south wall of the
+tower.  To the south, the cliffs are also faintly visible through the haze.  
+Various chunks of white marble are strewn about, ranging from human size blocks
+to pebbles, to a fine white dust that seems to cover most everything.  The
+wasteland extends in all directions.    ~
+125 0 2
+D0
+~
+~
+0 -1 12562
+D1
+~
+~
+0 -1 12573
+D2
+~
+~
+0 -1 12582
+D3
+~
+~
+0 -1 12571
+S
+#12573
+A Trail Through the Wastes~
+   The haze is a good deal thicker towards the south than to the north, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  From here, it
+seems as though the northeast part of the tower is taller than the southwest;
+it looks as though something has destroyed part of the tower.  The tower's
+entrance is to the northeast, and seems to be approachable from its west.  To
+the south, the cliffs are also faintly visible through the haze.  Various
+chunks of white marble are strewn about, ranging from human size blocks to
+pebbles, to a fine white dust that seems to cover most everything.  The trail
+leads from the east to the north, approaching the entrance to the tower.  The
+courtyard extends to the south and west.    ~
+125 0 2
+D0
+~
+~
+0 -1 12563
+D1
+~
+~
+0 -1 12574
+D2
+~
+~
+0 -1 12583
+D3
+~
+~
+0 -1 12572
+S
+#12574
+A Trail Through the Wastelands~
+   The haze is a good deal thicker towards the south than to the north, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  From here, it
+seems as though the northeast part of the tower is taller than the southwest;
+it looks as though something has destroyed part of the tower.  Also visible is
+the south wall of the tower entrance, directly to the north.  The trail from
+the south splits in two, leading around the wall to the east and west.    ~
+125 0 2
+D1
+~
+~
+0 -1 12575
+D2
+~
+~
+0 -1 12584
+D3
+~
+~
+0 -1 12573
+S
+#12575
+A Trail Through the Wastelands~
+   The haze is a good deal thicker towards the south than to the north, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  From here, it
+seems as though the northeast part of the tower is taller than the southwest;
+it looks as though something has destroyed part of the tower.  The tower's
+entrance is to the northwest, and seems to be approachable from its east.  To
+the south, the cliffs are also faintly visible through the haze.  Various
+chunks of white marble are strewn about, ranging from human size blocks to
+pebbles, to a fine white dust that seems to cover most everything.  The trail
+leads from the west to the north, approaching the entrance to the tower.  The
+courtyard extends to the south and east.    ~
+125 0 2
+D0
+~
+~
+0 -1 12565
+D1
+~
+~
+0 -1 12576
+D2
+~
+~
+0 -1 12585
+D3
+~
+~
+0 -1 12574
+S
+#12576
+South of the Tower~
+   The haze is a good deal thicker towards the south than to the north, where a
+tower is barely visible.  From here, little detail about the tower is actually
+discernable, except that the tower is at least two stories tall.  From here, it
+seems as though the northeast part of the tower is taller than the southwest;
+it looks as though something has destroyed part of the tower.  Also visible is
+the tower entrance, which seems to be in the center of the south wall of the
+tower.  To the south, the cliffs are also faintly visible through the haze.  
+Various chunks of white marble are strewn about, ranging from human size blocks
+to pebbles, to a fine white dust that seems to cover most everything.  The
+wasteland extends in all directions, except for the south, where a large
+boulder rests against the cliffs.    ~
+125 0 2
+D0
+~
+~
+0 -1 12566
+D1
+~
+~
+0 -1 12577
+D3
+~
+~
+0 -1 12575
+S
+#12577
+South of the Tower~
+   With the haze that permeates the area, it is hard to see too far to the
+north.  To the south, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the north, west, east, and south.    ~
+125 0 2
+D0
+~
+~
+0 -1 12567
+D1
+~
+~
+0 -1 12578
+D2
+~
+~
+0 -1 12587
+D3
+~
+~
+0 -1 12576
+S
+#12578
+Eastern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+west.  To the east, however, a large black cliff is clearly visible.  The cliff
+rises into the fog as high as is visible, making it nearly impossible for any
+light to filter through from the sky.  Though hazy, the air is quite dry and
+dusty.  The ground is littered with fist sized chunks of rough white marble, as
+well as a fine white powder, probably from the same source.  The clearing
+continues to the north and west.~
+125 0 2
+D0
+~
+~
+0 -1 12568
+D3
+~
+~
+0 -1 12577
+S
+#12579
+A Private Entrance~
+   Thick stone hooks on the wall near the doorway to the south would have once
+been used to bar the door from entrance from the south.  Guards from the
+guardroom to the east would have manned the door, keeping the riffraff out,
+while allowing esteemed guests passage to the stairway to the west, as well as
+a rotting wooden door to the north.    ~
+125 8 0
+D0
+   A rotting wooden door is set into a stone doorway in the north wall of the
+tower.    ~
+door~
+1 0 12595
+D1
+~
+~
+0 -1 12589
+D2
+~
+~
+0 -1 12529
+D3
+~
+~
+0 -1 12569
+D4
+~
+~
+0 -1 12588
+S
+#12580
+South of the Tower~
+   ~
+125 0 2
+D0
+~
+~
+0 -1 12570
+D1
+~
+~
+0 -1 12581
+S
+#12581
+Southern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+north.  To the south, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the north and east~
+125 0 2
+D0
+~
+~
+0 -1 12571
+D1
+~
+~
+0 -1 12582
+S
+#12582
+Southern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+north.  To the south, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the north, west, and east.    ~
+125 0 2
+D0
+~
+~
+0 -1 12572
+D1
+~
+~
+0 -1 12583
+D3
+~
+~
+0 -1 12581
+S
+#12583
+Southern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+north.  To the south, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the north, west, and east.    ~
+125 0 2
+D0
+~
+~
+0 -1 12573
+D1
+~
+~
+0 -1 12584
+D3
+~
+~
+0 -1 12582
+S
+#12584
+A Trail Through the Wastelands~
+   With the haze that permeates the area, it is hard to see too far to the
+north.  To the south, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the east and west, and the trail continues to the north
+and south.    ~
+125 16 2
+D0
+~
+~
+0 -1 12574
+D1
+~
+~
+0 -1 12585
+D2
+~
+~
+0 -1 12590
+D3
+~
+~
+0 -1 12583
+S
+#12585
+Southern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+north.  To the south, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the north and west.  A large boulder resting against the
+cliffs blocks the way east.    ~
+125 0 2
+D0
+~
+~
+0 -1 12575
+D3
+~
+~
+0 -1 12584
+S
+#12586
+Inside a False Boulder~
+   The inside of the boulder has been polished to a fair degree.  Other than
+the exit door, the only portals to the outside are two peepholes set in the
+west wall.  It looks as though the holes are hidden in the shadow of an
+outcropping of the rock on the outside.  The holes' views are limited to almost
+nothing thanks to the haze, but based on the proximity to the end of the trail,
+it is likely that it was likely a concealed guard post overlooking the trail.
+The only exit is the opening in the wall to the east.    ~
+125 0 2
+D1
+~
+wall~
+1 -1 12587
+S
+#12587
+Southern Border of the Wasteland~
+   With the haze that permeates the area, it is hard to see too far to the
+north.  To the south, however, a large black cliff is clearly visible.  The
+cliff rises into the fog as high as is visible, making it nearly impossible for
+any light to filter through from the sky.  Though hazy, the air is quite dry
+and dusty.  The ground is littered with fist sized chunks of rough white
+marble, as well as a fine white powder, probably from the same source.  The
+clearing continues to the north.  A large boulder blocks progress to the west.~
+125 0 2
+D0
+~
+~
+0 -1 12577
+D3
+Nothing special there...~
+rock~
+1 -1 12586
+S
+#12588
+Hovering Between the Pillars~
+   There are tall stone pillars to the east and west.  The remnants of an arch
+jut inward, but the floor (ceiling?  ) they once carried has long fallen.  A
+floor is a few feet below.~
+125 8 9
+D4
+~
+~
+0 -1 12598
+D5
+~
+~
+0 -1 12579
+S
+#12589
+A Guardroom~
+   This guardroom is quite large, providing ample space for at least half a
+dozen guards to lounge during the quiet times.  The guardroom overlooks the
+antechamber leading to the stairs to the third floor, seperating the more
+public second floor from the higher floors.  Two large bedframes still sit in
+the eastern portion of the room, presumably to keep the guards close to where
+they're needed, but keep them fresh.  The only exit is the door to the west.  ~
+125 8 0
+D3
+~
+~
+0 -1 12579
+S
+#12590
+Trail Through the Mountains~
+   The trail continues to the south towards the tunnel, and towards a large
+clearing to the north.  From here, it is nearly impossible to make out any
+detail about the clearing, as a light gray haze permeates the air, reducing
+visibility to nearly nothing.    ~
+125 4 2
+D0
+~
+~
+0 -1 12584
+D2
+~
+~
+0 -1 12591
+S
+#12591
+Tunnel Opening~
+   The tunnel and trail meets here.  Several sets of footprints lead out the
+tunnel to the north, through a narrow trail in the mountain.  The tunnel opens
+to the south, leading back in to the darkness.  The trail is littered with
+small white rocks, which stand out against the black rock foundation.    ~
+125 0 2
+D0
+~
+~
+0 -1 12590
+D3
+~
+~
+0 -1 12592
+S
+#12592
+Tunnel Through the Mountain~
+   The tunnel takes a sharp bend from the south to the east.  The white rock
+that lines the tunnel to the east and south seems to be missing here.  Light
+dances across the floor to the east the tunnel must have another opening.  The
+footprints of several visitors head towards the east.    ~
+125 256 2
+D1
+~
+~
+0 -1 12591
+D2
+~
+~
+0 -1 12593
+S
+#12593
+Tunnel Through the Mountain~
+   The tunnel is quite cramped, forcing careful motion to navigate through it.
+The path is still visible to the south, but the tunnel continues in to the
+darkness to the north.  Oddly, amongst the black rock that makes up the tunnel,
+there are bits of white rock on the floor here.    ~
+125 260 2
+D0
+~
+~
+0 -1 12592
+D2
+~
+~
+0 -1 55770
+S
+#12594
+AI Room~
+   You are in an unfinished room.    ~
+125 1770025 2
+S
+#12595
+High Above a Large Pit~
+   A small wooden door rots in its hinges, set in the northern wall of the
+tower, to the south.  A hole is set in the ground directly below.  Ahh.  The
+feeling of flight.  It -is- controlled flight, isn't it?    ~
+125 0 9
+D2
+A rotting wood door is set into the a doorway in the northern wall of the tower.~
+door~
+1 0 12579
+D5
+~
+~
+0 -1 12524
+S
+#12596
+A Large Pit~
+   Whether this is a trap or a refuse pit is uncertain.  Bones of various
+creatures - from an unlucky adventurer to the bones of a pack animal who has
+tread its last mile - litter the pit.  A quick survey for escape routes yields
+nothing.  The entrance to the pit is actually quite smaller than the ceiling
+itself, which makes climbing out of the question.  The tower wall extends down
+below the floor of the pit, a full story's height deep.  The only apparent exit
+is the entrance to the pit, above.    ~
+125 0 2
+D0
+It looks like the side of the pit is rough enough to climb to the north.~
+~
+0 -1 12514
+D4
+~
+~
+0 -1 12524
+S
+#12597
+A Crumbling Lair~
+   The northern and eastern walls here are still intact, as well as most of the
+ceiling above them.  To the south, however, the ceiling has collapsed, forming
+a wall of rubble.  The acrid smell of burnt flesh hangs in the air, as though
+this is someone's, or something's, dining room.  The west offers the only
+escape, but there is clearly no floor there.  Tread lightly.    ~
+125 8 0
+D3
+~
+~
+0 -1 12598
+S
+#12598
+Precarious Walkway~
+   From here, the second floor of the tower is quite visible, since most of the
+floor below is missing.  Only a narrow path across the top of a crumbling arch
+remains.  To the west is a sturdier floor, held up, apparently, by one of the
+pillars on the second floor.  Across that floor is a set of stairs, offering a
+safe way back to the second floor.  Straight down also offers a way to the
+second floor, although not quite so safe.  To the east, another mass of floor
+is supported by another pillar.~
+125 0 0
+D1
+~
+~
+0 -1 12597
+D3
+~
+~
+0 -1 12599
+D5
+~
+~
+0 -1 12588
+S
+#12599
+The Top of the Crumbling Tower~
+   Between the outer wall and the pillars of the floor below, this floor seems
+to be intact.  To the east however, a rift seems to seperate this portion of
+the floor from the eastern portion, which seems to also be intact.  Perhaps, at
+a run, the jump could be made to the other side?  There's only one way to know
+for sure.  From here, it is plain to see that the tower would be nearly
+invisble to anything with an aerial perspective.  The haze is thinner in the
+higher atmosphere, and the cliffs that surround the tower are visible.  The
+cliffs provide natural protection for the tower providing only the one access
+route from the ground, making the tower's location quite advantageous.    ~
+125 8 0
+D1
+~
+~
+0 -1 12598
+D5
+~
+~
+0 -1 12569
+S
+$~

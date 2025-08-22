@@ -1,0 +1,78 @@
+name: Mekkatorn
+password: MeA.pomNzW
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19242
+birthtime: 1505350959
+timeplayed: 4380
+lastlogintime: 1505355357
+host: 071.050.086.073
+height: 30
+weight: 41
+base_height: 30
+base_weight: 41
+base_size: 1
+natural_size: 1
+alignment: 999
+playerflags: xy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 2
+lastlevel: 0
+hitpoints: 26/26
+mana: 1/0
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 81
+intelligence: 94
+wisdom: 87
+dexterity: 77
+constitution: 71
+charisma: 57
+experience: 6599
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 53
+438 50
+443 50
+444 50
+447 60
+451 60
+452 51
+453 52
+459 50
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 18006 0.333333
+1 18003 0.250000
+1 18001 0.900000
+1 18005 1.033333
+1 18002 0.850000
+1 18007 1.533333
+0 0 0
+mem:
+5 0 9
+0 0 0

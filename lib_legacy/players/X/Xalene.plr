@@ -1,0 +1,194 @@
+name: Xalene
+password: XapkbznXFB
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 16
+race: 5
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20698
+birthtime: 1700713023
+timeplayed: 409504
+lastlogintime: 1737879149
+host: 052.119.120.201
+height: 62
+weight: 102
+base_height: 62
+base_weight: 102
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxyz
+effectflags: ck w 0
+prefflags: hnoxCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1018/1018
+mana: 980/980
+move: 289/289
+damroll: 3
+hitroll: 3
+strength: 72
+intelligence: 98
+wisdom: 94
+dexterity: 86
+constitution: 100
+charisma: 68
+cash: 2725 8085 25036 7853
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+spellcasts:
+11 226
+0 0
+skills:
+4 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+28 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+48 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+81 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+94 1000
+96 1000
+99 1000
+118 1000
+122 1000
+127 1000
+128 1000
+131 1000
+132 1000
+133 1000
+134 1000
+135 1000
+136 1000
+137 1000
+138 1000
+139 1000
+140 1000
+141 1000
+142 1000
+143 1000
+206 1000
+207 1000
+235 1000
+241 1000
+415 50
+416 50
+421 818
+423 810
+424 1000
+438 101
+443 810
+444 816
+451 839
+452 837
+453 843
+455 810
+457 1000
+458 1000
+459 1000
+460 922
+461 881
+462 810
+463 707
+465 65
+466 810
+0 0
+trophy:
+1 47029 0.200000
+1 47028 0.600000
+1 47018 1.200000
+1 47012 0.200000
+1 8023 0.200000
+1 53506 0.400000
+1 53507 0.200000
+1 53505 0.200000
+1 53504 0.200000
+1 53502 0.800000
+1 53500 0.600000
+1 53508 1.000000
+1 53501 0.800000
+1 53503 0.800000
+1 58413 0.200000
+1 58417 0.200000
+1 58414 0.200000
+1 58418 0.200000
+1 58405 0.800000
+1 58403 0.800000
+1 58408 1.300000
+0 0 0
+tells:
+1737177660 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1737627428 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737627429 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737627430 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737627480 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737628921 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1737630108 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1737675604 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1737677147 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737709788 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1737878722 Peegu gossips, 'nice'
+1737878732 Urog gossips, 'kill elf'
+1737878736 Urog gossips, 'haha oops'
+1737878759 Pawk gossips, '*singing loudly* it's the game that never ends... it goes on and on again...........'
+1737878910 Urog gossips, 'bwahahaha!'
+1737878912 Peegu gossips, 'congrats in finishing the game!'
+1737878971 Urog gossips, 'thank you hehe'
+1737879119 Pawk gossips, 'l'
+1737879122 Pawk gossips, 'mutter'
+1737879144 Urog gossips, 'alright, with that, good night'
+$
+effects:
+195 8 0 0 536870912 0 0
+131 8 -12 24 0 0 0
+131 8 2 19 0 0 0
+131 8 0 0 0 0 16384
+551 0 4 18 0 0 0
+551 0 4 19 0 0 0
+551 0 -14 20 0 0 0
+551 0 -13 21 0 0 0
+551 0 -13 22 0 0 0
+551 0 -13 23 0 0 0
+551 0 -12 24 0 0 0
+551 0 9 17 0 0 0
+551 0 296 13 0 0 0
+0 0 0 0 0
+aliases:
+gat get all 2.corpse
+gac get all corpse
+ga get all
+0

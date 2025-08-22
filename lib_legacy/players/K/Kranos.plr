@@ -1,0 +1,91 @@
+name: Kranos
+password: Krb8I.WbTV
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 13
+race: 0
+level: 20
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19450
+birthtime: 1562072769
+timeplayed: 38268
+lastlogintime: 1564444813
+host: 035.133.224.244
+height: 66
+weight: 150
+base_height: 66
+base_weight: 150
+base_size: 2
+natural_size: 2
+alignment: 489
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 19
+thirst: 12
+lastlevel: 0
+hitpoints: 275/275
+mana: 40/40
+move: -41/134
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 63
+wisdom: 74
+dexterity: 87
+constitution: 94
+charisma: 56
+cash: 6 387 1685 116
+experience: 2320816
+quit_reason: 1
+saveroom: 3054
+skills:
+404 250
+411 50
+415 50
+416 50
+420 99
+421 150
+422 53
+438 50
+443 50
+444 50
+446 223
+448 1000
+449 1000
+463 50
+601 50
+0 0
+trophy:
+1 8300 2.000000
+1 8016 1.000000
+1 13611 3.000000
+1 13602 5.000000
+1 13603 2.000000
+1 13601 6.000000
+1 13610 4.000000
+1 8000 1.000000
+1 8013 1.000000
+1 8021 1.000000
+1 8332 1.000000
+1 8317 15.000000
+1 8301 2.000000
+1 5508 0.250000
+1 5509 1.250000
+1 5511 0.500000
+1 5510 2.500000
+1 18004 1.000000
+1 18001 1.000000
+1 18007 1.000000
+1 18506 2.000000
+0 0 0
+aliases:
+a assist turgeron
+o get all from corpse
+0

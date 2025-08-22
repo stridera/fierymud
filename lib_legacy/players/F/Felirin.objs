@@ -1,0 +1,1397 @@
+1
+vnum: 1005
+location: 0
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: D
+name: torch slender-wooden-torch
+shortdesc: a wooden torch
+desc: A slender wooden torch lies here.
+type: 1
+weight: 2.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: slender-wooden-torch
+&0A simply designed torch, consiting of a burning rag and long slender
+wooden pole. Looks like it could last for eight hours or so.
+~
+~~
+vnum: 1032
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring wide-bronze-ring
+shortdesc: a bronze ring
+desc: A wide bronze ring lies here.
+type: 9
+weight: 0.08
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: wide-bronze-ring
+&0A cheap little ring, forged from bronze. It lacks any design, resembling a
+simple band of metal.&0
+~
+~~
+vnum: 36014
+location: 2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring tiny-copper-ring thin-circle-copper-coin
+shortdesc: a tiny copper ring
+desc: A thin circle of copper resembles a coin.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: tiny-copper-ring thin-circle-copper-coin
+A thin copper wire bears the symbol of the Kaaz clan.
+~
+~~
+vnum: 7002
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant zadash sword
+shortdesc: a silver sword pendant
+desc: A pendant shaped like a sword lies here.
+type: 8
+weight: 0.20
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+1 1
+24 -2
+~
+~~
+vnum: 36008
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.    
+~
+~~
+vnum: 41007
+location: 5
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: plate chitinous-plate chitinous chitin flake
+shortdesc: a chitinous-plate
+desc: A large flake of chitin has fallen off a Hiver's thorax here.
+type: 9
+weight: 15.00
+cost: 45
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 9
+extradesc: chitinous-plate plate chitinous
+The rough platter of insectoid scales seems to have no distinct color.
+Shifting hues move across its surface as light strikes it from different
+angles. All colors? Or none? You shake your head in wonder.
+~
+~~
+vnum: 36023
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mouvwyz
+name: diadem diadem-bone-diadem dull-diadem
+shortdesc: a diadem of bone
+desc: A dull diadem lies here decaying in the corner.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+applies:
+1 1
+~
+extradesc: diadem diadem-bone-diadem dull-diadem
+A thin cloth set with pieces of bone as decoration, it looks like it could be
+worn as a headband.    
+~
+~~
+vnum: 36021
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: plates bone-leg-plates boneplates bone-pieces
+shortdesc: bone leg plates
+desc: A few pieces of bone lie about.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+applies:
+13 2
+~
+extradesc: plates bone leg boneplates leg-boneplates
+These are a few plates of bone that look as though you could fasten to your
+legs for a bit of protection.    
+~
+~~
+vnum: 8607
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: boots gila
+shortdesc: gila boots
+desc: A pair of rough, scaley boots sits on the ground.
+type: 9
+weight: 2.60
+cost: 100
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 65
+applies:
+14 10
+~
+extradesc: boots gila
+The creatures that fashioned these boots let nothing go to waste.  These orange
+and yellow boots are very comfortable, you could walk all day in them.  The
+thick skin and durable construction, would also offer you a fair degree of
+protection in battle.    
+~
+~~
+vnum: 41008
+location: 10
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz
+name: sleeves chitinous-sleeves chitinous narrow tubes chitin
+shortdesc: a set of chitinous-sleeves
+desc: Narrow tubes of chitin lie here, gathering dust.
+type: 9
+weight: 6.00
+cost: 200
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 257
+applies:
+2 -1
+~
+extradesc: chitinous-sleeves sleeves chitinous
+These stiff tubes of chitin look like they once graced the upper legs of
+some Hiver. They would make stiff but servicable sleeves for a human.
+~
+~~
+vnum: 8603
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: coyote pelt brown
+shortdesc: a brown coyote pelt
+desc: A brown colored coyote pelt has been tossed here.
+type: 11
+weight: 6.00
+cost: 100
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 1025
+applies:
+2 1
+13 5
+~
+extradesc: pelt coyote
+This brown pelt looks as if it could impart the agility and vitality of its
+former owner. It is well constructed and would offer some degree of 
+protection against your foes.
+~
+~~
+vnum: 12008
+location: 13
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: baldric emblazoned belt
+shortdesc: an emblazoned baldric
+desc: A large, ornamented belt lies coiled here.
+type: 9
+weight: 1.25
+cost: 225
+timer: 0
+level: 6
+effects: 0 0 0
+wear: 2049
+applies:
+19 1
+~
+extradesc: belt emblazoned baldric
+This large, wide belt goes around the waist, up over the shoulders,      
+to support a sword's sheath. A lion rampant adorns the front of
+it, where it goes across the stomach. The baldric seems very
+old; its owner hasn't taken good care of it -- the leather is
+cracked in places.
+~
+~~
+vnum: 55396
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz
+name: bracer acolyte
+shortdesc: an acolyte bracer
+desc: A slightly magical thin metal bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 4097
+applies:
+13 3
+6 1
+~
+extradesc: acolyte bracer
+Newly forged, this magical metal bracer was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.
+~
+~~
+vnum: 36015
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: p
+name: bracelet thin-copper-bracelet small
+shortdesc: a thin copper bracelet
+desc: A small bracelet of copper lies here collecting dust.
+type: 9
+weight: 0.07
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+applies:
+12 1
+~
+extradesc: bracelet thin-copper-bracelet small
+A band of copper is covered with runes depicting a tale of the magical battle
+of the rift wars...    
+~
+~~
+vnum: 8608
+location: 16
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: gyz
+name: branch tree tree-branch
+shortdesc: a tree branch
+desc: A thick branch of a tree is here, detached from its owner.
+type: 5
+weight: 4.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+applies:
+3 1
+~
+extradesc: branch tree-branch
+A simple tree branch. If you got hit with it, it would smart quite 
+a bit. Maybe it could knock some sense into you.
+~
+~~
+vnum: 2005
+location: 18
+values:
+1
+1
+5
+5
+0
+0
+0
+~
+flags: 0
+name: staff walking walking-staff
+shortdesc: a walking-staff
+desc: A staff rests here.
+type: 5
+weight: 2.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+applies:
+14 30
+~
+extradesc: staff walking
+This plain wooden staff is imbued with a peaceful feeling, making
+it useless in combat. But it does help one walk rather nicely.
+~
+~~
+vnum: 8611
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 8611
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 8032
+location: 25
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: black drakling scale
+shortdesc: a black drakling scale
+desc: A small black scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 10
+~
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 55573
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55579
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem dust dust-tourmaline
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 36008
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.    
+~
+~~
+vnum: 55577
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55312
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: helm rusted
+shortdesc: a rusted helm
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3092
+location: 127
+values:
+12
+12
+30
+0
+0
+0
+0
+~
+flags: 0
+name: cappuccino smug-cappuccino-mug
+shortdesc: a mug
+desc: A smug cappuccino mug steams here.
+type: 17
+weight: 1.08
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: smug-cappuccino-mug
+It's a white ceramic mug that looks perfect for a serving of cappuccino.
+~
+~~
+vnum: 3092
+location: 127
+values:
+12
+12
+30
+0
+0
+0
+0
+~
+flags: 0
+name: cappuccino smug-cappuccino-mug
+shortdesc: a mug
+desc: A smug cappuccino mug steams here.
+type: 17
+weight: 1.08
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: smug-cappuccino-mug
+It's a white ceramic mug that looks perfect for a serving of cappuccino.
+~
+~~
+vnum: 3092
+location: 127
+values:
+12
+12
+30
+0
+0
+0
+0
+~
+flags: 0
+name: cappuccino smug-cappuccino-mug
+shortdesc: a mug
+desc: A smug cappuccino mug steams here.
+type: 17
+weight: 1.08
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: smug-cappuccino-mug
+It's a white ceramic mug that looks perfect for a serving of cappuccino.
+~
+~~
+vnum: 3092
+location: 127
+values:
+12
+12
+30
+0
+0
+0
+0
+~
+flags: 0
+name: cappuccino smug-cappuccino-mug
+shortdesc: a mug
+desc: A smug cappuccino mug steams here.
+type: 17
+weight: 1.08
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: smug-cappuccino-mug
+It's a white ceramic mug that looks perfect for a serving of cappuccino.
+~
+~~
+vnum: 3092
+location: 127
+values:
+12
+12
+30
+0
+0
+0
+0
+~
+flags: 0
+name: cappuccino smug-cappuccino-mug
+shortdesc: a mug
+desc: A smug cappuccino mug steams here.
+type: 17
+weight: 1.08
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: smug-cappuccino-mug
+It's a white ceramic mug that looks perfect for a serving of cappuccino.
+~
+~~
+vnum: 3092
+location: 127
+values:
+12
+12
+30
+0
+0
+0
+0
+~
+flags: 0
+name: cappuccino smug-cappuccino-mug
+shortdesc: a mug
+desc: A smug cappuccino mug steams here.
+type: 17
+weight: 1.08
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: smug-cappuccino-mug
+It's a white ceramic mug that looks perfect for a serving of cappuccino.
+~
+~~
+vnum: 3092
+location: 127
+values:
+12
+12
+30
+0
+0
+0
+0
+~
+flags: 0
+name: cappuccino smug-cappuccino-mug
+shortdesc: a mug
+desc: A smug cappuccino mug steams here.
+type: 17
+weight: 1.08
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: smug-cappuccino-mug
+It's a white ceramic mug that looks perfect for a serving of cappuccino.
+~
+~~
+vnum: 3092
+location: 127
+values:
+12
+12
+30
+0
+0
+0
+0
+~
+flags: 0
+name: cappuccino smug-cappuccino-mug
+shortdesc: a mug
+desc: A smug cappuccino mug steams here.
+type: 17
+weight: 1.08
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: smug-cappuccino-mug
+It's a white ceramic mug that looks perfect for a serving of cappuccino.
+~
+~~
+vnum: 3092
+location: 127
+values:
+12
+12
+30
+0
+0
+0
+0
+~
+flags: 0
+name: cappuccino smug-cappuccino-mug
+shortdesc: a mug
+desc: A smug cappuccino mug steams here.
+type: 17
+weight: 1.08
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: smug-cappuccino-mug
+It's a white ceramic mug that looks perfect for a serving of cappuccino.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 3010
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread loaf food
+shortdesc: some bread
+desc: A loaf of bread has been left here.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+~~
+vnum: 36012
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gDE
+name: sphere kaaz-sphere-wisdom orb
+shortdesc: the Kaaz sphere of wisdom
+desc: An orb floats by you on its journey home.
+type: 8
+weight: 5.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+applies:
+3 1
+~
+extradesc: kaaz-sphere-wisdom orb
+A sphere of pure crystal with a hint of red color throughout.  It is warm to
+the touch and is covered with odd runes depicting an ancient tale.    
+~
+~~
+vnum: 55581
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 36015
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: p
+name: bracelet thin-copper-bracelet small
+shortdesc: a thin copper bracelet
+desc: A small bracelet of copper lies here collecting dust.
+type: 9
+weight: 0.07
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+applies:
+12 1
+~
+extradesc: bracelet thin-copper-bracelet small
+A band of copper is covered with runes depicting a tale of the magical battle
+of the rift wars...    
+~
+~~
+vnum: 3092
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: smug-cappuccino-mug
+shortdesc: a mug
+desc: A smug cappuccino mug steams here.
+type: 17
+weight: 0.30
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: smug-cappuccino-mug
+It's a white ceramic mug that looks perfect for a serving of cappuccino.
+~
+~~

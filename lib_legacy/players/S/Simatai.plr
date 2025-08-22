@@ -1,0 +1,109 @@
+name: Simatai
+password: SiYfFZndU/
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20652
+birthtime: 1697936102
+timeplayed: 43165
+lastlogintime: 1698888784
+host: 142.105.209.194
+height: 74
+weight: 143
+base_height: 74
+base_weight: 143
+base_size: 2
+natural_size: 2
+alignment: 71
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3515
+lastlevel: 0
+hitpoints: 79/74
+mana: 1/0
+move: 160/160
+damroll: 3
+hitroll: 3
+strength: 69
+intelligence: 63
+wisdom: 82
+dexterity: 100
+constitution: 93
+charisma: 52
+cash: 0 18 92 55
+bank: 0 1 1 1
+experience: 75359
+quit_reason: 7
+saveroom: 3515
+skills:
+401 100
+403 100
+405 50
+408 90
+415 50
+416 50
+421 71
+438 50
+443 50
+444 50
+463 50
+464 72
+465 50
+493 90
+0 0
+trophy:
+1 12011 0.250000
+1 12023 0.250000
+1 12025 0.500000
+1 12001 0.250000
+1 12016 0.250000
+1 12015 0.250000
+1 3132 2.333333
+1 3130 2.083333
+1 3131 3.000000
+1 2005 0.500000
+1 2001 0.250000
+1 2003 0.750000
+1 2004 1.250000
+1 1604 0.250000
+1 1603 1.250000
+1 1602 2.000000
+1 1601 1.750000
+1 8801 0.250000
+1 8800 0.250000
+1 8806 0.250000
+1 8804 0.500000
+0 0 0
+tells:
+1697985848 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1697985850 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1698026450 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1698026451 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1698026451 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1698026452 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1698026452 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1698027160 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1698277893 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1698277945 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
+$
+gossips:
+1698441940 Discord gossips, 'venath.2005: I'm 38'
+1698441955 Discord gossips, 'Daedela: I'm exactly 40 haha'
+1698441963 Chinok gossips, 'no, call waiting was horrible! :)'
+1698441971 Crankish gossips, 'Wow, how did you get into muds then Venath?'
+1698602594 Chogg gossips, 'Is the assist command bugged?  When my tank is fighting something and my priest types assist chogg, it says that he's not fighting anyone, but he is.'
+1698602638 Chinok gossips, 'no one else has complained if it is.'
+1698602675 Discord gossips, 'Daedela: Are you sure you're assisting the right character?'
+1698602716 Chogg gossips, 'That might be the issue.  I started the fight with my rogue.  Do I have to assist him even though my tank joined the fight with a kick?'
+1698602908 Discord gossips, 'Abbil: Happens to me when the tank almost slays the mob in one attack; the mob is then mortally wounded, and if one assists the tank at that point, it's not fighting with anyone. The prompt also displays no tank, mind you.'
+1698887309 Ekon gossips, 'ty'
+$

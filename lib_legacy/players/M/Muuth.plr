@@ -1,0 +1,152 @@
+name: Muuth
+password: MuH7/6Dokf
+currenttitle: Onthe Bit My Thithter
+description
+Here stands the paleist orc you ever saw.~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA %ih&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 11
+race: 8
+level: 97
+home: 3046
+lifeforce: 0
+composition: 0
+id: 16557
+birthtime: 1182823155
+timeplayed: 9133728
+lastlogintime: 1738802708
+host: 104.048.170.022
+height: 76
+weight: 154
+base_height: 76
+base_weight: 154
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 10053
+lastlevel: 4
+hitpoints: 1070/525
+mana: 940/935
+move: 180/180
+damroll: 3
+hitroll: 3
+strength: 77
+intelligence: 78
+wisdom: 85
+dexterity: 71
+constitution: 90
+charisma: 65
+cash: 25 262 1174 1288
+bank: 637 13270 60947 29925
+experience: 124660720
+quit_reason: 1
+saveroom: 10053
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+21 1000
+25 1000
+29 1000
+31 1000
+32 1000
+33 1000
+38 1000
+39 1000
+45 1000
+50 1000
+52 1000
+62 1000
+67 1000
+68 1000
+76 1000
+87 1000
+100 1000
+101 1000
+106 1000
+121 1000
+125 1000
+186 1000
+187 1000
+188 1000
+189 1000
+211 1000
+212 1000
+213 1000
+222 1000
+223 1000
+224 1000
+226 1000
+415 390
+416 390
+421 1000
+423 1000
+424 1000
+438 103
+443 82
+444 711
+447 980
+451 1000
+452 1000
+453 975
+454 562
+458 1000
+459 596
+460 326
+461 1000
+462 219
+464 205
+0 0
+trophy:
+1 53305 1.000000
+1 53306 1.000000
+1 53314 2.000000
+1 53312 2.000000
+1 53315 6.000000
+1 10301 1.000000
+1 10307 2.000000
+1 10302 2.000000
+1 10304 2.000000
+1 10314 2.000000
+1 10311 4.500000
+1 48001 0.500000
+1 55237 1.000000
+1 55232 2.000000
+0 0 0
+tells:
+1737679634 @WChinok@W tells you, 'but drop alli will drop the alligator boots :)@W'@0
+1737679683 @WChinok@W tells you, 'pack rat!@W'@0
+1737679722 @WChinok@W tells you, 'we've actually been playing with containers that are reduce weight...@W'@0
+1737679751 @WChinok@W tells you, 'but there are some technical issues with them working properly, because how fiery calculates load@W'@0
+1737680225 @WSomeone@W tells you, 'we pretty much all use mudlet now.. it has build in mapping, and comm channels.. as well as icons for spells, and HP counts with fights.@W'@0
+1737680284 @WSomeone@W tells you, '*nod* thats still what I use when not using mudlet..@W'@0
+1737680298 @WSomeone@W tells you, 'but the mapper in mudlet WONT get lost, like it does in zmud@W'@0
+1737680330 @WSomeone@W tells you, 'it's a bit of an adjustment, but it does work pretty well@W'@0
+1737680417 @WSomeone@W tells you, 'til someone casts ray of enfeeblement on you!@W'@0
+1737680654 @WSomeone@W tells you, 'yeah, bigger they are, the harder it hits :)@W'@0
+$
+gossips:
+1737681376 Someone gossips, 'sata'
+1737681382 Someone gossips, 'Are you SURE though?'
+1737681383 Someone gossips, 'lol'
+1737681387 Someone gossips, 'I don't remember the name'
+1737681396 Someone gossips, 'Ansul was another.. Cost'
+1737681407 Someone gossips, 'sata and Cost on v1'
+1737681419 Someone gossips, 'sata and Ansul v2'
+1737681428 Someone gossips, 'cause Zzur banned Cost :)'
+1737681431 Someone gossips, 'and afew more'
+1737681434 Someone gossips, 'btw, I unbanned it :)'
+$
+effects:
+19 6 10 28 8 0 0
+0 0 0 0 0
+aliases:
+st stand
+0

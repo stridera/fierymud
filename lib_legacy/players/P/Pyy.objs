@@ -1,0 +1,1405 @@
+1
+vnum: 7002
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pendant silver-sword-pendant zadash necklace
+shortdesc: a silver sword pendant
+desc: A pendant shaped like a sword lies here.
+type: 8
+weight: 0.20
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+1 1
+24 -2
+~
+~~
+vnum: 7002
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pendant silver-sword-pendant zadash necklace
+shortdesc: a silver sword pendant
+desc: A pendant shaped like a sword lies here.
+type: 8
+weight: 0.20
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+1 1
+24 -2
+~
+~~
+vnum: 55400
+location: 5
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: tunic apprentice-tunic magical-cloth-tunic magic
+shortdesc: an apprentice tunic
+desc: A slightly magical cloth tunic lies neatly folded nearby.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 3
+13 10
+27 1
+~
+extradesc: tunic apprentice-tunic magical-cloth-tunic magic
+Newly sewn, this magical cloth tunic was made just for you.  Proof of your
+beginning training, it will protect you as you adventure!~
+~~
+vnum: 55398
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: turban apprentice-turban magical-cloth-turban magic
+shortdesc: an apprentice turban
+desc: A slightly magical cloth turban lies here.
+type: 9
+weight: 0.85
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+4 1
+13 4
+27 1
+~
+extradesc: turban apprentice-turban magical-cloth-turban magic
+Newly sewn, this magical cloth turban was made just for you.  Proof of your
+beginning training, it will protect you as you adventure!~
+~~
+vnum: 55401
+location: 7
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: pants apprentice-pants cloth-pants magical-power magic
+shortdesc: some apprentice pants
+desc: A pair of cloth pants emitting a slight magical power have been left here.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 1
+13 7
+27 1
+~
+extradesc: pants apprentice-pants cloth-pants magical-power magic
+Newly sewn, these magical cloth pants were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 55402
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: sandals apprentice-sandals magical-reed-sandals magic
+shortdesc: apprentice sandals
+desc: A pair of slightly magical reed sandals wiggles slightly.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 10
+13 3
+27 1
+~
+extradesc: sandals apprentice-sandals magical-reed-sandals magic
+Newly sewn, these magical cloth sandals were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 55404
+location: 9
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: gloves apprentice-gloves magical-power magic
+shortdesc: apprentice gloves
+desc: A pair of leather gloves hums slightly with magical power.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+14 5
+13 2
+27 1
+~
+extradesc: gloves apprentice-gloves magical-power magic
+Newly sewn, these magical cloth gloves were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 55399
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: sleeves apprentice-sleeves cloth-sleeves magical-power magic
+shortdesc: apprentice sleeves
+desc: A set of cloth sleeves emitting slight magical power have been left here.
+type: 9
+weight: 1.90
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 1
+13 7
+27 1
+~
+extradesc: sleeves apprentice-sleeves cloth-sleeves magical-power magic
+Newly sewn, these magical cloth sleeves were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 1028
+location: 12
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: cloak green-woolen-cloak
+shortdesc: a &2green&0 woolen cloak
+desc: A &2green&0 woolen cloak is draped here.
+type: 9
+weight: 2.90
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+extradesc: green-woolen-cloak
+A thick cloak crafted from a green cloth.  It is quite long, sweeping down
+almost four feet in length.  Its coloring blends in well with a forest
+background, offering a bit of camoflauge.~
+~~
+vnum: 13614
+location: 14
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet onyx-bracelet shiny-onyx-silver-bracelet
+shortdesc: an onyx bracelet
+desc: A shiny onyx and silver bracelet lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.40
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+18 2
+~
+extradesc: onyx-bracelet shiny-onyx-silver-bracelet
+This silver bracelet is heavy and solid, with a clasp that unhinges to get it
+on and off the wrist.  It is chased all 'round in onyx, a thick black shiny
+stream of it, so that only the very edges of the silver backing are visible at
+its top and bottom edges, encircling it.~
+~~
+vnum: 55403
+location: 15
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: bracelet apprentice-bracelet small-cloth-bracelet pattern
+shortdesc: an apprentice bracelet
+desc: A small cloth bracelet pattern lies nearby.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+6 2
+13 5
+27 1
+~
+extradesc: apprentice-bracelet small-cloth-bracelet-pattern
+Newly sewn, this magical cloth bracelet was made just for you.  Proof of your
+beginning training, it will protect you as you adventure!~
+~~
+vnum: 1012
+location: 16
+values:
+0
+1
+3
+11
+0
+0
+0
+~
+flags: q 0
+name: dagger thin-dagger thin-blade
+shortdesc: a thin dagger
+desc: A dagger with a thin blade lies here.
+type: 5
+weight: 0.80
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: thin-dagger thin-blade
+A steel bladed dagger, with a plain wooden hilt.  Its blade has been forged
+much more thin than usual, creating a weapon adapt at bypassing heavy plate
+armor.~
+~~
+vnum: 2005
+location: 18
+values:
+1
+1
+5
+5
+0
+0
+0
+~
+flags: 0 0
+name: staff walking-staff
+shortdesc: a walking-staff
+desc: A staff rests here.
+type: 5
+weight: 2.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 30
+~
+extradesc: walking-staff
+This plain wooden staff is imbued with a peaceful feeling, making it useless in
+combat.  But it does help one walk rather nicely.~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 23
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: D 0
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+triggers:
+51984
+51909
+51910
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+triggers:
+51949
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 8032
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale black-drakling-scale small-black-scale
+shortdesc: a &9&bblack&0 drakling scale
+desc: A small black scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 10
+~
+~~
+vnum: 55325
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tunic flimsy-leather-tunic armor
+shortdesc: a flimsy leather tunic
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tunic flimsy-leather-tunic armor
+This tunic flimsy beyond use.  Perhaps the Rogue guild master will know what to
+do with it.~
+~~
+vnum: 8032
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale black-drakling-scale small-black-scale
+shortdesc: a &9&bblack&0 drakling scale
+desc: A small black scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 10
+~
+~~
+vnum: 8031
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: scale blue-drakling-scale small-blue-scale
+shortdesc: a &4&bblue&0 drakling scale
+desc: A small blue scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 5
+~
+~~
+vnum: 8033
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale green-drakling-scale small-green-scale
+shortdesc: a &2green&0 drakling scale
+desc: A small green scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+~~
+vnum: 55314
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban decayed-turban armor
+shortdesc: a decayed turban
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: turban decayed-turban armor
+This turban is decayed beyond use.  Perhaps the Sorcerer guild master will know
+what to do with it.~
+~~
+vnum: 55314
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban decayed-turban armor
+shortdesc: a decayed turban
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: turban decayed-turban armor
+This turban is decayed beyond use.  Perhaps the Sorcerer guild master will know
+what to do with it.~
+~~
+vnum: 55306
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: slippers decayed-slippers armor
+shortdesc: decayed slippers
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: slippers decayed-slippers armor
+These slippers are decayed beyond use.  Perhaps the Sorcerer guild master will
+know what to do with them.~
+~~
+vnum: 55301
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves flimsy-leather-gloves armor
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gloves flimsy-leather-gloves armor
+These gloves are flimsy beyond use.  Perhaps the Rogue guild master will know
+what to do with them.~
+~~
+vnum: 55304
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots rusted-plate-boots armor
+shortdesc: rusted plate boots
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 3.00
+cost: 0
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55313
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cap flimsy-leather-cap armor
+shortdesc: a flimsy leather cap
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: cap flimsy-leather-cap armor
+This cap is flimsy beyond use.  Perhaps the Rogue guild master will know what
+to do with it.~
+~~
+vnum: 55310
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet decayed-bracelet armor
+shortdesc: a decayed bracelet
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracelet decayed-bracelet armor
+This bracelet is decayed beyond use.  Perhaps the Sorcerer guild master will
+know what to do with it.~
+~~
+vnum: 55308
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer rusted-plate-bracer armor
+shortdesc: a rusted plate bracer
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracer rusted-plate-bracer armor
+This bracer is rusted beyond use.  Perhaps the Cleric or Warrior guild master
+will know what to do with it.~
+~~
+vnum: 55334
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots burned-boots armor
+shortdesc: burned boots
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: boots burned-boots armor
+These boots are burned beyond use.~
+~~
+vnum: 55339
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet burned-bracelet armor
+shortdesc: a burned bracelet
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracelet burned-bracelet armor
+This bracelet is burned beyond use.~
+~~
+vnum: 55330
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves burned-gloves armor
+shortdesc: burned gloves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gloves burned-gloves armor
+These gloves are burned beyond use.~
+~~
+vnum: 55330
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves burned-gloves armor
+shortdesc: burned gloves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gloves burned-gloves armor
+These gloves are burned beyond use.~
+~~
+vnum: 55338
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: wristband burned-wristband armor
+shortdesc: a burned wristband
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: wristband burned-wristband armor
+This wristband is burned beyond use.~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: quill feather-quill long-white-feather pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill feather-quill long-white-feather pen
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)~
+triggers:
+51990
+~
+~~
+vnum: 16308
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: cloak wolf-fur-cloak heap
+shortdesc: a wolf fur cloak
+desc: A cloak of wolf fur lies in a heap.
+type: 9
+weight: 5.00
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+5 3
+2 1
+~
+extradesc: wolf-fur-cloak heap
+The fur cloak is not very comfortable to wear but if it can protect you from
+the cold, well, you just aren't complaining.~
+~~
+vnum: 55330
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves burned-gloves armor
+shortdesc: burned gloves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gloves burned-gloves armor
+These gloves are burned beyond use.~
+~~
+vnum: 55347
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves burned-sleeves armor
+shortdesc: burned sleeves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves burned-sleeves armor
+These sleeves are burned beyond use.~
+~~
+vnum: 55330
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves burned-gloves armor
+shortdesc: burned gloves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gloves burned-gloves armor
+These gloves are burned beyond use.~
+~~
+vnum: 55350
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: pants burned-pants armor
+shortdesc: burned pants
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: pants burned-pants armor
+These pants are burned beyond use.~
+~~
+vnum: 55351
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings burned-leggings armor
+shortdesc: burned leggings
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: leggings burned-leggings armor
+These leggings are burned beyond use.~
+~~
+vnum: 55342
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cap burned-cap armor
+shortdesc: a burned cap
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: cap burned-cap armor
+This cap is burned beyond use.~
+~~
+vnum: 55334
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots burned-boots armor
+shortdesc: burned boots
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: boots burned-boots armor
+These boots are burned beyond use.~
+~~
+vnum: 55347
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves burned-sleeves armor
+shortdesc: burned sleeves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves burned-sleeves armor
+These sleeves are burned beyond use.~
+~~

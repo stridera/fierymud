@@ -1,0 +1,160 @@
+name: Beltre
+password: BaEHWYEj7N
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 4
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 13958
+birthtime: 1098312702
+timeplayed: 11238491
+lastlogintime: 1713231682
+host: 066.199.058.082
+height: 70
+weight: 156
+base_height: 70
+base_weight: 156
+base_size: 2
+natural_size: 2
+alignment: 962
+playerflags: glxyz
+effectflags: c 0 0
+prefflags: hnosuC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 10
+thirst: 10
+lastlevel: 11
+hitpoints: 1148/1049
+mana: 980/980
+move: 120/130
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 64
+wisdom: 72
+dexterity: 90
+constitution: 91
+charisma: 58
+cash: 86 1522 6976 2309
+experience: 121676898
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+21 1000
+22 1000
+28 1000
+34 1000
+43 1000
+88 1000
+92 1000
+97 1000
+99 1000
+241 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+417 1000
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 1000
+450 1000
+451 1000
+452 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 50
+468 1000
+473 1000
+0 0
+trophy:
+1 53020 5.000000
+1 53005 1.000000
+1 53022 1.000000
+1 53024 1.000000
+1 53007 10.000000
+1 53010 1.000000
+1 53004 5.000000
+1 7301 2.000000
+1 47028 3.000000
+1 47018 6.000000
+1 47002 9.000000
+1 47003 6.000000
+1 55216 1.000000
+1 51009 1.000000
+1 51008 1.000000
+1 51022 1.000000
+1 51001 2.000000
+1 51102 1.000000
+1 51101 16.000000
+1 51100 20.000000
+1 7300 3.000000
+0 0 0
+tells:
+1646700222 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1647202191 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1647202195 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1647204876 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1647204878 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1648085097 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1648085099 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1648350612 Choak gossips, 'night all'
+1648350929 Lyft gossips, 'hi beltre'
+1648352344 Chinok gossips, 'gratz Beltre'
+1673125598 Hackwriter gossips, 'sometimes i do 5 damage with my kick'
+1673125621 Holk gossips, 'Sounds like your getting bettwen'
+1673125628 Holk gossips, '*better'
+1681053011 Paver gossips, 'have you started the greater displacement quest yet?'
+1681053021 Corana gossips, 'nope'
+1713231649 Chinok gossips, 'wow that tickles :)'
+1713231656 Kraz gossips, 'lol'
+$
+effects:
+34 9 0 0 4096 0 0
+3 13 0 0 0 0 16384
+3 13 -12 24 0 0 0
+3 13 2 18 0 0 0
+0 0 0 0 0
+aliases:
+heal c 'heal'
+jk wi rahmat
+gc get all.coins from corpse
+holy c 'holy word'
+oo give totem general
+lc l in corpse
+jj wi blade
+0

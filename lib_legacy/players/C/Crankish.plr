@@ -1,0 +1,124 @@
+name: Crankish
+password: CrcZGD7hzV
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20650
+birthtime: 1697765374
+timeplayed: 64320
+lastlogintime: 1698888782
+host: 142.105.209.194
+height: 73
+weight: 155
+base_height: 73
+base_weight: 155
+base_size: 2
+natural_size: 2
+alignment: 74
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3515
+lastlevel: 0
+hitpoints: 49/49
+mana: 1/0
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 60
+intelligence: 80
+wisdom: 98
+dexterity: 78
+constitution: 82
+charisma: 63
+cash: 0 15 144 122
+bank: 0 1 1 1
+experience: 75347
+quit_reason: 7
+saveroom: 3515
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 62
+424 100
+438 50
+443 50
+444 50
+451 67
+457 94
+458 59
+459 71
+460 50
+462 56
+463 63
+466 50
+0 0
+trophy:
+1 12011 0.250000
+1 12023 0.250000
+1 12025 0.500000
+1 12001 0.250000
+1 12016 0.250000
+1 12015 0.250000
+1 3132 2.333333
+1 3130 2.083333
+1 3131 3.000000
+1 2005 0.500000
+1 2001 0.250000
+1 2003 0.750000
+1 2004 1.250000
+1 1604 0.250000
+1 1603 1.250000
+1 1602 2.000000
+1 1601 1.750000
+1 8801 0.250000
+1 8800 0.250000
+1 8806 0.250000
+1 8804 0.500000
+0 0 0
+tells:
+1697985845 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1698026444 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1698026445 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1698026445 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1698026446 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1698026446 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1698278659 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1698278661 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1698278662 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
+1698278668 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+$
+gossips:
+1698442062 Chinok gossips, 'I can tell you how I got into them... one of my friends told me GIRLS played them'
+1698442071 Chinok gossips, 'who knew they lied'
+1698442158 Discord gossips, 'Daedela: EQ players looking down on Mudders is so pot calling the kettle black xD'
+1698442165 Discord gossips, 'Daedela: I love that haha'
+1698442212 Chinok gossips, 'yeah, there's about 2% I'd guess.. but I got hooked on the games, before I found any girls'
+1698602594 Chogg gossips, 'Is the assist command bugged?  When my tank is fighting something and my priest types assist chogg, it says that he's not fighting anyone, but he is.'
+1698602638 Chinok gossips, 'no one else has complained if it is.'
+1698602675 Discord gossips, 'Daedela: Are you sure you're assisting the right character?'
+1698602716 Chogg gossips, 'That might be the issue.  I started the fight with my rogue.  Do I have to assist him even though my tank joined the fight with a kick?'
+1698887309 Ekon gossips, 'ty'
+$
+mem:
+16 0 7
+16 0 7
+206 0 7
+16 1 7
+16 1 7
+0 0 0

@@ -1,0 +1,74 @@
+name: Renneck
+password: RegdguxpOj
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 2
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19666
+birthtime: 1595609881
+timeplayed: 29
+lastlogintime: 1595609910
+host: 142.177.058.209
+height: 32
+weight: 78
+base_height: 32
+base_weight: 78
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 17
+thirst: 10
+lastlevel: 0
+hitpoints: 24/24
+mana: 0/0
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 78
+intelligence: 86
+wisdom: 100
+dexterity: 69
+constitution: 73
+charisma: 58
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+451 50
+457 50
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+tells:
+$
+gossips:
+$

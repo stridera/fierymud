@@ -1,0 +1,2949 @@
+1
+vnum: 16103
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: ring dull-sandstone-ring sand-stone
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+18 1
+1 3
+5 2
+~
+extradesc: sandstone-ring dull sand-stone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  ~
+triggers:
+5324
+5332
+~
+~~
+vnum: 16103
+location: 2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: ring dull-sandstone-ring sand-stone
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+18 1
+1 3
+5 2
+~
+extradesc: sandstone-ring dull sand-stone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  ~
+triggers:
+5324
+5332
+~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace bat-tooth-necklace sharp teeth
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+extradesc: bat-tooth-necklace sharp teeth
+When examined closely, it is easy to see the necklace was constructed hastily
+with clumsy hands.  The teeth vary in shape and size making you wonder if more
+than bat teeth were used.  Even with all of its flaws, you can tell the
+necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace bat-tooth-necklace sharp teeth
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+extradesc: bat-tooth-necklace sharp teeth
+When examined closely, it is easy to see the necklace was constructed hastily
+with clumsy hands.  The teeth vary in shape and size making you wonder if more
+than bat teeth were used.  Even with all of its flaws, you can tell the
+necklace held some significance to the owner.~
+~~
+vnum: 35003
+location: 5
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: vest raccoon-skin-vest small-pile-fur hide leather
+shortdesc: a raccoon-skin vest
+desc: A small pile of fur lies here.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+14 5
+28 8
+~
+extradesc: vest raccoon-skin-vest small-pile-fur hide leather
+This soft, fur vest has been made from several raccoon skins.  The vest allows
+for easy movement, and it still lends some protection to the wearer.~
+~~
+vnum: 55384
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz befghij
+name: helm trainee-helm magic-power
+shortdesc: a trainee helm
+desc: A helm of slight magic power lies here.
+type: 9
+weight: 4.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+18 1
+13 7
+~
+extradesc: helm trainee-helm magic-power
+Newly forged, this magical metal helm was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 35006
+location: 7
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: leggings golden-fur-leggings pile-golden-fur hide leather
+shortdesc: a pair of golden-fur leggings
+desc: A pile of golden fur has been dropped here.
+type: 9
+weight: 3.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+14 3
+~
+extradesc: leggings golden-fur-leggings pile-golden-fur hide leather
+The leggings are soft and made to fit well around any wearer.  The fur is a
+gentle golden color, and the pair of leggings seems to be made up of many small
+creatures.~
+~~
+vnum: 55388
+location: 8
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz befghij
+name: boots trainee-boots magical-plate-boots magic
+shortdesc: trainee boots
+desc: A pair of slightly magical plate boots lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 10
+13 5
+~
+extradesc: boots trainee-boots magical-plate-boots magic
+Newly forged, these magical metal boots were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 55390
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz befghij
+name: gauntlets trainee-gauntlets magical-gauntlets magic
+shortdesc: trainee gauntlets
+desc: A pair of slightly magical gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+14 5
+13 4
+~
+extradesc: gauntlets trainee-gauntlets magical-gauntlets magic
+Newly forged, these magical metal gauntlets were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 55385
+location: 10
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: mnouvwxyz befghij
+name: vambraces trainee-vambraces magical-plate magic
+shortdesc: trainee vambraces
+desc: A set of somewhat magical plate vambraces lies here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 2
+13 10
+~
+extradesc: vambraces trainee-vambraces magical-plate magic
+Newly forged, these magical metal vambraces were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 16101
+location: 11
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: myz afgh
+name: shield hide-shield camel-hide
+shortdesc: a hide shield
+desc: A shield made of camel hide is on the ground.
+type: 9
+weight: 1.90
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: shield hide-shield camel-hide
+Poorly constructed of rough wood with a thick layer of tightly stretched camel
+hide over it, this shield nevertheless does its job, standing between its
+wearer and attackers.  It appears to have seen quite the history of violence,
+with numerous gashes and dents in the hide, but still holds together somehow.~
+~~
+vnum: 20304
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: cloak zebra-skin-cloak large-striped-cloak hide
+shortdesc: a zebra skin cloak
+desc: A large striped cloak lies in the dust here.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+1 2
+19 1
+~
+extradesc: zebra-skin-cloak large-striped-cloak hide
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.~
+~~
+vnum: 12008
+location: 13
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: baldric emblazoned-baldric large-ornamented-belt leather
+shortdesc: an emblazoned baldric
+desc: A large, ornamented belt lies coiled here.
+type: 9
+weight: 1.25
+cost: 225
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: emblazoned-baldric large-ornamented-belt leather
+This large, wide belt goes around the waist, up over the shoulders, to support
+a sword's sheath.  A lion rampant adorns the front of it, where it goes across
+the stomach.  The baldric seems very old; its owner hasn't taken good care of
+it -- the leather is cracked in places.~
+~~
+vnum: 2023
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet-boar-images boar-bracelet boars questobject
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 8
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+18 2
+19 1
+~
+extradesc: bracelet-boar-images boar-bracelet boars questobject
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it.  You're now quite sure how, or even what exact material the bracelet is
+made of, though you suspect some kind of magically treated boar skin.~
+~~
+vnum: 55389
+location: 15
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz befghij
+name: bracer trainee-bracer magical-plate-bracer magic
+shortdesc: a trainee bracer
+desc: A slightly magical plate bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+6 1
+13 5
+18 1
+~
+extradesc: bracer trainee-bracer magical-plate-bracer magic
+Newly forged, this magical metal bracer was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 16106
+location: 16
+values:
+0
+2
+4
+3
+0
+0
+0
+~
+flags: agmnuvyz acfghij
+name: scimitar gleaming-golden-scimitar gold
+shortdesc: a golden scimitar
+desc: A gleaming golden scimitar lies upon a large rock.
+type: 5
+weight: 2.00
+cost: 1000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 2
+~
+extradesc: scimitar gleaming-golden-scimitar gold
+This weapon seems to be made of pure gold.  It is however extremely light and
+has a very good balance.  ~
+~~
+vnum: 370
+location: 21
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: mnorsuvwyzD abefghij
+name: trophy snake-eyes yellow-orbs black-slit
+shortdesc: snake eyes
+desc: A set of yellow orbs with a black slit in the center rolls on the ground.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+18 1
+28 20
+~
+extradesc: trophy snake-eyes yellow-orbs black-slit
+This small pair of yellow orbs are actually a set of tiny snake eyes, carefully
+preserved in some kind of resin.  They are a brilliant yellow with a vertically
+elliptical pupil in the middle.~
+triggers:
+5318
+324
+~
+~~
+vnum: 46405
+location: 22
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: 0 0
+name: beak hookbill-beak hookbills-beak hook-bill bills sharp
+shortdesc: the hookbill's beak
+desc: The sharp beak of a hookbill lies on the ground here.
+type: 5
+weight: 1.50
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 155649
+hiddenness: 0
+applies:
+6 1
+~
+extradesc: hookbill-beak hookbills-beak hook-bill bills sharp
+The beak of a parrot, this grey hook-shaped bill has razor-sharp edges honed
+daily by its former owner.  Though most birds are not aggressive, only the most
+foolhardy would not look to its own defense.  It looks as if someone has
+drilled two holes in the sides of the beak and run a leather thong through them
+so that you could tie the hookbill onto your head; it might also function well
+as a kind of dagger in hand.~
+~~
+vnum: 20301
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 8
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+1 1
+~
+extradesc: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.~
+~~
+vnum: 20301
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 8
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+1 1
+~
+extradesc: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.~
+~~
+vnum: 55803
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tail deer-tail
+shortdesc: a deer tail
+desc: A deer tail, disattached from its owner, lies here.
+type: 12
+weight: 0.08
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+18 1
+~
+extradesc: deer-tail
+It is a little white deer tail which has little strips of brown down the side.~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 5109
+location: 127
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread heavy-loaf-bread food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bread heavy-loaf-bread food
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.~
+~~
+vnum: 16308
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: cloak wolf-fur-cloak heap
+shortdesc: a wolf fur cloak
+desc: A cloak of wolf fur lies in a heap.
+type: 9
+weight: 5.00
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+5 3
+2 1
+~
+extradesc: wolf-fur-cloak heap
+The fur cloak is not very comfortable to wear but if it can protect you from
+the cold, well, you just aren't complaining.~
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 1803
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe bark-canoe
+shortdesc: a bark canoe
+desc: A bark canoe has been abandoned here.
+type: 22
+weight: 20.00
+cost: 1
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: canoe bark-canoe
+   &0It looks very heavy, but quite sturdy.  &0~
+~~
+vnum: 1621
+location: 127
+values:
+5
+259
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion blue
+shortdesc: a sky-blue potion
+desc: A sky-blue potion lies unused here.
+type: 10
+weight: 0.30
+cost: 100
+timer: 10
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion blue sky
+This potion sparkles with the color of the sky.~
+~~
+vnum: 1603
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: snake meat food
+shortdesc: a small hunk of snake meat
+desc: A small hunk of snake meat begins to rot here.
+type: 19
+weight: 0.50
+cost: 12
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 1603
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: snake meat food
+shortdesc: a small hunk of snake meat
+desc: A small hunk of snake meat begins to rot here.
+type: 19
+weight: 0.50
+cost: 12
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 1603
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: snake meat food
+shortdesc: a small hunk of snake meat
+desc: A small hunk of snake meat begins to rot here.
+type: 19
+weight: 0.50
+cost: 12
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 5311
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: order
+shortdesc: an order for a true fire ring
+desc: An search order for a treasure hunt lays here.
+type: 12
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+5327
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem crushed-malachite
+shortdesc: a crushed malachite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem tourmaline-dust
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem crushed-malachite
+shortdesc: a crushed malachite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55590
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ruby gem crushed-ruby
+shortdesc: a crushed ruby
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem aquamarine-dust
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem tourmaline-dust
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55593
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: emerald gem crushed-emerald
+shortdesc: a crushed emerald
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem crushed-peridot
+shortdesc: a crushed peridot
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-shard
+shortdesc: a citrine shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55601
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem uncut-amethyst
+shortdesc: an uncut amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 35001
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: seeds food
+shortdesc: some seeds
+desc: A small stash of seeds are piled here.
+type: 19
+weight: 0.46
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: seeds food
+A mixed pile of seeds from several different grasses and wildflowers.  They
+seem fresh and should make a tasty snack.    ~
+~~
+vnum: 35001
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: seeds food
+shortdesc: some seeds
+desc: A small stash of seeds are piled here.
+type: 19
+weight: 0.46
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: seeds food
+A mixed pile of seeds from several different grasses and wildflowers.  They
+seem fresh and should make a tasty snack.    ~
+~~
+vnum: 35001
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: seeds food
+shortdesc: some seeds
+desc: A small stash of seeds are piled here.
+type: 19
+weight: 0.46
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: seeds food
+A mixed pile of seeds from several different grasses and wildflowers.  They
+seem fresh and should make a tasty snack.    ~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 58820
+location: 127
+values:
+12
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pouch belt-pouch leather-beltpouch leather-belt-pouch
+shortdesc: a belt pouch
+desc: A leather belt pouch lies here on the ground.
+type: 15
+weight: 0.50
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+17 1
+~
+extradesc: pouch belt-pouch leather-beltpouch leather-belt-pouch
+This leather belt has a cloth pouch attached to it.  The belt's buckle is
+engraved with the insignia of the Ice Warrior Academy near Ickle -- a polar
+bear gripping a green-and-gold banner in its mouth.~
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 12001
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: passionfruit fruit passion purple food
+shortdesc: a passionfruit
+desc: A purple fruit grows in clusters in the trees.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: passion fruit purple
+This fruit is about the size of a plum, with a hard rind that,
+once broken, reveals sweet, nearly alcoholic-tasting orange-pink
+flesh. Though it isn't large, fruit is supposed to be very good
+for growing adventurers, so eat up!~
+~~
+vnum: 12001
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: passionfruit fruit passion purple food
+shortdesc: a passionfruit
+desc: A purple fruit grows in clusters in the trees.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: passion fruit purple
+This fruit is about the size of a plum, with a hard rind that,
+once broken, reveals sweet, nearly alcoholic-tasting orange-pink
+flesh. Though it isn't large, fruit is supposed to be very good
+for growing adventurers, so eat up!~
+~~
+vnum: 61501
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peach plump food
+shortdesc: a plump peach
+desc: A plump, fuzzy peach hangs from a low branch.
+type: 19
+weight: 0.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: peach plump food
+This peach is a little on the small side.  It's rather soft, quite fuzzy, and
+has a large, faint red blotch on one side.  It smells delicious!    ~
+~~
+vnum: 3031
+location: 127
+values:
+1
+250
+170
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 16106
+location: 127
+values:
+0
+2
+4
+3
+0
+0
+0
+~
+flags: agmnuvyz acfghij
+name: scimitar gleaming-golden-scimitar gold
+shortdesc: a golden scimitar
+desc: A gleaming golden scimitar lies upon a large rock.
+type: 5
+weight: 2.00
+cost: 1000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 2
+~
+extradesc: scimitar gleaming-golden-scimitar gold
+This weapon seems to be made of pure gold.  It is however extremely light and
+has a very good balance.  ~
+~~
+vnum: 5206
+location: 127
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.~
+~~
+vnum: 35004
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: earring crow-feather-earring black-feather
+shortdesc: a crow-feather earring
+desc: A black feather rests on the ground.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: earring crow-feather-earring black-feather
+A jet black feather is attatched by leather to a small silver hoop.  The hoop
+itself is tiny, and the feather seems to hang down from it.~
+~~
+vnum: 5102
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring stone-ring small-circular-rock questobject
+shortdesc: a stone ring
+desc: A small circular rock catches your eye.
+adesc:
+stone ring stone-ring~
+type: 12
+weight: 0.04
+cost: 120
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+1 -2
+2 -2
+~
+extradesc: stone-ring small-circular-rock questobject
+It's a circular piece of stone that could probably fit around a small finger.
+It has a strange, unpolished part, though - maybe it was broken off of
+something?~
+~~
+vnum: 55577
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55308
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer rusted-plate-bracer armor
+shortdesc: a rusted plate bracer
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracer rusted-plate-bracer armor
+This bracer is rusted beyond use.  Perhaps the Cleric or Warrior guild master
+will know what to do with it.~
+~~
+vnum: 36100
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace bat-tooth-necklace sharp teeth
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+extradesc: bat-tooth-necklace sharp teeth
+When examined closely, it is easy to see the necklace was constructed hastily
+with clumsy hands.  The teeth vary in shape and size making you wonder if more
+than bat teeth were used.  Even with all of its flaws, you can tell the
+necklace held some significance to the owner.~
+~~
+vnum: 36101
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dmowxyz abefghij
+name: neckguard heavy-rock-neckguard neck-guard tough-stone
+shortdesc: a heavy rock neckguard
+desc: A neckguard constructed of tough stone lies here.
+type: 9
+weight: 4.00
+cost: 250
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+1 2
+~
+extradesc: heavy-rock-neckguard neck-guard tough-stone
+The rock neckguard appears to be chipped and sculpted from a single large
+stone.  Previously constructed for the huge Bozaks, it is almost too large for
+your neck.  The neckguard is sturdy enough to withstand almost any attack.~
+~~
+vnum: 36101
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dmowxyz abefghij
+name: neckguard heavy-rock-neckguard neck-guard tough-stone
+shortdesc: a heavy rock neckguard
+desc: A neckguard constructed of tough stone lies here.
+type: 9
+weight: 4.00
+cost: 250
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+1 2
+~
+extradesc: heavy-rock-neckguard neck-guard tough-stone
+The rock neckguard appears to be chipped and sculpted from a single large
+stone.  Previously constructed for the huge Bozaks, it is almost too large for
+your neck.  The neckguard is sturdy enough to withstand almost any attack.~
+~~
+vnum: 17807
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: feather eagle's-feather eagles-feather pen quill
+shortdesc: an eagle's feather
+desc: An eagle's feather rests on the ground.
+type: 21
+weight: 0.02
+cost: 500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+3 2
+27 1
+~
+extradesc: feather eagle's-feather eagles-feather pen quill
+You sense that there is more to this feather than meets the eye.  Just touching
+it gives you a tingling feeling.~
+~~
+vnum: 18001
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rose red-rose flower
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+hiddenness: 0
+applies:
+13 5
+~
+extradesc: red-rose flower
+The rose's scent fills your nostrils.  You get a feeling of euphoria just by
+touching the flower.~
+~~
+vnum: 18001
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rose red-rose flower
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+hiddenness: 0
+applies:
+13 5
+~
+extradesc: red-rose flower
+The rose's scent fills your nostrils.  You get a feeling of euphoria just by
+touching the flower.~
+~~

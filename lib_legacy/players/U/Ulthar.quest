@@ -1,0 +1,174 @@
+21 1 5
+actor_level 99
+price 46510
+skill_level 550
+word2 weapons
+skill_name piercing
+54 1 2
+actor_level 89
+price 448645
+67 1 2
+cloak 1
+girth 1
+22 1 5
+actor_level 99
+price 14211
+skill_level 800
+word2 piercing
+skill_name maul
+5 1 0
+4 255 1
+oak 1
+29 2 13
+item 1
+south 0
+east 1
+north 1
+west 1
+item5 0
+item3 0
+item4 0
+hexpo 0
+vexpo 0
+item1 1
+goblet 41110
+item2 1
+2 255 3
+reward yes
+chimera dead
+shell 1
+10 255 0
+63 255 1
+step totem
+55 1 3
+baby 4
+path1 1
+rescue 0
+56 9 4
+target3 0
+target2 0
+target1 0
+bounty running
+66 255 0
+19 255 1
+choice 1
+48 7 4
+fire_ring 1
+sash 0
+charles 0
+lashes 0
+65 1 2
+scorpion 1
+lever 1
+32823 255 2
+target 16310
+subclass_name berserker
+18 255 7
+item7 0
+item6 0
+item5 0
+item3 0
+item4 0
+item1 0
+item2 0
+47 1 1
+gem_vnum 0
+17 1 31
+5552_reward 2
+5536_reward 1
+5528_reward 1
+5538_reward 1
+5513_trophies 2
+5551_reward 1
+5532_reward 1
+5534_reward 1
+5550_reward 1
+5530_reward 1
+5554_reward 1
+5516_reward 1
+5526_reward 1
+5549_reward 1
+5524_reward 2
+5522_reward 2
+5548_reward 2
+5511_trophies 9
+5547_reward 1
+5520_reward 3
+5546_reward 1
+5558_reward 3
+5556_reward 1
+5518_reward 1
+5505_trophies 33
+5509_trophies 17
+5507_trophies 33
+5503_trophies 52
+eg_ally 1
+eg_faction 200
+bl_faction 0
+58 1 1
+armor_vnum 0
+64 255 1
+got_cherry 0
+62 8 5
+trophytask3 55729
+trophytask2 0
+trophytask4 0
+trophytask1 1
+attack_counter 0
+61 9 2
+target1 0
+hunt running
+70 8 2
+treasure1 0
+hunt running
+59 8 2
+target1 0
+hunt running
+7 3 42
+55726_gems_acquired 3
+55717_gems_acquired 3
+55710_gems_acquired 3
+55742_gems_acquired 3
+55382_armor_acquired 1
+55378_armor_acquired 1
+55696_gems_acquired 3
+55672_gems_acquired 3
+55686_gems_acquired 3
+55366_armor_acquired 1
+55362_armor_acquired 1
+55358_armor_acquired 1
+55374_armor_acquired 1
+55370_armor_acquired 1
+55665_gems_acquired 3
+55338_armor_acquired 1
+55638_gems_acquired 3
+55619_gems_acquired 3
+55631_gems_acquired 3
+55655_gems_acquired 3
+55346_armor_acquired 1
+55342_armor_acquired 1
+55354_armor_acquired 1
+55350_armor_acquired 1
+55607_gems_acquired 3
+55334_armor_acquired 1
+55595_gems_acquired 3
+55330_armor_acquired 1
+55593_gems_acquired 3
+55589_gems_acquired 3
+55320_armor_acquired 1
+55324_armor_acquired 1
+55581_gems_acquired 3
+55573_gems_acquired 3
+55585_gems_acquired 3
+55569_gems_acquired 3
+55312_armor_acquired 1
+55316_armor_acquired 1
+55577_gems_acquired 3
+55300_armor_acquired 1
+55304_armor_acquired 1
+55308_armor_acquired 1
+45 255 4
+rest complete
+money complete
+loot complete
+fight complete

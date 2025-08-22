@@ -1,0 +1,1247 @@
+1
+vnum: 51073
+location: 0
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag 0
+name: sun miniature-sun ball-bright-light mini
+shortdesc: a Miniature Sun
+desc: A ball of bright light is enclosed in an orb of glass.
+type: 1
+weight: 5.00
+cost: 600
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+26 2
+18 2
+~
+extradesc: sun miniature-sun ball-bright-light mini
+This small ball of light is giving off an immense amount of light.  It is
+enclosed in some type of a glass orb that seems to keep the outside of the ball
+cool to the touch and manageable.  The inside glows like a small sun, radiating
+bright light in all directions.  If you have this item, luck, determination and
+the Gods are with you.~
+~~
+vnum: 30101
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring test-ring testing
+shortdesc: the ring of testing
+desc: A softly glowing ring of white metal sits quietly in the sand.
+type: 8
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: w 0 0
+wear: 3
+hiddenness: 0
+~~
+vnum: 405
+location: 2
+values:
+99
+20
+20
+28
+0
+0
+0
+~
+flags: dehq 0
+name: ring tanle's-ring-pride tanles-ring-pride extremely-valuable-ring-deity
+shortdesc: Tanle's ring of Pride
+desc: An extremely valuable ring of a deity lies here.
+type: 4
+weight: -5.00
+cost: 34975
+timer: 0
+level: 50
+effects: ce 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 100
+17 6
+26 40
+~
+extradesc: ring tanle's-ring-pride tanles-ring-pride extremely-valuable-ring-deity
+This is the ring of a god, granted to one who has shown great courage and
+fortitude in retrieving items of certain value.  The Lord Tanle has, however
+reserved the right to call on the wearer of this ring if and when it suits his
+purpose, or may repossess the ring at any time.  The ring is a slender platinum
+band of rare, incalculable value with a small, pink, white, blue, green, and
+purple stone laid in the top.~
+~~
+vnum: 17212
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: jewel-heart dusty-little-jewel questobject
+shortdesc: the jewel of the heart
+desc: A dusty little jewel lies here.
+type: 8
+weight: 0.20
+cost: 1782
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 20
+~
+extradesc: jewel-heart dusty-little-jewel questobject
+This beautiful little jewel is shaped oddly, and appears to be very valuable to someone at least.~
+triggers:
+16307
+~
+~~
+vnum: 17212
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: jewel-heart dusty-little-jewel questobject
+shortdesc: the jewel of the heart
+desc: A dusty little jewel lies here.
+type: 8
+weight: 0.20
+cost: 1782
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 20
+~
+extradesc: jewel-heart dusty-little-jewel questobject
+This beautiful little jewel is shaped oddly, and appears to be very valuable to someone at least.~
+triggers:
+16307
+~
+~~
+vnum: 55554
+location: 5
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyzD 0
+name: robe-seer enchanted-arcane-robe
+shortdesc: &3&bRobe of the Seer&0
+desc: An extremely enchanted arcane robe is displayed here on a mannequin.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+13 50
+18 1
+28 10
+~
+extradesc: robe-seer enchanted-arcane-robe
+This robe is made not from cloth or silk or any other known fabric, but is made
+from Wyrd Weave, a substance spun from the fabric of magic itself.  Such a robe
+is a vast undertaking to make, requiring the most powerful arcane substances
+and materials known.  Once created and attuned to a wearer, the robe changes to
+match a sorcerer's mood and style, as well as~
+~~
+vnum: 55552
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyz 0
+name: skullcap-seer skull-cap powerful-magic-skullcap
+shortdesc: &3&bSkullcap of the Seer&0
+desc: A powerful magic skullcap lies on the ground, waiting for its owner to return.
+type: 9
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+1 4
+28 60
+~
+extradesc: skullcap-seer skull-cap powerful-magic-skullcap
+Being in the presence of something like this is enough to know that deep arcane
+powers have been placed in this skullcap.  Made from simple cloth and studded
+with small aquamarines, it is not only very beautiful, it is capable of
+handling some of the most powerful enchantments.  This one is dedicated to
+seeing and clarity of vision.~
+~~
+vnum: 55555
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyz 0
+name: leggings-seer enchanted-leggings
+shortdesc: &3&bLeggings of the Seer&0
+desc: Folded neatly in a bag here is a pair of deeply enchanted leggings.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+5 3
+6 3
+18 2
+~
+extradesc: leggings-seer enchanted-leggings
+These long velvet leggings are given to very wise mages to assist in their
+pursuit of magical knowledge.  Usually crafted for a formal dedication
+ceremony, much room for magical development is left with these leggings,
+allowing them to grow with their wearer as a caster's magic grows in power.~
+~~
+vnum: 55556
+location: 8
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyz 0
+name: slippers-seer arcane-symbols
+shortdesc: &3&bSlippers of the Seer&0
+desc: A pair of slippers covered in arcane symbols has been left here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: u 0 0
+wear: 65
+hiddenness: 0
+applies:
+5 2
+6 3
+~
+extradesc: slippers-seer arcane-symbols
+Simple cloth slippers are the basis for these embroidered shoes.  Created
+during a period of intense ritual working, each stitch, each fold, each piece
+of fabric bears a spell or enchantment to protect and fuel a grand wizard.  
+Slippers like these are very powerful, very rare items that should be handled
+with care.~
+~~
+vnum: 55558
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyz 0
+name: gloves seer
+shortdesc: &3&bGloves of the Seer&0
+desc: Gloves adorned with mystical runes lie next to an experiment station here.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+2 3
+13 10
+28 20
+~
+extradesc: gloves seer
+These gloves are used in magical experimentation and during mystic rituals.  
+The runes on each glove represent different spheres of creation, enhancing a
+sorcerer's connection to said powers.  Sewn from simple cloth, then painted and
+decorated with pearls, these gloves are a mark of a very powerful sorcerer.~
+~~
+vnum: 55553
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyz 0
+name: sleeves-seer archmage's-long-elegant-sleeves archemages-long-elegant-sleeves
+shortdesc: &3&bSleeves of the Seer&0
+desc: Some archmage's long, elegant sleeves lie folded on a stand.
+type: 9
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+3 3
+4 3
+13 20
+28 10
+~
+extradesc: sleeves-seer archmage's-long-elegant-sleeves archemages-long-elegant-sleeves
+Made from rich velvet, these sleeves bear the residual magic of many, many
+uses.  Originally crafted for a great archmage and clearly enchanted during
+that process, these sleeves have since taken on addition power from being used
+in numerous arcane rituals.~
+~~
+vnum: 58418
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: wings translucent-faerie-wings questobject
+shortdesc: a pair of translucent faerie wings
+desc: A pair of translucent faerie wings scintillate.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+3 2
+24 -10
+~
+extradesc: wings translucent-faerie-wings questobject
+These wings look so real!  A metallic golden frame supports two somewhat large
+wings made of some kind of silk that stretches to the point of being almost
+transparent.  Some kind of sparkly things are woven into the silk, making the
+wings shimmer as they move.~
+~~
+vnum: 55013
+location: 13
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: bg 0
+name: girth jade-girth crystal-green-girth pile
+shortdesc: a jade girth
+desc: A crystal green girth lies here folded into a pile.
+type: 9
+weight: 2.50
+cost: 5400
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+4 1
+~
+extradesc: girth jade-girth crystal-green-girth pile
+This heavy piece of armor seems to be made of pure green crystal.  It glows
+slightly and is warm to the touch.  Just looking at it makes you feel brave.~
+~~
+vnum: 55557
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyz 0
+name: bracelet-seer pure-arcane-force
+shortdesc: &3&bBracelet of the Seer&0
+desc: A bracelet made of pure arcane force rests amongst the rocks.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+6 3
+5 2
+18 1
+~
+extradesc: bracelet-seer pure-arcane-force
+Forged from solidified magic, this bracelet is the embodiment of true magical
+power.  Iridescent colors glint off the bracelet, which has a soft internal
+glow of its own.  The surface of the bracelet slides and reacts when touched,
+like oil on water, swirling the colors with the movement.~
+~~
+vnum: 16033
+location: 15
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracers charred-bracers black-metal-bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred-bracers black-metal-bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    ~
+~~
+vnum: 905
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abgD 0
+name: spellbook book large tome book-of-healing legendary-large-book
+shortdesc: a legendary large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome book-of-healing legendary-large-book
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.~
+~~
+vnum: 905
+location: 19
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abgD 0
+name: spellbook book large tome book-of-healing legendary-large-book
+shortdesc: a legendary large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome book-of-healing legendary-large-book
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.~
+~~
+vnum: 12550
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 8
+weight: 0.07
+cost: 250
+timer: 1010
+level: 40
+effects: dx 0 0
+wear: 65537
+hiddenness: 0
+applies:
+4 2
+28 150
+~
+~~
+vnum: 571
+location: 23
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang burning-fang-snake fire-fang
+shortdesc: a fire fang
+desc: What looks like a burning fang of a snake lies here.
+type: 8
+weight: 0.20
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+18 2
+19 2
+13 30
+~
+extradesc: fang burning-fang-snake fire-fang
+This looks to be a tiny cloud of flame formed from magic in the shape of
+the fang of a beast of prey.~
+~~
+vnum: 571
+location: 24
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang burning-fang-snake fire-fang
+shortdesc: a fire fang
+desc: What looks like a burning fang of a snake lies here.
+type: 8
+weight: 0.20
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+18 2
+19 2
+13 30
+~
+extradesc: fang burning-fang-snake fire-fang
+This looks to be a tiny cloud of flame formed from magic in the shape of
+the fang of a beast of prey.~
+~~
+vnum: 48104
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: head shrivelled-severed-head-jungle-tribesman
+shortdesc: a shrivelled, severed head
+desc: The shrivelled head of a Jungle tribesman lies here.
+type: 8
+weight: 8.00
+cost: 50
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+3 1
+~
+extradesc: head shrivelled-severed-head-jungle-tribesman
+This grotesque trophy makes you want to puke.  Why would you ever want to look
+at such a thing??~
+~~
+vnum: 55029
+location: 127
+values:
+250
+1
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: 0.00
+cost: 600
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    ~
+~~
+vnum: 11799
+location: -1
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: kD 0
+name: cloud thin-sheet-cloud thin-layer-cloud
+shortdesc: a thin sheet of cloud
+desc: A thin layer of cloud rests upon the ground here.
+type: 9
+weight: 0.01
+cost: 1400
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+1 -2
+6 4
+26 5
+5 -2
+~
+~~
+vnum: 49017
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: shoes feathered-shoes shoes-wings
+shortdesc: a pair of feathered shoes
+desc: A pair of shoes with wings flutter around here!
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 35
+~
+extradesc: shoes feathered-shoes shoes-wings
+These starry blue shoes seem to be alive!  They have wings attached to them and
+make little loopings when they know you're looking at them.~
+~~
+vnum: 4317
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: leggings tight-black-leggings tightly-fitting-black-leggings fabric
+shortdesc: a pair of tight black leggings
+desc: Some tightly fitting black leggings are hung over a chair here.
+adesc:
+Nothing.~
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 2
+6 1
+~
+extradesc: tight-black-leggings tightly-fitting-black-leggings fabric
+These black leggings fit snugly over your legs and lower body.  Though they
+don't give much protection, they do allow for an unrestricted range of motion,
+as well as a sleek look.~
+~~
+vnum: 1154
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: quill feather-quill long-white-feather pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill feather-quill long-white-feather pen
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)~
+triggers:
+51990
+~
+~~
+vnum: 23802
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring ear-ring snowflake-earring snow-flake long-snowflake
+shortdesc: a snowflake earring
+desc: A lone snowflake glimmers on the floor.
+type: 8
+weight: 0.01
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+13 5
+24 -3
+23 -5
+~
+extradesc: earring ear-ring snowflake-earring snow-flake long-snowflake
+It seems to be a snowflake set onto a tiny silver post.  The six-pointed flake
+is cool to the touch, though it does not melt.  Whatever crystal substance it
+is made of catches the light quite well, giving it an ever-present sparkle.  
+Its miniscule arms have hexagonal symmetry, and it is very detailed.~
+~~
+vnum: 23802
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring ear-ring snowflake-earring snow-flake long-snowflake
+shortdesc: a snowflake earring
+desc: A lone snowflake glimmers on the floor.
+type: 8
+weight: 0.01
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+13 5
+24 -3
+23 -5
+~
+extradesc: earring ear-ring snowflake-earring snow-flake long-snowflake
+It seems to be a snowflake set onto a tiny silver post.  The six-pointed flake
+is cool to the touch, though it does not melt.  Whatever crystal substance it
+is made of catches the light quite well, giving it an ever-present sparkle.  
+Its miniscule arms have hexagonal symmetry, and it is very detailed.~
+~~
+vnum: 55363
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: slippers worn-slippers armor
+shortdesc: worn slippers
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: slippers worn-slippers armor
+These slippers are worn beyond use.~
+~~
+vnum: 41120
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring sea's-ring seas-ring clear-blue-ring
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 8
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 30
+~
+extradesc: ring sea's-ring seas-ring clear-blue-ring
+A series of playful dolphins chase each other around the perimeter of the
+sea-blue ring.  It is difficult to determine exactly what the ring is made of
+-- clear, yet neither crystal nor glass.~
+~~
+vnum: 6104
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: mot 0
+name: gauntlets fine-dwarven-steel-gauntlets fine-steel-gauntlets dwarf
+shortdesc: fine dwarven steel gauntlets
+desc: Some fine steel gauntlets lie here.
+type: 9
+weight: 2.70
+cost: 1500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+extradesc: gauntlets fine-dwarven-steel-gauntlets fine-steel-gauntlets dwarf
+Finely articulated, these gauntlets cover the forearm to the back of the
+hand. Each joint is beautifully crafted, each one three parts. They are
+obviously dwarven-made, being embossed and shiny.~
+~~
+vnum: 16033
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracers charred-bracers black-metal-bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred-bracers black-metal-bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    ~
+~~
+vnum: 525
+location: -1
+values:
+90
+20
+20
+42
+0
+0
+0
+~
+flags: abAD 0
+name: pin nexus-cloak-pin blue-white-pin
+shortdesc: the Nexus Cloak Pin
+desc: A blue and white pin is floating just above the ground.
+type: 3
+weight: 0.08
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 540673
+hiddenness: 0
+applies:
+2 3
+5 3
+18 3
+19 3
+~
+extradesc: pin nexus-cloak-pin blue-white-pin
+Only three inches long, this blue and white pin follows a trisecting path
+around itself.  From each of it's three points the pin extends following the
+body of the pin itself tightly.  The pin seems to have something written on it.~
+triggers:
+49299
+18888
+~
+~~
+vnum: 41120
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring sea's-ring seas-ring clear-blue-ring
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 8
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 30
+~
+extradesc: ring sea's-ring seas-ring clear-blue-ring
+A series of playful dolphins chase each other around the perimeter of the
+sea-blue ring.  It is difficult to determine exactly what the ring is made of
+-- clear, yet neither crystal nor glass.~
+~~
+vnum: 582
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aejlAD 0
+name: dragonscale shard-red-dragonscale dragon-scale
+shortdesc: a shard of red dragonscale
+desc: A shard of a red dragonscale lies here, glowing faintly, like an ember.
+type: 8
+weight: 0.50
+cost: 1234567
+timer: 0
+level: 95
+effects: h 0 0
+wear: 524289
+hiddenness: 0
+applies:
+18 2
+19 3
+6 2
+~
+extradesc: shard-red-dragonscale dragon-scale
+Merely a chip off a much larger dragonscale, this shard seems to have retained
+much of the resilience of its previous owner.  Faint ridges run across the
+shard's red surface, swirling and squiggling almost into recognizable images.
+The shard of dragonscale is very warm to the touch, apparently maintaining some
+of the heat from the dragon it once protected.  A tiny clip is attached to the
+back of the shard, allowing it to be fastened to a cloak or tunic.  A small
+dragon claw is etched into the clip.~
+extradesc: claw etching clip
+The dragon claw etching on the clip is minute, half the width of a pinky
+finger, but its detail is exquisite, with every scale on the claw painfully
+chiseled into the metal.  The claw has a burning blue color, its glow somehow
+drawing you in...~
+~~
+vnum: 5201
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx 0
+name: ring glittering-ruby-ring questobject
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 8
+3 4
+4 4
+5 2
+~
+extradesc: ring glittering-ruby-ring questobject
+The ring has been formed of some mysterious reddish metal, the likes of which
+you are unfamiliar with.  A glittering ruby has been set in the ring.~
+~~
+vnum: 12520
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook silver-trimmed-leather-spellbook spell-book
+shortdesc: a silver-trimmed leather spellbook
+desc: A silver-trimmed leather spellbook lies open, face down.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 4
+1 -2
+~
+extradesc: spellbook silver leather book
+The leather is pale grey, very supple, and thin.  The silver trim is painted on
+in long, quick strokes.  No symbols or drawings adorn the spine or cover; only
+faint wrinkles criscross the leather.~
+spells:
+5 1
+20 1
+100 1
+101 1
+19 1
+200 1
+157 1
+158 1
+39 1
+99 1
+31 1
+220 1
+159 1
+26 1
+105 1
+161 1
+50 1
+103 1
+160 1
+102 1
+2 1
+62 1
+67 1
+29 1
+83 1
+162 1
+38 1
+163 1
+68 1
+107 1
+52 1
+170 1
+57 1
+164 1
+165 1
+166 1
+112 1
+113 1
+168 1
+65 1
+167 1
+169 1
+~
+~~

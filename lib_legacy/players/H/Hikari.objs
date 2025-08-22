@@ -1,0 +1,1097 @@
+1
+vnum: 41009
+location: 0
+values:
+0
+400
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: eye jewelled fist-sized-gem fist sized gem jewelled-eye facets
+shortdesc: a jewelled eye
+desc: A fist-sized gem with multiple facets is embedded here.
+type: 1
+weight: 0.50
+cost: 140
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+applies:
+4 2
+28 8
+~
+extradesc: jewelled-eye eye faceted
+This is no natural gem! It's the eye of a Hiver Queen, detached from its
+socket. The many eye facets that once gazed upon the world with ambitious
+lust still gleam faintly in death.
+~
+~~
+vnum: 16907
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring diamond
+shortdesc: a diamond ring
+desc: A sparkling diamond ring catches your eye.
+type: 8
+weight: 0.20
+cost: 320
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 3
+applies:
+6 3
+~
+extradesc: ring diamond
+The diamond sparkles with a merry light, as if it were alive.
+You can't help but admire the skill of the jeweler.
+~
+~~
+vnum: 5520
+location: 3
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: torque eldoria-reward small 3rd-eldorian-guard-torque discarded
+shortdesc: a torque of the 3rd Eldorian Guard
+desc: A small torque lies discarded nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward small 3rd-eldorian-guard-torque discarded
+It's a torque made of twisted metal.  It looks fairly protective.
+~
+~~
+vnum: 5520
+location: 4
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: torque eldoria-reward small 3rd-eldorian-guard-torque discarded
+shortdesc: a torque of the 3rd Eldorian Guard
+desc: A small torque lies discarded nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward small 3rd-eldorian-guard-torque discarded
+It's a torque made of twisted metal.  It looks fairly protective.
+~
+~~
+vnum: 5528
+location: 5
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: jerkin eldoria-reward 3rd-eldorian-guard-leather-jerkin
+shortdesc: a leather jerkin of the 3rd Eldorian Guard
+desc: A leather jerkin lies discaded here.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+13 5
+~
+~~
+vnum: 55391
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: helm acolyte
+shortdesc: an acolyte helm
+desc: A slightly magical thin plate helm lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 17
+applies:
+3 1
+13 5
+~
+extradesc: acolyte helm
+Newly forged, this magical metal helm was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.
+~
+~~
+vnum: 1019
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz 0
+name: leggings leather
+shortdesc: &3a pair of leather leggings&0
+desc: &3A pair of leather leggings lies on the ground here.&0
+type: 9
+weight: 7.30
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+~~
+vnum: 55395
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: boots acolyte
+shortdesc: acolyte boots
+desc: A set of sligtly magical thin metal boots lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 65
+applies:
+14 5
+13 4
+~
+extradesc: acolyte boots
+Newly forged, these magical metal boots were made to reflect your acceptance to
+your god.  Treated well, they will carry you through your beginning trials and
+on to greater wisdom.
+~
+~~
+vnum: 5526
+location: 9
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: gloves eldoria-reward 3rd-eldorian-guard-gloves
+shortdesc: gloves of the 3rd Eldorian Guard
+desc: Some gloves lie discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 129
+applies:
+3 2
+13 5
+~
+~~
+vnum: 12018
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: kmoprswxyzD 0
+name: sleeves sorrow sleeves-sorrow woven bark
+shortdesc: the sleeves of sorrow
+desc: A pair of bark sleeves with woven designs is propped against a tree.
+type: 9
+weight: 3.80
+cost: 900
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 257
+applies:
+4 2
+6 2
+~
+extradesc: sleeves sorrow sleeves-sorrow woven bark
+These sleeves are woven with several kinds of bark: tough bark for protection
+against blows, sinewy for strength, and dense burr-like material to slow
+punctures.  On top of each forearm is the symbol of the Rhell tree: a large
+round flower with milky-white petals.  In addition, a single droplet of fluid
+is just falling from the tip of the lowest petal on each flower.    
+~
+~~
+vnum: 16908
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo 0
+name: shroud
+shortdesc: a shroud
+desc: A transparent shroud is here.
+type: 9
+weight: 5.00
+cost: 30
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 1025
+extradesc: shroud
+The shroud is a near transparent piece of linen which once wrapped a body.
+It is just long enough for you to drape it around yours. But to wear a piece
+of cloth which once adorned a corpse?
+~
+~~
+vnum: 17204
+location: 13
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cord golden
+shortdesc: the golden cord
+desc: A golden cord lies on the ground.
+type: 9
+weight: 0.50
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+applies:
+3 1
+13 -1
+~
+extradesc: cord golden
+You look upon a length of cord made of finely spun gold threads. It seems to
+emanate a strange aura.
+~
+~~
+vnum: 55396
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: bracer acolyte
+shortdesc: an acolyte bracer
+desc: A slightly magical thin metal bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 4097
+applies:
+13 3
+6 1
+~
+extradesc: acolyte bracer
+Newly forged, this magical metal bracer was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.
+~
+~~
+vnum: 1617
+location: 15
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wristband nordus
+shortdesc: the wristband of Nordus
+desc: A wristband, stamped with a city logo, lies here.
+type: 9
+weight: 0.80
+cost: 200
+timer: 20
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+4 1
+3 1
+~
+extradesc: wristband nordus
+This wristband is metal, but somehow slightly stretchy, almost elastic.
+Its finely grained metal is stamped with the outline of a city; it appears
+to be Nordus.
+~
+~~
+vnum: 422
+location: 20
+values:
+40
+20
+20
+5
+0
+0
+0
+~
+flags: E 0
+name: planewalker staff rod
+shortdesc: the planewalker's staff
+desc: A long, slender staff with a golden headpiece floats here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 50
+effects: cdefmn 0 0
+wear: 32769
+applies:
+4 3
+3 3
+18 2
+19 2
+25 1
+~
+~~
+vnum: 5516
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: holy symbol eldoria-reward small white 3rd-eldorian-guard-symbol
+shortdesc: a holy symbol of the 3rd Eldorian Guard
+desc: A small white symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+applies:
+13 30
+14 25
+26 10
+~
+extradesc: holy symbol eldoria-trophy small white 3rd-eldorian-guard-symbol
+A mild feeling of benevolence radiates from this white medal.
+~
+~~
+vnum: 12023
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather kestrel-feather
+shortdesc: a kestrel feather
+desc: A kestrel feather sits on the ground.
+type: 21
+weight: 0.10
+cost: 10
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+applies:
+2 1
+~
+extradesc: feather kestrel-feather
+Black on the top and white spotted with brown on the bottom, this handsome
+kestrel feather must have come from a large member of its species.  It's one of
+the wing feathers and would probably make a fine quill to scribe in a spellbook
+with.
+~
+~~
+vnum: 5105
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: gjmoprt 0
+name: robe grey gray gray-robe grey-robe
+shortdesc: a grey robe
+desc: A grey robe lies crumpled on the ground here.
+type: 9
+weight: 3.40
+cost: 25
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+13 5
+~
+~~
+vnum: 55314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban decayed
+shortdesc: a decayed turban
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 17203
+location: 127
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu 0
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.
+~
+~~
+vnum: 17202
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gnoprtu 0
+name: amulet silver magus
+shortdesc: the Amulet of the Magus
+desc: A silver amulet lies on the ground here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+24 -2
+~
+extradesc: amulet silver
+This amulet is made of pure silver and is decorated by various magical symbols.
+You sense some power in this artifact.
+~
+~~
+vnum: 17213
+location: 127
+values:
+1
+31
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll rough graphed roughly-graphed
+shortdesc: a roughly-graphed scroll
+desc: A crude scroll with heavy graph lines lies here rolled up.
+type: 2
+weight: 1.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: scroll rough graphed roughly-graphed
+This appears to be the work of an apprentice, for crude lines are drawn roughly
+all across its surface.  The somewhat faint silvery lines have a discernable
+metallic gleam.  Most of the lines are drawn in one of two orthogonal
+directions, parallel to one or the other of the mostly rectangular edges of the
+document.  Four other lines drawn at acute angles create a diamond in the
+middle, albeit somewhat distorted.
+~
+~~
+vnum: 17210
+location: 127
+values:
+15
+18
+20
+14
+0
+0
+0
+~
+flags: gD 0
+name: scroll yellowed
+shortdesc: a yellowed scroll
+desc: A scroll lies here.
+type: 2
+weight: 1.00
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: scroll yellowed
+This scroll seems to be very old. The parchment has already been yellowed
+with age.
+~
+~~
+vnum: 55212
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: coracle bowl bowl-shaped watercraft craft
+shortdesc: a coracle
+desc: A small bowl-shaped watercraft is sitting here.
+type: 22
+weight: 15.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: coracle bowl bowl-shaped watercraft craft
+This small watercraft is oval-shaped, with a single small bench in the middle.
+It is constructed of a round frame of branches over which the skins of buffalo
+have been stretched.  It looks like it's limited to a single human-sized
+occupant.  The bottom is stained much darker than the rest, apparently due to
+the body of water in which it has spent much time: Black Lake.    
+~
+~~
+vnum: 49035
+location: 127
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 49035
+location: 127
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55392
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: vambraces acolyte
+shortdesc: acolyte vambraces
+desc: A slightly magical set of thin metal vambraces lies here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+13 5
+~
+extradesc: acolyte vambraces
+Newly forged, these magical metal vambraces were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.
+~
+~~
+vnum: 55397
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: gauntlets acolyte
+shortdesc: acolyte gauntlets
+desc: A slightly magical set of thin plate gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 129
+applies:
+2 1
+13 3
+~
+extradesc: acolyte gauntlets
+Newly forged, these magical metal gauntlets were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.
+~
+~~
+vnum: 5548
+location: 127
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: kowx 0
+name: warhammer eldoria-reward large 3rd-eldorian-guard-warhammer hammer
+shortdesc: a warhammer of the 3rd Eldorian Guard
+desc: A large warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 36011
+location: 127
+values:
+0
+5
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sphere kaaz-sphere-thought orb
+shortdesc: the Kaaz sphere of thought
+desc: An orb floats by you on its trip home.
+type: 8
+weight: 5.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+applies:
+4 1
+~
+extradesc: kaaz-sphere-thought orb
+A sphere of pure crystal with a hint of blue color throughout.  It is warm to
+the touch and covered with odd runes depicting an ancient tale.    
+~
+~~

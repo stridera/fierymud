@@ -1,0 +1,140 @@
+name: Cerim
+password: CeJ4pS49Mr
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 16
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18464
+birthtime: 1363101781
+timeplayed: 112717
+lastlogintime: 1653281388
+host: 172.058.146.197
+height: 48
+weight: 195
+base_height: 48
+base_weight: 195
+base_size: 2
+natural_size: 2
+alignment: -443
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 25
+loadroom: 8323
+lastlevel: 0
+hitpoints: 142/142
+mana: 25/25
+move: 100/100
+damroll: 4
+hitroll: 5
+strength: 81
+intelligence: 94
+wisdom: 94
+dexterity: 84
+constitution: 58
+charisma: 59
+cash: 3 260 826 994
+experience: 897563
+quit_reason: 7
+saveroom: 8323
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 50
+416 50
+423 210
+424 210
+438 114
+443 50
+444 50
+451 140
+457 210
+458 157
+459 50
+460 106
+462 50
+463 200
+466 50
+0 0
+trophy:
+1 8331 1.000000
+1 18551 0.500000
+1 18501 1.500000
+1 18515 0.500000
+1 18519 1.000000
+1 18517 0.500000
+1 18507 1.500000
+1 18510 1.000000
+1 8329 1.000000
+1 8303 1.500000
+1 8302 0.500000
+1 16107 0.500000
+1 2002 0.500000
+1 2001 0.500000
+1 2004 1.500000
+1 2003 2.500000
+1 2005 1.000000
+1 8804 0.500000
+1 8806 0.500000
+1 8800 0.500000
+1 36306 0.500000
+0 0 0
+tells:
+$
+gossips:
+$
+mem:
+88 0 5
+88 0 5
+88 1 5
+1 1 2
+1 1 2
+88 1 5
+12 1 2
+12 1 2
+12 1 2
+1 1 2
+13 1 2
+88 1 5
+88 1 5
+0 0 0
+aliases:
+gcc ge all.coins all.corpse
+re res; med; pra
+ea eat bread; drink water
+df drink water
+who who -w
+armor c 'armor' nuggz
+an ass nuggz
+as ass nuggz
+ww who -w
+gac get all corpse
+x get all
+ac c 'armor'
+fn fol nuggz
+ff fill water fountain
+lic lo in corpse
+hn cast 'cure serious' nuggz
+harm c 'cause light'
+hc c 'cure serious' 
+food c 'create food'
+0

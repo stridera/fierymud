@@ -1,0 +1,981 @@
+#16900
+The Overgrown Path~
+   A cobblestone path leads up to an old, deserted house. All sorts of
+creeping plants and shrubs grow over the walk, giving it a slightly ominous
+look.
+   Windy Way lies to the west.~
+169 0 1
+D1
+~
+~
+0 -1 16901
+D3
+Windy Way lies just west of here.~
+~
+0 -1 3068
+S
+#16901
+House Porch~
+   The floorboards creak as you step up to the door.  Cobwebs of incredible
+size hang above you and vines grow all over this place.  Before you, a solid
+oak door bars your way into the house.    ~
+169 4 1
+D1
+Although the door looks weathered and aged, there it resists your attempts
+to open it for a moment. As you push the door, a horrible squeaking sound
+can be heard, but it could be the rust on the hinges, or is it?~
+door oak~
+1 -1 16906
+D3
+~
+~
+0 -1 16900
+E
+cobwebs~
+The cobwebs looks like it has been here for ages, and its inhabitants seem
+to have become quite robust. Stuck on one of the cobwebs is the carcass of
+a doormouse. It seems to have fallen prey to a spider.~
+S
+#16902
+The Closet~
+   It is dark and dank in this closet.  Tattered garments hang from the
+hangers, it is rather obvious that the former occupants didn't bother to take
+their belongings with them.    ~
+169 8 0
+D2
+A flimsy wooden door is there.~
+door closet~
+1 -1 16906
+S
+#16903
+The Library~
+   Bookshelves line the walls, but the books they once held are now scattered
+all over the ground.  A musty smell permeates the air, making you sneeze.  
+There also seems to be a strange sense of emptiness here.    ~
+169 33554440 0
+D1
+~
+~
+0 -1 16904
+E
+bookshelves book shelves~
+These books are badly damaged. They crumble even as you touch them.
+Some of the bookshelves are also broken, as if someone came around
+and started smashing up the place.~
+S
+T 53455
+#16904
+The Library~
+   Bookshelves line the walls, but the books they once held are now scattered
+all over the ground.  A musty smell permeates the air, making you sneeze.  
+There also seems to be a strange sense of emptiness here.    ~
+169 33554440 0
+D2
+~
+~
+0 -1 16908
+D3
+~
+door oak~
+0 -1 16903
+E
+bookshelves book shelves~
+These books are badly damaged. They crumble even as you touch them.
+Some of the bookshelves are also broken, as if someone came around
+and started smashing up the place.~
+S
+#16905
+Greenhouse~
+   The glass walls of this greenhouse have been mostly broken up.  Shards of
+glass are scattered on the ground.  It's just like a strong force just bashed
+the walls in.  Broken pots and dead saplings lie everywhere.  It is rather
+strange that the saplings haven't decayed yet.  It is just like the damage
+happened only yesterday.    ~
+169 33554440 0
+D2
+~
+~
+0 -1 16909
+S
+#16906
+The Hall~
+   You stand in a very spacious hall which has seen better days.  A long
+corridor leads into the east wing and a dark hallway leads to the south wing.
+A once magnificent staircase leads up to the upper floors of this house.  A
+closet is to the north.    ~
+169 33554440 0
+D0
+A flimsy wooden door is there, and it looks like a closet.~
+door closet~
+1 -1 16902
+D1
+~
+~
+0 -1 16907
+D2
+~
+~
+0 -1 16910
+D3
+~
+door oak~
+1 -1 16901
+D4
+~
+~
+0 -1 16926
+S
+#16907
+Hallway~
+   The hall stretches on to the east, towards what was previously the east
+wing.  Your footsteps echo in this dank, forbidding place, and the shadows seem
+to leap out at you.  Low moaning sounds can be heard coming from the walls.  A
+sinister presence seems to permeate the air.    ~
+169 33554440 0
+D1
+~
+~
+0 -1 16908
+D3
+~
+door oak~
+0 -1 16906
+S
+#16908
+End Of Hallway~
+   You have come to the end of the hallway.  The door leading to the library is
+to the north, but it now hangs on its hinges.  There is a window here, and it
+opens out to the garden.    ~
+169 33554440 0
+D0
+~
+~
+0 -1 16904
+D3
+~
+door oak~
+0 -1 16907
+E
+window~
+The garden is in rather bad shape. Weeds are growing everywhere.
+It seems like nobody has lived here for a very long time.~
+S
+#16909
+Behind The East Wing~
+   You now wander on the ground behind the house's east wing.  The land shows
+traces of being well tended and planted with all sorts of herbs and vegetables.
+But now, the only thing that thrives here are weeds.  A large greenhouse is to
+the north.    ~
+169 0 2
+D0
+~
+~
+0 -1 16905
+D2
+~
+~
+0 -1 16913
+S
+#16910
+Hallway~
+   The hallway stretches southwards into the south wing of the house.  Under
+your feet, you notice that you are walking on what used to be a very high
+quality carpet, but moisture has ruined it.  Its once bright red colour has
+been reduced to a dirty brown.  There is an entrance to the east.    ~
+169 33554440 0
+D0
+~
+door closet~
+0 -1 16906
+D1
+~
+~
+0 -1 16911
+D2
+~
+~
+0 -1 16914
+S
+#16911
+Dining Room~
+   You find that you have ventured into the dining room.  A long table
+dominates this room and a great, crystal chandelier hangs above.  However, it
+has been a very long time since this room was used by people as a thick layer
+of dust has settled on the table.    ~
+169 33554440 0
+D3
+~
+~
+0 -1 16910
+S
+#16912
+The Garden~
+   You cautiously stalk the grounds behind the south wing of the house.  This
+part seems to have been the lawn.  Every once in a while, you trip on a croquet
+hoop.  The remains of deck chairs and tables are scattered on the ground.  
+There is a large well to the east of here.    ~
+169 0 2
+D1
+~
+~
+0 -1 16913
+D2
+~
+~
+0 -1 16916
+E
+hoops hoop croquet~
+The hoops are rusted, metal rings stuck in the ground. Ladies used to have
+parties around these things. It looks like they won't be seeing any more
+parties.~
+S
+#16913
+The Well~
+   A large well dominates this end of the garden.  It is about 10 feet in
+diameter but only about 20 feet deep.  It may have served more as a fish pond,
+as you can see many fish skeletons on the dried out bottom.  To the north, you
+can see a greenhouse.  A little to the south is a gardener's shed.    ~
+169 0 2
+D0
+~
+~
+0 -1 16909
+D2
+~
+~
+0 -1 16917
+D3
+~
+~
+0 -1 16912
+E
+skeleton fish~
+The bones are extremely weather beaten and yellowed. You find it strange
+however that the bones can be seen so obviously from the top of the well.
+Then you realise, the bones seem to be glowing a little.~
+S
+#16914
+End Of Hallway~
+   You have come to the end of the hallway.  The carpet has made way to marble
+but there is still some brownish stuff on the ground.  A door opens out to the
+east.    ~
+169 33554440 0
+D0
+~
+door closet~
+0 -1 16910
+D1
+~
+~
+0 -1 16915
+S
+#16915
+The Kitchen~
+   You find yourself in what used to be the kitchen of this house.  There are
+all sorts of utensils lying around on the ground, but it is all rusty or
+decayed.  Remnants of food can be seen encrusted on the fireplace.  A trapdoor
+leads down into the cellar.  A door opens out to the east into the garden.    ~
+169 33554440 0
+D1
+~
+~
+0 -1 16916
+D3
+~
+~
+0 -1 16914
+D5
+The trapdoor is covered in a fine layer of dust. It seems like
+no one has been down there in a long time.~
+trapdoor door~
+1 -1 16939
+S
+#16916
+The Garden~
+   The garden has not been tended for a very long time.  The grass has grown to
+a height almost up to your waist.  There is a shed at the far east of the
+garden, Way to the north, you can see a greenhouse.    ~
+169 0 2
+D0
+~
+~
+0 -1 16912
+D1
+~
+~
+0 -1 16917
+D2
+~
+~
+0 -1 16921
+D3
+~
+~
+0 -1 16915
+S
+#16917
+The Garden~
+   The dense underbrush makes it rather difficult to walk but somehow you
+manage.  To the north, you can see a large well.  A small, wooden gardener's
+shed is here to the east.  At the south end of the garden there is a large pine
+tree.    ~
+169 0 2
+D0
+~
+~
+0 -1 16913
+D1
+~
+~
+0 -1 16918
+D2
+~
+~
+0 -1 16922
+D3
+~
+~
+0 -1 16916
+S
+#16918
+Gardener's Shed~
+   You dig around the dark and damp shed but there is very little of interest
+or value here.  All the gardening utensils have already decayed and rotted
+away.  The entire structure creaks as you move around.  It probably won't last
+very long.    ~
+169 8 0
+D3
+~
+~
+0 -1 16917
+S
+#16919
+The Garden~
+   You are in the garden behind the south wing of the house.  This marks the
+end of the property.  The only exit is to the east.    ~
+169 0 2
+D1
+~
+~
+0 -1 16920
+S
+#16920
+The Weeping Willow~
+   A large willow tree grows here, next to a dried up artificial lake.  Its
+branches hang close to the ground, bringing about a enclosed and suffocating
+feeling near it.  A hint of sadness can also be felt here, but it is probably
+your imagination.    ~
+169 0 2
+D1
+~
+~
+0 -1 16921
+D3
+~
+~
+0 -1 16919
+E
+lake artificial~
+The lake was probably commissioned by one of the owners of the house who
+probably wanted the view. Years of disuse has clogged up the water inlet
+and the lake has already dried up.~
+S
+#16921
+The Garden~
+   You stand between two large trees in the garden.  There is a pine tree to
+the east and a weeping willow to the west.  The house is towards the north.  ~
+169 0 2
+D0
+~
+~
+0 -1 16916
+D1
+~
+~
+0 -1 16922
+D3
+~
+~
+0 -1 16920
+S
+#16922
+The Pine Tree~
+   A tall pine tree is growing here, just at the edge of the garden.  It's cool
+shade gives a sense of peace to this otherwise forsaken place.    ~
+169 0 2
+D0
+~
+~
+0 -1 16917
+D3
+~
+~
+0 -1 16921
+S
+#16923
+Bedroom~
+   Tattered drapes hang from the windows, their colour long faded.  A large bed
+is in the centre of the room, but the mattress is all moth eaten.  A thick
+layer of dust has settled on the ground.    ~
+169 33554440 0
+D2
+~
+~
+0 -1 16927
+E
+bed~
+The springs are all rusty and jutting out of the mattress, and the quilts
+are all moth eaten. This would not make a good place to sleep in now,
+although it may have once been very comfortable.~
+S
+#16924
+Bedroom~
+   Tattered drapes hang from the windows, their colour long faded.  A large bed
+is in the centre of the room, but the mattress is all moth eaten.  A thick
+layer of dust has settled on the ground.    ~
+169 33554440 0
+D2
+~
+~
+0 -1 16928
+E
+bed~
+The springs are all rusty and jutting out of the mattress, and the quilts
+are all moth eaten. This would not make a good place to sleep in now,
+although it may have once been very comfortable.~
+S
+#16925
+Bedroom~
+   Tattered drapes hang from the windows, their colour long faded.  A large bed
+is in the center of the room, but the mattress is all moth eaten.  A thick
+layer of dust has settled on the ground.    ~
+169 33554440 0
+D2
+~
+~
+0 -1 16929
+E
+bed~
+The springs are all rusty and jutting out of the mattress, and the quilts
+are all moth eaten. This would not make a good place to sleep in now,
+although it may have once been very comfortable.~
+S
+#16926
+Stair Landing~
+   You stand on the ornate stair landing of the house's first floor.  This
+seems to lead to the rooms of the owners and the guests as the furnishing here
+looks relatively better.  A long hallway leads to the east.    ~
+169 33554440 0
+D1
+~
+~
+0 -1 16927
+D5
+~
+~
+0 -1 16906
+S
+#16927
+Hallway~
+   The hallway is in an east-west direction.  There are rooms to the north and
+south.  Faded tapestries and paintings decorate the walls, marble statues line
+the hall, like sentinels of a bygone age.  Your footsteps are muffled here, as
+the carpet is still surprisingly thick.    ~
+169 33554440 0
+D0
+~
+~
+0 -1 16923
+D1
+~
+~
+0 -1 16928
+D2
+~
+~
+0 -1 16930
+D3
+~
+~
+0 -1 16926
+S
+#16928
+Hallway~
+   The hallway continues on to the west and east.  A large door is before you
+to the north.  It was probably a bedroom before the house was abandoned.    ~
+169 33554440 0
+D0
+~
+~
+0 -1 16924
+D1
+~
+~
+0 -1 16929
+D3
+~
+~
+0 -1 16927
+S
+#16929
+Hallway~
+   You are at the eastern end of the hallway.  The hallway continues on to the
+west.  A large door is before you to the north.  It was probably a bedroom
+before the house was abandoned.  There is a rope attached to the ceiling above
+you.    ~
+169 33554440 0
+D0
+~
+~
+0 -1 16925
+D3
+~
+~
+0 -1 16928
+D4
+There is a rope attached to the trapdoor. A slight jerk should
+be able to bring it down.~
+trapdoor door~
+1 -1 16951
+S
+#16930
+Lounge~
+   There are faded paintings hung on the walls of this room, and hunting
+trophies line the wall.  Lounge chairs are arranged all around the room, and
+empty wine bottles sit upon the shelves behind the bar.  A closet is to the
+east, which was once where the owner probably hung his coat.    ~
+169 33554440 0
+D0
+~
+~
+0 -1 16927
+D1
+There is a closet in that direction.~
+door closet~
+1 -1 16931
+S
+#16931
+The Closet~
+   It is dark and dank in this closet.  Tattered garments hang from the
+hangers.  It is rather obvious that the former occupants didn't bother to take
+their belongings with them.~
+169 8 0
+D1
+A small, tilted doorway leads to the east.~
+door doorway tilted~
+1 -1 16950
+D3
+The closet door is in that direction.~
+door closet~
+1 -1 16930
+S
+#16932
+A Soul-less Den~
+   The floor of this iniquitous room is uncomfortably soft and seems to pulsate
+with life.  A warm, viscous liquid drips languidly from the ceiling, splashes
+on your armor, and curdles, producing a most foul stench.  The walls are thick
+and dark, shielding the occupants from the intrusion of light and sound.  
+There are strange machines strewn about in disrepair, and racks containing
+various flasks and test-tubes.  Huge volumes of dark knowledge, barely visible
+in the low light, line the walls.  There is a large desk here with tattered
+scraps of paper scattered all over it.    ~
+169 34603096 0
+D5
+A sliding floor panel offers exit below.~
+~
+0 -1 16950
+E
+desk~
+A large, solid wood desk rests here covered by small scraps of paper.~
+E
+small scraps tattered paper~
+Someone has just shredded some papers here into small pieces.  You attempt to
+piece the scraps back together to create the original message.    ~
+E
+original message~
+   It reads: Fair Maiden, We have tried all that our science and medicine can
+offer, but alas I regret to inform you that your fiance has perished.  We would
+like to convey our most sincere and heartfelt apologies.  With Sympathy, The
+court doctors and scientist of the King.    ~
+S
+#16933
+The Attic~
+   You sneeze involuntarily as your movement stirs up clouds of dust.  
+Extremely large cobwebs hang from the corners of this attic.  Decayed remains
+of boxes and all sorts of junk you'd normally find in an attic litter the
+place.  It would be quite difficult to find anything in this dark and dank
+place.    ~
+169 8 0
+D1
+~
+~
+0 -1 16934
+D2
+~
+~
+0 -1 16936
+S
+#16934
+The Attic~
+   You sneeze involuntarily as your movement stirs up clouds of dust.  
+Extremely large cobwebs hang from the corners of this attic.  Decayed remains
+of boxes and all sorts of junk you'd normally find in an attic litter the
+place.  It would be quite difficult to find anything in this dark and dank
+place.    ~
+169 8 0
+D1
+~
+~
+0 -1 16935
+D2
+~
+~
+0 -1 16937
+D3
+~
+~
+0 -1 16933
+S
+#16935
+The Attic~
+   You sneeze involuntarily as your movement stirs up clouds of dust.  
+Extremely large cobwebs hang from the corners of this attic.  Decayed remains
+of boxes and all sorts of junk you'd normally find in an attic litter the
+place.  It would be quite difficult to find anything in this dark and dank
+place.    ~
+169 8 0
+D1
+~
+~
+0 -1 16951
+D2
+~
+~
+0 -1 16938
+D3
+~
+~
+0 -1 16934
+S
+#16936
+The Attic~
+   You sneeze involuntarily as your movement stirs up clouds of dust.  
+Extremely large cobwebs hang from the corners of this attic.  Decayed remains
+of boxes and all sorts of junk you'd normally find in an attic litter the
+place.  It would be quite difficult to find anything in this dark and dank
+place.    ~
+169 8 0
+D0
+~
+~
+0 -1 16933
+D1
+~
+~
+0 -1 16937
+S
+#16937
+The Attic~
+   You sneeze involuntarily as your movement stirs up clouds of dust.  
+Extremely large cobwebs hang from the corners of this attic.  Decayed remains
+of boxes and all sorts of junk you'd normally find in an attic litter the
+place.  It would be quite difficult to find anything in this dark and dank
+place.    ~
+169 8 0
+D0
+~
+~
+0 -1 16934
+D1
+~
+~
+0 -1 16938
+D3
+~
+~
+0 -1 16936
+S
+#16938
+The Attic~
+   You sneeze involuntarily as your movement stirs up clouds of dust.  
+Extremely large cobwebs hang from the corners of this attic.  Decayed remains
+of boxes and all sorts of junk you'd normally find in an attic litter the
+place.  It would be quite difficult to find anything in this dark and dank
+place.    ~
+169 8 0
+D0
+~
+~
+0 -1 16935
+D3
+~
+~
+0 -1 16937
+S
+#16939
+The Cellar~
+   You are in the cellar of this once great mansion.  Great casks which once
+held stores of wine now lie in decaying heaps on the ground.  The cellar is
+rather large and continues to extend to the east.  A ladder leads up back to
+the kitchen.    ~
+169 8 0
+D1
+~
+~
+0 -1 16940
+D4
+~
+trapdoor door~
+1 -1 16915
+S
+#16940
+The Cellar~
+   You have come to the end of the wine cellar.  As you walked down here, you
+get an eerie feeling which creeps down to your bones.  It's like there is
+something very sinister here.    ~
+169 8 0
+D1
+As you poke and probe in that way, you notice a hairline crack
+in the wall... There is a secret panel here!~
+panel secret~
+1 -1 16941
+D3
+~
+~
+0 -1 16939
+S
+#16941
+Earth Tunnel~
+   You find yourself in a crudely dug tunnel leading northwards.  There is a
+smell of decay here, and you sense great hate in the surroundings.    ~
+169 8 0
+D0
+~
+~
+0 -1 16942
+D1
+After much digging and probing, you discover another secret passage
+in this direction.~
+panel secret~
+1 -1 16944
+D3
+The panel is here, leading back to the cellar.~
+panel secret~
+1 -1 16940
+S
+#16942
+Earth Tunnel~
+   You find yourself in a crudely dug tunnel leading north and south.  There is
+a smell of decay here, and you sense great hate in the surroundings.    ~
+169 8 0
+D0
+~
+~
+0 -1 16943
+D2
+~
+~
+0 -1 16941
+S
+#16943
+Earth Tunnel~
+   You find yourself in a crudely dug tunnel leading south and west.  There is
+a smell of decay here, and you sense great hate in the surroundings.~
+169 8 0
+D2
+~
+~
+0 -1 16942
+D3
+~
+~
+0 -1 16952
+S
+#16944
+The Bone Yard~
+   Before you is a vast graveyard.  Human and animal bones are scattered
+throughout this place.  It would seem that the previous owner was involved in
+some macabre scheme as even to your untrained eye, it is obvious that these
+victims did not die an easy death.    ~
+169 8 0
+D1
+~
+~
+0 -1 16945
+D2
+~
+~
+0 -1 16947
+D3
+~
+panel secret~
+1 -1 16941
+E
+bones bone yard~
+Upon inspection, you discover that the bones shows signs of being gnawed on.
+Whatever ate them seems to have quite large and sharp teeth.~
+S
+#16945
+The Bone Yard~
+   Before you is a vast graveyard.  Human and animal bones are scattered
+throughout this place.  It would seem that the previous owner was involved in
+some macabre scheme as even to your untrained eye, it is obvious that these
+victims did not die an easy death.    ~
+169 8 0
+D1
+~
+panel secret~
+0 -1 16946
+D2
+~
+~
+0 -1 16948
+D3
+~
+panel secret~
+0 -1 16944
+E
+bones bone yard~
+Upon inspection, you discover that the bones shows signs of being gnawed on.
+Whatever ate them seems to have quite large and sharp teeth.~
+S
+#16946
+The Bone Yard~
+   Before you is a vast graveyard.  Human and animal bones are scattered
+throughout this place.  It would seem that the previous owner was involved in
+some macabre scheme as even to your untrained eye, it is obvious that these
+victims did not die an easy death.    ~
+169 8 0
+D2
+~
+~
+0 -1 16949
+D3
+~
+panel secret~
+0 -1 16945
+E
+bones bone yard~
+Upon inspection, you discover that the bones shows signs of being gnawed on.
+Whatever ate them seems to have quite large and sharp teeth.~
+S
+#16947
+The Bone Yard~
+   Before you is a vast graveyard.  Human and animal bones are scattered
+throughout this place.  It would seem that the previous owner was involved in
+some macabre scheme as even to your untrained eye, it is obvious that these
+victims did not die an easy death.    ~
+169 8 0
+D0
+~
+~
+0 -1 16944
+D1
+~
+panel secret~
+0 -1 16948
+E
+bones bone yard~
+Upon inspection, you discover that the bones shows signs of being gnawed on.
+Whatever ate them seems to have quite large and sharp teeth.~
+S
+#16948
+The Bone Yard~
+   Before you is a vast graveyard.  Human and animal bones are scattered
+throughout this place.  It would seem that the previous owner was involved in
+some macabre scheme as even to your untrained eye, it is obvious that these
+victims did not die an easy death.    ~
+169 8 0
+D0
+~
+~
+0 -1 16945
+D1
+~
+panel secret~
+0 -1 16949
+D3
+~
+panel secret~
+0 -1 16947
+E
+bones bone yard~
+Upon inspection, you discover that the bones shows signs of being gnawed on.
+Whatever ate them seems to have quite large and sharp teeth.~
+S
+#16949
+The Bone Yard~
+   Before you is a vast graveyard.  Human and animal bones are scattered
+throughout this place.  It would seem that the previous owner was involved in
+some macabre scheme as even to your untrained eye, it is obvious that these
+victims did not die an easy death.    ~
+169 8 0
+D0
+~
+~
+0 -1 16946
+D3
+~
+panel secret~
+0 -1 16948
+E
+bones bone yard~
+Upon inspection, you discover that the bones shows signs of being gnawed on.
+Whatever ate them seems to have quite large and sharp teeth.~
+S
+#16950
+A Private Study~
+   Marvelous mahogany hardwood floors lie unscuffed and perfectly polished.  A
+faded painting of a man and a pale, blond haired women stare menacingly down.
+A large, oval mirror sits on the west wall, cracked and faded with age.  
+Several small, half bookcases rest along the walls, and a large comfortable
+chaise is in front of a small fireplace.  The logs in the fire place burn
+brightly, illuminating the entire room quite nicely.  All in all this room is
+very comfortable and must have provided a fine refuge from the doldrums of
+everyday existence.    ~
+169 152 0
+D3
+You admire yourself in a large oval mirror.  Dashing!    ~
+mirror large oval-mirror oval~
+1 0 16931
+D4
+~
+~
+1 -1 16932
+E
+oval mirror oval-mirror~
+   A beautiful mirror with fine hand carved wood is here.  It really needs to
+be cleaned, it is covered with fingerprints.    ~
+S
+T 16900
+#16951
+The Alcove~
+   This small area is choked with junk and dust.  It looks to be a small
+extension off a wide-open attic to the west.  There are no windows or doors
+anywhere, except a trapdoor that leads downward.~
+169 8 0
+D3
+~
+~
+0 -1 16935
+D5
+The trapdoor creaks under your weight.~
+trapdoor door~
+1 -1 16929
+S
+#16952
+Earth Tunnel~
+   This is a crude earthen tunnel.  It is directly beneath a building, and in
+fact there is a small opening in the floor above.  Light shines weakly down.  
+The tunnel, which smells of decay, leads east.~
+169 8 0
+D1
+~
+~
+0 -1 16943
+D4
+Light shines through a crack.  Could it be widened?~
+~
+0 -1 16908
+S
+$~

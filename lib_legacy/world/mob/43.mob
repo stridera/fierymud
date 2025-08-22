@@ -1,0 +1,669 @@
+#4300
+young confused player Chad~
+a player~
+A young player is here, looking confused about his identity.~
+Deceptively innocent, this player is trying to figure out who he is.  He
+mutters to himself about his possible choices about giving in to the affections
+of his fellow player.    ~
+8 0 0 E
+5 20 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 1 19 0 0 2
+BareHandAttack: 13
+Str: 78
+Dex: 84
+Int: 76
+Wis: 70
+Con: 76
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4339
+T 4312
+T 4313
+#4301
+Chapman player cute flamboyant~
+a player~
+A wildly flamboyant player parades about, proclaiming his cuteness.~
+This player is very cute, like a puppy or kitten would be, in that way that
+just makes you want to kick him.  He is totally oblivious to anything else,
+living along in the fantasy world in his head.    ~
+8 0 250 E
+5 20 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 1 19 0 0 2
+Str: 90
+Dex: 82
+Int: 72
+Wis: 73
+Con: 76
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4310
+T 4311
+#4302
+nick player flirt~
+a player~
+A player flirts shamelessly with a fellow player.~
+Subtly stroking his long, black hair, this is a player who just doesn't realize
+that the world doesn't revolve around him.  He tries everything he can to get
+people to do what he wants, even if he doesn't always succeed.    ~
+10 0 -150 E
+7 20 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 1 19 0 0 2
+BareHandAttack: 4
+Str: 79
+Dex: 86
+Int: 64
+Wis: 74
+Con: 76
+Cha: 72
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4314
+T 4315
+#4303
+player amy sister badmouth lounging~
+a player~
+A player lounges around, badmouthing her sister.~
+While being outwardly nice, this player is actually quite nasty and
+cold-hearted.  While not realizing that she behaves exactly as her sister does,
+she insults her sibling at every turn.    ~
+8 0 -300 E
+7 20 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 2 19 0 0 2
+BareHandAttack: 9
+Str: 84
+Dex: 91
+Int: 79
+Wis: 62
+Con: 69
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4316
+T 4317
+#4304
+player lena panicked~
+a player~
+A player runs around panicked, shouting orders at people.~
+This girl doesn't quite understand that she doesn't run the show.  Her constant
+shouting and complaining about how no one is doing what they're supposed to be
+doing and how her sister is a demon gets very tiring, very quickly.  You begin
+to wish that someone would shut her up.    ~
+8 0 -250 E
+5 20 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 2 19 0 0 2
+BareHandAttack: 14
+Str: 77
+Dex: 80
+Int: 73
+Wis: 73
+Con: 80
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4318
+T 4319
+T 4320
+#4305
+player karla dance-captain~
+a player~
+The Dance Captain struts about, attracting as much attention as she can.~
+This beautiful woman has true talent but she doesn't know it.  While not a
+leading role in the show, the social world of the troupe revolves entirely
+around her.  Though she seems conceited, you get the impression she's actually
+very sweet at heart.    ~
+8 0 250 E
+8 20 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 2 19 0 0 2
+BareHandAttack: 10
+Str: 78
+Dex: 84
+Int: 77
+Wis: 78
+Con: 72
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4300
+T 4308
+T 4309
+#4306
+player lori timid little mourning~
+a player~
+A timid little player is here, mourning the loss of a boyfriend.~
+A player new to this troupe, this player has lost her boyfriend to another
+player!  She cries occasionally, but angrily picks herself up, knowing that she
+has to dance, and dance PERFECTLY!!  OR ELSE!!    ~
+8 0 100 E
+6 20 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 2 19 0 0 2
+Str: 82
+Dex: 87
+Int: 69
+Wis: 72
+Con: 82
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4321
+T 4322
+#4307
+player kristi melodrama-queen~
+a player~
+The Queen of Melodrama stresses about something unimportant.~
+This player struts about, hand to her forehead, dramatically mourning the world
+and everything that is.  Of course, the fact that she has recently acquired
+someone else's significant other is unimportant at the moment, since the world
+just sucks.    ~
+8 0 -100 E
+6 20 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 2 19 0 0 2
+BareHandAttack: 8
+Str: 76
+Dex: 78
+Int: 72
+Wis: 75
+Con: 79
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4323
+T 4324
+#4308
+rabid scary ceiling-monkey~
+a Ceiling Monkey~
+A scary rabid monkey swings down from the rafters and attacks!~
+This furry creature screams at you as it tries to steal your equipment to add
+to its junk heap.  A little brown monkey, you wonder how it got way up here.  
+The slight glimmer of intelligence in its eye suggests that maybe there is more
+to this creature than meets the eye!    ~
+40 0 0 E
+5 0 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 0 3 14 0 1
+BareHandAttack: 4
+Str: 97
+Dex: 82
+Int: 59
+Wis: 66
+Con: 76
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#4309
+gnome house-gnome scared little creature~
+a House Gnome~
+A scared little creature peeks out to look at you and runs back in to hiding!~
+This little gnome hides behind chairs and set pieces until the lights go out so
+it can build the sets and make repairs.  When it sees you have spotted it, it
+jumps up and hides!    ~
+8 0 0 E
+5 0 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 0 2 2 0 1
+Str: 87
+Dex: 92
+Int: 70
+Wis: 64
+Con: 79
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#4310
+theo little boy tony follower~
+Theo~
+A little boy follows his mother around.~
+A small boy follows his frantic mother around.  He looks very upset, like
+something he wants very badly is being denied to him.    ~
+268435466 0 250 E
+4 0 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 1 24 0 0 1
+Str: 87
+Dex: 80
+Int: 75
+Wis: 75
+Con: 78
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4332
+T 4333
+T 4334
+T 4335
+#4311
+goddess fire-goddess player rachel flame worried~
+the Fire Goddess~
+A player dressed like a brilliant flame is here, looking worried. ~
+A ravishingly beautiful woman with bright blonde hair, pale skin and a gorgeous
+skirt looks for someone.  She carries a torch in one hand, which seems to be
+made of paper and foil, but still gives off light like fire.    ~
+8 0 -250 E
+10 0 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 2 19 0 0 2
+BareHandAttack: 10
+Str: 78
+Dex: 94
+Int: 74
+Wis: 72
+Con: 70
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4338
+T 4336
+T 4337
+T 55694
+#4312
+pippin man chasing dreamer kennan~
+Pippin~
+A man chasing after his dreams rambles about.~
+This man has no idea where he is going, or what he wants to do with his life.
+All he knows is that he is destined for something great and he is determined to
+find it.  A plain man, he is a first-time player who has just received the
+honor of this great role.    ~
+8 0 500 E
+9 0 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 1 19 0 0 2
+Str: 81
+Dex: 90
+Int: 74
+Wis: 72
+Con: 74
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4343
+T 4346
+T 4341
+T 4344
+T 4345
+#4313
+player humble kristen~
+a player~
+A humble player waits for her cue.~
+Humble and kind, this player is a simple woman who doesn't really want anything
+more than to perform.  Much quieter than all her other troupe members, she
+simply gives a polite smile, just being happy to be here.    ~
+8 0 300 E
+6 20 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 2 19 0 0 2
+BareHandAttack: 13
+Str: 82
+Dex: 92
+Int: 80
+Wis: 70
+Con: 82
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#4345
+lewis jon player flamboyant confused~
+Lewis~
+A flamboyant player is here, looking confused. ~
+The very definition of male beauty, this man is just gorgeous.  He obviously
+spends a lot of time working out and playing athletic games, though right now
+something more important seems to be on his mind.    ~
+8 0 -100 E
+8 3 0 0d0+0 0d0+1
+0 0 0 0 0 43
+3 3 1 3 0 0 2
+Str: 89
+Dex: 74
+Int: 68
+Wis: 77
+Con: 79
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4303
+T 4325
+T 4367
+#4351
+catherine woman lauren average ordinary mother~
+Catherine~
+An average, ordinary kind of woman with a kid searches around frantically.~
+Catherine is a simple looking woman, but beautiful in her own, ordinary way.  
+Though she is in costume and ready to go on, she seems to be missing something.
+Not the calmest person in the world, she runs frantically around the theatre
+for whatever it is she needs.    ~
+8 0 300 E
+9 0 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 2 19 0 0 2
+Str: 80
+Dex: 80
+Int: 89
+Wis: 71
+Con: 79
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4301
+T 4329
+T 4330
+T 4331
+T 4340
+#4352
+charlemagne actor enormous john charles~
+Charlemagne~
+An actor of enormous power, dressed as Charlemagne, waits for his cue. ~
+This powerful player has a fierce air about him, strong and violent.  He fits
+the image of Emperor perfectly, looking like he himself has seen a war or two
+in his time.  His beautiful purple cloak accents his rough, masculine features,
+making him almost statuesque.    ~
+8 0 0 E
+10 5 0 0d0+0 0d0+3
+0 0 0 0 0 43
+3 3 1 3 0 0 2
+BareHandAttack: 13
+Str: 92
+Dex: 80
+Int: 64
+Wis: 75
+Con: 78
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4302
+T 4328
+T 4370
+T 55694
+#4353
+fastrada player kat~
+Fastrada~
+The player in the role of Fastrada rests here coolly. ~
+A beautiful but sinister looking woman, this player has really gotten into her
+role.  She knows what she wants and isn't afraid to get it.  The cool feel
+about her makes her even more intimidating than she would be normally.  
+Through the appearance of being and ordinary housewife and mother, it's obvious
+that she is quite capable of taking care of herself.    ~
+8 0 -300 E
+9 0 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 2 19 0 0 2
+BareHandAttack: 8
+Str: 74
+Dex: 89
+Int: 73
+Wis: 76
+Con: 75
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4304
+T 4326
+T 4327
+T 58006
+T 4368
+T 55694
+#4354
+king house-gnome-king leader~
+the House Gnome King~
+The leader of the House Gnomes watches over the theatre.~
+The House Gnome King is the oldest and wisest of the House Gnomes.  He watches
+his people and instructs them on how to do their job, helping as much as
+possible in making sure the theatre runs smoothly.  This theatre is his
+kingdom, where he rules with a watchful eye.    ~
+8 0 250 E
+8 0 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 1 3 2 0 1
+BareHandAttack: 13
+Str: 88
+Dex: 84
+Int: 68
+Wis: 72
+Con: 74
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4305
+T 4307
+T 4306
+T 55695
+#4397
+a new mob~
+the unfinished mob~
+An unfinished mob stands here.~
+It looks unfinished.~
+8 0 0 E
+0 0 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 0 24 17 0 2
+Str: 76
+Dex: 81
+Int: 50
+Wis: 79
+Con: 78
+Cha: 90
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4397
+#4398
+leading-player master leader phil lp2 player2 leading2~
+the Leading Player~
+The Leading Player sits casually at his desk, his legs crossed.~
+This gorgeous man leers at you with an almost demonic grin.  He more than
+enjoys his job; he revels in it.  Not a single thing occurs in the theatre
+without him noticing.  As muscular as he is lithe, he is the perfect embodiment
+of what every performer aspires to be.~
+-2013241318 40 -500 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 43
+1 1 1 19 0 0 2
+Str: 84
+Dex: 97
+Int: 58
+Wis: 78
+Con: 75
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4363
+T 4355
+T 4356
+T 4357
+T 4358
+T 4359
+T 4361
+T 4362
+T 4353
+#4399
+player leading leading-player master leader phil~
+the Leading Player~
+The Leading Player, leader of the troupe and master of this theatre, stands before you.~
+This gorgeous man leers at you with an almost demonic grin.  He more than
+enjoys his job; he revels in it.  Not a single thing occurs in the theatre
+without him noticing.  As muscular as he is lithe, he is the perfect embodiment
+of what every performer aspires to be.    ~
+10 0 -1000 E
+10 20 0 0d0+0 0d0+0
+0 0 0 0 0 43
+3 3 1 19 0 0 2
+BareHandAttack: 10
+Str: 74
+Dex: 91
+Int: 78
+Wis: 76
+Con: 75
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4348
+T 4349
+T 4350
+T 4351
+T 4352
+T 4364
+T 4354
+T 4366
+T 55695
+T 5346
+$

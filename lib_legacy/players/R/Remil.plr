@@ -1,0 +1,113 @@
+name: Remil
+password: ReUpvszoRK
+prompt: &0Tank:%t%-%-%-%-Mob:%o&0%_&0&5&b%n&0%-%-&2&b<&0&1%hh&0(&1&b%HH&0)%-%-&2%vmv&0(&2&b%Vmv&0)&0%-%-&6&bAlign:%a%_&0&*&bFirst Aid Timer:%df%_&0&8&bChant:%dc%_%&0&8&b%l
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20220
+birthtime: 1649715790
+timeplayed: 159989
+lastlogintime: 1650657182
+host: 107.139.176.194
+height: 69
+weight: 124
+base_height: 69
+base_weight: 124
+base_size: 2
+natural_size: 2
+alignment: -255
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 30
+loadroom: 3054
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 186/186
+mana: 16/16
+move: 62/120
+damroll: 3
+hitroll: 3
+strength: 81
+intelligence: 67
+wisdom: 89
+dexterity: 86
+constitution: 89
+charisma: 56
+cash: 21 244 937 1083
+experience: 593959
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 110
+415 50
+416 50
+421 153
+430 50
+438 57
+443 50
+444 60
+463 50
+464 50
+465 180
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18510 0.600000
+1 18507 5.799999
+1 18514 1.000000
+1 18505 1.200000
+1 4309 0.200000
+1 4306 0.200000
+1 4351 0.200000
+1 4310 0.200000
+1 4307 0.200000
+1 55700 0.200000
+1 18509 0.250000
+1 18007 1.050000
+1 18006 0.400000
+1 18511 0.600000
+1 41004 0.200000
+1 41001 0.400000
+1 41003 0.400000
+1 41013 0.400000
+1 18501 0.600000
+1 18506 3.200000
+1 18508 4.449999
+0 0 0
+tells:
+1650241591 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1650241592 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1650241592 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1650241592 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1650241593 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1650241593 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1650241593 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1650241594 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1650241594 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1650241594 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+$
+gossips:
+1650656838 Tarnoth gossips, 'Grats!'
+1650656841 Catan gossips, 'ty'
+1650656853 Leddie gossips, '""'
+1650656891 Aaver gossips, 'how are you liking the dragons?'
+1650656935 Leddie gossips, 'i like them well enough but not in love with this group i wanted to mirror my pal sorc monk and druid group'
+1650656967 Leddie gossips, 'but its not working very well'
+1650657015 Aaver gossips, 'that sucks what is worse about this group?'
+1650657054 Leddie gossips, 'healing i think is my biggest problem'
+1650657093 Aaver gossips, 'yeah need a healler at least until level 40 :D'
+1650657094 Leddie gossips, 'for now i'm getting less damage from swaping druid for warrior but i didn't want to deal with the alimnment'
+1650657152 Aaver gossips, 'that is my farvorite thing about antis '
+$

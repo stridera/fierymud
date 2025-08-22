@@ -1,0 +1,89 @@
+name: Salazaar
+password: Sak5kiJ2WS
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 10
+home: 3038
+lifeforce: 0
+composition: 0
+id: 16957
+birthtime: 1211052927
+timeplayed: 388549
+lastlogintime: 1596945256
+host: 067.169.198.171
+height: 35
+weight: 160
+base_height: 35
+base_weight: 160
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 2
+thirst: 4
+lastlevel: 0
+hitpoints: 119/119
+mana: 1/0
+move: 116/116
+damroll: 3
+hitroll: 6
+strength: 93
+intelligence: 54
+wisdom: 66
+dexterity: 100
+constitution: 91
+charisma: 67
+cash: 1 104 347 236
+experience: 264170
+quit_reason: 1
+saveroom: 3054
+skills:
+401 51
+403 52
+405 116
+408 50
+415 50
+416 50
+421 62
+438 50
+443 50
+444 50
+464 96
+465 50
+467 50
+0 0
+trophy:
+1 8015 1.500000
+1 8002 0.500000
+1 8001 0.500000
+1 8016 0.500000
+1 8010 0.500000
+1 8012 2.000000
+1 8011 1.500000
+1 8013 0.500000
+1 35002 0.500000
+1 35001 0.500000
+1 35026 0.500000
+1 35003 0.500000
+1 35007 0.500000
+1 35008 0.500000
+1 35014 1.000000
+1 35021 2.000000
+1 35023 2.000000
+1 6031 0.500000
+1 3062 0.500000
+1 6119 1.000000
+1 55700 2.000000
+0 0 0
+tells:
+$
+gossips:
+$

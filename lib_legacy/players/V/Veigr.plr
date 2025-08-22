@@ -1,0 +1,86 @@
+name: Veigr
+password: VeueCs5dwy
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19502
+birthtime: 1578107209
+timeplayed: 5318
+lastlogintime: 1578112528
+host: 046.132.094.058
+height: 86
+weight: 204
+base_height: 86
+base_weight: 204
+base_size: 3
+natural_size: 3
+alignment: 32
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 61/55
+mana: 0/0
+move: 158/158
+damroll: 5
+hitroll: 4
+strength: 91
+intelligence: 64
+wisdom: 78
+dexterity: 92
+constitution: 90
+charisma: 60
+cash: 0 1 8 9
+experience: 18150
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 52
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 52
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 16901 1.000000
+1 16902 1.000000
+1 16906 5.000000
+1 16900 8.000000
+1 16908 9.000000
+0 0 0
+tells:
+1578108064 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1578108362 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1578109919 Dakhod gossips, 'yarr'
+1578110092 Dakhod gossips, 'hey there'
+1578110096 Dakhod gossips, 'hows it going'
+1578110678 Dakhod gossips, 'yeah i still have nostalgia for these games lol'
+1578110690 Dakhod gossips, 'i have a mud client on my cell phone'
+1578110710 Dakhod gossips, 'that is how i am playing now...like typing text messages real slow lol'
+1578110737 Dakhod gossips, 'i started playing this game around 95-96'
+1578110774 Dakhod gossips, 'usually will pop in for at least a few minutes'
+1578110964 Dakhod gossips, 'yeah kids these days definitely do not lol'
+1578111783 Dakhod gossips, 'well i am starting to fall asleep, be back later'
+$

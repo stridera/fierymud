@@ -1,0 +1,1901 @@
+#18500
+Dusty Path~
+   The gatehouse to a large, highly decorated monastery lies west along this
+path.  The is a small building which appears to have been tacked onto the main
+abbey complex just south of here, while there are fields distantly east.    
+~
+185 64 2
+D1
+~
+~
+0 -1 2002
+D2
+~
+~
+0 -1 18504
+D3
+~
+~
+0 -1 18501
+S
+#18501
+Outside the Gatehouse~
+   The gatehouse to the monastery of the Brotherhood of Tisus the Benevolent.
+There are heavy wooden doors leading within to the south, into the eroding
+marble building.  The wrath of the elements has taken its toll on the building,
+especially the brutal winds that sweep passed here from the fields to the east.
+~
+185 0 2
+D1
+~
+~
+0 -1 18500
+D2
+The heavy wooden doors are badly scarred, as if it had at one time been the
+subject of an assault. But in spite of that, it is still very sturdy.
+~
+door wooden~
+1 -1 18505
+S
+#18502
+The Sacristy~
+   The sacrist does not seem to be here at the moment, though he left the tools
+of his trade behind.  A large book has been placed on his desk, documenting the
+many funerals that have taken place here over the years.  To the east is the
+main, common area of the church.    
+~
+185 136 0
+D1
+~
+~
+0 -1 18508
+S
+#18503
+The Cemetery~
+   Large marble tombstones lie in neat rows through this cemetery.  It is
+utterly silent.  The grass is short and trimmed, the spaces between each stone
+is perfectly suited for even the tallest of individuals.  The cemetery
+continues on to the south.    
+~
+185 0 2
+D2
+~
+~
+0 -1 18509
+S
+#18504
+The Almonry~
+   This particular almonry is in poor condition and the thick dust could make
+breathing difficult for some.  Jars line the shelves around the room filled
+graciously by the monks of the abbey with grains and sugar to be given to weary
+travellers as alms.  The almonry is so small that there only seems to be a lone
+exit, to the north.    
+~
+185 8 0
+D0
+~
+~
+0 -1 18500
+S
+#18505
+Abbey Gatehouse~
+   The gatehouse of the abbey seems well fitted to stand up to any assualt that
+any barbarians might launch.  Only a powerful assualt by a large force could
+break through the incredibly thick walls of the gatehouse.  The elements of the
+world swirl around through the thick oak doors to the north or through to the
+south into the insides of the abbey itself.    
+~
+185 8 0
+D0
+The wooden doors look quite sturdy from this side of the wall.
+The monks seem to take quite good care of it.
+~
+door wooden~
+1 -1 18501
+D2
+~
+gate wooden~
+0 -1 18511
+S
+#18506
+Stables~
+   The stench of stabled animals is nearly overwhelming.  There are large bales
+of hay stacked in a corner, and would be rather warm and inviting to rest in,
+if it were possible to overcome the rank odor.  There are pack animals and fine
+beasts of burden here awaiting the return of their masters from the south.    
+~
+185 8 0
+D2
+~
+~
+0 -1 18598
+S
+#18507
+The Bell Tower~
+   Just below is the inside of the church, which is what this large bell calls
+people to.  It would appear that the sound which would come from such a large
+bell could be heard for miles in all directions.  The vantage point that this
+tower provides gives an open view of much of the surrounding countryside.    
+~
+185 8 0
+D5
+~
+~
+0 -1 18508
+S
+#18508
+The Altar~
+   Of any church around this is possibly the most delicate and also most
+beautiful.  The decorations are stunning, and they are wonderfully highlighted
+by the soft glow of candle light around the room.  The alter has been moved to
+a position on the west side of the large, open room, facing the door way.  
+Next to the alter is a passage leading to an ajoining room.  East there are the
+doors to the church leading to the outside and less beautiful surroundings.  
+~
+185 8 0
+D1
+~
+~
+0 -1 18515
+D3
+~
+~
+0 -1 18502
+D4
+~
+~
+0 -1 18507
+E
+altar~
+A large marble edifice of the patron saint of this monastery is placed
+at the centre of the altar. He has a kindly and wise face, and he holds
+a large tome in his hand.
+~
+S
+#18509
+The Cemetery~
+   Large marble tombstones lie in neat rows through this cemetery.  It is
+utterly silent.  The grass is short and trimmed, the spaces between each stone
+is perfectly suited for even the tallest of individuals.  There is a small path
+east leading away from this place back towards the main abbey grounds.    
+~
+185 0 2
+D0
+~
+~
+0 -1 18503
+D1
+~
+~
+0 -1 18510
+S
+#18510
+Worn Path~
+   There are many small trees lining this small, worn dirt path towards the
+west to the cemetery.  Further south is the covered walkway with a number of
+monks working.    
+~
+185 4 1
+D2
+~
+~
+0 -1 18517
+D3
+~
+~
+0 -1 18509
+S
+#18511
+Outer Courtyard~
+   The outer courtyard of this abbey is rather well maintained, even though
+open to the elements.  The brick that line the walk ways have only just begun
+to crumble, making it pretty easy to walk on.  There is the large gatehouse to
+the north, or the path continues on to the guest chambers passed the remainder
+of the courtyard east.    
+~
+185 0 1
+D0
+~
+gate wooden~
+0 -1 18505
+D1
+~
+~
+0 -1 18512
+S
+#18512
+Outer Courtyard~
+   Directly east is the abbey's guest house.  The eastern part of the outer
+courtyard is in just as good of shape as the section of courtyard to the west
+of here.  Just south is a trite little archaic archway leading to the interior
+of the abbey.    
+~
+185 0 1
+D1
+~
+~
+0 -1 18598
+D2
+~
+~
+0 -1 18519
+D3
+~
+~
+0 -1 18511
+S
+#18513
+Guest House~
+   The monks of this abbey take wonderful care of their guests, as is noticable
+in these guest quarters.  There are dazzling decorations about the room and a
+hot sparkling fire in the fireplace.  There is an elegant circular staircase in
+the corner leading up to the sleeping chambers, or the exit back towards the
+abbey west through a door that is probably never closed.    
+~
+185 8 0
+D3
+~
+~
+0 -1 18598
+D4
+~
+~
+0 -1 18514
+E
+fireplace fire~
+You can't resist the temptation to warm your hands on the fire.
+It feels good as the warmth creeps up your hand.
+~
+S
+#18514
+Guest Chambers~
+   There are many beautiful aspects to this bed chamber.  The monks certainly
+have all the amenities that a king might expect available for their visitors.
+A large bed draped in scarlet sheets is against the north wall.  The four
+corner posts are connected to each other with translucent silk drapes.  The
+room is in immaculate condition, much like the rest of the abbey.
+~
+185 8 0
+D5
+~
+~
+0 -1 18513
+S
+#18515
+Church Entrance~
+   There is a magnificent building looming ahead.  It has graceful buttresses
+and its beautiful stained glass windows are a sight to behold.  The covered
+walkway extends to the east, and the church stands to the west.    
+~
+185 0 1
+D1
+~
+~
+0 -1 18523
+D3
+~
+~
+0 -1 18508
+S
+#18516
+Chapter House~
+   This room is large, with a high vaulted, spacious feeling.  There is a large
+circular table in the center, dominating the room.  Lined on the walls there
+are rows and rows of books and other documents, making this a room filled with
+a wealth of knowledge.  South is the covered walkway.    
+~
+185 8 0
+D2
+~
+~
+0 -1 18524
+S
+#18517
+Worn Path~
+   There are many small trees lining this small, worn dirt path towards the
+north to the cemetery.  Just south is the covered walkway with a number of
+monks working.    
+~
+185 0 1
+D0
+~
+gate wooden~
+0 -1 18510
+D2
+~
+~
+0 -1 18525
+S
+#18518
+The Abbot's Lodgings~
+   This is a quaint little cottage which houses the abbot.  The single large
+room that is obvious is well furnished compared to the rest of the housings
+around the abbey.  There are books lining the shelves all around, with a large
+writing desk under the window looking back south onto a small path and the
+inner courtyard.    
+~
+185 8 0
+D2
+~
+~
+0 -1 18526
+E
+desk~
+Arranged on the desk are stacks of sealed letters. It seems like this
+abbey gets quite a lot of correspondence.
+~
+S
+#18519
+Arched Pathway~
+   A simple, yet quite old archway connects the outer courtyard to the inner
+courtyard.  There once was a gate stretched between the two, but is has long
+been removed, though there are still traces of where it once had been on the
+northern side near the outer courtyard.    
+~
+185 0 1
+D0
+~
+gate wooden~
+0 -1 18512
+D2
+~
+~
+0 -1 18527
+E
+words word~
+The words upon the arch reads:
+
+                     Fiat Justitia, ruat coelum
+~
+S
+#18520
+The Kitchen~
+   The floor of this kitchen seems particularly worn down, almost as if it were
+a high traffic area.  There are loaves of fresh bread on the shelves above, and
+boiling pots of other assorted foods over the flames.  East there is a deep,
+baritone voice moving through the air mixing in well with the sounds of the
+kitchen.    
+~
+185 8 0
+D1
+~
+~
+0 -1 18521
+D2
+~
+door~
+1 -1 18528
+E
+bread loaves loaf~
+The bread smells delicious, but it is too far for you to grab hold of.
+~
+E
+gruel pot~
+You dip your finger in the pot and get a taste. It tastes quite okay, but
+you realise that it isn't something that would exactly tantalise the taste
+buds.
+~
+S
+#18521
+The Refectory~
+   There are long rows of tables and benches extending the width of this room.
+There is a monk at the pulpit just to the south.  Reciting words from a large,
+worn down text.  Compared to the ruckus of the kitchen west, the atmosphere
+here is very tame and solemn.    
+~
+185 12 0
+D2
+~
+~
+0 -1 18529
+D3
+~
+~
+0 -1 18520
+S
+#18522
+The Dormitory~
+   Simple beds with thin mattresses are arranged along the walls.  There seems
+to be a constant draft in here, but there is no sign of blankets on any of the
+beds.  It would seem that these monks take their vows very seriously.    
+~
+185 8 0
+D2
+~
+~
+0 -1 18523
+S
+#18523
+Covered Walkway~
+   This is a small square-shaped, covered walkway surrounding a green lawn.  
+Around the outer portions of the square there are small work benches and
+stools.  The walkway continues east and south, with church west and some
+dormitories north.    
+~
+185 8 0
+D0
+~
+gate wooden~
+0 -1 18522
+D1
+~
+~
+0 -1 18524
+D2
+~
+~
+0 -1 18531
+D3
+~
+~
+0 -1 18515
+S
+#18524
+Covered Walkway~
+   This is a small square-shaped, covered walkway surrounding a green lawn.  
+Around the outer portions of the square there are small work benches and
+stools.  The walkway continues east and west.  The chapel is to the north and
+there is a small patch of lawn south.    
+~
+185 8 0
+D0
+~
+gate wooden~
+0 -1 18516
+D1
+~
+~
+0 -1 18525
+D2
+~
+~
+0 -1 18532
+D3
+~
+~
+0 -1 18523
+S
+#18525
+Covered Walkway~
+   This is a small square-shaped, covered walkway surrounding a green lawn.  
+Around the outer portions of the square there are small work benches and
+stools.  The walkway continues west and south, and a small dirt path is north
+of here.    
+~
+185 8 0
+D0
+~
+gate wooden~
+0 -1 18517
+D1
+~
+~
+0 -1 18526
+D2
+~
+~
+0 -1 18533
+D3
+~
+~
+0 -1 18524
+S
+#18526
+Quiet Path~
+   This is a small little serene path leading east and west between the inner
+courtyard and a longer covered walkway.  The is a small cottage north that
+seems elegant in its simplicity.  South there is a strong aroma of freshly
+baked bread wafting in this direction.    
+~
+185 0 1
+D0
+~
+gate wooden~
+0 -1 18518
+D1
+~
+~
+0 -1 18527
+D2
+~
+~
+0 -1 18534
+D3
+~
+~
+0 -1 18525
+S
+#18527
+Inner Courtyard~
+   There is a relaxed sense of tranquillity here.  Unlike the more noisy and
+active outer courtyard, it is quite docile here among the various buildings of
+the abbey.  There are small paths leading off west and south, while the
+courtyard itself continues east.  There is also a way back towards the outer
+courtyard to the north.    
+~
+185 0 1
+D0
+~
+gate wooden~
+0 -1 18519
+D1
+~
+~
+0 -1 18528
+D2
+~
+~
+0 -1 18535
+D3
+~
+~
+0 -1 18526
+S
+#18528
+Inner Courtyard~
+   There is a delicious smell wafting in from the north.  It is an unusual mix
+of roasting fire and cooking that infiltrates the senses.  The courtyard moves
+off back to the west, or there is what definately does smell like a kitchen
+north.    
+~
+185 0 1
+D0
+~
+door~
+1 -1 18520
+D3
+~
+~
+0 -1 18527
+S
+#18529
+The Pulpit~
+   From this pulpit a man lectures at his fellow monks as they dine.  It is
+practice for them to all reaffirm their faith and beliefs at each meal, while
+also being reminded of their duties for good and order and helping those in
+need.    
+~
+185 136 0
+D0
+~
+~
+0 -1 18521
+S
+#18530
+The Infirmary~
+   There are beds arranged in neat rows along the side walls.  Beside each bed
+there is a small jug for water for the patients.  There is a strongly pungent
+odor of some kind of herbal mixture floating around the room.  East is the
+covered walkway and healthy monks working on various projects.    
+~
+185 8 0
+D1
+~
+~
+0 -1 18531
+S
+#18531
+Covered Walkway~
+   This is a small square-shaped, covered walkway surrounding a green lawn.  
+Around the outer portions of the square there are small work benches and
+stools.  The walkway continues north and south, with a small patch of lawn east
+and the abbey's infirmary to the west.    
+~
+185 8 0
+D0
+~
+gate wooden~
+0 -1 18523
+D1
+~
+~
+0 -1 18532
+D2
+~
+~
+0 -1 18537
+D3
+~
+~
+0 -1 18530
+S
+#18532
+The Lawn~
+   This is a small bit of lawn surrounded on all sides by a quiet covered path.
+The grass is green, and probably is year round.  There are monks all about
+working on their tasks.    
+~
+185 20 2
+D0
+~
+gate wooden~
+0 -1 18524
+D1
+~
+~
+0 -1 18533
+D2
+~
+~
+0 -1 18538
+D3
+~
+~
+0 -1 18531
+S
+#18533
+Covered Walkway~
+   This is a small square-shaped, covered walkway surrounding a green lawn.  
+Around the outer portions of the square there are small work benches and
+stools.  The walkway continues north and south, and the small patch of lawn is
+west.    
+~
+185 8 0
+D0
+~
+gate wooden~
+0 -1 18525
+D2
+~
+~
+0 -1 18539
+D3
+~
+~
+0 -1 18532
+S
+#18534
+The Bakehouse~
+   There is quite a large number of baked goods lining the shelves around.  In
+the center of the room is the dominatingly large oven.  The bakers have
+apperently taken making their bread to a new level as the smell is wonderful,
+extending out onto the quiet path north and further beyond that.    
+~
+185 8 0
+D0
+~
+gate wooden~
+0 -1 18526
+E
+bread~
+Well, it's bread. What do you expect it to look like?
+~
+S
+#18535
+Shaded Path~
+   This nice shady path is quiet and relaxing.  The Prior's residence is
+directly east of this spot, while north is the inner courtyard and south the
+Shaded Path continues.  The trees on either side of this walk way really add to
+the feeling of serenity.    
+~
+185 0 1
+D0
+~
+gate wooden~
+0 -1 18527
+D1
+~
+~
+0 -1 18536
+D2
+~
+~
+0 -1 18541
+S
+#18536
+Prior's Lodgings~
+   The abbey's prior resides within this room.  The entire room is neat and
+spaciously decorated.  There are a few small stacks of books and various
+documents on the desk in perfectly aligned piles.  There is but one exit from
+these lodgings to the west.    
+~
+185 8 0
+D3
+~
+~
+0 -1 18535
+S
+#18537
+Covered Walkway~
+   This is a small square-shaped, covered walkway surrounding a green lawn.  
+Around the outer portions of the square there are small work benches and
+stools.  The walkway continues north and east from here.    
+~
+185 8 0
+D0
+~
+gate wooden~
+0 -1 18531
+D1
+~
+~
+0 -1 18538
+S
+#18538
+Covered Walkway~
+   This is a small square-shaped, covered walkway surrounding a green lawn.  
+Around the outer portions of the square there are small work benches and
+stools.  The walkway continues east and west, with a small patch of lawn north.
+~
+185 8 0
+D0
+~
+gate wooden~
+0 -1 18532
+D1
+~
+~
+0 -1 18539
+D3
+~
+~
+0 -1 18537
+S
+#18539
+Covered Walkway~
+   This is a small square-shaped, covered walkway surrounding a green lawn.  
+Around the outer portions of the square there are small work benches and
+stools.  The walkway continues west and north, and just south is a small path
+to a garden.    
+~
+185 8 0
+D0
+~
+gate wooden~
+0 -1 18533
+D2
+~
+~
+0 -1 18545
+D3
+~
+~
+0 -1 18538
+S
+#18540
+The Mill~
+   Everything that would be needed to make bread is in this building.  There
+are huge stacks of grain on one wall, and some already crushed flour on
+another.  There is machinery, the center piece of which is a large grinding
+stone, lining the back wall causing quite a bit of noise.  The only exit from
+the facility is back to the east through some trees.    
+~
+185 8 0
+D1
+~
+~
+0 -1 18541
+E
+gears gear~
+The array of machinery and gears are beyond your ability to understand.
+But you can see that it is quite efficient at grinding the grain.
+~
+S
+#18541
+Shaded Path~
+   The trees planted on either side of this path almost obscure the two
+buildings on either side.  There is a grinding sound emanating from the west
+with a light clunking sound from the east.  Otherwise, this path continues to a
+small bridge south and on to the north.    
+~
+185 0 1
+D0
+~
+gate wooden~
+0 -1 18535
+D1
+~
+~
+0 -1 18542
+D2
+~
+~
+0 0 18550
+D3
+The building has a large waterwheel attached to it's southern face. The
+sound of gears running can be heard quite distinctly there.
+~
+~
+0 -1 18540
+S
+#18542
+The Brewhouse~
+   There is a variety of implements for making wine and other alcoholic drinks
+around this small building.  On one of the larger walls there are stacks of
+beverage casks for holding the minted brews.  There is a small path obscured by
+some trees to the west.    
+~
+185 8 0
+D3
+~
+~
+0 -1 18541
+E
+casks cask~
+Unfortunately, the casks are still empty. Looks like you can't get a free
+drink.
+~
+S
+#18543
+The Herb Garden~
+   The amount of herbs crowded into such a small plot of such well tended land
+is incredible.  It is apparent that this is where all the seasonings for the
+bakery and kitchen come from.    
+~
+185 0 2
+D1
+~
+~
+0 -1 18544
+S
+#18544
+The Herb Garden~
+   The amount of herbs crowded into such a small plot of such well tended land
+is incredible.  It is appreant that this is where all the seasonings for the
+bakery and kitchen come from.    
+~
+185 0 2
+D1
+~
+~
+0 -1 18545
+D3
+~
+~
+0 -1 18543
+S
+#18545
+Small Path~
+   This is a small, desolate path, connecting an artificial fishing pond to
+some herb gardens to the west.  The covered walkway is to the north where some
+monks are working on various projects.    
+~
+185 0 2
+D0
+~
+gate wooden~
+0 -1 18539
+D1
+~
+~
+0 -1 18546
+D3
+~
+~
+0 -1 18544
+S
+#18546
+The Fish Pond~
+   This is a small, man-made pond made solely for raising fish for the abbey.
+The mill can be seen to the north, though it is inaccessible from here.  There
+is a garden to the west some distance.    
+~
+185 0 6
+D3
+~
+~
+0 -1 18545
+E
+pond fish~
+As you peer into the pond, you can see fish of all shapes and sizes
+swimming around. You try to catch one, but you are just not fast enough.
+~
+S
+#18547
+Inside Silania's Chambers~
+   These chambers are nicely, if sparcely, decorated.  There is a long tapestry
+on the wall, and a small window allowing air to flow in.  The floors are bare
+and clean, and there is a small mat before a shrine.  A tapered candle rises on
+a stand in each of the four corners of this room, casting light across the
+entire room.    
+~
+185 524444 0
+D1
+~
+~
+0 -1 18566
+S
+T 18507
+T 18508
+#18548
+Under the Setting Sun~
+   This small little room hidden beneath the glowing room of the setting sun.
+It is equal in all respects to the room above.  The light filters in especially
+nicely during the later evening hours, as this room is right down near the
+ground.  The only exit is back up a small ladder to the setting sun room.    
+~
+185 8 0
+D2
+   The wall looks suspicious.    
+~
+wall~
+1 0 18549
+D4
+   Dust rains down on you from above.    
+~
+floorboard~
+1 0 18571
+S
+#18549
+A Small Alcove~
+   There is not much to this room.  It is simple and small.  The walls are
+barren and there does not seem to be any practical use for it even being here.
+It could have once been a storage area for people sitting in the room of the
+setting sun while they relaxed.  The one exit lies to the north.    
+~
+185 8 0
+D0
+   The wall looks like it can be moved.    
+~
+wall~
+1 0 18548
+S
+#18550
+Small Bridge~
+   This is a small stone bridge running between the main abbey and the library.
+The rock which makes up this bridge is becoming degraded as time wears on,
+much of that having to do with the high volume of foot traffic traveling on
+this path.  The main abbey to the north extends high above the ground, and is
+matched in size equally by the library to the south.    
+~
+185 148 10
+D0
+~
+~
+0 0 18541
+D2
+~
+~
+0 0 18552
+S
+#18551
+Outside the Library~
+   This is the outside of the library building.  The skies extend above you far
+and wide, and the steps of the library are to the south.  The entire building
+is large and complex in its simplicity.  Though the years of wind and rain have
+been cruel at times, the building is still in remarkable condition.  A small
+gate stands to the west, beyond which is a simple dirt road that runs off into
+the hills.    
+~
+185 64 1
+D1
+~
+~
+0 0 18552
+D2
+~
+~
+0 0 18554
+D3
+~
+gate~
+1 -1 16377
+D4
+~
+~
+0 0 18586
+S
+#18552
+Outside the Library~
+   The outside in front of the library is as plain as the building which stands
+to the south.  The abbey, back to the north, can be reached by crossing a small
+stone bridge.  Above there is a bit of open sky that almost seems to be calling
+to the birds.  As it is now, those skies are empty, and all that is noticable
+is the looming library building.    
+~
+185 0 0
+D0
+~
+~
+0 0 18550
+D1
+~
+~
+0 0 18553
+D2
+~
+~
+0 0 18555
+D3
+~
+~
+0 0 18551
+D4
+~
+~
+0 0 18587
+S
+#18553
+Outside the Library~
+   There is greatness in literature, and the library to the south is rich in
+words.  The size of the building is incredible, matched by the abbey to the
+north.  Above is open sky, practically devoid of everything.  There is not even
+a simple cloud or a single bird to make it more occupied.    
+~
+185 0 0
+D2
+~
+~
+0 -1 18556
+D3
+~
+~
+0 0 18552
+D4
+~
+~
+0 0 18588
+S
+#18554
+Library Steps~
+   The large marble steps leading to the entrance of the library are truely
+rare.  The marble must have been hauled a great distance to be here in such a
+pure form.  Just east is the entrance to the library, while there is also path
+way off to the north.    
+~
+185 0 0
+D0
+~
+~
+0 0 18551
+D1
+~
+~
+0 0 18555
+S
+#18555
+Library Entrance~
+   This is the entrance to the library.  Beyond to the south lies a great
+wealth of knowledge, while the steps are around to the east and west leading up
+to here.  The large oak doors loom high and wide protecting the delicate
+insides of the library from damage.    
+~
+185 0 0
+D0
+~
+~
+0 0 18552
+D1
+~
+~
+0 0 18556
+D2
+~
+door~
+1 0 18558
+D3
+~
+~
+0 0 18554
+S
+#18556
+Library Steps~
+   The large marble steps leading to the entrance of the library are truely
+rare.  The marble must have been hauled a great distance to be here in such a
+pure form.  Just west is the entrance to the library, while there is also path
+way to the north.    
+~
+185 0 0
+D0
+~
+~
+0 0 18553
+D3
+~
+~
+0 0 18555
+S
+#18557
+Large Statue~
+   There is a large statue dominating this room.  It only adds to the rich
+texture of the library which houses it.  Some how the lighting of this room has
+been manipulated to shine in just such a way onto this solid embodiment of a
+true creator and visionary as to bring out all of its sharp contours and
+features.    
+~
+185 8 0
+D1
+~
+~
+0 0 18558
+E
+statue~
+This large statue is shaped after the founding monk of this library.  His
+memory is served well, in the strong expression on his face.  His personal
+inner strength shows through the hard stone which embodies him.    
+~
+S
+#18558
+Foyer~
+   This is the entrance to the magnificent library.  The building extends far
+to the south, there is a multitude of texts on all the shelves.  The exit from
+the library lies to the north on down some large marble steps.  There are rich
+tapestries hanging from the walls, probably made by some of the hard working
+monks of the abbey.    
+~
+185 8 0
+D0
+~
+~
+0 0 18555
+D1
+~
+~
+0 0 18559
+D2
+~
+~
+0 0 18560
+D3
+~
+~
+0 0 18557
+S
+#18559
+Lounge~
+   This lounge is just a small area for some temporary relaxation before
+entering the majority of the library.  The foyer is to the west, but many of
+the library's patrons choose to remain in this room in the comfortable
+furniture and read.    
+~
+185 8 0
+D2
+~
+~
+0 0 18561
+D3
+~
+~
+0 0 18558
+S
+#18560
+Information Desk~
+   The information desk dominates this part of the library.  There are
+informational notices posted on a bulletin board, and people milling about
+working hard and sorting some of the books to be reshelved.  The library
+continues to the south, and north is the foyer followed by the exit.    
+~
+185 8 0
+D0
+~
+~
+0 0 18558
+D2
+~
+~
+0 0 18564
+S
+#18561
+Bottom of Staircase~
+   There is a small staircase here, leading above.  North is a lounge with some
+of the library patrons reading some books.  There is little light here; not
+even much filters down from the rooms above.    
+~
+185 8 0
+D0
+~
+~
+0 0 18559
+D4
+~
+~
+0 0 18594
+S
+#18562
+Hidden Staircase~
+   There is a small staircase here, leading above.  South is a small passage
+leading to some stacks of books.  There is little light in here, not even much
+filters down from the rooms above.    
+~
+185 8 0
+D2
+~
+~
+0 0 18599
+D4
+~
+~
+0 0 18592
+S
+#18563
+Librarian's Office~
+   This is the head librarian's office.  From here there are stacks of papers
+piled all around.  There is an old, leather bound book lying open on the chair
+which is pushed out from under the desk a ways.  There seems to be some dust
+collected on some of the shelves, badly in need of dusting.  The inner library
+is to the east.    
+~
+185 8 0
+D1
+~
+door~
+1 -1 18564
+S
+#18564
+Inside the Library~
+   The insides of the library continue on from here.  To the south the stacks
+begin, shelved high with many old books.  West of here is the main office, and
+east is a garden for some relaxation, making it a nice place to sit back and
+read.  The information desk lies to the north, and the library's exit beyond.
+~
+185 8 0
+D0
+~
+~
+0 0 18560
+D1
+~
+~
+0 0 18597
+D2
+~
+~
+0 0 18568
+D3
+~
+door~
+1 -1 18563
+S
+#18565
+Hidden Staircase~
+   This is a small, hidden staircase leading down into a map room.  There is
+not much to the staircase.  It is small, round and simple.  There are some book
+stacks south.    
+~
+185 8 0
+D2
+~
+~
+0 0 18570
+D5
+~
+~
+0 0 18596
+S
+#18566
+The Holy Cross End of the Stacks~
+   This is a section of long rows of books, stacked extremely high on shelves.
+The books vary in size from small religious texts to huge bindings of maps.  
+The stacks are here, and continue to the east.  Just south of here is a small
+study, and north is a small, slightly concealed passage.  There is a very large
+cross on the wall to the west, seeming to dominate the entire portion of wall.
+~
+185 8 0
+D1
+~
+~
+0 0 18567
+D2
+~
+~
+0 0 18572
+E
+cross holy holy-cross~
+The cross is very large and highly decorated.  It seems to glow brightly,
+casting warmth upon those who get captured in its light.  Before the cross is a
+small mat.    
+~
+S
+T 18567
+T 18566
+#18567
+Stacks~
+   This is a section of long rows of books, stacked extremely high on shelves.
+The books vary in size from small religious texts to huge bindings of maps.  
+The stacks are here, and continue east and west.    
+~
+185 8 0
+D1
+~
+~
+0 0 18568
+D3
+~
+~
+0 0 18566
+S
+#18568
+Entrance to the Stacks~
+   This is the beginning of long rows of books, stacked extremely high on
+shelves.  The books vary in size from small religious texts to huge bindings of
+maps.  The stacks are here and continue east and west.  Just south of here is
+the cataloge, making it much easier to locate a missing book, while north leads
+down a passage back towards the outside.    
+~
+185 8 0
+D0
+~
+~
+0 0 18564
+D1
+~
+~
+0 0 18569
+D2
+~
+~
+0 0 18574
+D3
+~
+~
+0 0 18567
+S
+#18569
+Stacks~
+   This is a section of long rows of books, stacked extremely high on shelves.
+The books vary in size from small religious texts to huge bindings of maps.  
+The stacks are here and continue east and west.    
+~
+185 8 0
+D1
+~
+~
+0 0 18570
+D3
+~
+~
+0 0 18568
+S
+#18570
+Stacks~
+   This is a section of long rows of books, stacked extremely high on shelves.
+The books vary in size from small religious texts to huge bindings of maps.  
+The stacks are here and continue west and south, and there is a small slightly
+concealed staircase north.    
+~
+185 8 0
+D0
+~
+~
+0 0 18565
+D2
+~
+~
+0 0 18576
+D3
+~
+~
+0 0 18569
+S
+#18571
+Room of the Setting Sun~
+   This room has one exquisit purpose.  Every evening as the sun sets the
+entire room glows brilliantly.  No matter the colors or time of sun set, the
+time is always right to use this room for reading or other activities.  There
+is a lone exit, east, as every other direction is made of large glass windows
+to allow the light in.    
+~
+185 8 0
+D1
+~
+~
+0 0 18572
+D5
+   One of the floorboards is scratched.    
+~
+floorboard~
+2 18551 18548
+S
+#18572
+Study~
+   This is a small, quiet study meant exclusively for reading and meditative
+thought.  There is a table in the middle of the room, with a few chairs around
+it.  Other than that, the room is blank and empty.  There are stacks to the
+north, and a large, beautiful room to the west, also nice for meditation and
+study.    
+~
+185 8 0
+D0
+~
+~
+0 0 18566
+D3
+~
+~
+0 0 18571
+S
+#18573
+Study~
+   This is a small, quiet study meant exclusively for reading and meditative
+thought.  There is a table in the middle of the room, with a few chairs around
+it.  Other than that, the room is blank and empty.  To the east are the
+cataloges for locating books.    
+~
+185 8 0
+D1
+~
+~
+0 0 18574
+S
+#18574
+Catalogues~
+   This is the catalogues where each book in the library is referenced.  All
+around there are drawers and drawers filled with reference, explaining where
+things are located.  There is a sign post pointing towards different locations
+in the library.    
+~
+185 8 0
+D0
+~
+~
+0 0 18568
+D1
+~
+~
+0 0 18575
+D2
+~
+~
+0 0 18580
+D3
+~
+~
+0 0 18573
+E
+sign~
+The sign stands here, pointing east and west towards quiet places to study,
+north to the stacks, and south down a passageway leading to more stacks and
+offices.    
+~
+S
+#18575
+Silent Room~
+   This is a small, quiet room meant exclusively for reading and meditative
+thought.  There is a table in the middle of the room, with a few chairs around
+it.  Other than that, the room is blank and empty.  To the west are the
+cataloges for locating books.    
+~
+185 8 0
+D3
+~
+~
+0 0 18574
+S
+#18576
+Stacks~
+   This is a section of long rows of books, stacked extremely high on shelves.
+The books vary in size from small religious texts to huge bindings of maps.  
+The stacks are here, and continue north, to the east is a large, open room
+perfect for sitting and reading in.    
+~
+185 8 0
+D0
+~
+~
+0 0 18570
+D1
+~
+~
+0 0 18577
+D2
+~
+plank~
+1 18550 18582
+S
+#18577
+Room of the Rising Sun~
+   Many of the abbey's patrons gather in this location in the early morning
+hours, it is a wonderful place to relax and meditate.  There is also another
+benefit, the sunrise is absolutely spectacular.  The rays of sunshine pour
+through the room at the very first sign of light.  There are some stacks of
+books to the west, but otherwise the surroundings are fields and trees through
+the windows.    
+~
+185 8 0
+D3
+~
+~
+0 0 18576
+S
+#18578
+Toppled Stacks~
+   These otherwise orderly stacks have been severely disrupted here.  It would
+seem that one of the stacks has falled onto the others, in a sort of domino
+effect.  Once one of the stacks fell, most of the remaining ones spilled their
+books onto the ground.  It is much cleaner to the east where the stacks are in
+order.  This mess will take a long time to sort though and clear up.    
+~
+185 8 0
+D1
+~
+~
+0 0 18579
+S
+#18579
+Stacks~
+   This is a section of long rows of books, stacked extremely high on shelves.
+The books vary in size from small religious texts to huge bindings of maps.  
+The stacks are here, and continue west where it appears they have fallen over.
+To the east is a passageway leading to the remainder of the library.    
+~
+185 8 0
+D1
+~
+~
+0 0 18580
+D3
+~
+~
+0 0 18578
+S
+#18580
+Passageway~
+   This passageway is really just a place where the stacks have been removed.
+There is still evidence of the shelves having been here not too long ago.  It
+also seems like there has been an addition to the structure to the south
+leading out a back way.  There are stacks to the west and some tables for open
+study to the east.    
+~
+185 8 0
+D0
+~
+~
+0 0 18574
+D1
+~
+~
+0 0 18581
+D2
+~
+~
+0 0 18584
+D3
+~
+~
+0 0 18579
+S
+#18581
+Tables~
+   There are long wooden tables extending the length of the room, with chairs
+pushed up to it in all of the empty spots.  A few of the places are being put
+to use by dedicated learners.  To the west is a passageway and beyond that some
+more book stacks.    
+~
+185 8 0
+D3
+~
+~
+0 0 18580
+S
+#18582
+Private Stack~
+   Here on the stacks of shelves are ancient books and texts.  Some of them
+look so frail that they would shatter with a slight breeze, let alone being
+handled.  Anything precious to the ancient monks of times passed was stored in
+this room, hidden away from all else in the land.    
+~
+185 8 0
+D0
+~
+plank~
+1 18550 18576
+S
+T 53456
+T 53455
+#18583
+Acquisitions Office~
+   It is doubtful that anyone other than the acquisitions man ever comes in
+this dank little back room.  It almost appears to have been put here as an
+afterthought, shoved in the corner of the building.  To the east is the only
+access to the room.    
+~
+185 8 0
+D1
+~
+~
+0 0 18584
+S
+#18584
+Back Door~
+   The passageway leading in from the north ends here.  There is a small
+storage closet to the east that looks under used, and the head acquistions
+office is to the west.  The floor does not seem to have ever seen much traffic,
+as it is barely scuffed or worn down.    
+~
+185 8 0
+D0
+~
+~
+0 0 18580
+D1
+~
+~
+0 0 18585
+D3
+~
+~
+0 0 18583
+S
+#18585
+Storage Room~
+   The storage room here is very chaotic.  There are cleaning implements
+scattered about.  Most of which do not appear to have been used in a very long
+time.  There is an exit to the west leading back into a passageway which
+probably does not house the dank smell that this closet does.    
+~
+185 8 0
+D3
+~
+~
+0 0 18584
+S
+#18586
+Open Air in Front of the Library~
+   The air around the library is mostly clear and clean.  The building is an
+interesting sight from here, the stone pillars and heavy wooden doors look even
+more weathered than normal.  Another abbey building blocks exit north, as do
+trees to the west.  There is a small balcony south and more open air east.    
+~
+185 0 9
+D1
+~
+~
+0 0 18587
+D2
+~
+~
+0 0 18589
+D5
+~
+~
+0 0 18551
+S
+#18587
+Open Air in Front of the Library~
+   The air around the library is mostly clear and clean.  The building is an
+interesting sight from here, the stone pillars and heavy wooden doors look even
+more weathered than normal.  There is a small balcony south and more open air
+east and west, and below the south part of a small stone bridge connects the
+abbey compound to the library.    
+~
+185 0 9
+D1
+~
+~
+0 0 18588
+D2
+~
+~
+0 0 18590
+D3
+~
+~
+0 0 18586
+D5
+~
+~
+0 0 18552
+S
+#18588
+Open Air in Front of the Library~
+   The air around the library is mostly clear and clean.  The building is an
+interesting sight from here, the stone pillars and heavy wooden doors look even
+more weathered than normal.  Another abbey building blocks exit north, as do
+trees to the east.  There is a small balcony south and more open air west.    
+~
+185 0 9
+D2
+~
+~
+0 0 18591
+D3
+~
+~
+0 0 18587
+D5
+~
+~
+0 0 18553
+S
+#18589
+Balcony~
+   There is open air all around, and a magnificent view of all the surrounding
+lands.  When it gets too windy, leaves from the trees to the west apparently
+find a new home resting here.  There is a large pile of them in a corner
+against the railing.  To the north there is open air, above the marble steps
+leading to the library.  The balcony extends to the east, beyond which large,
+outstretched fields extend.    
+~
+185 0 0
+D0
+~
+~
+0 0 18586
+D1
+~
+~
+0 0 18590
+E
+leaves leave~
+There is a clustered pile of leaves pushed into the corner between the western
+railing and the wall of the library.  They are constantly swirling about, moved
+by the relentless weather that pesters this entire complex.    
+~
+S
+#18590
+Balcony~
+   The stone with which this balcony was constructed above the library's
+entrance has been weathered by the conditions that it faces almost daily.  For
+some reason the wetness has played some unusual tricks on the rock, and begun
+eroding it prematurely.  There is a door standing just to the south, with the
+balcony extending both east and west.  The library's front steps are just below
+the open air to the north.    
+~
+185 0 0
+D0
+~
+~
+0 0 18587
+D1
+~
+~
+0 0 18591
+D2
+~
+door~
+1 -1 18593
+D3
+~
+~
+0 0 18589
+S
+#18591
+Balcony~
+   There is a wonderful view to the east of this spot.  There is a vast expanse
+of endless fields at the bottom of the drop in that direction.  It is a good
+thing there is a sturdy railing to prevent accidents.  There is open air north
+above the steps to the library, and the balcony extends to the west.  Just to
+the south there is a door that looks tested by the elements, just like the
+stone of the balcony.    
+~
+185 0 0
+D0
+~
+~
+0 0 18588
+D2
+~
+door~
+1 -1 18594
+D3
+~
+~
+0 0 18590
+S
+#18592
+Hidden Staircase~
+   Through this window is a beautiful view of the surrounding lands.  There is
+much to be seen and experienced beyond these walls.  To the east is a room
+housing a very smart man, who is very well read.  Below is a small staircase.
+~
+185 8 0
+D1
+~
+~
+0 0 18593
+D5
+~
+~
+0 0 18562
+S
+#18593
+Scholar's Quarters~
+   These quarters appear to house a very well read man.  There are books
+stacked high on the shelves, all seem to have been recently handled.  Above is
+a room that is beyond imagination.  There are stairs to the west and a small
+door north to the outside.    
+~
+185 8 0
+D0
+~
+door~
+1 -1 18590
+D3
+~
+~
+0 0 18592
+D4
+~
+~
+0 0 18595
+S
+#18594
+Top of the Stairs~
+   There is a small staircase leading below here.  North there is a door
+leading out on to a balcony which must have a wonderful, panoramic view
+considering what can be seen through the small window to the east.    
+~
+185 8 0
+D0
+~
+door~
+1 -1 18591
+D5
+~
+~
+0 0 18561
+E
+window~
+Through this window is a beautiful view of the surrounding lands.  There is
+much to be seen and experianced beyond these walls.    
+~
+S
+#18595
+Solarium~
+   There are few words to describe the view around here.  It is possible to see
+tremendous distances in every direction.  There are bright fields, and tall
+bundles of trees speckling the countryside.  This is definately a fitting place
+for a wise scholar to live below, and a good location to sit and read for
+countless hours in the natural light coming in from any given side.    
+~
+185 8 0
+D5
+~
+~
+0 0 18593
+S
+#18596
+Map Room~
+   The map room is rather large, extending far in all directions from the small
+staircase leading in from above.  There are four huge tables, each dimly lit
+with a few candles.  There is a small window on one side which provides for
+some natural light.  Each table has a delicately drawn map on it, detailing
+some of the surrounding countryside.    
+~
+185 8 0
+D4
+~
+~
+0 0 18565
+S
+#18597
+Meditation Garden~
+   The peace and tranquility of these quiet meditation gardens are surpassed in
+no other location in the abbey complex.  Silent monks sit here quietly reading
+their selected texts, bettering themselves.  A hallway is west leading from the
+main library to the exit to the north.    
+~
+185 8 0
+D3
+~
+~
+0 0 18564
+S
+#18598
+Passage to the Guest House~
+   There is a peculiar odor sneaking into this passageway from the north.  It
+is no wonder that the stables for housing visitor mounts lies in that
+direction.  There is a cozy guest house just east along the corridor lying
+beyond a small entry way.  The outer courtyard is just west continuing along.
+~
+185 0 0
+D0
+~
+~
+0 0 18506
+D1
+~
+~
+0 0 18513
+D3
+~
+~
+0 0 18512
+S
+#18599
+Hidden Passageway~
+   This small passageway leads to the north towards a small, nearly hidden
+staircase leading up.  Just to the south are some stacks of books, collecting
+dust at the moment.    
+~
+185 8 0
+D0
+~
+~
+0 0 18562
+D2
+~
+~
+0 0 18566
+S
+$~

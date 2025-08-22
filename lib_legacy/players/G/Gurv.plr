@@ -1,0 +1,88 @@
+name: Gurv
+password: GuwC/EVa89
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 10
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19064
+birthtime: 1462422844
+timeplayed: 4731
+lastlogintime: 1462470218
+host: 050.053.057.026
+height: 70
+weight: 137
+base_height: 70
+base_weight: 137
+base_size: 3
+natural_size: 3
+alignment: -24
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 6
+thirst: 18
+lastlevel: 0
+hitpoints: 75/67
+mana: 1/0
+move: 94/152
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 58
+wisdom: 75
+dexterity: 84
+constitution: 87
+charisma: 56
+cash: 0 5 9 10
+experience: 40261
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 72
+415 50
+416 50
+419 1000
+421 56
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 56
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 61502 0.500000
+1 61500 0.500000
+1 61525 0.500000
+1 61506 0.500000
+1 61523 0.500000
+1 61508 0.500000
+1 61517 1.000000
+1 61507 0.500000
+1 61510 1.000000
+1 61512 0.500000
+1 61503 1.000000
+1 61501 1.000000
+1 3508 0.500000
+1 3507 0.500000
+1 12016 0.500000
+1 12015 0.500000
+1 3509 0.500000
+1 3503 0.500000
+1 3502 2.500000
+1 3500 2.500000
+1 3501 2.000000
+0 0 0

@@ -1,0 +1,787 @@
+#10200
+East of Ickle~
+   You are standing just east of the East Gate of Ickle.  The trail to Mt.  
+Frostbite begins just north of here.    
+~
+102 0 4
+D0
+You see the trail to Mt. Frostbite.
+~
+~
+0 -1 10201
+D3
+You see the outside of the Eastern Gate of Ickle.
+~
+~
+0 -1 10023
+S
+#10201
+Trail to Mt. FrostBite~
+   You are standing on the trail to Mt. Frostbite.  The trail continues on to
+the north and south.    
+~
+102 0 4
+D0
+You see the trail to Mt. FrostBite!
+~
+~
+0 -1 10202
+D2
+You see the trail to Ickle.
+~
+~
+0 -1 10200
+S
+#10202
+Trail to Mt. FrostBite~
+   You are standing on the trail to Mt. Frostbite.  The trail continues on to
+the north and south.    
+~
+102 0 4
+D0
+You see the trail to Mt. FrostBite!
+~
+~
+0 -1 10203
+D2
+You see the trail to Ickle.
+~
+~
+0 -1 10201
+S
+#10203
+Trail to Mt. FrostBite~
+   You are standing on the trail to Mt. Frostbite.  The trail continues on to
+the north and south.    
+~
+102 0 4
+D0
+You see the trail to Mt. FrostBite!
+~
+~
+0 -1 10204
+D2
+You see the trail to Ickle.
+~
+~
+0 -1 10202
+S
+#10204
+Trail to Mt. FrostBite~
+   You are standing on the trail to Mt. Frostbite.  The trail continues on to
+the east and south.    
+~
+102 0 4
+D1
+You see the trail to Mt. FrostBite!
+~
+~
+0 -1 10205
+D2
+You see the trail to Ickle.
+~
+~
+0 -1 10203
+S
+#10205
+Trail to Mt. FrostBite~
+   You are standing on the trail to Mt. Frostbite.  The trail continues on to
+the east and west.    
+~
+102 0 4
+D1
+You see the trail to Mt. FrostBite!
+~
+~
+0 -1 10206
+D3
+You see the trail to Ickle.
+~
+~
+0 -1 10204
+S
+#10206
+Trail to Mt. FrostBite~
+   You are standing on the trail to Mt. Frostbite.  The trail continues on to
+the north and west.    
+~
+102 0 4
+D0
+You see the trail to Mt. FrostBite!
+~
+~
+0 -1 10207
+D3
+You see the trail to Ickle.
+~
+~
+0 -1 10205
+S
+#10207
+Trail to Mt. FrostBite~
+   You are standing on the trail to Mt. Frostbite.  The trail continues on to
+the north and south.    
+~
+102 0 4
+D0
+You see the trail to Mt. FrostBite!
+~
+~
+0 -1 10208
+D2
+You see the trail to Ickle.
+~
+~
+0 -1 10206
+S
+#10208
+Trail to Mt. FrostBite~
+   You are standing on the trail to Mt. Frostbite.  The trail continues on to
+the north and south.    
+~
+102 0 4
+D0
+You see the trail to Mt. FrostBite!
+~
+~
+0 -1 10209
+D2
+You see the trail to Ickle.
+~
+~
+0 -1 10207
+S
+#10209
+Trail to Mt. FrostBite~
+   You are standing on the trail to Mt. Frostbite.  The trail continues on to
+the north and south.    
+~
+102 0 4
+D0
+You see the trail to Mt. FrostBite!
+~
+~
+0 -1 10210
+D2
+You see the trail to Ickle.
+~
+~
+0 -1 10208
+S
+#10210
+Trail to Mt. FrostBite~
+   You are standing on the trail to Mt. Frostbite.  A massive building stands
+to the east.  The trail continues on to the south and west.
+~
+102 0 4
+D1
+~
+~
+0 -1 10241
+D2
+You see the trail to Ickle.
+~
+~
+0 -1 10209
+D3
+You see the trail to Mt. FrostBite!
+~
+~
+0 -1 10211
+S
+#10211
+Trail to Mt. FrostBite~
+   You are standing on the trail to Mt. Frostbite.  The trail continues on to
+the north and east.    
+~
+102 0 4
+D0
+You see the trail to Mt. FrostBite!
+~
+~
+0 -1 10212
+D1
+You see the trail to Ickle.
+~
+~
+0 -1 10210
+S
+#10212
+Under Mt. FrostBite~
+   You are standing at the end of a trail.  Mt. Frostbite looms above you
+here.  You can either follow the trail south, back to Ickle, or you can climb
+the mountain and enter Mt.  FrostBite.    
+~
+102 0 4
+D2
+You see the trail to Ickle.
+~
+~
+0 -1 10211
+D4
+You see Mt. FrostBite looming above you!
+~
+~
+0 -1 10213
+S
+#10213
+Outside Mt. FrostBite~
+   You are standing in front of Mt. Frostbite!  There is a cave opening just
+north of here that will allow you to enter the ominous mountain itself.  Your
+only other choice would be to climb down and return to the trail below.  
+Perhaps leaving here would be a GOOD idea!    
+~
+102 0 4
+D0
+You see the Entrance to Mt. FrostBite!
+~
+~
+0 -1 10214
+D5
+You see the trail to Ickle.
+~
+~
+0 -1 10212
+S
+#10214
+Entrance to Mt. FrostBite~
+   You are standing in the Entrance to Mt. Frostbite!  You can flee from this
+ominous mountain to the south, or you can delve deeper still to the north and
+west.    
+~
+102 0 11
+D0
+You see the Inside of Mt. FrostBite!
+~
+~
+0 -1 10222
+D2
+You see the Outside of Mt. FrostBite!
+~
+~
+0 -1 10213
+D3
+You see an Ice Tunnel.
+~
+~
+0 -1 10215
+S
+#10215
+Ice Tunnel~
+   You are standing in a rough-hewn tunnel carved into Mt. Frostbite.  It is
+freezing cold in here.  Wind howls quickly through this tunnel.  The tunnel
+continues on to the west or you can return to the entrance to the east.    
+~
+102 8 12
+D1
+You see the Entrance to Mt. FrostBite!
+~
+~
+0 -1 10214
+D3
+You see the Ice Tunnel.
+~
+~
+0 -1 10216
+S
+#10216
+Ice Tunnel~
+   You are standing in a rough-hewn tunnel carved into Mt. Frostbite.  It is
+freezing cold in here.  Wind howls quickly through this tunnel.  The tunnel
+continues on to the north and east from here.    
+~
+102 8 12
+D0
+You see the Ice Tunnel.
+~
+~
+0 -1 10217
+D1
+You see the Ice Tunnel.
+~
+~
+0 -1 10215
+S
+#10217
+Ice Tunnel~
+   You are standing in a rough-hewn tunnel carved into Mt. Frostbite.  It is
+freezing cold in here.  Wind howls quickly through this tunnel.  The tunnel
+continues on to the north and south from here.    
+~
+102 8 12
+D0
+You see the Ice Tunnel.
+~
+~
+0 -1 10218
+D2
+You see the Ice Tunnel.
+~
+~
+0 -1 10216
+S
+#10218
+Ice Tunnel~
+   You are standing in a rough-hewn tunnel carved into Mt. Frostbite.  It is
+freezing cold in here.  Wind howls quickly through this tunnel.  The tunnel
+continues on to the south from here.  You can also climb down to some lower
+tunnels from here.  The wind seems to be coming from the depths.    
+~
+102 8 12
+D2
+You see the Ice Tunnel.
+~
+~
+0 -1 10217
+D5
+You see the Ice Tunnel.
+~
+~
+0 -1 10219
+S
+#10219
+Ice Tunnel~
+   You are standing in a rough-hewn tunnel carved into Mt. Frostbite.  It is
+freezing cold in here.  Wind howls quickly through this tunnel.  The tunnel
+continues on to the west from here or you could climb up to a higher set of
+tunnels above you.  The wind seems to be coming from the west.    
+~
+102 8 12
+D3
+You see the Ice Tunnel.
+~
+~
+0 -1 10220
+D4
+You see the Ice Tunnel.
+~
+~
+0 -1 10218
+S
+#10220
+Ice Tunnel~
+   You are standing in a rough-hewn tunnel carved into Mt. Frostbite.  It is
+freezing cold in here.  Wind howls quickly through this tunnel.  The tunnel
+continues on to the east from here.  The tunnel opens up slightly into a small
+gorge to the north.  The wind seems to be coming from the gorge.    
+~
+102 8 12
+D0
+You see the Ice Gorge.
+~
+~
+0 -1 10221
+D1
+You see the Ice Tunnel.
+~
+~
+0 -1 10219
+S
+#10221
+Ice Gorge~
+   You are standing in a small gorge between two sections of rough-hewn tunnel
+carved into Mt. Frostbite.  You can feel the chilling arctic winds whipping
+into the tunnel from somewhere above.  The howling is quite loud and rather
+strange sounding.  The tunnel continues on to the south and west from here.  
+~
+102 0 12
+D2
+You see the Ice Tunnel.
+~
+~
+0 -1 10220
+D3
+You see the Ice Tunnel.
+~
+~
+0 -1 53300
+S
+#10222
+Inside of Mt. FrostBite~
+   You are standing in a tunnel inside of Mt. Frostbite.  The tunnel continues
+on to the east and south of here.    
+~
+102 8 12
+D1
+You see a tunnel heading deeper into Mt. FrostBite.
+~
+~
+0 -1 10223
+D2
+You see the Entrance to Mt. FrostBite!
+~
+~
+0 -1 10214
+S
+#10223
+Inside of Mt. FrostBite~
+   You are standing in a tunnel inside of Mt. Frostbite.  The tunnel continues
+on to the north and west of here.    
+~
+102 8 12
+D0
+You see a tunnel heading deeper into Mt. FrostBite.
+~
+~
+0 -1 10224
+D3
+You see a tunnel leading away from the depths of Mt. FrostBite.
+~
+~
+0 -1 10222
+S
+#10224
+Inside of Mt. FrostBite~
+   You are standing in a tunnel inside of Mt. Frostbite.  The tunnel continues
+on to the north and south of here.    
+~
+102 8 12
+D0
+You see a tunnel heading deeper into Mt. FrostBite.
+~
+~
+0 -1 10225
+D2
+You see a tunnel leading away from the depths of Mt. FrostBite.
+~
+~
+0 -1 10223
+S
+#10225
+Inside of Mt. FrostBite~
+   You are standing in a tunnel inside of Mt. Frostbite.  The tunnel continues
+on to the north and south of here.    
+~
+102 8 12
+D0
+You see a tunnel heading deeper into Mt. FrostBite.
+~
+~
+0 -1 10226
+D2
+You see a tunnel leading away from the depths of Mt. FrostBite.
+~
+~
+0 -1 10224
+S
+#10226
+Inside of Mt. FrostBite~
+   You are standing in a tunnel inside of Mt. Frostbite.  The tunnel continues
+on to the south from here.  There is also an opening leading down to the very
+bowels of Mount FrostBite.  Dare you even consider it?!    
+~
+102 8 12
+D2
+You see a tunnel leading away from the depths of Mt. FrostBite.
+~
+~
+0 -1 10225
+D5
+You see the Entrance to the Bowels of Mt. FrostBite.
+~
+~
+0 -1 10227
+S
+#10227
+Entrance to the Bowels of Mt. FrostBite~
+   You are standing at the Entrance to the Bowels of Mt. Frostbite.  Your way
+to the west seems to be blocked at this time.  However, you can go to the east
+towards what appears to be a way out of here.  You can also climb up to another
+tunnel that lies just above this one.    
+~
+102 8 12
+D1
+You see a well lit tunnel leading out of Mt. FrostBite.
+~
+~
+0 -1 10228
+D4
+You see the Inside of Mt. FrostBite.
+~
+~
+0 -1 10226
+S
+#10228
+A Well Lit Tunnel~
+   You are standing in a well lit tunnel running east and west.  To the west is
+the Entrance to the Bowels of Mt. Frostbite.  Probably not a very good idea to
+go that way.  To the east the tunnel ends at a wall of ice.  Looks like you
+might not get very far in that direction.    
+~
+102 8 12
+D1
+You see the tunnel end at a wall of ice.
+~
+~
+0 -1 10229
+D3
+You see the Entrance to the Bowels of Mt. FrostBite.
+~
+~
+0 -1 10227
+S
+#10229
+A crevice in the ice~
+   You are standing next to a wall of ice.  There is a crevice in the wall of
+ice that you should be able to fit through.  It looks like it might lead
+outside.  You can try to squeeze through the crevice to the east or you can
+head down the well lit tunnel to the west.    
+~
+102 8 12
+D1
+You see a crevice in the wall of ice.
+~
+~
+0 -1 55001
+D3
+You see a well lit tunnel.
+~
+~
+0 -1 10228
+S
+#10230
+An Icy Climb~
+   Handholds cut into a wall of ice lead up here, and a narrow tunnel begins to
+the east.  Although not easy to access, this tunnel shows signs of fairly
+frequent traffic.  The floor is covered in crushed gravel so footing is easier
+than it would otherwise be.
+~
+102 268 12
+D1
+~
+~
+0 -1 10231
+D4
+It looks like you can squeeze through the ice here.
+~
+ice~
+1 -1 55014
+S
+#10231
+Inside Mount Frostbite~
+   Opening up into a small cavern, this tunnel leads both east and west from
+here.  West, it narrows down significantly, but it keeps its width to the east.
+The cavern looks mostly natural, but with some signs of human or other
+intervention - there are some smoothly polished portions of the walls and a
+large arrow pointing to the east with the word "Technitzitlan" written below
+it.
+~
+102 8 12
+D1
+~
+~
+0 -1 10232
+D3
+~
+~
+0 -1 10230
+S
+#10232
+Inside Mount Frostbite~
+   The path slopes sharply downwards here and opens up again to the west.  
+There is only a slight breeze, suggesting that this tunnel is pretty far away
+from the mountain's surface.  Footprints in the crushed gravel floor hint at a
+fair amount of traffic in the area.
+~
+102 8 12
+D3
+~
+~
+0 -1 10231
+D5
+~
+~
+0 -1 10233
+S
+#10233
+An Icy Climb Near Technitzitlan~
+   This tunnel is rather broad, sloping sharply upwards and then leading off to
+the east.  Judging by the footprints in the crushed gravel floor, there is a
+decent amount of foot traffic in this area.  A few crude representations of
+animals and other symbols are on the walls, suggesting that it is people rather
+than monsters who made this path.
+~
+102 8 12
+D1
+~
+~
+0 -1 10234
+D4
+~
+~
+0 -1 10232
+E
+picture pictures wall walls animals~
+There is a large cat here, carved into the ice on the northern wall.  On the
+ceiling are some smaller symbols, including a tiny triangle surrounded by
+spheres and the the inscription "Kourrya 2008".
+~
+S
+#10234
+An Icy Climb Near Technitzitlan~
+   A spiral staircase begins winding its way down into darkness here, carved
+directly into the rock and ice of the mountain.  The broad tunnel leads to the
+west, its floor thoughtfully covered in crushed gravel to make footing easier.
+The staircase looks much narrower than the tunnel.
+~
+102 8 12
+D3
+~
+~
+0 -1 10233
+D5
+~
+~
+0 -1 10235
+S
+#10235
+A Steep Climb~
+   Leading upwards and downwards, this spiral staircase has been cut into the
+mountain for some unknown purpose.  Lacking any handholds and having very
+steep, narrow steps, it is not exactly the most comfortale or easy-to-traverse
+staircase.  It does appear small enough to keep out some of the larger
+creatures that inhabit the mountain, but it also prevents more than a few
+people from being on the stairs at a time.
+~
+102 264 12
+D4
+~
+~
+0 -1 10234
+D5
+~
+~
+0 -1 10236
+S
+#10236
+A Steep Climb~
+   Cut into the rock and ice of the tunnel, this spiral staircase has very high
+steps which are uncomfortably far-apart for a normal-sized human.  There are no
+handholds either, which does not make climing any easier.  Cut into the ice on
+the walls are some crude graffiti of beasts and other symbols.  The stairway
+leads up and down.
+~
+102 264 12
+D4
+~
+~
+0 -1 10235
+D5
+~
+~
+0 -1 10237
+E
+graffiti picture pictures~
+Cut into the ice is a large picture of a feline with rather ferocious-looking
+fangs, surrounded by other symbols like a lightning bolt, a sun, a snowflake,
+and other weather-related pictograms.
+~
+S
+#10237
+An Ice Wall~
+   The staircase comes to an end here, spilling out into a tunnel that
+continues on to the east.  Protected from the winds, it is still very chilly in
+here and there are patches of ice on every surface.  Gravel worn into the ice
+on the floor attests to a moderate amount of traffic, though whether from men
+or beasts is unclear.
+~
+102 8 12
+D1
+~
+~
+0 -1 10238
+D4
+~
+~
+0 -1 10236
+S
+#10238
+Inside Mount Frostbite~
+   It is dark and cold here inside the mountain.  Signs of moderate traffic
+mark the floors of this tunnel, as if this pathway is used regularly.  
+Slippery-looking stairs have been cut into the rock and ice leading down, and
+they are covered with gravel to help keep the ice at bay.  The tunnel also
+leads back to the west, sloping gently upwards.
+~
+102 8 12
+D3
+~
+~
+0 -1 10237
+D5
+~
+~
+0 -1 10239
+S
+#10239
+A Gravel Path~
+   This pathway is lined with crushed gravel to make footing easier over the
+snow and ice even inside Mount Frostbite.  To the east, there appears to be a
+large open spaceand many people, perhaps the destination of this path.  Stairs
+cut into rock and ice lead upwards back to the mountain.
+~
+102 8 12
+D1
+~
+~
+0 -1 10240
+D4
+~
+~
+0 -1 10238
+S
+#10240
+A Gravel Path Outside Technitzitlan~
+   This narrow pathway leads away from the main courtyard of Technitzitlan,
+which is visible past some ice to the east, and back towards the inside of
+Mount Frostbite.  Narrow enough so that only a few people can walk abreast, the
+path is covered in crushed gravel to provide better footing.  The path
+continues to the west and the courtyard of Technitzitlan is to the east.
+~
+102 268 12
+D1
+There is a crack in the ice here.
+~
+crack~
+1 -1 55039
+D3
+~
+~
+0 -1 10239
+S
+#10241
+The Entrance to the Great Lodge~
+   You stand before the massive double doors of some enormous lodge.  Each door
+stands nearly 10 feet tall and looks as old as Mt.  Frostbite itself.  The
+lodge towers easily 40 feet or more into the sky.  It is made from enormous
+timbers the likes of which have not been seen near Ickle in centuries, if ever.
+It must have taken an army of giants to erect such a building!  Boisterous
+chants or songs ring out among the sound of dozens of raucous voices.  It
+sounds like quite a party!
+~
+0 4 4
+D1
+~
+~
+0 -1 10242
+D3
+~
+~
+0 -1 10210
+S
+#10242
+The Great Lodge~
+   The Great Lodge is home to the oldest sect of the primal warriors,
+berserkers whose traditions date back to the beginning of the northern
+barbarian tribes.  The colossal building stands as a testament to their
+resilience against the ravages of dragons, cold, and time.  The Lodge houses
+dozens of berserkers drinking and chanting, feasting and fighting at all hours
+of the day.
+~
+0 35652100 0
+D3
+~
+~
+0 -1 10241
+S
+$~

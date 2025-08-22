@@ -1,0 +1,120 @@
+name: Volawk
+password: VoNj/Ka98U
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%ih&2&b><%dt><%e><%l>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 9
+race: 2
+level: 19
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19612
+birthtime: 1590121306
+timeplayed: 171386
+lastlogintime: 1693252558
+host: 208.093.179.078
+height: 28
+weight: 71
+base_height: 28
+base_weight: 71
+base_size: 1
+natural_size: 1
+alignment: -316
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 173/173
+mana: 36/36
+move: 114/114
+damroll: 2
+hitroll: 4
+strength: 92
+intelligence: 86
+wisdom: 86
+dexterity: 92
+constitution: 85
+charisma: 70
+cash: 12 870 2339 1753
+bank: 0 40 100 0
+experience: 1444172
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+401 240
+403 240
+404 50
+405 193
+408 216
+410 189
+411 240
+415 190
+416 190
+421 212
+438 50
+440 240
+443 50
+444 116
+463 50
+464 232
+465 50
+0 0
+trophy:
+1 58801 1.000000
+1 8800 1.000000
+1 18514 1.000000
+1 18517 1.500000
+1 18500 0.500000
+1 18507 8.000000
+1 18510 0.500000
+1 5514 2.500000
+1 5513 6.000000
+1 5522 0.500000
+1 8705 0.500000
+1 8702 0.500000
+1 8703 0.500000
+1 8704 1.000000
+1 8706 1.000000
+1 8701 1.000000
+1 8711 6.000000
+1 17306 0.500000
+1 17303 0.500000
+1 17304 1.000000
+1 17300 1.000000
+0 0 0
+tells:
+1618895985 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1618895986 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1618904934 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1618904946 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1618904948 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1618907052 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1618907053 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1618974289 @WDavar@W tells you, 'Zenawk requested i send a well Incoming@W'@0
+1618977077 @WMuleard@W tells you, 'Welcome to my store.@W'@0
+1618977078 @WMuleard@W tells you, 'You can call me Mule.@W'@0
+$
+gossips:
+1620686596 Swenct gossips, 'someone said there was a dagger in citdel?'
+1620686636 Teomner gossips, 'some swords there'
+1620686644 Flenct gossips, 'ah i got glowing one'
+1620686645 Teomner gossips, 'not sure about dagger'
+1620686654 Chinok gossips, 'may only work on non NPC's'
+1620686659 Chinok gossips, 'never tried a mob'
+1620686697 Teomner gossips, 'seem to remember that it did once but might be crazie'
+1620686728 Chinok gossips, 'I always thought the intention was to cast it on yourself'
+1620686748 Chinok gossips, 'my dwarf sorc, with reduce on him, is nearly unbashable'
+1620686783 Teomner gossips, 'i use it often as a buff gives a bit of extra damage to warriors and a nice buff to backstab for rogues'
+$
+aliases:
+yy ass foug
+o order fol $*
+gac g all all.corpse
+id recite identify $*
+y ass zenawk
+0

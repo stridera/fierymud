@@ -1,0 +1,66 @@
+name: Oblive
+password: ObV0ZXoZZH
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19916
+birthtime: 1620598136
+timeplayed: 77
+lastlogintime: 1620598213
+host: 091.181.188.055
+height: 65
+weight: 122
+base_height: 65
+base_weight: 122
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 17
+thirst: 10
+lastlevel: 0
+hitpoints: 29/29
+mana: 0/0
+move: 116/116
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 74
+wisdom: 80
+dexterity: 87
+constitution: 86
+charisma: 72
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+$

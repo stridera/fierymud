@@ -1,0 +1,57 @@
+name: Donaldtrump
+password: Do8TckR6VL
+currenttitle: The Chosen One
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19480
+birthtime: 1568432267
+timeplayed: 1834
+lastlogintime: 1568685930
+host: 024.162.199.046
+height: 74
+weight: 165
+base_height: 74
+base_weight: 165
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 27/27
+mana: 1/0
+move: 108/108
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 66
+wisdom: 68
+dexterity: 90
+constitution: 76
+charisma: 74
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+403 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0

@@ -1,0 +1,422 @@
+1
+vnum: 59000
+location: 6
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cap ballcap chief
+shortdesc: a &9&bChief GotJacked&0 ballcap
+desc: A worn out ballcap is lying here.
+type: 11
+weight: 0.70
+cost: 0
+timer: 0
+level: 100
+effects: p 0 0
+wear: 17
+~~
+vnum: 59099
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: robe dark-grey-robe 
+shortdesc: a &9&bdark grey&0 robe
+desc: A dark grey robe lies crumpled in a pile.
+type: 9
+weight: 4.00
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1025
+~~
+vnum: 59098
+location: 16
+values:
+10
+3
+10
+12
+0
+0
+0
+~
+flags: abgD
+name: staff electric electricity rydack
+shortdesc: a staff of pure electricity
+desc: A long staff formed of electricity sparks and sizzles on the ground.
+type: 5
+weight: 0.01
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 24577
+extradesc: staff electricity
+   The blue and white bolts crackle and sizzle, but still are bound together to
+form a staff.  The top of the staff burns the brightest and emits an occasional
+shower of sparks.  It is constantly shifting colors and shape, allowing the
+user to control it actions to achieve maximum damage.
+~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 1099
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: book ansi-color-book-fiery-yay
+shortdesc: the ansi color book of fiery yay
+desc: A book describing ansi color lies here unattended.
+adesc:
+&0&7 & 1    - &0&1Red&0          & 1 & b - &0&1&bBright Red&0
+
+&0&7 & 2    - &0&2Green&0        & 2 & b - &0&2&bBright Green&0
+
+&0&7 & 3    - &0&3Brown&0        & 1 & b - &0&3&bYellow&0
+
+&0&7 & 4    - &0&4Blue&0         & 4 & b - &0&4&bBright Blue&0
+
+&0&7 & 5    - &0&5Purple&0       & 5 & b - &0&5&bBright Purple&0
+
+&0&7 & 6    - &0&6Teal&0         & 6 & b - &0&6&bBright Teal&0
+
+&0&7 & 7    - &0&7White&0        & 7 & b - &0&7&bBright White&0
+
+&0&7 & 8    - &0&8Unkown&0       & 8 & b - &0&8&bBright Unkown&0
+
+&0&7 & 9    - &0&9Black&0        & 9 & b - &0&9&bBright Black&0
+
+&0&7 remember to put & 0 at the end of each line to clear the ansi strings
+~
+type: 16
+weight: 0.50
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+extradesc: book
+ 1    - &1Red&0          1 b - &1&bBright Red&0
+&0&7 & 2    - &0&2Green&0        & 2 & b - &0&2&bBright Green&0
+.&73    - &3Brown&0        3 b - &3&bYellow&0
+&0&7 & 4    - &0&4Blue&0         & 4 & b - &0&4&bBright Blue&0
+&0&7 & 5    - &0&5Purple&0       & 5 & b - &0&5&bBright Purple&0
+&0&7 & 6    - &0&6Teal&0         & 6 & b - &0&6&bBright Teal&0
+&0&7 & 7    - &0&7White&0        & 7 & b - &0&7&bBright White&0
+&0&7 & 8    - &0&8Unknown&0      & 8 & b - &0&8&bBright Unknown&0
+&0&7 & 9    - &0&9Black&0        & 9 & b - &0&9&bBright Black&0
+
+ Remember to put &&0 at the end of each line to clear the ANSI strings!
+~
+~~
+vnum: 1219
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: candy hard food
+shortdesc: a piece of sweet hard candy
+desc: A piece of sweet hard candy lies here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1218
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: candy chocolate food
+shortdesc: a piece of chocolate candy
+desc: A pice of candy lies here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1218
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: candy chocolate food
+shortdesc: a piece of chocolate candy
+desc: A pice of candy lies here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1219
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: candy hard food
+shortdesc: a piece of sweet hard candy
+desc: A piece of sweet hard candy lies here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1219
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: candy hard food
+shortdesc: a piece of sweet hard candy
+desc: A piece of sweet hard candy lies here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3152
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: doll miniature-emerald-drakling-doll itty-bitty-green-dragon
+shortdesc: a miniature Emerald Drakling doll
+desc: An itty-bitty green dragon is sitting with a mesmerizing look about it.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+applies:
+18 3
+~
+extradesc: doll miniature-emerald-drakling-doll itty-bitty-green-dragon
+This little doll has vibrant green skin and wings, its little beady eyes
+projecting an unnatural aura about itself.  Drawing miniature little newbies to
+their deaths.
+~
+~~
+vnum: 18802
+location: 127
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: egD
+name: lembas waybread cake small elven brownish bread food
+shortdesc: a small cake of elven waybread
+desc: A brownish cake of bread is making a crumbly mess here.
+type: 19
+weight: 0.80
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: lembas waybread cake small elven brownish bread food
+A brownish color on the outside and a cream color within, the small cake of
+elven waybread looks about as delicious as a bread can be.  Unlike other
+similar-appearing waybreads, this cake crumbles delightfully, releasing a
+scrumptious aroma.  It is rumored that elven waybread is far more nutritious
+than any human food, and that it is closely guarded by the elves and is only
+rarely awarded to others.    
+~
+~~
+vnum: 52110
+location: 127
+values:
+50
+0
+-1
+0
+0
+0
+0
+~
+flags: bg
+name: blue-bag blue bag
+shortdesc: a blue bag
+desc: A blue bag with frozen straps lies here.
+type: 15
+weight: 3.00
+cost: 140
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+extradesc: blue-bag bag blue
+This appears to be a blue bag. It has many tiny pockets to hold little 
+trinkets and such.
+~
+~~
+vnum: 52110
+location: 127
+values:
+50
+0
+-1
+0
+0
+0
+0
+~
+flags: bg
+name: blue-bag blue bag
+shortdesc: a blue bag
+desc: A blue bag with frozen straps lies here.
+type: 15
+weight: 3.00
+cost: 140
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+extradesc: blue-bag bag blue
+This appears to be a blue bag. It has many tiny pockets to hold little 
+trinkets and such.
+~
+~~

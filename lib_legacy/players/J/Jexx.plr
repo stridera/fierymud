@@ -1,0 +1,133 @@
+name: Jexx
+password: JeVHBynAa4
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19723
+birthtime: 1601865050
+timeplayed: 48200
+lastlogintime: 1726639290
+host: 070.040.080.239
+height: 75
+weight: 204
+base_height: 75
+base_weight: 204
+base_size: 3
+natural_size: 3
+alignment: -38
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8024
+lastlevel: 0
+hitpoints: 132/123
+mana: 1/0
+move: 152/152
+damroll: 5
+hitroll: 4
+strength: 92
+intelligence: 74
+wisdom: 64
+dexterity: 89
+constitution: 83
+charisma: 64
+cash: 0 2 141 200
+bank: 0 42 1 273
+experience: 279949
+quit_reason: 7
+saveroom: 8024
+skills:
+402 60
+404 101
+415 50
+416 50
+419 1000
+421 113
+427 1000
+438 50
+443 50
+444 50
+463 77
+464 54
+465 63
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36001 1.000000
+1 8010 4.000000
+1 8011 2.000000
+1 8022 3.000000
+1 8001 3.000000
+1 8015 2.000000
+1 8012 1.000000
+1 8023 1.000000
+1 3064 2.000000
+1 3062 2.000000
+1 8014 4.000000
+1 8016 2.000000
+1 8021 2.000000
+1 8002 7.000000
+1 8013 10.000000
+1 8000 6.000000
+1 3503 1.000000
+1 5403 4.000000
+1 5404 6.000000
+1 3501 6.000000
+1 3502 4.000000
+0 0 0
+tells:
+1692385707 @WDrako@W tells you, 'I only deal in bronze at the moment, try Beowyn.@W'@0
+1692385718 @WDrako@W tells you, 'I only deal in bronze at the moment, try Beowyn.@W'@0
+1692385726 @WDrako@W tells you, 'I only deal in bronze at the moment, try Beowyn.@W'@0
+1692385836 @WGranite@W tells you, 'If it's not a shield then I am not interested.@W'@0
+1692385881 @WGranite@W tells you, 'I hope it protects you well.@W'@0
+1692386152 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1692386239 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1692386727 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1692386959 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1692410589 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+$
+gossips:
+1692384421 Ryy gossips, 'me?  No thank you :)'
+1692384473 Ryy gossips, 'I have been having a heck of a time trying to get the stone door in the desert open... can't remember where the key is... any hints?'
+1692384574 Ryy gossips, 'it's a dangerous area... aggressive mobs around here... I suspect the key is only generated once per day and someone already got it today I think'
+1692384585 Choak gossips, 'no it is a quest key'
+1692384613 Ryy gossips, 'any hints Choak?  I've asked that old man every keyword I can think of'
+1700538997 Daedela gossips, 'yeah!'
+1700540864 Mersh gossips, 'night all'
+1700541153 Belnion gossips, 'you need a blessing!'
+1702510178 Chinok gossips, 'hi Jexx'
+1726638528 Discord gossips, 'Daedela: Heyo!'
+$
+aliases:
+bma bodyslam mage
+kd kill deer
+kf kill fox
+kr kill rabbit
+bu kill bug
+la bodyslam ladybug
+co bodyslam cockroach
+bb bodyslam beetle
+st stand
+gc get all from corpse
+ec examine corpse
+bf bodyslam firefly
+ba bodyslam ant
+bs bodyslam spider
+bc bodyslam cricket
+bg bodyslam grasshopper
+bd bodyslam dog
+bl bodyslam blob
+bj bodyslam janitor
+cu bodyslam cur
+0

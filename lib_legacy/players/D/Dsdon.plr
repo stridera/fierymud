@@ -1,0 +1,86 @@
+name: Dsdon
+password: Ds4ldLEOZO
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 28
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20287
+birthtime: 1656154683
+timeplayed: 8147
+lastlogintime: 1656437363
+host: 123.174.074.158
+height: 77
+weight: 205
+base_height: 77
+base_weight: 205
+base_size: 2
+natural_size: 2
+alignment: 1
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 28/28
+mana: 1/0
+move: 112/112
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 62
+wisdom: 74
+dexterity: 88
+constitution: 73
+charisma: 66
+cash: 0 0 2 1
+bank: 0 0 0 1
+experience: 6049
+quit_reason: 3
+saveroom: 0
+skills:
+204 1000
+402 52
+404 57
+415 50
+416 50
+421 53
+438 50
+443 50
+444 50
+453 50
+463 50
+464 50
+465 53
+466 50
+467 50
+468 50
+488 75
+0 0
+trophy:
+1 5404 2.000000
+1 3501 1.000000
+1 3502 3.000000
+1 3062 1.000000
+1 51900 2.000000
+0 0 0
+tells:
+1656163577 @WThe Warmaster@W tells you, 'And that's okay!  We all have to start somewhere.@W'@0
+1656163577 @WThe Warmaster@W tells you, 'Skills will improve gradually as you use them.@W'@0
+1656163577 @WThe Warmaster@W tells you, 'Unlike many MUDs you will not need to train or practice@W'@0
+1656163577 @WThe Warmaster@W tells you, 'Your skills with a Guild Master.@W'@0
+1656163577 @WThe Warmaster@W tells you, 'The words that describe them might not change often,@W'@0
+1656163577 @WThe Warmaster@W tells you, 'But as long as you're using your skills, they're improving!@W'@0
+1656163577 @WThe Warmaster@W tells you, 'It delivers an extra attack that delivers some bonus damage.@W'@0
+1656163577 @WThe Warmaster@W tells you, 'You probably won't land a kick for many levels, but keep trying.@W'@0
+1656163577 @WThe Warmaster@W tells you, 'Practice makes perfect.@W'@0
+1656163591 @WThe Warmaster@W tells you, 'Excellent job!@W'@0
+$
+gossips:
+$

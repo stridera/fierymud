@@ -1,0 +1,134 @@
+name: Nodem
+password: NooRPAcgIw
+prompt: &2&b%ph <&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b %i>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 2
+race: 3
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 17119
+birthtime: 1224096957
+timeplayed: 1290352
+lastlogintime: 1429667104
+host: 098.231.133.187
+height: 42
+weight: 180
+base_height: 42
+base_weight: 180
+base_size: 2
+natural_size: 2
+alignment: 439
+playerflags: gxyz
+effectflags: kt 0 q
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 10
+loadroom: 3054
+lastlevel: 0
+hitpoints: 955/856
+mana: 980/980
+move: 148/148
+damroll: 4
+hitroll: 5
+strength: 88
+intelligence: 82
+wisdom: 82
+dexterity: 92
+constitution: 89
+charisma: 80
+cash: 2 4 3 4
+bank: 1778 6785 10017 16
+experience: 105805999
+clan: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+409 1000
+410 600
+411 1000
+412 1000
+415 1000
+416 1000
+420 1000
+421 1000
+438 132
+443 50
+444 178
+464 1000
+465 50
+467 50
+476 1000
+478 1000
+0 0
+trophy:
+1 7300 1.000000
+1 48018 1.000000
+1 59004 1.000000
+1 39008 1.000000
+1 49019 1.000000
+1 12511 1.000000
+1 10313 1.000000
+1 10309 3.000000
+1 13602 1.000000
+1 13605 1.000000
+1 13611 3.000000
+1 20302 2.000000
+1 20317 2.000000
+1 20310 3.000000
+1 20306 3.000000
+1 20301 3.000000
+1 17208 3.000000
+1 17204 5.000000
+1 61518 1.000000
+1 61521 1.000000
+1 61520 1.000000
+0 0 0
+aliases:
+realm e;n;n;e;w;s;n
+aaa recite teleport
+hit rem all.eye;rem all.hawk;wear all.barbed;put fiery case;wear rod
+fiery rem all.barbed;rem all.hawk;rem rod;get fiery case;wear fiery;hold infidel;hold infidel
+pack get saddle blob;rem tunic;put all saddle;get recall saddle;wear saddle
+unpack rem saddle;get all saddle;wear tunic;put saddle blob
+bbb scan;hide
+lair n;w;u;w;s;s;s;e;u;n;w;s;s;e;u;n;w;w;s;s;w;u
+gy u;e;d;e;s;e;e;n;d;n;n;e;e;e;e;s;s;w;s;s;s;e;d
+waste s;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;n;n;n;w;w;w;w;w;w;w;w;w;w;n;n;w;n;u;w;w;n;u;e;n;w;n;n;n;n;w;w;s;w;n;n
+jetty s;e;e;e;e;e;e;e;e;s;s;s;s;s;e;s;s;s;e;s;s;w;w;w;w;s;s;s;s;s;s;e;s;e;s;w;s;e;e;n;e;s;s;w;s;s;e;s;w;d;w;s;w
+water n;e;e;s;d;d;s;s;e;e;e;s;d;w;s;s;w;w;s;w
+air n;e;e;s;d;d;s;s;w;w;n;u;u;u
+fountain u;op door;w;n;w;s;buy green;n;e;e;n;dri fountain;fill barrel fountain
+wall s;w;w;w;n;n;n;n;n;n;n;e;e;n;n;n;n;w;n;n;n;e;e;n;n;e;e;n;e;s;e;n;n;n;e;n;n;n;n;w;n;n;n;n;e;e;e;e;n;n;n;n;w;w;s;e;s;s;w;w;n;n;n;n;n;n
+gac get band corpse;wear band;get band corpse;wear band;get all corpse
+9 ass dimentio;ass gyde;ass gyen;b
+gcc get coins all.corpse
+ggg tr spider;kil spider;tr cricket;kil cricket;tr cockroach;kil cockroach;tr fly;kil fly;tr lady;kil lady;tr ant;kil ant;tr green;kil green;tr beetle;kil beetle
+ccc l i corpse
+who who -w
+7 kill spider;kill cricket;kill cockroach;kill fly;kill lady;kill ant;kill green;kill beetle
+6 kill deer;kill fox;kill hedgehog;kill sparrow;kill crow;kill mouse;kill brownie;kill rabbit
+; l n;l s;l e;l w;l u;l d
+st st;fly
+hoo say buntoi nakkarri karisto
+ppp follow $1;consent $1
+iden identify $1
+fire n;e;e;s;d;d;s;s;e;e;s;s;u;u;n;e;n;n;w;w;s;s;w;w;s;u;e;s;e
+fly rem insanity;wear wings;st;fly
+dr rem wings;wear insanity
+barrow s;s;s;s;s;s;s;s;s;s;w;s;w;w;s;s;s;w;w;w;s;w;w;s;w;s;w;s;e;s;e;s;e;e;e;s;e;s;e;e;s;e;e;e;e;s;e;e;n;e;u;n;e;e;e;e;s;e;e;n;n;e;e
+regen rem all.barbed;hold hawk;hold hawk
+well s;s;s;s;s;s;s;s;e;e;e;e;e;e;e;e;s;s;e;e;e;s;s;s;s;s;s;e;s;s;s;e;s;s;s;w;s;s;e;e;e;e;s;e;e;s;s;s;s;e;n;e;n;e;s;s;w;s;s;s;u;s;d;e;e;s;s;w;s;s;e;s;s;w;s;s;s;w;s;s;s;s;op gate;s;s;s;s
+doom w;w;n;n;w;w;n;n;w;w;n;n;w;w;n;n;n;w;w;w;n;n;n;w;w;w;s;w;w;n;d;n;n;w;w;n;n;n;n;e;e;e;n;n;w;n;n;n;e;e;n;n;n;n;e;e;e;e;e;e;e;n;n;n;op door
+uaine s;s;s;s;e;e;e;e;e;s;s;e;e;s;s;s;e;e;n;w;w;n;w;n;w;w;w;n;w;n;n;n;n;w;w;w
+templace w;w;n;n;w;w;n;n;w;w;n;n;w;w;n;n;n;w;w;w;n;n;n;e;e;n;e;e;s;e;n;n;w;n;w;n;w;n;w;w;w;n;w;s;w;w;n;n;n;n;n;e;e;n;e;e;e;e;s;e;e;e;n;n;n;w;w;n;w;w;w;w;w;w;w;w;w;w;w
+king d;e;s;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;n;n;n;w;w;w;w;w;w;w;w;w;w;n;n;e;e;e;e;e;u;e;e;u;n;n;n;n;n;n;n;n;n;n;n;e;n;n;n;n;n;n;u;e;n;n;n;n;e;n;n;e;n;n;n;n;n;n;e;n;n;e;e;e;e;e;n;e;e;n;e;n;n;u;w;s;w;s;w;w;w;s;w;w;n;w;w;s;s;
+for fire is
+0

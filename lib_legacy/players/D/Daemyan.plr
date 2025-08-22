@@ -1,0 +1,91 @@
+name: Daemyan
+password: DavcBhr4it
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 28
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20354
+birthtime: 1664154509
+timeplayed: 3737
+lastlogintime: 1680736989
+host: 047.160.110.031
+height: 75
+weight: 181
+base_height: 75
+base_weight: 181
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 44/44
+mana: 1/0
+move: 122/122
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 76
+wisdom: 80
+dexterity: 81
+constitution: 79
+charisma: 63
+cash: 0 1 12 8
+bank: 0 1 1 1
+experience: 18149
+quit_reason: 3
+saveroom: 0
+skills:
+204 1000
+402 56
+404 67
+415 50
+416 50
+421 58
+438 50
+443 50
+444 50
+455 50
+463 50
+464 50
+465 57
+466 50
+467 50
+468 50
+488 93
+0 0
+trophy:
+1 7001 1.000000
+1 8010 1.000000
+1 8022 2.000000
+1 8011 1.000000
+1 8023 2.000000
+1 8012 2.000000
+1 8020 1.000000
+1 8014 1.000000
+1 8001 1.000000
+1 51900 4.000000
+0 0 0
+tells:
+1664155726 @WThe Master of the Revel@W tells you, 'The syntax looks like this:@W'@0
+1664155742 @WThe Master of the Revel@W tells you, 'Thank you for using Academy Bank.@W'@0
+1664155746 @WThe Master of the Revel@W tells you, 'There are just a few final things to know@W'@0
+1664155746 @WThe Master of the Revel@W tells you, 'Before you head out into the world.@W'@0
+1664155792 @WThe Master of the Revel@W tells you, 'When you're ready to stop playing,@W'@0
+1664155798 @WThe Master of the Revel@W tells you, 'You're ready to graduate from Ethilien Academy!@W'@0
+1664155800 @WThe Master of the Revel@W tells you, 'Now that you're ready to level, it's time@W'@0
+1664155805 @WThe Master of the Revel@W tells you, 'Your guild is the Warrior's Guild.@W'@0
+1664155857 @WThe Master of the Revel@W tells you, 'Your Guild Master here in Mielikki will@W'@0
+1664155866 @WThe Master of the Revel@W tells you, 'Congratulations again, graduate!@W'@0
+$
+gossips:
+$

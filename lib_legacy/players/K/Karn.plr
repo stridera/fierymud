@@ -1,0 +1,76 @@
+name: Karn
+password: KaRSjKWZOD
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20897
+birthtime: 1735944753
+timeplayed: 518
+lastlogintime: 1737335316
+host: 067.167.192.166
+height: 42
+weight: 184
+base_height: 42
+base_weight: 184
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k w q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 33/31
+mana: 1/0
+move: 169/169
+damroll: 4
+hitroll: 5
+strength: 99
+intelligence: 67
+wisdom: 68
+dexterity: 77
+constitution: 99
+charisma: 59
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1735944782 Lokar gossips, 'Hey karn!'
+1735944789 Lokar gossips, 'new to fiery?'
+1735944814 Lokar gossips, 'welcome back :D'
+1735944868 Lokar gossips, 'hate that!'
+1735944880 Lokar gossips, 'but forsure so much new it is almost better :D'
+1735944933 Discord gossips, 'Chinok: one of the items on our 'to do' list -- is to allow users to set an email account on all their characters, so they can be retrieved if forgotten.'
+1735945022 Discord gossips, 'Chinok: I can have a look'
+1735945037 Discord gossips, 'Chinok: DONT try to log into them if you remember one'
+1735945047 Discord gossips, 'Chinok: cause that resets the one thing I can search on'
+1735945175 Chinok gossips, 'yeah, only showing Karn and Anexis from that IP range.. if you remember another one, let me know BEFORE you try to log into it'
+$

@@ -1,0 +1,117 @@
+name: Swenct
+password: SwC343.UR/
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19913
+birthtime: 1620576305
+timeplayed: 64908
+lastlogintime: 1724433604
+host: 174.179.016.210
+height: 36
+weight: 112
+base_height: 36
+base_weight: 112
+base_size: 1
+natural_size: 1
+alignment: 774
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 15
+loadroom: 3054
+lastlevel: 0
+hitpoints: 110/110
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 6
+strength: 84
+intelligence: 81
+wisdom: 66
+dexterity: 100
+constitution: 70
+charisma: 62
+cash: 0 0 92 44
+experience: 269396
+quit_reason: 1
+saveroom: 3054
+skills:
+401 79
+403 52
+405 50
+408 50
+415 50
+416 50
+421 60
+438 70
+443 50
+444 50
+463 50
+464 108
+465 50
+491 50
+493 50
+0 0
+trophy:
+1 17201 1.000000
+1 17202 0.500000
+1 17205 1.500000
+1 17203 1.000000
+1 17204 3.500000
+1 36305 0.500000
+1 8002 0.500000
+1 8021 0.500000
+1 8802 1.000000
+1 8803 1.000000
+1 8804 0.500000
+1 8805 1.000000
+1 8800 1.000000
+1 41013 1.000000
+1 8012 1.000000
+1 8030 0.500000
+1 8613 1.500000
+1 8608 1.000000
+1 8614 2.000000
+1 8612 3.000000
+1 8615 4.000000
+0 0 0
+tells:
+1620686804 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620686804 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620686804 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620686804 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620686804 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620686805 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620686805 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620686822 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
+1620686851 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1620686854 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+$
+gossips:
+1724433267 Rolatti gossips, 'hah, yeha i dont drink or do drugs anymore, still a bit of brain fog left from all that ROFL'
+1724433273 Chinok gossips, 'needed a name, and had a pack of batteries on my desk :)'
+1724433279 Rolatti gossips, 'classic'
+1724433424 Chinok gossips, 'any name that matches a mob in game will get rejected :)'
+1724433454 Chinok gossips, 'hum ,it didn't match, but let me look'
+1724433513 Chinok gossips, 'it's not a character in game,'
+1724433548 Chinok gossips, 'NP, enjoy, and have some fun'
+1724433558 Tatabutataka gossips, 'oh nice this one too :P'
+1724433581 Chinok gossips, 'see, it's all comming back'
+1724433582 Tatabutataka gossips, 'gosh how many rogues did i have LOL'
+$
+aliases:
+alts say glaim, swayne, swayod, flenct, swenct, rolatti
+iden recite identify $1
+tf tell flenct $*
+ll tell flenct assist swenct
+bs backstab $1
+0

@@ -1,0 +1,170 @@
+name: Pashku
+password: Pa5jGHC7tC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 4
+level: 47
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20080
+birthtime: 1640387893
+timeplayed: 1594389
+lastlogintime: 1646700675
+host: 104.128.161.061
+height: 87
+weight: 286
+base_height: 87
+base_weight: 286
+base_size: 3
+natural_size: 3
+alignment: 555
+playerflags: gxy
+effectflags: k w 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 30009
+lastlevel: 0
+hitpoints: 675/581
+mana: 220/220
+move: 150/162
+damroll: 5
+hitroll: 4
+strength: 97
+intelligence: 80
+wisdom: 82
+dexterity: 86
+constitution: 89
+charisma: 68
+cash: 417 2138 6 5
+bank: 40 5 0 0
+experience: 16904351
+quit_reason: 1
+saveroom: 30009
+skills:
+402 472
+404 312
+407 520
+411 520
+412 520
+415 245
+416 269
+419 1000
+420 520
+421 520
+422 482
+427 1000
+430 520
+431 50
+434 511
+438 156
+443 50
+444 50
+463 50
+464 70
+465 520
+466 50
+467 300
+468 50
+0 0
+trophy:
+1 59014 0.200000
+1 59012 0.400000
+1 59013 0.200000
+1 59006 0.200000
+1 59026 0.400000
+1 59015 0.200000
+1 59016 0.200000
+1 59023 0.400000
+1 59022 0.800000
+1 59002 0.200000
+1 59000 0.400000
+1 59011 0.600000
+1 59007 0.200000
+1 59035 0.200000
+1 59009 0.200000
+1 59008 1.000000
+1 59010 0.600000
+1 59001 0.200000
+1 59004 0.200000
+1 2328 0.600000
+1 2320 0.200000
+0 0 0
+tells:
+1646007288 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1646007288 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1646007288 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1646007298 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1646007299 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1646007299 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1646007299 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1646007299 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1646007299 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1646613561 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+$
+gossips:
+1646686198 Ilish gossips, 'ty'
+1646689628 Ilish gossips, 'Peace all.'
+1646700182 Chinok gossips, 'hi Beltre'
+1646700188 Beltre gossips, 'sup'
+1646700332 Beltre gossips, 'hmmm when you have a sec im not getting exp i thought i had that fixed'
+1646700404 Chinok gossips, 'that should do it'
+1646700406 Beltre gossips, 'thanks!'
+1646700412 Chinok gossips, 'I don't remember fixing beltre'
+1646700426 Beltre gossips, 'i thought you did but i was wrong lol'
+1646700439 Chinok gossips, 'I thought I was wrong once before, but I was mistaken'
+$
+aliases:
+rl rescue lokima
+stoneme say stoneme
+invisme say invisme
+fs say flamestrike $1
+aa assist astrid
+blessall gs blessall
+armorall gs armorall
+target say target $1
+grouprent say 'group rent'
+groupstand say 'group stand'
+rb rescue bolle
+rcall say 'group recall'
+groupdrink say 'group drink'
+groupfill say 'group fill'
+rr rescue razaria
+stab say 'stab $1'
+ar assist razaria
+ec examine corpse
+gac get all corpse
+dw drink water
+rc recite recall self
+bs bodyslam $1
+gcc get coins corpse
+gup say 'consent Pashku'
+rw rescue Wozzaki
+rcwoz recite recall wozzaki
+who who -w
+df drink fountain
+fwf fill water fountain
+ri recite identify $1
+cureme say cureme
+spellup say spellup
+lev say lev
+sg gs shocking grasp $1
+ct gs chill touch $1
+saveall gs saveall
+qh quaff healing
+armorme gs armorme
+blessme gs blessme
+rk rescue rokari
+healme say healme
+groupsit say 'group sit'
+spells gs spellinventory
+cureblind say cureblindme
+uo unlock $1
+kt say target $1
+groupportal say 'group portal'
+dime say dime
+de say dispelevil $1
+0

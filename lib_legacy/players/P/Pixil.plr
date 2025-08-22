@@ -1,0 +1,76 @@
+name: Pixil
+password: PiuggGmXmP
+prompt: &0%hhp %vmv>&0 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18426
+birthtime: 1360300105
+timeplayed: 2816
+lastlogintime: 1360302922
+host: 024.118.174.226
+height: 49
+weight: 178
+base_height: 49
+base_weight: 178
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 q
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8201
+lastlevel: 0
+hitpoints: 45/43
+mana: 0/0
+move: 32/150
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 52
+wisdom: 67
+dexterity: 99
+constitution: 90
+charisma: 57
+cash: 0 4 13 27
+experience: 14355
+quit_reason: 7
+saveroom: 8201
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 52
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8015 0.500000
+1 36003 2.000000
+1 8016 1.500000
+1 8011 1.000000
+1 8010 0.500000
+1 8023 0.500000
+1 3066 0.500000
+1 3501 1.000000
+1 3506 0.500000
+1 3500 2.000000
+1 3508 0.500000
+1 3502 3.000000
+1 3503 1.000000
+0 0 0

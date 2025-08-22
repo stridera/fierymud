@@ -1,0 +1,116 @@
+name: Jagvor
+password: JaKAdgFwbV
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 3
+race: 7
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 16384
+birthtime: 1172023889
+timeplayed: 11705693
+lastlogintime: 1640901354
+host: 162.233.153.155
+height: 75
+weight: 229
+base_height: 75
+base_weight: 229
+base_size: 4
+natural_size: 4
+alignment: -1000
+playerflags: lyz
+effectflags: k w 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3208
+thirst: 4
+lastlevel: 14
+hitpoints: 1636/1240
+mana: 100/100
+move: 176/176
+damroll: 5
+hitroll: 4
+strength: 94
+intelligence: 61
+wisdom: 67
+dexterity: 91
+constitution: 100
+charisma: 56
+cash: 267 1190 5946 1590
+experience: 113252401
+quit_reason: 3
+saveroom: 0
+skills:
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+419 1000
+420 700
+421 700
+422 750
+427 1000
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 1000
+468 1000
+473 1000
+0 0
+trophy:
+1 3068 0.400000
+1 3064 0.250000
+1 3067 0.500000
+1 3075 0.650000
+0 0 0
+tells:
+1625583603 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1625584607 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1625584643 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1625584645 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1625584648 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1625584675 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1625928822 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1625933607 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1640900407 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1640900409 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1637802426 Zaver gossips, 'haha. Night'
+1637802437 Chinok gossips, 'lol later'
+1637802449 Chinok gossips, 'happy turkey day'
+1637802455 Zaver gossips, 'agreed!'
+1640900435 Slark gossips, 'Hey Jagvor'
+1640900564 Mand gossips, 'nice!'
+1640900765 Someone gossips, 'l'
+1640900769 Someone gossips, 'yup'
+1640900835 Zaver gossips, 'hey all'
+1640900998 Someone gossips, 'do you acutally steal it?'
+$
+aliases:
+hitall hitall all
+who who -where
+df drink fountain
+lic look in corpse
+gcc get all.coins corpse
+gccc get all.coins 2.corpse
+gs group self
+- enter well
+f gsay flee
+gc get all.coins
+gac get all corpse
+0

@@ -1,0 +1,93 @@
+name: Quillion
+password: Qu9JqkLnjU
+prompt: &2&b<&0&1%hh&0(&1&b%HH&0)&6%vv&0(&6&b%VV&0)&2&b><&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> <%l>%
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 12
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19370
+birthtime: 1531757078
+timeplayed: 341004
+lastlogintime: 1634658861
+host: 108.039.112.080
+height: 76
+weight: 116
+base_height: 76
+base_weight: 116
+base_size: 2
+natural_size: 2
+alignment: 972
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3500
+hunger: 9
+lastlevel: 0
+hitpoints: 164/164
+mana: 14/14
+move: 68/100
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 85
+wisdom: 76
+dexterity: 84
+constitution: 71
+charisma: 61
+cash: 0 3 61 92
+bank: 0 700 0 0
+experience: 463132
+quit_reason: 7
+saveroom: 3500
+skills:
+402 62
+404 170
+415 50
+416 50
+421 170
+430 50
+438 133
+443 50
+444 170
+463 50
+464 50
+465 170
+466 50
+467 50
+468 50
+0 0
+tells:
+1634658382 @WAaron@W tells you, 'You bring it to me when you get it and we'll talk.@W'@0
+1634658382 @WAaron@W tells you, 'You bring it to me when you get it and we'll talk.@W'@0
+1634658386 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1634658388 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1634658394 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1634658445 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1634658718 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1634658722 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1634658722 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1634658722 @WAaron@W tells you, 'You bring it to me when you get it and we'll talk.@W'@0
+$
+gossips:
+1634395127 Chinok gossips, 'help merc -- will show who CAN sub to merc..'
+1634433707 Chinok gossips, 'hey, did I miss a question the other day ?'
+1634434225 Chinok gossips, 'ok, I thought I had seen a question that I had missed a day or so ago'
+1634437147 Chinok gossips, 'CONGRATZ!!!'
+1634437152 Chinok gossips, 'you little thief!'
+1634437160 Arakius gossips, 'thanks'
+1634439340 Chinok gossips, 'gratz Solarius'
+1634439564 Solarius gossips, 'thanks'
+1634655792 Chinok gossips, 'welcome back'
+1634657835 Chinok gossips, 'lol'
+$
+aliases:
+gcc get coins corpse
+k kill $1
+gac get all corpse
+0

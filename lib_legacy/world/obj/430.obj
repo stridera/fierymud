@@ -1,0 +1,426 @@
+#43000
+key demise-key burnt~
+the gateway key~
+A burnt, metal key floats in the air, seeking a master.~
+~
+18 4 1 1
+1 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+burnt metal key~
+The key sways as if on unseen winds, its surface surprisingly smooth
+even after the burning process it went through.~
+#43001
+key seblan-key pulsing blue~
+the pulsing blue key~
+A key which pulses with blue energy is on the ground here.~
+~
+18 4 1 1
+1 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+blue pulsing key~
+As you study the blue key, a shock goes through your system. In a moment
+of silent clarity, you see in your mind's eye some manner of portal which
+buckles under an unseen force before shattering into a shower of blue
+splinters. The spell broken, you eye the key warily.~
+#43002
+key sand-key fading black-key black~
+the fading black key~
+A black key rests on the ground here, slowly fading away.~
+~
+18 4 1 1
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+fading black key~
+The key appears to be shifting between this reality and another, some
+unknown force regulating its equilibrium as to not allow it to completely
+exit this realm.~
+#43003
+key maze-key dragon bone~
+the dragon bone key~
+A key made of dragon bone rests on the ground here.~
+~
+18 4 1 1
+1 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+dragon bone key~
+The key appears to be made of a single dragon digit, seeing as one end
+terminates in a wicked looking talon. The key is uncomfortably warm to
+the touch.~
+#43004
+ball marble-key blue white streaked marble key~
+a streaked marble ball~
+A blue and white streaked marble ball is at rest on the ground here.~
+~
+18 4 1 1
+1 0 0 0 0 0 0
+1.40 0 0 0 0 0 0 0
+E
+ball blue white streaked marble key~
+The blue and white streaked marble seems to expand and contract as though
+it were alive. A small shimmer of energy passes over its smooth surface
+occasionally, almost as if to hint towards its purpose.~
+#43005
+key chamber-key glass lightning-key~
+the lightning key~
+A key composed of lightning contained within glass rests here.~
+~
+18 4 1 1
+1 0 0 0 0 0 0
+0.05 0 0 0 0 0 0 0
+E
+lightning glass key~
+Looking closer at this phenomena, you observe the chaotic motion of the
+lightning which has been magically encased in glass. For a brief second,
+you can almost swear you see a tiny, maniacal figure riding the various
+tines. Closer inspection just gives you a headache.~
+#43006
+key descent-key red wet~
+a wet-looking red key~
+A red key shines wetly on the ground here.~
+~
+18 4 1 1
+1 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+red wet key~
+The key appears to be wet with either some clear or reddish fluid, but attempts
+at collecting the mystery coating result in wet-feeling hands without any
+visible sign of the cause!  An unpleasant memory flares in the back of your
+head only to plague you with its elusive meaning.    ~
+#43007
+mace large-obsidian-mace~
+an obsidian mace~
+A large obsidian mace rests on the ground here.~
+~
+5 50335744 8193 45
+0 3 4 6 0 0 0
+6.00 3000 0 0 0 0 0 0
+E
+mace large-obsidian-mace~
+The large, obsidian mace looks as if it's just waiting to crush someone's
+skull.~
+A
+4 3
+A
+27 1
+X
+224
+#43008
+bag cursed-sand black sand~
+a bag full of black sand~
+A bag full of what appears to be black sand has been left here.~
+~
+8 128 16385 40
+0 0 0 0 0 0 0
+10.00 0 0 0 0 0 0 0
+E
+bag sand black~
+There is something truly peculiar about this bag of sand. A small voice
+within your head begs you to leave it alone; yet, another voice --
+suspiciously louder -- urges you to discover this bag's secrets!~
+A
+18 -3
+#43009
+paw panther's-paw panthers-paw large-feline's-paw large-felines-paw~
+a panther's paw~
+A large feline's paw rests here, awaiting a sprint.~
+~
+12 64 16385 40
+0 0 0 0 0 0 0
+1.20 0 0 0 0 0 0 0
+E
+paw panther's-paw panthers-paw large-feline's-paw large-felines-paw~
+The rather large paw seems to emit the elemental energy of its previous owner.
+Mere proximity to this item seems to enhance your sense of smell...  You can't
+help but wonder what other use this item might have...~
+A
+14 40
+A
+6 2
+#43010
+shield-darkness shadow~
+the Shield of Darkness~
+A shadow in the corner of your vision takes the form of a shield.~
+~
+9 576 513 40
+11 0 0 0 0 0 0
+2.00 600 0 0 0 0 0 0
+E
+shield-darkness shadow~
+The shield appears to be made of a bundling of dark matter. It is very
+clear that it would take a lot to shatter its absorbant surface.~
+A
+18 3
+A
+27 2
+#43011
+scimitar evil-looking-black-scimitar sentry-scimitar~
+a black scimitar~
+An evil looking black scimitar waits for its master to return.~
+~
+5 53490240 8193 45
+0 3 4 3 0 0 0
+3.00 1000 0 0 0 0 0 0
+E
+scimitar evil-looking-black-scimitar sentry-scimitar~
+The smooth, blackened surface of this scimitar reflects the half-light of its
+environment with an evil tinge.  A slight twitching of the blade indicates its
+desire for fresh blood, encouraging you to note both its power and evil nature.~
+A
+18 3
+X
+997
+#43012
+robe blue-robe-neutrality pile-blue-silk~
+the Blue Robe of Neutrality~
+A pile of blue silk is puddled at your feet.~
+~
+9 567198792 9 45
+8 0 0 0 0 0 0
+4.00 200 0 0 0 0 0 0
+E
+robe blue-robe-neutrality pile-blue-silk~
+The blue robe of silk has a single, mysterious symbol on its front.  While the
+image is familiar, you can not place where you have seen it before.~
+E
+symbol~
+A closer look at the symbol reveals the paw print of a panther superimposed
+over a balanced scale.~
+A
+3 3
+A
+27 2
+X
+16
+#43013
+book-redemption ancient-text questobject~
+the Book of Redemption~
+An ancient text has been left here.~
+~
+8 536871938 16385 45
+0 0 0 0 0 0 0
+1.10 0 0 0 0 0 0 0
+T 5342
+E
+book-redemption ancient-text questobject~
+Quickly scanning through the text, you piece together a tale of good cause
+corrupted and evil unleashed.  Once the letters begin dancing on the page, you
+avert your gaze as to not completely lose your mind.~
+A
+4 2
+A
+3 2
+A
+6 2
+A
+13 10
+A
+27 2
+#43014
+armor keeper's-armor keepers-armor patch-darkness~
+the Keeper's Armor~
+A patch of darkness shimmers next to your feet.~
+~
+9 512 9 40
+18 0 0 0 0 0 0
+12.00 0 0 0 0 0 0 0
+E
+armor keeper's-armor keepers-armor patch-darkness~
+Studying the patch of darkness, you realize that it is some manner of
+light-weight, pliable material.  Thin, yet strong, you realize it would make
+for excellent armor.  An azure flare passing over its surface occassionally
+makes it clear as to its origins.~
+E
+flare~
+Closer inspection of the flare reveals the image of....a running panther?
+How odd...~
+A
+1 2
+#43015
+blade keeper's-blade keepers-blade burnt-blade~
+the Keeper's Blade~
+A burnt blade rests on the ground here, waiting to taste blood.~
+~
+5 53490176 8193 40
+0 5 3 3 0 0 0
+3.00 500 0 0 0 0 0 0
+E
+blade keeper's-blade keepers-blade burnt-blade~
+The blade seems to reflect darkness off of its burnt, yet smooth, surface.  On
+the hilt you can barely make out the ancient symbol of the Keepers, the fated
+souls eventually twisted into serving as the guardians of Demise Keep.~
+X
+997
+#43016
+robe red-robe-duplicity pool-red-silk~
+the Red Robe of Duplicity~
+A pool of red silk is draped over the ground here.~
+~
+9 536873536 9 45
+8 0 0 0 0 0 0
+4.00 500 0 0 0 0 0 0
+E
+robe red-robe-duplicity pool-red-silk~
+Darker crimson markings on the silk form a seal upon the fabric.  An aura about
+the robe emits an evil nature; yet, you feel as though the robe itself were
+calling to you...  Seeking release.~
+E
+markings~
+The markings form a seal on the robe. Closer inspection of the seal
+reveals its magical nature: an evil set of eyes blinking back at you.~
+A
+3 3
+A
+27 2
+#43017
+mask-duplicity black-melted-mask~
+the Mask of Duplicity~
+A black, melted mask leaves the imprint of a tortured soul in the earth here.~
+~
+12 2688 131073 40
+0 0 0 0 0 0 0
+0.85 0 0 0 0 0 0 0
+E
+mask-duplicity black-melted-mask~
+Looking closer at the mask, you eventually make out a horrifying visage giving
+the artifact its form.  Carved into the inside of the mask is the following:
+Nilthren mait-uke lukriam ensiv.  You feel something deep within you snap.~
+A
+18 -2
+A
+19 2
+#43018
+staff seblan-staff blue fire~
+the Staff of Seblan~
+A staff engulfed in blue fire stands at attention here.~
+~
+3 0 16385 55
+75 3 3 31 0 0 0
+4.00 1000 0 0 0 0 0 0
+E
+staff seblan~
+The staff appears to be engulfed in a blue flame, but it remains cool to
+the touch. Intricate designs have been carved into its magical surface...
+apparently some type of magical charm which may or may not have worn off
+with the passage of time.~
+A
+5 3
+A
+4 1
+#43019
+amulet midnight-amulet dark-form~
+the Midnight Amulet~
+The dark form of something violates the reality of this space.~
+~
+8 14608905 5 40
+1 0 0 0 0 0 0
+0.12 0 0 0 0 0 0 0
+E
+midnight amulet~
+Looking closer at the dark form, you realize that it is some form of amulet.
+As if aware of your interest, it flares with a dark light briefly, revealing
+the following: Lin'trau vendil martook umse. You feel something within you
+mend and a power from beyond merging with your own.~
+A
+4 2
+A
+27 1
+X
+787
+#43020
+rod-intervention wicked-looking-rod~
+the Rod of Intervention~
+A wicked-looking rod is embedded in the earth here.~
+~
+3 1 16385 57
+57 10 10 55 0 0 0
+1.50 0 0 0 0 0 0 0
+E
+rod-intervention wicked-looking-rod~
+Upon closer inspection, there are some words carved into the rod.~
+E
+words~
+In times of strife, my cause was to be known;
+Bitter tears of regret, clenched tooth to bone.
+Milnae urthlii, sumalin murtgnai d'ench pa'r...
+Veteinri Umse YaYa lechniq emt umscuia'r.~
+A
+5 2
+#43021
+orb-catastrophe gleaming-orb~
+the Orb of Catastrophe~
+A gleaming orb floats a few feet off of the ground here.~
+~
+1 1610615360 2113537 60
+0 -1 -1 0 0 0 0
+5.00 0 0 0 0 0 0 0
+E
+orb-catastrophe gleaming-orb~
+The orb slowly spins on a random axis, even when held.  Looking deep within its
+depths, you can almost swear that you see its fluid core swirling about a
+solitary figure.~
+A
+1 3
+A
+3 2
+A
+27 3
+#43022
+cloak-insanity something-corrupting-reality~
+the Cloak of Insanity~
+Something rests on the ground here, slowly corrupting reality.~
+~
+9 536870912 1025 50
+0 0 0 0 0 0 0
+3.00 0 0 0 0 0 0 0
+T 150
+E
+cloak-insanity something-corrupting-reality~
+Looking at the cloak too long gives you a headache.~
+A
+4 -3
+A
+19 3
+#43024
+chest metal metal-chest~
+a polished metal chest~
+A giant, well-polished metal chest is here.~
+Nothing.~
+15 32 0 1
+999 5 -1 0 0 0 0
+999.00 0 0 0 0 0 0 0
+E
+chest metal metal-chest~
+This chest gleams with the blue ambient light of the orbs surrounding you.  In
+its polished surface you can see your face reflected, its features appearing
+ominously greedy.~
+#43025
+gold coins~
+a pile of gold coins~
+A pile of gold coins sparkles in the half light.~
+Nothing.~
+20 0 1 1
+0 300 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+gold coins~
+You inspect the coins closer.  There appear to be eight gold coins in the pile.~
+#43026
+non descript non-descript wood wooden door gateway portal~
+a non-descript wooden door~
+A non-descript wooden door is floating here.~
+~
+24 805306433 0 0
+43037 0 0 0 0 0 0
+80.00 0 3 0 0 0 0 0
+E
+non descript non-descript wood wooden door gateway portal~
+A non-descript wooden door floats here. Brief azure
+shimmers slide across its surface at odd intervals.
+Something about their passage leads you to believe
+this portal will only exist for a few moments.~
+$~

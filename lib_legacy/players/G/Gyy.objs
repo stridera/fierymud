@@ -1,0 +1,2775 @@
+1
+vnum: 16103
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: ring dull-sandstone-ring sand-stone
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+18 1
+1 3
+5 2
+~
+extradesc: sandstone-ring dull sand-stone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  ~
+triggers:
+5324
+5332
+~
+~~
+vnum: 16103
+location: 2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: ring dull-sandstone-ring sand-stone
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+18 1
+1 3
+5 2
+~
+extradesc: sandstone-ring dull sand-stone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  ~
+triggers:
+5324
+5332
+~
+~~
+vnum: 17212
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: jewel-heart dusty-little-jewel questobject
+shortdesc: the jewel of the heart
+desc: A dusty little jewel lies here.
+type: 8
+weight: 0.20
+cost: 1782
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 20
+~
+extradesc: jewel-heart dusty-little-jewel questobject
+This beautiful little jewel is shaped oddly, and appears to be very valuable to someone at least.~
+triggers:
+16307
+~
+~~
+vnum: 32406
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scarf colorful-scarf silk
+shortdesc: &0a &0&3&bco&0&1l&0&4or&0&2fu&0&6&bl&0 scarf
+desc: &0A &0&3&bco&0&1l&0&4or&0&2fu&0&6&bl&0 scarf lies here.
+type: 9
+weight: 0.80
+cost: 340
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+5 2
+6 1
+~
+extradesc: colorful-scarf silk
+&0This simple scarf is made from a nearly transparent silk.  Streaks of color
+run along its length, creating a ghostly rainbow.  Its quality is very good,
+crafted by a master and probably worth a great deal.  &0~
+~~
+vnum: 55400
+location: 5
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: tunic apprentice-tunic magical-cloth-tunic magic
+shortdesc: an apprentice tunic
+desc: A slightly magical cloth tunic lies neatly folded nearby.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 3
+13 10
+27 1
+~
+extradesc: tunic apprentice-tunic magical-cloth-tunic magic
+Newly sewn, this magical cloth tunic was made just for you.  Proof of your
+beginning training, it will protect you as you adventure!~
+~~
+vnum: 55475
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: adghnopqrstuvwxyz abeij
+name: coif-magician arcane-energy magical-coif
+shortdesc: &4&bCoif of the Magician&0
+desc: Pulsing here with arcane energy is a magical coif.
+type: 9
+weight: 0.85
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: coif-magician arcane-energy magical-coif
+Heavily enchanted cloth has been woven together to create this magical coif.  
+Pieces of clothing like this focus mystical energies, making them easier to
+manipulate.  Most sorcerers find clothing like this can strengthen almost any
+arcane workings.~
+~~
+vnum: 55401
+location: 7
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: pants apprentice-pants cloth-pants magical-power magic
+shortdesc: some apprentice pants
+desc: A pair of cloth pants emitting a slight magical power have been left here.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 1
+13 7
+27 1
+~
+extradesc: pants apprentice-pants cloth-pants magical-power magic
+Newly sewn, these magical cloth pants were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 55479
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: adghnopqrstuvwxyz abeij
+name: slippers-magician arcane-energy magical-slippers
+shortdesc: &4&bSlippers of the Magician&0
+desc: Pulsing here with arcane energy is a set of magical slippers.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+3 1
+5 3
+14 15
+27 2
+~
+extradesc: slippers-magician arcane-energy magical-slippers
+Heavily enchanted cloth has been woven together to create these magical
+slippers.  Pieces of clothing like this focus mystical energies, making them
+easier to manipulate.  Most sorcerers find clothing like this can strengthen
+almost any arcane workings.~
+~~
+vnum: 55481
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: adghnopqrstuvwxyz abeij
+name: gloves-magician arcane-energy magical-gloves
+shortdesc: &4&bGloves of the Magician&0
+desc: Pulsing here with arcane energy is a magical pair of gloves.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+13 10
+2 3
+27 2
+~
+extradesc: gloves-magician arcane-energy magical-gloves
+Heavily enchanted cloth has been woven together to create these magical gloves.
+Pieces of clothing like this focus mystical energies, making them easier to
+manipulate.  Most sorcerers find clothing like this can strengthen almost any
+arcane workings.~
+~~
+vnum: 55399
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: sleeves apprentice-sleeves cloth-sleeves magical-power magic
+shortdesc: apprentice sleeves
+desc: A set of cloth sleeves emitting slight magical power have been left here.
+type: 9
+weight: 1.90
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 1
+13 7
+27 1
+~
+extradesc: sleeves apprentice-sleeves cloth-sleeves magical-power magic
+Newly sewn, these magical cloth sleeves were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 20304
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: cloak zebra-skin-cloak large-striped-cloak hide
+shortdesc: a zebra skin cloak
+desc: A large striped cloak lies in the dust here.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+1 2
+19 1
+~
+extradesc: zebra-skin-cloak large-striped-cloak hide
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.~
+~~
+vnum: 17204
+location: 13
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cord golden-cord
+shortdesc: the golden cord
+desc: A golden cord lies on the ground.
+type: 9
+weight: 0.50
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+3 1
+18 -1
+27 1
+~
+extradesc: cord golden-cord
+You look upon a length of cord made of finely spun gold threads.  It seems to
+emanate a strange aura.~
+~~
+vnum: 55480
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: adghnopqrstuvwxyz abeij
+name: bracelet-magician arcane-energy magical-bracelet
+shortdesc: &4&bBracelet of the Magician&0
+desc: Pulsing here with arcane energy is a magical bracelet.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 20
+5 2
+27 2
+~
+extradesc: bracelet-magician arcane-energy magical-bracelet
+Heavily enchanted cloth has been woven together to create this magical
+bracelet.  Pieces of clothing like this focus mystical energies, making them
+easier to manipulate.  Most sorcerers find clothing like this can strengthen
+almost any arcane workings.~
+~~
+vnum: 59022
+location: 15
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agk 0
+name: bracelet bracelet-consecrated-spirit small-bracelet-stone-gold-beads
+shortdesc: the bracelet of the consecrated spirit
+desc: A small bracelet made of stone and gold beads is lying on the ground.
+type: 9
+weight: 0.30
+cost: 1300
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+24 -4
+13 5
+14 5
+27 1
+~
+extradesc: bracelet bracelet-consecrated-spirit small-bracelet-stone-gold-beads
+The bracelet is formed from small beads of gold and grayish colored stones.  
+It is very old and shows the marks from years of use.  The stone beads are
+cracked and worn down on the edges and a few of them have chipped apart.  The
+gold beads are starting to tarnish and fade, almost matching the dull luster of
+the stone, from prolonged contact with the sweat from the skin.~
+~~
+vnum: 41114
+location: 16
+values:
+0
+1
+7
+11
+0
+0
+0
+~
+flags: 0 0
+name: knife wickedly-sharp-skean-dhu sharp-steel-knife
+shortdesc: a wickedly sharp skean-dhu
+desc: A sharp steel knife stands up from a block of wood.
+type: 5
+weight: 1.10
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+4 2
+~
+extradesc: knife wickedly-sharp-skean-dhu sharp-steel-knife
+The razor-sharp knife looks like it could peel the skin from your fingers
+without you noticing the cut until you started bleeding.  A custom-carved
+wooden handle makes it easy to grip.~
+~~
+vnum: 17806
+location: 18
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: claw bear's-claw sharp-claw bears-claw bear-claw
+shortdesc: a bear's claw
+desc: A sharp claw lies on the ground.
+type: 8
+weight: 0.50
+cost: 500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16389
+hiddenness: 0
+applies:
+1 3
+5 3
+~
+extradesc: claw bear's-claw sharp-claw bears-claw bear-claw
+The bear's claw is yellowed with age.  There are also very strange etchings on
+its' surface.~
+~~
+vnum: 17216
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tear gemstone-tear gem-stone tiny-green-gemstone-teardrop tourmaline tear-drop
+shortdesc: a gemstone tear
+desc: A tiny green gemstone teardrop dangles from a string.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+5 1
+28 10
+~
+extradesc: tear gemstone-tear gem-stone tiny-green-gemstone-teardrop tourmaline tear-drop
+Made from clear green tourmaline, this tear-shaped adornment is designed to
+nest just outside the corner of the eye.  It's cut into a multifaceted
+teardrop, a little green twinkle of sadness and strength.~
+~~
+vnum: 5536
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: faceguard small-faceguard eldoria-reward face-guard 3rd-eldorian-guard-faceguard third
+shortdesc: a faceguard of the 3rd Eldorian Guard
+desc: A small faceguard lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+18 1
+~
+~~
+vnum: 35004
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: earring crow-feather-earring black-feather
+shortdesc: a crow-feather earring
+desc: A black feather rests on the ground.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: earring crow-feather-earring black-feather
+A jet black feather is attatched by leather to a small silver hoop.  The hoop
+itself is tiny, and the feather seems to hang down from it.~
+~~
+vnum: 35004
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: earring crow-feather-earring black-feather
+shortdesc: a crow-feather earring
+desc: A black feather rests on the ground.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: earring crow-feather-earring black-feather
+A jet black feather is attatched by leather to a small silver hoop.  The hoop
+itself is tiny, and the feather seems to hang down from it.~
+~~
+vnum: 5516
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: symbol eldoria-reward small-white-symbol holy-symbol-3rd-eldorian-guard third questobject
+shortdesc: a holy symbol of the 3rd Eldorian Guard
+desc: A small white symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 30
+14 25
+26 10
+27 1
+~
+extradesc: holy symbol eldoria-trophy small white 3rd-eldorian-guard-symbol
+A mild feeling of benevolence radiates from this white medal.~
+~~
+vnum: 20300
+location: 26
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+14 20
+~
+extradesc: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 17203
+location: 127
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu eij
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.~
+~~
+vnum: 17206
+location: 127
+values:
+15
+16
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: flask bubbling
+shortdesc: a bubbling flask
+desc: A bubbling flask is left at the side of the room.
+type: 10
+weight: 1.00
+cost: 15
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: flask bubbling
+The liquid in the flask has a sweet and pleasant aroma. It smells somewhat
+delicious.~
+~~
+vnum: 17206
+location: 127
+values:
+15
+16
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: flask bubbling
+shortdesc: a bubbling flask
+desc: A bubbling flask is left at the side of the room.
+type: 10
+weight: 1.00
+cost: 15
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: flask bubbling
+The liquid in the flask has a sweet and pleasant aroma. It smells somewhat
+delicious.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 17213
+location: -1
+values:
+1
+31
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll rough graphed roughly-graphed
+shortdesc: a roughly-graphed scroll
+desc: A crude scroll with heavy graph lines lies here rolled up.
+type: 2
+weight: 1.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll rough graphed roughly-graphed
+This appears to be the work of an apprentice, for crude lines are drawn roughly
+all across its surface.  The somewhat faint silvery lines have a discernable
+metallic gleam.  Most of the lines are drawn in one of two orthogonal
+directions, parallel to one or the other of the mostly rectangular edges of the
+document.  Four other lines drawn at acute angles create a diamond in the
+middle, albeit somewhat distorted.~
+~~
+vnum: 17210
+location: -1
+values:
+15
+18
+20
+14
+0
+0
+0
+~
+flags: gD 0
+name: scroll yellowed
+shortdesc: a yellowed scroll
+desc: A scroll lies here.
+type: 2
+weight: 1.00
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll yellowed
+This scroll seems to be very old. The parchment has already been yellowed
+with age.~
+~~
+vnum: 17213
+location: -1
+values:
+1
+31
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll rough graphed roughly-graphed
+shortdesc: a roughly-graphed scroll
+desc: A crude scroll with heavy graph lines lies here rolled up.
+type: 2
+weight: 1.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll rough graphed roughly-graphed
+This appears to be the work of an apprentice, for crude lines are drawn roughly
+all across its surface.  The somewhat faint silvery lines have a discernable
+metallic gleam.  Most of the lines are drawn in one of two orthogonal
+directions, parallel to one or the other of the mostly rectangular edges of the
+document.  Four other lines drawn at acute angles create a diamond in the
+middle, albeit somewhat distorted.~
+~~
+vnum: 17210
+location: -1
+values:
+15
+18
+20
+14
+0
+0
+0
+~
+flags: gD 0
+name: scroll yellowed
+shortdesc: a yellowed scroll
+desc: A scroll lies here.
+type: 2
+weight: 1.00
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll yellowed
+This scroll seems to be very old. The parchment has already been yellowed
+with age.~
+~~
+vnum: 645
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-iron-hills-map rust-colored-map
+shortdesc: a map of the Iron Hills
+desc: A rust-colored map rolls in the dirt.
+type: 12
+weight: 0.01
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-iron-hills-map rust-colored-map
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- &2&bIron Hills&0  &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ &3
+                              o - o - o - o - o - o
+                             &9&b/                   /&0&3
+                            o                   &1&b1&0&3       o - o - o
+                            |                           |       |&9&b\&0&3
+                            o - o - o - o - o - o       o       o &9&bv&0&3
+                                |               |       |       | &6The&3
+                                o               o - o - o   o - o &6Barrow&3
+                                 &9&b\&0&3                          |
+    &6Dark Mountains&3 <- o       o - o             o - o - o - o
+                      |       |                 |
+                      o - o - o             o - o
+                              |              &9&b\&0&3
+                              o       o - o - o
+                              |       |
+                              o - o - o         o       o
+                                      |        &9&b/&0&3|       |
+                                      o - o - o o - o - o
+                                      |
+                                      o
+                                      |
+                                  o - o         &b***POINTS OF INTEREST***
+                                 &9/&0&3|&0              |&1&b1&0: a stone archway&3
+                o - o - o - o - o v
+                 &9&b\&0&6               The&3
+                  o             &6Canyon&3
+                  |
+              o - o
+              |
+          o - o
+         &9&b/
+        v&0
+    &6Kaas Plains&3
+ 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 667
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-icy-city-technitzitlan-map tech-map
+shortdesc: a map of Technitzitlan
+desc: A map of the icy city Technitzitlan rests here.
+type: 12
+weight: 0.01
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-icy-city-technitzitlan-map tech-map
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  &2&bTechnitzitlan&0  &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ 
+      &3&b***POINTS OF INTEREST***&0                            &1&b4&0
+       |&1&b1&0: the armoury                                    |
+       |&1&b2&0: a crack                                    o - o - o
+       |&1&b3&0: a mural                                    |   |   |
+       |&1&b4&0: the Snow Leopard Order                 &1&b3&0 - o - o - o - o
+       |&1&b5&0: a curious wall                         |   |   | o |   |
+       |&4&b&CF&0: a fountain                             |   |   |&9&b/&0  |   |
+                                                  o - o - &4&b&CF&0 - o - o
+                                                  |   |   |   |   |
+                                              o - o - o - o - o - o
+                                             /        |   |   |
+                            o               o         o - o - o
+                            |               |             | o - o
+                            o - &1&b1&0           o             |&9&b/&0    |
+                            |              /              o     o
+                        o - o - o         o                     |
+                        |   |   |         |                     &1&b5&0
+    &6Up An Ice Tunnel&0    o - o - o     o &5+&0 o                     |
+           &9&b\&0            |   |   |    &9&b/&0                  o       o
+            o - o - o - o - o - o - o                   |       |
+                        |   |   |                       o - o - o
+                        |   |   |                         o | o
+                        |   |   |                         | |&5x&0|
+                        |   |   |                         o o o
+                        |   |   |                         |   |
+                        |   |   |                         o - o - o
+                        |   |   |                             |
+                        |   |   |                             o
+                        |   |   |                            /
+                        |   |   |                           o
+                        |   |   |                          /
+                        |   |   |                         o
+                        |   |   |                         |
+                        |   |   |                         o
+                        |   |   |             &9&b___________/&0
+                        |   |   |            &9&b/&0
+                        &1&b2&0 - o - o - o       o
+                                    |       |
+                                    o - o - o
+ 
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 600
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map large-scroll greater-mielikki-area-map
+shortdesc: a map of the greater Mielikki area
+desc: A large scroll depicting the surrounds of the Town of Mielikki lies here.
+type: 12
+weight: 0.00
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map large-scroll greater-mielikki-area-map
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- &2&bGreater Mielikki Area&0&3 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+&3
+                           &6City of&3
+               ____________&6Anduin&3_____
+  __&6Gothra&3 _  /                       \____________   &6Mystwatch&3     &6Enchanted Hollow&3
+ /  &6Desert&3  \/                                     \ /                 |
+|            \                                      |      &6Citadel of Testing&3
+|             \                                     |          /
+|     &6Abbey&3----------------- &6Farmlands&3 -----------&6Mielikki&3 ----- &6Light Forest&3-- &6The Misty Caverns&3
+|    &6of St. George&3       /               /             |       \                    \             
+\        /              /               /              |    &6Twisted Forest&3           \             
+&6Highlands&3              /               /          &6Blue-Fog&3      |      |           &6Rocky Tunnels&3
+               &6Rocky Outback&3      &6Morgan Hill&3     &6River/Trail&3   |      |                 
+                                                       |       &6Rhell&3  &6Arabel Ocean&3       
+                                                       \_______&6Forest&3  |             
+                                                                       |
+                                                                      &6South Caelia&3
+ 
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0 ~
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3083
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: notice
+shortdesc: a notice for the young blue dragon
+desc: A contract for someone's head has been accidentally left out!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+3085
+~
+~~
+vnum: 8034
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 8034
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 17206
+location: 127
+values:
+15
+16
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: flask bubbling
+shortdesc: a bubbling flask
+desc: A bubbling flask is left at the side of the room.
+type: 10
+weight: 1.00
+cost: 15
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: flask bubbling
+The liquid in the flask has a sweet and pleasant aroma. It smells somewhat
+delicious.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+32 5
+5 5
+101 13
+20 5
+100 5
+8 7
+19 18
+37 9
+31 12
+30 16
+~
+triggers:
+51949
+~
+~~
+vnum: 5526
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: gloves eldoria-reward 3rd-eldorian-guard-gloves third leather
+shortdesc: gloves of the 3rd Eldorian Guard
+desc: Some gloves lie discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+3 2
+13 5
+~
+~~
+vnum: 5548
+location: 127
+values:
+2
+3
+3
+6
+0
+0
+0
+~
+flags: kmyz afgh
+name: warhammer large-warhammer eldoria-reward 3rd-eldorian-guard-warhammer war-hammer third
+shortdesc: a warhammer of the 3rd Eldorian Guard
+desc: A large warhammer lies here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 16312
+location: 127
+values:
+15
+2
+2
+247
+0
+0
+0
+~
+flags: 0 0
+name: pipe druid's-pipe reed-pipe druids-pipe
+shortdesc: a druid's pipe
+desc: A reed pipe lies among the bushes.
+adesc:
+The sound is wistful and somber.~
+type: 30
+weight: 1.00
+cost: 100
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 1
+~
+extradesc: pipe druid's-pipe reed-pipe druids-pipe
+The pipe is made of reeds you'd normally find on river banks.  A haunting sound
+seems to emit from it as the wind blows past you.~
+triggers:
+58007
+~
+~~
+vnum: 16312
+location: 127
+values:
+15
+2
+2
+247
+0
+0
+0
+~
+flags: 0 0
+name: pipe druid's-pipe reed-pipe druids-pipe
+shortdesc: a druid's pipe
+desc: A reed pipe lies among the bushes.
+adesc:
+The sound is wistful and somber.~
+type: 30
+weight: 1.00
+cost: 100
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 1
+~
+extradesc: pipe druid's-pipe reed-pipe druids-pipe
+The pipe is made of reeds you'd normally find on river banks.  A haunting sound
+seems to emit from it as the wind blows past you.~
+triggers:
+58007
+~
+~~
+vnum: 17203
+location: 127
+values:
+10
+7
+1
+32
+0
+0
+0
+~
+flags: gnoprtu eij
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.~
+~~
+vnum: 5538
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: robe eldoria-reward 3rd-eldorian-guard-robe third fabric
+shortdesc: a robe of the 3rd Eldorian Guard
+desc: A robe lies here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+3 2
+4 2
+13 5
+~
+~~
+vnum: 13647
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: ring ring-green-leaves tiny-branches
+shortdesc: a ring of green leaves
+desc: A ring made of tiny branches and leaves lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.03
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+4 2
+~
+extradesc: ring-green-leaves tiny-branches
+The ring is made of tiny, slender branches, still living, their equally tiny
+green leaves forming a wreath.~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+10 19
+76 17
+62 14
+67 8
+29 15
+106 15
+186 5
+~
+triggers:
+51949
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+26 18
+77 20
+246 18
+57 14
+68 16
+62 12
+~
+triggers:
+51949
+~
+~~
+vnum: 8341
+location: 127
+values:
+15
+16
+16
+16
+0
+0
+0
+~
+flags: a 0
+name: potion strong herbal small
+shortdesc: a small potion
+desc: A strong herbal potion lies here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion herbal healing strong small
+This old and small potion has been brewed directly from the freshest Frakati
+plants around.  The green particles you see in the potion shows signs that this
+herb is not only one of the healing kind, but a strong one.    ~
+~~
+vnum: 8341
+location: 127
+values:
+15
+16
+16
+16
+0
+0
+0
+~
+flags: a 0
+name: potion strong herbal small
+shortdesc: a small potion
+desc: A strong herbal potion lies here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion herbal healing strong small
+This old and small potion has been brewed directly from the freshest Frakati
+plants around.  The green particles you see in the potion shows signs that this
+herb is not only one of the healing kind, but a strong one.    ~
+~~
+vnum: 8341
+location: 127
+values:
+15
+16
+16
+16
+0
+0
+0
+~
+flags: a 0
+name: potion strong herbal small
+shortdesc: a small potion
+desc: A strong herbal potion lies here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion herbal healing strong small
+This old and small potion has been brewed directly from the freshest Frakati
+plants around.  The green particles you see in the potion shows signs that this
+herb is not only one of the healing kind, but a strong one.    ~
+~~
+vnum: 8341
+location: 127
+values:
+15
+16
+16
+16
+0
+0
+0
+~
+flags: a 0
+name: potion strong herbal small
+shortdesc: a small potion
+desc: A strong herbal potion lies here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion herbal healing strong small
+This old and small potion has been brewed directly from the freshest Frakati
+plants around.  The green particles you see in the potion shows signs that this
+herb is not only one of the healing kind, but a strong one.    ~
+~~
+vnum: 3138
+location: 127
+values:
+10
+131
+89
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion satin black satin-black
+shortdesc: a satin-black potion
+desc: A potion as black as satin lies in a shadow.
+type: 10
+weight: 0.20
+cost: 50
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion satin black satin-black
+The fragile glass of this small bottle blends seamlessly with
+the oily contents within.  A yellow chalk inscription is
+nearly worn off.  Its remainder reads: "dark pr..."~
+~~
+vnum: 1803
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe bark-canoe
+shortdesc: a bark canoe
+desc: A bark canoe has been abandoned here.
+type: 22
+weight: 20.00
+cost: 1
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: canoe bark-canoe
+   &0It looks very heavy, but quite sturdy.  &0~
+~~
+vnum: 5206
+location: 127
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.~
+~~
+vnum: 5206
+location: 127
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.~
+~~
+vnum: 5206
+location: 127
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.~
+~~
+vnum: 5206
+location: 127
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.~
+~~
+vnum: 5206
+location: 127
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.~
+~~
+vnum: 5206
+location: 127
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.~
+~~
+vnum: 5206
+location: 127
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern red oil red-oil-lantern
+shortdesc: a red oil lantern
+desc: A red oil lantern is sitting on the floor.
+type: 1
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: lantern red oil red-oil-lantern
+Other than the fact that the lantern is larger than normal and is
+made from an odd reddish metal, there is nothing particularly unusual
+about the lantern. You would imagine it has a long life though.~
+~~
+vnum: 41110
+location: 127
+values:
+4
+4
+8
+0
+0
+0
+0
+~
+flags: 0 0
+name: local-speciality goblet rowan-goblet goblet-engraved-rowan-leaves engraved-goblet questobject
+shortdesc: a goblet engraved with rowan leaves
+desc: An engraved goblet looks ready to tip over.
+type: 17
+weight: 0.15
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: goblet rowan-goblet goblet-engraved-rowan-leaves engraved-goblet questobject
+The pewter goblet has been engraved with a repeating pattern of interlocked
+rowan leaves, giving its surface a bumpy texture.~
+triggers:
+12316
+~
+~~
+vnum: 50220
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: octant dull-gray-metal-instrument grey
+shortdesc: an octant
+desc: A dull, gray metal instrument is hidden in the rubble.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+3 2
+27 1
+~
+extradesc: octant dull-gray-metal-instrument grey
+Made of a gray metal, and tarnished with age, this small handheld artifact has
+seen better days.  It has two metal struts that are attached at one end and
+splay apart.  At their far end, a gradiated strip of brass curves from one to
+the other in an eighth of a circle.  It appears to be an octant, which is used
+to find one's location out at sea, with the help of the stars.~
+~~
+vnum: 5314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: order
+shortdesc: an order for a Rainbow Shell
+desc: An search order for a treasure hunt lays here.
+type: 12
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+5327
+~
+~~
+vnum: 55354
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: jerkin burned-jerkin armor
+shortdesc: a burned jerkin
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jerkin burned-jerkin armor
+This jerkin is burned beyond use.~
+~~
+vnum: 55354
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: jerkin burned-jerkin armor
+shortdesc: a burned jerkin
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jerkin burned-jerkin armor
+This jerkin is burned beyond use.~
+~~
+vnum: 3500
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather cute-yellow-feather sparrow's-feather pen quill sparrows-feather
+shortdesc: a &3sparrow's&0 feather
+desc: A cute yellow feather is drifting around here.
+type: 21
+weight: 0.01
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+~
+extradesc: feather cute-yellow-feather sparrow's-feather pen quill sparrows-feather
+Aww, it's a cute little wing feather from a song sparrow.  It looks delicate,
+but could probably be used as a quill to scribe with in a pinch.~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+52 15
+105 14
+106 14
+66 20
+32 4
+31 10
+68 15
+5 4
+100 4
+~
+triggers:
+51949
+~
+~~

@@ -1,0 +1,91 @@
+name: Trags
+password: Tr/rJj5383
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 11
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19269
+birthtime: 1510675132
+timeplayed: 55356
+lastlogintime: 1737759549
+host: 067.167.192.166
+height: 42
+weight: 183
+base_height: 42
+base_weight: 183
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k w q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 12
+thirst: 24
+lastlevel: 0
+hitpoints: 149/149
+mana: 12/12
+move: 132/132
+damroll: 4
+hitroll: 5
+strength: 98
+intelligence: 62
+wisdom: 64
+dexterity: 99
+constitution: 79
+charisma: 61
+cash: 0 17 627 32
+experience: 409655
+quit_reason: 1
+saveroom: 3054
+skills:
+402 102
+404 160
+415 50
+416 50
+421 116
+430 50
+438 50
+443 50
+444 57
+463 51
+464 52
+465 143
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 16107 2.000000
+1 2005 0.500000
+1 12017 1.000000
+1 12003 1.000000
+1 12002 1.000000
+1 12009 1.000000
+1 12007 1.000000
+1 12016 1.000000
+1 12015 1.000000
+1 18001 1.000000
+1 18007 2.000000
+1 8023 1.000000
+1 36002 2.000000
+1 2003 1.000000
+1 2001 1.000000
+1 2004 1.000000
+1 36003 2.000000
+1 36001 1.000000
+1 8000 1.000000
+1 18006 1.000000
+1 18004 3.000000
+0 0 0
+tells:
+$
+gossips:
+$

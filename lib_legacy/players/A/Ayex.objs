@@ -1,0 +1,5998 @@
+1
+vnum: 1004
+location: 0
+values:
+1
+240
+100
+0
+0
+0
+0
+~
+flags: 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern. It holds about fifteen hours worth of fuel.
+~
+~~
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 3
+applies:
+13 8
+3 4
+4 4
+5 2
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 5201
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 3
+applies:
+13 8
+3 4
+4 4
+5 2
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 53023
+location: 5
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz
+name: jerkin leather cuir bouilli
+shortdesc: the Cuir Bouilli
+desc: A jerkin made of hardened, boiled leather lies here.
+type: 9
+weight: 8.00
+cost: 600
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 9
+applies:
+5 5
+~
+~~
+vnum: 53024
+location: 6
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmot
+name: helm feathered plume
+shortdesc: a feathered helm
+desc: An open-faced helm with a red plume rests here.
+type: 9
+weight: 4.80
+cost: 1000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 17
+applies:
+3 1
+4 2
+~
+~~
+vnum: 1104
+location: 7
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: pants leather leather-pants
+shortdesc: thick leather pants
+desc: A pair of leather pants is lying in a heap on the ground.
+type: 9
+weight: 8.10
+cost: 150
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: leather pants
+These pants are full-cut, made from good solid tan leather. Though hardly
+fashionable, at least with the dignified crowd, they're oddly appealing to
+most people. At least they'll afford their wearer's legs with some
+protection.
+~
+~~
+vnum: 1106
+location: 8
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: boots leather leather-boots
+shortdesc: sturdy leather boots
+desc: A pair of leather boots stands off to the side.
+type: 9
+weight: 2.80
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: leather boots
+These work boots are made of dark brown leather. They go about calf-high,
+and though they're unornamented, the leather is finely worked and tooled
+along its edges. They have no cuffs, and a very low heel -- quite suitable
+for anybody wanting some basic protection.
+~
+~~
+vnum: 55439
+location: 9
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: aghmopqrstuvwxyz
+name: divine believer believers gauntlets believers-gauntlets
+shortdesc: &5Believer's Gauntlets&0
+desc: Resting on the ground is a divine pair of gauntlets.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+3 3
+1 2
+~
+extradesc: divine believer believers gauntlets believers-gauntlets
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 1105
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: sleeves leather leather-sleeves
+shortdesc: thick leather sleeves
+desc: A pair of leather sleeves lies curled up together on the ground.
+type: 9
+weight: 5.90
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+extradesc: sleeves leather
+Cylinders of leather form a pair of sleeves, designed to hook onto a vest
+of whatever type you please. They're made of tan leather, and are
+completely unornamented.
+~
+~~
+vnum: 1000
+location: 12
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 120
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crumbs handful food
+shortdesc: a handful of crumbs
+desc: Some crumbs lie in the corner.
+type: 19
+weight: 0.08
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crumbs handful food
+A bunch of stale bits of bread lie here.  They look as though they could
+provide a modicum of sustenance...  To a very hungry person, that is.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 120
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crumbs handful food
+shortdesc: a handful of crumbs
+desc: Some crumbs lie in the corner.
+type: 19
+weight: 0.08
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crumbs handful food
+A bunch of stale bits of bread lie here.  They look as though they could
+provide a modicum of sustenance...  To a very hungry person, that is.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 120
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crumbs handful food
+shortdesc: a handful of crumbs
+desc: Some crumbs lie in the corner.
+type: 19
+weight: 0.08
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crumbs handful food
+A bunch of stale bits of bread lie here.  They look as though they could
+provide a modicum of sustenance...  To a very hungry person, that is.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 5553
+location: -1
+values:
+0
+800
+5
+0
+0
+0
+0
+~
+flags: j
+name: crystal light eldoria-reward small-cracked-crystal fractured-crystal
+shortdesc: a fractured crystal
+desc: A small, cracked crystal lies here.
+type: 1
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 36303
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: donuts-dozen donuts dozen donut dozen-donuts food
+shortdesc: a dozen donuts
+desc: A dozen glazed donuts lie here.  They look scrumptious!
+type: 19
+weight: 0.40
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 36303
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: donuts-dozen donuts dozen donut dozen-donuts food
+shortdesc: a dozen donuts
+desc: A dozen glazed donuts lie here.  They look scrumptious!
+type: 19
+weight: 0.40
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 5555
+location: -1
+values:
+55
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: meat worm-filled-meat food
+shortdesc: some worm-filled meat
+desc: Some worm-filled meat lies here.
+type: 19
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: meat worm-filled-meat food
+Gross!  Are you really going to eat that?
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 124
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: biscuits light handful pile food
+shortdesc: a handful of light biscuits
+desc: Some little white biscuits sit here in a pile.
+type: 19
+weight: 0.70
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: biscuits light handful pile food
+These small morsels are baked from a light-colored wheat batter.  They have
+ended up rather flaky and appetizing.  There are only a few, and they are
+fairly small.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 125
+location: -1
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: muffin bran food
+shortdesc: a bran muffin
+desc: A nice brown muffin sits here on the ground.
+type: 19
+weight: 0.12
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: muffin bran food
+This is a substantial muffin.  It is rich brown and looks somewhat grainy from
+all the bran.  It feels soft, and it gives off a strong wheat odor.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 126
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flatbread pieces bread food
+shortdesc: a few pieces of flatbread
+desc: A few pieces of flatbread sit on the ground.
+type: 19
+weight: 0.30
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: flatbread pieces bread food
+More like crackers than bread, these flat baked goods are surprisingly dense.
+The lack of leavening agent has made them a chore to consume.  They are,
+however, quite filling.    
+~
+~~
+vnum: 123
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread chunk hard dark rye food
+shortdesc: a chunk of hard dark bread
+desc: A dark chunk of bread lies here.
+type: 19
+weight: 0.50
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: bread chunk hard dark rye food
+This appears to be a hunk ripped from a loaf of rye bread.  It is dark brown in
+color, and rather heavy.  It smells ok.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 121
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crust bread stale breadcrust food
+shortdesc: a stale crust of bread
+desc: Someone tossed aside their breadcrust.
+type: 19
+weight: 0.09
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: crust bread stale breadcrust food
+A luckier diner ripped this from a large piece of bread.  Now the hard black
+crust is just waiting to start growing mold.  It still looks edible.    
+~
+~~
+vnum: 122
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: heel bread wheat dried food
+shortdesc: a dried out wheat bread heel
+desc: The heel of a loaf of bread sits on the ground.
+type: 19
+weight: 0.15
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: heel bread wheat dried food
+This is the hind end of a larger piece of bread.  It consists almost entirely
+of crust, now hard and stale.  There is nothing particularly wrong with it, but
+appetizing it is not.    
+~
+~~
+vnum: 55438
+location: 14
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aghmopqrstuvwxyz
+name: divine believer believers bracer believers-bracer
+shortdesc: &5Believer's Bracer&0
+desc: Resting on the ground is a small divine bracer.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+applies:
+5 2
+13 20
+~
+extradesc: divine believer belivers bracer believers-bracer
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 1011
+location: 16
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: mow
+name: mace tempered-steel-mace
+shortdesc: a steel mace
+desc: A tempered steel mace lies here.
+type: 5
+weight: 6.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: tempered-steel-mace
+&0The head of this mace is forged from steel. A perfect ball, marred with only
+the scars of combat. It is attatched to a stout wooden rod, creating a
+weapon favored by most clerics.
+~
+~~
+vnum: 18511
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: spectacles small
+shortdesc: small spectacles
+desc: A pair of little spectacles rests here.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65537
+applies:
+3 2
+28 20
+~
+extradesc: small spectacles eye wear
+These spectacles are small and likely used for reading.  They have an odd and
+unique hexagonal frame around the glass portions, but look strong and
+well-used.
+~
+~~
+vnum: 8611
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 8611
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 8033
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: green drakling scale
+shortdesc: a green drakling scale
+desc: A small green scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 10
+18 1
+~
+~~
+vnum: 20300
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 55209
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mr
+name: cloak leather thick pile leather-cloak
+shortdesc: a leather cloak
+desc: A pile of thick leather sits in a corner.
+type: 9
+weight: 4.00
+cost: 75
+timer: 0
+level: 6
+effects: 0 0 0
+wear: 1025
+extradesc: leather-cloak leather cloak thick
+A simple raw leather sheet sewen at the edges so as not
+to fray. It looks like it provides simple armor against
+battle, and the elements.
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 55393
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz
+name: plate acolyte
+shortdesc: an acolyte plate
+desc: A slightly magical thin metal plate lies here.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 9
+applies:
+5 1
+13 8
+~
+extradesc: acolyte plate
+Newly forged, this magical metal plate was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.69
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

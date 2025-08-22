@@ -1,0 +1,235 @@
+#8700
+blacksmith quest~
+0 g 100
+~
+wait 1s
+tell %actor.name% Hello traveler, I was wondering if you had seen a dwarven boy heading this way?
+tell %actor.name% my supplys are late, they should have been here a day ago.
+tell %actor.name% Doren is never late, I wish i could go looking for him.
+tell %actor.name% i fear something has happend to him, will you go find him?
+~
+#8701
+Helping_blacksmith_quest~
+0 d 100
+yes yes.~
+if %get.mob_count[8712]% == 0
+tell %actor.name% Thank you, thank you i will ever be in your debt if you find Doren.
+tell %actor.name% He will be traveling here from the Dwarven mines near Anduin.
+tell %actor.name% If you find Doren tell him that his uncle sent you.
+tell %actor.name% please hurry he could be hurt or in trouble!
+mat 55932 mload mob 8713
+mat 55932 mload mob 8713
+mat 55932 mload mob 8712
+wait 1s
+mat 55932 mforce doren mload obj 8709
+wait 1s
+mat 55932 mforce doren drop handcart
+else
+tell %actor.name% Please go find Doren, he could be hurt.
+endif
+~
+#8702
+drag the handcart ~
+1 c 4
+drag~
+return 0
+wait 1s
+if %arg% /= cart ||  %arg% /= wagon
+   osend %actor% The handcart creaks along behind you.
+   oechoaround %actor% The handcart creaks along behind %actor.name%.
+   if %actor.room% == 8711
+      wait 1s
+      oforce blacksmith blink %actor.name%
+      oforce blacksmith emote rubs his eyes in disbelief.
+      oforce blacksmith tell %actor.name% oh it's you, you found the handcart bless the gods.
+      wait 1s
+      oforce blacksmith mload obj 8700
+      oforce blacksmith tell %actor.name% i must reward such heroism, and i know just the thing.
+      oforce blacksmith give axe %actor.name%
+      oforce blacksmith emote moves the handcart into a bay near his tools
+      opurge %self%
+   elseif %random.6% == 3
+      osend %actor% &2You hear a rustling in the grass nearby.&0
+      wait 1s
+      oload mob 8713
+      oforce bandit kill %actor%
+      oload mob 8713
+      oforce bandit kill %actor%
+   endif
+endif
+~
+#8703
+doren greet~
+0 g 100
+~
+if %actor.vnum% == -1
+wait 1s
+shout Help Help!
+mforce bandit kill %actor%
+wait 1s
+mecho &2a bandit flees from %actor.name% into the undergrowth
+mpurge 2.bandit
+wait 10s
+emote limps away from the bandit, blood running down his leg.
+wait 2s
+tell %actor.name% thank you for saveing me, i can make it home but i must go now.
+tell %actor.name% Please take the handcart to my uncle in the logging camp to the east he ist the blacksmith there.
+tell %actor.name% He will reward you for saveing me and geting the handcart savely to him.
+wait 2s
+mecho &2Doren limps though the grass heading for home.
+mpurge %self%
+endif
+~
+#8709
+muleard_greet~
+0 g 100
+~
+if %actor.vnum% == -1
+   wait 2s
+   msend %actor% %self.name% turns around and looks at you.
+   wait 1s 
+   tell %actor.name% Welcome to my store.
+   wait 1s 
+   tell %actor.name% You can call me Mule.
+endif
+~
+#8710
+ambush~
+1 c 100
+drag~
+oecho checking..
+if %random.10% < 2
+oecho proc
+endif
+~
+#8711
+anti-get trigger~
+1 g 100
+~
+if %actor.size% == tiny || %actor.size% == small || %actor.size% == medium || %actor.size% == large || %actor.size% == huge
+   return 0
+   odamage %actor% 50 crush
+   if %damdone% != 0
+      osend %actor% Your back buckels and pain shoots though you joints! (&1&b%damdone%&0)
+      osend %actor% You just can't hold that much weight!
+      oechoaround %actor% %actor.name% shouts in pain. (&4%damdone%&0)
+      osend %actor% You drop %self.shortdesc%.
+      oechoaround %actor% %actor.name% drops %self.shortdesc%.
+   else
+      osend %actor% You can't seem to get a grip on %self.shortdesc%.
+   endif
+endif
+~
+#8750
+anti_thief_obj_trigger~
+1 j 100
+~
+if %actor.class% /= thief
+return 0
+osend %actor% You cannot use %self.shortdesc%.
+else
+return 1
+endif
+~
+#8751
+to_small_wield~
+1 j 100
+~
+if %actor.size% == tiny || %actor.size% == small || %actor.size% == medium
+osend %actor% It's too big for you!
+return 0
+else
+return 1
+endif
+~
+#8797
+skillset_skills_A-G~
+0 d 1
+skillset ready go cancel 2H backstab bandage barehand bash bludgeoning bodyslam chant conceal corner  disarm dodge doorbash double douse dual eye first group guard~
+wait 1s
+if %skill% && %mortal% && %command% 
+   if %speech% == go && %actor.level% >= 101
+      mskillset %mortal% %skill%
+      say Done. Did it work?
+   elseif %speech% == cancel
+      say Ok, lets start over, starting with the command..
+   endif
+   unset command
+   unset mortal
+   unset skill
+elseif %skill% && %command%
+   set mortal %actor.name%
+   global mortal
+   say Ok, imm, if you want to %command% %skill% to %mortal%, just say go!
+elseif %command%
+   say Ok, I'll be %command%ing %speech%.
+   say Mortal, if you are ready to get %speech%, say "ready".
+   set skill %speech%
+   global skill
+elseif %speech% == skillset
+   set command mskillset
+   global command
+   say what skill will I be setting?
+endif
+~
+#8798
+skillset_skills_H-V~
+0 d 1
+skillset ready go cancel hide hitall instant kick meditate  mount  pick parry piercing quick rescue  retreat riding safefall  scribe riposte shadow shape slashing sneak spell sphere springleap steal stealth summon switch tame throatcut track vamp ~
+wait 1s
+if %skill% && %mortal% && %command% 
+if %speech% == go && %actor.level% >= 101
+      mskillset %mortal% %skill%
+      say Done. Did it work?
+   elseif %speech% == cancel
+      say Ok, lets start over, starting with the command..
+   endif
+   unset command
+   unset mortal
+   unset skill
+elseif %skill% && %command%
+   set mortal %actor.name%
+   global mortal
+   say Ok, imm, if you want to %command% %skill% to %mortal%, just say go!
+elseif %command%
+   say Ok, I'll be %command%ing %speech%.
+   say Mortal, if you are ready to get %speech%, say "ready".
+   set skill %speech%
+   global skill
+elseif %speech% == skillset
+   set command mskillset
+   global command
+   say what skill will I be setting?
+endif
+~
+#8799
+skillset_questspells~
+0 d 1
+skillset ready go cancel banish blur charm creeping plane heavens dragons flood hell hellfire ice major relocate meteorswarm resurrect shift degeneration supernova wall vaporform word wizard aria seed apocalyptic group~
+wait 1s
+if %skill% && %mortal% && %command%
+   if %speech% == go && %actor.level% >= 101
+      mskillset %mortal% %skill%
+      say Done. Did it work?
+   elseif %speech% == cancel
+      say Ok, lets start over, starting with the command..
+   endif
+   unset command
+   unset mortal
+   unset skill
+elseif %skill% && %command%
+   set mortal %actor.name%
+   global mortal
+   say Ok, imm, if you want to %command% %skill% to %mortal%, just say go!
+elseif %command%
+   say Ok, I'll be %command%ing %speech%.
+   say Mortal, if you are ready to get %speech%, say "ready".
+   set skill %speech%
+   global skill
+elseif %speech% == skillset
+   set command mskillset
+   global command
+   say what skill will I be setting?
+endif
+~
+$~

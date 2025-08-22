@@ -1,0 +1,3867 @@
+1
+vnum: 36014
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring tiny-copper-ring thin-circle
+shortdesc: a tiny copper ring
+desc: A thin circle of copper resembles a coin.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+24 -1
+~
+extradesc: tiny-copper-ring thin-circle
+A thin copper wire bears the symbol of the Kaaz clan.~
+~~
+vnum: 13647
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: ring ring-green-leaves tiny-branches
+shortdesc: a ring of green leaves
+desc: A ring made of tiny branches and leaves lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.03
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+4 2
+~
+extradesc: ring-green-leaves tiny-branches
+The ring is made of tiny, slender branches, still living, their equally tiny
+green leaves forming a wreath.~
+~~
+vnum: 12003
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: token gamekeeper's-token game-keeper's little-silver-deer-shaped-charm game-keepers gamekeepers-token
+shortdesc: the Gamekeeper's Token
+desc: A little silver deer-shaped charm shines on the ground.
+type: 8
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16389
+hiddenness: 0
+applies:
+2 1
+19 1
+13 3
+14 3
+~
+extradesc: token gamekeeper's-token game-keeper's little-silver-deer-shaped-charm game-keepers gamekeepers-token
+The charm is shaped into a little silver figurine of a deer, of a size suitable
+to put onto a lady's charm bracelet.  It dangles from a bit of chain, but not
+enough to wear around your neck, which is not a surprise.~
+~~
+vnum: 8708
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace badger-tooth-necklace teeth cord
+shortdesc: a badger tooth necklace
+desc: A cord with many teeth is lying here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.50
+cost: 23
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 1
+13 10
+1 1
+~
+~~
+vnum: 55386
+location: 5
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz befghij
+name: plate trainee-plate magical-plate magic
+shortdesc: a trainee plate
+desc: A slightly magical plate lies here.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 1
+13 15
+~
+extradesc: plate trainee-plate magical-plate magic
+Newly forged, this magical metal plate was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 55384
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz befghij
+name: helm trainee-helm magic-power
+shortdesc: a trainee helm
+desc: A helm of slight magic power lies here.
+type: 9
+weight: 4.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+18 1
+13 7
+~
+extradesc: helm trainee-helm magic-power
+Newly forged, this magical metal helm was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 55387
+location: 7
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz befghij
+name: greaves trainee-greaves magical-plate-greaves magic
+shortdesc: trainee greaves
+desc: A set of slightly magical plate greaves lies here.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+18 1
+13 7
+~
+extradesc: greaves trainee-greaves magical-plate-greaves magic
+Newly forged, these magical metal greaves were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 55388
+location: 8
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz befghij
+name: boots trainee-boots magical-plate-boots magic
+shortdesc: trainee boots
+desc: A pair of slightly magical plate boots lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 10
+13 5
+~
+extradesc: boots trainee-boots magical-plate-boots magic
+Newly forged, these magical metal boots were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 55390
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz befghij
+name: gauntlets trainee-gauntlets magical-gauntlets magic
+shortdesc: trainee gauntlets
+desc: A pair of slightly magical gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+14 5
+13 4
+~
+extradesc: gauntlets trainee-gauntlets magical-gauntlets magic
+Newly forged, these magical metal gauntlets were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 55385
+location: 10
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: mnouvwxyz befghij
+name: vambraces trainee-vambraces magical-plate magic
+shortdesc: trainee vambraces
+desc: A set of somewhat magical plate vambraces lies here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 2
+13 10
+~
+extradesc: vambraces trainee-vambraces magical-plate magic
+Newly forged, these magical metal vambraces were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 13606
+location: 11
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: myz afgh
+name: shield tribal-shield emblem orc clan
+shortdesc: a tribal shield
+desc: A shield with the tribal emblem of an orc clan lies on the floor.
+type: 9
+weight: 2.50
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+18 1
+1 2
+~
+extradesc: tribal-shield emblem orc clan
+This hardened leather shield is stretched taut over a framework of wood, with
+straps in the back for one's arm.  The front is tooled and painted to look like
+a mouthful of gnashing teeth.~
+~~
+vnum: 20304
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: cloak zebra-skin-cloak large-striped-cloak hide
+shortdesc: a zebra skin cloak
+desc: A large striped cloak lies in the dust here.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+1 2
+19 1
+~
+extradesc: zebra-skin-cloak large-striped-cloak hide
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.~
+~~
+vnum: 8604
+location: 13
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: belt snakeskin-belt snake-skin
+shortdesc: a snakeskin belt
+desc: Some snakeskin sits here in a tight coil.
+type: 9
+weight: 0.95
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+2 1
+~
+extradesc: snakeskin-belt snake-skin
+This belt is made from the skin of a feared indigenous species of snake
+renowned for the accuracy and damage of their strikes.~
+~~
+vnum: 20306
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracelet snake-fang-bracelet small fangs
+shortdesc: a snake fang bracelet
+desc: A small bracelet made of snake fangs lies on the ground here.
+type: 8
+weight: 0.70
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+19 1
+18 1
+1 1
+~
+extradesc: snake-fang-bracelet small fangs
+This bracelet is made out of a very durable weaved grass that has several
+spaced out snake fangs weaved into it.  The fangs are about an inch in length
+and give the bracelet a menacing look.  The grass is a dull green color and it
+is weaved tightly so it looks almost like it is one piece of grass.~
+~~
+vnum: 55389
+location: 15
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz befghij
+name: bracer trainee-bracer magical-plate-bracer magic
+shortdesc: a trainee bracer
+desc: A slightly magical plate bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+6 1
+13 5
+18 1
+~
+extradesc: bracer trainee-bracer magical-plate-bracer magic
+Newly forged, this magical metal bracer was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 16106
+location: 16
+values:
+0
+2
+4
+3
+0
+0
+0
+~
+flags: agmnuvyz acfghij
+name: scimitar gleaming-golden-scimitar gold
+shortdesc: a golden scimitar
+desc: A gleaming golden scimitar lies upon a large rock.
+type: 5
+weight: 2.00
+cost: 1000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 2
+~
+extradesc: scimitar gleaming-golden-scimitar gold
+This weapon seems to be made of pure gold.  It is however extremely light and
+has a very good balance.  ~
+~~
+vnum: 370
+location: 21
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: mnorsuvwyzD abefghij
+name: trophy snake-eyes yellow-orbs black-slit
+shortdesc: snake eyes
+desc: A set of yellow orbs with a black slit in the center rolls on the ground.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+18 1
+28 20
+~
+extradesc: trophy snake-eyes yellow-orbs black-slit
+This small pair of yellow orbs are actually a set of tiny snake eyes, carefully
+preserved in some kind of resin.  They are a brilliant yellow with a vertically
+elliptical pupil in the middle.~
+triggers:
+5318
+324
+~
+~~
+vnum: 17809
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mask-self-knowledge clear-mask
+shortdesc: the mask of self-knowledge
+desc: A clear mask is lying on the ground.
+type: 8
+weight: 0.50
+cost: 150
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+3 3
+6 3
+~
+extradesc: mask-self-knowledge clear-mask
+The mask shimmers slightly as you hold it up and you see yourself reflected.  
+There seems to be a subtle difference between what you see and how you remember
+yourself to appear to others.  Perhaps this is the real you.~
+~~
+vnum: 8611
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tooth snake-tooth small-tooth earring
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 8
+weight: 0.01
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: snake-tooth small-tooth earring
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.~
+~~
+vnum: 8611
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tooth snake-tooth small-tooth earring
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 8
+weight: 0.01
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: snake-tooth small-tooth earring
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 20300
+location: 26
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+14 20
+~
+extradesc: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.~
+~~
+vnum: 5212
+location: 27
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: DE g
+name: flame gray-flame grey-flame small-pillar fire questobject
+shortdesc: a gray flame
+desc: A small pillar of gray flame flickers here.
+type: 1
+weight: 0.50
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 15
+2 1
+~
+extradesc: gray-flame grey-flame small-pillar questobject
+The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  Its luminosity is both too
+bright and too dim, yet seems to light the area perfectly.~
+triggers:
+5207
+~
+~~
+vnum: 58603
+location: 127
+values:
+100
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: duffel duffel-bag bag satchel canvas-satchel canvas
+shortdesc: a duffel bag
+desc: A canvas satchel awaits its new owner.
+type: 15
+weight: 1.75
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+17 4
+~
+extradesc: satchel canvas bag duffel
+A green sailcloth bag that closes at the top with a drawstring,
+this satchel seems like it'd hold a lot of stuff! Straps allow
+it to be worn as well as merely held.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 17302
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gjlmuyz aefghi
+name: helmet black-horned-helmet black-helmet
+shortdesc: a black horned helmet
+desc: A black, horned helmet lies on the ground.
+type: 9
+weight: 5.10
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+1 -1
+~
+extradesc: black-horned-helmet black-helmet
+The helmet is jet black, as if it is the very essense of chaos. It seems to
+absorb all the light that falls on it. There are vicious horns which gives it
+a sinister appearance.~
+~~
+vnum: 17308
+location: -1
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: gjlDE g
+name: flame black-flame small-pillar fire questobject
+shortdesc: a black flame
+desc: A small pillar of black fire flickers here.
+type: 1
+weight: 0.00
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+4 -1
+19 2
+~
+extradesc: black-flame small-pillar fire questobject
+The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  It seems to light up the
+area, but somehow, seems to shed no light at all.~
+triggers:
+5207
+~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5507
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy 3rd-black-legion-badge third black-badge questobject
+shortdesc: a badge of the 3rd Black Legion
+desc: A black badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-badge
+It's a black badge with the crest of the 3rd Black Legion.~
+~~
+vnum: 5311
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: order
+shortdesc: an order for a true fire ring
+desc: An search order for a treasure hunt lays here.
+type: 12
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+5327
+~
+~~
+vnum: 55612
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem uncut-garnet
+shortdesc: an uncut garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55608
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: jade gem uncut-jade
+shortdesc: an uncut jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55599
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: agate gem uncut-agate
+shortdesc: an uncut agate
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55595
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: carnelian gem uncut-carnelian
+shortdesc: an uncut carnelian
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55616
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hematite gem flawed-hematite
+shortdesc: a flawed hematite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3263
+location: 127
+values:
+10
+249
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion potion-protection-cold
+shortdesc: a potion of protection from cold
+desc: A potion of protection from cold stands here.
+type: 10
+weight: 0.00
+cost: 500
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 20301
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 8
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+1 1
+~
+extradesc: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.~
+~~
+vnum: 1803
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe bark-canoe
+shortdesc: a bark canoe
+desc: A bark canoe has been abandoned here.
+type: 22
+weight: 20.00
+cost: 1
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: canoe bark-canoe
+   &0It looks very heavy, but quite sturdy.  &0~
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: saddle leather-saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 2
+~
+extradesc: leather-saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  ~
+~~
+vnum: 20303
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace large-crocodile-tooth-necklace
+shortdesc: a crocodile-tooth necklace
+desc: A large crocodile-tooth necklace lies discarded here.
+type: 8
+weight: 1.20
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 12
+~
+extradesc: large-crocodile-tooth-necklace
+This is a very interesting and intricate necklace.  It is made of an
+intricately braided green material and a has a large crocodile tooth at the
+very center.  It must have taken many hours to make this amazing necklace.~
+~~
+vnum: 20303
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace large-crocodile-tooth-necklace
+shortdesc: a crocodile-tooth necklace
+desc: A large crocodile-tooth necklace lies discarded here.
+type: 8
+weight: 1.20
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 12
+~
+extradesc: large-crocodile-tooth-necklace
+This is a very interesting and intricate necklace.  It is made of an
+intricately braided green material and a has a large crocodile tooth at the
+very center.  It must have taken many hours to make this amazing necklace.~
+~~
+vnum: 55302
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: mittens decayed-mittens armor
+shortdesc: decayed mittens
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mittens decayed-mittens armor
+These mittens are decayed beyond use.  Perhaps the Sorcerer guild master will
+know what to do with them.~
+~~
+vnum: 20
+location: -1
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 645
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-iron-hills-map rust-colored-map
+shortdesc: a map of the Iron Hills
+desc: A rust-colored map rolls in the dirt.
+type: 12
+weight: 0.01
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-iron-hills-map rust-colored-map
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- &2&bIron Hills&0  &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ &3
+                              o - o - o - o - o - o
+                             &9&b/                   /&0&3
+                            o                   &1&b1&0&3       o - o - o
+                            |                           |       |&9&b\&0&3
+                            o - o - o - o - o - o       o       o &9&bv&0&3
+                                |               |       |       | &6The&3
+                                o               o - o - o   o - o &6Barrow&3
+                                 &9&b\&0&3                          |
+    &6Dark Mountains&3 <- o       o - o             o - o - o - o
+                      |       |                 |
+                      o - o - o             o - o
+                              |              &9&b\&0&3
+                              o       o - o - o
+                              |       |
+                              o - o - o         o       o
+                                      |        &9&b/&0&3|       |
+                                      o - o - o o - o - o
+                                      |
+                                      o
+                                      |
+                                  o - o         &b***POINTS OF INTEREST***
+                                 &9/&0&3|&0              |&1&b1&0: a stone archway&3
+                o - o - o - o - o v
+                 &9&b\&0&6               The&3
+                  o             &6Canyon&3
+                  |
+              o - o
+              |
+          o - o
+         &9&b/
+        v&0
+    &6Kaas Plains&3
+ 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 3090
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map mielikki map-of-mielikki
+                  Mielikki, the forest town, by Kara-Sithri
+  
+                                                             &3***POINTS OF INTEREST***&0
+          &3#&0              &6&b2&0                                 |&6&b1&0: Temple to Mielikki
+          &9&b|              |&0                                 |&6&b2&0: Altar to Mielikki
+          &9&bSB&0         &B&1&b3&0 - &6&b1&0   &1???&0        &517&0 - &9&bNC&0            |&B&1&b3&0: Cleric Guild
+          &9&b|              |    |              |&0             |&B&1&b4&0: Warrior Guild
+      &521&0  &9&bSB        TC - TC - TC             NC -&0 &518&0       |&B&1&b5&0: Rogue Guild
+      &9&b|   |         |    |    |              |&0             |&B&1&b6&0: Sorcerer Guild
+      &2&b7&0 &9&b- SB -&0 &38&0    &9&bTC -&0 &C&4&b*&0 &9&b-  TC&0   &515&0 - &B&1&b4&0    &9&bNC -&0 &519&0       |&2&b7&0: Forest Inn
+          &9&b|         |    |    |    |         |&0             |&38&0: Post Office
+ &3#&0 &9&b- SQ - WM - WM - TC - TC - TC - EM - EM - CS - EM -&0 &3#&0   |&59&0: Drako's Bronze Shop
+     &9&b|          |   |         |              |&0             |&510&0: Garm's Shield Emporium
+ &59&0 &9&b- SR -&0 &510&0    &513&0  &514&0 &9&b-&0 &B&1&b5&0    &9&bDA - DA - DA   SC&0            |&511&0: Shauna's Hosue of Iron
+     &9&b|          |                  |    |    |&0             |&512&0: Beowyn's Steel
+&511&0 &9&b- SR -&0 &512&0    &B&1&b6&0        &3&b21&0        &516&0  &9&bdump  SC -&0 &520&0       |&513&0: Bigby's House of Magic
+     &9&b|                   |                   |&0             |&514&0: Fine Jewelry
+    &9&bNCP - NC - NC - NC - NC - NC - NC - NC - NCS&0           |&515&0: Santiago's Weapons
+          &9&b|              &0&1#&0&9&b         |&0                       |&516&0: Sloshed Squirrel Tavern
+     &9&bRP - RP - RP   TH - TH - TH   WW&0                      |&517&0: Helena's Bakery
+     &9&b|    |    |    |    |    |    |&0                       |&518&0: Aaron's General Store
+     &9&bRP -&0 &C&4&b*&0  &9&b- RP   TH - TH - TH   WW -&0 &1???&0                |&519&0: Lisa's House of Leather
+     &9&b|    |    |                   |&0                       |&520&0: Freddy's Toy Shop
+     &9&bRP - RP - RP                  WW&0                      |&521&0: Cartographer's Room
+          &9&b|                        |&0                       |&3&b22&0: Bank
+         &9&bGrey&0                      &3#&0                       |&C&4&b*&0: Fountain
+        &9&bCastle&0                                             |&3#&0: City Gates     
+                                                                 |&1???&0: New Adventures! 
+ 
+                                                               &9&b***ROADS***&0
+                                                           |SB: Sleepy Blvd.
+                                                           |SQ: Smelter's Sq.
+                                                           |WM: West main St.
+                                                           |TC: Town Center
+                                                           |EM: East Main St.
+                                                           |CS: Commerce Sq.
+                                                           |NC: N. Commerce Ave.
+                                                           |SC: S. Commerce Ave.
+                                                           |DA: Dark Alley
+                                                           |SR: Smelter's Row
+                                                           |NCP: New Castle Plaza
+                                                           |NC: New castle Rd.
+                                                           |NCS: New Castle Sq.
+                                                           |WW: Windy Way
+                                                           |RP: Royal Plaza
+                                                           |TH: Town Hall~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild~
+~~
+vnum: 35004
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: earring crow-feather-earring black-feather
+shortdesc: a crow-feather earring
+desc: A black feather rests on the ground.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: earring crow-feather-earring black-feather
+A jet black feather is attatched by leather to a small silver hoop.  The hoop
+itself is tiny, and the feather seems to hang down from it.~
+~~
+vnum: 35004
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: earring crow-feather-earring black-feather
+shortdesc: a crow-feather earring
+desc: A black feather rests on the ground.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: earring crow-feather-earring black-feather
+A jet black feather is attatched by leather to a small silver hoop.  The hoop
+itself is tiny, and the feather seems to hang down from it.~
+~~
+vnum: 36020
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: chain bone-chain length
+shortdesc: a bone chain
+desc: A length of chain lies here.
+type: 8
+weight: 0.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: bone-chain length
+About thirty small bone rings are roughly connected together to form a piece of
+decoration.  It looks as though it may offer you a little protection though.~
+~~
+vnum: 36020
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: chain bone-chain length
+shortdesc: a bone chain
+desc: A length of chain lies here.
+type: 8
+weight: 0.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: bone-chain length
+About thirty small bone rings are roughly connected together to form a piece of
+decoration.  It looks as though it may offer you a little protection though.~
+~~
+vnum: 17803
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: headdress feathered-head-dress feathers
+shortdesc: a head-dress
+desc: A feathered head-dress lies here.
+type: 9
+weight: 9.00
+cost: 200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+4 2
+5 2
+~
+extradesc: headdress feathered-head-dress feathers
+The head-dress is decorated with a multitude of very colourful feathers, giving
+it an aura of magnificence.~
+~~
+vnum: 8609
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pants coyote-skin-pants leather
+shortdesc: coyote skin pants
+desc: A pair of coyote skin pants is here looking stylish.
+type: 9
+weight: 7.30
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: coyote-skin-pants leather
+Stylish and functional too.  These pants will insulate the heat as well as the
+cold.  Now you have more of a reason to live!~
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 657
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-beach-head-map map-beachhead-map south-caelia-beach-head south-caelia's-beach-head south-caelias-beach-head
+shortdesc: a map of the Beachhead
+desc: A map of South Caelia's Beachhead drifts among the dunes.
+type: 12
+weight: 0.01
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-beach-head-map map-beachhead-map south-caelia-beach-head south-caelia's-beach-head south-caelias-beach-head
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- &2&2The Beachhead&0  &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ 
+    &6Arabel                             &3&b***POINTS OF INTEREST***&0&6
+    Ocean&0                               |&2&b1&0: the Dancing Dolphin Inn&4
+      ^                                 |&52&0: Meg's Supply Shop&4
+      |                                 |&1&b3&0: a dragon nest&4
+      o                                 |&1&b4&0: the lighthouse&4
+      |                                 |&6&b*&0: a stone well&4
+      o
+      |
+      o - o
+          |
+          o&3&b                       o&0&4
+          |&3&b                       |&0&4
+          o - o&3&b           o - o - o&0&4
+          |   |&3&b           |&0&4
+          o - o&3&b       o - o - o&0&4
+              |&3&b       |       |&0&4
+              o&3&b   o - o - o - o&0&4
+              |&3&b   |   |   |   |&0&4
+              o&3&b   o - o - o   o   o&0&4
+              |&3&b       |       |   |&0&4
+          o - o&3&b   o - o   o - o - o&0               o&4
+          |&3&b       |   |           |&0               |&4
+      o - o&1&b   4&3 - o - o - o - o - o - o&0           o - &2&b1&0&4
+          |&3&b                   |   |   |&0           |&4
+          o - o - o - o - o&3&b   o - o   o - o&0   o - o   &52&4
+                          |&3&b       |   |&0           |   |&4
+                          o - o -&3&b o   o&0   o - o - o - &6&b*&3
+                                  |   |&0       &5+&3&b
+                                  o   o - o&0   &3o&b
+                                  |&0&3           |&b
+                                  o - o&0&3   o - o&b
+                                  |       |&0&3   |&b
+                                  o   o - o&0&3   o&b
+                                  |   |&0&3       |&b
+                              o - o - o&0&3   o - o&b
+                              |   |&0&3       |&b
+                          o - o   o&0&3       o&b
+                          |       |&0&3       |&b
+                  o - o - o       &13&0&3       o o
+                                          |&9&b/&0&3|
+                                          o o
+                                           &9&b/&0&6
+                                      South Caelia 
+                                   Wailing Mountains&3
+ 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 658
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-ogakh-map map-encampment-ogakh-map
+shortdesc: a map of Ogakh
+desc: A map of the encampment Ogakh is stashed here.
+type: 12
+weight: 0.01
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-ogakh-map map-encampment-ogakh-map
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  &2&bOgakh&0  &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ 
+                                              &B&1&b1&0               &B&1&b2&0
+                                              |               |
+                                          &B&1&b3&0 - o - o - o - o - o
+                                                  |           |
+                                                  o           &B&1&b4&0
+                                                  |
+                                                  o
+                                                  |
+                                                  o - o - &B&1&b5&0
+                                                  |
+                                                  o
+                                                  |
+                                                  o
+                                                  |
+                                              &26&0   o
+                                              |   |
+                                          o - o - o - o       o
+&6Bluebonnet&0                                |   |   |           |
+  &6Pass&0 <- o - o - o   &27   8   9&0        &2&b10&0 o - o - o           o           o
+                  |   |   |   |          &9&b\&0    |   |           |           |
+                  o - o - o - o           o   o - o           o       o &5+&0 o
+                  |           |           |   |               |       |
+                  o           o - o - o - o - o - o - o - o - o - o - o &5+&1&b 11&0- o
+                  |           |           |   |   |     &3&b12&0    |   |   |
+                  |           |           |   |   |    &9&b/&0      |   |   |
+                  o  &B&1&b13&0 - o - o           &C&4&b*&0   &215&0  o - &216&0      &317&0  o   o     &B&1&b14&0
+                  |           |           |       |               |   |    &9&b/&0
+             &218&0 - o  &B&1&b19&0 - o - o - &220      21&0      o - o           o   o &5+&0 o
+                  |           |                   |                       &5+&0
+                  o           o - &222&0     &B&1&b23&0 - o - o - o                   o
+                  |           |                   |
+              o - o - o - o - o - &224&0     &B&1&b25&0 - o - o
+                  |   |   |   |                   |
+                 &226&0 - o - &227&0  o                   o
+                              |                   |
+                              o - o - o - o - o - o - o - o
+                                          |               |
+                                          o               o &5+&b 28&0
+                                          |
+                                          o
+ 
+                             &3&b***POINTS OF INTEREST***&0
+        |&C&4&b*&0: The Watering Hole                   |&215&0: Stable
+        |&B&1&b1&0: Pyromancer's Guild                  |&216&0: Jhanna's Jewelry
+        |&B&1&b2&0: Anti-Palidan's Guild                |&317&0: Post Office
+        |&B&1&b3&0: Cryomancer's Guild                  |&218&0: Biergarten
+        |&B&1&b4&0: Diabolist's Guild                   |&B&1&b19&0: Sorcerer's Guild
+        |&B&1&b5&0: Rogue's Guild                       |&220&0: Ralg's Weapons
+        |&26&0: Aranidor's Dingy Companions         |&221&0: Player's Board
+        |&27&0: Leather Goods                       |&222&0: Unndush's Shields
+        |&28&0: Woddly's Wargoods                   |&B&1&b23&0: Warrior's Guild
+        |&29&0: A Quick Spell                       |&224&0: Krigg's Bronzeware
+        |&2&b10&0: Inn Reception                      |&B&1&b25&0: Berserker's Guild
+        |&1&b11&0: Mayor's House                      |&226&0: Ghiala's Steelworks
+        |&3&b12&0: Ogakh Bank                         |&227&0: Grulo's Ironguard 
+        |&B&1&b13&0: Cleric's Guild                     |&228&0: Castaway Cartography  
+        |&B&1&b14&0: Necromancer's Guild                             
+ 
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 659
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-south-caelia-wailing-mountains-map map-towering-wailing-mountains-south-caelia-map
+shortdesc: a map of the South Caelia Wailing Mountains
+desc: A map of the towering Wailing Mountains of South Caelia waits here.
+type: 12
+weight: 0.01
+cost: 250
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-south-caelia-wailing-mountains-map map-towering-wailing-mountains-south-caelia-map
+&3-=-=-=-=-=-=-=-=-=-=-=- &2&bSouth Caelia Wailing Mountains&0  &3-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ 
+                                      &1&b1&0    &6The&0
+                                      | &6Beachhead&0
+                                      o &3^&0
+                                      |&9&b/&0
+                              &1&b2&0&3 - o - o - o - o        &3&b***POINTS OF INTEREST***&0&3
+                                  |           |&0         |&1&b1&0: a holy seal&3
+                                  o           o&0         |&1&b2&0: roc nesting grounds&3
+                                  |           |
+                              o - o       o - o - o
+                              |           |       |
+                              o           o       o
+                              |           |       |
+                              o           o - o - o
+                              |               |
+                          o - o - o           o
+                          |       |           |
+                          o       o       o - o - o
+                          |       |       |       |
+                          o - o - o       o       &1&b2&0&3
+                                  |       |
+                                  o       o
+                                  |       |
+                                  o - o - o
+                                      |
+                                      o
+                                      |
+                                      o
+                                      |
+                                      o
+                                      |
+                                      o
+                                      &5+&3
+                                      v
+                                  &6South Caelia&0
+                                  &6Borderhold&3
+ 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 660
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-south-caelia-borderhold-roads-map map-south-caelia-border-hold-roads-map
+shortdesc: a map of the South Caelia Borderhold and roads
+desc: A map of the Borderhold in South Caelia and its surrounding roads lays out.
+type: 12
+weight: 0.01
+cost: 250
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-south-caelia-borderhold-roads-map map-south-caelia-border-hold-roads-map
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=- &2&bSouth Caelia Borderhold&0 &3-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ 
+                   &6South Caelia                 &3&b***POINTS OF INTEREST***&0
+                 &6Wailing Mountains&0               |&C&4&b*&0: a public well
+                         &3^&0                       |&1&b1&0: Aldern's Store
+                         &5+&0                       |&1&b2&0: Tavern of the Fallen Star
+             o - o - o - o - o - o - o
+             |       &5+&0   |           |
+             o     &5+&0 o   o - &1&b1&0       o
+             |       |   |           |
+             o   o &5+&0 o   o       o   o&3     o-o-o-o&6 Dargentan's&3 o -> &6Highlands&0
+             |           |       &5+&0   |&3     |     |&6     Lair&3    |&6
+ Fangorn&3 < &5+&0 o - o - o - &C&4&b*&0 - o - o - o &5+&3 o-o     o       &9&b^&0&3     o&6
+ Forest&0      |       |   |           |           &3|      &9&b/&0      &3|&0
+             o       o - o   o       o           &3o-o-o-o-o-o-o-o&0
+             |       &5+&0   |   &5+   +&0   |
+             o       &1&b2&0 - o   o - o   o
+             |           |   &5+&0       |
+             o - o - o - o - o - o - o
+                         &5+&3
+                         o
+                         |
+                         o
+                         |
+                         o
+                         |
+                         o
+                         |
+                       o-o
+                       |
+                       o
+                       |
+          &6Anlun Vale&3 <-o
+                       |
+                       o-o-o-o
+                             |
+                             o-o-o-o
+                                   |
+                                   o-o     o-o-o -> &6Highlands&3
+                                     |     |
+                                     o-o-o-o
+ 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 661
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-fangorn-forest-map map-dense-fangorn-forest-map
+shortdesc: a map of Fangorn Forest
+desc: A map of the dense Fangorn Forest has been caught in a spider web.
+type: 12
+weight: 0.01
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-fangorn-forest-map map-dense-fangorn-forest-map
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- &2&bFangorn Forest&0  &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ &2
+                                    o
+                                    |
+                                o - o - o&3               o-o-o-o &5+ &6Borderhold&2
+                                |   |   |&3               |&2
+                            o - o - o - o - o&3           o&2
+                            |   |   |   |   |&3           |&1&b
+   ???&0&3              o - o - o - o - o - o - o - o - o - o
+    &5+&3               |&2       |   |   |   |   |&3
+    o-o-o-o-o       o&2       o - o - o - o - o          &3&b***POINTS OF INTEREST***&0&3
+    |       |       |&2           |   |   |&0               |&1&b1&0: interesting bushes&3
+    o       o-o-o-o-o&2           o - o - o&3
+    |&2                               |&3
+    o&2                               o&3
+    |&2                               |&3
+    o&2-o-o     o                     o&3
+    |&2   |     |                     |&3
+    o&2   o-o-o-o             o - o - o - o - o&3
+    |&2     |                 |               |&3
+    o&2     o             o - &1&b1               1&0&2 - o&3
+    |&2     |             |                       |&3
+  o&2-o-o-o-o-o       o - o                       o - o&3
+  |&2     |   |       |                               |&3
+  o&2     o   o       o                               o&3       o-o-o -> &6road to&3
+  |&2     |   |       |                               |&3       |    &6the Borderhold&3
+  o&2     o   o-o-o-o-o                               o-o&3-o-o-o
+  |&2     |   |   | &9&bU1&0&2|                               |&3
+  |&2     |   |   |&9&b/&0&2  |                               |&3
+o-o&2     o-o-o   o   o                               o&3
+|&2       |       |   |                               |&3
+o&2-o-o-o-o       o   o - o                       &1&b1&0&2 - o&3
+|&2       |       |       |                       |&3
+o&2       o-o-o-o-o       o - &1&b1&0&2               o - o&0         _____________________&3
+|&2       |                   |               |&0            |&3              
+o-o&2     o                   o - o - o - o - o&0            |&2                 o&3
+  |&2     |                           |&0                    |&2                 |&3
+  o&2     o                           o&0                    |&2         o - o - o&3 
+  |&2                                 |&0                    |&9&b        /&0&2        |&3
+  v&2                                 v&0                    |&2       o         o&6
+Anlun Vale                     Anlun Vale&0                |      &9&b/&0&6
+and Beach                      and Beach&0                 |    &9&bU1&0
+  
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 662
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-anlun-vale-map map-anlun-vale-beach-map
+shortdesc: a map of Anlun Vale and Beach
+desc: A map of Anlun Vale and Beach lays here.
+type: 12
+weight: 0.01
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-anlun-vale-map map-anlun-vale-beach-map
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=- &2&bAnlun Vale and Beach&0  &3-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ 
+                       &6Fangorn Forest                          Fangorn Forest&3
+                              ^&2                                       ^&3
+                              |&2                                       |&0
+                o&3             o&2                                       o&0
+                |&3             |&2                                       |&0
+            o - o - o&3         o&2                                       o&0
+            |   |   |&3         |&2                                       |
+&9&bo&0 - o - o - o - &1&b1&0 - o&3 o - o - o&2                                   o - o - o
+&9&b|&0           |   |   |&3 |&2                                           |   |   |
+&9&bo&0           o - o - o&3 o&2                                   o - o - o - &2&b&Y5&0&2 - o - o - o
+&9&b|&0&3                     |&2                                           |   |   |
+&9&bo - o&0&3                 o&2                                           o - o - o
+&9&b|   |&0&3                 |&2                                               |
+&9&bo - o&0&3                 o&2                                               o
+&9&b|   |&0&3                 |&2                                               |
+&9&bo - o&0&3  - - - o - - -  o&2                                               o
+&9&b|   |&0&3                 |&2                                               |
+&9&bo - o&0&3             o - o&2                                               o
+&9&b|   |&0&3             |&2                                                   |
+&9&bo - o&0&3             o&2                                               o - o
+&9&b|   |&0&3             |&2                                               |
+&9&bo - o&0&3             o - o - o - o&2                                   o&3
+                              |&2                                   |&3
+                              o     o - o - o - o - o&2             o&3
+                              |     |               |&2             |&3
+                              o     o               o - o - o-o-o-&2o&3
+                              |     |                       |
+                              o-o-o-o                       o
+                              |     |                       |
+                              o     o                       &4&b4&0&3
+                              |     |                       |
+                              o     o - o                   o
+                              |         |                   |
+                      o - o - o         o - o - o - o - o - o
+                      |                 |                   |
+                      o                 o               o - o
+                      |                 |               |
+                      o                 o               o
+                      |                 |               |
+                      o                 o       &6&b&B2&0&3       o
+                      |                 |       &4|&3       |
+                      o                 o - o - o - o - o
+                      |
+                      o
+                      |                          &3&b***POINTS OF INTEREST***&0&6
+    The Sacred&3 <- o - o&0                           |&1&b1&0: a sacrificial pit&6
+     Megalith&3         |&0                           |&6&b&B2&0: a crystalline pool&3
+                      o&0                           |&13&0: an ancient stone monolith&3
+                      |&0                           |&4&b4&0: a circle of stones&3
+                      o&0                           |&2&b&Y5&0: the Heart of the Vale&3
+                      |
+                      o -> &6Bluebonnet Pass&3
+                      |
+                      o
+                      |
+                      o
+                      |
+                      o
+                      |
+                      &13&0
+ 
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 663
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-sacred-megalith-map partially-complete-map forest-maze
+shortdesc: a map of the Sacred Megalith
+desc: A partially complete map of the Sacred Megalith its forest maze has been drawn out.
+type: 12
+weight: 0.01
+cost: 350
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-sacred-megalith-map partially-complete-map forest-maze
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=- &2&bThe Sacred Megalith&0 &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ 
+                                                        &3o -> &6South Caelia
+                                                        &3| &6Forests & Mountains
+                                                        &3o
+                                                        |
+                                    &1&b1&0&3 - o - o - o - o - o&2
+                                    |
+                                    o          &3&b***POINTS OF INTEREST***&0&2
+                                    |           &0|&1&b1&0: a huge standing stone&2
+                                    o           &0|&1&b2&0: dense brambles&2
+                                    |           &0|&1&b3&0: landslide debris&1&b
+                                    2&0&2           
+                                    |
+                                    o - o - o
+                                    |
+                                    o
+                                    |
+    o - &1&b2&0&2                   o - o - o
+    |   |                   |
+    o - o - &1&b3&0&2 - o - o - o - o&3
+ 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 20301
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 8
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+1 1
+~
+extradesc: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.~
+~~
+vnum: 5212
+location: 127
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: DE g
+name: flame gray-flame grey-flame small-pillar fire questobject
+shortdesc: a gray flame
+desc: A small pillar of gray flame flickers here.
+type: 1
+weight: 0.50
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 15
+2 1
+~
+extradesc: gray-flame grey-flame small-pillar questobject
+The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  Its luminosity is both too
+bright and too dim, yet seems to light the area perfectly.~
+triggers:
+5207
+~
+~~
+vnum: 3031
+location: 127
+values:
+0
+250
+83
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 41007
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz abefghij
+name: plate chitinous-plate large-flake-chitin
+shortdesc: a chitinous-plate
+desc: A large flake of chitin has fallen off a Hiver's thorax here.
+type: 9
+weight: 15.00
+cost: 45
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: chitinous-plate large-flake-chitin
+The rough platter of insectoid scales seems to have no distinct color.
+Shifting hues move across its surface as light strikes it from different
+angles. All colors? Or none? You shake your head in wonder.~
+~~
+vnum: 13614
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet onyx-bracelet shiny-onyx-silver-bracelet
+shortdesc: an onyx bracelet
+desc: A shiny onyx and silver bracelet lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.40
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+18 2
+~
+extradesc: onyx-bracelet shiny-onyx-silver-bracelet
+This silver bracelet is heavy and solid, with a clasp that unhinges to get it
+on and off the wrist.  It is chased all 'round in onyx, a thick black shiny
+stream of it, so that only the very edges of the silver backing are visible at
+its top and bottom edges, encircling it.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 17213
+location: 127
+values:
+1
+31
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll rough graphed roughly-graphed
+shortdesc: a roughly-graphed scroll
+desc: A crude scroll with heavy graph lines lies here rolled up.
+type: 2
+weight: 1.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll rough graphed roughly-graphed
+This appears to be the work of an apprentice, for crude lines are drawn roughly
+all across its surface.  The somewhat faint silvery lines have a discernable
+metallic gleam.  Most of the lines are drawn in one of two orthogonal
+directions, parallel to one or the other of the mostly rectangular edges of the
+document.  Four other lines drawn at acute angles create a diamond in the
+middle, albeit somewhat distorted.~
+~~
+vnum: 17210
+location: 127
+values:
+15
+18
+20
+14
+0
+0
+0
+~
+flags: gD 0
+name: scroll yellowed
+shortdesc: a yellowed scroll
+desc: A scroll lies here.
+type: 2
+weight: 1.00
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll yellowed
+This scroll seems to be very old. The parchment has already been yellowed
+with age.~
+~~
+vnum: 55568
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55591
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: diamond gem crushed-diamond
+shortdesc: a crushed diamond
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 17301
+location: 127
+values:
+0
+3
+3
+3
+0
+0
+0
+~
+flags: gjlmnuvyzD acfghij
+name: nightblade black-longsword long-sword
+shortdesc: the Nightblade
+desc: A black longsword floats a few feet above the ground, just in front of you.
+type: 5
+weight: 4.00
+cost: 500
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+18 1
+19 1
+4 -3
+~
+extradesc: nightblade black-longsword long-sword night-blade
+The sword is made of a jet black material, with bright sparks occassionally
+appearing on its blade.  Somehow, it reminds you of the darkest nights, with
+only starlight to brighten your path.~
+~~
+vnum: 17306
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots black-leather-boots
+shortdesc: a pair of black leather boots
+desc: A pair of black leather boots lies discarded here.
+type: 9
+weight: 2.60
+cost: 300
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 10
+24 -3
+~
+extradesc: black-leather-boots
+The boots are made of thick, black leather.  It has a sheen to it, as if
+someone had continuously polished it.  You can see your face on its surface.~
+~~
+vnum: 17302
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gjlmuyz aefghi
+name: helmet black-horned-helmet black-helmet
+shortdesc: a black horned helmet
+desc: A black, horned helmet lies on the ground.
+type: 9
+weight: 5.10
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+1 -1
+~
+extradesc: black-horned-helmet black-helmet
+The helmet is jet black, as if it is the very essense of chaos. It seems to
+absorb all the light that falls on it. There are vicious horns which gives it
+a sinister appearance.~
+~~
+vnum: 613
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-black-rock-trail-map
+shortdesc: a map of the Black Rock Trail
+desc: A map of the Black Rock Trail is caught between some rocks.
+type: 12
+weight: 0.01
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-black-rock-trail-map
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  &2&bBlack Rock Trail&0   &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ 
+       &3&b***POINTS OF INTEREST***&0                                  &6Berserker&0
+        |&4&bF&0: Spring&6                                                 Guild&0
+        |&9&b2&0: A Shimmering Portal&3                                      ^
+                                                                     |
+                                                                     o
+                                                                     |
+&6The Tower In&3                                                         o -> &6Anduin
+ The Wastes&3                                                          |
+     ^ o - o                 o - o - o - o - o                       o
+     |&9&b/     \&0                &3|               |                       |
+     o       o - o         o o               o                       o - o
+     |            &9&b\&0        &3|&9&b\&0&3|               |                       |   |
+     o   o - o - o o - o - o o           o - o                       o - o
+     |   |       |                       |                           |   |
+     o - o       o                       o  &6Cathedral&3 <&5+&0 &3o - o - o - o - o
+                 |                       | &6of Betrayal&3   |
+                 o                       o               o - o
+                 |                       |               |   |
+                 o                       o - - - - - - o o   &9&b2&0&3
+                 |                                      &9&b\&0&3|
+                 o - o     o                             o - o
+                     |    &9&b/&0&3|                                 |
+                 o - o - o v                                 o
+                /    | &6The Temple&3                            |
+               o     &4&bF&0  &6Of Chaos&3                             v
+               |                                            &6The&3
+               o - o - o                                 &6Graveyard&9&b
+                        \&0&3
+                         o
+                         |
+                         o - o
+                             |
+                             o
+                             |
+                             v
+                        &6Old Merchant
+                            Trail&3
+ 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 616
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-cathedral-betrayal-map blood-stained-map
+shortdesc: a map of the Cathedral of Betrayal
+desc: A blood-stained map of the Cathedral of Betrayal lays here.
+type: 12
+weight: 0.01
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-cathedral-betrayal-map blood-stained-map
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-  &2&bCathedral of Betrayal&0  &3-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: &9&b\ /&0 = up/down      &5x&0, &5+&0 = door
+ &3
+           o - o - o - o - o                          
+           |               |
+           o            &9&bU1&0 &3o - o   o - o &5+&3> &6Black Rock&3
+           |              &9&b\&0&3|   |   |          &6Trail&1&b
+       1&0 &3- o               o - o &5+ &3o                 &b***POINTS OF INTEREST***&0&3
+           |               |   |                      &0|&1&b1&0: the blind seer&3
+           o               o - o                      
+           |               |                          
+           o - o - o - o - o                          
+                                                      
+           &2Outer Grounds&0                              
+ 
+---------------------------------------------------------------------------------
+ 
+             o - o - o - o - o                        
+            &9&b/&0                                       
+           o                 o
+          &9&b/&0                 &5x&0
+         o                 &1&b6&9                    
+        /                 /                          &3***POINTS OF INTEREST***&0&1&b
+       3&0   o - o - o - o o                            |&1&b2&0: guardian statues                    
+       |   |           |&9&b/&0                             |&1&b3&0: a large tome
+       o - o - o - o - &1&b2&0 &5+&0 o                          |&1&b4&0: many books
+       |   |           |    &9&b\&0                         |&1&b5&0: a magnificent tapestry
+       |   o - o - o - o     &9&bD1&0                       |&1&b6&0: a glass case
+       |
+       |     o - o - o - o - &1&b5&0
+       |    &9&b/&0
+       |   o
+       |  &9&b/&0
+       | o                          &2Inner Cathedral&0
+       |&9&b/&0
+       &1&b4&0
+ 
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 3030
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: quill feather-quill long-white-feather pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill feather-quill long-white-feather pen
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)~
+triggers:
+51990
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+32 5
+18 9
+16 9
+~
+triggers:
+51949
+~
+~~
+vnum: 12008
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: baldric emblazoned-baldric large-ornamented-belt leather
+shortdesc: an emblazoned baldric
+desc: A large, ornamented belt lies coiled here.
+type: 9
+weight: 1.25
+cost: 225
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: emblazoned-baldric large-ornamented-belt leather
+This large, wide belt goes around the waist, up over the shoulders, to support
+a sword's sheath.  A lion rampant adorns the front of it, where it goes across
+the stomach.  The baldric seems very old; its owner hasn't taken good care of
+it -- the leather is cracked in places.~
+~~
+vnum: 12004
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: hood tasseled-hood crumpled fabric
+shortdesc: a tasseled hood
+desc: A tasseled hood lies crumpled on the ground.
+type: 9
+weight: 0.75
+cost: 150
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: tasseled-hood crumpled fabric
+The tasseled hood was once made of grey leather, though over time, the color
+was obscured into a kind of all-purpose light brown.  It's a simple two-piece
+conical sort of hood, coming to a point well above the wearer's crown and
+falling back.  A lively tassel made of leather fringe finishes the headgear.~
+~~
+vnum: 50205
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: shirt loose-linen-shirt weathered-linen-shirt
+shortdesc: a loose linen shirt
+desc: A weathered linen shirt lies here discarded.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+14 5
+~
+extradesc: shirt loose-linen-shirt weathered-linen-shirt
+This is a slightly off-white shirt made of linen, with long sleeves.  It
+buttons down the front.~
+~~
+vnum: 12008
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: baldric emblazoned-baldric large-ornamented-belt leather
+shortdesc: an emblazoned baldric
+desc: A large, ornamented belt lies coiled here.
+type: 9
+weight: 1.25
+cost: 225
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: emblazoned-baldric large-ornamented-belt leather
+This large, wide belt goes around the waist, up over the shoulders, to support
+a sword's sheath.  A lion rampant adorns the front of it, where it goes across
+the stomach.  The baldric seems very old; its owner hasn't taken good care of
+it -- the leather is cracked in places.~
+~~
+vnum: 12004
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: hood tasseled-hood crumpled fabric
+shortdesc: a tasseled hood
+desc: A tasseled hood lies crumpled on the ground.
+type: 9
+weight: 0.75
+cost: 150
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: tasseled-hood crumpled fabric
+The tasseled hood was once made of grey leather, though over time, the color
+was obscured into a kind of all-purpose light brown.  It's a simple two-piece
+conical sort of hood, coming to a point well above the wearer's crown and
+falling back.  A lively tassel made of leather fringe finishes the headgear.~
+~~
+vnum: 50205
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: shirt loose-linen-shirt weathered-linen-shirt
+shortdesc: a loose linen shirt
+desc: A weathered linen shirt lies here discarded.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+14 5
+~
+extradesc: shirt loose-linen-shirt weathered-linen-shirt
+This is a slightly off-white shirt made of linen, with long sleeves.  It
+buttons down the front.~
+~~

@@ -1,0 +1,3513 @@
+1
+vnum: 5553
+location: 0
+values:
+0
+800
+0
+0
+0
+0
+0
+~
+flags: j
+name: crystal light eldoria-reward small-cracked-crystal fractured-crystal
+shortdesc: a fractured crystal
+desc: A small, cracked crystal lies here.
+type: 1
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 12538
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 11
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    
+~
+~~
+vnum: 16103
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: ring sandstone sandstone-ring
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+applies:
+18 1
+1 2
+~
+extradesc: ring sandstone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  
+~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 55484
+location: 5
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpqrstuvyz
+name: shadowy tunic unseen
+shortdesc: &3Tunic of the Unseen&0
+desc: A shadowy tunic has been hidden in the darkness here.
+type: 9
+weight: 9.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 9
+applies:
+18 3
+3 2
+~
+extradesc: shadowy tunic unseen
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.
+~
+~~
+vnum: 58414
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crown golden gypsy-crown gypsy
+shortdesc: the Gypsy Crown
+desc: A golden crown inlaid with emeralds rolls around here.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 17
+applies:
+5 8
+~
+extradesc: crown gypsy
+This crown seems pretty heavy. It's made of thick gold, and probably
+incredibly expensive. The gold is shaped into the traditional peaks of 
+crowns. A green emerald, marquise-cut, is set into each peak, and several 
+of them in various cuts adorn the very front of the crown's tallest peak,
+which would be centered over the wearer's forehead.
+~
+~~
+vnum: 58430
+location: 7
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tights purple purple-tights snug-fitting pair rolled ball discarded
+shortdesc: a pair of snug-fitting purple tights
+desc: A pair of tights has been rolled into a ball and discarded.
+type: 9
+weight: 0.50
+cost: 750
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: tights purple purple-tights snug-fitting pair rolled ball discarded
+These tights look like they'd be a perfect fit! A tie-waist secures
+them at the waist, and the thick woolen material goes from there all the
+way down to your feet. They look quite old, and seem to glow with some
+kind of magical power. Perhaps they're enchanted!
+~
+~~
+vnum: 55486
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpqrstuvyz
+name: shadowy boots unseen
+shortdesc: &3Boots of the Unseen&0
+desc: A pair of shadowy boots hides in the darkness here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+applies:
+2 3
+1 2
+~
+extradesc: shadowy boots unseen
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.
+~
+~~
+vnum: 55565
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpqrstuvyz
+name: shadows pool studded leather gloves assassin
+shortdesc: &9&bGloves of the Assassin&0
+desc: Shadows pool together here, giving form to a pair of gloves.
+type: 9
+weight: 1.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+19 2
+18 2
+~
+extradesc: shadows pool studded leather gloves assassin
+The shadows form into small metal studs spaced across the surface of these
+pure black gloves.  Clearly forged with magic, these gloves make no noise and are
+difficult to see.  They allow for a full range of motion with the hand, making
+them perfect for quick, deft tasks.
+~
+~~
+vnum: 5521
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: sleeves eldoria-reward 3rd-black-legion-leather-sleeves
+shortdesc: leather sleeves of the 3rd Black Legion
+desc: Some black leather sleeves lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+~
+~~
+vnum: 43022
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-insanity something insanity
+shortdesc: the Cloak of Insanity
+desc: Something rests on the ground here, slowly corrupting reality.
+type: 12
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+applies:
+4 -3
+19 3
+~
+extradesc: cloak insanity
+Looking at the cloak too long gives you a headache.
+~
+~~
+vnum: 55013
+location: 13
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: bg
+name: jade-girth jade belt jade girth green crystal
+shortdesc: a jade girth
+desc: A crystal green girth lies here folded into a pile.
+type: 9
+weight: 2.50
+cost: 5400
+timer: 0
+level: 54
+effects: 0 0 0
+wear: 2049
+applies:
+4 1
+~
+extradesc: jade-girth jade belt jade girth green crystal
+This heavy piece of armor seems to be made of pure green crystal.  It glows
+slightly and is warm to the touch.  Just looking at it make you feel brave.  
+~
+~~
+vnum: 2023
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 2023
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 904
+location: 16
+values:
+3
+5
+6
+11
+0
+0
+0
+~
+flags: gjlmnprstuvz
+name: dagger dagger-shadows fragment-darkness
+shortdesc: a dagger of &9&bshadows&0
+desc: A fragment of darkness lies ill placed here.
+type: 5
+weight: 0.30
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+applies:
+2 2
+9 8
+5 1
+19 2
+~
+extradesc: dagger shadows fragment
+Darker than any night sky, this blade appears to be crafted from a solid piece
+of darkness.  Not a gleam nor sparkle, the blade seems to swallow light rather
+than repeal it.    
+~
+~~
+vnum: 904
+location: 17
+values:
+3
+5
+6
+11
+0
+0
+0
+~
+flags: gjlmnprstuvz
+name: dagger dagger-shadows fragment-darkness
+shortdesc: a dagger of &9&bshadows&0
+desc: A fragment of darkness lies ill placed here.
+type: 5
+weight: 0.30
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+applies:
+2 2
+9 8
+5 1
+19 2
+~
+extradesc: dagger shadows fragment
+Darker than any night sky, this blade appears to be crafted from a solid piece
+of darkness.  Not a gleam nor sparkle, the blade seems to swallow light rather
+than repeal it.    
+~
+~~
+vnum: 51006
+location: 21
+values:
+0
+1800
+1800
+0
+0
+0
+0
+~
+flags: ag
+name: eyes balls ice-eyes
+shortdesc: a pair of Ice Eyes
+desc: Two balls of ice lie here, casting a magical glow of light all around.
+type: 1
+weight: 1.03
+cost: 500
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 65537
+applies:
+18 2
+14 20
+28 52
+~
+extradesc: ice eyes magical pair two
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.
+~
+~~
+vnum: 59023
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: mask thick dark smoke enmity mask-enmity 
+shortdesc: the mask of enmity
+desc: A thick, dark mask is lying on the ground, with a small cloud of smoke surrounding it.
+type: 9
+weight: 4.00
+cost: 2500
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 131073
+applies:
+1 1
+18 1
+~
+extradesc: mask thick dark smoke enmity mask-enmity
+   The mask is not built from a solid material, but formed from a thick, dark
+cloud of smoke.  The outline of the mask, as well as the eye holes can be seen
+and even felt, giving it the illusion of being solid.  The smoke that swirls
+around it is vividly dark and gloomy, creating a supernatural look.  There are
+no apparent straps used to leash it to your face.  It seems that the smoke is
+wrapping around your hands as if to hold on, so it might do the same for your
+face.    
+~
+triggers:
+59001
+~
+~~
+vnum: 59002
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ab
+name: earring dragon blood drop dragons-blood-earring
+shortdesc: &9&ba&0 &1dragons&0&9&b-&0&1&bblood&0 &9&bearring&0
+desc: A small drop of &1&bblood&0 lies on the ground, emitting a faint trail of smoke.
+type: 11
+weight: 0.10
+cost: 15000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 262145
+applies:
+13 8
+18 2
+17 1
+~
+extradesc: earring dragons blood 
+   The earring is brilliant red, shimmering in the light.  The material that
+comprises the red color covers most of the earring except the stud, which is a
+dull silver color.  It emits a small trail of smoke, which seems to come from
+the dried on blood that forms the outer layer of the earring.
+~
+~~
+vnum: 8506
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring jet black ear ring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 9
+weight: 0.02
+cost: 250
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 262145
+applies:
+18 1
+19 1
+~
+extradesc: earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some if its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 20300
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+188
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 14.26
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 48104
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: h
+name: head shrivelled severed-head
+shortdesc: a shrivelled, severed head
+desc: The shrivelled head of a jungle savage lies here.
+type: 12
+weight: 8.00
+cost: 50
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1064961
+applies:
+3 1
+17 5
+~
+extradesc: shrivelled head severed
+This grotesque trophy makes you want to puke. Why would you ever want to
+look at such a thing??
+~
+~~
+vnum: 48129
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: head severed-lions-head chimera-head lion
+shortdesc: a severed lion's head
+desc: A fearsome expression of wrath is locked on the face of a severed lion's head.
+type: 9
+weight: 9.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 17
+applies:
+1 5
+6 -4
+2 -4
+~
+extradesc: head severed-lions-head chimera-head lion
+Once golden-haired with a beautiful, rich brown mane, this lion's head is now
+severed from its body, clotted blood matting the edges of its hair.  A terrible
+expression of wrath and anguish is locked onto its face, hinting at its
+agonizing downfall.  Much of the insides of the head have long fallen out,
+leaving a hideously gross interior large enough to fit another head in.    
+~
+~~
+vnum: 51008
+location: 127
+values:
+66
+19
+67
+0
+0
+0
+0
+~
+flags: 0
+name: vial nordus water-vial
+shortdesc: a small vial
+desc: A small vial lies partially hidden on the ground.
+type: 10
+weight: 0.15
+cost: 140
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+extradesc: water vial
+The vial is crafted of fine glass. It's not very big; it couldn't hold
+much liquid.. There is an insignia on the vial that suggests that the vial
+is from Nordus. 
+~
+~~
+vnum: 10307
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: oprstwx
+name: glasses silver-trimmed-glasses pair abandoned
+shortdesc: a pair of glasses
+desc: A pair of silver-trimmed glasses has been abandoned here.
+type: 11
+weight: 0.10
+cost: 500
+timer: 5
+level: 40
+effects: 0 0 0
+wear: 65537
+applies:
+3 5
+28 40
+~
+extradesc: glasses silver-trimmed-glasses pair abandoned
+These finely ground lenses must be gnomish work, for they seem to be flawless.
+The rims are a thin silver and the nosepiece seems quite comfortable.  They
+would surely be a great help to someone who has no near-vision that wants to
+read a book or crochet or do anything else that requires them to see things
+close up.    
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+~~
+vnum: 43021
+location: 127
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: gnoprt
+name: orb orb-catastrophe gleaming catastrophe
+shortdesc: the Orb of Catastrophe
+desc: A gleaming orb floats a few feet off of the ground here.
+type: 1
+weight: 5.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+1 3
+3 2
+~
+extradesc: gleaming orb catastrophe
+The orb slowly spins on a random axis, even when held.  Looking deep within its
+depths, you can almost swear that you see its fluid core swirling about a
+solitary figure.    
+~
+~~
+vnum: 43020
+location: 127
+values:
+57
+10
+10
+55
+0
+0
+0
+~
+flags: a
+name: rod rod-inter wicked intervention
+shortdesc: the Rod of Intervention
+desc: A wicked-looking rod is embedded in the earth here.
+type: 3
+weight: 1.50
+cost: 0
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 16385
+applies:
+5 2
+~
+extradesc: wicked rod intervention
+Upon closer inspection, there are some words carved into the rod.
+~
+extradesc: words
+In times of strife, my cause was to be known;
+Bitter tears of regret, clenched tooth to bone.
+Milnae urthlii, sumalin murtgnai d'ench pa'r...
+Veteinri Umse YaYa lechniq emt umscuia'r.
+~
+~~
+vnum: 53314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 55353
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tunic leather crushed
+shortdesc: a crushed leather tunic
+desc: A pile of crushed leather armor lies here unusable.
+type: 11
+weight: 8.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 9
+~~
+vnum: 55301
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gloves leather flimsy
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 129
+~~
+vnum: 53314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~
+vnum: 55482
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpqrstuvyz
+name: shadowy hood unseen
+shortdesc: &3Hood of the Unseen&0
+desc: A shadowy hood has been hidden in the darkness here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+applies:
+2 3
+3 2
+~
+extradesc: shadowy hood unseen
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.
+~
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55483
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpqrstuvyz
+name: shadowy sleeves unseen
+shortdesc: &3Sleeves of the Unseen&0
+desc: Shadowy sleeves hide in the darkness here.
+type: 9
+weight: 6.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+applies:
+6 4
+13 15
+~
+extradesc: shadowy sleeves unseen
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 48128
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: head severed-goats-head chimera-head goat
+shortdesc: a severed goat's head
+desc: The severed head of a goat sticks its tongue out, a final tidings to the world.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1064961
+applies:
+5 3
+6 -4
+~
+extradesc: head severed-goats-head chimera-head goat
+Grotesque and ugly, the severed goat's head oozes blood from its neck just
+below the jawbone.  Its whitish hair is stained and matted, clumping and
+sticking in knots.  A limp pinkish tongue droops out of its mouth between rows
+of vicious-looking teeth, forming a puddle of horrid-smelling drool beneath it.
+~
+~~
+vnum: 48129
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: head severed-lions-head chimera-head lion
+shortdesc: a severed lion's head
+desc: A fearsome expression of wrath is locked on the face of a severed lion's head.
+type: 9
+weight: 9.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 17
+applies:
+1 5
+6 -4
+2 -4
+~
+extradesc: head severed-lions-head chimera-head lion
+Once golden-haired with a beautiful, rich brown mane, this lion's head is now
+severed from its body, clotted blood matting the edges of its hair.  A terrible
+expression of wrath and anguish is locked onto its face, hinting at its
+agonizing downfall.  Much of the insides of the head have long fallen out,
+leaving a hideously gross interior large enough to fit another head in.    
+~
+~~
+vnum: 51026
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: gloves thick white asbestos
+shortdesc: a pair of thick gloves
+desc: A pair of thick gloves made of a powdery white fabric lie here.
+type: 9
+weight: 1.90
+cost: 180
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 129
+applies:
+1 -1
+5 -1
+~
+extradesc: gloves thick
+These gloves seem very thick and would probably protect the wearer from heat.
+Most useful for a smith or armourer.  They seem to give off small puffs of
+white powder when they are beaten though?    
+~
+extradesc: white powder asbestos
+Hmm, the white powder seems to be asbestos.  Lovely.  Course with your
+lifestyle I wouldn't think that would be the cause of your demise >;-)
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 55485
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpqrstuvyz
+name: shadowy leggings unseen
+shortdesc: &3Leggings of the Unseen&0
+desc: Shadowy leggings hide in the darkness here.
+type: 9
+weight: 8.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 33
+applies:
+2 2
+5 2
+~
+extradesc: shadowy leggings unseen
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.
+~
+~~
+vnum: 51026
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: gloves thick white asbestos
+shortdesc: a pair of thick gloves
+desc: A pair of thick gloves made of a powdery white fabric lie here.
+type: 9
+weight: 1.90
+cost: 180
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 129
+applies:
+1 -1
+5 -1
+~
+extradesc: gloves thick
+These gloves seem very thick and would probably protect the wearer from heat.
+Most useful for a smith or armourer.  They seem to give off small puffs of
+white powder when they are beaten though?    
+~
+extradesc: white powder asbestos
+Hmm, the white powder seems to be asbestos.  Lovely.  Course with your
+lifestyle I wouldn't think that would be the cause of your demise >;-)
+~
+~~
+vnum: 55487
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpqrstuvyz
+name: shadowy bracer unseen
+shortdesc: &3Bracer of the Unseen&0
+desc: A shadowy bracer has been hidden in the darkness here.
+type: 9
+weight: 0.74
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+applies:
+13 20
+3 2
+~
+extradesc: shadowy bracer unseen
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.
+~
+~~
+vnum: 5517
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: skullcap eldoria-reward black-skull-cap 3rd-black-legion-skullcap
+shortdesc: a skullcap of the 3rd Black Legion
+desc: A black skullcap lies nearby.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 17
+applies:
+14 5
+~
+extradesc: skullcap eldoria-reward black-skull-cap 3rd-black-legion-skullcap
+An iron skullcap, it bears the mark of the 3rd Black Legion.
+~
+~~
+vnum: 23887
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 12534
+location: -1
+values:
+0
+3
+4
+11
+0
+0
+0
+~
+flags: jmnprstuvyz
+name: dagger spiralling spiral blade bladed
+shortdesc: a spiral-bladed dagger
+desc: A dagger with a thin, spiralling blade rests here.
+type: 5
+weight: 1.10
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 8193
+extradesc: dagger spiralling spiral blade bladed
+This is a simple dagger, except for the blade.  The dagger's blade spirals
+toward the tip, creating two full revolutions.  A skilled hand could do awful
+things with this blade.    
+~
+~~
+vnum: 12534
+location: -1
+values:
+0
+3
+4
+11
+0
+0
+0
+~
+flags: jmnprstuvyz
+name: dagger spiralling spiral blade bladed
+shortdesc: a spiral-bladed dagger
+desc: A dagger with a thin, spiralling blade rests here.
+type: 5
+weight: 1.10
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 8193
+extradesc: dagger spiralling spiral blade bladed
+This is a simple dagger, except for the blade.  The dagger's blade spirals
+toward the tip, creating two full revolutions.  A skilled hand could do awful
+things with this blade.    
+~
+~~
+vnum: 53015
+location: -1
+values:
+0
+2
+6
+3
+0
+0
+0
+~
+flags: gmnuvyz
+name: shortsword reptilian blade curving sword
+shortdesc: a gracefully curving shortsword
+desc: A long slightly curving blade lies in the dust.
+type: 5
+weight: 4.20
+cost: 400
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+2 2
+~
+extradesc: blade shortsword sword reptilian blade
+Long and elegantly curved, this finely made shortsword gleams
+with the polishing it's been given. Its hilt has short, curving,
+S-shaped crossguards, and a leather-wrapped hilt.
+~
+~~
+vnum: 58430
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tights purple purple-tights snug-fitting pair rolled ball discarded
+shortdesc: a pair of snug-fitting purple tights
+desc: A pair of tights has been rolled into a ball and discarded.
+type: 9
+weight: 0.50
+cost: 750
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: tights purple purple-tights snug-fitting pair rolled ball discarded
+These tights look like they'd be a perfect fit! A tie-waist secures
+them at the waist, and the thick woolen material goes from there all the
+way down to your feet. They look quite old, and seem to glow with some
+kind of magical power. Perhaps they're enchanted!
+~
+~~
+vnum: 1246
+location: -1
+values:
+60
+3
+1247
+0
+0
+0
+0
+~
+flags: d
+name: box heart-shaped heart crimson beautiful valentine-quest-item
+shortdesc: a heart-shaped box
+desc: A crimson heart-shaped box rests here, concealing certain treats within.
+type: 15
+weight: 0.20
+cost: 2
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: box heart-shaped heart crimson beautiful valentine-quest-item
+A beautiful crimson velvet, the exterior of the box is finely decorated with
+silver inlay around the edges.  The box itself has a heart shape, with a cover
+that looks as if it could be flipped up.  A small hole on the box's top at the
+point of the heart looks as though it might hold the secret to removing the
+cover.  A large silver rune rests prominently in the center of cover.    
+~
+extradesc: rune
+The silver rune is printed on the velvet in an unfamiliar script, but in very
+small letters below it the word "Love" is written in common.    
+~
+~~
+vnum: 1219
+location: -2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: candy hard food
+shortdesc: a piece of sweet hard candy
+desc: A piece of sweet hard candy lies here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1248
+location: -2
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: strawberry chocolate chocolate-covered covered delicious delicious-looking candy food
+shortdesc: a chocolate-covered strawberry
+desc: A delicious-looking piece of candy is sitting here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: strawberry chocolate chocolate-covered covered delicious candy
+A plump, fresh, red strawberry has been dipped into chocolate, looking
+absolutely tantalizing.  It smells slightly fruity and very sweet, inducing the
+salivary glands to work their hardest.    
+~
+~~
+vnum: 1218
+location: -2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: candy chocolate food
+shortdesc: a piece of chocolate candy
+desc: A pice of candy lies here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 43022
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-insanity something insanity
+shortdesc: the Cloak of Insanity
+desc: Something rests on the ground here, slowly corrupting reality.
+type: 12
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+applies:
+4 -3
+19 3
+~
+extradesc: cloak insanity
+Looking at the cloak too long gives you a headache.
+~
+~~
+vnum: 43022
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-insanity something insanity
+shortdesc: the Cloak of Insanity
+desc: Something rests on the ground here, slowly corrupting reality.
+type: 12
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+applies:
+4 -3
+19 3
+~
+extradesc: cloak insanity
+Looking at the cloak too long gives you a headache.
+~
+~~
+vnum: 10306
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: apple tasty-green-apple food
+shortdesc: an apple
+desc: A tasty green apple rolls around on the floor.
+type: 19
+weight: 0.20
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+extradesc: apple tasty-green-apple food
+It's a scrumptious-looking apple, dripping with yummy apple juice and crunching
+noisily when bitten into.  It looks quite fresh, and would surely taste
+excellent.  It's nice and round and has nary a wormhole, so what are you
+waiting for??  Eat it!    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 8003
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tomato food
+shortdesc: a ripe red tomato
+desc: A ripe red tomato grows on a trellis.
+type: 19
+weight: 0.20
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: tomato food
+It's round and red, just soft enough to be ripe. It smells inviting.
+~
+~~
+vnum: 6910
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tomatoes cherry tomato cherry-tomatoes vine food
+shortdesc: some cherry tomatoes
+desc: Cherry tomatoes grow on a vine here.
+type: 19
+weight: 0.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: tomatos tomato cherry-tomatos vine
+With that acrid smell that follows fresh-grown tomatos, these small red tomatos
+are only about the size of cherries.  The vine has four of them on it.  
+Tomatos are usually used in sauces, but this smaller variety would go well on a
+salad.
+~
+~~
+vnum: 6910
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tomatoes cherry tomato cherry-tomatoes vine food
+shortdesc: some cherry tomatoes
+desc: Cherry tomatoes grow on a vine here.
+type: 19
+weight: 0.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: tomatos tomato cherry-tomatos vine
+With that acrid smell that follows fresh-grown tomatos, these small red tomatos
+are only about the size of cherries.  The vine has four of them on it.  
+Tomatos are usually used in sauces, but this smaller variety would go well on a
+salad.
+~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    
+~
+~~
+vnum: 23750
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: parsley sprig herb spice food
+shortdesc: a sprig of parsley
+desc: A sprig of parsley is sitting here, ready to garnish a dish.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: sprig parsley herb spice
+A fluffy little herb, parsley is often used to add flavor or color to
+otherwise unremarkable dishes.    
+~
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 58150
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fish dried smoked food
+shortdesc: some smoked fish
+desc: A handful of smoked fish lies here.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: smoked fish dried
+This hunk of dried, smoked fish is salty but tender enough to
+eat out of hand. It smells faintly of the sea, and is somewhat
+reddish-brown in color.
+~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fish raw slimy filet food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: raw fish fillet slimy
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.    
+~
+~~
+vnum: 10306
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: apple tasty-green-apple food
+shortdesc: an apple
+desc: A tasty green apple rolls around on the floor.
+type: 19
+weight: 0.20
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+extradesc: apple tasty-green-apple food
+It's a scrumptious-looking apple, dripping with yummy apple juice and crunching
+noisily when bitten into.  It looks quite fresh, and would surely taste
+excellent.  It's nice and round and has nary a wormhole, so what are you
+waiting for??  Eat it!    
+~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    
+~
+~~
+vnum: 23750
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: parsley sprig herb spice food
+shortdesc: a sprig of parsley
+desc: A sprig of parsley is sitting here, ready to garnish a dish.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: sprig parsley herb spice
+A fluffy little herb, parsley is often used to add flavor or color to
+otherwise unremarkable dishes.    
+~
+~~
+vnum: 23750
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: parsley sprig herb spice food
+shortdesc: a sprig of parsley
+desc: A sprig of parsley is sitting here, ready to garnish a dish.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: sprig parsley herb spice
+A fluffy little herb, parsley is often used to add flavor or color to
+otherwise unremarkable dishes.    
+~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.
+~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.
+~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.
+~
+~~
+vnum: 18556
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: thick rope belt
+shortdesc: a brown rope belt
+desc: A long, tied piece of rope lies on the ground here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 0.32
+cost: 45
+timer: 0
+level: 18
+effects: 0 0 0
+wear: 2049
+applies:
+2 2
+4 3
+13 10
+~
+extradesc: thick rope belt
+This belt made from rope is very plain and simlistic.  Just the kind of thing a
+monk would wear.    
+~
+~~
+vnum: 48128
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: head severed-goats-head chimera-head goat
+shortdesc: a severed goat's head
+desc: The severed head of a goat sticks its tongue out, a final tidings to the world.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1064961
+applies:
+5 3
+6 -4
+~
+extradesc: head severed-goats-head chimera-head goat
+Grotesque and ugly, the severed goat's head oozes blood from its neck just
+below the jawbone.  Its whitish hair is stained and matted, clumping and
+sticking in knots.  A limp pinkish tongue droops out of its mouth between rows
+of vicious-looking teeth, forming a puddle of horrid-smelling drool beneath it.
+~
+~~
+vnum: 3020
+location: -1
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: jnu
+name: dagger
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 p
+wear: 8193
+extradesc: dagger
+The dagger's blade is razor sharp.
+~
+~~
+vnum: 3020
+location: -1
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: jnu
+name: dagger
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 p
+wear: 8193
+extradesc: dagger
+The dagger's blade is razor sharp.
+~
+~~
+vnum: 55326
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: robe decayed
+shortdesc: a decayed robe
+desc: A pile of decayed armor lies here unusable.
+type: 11
+weight: 2.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 9
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 53314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~
+vnum: 48106
+location: 127
+values:
+0
+1
+7
+14
+0
+0
+0
+~
+flags: jmnu
+name: bone spear bone-spear white head
+shortdesc: a bone spear
+desc: A crude spear with a white head lies here.
+type: 5
+weight: 4.00
+cost: 300
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 32769
+applies:
+19 1
+18 -1
+~
+extradesc: bone spear bone-spear white head
+This spear has a short haft and a broad bone head. This spear has
+poor balance and you doubt that it would make an effective missile
+weapon. However the bone head is very sharp, and you feel confident
+you could inflict a great deal of damage with it.
+~
+~~
+vnum: 4007
+location: 127
+values:
+2
+3
+7
+3
+0
+0
+0
+~
+flags: gjlmnpqrtuvz
+name: blade blade-chaos dark-sword
+shortdesc: a blade of &1Chaos&0
+desc: A dark sword lies here encased in black flames.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+applies:
+9 10
+2 1
+19 2
+5 -2
+~
+extradesc: dark sword blade chaos flames
+Created from only the purest of dark magick, the blade is light and seemingly
+quite strong.  Blackened flames erupt from all around the blade, surrounding it
+in serenity and chaos.    
+~
+~~
+vnum: 53015
+location: 127
+values:
+0
+2
+6
+3
+0
+0
+0
+~
+flags: gmnuvyz
+name: shortsword reptilian blade curving sword
+shortdesc: a gracefully curving shortsword
+desc: A long slightly curving blade lies in the dust.
+type: 5
+weight: 4.20
+cost: 400
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+2 2
+~
+extradesc: blade shortsword sword reptilian blade
+Long and elegantly curved, this finely made shortsword gleams
+with the polishing it's been given. Its hilt has short, curving,
+S-shaped crossguards, and a leather-wrapped hilt.
+~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 53314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55488
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnpqrstuvyz
+name: shadowy gloves unseen
+shortdesc: &3Gloves of the Unseen&0
+desc: A set of shadowy gloves hides in the darkness here.
+type: 9
+weight: 1.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+19 1
+4 5
+~
+extradesc: shadowy gloves unseen
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.
+~
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55560
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnpqrstuvyz
+name: black studded leather sleeves assassin
+shortdesc: &9&bSleeves of the Assassin&0
+desc: Stuffed up into a small crevice is set of black, studded-leather sleeves.
+type: 9
+weight: 6.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+applies:
+3 4
+~
+extradesc: black studded leather sleeves assassin
+These sleeves flow like velvet but have the weight of a lighter fabric.  They
+rest quietly against any surface and allow for movement without making a sound.
+Magic was clearly involved in their creation for no normal leather offers these
+kinds of benefits without any drawbacks.
+~
+~~
+vnum: 55563
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnpqrstuvyz
+name: black studded leather boots assassin
+shortdesc: &9&bBoots of the Assassin&0
+desc: A pair of black studded-leather boots hides here from those who seek to find them.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+applies:
+14 10
+3 3
+5 2
+~
+extradesc: black studded leather boots assassin
+These boots are made from hardened leather, dyed black and covered with steel
+studs.  Eerily not a creak or a whisper comes from these boots, which makes them
+perfect for sneaking while armored.  In addition, they are very light, which
+keeps them from impeding movement.  A pair of boots like this would be a
+perfect gift for anyone who valued stealth and quickness.
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+240
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 17.65
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

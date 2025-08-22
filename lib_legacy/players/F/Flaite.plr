@@ -1,0 +1,120 @@
+name: Flaite
+password: Fl3JureQqV
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 9
+race: 6
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 16143
+birthtime: 1161368095
+timeplayed: 9078326
+lastlogintime: 1460857125
+host: 190.162.002.134
+height: 44
+weight: 176
+base_height: 44
+base_weight: 176
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxyz
+effectflags: k w 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+lastlevel: 12
+hitpoints: 1068/870
+mana: 100/100
+move: 168/168
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 68
+wisdom: 53
+dexterity: 91
+constitution: 100
+charisma: 48
+cash: 961 955 5692 6079
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+404 475
+405 1000
+408 1000
+410 750
+411 1000
+412 1000
+415 337
+416 1000
+418 1000
+420 1000
+421 1000
+438 86
+440 1000
+443 64
+444 336
+464 1000
+465 88
+477 1000
+0 0
+trophy:
+1 48806 0.166667
+1 48810 0.666667
+1 48808 0.166667
+1 48809 0.166667
+1 48807 0.500000
+1 48507 0.250000
+1 48511 0.250000
+1 48510 0.250000
+1 48508 0.500000
+1 48509 0.750000
+1 48633 0.250000
+1 48408 0.500000
+1 48414 0.750000
+1 48400 2.250000
+1 48402 0.750000
+1 48407 1.250000
+1 48409 1.500000
+1 53301 1.000000
+1 53300 0.500000
+1 53309 0.250000
+1 53310 0.500000
+0 0 0
+effects:
+131 4 0 0 0 0 32768
+131 4 2 19 0 0 0
+131 4 -12 24 0 0 0
+0 0 0 0 0
+aliases:
+2 assi thora;ba;ba
+11 g ring;wear ring
+sec g ring corpse;wear ring
+dagger+ rem blade;wie dagger;wie dagger
+a remove barbed;remove barbed;wie shadows;wie shadows
+gr group
+ge group
+wh who -w
+asi assi ganthiel
+0 look
+dr drink water
+as assi shikata
+bbb n;n;e;n;e;d;e;n
+fle flee;hide
+gac g all corpse
+li l i corpse
+6 assi tugrok;ba;ba
+1 assi gelidus;ba
+4 assi mecke;ba;ba
+3 assi ganthiel;ba;ba
+5 assi caleuche;ba;ba
+7 assi zombie;ba;ba
+8 assi skeleton;ba;ba
+0

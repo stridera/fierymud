@@ -1,0 +1,202 @@
+1
+vnum: 1140
+location: 5
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: motuwxy a
+name: breastplate breast plate steel breast steel-breast-plate steel-breastplate
+shortdesc: a steel breastplate
+desc: A steel breast plate shines up at you from the ground.
+type: 9
+weight: 16.00
+cost: 9000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: steel breast plate
+A shiny disc of polished steel makes the main part of this piece of armor.
+Tooled across its edges with a scrolling design, everything about it, from
+the subtle decorations to the fine straps, makes it look expensive and
+highly effective. There are only a few little dents in its surface to mar
+its mirror-like perfection.
+~
+~~
+vnum: 1122
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motuwxy a
+name: helm small-iron-helm
+shortdesc: an iron helm
+desc: A small iron helm has been dropped right in the way.
+type: 9
+weight: 4.00
+cost: 2250
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+extradesc: iron helm
+This simple little iron helm is made almost completely without
+ornamentation, aside from very simple tooling along its edge. 
+Leather straps hold it onto its wearer's head. It's also quite
+heavy and probably very hot!
+~
+~~
+vnum: 1126
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motuwxy a
+name: leggings iron-banded-leggings set-iron-leggings
+shortdesc: iron-banded leggings
+desc: A set of iron leggings lies here unattended.
+type: 9
+weight: 15.50
+cost: 2600
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: iron leggings
+These heavy plates of iron are designed to strap around their wearer's
+legs, forming strong and durable protection. The knees feature cleverly
+worked joints, though apart from this, they're quite plain, just thick
+black iron.
+~
+~~
+vnum: 1125
+location: 8
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: motuwxy a
+name: boots iron-banded-boots
+shortdesc: iron-banded boots
+desc: Some iron-banded boots have been left here.
+type: 9
+weight: 4.90
+cost: 350
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: iron boots
+This is one heavy pair of boots! Black iron strips are bolted to a pair  
+of black leather boots, making them immensely protective as well as
+cumbersome. They are unornamented, though they do bear some light dents,
+testimony to their usefulness.
+~
+~~
+vnum: 1123
+location: 9
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motuwxy a
+name: gauntlets jointed-iron-gauntlets pair-iron-gauntlets
+shortdesc: jointed iron gauntlets
+desc: A pair of iron gauntlets rests on the ground.
+type: 9
+weight: 2.70
+cost: 1100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+extradesc: iron gauntlets
+These black iron gauntlets are designed to strap onto their wearer's
+hands. Mostly, they protect the back of the hand. Light tooling is worked
+across their edges.
+~
+~~
+vnum: 1124
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motuwxy a
+name: sleeves iron-banded-sleeves set-iron-sleeves
+shortdesc: iron-banded sleeves
+desc: A set of iron sleeves lies on the ground.
+type: 9
+weight: 11.00
+cost: 1200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+extradesc: iron sleeves
+These heavy black cylinders of iron are designed to strap around their
+wearer's forearms. They bear light dents, testifying to their
+effectiveness, but other than that, are unmarked.
+~
+~~
+vnum: 3022
+location: 16
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnuvyz 0
+name: longsword sword steel
+shortdesc: a steel longsword
+desc: A steel-bladed longsword lies on the ground, sheathed.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: longsword sword long steel
+It is a plain steel longsword, with a fairly sharp blade and a
+leather-wrapped hilt. Short bronze crossguards keep the hand a
+little safe.
+~
+~~

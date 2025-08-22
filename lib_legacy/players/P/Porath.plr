@@ -1,0 +1,185 @@
+name: Porath
+password: PoZqDe7/NT
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 20
+race: 26
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20626
+birthtime: 1694964241
+timeplayed: 2943546
+lastlogintime: 1737341301
+host: 076.111.030.099
+height: 73
+weight: 347
+base_height: 73
+base_weight: 347
+base_size: 2
+natural_size: 2
+alignment: -996
+playerflags: gxyz
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 800
+loadroom: 3054
+lastlevel: 0
+hitpoints: 929/731
+mana: 980/980
+move: 251/252
+damroll: 3
+hitroll: 3
+strength: 80
+intelligence: 91
+wisdom: 74
+dexterity: 63
+constitution: 98
+charisma: 62
+cash: 302 5780 17182 328
+bank: 1800 4000 14000 0
+experience: 126967199
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+19 1000
+20 1000
+26 1000
+29 1000
+31 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+65 1000
+67 1000
+68 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+107 1000
+108 1000
+112 1000
+113 1000
+157 1000
+158 1000
+159 1000
+160 1000
+161 1000
+162 1000
+163 1000
+164 1000
+165 1000
+166 1000
+168 1000
+169 1000
+170 1000
+200 1000
+201 1000
+220 1000
+228 1000
+415 1000
+416 179
+421 1000
+423 1000
+424 1000
+438 273
+443 103
+444 257
+447 1000
+451 1000
+452 1000
+453 1000
+455 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 1000
+486 130
+0 0
+trophy:
+1 50209 0.750000
+1 62509 1.000000
+1 62508 1.000000
+1 37009 1.000000
+1 59012 0.250000
+1 59013 0.333333
+1 32404 0.250000
+1 59027 0.250000
+1 59020 0.250000
+1 59025 0.333333
+1 59024 0.666667
+1 59014 0.250000
+1 59010 0.333333
+1 59006 0.666667
+1 59011 1.583333
+1 59037 0.333333
+1 59002 0.583333
+1 59000 1.166667
+1 59004 0.250000
+1 2338 0.250000
+1 2332 0.250000
+0 0 0
+tells:
+1733696920 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1733696920 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1733697016 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1734822601 @WShazz@W tells you, 'Take good care of that.@W'@0
+1734822603 @WShazz@W tells you, 'Take good care of that.@W'@0
+1734919064 @WZorath@W tells you, 'well@W'@0
+1734919216 @WShazz@W tells you, 'Take good care of that.@W'@0
+1734927111 @WShazz@W tells you, 'Take good care of that.@W'@0
+1734927113 @WShazz@W tells you, 'Take good care of that.@W'@0
+1736140377 @WShazz@W tells you, 'Take good care of that.@W'@0
+1736140378 @WShazz@W tells you, 'Take good care of that.@W'@0
+$
+gossips:
+1737340723 Iorath gossips, 'grats'
+1737340733 Chinok gossips, 'gratz on 8!'
+1737340743 Iorath gossips, 'grats on Bills'
+1737340760 Chinok gossips, 'hahah thanks!'
+1737340782 Chinok gossips, 'my teams are the Bengals and Bills..'
+1737341103 Iorath gossips, 'why those 2'
+1737341117 Chinok gossips, 'cause those are the ones I like'
+1737341124 Iorath gossips, 'from either places?'
+1737341134 Chinok gossips, 'neither actually'
+1737341151 Chinok gossips, 'close to one, and friends in the other place'
+$
+aliases:
+h cast 'haste' $*
+ss cast 'stone skin' $*
+mg cast 'minor globe' $*
+pf cast 'positive field' $*
+mp cast 'minor paralysis' $*
+pray memorize
+where who -w
+x experience
+bf breathe fire $*
+df drink fountain
+g get all from corpse
+tt trophy
+bh cast 'burning hands' $*
+as assist gorath
+fd cast 'fire darts' $*
+ax assist xorath
+lastgos lastgos
+lasttel lasttell
+study study
+eq eq all
+gg get coins corpse
+dk ' Dhewsost Konre
+mi cast 'mass invisibility'
+0

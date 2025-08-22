@@ -1,0 +1,86 @@
+name: Marioon
+password: MaieviA7xh
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18328
+birthtime: 1344888706
+timeplayed: 25344
+lastlogintime: 1345745772
+host: 086.157.216.137
+height: 70
+weight: 234
+base_height: 70
+base_weight: 234
+base_size: 3
+natural_size: 3
+alignment: -199
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 107/105
+mana: 1/0
+move: 142/150
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 62
+wisdom: 79
+dexterity: 84
+constitution: 86
+charisma: 41
+cash: 0 100 21 20
+experience: 158465
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 64
+415 50
+416 50
+419 1000
+421 54
+427 1000
+438 50
+443 50
+444 50
+463 73
+464 50
+465 62
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8318 0.500000
+1 8302 1.333333
+1 8303 1.000000
+1 8300 0.666667
+1 8301 0.333333
+1 8331 0.333333
+1 8329 1.000000
+1 8330 1.000000
+1 8016 0.333333
+1 8010 0.333333
+1 8020 0.333333
+1 8023 1.000000
+1 8001 0.333333
+1 20301 0.666667
+1 20311 0.666667
+1 20305 0.500000
+1 16109 0.333333
+1 16110 0.333333
+1 16107 2.666667
+1 2001 0.333333
+1 2005 0.666667
+0 0 0

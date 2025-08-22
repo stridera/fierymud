@@ -1,0 +1,1588 @@
+#17801
+Beside the River~
+   This low rise overlooks a swift flowing river.  From this vantage point one
+one could easily launch a watercraft, in hopes of navigating this waterway.  
+The river has cut deep into river has cut deep into the land, leaving a very
+deep and narrow gorge.    
+~
+178 0 4
+D0
+~
+~
+0 0 17883
+D1
+~
+~
+0 -1 17802
+D2
+~
+~
+0 -1 17810
+S
+#17802
+On the River~
+   The river flows southwards with such power through here that it would be
+impossible to try and move upstream.  There is a small, rickety, wooden bridge
+that crosses the river to the north.  There is a landing area on the western
+bank.    
+~
+178 0 7
+D2
+~
+~
+0 -1 17811
+D3
+~
+~
+0 -1 17801
+S
+#17803
+Mount Gladstone~
+   You stand about half way up Mount Gladstone, one of the easier mountains in
+this range to climb, hence its' name.  The view here is fantastic!  The river
+meanders all over the land and finally opens out into a lake of some sort.  
+Throughout the valley below, smoke rises from fires in small villages spread
+all over this canyon.    
+~
+178 0 5
+D0
+~
+~
+0 -1 17880
+D1
+~
+~
+0 -1 17804
+S
+#17804
+Foot of the Mountain Range~
+   You find yourself standing on rocky ground and peering upwards towards the
+mountains with looms majestically above you. There seems to be no way to cross
+this range, but you notice a goat path leading in an east-west direction. The
+path leads upwards to end somewhere in the middle of a peak.
+~
+178 0 4
+D1
+~
+~
+0 -1 17805
+D3
+~
+~
+0 -1 17803
+S
+#17805
+Foot of the Mountain Range~
+   You find yourself standing on rocky ground and peering upwards towards the
+mountains with looms majestically above you. There seems to be no way to cross
+this range, but you notice a goat path leading in an east-west direction.
+~
+178 0 4
+D1
+~
+~
+0 -1 17806
+D2
+~
+~
+0 -1 17814
+D3
+~
+~
+0 -1 17804
+S
+#17806
+Foot of the Mountain Range~
+   You find yourself standing on rocky ground and peering upwards towards the
+mountains with looms majestically above you. There seems to be no way to cross
+this range, but you notice a goat path leading in an east-west direction.
+~
+178 0 4
+D1
+~
+~
+0 -1 17807
+D2
+~
+~
+0 -1 17815
+D3
+~
+~
+0 -1 17805
+S
+#17807
+Foot of the Mountain Range~
+   You find yourself standing on rocky ground and peering upwards towards the
+mountains with looms majestically above you. There seems to be no way to cross
+this range, but you notice a goat path leading in an east-west direction.
+~
+178 0 4
+D1
+~
+~
+0 -1 17808
+D3
+~
+~
+0 -1 17806
+S
+#17808
+Foot of the Mountain Range~
+   You find yourself standing on rocky ground and peering upwards towards the
+mountains with looms majestically above you. There seems to be no way to cross
+this range, but you notice a goat path leading in an east-west direction.
+~
+178 0 4
+D1
+~
+~
+0 -1 17809
+D3
+~
+~
+0 -1 17807
+S
+#17809
+Foot of the Mountain Range~
+   You find yourself standing on rocky ground and peering upwards towards the
+mountains with looms majestically above you. There seems to be no way to cross
+this range, but you notice a goat path leading in an east-south direction. The
+land to the south seems to be less steep.
+~
+178 0 4
+D2
+~
+~
+0 -1 17818
+D3
+~
+~
+0 -1 17808
+S
+#17810
+Gorge Path~
+   You stand upon a path extending along the sides of the gorge. The river
+rages about 100 feet below you. Even from that distance, you can appreciate
+the sheer power contained in that body of water. The path continues to the
+south.
+~
+178 0 5
+D0
+~
+~
+0 -1 17801
+D2
+~
+~
+0 -1 17820
+S
+#17811
+River Bend~
+   The river has cut a deep gorge in the land and traveling on the river has
+begun to get rougher. Steep walls of stone rise on both side of the river,
+making landfall here impossible. The river continues in a sharp bend towards
+the east. Just downstream you hear the sound of cascading water.
+~
+178 0 7
+D0
+~
+~
+0 -1 17802
+D1
+~
+~
+0 -1 17812
+S
+#17812
+Edge of the Waterfall~
+   You find yourself at the edge of a waterfall. The sheer strength of the
+current makes it impossible for you to turn back. The only thing you can do is
+to ride this fall out.
+~
+178 0 7
+D5
+You see a foaming pool of water below.
+~
+~
+0 -1 17813
+S
+#17813
+Below the Waterfall~
+   You managed to survive the fall down the waterfall, but you are soaked to
+the skin from the experience. The pool you find yourself in is rather calm,
+and there is an outlet flowing to the south. The cliffs still loom high above
+you and the only route available to you is to continue following to river.
+~
+178 0 7
+D2
+~
+~
+0 -1 17823
+S
+#17814
+Sand Bank~
+   You stand upon the sandy bank of the river. The land slopes upwards from
+this point to the north and the east to end several feet above the water. To
+the north, you can see a great mountain range, its' peaks hidden in the clouds.
+~
+178 0 15
+D0
+~
+~
+0 -1 17805
+D1
+~
+~
+0 -1 17815
+D2
+~
+~
+0 -1 17824
+S
+#17815
+A Ledge~
+   From this ledge, you can see the river running below you, like a white-blue
+ribbon. A short distance from here, you see that if you continue following the
+river, you would hit the rapids. The river bends towards the south and out of
+your sight.
+~
+178 0 4
+D0
+~
+~
+0 -1 17806
+D3
+~
+~
+0 -1 17814
+S
+#17816
+The Rapids~
+   You are tossed around like a cork. Your stomach feels like it wants to
+expel all its contents. You hope you are able to survive this. The  current is
+too strong for you to fight. It looks like you have to sit this one out.
+~
+178 132 7
+D1
+~
+~
+0 -1 17817
+S
+#17817
+The Rapids~
+   You are tossed around like a cork. Your stomach feels like it wants to
+expel all its contents. You hope you are able to survive this. The  current is
+too strong for you to fight. It looks like you have to sit this one out.
+~
+178 132 7
+D2
+~
+~
+0 -1 17827
+S
+#17818
+Foothills~
+   You gaze at the land around you. To the north, tall mountains bar your way.
+To the south and east, there are rocky foothill, with very sparse vegetation.
+Below you to the west, lies the river which carved its passage in this
+desolate piece of land. However, from here, you can see vast tracts of
+vegetation on the other bank of the river. Who said grass wasn't greener on
+the other side.
+~
+178 0 4
+D0
+~
+~
+0 -1 17809
+D1
+~
+~
+0 -1 17819
+D2
+~
+~
+0 -1 17828
+S
+#17819
+Low Hills~
+   This small hill overlooks a small valley just a short distance to the south.
+ You notice wisps of smoke at the far end of the valley. A short distance to
+the southeast, you see the traces of limestone caves.
+~
+178 0 4
+D2
+~
+~
+0 -1 17829
+D3
+~
+~
+0 -1 17818
+S
+#17820
+Bend in the Path~
+   The path you are following has come to a bend and continues to extend to
+the east. Deep below you, you also notice that the river is also at a bend. The
+rock here is probably much harder to be able to divert the river like that.
+~
+178 0 5
+D0
+~
+~
+0 -1 17810
+D1
+~
+~
+0 -1 17821
+S
+#17821
+Gorge Path~
+   The path continues to wind towards the east. Just ahead, you can hear a
+waterfall.
+~
+178 0 5
+D1
+~
+~
+0 -1 17822
+D3
+~
+~
+0 -1 17820
+S
+#17822
+Waterfall View~
+   You have come to the famous Waterfall View of the Great Gorge. To the
+northeast, you see a beautiful waterfall around 50 feet high cascading to a
+pool below. You cannot help but to admire the view. The only way to go is back
+to the west.
+~
+178 0 5
+D3
+~
+~
+0 -1 17821
+S
+#17823
+River Bend~
+   You arrive at another bend in the river. This one flow more gently then the
+last one you encountered, although you can hear the sounds of rapids some
+distance ahead.
+~
+178 0 7
+D0
+~
+~
+0 -1 17813
+D1
+~
+~
+0 -1 17824
+S
+#17824
+On the River~
+   The river continues to flow in a east-west course. Towards the east, you
+hear the very loud sounds of rapids. The bank to the north is relatively low
+and it is possible to land there.
+~
+178 4 7
+D0
+~
+~
+0 -1 17814
+D1
+~
+~
+0 -1 17825
+D3
+~
+~
+0 -1 17823
+S
+#17825
+The River~
+   The water just ahead of you is very very rough. It's the rapids! The very
+sound of the rushing waters scares the hell out of you. There is still time to
+turn back.
+~
+178 128 7
+D1
+~
+~
+0 -1 17826
+D3
+~
+~
+0 -1 17824
+S
+#17826
+The Rapids~
+   You are tossed around like a cork. Your stomach feels like it wants to
+expel all its contents. You hope you are able to survive this. The  current is
+too strong for you to fight. It looks like you have to sit this one out.
+~
+178 132 7
+D0
+~
+~
+0 -1 17816
+S
+#17827
+The River~
+   You are at the other end of the rapids. The current is too strong for you
+to fight upstream, but that may be for the best. After all, you do want to
+keep your lunch in. The river continues to flow peacefully towards the south.
+~
+178 0 7
+D2
+~
+~
+0 -1 17834
+S
+#17828
+Foothills~
+You are on some low hills to the east of a very dangerous looking part 
+of the river. To the east of here you can see a valley which looks like
+it has some sort of settlement in it. To the south you can see a place
+where you might be able to get onto the river.
+~
+178 0 4
+D0
+~
+~
+0 -1 17818
+D1
+~
+~
+0 -1 17829
+D2
+~
+~
+0 -1 17835
+S
+#17829
+Cougar Valley~
+   The valley looks peaceful and pleasant, but somehow, you cannot shake of a
+feeling of hostility and danger. To the east, you see the opening of the
+system of limestone caves. To the south, you see signs of human habitation.
+~
+178 0 2
+D0
+~
+~
+0 -1 17819
+D1
+~
+~
+0 -1 17868
+D2
+~
+~
+0 -1 17836
+D3
+~
+~
+0 -1 17828
+S
+#17830
+Rocky Ledge~
+   You find yourself on a rocky ledge overlooking the river. The sound of all
+that water is deafening. The ledge continues to extend towards the east.
+~
+178 0 5
+D1
+~
+~
+0 -1 17831
+D2
+~
+~
+0 -1 17837
+S
+#17831
+Rocky Ledge~
+   You find yourself on a rocky ledge overlooking the river. The sound of all
+that water is deafening. The ledge continues to extend from east to west. You
+can see the rapids beneath you. To fall now would be, well, unpleasant.
+~
+178 0 5
+D0
+~
+~
+0 -1 17824
+D1
+~
+~
+0 -1 17832
+D2
+~
+~
+0 -1 17838
+D3
+~
+~
+0 -1 17830
+S
+#17832
+Rocky Ledge~
+   You find yourself on a rocky ledge overlooking the river. The sound of all
+that water is deafening. The ledge continues to extend from east to west. You
+can see the rapids beneath you. To fall now would be, well, unpleasant.
+~
+178 0 5
+D1
+~
+~
+0 -1 17833
+D3
+~
+~
+0 -1 17831
+S
+#17833
+Rocky Ledge~
+   You find yourself on a rocky ledge overlooking the river. The sound of all
+that water is deafening. The ledge has come to a dead end. The only way back
+is to the west. You can see the rapids beneath you. To fall now would be,
+well, unpleasant.
+~
+178 0 5
+D3
+~
+~
+0 -1 17832
+S
+#17834
+The River~
+   You are at the other end of the rapids. The current is too strong for you
+to fight upstream, but that may be for the best. After all, you do want to
+keep your lunch in. The river continues to flow peacefully towards the south.
+The shore at the eastern bank seems to be low enough to make landfall.
+~
+178 4 6
+D0
+~
+~
+0 -1 17827
+D1
+~
+~
+0 -1 17835
+D2
+~
+~
+0 -1 17841
+S
+#17835
+Sand Bank~
+   You stand upon the sandy bank of the river. The land rises into hills all
+around you. To the east, you see wisps of smoke rising, perhaps from a
+settlement of some sort. The river is to the west
+~
+178 0 15
+D0
+~
+~
+0 -1 17828
+D1
+~
+~
+0 -1 17836
+D2
+~
+~
+0 -1 17842
+D3
+~
+~
+0 -1 17834
+S
+#17836
+Cougar Village~
+   You find yourself in the middle of a small village. Tents and dwellings of
+all shapes and sizes are scattered all over. There is a strong smell of
+excrement in the air, but the inhabitants here do not seem to notice.
+Prominent in the centre of the village is a large totem pole.
+~
+178 0 2
+D0
+~
+~
+0 -1 17829
+D2
+~
+~
+0 -1 17843
+D3
+~
+~
+0 -1 17835
+E
+totem-pole totem pole~
+   The totem-pole is a large pice of timber an armswidth in size and about 20
+feet tall. At the top of the pole, the carved head of a cougar stares
+proudly towards the east.
+~
+S
+#17837
+Hills~
+   You are on low hill overlooking the river and its banks. The fresh air and
+cool breeze makes you want to stay on here and forget all your worries. Just
+to the west, a vast expanse of trees covers the ground. The thick underbrush
+there also makes travel a little difficult. But why go into a forest when you
+can enjoy the plains?
+~
+178 0 4
+D0
+~
+~
+0 -1 17830
+D1
+~
+~
+0 -1 17838
+D2
+~
+~
+0 -1 17845
+S
+#17838
+Hills by the River~
+   From where you are standing, you are able to look down onto the river. Far
+to the east, you are able to make out the second waterfall of this river. The
+sight is absolutely breath-taking. To the north is a thin strip of rocky
+ground extending from east to west. To the south, you can see the river bank.
+~
+178 0 4
+D0
+~
+~
+0 -1 17831
+D2
+~
+~
+0 -1 17846
+D3
+~
+~
+0 -1 17837
+S
+#17839
+Below the Waterfall~
+   You are the bottom of the second waterfall. A fine spray of water wets your
+clothing, but it feels rather refreshing. The pool you are in drains out
+towards the south.
+~
+178 0 6
+D2
+~
+~
+0 -1 17847
+S
+#17840
+Edge of the Waterfall~
+   You are near the end of another waterfall. This one is not as majestic as
+the first, but it would still be a rough ride down. The current here is not as
+strong, so you are able to turn back.
+~
+178 0 7
+D1
+~
+~
+0 -1 17841
+D5
+You see a foaming pool of water.
+~
+~
+0 0 17839
+S
+#17841
+River Bend~
+   The river has cut a deep gorge in the land and traveling on the river has
+begun to get rougher. Steep walls of stone rise on both side of the river,
+making landfall here impossible. The river continues in a gentle bend towards
+the west.
+~
+178 0 6
+D0
+~
+~
+0 -1 17834
+D3
+~
+~
+0 -1 17840
+S
+#17842
+Low Hills~
+   You are on a rise just above the river.  The ground here is too high for you
+to enter the river, but a short distance to the north, it looks low enough for
+you to launch a boat in it.
+~
+178 0 4
+D0
+~
+~
+0 -1 17835
+D1
+~
+~
+0 -1 17843
+S
+#17843
+Low Hills~
+   This small hill overlooks a small valley just a short distance to the north.
+ You notice wisps of smoke at the bottom of the valley. The river is some
+distance to the west.
+~
+178 0 4
+D0
+~
+~
+0 -1 17836
+D3
+~
+~
+0 -1 17842
+S
+#17844
+Eagle Village~
+   You have come across the village of the eagle tribe. They seem to be rather
+simple and relatively peaceful people. Their dwellings are built upon the
+branches of the trees here.
+~
+178 0 3
+D1
+~
+~
+0 -1 17845
+S
+#17845
+Hills~
+   You are on low hill overlooking the river and its banks. The fresh air and
+cool breeze makes you want to stay on here and forget all your worries. Just
+to the west, you can see signs of human habitation among the trees.
+~
+178 0 2
+D0
+~
+~
+0 -1 17837
+D1
+~
+~
+0 -1 17846
+D2
+~
+~
+0 -1 17848
+D3
+~
+~
+0 -1 17844
+S
+#17846
+River Bank~
+   The sand feels nice beneath your feet. The air too has a refreshing smell.
+The are low hills rising to the north and west of here. The river flows at
+your east.
+~
+178 0 15
+D0
+~
+~
+0 -1 17838
+D1
+~
+~
+0 -1 17847
+D2
+~
+~
+0 -1 17849
+D3
+~
+~
+0 -1 17845
+S
+#17847
+On the River~
+   From this point, you see that the western bank of the river consists mainly
+of dense forests and gently rolling hills. The river continues to flow
+southwards.
+~
+178 4 6
+D0
+~
+~
+0 -1 17839
+D2
+~
+~
+0 -1 17850
+D3
+~
+~
+0 -1 17846
+S
+#17848
+Hills~
+   You are on low hill overlooking the river and its banks. The fresh air and
+cool breeze makes you want to stay on here and forget all your worries. Just
+to the west, a vast expanse of trees covers the ground. The thick underbrush
+there also makes travel a little difficult. But why go into a forest when you
+can enjoy the plains?
+~
+178 0 2
+D0
+~
+~
+0 -1 17845
+D1
+~
+~
+0 -1 17849
+D2
+~
+~
+0 -1 17851
+S
+#17849
+River Bank~
+   The sand feels nice beneath your feet. The air too has a refreshing smell.
+The are low hills rising to the south and west of here. The river flows at
+your east.
+~
+178 0 15
+D0
+~
+~
+0 -1 17846
+D1
+~
+~
+0 -1 17850
+D2
+~
+~
+0 -1 17852
+D3
+~
+~
+0 -1 17848
+S
+#17850
+On the River~
+   From this point, you see that the western bank of the river consists mainly
+of dense forests and gently rolling hills. The river continues to flow
+southwards.
+~
+178 4 6
+D0
+~
+~
+0 -1 17847
+D2
+~
+~
+0 -1 17853
+D3
+~
+~
+0 -1 17849
+S
+#17851
+Hills~
+   You are on low hill overlooking the river and its banks. The fresh air and
+cool breeze makes you want to stay on here and forget all your worries. Just
+to the south and west, a vast expanse of trees covers the ground. The thick
+underbrush there also makes travel a little difficult. But why go into a forest
+when you can enjoy the plains?
+~
+178 0 2
+D0
+~
+~
+0 -1 17848
+D1
+~
+~
+0 -1 17852
+S
+#17852
+Hills~
+   You are on low hill overlooking the river and its banks. The fresh air and
+cool breeze makes you want to stay on here and forget all your worries. Just
+to the south, a vast expanse of trees covers the ground. The thick underbrush
+there also makes travel a little difficult. But why go into a forest when you
+can enjoy the plains?
+~
+178 0 2
+D0
+~
+~
+0 -1 17849
+D3
+~
+~
+0 -1 17851
+S
+#17853
+River Bend~
+   The river has begun to bend towards the east. Just downstream you can hear
+the sounds of another waterfall. To the south, you can see signs of
+habitation, but you are unable to make landfall here. Perhaps further
+downstream.
+~
+178 4 6
+D0
+~
+~
+0 -1 17850
+D1
+~
+~
+0 -1 17854
+S
+#17854
+Edge of the Waterfall~
+Another waterfall can be seen to the east, but it is a lot smaller than
+any of the previous ones. You think it would be dangerous going down
+here but you can always turn back as the current is not very strong now.
+~
+178 0 6
+D3
+~
+~
+0 -1 17853
+D5
+You see a foaming pool of water below.
+~
+~
+0 -1 17855
+S
+#17855
+Large Pool~
+   The pool at the bottom of this waterfall is rather calm, in spite of the
+large volume of water entering it all the time. You realise that you would
+soon be leaving the canyon and entering the great unknown beyond. The river
+flows gently to the east.
+~
+178 0 6
+D1
+~
+~
+0 -1 17856
+S
+#17856
+On the River~
+   It feels very relaxing and peaceful following the river now. The river
+continues to flow towards a bend to the east. You could, however, choose to
+make landfall as the southern bank is rather low.
+~
+178 4 6
+D1
+~
+~
+0 -1 17857
+D2
+~
+~
+0 -1 17861
+D3
+~
+~
+0 -1 17855
+S
+#17857
+Gentle Bend~
+   The river now bends towards the south and is heading towards the ocean.
+~
+178 0 6
+D2
+~
+~
+0 -1 17862
+D3
+~
+~
+0 -1 17856
+S
+#17858
+Bear Village~
+   You find yourself in the middle of the village of the bear tribe.  The smell
+here is overpowering.  Discarded pieces of meat are lying all over the place,
+and there are fish bones everywhere.  To the north you hear the river slightly
+above you.  To the west, a rocky path begins.  It looks like it may lead out of
+the canyon.    
+~
+178 0 2
+D0
+~
+~
+0 -1 17853
+D1
+~
+~
+0 -1 17859
+D2
+~
+~
+0 -1 17863
+D3
+~
+~
+0 0 17884
+S
+#17859
+The Ursa Plains~
+   You'd better watch out, for you are now in bear country. It is rumoured
+that the bears here are vicious, and would tear your limbs off with one bite.
+The plains are spread all around you, but your passage to the north is blocked
+by the river.
+~
+178 0 2
+D1
+~
+~
+0 -1 17860
+D2
+~
+~
+0 -1 17864
+D3
+~
+~
+0 -1 17858
+S
+#17860
+The Ursa Plains~
+   You'd better watch out, for you are now in bear country. It is rumoured
+that the bears here are vicious, and would tear your limbs off with one bite.
+The plains are spread all around you, but your passage to the north is blocked
+by the river.
+~
+178 0 2
+D1
+~
+~
+0 -1 17861
+D2
+~
+~
+0 -1 17865
+D3
+~
+~
+0 -1 17859
+S
+#17861
+River Bank~
+   You are on a sand bank near the river bend. There are plains to the west
+and south interspersed with the occasional tree. Strangely, there is a strong
+smell of urine here.
+~
+178 0 15
+D0
+~
+~
+0 -1 17856
+D2
+~
+~
+0 -1 17866
+D3
+~
+~
+0 -1 17860
+S
+#17862
+On the River~
+   The river now flows towards the ocean just beyond. You could try your
+sefaring skills and journey forth, or turn back now.
+~
+178 0 6
+D0
+~
+~
+0 -1 17857
+D2
+~
+~
+0 -1 17867
+S
+#17863
+The Ursa Plains~
+   You'd better watch out, for you are now in bear country. It is rumoured
+that the bears here are vicious, and would tear your limbs off with one bite.
+To the west, a mountain range bars your way. To the north, you can see the
+signs of human activity.
+~
+178 0 2
+D0
+~
+~
+0 -1 17858
+D1
+~
+~
+0 -1 17864
+S
+#17864
+The Ursa Plains~
+   You'd better watch out, for you are now in bear country. It is rumoured
+that the bears here are vicious, and would tear your limbs off with one bite.
+The plains are spread all around you and it feels nice to be able to walk on
+such open grounds.
+~
+178 0 2
+D0
+~
+~
+0 -1 17859
+D1
+~
+~
+0 -1 17865
+D3
+~
+~
+0 -1 17863
+S
+#17865
+The Ursa Plains~
+   You'd better watch out, for you are now in bear country. It is rumoured
+that the bears here are vicious, and would tear your limbs off with one bite.
+The plains are spread all around you and it feels nice to be able to walk on
+such open grounds.
+~
+178 0 2
+D0
+~
+~
+0 -1 17860
+D1
+~
+~
+0 -1 17866
+D3
+~
+~
+0 -1 17864
+S
+#17866
+The Ursa Plains~
+   You'd better watch out, for you are now in bear country. It is rumoured
+that the bears here are vicious, and would tear your limbs off with one bite.
+The plains are spread all around you, but your passage to the east is blocked
+by the river.
+~
+178 0 2
+D0
+~
+~
+0 -1 17861
+D3
+~
+~
+0 -1 17865
+S
+#17867
+River Mouth~
+   The river comes to a head here, forming a wide mouth.  An offshoot flows off
+to the east, across a narrow, rocky ford, but it is inaccessible from here.  
+The river flows from the north.    
+~
+178 0 6
+D0
+~
+~
+0 -1 17862
+S
+#17868
+Dark Cave~
+   You find yourself in a very dark cave. There is an eerie feeling here, like
+you are not alone. Everytime you take a step, there is a crunching sound, but
+your light does not reveal anything.
+~
+178 5 12
+D3
+~
+~
+0 -1 17829
+S
+#17869
+Dark Cavern~
+   You are now in a chamber somewhere in this cavern system. Strangely, there
+are paintings of some sort on the walls here. A passageway leads to the east,
+deeper into the caverns.
+~
+178 4718728 12
+D1
+~
+~
+0 -1 17870
+E
+paintings painting pictures~
+   The pictures are very crudely done, with motives of various animals. The
+cougar, bear and eagle are quite common among the myriad pictures. You realise
+that some of them are painted in blood.
+~
+S
+#17870
+The Caverns~
+   The cavern leads deeper to the east. Somehow, it feels a little difficult
+to think straight here. Must be something in the air.
+~
+178 4718728 12
+D1
+~
+~
+0 -1 17871
+D3
+~
+~
+0 -1 17869
+S
+#17871
+The Caverns~
+   The cavern leads deeper to the north. Somehow, it feels a little difficult
+to think straight here. Must be something in the air.
+~
+178 4718728 12
+D0
+~
+~
+0 -1 17872
+D3
+~
+~
+0 -1 17870
+S
+#17872
+The Caverns~
+   You have come to a dead end. The only way you can go is back to the south.
+There is an almost suffocating atmosphere here. You'd be glad to get out of
+this place.
+~
+178 4718728 12
+D2
+~
+~
+0 -1 17871
+S
+#17880
+On Top of Mount Gladstone~
+   You are standing atop Mount Gladstone. There's not much of a view from
+here, as you are almost completely surrounded by taller mountains here. A
+winding trail runs north and south from here. The wind from the north is
+hard and dry. The wind from the south feels much cooler.
+~
+178 0 5
+D0
+~
+~
+0 -1 17882
+D2
+~
+~
+0 -1 17803
+D3
+~
+~
+0 -1 17881
+S
+#17881
+On the Side of Mount Gladstone~
+You are standing on a small stone bridge crossing a very fast river. To
+the south it looks as though you can enter the river at a small landing.
+The path continues to the east and to the west.
+~
+178 0 5
+D1
+~
+~
+0 -1 17880
+D3
+~
+~
+0 0 17883
+S
+#17882
+At the Foot of Mount Gladstone~
+   This is the foot of the mountain. The climb to the south would look
+formidable to most people, but it's possible. There's no other way visible
+to cross the mountain range around here.
+   A soft path is visible to the north.
+~
+178 0 5
+D0
+~
+~
+0 -1 55680
+D2
+~
+~
+0 -1 17880
+S
+#17883
+On the Side of Mount Gladstone~
+You stand on a bend in the path, which continues east and south. To
+the south it looks as though you can enter the river.
+~
+178 0 4
+D1
+~
+~
+0 0 17881
+D2
+~
+~
+0 0 17801
+S
+#17884
+A Narrow Path~
+   A narrow, rocky path leads east and west here along the edge of the canyon.
+The rank smell of old meat flows in from the east, where huts of the Bear Tribe
+take up a corner of the Ursa Plains.  Sagebrush and tiny flowers make up the
+vegetation around here, and from far off comes the sound of rushing water.    
+~
+178 4 5
+D1
+~
+~
+0 0 17858
+D3
+~
+~
+0 0 17885
+S
+#17885
+A Narrow Path~
+   The path leads east from here towards Bear Village and directly up the
+canyon wall.  Large boulders provide steady handholds and footholds going up,
+and the canyon walls are dotted with scraggly trees and a few other plants.  
+The distant sound of rushing water is an undertone to the other sounds of
+nature.    
+~
+178 0 5
+D1
+~
+~
+0 0 17884
+D4
+~
+~
+0 0 17886
+S
+#17886
+On the Canyon Wall~
+   A narrow, rocky path leads to the west and directly down over several large
+boulders here.  It does not look well-traveled, judging by the shoots of sage
+and nettles growing in the middle of the path.  Looking to the east, the
+glimmer of riverwater is barely visible over the huts of the Bear Tribe.    
+~
+178 0 5
+D3
+~
+~
+0 0 17887
+D5
+~
+~
+0 0 17885
+S
+#17887
+A Rocky Path~
+   A narrow path runs east-west along the side of the canyon wall here.  Bare
+rock just out from either side of the path as the canyon rises far above,
+blocking sunlight from reaching the path most of the day.  Hardy plants thrive
+in this environment, however; many of the crevices are filled with lichens and
+small, pungent herbs grow wherever dirt gathers.  Far to the east, the canyon
+opens up into tribal lands.    
+~
+178 0 5
+D1
+~
+~
+0 0 17886
+D3
+~
+~
+0 0 17888
+S
+#17888
+The Rocky Scree~
+   Loose rubble leads up here, looking quite unsafe.  Walking quickly might
+cause an avalanche here, so it would be good to be careful.  East, the path
+seems more stable though it is just as narrow.  Far off to the east, smoke
+rises over the Ursa Plains and water glimmers.  It is difficult to see what is
+beyond the rocky scree to the west.    
+~
+178 0 5
+D1
+~
+~
+0 0 17887
+D4
+~
+~
+0 0 17889
+S
+#17889
+A Narrow Path to the Canyon~
+   Nearly out of the canyon, the narrow trail leads south towards a dark wood
+and down a rocky scree to the canyon and the village of the Bear tribe.  
+Plants seem more abundant here than farther down the path, probably because the
+sun is not blocked as much.  It smells faintly of fresh water, though no water
+source is in plain vision - perhaps a scent from the river down below?    
+~
+178 0 5
+D2
+~
+~
+0 -1 17890
+D5
+~
+~
+0 0 17888
+S
+#17890
+A Steep Rocky Trail~
+   This steep, rocky path leads north toward a great canyon.  Thick sagebrush
+nearly hides it from view, and it does not look like an easy climb.  The canyon
+walls which begin to rise here are composed of granite and sandstone, with the
+sandstone wearing slowly away to form the deep, fertile canyon.  Lichens cover
+the rocks in many colors and a sweet scent fills the air.    
+~
+178 0 5
+D0
+~
+~
+0 -1 17889
+D3
+~
+~
+0 0 17891
+S
+#17891
+Hillside Path~
+   The hillside here is rocky and supports only a few straggly bushes.  A path
+from the south curves here toward a steep drop to the east.  It looks used, but
+not so much that the earth has been ground into dust.  Purple flowers grow here
+and there in the short grasses.    
+~
+178 0 4
+D1
+~
+~
+0 -1 17890
+D2
+~
+~
+0 -1 17892
+S
+#17892
+Light Forest Path~
+   A light forest of oaks and birches grows thinly on this hillside.  The land
+slopes down to the east.  A mighty boulder, as big as a hill, looms to the
+west.  The path looks lightly traveled and there is little overgrowth or debris
+on it.    
+~
+178 0 3
+D0
+~
+~
+0 -1 17891
+D2
+~
+~
+0 -1 17893
+S
+#17893
+Forest Path~
+   A dark forest surrounds the area, where a light path runs north and west
+through the undergrowth.  The forest looks darker and larger to the west, and
+seems to thin a bit to the northeast.  The land is somewhat sloping here, down
+to the east.    
+~
+178 0 3
+D0
+~
+~
+0 -1 17892
+D3
+~
+~
+0 -1 17894
+S
+#17894
+Path by a Boulder~
+   A giant boulder lies to the north.  A footpath hugs its southern edge here,
+running along the base of the rock.  A vast forest lies to the south.  Tall
+trees overshadow the path and the cool air that sits quietly below.  Deep
+scratches in the bark of a nearby tree betray the presence of bears.    
+~
+178 0 3
+D1
+~
+~
+0 -1 17893
+D3
+~
+~
+0 -1 17895
+S
+#17895
+Forest Path~
+   A footpath runs along the base of a mighty boulder to the northeast.  Trees
+grow thick all around.  There is little sound, for the air is still and there
+is no sign of nearby running water.  Thick underbrush grows through a layer of
+leaves and other litter on the ground.    
+~
+178 0 3
+D0
+~
+~
+0 -1 17896
+D1
+~
+~
+0 -1 17894
+S
+#17896
+Forest Path~
+   Huge dark trees tower above.  A shaded path runs below them.  Here, the path
+enters from the west and turns south, for a steep hill or giant boulder lies to
+the east.  The quiet of the land is broken only by the occasional birdcall.  
+Mosses hang from low tree branches, and lichens coat the nearby boulders.    
+~
+178 0 3
+D2
+~
+~
+0 -1 17895
+D3
+~
+~
+0 -1 17897
+S
+#17897
+A Path in the Woods~
+   A meandering path wanders through the undergrowth.  The thick dark trees of
+the forest crowd inward and block out the sun.  The sounds of wildlife may be
+heard from time to time, but otherwise the forest is silent.  The path does not
+look well-traveled, but is not much overgrown.    
+~
+178 68 3
+D1
+~
+~
+0 -1 17896
+D3
+~
+~
+0 -1 55268
+S
+$~

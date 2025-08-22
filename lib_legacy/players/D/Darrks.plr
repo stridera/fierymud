@@ -1,0 +1,84 @@
+name: Darrks
+password: DafFcE610l
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20331
+birthtime: 1661097590
+timeplayed: 3201
+lastlogintime: 1661100791
+host: 047.036.186.215
+height: 73
+weight: 175
+base_height: 73
+base_weight: 175
+base_size: 2
+natural_size: 2
+alignment: 4
+playerflags: xy
+effectflags: 0 r 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 11
+lastlevel: 0
+hitpoints: 13/24
+mana: 0/0
+move: 14/118
+damroll: 3
+hitroll: 3
+strength: 83
+intelligence: 63
+wisdom: 72
+dexterity: 100
+constitution: 78
+charisma: 66
+experience: 5499
+quit_reason: 5
+saveroom: 36003
+skills:
+401 60
+403 50
+408 50
+415 50
+416 50
+421 60
+438 50
+443 50
+444 50
+463 50
+464 52
+465 50
+0 0
+trophy:
+1 36001 1.000000
+1 36002 3.000000
+1 8002 1.000000
+1 8000 1.000000
+1 8010 1.000000
+1 3506 1.000000
+1 3509 1.000000
+1 3508 5.000000
+1 51900 1.000000
+0 0 0
+tells:
+1661098736 @WThe Master of the Revel@W tells you, 'Bring back what they ask for@W'@0
+1661098736 @WThe Master of the Revel@W tells you, 'and you'll be well rewarded!@W'@0
+1661098750 @WThe Master of the Revel@W tells you, 'Congratulations again, graduate!@W'@0
+1661098750 @WThe Master of the Revel@W tells you, 'May you climb to ever greater fortune!@W'@0
+1661099054 @WThe Academy Recruiter@W tells you, 'Hello there!@W'@0
+1661099054 @WThe Academy Recruiter@W tells you, 'Are you here for new player training?@W'@0
+1661099059 @WThe Academy Recruiter@W tells you, 'You can resume or repeat your training at any time if you wish.@W'@0
+1661099720 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1661100573 @WZaver@W tells you, 'are you duln?@W'@0
+1661100633 @WZaver@W tells you, 'nvm :D Let me know ifyou need any help!@W'@0
+$
+gossips:
+$

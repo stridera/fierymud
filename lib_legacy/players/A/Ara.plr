@@ -1,0 +1,74 @@
+name: Ara
+password: ArBExuAPh5
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19233
+birthtime: 1505277123
+timeplayed: 147617
+lastlogintime: 1548832371
+host: 039.118.143.194
+height: 72
+weight: 169
+base_height: 72
+base_weight: 169
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 65
+loadroom: 3001
+lastlevel: 0
+hitpoints: 140/131
+mana: 1/0
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 69
+wisdom: 76
+dexterity: 81
+constitution: 100
+charisma: 48
+cash: 0 0 8 18
+bank: 0 14 224 189
+experience: 269838
+quit_reason: 3
+saveroom: 0
+skills:
+402 64
+404 50
+415 50
+416 50
+421 140
+438 73
+443 50
+444 50
+463 110
+464 50
+465 133
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8011 1.000000
+1 3062 1.000000
+1 8001 2.000000
+1 8016 1.000000
+1 3064 1.000000
+1 3066 3.000000
+1 36001 41.000000
+1 36002 73.000000
+1 36003 36.000000
+0 0 0

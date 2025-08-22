@@ -1,0 +1,78 @@
+name: Romero
+password: RovPvDQjmd
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19385
+birthtime: 1536619621
+timeplayed: 778
+lastlogintime: 1536620441
+host: 067.169.198.171
+height: 76
+weight: 165
+base_height: 76
+base_weight: 165
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+badpasswords: 1
+hunger: 14
+thirst: 4
+lastlevel: 0
+hitpoints: 20/20
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 80
+intelligence: 89
+wisdom: 96
+dexterity: 76
+constitution: 67
+charisma: 53
+experience: 2891
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+451 50
+457 50
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+tells:
+$
+gossips:
+$
+mem:
+16 1 9
+0 0 0

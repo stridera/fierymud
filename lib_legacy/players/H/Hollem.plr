@@ -1,0 +1,90 @@
+name: Hollem
+password: HoU3Lvhw4n
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20859
+birthtime: 1730836015
+timeplayed: 5573
+lastlogintime: 1730846561
+host: 038.025.017.157
+height: 72
+weight: 242
+base_height: 72
+base_weight: 242
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 43/39
+mana: 1/0
+move: 164/164
+damroll: 5
+hitroll: 4
+strength: 92
+intelligence: 76
+wisdom: 73
+dexterity: 78
+constitution: 92
+charisma: 50
+cash: 0 8 53 95
+bank: 0 2 2 2
+experience: 17827
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 57
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8010 1.000000
+1 8014 1.000000
+1 8011 1.000000
+1 8000 1.000000
+1 8013 1.000000
+1 8012 1.000000
+1 8015 2.000000
+1 8023 1.000000
+1 8016 1.000000
+1 51900 5.000000
+0 0 0
+tells:
+$
+gossips:
+1730836205 Discord gossips, 'Daedela: Hello there Hollem'
+1730836233 Derrgon gossips, 'hi Hollem'
+1730836382 Discord gossips, 'Daedela: New to Fiery?'
+1730836471 Discord gossips, 'Daedela: Awesome!  Let us know if you have questions'
+1730843233 Derrgon gossips, 'welcome back'
+1730843235 Thort gossips, 'hellooooooooo hollem!'
+1730843496 Derrgon gossips, 'grats'
+1730843523 Thort gossips, 'you can restart the tutorial any time, I believe. From the temple, go down.'
+1730843704 Thort gossips, 'your english is perfect!'
+1730843738 Thort gossips, 'you should be able to restart the tutorial. I recommend doing that.'
+$

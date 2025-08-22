@@ -1,0 +1,64 @@
+name: Erewhon
+password: ErYV74APyh
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18900
+birthtime: 1427388711
+timeplayed: 282
+lastlogintime: 1427389045
+host: 050.159.071.157
+height: 81
+weight: 189
+base_height: 81
+base_weight: 189
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 13
+thirst: 2
+lastlevel: 0
+hitpoints: 31/30
+mana: 0/0
+move: 138/138
+damroll: 5
+hitroll: 4
+strength: 96
+intelligence: 82
+wisdom: 75
+dexterity: 72
+constitution: 79
+charisma: 60
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0

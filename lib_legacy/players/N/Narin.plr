@@ -1,0 +1,113 @@
+name: Narin
+password: NathNqXDbc
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20565
+birthtime: 1688797083
+timeplayed: 14053
+lastlogintime: 1689047127
+host: 050.231.120.146
+height: 42
+weight: 125
+base_height: 42
+base_weight: 125
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: y
+effectflags: fk 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8023
+lastlevel: 0
+hitpoints: 64/64
+mana: 1/0
+move: 141/141
+damroll: 3
+hitroll: 6
+strength: 91
+intelligence: 64
+wisdom: 66
+dexterity: 100
+constitution: 92
+charisma: 51
+cash: 0 50 308 431
+experience: 76723
+quit_reason: 3
+saveroom: 0
+skills:
+401 100
+403 100
+405 50
+408 100
+415 50
+416 50
+421 54
+438 50
+443 50
+444 50
+463 50
+464 82
+465 50
+493 100
+0 0
+trophy:
+1 8605 1.000000
+1 8604 2.000000
+1 16906 1.500000
+1 16907 1.500000
+1 16901 1.000000
+1 16905 2.000000
+1 16902 4.500000
+1 16900 7.000000
+1 16908 4.000000
+1 36002 12.500000
+1 36001 14.500000
+1 36003 13.500000
+1 8022 1.000000
+1 8023 1.000000
+1 8000 1.000000
+1 8016 1.000000
+1 8015 1.000000
+1 8011 2.000000
+1 8030 1.000000
+1 8002 1.000000
+1 8012 2.000000
+0 0 0
+tells:
+1688797548 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1688798035 @WFianta@W tells you, 'you want to group up?@W'@0
+1688798609 @WAigeadach@W tells you, 'at the west gate, if you go one room west and one room north you are in the temple@W'@0
+1688798680 @WAigeadach@W tells you, 'if you do help zone it'll scroll all the way to the end, but you can go up and see the low levels and suggest level ranges. these ranges can be off a bit and are mainly meant for a group of 4 balanced classes@W'@0
+1688798707 @WAigeadach@W tells you, 'but you can do a help [specific zone] to get some info about it@W'@0
+1688798735 @WAigeadach@W tells you, 'the level ranges in particular are meant to describe difficulty for a group that level, so soloing you'll want to be a bit higher.@W'@0
+1688798767 @WAigeadach@W tells you, 'by mid-range, a lot of the content is definitely better with a group, but I have done a lot of soloing as well.@W'@0
+1688798806 @WAigeadach@W tells you, 'by the highest levels, groups are basically necessary. you can get all the way to ** without grouping, but you won't experience the highest/hardest of the end game content solo.@W'@0
+1688798899 @WFianta@W tells you, 'sure!@W'@0
+1688798912 @WFianta@W tells you, 'where you at?@W'@0
+$
+gossips:
+1689046104 Discord gossips, 'Daedela: Good job!'
+1689046651 Mejna gossips, 'I would recommend different areas, because once you hit 5 kills in your trophy list for a single type of mob, you get less xp.'
+1689046671 Mejna gossips, 'so rotating between bugs, temple, and some other zones in the area helps maximize your value.'
+1689046689 Mejna gossips, 'yeah, you are getting WAY less exp than you started getting.'
+1689046723 Someone gossips, 'kill some bugs, and maybe adventure to the realm of meercats (a few rooms west from temple)'
+1689046751 Someone gossips, 'and if you want to try exploring out the east gate, you can explore enchanted hollow. it is quite lovely and has a mini quest'
+1689046893 Someone gossips, 'Daedela: I also think the haunted house is great to add to the rotation.  Definitely change it up.  The bugs are fantastic experience until around level 10'
+1689046917 Someone gossips, 'there is also a dairy farm you can explore'
+1689046942 Someone gossips, 'Daedela: Also great by 5!'
+1689046943 Someone gossips, 'brushlands is great too, but you have to get to anduin to get there, and that path can be a little dangerous.'
+1689046976 Someone gossips, 'Daedela: In general, you'll level faster if you kill a bunch of little things quickly than to kill a few big things slowly.'
+$
+aliases:
+gr group
+bs backstab
+0

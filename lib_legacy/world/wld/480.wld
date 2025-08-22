@@ -1,0 +1,1379 @@
+#48000
+The Barrow~
+   Before you rises a large mound of stone.  You recognize the mound as the
+burial site of some powerful individual, perhaps a king, long since dead.  You
+pause momentarily to pay respect to this king and are about to move on, when
+something odd about the mound catches your eye.  It seems that there is a gap
+between two of the larger stones, and that you can see darkness between the
+gap, and not more stones, as one would expect.  Upon further investigation, you
+find that the two stones may be readily removed, which you proceed to do, and
+to your surprise, you discover that a small tunnel slanting down through the
+mound and into the earth has been revealed.    ~
+480 4 2
+D2
+~
+~
+0 0 55628
+D3
+~
+~
+0 0 55627
+D5
+You see a small tunnel descending into the earth.~
+~
+0 -1 48001
+S
+T 48000
+#48001
+Entrance to the Tunnel~
+   The tunnel is very small, and you are forced to get down on your hands and
+knees to crawl through it.  Small stones and dirt rain down upon your head as
+you make your way along the tunnel, but you are fairly certain the structure
+will not collapse upon you.    ~
+480 256 0
+D4
+~
+~
+0 -1 48000
+D5
+~
+~
+0 -1 48002
+S
+#48002
+Tunnel~
+   The tunnel continues to slant down, growing wider as it does so, until you
+are able to walk in a crouch, and finally, erect.    ~
+480 256 0
+D4
+~
+~
+0 -1 48001
+D5
+~
+~
+0 -1 48003
+S
+#48003
+End of the Tunnel~
+   The tunnel continues down for some distance, then levels out and continues
+in a northern direction, finally stopping at a door.  A small branch passageway
+continues to the east.  There are doors to the west and north.    ~
+480 256 0
+D0
+You see a heavily splintered oak door.~
+door oak splintered~
+1 -1 48004
+D1
+~
+~
+0 -1 48008
+D3
+You see a door.~
+door~
+1 -1 48007
+D4
+~
+~
+0 -1 48002
+S
+#48004
+The Crypt~
+   You have entered a room which once housed the deceased nobles of a great
+kingdom.  Numerous stone tombs lie in orderly rows along the length of the
+room.  These tombs were looted long ago, and their occupants thrown
+disgracefully to the floor.  The bony remains of there former lords now litter
+the floor in piles.  You observe with some surprise that many of the bones have
+jagged tooth marks imprinted upon them.  There is an archway to the west and a
+door to the south.    ~
+480 8 0
+D2
+You see a heavily splintered oak door.~
+door oak splintered~
+1 -1 48003
+D3
+~
+~
+0 -1 48005
+S
+#48005
+The Crypt~
+   This room is in the same state as the crypt to the east: tombs lie empty,
+and bones decorate the floor in piles.  There is an archway to the east.    ~
+480 8 0
+D0
+You see the faint outline of a panel.~
+panel outline~
+1 -1 48006
+D1
+~
+~
+0 -1 48004
+S
+#48006
+Chamber of Riches~
+   In this room were kept some of the prize possessions of the nobles,
+possession they were hoping to treasure in the afterlife.  This room was hidden
+to prevent looting; however, the attempt was futile, for the room is barren.  ~
+480 8 0
+D2
+You see the faint outline of a panel.~
+panel outline~
+1 -1 48005
+S
+#48007
+Chamber of Eternity~
+This room has numerous murals decorating the walls.  The murals depict 
+the life of King Braeran. If the murals are to be believed, he was a fair 
+and just king, beloved by his people. There is a door to the east.~
+480 8 0
+D1
+You see a door.~
+door~
+1 -1 48003
+S
+#48008
+Passageway~
+   This short passageway runs from east to west through what feels like
+solid rock. The dust on the floor is covered with footprints, most of them
+unidentifiable. A door stands at the east end of the passage.~
+480 8 0
+D1
+You see a door.~
+door~
+1 -1 48009
+D3
+~
+~
+0 -1 48003
+S
+#48009
+The Sentinel's Room~
+   This is a small, barren room.  A skeleton lies sprawled across the floor,
+its fingers still clutched around the hilt of a long sword.  You see doors to
+the east and west.    ~
+480 8 0
+D1
+You see a stone door, engraved with the symbol of a rose.~
+door~
+2 48011 48010
+D3
+You see a door.~
+door~
+1 -1 48008
+S
+#48010
+King Braeran's Chamber~
+   This room was once beautifully decorated with murals, ceramic, and vases.  
+Now, the murals are vandalized, the ceramics smashed and the vases shattered.
+As you walk across the floor, the once beautiful treasures crunch underfoot.  
+There is a door to the north.    ~
+480 12 0
+D0
+You see a door.~
+door~
+1 -1 48012
+D2
+You see the faint outline of a panel.~
+panel outline~
+1 -1 48011
+D3
+You see a stone door, engraved with the symbol of a rose.~
+door stone~
+2 48011 48009
+S
+#48011
+King Braeran's Burial Chamber~
+   This plain, spartan room is made entirely of stone. It is small and
+smells incredibly dusty; there is little to recommend the chamber.~
+480 8 0
+D0
+You see the faint outline of a panel.~
+panel outline~
+1 -1 48010
+S
+#48012
+Hidden Staircase~
+   A cramped staircase spirals down into the darkness.  The stones of the
+staircase are heavily worn, indicating that many people have used this
+staircase ahead of you.  There is a door to the south.    ~
+480 8 0
+D2
+You see a door.~
+door~
+1 -1 48010
+D5
+~
+~
+0 -1 48013
+S
+#48013
+Spiral Staircase~
+   You are at the bottom of a spiral staircase.  There are arches to the south
+and west.  You hear strange rustling noises from the south.    ~
+480 8 0
+D2
+~
+~
+0 -1 48014
+D3
+~
+~
+0 -1 48016
+D4
+~
+~
+0 -1 48012
+S
+#48014
+Passageway~
+   The rustling sound gets louder the further south you go.  At the south end
+of the passageway there is an oak door.  There is an arch to the north.    ~
+480 8 0
+D0
+None~
+~
+0 -1 48013
+D2
+You see a door. A treasure chest has been engraved upon the wooden surface.~
+door oak~
+1 -1 48015
+S
+#48015
+Rustling Room~
+   As you step into this room, you see numerous shadows darting across the
+floor.  Try as hard as you may, you can make out neither the source of the
+shadows nor the rustling noises.  At the far end of the room, you glimpse the
+skeletal remains of a former adventurerer or looter.  As you survey the room,
+you hear a loud *CLICK* as the door behind you locks!  You are trapped!    ~
+480 8 0
+S
+#48016
+Hall of Beauty~
+   You have entered the eastern end of a rectangular room that once showcased
+the prizes of some dead king's realm.  Not surprisingly, the room has been
+thoroughly looted.  The hall continues to the west, and an archway is to the
+east.    ~
+480 8 0
+D1
+~
+~
+0 -1 48013
+D3
+~
+~
+0 -1 48017
+S
+#48017
+Hall of Beauty~
+   You have entered the western end of a rectangular room that once showcased
+the prizes of some dead king's realm.  All items of value have long since been
+looted.  The only objects remaining in the room are a score of statues of
+varying sizes.  Some of the statues are amazingly life-like.  The hall
+continues to the east.    ~
+480 8 0
+D1
+~
+~
+0 -1 48016
+D2
+There is a crack in the wall. A secret door perhaps?~
+door crack wall~
+1 -1 48018
+S
+#48018
+Chamber of Readiness~
+   This room appears to have been used as a bedroom at one point in time.  
+There is an iron bed frame in one corner, and a rotting dresser pushed against
+the far wall.  A painting along one wall, largely undisturbed by vandals,
+depicts a sickly, bed-ridden man surrounded by priests.  There are doors to the
+east and west.    ~
+480 140 0
+D0
+There is a crack in the wall. A secret door perhaps?~
+door crack wall~
+1 -1 48017
+D1
+You see a door.~
+door~
+1 -1 48020
+D3
+You see a door.~
+door~
+1 48012 48019
+S
+#48019
+Tomb of Karael~
+   In this room lies the tomb of the great king Karael.  The king was obviously
+a great lover of art, for there are a number of lavish paintings and beautiful
+ceramics here.    ~
+480 8 0
+D1
+You see a door.~
+door~
+1 48012 48018
+S
+#48020
+Chamber of Eternity~
+   In this room you find murals depicting the reign of King Karael.  It seems
+he was a patron of the arts, for many of the murals picture a variety of
+artisans engaged in their projects, with the king always standing in the
+background.    ~
+480 8 0
+D2
+You see a faint rectangular outline on the surface of the wall.~
+door outline wall~
+1 -1 48022
+D3
+You see a door.~
+door~
+1 -1 48018
+S
+#48021
+Inside the Fissure~
+   You enter the fissure and travel a short distance down a tunnel, finally
+entering a small room.  There seem to be a number of shadows racing along the
+room's floor...  The only way out is back up the fissure.    ~
+480 520 0
+D4
+The fissure is above you and may be easily climbed.~
+~
+0 -1 48081
+D5
+You see a trapdoor.~
+trapdoor~
+1 -1 48082
+S
+#48022
+Staircase~
+   The staircase leads downward, through solid rock. The stones of the
+staircase look quite worn.~
+480 8 0
+D0
+You see a faint rectangular outline of the surface of the wall~
+door wall outline~
+1 -1 48020
+D5
+~
+~
+0 -1 48023
+S
+#48023
+Bloody Staircase~
+   You are at the bottom of a staircase which spirals into the darkness above.
+The bottom few steps of the stone staircase are slippery with fresh blood.  
+There is an archway to the west and a curtain to the north.    ~
+480 12 0
+D0
+You see a velvet curtain.~
+curtain velvet~
+1 -1 48024
+D3
+~
+~
+0 -1 48036
+D4
+~
+~
+0 -1 48022
+S
+#48024
+Dark Temple~
+   You are standing at the southern end of a temple dedicated to a dark god.  
+Except for your light source, the temple lacks illumination of any kind.  Your
+first thought is that the temple has been abandoned, until you hear a faint
+chanting resonating throughout the cavernous temple.  There is a curtain to the
+south.    ~
+480 8 0
+D0
+~
+~
+0 -1 48025
+D1
+~
+~
+0 -1 48029
+D2
+You see a velvet curtain.~
+curtain velvet~
+1 -1 48023
+D3
+~
+~
+0 -1 48026
+S
+#48025
+Dark Temple~
+   You have reached the center of the Dark Temple.  Chanting resonates
+throughout the temple, making it difficult to determine its source; however,
+the chanting seems loudest from the north.    ~
+480 8 0
+D0
+~
+~
+0 -1 48032
+D1
+~
+~
+0 -1 48028
+D2
+~
+~
+0 -1 48024
+D3
+~
+~
+0 -1 48027
+S
+#48026
+Dark Temple~
+   The temple is shrouded in darkness.  You detect a faint chanting sound, but
+cannot determine its source.  Your light effectively banishes the darkness from
+your immediate surroundings, but you do not take comfort from it.  Rather, you
+feel very exposed and ill at ease.    ~
+480 8 0
+D0
+~
+~
+0 -1 48027
+D1
+~
+~
+0 -1 48024
+S
+#48027
+Dark Temple~
+   This chamber must be a temple, but it is shrouded in darkness. A faint
+chanting noise reverbrates off the stone of the walls. There are a few
+candles in sconces on the walls, but they do not illumine much at all.~
+480 8 0
+D0
+~
+~
+0 -1 48030
+D1
+~
+~
+0 -1 48025
+D2
+~
+~
+0 -1 48026
+S
+#48028
+Dark Temple~
+   The temple is shrouded in darkness.  You detect a faint chanting sound, but
+cannot determine its source.  Your light effectively banishes the darkness from
+your immediate surroundings, but you do not take comfort from it.  Rather, you
+feel very exposed and ill at ease.    ~
+480 8 0
+D0
+~
+~
+0 -1 48031
+D2
+~
+~
+0 -1 48029
+D3
+~
+~
+0 -1 48025
+S
+#48029
+Dark Temple~
+   The temple is shrouded in darkness.  You detect a faint chanting sound, but
+cannot determine its source.  Your light effectively banishes the darkness from
+your immediate surroundings, but you do not take comfort from it.  Rather, you
+feel very exposed and ill at ease.  There is a door to the south.    ~
+480 8 0
+D0
+~
+~
+0 -1 48028
+D2
+You see a door.~
+door~
+2 48013 48034
+D3
+~
+~
+0 -1 48024
+S
+#48030
+Dark Temple~
+   You are in a corner of the temple.  The temple continues to the south and
+east.  Chanting resonates throughout the temple, but it seems to be loudest
+from the east.    ~
+480 8 0
+D1
+~
+~
+0 -1 48032
+D2
+~
+~
+0 -1 48027
+S
+#48031
+Dark Temple~
+   You are in the corner of the temple.  The temple continues to the south and
+west.  Chanting resonates throughout the temple, but it seems loudest from the
+west.    ~
+480 8 0
+D2
+~
+~
+0 -1 48028
+D3
+~
+~
+0 -1 48032
+S
+#48032
+Dark Altar~
+   There is an altar here, fashioned from pure ivory.  The altar itself is
+plain, lacking decorations of any kind.  You see, however, that it has recently
+been smeared with some dark substance, perhaps blood.  Behind the altar towers
+the immense statue of a dark god.  The statue's features are indistinct and
+crude; the statue was shaped by unskilled or clumsy hands.  There is a door to
+the north.    ~
+480 8 0
+D0
+You see a door.~
+door~
+1 -1 48033
+D1
+~
+~
+0 -1 48031
+D2
+~
+~
+0 -1 48025
+D3
+~
+~
+0 -1 48030
+S
+#48033
+Meditation Room~
+   This is the worship chamber of the High Priestess.  You see no desk or
+religious artifacts, only a ragged rug covering the floor.  This room is cold
+and unwelcoming and perhaps it is best not to linger here.  There is a door to
+the south.    ~
+480 8 0
+D2
+You see a door.~
+door~
+1 -1 48032
+S
+#48034
+Chamber of Submission~
+   You shiver uncomfortably as you step into this room.  The ceiling is covered
+with frescoes depicting chained men and women being forced into this room, and
+coerced into pledging allegiance to the dark god, before being sacrificed.  
+There are doors to the north and south.    ~
+480 8 0
+D0
+You see a door.~
+door~
+2 48013 48029
+D2
+You see an iron-bound oak door.~
+door oak iron iron-bound bound~
+1 -1 48035
+S
+#48035
+Chamber of Horrors~
+   The walls and floor of this room are decorated with red tiles.  The vivid
+color of the tiles has faded over time, but the chamber still appears to be
+washed in blood.  There are numerous implements of torture in the room.  You
+recognize the rack and the iron maiden, but there are many other devices in
+this room you cannot imagine the function of.    ~
+480 8 0
+D0
+You see an iron-bound oak door.~
+door oak iron iron-bound bound~
+1 -1 48034
+S
+#48036
+Neglected Library~
+   This room is lined with stone bookcases.  The bookshelves display a number
+of books, but many more volumes are scattered about the floor in heaps,
+rotting.  You wonder why this room has been so neglected.  There is a door to
+the south and an archway to the east.    ~
+480 8 0
+D1
+~
+~
+0 -1 48023
+D2
+You see a door.~
+door~
+1 -1 48037
+D3
+It appears that the bookcase may be swung out from the wall.~
+bookcase book case book-case~
+1 -1 48039
+S
+#48037
+Hall of the Infidel~
+   Running along the length of this wall are a dozen dirty glass panes.  The
+panes are obscured by a thick layer of dust; you cannot see what is behind
+them.  Approaching one of the panes, you wipe away an eon's accumulation of
+dust with the broad swipe of your hand.  Peering into the glass, you see the
+embalmbed corpse of a man entombed in a niche in the wall.  There is a door to
+the north, and the hall continues to the south.    ~
+480 8 0
+D0
+You see a door.~
+door~
+1 -1 48036
+D2
+~
+~
+0 -1 48038
+S
+#48038
+Hall of the Infidel~
+   Running along the length of this hall are about a dozen filthy glass panes.
+You consider examining the panes further, but refrain from doing so, fearful of
+what you may discover.  You notice some writing along one of the walls.  The
+hall continues to the north.    ~
+480 8 0
+D0
+~
+~
+0 -1 48037
+E
+writing wall~
+The writing reads, "Gaze upon those that have opposed me and know that I 
+am supreme."~
+S
+#48039
+Passageway~
+   You detect a faint tint of evil permeating the air.  The passageway
+continues to the west.    ~
+480 8 0
+D1
+You see the backside of a bookcase.~
+bookcase case book book-case~
+1 -1 48036
+D3
+~
+~
+0 -1 48040
+S
+#48040
+Passageway Junction~
+   The stench of evil lies heavily in the air.  There are passageways to the
+south and east, an archway to the west and a door to the north.    ~
+480 8 0
+D0
+You see a door.~
+door~
+1 -1 48041
+D1
+~
+~
+0 -1 48039
+D2
+~
+~
+0 -1 48044
+D3
+~
+~
+0 -1 48043
+S
+#48041
+Deep Room~
+   As you enter this room, you are shocked to discover it has no floor!  Below
+your feet is nothing but air.  You wonder how far you would have fallen had you
+not had the ability to fly.  There is a door to the south.    ~
+480 8 9
+D2
+You see a door.~
+door~
+1 -1 48040
+D5
+~
+~
+0 -1 48042
+S
+#48042
+Trap Room~
+   You find yourself some 40 meters below the room from which you arrived.  
+The walls of the room are obsidian slick, lacking handhold of any kind.  You
+see no way out of the room.  You are trapped!    ~
+480 8 0
+D4
+~
+~
+0 -1 48041
+S
+#48043
+Chamber of Eternity~
+   You have entered a room which has a mural spanning one wall.  Aside from the
+mural, the chamber is empty.  The mural depicts the life of the mighty
+KingPriest.  The mural displays the KingPriest enforcing the faith of a vile
+and dark god upon his people.    ~
+480 8 0
+D1
+~
+~
+0 -1 48040
+S
+#48044
+Passageway~
+   The stench of evil is almost overpowering; without question, you are near to
+the source of this stench.  The passageway continues to the north, and there is
+a door to the south.    ~
+480 8 0
+D0
+~
+~
+0 -1 48040
+D1
+You see the faint outline of a panel.~
+panel~
+2 48014 48046
+D2
+You see a door.~
+door~
+1 -1 48045
+S
+#48045
+Heart of Darkness~
+   The floor and walls of this room are badly warped.  The floor is buckled at
+irregular intervals, and as you watch, another buckle erupts into being.  The
+walls pulse crazily.  It is as if the very earth is disturbed by the evil
+secreted within this room.  Your light seems to be oppressed by the darkness of
+this chamber.  There is a heavy stone chair of the far side of the room, shaped
+in the likeness of a demon.  The chair is bedecked with jewels.  You imagine it
+was once the throne of the evil KingPriest.  The only exit is through a door to
+the north.    ~
+480 8 0
+D0
+You see a door.~
+door~
+1 -1 48044
+S
+#48046
+Staircase~
+   You are at the top of a staircase that is choked with cobwebs.    ~
+480 8 0
+D3
+You see the faint outline of a panel.~
+panel~
+2 48014 48044
+D4
+You see a faint line in the ceiling, a trapdoor perhaps?~
+trapdoor~
+1 -1 48083
+D5
+~
+~
+0 -1 48047
+S
+#48047
+Staircase~
+   You are at the bottom of a staircase that is choked with cobwebs.  There is
+an archway to the west.    ~
+480 8 0
+D3
+~
+~
+0 -1 48048
+D4
+~
+~
+0 -1 48046
+S
+#48048
+Passageway~
+   This curving passageway is crafted of smooth, glassy black stone, 
+without a single nick or scrape along its perfect surface. It curves
+from north to east, and is unlit.~
+480 8 0
+D0
+~
+~
+0 -1 48049
+D1
+~
+~
+0 -1 48047
+S
+#48049
+Passageway~
+   You are standing in a passageway which runs north-south.  The stones of this
+passageway are of the purest black and as smooth as glass.  Surely this
+passageway was created through magical means.  You must continue along this
+passage in either a north or south direction; there are no other exits.    ~
+480 8 0
+D0
+~
+~
+0 -1 48051
+D2
+~
+~
+0 -1 48048
+D3
+Lost in the shadows, you see a door.~
+door~
+2 48015 48050
+S
+#48050
+Chamber of Despair~
+   A shockingly vivid sense of despair makes you stumble as you enter this
+room.  A sense of loss permeates the air; as you scramble to regain your
+senses, you realize that some great being has suffered here for an unimaginable
+span of time.  The chamber itself is richly decorated with tapestries and
+murals.    ~
+480 8 0
+D1
+You see a door.~
+door~
+2 48015 48049
+S
+#48051
+Passageway~
+   The passage continues to run north-south.  The stones of this passage are of
+the purest black and as smooth as glass.  Surely this passageway was created
+through magical means.  You must continue along the passage in either the north
+or south direction; there are no other exits.    ~
+480 8 0
+D0
+~
+~
+0 -1 48052
+D2
+~
+~
+0 -1 48049
+S
+#48052
+Bend in the passageway~
+   The passageway continues to the south and east at this point.  The stones of
+this passageway are of the purest black and as smooth as glass.  Surely this
+passageway was created through magical means.  There are doors to the north and
+west.    ~
+480 8 0
+D0
+You see a door.~
+door~
+1 -1 48062
+D1
+~
+~
+0 -1 48055
+D2
+~
+~
+0 -1 48051
+D3
+You see a door.~
+door~
+1 -1 48053
+S
+#48053
+Hall of Despite~
+   More than anything else, this room appears to be a shrine to the long dead
+King Ureal.  Dozens of portraits hang from the wall, showing the king at
+various ages and in various activities: as a boy, accepting the throne upon the
+death of his father; as a young man, mastering the sword; and at middle-age,
+defeating a hated foe.  The hall continues through an archway to the west, and
+there is a door to the east.    ~
+480 8 0
+D1
+You see a door.~
+door~
+1 -1 48052
+D3
+~
+~
+0 -1 48054
+S
+#48054
+Hall of Despite~
+   This hall, like the section to the east, also bears a great many portraits.
+Many of the paintings portray the King later in life.  In one picture you find
+particularly interesting, five women, standing with hands linked, surround the
+king.  The expression on the women's face is one of rapture, and on the king's,
+one of triumph.  There is an archway to the east.    ~
+480 8 0
+D1
+~
+~
+0 -1 48053
+S
+#48055
+Passageway~
+   The passageway continues to the west.  The stones of this passageway are of
+the purest black and as smooth as glass.  Surely this passageway was created
+through magical means.  There is a door to the east.    ~
+480 8 0
+D1
+You see a door.~
+door~
+1 -1 48056
+D3
+~
+~
+0 -1 48052
+S
+#48056
+Library~
+   The library is spacious.  A comfortable reading chair lies in the middle of
+the room, and bookshelves line the wall.  On the bookshelves are a vast array
+of leather-bound books.  Someone has taken very good care of this room.  There
+are doors to the west and south.    ~
+480 8 0
+D2
+You see a door.~
+door~
+1 -1 48057
+D3
+You see a door.~
+door~
+1 -1 48055
+S
+#48057
+Wizard's Lab~
+   This room is filled with a variety of apparatus.  You recognize rulers,
+scales, glass tubes and beakers.  Nothing in the room hints at anything
+sinister; every item in this room could conceivably be found in the workshop of
+an alchemist or engineer.  There is a door to the north, and archways to the
+west and east.    ~
+480 8 0
+D0
+You see a door.~
+door~
+1 -1 48056
+D1
+~
+~
+0 -1 48058
+D2
+Lost in the shadows, you see a door.~
+door~
+2 48016 48059
+D3
+~
+~
+0 -1 48060
+S
+#48058
+Storage Room~
+   Stone shelves line this room, on which sit numerous glass containers.  
+There containers hold the ingredients for the wizard's spells.  There is an
+archway to the west.    ~
+480 8 0
+D3
+~
+~
+0 -1 48057
+S
+#48059
+Chamber of Summoning~
+   The first thing you notice as you enter this room are the human limbs strewn
+across the floor.  These limbs are very pale, as though drained of all blood.
+You wonder what sort of creature is powerful enough to rend a man's body in
+this way.  The floor is covered with strange magical markings, and incense
+makes the room smell sickingly sweet.    ~
+480 8 0
+D0
+You see a door.~
+door~
+2 48016 48057
+S
+#48060
+Anatomy Room~
+   As you enter this room your attention is immediately drawn to the cold stone
+slab which occupies the center of the room, upon which lies the body of some
+humanoid creature.  Wrinkling your nose at the stench, you approach the
+creature and observe that it has been dissected recently, apparently while
+fully conscious-- the intense expression of agony frozen on its face can mean
+nothing else.  There is a door to the south and an archway to the east.    ~
+480 8 0
+D1
+~
+~
+0 -1 48057
+D2
+You see a door.~
+door~
+1 -1 48061
+S
+#48061
+Stockade~
+   You have entered a dirty, smelly room.  Old rusty chains, connected to stout
+iron rings inset in the wall, litter the floor.  The room is empty, but you get
+the feeling it was recently occupied.  There is a door to the north.    ~
+480 8 0
+D0
+You see a door.~
+door~
+1 -1 48060
+S
+#48062
+Passageway~
+   The stones of this passageway are of the purest black and as smooth as
+glass.  Surely this passageway was created through magical means.  The
+passageway continues to the east, and there is a door to the south.    ~
+480 12 0
+D0
+You see the faint outline of a panel.~
+panel~
+1 -1 48070
+D1
+~
+~
+0 -1 48063
+D2
+You see a door.~
+door~
+1 -1 48052
+S
+#48063
+Passageway~
+   The stones of this passageway are of the purest black and as smooth as
+glass.  Surely this passageway was created through magical means.  The
+passageway continues to the west and east.    ~
+480 8 0
+D1
+~
+~
+0 -1 48064
+D3
+~
+~
+0 -1 48062
+S
+#48064
+Bend in the Passageway~
+   The stones of this passageway are of the purest black and as smooth as
+glass.  Surely this passageway was created through magical means.  The
+passageway continues to the west and north.    ~
+480 8 0
+D0
+~
+~
+0 -1 48065
+D3
+~
+~
+0 -1 48063
+S
+#48065
+Passageway~
+   The stones of this passageway are of the purest black and as smooth as
+glass.  Surely this passageway was created through magical means.  The
+passageway continues to the south and there is a door to the north.    ~
+480 8 0
+D0
+You see a door.~
+door~
+1 -1 48066
+D2
+~
+~
+0 -1 48064
+S
+#48066
+The Study~
+   This room bears the signs of not having been used in a very long time; the
+desk and furniture are thickly layered with dust.  There is a map on the wall
+showing the borders of some kingdom long since forgotten.  There are doors to
+the north, south, and east.    ~
+480 8 0
+D0
+You see a door.~
+door~
+1 -1 48068
+D1
+You see a door.~
+door~
+1 -1 48067
+D2
+You see a door.~
+door~
+1 -1 48065
+S
+#48067
+The Bedroom~
+   Like the study to the west, this room has not been used in many years.  The
+furniture in the room is poorly preserved, the wood heavily infested with
+worms.  There is a door to the west.    ~
+480 8 0
+D3
+You see a door.~
+door~
+1 -1 48066
+S
+#48068
+Art Studio~
+   This studio is the workshop of a talented artist.  The walls of the studio
+are adorned with the artist's favorite paintings; many of these paintings
+feature outdoor landscapes.  The only exit is to the south.    ~
+480 8 0
+D0
+Lost in the shadows, you see a door.~
+door~
+1 -1 48069
+D2
+You see a door.~
+door~
+1 -1 48066
+S
+#48069
+Chamber of Eternity~
+   Running the length of the room is a mural which depicts the reign of King
+Ureal.  The artisan makes no attempt to disguise the cruelty of Ureal; rather,
+he seems to revel in it.  The mural documents the king's quest for immortality.
+Apparently, in an attempt to become immortal, the King embraced the dark arts
+of wizardry.  The mural also depicts a knight in golden armor, wielding an
+indigo blade, challenging the king.  The knight is defeated, and the king
+begins the ravage of his own kingdom.  The mural was intended to continue, but
+ends abruptly, leaving one section only partially completed.    ~
+480 0 0
+D2
+Lost in the shadows, you see a door..~
+door~
+1 -1 48068
+S
+#48070
+Bone Littered Passageway~
+   You have entered a passageway which runs east and west.  The bones of many
+creatures are scattered about this portion of the passageway.  It looks like
+some creature devours its prey here.    ~
+480 8 0
+D1
+~
+~
+0 -1 48071
+D2
+You see a panel.~
+panel~
+1 -1 48062
+D3
+~
+~
+0 -1 48079
+S
+#48071
+Gouged Pillar Passageway~
+   A huge stone pillar stands in the midst of this passageway.  At one time,
+the pillar was elaborately decorated with leaves and scrolls; however it now
+bears tremendous furrows along its length.  You wonder what sort of tool would
+make such marks.  The passageway continues to the north and west.    ~
+480 8 0
+D0
+~
+~
+0 -1 48072
+D3
+~
+~
+0 -1 48070
+S
+#48072
+Passageway~
+   The passageway continues to the north and south.  For a moment, you believe
+you hear a faint clicking sound, but the sound does not repeat itself.  
+Perhaps it was only your imagination...    ~
+480 8 0
+D0
+~
+~
+0 -1 48073
+D2
+~
+~
+0 -1 48071
+S
+#48073
+Gouged Pillar Passageway~
+   A huge stone pillar stands in the midst of this passageway.  At one time,
+the pillar was elaborately decorated with leaves and scrolls; however it now
+bears tremendous furrows along its length.  You wonder what sort of tool would
+make such marks.  The passageway continues to the west and south.    ~
+480 8 0
+D2
+~
+~
+0 -1 48072
+D3
+~
+~
+0 -1 48074
+S
+#48074
+Passageway~
+   The passageway continues to the west and east.  There is a foul odor coming
+from the west.  For a moment, you believe you hear faint clicking sound, but
+the sound does not repeat itself.  Perhaps it was only your imagination...    ~
+480 8 0
+D1
+~
+~
+0 -1 48073
+D3
+~
+~
+0 -1 48075
+S
+#48075
+Rank Passageway~
+   You have entered a portion of the passageway which smells worse than a dozen
+sewers.  This appears to be the privy of some giant creature.  The stench makes
+you want to retch.  You should hurry out of this area.  The passageway
+continues to the west and east.    ~
+480 8 0
+D1
+~
+~
+0 -1 48074
+D2
+Lost in the shadows, you see a door.~
+door~
+1 -1 48080
+D3
+~
+~
+0 -1 48076
+S
+#48076
+Gouged Pillar Passageway~
+   A huge stone pillar stands in the midst of this passageway.  At one time,
+the pillar was elaborately decorated with leaves and scrolls; however it now
+bears tremendous furrows along its length.  You wonder what sort of tool would
+make such marks.  The passageway continues to the east and south.  You detect a
+foul odor from the east.    ~
+480 8 0
+D1
+~
+~
+0 -1 48075
+D2
+~
+~
+0 -1 48077
+S
+#48077
+Passageway~
+   The passageway continues to the north and south.  For a moment, you believe
+you hear a faint clicking sound, but the sound does not repeat itself.  
+Perhaps it was only your imagination...    ~
+480 8 0
+D0
+~
+~
+0 -1 48076
+D2
+~
+~
+0 -1 48078
+S
+#48078
+Gouged Pillar Passageway~
+   A huge stone pillar stands in the midst of this passageway.  At one time,
+the pillar was elaborately decorated with leaves and scrolls; however it now
+bears tremendous furrows along its length.  You wonder what sort of tool would
+make such marks.  The passageway continues to the north and east.    ~
+480 8 0
+D0
+~
+~
+0 -1 48077
+D1
+~
+~
+0 -1 48079
+S
+#48079
+Passageway~
+   The passageway continues to the west and east.  For a moment, you believe
+you hear a faint clicking sound, but the sound does not repeat itself.  
+Perhaps it was only your imagination...    ~
+480 8 0
+D1
+~
+~
+0 -1 48070
+D3
+~
+~
+0 -1 48078
+S
+#48080
+Witch's Den~
+   As you open the door and step into this room, you are immediately assaulted
+by stale, rank air.  It seems this room is occupied by several creatures which
+do not often leave the confines.  The room itself is fairly clean, though
+certainly disorganized.  There is an alcove on one side of the room; in the
+alcove, there is a picture of a tall man with cold eyes.  The alcove looks like
+a place of worship.  There are doors to the east and north.    ~
+480 8 0
+D0
+You see a door.~
+door~
+1 -1 48075
+D1
+You see a door, engraved with demons and gods.~
+door~
+2 48017 48081
+S
+#48081
+Throne of the Lich~
+   Your footsteps are loud and intrusive in this quiet hall.  Aside from the
+shuffling of your feet, the room is dead silent, and you get the feeling it has
+been silent for a very long time.  Silent, but not deserted.  Across from you
+rises a dais, upon which is a throne sculpted from a semi-translucent greenish
+rock.  Two pillars, one black and one white, flank the dais.  The pillars'
+purpose seems decorative, rather than supportive.  The door behind you has
+disappeared; you may not return to the room from which you arrived.  There is a
+small fissure in the floor leading down.    ~
+480 9 0
+D5
+You see a dark fissure leading down into the depths.~
+~
+0 -1 48021
+S
+#48082
+Secret Room~
+   This room is small, perhaps four meters wide and six meters tall.  The air
+smells ancient.    ~
+480 520 0
+D4
+You see a trapdoor.~
+trapdoor~
+1 -1 48021
+S
+#48083
+Treasure Room~
+   You have discovered the treasure room of a long dead king.  You wonder what
+use a dead man would have for treasure; perhaps he believed he would keep it in
+the afterlife.  You are not the first adventurer to ever find this room,
+however.  Resting against a wooden chest is the skeleton of a man.  His clothes
+hang from his bones in tatters, his armor rusted and useless.    ~
+480 8 0
+D5
+You see a trapdoor.~
+trapdoor~
+1 -1 48046
+E
+skeleton man adventurer~
+The skeleton's armor is rusting and his clothes are in tatters. The man 
+apparently died in battle, for with one hand he grips the hilt of a rusty 
+broadsword. His other hand seems to be gripping some object...~
+S
+#48084
+Holding Room for Barrows NO MORTALS ALLOWED~
+If you are here, get out!~
+480 35323920 21
+S
+$~

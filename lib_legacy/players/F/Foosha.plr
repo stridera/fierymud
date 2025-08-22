@@ -1,0 +1,286 @@
+name: Foosha
+password: FoLs2IywmC
+description
+
+q
+q
+~
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 0
+race: 9
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 15307
+birthtime: 1133415203
+timeplayed: 10087939
+lastlogintime: 1649559588
+host: 069.162.244.194
+height: 62
+weight: 123
+base_height: 62
+base_weight: 123
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: lyz
+effectflags: k 0 0
+prefflags: hnoxCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 4
+hitpoints: 512/512
+mana: 980/980
+move: 102/102
+damroll: 3
+hitroll: 3
+strength: 68
+intelligence: 96
+wisdom: 70
+dexterity: 66
+constitution: 75
+charisma: 92
+cash: 276 2342 11309 6272
+experience: 126263037
+pagelength: 50
+clan: 3
+quit_reason: 3
+saveroom: 0
+skills:
+2 1000
+5 1000
+7 1000
+8 1000
+10 1000
+19 1000
+20 1000
+26 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+65 1000
+66 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+104 1000
+105 1000
+106 1000
+107 1000
+108 1000
+109 1000
+110 1000
+111 1000
+112 1000
+113 1000
+184 1000
+185 1000
+186 1000
+228 1000
+415 623
+416 753
+421 1000
+423 1000
+424 1000
+438 475
+443 71
+444 575
+447 946
+451 1000
+452 1000
+453 1000
+454 1000
+455 1000
+456 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 151
+0 0
+tells:
+1569990600 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1569990600 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1569990601 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1617589015 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1649555690 Vitkus gossips, 'thanks chinok'
+1649555692 Tensel gossips, 'ty!'
+1649555840 Vitkus gossips, '2 down'
+1649556643 Holk gossips, 'good luck!'
+1649557108 Lokar gossips, 'don't you have word of recall?'
+1649557168 Lokar gossips, 'consent me if you need a summon corpse'
+1649557858 Lokar gossips, 'consent me'
+1649557874 Zaver gossips, 'ah yeah that makes sense'
+1649559355 Choak gossips, 'let me know when you are the rocky'
+1649559366 Choak gossips, 'lets keep everyone there and can travel down'
+$
+effects:
+1 6 15 17 0 0 0
+70 2 292 13 0 0 0
+0 0 0 0 0
+mem:
+99 1 1
+39 1 1
+20 1 1
+100 1 1
+100 1 1
+100 1 1
+19 1 1
+19 1 1
+19 1 1
+19 1 1
+20 1 1
+29 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+62 1 1
+109 1 1
+109 1 1
+109 1 1
+32 1 1
+8 1 1
+8 1 1
+5 1 2
+109 1 2
+5 1 2
+108 1 2
+110 1 2
+31 1 2
+110 1 2
+110 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+19 1 2
+65 1 2
+65 1 2
+65 1 2
+65 1 2
+65 1 2
+65 1 2
+2 1 2
+2 1 2
+108 1 2
+31 1 2
+184 1 2
+52 1 2
+185 1 2
+31 1 2
+76 1 2
+76 1 2
+76 1 2
+52 1 2
+52 1 2
+66 1 2
+66 1 2
+2 1 2
+10 1 2
+10 1 2
+76 1 2
+110 1 2
+57 1 2
+20 1 2
+39 1 2
+66 1 2
+112 1 2
+31 1 2
+30 1 2
+30 1 2
+30 1 2
+29 1 2
+26 1 2
+76 1 2
+100 1 2
+8 1 2
+30 1 2
+26 1 2
+66 1 2
+110 1 2
+111 1 2
+52 1 2
+186 1 2
+83 1 2
+26 1 2
+26 1 2
+113 1 2
+68 1 2
+104 1 2
+104 1 2
+104 1 2
+112 1 2
+7 1 4
+7 1 4
+7 1 4
+7 1 4
+228 1 2
+105 1 2
+0 0 0
+aliases:
+1 stone fohen
+22 c 'stone' fylae
+2 ass fylae
+11 c 'stone' fernius
+` recite green
+para c 'minor p' $*
+ms c 'mete'
+goto c 'relocate' $*
+0 drink water
+b c 'burn' $*
+cl c 'chain'
+grate c 'disintegrate' $*
+har c 'harness'
+door c 'dim door' $*
+storm c 'ice storm' $*
+cs c 'color spr' $*
+par c 'minor par' $*
+burn c 'burn' $*
+df drink fountain
+coin get all.coins all.corpse
+all get all all.corpse
+make c 'minor c' $*
+mm c 'magic m' $*
+ch c 'chill' $*
+di c 'det inv' $*
+id recite identify $*
+baggem put all.gem bag
+gem get all.gem all.corpse
+sh c 'shock' $*
+str c 'str' $*
+lb c 'lightning' $*
+inv c 'invis' $*
+cc c 'cone o cold' $*
+dis c 'dispel ma' $*
+ray c 'ray o en' $*
+stone c  'stone' $*
+haste c 'haste' $*
+tele c 'tele'
+fb c 'fireball' $*
+fist c 'bigby' $*
+globe c 'major globe' $*
+x exit
+3 c stone fylae
+0

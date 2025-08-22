@@ -1,0 +1,115 @@
+name: Merl
+password: MeS8CzYzRB
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 2
+race: 0
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18336
+birthtime: 1346208248
+timeplayed: 12900
+lastlogintime: 1383284969
+host: 209.033.221.139
+height: 68
+weight: 178
+base_height: 68
+base_weight: 178
+base_size: 2
+natural_size: 2
+alignment: -108
+playerflags: gy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 2
+lastlevel: 0
+hitpoints: 147/134
+mana: 16/16
+move: 138/138
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 58
+wisdom: 56
+dexterity: 99
+constitution: 97
+charisma: 58
+cash: 0 60 5 9
+experience: 499000
+quit_reason: 1
+saveroom: 3054
+skills:
+401 119
+403 50
+405 50
+408 50
+409 50
+415 50
+416 50
+421 66
+438 50
+443 50
+444 50
+464 68
+465 50
+467 50
+478 50
+0 0
+trophy:
+1 3506 1.000000
+1 3507 2.000000
+1 61512 1.000000
+1 61515 1.000000
+1 61510 1.000000
+1 61509 1.000000
+1 3505 2.000000
+1 3500 14.000000
+1 3502 6.000000
+1 3501 8.000000
+1 3509 5.000000
+1 8034 0.500000
+1 8033 0.500000
+1 8032 0.500000
+1 8031 0.500000
+1 36004 3.000000
+1 36001 10.000000
+1 36002 15.000000
+1 36003 12.000000
+1 3503 5.000000
+1 3508 13.000000
+0 0 0
+aliases:
+bm backstab mouse
+bd backstab deer
+bf backstab fox
+br backstab rabbit
+bs backstab seether
+gac get all corpse
+kr kill roach
+dff drink from fountain
+fsff fill skin from fountain
+kf kill fly
+kb kill beetle
+kg kill grasshopper
+eb eat bread
+ks kill spider
+kc kill cricket
+ka kill ant
+kl kill lady
+lg level gain
+dfs drink from skin
+ba backstab ant
+bg backstab gremlin
+bc backstab creature
+bz backstab zombie
+bb backstab bat
+bh backstab hedge
+bp backstab priest
+ec examine corpse
+0

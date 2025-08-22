@@ -1,0 +1,114 @@
+#20300
+horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn~
+a rhino's horn~
+A large ivory colored rhino's horn lies in the dust here.~
+~
+8 0 1048577 15
+2 0 0 0 0 0 0
+3.50 0 0 0 0 0 0 0
+E
+horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn~
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.~
+A
+14 20
+#20301
+fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth~
+a lion fang~
+A gleaming lion's tooth lies in the dust here.~
+~
+8 0 262145 15
+1 0 0 0 0 0 0
+0.80 0 0 0 0 0 0 0
+E
+fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth~
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.~
+A
+5 1
+A
+1 1
+#20302
+feather vulture-feather ugly-brown-feather pen quill~
+a vulture feather~
+An ugly brown feather lies here floating with the wind.~
+~
+21 536870912 16385 15
+0 0 0 0 0 0 0
+0.04 0 0 0 0 0 0 0
+E
+feather vulture-feather ugly-brown-feather pen quill~
+This is the feather of a large vulture.  The feather itself is quite ugly and
+dull.  It is a plain brown color and the feather is ruffled everywhere making
+it look messy.~
+A
+3 1
+A
+4 1
+A
+14 15
+#20303
+necklace large-crocodile-tooth-necklace~
+a crocodile-tooth necklace~
+A large crocodile-tooth necklace lies discarded here.~
+~
+8 0 5 15
+1 0 0 0 0 0 0
+1.20 0 0 0 0 0 0 0
+E
+large-crocodile-tooth-necklace~
+This is a very interesting and intricate necklace.  It is made of an
+intricately braided green material and a has a large crocodile tooth at the
+very center.  It must have taken many hours to make this amazing necklace.~
+A
+13 12
+#20304
+cloak zebra-skin-cloak large-striped-cloak hide~
+a zebra skin cloak~
+A large striped cloak lies in the dust here.~
+~
+9 536870912 1025 15
+3 0 0 0 0 0 0
+5.00 0 0 0 0 0 0 0
+E
+zebra-skin-cloak large-striped-cloak hide~
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.~
+A
+1 2
+A
+19 1
+#20305
+meat large-chunk-meat food~
+a large chunk of meat~
+A large chunk of meat lies on the ground here.~
+~
+19 0 1 1
+17 0 0 0 0 0 0
+2.30 0 0 0 0 0 0 0
+E
+meat large-chunk-meat food~
+This is a large, tasty-looking chunk of wildebeest meat.~
+#20306
+bracelet snake-fang-bracelet small fangs~
+a snake fang bracelet~
+A small bracelet made of snake fangs lies on the ground here.~
+~
+8 0 4097 15
+2 0 0 0 0 0 0
+0.70 2000 0 0 0 0 0 0
+E
+snake-fang-bracelet small fangs~
+This bracelet is made out of a very durable weaved grass that has several
+spaced out snake fangs weaved into it.  The fangs are about an inch in length
+and give the bracelet a menacing look.  The grass is a dull green color and it
+is weaved tightly so it looks almost like it is one piece of grass.~
+A
+19 1
+A
+18 1
+A
+1 1
+$~

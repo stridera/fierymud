@@ -1,0 +1,78 @@
+name: Lae
+password: LagBm4/PP1
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 26
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20430
+birthtime: 1674380996
+timeplayed: 3114
+lastlogintime: 1674384112
+host: 003.128.186.025
+height: 72
+weight: 282
+base_height: 72
+base_weight: 282
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 26/26
+mana: 0/0
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 66
+wisdom: 70
+dexterity: 84
+constitution: 82
+charisma: 67
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+201 1000
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+453 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+486 68
+0 0
+tells:
+1674382789 @WStrider@W tells you, 'Enjoy the mud :)@W'@0
+$
+gossips:
+1674381000 Jaehoon gossips, 'so everything is invisible, I can still light it?'
+1674381004 Jaehoon gossips, 'so everything is invisible, I can still light it?'
+1674381028 Strider gossips, 'you should be able to'
+1674381157 Strider gossips, 'It's a fantasy based hack and slash'
+1674381332 Jaehoon gossips, 'the lantern authomatically light up?'
+1674381380 Strider gossips, 'in the dark, you can type "light lantern"  it'll say "You light something."'
+1674381464 Strider gossips, 'nope'
+1674381467 Strider gossips, 'Not yet'
+1674382762 Strider gossips, 'Off to eat, be back in a bit'
+1674383650 Jaehoon gossips, 'where is the corpse retrival service'
+$

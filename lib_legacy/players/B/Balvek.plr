@@ -1,0 +1,96 @@
+name: Balvek
+password: BaEjHr.YC.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20456
+birthtime: 1676418686
+timeplayed: 16106
+lastlogintime: 1682469493
+host: 023.123.004.255
+height: 66
+weight: 174
+base_height: 66
+base_weight: 174
+base_size: 2
+natural_size: 2
+alignment: -19
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 79/79
+mana: 1/0
+move: 129/141
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 70
+wisdom: 72
+dexterity: 85
+constitution: 84
+charisma: 65
+cash: 0 7 0 7
+experience: 67273
+quit_reason: 1
+saveroom: 3054
+skills:
+402 52
+404 51
+415 50
+416 50
+421 99
+438 50
+443 50
+444 50
+463 50
+464 53
+465 62
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 61510 1.000000
+1 61508 1.000000
+1 3505 1.000000
+1 3508 1.000000
+1 8023 1.000000
+1 3500 1.000000
+1 3501 2.000000
+1 3503 5.000000
+1 8021 1.000000
+1 8001 1.000000
+1 51900 2.000000
+0 0 0
+tells:
+1676421606 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1677386188 @WThe Combat Clerk@W tells you, 'Your trainer is to the north.@W'@0
+1677386191 @WThe Combat Clerk@W tells you, 'Your trainer is to the north.@W'@0
+1678514062 @WElphaba@W tells you, 'I'm directing Songs for a New World@W'@0
+1678514153 @WSomeone@W tells you, 'just one.  It's a one night concert on Sunday.  But I have rehearsal on Saturday and my other show, Anything Goes, is running this weekend and I have to watch it@W'@0
+1678514246 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1678515608 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1682469384 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+$
+gossips:
+1677290593 Pina gossips, 'not sure what second level is'
+1677291245 Discord gossips, 'Daedela: Burned is second.  Worn is third'
+1677351816 Teric gossips, 'gratz balvek'
+1677351823 Chinok gossips, 'gratz Balvek'
+1677376256 Hackwriter gossips, 'anduin'
+1678513670 Elphaba gossips, 'hey, welcome back Balvek!'
+1678513842 Elphaba gossips, 'how's it going?'
+1678514033 Elphaba gossips, 'much the same.  Taking it easy tonight before a busy weekend of performances'
+1678515709 Elphaba gossips, 'congrats Balvek!!'
+1682468719 Discord gossips, 'Zaver: Welcome balvek!'
+$

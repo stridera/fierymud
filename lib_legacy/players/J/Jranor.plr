@@ -1,0 +1,138 @@
+name: Jranor
+password: JrGFa5b8sW
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 3
+class: 13
+race: 7
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20747
+birthtime: 1707719048
+timeplayed: 549977
+lastlogintime: 1733386250
+host: 052.119.120.201
+height: 84
+weight: 249
+base_height: 84
+base_weight: 249
+base_size: 3
+natural_size: 3
+alignment: 794
+playerflags: gxyz
+effectflags: k w 0
+prefflags: hnoxC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1654/1456
+mana: 980/980
+move: 276/276
+damroll: 5
+hitroll: 4
+strength: 98
+intelligence: 78
+wisdom: 92
+dexterity: 72
+constitution: 100
+charisma: 70
+cash: 1501 2424 13393 24907
+experience: 137547799
+quit_reason: 1
+saveroom: 3054
+skills:
+404 1000
+411 413
+412 1000
+414 1000
+415 50
+416 50
+419 1000
+420 700
+421 700
+422 750
+427 1000
+430 574
+438 435
+443 370
+444 546
+446 746
+448 1000
+449 1000
+463 424
+475 911
+495 1000
+601 50
+602 50
+603 50
+604 50
+605 50
+606 50
+607 700
+608 50
+609 800
+610 1000
+615 870
+616 570
+617 370
+618 460
+0 0
+trophy:
+1 48807 0.200000
+1 48801 0.200000
+1 48507 0.200000
+1 48504 0.200000
+1 48506 0.200000
+1 48505 0.200000
+1 48813 0.200000
+1 48631 1.200000
+1 48633 0.200000
+1 48635 0.200000
+1 48632 0.200000
+1 48406 0.200000
+1 48401 0.250000
+1 48403 0.200000
+1 48402 1.200000
+1 48407 1.450000
+1 48414 1.250000
+1 48409 1.600000
+1 48400 3.750000
+1 48026 0.200000
+1 48009 0.200000
+0 0 0
+tells:
+1732610589 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1732659567 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1732703776 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732860683 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732860684 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732867676 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732871111 @WThort@W tells you, 'oh, not leaving until tomorrow@W'@0
+1732871126 @WThort@W tells you, 'did the turkey day stuff today@W'@0
+1732876314 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1732938278 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1733120547 Derrgon gossips, 'awesome to see'
+1733120671 Derrgon gossips, 'question: freezing wind - it says enemies of the caster...is that all mobs in the room or just the ones im currently fighting?'
+1733120683 Suraya gossips, 'I don't remember'
+1733120692 Suraya gossips, 'probably everything in the room'
+1733120759 Derrgon gossips, 'ok, i got ice storm coming up next and that seems to be the same, just wondering if it will make me aggro whole room. guess i have to try it.'
+1733120799 Suraya gossips, 'that one I know will aggro the whole room'
+1733120812 Derrgon gossips, 'ok, haha'
+1733121053 Derrgon gossips, 'grats again'
+1733121058 Suraya gossips, 'Thank you'
+1733125125 Someone gossips, 'Welcome Morrissey'
+1733301041 The Lord of the Realm shouts, 'It has been long since I have taken this form! Beware--this time I will be the victorious one!'
+$
+effects:
+108 5 0 0 0 32768 0
+34 7 0 0 4096 0 0
+144 2 18 17 0 0 0
+0 0 0 0 0
+aliases:
+doorbash doorbash $* ; st
+0

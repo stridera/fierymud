@@ -1,0 +1,117 @@
+name: Sligh
+password: SlGeBHJrpm
+prompt: <%hh(%HH) %vv(%VV)> <%aA> <%ih> <%df>%_<%t>:<%o>
+autoinvis: 0
+sex: 2
+class: 18
+race: 7
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17532
+birthtime: 1261714319
+timeplayed: 1229627
+lastlogintime: 1365128409
+host: 184.042.029.181
+height: 80
+weight: 180
+base_height: 80
+base_weight: 180
+base_size: 3
+natural_size: 3
+alignment: -919
+playerflags: gxyz
+effectflags: kt w 0
+prefflags: hnouxCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 8
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1064/866
+mana: 980/980
+move: 156/156
+damroll: 5
+hitroll: 4
+strength: 86
+intelligence: 76
+wisdom: 78
+dexterity: 96
+constitution: 89
+charisma: 66
+cash: 20 100 712 760
+bank: 2215 26628 121688 116696
+experience: 105805999
+clan: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+410 650
+411 1000
+412 1000
+415 1000
+416 1000
+419 1000
+420 700
+421 700
+427 1000
+438 1000
+443 1000
+444 982
+464 1000
+465 1000
+467 1000
+472 860
+475 1000
+476 1000
+477 1000
+478 1000
+0 0
+trophy:
+1 53024 2.000000
+1 53007 6.000000
+1 53302 2.000000
+1 53314 4.000000
+1 53313 0.500000
+1 53307 0.500000
+1 53303 5.000000
+1 53312 5.000000
+1 53305 4.500000
+1 53306 4.500000
+1 53301 3.000000
+1 53309 1.000000
+1 53310 2.500000
+0 0 0
+aliases:
+brep backstab reptilian
+grdy emo cleans and sharpens her daggers.
+bs backstab skeleton
+bhum b humanoid
+ide recite identify $*
+mm mount mare
+sh say heal
+br backstab rabbit
+bh backstab hedgehog
+ks kill skeleton
+df drink fountain
+kh kill hedgehog
+kr kill rabbit
+md mount donkey
+gac get all corpse
+eb eat bread
+kg kill gremlin
+db drink waterskin
+mh mount horse
+dd drag dagger
+ef eat food
+bg backstab gremlin
+gbb g food basket
+smirk smile self
+gaac get all.coins all.corpse
+id recite identify
+0

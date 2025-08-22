@@ -1,0 +1,1659 @@
+1
+vnum: 1004
+location: 0
+values:
+0
+240
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern.  It holds about fifteen hours worth of fuel.~
+~~
+vnum: 55015
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring crystal-ring small-circle-ice
+shortdesc: a crystal ring
+desc: A small circle of ice catches your eye.
+type: 8
+weight: 0.02
+cost: 1200
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+1 2
+5 2
+27 1
+~
+extradesc: ring crystal-ring small-circle-ice
+It looks as though it's a simple ring carved from ice, although upon closer
+inspection you notice that the small ring is made of tiny carved square
+ceremonial masks.~
+~~
+vnum: 8708
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: uw 0
+name: necklace badger-tooth-necklace teeth cord
+shortdesc: a badger tooth necklace
+desc: A cord with many teeth is lying here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.50
+cost: 23
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 1
+13 10
+1 1
+~
+~~
+vnum: 12512
+location: 5
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: vest worn-ringmail-vest ring-mail pile-interconnecting-rings heap
+shortdesc: a worn ringmail vest
+desc: A pile of interconnecting rings lie here in a heap. 
+type: 9
+weight: 15.00
+cost: 2000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: vest worn-ringmail-vest ring-mail pile-interconnecting-rings heap
+Although not very good against piercing or bludgeoning weapons, this light
+weight armor is fairly effective against slashing type weapons.  The armor
+seems to be in fair condition - quite worn, but still usable.~
+~~
+vnum: 55552
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyz 0
+name: skullcap-seer skull-cap powerful-magic-skullcap
+shortdesc: &3&bSkullcap of the Seer&0
+desc: A powerful magic skullcap lies on the ground, waiting for its owner to return.
+type: 9
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+1 4
+28 60
+27 3
+~
+extradesc: skullcap-seer skull-cap powerful-magic-skullcap
+Being in the presence of something like this is enough to know that deep arcane
+powers have been placed in this skullcap.  Made from simple cloth and studded
+with small aquamarines, it is not only very beautiful, it is capable of
+handling some of the most powerful enchantments.  This one is dedicated to
+seeing and clarity of vision.~
+~~
+vnum: 38
+location: 7
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: leggings black-linen-leggings
+shortdesc: black linen leggings
+desc: Some black linen leggings lie here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+extradesc: black-linen-leggings
+They are finely tailored of regular coarse linen and dyed black.  With their
+close-fitting form, they certainly cut a nice figure beneath a robe.~
+~~
+vnum: 55556
+location: 8
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: agnopqrstuvwxyz 0
+name: slippers-seer arcane-symbols
+shortdesc: &3&bSlippers of the Seer&0
+desc: A pair of slippers covered in arcane symbols has been left here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: u 0 0
+wear: 65
+hiddenness: 0
+applies:
+5 2
+27 3
+~
+extradesc: slippers-seer arcane-symbols
+Simple cloth slippers are the basis for these embroidered shoes.  Created
+during a period of intense ritual working, each stitch, each fold, each piece
+of fabric bears a spell or enchantment to protect and fuel a grand wizard.  
+Slippers like these are very powerful, very rare items that should be handled
+with care.~
+~~
+vnum: 55558
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyz 0
+name: gloves seer
+shortdesc: &3&bGloves of the Seer&0
+desc: Gloves adorned with mystical runes lie next to an experiment station here.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+2 3
+13 10
+27 3
+~
+extradesc: gloves seer
+These gloves are used in magical experimentation and during mystic rituals.  
+The runes on each glove represent different spheres of creation, enhancing a
+sorcerer's connection to said powers.  Sewn from simple cloth, then painted and
+decorated with pearls, these gloves are a mark of a very powerful sorcerer.~
+~~
+vnum: 55399
+location: 10
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: noprstuvwx 0
+name: sleeves apprentice-sleeves cloth-sleeves magical-power magic
+shortdesc: apprentice sleeves
+desc: A set of cloth sleeves emitting slight magical power have been left here.
+type: 9
+weight: 1.90
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 1
+13 7
+27 1
+~
+extradesc: sleeves apprentice-sleeves cloth-sleeves magical-power magic
+Newly sewn, these magical cloth sleeves were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 55557
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyz 0
+name: bracelet-seer pure-arcane-force
+shortdesc: &3&bBracelet of the Seer&0
+desc: A bracelet made of pure arcane force rests amongst the rocks.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+27 3
+5 2
+18 1
+~
+extradesc: bracelet-seer pure-arcane-force
+Forged from solidified magic, this bracelet is the embodiment of true magical
+power.  Iridescent colors glint off the bracelet, which has a soft internal
+glow of its own.  The surface of the bracelet slides and reacts when touched,
+like oil on water, swirling the colors with the movement.~
+~~
+vnum: 5104
+location: 16
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: gnu 0
+name: dagger stone-dagger
+shortdesc: a stone dagger
+desc: A stone dagger has been abandoned here.
+type: 5
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+~
+triggers:
+5118
+~
+~~
+vnum: 18511
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: spectacles small-spectacles little-spectacles
+shortdesc: small spectacles
+desc: A pair of little spectacles rests here.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+3 2
+28 30
+27 1
+~
+extradesc: spectacles small-spectacles little-spectacles
+These spectacles are small and likely used for reading.  They have an odd and
+unique hexagonal frame around the glass portions, but look strong and
+well-used.~
+~~
+vnum: 8506
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring jet-earring ear-ring tiny-black-earring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 8
+weight: 0.02
+cost: 250
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+19 1
+18 1
+27 1
+~
+extradesc: earring jet-earring ear-ring tiny-black-earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.~
+~~
+vnum: 8506
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring jet-earring ear-ring tiny-black-earring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 8
+weight: 0.02
+cost: 250
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+19 1
+18 1
+27 1
+~
+extradesc: earring jet-earring ear-ring tiny-black-earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 55556
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: aghnopqrstuvwxyz 0
+name: slippers-seer arcane-symbols
+shortdesc: &3&bSlippers of the Seer&0
+desc: A pair of slippers covered in arcane symbols has been left here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: u 0 0
+wear: 65
+hiddenness: 0
+applies:
+5 2
+27 3
+~
+extradesc: slippers-seer arcane-symbols
+Simple cloth slippers are the basis for these embroidered shoes.  Created
+during a period of intense ritual working, each stitch, each fold, each piece
+of fabric bears a spell or enchantment to protect and fuel a grand wizard.  
+Slippers like these are very powerful, very rare items that should be handled
+with care.~
+~~
+vnum: 55400
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: noprstuvwx 0
+name: tunic apprentice-tunic magical-cloth-tunic magic
+shortdesc: an apprentice tunic
+desc: A slightly magical cloth tunic lies neatly folded nearby.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 3
+13 10
+27 1
+~
+extradesc: tunic apprentice-tunic magical-cloth-tunic magic
+Newly sewn, this magical cloth tunic was made just for you.  Proof of your
+beginning training, it will protect you as you adventure!~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sack rough-cloth cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+extradesc: sack rough-cloth cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.~
+~~
+vnum: 55310
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet decayed-bracelet armor
+shortdesc: a decayed bracelet
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracelet decayed-bracelet armor
+This bracelet is decayed beyond use.  Perhaps the Sorcerer guild master will
+know what to do with it.~
+~~
+vnum: 55310
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet decayed-bracelet armor
+shortdesc: a decayed bracelet
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracelet decayed-bracelet armor
+This bracelet is decayed beyond use.  Perhaps the Sorcerer guild master will
+know what to do with it.~
+~~
+vnum: 55318
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves decayed-sleeves armor
+shortdesc: decayed sleeves
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves decayed-sleeves armor
+These sleeves are decayed beyond use.  Perhaps the Sorcerer guild master will
+know what to do with them.~
+~~
+vnum: 55318
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves decayed-sleeves armor
+shortdesc: decayed sleeves
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves decayed-sleeves armor
+These sleeves are decayed beyond use.  Perhaps the Sorcerer guild master will
+know what to do with them.~
+~~
+vnum: 55327
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: jerkin decayed-jerkin armor
+shortdesc: a decayed jerkin
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jerkin decayed-jerkin armor
+This jerkin is decayed beyond use.~
+~~
+vnum: 55310
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet decayed-bracelet armor
+shortdesc: a decayed bracelet
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracelet decayed-bracelet armor
+This bracelet is decayed beyond use.  Perhaps the Sorcerer guild master will
+know what to do with it.~
+~~
+vnum: 55326
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: robe decayed-robe armor
+shortdesc: a decayed robe
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 2.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: robe decayed-robe armor
+This robe is decayed beyond use.  Perhaps the Sorcerer guild master will know
+what to do with it.~
+~~
+vnum: 55326
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: robe decayed-robe armor
+shortdesc: a decayed robe
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 2.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: robe decayed-robe armor
+This robe is decayed beyond use.  Perhaps the Sorcerer guild master will know
+what to do with it.~
+~~
+vnum: 55327
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: jerkin decayed-jerkin armor
+shortdesc: a decayed jerkin
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jerkin decayed-jerkin armor
+This jerkin is decayed beyond use.~
+~~
+vnum: 55327
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: jerkin decayed-jerkin armor
+shortdesc: a decayed jerkin
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jerkin decayed-jerkin armor
+This jerkin is decayed beyond use.~
+~~
+vnum: 55314
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban decayed-turban armor
+shortdesc: a decayed turban
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: turban decayed-turban armor
+This turban is decayed beyond use.  Perhaps the Sorcerer guild master will know
+what to do with it.~
+~~
+vnum: 55314
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban decayed-turban armor
+shortdesc: a decayed turban
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: turban decayed-turban armor
+This turban is decayed beyond use.  Perhaps the Sorcerer guild master will know
+what to do with it.~
+~~
+vnum: 55314
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban decayed-turban armor
+shortdesc: a decayed turban
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: turban decayed-turban armor
+This turban is decayed beyond use.  Perhaps the Sorcerer guild master will know
+what to do with it.~
+~~
+vnum: 55342
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cap burned-cap armor
+shortdesc: a burned cap
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: cap burned-cap armor
+This cap is burned beyond use.~
+~~
+vnum: 55339
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet burned-bracelet armor
+shortdesc: a burned bracelet
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracelet burned-bracelet armor
+This bracelet is burned beyond use.~
+~~
+vnum: 55350
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: pants burned-pants armor
+shortdesc: burned pants
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: pants burned-pants armor
+These pants are burned beyond use.~
+~~
+vnum: 55347
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves burned-sleeves armor
+shortdesc: burned sleeves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves burned-sleeves armor
+These sleeves are burned beyond use.~
+~~
+vnum: 55330
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves burned-gloves armor
+shortdesc: burned gloves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gloves burned-gloves armor
+These gloves are burned beyond use.~
+~~
+vnum: 55330
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves burned-gloves armor
+shortdesc: burned gloves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gloves burned-gloves armor
+These gloves are burned beyond use.~
+~~
+vnum: 55330
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves burned-gloves armor
+shortdesc: burned gloves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gloves burned-gloves armor
+These gloves are burned beyond use.~
+~~
+vnum: 55334
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots burned-boots armor
+shortdesc: burned boots
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: boots burned-boots armor
+These boots are burned beyond use.~
+~~
+vnum: 55334
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots burned-boots armor
+shortdesc: burned boots
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: boots burned-boots armor
+These boots are burned beyond use.~
+~~
+vnum: 55334
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots burned-boots armor
+shortdesc: burned boots
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: boots burned-boots armor
+These boots are burned beyond use.~
+~~
+vnum: 1009
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: raft heavy-wooden-raft
+shortdesc: &0&3a heavy wooden raft&0
+desc: &0&3A heavy wooden raft sits here.&0
+type: 22
+weight: 40.00
+cost: 120
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: heavy-wooden-raft
+A simple raft, consisting of several wooden logs bound together with thick
+rope. It seems large enough to support one individual.~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+5 3
+20 3
+100 3
+101 8
+19 11
+200 6
+157 5
+158 4
+39 3
+99 9
+31 7
+220 10
+159 6
+26 12
+105 10
+~
+triggers:
+51949
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+161 11
+50 5
+103 8
+160 10
+102 12
+2 6
+62 9
+67 5
+29 10
+83 12
+162 10
+~
+triggers:
+51949
+~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 55345
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves crushed-leather-sleeves armor
+shortdesc: crushed leather sleeves
+desc: A pile of crushed leather armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves crushed-leather-sleeves armor
+These sleeves are crushed beyond use.~
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: quill feather-quill long-white-feather pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill feather-quill long-white-feather pen
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)~
+triggers:
+51990
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+38 11
+163 14
+68 11
+107 13
+52 11
+170 13
+~
+triggers:
+51949
+~
+~~
+vnum: 12538
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu 0
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 8
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+26 8
+13 25
+27 2
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    ~
+~~
+vnum: 12538
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu 0
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 8
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+26 8
+13 25
+27 2
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    ~
+~~
+vnum: 595
+location: 127
+values:
+10000
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: stocking bright-red-christmas-stocking-cap sock-hat GOD_EQ
+shortdesc: a bright red Christmas stocking-cap
+desc: A bright red Christmas stocking looks as though it's been left behind.
+adesc:
+Nothing.~
+type: 15
+weight: 0.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+extradesc: stocking bright-red-christmas-stocking-cap sock-hat GOD_EQ
+A bright red christmas stocking, it looks comfortable and
+warm, fitting snuggly on just about any head.  It has a large,
+white puffy ball that hangs from the end of the stocking and
+glittering letters that read : Jolly Fat Bastard.~
+extradesc: lining
+Ye are now the proud owner of a 2002 Christmas stocking from Pergus~
+~~
+vnum: 595
+location: 127
+values:
+10000
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: stocking bright-red-christmas-stocking-cap sock-hat GOD_EQ
+shortdesc: a bright red Christmas stocking-cap
+desc: A bright red Christmas stocking looks as though it's been left behind.
+adesc:
+Nothing.~
+type: 15
+weight: 0.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+extradesc: stocking bright-red-christmas-stocking-cap sock-hat GOD_EQ
+A bright red christmas stocking, it looks comfortable and
+warm, fitting snuggly on just about any head.  It has a large,
+white puffy ball that hangs from the end of the stocking and
+glittering letters that read : Jolly Fat Bastard.~
+extradesc: lining
+Ye are now the proud owner of a 2002 Christmas stocking from Pergus~
+~~
+vnum: 20
+location: 127
+values:
+256
+124
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~

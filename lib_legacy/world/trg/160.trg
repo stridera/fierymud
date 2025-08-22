@@ -1,0 +1,412 @@
+#16015
+Mystwatch_cycle_semantics_1~
+0 bg 14
+~
+mecho A silhouette moves across the shadows.
+hide
+~
+#16016
+general_start_myst~
+0 j 100
+~
+if %actor.vnum% == -1
+  if %object.vnum% == 3026
+    * advance the quest
+    set i %actor.group_size%
+    if %i%
+      set a 1
+    else
+      set a 0
+    endif
+    while %i% >= %a%
+      set person %actor.group_member[%a%]%
+      if %person.room% == %self.room%
+        if %person.quest_stage[mystwatch_quest]%
+          quest variable mystwatch_quest %person.name% step general
+          msend %person% &7&bYou have delivered the totem to the General!&0
+        endif
+      elseif %person%
+        eval i %i% + 1
+      endif
+      eval a %a% + 1
+    done
+    set myst_gen_active 1
+    global myst_gen_active
+    wait 1
+    mpurge totem
+    mecho %self.name% starts to examine the totem which begins to glow and hum.
+    wait 2
+    say So, that fool Magistrate down in the forest town is such a coward that he must send the likes of YOU to do his bidding.
+    wait 2
+    say Well... I shall have to make examples of you all now...
+    cackle
+    wait 1
+    kill %actor.name%
+  else
+    wait 1
+    say Thank you, thank you very much.
+  endif
+endif
+~
+#16017
+myst_general_death~
+0 f 100
+~
+* Hopefully this can reference a global setting from
+* another trigger or lack there of. This is to check
+* to make sure the quest has been properly initiated
+if %myst_gen_active% == 1
+  * advance the quest for everyone involved
+  set i %actor.group_size%
+  if %i%
+    set a 1
+  else
+    set a 0
+  endif
+  while %i% >= %a%
+    set person %actor.group_member[%a%]%
+    if %person.room% == %self.room%
+      if %person.quest_stage[mystwatch_quest]%
+        quest variable mystwatch_quest %person.name% step skeleton
+        msend %person% &7&bYou have advanced the quest!&0
+      endif
+    elseif %person%
+      eval i %i% + 1
+    endif
+    eval a %a% + 1
+  done
+  * Does next mob in spawn cycle already exist?
+  If %get.mob_count[16015]% < 1
+    * Generate random room number to spawn charred in.
+    * Thanks to the evil Pergus for inspiring me to be
+    * more evil.
+    set rnd_range %random.78%
+    eval rnd_room %rnd_range% + 15999
+    mat 16095 mload mob 16015
+    set rnd %random.100%
+    if %rnd% <= 75
+      mat 16095 mforce charred mload obj 16030
+      mat 16095 mteleport charred %rnd_room%
+    else
+      mat 16095 mteleport charred %rnd_room%
+    endif
+    * Sometimes creatures don't get teleported out of the loading
+    * room so we're gonna go back and purge it just in case.
+    mat 16095 mpurge
+    mecho %self.name% rasps, 'You think you have won but my charred minions will finish you!'
+    mecho %self.name% emits a terrible wail as his spirit is banished from this realm.
+  endif
+endif
+~
+#16018
+charred_skeleton_death~
+0 f 100
+~
+* load charred warrior then maybe equip
+set i %actor.group_size%
+if %i%
+  set a 1
+else
+  set a 0
+endif
+while %i% >= %a%
+  set person %actor.group_member[%a%]%
+  if %person.room% == %self.room%
+    if %person.quest_stage[mystwatch_quest]%
+      quest variable mystwatch_quest %person.name% step warrior
+      msend %person% &7&bYou have advanced the quest!&0
+    endif
+  elseif %person%
+    eval i %i% + 1
+  endif
+  eval a %a% + 1
+done
+If %get.mob_count[16016]% < 1
+  set rnd_range %random.78%
+  eval rnd_room %rnd_range% + 15999
+  mat 16095 mload mob 16016
+  set rnd %random.100%
+  if %rnd% <= 75
+    mat 16095 mforce warrior mload obj 16031
+    mat 16095 mforce warrior wear all
+    mat 16095 mteleport warrior %rnd_room%
+  else
+    mat 16095 mteleport warrior %rnd_room%
+  endif
+  * Sometimes creatures don't get teleported out of the loading
+  * room so we're gonna go back and purge it just incase.
+  mat 16095 mpurge
+endif
+~
+#16019
+charred_warrior_death~
+0 f 100
+~
+set i %actor.group_size%
+if %i%
+  set a 1
+else
+  set a 0
+endif
+while %i% >= %a%
+  set person %actor.group_member[%a%]%
+  if %person.room% == %self.room%
+    if %person.quest_stage[mystwatch_quest]%
+      quest variable mystwatch_quest %person.name% step sentry
+      msend %person% &7&bYou have advanced the quest!&0
+    endif
+  elseif %person%
+    eval i %i% + 1
+  endif
+  eval a %a% + 1
+done
+* load charred sentry then maybe equip
+If %get.mob_count[16017]% < 1
+  set rnd_range %random.78%
+  eval rnd_room %rnd_range% + 15999
+  mat 16095 mload mob 16017
+  set rnd %random.100%
+  if %rnd% <= 75
+    mat 16095 mforce sentry mload obj 16032
+    mat 16095 mforce sentry wear all
+    mat 16095 mteleport sentry %rnd_room%
+  else
+    mat 16095 mteleport sentry %rnd_room%
+  endif
+  * Sometimes creatures don't get teleported out of the loading
+  * room so we're gonna go back and purge it just incase.
+  mat 16095 mpurge
+endif
+~
+#16020
+charred_sentry_death~
+0 f 100
+~
+set i %actor.group_size%
+if %i%
+  set a 1
+else
+  set a 0
+endif
+while %i% >= %a%
+  set person %actor.group_member[%a%]%
+  if %person.room% == %self.room%
+    if %person.quest_stage[mystwatch_quest]%
+      quest variable mystwatch_quest %person.name% step warlord
+      msend %person% &7&bYou have advanced the quest!&0
+    endif
+  elseif %person%
+    eval i %i% + 1
+  endif
+  eval a %a% + 1
+done
+* load charred warlord and maybe equip
+If %get.mob_count[16018]% < 1
+  set rnd_range %random.78%
+  eval rnd_room %rnd_range% + 15999
+  mat 16095 mload mob 16018
+  set rnd %random.100%
+  if %rnd% <= 75
+    mat 16095 mforce warlord mload obj 16033
+    mat 16095 mforce warlord wear all
+    mat 16095 mteleport warlord %rnd_room%
+  else
+    mat 16095 mteleport warlord %rnd_room%
+  endif
+  * Sometimes creatures don't get teleported out of the loading
+  * room so we're gonna go back and purge it just incase.
+  mat 16095 mpurge
+endif
+~
+#16021
+charred_warlord_death~
+0 f 100
+~
+set i %actor.group_size%
+if %i%
+  set a 1
+else
+  set a 0
+endif
+while %i% >= %a%
+  set person %actor.group_member[%a%]%
+  if %person.room% == %self.room%
+    if %person.quest_stage[mystwatch_quest]%
+      quest variable mystwatch_quest %person.name% step blacksmith
+      msend %person% &7&bYou have advanced the quest!&0
+    endif
+  elseif %person%
+    eval i %i% + 1
+  endif
+  eval a %a% + 1
+done
+* load charred Blacksmith and maybe equip
+If %get.mob_count[16019]% < 1
+  mat 16095 mload mob 16019
+  set rnd %random.100%
+  if %rnd% <= 75
+    mat 16095 mforce blacksmith mload obj 16034
+    mat 16095 mforce blacksmith wear all
+    mat 16095 mteleport blacksmith 16053
+  else
+    mat 16095 mteleport blacksmith 16053
+  endif
+  * Sometimes creatures don't get teleported out of the loading
+  * room so we're gonna go back and purge it just incase.
+  mat 16095 mpurge
+endif
+~
+#16022
+charred_blacksmith_death~
+0 f 100
+~
+set i %actor.group_size%
+if %i%
+  set a 1
+else
+  set a 0
+endif
+while %i% >= %a%
+  set person %actor.group_member[%a%]%
+  if %person.room% == %self.room%
+    if %person.quest_stage[mystwatch_quest]%
+      quest variable mystwatch_quest %person.name% step shadow
+      msend %person% &7&bYou have advanced the quest!&0
+    endif
+  elseif %person%
+    eval i %i% + 1
+  endif
+  eval a %a% + 1
+done
+if %get.mob_count[16010]% < 1
+  * load shadow demon and equip keys
+  * It would be nice to check to see if the keys
+  * are already in the game and not load them.
+  * There is a pending coding request for this.
+  mat 16095 mload mob 16010
+  mat 16095 mforce demon mload obj 16020
+  mat 16095 mforce demon mload obj 16021
+  mat 16095 mteleport demon 16052
+endif
+mecho %self.name% rasps, 'You think you have won, but the demons have taken notice of you now..'
+* Sometimes creatures don't get teleported out of the loading
+* room so we're gonna go back and purge it just incase.
+mat 16095 mpurge
+~
+#16023
+shadow_demon_death~
+0 f 100
+~
+If %get.mob_count[16008]% < 1
+  * load storm demon and maybe equip orb
+  * but definitely load key
+  mat 16095 mload mob 16008
+  set rnd %random.100%
+  if %rnd% <= 33
+    mat 16095 mforce storm mload obj 16006
+    mat 16095 mforce storm mload obj 16022
+    mat 16095 mforce storm wear all
+    mat 16095 mteleport storm 16076
+  else
+    * The orb is required for Druids on the Moonwell quest and for Sorcerers on the Wizard Eye quest
+    set i %actor.group_size%
+    if %i%
+      set a 1
+    else
+      set a 0
+    endif
+    while %i% >= %a%
+      set person %actor.group_member[%a%]%
+      if %person.room% == %self.room%
+        if %person.quest_stage[moonwell_spell_quest]% > 0 || %person.quest_stage[wizard_eye]% > 0
+          mat 16095 mforce storm mload obj 16006
+          mat 16095 mforce storm wear all
+        endif
+        if %person.quest_stage[mystwatch_quest]%
+          quest variable mystwatch_quest %person.name% step storm
+          msend %person% &7&bYou have advanced the quest!&0
+        endif
+      elseif %person%
+        eval i %i% + 1
+      endif
+      eval a %a% + 1
+    done
+    mat 16095 mforce storm mload obj 16022
+    mat 16095 mteleport storm 16076
+  endif
+endif
+* Sometimes creatures don't get teleported out of the loading
+* room so we're gonna go back and purge it just in case.
+mat 16095 mpurge
+mecho A violent lightning storm continues outside...
+~
+#16024
+storm_deamon_death~
+0 f 100
+~
+set i %actor.group_size%
+if %i%
+  set a 1
+else
+  set a 0
+endif
+while %i% >= %a%
+  set person %actor.group_member[%a%]%
+  if %person.room% == %self.room%
+    if %person.quest_stage[mystwatch_quest]%
+      quest variable mystwatch_quest %person.name% step lord
+      msend %person% &7&bYou have advanced the quest!&0
+    endif
+  elseif %person%
+    eval i %i% + 1
+  endif
+  eval a %a% + 1
+done
+If %get.mob_count[16011]% < 1
+  * load demon lord and maybe equip shield
+  * but definitely load shard
+  mat 16095 mload mob 16011
+  set rnd %random.100%
+  if %rnd% <= 50
+    mat 16095 mforce lord mload obj 16009
+    mat 16095 mforce lord mload obj 16023
+    mat 16095 mforce lord wear all
+    mat 16095 mteleport lord 16406
+  endif
+  mat 16095 mforce lord mload obj 16023
+  mat 16095 mteleport lord 16406
+  mat 16095 m_run_room_trig 16050
+endif
+~
+#16025
+demon_lord_death~
+0 f 100
+~
+* advance the quest
+set i %actor.group_size%
+if %i%
+  set a 1
+else
+  set a 0
+endif
+while %i% >= %a%
+  set person %actor.group_member[%a%]%
+  if %person.room% == %self.room%
+    if %person.quest_stage[mystwatch_quest]%
+      quest variable mystwatch_quest %person.name% step complete
+      msend %person% &7&bYou have slain the Demon Lord of Mystwatch!&0
+      msend %person% &7&bGroup credit will not be given for returning the emerald shard to the Templar Magistrate.&0
+    endif
+  elseif %person%
+    eval i %i% + 1
+  endif
+  eval a %a% + 1
+done
+~
+#16050
+demon_lord_shout~
+2 a 100
+~
+wzoneecho 160 The Demon Lord shouts 'Who DARES to disturb my realm?!'
+~
+$~

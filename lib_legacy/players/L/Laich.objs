@@ -1,0 +1,506 @@
+1
+vnum: 49004
+location: 127
+values:
+100
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack leather black leather-backpack pack
+shortdesc: a leather backpack
+desc: A backpack of tough black leather has lost its owner.
+type: 15
+weight: 6.00
+cost: 50
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 9
+applies:
+17 -4
+~
+extradesc: backpack leather
+A vast amount of stuff can fit into this sturdy backpack.~
+~~
+vnum: 3074
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: hat pointed tall blue
+shortdesc: a tall, blue pointed hat
+desc: A pointed hat rolls around on the ground.
+type: 11
+weight: 0.85
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+~~
+vnum: 20037
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: plates leg obsidian
+shortdesc: a pair of obsidian coated leg plates
+desc: A pair of shiny black leg plates lie on the ground.
+type: 9
+weight: 5.00
+cost: 1500
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 33
+applies:
+18 1
+19 1
+~
+extradesc: plates leg obsidian
+These leg plates are made of a thick steel covered in a thin layer of obsidian.
+These leg plates are quite heavy and should protect you from any blow that
+comes at you.  As you look at the front of the leg plates you see a tiny
+carving of a blackthorn, the symbol of the dark monks.    
+~
+~~
+vnum: 2211
+location: 127
+values:
+99
+42
+0
+0
+0
+0
+0
+~
+flags: aeg
+name: tee shirt t-shirt shirt
+shortdesc: an &1&b"I Died for Pergus"&0 t-shirt
+desc: A brilliant-white shirt with some odd lettering floats here.
+type: 2
+weight: 1.66
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+applies:
+17 12
+14 -10
+5 2
+6 2
+2 -3
+9 -50
+~
+extradesc: tee shirt t-shirt shirt
+A pure cotton t-shirt with some arcane lettering on the front.
+The lettering reads:
+I died for pergus and all I got was this lousy t-shirt.
+~
+~~
+vnum: -1
+location: 127
+values:
+20
+200
+20
+3
+0
+0
+0
+~
+flags: a
+name: light sabre wand metal beam
+shortdesc: a &6lightsabre&0
+desc: A small metal wand lies here innocently.
+adesc:
+Small in size at first glance it appears to be a light-weight steel wand.  
+About six inches in length it protrudes a single button towards an end that
+reveals an odd opening.    
+~
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 99
+effects: j 0 0
+wear: 8193
+applies:
+18 100
+19 100
+~
+~~
+vnum: 3298
+location: 127
+values:
+0
+0
+-1
+0
+0
+0
+0
+~
+flags: abegiqAD
+name: rose single-long-stemmed-black-rose
+shortdesc: a &9&bblack&0 rose
+desc: A single long-stemmed &8&9black&0 rose lies here in memory of Pergus.  Farewell friend.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 540673
+triggers:
+3298
+~
+~~
+vnum: 3003
+location: 127
+values:
+8
+8
+7
+0
+0
+0
+0
+~
+flags: 0
+name: firebreather bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 1.02
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+8
+8
+7
+0
+0
+0
+0
+~
+flags: 0
+name: firebreather bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 1.02
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+8
+8
+7
+0
+0
+0
+0
+~
+flags: 0
+name: firebreather bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 1.02
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+8
+8
+7
+0
+0
+0
+0
+~
+flags: 0
+name: firebreather bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 1.02
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 1098
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: strip color-quick-reference-strip
+shortdesc: a Color Quick-Reference Strip
+desc: A Color Quick-Reference Strip lays here!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+extradesc: color-quick-reference-strip
+&0&11  &0&1&b1b  &0&22  &0&2&b2b  &0&33  &0&3&b3b  &0&44  &0&4&b4b  &0&55  &0&5&b5b  &0&66  &0&6&b6b  &0&77  &0&7&b7b  &0&88  &0&8&b8b  &0&99  &0&9&b9b&0
+~
+~~
+vnum: 3298
+location: 127
+values:
+0
+0
+-1
+0
+0
+0
+0
+~
+flags: abegiqAD
+name: rose single-long-stemmed-black-rose
+shortdesc: a &9&bblack&0 rose
+desc: A single long-stemmed &8&9black&0 rose lies here in memory of Pergus.  Farewell friend.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 540673
+triggers:
+3298
+~
+~~
+vnum: 3298
+location: 127
+values:
+0
+0
+-1
+0
+0
+0
+0
+~
+flags: abegiqAD
+name: rose single-long-stemmed-black-rose
+shortdesc: a &9&bblack&0 rose
+desc: A single long-stemmed &8&9black&0 rose lies here in memory of Pergus.  Farewell friend.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 540673
+triggers:
+3298
+~
+~~
+vnum: 525
+location: 127
+values:
+90
+20
+20
+42
+0
+0
+0
+~
+flags: abAD
+name: pin nexus-cloak-pin badge blue white
+shortdesc: the Nexus Cloak Pin
+desc: A blue and white pin is floating just above the ground.
+type: 3
+weight: 0.08
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 540673
+applies:
+2 3
+5 3
+18 3
+19 3
+~
+extradesc: nexus cloak pin badge
+Only three inches long, this blue and white pin follows a trisecting;
+path around itself. From each of it's three points the pin extends;
+following the body of the itself tightly. The pin seems to have;
+something written on it.
+~
+triggers:
+49299
+18888
+~
+~~
+vnum: -1
+location: 127
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 1.00
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling, they
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: -1
+location: 127
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 1.00
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling, they
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~
+vnum: -1
+location: 127
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: waybread bread food
+shortdesc: a waybread
+desc: Some waybread has been put here.
+type: 19
+weight: 1.00
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: waybread bread food
+The waybread is the traditional feed of elves when travelling, they
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
+~~

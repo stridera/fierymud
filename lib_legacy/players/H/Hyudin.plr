@@ -1,0 +1,144 @@
+name: Hyudin
+password: Hy9kzNAhJe
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 59
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20458
+birthtime: 1676831285
+timeplayed: 829878
+lastlogintime: 1701402983
+host: 070.249.169.036
+height: 31
+weight: 77
+base_height: 31
+base_weight: 77
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 3054
+hunger: 15
+thirst: 6
+lastlevel: 0
+hitpoints: 226/226
+mana: 348/348
+move: 227/227
+damroll: 2
+hitroll: 4
+strength: 82
+intelligence: 96
+wisdom: 98
+dexterity: 70
+constitution: 66
+charisma: 56
+cash: 535 736 2785 3103
+bank: 0 1000 0 0
+experience: 32956131
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+8 1000
+10 1000
+19 1000
+20 1000
+26 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+66 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+106 1000
+107 1000
+110 1000
+111 1000
+186 1000
+228 1000
+246 1000
+415 50
+416 50
+421 640
+423 640
+424 640
+438 50
+443 72
+444 476
+447 174
+451 454
+452 640
+453 640
+454 640
+456 640
+458 640
+459 340
+460 400
+462 499
+464 528
+0 0
+tells:
+1697168071 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1697419683 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1697427694 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1697768022 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1697768115 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1697768719 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1697768724 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1697768897 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1697923442 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1698115731 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1701401947 Linera gossips, 'cool, tks'
+1701401962 Chinok gossips, 'you caught the up-cast bit yet ? :)'
+1701401988 Linera gossips, 'what?'
+1701402026 Chinok gossips, 'so -- if you've used all your spells from circle 2, and you try to cast another circle 2 spell, it will cast from a spell-slot from circle 3'
+1701402053 Linera gossips, 'nice'
+1701402069 Chinok gossips, 'so when you get ** -- all those circle 13 spell-slots that are nearly useless... can now be used'
+1701402106 Chinok gossips, 'we were considering making a toggle, to allow that, or not, but so far, everyone wants it.'
+1701402157 Chinok gossips, 'please share any feedback, if there's something we've missed, or something you don't like, let us know'
+1701402182 Linera gossips, 'sure, will do'
+1701402843 Chinok gossips, 'dying already!! :)'
+$
+aliases:
+8 c 'bigbys' $1
+7 c 'fireball' $1
+6 c 'cone of cold' $1
+5 c 'lightning' $1
+4 c 'shocking grasp' $1
+3 cast 'chill touch' $1
+k kill $1
+1 cast 'magic missile' $1
+2 cast 'burning hands' $1
+g get all in corpse
+0 c 'teleport'
+0

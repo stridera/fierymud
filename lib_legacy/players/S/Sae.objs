@@ -1,0 +1,5169 @@
+1
+vnum: 16201
+location: 0
+values:
+0
+3000
+3000
+0
+0
+0
+0
+~
+flags: ag
+name: sceptre rod kings golden
+shortdesc: a golden sceptre
+desc: A golden sceptre glitters in the light.
+type: 1
+weight: 1.20
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+17 3
+~
+extradesc: sceptre rod kings
+The sceptre is made of pure gold, and is encrusted in jewels. Intricate carvingsdepicting wings snakes decorate this majestic rod.~
+~~
+vnum: 5520
+location: 3
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz
+name: torque eldoria-reward small 3rd-eldorian-guard-torque discarded
+shortdesc: a torque of the 3rd Eldorian Guard
+desc: A small torque lies discarded nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+extradesc: torque eldoria-reward small 3rd-eldorian-guard-torque discarded
+It's a torque made of twisted metal.  It looks fairly protective.
+~
+~~
+vnum: 55447
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrstvwxyz
+name: cap leaves leather nature
+shortdesc: &2Cap of Nature&0
+desc: Fluttering in the wind is a cap made of leaves sewn on leather.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+applies:
+13 20
+3 1
+~
+extradesc: cap leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into a cap in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 1042
+location: 7
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gkmnopqrsvwxyzA
+name: legplates leg-plates-gaia pair-odd-legplates
+shortdesc: &0&3some leg plates of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3A pair of odd legplates lie here.&0
+type: 9
+weight: 13.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+applies:
+13 5
+~
+extradesc: leg-plates-gaia pair-odd-legplates
+&0A pair of oddly carved legplates, designed to cover the upper and lower leg
+as well as the knee with a seperate plate. Vibrant green vines hold the armor
+together, keeping it securly in place while enforcing it with a mystical
+force.
+~
+~~
+vnum: 55397
+location: 9
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz
+name: gauntlets acolyte
+shortdesc: acolyte gauntlets
+desc: A slightly magical set of thin plate gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 129
+applies:
+2 1
+13 3
+~
+extradesc: acolyte gauntlets
+Newly forged, these magical metal gauntlets were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.
+~
+~~
+vnum: 1041
+location: 10
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gkmnopqrsvwxyzA
+name: armplates arm-plates-gaia pair-odd-armplates
+shortdesc: &0&3some arm plates of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3A pair of odd armplates lie here.&0
+type: 9
+weight: 9.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+applies:
+13 5
+~
+extradesc: arm-plates-gaia pair-odd-armplates
+&0A set of wooden armplates, each carved from a single piece of gleaming wood.
+Wild vines grow in and around the joints, their mystical lengths pulsating w
+with some hidden life.
+~
+~~
+vnum: 5524
+location: 14
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: k
+name: wristguards wristguard eldoria-reward leather 3rd-eldorian-guard-wristguards wrist
+shortdesc: wristguards of the 3rd Eldorian Guard
+desc: Some leather wristguards lie discarded nearby.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 4097
+applies:
+1 1
+~
+~~
+vnum: 11703
+location: 15
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agk
+name: bracelet blue misty glowing
+shortdesc: a misty blue bracelet
+desc: A misty blue bracelet is lying here, shimmering slightly.
+type: 12
+weight: 1.10
+cost: 200
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 4097
+applies:
+24 -3
+~
+~~
+vnum: 12511
+location: 16
+values:
+0
+3
+4
+3
+0
+0
+0
+~
+flags: 0
+name: axe battle battleaxe battle-axe steel
+shortdesc: a steel battle-axe
+desc: A steel battle-axe rests here, its nicks and scratches showing its veteran status. 
+type: 5
+weight: 5.00
+cost: 500
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+extradesc: axe battle battleaxe battle-axe steel
+The blade on this heavy steel axe is small, but deadly sharp.  The blade end of
+the axe is weighted, although overall the weapon is quite light.    
+~
+~~
+vnum: 18511
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: spectacles small
+shortdesc: small spectacles
+desc: A pair of little spectacles rests here.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65537
+applies:
+3 2
+28 30
+~
+extradesc: small spectacles eye wear
+These spectacles are small and likely used for reading.  They have an odd and
+unique hexagonal frame around the glass portions, but look strong and
+well-used.
+~
+~~
+vnum: 5516
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: holy symbol eldoria-reward small white 3rd-eldorian-guard-symbol
+shortdesc: a holy symbol of the 3rd Eldorian Guard
+desc: A small white symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+applies:
+13 30
+14 25
+26 10
+~
+extradesc: holy symbol eldoria-trophy small white 3rd-eldorian-guard-symbol
+A mild feeling of benevolence radiates from this white medal.
+~
+~~
+vnum: 11702
+location: 127
+values:
+12
+22
+16
+43
+0
+0
+0
+~
+flags: g
+name: potion white bright
+shortdesc: a bright white potion
+desc: A bright white potion is lying on the ground here.
+type: 10
+weight: 0.50
+cost: 1500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: bright white potion
+It is a bright, almost glowing white potion. The liquid in the glass
+vial is milky and opaque, and smells faintly of herbs.
+~
+~~
+vnum: 11703
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agk
+name: bracelet blue misty glowing
+shortdesc: a misty blue bracelet
+desc: A misty blue bracelet is lying here, shimmering slightly.
+type: 12
+weight: 1.10
+cost: 200
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 4097
+applies:
+24 -3
+~
+~~
+vnum: 11706
+location: 127
+values:
+0
+3
+4
+11
+0
+0
+0
+~
+flags: gknu
+name: dagger misty blue misty-blue-dagger
+shortdesc: a misty blue dagger
+desc: A misty blue dagger has been dropped here.
+type: 5
+weight: 1.10
+cost: 590
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 8193
+extradesc: dagger misty blue
+The dagger is made of a misty blue metal that seems to pulsate
+slightly. The dagger's blade changes shape slowly as it grows
+new teeth to replace older teeth as they fade away.
+~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 17213
+location: 127
+values:
+1
+31
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll rough graphed roughly-graphed
+shortdesc: a roughly-graphed scroll
+desc: A crude scroll with heavy graph lines lies here rolled up.
+type: 2
+weight: 1.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: scroll rough graphed roughly-graphed
+This appears to be the work of an apprentice, for crude lines are drawn roughly
+all across its surface.  The somewhat faint silvery lines have a discernable
+metallic gleam.  Most of the lines are drawn in one of two orthogonal
+directions, parallel to one or the other of the mostly rectangular edges of the
+document.  Four other lines drawn at acute angles create a diamond in the
+middle, albeit somewhat distorted.
+~
+~~
+vnum: 17210
+location: 127
+values:
+15
+18
+20
+14
+0
+0
+0
+~
+flags: gD
+name: scroll yellowed
+shortdesc: a yellowed scroll
+desc: A scroll lies here.
+type: 2
+weight: 1.00
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: scroll yellowed
+This scroll seems to be very old. The parchment has already been yellowed
+with age.
+~
+~~
+vnum: 8346
+location: 127
+values:
+20
+39
+39
+39
+0
+0
+0
+~
+flags: 0
+name: vial blue old
+shortdesc: a blue vial
+desc: An old blue vial lies here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: vial blue old
+This small vial contains a murky blue potion.  It starts to bubble as you move
+it around, showing that it has quite a high potency for its size.    
+~
+~~
+vnum: 8346
+location: 127
+values:
+20
+39
+39
+39
+0
+0
+0
+~
+flags: 0
+name: vial blue old
+shortdesc: a blue vial
+desc: An old blue vial lies here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: vial blue old
+This small vial contains a murky blue potion.  It starts to bubble as you move
+it around, showing that it has quite a high potency for its size.    
+~
+~~
+vnum: 8345
+location: 127
+values:
+20
+29
+29
+29
+0
+0
+0
+~
+flags: 0
+name: vial clear small
+shortdesc: a clear vial
+desc: A small vial of clear liquid lies here on the ground.
+type: 10
+weight: 0.10
+cost: 100
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: vial clear small
+This old glass vial contains a small amount of crystal clear liquid.  The thick
+glass that surrounds the liquid could handle a drop or two if it was put to
+test.    
+~
+~~
+vnum: 8345
+location: 127
+values:
+20
+29
+29
+29
+0
+0
+0
+~
+flags: 0
+name: vial clear small
+shortdesc: a clear vial
+desc: A small vial of clear liquid lies here on the ground.
+type: 10
+weight: 0.10
+cost: 100
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: vial clear small
+This old glass vial contains a small amount of crystal clear liquid.  The thick
+glass that surrounds the liquid could handle a drop or two if it was put to
+test.    
+~
+~~
+vnum: 8346
+location: 127
+values:
+20
+39
+39
+39
+0
+0
+0
+~
+flags: 0
+name: vial blue old
+shortdesc: a blue vial
+desc: An old blue vial lies here on the ground.
+type: 10
+weight: 0.10
+cost: 10
+timer: 0
+level: 17
+effects: 0 0 0
+wear: 1
+extradesc: vial blue old
+This small vial contains a murky blue potion.  It starts to bubble as you move
+it around, showing that it has quite a high potency for its size.    
+~
+~~
+vnum: 55453
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrstvwxyz
+name: gloves leaves leather nature
+shortdesc: &2Gloves of Nature&0
+desc: Fluttering in the wind is a pair of gloves made of leaves sewn on leather.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+4 3
+~
+extradesc: gloves leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into gloves in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 55448
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrstvwxyz
+name: sleeves leaves leather nature
+shortdesc: &2Sleeves of Nature&0
+desc: Fluttering in the wind is a set of sleeves made of leaves sewn on leather.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+applies:
+4 3
+2 3
+~
+extradesc: sleeves leaves leather nature
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into sleeves in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5516
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: holy symbol eldoria-reward small white 3rd-eldorian-guard-symbol
+shortdesc: a holy symbol of the 3rd Eldorian Guard
+desc: A small white symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+applies:
+13 30
+14 25
+26 10
+~
+extradesc: holy symbol eldoria-trophy small white 3rd-eldorian-guard-symbol
+A mild feeling of benevolence radiates from this white medal.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5512
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+shortdesc: an insignia of the 3rd Eldorian Guard
+desc: A small white insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+A small patch of white fabric with the insignia of the 3rd Eldorian Guard has
+been ripped off a larger peice of fabric.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 5506
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5514
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy white 3rd-eldorian-guard-wand
+shortdesc: a wand of the 3rd Eldorian Guard
+desc: A white wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: wand eldoria-trophy white 3rd-eldorian-guard-wand
+It's a simple white wand that probably belonged to a member of the 3rd Eldorian
+Guard.
+~
+~~
+vnum: 5510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small-white-token 3rd-eldorian-guard-token
+It's a small, white token with the insignia of the 3rd Eldorian Guard.
+~
+~~
+vnum: 5508
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 5513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy 3rd-black-legion-wand
+shortdesc: a wand of the 3rd Black Legion
+desc: A black wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+extradesc: wand eldoria-trophy 3rd-black-legion-wand
+A simple black wand, it probably belonged to a member of the 3rd Black Legion.
+~
+~~
+vnum: 5513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy 3rd-black-legion-wand
+shortdesc: a wand of the 3rd Black Legion
+desc: A black wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+extradesc: wand eldoria-trophy 3rd-black-legion-wand
+A simple black wand, it probably belonged to a member of the 3rd Black Legion.
+~
+~~
+vnum: 5513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy 3rd-black-legion-wand
+shortdesc: a wand of the 3rd Black Legion
+desc: A black wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+extradesc: wand eldoria-trophy 3rd-black-legion-wand
+A simple black wand, it probably belonged to a member of the 3rd Black Legion.
+~
+~~
+vnum: 5513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy 3rd-black-legion-wand
+shortdesc: a wand of the 3rd Black Legion
+desc: A black wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+extradesc: wand eldoria-trophy 3rd-black-legion-wand
+A simple black wand, it probably belonged to a member of the 3rd Black Legion.
+~
+~~
+vnum: 62510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sinister note letter evil blood black blackmourne
+shortdesc: a sinister letter
+desc: A black letter, with a blood-red seal of Blackmourne lies forgotten on the ground.
+type: 16
+weight: 0.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: sinister note letter evil blood black blackmourne
+   Written in blood by a cool, calm hand.  This letter was written by the cult
+leader of Blackmourne.  It describes a dark ritual to purge oneself of
+Lycanthropy.
+~
+~~
+vnum: 62510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sinister note letter evil blood black blackmourne
+shortdesc: a sinister letter
+desc: A black letter, with a blood-red seal of Blackmourne lies forgotten on the ground.
+type: 16
+weight: 0.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: sinister note letter evil blood black blackmourne
+   Written in blood by a cool, calm hand.  This letter was written by the cult
+leader of Blackmourne.  It describes a dark ritual to purge oneself of
+Lycanthropy.
+~
+~~
+vnum: 62510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sinister note letter evil blood black blackmourne
+shortdesc: a sinister letter
+desc: A black letter, with a blood-red seal of Blackmourne lies forgotten on the ground.
+type: 16
+weight: 0.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: sinister note letter evil blood black blackmourne
+   Written in blood by a cool, calm hand.  This letter was written by the cult
+leader of Blackmourne.  It describes a dark ritual to purge oneself of
+Lycanthropy.
+~
+~~
+vnum: 62510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sinister note letter evil blood black blackmourne
+shortdesc: a sinister letter
+desc: A black letter, with a blood-red seal of Blackmourne lies forgotten on the ground.
+type: 16
+weight: 0.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: sinister note letter evil blood black blackmourne
+   Written in blood by a cool, calm hand.  This letter was written by the cult
+leader of Blackmourne.  It describes a dark ritual to purge oneself of
+Lycanthropy.
+~
+~~
+vnum: 62510
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sinister note letter evil blood black blackmourne
+shortdesc: a sinister letter
+desc: A black letter, with a blood-red seal of Blackmourne lies forgotten on the ground.
+type: 16
+weight: 0.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: sinister note letter evil blood black blackmourne
+   Written in blood by a cool, calm hand.  This letter was written by the cult
+leader of Blackmourne.  It describes a dark ritual to purge oneself of
+Lycanthropy.
+~
+~~
+vnum: 5513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy 3rd-black-legion-wand
+shortdesc: a wand of the 3rd Black Legion
+desc: A black wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+extradesc: wand eldoria-trophy 3rd-black-legion-wand
+A simple black wand, it probably belonged to a member of the 3rd Black Legion.
+~
+~~
+vnum: 5509
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small 3rd-black-legion-token
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 5509
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small 3rd-black-legion-token
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 5511
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small black 3rd-black-legion-insignia
+shortdesc: an insignia of the 3rd Black Legion
+desc: A small black insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small black 3rd-black-legion-insignia
+A small patch of fabric with the insignia of the 3rd Black Legion has been
+ripped off a larger piece of fabric.
+~
+~~
+vnum: 5511
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small black 3rd-black-legion-insignia
+shortdesc: an insignia of the 3rd Black Legion
+desc: A small black insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small black 3rd-black-legion-insignia
+A small patch of fabric with the insignia of the 3rd Black Legion has been
+ripped off a larger piece of fabric.
+~
+~~
+vnum: 5511
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small black 3rd-black-legion-insignia
+shortdesc: an insignia of the 3rd Black Legion
+desc: A small black insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small black 3rd-black-legion-insignia
+A small patch of fabric with the insignia of the 3rd Black Legion has been
+ripped off a larger piece of fabric.
+~
+~~
+vnum: 5511
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small black 3rd-black-legion-insignia
+shortdesc: an insignia of the 3rd Black Legion
+desc: A small black insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small black 3rd-black-legion-insignia
+A small patch of fabric with the insignia of the 3rd Black Legion has been
+ripped off a larger piece of fabric.
+~
+~~
+vnum: 5513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy 3rd-black-legion-wand
+shortdesc: a wand of the 3rd Black Legion
+desc: A black wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+extradesc: wand eldoria-trophy 3rd-black-legion-wand
+A simple black wand, it probably belonged to a member of the 3rd Black Legion.
+~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5509
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small 3rd-black-legion-token
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy 3rd-black-legion-ring
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.
+~
+~~
+vnum: 5509
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small 3rd-black-legion-token
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy 3rd-black-legion-ring
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.
+~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy 3rd-black-legion-ring
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.
+~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5509
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small 3rd-black-legion-token
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy 3rd-black-legion-ring
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.
+~
+~~
+vnum: 5509
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small 3rd-black-legion-token
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 5509
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small 3rd-black-legion-token
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 5513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy 3rd-black-legion-wand
+shortdesc: a wand of the 3rd Black Legion
+desc: A black wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+extradesc: wand eldoria-trophy 3rd-black-legion-wand
+A simple black wand, it probably belonged to a member of the 3rd Black Legion.
+~
+~~
+vnum: 5509
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small 3rd-black-legion-token
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 5509
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: token eldoria-trophy small 3rd-black-legion-token
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: token eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.
+~
+~~
+vnum: 5513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy 3rd-black-legion-wand
+shortdesc: a wand of the 3rd Black Legion
+desc: A black wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+extradesc: wand eldoria-trophy 3rd-black-legion-wand
+A simple black wand, it probably belonged to a member of the 3rd Black Legion.
+~
+~~
+vnum: 5513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy 3rd-black-legion-wand
+shortdesc: a wand of the 3rd Black Legion
+desc: A black wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+extradesc: wand eldoria-trophy 3rd-black-legion-wand
+A simple black wand, it probably belonged to a member of the 3rd Black Legion.
+~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy 3rd-black-legion-skull
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy 3rd-black-legion-skull
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.
+~
+~~
+vnum: 5513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wand eldoria-trophy 3rd-black-legion-wand
+shortdesc: a wand of the 3rd Black Legion
+desc: A black wand lies nearby.
+type: 13
+weight: 1.40
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 16385
+extradesc: wand eldoria-trophy 3rd-black-legion-wand
+A simple black wand, it probably belonged to a member of the 3rd Black Legion.
+~
+~~
+vnum: 5515
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gj
+name: unholy symbol eldoria-reward 3rd-black-legion-symbol small
+shortdesc: an unholy symbol of the 3rd Black Legion
+desc: A small black symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+applies:
+13 30
+14 25
+26 10
+~
+extradesc: unholy symbol eldoria-trophy 3rd-black-legion-symbol small
+A feeling of malevolence radiates from this black medal.
+~
+~~
+vnum: 5515
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gj
+name: unholy symbol eldoria-reward 3rd-black-legion-symbol small
+shortdesc: an unholy symbol of the 3rd Black Legion
+desc: A small black symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+applies:
+13 30
+14 25
+26 10
+~
+extradesc: unholy symbol eldoria-trophy 3rd-black-legion-symbol small
+A feeling of malevolence radiates from this black medal.
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 12510
+location: 127
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: dmuvyzD
+name: shield square wooden wood
+shortdesc: a square shield
+desc: A square, wooden shield sits here, waiting to protect someone new. 
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 513
+applies:
+2 1
+~
+extradesc: shield square wooden wood
+The shield is a simple shield, consisting of three layers of wooden planks in
+alternating directions, with horizontal banding across the lot.  Crude, but
+effective.    
+~
+~~
+vnum: 5512
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+shortdesc: an insignia of the 3rd Eldorian Guard
+desc: A small white insignia lies nearby.
+type: 13
+weight: 0.30
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: insignia eldoria-trophy small white 3rd-eldoria-guard-insignia
+A small patch of white fabric with the insignia of the 3rd Eldorian Guard has
+been ripped off a larger peice of fabric.
+~
+~~
+vnum: 5212
+location: 127
+values:
+0
+400
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flame gray-flame small-pillar gray-fire questobject gray
+shortdesc: a gray flame
+desc: A small pillar of gray flame flickers here.
+type: 1
+weight: 0.50
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+applies:
+13 15
+2 1
+~
+extradesc: flame gray-flame small-pillar gray-fire questobject gray
+   The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  Its luminosity is
+both too bright and too dim, yet seems to light the area perfectly.    
+~
+triggers:
+5207
+~
+variables:
+retriever a seaside falcon
+~
+~~
+vnum: 5554
+location: 127
+values:
+0
+800
+125
+0
+0
+0
+0
+~
+flags: k
+name: crystal light eldoria-reward small glowing
+shortdesc: a crystal
+desc: A small crystal lies here glowing.
+type: 1
+weight: 0.40
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 11708
+location: 127
+values:
+7
+61
+17
+33
+0
+0
+0
+~
+flags: ag
+name: potion dark glowing
+shortdesc: a dark potion
+desc: A dark potion has been left here.
+type: 10
+weight: 0.20
+cost: 20
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+~~
+vnum: 11706
+location: 127
+values:
+0
+3
+4
+11
+0
+0
+0
+~
+flags: gknu
+name: dagger misty blue misty-blue-dagger
+shortdesc: a misty blue dagger
+desc: A misty blue dagger has been dropped here.
+type: 5
+weight: 1.10
+cost: 590
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 8193
+extradesc: dagger misty blue
+The dagger is made of a misty blue metal that seems to pulsate
+slightly. The dagger's blade changes shape slowly as it grows
+new teeth to replace older teeth as they fade away.
+~
+~~
+vnum: 50214
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnuy
+name: cutlass tarnished worn tarnished-cutlass
+shortdesc: a tarnished cutlass
+desc: A worn and tarnished cutlass has been left here.
+type: 5
+weight: 5.00
+cost: 600
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+18 -1
+~
+extradesc: cutlass tarnished worn tarnished-cutlass
+This is a fairly cheap weapon, large but flimsy.  It would be very frightening
+to be attacked with it, however.  It resembles a large, single-edged sword with
+a large curve.    
+~
+~~
+vnum: 50219
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: mnu
+name: stone sharpening-stone sharpening sharp small rectangular
+shortdesc: a sharpening stone
+desc: A small rectangular stone with a metal loop lies in the debris.
+type: 11
+weight: 0.10
+cost: 0
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1048577
+applies:
+18 2
+~
+extradesc: stone sharpening-stone sharpening sharp small rectangular
+This is a small, gray stone in a roughly rectangular shape. It has
+a metal loop that runs through a hole near one end. The stone is
+somewhat abrasive, and has light striations running nearly
+parallel to its length.
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 1011
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: kmow
+name: mace tempered-steel-mace
+shortdesc: a steel mace
+desc: A tempered steel mace lies here.
+type: 5
+weight: 6.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 o
+wear: 8193
+extradesc: tempered-steel-mace
+&0The head of this mace is forged from steel. A perfect ball, marred with only
+the scars of combat. It is attatched to a stout wooden rod, creating a
+weapon favored by most clerics.
+~
+~~
+vnum: 62501
+location: 127
+values:
+0
+2
+5
+2
+0
+0
+0
+~
+flags: 0
+name: vine rope whip belt
+shortdesc: a long vine
+desc: A long vine is lying here.
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 35
+effects: s 0 0
+wear: 14337
+applies:
+18 2
+~
+~~
+vnum: 62501
+location: 127
+values:
+0
+2
+5
+2
+0
+0
+0
+~
+flags: 0
+name: vine rope whip belt
+shortdesc: a long vine
+desc: A long vine is lying here.
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 35
+effects: s 0 0
+wear: 14337
+applies:
+18 2
+~
+~~
+vnum: 16202
+location: 127
+values:
+0
+3
+5
+3
+0
+0
+0
+~
+flags: o
+name: scimitar long
+shortdesc: a long scimitar
+desc: A scimitar lies among the rocks here.
+type: 5
+weight: 1.70
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 8193
+applies:
+18 2
+~
+extradesc: scimitar sword
+The scimitar is very well crafted and has a fine balance. You detect an aura    holiness around it.~
+~~
+vnum: 16202
+location: 127
+values:
+0
+3
+5
+3
+0
+0
+0
+~
+flags: o
+name: scimitar long
+shortdesc: a long scimitar
+desc: A scimitar lies among the rocks here.
+type: 5
+weight: 1.70
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 8193
+applies:
+18 2
+~
+extradesc: scimitar sword
+The scimitar is very well crafted and has a fine balance. You detect an aura    holiness around it.~
+~~
+vnum: 16203
+location: 127
+values:
+0
+2
+6
+3
+0
+0
+0
+~
+flags: gmnuyz
+name: falchion sword
+shortdesc: a falchion
+desc: A short, curved sword lies in the dirt.
+type: 5
+weight: 1.60
+cost: 2000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 8193
+applies:
+24 -2
+~
+~~
+vnum: 16211
+location: 127
+values:
+14
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: grain food
+shortdesc: some grain
+desc: A pile of grain lies on the ground.
+type: 19
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55675
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethysts gem handful handful-amethysts amethyst
+shortdesc: a handful of amethysts
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 6000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55692
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: opal gem shard shard-opal
+shortdesc: an opal shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 7000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55685
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem enchanted enchanted-pearl
+shortdesc: an enchanted pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 7000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55583
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem dust dust-turquoise
+shortdesc: some turquoise dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55318
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: sleeves decayed
+shortdesc: decayed sleeves
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55577
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem crushed crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55580
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem dust dust-amethyst
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55706
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem enchanted enchanted-topaz
+shortdesc: an enchanted topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 16000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 20
+location: 127
+values:
+256
+20
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 3.30
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55711
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topazes gem handful handful-topazes topaz
+shortdesc: a handful of topazes
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 16000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55674
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem perfect perfect-chrysoberyl
+shortdesc: a perfect chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 6000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~

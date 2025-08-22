@@ -1,0 +1,77 @@
+name: Vengrazz
+password: Ve.7e0twwV
+currenttitle: Keeper of the Clan >>KotF<<
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+poofin: Storms in, smacking your semester final to your forhead...  thats right you got and F.
+poofout: but your can do extra credit to raise your grade.
+sex: 1
+class: 12
+race: 10
+level: 102
+home: 1277
+lifeforce: 0
+composition: 0
+id: 6676
+birthtime: 986587001
+timeplayed: 623500
+lastlogintime: 1552714890
+host: 074.033.131.016
+height: 72
+weight: 159
+base_height: 72
+base_weight: 159
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: glnxy
+effectflags: 0 0 0
+prefflags: ahimnorsvAC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+invislevel: 100
+loadroom: 3054
+lastlevel: 5
+hitpoints: 2314/2110
+mana: 1040/1040
+move: 100/100
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 100
+wisdom: 98
+dexterity: 100
+constitution: 100
+charisma: 56
+cash: 8308 160328 82337 3365556
+experience: 300000002
+wiztitle: &0 Revenging  &0
+quit_reason: 1
+saveroom: 3054
+trophy:
+1 36303 1.000000
+1 53007 14.000000
+1 2802 1.000000
+1 2809 2.000000
+1 2808 2.000000
+1 2803 2.000000
+1 2805 4.000000
+1 51101 9.000000
+1 17306 1.000000
+1 11702 2.000000
+1 2806 4.500000
+1 2807 3.500000
+1 36001 1.000000
+1 8011 2.000000
+1 16002 1.000000
+1 53023 2.000000
+1 53008 0.500000
+1 36003 1.000000
+1 2801 9.200000
+1 52000 0.111000
+0 0 0
+aliases:
+444 c 'flood'
+ss switch zerith
+vecho gecho Vengrazz $*
+zz wizh
+0

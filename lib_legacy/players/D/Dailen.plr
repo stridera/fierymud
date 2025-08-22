@@ -1,0 +1,64 @@
+name: Dailen
+password: DaGQ65g0Np
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19326
+birthtime: 1518276925
+timeplayed: 28
+lastlogintime: 1518276956
+host: 172.223.132.245
+height: 71
+weight: 171
+base_height: 71
+base_weight: 171
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 17
+thirst: 10
+lastlevel: 0
+hitpoints: 27/26
+mana: 0/0
+move: 146/146
+damroll: 5
+hitroll: 4
+strength: 86
+intelligence: 68
+wisdom: 76
+dexterity: 94
+constitution: 83
+charisma: 58
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0

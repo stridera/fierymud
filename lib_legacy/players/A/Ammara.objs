@@ -1,0 +1,974 @@
+1
+vnum: 41007
+location: 5
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz abefghij
+name: plate chitinous-plate large-flake-chitin
+shortdesc: a chitinous-plate
+desc: A large flake of chitin has fallen off a Hiver's thorax here.
+type: 9
+weight: 15.00
+cost: 45
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: chitinous-plate large-flake-chitin
+The rough platter of insectoid scales seems to have no distinct color.
+Shifting hues move across its surface as light strikes it from different
+angles. All colors? Or none? You shake your head in wonder.~
+~~
+vnum: 1024
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mquyz abefgh
+name: helmet studded-leather-helmet
+shortdesc: a studded leather helmet
+desc: A studded leather helmet lies here.
+type: 9
+weight: 3.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+extradesc: studded-leather-helmet
+&0A simple helmet, designed to cover most of the head.  It leaves the face
+open, allowing the user a wide viewing arc.  It is crafted from a thick
+leather, and studded with inch long spikes to add further protection against
+attacks.~
+~~
+vnum: 1019
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mqyz fgh
+name: pants crude-leather-pants
+shortdesc: crude leather pants
+desc: Some crude leather pants lie here.
+type: 9
+weight: 8.60
+cost: 250
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 -1
+~
+extradesc: crude-leather-pants
+Crafted of a crude leather, and studded with metal knobs for added protection
+against physical attacks.  They are a bit heavy, and far too encumbering for a
+sorcerer to wear.~
+~~
+vnum: 1026
+location: 8
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mqyz fgh
+name: boots crude-leather-boots
+shortdesc: crude leather boots
+desc: Some crude leather boots sit here.
+type: 9
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+2 -1
+~
+extradesc: crude-leather-boots
+A pair of tall leather boots.  They reach about half way to the knee, providing
+protection against shallow puddles of water and mud.  Crafted from thick crude
+leather, these boots were designed to deflect attacks during combat.~
+~~
+vnum: 41008
+location: 10
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz abefghij
+name: sleeves chitinous-sleeves narrow-tubes-chitin
+shortdesc: a set of chitinous-sleeves
+desc: Narrow tubes of chitin lie here, gathering dust.
+type: 9
+weight: 6.00
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 -1
+~
+extradesc: chitinous-sleeves narrow-tubes-chitin
+These stiff tubes of chitin look like they once graced the upper legs of some
+Hiver.  They would make stiff but servicable sleeves for a human.~
+~~
+vnum: 1152
+location: 11
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: muyz afgh
+name: shield large-steel-shield
+shortdesc: a large steel shield
+desc: A large steel shield has been left here.
+type: 9
+weight: 4.50
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+extradesc: shield large-steel-shield
+Beaten steel makes up the main part of this door-shaped shield.  Large enough
+to protect most of its user's body, it is only lightly decorated along its
+edges with simple tooling.  Three leather straps along its back provide a
+secure grip.~
+~~
+vnum: 46404
+location: 12
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: cloak winged-cloak pile feathers
+shortdesc: the winged cloak
+desc: A pile of feathers lies at your feet.
+type: 9
+weight: 2.00
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: winged-cloak pile feathers
+This warm, large garment is tailored entirely from feathers.  Upon closer
+examination, the cloak looks to be made up of a long cape and two wings
+attached to the sides into which you could slip your arms.  Though somewhat
+restrictive of your movement, the wings give you a feeling of freedom, almost
+as if you could take to the skies and soar amongst the birds themselves.~
+~~
+vnum: 2023
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet-boar-images boar-bracelet boars questobject
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 8
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+18 2
+19 1
+~
+extradesc: bracelet-boar-images boar-bracelet boars questobject
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it.  You're now quite sure how, or even what exact material the bracelet is
+made of, though you suspect some kind of magically treated boar skin.~
+~~
+vnum: 2023
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracelet-boar-images boar-bracelet boars questobject
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 8
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+18 2
+19 1
+~
+extradesc: bracelet-boar-images boar-bracelet boars questobject
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it.  You're now quite sure how, or even what exact material the bracelet is
+made of, though you suspect some kind of magically treated boar skin.~
+~~
+vnum: 218
+location: 16
+values:
+0
+2
+6
+8
+0
+0
+0
+~
+flags: mnuyz acfghij
+name: claw polar-claw icy-blue weapon
+shortdesc: a Polar Claw
+desc: An icy blue claw-like weapon is lying here.
+type: 5
+weight: 2.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+18 3
+~
+extradesc: claw polar-claw icy-blue weapon
+It is a shortsword forced of blue steel -- not blued steel, but truly blue
+steel.  It emanates a magical power all along its curved, clawlike blade.~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem aquamarine-dust
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem tourmaline-dust
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem crushed-malachite
+shortdesc: a crushed malachite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 1014
+location: 127
+values:
+0
+1
+7
+3
+0
+0
+0
+~
+flags: mnquyz acfghij
+name: longsword crude longsword long-sword iron
+shortdesc: a crude longsword
+desc: A crude iron longsword lies here.
+type: 5
+weight: 5.00
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: crude-longsword long-sword iron
+A three foot long blade, forged from cold iron.  Its wooden hilt has been
+wrapped in thick leather, used to cushion the wielder's hand.  The sword is
+well-balanced, effective if used by a skilled warrior.~
+~~
+vnum: 55312
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: helm rusted-helm armor
+shortdesc: a rusted helm
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: helm rusted-helm armor
+This helm rusted beyond use.  Perhaps the Cleric or Warrior guild master will
+know what to do with it.~
+~~
+vnum: 55316
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces rusted-vambraces armor
+shortdesc: rusted vambraces
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vambraces rusted-vambraces armor
+These vambraces are rusted beyond use.  Perhaps the Cleric or Warrior guild
+master will know what to do with them.~
+~~
+vnum: 1022
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: sleeves quilted-canvas-sleeves cloth hide glowing pile
+shortdesc: some quilted canvas sleeves
+desc: A pile of cloth and hide lies here glowing.
+type: 9
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+extradesc: quilted-canvas-sleeves cloth hide glowing pile
+These sleeves are remarkably light and offer a sense of protection unseen.  
+There is hide padding on the elbows to provide a little extra protection.~
+~~
+vnum: 46406
+location: 127
+values:
+20
+15
+46410
+0
+0
+0
+0
+~
+flags: ab 0
+name: egg speckled speckled-egg
+shortdesc: a speckled egg
+desc: Someone has forgotten a small, speckled egg here.
+adesc:
+Nothing.~
+type: 15
+weight: 0.20
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+23 -2
+~
+extradesc: speckled egg
+     About as big around as your fist, the smooth off-white surface of this egg
+is speckled with tiny flecks of blue and yellow, giving it an almost marbled
+appearance.  The egg is warm in your hand, and you can almost feel the beating
+of a tiny heart inside it.  Perhaps if kept properly warm and cared for, in a
+few days the most wonderful of treasures might be discovered inside.~
+~~
+vnum: 46412
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cockatiel beautiful-jeweled-cockatiel bird
+shortdesc: a beautiful jeweled cockatiel
+desc: A beautiful jeweled cockatiel has been lost here!
+type: 8
+weight: 1.50
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 5
+~
+extradesc: beautiful-jeweled-cockatiel
+Someone had to have paid thousands of gold pieces for such a spectacular piece
+of artwork - yet this wondrous little figurine came from within an actual
+bird's egg!  Accurate down to the smallest detail, this heavy metal statuette
+of a cockatiel is encrusted with jewels of all sorts: dark brown faceted
+tourmaline stares back as the bird's eyes, small citrines and rubies create the
+distinctive orange cheek patches, and smoky quartz and clear diamonds make up
+the feathers.~
+~~
+vnum: 36304
+location: 127
+values:
+0
+1
+6
+14
+0
+0
+0
+~
+flags: mnuyz afghij
+name: spetum spear long-narrow-point-barbs
+shortdesc: a spetum
+desc: A spear with a long narrow point and barbs lies here.
+type: 5
+weight: 5.20
+cost: 200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: spetum spear long-narrow-point-barbs
+The spetum is a vastly improved spear.  It has a long narrow blade with two
+projections below the thrusting blade which are used to catch an opponent's
+weapons and disarm her.  However, the spetum is much heavier than a normal
+spear.~
+~~
+vnum: 55320
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves rusted-greaves armor
+shortdesc: rusted greaves
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: greaves rusted-greaves armor
+These greaves are rusted beyond use.  Perhaps the Cleric or Warrior guild
+master will know what to do with them.~
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3031
+location: 127
+values:
+1
+250
+225
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 55576
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem crushed-malachite
+shortdesc: a crushed malachite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55582
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-shard
+shortdesc: an amethyst shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55324
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: plate rusted-plate armor
+shortdesc: a rusted plate
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 9.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: plate rusted-plate armor
+This plate is rusted beyond use.  Perhaps the Cleric or Warrior guild master
+will know what to do with it.~
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~

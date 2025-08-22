@@ -1,0 +1,70 @@
+name: Magdalemn
+password: MaKYZawmcU
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20829
+birthtime: 1725036053
+timeplayed: 1468
+lastlogintime: 1725130098
+host: 100.006.049.111
+height: 76
+weight: 155
+base_height: 76
+base_weight: 155
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3500
+hunger: 4
+lastlevel: 0
+hitpoints: 27/26
+mana: 1/0
+move: 139/139
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 67
+wisdom: 76
+dexterity: 76
+constitution: 90
+charisma: 60
+experience: 1
+quit_reason: 7
+saveroom: 3500
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1725036072 Chinok gossips, 'welcome Magdalemn'
+1725036111 Chinok gossips, 'just yell if you have any questions or need advice'
+1725036216 Chinok gossips, 'there's a button at the top to turn off the windows.. been a while since I played with them'
+1725036264 Chinok gossips, 'across the top, you can also click the chat / map buttons to remove'
+1725129610 Discord gossips, 'Zaver: Welcome'
+$

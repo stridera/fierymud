@@ -1,0 +1,116 @@
+name: Buan
+password: Buln9qi0UJ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19715
+birthtime: 1601236755
+timeplayed: 29759
+lastlogintime: 1602382802
+host: 068.098.010.236
+height: 71
+weight: 175
+base_height: 71
+base_weight: 175
+base_size: 2
+natural_size: 2
+alignment: 90
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+aggression: 50
+loadroom: 3500
+hunger: 12
+thirst: 10
+lastlevel: 0
+hitpoints: 96/90
+mana: 1/0
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 99
+intelligence: 58
+wisdom: 77
+dexterity: 76
+constitution: 95
+charisma: 55
+cash: 0 37 179 91
+experience: 117913
+quit_reason: 7
+saveroom: 3500
+skills:
+402 64
+404 110
+415 50
+416 50
+421 106
+438 50
+443 50
+444 57
+463 66
+464 51
+465 66
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3505 1.500000
+1 61517 0.500000
+1 17205 0.500000
+1 17204 3.500000
+1 17203 0.500000
+1 3502 0.333333
+1 3501 0.333333
+1 8011 0.500000
+1 16909 1.833333
+1 16907 6.000000
+1 16902 4.833333
+1 16906 2.166667
+1 16901 2.166667
+1 16905 4.166667
+1 16900 5.833333
+1 16908 10.166666
+1 2003 2.000000
+1 8030 1.000000
+1 1603 2.000000
+1 1605 4.000000
+1 1602 1.000000
+0 0 0
+tells:
+1601525521 @WSharra@W tells you, 'hello@W'@0
+1601686383 @WHelena@W tells you, 'You can only hold 9.@W'@0
+1601686383 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1601686410 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1601686415 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1601686425 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1601686667 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1601686674 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1601686694 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
+1601688570 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1601491139 Chinok gossips, 'I prefer the opposite, really kick-butt spells, with nearly no description on how to use them :)'
+1601491231 Chinok gossips, 'well crymancers should lose their mojo where it's hot..'
+1601513393 Chinok gossips, 'gratz Sharra'
+1601513405 Sharra gossips, 'Thanks!'
+1601525319 Chinok gossips, 'welcome back Buan'
+1601525413 Anand gossips, 'hi!'
+1601525462 Anand gossips, ':D'
+1601525483 Chinok gossips, 'I figured that out :)'
+1601599903 Strider gossips, 'Hey'
+1601688416 Dairyu gossips, 'hello all'
+$
+aliases:
+rr recite identify
+a scan
+0

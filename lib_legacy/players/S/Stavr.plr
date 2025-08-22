@@ -1,0 +1,88 @@
+name: Stavr
+password: StUtwkBtMC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19705
+birthtime: 1600443542
+timeplayed: 1437
+lastlogintime: 1601302998
+host: 095.091.241.155
+height: 39
+weight: 183
+base_height: 39
+base_weight: 183
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 58/55
+mana: 1/0
+move: 140/140
+damroll: 4
+hitroll: 5
+strength: 96
+intelligence: 80
+wisdom: 80
+dexterity: 92
+constitution: 84
+charisma: 76
+experience: 18150
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 53
+438 50
+443 50
+444 50
+463 50
+464 50
+465 53
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8023 1.000000
+1 8016 3.000000
+1 8012 2.000000
+1 8022 1.000000
+1 8015 3.000000
+1 8000 2.000000
+1 8010 3.000000
+1 8021 2.000000
+1 8002 2.000000
+1 8013 2.000000
+1 8011 3.000000
+1 8020 2.000000
+1 8001 2.000000
+0 0 0
+tells:
+1600444233 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1600443587 Chinok gossips, 'welcome Stavr'
+1600443650 Chinok gossips, 'if you need any help, just yell'
+1600443668 Chinok gossips, 'best place for a young warrior to get started is west of town, in the bug fields'
+1600443766 Chinok gossips, 'if it is dark out -- you were 'born' with a torch.. you could just light it'
+1600443882 Someone gossips, 'light your torch'
+1600443994 Chinok gossips, 'no training, or practices here .. you increase your skill by using them'
+1600444014 Chinok gossips, 'also, once you level -- you have to go back to your guild and type 'level gain' '
+1600444095 Chinok gossips, 'your guild is right behind santiago's weapon shop'
+$

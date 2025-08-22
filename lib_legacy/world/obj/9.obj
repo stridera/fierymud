@@ -1,0 +1,208 @@
+#900
+robe stardust dark black~
+the Robe of Stardust~
+A dark black robe is lying here.~
+~
+9 0 8 100
+0 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+robe stardust dark black~
+   The robe seems to be filled with swirling patterns of stardust.  You feel
+part of yourself being sucked into the robe, but you don't care...  Becoming a
+part of such a divine object would be a true honor!    ~
+#901
+cape void dark black~
+the Cape of the Void~
+A dark black cape is lying here.~
+~
+9 0 1024 100
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+cape void dark black~
+   The cape gently pulls in the light so evenly and perfectly that the cape
+seems to simply be a black void.  It is breathtakingly beautiful!  Looking at
+it is all it takes to know that this cape is obviously divine.    ~
+#902
+staff stardust~
+the Staff of Stardust~
+A dark black staff has been left here.~
+~
+5 536870912 32768 100
+7 3 6 5 0 0 0
+5.00 0 0 0 0 0 0 0
+E
+staff stardust~
+   This staff is truly amazing!  It looks as if it could wield itself!  It
+seems to made of the purest darkness of night, absorbing all light that would
+reflect from it.  Pulsing softly, this staff is obviously divine, and well
+beyond the ken of mortal creatures.    ~
+#903
+fang legendary-ice-fang clear-fang snake~
+a legendary ice fang~
+What looks like a clear fang of a snake lies here.~
+~
+8 2 262145 43
+3 0 0 0 0 0 0
+0.20 1900 0 0 0 0 0 0
+E
+fang legendary-ice-fang clear-fang snake~
+This looks to be a piece of clear crystal constructed from magic to protect it
+owner in an attack.  It looks like the fang of a beast of prey.~
+A
+18 3
+A
+19 3
+A
+13 75
+#904
+dagger legendary-dagger-shadows fragment-darkness~
+a legendary dagger of &9&bshadows&0~
+A fragment of darkness lies ill placed here.~
+~
+5 54442568 8193 70
+0 5 6 11 0 0 0
+0.30 0 0 0 0 0 0 0
+E
+dagger-shadows fragment-darkness~
+Darker than any night sky, this blade appears to be crafted from a solid piece
+of darkness.  Not a gleam nor sparkle, the blade seems to swallow light rather
+than repeal it.~
+A
+2 2
+A
+9 8
+A
+5 1
+A
+19 2
+H
+700
+X
+993
+#905
+spellbook book large tome book-of-healing legendary-large-book~
+a legendary large book~
+A large old book lies here.~
+~
+8 536870979 16385 45
+0 0 0 0 0 0 0
+10.00 20 0 0 0 0 0 0
+E
+spellbook book large tome book-of-healing legendary-large-book~
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.~
+A
+26 10
+A
+13 100
+A
+1 -5
+A
+2 -5
+#906
+bracers legendary-serdryn's-bracers legendary-serdryns-bracers scale-plated-bracers,~
+legendary Serdyrn's Bracers~
+A set of scale-plated bracers lies here.~
+~
+9 88083520 257 1
+14 0 0 0 0 0 0
+2.80 100 0 16777216 0 0 0 0
+E
+bracers legendary-serdryn's-bracers legendary-serdryns-bracers scale-plated-bracers,~
+Nothing.~
+A
+5 3
+A
+26 10
+A
+6 -4
+#907
+mace legendary-long-mace-nightbringer night-bringer~
+&9&ba legendary long mace named 'N&0&5i&9&bg&0&5h&9&bt&0&5b&9&br&0&5i&9&bn&0&5g&9&be&0&5r&9&b'&0~
+&9&bA long mace with the word 'N&0&5i&9&bg&0&5h&9&bt&0&5b&9&br&0&5i&9&bn&0&5g&9&be&0&5r&9&b' etched into the shaft lies here humming.&0~
+~
+5 20546 8193 1
+0 8 4 6 0 0 0
+6.50 0 0 0 0 0 0 0
+A
+18 6
+A
+19 6
+A
+24 250
+A
+20 250
+A
+23 250
+A
+11 24
+X
+240
+#908
+scimitar scourge-rivkul fiery-scimitar~
+the scourge of Rivkul~
+A fiery scimitar lies burning here.~
+Nothing.~
+5 70396480 8193 85
+10 5 7 3 0 0 0
+4.00 100 0 8388608 0 0 0 0
+E
+scimitar scourge-rivkul fiery-scimitar,~
+Composed entirely of a dark adamantium, the scimitar-shaped blade writhes and
+crackles as a thick, black smoke billows off its edge while the handle is as
+cold to the touch as the wintry nights of Mt.  Frostbite.  Balancing the hand
+guard and mounted at the end of its slope on either side are two perfectly
+rounded fiery gemstones.    ~
+A
+18 5
+A
+19 10
+X
+768
+#950
+whip barbed velvet lani~
+a whip with a &5&bvelvet handle&0 and stinging barbs~
+A beautiful whip with &5&bvelvet handles&0 lies here.~
+~
+5 536937600 8193 50
+0 2 8 2 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+whip barbed velvet lani~
+This whip is long and has several cat-tails on the end, eight of them to be
+exact.  Each is tipped with a little metal spike that appears never to become
+dull.  Even up and down the entire length of the leather portions of the whip
+are little magically made barbs.  The handle is stripped &5&bcrushed velvet,&0
+soft in the hand, yet hard underneath.  There is a small knot of wood at the
+base of the handle with the sign that a weapon's master created this fine whip
+with the aid of a magician.    ~
+A
+19 3
+A
+9 -16
+#954
+tree small-green-tree~
+&2a small green tree&0~
+&2A small green tree sits here digging into the ground.&0~
+~
+9 0 513 70
+18 0 0 0 0 0 0
+10.00 2250 0 0 0 0 0 0
+E
+small-green-tree~
+This is a small green tree grown in the shape of a shield.  It has several
+branches coming out of the sides acting as perfect spikes on the sides of the
+shield.  There is a heavy knot in the center almost as though the tree were
+designed to actually act as a shield.  It is a strong wood, firm and hard and
+ready to deflect most any blow landed upon it.  There are even some small
+leaves hanging off of the branches which neatly conceal a small hole in the
+wood.    ~
+A
+2 2
+A
+5 2
+$~

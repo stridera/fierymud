@@ -1,0 +1,1793 @@
+#16000
+Postern Gatehouse~
+   This gatehouse is made of dark stone. Once the stones were fitted together
+tightly, but now age has pitted and worn out the mortar between them, and
+stones are cracked or missing here and there. The fortress itself rises up
+behind the gatehouse, stern and forbidding, and obviously abandoned.
+   A road is visible to the north, leaving the fortress and gatehouse.~
+160 72 13
+D0
+You see the beginning of the Northern Swamps Road.~
+~
+0 -1 7300
+D2
+~
+~
+0 -1 16014
+S
+#16001
+The Southern Gatehouse~
+   This long-ago abandoned building is much taller than it is wide, and the
+doors that once stood in its north and south walls have long ago either fallen
+off or were torn off.  The gatehouse is constructed of many bricks of dark
+stone, but the stones are starting to crack and turn to rubble.  Beyond the
+gatehouse is visible the ruins that was once its courtyard.    
+   The swamp lies to the south.~
+160 72 13
+D0
+~
+~
+0 -1 16002
+D2
+~
+~
+0 -1 7089
+S
+#16002
+A Barren Courtyard~
+   This wide expanse of ground lies between the southern gatehouse
+to the south, and the compound's main building, visible to the northwest
+a short distance away. Not even dead grass is visible in the bare dirt
+ground, but the area is far from empty; rubble from the walls and buildings,
+and rusted-out armor and swords, litter the ground.~
+160 0 13
+D0
+~
+~
+0 -1 16006
+D1
+~
+~
+0 -1 16004
+D2
+~
+~
+0 -1 16001
+D3
+~
+~
+0 -1 16003
+S
+#16003
+Near the Main Fortress~
+   This barren courtyard runs along the outside of the main building of
+the compound. The bare dirt is free of even dead grass, but is littered
+with rubble from the building and old, rusted weapons and shields. The
+large building rises to the northeast a short distance away.
+   A metal staircase, rusted with time, ascends to the battlements.~
+160 0 13
+D0
+~
+~
+0 -1 16005
+D1
+~
+~
+0 -1 16002
+D4
+~
+~
+0 -1 16018
+S
+#16004
+Near the Main Fortress~
+   This barren courtyard runs along the outside of the main building of
+the compound. The bare dirt is free of even dead grass, but is littered
+with rubble from the building and old, rusted weapons and shields. The
+large building rises to the northwest a short distance away.
+   A metal staircase, rusted with time, ascends to the battlements.~
+160 0 13
+D0
+~
+~
+0 -1 16007
+D3
+~
+~
+0 -1 16002
+D4
+~
+~
+0 -1 16020
+S
+#16005
+Near the Main Fortress~
+   This part of the castle grounds run right up against the outer wall of
+the main building of the compound. The ground is utterly barren, without
+even grass growing on it. The bare dirt is covered in dust and rubble,
+though, some of it misting over broken armor and shields. Bits of masonry
+and dark stone from the nearby compound walls lies here and there as well.~
+160 0 13
+D0
+~
+~
+0 -1 16008
+D1
+~
+~
+0 -1 16006
+D2
+~
+~
+0 -1 16003
+S
+#16006
+The Middle of the Courtyard~
+   This is the middle of the large expanse of ground lying between
+the compound's main building and its outer walls. It is utterly barren,
+without even grass growing on it, but it is far from empty; various
+bits of rubble and old, rusted pieces of armor litter the ground. There
+are no skeletons visible, however.
+   The entrance to the main building lies to the north -- a doorway with
+the door ripped away.~
+160 0 13
+D0
+You see the door of the keep. It seems to have been blown off its hinges.~
+~
+0 -1 16046
+D1
+~
+~
+0 -1 16007
+D2
+~
+~
+0 -1 16002
+D3
+~
+~
+0 -1 16005
+D5
+~
+~
+0 -1 16089
+E
+well~
+As you peer into its depths, you notice that there are metal spikes
+jammed into the walls, something like a makeshift staircase. An aura of
+mystery and danger surrounds you...... You are unsure whether or not
+you should venture down. A trap maybe?~
+S
+#16007
+Near the Main Fortress~
+   This is a bit of barren courtyard encircling the walls of the large
+fortress. The main building itself rises to the southwest not far away.
+Rubble and bits of rusted weapons and shields lie everywhere, and sometimes
+even some bones can be seen, almost buried in dirt.~
+160 0 13
+D0
+~
+~
+0 -1 16009
+D2
+~
+~
+0 -1 16004
+D3
+~
+~
+0 -1 16006
+S
+#16008
+The Castle Grounds~
+   This courtyard encircles the area between the fortress walls and the
+keep itself. The ground is barren, without even grass growing on it, but
+it is littered with rubble and rusted pieces of metal that were once
+weapons and shields. There are, however, no bones visible at all.~
+160 0 13
+D0
+~
+~
+0 -1 16010
+D2
+~
+~
+0 -1 16005
+S
+#16009
+Stableyard~
+   This abandoned structure is built right up against the main building
+of the compound. The circular expanse of ground is now barren, with nothing
+growing on it, not even grass. The roof of the structure has long since
+fallen in upon itself, but the entrance to the stables themselves is visible
+to the east, and another little structure to the west.~
+160 0 13
+D0
+~
+~
+0 -1 16012
+D1
+~
+~
+0 -1 16016
+D2
+~
+~
+0 -1 16007
+D3
+~
+~
+0 -1 16053
+E
+hoofprints track tracks~
+The tracks look fresh, as if horses had just been stabled here. But as you
+look closer, you realise that no animal you know had made these tracks.~
+E
+stable~
+The stables looks run down and battered but you notice that there are
+fresh tracks leading out from the building.~
+S
+#16010
+The Castle Grounds~
+   This courtyard encircles the area between the fortress walls and the
+keep itself. The ground is barren, without even grass growing on it, but
+it is littered with rubble and rusted pieces of metal that were once
+weapons and shields. There are, however, no bones visible at all.~
+160 0 13
+D0
+~
+~
+0 -1 16013
+D2
+~
+~
+0 -1 16008
+S
+#16011
+Tower Rampart~
+   This part of the tower breaks free of the fog that covers the rest of the
+keep tower.  The Northern Swamps stretch out north as far as the eye can see,
+interrupted occasionally by hulking figures of structures built in the swamps.
+Tall hills are visible to the west, and far to the east is the sparkle of light
+on a large body of water.  Down is the fog-encased rampart.    ~
+160 8 0
+D5
+The Keep Tower is below, full of fog.~
+~
+0 -1 16074
+S
+#16012
+The Castle Grounds~
+   This is a barren patch of ground encircling the area between the
+fortress to the southwest and the fortress walls themselves. There is
+no vegetation growing, but the ground is littered with broken bits of
+masonry and rusted weapons and shields. The area looks like it was
+abandoned many years ago, for even the walls themselves appear to be
+in bad shape, with bricks cracking and eroding.
+   A stableyard stands to the south.~
+160 0 13
+D0
+~
+~
+0 -1 16015
+D2
+~
+~
+0 -1 16009
+S
+#16013
+The Castle Grounds~
+   This is a courtyard circling a large fortress made of dark stone.  The walls
+of the fortress encircle the main building, and a rusting metal staircase leads
+up onto the battlements of the walls.  The gatehouse is visible to the
+northeast.  The ground here is barren, without any vegetation growing, and is
+littered with rubble and bits of stone from the walls.  Though there are many
+pieces of rusted weapons laying around, there are no bones within sight.    ~
+160 0 13
+D1
+~
+~
+0 -1 16014
+D2
+~
+~
+0 -1 16010
+D4
+~
+~
+0 -1 16033
+S
+#16014
+The Castle Grounds~
+   This is the outer yard circling the large fortress rising nearby.  Its walls
+enclose a little courtyard between it and the gatehouse just to the north.  
+The ground is barren, without even grass growing, and rusted weaponry and other
+rubble litter the ground.  There are, however, no bones anywhere within view.~
+160 0 13
+D0
+~
+~
+0 -1 16000
+D1
+~
+~
+0 -1 16015
+D3
+~
+~
+0 -1 16013
+S
+#16015
+The Castle Grounds~
+   This is a small courtyard encircling the fortress to the southwest,
+between it and the tall walls surrounding the encampment. The ground is
+barren, with not even browned grass present. The area looks like it was
+abandoned many years ago; there are rusted pieces of armor and bits of
+rubble from the walls visible everywhere.
+   A rusted metal staircase leads up to the battlements on the walls.~
+160 0 13
+D2
+~
+~
+0 -1 16012
+D3
+~
+~
+0 -1 16014
+D4
+~
+~
+0 -1 16035
+S
+#16016
+The Stables~
+   The old, abandoned building has almost completely fallen in upon
+itself; the roof is riddled with many large, open sections where it
+partially collapsed. If there was hay here, it's long since decomposed.
+If there were animals here when the building decayed, their skeletons
+have long since disintegrated. A strange, musky scent permeates the air.~
+160 8 0
+D3
+~
+~
+0 -1 16009
+S
+#16017
+Tower~
+   The inside of this tower is dark and dank.  Dark spots stain the floor, and
+rusted pieces of armour and weaponry litters the ground.  You peer out of one
+of the arrowslits, but you can't see much.  There is too much fog out there.  ~
+160 8 0
+D0
+~
+~
+0 -1 16022
+D1
+~
+~
+0 -1 16018
+D4
+~
+~
+0 -1 16037
+D5
+~
+~
+0 -1 16038
+S
+#16018
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.
+   A rusting metal staircase leads down into the grounds of the keep.~
+160 0 13
+D1
+~
+~
+0 -1 16019
+D3
+~
+~
+0 -1 16017
+D5
+~
+~
+0 -1 16003
+E
+masonry stones wall~
+The masonry has been badly shattered, rubble lies everywhere. You have to
+tread carefully as not to trip on the loose rock.~
+E
+siege engines engine~
+The great catapults and scorpions lie in broken heaps.~
+S
+#16019
+Above the Gatehouse~
+   You stand above the gatehouse of the keep.  The mechanism for raising the
+portcullis lies shattered here, as if it was crushed by a great force.  A dark
+shape lingers near the shattered device, a menacing presence perhaps?  Or a
+figment of your imagination?    ~
+160 0 13
+D1
+~
+~
+0 -1 16020
+D3
+~
+~
+0 -1 16018
+E
+mechanism~
+The mechanism has been shattered, as if a huge fist had struck it.~
+S
+#16020
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.
+   A rusting metal staircase leads down into the grounds of the keep.~
+160 0 13
+D1
+~
+~
+0 -1 16021
+D3
+~
+~
+0 -1 16019
+D5
+~
+~
+0 -1 16004
+E
+masonry stones wall~
+The masonry has been badly shattered, rubble lies everywhere. You have to
+tread carefully as not to trip on the loose rock.~
+E
+engine siege~
+The great catapults and scorpions lie in broken heaps.~
+S
+#16021
+Tower~
+   The inside of this tower is dark and dank.  Dark spots stain the floor, and
+rusted pieces of armour and weaponry litters the ground.  You peer out of one
+of the arrowslits, but you can't see much.  There is too much fog out there.  ~
+160 8 0
+D0
+~
+~
+0 -1 16023
+D3
+~
+~
+0 -1 16020
+D4
+~
+~
+0 -1 16039
+D5
+~
+~
+0 -1 16040
+S
+#16022
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.~
+160 0 13
+D0
+~
+~
+0 -1 16024
+D2
+~
+~
+0 -1 16017
+E
+engines siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This
+mist only makes the conditions worse.~
+S
+#16023
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.~
+160 0 13
+D0
+~
+~
+0 -1 16025
+D2
+~
+~
+0 -1 16021
+E
+engines siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This
+mist only makes the conditions worse.~
+S
+#16024
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.~
+160 0 13
+D0
+~
+~
+0 -1 16026
+D2
+~
+~
+0 -1 16022
+E
+engines siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This 
+mist only makes the conditions worse.~
+S
+#16025
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.~
+160 0 13
+D0
+~
+~
+0 -1 16027
+D2
+~
+~
+0 -1 16023
+E
+engines siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This 
+mist only makes the conditions worse.~
+S
+#16026
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.~
+160 0 13
+D0
+~
+~
+0 -1 16028
+D2
+~
+~
+0 -1 16024
+E
+engines siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This 
+mist only makes the conditions worse.~
+S
+#16027
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.~
+160 0 13
+D0
+~
+~
+0 -1 16029
+D1
+~
+~
+0 0 16428
+D2
+~
+~
+0 -1 16025
+E
+engine siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This 
+mist only makes the conditions worse.~
+S
+#16028
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.~
+160 0 13
+D0
+~
+~
+0 -1 16030
+D2
+~
+~
+0 -1 16026
+E
+engines siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This 
+mist only makes the conditions worse.~
+S
+#16029
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.~
+160 0 13
+D0
+~
+~
+0 -1 16031
+D2
+~
+~
+0 -1 16027
+E
+engines siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This 
+mist only makes the conditions worse.~
+S
+#16030
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.~
+160 0 13
+D0
+~
+~
+0 -1 16032
+D2
+~
+~
+0 -1 16028
+E
+engines siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This
+mist only makes the conditions worse.~
+S
+#16031
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.~
+160 0 13
+D0
+~
+~
+0 -1 16036
+D2
+~
+~
+0 -1 16029
+E
+engines siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This
+mist only makes the conditions worse.~
+S
+#16032
+Tower~
+   The inside of this tower is dark and dank.  Dark spots stain the floor, and
+rusted pieces of armour and weaponry litters the ground.  You peer out of one
+of the arrowslits, but you can't see much.  There is too much fog out there.  ~
+160 8 0
+D1
+~
+~
+0 -1 16033
+D2
+~
+~
+0 -1 16030
+D4
+~
+~
+0 -1 16041
+D5
+~
+~
+0 -1 16042
+S
+#16033
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.
+   A rusting metal staircase leads down into the grounds of the keep.~
+160 0 13
+D1
+~
+~
+0 -1 16034
+D3
+~
+~
+0 -1 16032
+D5
+~
+~
+0 -1 16013
+E
+engines siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This
+mist only makes the conditions worse.~
+S
+#16034
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.~
+160 0 13
+D1
+~
+~
+0 -1 16035
+D3
+~
+~
+0 -1 16033
+E
+engines siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This
+mist only makes the conditions worse.~
+S
+#16035
+The Battlements~
+   These wide parapets run along the top of the wall surrounding the
+keep. The masonry, once superb, is now sadly pitted and chipped by time.
+There are no signs of battle here, with neither weapons nor skeletons
+present.
+   A rusting metal staircase leads down into the grounds of the keep.~
+160 0 13
+D1
+~
+~
+0 -1 16036
+D3
+~
+~
+0 -1 16034
+D5
+~
+~
+0 -1 16015
+E
+engines siege~
+The great siege engines which once defended this keep were reduced to
+shattered burnt out hulks.~
+E
+masonry~
+The stonework has been shattered, and debris lies all over the ground.
+You have to walk carefully to avoid tripping over all this rubble. This
+mist only makes the conditions worse.~
+S
+#16036
+Tower~
+   The inside of this tower is dark and dank.  Dark spots stain the floor, and
+rusted pieces of armour and weaponry litters the ground.  You peer out of one
+of the arrowslits, but you can't see much.  There is too much fog out there.  ~
+160 8 0
+D2
+~
+~
+0 -1 16031
+D3
+~
+~
+0 -1 16035
+D4
+~
+~
+0 -1 16043
+D5
+~
+~
+0 -1 16044
+S
+#16037
+Tower battlements~
+   The battlements are surprisingly free of fog.  You can see the rest of the
+land from here, but the castle below is hidden from view.  Upon the keep's
+tower, you notice a dark, mist enshrouded figure.  It seems to be the source of
+this fog as you notice that the fog is thickest there.    ~
+160 0 13
+D5
+~
+~
+0 -1 16017
+E
+creature~
+It seems to be waving it's hands around in the fog. Sometimes, the
+fog suddenly lights up as if there is lightning in there, just like
+a storm cloud.~
+S
+#16038
+Tower storeroom~
+   This seems to be the place where provisions and other spare supplies were
+kept.  There are still remains of large barrels and crates here.  Maybe there
+are still goodies that the conquerors had missed.    ~
+160 8 0
+D4
+~
+~
+0 -1 16017
+S
+#16039
+Tower battlements~
+   The battlements are surprisingly free of fog.  You can see the rest of the
+land from here, but the castle below is hidden from view.  Upon the keep's
+tower, you notice a dark, mist enshrouded figure.  It seems to be the source of
+this fog as you notice that the fog is thickest there.    ~
+160 0 13
+D5
+~
+~
+0 -1 16021
+E
+creature~
+It seems to be waving it's hands around in the fog. Sometimes, the
+fog suddenly lights up as if there is lightning in there, just like
+a storm cloud.~
+S
+#16040
+Tower storeroom~
+   This seems to be the place where provisions and other spare supplies were
+kept.  There are still remains of large barrels and crates here.  Maybe there
+are still goodies that the conquerors had missed.    ~
+160 8 0
+D4
+~
+~
+0 -1 16021
+S
+#16041
+Tower battlements~
+   The battlements are surprisingly free of fog.  You can see the rest of the
+land from here, but the castle below is hidden from view.  Upon the keep's
+tower, you notice a dark, mist enshrouded figure.  It seems to be the source of
+this fog as you notice that the fog is thickest there.    ~
+160 4 13
+D5
+~
+~
+0 -1 16032
+E
+creature~
+It seems to be waving it's hands around in the fog. Sometimes, the
+fog suddenly lights up as if there is lightning in there, just like
+a storm cloud.~
+S
+#16042
+Tower storeroom~
+   This seems to be the place where provisions and other spare supplies were
+kept.  There are still remains of large barrels and crates here.  Maybe there
+are still goodies that the conquerors had missed.    ~
+160 8 0
+D4
+~
+~
+0 -1 16032
+S
+#16043
+Tower battlements~
+   The battlements are surprisingly free of fog.  You can see the rest of the
+land from here, but the castle below is hidden from view.  Upon the keep's
+tower, you notice a dark, mist enshrouded figure.  It seems to be the source of
+this fog as you notice that the fog is thickest there.    ~
+160 0 13
+D5
+~
+~
+0 -1 16036
+E
+creature~
+It seems to be waving it's hands around in the fog. Sometimes, the
+fog suddenly lights up as if there is lightning in there, just like
+a storm cloud.~
+S
+#16044
+Tower storeroom~
+   This seems to be the place where provisions and other spare supplies were
+kept.  There are still remains of large barrels and crates here.  Maybe there
+are still goodies that the conquerors had missed.    ~
+160 8 0
+D4
+~
+~
+0 -1 16036
+S
+#16045
+Guardroom~
+   As usual, debris of all sorts litter this room.  You can see the signs of a
+great struggle here.  The remaining furniture has signs of being hacked up by
+swords and axes.    ~
+160 8 0
+D1
+~
+~
+0 -1 16046
+S
+#16046
+Keep Entrance~
+   Torn tapestries hang on the walls, a sad testament of former glory.  The
+paintings that once adorned this hall are now faded and torn.  A pathway leads
+to the Great Hall to the north.  To the east you see what once was the
+guardhouse, and to the west you see the entrance to an armoury.  A staircase
+leads up to the Lord's living area.  There is some form of illumination here,
+but you can't see its source.~
+160 8 0
+D0
+~
+~
+0 -1 16049
+D1
+~
+~
+0 -1 16047
+D2
+~
+~
+0 -1 16006
+D3
+~
+~
+0 -1 16045
+D4
+~
+~
+0 -1 16062
+S
+#16047
+Armoury~
+   The armoury looks like it had been looted a long time ago.  The weapon racks
+are all empty, not even an arrowhead remain.  There are pieces of wood littered
+all over the floor.  The conquerers must have been very destructive people.  
+There is a training room to the north, and the main keep entrance is west.    ~
+160 8 0
+D0
+~
+~
+0 -1 16050
+D3
+~
+~
+0 -1 16046
+S
+#16048
+The Lord's Private Bath~
+   This must have been a very pleasant room once, but now, like the rest of the
+fortress, it is a scene of vengeance and destruction.  Shards of broken glass
+from a large mirror whose frame stands empty on one wall make it dangerous to
+be barefooted in this room, and the fine porcelin tub is missing several large
+chunks.  The Lord's bedroom is back to the east.    ~
+160 8 0
+D1
+The Lord's bedroom is east through a small door.~
+~
+0 -1 16069
+S
+#16049
+Great Hall~
+   You are in the Great Hall of this keep.  There are long wooden tables
+arranged neatly in rows here.  This was where the occupants of this castle had
+their meals with their Lord.  At the far end, you can see the great table of
+the Lord.    ~
+160 8 0
+D0
+~
+~
+0 -1 16052
+D2
+~
+~
+0 -1 16046
+S
+#16050
+Training Room~
+   This room is totally devoid of furniture.  In the middle of the room, a
+large crest of the Lord is engraved upon the floor.  A faded bronze plaque is
+placed just at the entrance of this room.    ~
+160 8 0
+D2
+~
+~
+0 -1 16047
+E
+crest emblem~
+A faded crest with an eagle rampart is painted onto the floor. You can see
+that the colours were once very bright but the passage of time had reduced
+their splendour.~
+E
+plaque sign~
+The sign reads :
+
+                TRAINING ROOM
+     PLEASE COLLECT YOUR WEAPONS AT THE
+                   ARMOURY~
+S
+#16051
+Kitchen~
+   You enter what used to be the kitchen of this keep.  Cooking implements
+which once hung on racks now litter the ground.  Shards of pottery can be found
+everywhere.  However, there are signs that the fireplace was quite recently
+used.  Warm embers still burn in it.  A trapdoor leads down into the cellar.  ~
+160 8 0
+D1
+~
+~
+0 -1 16052
+D5
+   A sturdy trapdoor leads down to the cellar.~
+trapdoor~
+1 -1 16054
+E
+embers fireplace fire ember~
+   It looks like someone had just roasted some meat over the fire here. It
+smells rather pleasant, though, something about it unsettles you. Your eyes
+drifts off to look at the spit, and you recoil with horror. There are traces
+of clothing stuck onto it!~
+S
+T 18521
+#16052
+Great Hall~
+   Your footstep rings out in the empty hall as you walk around it.  At the
+head of the room is the Lord's table, mounted on a raised platform.  Arrayed
+below are rows of wooden tables for his retainers to wine and dine.  Remnants
+of pennants and shields hang on the wall, a sad reminder of good days gone by.
+The great hall continues south and there is a guardroom north.    ~
+160 8 0
+D0
+~
+~
+0 -1 16056
+D1
+~
+~
+0 -1 16057
+D2
+~
+~
+0 -1 16049
+D3
+~
+~
+0 -1 16051
+S
+#16053
+Smithy~
+   This structure was once a large smithy, but now it has fallen into
+complete disrepair. The central forge is rusted and pockmarked, and the
+anvils and smith's tools lie scattered on the ground, their wooden handles
+gone, and their iron heads rusted through. In the far corner of the room
+lie two ancient skeletons, one fairly large, and one fairly small.~
+160 8 0
+D1
+~
+~
+0 -1 16009
+S
+#16054
+Cellar~
+   You enter a dark cellar where the cooks had kept their food supplies.  The
+smell of garlic still permeates the air after all these years.  A large
+cupboard dominates the eastern wall of the cellar.  Wine casks lie shattered
+here, their contents spilled long ago.    ~
+160 8 0
+D1
+   There is a rather battered cupboard here. It was probably used to keep food.~
+cupboard panel~
+1 -1 16084
+D4
+   The trapdoor leads up into the kitchen.~
+trapdoor~
+1 -1 16051
+E
+cupboard~
+As you touch the cupboard, it swings out a little. You notice that there
+is a passageway behind the cupboard! This must lead somewhere.~
+S
+#16055
+Barracks~
+   The remains of beds and cupboards litters the room.  Nothing of any value
+has been left behind here.  Whoever who looted this place surely was thorough.
+  ~
+160 8 0
+D0
+~
+~
+0 -1 16058
+D1
+~
+~
+0 -1 16056
+S
+#16056
+Guardroom~
+   This guardroom looks very well used.  There are still scuff marks of boots
+on the floor here.  A ladder leads up to the tower of the keep.    ~
+160 8 0
+D2
+~
+~
+0 -1 16052
+D3
+~
+~
+0 -1 16055
+D4
+~
+~
+0 -1 16071
+S
+#16057
+Chapel~
+   There is an altar at the north end of the room but it has dark stains on it.
+It.  You realise that someone had desecreated this place with blood.  The icons
+that decorated this place lie shattered on the ground.  You see a door to the
+north.  That was probably the priest's quarters.    ~
+160 8 0
+D0
+   A simple wooden door blocks off entry to the north.~
+door~
+1 -1 16060
+D3
+~
+~
+0 -1 16052
+S
+#16058
+Barracks~
+   The remains of beds and cupboards litters the room.  Nothing of any value
+has been left behind here.  Whoever who looted this place surely was thorough.
+  ~
+160 8 0
+D1
+~
+~
+0 -1 16059
+D2
+~
+~
+0 -1 16055
+S
+#16059
+Armoury~
+   This armoury held the weapons and armour of the elite guards of the Lord.  
+Too bad their skill was not good enough to save their castle.  At least here,
+some of the racks are still intact.  Perhaps there are still weapons and armour
+among the debris.    ~
+160 8 0
+D3
+~
+~
+0 -1 16058
+S
+#16060
+Priest's Quarters~
+   This room used to be the quarters of the clerics of this castle.  It looks
+like it was very sparsely furnished.  The furniture has been broken up and
+broken shards of ceramics litter the ground.    ~
+160 8 0
+D2
+   A simple wooden door blocks off entry to the south.~
+door~
+1 -1 16057
+S
+#16061
+Guardroom~
+   This guardroom is very well equipped.  There's plenty of supplies of all
+sorts in here.  Of course, this could be because it's still occupied.  The
+sounds of talking seems to be coming from a room to the north.  A large, oak
+door is to the north.    ~
+160 8 0
+D0
+   There is a door in that direction.~
+door oak~
+1 -1 16064
+D1
+~
+~
+0 -1 16062
+S
+#16062
+Stair Landing~
+   As you climb the stairs, you hear sounds of people discussing nearby.  It
+seems to be coming from somewhere to the west.  There are doors to the east and
+west.  A short corridor leads to the north.    ~
+160 8 0
+D0
+~
+~
+0 -1 16065
+D1
+~
+~
+0 -1 16063
+D3
+~
+~
+0 -1 16061
+D5
+~
+~
+0 -1 16046
+S
+#16063
+Library~
+   Shelves line the walls but no books are kept there.  Pieces of parchment and
+paper litter the ground.  Looks like all the books here were taken away, and in
+a very hasty fashion.  A door leads north to the study.    ~
+160 8 0
+D0
+~
+~
+0 -1 16066
+D3
+~
+~
+0 -1 16062
+S
+T 53455
+#16064
+War-room~
+   Maps of all sorts adorn the walls here.  A large, round table sits in the
+middle of this room.  Maps and reports are strewn all over it.  The remains of
+half-eaten meals of unknown nature are on a tray near the door.    ~
+160 8 0
+D0
+~
+~
+0 -1 16067
+D2
+   There is a door in that direction.~
+door~
+1 -1 16061
+S
+#16065
+Corridor~
+   The were once rooms which opened up to this corridor, but they have all been
+sealed up.  The only way you can go is back to the landing.  You wonder why
+they made this corridor lead into a dead end.    ~
+160 8 0
+D2
+~
+~
+0 -1 16062
+S
+#16066
+Study~
+   This is a very spacious room and quite brightly lit.  Shelves line the walls
+but as in the library, there are no books.  You wonder why the books were taken
+away like that.  There is still some good furniture left behind.  A very
+comfortable armchair sits near a broken stained glass window.  There is a
+single human skeleton in this room, amidst a pile of unearthly bones.    ~
+160 8 0
+D0
+~
+~
+0 -1 16069
+D2
+~
+~
+0 -1 16063
+E
+skeleton bones bone~
+   The skeleton appears to belong to a human knight, as it is still in its age
+tarnished armour. A broken longsword is gripped in its right hand, and in its
+left, the battered remains of a heater shield. All around it are the hacked
+off limbs and bodies of his opponent. It seems like the conquerers of this
+castle saw fit not the disturb the body of this valiant warrior.~
+E
+armour~
+   The armour is of a very ancient design, at least 600 years old. There is a
+nasty gash in the breastplate, as if a sharp object had penetrated it. Other
+than that, there are no other signs of damage on it.~
+E
+longsword sword~
+   Inscribed into the hilt of the blade are the words,
+
+          'The rock of Dagmarck'~
+E
+heater shield~
+   The shield bears a proud coat of arms, one which seems vaguely familiar to
+you.~
+E
+arms coat emblem~
+   On a field quartered, azure and sable.~
+S
+#16067
+Guardroom~
+   This guardroom is very well equipped.  There's plenty of supplies of all
+sorts in here.  Of course, this could be because it's still occupied.  A large
+oak door is to the east.    ~
+160 8 0
+D1
+   A solid wooden door is there.~
+door oak~
+1 -1 16068
+D2
+~
+~
+0 -1 16064
+S
+#16068
+Treasury~
+   This is the treasury of the keep.  You can see stacks of records and
+documents on shelves all around the room.  Bags of money are stacked in a
+corner.  There must be a strongbox of some sort somewhere around here.    ~
+160 8 0
+D3
+   There is a solid wooden door there.~
+door oak~
+1 -1 16067
+S
+#16069
+Lord's Bedroom~
+   A large bed dominates this room.  It looks very comfortable and warm, but as
+you come closer, you notice that the mattress is worm-eaten.  Cobwebs hang from
+the bed.  You notice that there is a skeleton of a man in the bed.    ~
+160 8 0
+D2
+~
+~
+0 -1 16066
+D3
+A small door leads to a bathroom.~
+~
+0 -1 16048
+E
+skeleton~
+This looks the like skeleton of a man. He seems to have been killed in his
+sleep. The rotten remains of his clothing still hangs on the bones. It looks
+like velvet or silk. You realise that this was the late Lord of this castle.~
+S
+#16070
+Rampart~
+   You can't see too well here.  The fog is extremely thick here.  The fog
+seems to be coming from somewhere on top of the tower.    ~
+160 8 0
+D0
+~
+~
+0 -1 16073
+D1
+~
+~
+0 -1 16071
+S
+#16071
+Keep Tower~
+   A ladder leads up to the ramparts of the inner bailey.  You feel your hair
+stand on ends here.  Fear perhaps?    ~
+160 8 0
+D0
+~
+~
+0 -1 16074
+D1
+~
+~
+0 -1 16072
+D3
+~
+~
+0 -1 16070
+D4
+~
+~
+0 -1 16076
+D5
+~
+~
+0 -1 16056
+S
+#16072
+Rampart~
+   You can't see too well here.  The fog is extremely thick here.  The fog
+seems to be coming from somewhere on top of the tower.    ~
+160 8 0
+D0
+~
+~
+0 -1 16075
+D3
+~
+~
+0 -1 16071
+S
+#16073
+Rampart~
+   You can't see too well here.  The fog is extremely thick here.  The fog
+seems to be coming from somewhere on top of the tower.    ~
+160 8 0
+D1
+~
+~
+0 -1 16074
+D2
+~
+~
+0 -1 16070
+S
+#16074
+Rampart~
+   You can't see too well here.  The fog is extremely thick here.  The fog
+seems to be coming from somewhere on top of the tower.    ~
+160 8 0
+D1
+~
+~
+0 -1 16075
+D2
+~
+~
+0 -1 16071
+D3
+~
+~
+0 -1 16073
+D4
+A tower rises out of the fog.~
+~
+0 -1 16011
+S
+#16075
+Rampart~
+   You can't see too well here.  The fog is extremely thick here.  The fog
+seems to be coming from somewhere on top of the tower.    ~
+160 8 0
+D2
+~
+~
+0 -1 16072
+D3
+~
+~
+0 -1 16074
+S
+#16076
+Tower Rampart~
+   You can hardly see your hand in front of your face here, the fog is
+incredibly thick.  There is also a lot of static electricity here.  Your hair
+begins to stand on its ends.    ~
+160 8 0
+D5
+~
+~
+0 -1 16071
+S
+#16077
+Dead End~
+   You come to the end of the passageway.  It seems to be a dead end.  On the
+ground you can see the skeletal remains of humans.  Upon closer examination,
+you notice teeth marks on their bones.  There must be a carnivorous creature
+around here.    ~
+160 264 0
+D1
+~
+~
+0 -1 16078
+S
+#16078
+Western Tunnel~
+   This tunnel continues to the west.    ~
+160 264 0
+D1
+~
+~
+0 -1 16079
+D3
+~
+~
+0 -1 16077
+S
+#16079
+Another T-Junction~
+   This passageway comes to an end at a t-junction.  Tunnels lead to the east
+and west.    ~
+160 264 0
+D1
+~
+~
+0 -1 16080
+D2
+~
+~
+0 -1 16083
+D3
+~
+~
+0 -1 16078
+S
+#16080
+Eastern Tunnel~
+   The tunnel continues on towards the east.    ~
+160 264 0
+D1
+~
+~
+0 -1 16081
+D3
+~
+~
+0 -1 16079
+S
+#16081
+Eastern Tunnel~
+   The tunnel continues on towards the east.    ~
+160 9 0
+D1
+~
+~
+0 -1 16082
+D3
+~
+~
+0 -1 16080
+S
+#16082
+Murals Chamber~
+   You enter a very brightly lit chamber.  There are paintings and murals all
+around the room.  A heavy, metal trapdoor is in the middle of the room.  There
+are words of unknown nature engraved upon it.    ~
+160 8 0
+D3
+~
+~
+0 -1 16081
+D5
+   The metal of the trapdoor seems to have a very slick gleam to it, something
+similar to wet blood. But as you run your fingers on it, it is dry.~
+trapdoor~
+1 -1 16090
+S
+#16083
+Tunnel~
+   The tunnel leads upwards and northward.  However, you have a feeling of
+foreboding and doom here, as if you don't belong here.    ~
+160 264 0
+D0
+~
+~
+0 -1 16079
+D2
+~
+~
+0 -1 16085
+S
+#16084
+Secret Tunnel~
+   This tunnel is propped up with timber, and it looks well maintained.  You
+can see a wooden panel at the far western end of this tunnel.    ~
+160 264 0
+D1
+~
+~
+0 -1 16085
+D3
+   There is a wooden panel in this direction.~
+panel~
+1 -1 16054
+S
+#16085
+T-Junction~
+   You have reached a T-junction.  The tunnel continues northward and a well
+used path leads to the west.    ~
+160 264 0
+D0
+~
+~
+0 -1 16083
+D2
+~
+~
+0 -1 16086
+D3
+~
+~
+0 -1 16084
+S
+#16086
+Tunnel~
+   The tunnel leads upwards and northward.  However, you have a feeling of
+foreboding and doom here, as if you don't belong here.    ~
+160 264 0
+D0
+~
+~
+0 -1 16085
+D2
+~
+~
+0 -1 16087
+S
+#16087
+Dark Chamber~
+   You exit into a dark and dank chamber.  You aren't sure how far down you
+have gone but it must have been really deep.  You can't even see the roof of
+this chamber.  A tunnel leads to the north.    ~
+160 8 0
+D0
+~
+~
+0 -1 16086
+S
+#16088
+Crawlway~
+   This crawlway is very small.  You are barely able to squeeze through it.  
+It slopes downward towards the darkness.  Some sort of slippery moss is growing
+on the walls, making it near impossible to climb back up.    ~
+160 264 0
+D3
+~
+~
+0 -1 16087
+S
+#16089
+Bottom of the well~
+   The well is dry, not a drop of water remains but a damp, mossy smell still
+prevails.  The spikes here are somewhat rusty.  You doubt that it would support
+your weight on the journey up.  In the dim light, you notice a dark tunnel in
+the west face of the wall.  It looks man-made.    ~
+160 12 0
+D3
+~
+~
+0 -1 16088
+D4
+~
+~
+0 -1 16006
+S
+#16090
+Dark Passageway~
+   A dimly lit passageway leads towards the east.    ~
+160 8 1
+D1
+~
+~
+0 -1 16091
+D4
+   You can barely make out the outline of something metallic up there.~
+trapdoor~
+1 -1 16082
+S
+#16091
+Amber Room~
+   You enter a room filled with an amber light.  There are murals on the wall,
+but the light does not permit you to see exactly what it is.  In the eastern
+wall, there is an amber door.  A keyhole is placed right in its centre.    ~
+160 1769480 0
+D1
+~
+door~
+1 16020 16092
+D3
+~
+~
+0 -1 16090
+S
+#16092
+Turquoise Room~
+   This room is similar to the amber room, except that instead of an amber
+light the room is filled with a greenish light.  A large door dominates the
+eastern wall.    ~
+160 1769480 0
+D1
+The door is made of turquoise and is similar to the amber door. It too gives
+a jolt to anybody who touches it.~
+door turquoise~
+1 16021 16093
+D3
+~
+door~
+1 16020 16091
+S
+#16093
+Jet Black Room~
+   This small chamber has no furniture, and only jet black painted walls,
+ceiling, and floor. The paint or rock or whatever it is reflects light
+dully, if at all.~
+160 1769480 0
+D1
+   The light from behind the door seems quite bright.  It could be because no
+other light seems to reflect from the walls.    ~
+door~
+2 16022 16094
+D3
+~
+door~
+1 16021 16092
+S
+#16094
+Portal Room~
+   This room is as black as the previous save the immense silvery glow of the
+surface of the circular portal against the far wall.  The portal hums
+slightly...    ~
+160 1769544 0
+D3
+~
+door~
+1 0 16093
+S
+#16095
+whacky zzur's mob loading room~
+GET THE HELL OUT BEFORE ZZUR BEATS YOU.~
+160 33554432 0
+S
+T 16050
+$~

@@ -1,0 +1,81 @@
+name: Slirkindurp
+password: SluszI7xYS
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 34
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20687
+birthtime: 1700600260
+timeplayed: 16382
+lastlogintime: 1700616645
+host: 174.244.016.144
+height: 59
+weight: 134
+base_height: 59
+base_weight: 134
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 29/29
+mana: 0/0
+move: 125/125
+damroll: 3
+hitroll: 3
+strength: 89
+intelligence: 65
+wisdom: 77
+dexterity: 79
+constitution: 95
+charisma: 58
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+1700604673 @WDaedela@W tells you, 'the bard songs increase in power as you level@W'@0
+1700604707 @WDaedela@W tells you, 'the game is totally ready to play.  I just meant to skip the newbie training zone@W'@0
+1700604712 @WDaedela@W tells you, 'it sure does!@W'@0
+1700604751 @WDaedela@W tells you, 'I plan to haha@W'@0
+1700604755 @WDaedela@W tells you, 'that's how we hook 'em!@W'@0
+1700604963 @WDaedela@W tells you, 'I'm updating help files now so I might not be able to hear you if you send me a tell@W'@0
+1700606351 @WDaedela@W tells you, 'the new help file on magic is up@W'@0
+$
+gossips:
+1700611169 Porath gossips, 'interesting, never ID'ed any of those yet'
+1700611197 Daedela gossips, 'size file is updated'
+1700611252 Chinok gossips, '6 still in game, some are quest..'
+1700611273 Chinok gossips, 'oddly enough, all the size minus items are gone tho.'
+1700613139 Daedela gossips, 'alright, the help files are fully updated'
+1700614983 Daedela gossips, 'man, I really want to call out from rehearsal tonight and just hang out playing haha'
+1700615022 Porath gossips, 'it's raining here so good time to stay indoors'
+1700615149 Daedela gossips, 'That sounds lovely to me haha'
+1700615157 Daedela gossips, 'okay, I gotta go get ready.  I'll be back later'
+1700615164 Porath gossips, 'cya'
+$

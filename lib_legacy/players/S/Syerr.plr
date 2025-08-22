@@ -1,0 +1,91 @@
+name: Syerr
+password: SyTGdf8WV4
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 10
+race: 3
+level: 21
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18412
+birthtime: 1358406739
+timeplayed: 326906
+lastlogintime: 1505488597
+host: 178.165.128.159
+height: 50
+weight: 196
+base_height: 50
+base_weight: 196
+base_size: 2
+natural_size: 2
+alignment: 347
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8050
+lastlevel: 0
+hitpoints: 231/231
+mana: 44/44
+move: 126/126
+damroll: 4
+hitroll: 5
+strength: 96
+intelligence: 63
+wisdom: 66
+dexterity: 100
+constitution: 75
+charisma: 59
+cash: 6 24 129 9
+experience: 1792839
+pagelength: 50
+quit_reason: 7
+saveroom: 8050
+skills:
+401 260
+402 260
+403 260
+404 260
+411 260
+415 260
+416 50
+421 241
+428 50
+431 260
+434 260
+438 119
+443 180
+444 250
+463 260
+464 260
+465 260
+466 260
+467 260
+468 260
+0 0
+trophy:
+1 8012 1.000000
+1 8014 2.000000
+1 2002 1.500000
+1 2001 0.500000
+1 2004 0.500000
+1 2005 1.000000
+1 2003 1.000000
+1 18507 1.000000
+1 8001 1.500000
+1 8021 0.500000
+1 8022 0.500000
+1 36003 2.000000
+1 36002 3.500000
+1 36001 1.500000
+1 8000 1.000000
+1 8002 5.000000
+1 8023 2.000000
+1 8013 2.500000
+1 8016 2.000000
+1 55702 0.333333
+1 8524 0.333333
+0 0 0

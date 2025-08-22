@@ -1,0 +1,1141 @@
+#13301
+Entrance to a Mine~
+   Dug into the sides of a solid-looking foothill, this tunnel surprisingly
+hits solid rock very fast.  The cavern's mouth is very wide and has the
+unmistakable marks of dwarven craftmanship everywhere.  A packed-down stairway
+with shallow steps leads back up to the Eldorian Foothills and a small tunnel
+leads north into a well-lit shaft humming slightly with the sound of distant
+activity.    
+~
+133 12 12
+D0
+~
+~
+0 0 13302
+D4
+~
+~
+0 0 55923
+S
+#13302
+Miner's Cavern Intersection~
+   Torches placed at regular intervals light the mine with a strong, if
+somewhat smoky, illumination.  The walls are made of a black rock with
+beautiful bands of intrusive crystals that sparkle in the firelight.  In some
+places, it looks like the walls have been chipped at to get to a particularly
+eye-catching crystal specimen.  Tunnels branch off in all directions here,
+though to the south is a fresh breeze indicating the mine's exit.    
+~
+133 12 12
+D0
+~
+~
+0 0 13315
+D1
+~
+~
+0 0 13337
+D2
+~
+~
+0 0 13301
+D3
+~
+~
+0 0 13303
+S
+#13303
+West Shaft~
+   Smoky torches light this tunnel, showing strong support beams and glinting
+stone in the walls of the shaft.  However, rather than any precious gems, it
+seems that the glinting is only quartz and mica - pretty in the light, but
+worthless.  A small pile of handcarved toys sits in one corner.  The mine shaft
+continues west and the shaft intersection is to the east.    
+~
+133 264 12
+D1
+~
+~
+0 0 13302
+D3
+~
+~
+0 0 13304
+S
+#13304
+West Shaft~
+   The mine shaft continues east and west here, following what was once a vein
+of some metal or mineral and is now probably fine dwarven craftmanship in the
+hands of people all over Caelia.  Though it looks like this shaft is no longer
+actively being mined, it still sees some traffic by dwarves inspecting the
+walls for secondary veins or particularly fine specimens of the quartz crystals
+that seem to be everywhere, glinting in the torchlight.    
+~
+133 264 12
+D1
+~
+~
+0 0 13303
+D3
+~
+~
+0 0 13305
+S
+#13305
+West Shaft~
+   Strong torchlight illuminates solid-looking oak support beams throughout the
+mine tunnel, which leads east and west from here.  The walls are composed of a
+mix of basalt and granite sprinkled with many different mineral veins as well
+as the shiny glint of quartz and mica and, occasionally, black obsidian
+inclusions.  Though it is not as heavily trafficked as other sections of the
+mine, the western shaft is still decently populated.    
+~
+133 264 12
+D1
+~
+~
+0 0 13304
+D3
+~
+~
+0 0 13306
+S
+#13306
+West Shaft~
+   Small boulders scattered on the floor of the mine make footing treacherous
+here, though tracks in the dirt indicate that there were recently even more
+rocks along the sides of the tunnel.  Perhaps this area is actively being
+cleared.  The tunnel continues east and west.    
+~
+133 264 12
+D1
+~
+~
+0 0 13305
+D3
+~
+~
+0 0 13307
+S
+#13307
+West Shaft~
+   The mine continues east and west here, lit everywhere by bright torchlight.
+Judging by the soot on the sides of the tunnel, this part of the mine has been
+in operation for quite a while.  Stones of many colors line the walls, but it
+seems like the dwarves ignore anything that isn't obviously valuable.  It does
+put the lie to the stereotypical uniform grey color of rocks, though.    
+~
+133 264 12
+D1
+~
+~
+0 0 13306
+D3
+~
+~
+0 0 13308
+S
+#13308
+A Bend in the West Shaft~
+   The mine shaft bends north and east here, probably following the vein of
+whatever it was that was originally mined here.  The distant hum and clink of
+mining activity can be heard from afar, but this shaft seems pretty quiet.  It
+probably isn't being actively mined anymore.
+~
+133 264 12
+D0
+~
+~
+0 0 13309
+D1
+~
+~
+0 0 13307
+S
+#13309
+West Shaft~
+   The air seems fresher in this part of the mine owing to a light breeze.  
+The torches are less smoky as well, so there must be some ventilation shaft
+around here somewhere.  The shaft curves south and west, probably following the
+natural vein of metal or gems that was originally mined here.    
+~
+133 264 12
+D2
+~
+~
+0 0 13308
+D3
+~
+~
+0 0 13310
+S
+#13310
+West Shaft~
+   This section of the western shaft looks much like any other part of the
+mine.  Torchlit stones glimmer in the cool air whilst rubble on the floor makes
+it a little unsafe to walk around without paying attention to one's
+surroundings.  The mine shaft continues east and west.    
+~
+133 264 12
+D1
+~
+~
+0 0 13309
+D3
+~
+~
+0 0 13311
+S
+#13311
+West Shaft~
+   Only torchlight illuminates the long tunnels of the mine.  All that stands
+between the mine and untold tons of rock above are steady oak beams that still
+look strong despite their age, though from time to time a bit of dust falls
+down from above.  This, along with the smoke of the torches, makes it a little
+difficult to see very far.  The shaft continues east and west.    
+~
+133 264 12
+D1
+~
+~
+0 0 13310
+D3
+~
+~
+0 0 13312
+S
+#13312
+West Shaft~
+   The air is still in this part of the mine, and it seems to be heavy with
+humidity as well.  Some of the granite on the walls is covered with lichens in
+various colors ranging from black to green to orange.  It does not seem like
+this part of the mine is being actively worked on, judging by the lichen
+growth.  The shaft continues east and west.    
+~
+133 264 12
+D1
+~
+~
+0 0 13311
+D3
+~
+~
+0 0 13313
+S
+#13313
+A Bend in the West Shaft~
+   The mine shaft bends north and east here, and there is definately a cool
+hunidity present in the air.  There is a slight breeze that flows in from the
+north, and the sounds of mining activity are so faint that the cavern is almost
+encased in silence.  The strongest sound is that of the crackling torches that
+light the shaft.    
+~
+133 264 12
+D0
+~
+~
+0 0 13314
+D1
+~
+~
+0 0 13312
+S
+#13314
+A Dead End in the West Shaft~
+   The shaft looks as though it is supposed to continue north here, but it
+dead-ends in a pool of water.  Small fungi grow here, but not many; it is
+probable, judging by the slow current in the pool, that the dwarves hit an
+underground spring that made it quite impossible to continue in this direction.
+The only exit is to the south.    
+~
+133 264 12
+D2
+~
+~
+0 0 13313
+S
+#13315
+Northern Shaft~
+   Boulders and small rocks cover this section of the shaft.  Some are stacked
+and ready to be hauled away by the miners, but some are simply jumbled
+together, making it rather difficult to inspect the walls of the shaft closely.
+The sound of activity echoes up and down this shaft, indicating that it is
+probably still being mined.  The intersection of tunnels is to the south and
+the shaft continues north.    
+~
+133 264 12
+D0
+~
+~
+0 0 13316
+D2
+~
+~
+0 0 13302
+S
+#13316
+A Bend in the Northern Shaft~
+   Dust in the air from pulverized rocks shows that this shaft of the mines is
+probably still active.  Large rocks litter the floor, ready to be carted off by
+young workers.  The sides of the shaft are covered in alternating streaks of
+black and pink veins of minerals, but it seems the dwarves were uninterested in
+mining them.  The shaft continues to the south and bends to the east.    
+~
+133 264 12
+D1
+~
+~
+0 0 13317
+D2
+~
+~
+0 0 13315
+S
+#13317
+A Bend in the Northern Shaft~
+   The mine takes another turn here, leading north and west.  Bright torchlight
+shows walls studded with feldspar, quartz, and other minerals.  Occasionally
+there is an odd-looking hole in the walls of the shaft.  The sounds of activity
+come from all directions.    
+~
+133 264 12
+D0
+~
+~
+0 0 13318
+D3
+~
+~
+0 0 13316
+E
+hole odd walls~
+   It looks like this is a place where the dwarves saw a small mineral
+inclusion they wanted and mined it out of the sides of the walls.    
+~
+S
+#13318
+The Northern Shaft~
+   The mine shaft slopes downward to the north at a gentle angle, following the
+vein of metal or mineral that the dwarves are seeking.  A few stone benches
+line the walls here underneath the smoky, yet bright, torches.  The clinking
+sounds of metal on rock are strong, suggesting this section of the mines is
+still active.    
+~
+133 264 12
+D0
+~
+~
+0 0 13319
+D2
+~
+~
+0 0 13317
+E
+bench benches walls~
+   There are a few stone benches along the walls here, set up in case some
+dwarves need to take a short break.    
+~
+S
+#13319
+The Northern Shaft~
+   This mine shaft still looks rather rough, with chunks of rock sticking out
+in many directions and lacking the polished look of a finished dwarven
+creation.  Dark veins run along the tunnel's walls parallel to the shaft,
+giving the impression of being inside a large, striped mouth.  It is possible
+to proceed north or south.    
+~
+133 264 12
+D0
+~
+~
+0 0 13320
+D2
+~
+~
+0 0 13318
+S
+#13320
+The Northern Shaft~
+   Yellowish torchlight shows more and more of the seemingly endless mine
+shaft, which leads north and south here.  Rough chunks of ore and what appears
+to be normal stone are scattered about the tunnel, impeding progress a little.
+The glittering mica and quartz of the walls gives this part of the mines a
+magical appearance, but it is only rock, after all.    
+~
+133 264 12
+D0
+~
+~
+0 0 13321
+D2
+~
+~
+0 0 13319
+S
+#13321
+The Northern Shaft~
+   The mine descends a bit to the north, though south will lead back to the
+main tunnels and, far away, the entrance.  Torches seem a little smokier than
+usual in this room and it does not seem to be particularly well ventilated.  
+The walls of the shaft are once again covered in veins of minerals stretching
+down the passageway.    
+~
+133 264 12
+D0
+~
+~
+0 0 13322
+D2
+~
+~
+0 0 13320
+S
+#13322
+A Bend in the Northern Shaft~
+   This section of the mines is lower in elevation than the tunnel to the
+south, and for once the floor is clear of ore and rubble.  The shaft bends off
+to the east, following the natural curve of the iron vein mined in this
+section.  Loud clinking noises echo around, making it slightly difficult to
+tell where they are coming from.    
+~
+133 264 12
+D1
+~
+~
+0 0 13323
+D2
+~
+~
+0 0 13321
+S
+#13323
+The Northern Shaft~
+   Though the floor is littered with chunks of ore, it is still fairly easy to
+move around in here.  The steel dwarven boots have crunched over rock for so
+long that this room is thick with a heavy rock dust, coloring everything grey
+that sits here for more than a moment.  The shaft continues east and west.    
+~
+133 264 12
+D1
+~
+~
+0 0 13324
+D3
+~
+~
+0 0 13322
+S
+#13324
+The Northern Shaft~
+   Deep underneath the mountains of Eldoria, the thick oak support beams are
+all that prevent the weight of the earth from crashing down on this narrow
+tunnel.  Good thing the dwarven craftsmen are wise enough to use one of the
+strongest known woods in their mines.  The shaft goes east and west, following
+a vein of iron.    
+~
+133 264 12
+D1
+~
+~
+0 0 13325
+D3
+~
+~
+0 0 13323
+S
+#13325
+The Northern Shaft~
+   A vein of pure white quartz runs along the northern wall of this section of
+the mines, running for nearly three feet before it disappears into the main
+tunnel section.  It looks like it intersected the iron vein for a while, though
+no sign of it can be seen on the other side.  The shaft runs east-west.    
+~
+133 264 12
+D1
+~
+~
+0 0 13326
+D3
+~
+~
+0 0 13324
+S
+#13326
+An Intersection in the Mines~
+   This rather open section of the mines is where the east-west running vein
+and the north-south running vein seem to have met each other.  The northeast
+corner of the intersection is, indeed, rich with iron ore in amazing
+quantities.  The tunnels lead back to the west and south, though it looks like
+the dwarves are still solidifying the connection between the two shafts - the
+southern shaft is about a foot higher than the eastern, so it would be prudent
+to watch your step!    
+~
+133 264 12
+D2
+~
+~
+0 0 13327
+D3
+~
+~
+0 0 13325
+S
+#13327
+The Black Shaft~
+   The shaft seems to brighten up as it heads north, with occasional rocks of
+lighter color intruding on the dark veins that have the rest of the shaft in
+their grip.  Running north-south to follow an iron vein, the shaft is quite
+wide here; however, it was definately made for dwarves.  Taller races might
+bump their heads on the low ceiling.    
+~
+133 264 12
+D0
+~
+~
+0 0 13326
+D2
+~
+~
+0 0 13328
+S
+#13328
+The Black Shaft~
+   Though the torches burn valiantly against the dark, the black walls of the
+shaft seem to absorb the firelight, and the rough walls invite shadows to dance
+around them.  Fortunately the sounds of miners at work keeps this section of
+the tunnels from being terribly frightening.  The black shaft continues north
+and south.    
+~
+133 264 12
+D0
+~
+~
+0 0 13327
+D2
+~
+~
+0 0 13329
+E
+shadows~
+   The shadows in this room barely conceal a rough emblem chiselled into the
+western wall: an inverted triangle surrounded by three spheres.  Someone
+apparently put it here as homage to the goddess Kourrya.    
+~
+S
+#13329
+The Black Shaft~
+   Following a rich vein of iron, this mine shaft continues north and south.  
+None of the lighter-colored minerals of the earlier section of the mines can be
+seen here.  An alcove has been drilled into the eastern wall, looking eerily
+like a wound in the rock.    
+~
+133 264 12
+D0
+~
+~
+0 0 13328
+D2
+~
+~
+0 0 13330
+E
+alcove eastern wall~
+   Upon closer inspection, the sides of the drilled alcove look to be made of
+kimberlite.  There were diamonds here once.    
+~
+S
+#13330
+The Black Shaft~
+   Sturdy oak support beams prevent the mine from collapsing, lending the
+strength of the druids' most beloved wood to a work they are well suited for.
+A faint humming sound can be heard underneath the clinking sounds echoing back
+and forth from the north and south, though it is difficult to tell what it
+means.    
+~
+133 264 12
+D0
+~
+~
+0 0 13329
+D2
+~
+~
+0 0 13331
+D3
+The faint outline of a door can be seen in the wall to the west.
+~
+stone door darkdoor~
+1 -1 13340
+S
+#13331
+The Dark Shaft~
+   In this dark section of the mine, it finally becomes clear what the dwarves
+are mining here: Iron!  Ore of this base metal glints out from the dark walls
+of the mine shaft, simply waiting to be extracted by the expert hands of the
+miners.  The shaft continues both north and south.    
+~
+133 264 12
+D0
+~
+~
+0 0 13330
+D2
+~
+~
+0 0 13332
+S
+#13332
+The Dark Shaft~
+   Dark stones line the walls in all directions, from the shiny, nearly
+metallic hematite to the dark basalt that speaks of the volcanic origins of the
+rock.  Heavy tracks of minecarts and dwarven bootprints criscross one another
+so often that individual tracks cannot be made out.  The shaft continues north
+and south.    
+~
+133 264 12
+D0
+~
+~
+0 0 13331
+D2
+~
+~
+0 0 13333
+S
+#13333
+A Bend in the East Shaft~
+   Sturdy pillars of oak support the weight of the earth in this bend of the
+shaft, which leads north and west.  The western end looks very large, though
+bright torchlight comes form both directions.  Crystallized minerals reflect
+the torchlight back beautifully from the veins embedded in the stone.  Though
+it is cool in the mines, the dwarven workers probably work hard enough to keep
+more than warm enough - and visiting adventurers should keep this in mind as
+well.    
+~
+133 264 12
+D0
+~
+~
+0 0 13332
+D3
+~
+~
+0 0 13334
+S
+#13334
+East Shaft~
+   Still massive, though not as large as the natural cavern to the east, this
+tunnel runs east-west.  A slight breeze carries cool air around the mine,
+coming from the east.  The rocks are mostly dark here, though strains of a pink
+mineral are abundant as well.  The dirt of the floor is stamped down with years
+and years of continual labor and the passageway is kept clear.  This part of
+the mine likely sees heavy traffic.    
+~
+133 264 12
+D1
+~
+~
+0 0 13333
+D3
+~
+~
+0 0 13335
+S
+#13335
+A Rest Area~
+   This is a suddenly broad area in the mines.  It looks like the dwarves hit a
+natural cavern with their tunneling, and have turned it into a rest area for
+the mine workers.  Stalactites and stalagmites, though small, appear here and
+nowhere else in the mine complex.  Benches are arranged into squares for the
+miners to rest on or eat dinner around and stacks of crates with supplies are
+arranged nicely on the walls of the cavern.  A large, bright fire lights up the
+room, while comparatively small and dark mine shafts lead to the east and west.
+It seems like a good place to take a break.    
+~
+133 33554440 12
+D1
+~
+~
+0 0 13334
+D3
+~
+~
+0 0 13336
+S
+#13336
+East Shaft~
+   The tunnel widens a bit here, evenly spaced torches highlighting beautiful
+quartz crystals embedded in the granite walls.  The miners seem to have been
+tunneling after a specific vein of some metal or mineral, but it is difficult
+to say what it was.  The mine continues east and west.    
+~
+133 264 12
+D1
+~
+~
+0 0 13335
+D3
+~
+~
+0 0 13337
+S
+#13337
+The Begining of the East Shaft~
+   A massive tunnel chipped out of the earth leads off from the intersection to
+the east.  Rugged wooden pillars support the mine in places to ensure the
+safety of those working inside the mine.  The temperature in the mine is cool
+despite the proximity to the fiery torches and the close, almost cramped tunnel
+walls.  The shaft continues east and west.    
+~
+133 264 12
+D1
+~
+~
+0 0 13336
+D3
+~
+~
+0 0 13302
+S
+#13338
+An unfinished room~
+You are in an unfinished room.
+~
+0 0 12
+S
+#13339
+An unfinished room~
+You are in an unfinished room.
+~
+0 0 12
+S
+#13340
+The Broken Elevator~
+   A spacious room has been cut into the surrounding stone, made to house a
+simple elavator constructed of stone and oak with iron chain pulleys.  
+Unfortunately, the iron chains have gone to rust and one of the pulleys is
+broken.  This seems a bit out of place - everywhere else in the mine, dwarven
+tools are cared for rigorously and never allowed to remain broken for long.  
+It looks possible to continue downwards by a narrow stone stair, though mine
+carts or other heavy objects could not be brought down unless the elevator were
+to be fixed.    
+~
+133 12 12
+D1
+A door has been cut into the stone of the eastern wall.
+~
+stone door darkdoor~
+1 -1 13330
+D5
+~
+~
+0 0 13341
+S
+#13341
+Below the Broken Elevator~
+   Two empty torch brackets speak of a time when this area of the mine was well
+cared-for, but broken tools covered in dust that litter the floor suggest that
+this place has not seen active work in some time.  Indeed, closer inspection of
+the floor reveals mine cart tracks underneath bootprints and other disturbances
+of the dirt.  In fact, some of the tracks don't look humanoid at all.  A narrow
+stone stair leads up to the top of the elevator shaft, and the tunnel continues
+to the south.    
+~
+133 264 12
+D2
+~
+~
+0 0 13342
+D4
+~
+~
+0 0 13340
+S
+#13342
+The Limestone Shaft~
+   Leading north and south, sloping downwards to the south, this section of the
+mines seems copletely diferent from the hard granite and basalt layers above,
+as the walls are made of a soft, easy-to-work limestone.  Also unlike the upper
+mine shafts, this tunnel lacks the stunning crystalline structures and rich
+mineral veins.  The shaft is also wider, though this could just be due to the
+relative ease of working limestone.    
+~
+133 264 12
+D0
+~
+~
+0 0 13341
+D2
+~
+~
+0 0 13343
+S
+#13343
+The Limestone Shaft~
+   Sloping downwards to the south and up to the north, this tunnel is made of
+soft limestone.  Unusual in the extreme, for veins of precious metal tend not
+to exist in this softer stone, the shaft seems nevertheless quite like a
+dwarven-made structure and unlike a natural tunnel.  Rough edges and oak
+supports line the walls, though the supports could probably use some updating.
+Lichens and fungi, pale-colored, grow near the bottom of the shaft.    
+~
+133 264 12
+D0
+~
+~
+0 0 13342
+D2
+~
+~
+0 0 13344
+S
+#13344
+The Limestone Shaft~
+   The temperature in these limestone tunnels is definitely getting cooler as
+they descend into the depths of the earth.  South is deeper into this unusual
+section of the mine, and north leads back up to the broken elevator shaft and,
+ultimately, the active section of the mines.  A strange, high-pitched squeaking
+echoes all around the mineshaft, and tiny cave bugs are constantly underfoot.
+Signs of non-animal life are rare, but can be seen here and there - a broken
+hammer, a bootprint overgrown with fungus, and more.    
+~
+133 264 12
+D0
+~
+~
+0 0 13343
+D2
+~
+~
+0 0 13345
+S
+#13345
+A Bend in the Limestone Shaft~
+   The tunnel bends to the north and west here.  Along the southeastern wall is
+a deposit of strange, blocky crystals that seem somehow familiar.  No fungus
+grows on that wall, but the inhabitants of the cave don't seem to mind its
+presence, some of the larger ones even going out of their way to...  Lick the
+crystals?    
+~
+133 264 12
+D0
+~
+~
+0 0 13344
+D3
+~
+~
+0 0 13346
+E
+crystal crystals blocky southeast wall~
+Upon closer inspection, it appears this is a deposit of rock salt!
+~
+S
+#13346
+Buried Skeleton of a Great Monster~
+   Magnificently laid bare against the pale stone of the tunnel is the skeleton
+of a long-dead creature, bones turned to stone over the ages.  Whatever it was,
+it had four limbs, a pointy snout, and was extremely large.  The shaft itself
+has been widened into something of a cavern to allow the entire skeleton to be
+observed at once.  It is a humbling reminder that even the greatest and most
+powerful creatures can be defeated, if only by time itself.  The tunnel leads
+east and west from here.    
+~
+133 24 12
+D1
+~
+~
+0 0 13345
+D3
+~
+~
+0 0 13347
+S
+#13347
+The Limestone Shaft~
+   The floor slopes sharply here, leading down to the west and up to the east.
+The walls seem rather featureless, except for the tiny lichens and fungi that
+cling to their existance with everything they have, though there are very few
+nutrients here and even less water.  Still, there seems to be enough to support
+a tiny system of bugs and other resilient critters.    
+~
+133 264 12
+D1
+~
+~
+0 0 13346
+D3
+~
+~
+0 0 13348
+S
+#13348
+The Limestone Shaft~
+   The influence of the dwarves is pretty minimal in this tunnel.  It is shored
+up with supports and obviously bears the marks of picks and other tools, but
+there are no torch brackets, old tools, or even footprints.  Instead there is a
+relative abundance of cave life that has claimed the tunnel as their own.  Why
+was this tunnel made, if only to be abandoned?  The shaft continues east and
+west.    
+~
+133 264 12
+D1
+~
+~
+0 0 13347
+D3
+~
+~
+0 0 13349
+S
+#13349
+A Turn in the Limestone Shaft~
+   There is a sudden bend here, and stairs lead down in the northerly direction
+from a landing that connects to the main tunnel east.  The stairs seem,
+suddenly, very unnatural when compared to the rest of the mineshaft.  Surely
+mine carts wouldn't be able to make it down there, which again asks the
+question of what the dwarves wanted down in this mineral-poor limestone bed.  
+It must have been something, surely...    
+~
+133 264 12
+D0
+~
+~
+0 0 13350
+D1
+~
+~
+0 0 13348
+S
+#13350
+The Limestone Shaft~
+   Deep inside the dark earth, the air is cold and still yet smells fresh.  
+Here and there tiny patches of fungus grow out of the sides of the shaft, and
+there are tiny shells embedded in the limestone.  How did they get here, so far
+from the sea?  It could just be some dwarven trick; they are considered masters
+of stone with good reason.  The tunnel continues to the north and south,
+sloping downwards to the south.    
+~
+133 264 12
+D0
+~
+~
+0 0 13351
+D2
+~
+~
+0 0 13349
+S
+#13351
+The Limestone Shaft~
+   Nearly level here, the mine shaft is shored up with more oak supports than
+elsewhere, suggesting the tiniest bit of instability in this part of the
+tunnel.  Hopefully the dwarves knew what they were doing.  It seems so, for
+despite many pebbles on the floor there are no threatening creaks or fissures.
+Still, it might be wise to leave north or south.    
+~
+133 264 12
+D0
+~
+~
+0 0 13352
+D2
+~
+~
+0 0 13350
+S
+#13352
+A Bend in the Limestone Shaft~
+   A bend in the limestone shaft leads east and south, with the eastern end
+descending yet further into the earth.  Clicking noises are coming from
+somewhere nearby, but cannot be placed precisely.  The limestone down here is
+so finely grained that it could probably be written with like chalk, though it
+does not seem quite as brittle as chalk.  Lichens don't seem to care, and grow
+on it without worrying about superficial things like whether or not someone
+could use their home as a writing material.    
+~
+133 264 12
+D1
+~
+~
+0 0 13353
+D2
+~
+~
+0 0 13351
+S
+#13353
+The Limestone Shaft~
+   What would otherwise be a hardly noticeable trickle of water has smoothed
+down the southern wall of the shaft to such an extent that it reflects back all
+light, almost like a mirror.  Fungi and lichens are particularly abundant here,
+no doubt due to the water, but there is so little water that a thirsty
+adventurer would hardly be able to get a bare mouthful.  The shaft continues
+east and west.    
+~
+133 264 12
+D1
+~
+~
+0 0 13354
+D3
+~
+~
+0 0 13352
+S
+#13354
+A Bend in the Limestone Shaft~
+   The shaft turns once again here, leading south and west.  The western route
+slopes upwards and out of the mine, though by now it would be quite a journey
+back to the surface.  The lumber supports seem old, but not yet in need of
+repair - the dwarves built to last, even though they have to all appearances
+abandoned this deep shaft.    
+~
+133 264 12
+D2
+~
+~
+0 0 13355
+D3
+~
+~
+0 0 13353
+S
+#13355
+Dead End~
+   Here, the limestone tunnel seems to have broken into a natural cavern below.
+There is a fairly sizeable hole leading down into an open, dark space.  Oddly,
+the dwarves have apparently not modified the hole much from its original
+roughness, leaving it with an unfinished look that doesn't fit at all with the
+rest of the mine shaft.  North back up the limestone shaft or down into
+darkness are the only two options.    
+~
+133 264 12
+D0
+~
+~
+0 0 13354
+D5
+~
+~
+0 0 13356
+S
+#13356
+The Heart of the Mine~
+   Here, the dwarven miners have broken into a spacious natural cavern.  
+Breathtakingly beautiful crystal formations are everywhere, as though the
+cavern itself were the inside of a geode.  Oddly, the crystals have not been
+mined, though many show signs of pick and chisel nearby.  It almost looks like
+the dwarves were removing baser rocks in order to bring forth the natural
+beauty of the crystals rather than extracting them to sell for profit.  
+Massive stalactites and stalagmites are spaced nearly evenly around the room,
+and natural passages lead off to the north, west, and south.  The dwarven-made
+tunnel leaves up.    
+~
+133 264 12
+D0
+~
+~
+0 0 13359
+D1
+   The air coming from this direction is rather chilly.  Is that a door
+concealed in the rock?    
+~
+stones door~
+1 -1 13358
+D2
+~
+~
+0 0 13357
+D3
+~
+~
+0 0 13360
+D4
+~
+~
+0 0 13355
+E
+stalactite stalagmite stalactites stalagmites~
+   There is one due north, and then othersto the northeast, northwest,
+southeast, and southwest.  If one were to connect them in the right way, they
+would form a pentagram.    
+~
+S
+#13357
+The Heart of the Mine South~
+   It is very hot in here, though the reason is immediately apparent: there is
+a river of molten lava directly to the south!  Though the tunnels continue on
+past the lava, it would be quite impossible to reach them without burning
+oneself to a crisp.  Along the eastern wall are what seem to be implements of a
+forge.  This place was probably used by the dwarves in construction of some of
+their finest artifacts, though it is now abandoned.  A cool breeze comes in
+from the north, which is the only sensible exit.    
+~
+133 264 12
+D0
+~
+~
+0 0 13356
+D2
+Bubbling hot lava blocks the way south.
+~
+~
+3 -1 -1
+S
+#13358
+The Heart of the Mine East~
+   Amazingly, the eastern heart of the mine is home to a narrow chimney that
+reaches all the way out of the bedrock and up to the foothills above.  Chill
+air rushes down from above, giving some freshness to the otherwise stale cavern
+air.  The chimney is barely straight and wide enough to allow light from the
+outside world down here, whether it be starlight or the sun.  It is, however,
+too small for even a gnome to use as an exit.    
+~
+133 264 12
+D3
+   There is a door here concealed in the stone.    
+~
+door~
+1 -1 13356
+E
+runes~
+These runes give off a picture of a hungry person giving a wonderfull reward
+for helping him.    
+~
+S
+#13359
+The Heart of the Mine North~
+   In the north heart of the mine, a foul smell pervades the air.  Bones of
+tiny creatures crunch underfoot, many of them savagely ripped into splinters.
+A few larger bones have visible toothmarks but remain whole.  A nest of torn
+cloth and fur in one corner marks this as the lair of some kind of beast.  The
+heart of the mine is to the south.    
+~
+133 264 12
+D2
+~
+~
+0 0 13356
+S
+#13360
+The Heart of the Mine West~
+   Water drops down slowly from a magnificent waterfall frozen in stone.  It
+catches in a basin of dwarven manufacture set about waist-high.  The basin has
+tiny upwards-growing stalagmites where the water falls, suggesting it's been
+here for quite some time.  The excess water falls to the floor and drains away
+in a tunnel leading west that is far too small to allow passage.  The heart of
+the mine lies to the west.    
+~
+133 264 12
+D1
+~
+~
+0 0 13356
+E
+sign~
+The sign in the room reads.  Make your self at home drink and fill your
+canteens if needed.    
+~
+S
+$~

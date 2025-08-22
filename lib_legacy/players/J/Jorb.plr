@@ -1,0 +1,107 @@
+name: Jorb
+password: Jo7sLtB4Ic
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 2
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19988
+birthtime: 1628138635
+timeplayed: 36335
+lastlogintime: 1726405235
+host: 068.036.093.003
+height: 32
+weight: 70
+base_height: 32
+base_weight: 70
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: xy
+effectflags: k 0 0
+prefflags: hnoxC ae
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 7
+loadroom: 3001
+hunger: 19
+lastlevel: 0
+hitpoints: 69/69
+mana: 1/0
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 89
+intelligence: 92
+wisdom: 100
+dexterity: 59
+constitution: 69
+charisma: 53
+experience: 116430
+quit_reason: 5
+saveroom: 3001
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 120
+424 120
+438 50
+443 50
+444 50
+451 51
+457 75
+458 64
+459 61
+460 120
+462 60
+463 50
+466 50
+0 0
+trophy:
+1 8001 1.000000
+1 36002 1.000000
+1 8020 1.000000
+1 8000 1.000000
+1 8012 1.000000
+1 8010 2.000000
+1 8011 1.000000
+1 8015 1.000000
+1 8021 1.000000
+1 8016 1.000000
+1 8014 3.000000
+1 8022 1.200000
+0 0 0
+tells:
+1628220322 @WIrk@W tells you, 'join my group@W'@0
+1628220396 @WIrk@W tells you, 'join my group@W'@0
+1628221064 @WIrk@W tells you, 'join my group@W'@0
+1628271059 @WIrk@W tells you, 'join my group@W'@0
+1628276093 @WIrk@W tells you, 'join my group@W'@0
+1628301539 @WIrk@W tells you, 'join my group@W'@0
+1628366110 @WIrk@W tells you, 'join my group@W'@0
+1628367292 @WIrk@W tells you, 'join my group@W'@0
+$
+gossips:
+1632859383 Chinok gossips, 'not bad.. not great either.. typically catch a boat full, but water temp was really warm, and they weren't biting much'
+1632859413 Chinok gossips, 'bad day of fishing is better than a good day of work'
+1632859760 Chinok gossips, 'got my first elect bill since isntalling my solar stuff'
+1632859781 Chinok gossips, '104 bucks for 56 days, '
+1632859803 Chinok gossips, 'the previous 30 days was $243'
+1632859821 Chinok gossips, 'and thatt 56 day stretch, included 3 hurricanes.. '
+1632859847 Chinok gossips, 'more like 75% reduction.'
+1632859971 Chinok gossips, 'LG'
+1632860334 Chinok gossips, 'the tesla ones were a concern about fire :)'
+1632860388 Chinok gossips, 'at least what the guys told me that sold me mine.. 30 year warranty'
+1632860436 Chinok gossips, 'best to wait on batteries -- what I'm hearing.. there is some new tech coming down that will really make batteries last longer and be more useful'
+$

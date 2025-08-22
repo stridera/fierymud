@@ -1,0 +1,108 @@
+name: Noogins
+password: Nol5c2vR0K
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 0
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18742
+birthtime: 1409883750
+timeplayed: 7007
+lastlogintime: 1686729087
+host: 073.157.208.014
+height: 60
+weight: 144
+base_height: 60
+base_weight: 144
+base_size: 2
+natural_size: 2
+alignment: 41
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3551
+lastlevel: 0
+hitpoints: 47/47
+mana: 1/-2
+move: 110/110
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 93
+wisdom: 91
+dexterity: 66
+constitution: 77
+charisma: 56
+cash: 0 18 25 69
+experience: 75831
+quit_reason: 7
+saveroom: 3551
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 100
+424 91
+438 50
+443 50
+444 55
+447 60
+451 50
+452 50
+453 91
+459 50
+460 50
+462 50
+464 65
+0 0
+trophy:
+1 3509 0.500000
+1 3508 1.000000
+1 3500 0.500000
+1 8013 0.500000
+1 8001 1.000000
+1 8016 0.500000
+1 8022 0.500000
+1 8021 0.500000
+1 8030 0.500000
+1 8611 1.000000
+1 8614 1.000000
+1 8615 1.000000
+1 8613 2.000000
+1 8602 1.000000
+1 6910 1.000000
+1 7051 1.000000
+1 8605 10.000000
+1 8606 6.000000
+1 8604 12.000000
+1 8023 1.000000
+1 36003 5.500000
+0 0 0
+tells:
+$
+gossips:
+$
+mem:
+5 0 6
+5 1 6
+5 1 6
+5 1 7
+5 1 6
+0 0 0
+aliases:
+aa assist Sief
+cb cast 'burning hands'
+cp cast 'burning hands' priest
+cm cast 'burning hands' mage
+cc cast 'burning hands' creature
+0

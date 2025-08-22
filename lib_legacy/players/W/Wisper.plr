@@ -1,0 +1,110 @@
+name: Wisper
+password: WiPbdQTrFT
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 2
+race: 11
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20708
+birthtime: 1702564697
+timeplayed: 17252
+lastlogintime: 1703294729
+host: 099.153.235.058
+height: 38
+weight: 98
+base_height: 38
+base_weight: 98
+base_size: 1
+natural_size: 1
+alignment: 957
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 130/130
+mana: 14/16
+move: 165/182
+damroll: 3
+hitroll: 6
+strength: 90
+intelligence: 84
+wisdom: 82
+dexterity: 94
+constitution: 95
+charisma: 52
+cash: 101 1055 587 343
+experience: 499000
+quit_reason: 1
+saveroom: 3054
+skills:
+401 170
+403 145
+405 158
+408 150
+409 155
+415 50
+416 50
+421 60
+438 50
+443 50
+444 50
+463 50
+464 160
+465 150
+472 170
+478 150
+0 0
+trophy:
+1 2808 1.000000
+1 18007 1.000000
+1 18003 1.000000
+1 8801 1.000000
+1 8809 1.000000
+1 8805 1.000000
+1 8808 2.000000
+1 8806 1.000000
+1 11702 1.166667
+1 11809 0.333333
+1 11750 2.166667
+1 11703 1.000000
+1 53312 1.000000
+1 10313 0.500000
+1 10309 2.000000
+1 10312 0.500000
+1 10305 0.500000
+1 16901 2.000000
+1 3506 1.000000
+1 3508 1.000000
+1 3509 1.000000
+0 0 0
+tells:
+1702588300 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1702588651 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1702588779 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702646718 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702646719 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1702647046 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1702647564 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1702647565 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1702649847 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1702673413 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1703294121 Sadler gossips, 'yeah, and I'm not looking for walkthroughs or cheats, I just don't get what he's asking lol'
+1703294155 Sadler gossips, 'gratz Wisper!'
+1703294210 Holk gossips, 'yeah my experience is that they give you some item to do the quest with.'
+1703294230 Sadler gossips, 'that's been my experience so far. This though is my first SKILL quest'
+1703294270 Holk gossips, 'there is a magic wand/weapon quest you can start by buying one from bigby, and a mace one you can start by buying one from Santiago, as well'
+1703294285 Sadler gossips, 'oooo'
+1703294325 Sadler gossips, 'I'm a little ticked because I did all the steps for a quest for my sorc, and realized I forgot to say yes before we started lol'
+1703294333 Sadler gossips, 'now I can't turn in the item'
+1703294348 Holk gossips, 'for subclass?'
+1703294357 Sadler gossips, 'nah, newbie HUNT quest'
+$

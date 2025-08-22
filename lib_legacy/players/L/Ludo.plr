@@ -1,0 +1,161 @@
+name: Ludo
+password: Lud5BwSHRt
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%e&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 2
+class: 0
+race: 11
+level: 11
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19857
+birthtime: 1614638533
+timeplayed: 5646
+lastlogintime: 1662272970
+host: 208.093.179.103
+height: 38
+weight: 115
+base_height: 38
+base_weight: 115
+base_size: 1
+natural_size: 1
+alignment: 994
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 76/76
+mana: 12/12
+move: 118/118
+damroll: 3
+hitroll: 6
+strength: 84
+intelligence: 92
+wisdom: 89
+dexterity: 84
+constitution: 93
+charisma: 74
+cash: 12 121 456 3
+experience: 445484
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+39 1000
+100 1000
+101 1000
+415 50
+416 50
+423 141
+424 116
+438 50
+443 50
+444 50
+447 74
+451 106
+452 51
+453 50
+454 50
+459 50
+460 52
+462 111
+464 50
+0 0
+trophy:
+1 3502 1.000000
+1 5221 2.666667
+1 5222 2.333333
+1 5220 1.666667
+1 5213 3.333333
+1 5203 1.666667
+1 5212 1.666667
+1 5204 2.000000
+1 5202 2.666667
+1 8002 1.500000
+1 8001 2.500000
+1 8020 1.500000
+1 8023 2.833333
+1 8016 2.833333
+1 8022 2.833333
+1 8011 0.833333
+1 8015 2.666667
+1 8014 3.333333
+1 8000 2.000000
+1 8030 1.333333
+1 8012 2.833333
+0 0 0
+tells:
+1646899038 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1644847667 Luba gossips, 'ya all 3 Ls are me'
+1644847675 Slark gossips, 'want some help catch him up?'
+1644847742 Luba gossips, 'got lefa murdering bugs with em right now'
+1644847766 Luba gossips, 'er her had to check her sex :)'
+1644847784 Slark gossips, 'bring em to choak, consent choak, i'll invis you and get a few levels down here with illish. it'll be faster'
+1644847864 Slark gossips, 'get ludo in the well'
+1644847891 Slark gossips, 'consent choak'
+1644849251 Ilish gossips, 'sick'
+1644849266 Slark gossips, 'you next?'
+1644849269 Ilish gossips, 'your turn.l'
+$
+mem:
+20 1 3
+20 1 3
+100 1 4
+100 1 4
+32 0 4
+32 1 4
+32 1 4
+0 0 0
+aliases:
+minvis c 'm invis'
+yy ass smrt
+y ass pawk
+nova c 'supernova'
+blind c 'smoke' $*
+4 stone fylae
+3 stone anttily
+2 stone pawk
+crem c 'crem'
+goto c 'relocat' $*
+tel c 'teleport'
+globe c 'maj globe' $*
+mag c 'fire dar' $*
+invis c 'invis' $*
+x g all.coins
+` assist harnv
+1 ass fernley
+earthing is what bot for earth sphere is called
+stone c 'stone s' $*
+burn c 'burning h' $*
+gac g all all.corpse
+pra mem $*
+make c 'm c' $*
+id recite identify $*
+ball c 'fireball' $*
+ember c 'phosp embers' $*
+deto c 'deto' $*
+shock c 'pos f' $*
+door c 'd door' $*
+acid c 'acid burst' $*
+stor c 'firestor' $*
+pray mem $*
+gax g all.coins all
+haste c 'haste' $*
+melt c 'melt' $*
+storm c 'firestor' $*
+imm c 'imm' $*
+armor c 'mirage'
+smoke c 'smoke' $*
+met c 'meteor'
+super c 'supernova'
+0

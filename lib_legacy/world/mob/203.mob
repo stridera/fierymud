@@ -1,0 +1,601 @@
+#20300
+rhino large gothra-rhino~
+a large rhino~
+A large rhino is standing here eating some grass.~
+This rhino is a massive beast.  It stands over five feet tall and weighs
+several tons.  Its skin is a dark gray color and is very thick and wrinkled.  
+Its horn is the most magnificent part of it and is about a foot in length.  It
+feeds completely on plants and grasses, and will have no trouble finding food
+here.    ~
+72 1024 0 E
+13 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 1 24 14 0 3
+BareHandAttack: 6
+Str: 78
+Dex: 79
+Int: 70
+Wis: 77
+Con: 72
+Cha: 76
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20301
+lioness large gothra-lioness lion~
+a lioness~
+A large lioness prowls around here, looking over the plains carefully.~
+Golden fur gleaming in the sunlight, the notorious lioness prowls the plains in
+search of prey.  Anything smaller or weaker than her is considered fair game by
+those ruthless brown eyes that flicker back and forth, noticing every tiny
+detail of her world and marking her prey like the perfect killing machine she
+is.  Anything that would prove a challenge to her could surely be taken down by
+a pack of these glorious beasts.    ~
+2099304 1024 0 E
+14 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 2 24 14 0 3
+BareHandAttack: 8
+Str: 86
+Dex: 78
+Int: 77
+Wis: 72
+Con: 74
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20302
+lion large golden gothra-lion~
+a lion~
+A large golden lion rests in the shade here.~
+This is the king of the plains, the lion.  He is about seven feet long with a
+rather impressive mane around his neck.  His large tail sways in the wind as he
+rests here.  He watches the plains very closely ready to spring up if anything
+passes by near him.    ~
+2154 1024 0 E
+15 0 0 0d0+0 0d0+0
+0 0 0 203
+1 1 1 24 14 0 3
+BareHandAttack: 8
+Str: 92
+Dex: 80
+Int: 67
+Wis: 66
+Con: 70
+Cha: 76
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 5
+E
+T 55694
+#20303
+lion cub small lion-cub~
+a lion cub~
+A small lion cub is here playing in the sand.~
+This lion cub looks rather cute, but in a couple years he will not be so cute
+and will be a ruthless killer.  The cub is only about two feet long and his fur
+is a nice golden yellow color.  He seems to show no interest in anything but
+the sand that he is tossing around.    ~
+202 1024 0 E
+11 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 1 24 14 0 1
+BareHandAttack: 8
+Str: 98
+Dex: 87
+Int: 57
+Wis: 77
+Con: 82
+Cha: 51
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20304
+wildebeest large gnu gothra-wildebeest~
+a wildebeest~
+A large wildebeest stands here enjoying some grass.~
+This wildebeest is one of the larger antelopes known to exist.  It has a short
+black mane that covers most of its face.  Its long tail sways in the wind as it
+nibbles at all the grass it can find.  Its two large horns on the top of its
+head serve as a reminder that it is not to be messed with.    ~
+200 1024 0 E
+12 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 0 24 14 0 3
+BareHandAttack: 9
+Str: 81
+Dex: 91
+Int: 67
+Wis: 78
+Con: 74
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20305
+vulture brown brown-vulture~
+a vulture~
+A brown vulture flies overhead here looking for something to eat.~
+This vulture is one of the most repelling birds that exist in the realm.  It is
+also quite large with a wingspan of about six feet.  The vulture is well known
+as a scavenger and can clean out a carcass in a matter of minutes.  It flies
+over the plains now in search of a meal to steal from a lion or hyena.    ~
+72 1048576 0 E
+12 0 0 0d0+0 0d0+0
+0 0 0 203
+4 4 1 24 14 0 2
+BareHandAttack: 10
+Str: 83
+Dex: 84
+Int: 71
+Wis: 71
+Con: 72
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20306
+zebra black white gothra-zebra large~
+a zebra~
+A large black and white striped zebra stands here, eating some grass.~
+The zebra is one of one of the most interesting species in the realm.  It looks
+to be just like a horse except for one thing: the unusual black and white
+stripes that cover its entire body.  Zebras have a unique defense where they
+stay in large groups.  Their combined stripes make it harder for a enemy to
+distinguish where they are and often miss them.  This zebra would be a very
+tasty treat for a carnivore, so it must always be on the lookout for anything
+out of the ordinary.    ~
+200 1024 0 E
+12 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 1 24 14 0 2
+BareHandAttack: 9
+Str: 79
+Dex: 79
+Int: 74
+Wis: 75
+Con: 82
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20307
+hyena brown gothra-hyena~
+a hyena~
+A brown hyena is standing here looking around for something to eat.~
+This is the notorious laughing hyena.  He is a vicious hunter but cannot do
+much on his own.  To do any real damage he needs the help of several other
+hyenas.  His dull brown skin hides him quite well, making him almost invisible
+to his prey.    ~
+4200 1024 0 E
+13 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 1 24 14 0 2
+BareHandAttack: 4
+Str: 81
+Dex: 97
+Int: 72
+Wis: 70
+Con: 70
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20308
+elephant large large-elephant~
+a large elephant~
+A large elephant is standing here looking around for some plants to eat.~
+This is the elephant, the largest land mammal there is.  Everything about her
+is huge.  Her legs are like large stone pillars her ears are enormous and flap
+freely in the wind.  Her tusks must be at least five feet long and could be
+very deadly if used on anything.  It is no wonder she has no natural enemies.~
+20570 1024 0 E
+15 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 2 24 14 0 4
+BareHandAttack: 6
+Str: 86
+Dex: 92
+Int: 66
+Wis: 71
+Con: 76
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20309
+elephant baby baby-elephant~
+a baby elephant~
+A baby elephant is standing here eating some grass hungrily.~
+This baby elephant is quite large for his age.  He looks to already be three
+feet long and is continuing to grow quickly.  His tusks are just starting to
+develop along with the rest of his body.  His skin is thick and is a dark gray
+color, but it is not near as dark as his mothers.    ~
+74 1024 0 E
+12 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 1 24 14 0 2
+BareHandAttack: 6
+Str: 80
+Dex: 73
+Int: 77
+Wis: 71
+Con: 86
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20310
+crocodile large large-crocodile~
+a large crocodile~
+A large crocodile floats here, just below the water's surface.~
+This is a very smart and cunning crocodile.  It has placed itself in the very
+middle of the water hole where every animal in the plains must come to drink.
+It floats just below the waters surface, keeping itself barely visible to
+anyone.  It is about eight feet in length and has a large mouth with hundreds
+of teeth inside that could crush any animal into oblivion.    ~
+16506 1024 0 E
+14 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 1 24 14 0 3
+BareHandAttack: 9
+Str: 92
+Dex: 79
+Int: 82
+Wis: 71
+Con: 71
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20311
+cheetah slender slender-cheetah~
+a slender cheetah~
+A slender cheetah stands here, searching for its next meal.~
+One of the fastest land animals, this cheetah was built for speed.  Slender and
+light, the cat's whole frame was designed to maximize its running ability.  
+Black spots cover its golden hide, creating a pattern perfect for blending in
+with the grasslands, its normal hunting grounds.    ~
+2099256 16778272 0 E
+13 0 0 0d0+0 0d0+-2
+0 0 0 203
+3 3 0 24 14 0 2
+BareHandAttack: 8
+Str: 87
+Dex: 80
+Int: 69
+Wis: 68
+Con: 79
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 36414
+T 36415
+#20312
+giraffe large large-giraffe~
+a large giraffe~
+A large giraffe stands here eating some leaves off of a tree.~
+This giraffe is one of the tallest mammals in the realm, and uses its height to
+gain access to the leaves high up on the trees.  The giraffe is a beige color
+with many large brown spots patterned all over its body.  Its size makes it
+almost impossible to kill, unless the predators are in a large group.    ~
+16394 1024 0 E
+12 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 0 24 14 0 3
+BareHandAttack: 7
+Str: 100
+Dex: 91
+Int: 66
+Wis: 63
+Con: 74
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20313
+snake green green-snake~
+a green snake~
+A green snake is here, making its way through the grass.~
+This snake is only about four feet in length and looks quite harmless.  Its
+scales are a dull green color, which makes it almost unseen in the tall grasses
+of the plains.  Only the movement of grasses shows its presence before it
+strikes.    ~
+2056 1024 0 E
+12 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 100
+Dex: 80
+Int: 62
+Wis: 72
+Con: 66
+Cha: 75
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20314
+bird small small-bird~
+a small bird~
+A small bird hops around here, looking for some seeds to eat.~
+This small bird is barely noticeable as it hops around in search for food.  
+Its wings are a dull brown color that help the bird blend in with the grasses
+that surround it.  It chirps from time to time filling the plains with a
+delightful sound.    ~
+72 1024 0 E
+11 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 0 24 14 0 1
+BareHandAttack: 10
+Str: 78
+Dex: 91
+Int: 74
+Wis: 76
+Con: 77
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20315
+lioness large mother-lioness lion~
+a lioness~
+A large lioness rests here, looking over her cubs. ~
+The notorious lioness of the Gothra Plains rests here, looking benevolently
+down upon the cubs she guards.  It is not always the duty of the actual mother
+of lion cubs to remain in the den and watch them while the others are hunting,
+but it is still an important duty, for upon it rests the future of their entire
+species.    ~
+6154 16778272 0 E
+14 20 0 0d0+0 0d0+0
+0 0 0 203
+1 1 2 24 14 0 2
+BareHandAttack: 8
+Str: 83
+Dex: 77
+Int: 73
+Wis: 75
+Con: 72
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 5
+E
+#20316
+wildebeest large drinking-wildebeest gnu~
+a wildebeest~
+A large wildebeest stands here, drinking water from the stream.~
+The wildebeest, or gnu, is one of the larger antelopes known to exist.  Its
+large eyes give the impression of stupidity, but these wild beasts are far from
+complacent and will fight back stubbornly if attacked.  This particular
+specimen watches the surrounding area carefully as it drinks from the stream,
+tail swishing back and forth to keep biting insects at bay.    ~
+74 1024 0 E
+13 20 0 0d0+0 0d0+0
+0 0 0 203
+3 3 0 24 14 0 3
+BareHandAttack: 9
+Str: 82
+Dex: 79
+Int: 65
+Wis: 81
+Con: 73
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20317
+zebra large black white striped drinking-zebra~
+a zebra~
+A striped zebra stands at the edge of the water hole, drinking some water.~
+The zebra is an intriguing horselike animal with distinctive black-and-white
+stripes running up and down its body.  Legend holds that each zebra's pattern
+is unique and distinctive, and when a large group of them get together it is
+certainly hard to tell one from another.  This one seems rather skittish.  
+Perhaps this zebra senses a predator.    ~
+74 1024 0 E
+13 20 0 0d0+0 0d0+0
+0 0 0 203
+3 3 0 24 14 0 2
+BareHandAttack: 9
+Str: 92
+Dex: 83
+Int: 58
+Wis: 70
+Con: 84
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20318
+gazelle brown~
+a gazelle~
+A light brown gazelle stands here, looking for some grass to eat.~
+This gazelle is one of the faster animals on the plains.  It hops and runs
+around the plains avoiding any predators that might be looking to kill it.  
+Its coat is a beige and white color, with two long black horns protruding from
+the top of its head.~
+88 1024 0 E
+13 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 0 24 14 0 2
+BareHandAttack: 9
+Str: 94
+Dex: 89
+Int: 62
+Wis: 71
+Con: 78
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20320
+lizard small small-lizard sunning~
+a small lizard~
+A small lizard is sunning itself here.~
+This small dull green lizard is only a few inches in length, and quite
+harmless.  It is sunning itself to get itself going for its days activities.  ~
+72 0 0 E
+10 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 86
+Dex: 74
+Int: 80
+Wis: 78
+Con: 80
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#20321
+cheetah slender slender-cheetah~
+a slender cheetah~
+A slender cheetah stands here, searching for its next meal.~
+One of the fastest land animals, this cheetah was built for speed.  Slender and
+light, the cat's whole frame was designed to maximize its running ability.  
+Black spots cover its golden hide, creating a pattern perfect for blending in
+with the grasslands, its normal hunting grounds.~
+2099256 16777216 0 E
+13 0 0 0d0+0 0d0+0
+0 0 0 203
+3 3 0 24 17 0 2
+BareHandAttack: 8
+Str: 72
+Dex: 77
+Int: 60
+Wis: 67
+Con: 79
+Cha: 99
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 1830
+$

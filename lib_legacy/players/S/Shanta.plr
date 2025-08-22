@@ -1,0 +1,203 @@
+name: Shanta
+password: ShcksW6VDP
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%rr&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 2
+class: 15
+race: 9
+level: 99
+home: 3003
+lifeforce: 0
+composition: 0
+id: 14029
+birthtime: 1100328597
+timeplayed: 23266295
+lastlogintime: 1437297477
+host: 068.231.070.014
+height: 63
+weight: 145
+base_height: 63
+base_weight: 145
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: glxyz
+effectflags: ck 0 0
+prefflags: ghnoz a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+loadroom: 3054
+lastlevel: 9
+hitpoints: 781/781
+mana: 980/980
+move: 11/114
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 86
+wisdom: 96
+dexterity: 84
+constitution: 85
+charisma: 66
+cash: 992 5138 12841 1028
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+28 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+47 1000
+48 1000
+51 1000
+53 1000
+54 1000
+70 1000
+74 1000
+81 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+97 1000
+99 1000
+115 1000
+116 1000
+117 1000
+118 1000
+119 1000
+120 1000
+122 1000
+123 1000
+124 1000
+126 1000
+128 1000
+129 1000
+142 1000
+206 1000
+207 1000
+208 1000
+209 1000
+210 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 225
+443 1000
+444 1000
+451 1000
+452 1000
+455 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+463 1000
+466 1000
+0 0
+trophy:
+1 16007 0.500000
+1 16006 2.500000
+1 16005 2.500000
+1 16002 0.500000
+1 16004 0.500000
+1 16000 3.000000
+1 16001 1.500000
+1 7053 0.500000
+1 7004 0.500000
+1 53305 1.000000
+1 53306 0.500000
+1 53303 1.500000
+1 53314 1.500000
+1 53312 1.500000
+1 52003 0.250000
+1 52016 1.000000
+1 52010 0.250000
+0 0 0
+mem:
+81 1 1
+81 1 1
+81 1 1
+81 1 1
+210 1 1
+210 1 1
+210 1 1
+210 1 1
+48 1 1
+48 1 1
+48 1 1
+48 1 1
+48 1 1
+48 1 1
+48 1 1
+48 1 1
+53 0 1
+53 1 1
+53 1 1
+53 1 1
+53 1 1
+53 1 1
+53 1 1
+53 1 1
+53 1 1
+42 0 1
+97 0 1
+97 0 1
+97 0 1
+97 0 1
+97 0 1
+97 1 1
+97 1 1
+54 1 1
+54 1 1
+54 1 1
+54 1 1
+54 1 1
+54 1 1
+40 0 1
+0 0 0
+aliases:
+q cast 'holy'
+z cast 'dragon' swez
+a cast 'full heal' swez
+aa cast 'full heal'
+zz cast 'resurrect' slo
+3 cast 'holy word'
+00 group pathraw
+0 fol pathraw
+f flee
+9 consent evlok
+7 cast 'resurrect' grayon
+1 cast 'group heal'
+` cast 'word of recall'
+qq cast 'dragon' izanus
+2 cast 'full harm'
+0

@@ -1,0 +1,255 @@
+#0
+bug~
+a bug~
+This object is BAD!  If you see it, tell a god or post! DO NOT USE THE BUG COMMAND.~
+~
+13 0 0 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+#18
+bag leather~
+&3a small leather bag&0~
+&3A small leather bag is lying here.&0~
+~
+15 0 1064961 1
+20 0 -1 0 0 0 0
+1.00 0 0 0 0 0 0 0
+#19
+rations ration iron food~
+some iron rations~
+Some iron rations have been set here.~
+~
+19 0 16385 1
+16 0 0 0 0 0 0
+0.50 0 0 0 0 0 0 0
+E
+iron rations~
+These lightweight rations aren't the best-tasting, but they are the traveler's
+best food for long trips -- they never spoil, and fill the stomach for many
+hours.  There is dried meat of unknown origin here, mixed with nuts.  The whole
+mess is glued together into a bar by means of some waxy, fatty substance.    
+~
+#20
+skin water waterskin leather~
+&3a leather water skin&0~
+&3A leather water skin lies on the ground here.&0~
+~
+17 0 16385 1
+256 256 0 0 0 0 0
+2.00 10 0 0 0 0 0 0
+#21
+leggings leather~
+&3a pair of leather leggings&0~
+&3A pair of leather leggings lies on the ground here.&0~
+~
+9 50335744 33 1
+2 0 0 0 0 0 0
+7.30 1 0 0 0 0 0 0
+#22
+sleeves leather~
+&3a pair of leather sleeves&0~
+&3A pair of leather sleeves lies on the ground here.&0~
+~
+9 50335744 257 1
+2 0 0 0 0 0 0
+5.70 0 0 0 0 0 0 0
+#23
+torch wooden~
+a wooden torch~
+&3A wooden torch lies on the ground here.&0~
+~
+1 536870912 16385 1
+0 150 150 0 0 0 0
+3.00 0 0 0 0 0 0 0
+#24
+helmet steel~
+a steel-studded helmet~
+A steel-studded helmet lies on the ground.~
+~
+9 55595008 17 1
+3 0 0 0 0 0 0
+5.10 0 0 0 0 0 0 0
+#25
+boots steel steel-toed-boots~
+steel-toed boots~
+A pair of steel boots lies on the ground here.~
+~
+9 55595008 65 1
+3 0 0 0 0 0 0
+5.10 10 0 0 0 0 0 0
+#26
+sandals leather leather-sandals~
+&0&3a pair of leather sandals&0~
+&0&3A pair of leather sandals lie here.&0~
+~
+9 0 65 1
+1 0 0 0 0 0 0
+1.60 0 0 0 0 0 0 0
+#27
+cap leather~
+&3a small leather cap&0~
+&3A small leather cap lies on the ground here.&0~
+~
+9 0 17 1
+1 0 0 0 0 0 0
+2.60 0 0 0 0 0 0 0
+#28
+mace steel~
+a mace~
+A steel mace lies on the ground, out of the way.~
+~
+5 50335744 8193 1
+0 2 3 5 0 0 0
+5.00 0 0 0 0 0 0 0
+#29
+longsword sword steel~
+a steel longsword~
+A steel-bladed longsword lies on the ground, sheathed.~
+~
+5 53489664 8193 1
+0 1 8 3 0 0 0
+3.00 0 0 0 0 0 0 0
+E
+longsword sword long steel~
+It is a plain steel longsword, with a fairly sharp blade and a
+leather-wrapped hilt. Short bronze crossguards keep the hand a
+little safe.
+~
+#30
+dagger steel steel-dagger~
+a steel dagger~
+A steel dagger lies on the ground, sheathed.~
+~
+5 0 8193 1
+0 1 4 11 0 0 0
+0.50 45 0 0 0 0 0 0
+#33
+moonwell well gate portal~
+a swirling moonwell~
+&7&bA swirling&0&5 moonwell&7&b ripples across your sight, leading to the unknown.&0~
+~
+24 1946157056 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+#34
+blood~
+blood~
+&0&1Several drops of blood cover the area here.&0~
+~
+12 805306368 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+#35
+blood~
+blood~
+&0&1Quite a large pool of blood is on the ground here.&0~
+~
+12 805306368 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+#38
+leggings black linen~
+black linen leggings~
+Some black linen leggings lie here.~
+~
+9 536870912 33 1
+1 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+black linen leggings~
+They are finely tailored of regular coarse linen and dyed black.
+With their close-fitting form, they certainly cut a nice figure
+beneath a robe.
+~
+#40
+life brooch~
+a minor life brooch~
+A small minor life brooch glows gently on the ground.~
+~
+9 0 5 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+T 40
+#42
+small-dragon red-dragon dragon red~
+a &1small &bred &0&1dragon&0~
+A small red dragon flits through the air.  It glows with a soft internal light.~
+~
+1 1610613059 2097153 0
+0 -1 -1 0 0 0 0
+0.00 0 0 0 0 0 0 0
+#43
+ancient grimoire spellbook~
+an &3ancient&0 &1grimoire&0~
+A tome that appears to be older than the world itself hovers in the air before you.  It glows softly and seems to anticipate the owners needs.  You feel power radiate from it and can almost hear it whisper dark secrets to you.~
+~
+26 671080515 2097153 95
+99 0 0 0 0 0 0
+1.00 500000 0 0 0 0 0 0
+A
+3 3
+A
+28 2
+A
+17 3
+A
+12 75
+#48
+board holy-bulletin-board god-board~
+the holy bulletin board~
+&6The holy bulletin board stands here, outlined in&0 &1&bb&0&1ur&0&1&bni&0&1ng f&0&1&blame&0&1s.&0~
+~
+29 0 0 100
+2 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+#66
+board quest-board bulletin-board~
+a quest board~
+A bulletin board with player quests hangs from the wall.~
+~
+29 0 0 100
+3 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+quest-board bulletin-board~
+Remember to &3SET <PLAYER> QUEST ON&0 when assigning quests that involve the
+trophy.  Otherwise, it will be cleared upon player death!
+~
+#67
+globule glimmering-globule huge-iridescent-drop-celestial-ether~
+a glimmering globule~
+A huge iridescent drop of celestial ether floats here humming softly.~
+~
+29 1812005139 0 101
+8 0 0 0 0 0 0
+5.00 0 0 0 0 0 0 0
+#72
+tunnel light portal majestic gate well heavens-gate~
+&6a &btunnel of &7&blight&0~
+&6A majestic &btunnel of &8light &6hovers here with &0&6an inviting glow.&0~
+~
+24 1946157056 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+#74
+portal hole gate well~
+&1a &bhell&0&1gate&0~
+&1A &9&bblack hole in the &0&3earth&1 here burns with a &nhellish &0&1flame.&0~
+~
+24 1946157056 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+#75
+spring pool water~
+a clear pool of water~
+A spring of fresh water bubbles up from the ground here.~
+~
+23 335544336 0 0
+9999 9999 0 0 0 0 0
+9999.00 0 0 0 0 0 0 0
+E
+pool spring water~
+Bubbling up from the ground, from some secret but fresh source, this
+water is cool and clear.
+~
+$~

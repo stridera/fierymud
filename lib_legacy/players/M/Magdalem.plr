@@ -1,0 +1,103 @@
+name: Magdalem
+password: MaKYZawmcU
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20830
+birthtime: 1725132015
+timeplayed: 20086
+lastlogintime: 1725360209
+host: 107.170.209.113
+height: 44
+weight: 189
+base_height: 44
+base_weight: 189
+base_size: 2
+natural_size: 2
+alignment: 970
+playerflags: y
+effectflags: k w q
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 119/112
+mana: 1/0
+move: 167/169
+damroll: 4
+hitroll: 5
+strength: 93
+intelligence: 67
+wisdom: 74
+dexterity: 80
+constitution: 89
+charisma: 65
+cash: 0 0 4 30
+bank: 0 1 1 1
+experience: 138088
+quit_reason: 1
+saveroom: 3054
+skills:
+402 120
+404 118
+415 50
+416 50
+421 72
+438 50
+443 50
+444 50
+463 50
+464 60
+465 64
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3509 1.000000
+1 3500 3.000000
+1 3503 2.000000
+1 3502 4.000000
+1 1601 8.000000
+1 1602 9.000000
+1 8030 1.000000
+1 8022 2.000000
+1 8021 5.000000
+1 8014 16.000000
+1 8023 3.000000
+1 8013 5.000000
+1 8016 10.000000
+1 8000 17.000000
+1 8012 12.000000
+1 8020 6.000000
+1 8002 10.000000
+1 8011 8.000000
+1 8010 11.000000
+1 8001 13.000000
+1 8015 6.000000
+0 0 0
+tells:
+1725210853 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1725210908 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1725210953 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1725210989 @WThe old cartographer@W tells you, 'You are too poor!@W'@0
+1725211006 @WThe old cartographer@W tells you, 'Good doing business with you.@W'@0
+1725211387 @WAaron@W tells you, 'Hmm, you appear to be a little short of cash for this item.@W'@0
+1725213239 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1725213248 @WSantiago@W tells you, 'No credit here, come back when you have some cash.@W'@0
+1725213320 @WAaron@W tells you, 'You bring it to me when you get it and we'll talk.@W'@0
+1725213325 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+$
+gossips:
+1725132327 Discord gossips, 'Daedela: Welcome back!'
+1725193040 Choak gossips, 'morning Magdalem'
+1725195263 Choak gossips, 'gratz on 2 and 3'
+1725195694 Choak gossips, 'are you new to FieryMud?'
+$

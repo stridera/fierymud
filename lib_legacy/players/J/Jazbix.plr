@@ -1,0 +1,80 @@
+name: Jazbix
+password: JajNeIS9H4
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19189
+birthtime: 1498617684
+timeplayed: 6945
+lastlogintime: 1498792231
+host: 076.106.037.061
+height: 62
+weight: 173
+base_height: 62
+base_weight: 173
+base_size: 2
+natural_size: 2
+alignment: 39
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 54/54
+mana: 1/0
+move: 132/132
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 65
+wisdom: 69
+dexterity: 92
+constitution: 93
+charisma: 56
+cash: 39 9 19 17
+experience: 43360
+quit_reason: 1
+saveroom: 3054
+skills:
+403 50
+415 50
+416 50
+421 69
+438 50
+443 50
+444 50
+464 65
+465 50
+467 50
+0 0
+trophy:
+1 3503 1.000000
+1 3502 1.000000
+1 3508 1.000000
+1 3500 2.000000
+1 3507 1.000000
+1 16903 1.000000
+1 16902 3.000000
+1 16906 6.000000
+1 16900 10.000000
+1 16908 8.000000
+1 8015 3.000000
+1 8016 2.000000
+1 8010 2.000000
+1 8023 1.000000
+1 8002 2.000000
+1 8020 1.000000
+1 8021 1.000000
+1 8012 4.000000
+1 8013 4.000000
+1 8022 1.000000
+1 8000 3.000000
+0 0 0

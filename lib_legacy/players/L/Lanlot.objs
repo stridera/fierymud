@@ -1,0 +1,966 @@
+1
+vnum: 5212
+location: 0
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: 0
+name: flame gray-flame small-pillar gray-fire questobject gray
+shortdesc: a gray flame
+desc: A small pillar of gray flame flickers here.
+type: 1
+weight: 0.50
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+applies:
+13 15
+2 1
+~
+extradesc: flame gray-flame small-pillar gray-fire questobject gray
+   The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  Its luminosity is
+both too bright and too dim, yet seems to light the area perfectly.    
+~
+triggers:
+5207
+~
+variables:
+retriever Lanelot
+~
+~~
+vnum: 16032
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring shadow small circlet dark metal
+shortdesc: a shadow ring
+desc: A small circlet of dark metal lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 14
+effects: 0 0 0
+wear: 3
+applies:
+5 -5
+6 3
+3 6
+~
+extradesc: ring shadow small circlet dark metal
+This is a simple little ring, it is black with flecks of grey shimmering in and
+out of being.  For the most part, the ring does not exist in any coporeal form,
+but tends to wander back and forth to its ethereal state.    
+~
+~~
+vnum: 58005
+location: 3
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gop
+name: necklace jade striking
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 9
+weight: 0.60
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+~
+extradesc: striking jade necklace
+The necklace is made of several very large, flawless panels of jade. You
+run your fingers over the smooth stone and can feel supernatural power
+contained inside this rare piece of art.~
+~~
+vnum: 58005
+location: 4
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gop
+name: necklace jade striking
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 9
+weight: 0.60
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+~
+extradesc: striking jade necklace
+The necklace is made of several very large, flawless panels of jade. You
+run your fingers over the smooth stone and can feel supernatural power
+contained inside this rare piece of art.~
+~~
+vnum: 58104
+location: 5
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjmprtuz
+name: kimono black-cotton jet-black-kimono
+shortdesc: a jet-black kimono
+desc: A black cotton kimono lies forgotten on the floor.
+type: 11
+weight: 1.20
+cost: 20000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 9
+applies:
+17 8
+18 2
+26 2
+~
+extradesc: kimono black-cotton jet-black-kimono
+Made of thin black cotton, this kimono blends in perfectly with the shadows of
+night.  Silk would provide a telltale sheen, though it would also be lighter,
+but the black-dyed cotton absorbs light rather than reflecting it.  It is
+utterly silent, not even giving the usual "whoosh" of fabric when moved.  The
+sleeves fall only to the elbows, providing plenty of room to swing a weapon.  
+
+~
+~~
+vnum: 55426
+location: 6
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrtuvwxyz
+name: twisted helm disorder
+shortdesc: &1Helm of Disorder&0
+desc: A twisted helm has been tossed to the ground.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+applies:
+1 2
+4 3
+~
+extradesc: twisted helm disorder
+Newly forged but warped in the forging process, this helm represents the
+spiritual twisting occurring the soul of the anti-paladin for whom it was
+forged.  An obsidian inlay absorbs light, creating a terrifying sight!
+~
+~~
+vnum: 55429
+location: 7
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrtuvwxyz
+name: twisted greaves disorder
+shortdesc: &1Greaves of Disorder&0
+desc: Twisted leg guards have been tossed to the ground.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 33
+applies:
+13 20
+~
+extradesc: twisted greaves disorder
+Newly forged but warped in the forging process, these greaves represent the
+spiritual twisting occurring the soul of the wearer anti-paladin for whom it
+was forged.  An obsidian inlay absorbs light, creating a terrifying sight!
+~
+~~
+vnum: 55507
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrtuvwxyz
+name: wicked boots chaotic
+shortdesc: &1&bChaotic Boots&0
+desc: A pair of wicked-looking evil knight's boots stand at attention.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+applies:
+5 3
+2 2
+~
+extradesc: wicked boots chaotic
+These boots are an anomaly, for they have been polished smooth and clean, but
+they absorb all light and reflections, making them boots of palpable darkness.
+The occasional warp or buckle appears randomly on the surface, almost like the
+boots are straining to conform to their shape.
+~
+~~
+vnum: 55432
+location: 9
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrtuvwxyz
+name: twisted gauntlets disorder
+shortdesc: &1Gauntlets of Disorder&0
+desc: A pair of twisted gauntlets has been tossed to the ground.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+13 8
+3 2
+~
+extradesc: twisted gauntlets disorder
+Newly forged but warped in the forging process, these gauntlets represent the
+spiritual twisting occurring the soul of the wearer anti-paladin for whom it
+was forged.  An obsidian inlay absorbs light, creating a terrifying sight!
+~
+~~
+vnum: 47005
+location: 10
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: mtu
+name: bracers shadow black
+shortdesc: the Shadow Bracers
+desc: A pair of black bracers lie against the wall.
+type: 9
+weight: 5.50
+cost: 1000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 257
+applies:
+1 1
+~
+extradesc: shadow-bracers bracers black shadow
+You peer into the bracers, and you can only see the silhouette of them in
+the midday sun.  All light is shadowed out by them, and you can see how they
+could be quite useful on your arms.
+~
+~~
+vnum: 43022
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-insanity something insanity
+shortdesc: the Cloak of Insanity
+desc: Something rests on the ground here, slowly corrupting reality.
+type: 12
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+applies:
+4 -3
+19 3
+~
+extradesc: cloak insanity
+Looking at the cloak too long gives you a headache.
+~
+~~
+vnum: 58007
+location: 13
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: rtD
+name: belt ninja ninjas black length cloth
+shortdesc: the ninja's belt
+desc: You see a neatly folded length of black cloth.
+type: 9
+weight: 1.10
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 2049
+applies:
+14 20
+2 4
+~
+extradesc: ninjas ninja belt black cloth
+This is a very simple length of black cloth, hemmed all around very
+neatly. There's literally nothing impressive about it.~
+~~
+vnum: 2023
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr
+name: boar bracelet boar-bracelet
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+applies:
+18 2
+19 1
+~
+extradesc: bracelet boar
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it. You're now quite sure how, or even what exact material the
+bracelet is made of, though you suspect some kind of magically treated boar
+skin.
+~
+~~
+vnum: 55431
+location: 15
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: aghmnopqrtuvwxyz
+name: twisted bracer disorder
+shortdesc: &1Bracer of Disorder&0
+desc: A twisted bracer has been tossed to the ground.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+applies:
+5 1
+4 3
+~
+extradesc: twisted bracer disorder
+Newly forged but warped in the forging process, this bracer represents the
+spiritual twisting occurring the soul of the wearer anti-paladin for whom it
+was forged.  An obsidian inlay absorbs light, creating a terrifying sight!
+~
+~~
+vnum: 58001
+location: 16
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: gmnouvwyz
+name: katana oriental blade sword
+shortdesc: a katana
+desc: A long oriental blade with a graceful curve has been shamefully abandoned here.
+type: 5
+weight: 6.00
+cost: 3000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+1 3
+~
+extradesc: katana oriental
+   It is a long, single-bladed sword that has a slightly curved blade and
+a short, octagonal crossguard. The blade has a wavy, rippled coloration
+along its insanely sharp edge. Its hilt is enamelled black wood wrapped
+with black silk cord.
+~
+~~
+vnum: 58001
+location: 17
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: gmnouvwyz
+name: katana oriental blade sword
+shortdesc: a katana
+desc: A long oriental blade with a graceful curve has been shamefully abandoned here.
+type: 5
+weight: 6.00
+cost: 3000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+1 3
+~
+extradesc: katana oriental
+   It is a long, single-bladed sword that has a slightly curved blade and
+a short, octagonal crossguard. The blade has a wavy, rippled coloration
+along its insanely sharp edge. Its hilt is enamelled black wood wrapped
+with black silk cord.
+~
+~~
+vnum: 51006
+location: 21
+values:
+0
+1800
+1800
+0
+0
+0
+0
+~
+flags: ag
+name: eyes balls ice-eyes
+shortdesc: a pair of Ice Eyes
+desc: Two balls of ice lie here, casting a magical glow of light all around.
+type: 1
+weight: 1.03
+cost: 500
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 65537
+applies:
+18 2
+14 20
+28 52
+~
+extradesc: ice eyes magical pair two
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.
+~
+~~
+vnum: 5535
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: mask eldoria-reward 3rd-black-legion-black-mask
+shortdesc: a black mask of the 3rd Black Legion
+desc: A small black mask lies here.
+type: 9
+weight: 0.94
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 131073
+applies:
+18 1
+~
+~~
+vnum: 8611
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 8611
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 50219
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: mnu
+name: stone sharpening-stone sharpening sharp small rectangular
+shortdesc: a sharpening stone
+desc: A small rectangular stone with a metal loop lies in the debris.
+type: 11
+weight: 0.10
+cost: 0
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1048577
+applies:
+18 2
+~
+extradesc: stone sharpening-stone sharpening sharp small rectangular
+This is a small, gray stone in a roughly rectangular shape. It has
+a metal loop that runs through a hole near one end. The stone is
+somewhat abrasive, and has light striations running nearly
+parallel to its length.
+~
+~~
+vnum: 3031
+location: 127
+values:
+1
+250
+140
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 17213
+location: -1
+values:
+1
+31
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll rough graphed roughly-graphed
+shortdesc: a roughly-graphed scroll
+desc: A crude scroll with heavy graph lines lies here rolled up.
+type: 2
+weight: 1.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: scroll rough graphed roughly-graphed
+This appears to be the work of an apprentice, for crude lines are drawn roughly
+all across its surface.  The somewhat faint silvery lines have a discernable
+metallic gleam.  Most of the lines are drawn in one of two orthogonal
+directions, parallel to one or the other of the mostly rectangular edges of the
+document.  Four other lines drawn at acute angles create a diamond in the
+middle, albeit somewhat distorted.
+~
+~~
+vnum: 16030
+location: -1
+values:
+0
+1
+8
+6
+0
+0
+0
+~
+flags: gmowyz
+name: shadowy mace ball ethereal
+shortdesc: a shadowy mace
+desc: An ethereal ball rests on a post.
+type: 5
+weight: 2.20
+cost: 1000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+extradesc: shadowy mace ball ethereal post
+A long post with a shadowy ball on the end, this ethereal mace possesses some
+powers of external planes.  This mace has four large spikes on each cardinal
+side of the ball atop the post.  The mace is quite heavy and has a rather
+ornate handle to grab.    
+~
+~~
+vnum: 3031
+location: 127
+values:
+1
+250
+80
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+120
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 9.82
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.69
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3031
+location: 127
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 16009
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwyz
+name: shield storm large black stormshield
+shortdesc: the Stormshield
+desc: A large black shield is almost hidden by debris.
+type: 9
+weight: 2.20
+cost: 5000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 513
+applies:
+1 1
+~
+extradesc: shield stormshield
+   This is the legendary Stormshield, once used by the Lords of this keep.
+Resembling a large heater shield, there is a heraldic design emblazoned
+upon it. It is said that this shield was forged by the Gods themselves in
+the beginning of the world.
+~
+extradesc: design heraldic herald
+   An argent hawk outstretched, upon an azure field. 
+~
+~~

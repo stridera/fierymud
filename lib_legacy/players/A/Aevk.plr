@@ -1,0 +1,106 @@
+name: Aevk
+password: AeHGC1ULKp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19867
+birthtime: 1614854420
+timeplayed: 9540
+lastlogintime: 1615327638
+host: 099.184.067.036
+height: 33
+weight: 47
+base_height: 33
+base_weight: 47
+base_size: 1
+natural_size: 1
+alignment: 931
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 22
+lastlevel: 0
+hitpoints: 46/46
+mana: 1/-1
+move: 116/116
+damroll: 2
+hitroll: 4
+strength: 86
+intelligence: 93
+wisdom: 91
+dexterity: 62
+constitution: 86
+charisma: 52
+cash: 0 9 61 65
+experience: 105489
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 110
+424 110
+438 50
+443 50
+444 50
+447 52
+451 108
+452 85
+453 50
+459 50
+460 53
+462 50
+464 63
+0 0
+trophy:
+1 8011 0.200000
+1 8001 0.400000
+1 41013 0.400000
+1 8329 0.400000
+1 8331 0.400000
+1 8330 0.600000
+1 16908 0.400000
+1 16900 0.400000
+1 8602 0.200000
+1 7001 0.200000
+1 8606 1.000000
+1 8605 0.600000
+1 8604 0.800000
+1 36003 0.400000
+1 8023 0.200000
+1 8030 0.400000
+1 8000 1.000000
+1 8020 0.200000
+1 8013 1.200000
+1 8015 1.200000
+1 8021 0.200000
+0 0 0
+tells:
+1614860301 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+$
+mem:
+32 0 6
+32 0 6
+32 1 6
+32 1 6
+100 1 7
+0 0 0
+aliases:
+gac get all corpse
+0

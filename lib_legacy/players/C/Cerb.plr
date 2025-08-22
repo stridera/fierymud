@@ -1,0 +1,85 @@
+name: Cerb
+password: CenWI/zHgO
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 11
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18776
+birthtime: 1415530474
+timeplayed: 32655
+lastlogintime: 1415592677
+host: 070.075.178.203
+height: 62
+weight: 171
+base_height: 62
+base_weight: 171
+base_size: 2
+natural_size: 2
+alignment: 157
+playerflags: y
+effectflags: 0 r 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 166/156
+mana: 12/12
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 59
+wisdom: 69
+dexterity: 78
+constitution: 100
+charisma: 59
+cash: 0 99 407 381
+experience: 385852
+quit_reason: 3
+saveroom: 0
+skills:
+402 106
+404 160
+415 56
+416 50
+421 160
+430 52
+438 85
+443 50
+444 61
+463 85
+464 50
+465 139
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3506 0.500000
+1 17200 0.500000
+1 17209 0.500000
+1 17208 1.000000
+1 17205 0.500000
+1 17202 1.500000
+1 18004 0.500000
+1 18003 2.500000
+1 18000 2.000000
+1 18002 2.000000
+1 18001 2.000000
+1 18005 3.500000
+1 18007 3.000000
+1 5420 2.000000
+1 5408 2.000000
+1 5404 2.000000
+1 3505 5.000000
+1 61517 1.000000
+1 61506 1.000000
+1 3508 1.000000
+1 17204 12.000000
+0 0 0

@@ -1,0 +1,145 @@
+name: Giaccobe
+password: GiZjQGhwkG
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19478
+birthtime: 1567743925
+timeplayed: 690996
+lastlogintime: 1644188748
+host: 107.115.206.050
+height: 75
+weight: 248
+base_height: 75
+base_weight: 248
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3208
+thirst: 22
+lastlevel: 0
+hitpoints: 1415/1217
+mana: 980/980
+move: 164/164
+damroll: 5
+hitroll: 4
+strength: 96
+intelligence: 65
+wisdom: 67
+dexterity: 96
+constitution: 94
+charisma: 49
+cash: 1252 7829 47143 36010
+experience: 116386599
+quit_reason: 7
+saveroom: 3208
+skills:
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+419 1000
+420 1000
+421 1000
+422 1000
+427 1000
+430 76
+431 1000
+434 1000
+438 125
+441 1000
+443 54
+444 1000
+463 812
+464 1000
+465 860
+466 1000
+467 1000
+468 1000
+473 50
+0 0
+trophy:
+1 11701 1.000000
+1 11710 1.000000
+1 2805 4.250000
+1 2802 0.500000
+1 2808 2.650000
+1 11703 2.200000
+1 2807 0.200000
+1 2809 0.200000
+1 2801 5.700000
+1 2803 2.550000
+1 11750 2.400000
+1 2806 2.000000
+1 11704 0.450000
+1 11702 0.450000
+1 53004 2.000000
+1 53021 0.200000
+1 53023 0.850000
+1 7300 1.000000
+1 3075 0.333333
+1 3052 0.226191
+1 3051 0.529304
+0 0 0
+tells:
+1641097168 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641097169 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642346620 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642346697 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642347019 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642347019 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642347020 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644088867 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644088911 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644185869 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1644109492 Astrid gossips, 'oooo sunkin ... look out for the Banshee she is a B*tch'
+1644110905 Daedela gossips, 'oh you found Dargentan!'
+1644111276 Astrid gossips, 'Thaank you'
+1644111280 Daedela gossips, 'you're welcome'
+1644111347 Malic gossips, 'was about due for a regen myself, good stuff.'
+1644184258 Chinok gossips, 'hey Raekoth'
+1644184279 Smrt gossips, 'yes'
+1644184287 Smrt gossips, 'hey is for horses'
+1644184876 Astrid gossips, 'wow high level night?'
+1644185861 Astrid gossips, 'will I guess i had time for Fiery Wife has other plans.. try to come back soon'
+$
+aliases:
+kl kill lizard
+kb kill beast
+drop.all gem
+av assist valarien
+__ enter 2.well
+gs group self
+gacc get all 2.corpse
+gac get all corpse
+who who -where
+- enter well
+lic look in corpse
+gcc get coins corpse
+gccc get coins 2.corpse
+gc get all.coins
+gskb group self; kill beast
+gskl group self; kill lizard
+gsks group self; kill shaman
+df drink fountain
+as assist smrt
+kw gsay kill wolf
+ki gsay kill ice
+eye gsay kill beholder
+0

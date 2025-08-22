@@ -1,0 +1,92 @@
+name: Karak
+password: KapA4fuq3U
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 10
+level: 17
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19272
+birthtime: 1510782592
+timeplayed: 68527
+lastlogintime: 1514095356
+host: 116.037.059.099
+height: 72
+weight: 205
+base_height: 72
+base_weight: 205
+base_size: 3
+natural_size: 3
+alignment: 935
+playerflags: gy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 1
+lastlevel: 0
+hitpoints: 213/179
+mana: 28/28
+move: 154/154
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 57
+wisdom: 70
+dexterity: 93
+constitution: 88
+charisma: 53
+cash: 0 0 952 1
+experience: 1054181
+quit_reason: 1
+saveroom: 3054
+skills:
+401 220
+403 200
+405 50
+408 75
+411 89
+415 50
+416 50
+419 1000
+421 191
+427 1000
+438 50
+443 60
+444 55
+464 212
+465 50
+467 50
+472 62
+0 0
+trophy:
+1 18003 0.500000
+1 18004 1.000000
+1 18006 1.000000
+1 18002 0.500000
+1 18005 0.500000
+1 18007 1.000000
+1 18001 0.500000
+1 3506 0.500000
+1 3508 0.500000
+1 17204 0.500000
+1 61501 0.500000
+1 61519 0.500000
+1 4101 2.500000
+1 4104 1.000000
+1 4102 9.000000
+1 12025 0.500000
+1 36100 0.500000
+1 36103 0.500000
+1 36106 1.000000
+1 36101 1.500000
+1 58002 0.500000
+0 0 0
+tells:
+$
+gossips:
+$

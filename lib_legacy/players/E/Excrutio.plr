@@ -1,0 +1,97 @@
+name: Excrutio
+password: Ex1mIX28Vv
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19677
+birthtime: 1597007182
+timeplayed: 5102
+lastlogintime: 1597012285
+host: 208.100.170.248
+height: 76
+weight: 255
+base_height: 76
+base_weight: 255
+base_size: 3
+natural_size: 3
+alignment: 31
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 10
+thirst: 22
+lastlevel: 0
+hitpoints: 58/52
+mana: 0/0
+move: 22/154
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 63
+wisdom: 63
+dexterity: 90
+constitution: 88
+charisma: 58
+experience: 22015
+quit_reason: 5
+saveroom: 61549
+skills:
+402 50
+404 80
+415 50
+416 50
+419 1000
+421 71
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 61512 1.000000
+1 3500 1.000000
+1 3501 2.000000
+1 3508 1.000000
+1 36003 2.000000
+1 36002 4.000000
+1 36001 6.000000
+1 16906 2.000000
+1 16900 5.000000
+1 16908 3.000000
+1 3066 1.000000
+1 8000 2.000000
+1 8012 3.000000
+1 8015 2.000000
+1 8014 1.000000
+0 0 0
+tells:
+1597009553 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1597011014 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1597011538 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1597011568 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1597011572 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1597011579 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1597011584 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1597011589 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1597011591 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+$
+gossips:
+1597010424 Strider gossips, 'What's up?'
+1597011073 Strider gossips, 'Need any help?'
+1597011101 Strider gossips, 'Ok, let me know if I can help with anything in the future :)'
+$

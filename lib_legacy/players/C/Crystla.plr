@@ -1,0 +1,101 @@
+name: Crystla
+password: Cr0X5PrpdL
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 9
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18346
+birthtime: 1348620164
+timeplayed: 120274
+lastlogintime: 1360953249
+host: 173.078.000.119
+height: 64
+weight: 118
+base_height: 64
+base_weight: 118
+base_size: 2
+natural_size: 2
+alignment: 597
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3500
+badpasswords: 2
+lastlevel: 0
+hitpoints: 59/59
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 86
+wisdom: 87
+dexterity: 73
+constitution: 71
+charisma: 69
+cash: 0 8 64 75
+experience: 128832
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 54
+416 50
+423 52
+424 120
+438 50
+443 50
+444 50
+451 78
+457 120
+458 74
+459 80
+460 100
+462 63
+463 110
+466 50
+0 0
+trophy:
+1 36303 1.000000
+1 36305 1.000000
+1 3500 2.333333
+1 3062 1.000000
+1 8022 1.000000
+1 8016 1.000000
+1 8014 1.000000
+1 8011 1.000000
+1 8013 1.000000
+1 8002 1.000000
+1 8021 2.000000
+1 61503 0.500000
+1 61517 0.500000
+1 61523 1.000000
+1 3502 2.000000
+1 3506 1.000000
+1 3503 3.000000
+1 3501 3.500000
+1 3064 2.000000
+1 18007 1.000000
+1 3509 1.500000
+0 0 0
+mem:
+84 1 6
+84 1 6
+84 1 6
+84 1 6
+1 1 6
+1 1 6
+0 0 0

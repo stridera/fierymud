@@ -1,0 +1,157 @@
+1
+vnum: 37078
+location: 5
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: jedi-cloak jedi
+shortdesc: a jedi-cloak
+desc: A brown linen cloak lays here, left behind by its owner.
+type: 12
+weight: 3.00
+cost: 0
+timer: 0
+level: 102
+effects: 0 0 0
+wear: 9
+applies:
+12 100
+5 5
+~
+extradesc: jedi-cloak jedi cloak
+The cloak is brown in color and is well used. It has a rough texture
+and is made of a fairly heavy material. It appears to be a jedi's
+cloak. It gives off a peaceful, relaxing feeling. A small tag on
+the inside reads of the cloak reads...
+
+              Property of Ben Kenobi, Jedi-Master.
+
+~
+~~
+vnum: 37077
+location: 16
+values:
+10
+100
+20
+3
+0
+0
+0
+~
+flags: b
+name: lightsaber saber
+shortdesc: a lightsaber
+desc: A small, sleek, cylindrical object has been misplaced here.
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 101
+effects: 0 0 0
+wear: 8193
+applies:
+3 5
+4 5
+18 10
+19 10
+~
+extradesc: lightsaber saber
+It appears to be metallic in composition. There is a small button located
+on one of the sides of the cylinder. Upon closer examination you notice
+an engraving, which reads...
+
+              Property of Ben Kenobi, Jedi-Master.
+
+~
+~~
+vnum: 3117
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: plushie zzur-plushie little-plushie toy
+shortdesc: the Zzur plushie
+desc: A little plushie sits watches you from its resting place.
+type: 12
+weight: 0.90
+cost: 1000000000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 540673
+extradesc: zzur-plushie little-plushie toy
+The plushie doll looks just like the great Overlord himself!  Althought cute
+and cuddly, the plushie seems to have an air of authority about it.  It even
+seems to question 'Done yet?  ' at its imaginary underlings...  Or perhaps
+that's your imagination?    
+~
+~~
+vnum: 1098
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: strip color-quick-reference-strip
+shortdesc: a Color Quick-Reference Strip
+desc: A Color Quick-Reference Strip lays here!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+extradesc: color-quick-reference-strip
+&0&11  &0&1&b1b  &0&22  &0&2&b2b  &0&33  &0&3&b3b  &0&44  &0&4&b4b  &0&55  &0&5&b5b  &0&66  &0&6&b6b  &0&77  &0&7&b7b  &0&88  &0&8&b8b  &0&99  &0&9&b9b&0
+~
+~~
+vnum: 1248
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: strawberry chocolate chocolate-covered covered delicious delicious-looking candy food
+shortdesc: a chocolate-covered strawberry
+desc: A delicious-looking piece of candy is sitting here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: strawberry chocolate chocolate-covered covered delicious candy
+A plump, fresh, red strawberry has been dipped into chocolate, looking
+absolutely tantalizing.  It smells slightly fruity and very sweet, inducing the
+salivary glands to work their hardest.    
+~
+~~

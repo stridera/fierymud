@@ -1,0 +1,85 @@
+name: Jayce
+password: JaYDREGIfn
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18555
+birthtime: 1374533836
+timeplayed: 12213
+lastlogintime: 1374903383
+host: 076.120.122.044
+height: 75
+weight: 145
+base_height: 75
+base_weight: 145
+base_size: 2
+natural_size: 2
+alignment: -43
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 4
+lastlevel: 0
+hitpoints: 71/71
+mana: 1/0
+move: 81/120
+damroll: 3
+hitroll: 3
+strength: 89
+intelligence: 74
+wisdom: 76
+dexterity: 94
+constitution: 84
+charisma: 68
+cash: 0 9 10 26
+experience: 77428
+quit_reason: 1
+saveroom: 3054
+skills:
+403 50
+415 50
+416 50
+421 64
+438 50
+443 50
+444 50
+464 65
+465 50
+467 50
+0 0
+trophy:
+1 3500 0.500000
+1 3509 2.000000
+1 61500 1.000000
+1 61501 0.666667
+1 4101 0.666667
+1 61526 2.333333
+1 61519 1.666667
+1 61504 0.333333
+1 61525 1.666667
+1 61502 0.666667
+1 61503 1.333333
+1 3506 1.166667
+1 3508 2.833333
+1 8014 0.333333
+1 8022 0.333333
+1 8607 0.333333
+1 8608 0.333333
+1 8616 2.666667
+1 8611 1.000000
+1 8615 1.000000
+1 8612 0.666667
+0 0 0
+aliases:
+gac get all all.corpse
+sa scan
+0

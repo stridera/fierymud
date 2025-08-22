@@ -1,0 +1,586 @@
+#1100
+jacket soft-leather-jacket~
+a soft leather jacket~
+A soft leather jacket lies neatly folded on the ground.~
+~
+9 50335744 9 1
+2 0 0 0 0 0 0
+7.50 200 0 0 0 0 0 0
+E
+soft-leather-jacket ~
+Butter-soft light tan leather makes a jacket that buttons down the front with
+pretty bronze buttons.  It has short capsleeves and a dapper collar, but other
+than that, it's quite plain.~
+X
+224
+#1101
+jacket studded-leather-jacket~
+a studded leather jacket~
+A studded leather jacket has been abandoned here.~
+~
+9 51384320 9 1
+3 0 0 0 0 0 0
+9.30 500 0 0 0 0 0 0
+E
+studded-leather-jacket~
+This jacket is made of dark brown leather, studded all over with bits of metal
+to make it more protective.  The hems are all double-stitched with wax thread,
+to make it durable.~
+X
+243
+#1102
+gloves leather-gloves~
+leather gloves~
+A pair of leather gloves lies neatly folded out of the way.~
+~
+9 50335744 129 1
+2 0 0 0 0 0 0
+1.30 75 0 0 0 0 0 0
+E
+leather-gloves~
+Beige leather makes up these soft gloves.  They're made to fit just about
+anybody's hands.~
+X
+224
+#1103
+cap leather-cap~
+a leather cap~
+A leather cap lies right in the way.~
+~
+9 0 17 1
+2 0 0 0 0 0 0
+2.50 150 0 0 0 0 0 0
+E
+leather-cap~
+This is a dapper, smart-looking black leather cap, very fashionable.  A very
+small bill sticks out from its front.~
+#1104
+pants thick-leather-pants~
+thick leather pants~
+A pair of leather pants is lying in a heap on the ground.~
+~
+9 50335744 33 1
+2 0 0 0 0 0 0
+8.10 150 0 0 0 0 0 0
+E
+thick-leather-pants~
+These pants are full-cut, made from good solid tan leather.  Though hardly
+fashionable, at least with the dignified crowd, they're oddly appealing to most
+people.  At least they'll afford their wearer's legs with some protection.~
+X
+224
+#1105
+sleeves thick-leather-sleeves~
+thick leather sleeves~
+A pair of leather sleeves lies curled up together on the ground.~
+~
+9 50335744 257 1
+2 0 0 0 0 0 0
+5.90 75 0 0 0 0 0 0
+E
+thick-leather-sleeves~
+Cylinders of leather form a pair of sleeves, designed to hook onto a vest of
+whatever type you please.  They're made of tan leather, and are completely
+unornamented.~
+X
+224
+#1106
+boots sturdy-leather-boots~
+sturdy leather boots~
+A pair of leather boots stands off to the side.~
+~
+9 50335744 65 1
+2 0 0 0 0 0 0
+2.80 60 0 0 0 0 0 0
+E
+sturdy-leather-boots~
+These work boots are made of dark brown leather.  They go about calf-high, and
+though they're unornamented, the leather is finely worked and tooled along its
+edges.  They have no cuffs, and a very low heel -- quite suitable for anybody
+wanting some basic protection.~
+X
+224
+#1110
+breastplate bronze-breastplate breast-plate~
+a bronze breastplate~
+A bronze breast plate lies on the ground, abandoned.~
+~
+9 64507912 9 1
+4 0 0 0 0 0 0
+16.00 3300 0 0 0 0 0 0
+E
+bronze-breastplate breast-plate~
+This large, flat disc of bronze is designed to strap around its wearer.  
+Though it is unornamented and undecorated, it does have a few little dents in
+it -- perhaps from a previous wearer?~
+X
+1049587
+#1111
+gauntlets jointed-bronze-gauntlets~
+jointed bronze gauntlets~
+A pair of bronze gauntlets lies here, glinting dully.~
+~
+9 64507912 129 1
+3 0 0 0 0 0 0
+2.50 750 0 0 0 0 0 0
+E
+jointed-bronze-gauntlets~
+These bronze gauntlets are designed to strap around their wearer's hands.  
+Though far from pretty, with their simple, stark tooling and many little dents,
+they are certainly aesthetically pleasing to most people.~
+X
+1049587
+#1112
+helmet bronze-helmet~
+a bronze helmet~
+A bronze helmet lies just out of the way.~
+~
+9 64507912 17 1
+4 0 0 0 0 0 0
+5.10 1300 0 0 0 0 0 0
+E
+bronze-helmet~
+A simple bronze helmet, this armor for the head hasn't got any decorations on
+it.  It covers the head, and that's about it, with no nose-guard, or any flaps
+that protect the neck or ears.  Just a simple cap of metal.~
+X
+1049587
+#1113
+leggings bronze bronze-leggings~
+bronze leggings~
+A pair of bronze leggings lies neatly arranged, out of the way.~
+~
+9 64507912 33 1
+4 0 0 0 0 0 0
+14.00 1350 0 0 0 0 0 0
+E
+bronze leggings~
+These large pieces of metal are designed to be strapped around their
+wearer's legs. They're made of good, heavy bronze, and don't have that
+many dents.~
+X
+1049587
+#1114
+sleeves bronze-sleeves~
+bronze sleeves~
+A pair of bronze sleeves lies cupped here on the ground.~
+~
+9 30953480 257 1
+4 0 0 0 0 0 0
+10.00 750 0 0 0 0 0 0
+E
+bronze-sleeves~
+These cylinders of lightly patina'd bronze are designed to be strapped onto
+whatever vest or breastplast their wearer desires.  They're not decorated,
+aside from some very stark tooling around their edges.~
+X
+1049587
+#1120
+bracers iron-bracers~
+iron bracers~
+A pair of iron bracers lie here, beginning to rust.~
+~
+9 64507912 257 1
+2 0 0 0 0 0 0
+1.50 900 0 0 0 0 0 0
+E
+iron-bracers~
+These bracers, made of cold black iron, are quite heavy.  They're designed to
+strap onto the forearms of their wearer by way of leather straps.  There are
+only a few little dents in their surface, which is tooled along its edges.~
+X
+1049587
+#1122
+helm small-iron-helm~
+an iron helm~
+A small iron helm has been dropped right in the way.~
+~
+9 64507912 17 1
+5 0 0 0 0 0 0
+4.00 2250 0 0 0 0 0 0
+E
+iron-helm small~
+This simple little iron helm is made almost completely without ornamentation,
+aside from very simple tooling along its edge.  Leather straps hold it onto its
+wearer's head.  It's also quite heavy and probably very hot!~
+X
+1049587
+#1123
+gauntlets jointed-iron-gauntlets~
+jointed iron gauntlets~
+A pair of iron gauntlets rests on the ground.~
+~
+9 64507912 129 1
+4 0 0 0 0 0 0
+2.70 1100 0 0 0 0 0 0
+E
+jointed-iron-gauntlets~
+These black iron gauntlets are designed to strap onto their wearer's hands.  
+Mostly, they protect the back of the hand.  Light tooling is worked across
+their edges.~
+X
+1049587
+#1124
+sleeves iron-banded-sleeves~
+iron-banded sleeves~
+A set of iron sleeves lies on the ground.~
+~
+9 64507912 257 1
+5 0 0 0 0 0 0
+11.00 1200 0 0 0 0 0 0
+E
+iron-banded-sleeves~
+These heavy black cylinders of iron are designed to strap around their wearer's
+forearms.  They bear light dents, testifying to their effectiveness, but other
+than that, are unmarked.~
+X
+1049587
+#1125
+boots iron-banded-boots~
+iron-banded boots~
+Some iron-banded boots have been left here.~
+~
+9 64507912 65 1
+4 0 0 0 0 0 0
+4.90 350 0 0 0 0 0 0
+E
+iron-banded-boots ~
+This is one heavy pair of boots!  Black iron strips are bolted to a pair of
+black leather boots, making them immensely protective as well as cumbersome.  
+They are unornamented, though they do bear some light dents, testimony to their
+usefulness.~
+X
+1049587
+#1126
+leggings iron-banded-leggings~
+iron-banded leggings~
+A set of iron leggings lies here unattended.~
+~
+9 64507912 33 1
+5 0 0 0 0 0 0
+15.50 2600 0 0 0 0 0 0
+E
+iron-banded-leggings~
+These heavy plates of iron are designed to strap around their wearer's legs,
+forming strong and durable protection.  The knees feature cleverly worked
+joints, though apart from this, they're quite plain, just thick black iron.~
+X
+1049587
+#1127
+girth iron-banded-girth small-iron-girth~
+an iron-banded girth~
+A small iron girth lies at your feet.~
+~
+9 64507912 2049 1
+3 0 0 0 0 0 0
+2.10 2100 0 0 0 0 0 0
+E
+iron-banded-girth small-iron-girth~
+This wide belt is made up of lots of slim, long pieces of heavy, cold black
+iron banded together with wire.  It clasps at the front with a simple iron
+buckle.  Other than the buckle's tooling, it is not decorated.~
+X
+1049587
+#1128
+breastplate iron-breastplate breast-plate~
+an iron breastplate~
+An iron breast plate lies here.~
+~
+9 64507912 9 1
+5 0 0 0 0 0 0
+17.00 4900 0 0 0 0 0 0
+E
+iron-breastplate breast-plate~
+This large disc of cold black iron is designed to strap across its wearer's
+chest by way of leather straps.  It's tooled across its edges, but other than
+that, it's undecorated.~
+X
+1049587
+#1140
+breastplate steel-breastplate breast-plate~
+a steel breastplate~
+A steel breast plate shines up at you from the ground.~
+~
+9 64507912 9 1
+6 0 0 0 0 0 0
+16.00 9000 0 0 0 0 0 0
+E
+steel-breastplate breast-plate~
+A shiny disc of polished steel makes the main part of this piece of armor.  
+Tooled across its edges with a scrolling design, everything about it, from the
+subtle decorations to the fine straps, makes it look expensive and highly
+effective.  There are only a few little dents in its surface to mar its
+mirror-like perfection.~
+X
+1049587
+#1141
+shirt chain-mail-shirt chainmail-shirt steel~
+a chainmail shirt~
+A chain mail shirt lies in a heap on the ground.~
+~
+9 51384320 9 1
+4 0 0 0 0 0 0
+24.00 1300 0 0 0 0 0 0
+E
+chain mail shirt chain-mail-shirt chainmail-shirt steel~
+Thousands of little steel links go into the making of this heavy shirt. 
+It slips over the head easily, and looks like it'd fit just about anybody.
+The undecorated shirt shines and clinks at every motion of its wearer.~
+A
+2 -1
+X
+1049587
+#1142
+jacket scalemail-jacket scale-mail steel~
+a scalemail jacket~
+A scalemail jacket is lying on the ground.~
+~
+9 51384320 9 1
+5 0 0 0 0 0 0
+18.00 600 0 0 0 0 0 0
+E
+scalemail-jacket scale-mail steel~
+Hundreds of little fish-scale-shaped pieces of steel make up this attractive
+jacket.  It ripples with every lithe movement.  Though it isn't decorated, the
+little scales make it look functional as well as aesthetically pleasing.~
+X
+1049587
+#1143
+vest ringmail-vest ring-mail iron rings steel~
+a ringmail vest~
+A vest made of iron rings lies heaped on the floor.~
+~
+9 51384320 9 1
+4 0 0 0 0 0 0
+14.90 7500 0 0 0 0 0 0
+E
+ringmail-vest ring-mail iron rings~
+Dozens of large rings made of iron are sewn onto a thick quilted vest, making
+it far more protective and durable.  It looks like it's in fine condition for a
+piece of slightly used armor.~
+X
+1049587
+#1150
+shield small-wooden-shield~
+a wooden shield~
+A small wooden shield has been abandoned here.~
+~
+9 587206656 513 1
+2 0 0 0 0 0 0
+3.50 100 0 0 0 0 0 0
+T 51934
+E
+shield small-wooden-shield~
+A small wooden disc bolted along its edges, this shield is designed to be held
+close to the body.  A pair of leather handles on its back allows its user to
+hold it in a variety of ways.  The shield itself is undecorated.~
+X
+225
+#1151
+shield small-sturdy-iron-shield~
+a sturdy iron shield~
+A small, but sturdy, iron shield has been left here.~
+~
+9 51384320 513 1
+3 0 0 0 0 0 0
+4.50 300 0 0 0 0 0 0
+E
+shield small-sturdy-iron-shield~
+A small disc of heavy black iron makes up this shield.  Though it's heavy, its
+size makes it easier to use.  Leather straps provide handholds against the back
+of the undecorated piece of metal.~
+X
+225
+#1152
+shield large-steel-shield~
+a large steel shield~
+A large steel shield has been left here.~
+~
+9 51384320 513 1
+4 0 0 0 0 0 0
+4.50 500 0 0 0 0 0 0
+E
+shield large-steel-shield~
+Beaten steel makes up the main part of this door-shaped shield.  Large enough
+to protect most of its user's body, it is only lightly decorated along its
+edges with simple tooling.  Three leather straps along its back provide a
+secure grip.~
+X
+225
+#1154
+quill feather-quill long-white-feather pen~
+a feather quill~
+A long white feather lies here in the dirt.~
+~
+21 536870912 16385 1
+0 0 0 0 0 0 0
+0.05 5 0 0 0 0 0 0
+T 51990
+E
+quill feather-quill long-white-feather pen~
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)~
+#1159
+blur potion-blur~
+a potion of blur~
+A potion sits here.~
+~
+10 68 1 0
+100 69 0 0 0 0 0
+0.20 0 0 0 0 0 0 0
+#1160
+coldshield potion-coldshield~
+a potion of coldshield~
+A potion sits here.~
+~
+10 4 1 0
+100 106 0 0 0 0 0
+0.25 0 0 0 0 0 0 0
+#1161
+cure-critic potion-cure-critic~
+a potion of cure critic~
+A potion sits here.~
+~
+10 68 1 0
+100 15 0 0 0 0 0
+0.25 0 0 0 0 0 0 0
+#1162
+cure-light potion-cure-light~
+a potion of cure light~
+A potion sits here.~
+~
+10 68 1 0
+100 16 0 0 0 0 0
+0.28 0 0 0 0 0 0 0
+#1163
+cure-serious potion-cure-serious~
+a potion of cure serious~
+A potion sits here.~
+~
+10 68 1 0
+100 88 0 0 0 0 0
+0.24 0 0 0 0 0 0 0
+#1164
+dispel-magic potion-dispel-magic~
+a potion of dispel magic~
+A potion sits here.~
+~
+10 68 1 0
+100 99 99 99 0 0 0
+0.30 0 0 0 0 0 0 0
+#1165
+fireshield potion-fireshield~
+a potion of fireshield~
+A potion sits here.~
+~
+10 68 1 0
+100 105 0 0 0 0 0
+0.24 0 0 0 0 0 0 0
+#1166
+full-heal potion-full-heal~
+a potion of full heal~
+A potion sits here.~
+~
+10 68 1 0
+100 53 0 0 0 0 0
+0.28 0 0 0 0 0 0 0
+#1167
+heal potion-heal~
+a potion of heal~
+A potion sits here.~
+~
+10 68 1 0
+100 28 0 0 0 0 0
+0.22 0 0 0 0 0 0 0
+#1168
+invisibility potion-invisibility~
+a potion of invisibility~
+A potion sits here.~
+~
+10 68 1 0
+100 29 0 0 0 0 0
+0.25 0 0 0 0 0 0 0
+#1169
+minor-globe potion-minor-globe~
+a potion of minor globe~
+A potion sits here.~
+~
+10 68 1 0
+100 107 0 0 0 0 0
+0.25 0 0 0 0 0 0 0
+#1170
+major-globe potion-major-globe~
+a potion of major globe~
+A potion sits here.~
+~
+10 68 1 0
+100 108 0 0 0 0 0
+0.25 0 0 0 0 0 0 0
+#1171
+negate-cold potion-negate-cold~
+a potion of negate cold~
+A potion sits here.~
+~
+10 68 1 0
+100 180 0 0 0 0 0
+0.25 0 0 0 0 0 0 0
+#1172
+negate-heat potion-negate-heat~
+a potion of negate heat~
+A potion sits here.~
+~
+10 68 1 0
+100 169 0 0 0 0 0
+0.28 0 0 0 0 0 0 0
+#1173
+sane-mind potion-sane-mind~
+a potion of sane mind~
+A potion sits here.~
+~
+10 68 1 0
+100 142 0 0 0 0 0
+0.31 0 0 0 0 0 0 0
+#1174
+remove-curse potion-remove-curse~
+a potion of remove curse~
+A potion sits here.~
+~
+10 68 1 0
+100 35 0 0 0 0 0
+0.33 0 0 0 0 0 0 0
+#1175
+remove-poison potion-remove-poison~
+a potion of remove poison~
+A potion sits here.~
+~
+10 68 1 0
+100 43 0 0 0 0 0
+0.25 0 0 0 0 0 0 0
+#1176
+soulshield potion-soulshield~
+a potion of soulshield~
+A potion sits here.~
+~
+10 68 1 0
+100 92 0 0 0 0 0
+0.24 0 0 0 0 0 0 0
+#1177
+teleport potion-teleport~
+a potion of teleport~
+A potion sits here.~
+~
+10 68 1 0
+100 2 0 0 0 0 0
+0.29 0 0 0 0 0 0 0
+#1178
+waterform potion-waterform~
+a potion of waterform~
+A potion sits here.~
+~
+10 68 1 0
+100 181 0 0 0 0 0
+0.26 0 0 0 0 0 0 0
+$~

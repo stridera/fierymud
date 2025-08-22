@@ -1,0 +1,55 @@
+22 1 4
+actor_level 70
+price 678405
+skill_level 50
+skill_name mount
+19 255 1
+choice 2
+10 255 0
+21 1 0
+32770 255 1
+subclass_name necromancer
+17 1 17
+5542_reward 1
+5529_reward 1
+5543_reward 1
+5539_reward 1
+5515_reward 1
+5519_reward 1
+5555_reward 1
+5516_trophies 2
+5514_trophies 3
+5557_reward 1
+5510_trophies 16
+5512_trophies 8
+5508_trophies 19
+5504_trophies 13
+5506_trophies 9
+eg_faction -1
+bl_faction 109
+7 3 25
+55730_gems_acquired 3
+55719_gems_acquired 3
+55675_gems_acquired 3
+55697_gems_acquired 3
+55708_gems_acquired 3
+55686_gems_acquired 3
+55363_armor_acquired 1
+55379_armor_acquired 1
+55371_armor_acquired 1
+55359_armor_acquired 1
+55375_armor_acquired 1
+55367_armor_acquired 1
+55620_gems_acquired 3
+55339_armor_acquired 1
+55609_gems_acquired 3
+55335_armor_acquired 1
+55642_gems_acquired 3
+55631_gems_acquired 3
+55343_armor_acquired 1
+55598_gems_acquired 3
+55355_armor_acquired 1
+55331_armor_acquired 1
+55347_armor_acquired 1
+55567_gems_acquired 3
+55302_armor_acquired 1

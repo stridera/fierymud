@@ -1,0 +1,121 @@
+name: Celandra
+password: CexpB3N/uH
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 6
+race: 9
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19174
+birthtime: 1494525858
+timeplayed: 19791
+lastlogintime: 1498153796
+host: 136.165.138.169
+height: 65
+weight: 128
+base_height: 65
+base_weight: 128
+base_size: 2
+natural_size: 2
+alignment: 995
+playerflags: gxy
+effectflags: kx 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 7
+thirst: 12
+lastlevel: 0
+hitpoints: 132/132
+mana: 1/0
+move: 56/106
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 72
+wisdom: 66
+dexterity: 92
+constitution: 78
+charisma: 61
+cash: 0 12 63 101
+bank: 0 172 1032 1106
+experience: 313471
+quit_reason: 1
+saveroom: 3054
+skills:
+16 1000
+18 1000
+32 1000
+402 140
+404 150
+410 50
+411 69
+415 50
+416 50
+417 50
+421 135
+423 82
+424 56
+430 50
+438 50
+443 50
+444 78
+447 56
+451 50
+452 54
+457 52
+462 51
+463 50
+464 50
+465 117
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36300 2.000000
+1 36303 1.000000
+1 17208 2.500000
+1 17204 10.000000
+1 17202 1.500000
+1 5485 1.000000
+1 5484 3.000000
+1 5483 4.000000
+1 5475 1.000000
+1 5403 3.000000
+1 5404 8.000000
+1 5408 9.000000
+1 5420 7.000000
+1 8016 1.000000
+1 8022 1.000000
+1 8020 1.000000
+1 8000 1.000000
+1 8607 1.000000
+1 8609 1.000000
+1 8603 3.000000
+1 8613 1.000000
+0 0 0
+mem:
+18 1 4
+32 1 4
+32 1 4
+32 1 4
+32 1 4
+32 1 4
+32 1 4
+16 1 8
+16 1 8
+0 0 0
+aliases:
+ksk kill skeleton
+gcc get coins corpse
+gac get all corpse
+assr assist reith
+ccl cast 'cure light'
+cmm cast 'magic missile'
+cda cast 'detect alignment'
+0

@@ -1,0 +1,99 @@
+name: Anarion
+password: AnEVRSc8k/
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19665
+birthtime: 1595564568
+timeplayed: 6666
+lastlogintime: 1595573804
+host: 071.058.214.098
+height: 87
+weight: 212
+base_height: 87
+base_weight: 212
+base_size: 3
+natural_size: 3
+alignment: 27
+playerflags: gy
+effectflags: 0 r 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 79/75
+mana: 1/0
+move: 138/138
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 67
+wisdom: 68
+dexterity: 94
+constitution: 79
+charisma: 53
+cash: 0 62 233 209
+experience: 88513
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 52
+415 50
+416 50
+419 1000
+421 76
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 64
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 17209 1.000000
+1 17202 1.000000
+1 17203 1.000000
+1 17204 7.000000
+1 12014 2.000000
+1 12023 2.000000
+1 12004 2.000000
+1 12024 1.000000
+1 12007 2.000000
+1 12025 2.000000
+1 12001 7.000000
+1 12016 3.000000
+1 12015 3.000000
+1 3503 3.000000
+1 3502 12.000000
+1 3500 26.000000
+1 3507 8.000000
+1 3501 28.000000
+1 3506 5.000000
+1 3509 6.000000
+1 3508 12.000000
+0 0 0
+tells:
+$
+gossips:
+1595565000 Yawk gossips, 'hi anarion'
+1595565067 Vawk gossips, 'let me know if you have any questions the heavens have been quiet for a time.'
+1595565106 Vawk gossips, 'the help funtion is handy and you have a map if i'm not mistaken'
+1595565154 Vawk gossips, 'you should also have a map in your inventory that will mark your guild hall'
+1595565212 Yawk gossips, 'think your guild is #2 on the map'
+1595565806 Chinok gossips, 'gratz on level 2 Anarion'
+1595571488 Chinok gossips, 'gratz on level 5 Anarion'
+1595571494 Chinok gossips, 'but I'm heading to bed! -- Night'
+1595571537 Chinok gossips, 'any questions before I take off ?'
+$

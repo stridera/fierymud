@@ -1,0 +1,538 @@
+#50200
+runner boy little ghoulish ghoul runner-boy~
+a runner boy~
+A ghoulish little boy moves slowly through the area.~
+A spindly little ghoul stands before you.  It was once a little boy, running
+errands on a pirate ship.  Now it is a reanimated corpse with soulless eyes.~
+268445704 0 0 E
+16 0 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 1 3 0 0 1
+Str: 78
+Dex: 91
+Int: 64
+Wis: 73
+Con: 79
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#50201
+diplomat ghost man diplomat-ghost ghostly suited~
+the ghost of a diplomat~
+A ghostly man in a proper suit stands in a corner.~
+Although he is a ghost, it is plain that this man once held a position of
+authority.  He wears a fine suit and carries himself well.    ~
+10 0 -600 E
+25 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 1 3 0 0 2
+Str: 82
+Dex: 98
+Int: 64
+Wis: 73
+Con: 74
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+T 50201
+T 50202
+T 50203
+T 50209
+#50202
+zombie slave pitiful zombified human zombie-slave~
+the zombie of a slave~
+A pitiful zombified human is standing here.~
+The rusted remains of manacles still cling to this poor creature's wrists and
+ankles.  Shreds of rotting clothing hang around its neck and waist.  It is in
+an advanced state of decay.    ~
+268435466 0 0 E
+18 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 1 3 0 0 2
+BareHandAttack: 4
+Str: 88
+Dex: 77
+Int: 76
+Wis: 78
+Con: 75
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#50203
+zombie cook fat horrible grotesque zombified cook zombiefied-pirate-cook zombie-cook~
+the zombified pirate cook~
+A horribly fat and grotesque zombie stands before you.~
+Green mold is growing in a great swath across the face and chest of this
+morbidly obese creature.  It is clearly dead, having a shredded belly, and it's
+missing the back of its skull.  Nevertheless it continues to move about,
+cooking imaginary meals.    ~
+10 0 -800 E
+22 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 0 3 0 0 2
+Str: 82
+Dex: 85
+Int: 68
+Wis: 82
+Con: 76
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+T 18522
+T 55696
+#50204
+mutineer zombie zombified angry-looking zombified-mutineer~
+a zombified mutineer~
+An angry-looking zombie with half a jaw advances!~
+Half of the face and jaw have been ripped away from this nonliving creature.  
+The rest of its body is covered in what would have been sores, if it were
+alive.  Various organisms fester here and there.    ~
+268435466 0 500 E
+21 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 0 3 0 0 2
+Str: 91
+Dex: 89
+Int: 65
+Wis: 80
+Con: 83
+Cha: 45
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#50205
+zombie pirate corpse animated dead zombie-pirate~
+a zombie pirate~
+A dead but animated corpse of a pirate is standing here.~
+Broken bones and a shattered skull are all too evident in the destroyed body of
+this unfortunate mariner.  Some unholy force has reanimated its corpse,
+however, and it stands guard against intrusion from the likes of you.    ~
+1832 0 -500 E
+21 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 0 3 0 0 2
+Str: 86
+Dex: 76
+Int: 70
+Wis: 82
+Con: 76
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#50206
+pirate ghost first mate glowing ghostly ghostly-first-mate~
+a ghostly first mate~
+The glowing ghost of the first mate hangs in the air.~
+Whatever force animates the other pirates here also works upon this sad, dead
+creature.  Apparently, its body was too destroyed to be of use.  However, it
+still appears dangerous.    ~
+10 0 -700 E
+25 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 0 3 0 0 2
+Str: 86
+Dex: 76
+Int: 69
+Wis: 81
+Con: 78
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+T 55696
+#50207
+captain ghost ghostly pirate ghostly-pirate-captain fearsome scowling~
+the ghostly pirate captain~
+The fearsome ghost of a pirate captain scowls about.~
+This disincorporated pirate appears to be very angry.  The wounds of life are
+visible in his ghostly form, but appear to hinder him not at all.  He seems to
+be looking for something.    ~
+2101096 0 -800 E
+26 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 1 5 0 0 2
+Str: 86
+Dex: 93
+Int: 61
+Wis: 75
+Con: 81
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+T 50208
+T 55697
+#50208
+bayou-ranger quiet man ranger~
+a quiet ranger~
+A quiet man, dressed for the woods, stands nearby.~
+This man is dressed in simple, camouflaged clothing that makes
+him hard to see. He appears to be traveling or hunting, and is
+in good spirits.~
+268435466 0 850 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 1 6 0 0 2
+Str: 76
+Dex: 84
+Int: 78
+Wis: 64
+Con: 85
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 50204
+T 50205
+T 50210
+T 50211
+#50209
+maddened-diplomat-spectre maddened diplomat spectre~
+the spectre of a maddened diplomat~
+The diplomat's spectre floats here, glowing red and cackling.~
+No longer the mild and collected statesman, this long-dead creature now appears
+insane and obsessive.  He stares about him with lust and hatred, and seems to
+glow with an evil light.    ~
+106506 0 -1000 E
+27 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 1 10 0 0 2
+Str: 73
+Dex: 71
+Int: 75
+Wis: 95
+Con: 71
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+T 50212
+T 50207
+#50210
+lookout shade ghostly lookout-shade~
+the shade of a lookout~
+A ghostly lookout stands watch.~
+This unfortunate mariner appears to have died long ago.  Its soul has risen to
+watch endlessly for land, oblivious to its fate.    ~
+268435466 0 0 E
+18 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 1 3 0 0 2
+Str: 98
+Dex: 86
+Int: 64
+Wis: 73
+Con: 74
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+#50211
+ghost child girl ghostly-girl sad little floating~
+a ghostly girl~
+A sad little girl floats motionlessly over the waters.~
+She looks strangely unhurt, and yet is clearly not alive.  Her eyes are
+haunting, almost totally black.    ~
+10 0 950 E
+26 20 3 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 2 13 0 0 1
+Str: 89
+Dex: 85
+Int: 72
+Wis: 79
+Con: 71
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+#50212
+macaw bird bedraggled filthy bedraggled-macaw~
+a bedraggled macaw~
+A filthy, bedraggled macaw is perched on a board.~
+Once-beautiful plumage is now oily and torn.  The bright blue and yellow
+feathers of this bird are now ugly and repulsive.  There is a notch in its
+large beak, but this bloody-eyed bird still seems to be quite belligerent.    ~
+268435594 0 0 E
+16 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 0 3 14 0 1
+BareHandAttack: 10
+Str: 84
+Dex: 80
+Int: 75
+Wis: 72
+Con: 74
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#50213
+ripple gentle blood-eel~
+a blood eel~
+A gentle ripple in the surface of the water glides toward you.~
+This brownish-black, sinuous creature silently hunts in shallow waters.  Its
+many small razor-sharp teeth can grab onto nearly anything.    ~
+1832 263168 0 E
+18 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 0 3 14 0 2
+BareHandAttack: 4
+Str: 80
+Dex: 81
+Int: 73
+Wis: 67
+Con: 78
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#50214
+lizard winged-lizard brownish-green winged~
+a winged lizard~
+A brownish-green lizard with large batwings flutters among low branches.~
+Tough, leathery skin covers this somewhat large lizard.  It has four legs in
+addition to large wings, and a mouth full of sharp teeth.    ~
+268435656 1048640 0 E
+16 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+4 4 0 3 14 0 1
+BareHandAttack: 4
+Str: 98
+Dex: 84
+Int: 71
+Wis: 66
+Con: 70
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#50215
+kookaburra bird heavyset~
+a kookaburra~
+A heavyset bird with a long, heavy beak watches the water carefully.~
+With its big heavy beak and sharp eyes, this kookaburra is undoubtedly an
+excellent fisher.  It is well-suited to the waters of the bayou.    ~
+268435656 1048640 0 E
+16 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+4 4 0 3 14 0 1
+BareHandAttack: 10
+Str: 99
+Dex: 80
+Int: 60
+Wis: 66
+Con: 82
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#50216
+will wisp light glimmer softly glowing bayou-will-o-wisp~
+a will o' the wisp~
+A softly glowing light glimmers up ahead, beckoning you.~
+The floating light seems to shift from gold to white and back again.  It is
+very difficult to see, and yet almost impossible not to notice.    ~
+268435592 1048576 0 E
+21 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+4 4 0 16 19 1 1
+BareHandAttack: 1
+Str: 81
+Dex: 80
+Int: 77
+Wis: 78
+Con: 73
+Cha: 66
+AFF2: 4194305
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 7
+Stance: 6
+E
+#50217
+panther cat black sinuous large black-panther~
+a black panther~
+A large, sinuous black cat steps carefully through the mist.~
+The power of this creature is unmistakable.  Smoothly contracting muscles
+ripple under its midnight-black coat.  The powerful jaws reflect its favorite
+method of killing: a crushing bite to the back of the skull.    ~
+2099272 0 0 E
+21 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 1 3 14 0 2
+BareHandAttack: 8
+Str: 82
+Dex: 85
+Int: 75
+Wis: 79
+Con: 81
+Cha: 52
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#50218
+mass beast creature~
+a bloated mass~
+A horrible, bloated mass of tissue surges forward at your approach.~
+Resembling nothing more than a giant clump of rancid cheese, this voracious
+beast occupies about as much room as a gaming table.  Thick, mucousy tentacles
+reach straight for you!    ~
+268674858 0 0 E
+22 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 0 3 19 1 3
+BareHandAttack: 9
+Str: 82
+Dex: 86
+Int: 66
+Wis: 82
+Con: 69
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 0
+Stance: 6
+E
+#50219
+troll swamp swamp-troll humanoid~
+a swamp troll~
+A brownish-green humanoid with straggly black hair peers at you suspiciously.~
+   Irregular spots and lengthy splotches splatter the dark olive skin of this
+wrinkled troll like the hurled paint of an inattentive god.  This is a tall,
+gangly, wizened looking troll with a bulbous nose and large droopy ears.  Its
+reddened eyes peer at you, as if attempting to gauge the threat you pose.    ~
+268435532 0 0 E
+20 20 0 0d0+0 0d0+0
+0 0 0 0 0 502
+3 3 0 3 4 1 3
+Str: 98
+Dex: 91
+Int: 69
+Wis: 71
+Con: 70
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

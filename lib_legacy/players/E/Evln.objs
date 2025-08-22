@@ -1,0 +1,2175 @@
+1
+vnum: 1004
+location: 0
+values:
+0
+240
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern. It holds about fifteen hours worth of fuel.
+~
+~~
+vnum: 16907
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring diamond
+shortdesc: a diamond ring
+desc: A sparkling diamond ring catches your eye.
+type: 8
+weight: 0.20
+cost: 320
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 3
+applies:
+6 3
+~
+extradesc: ring diamond
+The diamond sparkles with a merry light, as if it were alive.
+You can't help but admire the skill of the jeweler.
+~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: tooth necklace bat bat-tooth-necklace bat-tooth tooth-necklace
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 9
+weight: 0.40
+cost: 145
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 5
+applies:
+13 10
+18 1
+~
+extradesc: necklace bat tooth
+When examined closely, it is easy to see the necklace was constructed
+hastily with clumsy hands. The teeth vary in shape and size making you
+wonder if more than bat teeth were used. Even with all of its flaws,
+you can tell the necklace held some significance to the owner.~
+~~
+vnum: 18001
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 38
+location: 7
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: leggings black linen
+shortdesc: black linen leggings
+desc: Some black linen leggings lie here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: black linen leggings
+They are finely tailored of regular coarse linen and dyed black.
+With their close-fitting form, they certainly cut a nice figure
+beneath a robe.
+~
+~~
+vnum: 55402
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: noprstuvwx
+name: sandals apprentice
+shortdesc: apprentice sandals
+desc: A pair of slightly magical reed sandals wiggles slightly.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 65
+applies:
+2 1
+13 3
+~
+extradesc: apprentice sandals
+Newly sewn, these magical cloth sandals were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!
+~
+~~
+vnum: 36010
+location: 13
+values:
+15
+1
+0
+0
+0
+0
+0
+~
+flags: opr
+name: belt small-belt-potions canvas-belt-canvas potions-belt
+shortdesc: a small belt of potions
+desc: A belt of canvas lies here.
+type: 15
+weight: 1.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+extradesc: small-belt-potions canvas-belt-canvas potions-belt
+A wide canvas belt with buttons along its borders is revealed to be a
+container.    
+~
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 61506
+location: 16
+values:
+1
+1
+3
+11
+0
+0
+0
+~
+flags: n
+name: knife small flint
+shortdesc: a small flint knife
+desc: A small yellowish knife is stuck in the turf.
+type: 5
+weight: 0.50
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: small flint knife
+This little knife was chipped from the yellowish, slightly translucent flint
+found in the hills.  It has a wooden handle, wound with sinew, attached to one
+end.  Though small, it is quite sharp.    
+~
+~~
+vnum: 8611
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: snake tooth
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 11
+weight: 0.01
+cost: 200
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth snake
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.
+~
+~~
+vnum: 55762
+location: 127
+values:
+0
+1
+8
+11
+0
+0
+0
+~
+flags: nrsuv
+name: dagger small grey
+shortdesc: a small grey dagger
+desc: A small grey dagger lies here.
+type: 5
+weight: 0.75
+cost: 0
+timer: 0
+level: 9
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 1601
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: foot lucky-rabbits-foot lucky-rabbit-foot
+shortdesc: a lucky rabbit's foot
+desc: A lucky rabbit's foot is covered in dirt on the ground.
+type: 11
+weight: 0.23
+cost: 10
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+17 1
+~
+extradesc: foot lucky-rabbits-foot lucky-rabbit-foot
+Quite large for a rabbit's foot, the previous owner must have been rather
+fearsome to have produced such a magnificient specimen.  The last owner must
+not have been very lucky, however, having lost such a vital appendage.  Some
+flecks of blood stick in the matted rabbit's hair around the area from which
+the leg once protruded.  A thick strand of twine runs through the foot,
+allowing it to be worn.
+~
+~~
+vnum: 1601
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: foot lucky-rabbits-foot lucky-rabbit-foot
+shortdesc: a lucky rabbit's foot
+desc: A lucky rabbit's foot is covered in dirt on the ground.
+type: 11
+weight: 0.23
+cost: 10
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+17 1
+~
+extradesc: foot lucky-rabbits-foot lucky-rabbit-foot
+Quite large for a rabbit's foot, the previous owner must have been rather
+fearsome to have produced such a magnificient specimen.  The last owner must
+not have been very lucky, however, having lost such a vital appendage.  Some
+flecks of blood stick in the matted rabbit's hair around the area from which
+the leg once protruded.  A thick strand of twine runs through the foot,
+allowing it to be worn.
+~
+~~
+vnum: 41008
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz
+name: sleeves chitinous-sleeves chitinous narrow tubes chitin
+shortdesc: a set of chitinous-sleeves
+desc: Narrow tubes of chitin lie here, gathering dust.
+type: 9
+weight: 6.00
+cost: 200
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 257
+applies:
+2 -1
+~
+extradesc: chitinous-sleeves sleeves chitinous
+These stiff tubes of chitin look like they once graced the upper legs of
+some Hiver. They would make stiff but servicable sleeves for a human.
+~
+~~
+vnum: 55310
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracelet decayed
+shortdesc: a decayed bracelet
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 41008
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz
+name: sleeves chitinous-sleeves chitinous narrow tubes chitin
+shortdesc: a set of chitinous-sleeves
+desc: Narrow tubes of chitin lie here, gathering dust.
+type: 9
+weight: 6.00
+cost: 200
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 257
+applies:
+2 -1
+~
+extradesc: chitinous-sleeves sleeves chitinous
+These stiff tubes of chitin look like they once graced the upper legs of
+some Hiver. They would make stiff but servicable sleeves for a human.
+~
+~~
+vnum: 1006
+location: 127
+values:
+300
+204
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 15.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 55302
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: mittens decayed
+shortdesc: decayed mittens
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3020
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: nu
+name: dagger
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: dagger
+The dagger's blade is razor sharp.
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+5 5
+101 13
+20 5
+32 5
+100 5
+8 7
+19 18
+39 5
+~
+~~
+vnum: 3120
+location: 127
+values:
+0
+1
+4
+8
+0
+0
+0
+~
+flags: mnprtu
+name: claw old slimy
+shortdesc: an old claw
+desc: An old claw is tossed in the dirt here.
+type: 5
+weight: 6.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: old claw
+An old claw beginning to rust has a fresh coat of slime on it.  The stench from
+the claws is enough to kill a person.    
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 46406
+location: 127
+values:
+20
+3
+46410
+0
+0
+0
+0
+~
+flags: ab
+name: egg speckled speckled-egg
+shortdesc: a speckled egg
+desc: Someone has forgotten a small, speckled egg here.
+adesc:
+Nothing.
+~
+type: 15
+weight: 0.20
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+applies:
+23 -2
+~
+extradesc: speckled egg
+     About as big around as your fist, the smooth off-white surface of this egg
+is speckled with tiny flecks of blue and yellow, giving it an almost marbled
+appearance.  The egg is warm in your hand, and you can almost feel the beating
+of a tiny heart inside it.  Perhaps if kept properly warm and cared for, in a
+few days the most wonderful of treasures might be discovered inside.
+~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 55301
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: gloves leather flimsy
+shortdesc: flimsy leather gloves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55302
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: mittens decayed
+shortdesc: decayed mittens
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55302
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: mittens decayed
+shortdesc: decayed mittens
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1006
+location: 127
+values:
+30
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 1006
+location: 127
+values:
+300
+284
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 20.52
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 18003
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 1601
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: foot lucky-rabbits-foot lucky-rabbit-foot
+shortdesc: a lucky rabbit's foot
+desc: A lucky rabbit's foot is covered in dirt on the ground.
+type: 11
+weight: 0.23
+cost: 10
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+17 1
+~
+extradesc: foot lucky-rabbits-foot lucky-rabbit-foot
+Quite large for a rabbit's foot, the previous owner must have been rather
+fearsome to have produced such a magnificient specimen.  The last owner must
+not have been very lucky, however, having lost such a vital appendage.  Some
+flecks of blood stick in the matted rabbit's hair around the area from which
+the leg once protruded.  A thick strand of twine runs through the foot,
+allowing it to be worn.
+~
+~~
+vnum: 55760
+location: 127
+values:
+0
+2
+3
+11
+0
+0
+0
+~
+flags: nrsuv
+name: dagger small black
+shortdesc: a small black dagger
+desc: A small black dagger lies here.
+type: 5
+weight: 0.75
+cost: 0
+timer: 0
+level: 6
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 55763
+location: 127
+values:
+0
+2
+4
+11
+0
+0
+0
+~
+flags: nrsuv
+name: dagger small silver
+shortdesc: a small silver dagger
+desc: A small silver dagger lies here.
+type: 5
+weight: 0.75
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 18001
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 17206
+location: 127
+values:
+15
+16
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flask bubbling
+shortdesc: a bubbling flask
+desc: A bubbling flask is left at the side of the room.
+type: 10
+weight: 1.00
+cost: 15
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1
+extradesc: flask bubbling
+The liquid in the flask has a sweet and pleasant aroma. It smells somewhat
+delicious.
+~
+~~
+vnum: 1004
+location: 127
+values:
+1
+240
+116
+0
+0
+0
+0
+~
+flags: 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern. It holds about fifteen hours worth of fuel.
+~
+~~
+vnum: 3021
+location: 127
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnu
+name: a-small-sword
+shortdesc: a small sword
+desc: A small sword lies here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: small sword
+The sword is rather small to be called a sword, but it's definitely bigger
+than a dagger. It's rather simple in design.
+~
+~~
+vnum: 36304
+location: 127
+values:
+0
+1
+5
+14
+0
+0
+0
+~
+flags: mnou
+name: spetum spear
+shortdesc: a spetum
+desc: A spear with a long narrow point and barbs lies here.
+type: 5
+weight: 5.20
+cost: 200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+extradesc: spetum spear
+The spetum is a vastly improved spear.  It has a long narrow blade with two
+projections below the thrusting blade which are used to catch an opponent's 
+weapons and disarm her.  However, the spetum is much heavier than a normal
+spear.
+~
+~~
+vnum: 36304
+location: 127
+values:
+0
+1
+5
+14
+0
+0
+0
+~
+flags: mnou
+name: spetum spear
+shortdesc: a spetum
+desc: A spear with a long narrow point and barbs lies here.
+type: 5
+weight: 5.20
+cost: 200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+extradesc: spetum spear
+The spetum is a vastly improved spear.  It has a long narrow blade with two
+projections below the thrusting blade which are used to catch an opponent's 
+weapons and disarm her.  However, the spetum is much heavier than a normal
+spear.
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 1001
+location: -1
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 17201
+location: -2
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 17201
+location: -2
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 17201
+location: -2
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 17201
+location: -2
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 3021
+location: -2
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnu
+name: a-small-sword
+shortdesc: a small sword
+desc: A small sword lies here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: small sword
+The sword is rather small to be called a sword, but it's definitely bigger
+than a dagger. It's rather simple in design.
+~
+~~
+vnum: 3021
+location: -2
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnu
+name: a-small-sword
+shortdesc: a small sword
+desc: A small sword lies here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: small sword
+The sword is rather small to be called a sword, but it's definitely bigger
+than a dagger. It's rather simple in design.
+~
+~~
+vnum: 3021
+location: -2
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnu
+name: a-small-sword
+shortdesc: a small sword
+desc: A small sword lies here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: small sword
+The sword is rather small to be called a sword, but it's definitely bigger
+than a dagger. It's rather simple in design.
+~
+~~
+vnum: 3021
+location: -2
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnu
+name: a-small-sword
+shortdesc: a small sword
+desc: A small sword lies here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 8.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: small sword
+The sword is rather small to be called a sword, but it's definitely bigger
+than a dagger. It's rather simple in design.
+~
+~~
+vnum: 1001
+location: -1
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 1001
+location: -1
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 3020
+location: -2
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: 0
+name: dagger steel steel-dagger
+shortdesc: a steel dagger
+desc: A steel dagger lies on the ground, sheathed.
+type: 5
+weight: 0.50
+cost: 45
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 36301
+location: 127
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnuyz
+name: blade smuggler-blade smuggler
+shortdesc: a smuggler's blade
+desc: A finely crafted blade gleams in the light.
+type: 5
+weight: 1.40
+cost: 150
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: blade smuggler
+This blade looks like a finely crafted long sword with a slight curve
+at the time.  The blade is highly polished and extremely sharp.  The hilt
+is wrapped in soft leather and it is extremely well balanced.
+~
+~~
+vnum: 36301
+location: 127
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: mnuyz
+name: blade smuggler-blade smuggler
+shortdesc: a smuggler's blade
+desc: A finely crafted blade gleams in the light.
+type: 5
+weight: 1.40
+cost: 150
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: blade smuggler
+This blade looks like a finely crafted long sword with a slight curve
+at the time.  The blade is highly polished and extremely sharp.  The hilt
+is wrapped in soft leather and it is extremely well balanced.
+~
+~~
+vnum: 55566
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~

@@ -1,0 +1,118 @@
+name: Lankir
+password: LaKeMN5x0Y
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 26
+level: 18
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20171
+birthtime: 1645667319
+timeplayed: 134331
+lastlogintime: 1662272929
+host: 208.093.179.103
+height: 76
+weight: 366
+base_height: 76
+base_weight: 366
+base_size: 2
+natural_size: 2
+alignment: -942
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 55923
+lastlevel: 0
+hitpoints: 284/248
+mana: 32/32
+move: 156/156
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 84
+wisdom: 84
+dexterity: 92
+constitution: 100
+charisma: 74
+cash: 8 914 3166 1400
+experience: 1337245
+pagelength: 44
+quit_reason: 7
+saveroom: 55923
+skills:
+201 1000
+402 50
+404 50
+407 68
+415 50
+416 50
+421 129
+430 70
+438 50
+443 61
+444 95
+453 50
+463 50
+464 50
+465 146
+466 50
+467 50
+468 223
+486 119
+0 0
+trophy:
+1 5521 2.083333
+1 5523 0.250000
+1 5522 4.083333
+1 2002 0.250000
+1 2001 0.250000
+1 2003 0.500000
+1 2004 0.500000
+1 16106 0.750000
+1 16111 0.750000
+1 16103 0.250000
+1 16104 0.750000
+1 16108 0.500000
+1 16107 2.750000
+1 5520 1.250000
+1 5519 1.000000
+1 5518 1.000000
+1 5517 1.250000
+1 5516 2.083333
+1 5515 2.250000
+1 5514 1.500000
+1 5513 1.750000
+0 0 0
+tells:
+1649227308 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1649504783 @WLyft@W tells you, 'Leddie requested i send a well Incoming@W'@0
+1650518430 @WLyft@W tells you, 'Leddie requested i send a well Incoming@W'@0
+1650608591 @WSomeone@W tells you, 'Leddie requested i send a well Incoming@W'@0
+1650612211 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1650619374 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1650854687 Leddie gossips, 'night'
+1650854712 Leddie gossips, 'or hema competition'
+1650854731 Chinok gossips, 'it would be a small damage boost for size... if we do make any changes'
+1650854768 Leddie gossips, 'i thought weapons that can only be used while mounted would be fun :)'
+1650854788 Chinok gossips, 'that's not a bad idea at all'
+1650854819 Chinok gossips, 'night!'
+1650854823 Leddie gossips, 'night'
+1650858718 Vorth gossips, 'gratz'
+1650858785 Leddie gossips, 'ty'
+1650858807 Leddie gossips, 'got to get those easy eldorian levels :)'
+$
+aliases:
+ct tell lyft $*
+gac get all all.corpse
+gax g all.coins all.corpse
+id recite identify $*
+startinghp 28
+breath breat fire
+0

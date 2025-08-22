@@ -1,0 +1,91 @@
+name: Jomark
+password: Ar7uWMURhY
+currenttitle: de Armas
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 9
+race: 0
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 5389
+birthtime: 973893062
+timeplayed: 2908480
+lastlogintime: 1325867940
+host: 099.190.090.102
+height: 67
+weight: 164
+base_height: 67
+base_weight: 164
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glnxyz
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 103
+loadroom: 3054
+lastlevel: 8
+hitpoints: 842/842
+mana: 100/100
+move: 102/108
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 66
+wisdom: 68
+dexterity: 100
+constitution: 70
+charisma: 59
+cash: 77 336 2586 2861
+bank: 60 532 3253 3566
+experience: 105805999
+title: de Armas
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 674
+404 598
+405 381
+408 154
+410 750
+411 1000
+412 1000
+415 628
+416 999
+418 999
+420 1000
+421 1000
+438 174
+440 1000
+443 178
+444 163
+464 1000
+465 780
+477 150
+0 0
+trophy:
+1 2806 0.333333
+1 11702 0.833333
+1 11710 0.250000
+1 2809 0.500000
+1 2808 1.000000
+1 3060 2.666667
+1 3067 1.000000
+1 3059 2.666667
+0 0 0
+aliases:
+= disengage
+- b zenitul
+8 say gv
+7 get coins from all
+9 drag karde north
+0 drag corpse up
+3 wield dagger
+2 b norhamen ; flee
+1 b guard
+0

@@ -1,0 +1,77 @@
+47 1 1
+gem_vnum 0
+21 1 4
+actor_level 16
+price 258
+skill_level 180
+skill_name backstab
+17 1 15
+5546_reward 1
+5520_reward 1
+5513_trophies 1
+5556_reward 1
+5558_reward 2
+5547_reward 1
+5518_reward 2
+5511_trophies 1
+5507_trophies 6
+5509_trophies 7
+5505_trophies 7
+5503_trophies 10
+eg_ally 1
+eg_faction 47
+bl_faction -1
+48 7 4
+fire_ring 1
+sash 0
+charles 0
+lashes 0
+71 1 2
+cloaktask1 1
+attack_counter 0
+32824 255 1
+subclass_name bard
+56 2 4
+target3 0
+target2 0
+target1 0
+bounty running
+58 1 1
+armor_vnum 0
+22 1 4
+actor_level 13
+price 2153
+skill_level 50
+skill_name mount
+61 3 2
+target1 0
+hunt 0
+64 255 1
+got_cherry 0
+70 3 2
+treasure1 0
+hunt 0
+59 3 2
+target1 0
+hunt 0
+23 1 5
+actor_level 16
+price 3960
+skill_level 50
+word2 chant
+skill_name perform
+7 1 14
+55592_gems_acquired 3
+55321_armor_acquired 1
+55588_gems_acquired 3
+55325_armor_acquired 1
+55305_armor_acquired 1
+55572_gems_acquired 3
+55309_armor_acquired 1
+55317_armor_acquired 1
+55576_gems_acquired 3
+55584_gems_acquired 3
+55580_gems_acquired 3
+55313_armor_acquired 1
+55568_gems_acquired 3
+55301_armor_acquired 1

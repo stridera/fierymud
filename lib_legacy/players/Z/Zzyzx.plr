@@ -1,0 +1,102 @@
+name: Zzyzx
+password: ZzITwpDMz9
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 20
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18583
+birthtime: 1380498249
+timeplayed: 151264
+lastlogintime: 1388219018
+host: 071.218.120.130
+height: 67
+weight: 129
+base_height: 67
+base_weight: 129
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gy
+effectflags: k 0 0
+prefflags: hnotC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 7008
+badpasswords: 1
+lastlevel: 0
+hitpoints: 248/248
+mana: 40/40
+move: 118/118
+damroll: 3
+hitroll: 3
+strength: 99
+intelligence: 56
+wisdom: 77
+dexterity: 92
+constitution: 87
+charisma: 50
+cash: 16 252 728 67
+bank: 36 22 1356 1819
+experience: 1766016
+quit_reason: 7
+saveroom: 7008
+skills:
+402 248
+404 243
+407 50
+415 173
+416 66
+421 248
+430 136
+431 50
+438 179
+443 50
+444 123
+463 170
+464 104
+465 240
+466 50
+467 53
+468 50
+0 0
+trophy:
+1 7002 1.000000
+1 7001 1.000000
+1 7003 2.000000
+1 7053 3.000000
+1 7004 3.000000
+1 7051 3.000000
+1 8603 2.000000
+1 8613 2.000000
+1 8614 1.000000
+1 8602 2.000000
+1 8606 1.000000
+1 8605 2.000000
+1 8604 3.000000
+1 36001 2.000000
+1 36003 1.000000
+1 36002 4.000000
+1 8002 1.000000
+1 8010 2.000000
+1 8013 1.000000
+1 8015 3.000000
+1 8016 1.000000
+0 0 0
+tells:
+$
+gossips:
+$
+aliases:
+ec examine corpse
+coin get coins corpse
+fa first aid
+gac get all corpse
+hat kick;kick;kick
+^$$ mount
+m mount $*
+0

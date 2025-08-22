@@ -1,0 +1,477 @@
+#62500
+dog annoying-feral-dog~
+an annoying feral dog~
+An annoying feral dog wanders the tunnels.~
+   This dog is about the size of a house dog.  Feral dogs burrow under trees
+and eat their roots.  They are nearly impossible to get rid of once they have
+moved into an area.~
+40 0 -200 E
+18 20 8 0d0+-40 0d-1+-3
+0 0 0 0 0 625
+3 3 0 24 14 0 2
+BareHandAttack: 4
+Str: 76
+Dex: 70
+Int: 64
+Wis: 74
+Con: 87
+Cha: 83
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 200
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#62501
+shy eyes dryad~
+a Rhell dryad~
+A shy pair of eyes peek out of the very trunk of a Rhell tree.~
+As you get a closer look, you realize this lovely creature is a dryad.  She is
+shy, staying out of sight whenever possible, yet too curious to stay completely
+away from view.  The dryad seems to be little more than a spirit encircles
+about by leaves and twigs, passing freely into and out of trees.~
+301989898 0 200 E
+25 20 0 0d0+500 0d0+0
+0 0 0 0 0 625
+3 3 2 7 34 0 2
+Str: 79
+Dex: 82
+Int: 79
+Wis: 93
+Con: 64
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 62501
+#62502
+mighty Rhell tree guard guarding grove~
+a Mighty Rhell Tree~
+a Mighty Rhell Tree towers here, guarding its grove from danger.~
+   One of the trees in this forest have come to life!~
+268435466 0 300 E
+25 20 0 0d0+200 3d6+10
+0 0 0 0 0 625
+3 3 0 3 12 0 6
+BareHandAttack: 7
+Str: 76
+Dex: 90
+Int: 67
+Wis: 62
+Con: 83
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+T 62512
+T 62502
+T 62503
+#62503
+tree grumpy ent treant tree trees old~
+a treant~
+A grumpy old treant is tending to the trees.~
+   This tree is vaguely humanoid, with it's lower trunk splitting in two,
+serving as long, awkward legs.  The treant has two uneven, downward-facing
+branches that branch out into knotty hands.  He tends very slowly to his
+forest.~
+268441614 0 100 E
+40 0 0 0d0+1000 6d4+7
+0 0 0 0 0 625
+3 3 1 7 12 0 5
+BareHandAttack: 7
+Str: 68
+Dex: 66
+Int: 93
+Wis: 82
+Con: 66
+Cha: 77
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+T 62515
+T 62516
+T 62506
+T 306
+T 311
+T 314
+T 307
+T 55698
+T 308
+#62504
+hooded ranger man~
+a hooded ranger~
+A hooded man watches you from the side of the path.~
+   A hooded ranger guard the way south from young adventurers who have need to
+turn back.  He keeps an especially close eye out for those of evil races, as
+they are in the most danger in these parts.~
+268501002 1024 360 E
+80 20 0 0d0+0 0d0+0
+0 0 0 0 0 625
+3 3 1 6 9 0 2
+Str: 88
+Dex: 80
+Int: 76
+Wis: 74
+Con: 78
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 62510
+T 306
+T 307
+T 308
+T 311
+T 314
+#62505
+rhell tree eldest large largest old~
+the Eldest Rhell~
+This Rhell, the largest yet, looks old and tired, if not ill.~
+   The eldest tree looks like it's losing strength.  Something must be ailing
+it.  You see some evidence of recent soil movement at it's base.~
+302008586 134217732 300 E
+35 0 0 0d0+150 1d5+6
+0 0 0 0 0 625
+3 3 0 24 12 0 7
+BareHandAttack: 6
+Str: 77
+Dex: 78
+Int: 69
+Wis: 68
+Con: 80
+Cha: 82
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+T 55698
+#62506
+merchant mild-mannered-merchant man pale sick Veric mild-merchant~
+a mild mannered merchant~
+A mild mannered merchant is here, looking pale.~
+This fellow looks terrified and very ill.  He is staying very close to the
+water, and watching around himself constantly.  You wonder what could be wrong
+with him.~
+540874 1024 750 E
+52 0 0 0d0+0 0d0+0
+0 0 0 0 0 625
+3 3 1 24 3 0 2
+Str: 76
+Dex: 84
+Int: 58
+Wis: 74
+Con: 81
+Cha: 80
+AFF2: 1
+AFF3: 65536
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 5
+E
+T 62518
+T 62507
+T 62520
+T 62599
+T 55699
+T 62522
+T 62523
+T 62524
+T 62525
+T 62526
+T 62527
+T 62528
+T 62529
+T 62530
+T 62531
+T 62532
+T 62533
+T 62534
+T 62535
+T 62536
+T 62537
+T 62519
+#62507
+bear wearbear ursa man huge wear-bear~
+Ursa~
+A huge wearbear lumbers through the woods, snarling. Best stay out of his way.~
+   The merchant has lost control of his disease, and transformed into this
+awful wearbear.  Perhaps he'll regain control if given a chance to calm down..~
+2107496 0 0 E
+53 20 0 0d0+800 -5d-2+-2
+0 0 0 0 0 625
+3 3 1 3 13 0 3
+BareHandAttack: 9
+Str: 83
+Dex: 84
+Int: 69
+Wis: 90
+Con: 74
+Cha: 55
+AFF2: 2097152
+AFF3: 0
+MOB2: 8
+PERC: 80
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 62508
+T 62509
+T 62511
+T 62517
+T 55699
+#62508
+dire wolf huge beast~
+a dire wolf~
+A huge dire wolf is here. He's probably not alone.~
+   This alpha-male is the largest wolf you've ever heard of.  It's shoulder is
+about level with a mules.  His silvery coat is lighter on the underside,
+turning to a deep gray down the length of his spine and tail.  Such a wolf is
+surely not alone.~
+1318154 36 50 E
+30 15 0 0d0+1000 1d1+2
+0 0 0 0 0 625
+3 3 1 6 14 0 3
+BareHandAttack: 4
+Str: 75
+Dex: 81
+Int: 92
+Wis: 89
+Con: 57
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 62501
+T 62521
+T 55698
+#62509
+she wolf she-wolf pack~
+a she-wolf~
+a she-wolf is staring you down.~
+   A beautiful wolf is crouched low before you, glancing around to know where
+her pack is.  Regardless, she seems more than willing to start the fight
+without them.~
+2366280 4 50 E
+25 10 0 0d0+700 3d0+3
+0 0 0 0 0 625
+3 3 2 6 14 0 2
+BareHandAttack: 4
+Str: 86
+Dex: 84
+Int: 76
+Wis: 70
+Con: 78
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 62501
+#62510
+wood pecker woodpecker wood-pecker bird~
+a woodpecker~
+A bird thumbs noisily on a tree.~
+A woodpecker flits from tree to tree, digging at the bark for worms.~
+268437704 1048576 -100 E
+25 20 0 0d0+0 0d0+0
+0 0 0 0 0 625
+4 4 0 24 14 0 1
+BareHandAttack: 8
+Str: 62
+Dex: 74
+Int: 66
+Wis: 70
+Con: 89
+Cha: 91
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#62511
+squirrel clever sharp-eyed puffy tailed critter~
+a clever squirrel~
+A sharp-eyed puffy-tailed critter sits here atop a rock.~
+   This squirrel seems brighter, more controlled and calculated than what you've
+come to expect of squirrels.  It watches you pass by, planning possible
+outcomes of your passing.~
+268435464 0 120 E
+18 0 0 0d0+0 0d0+0
+0 0 0 0 0 625
+3 3 0 24 14 0 1
+BareHandAttack: 8
+Str: 70
+Dex: 70
+Int: 62
+Wis: 73
+Con: 91
+Cha: 86
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#62550
+bear wearbear ursa man huge wear-bear~
+Ursa~
+A huge wearbear stands before you having lost himself completely to the disease.~
+It looks unfinished.~
+2099304 256 -350 E
+53 0 -2 0d0+1600 -4d-2+0
+0 0 0 0 0 625
+3 3 1 3 13 0 3
+BareHandAttack: 9
+Str: 94
+Dex: 88
+Int: 74
+Wis: 80
+Con: 82
+Cha: 66
+AFF2: 2097152
+AFF3: 0
+MOB2: 8
+PERC: 100
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 62509
+T 62511
+T 55699
+#62569
+Purity~
+Purity~
+&3&bBeautiful magic is at work here.&0~
+It looks unfinished.~
+-2147483638 28 0 E
+1 0 0 0d0+0 0d0+0
+0 0 0 0 0 625
+3 3 0 24 17 0 0
+Str: 80
+Dex: 82
+Int: 58
+Wis: 59
+Con: 74
+Cha: 100
+AFF2: 1
+AFF3: 0
+MOB2: 0
+PERC: 1000
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#62570
+burning-rock lava molten-devil figure demon~
+a molten devil~
+A figure stands here born of burning rock and lava.~
+   Here is a tall, broad demon, with cruel twisting horns of obsidian.  It's
+body seems to be somewhat undecided between hot volcanic rock and liquid hot
+lava.  The outermost of this foe are cooled to a black, ashy stone shell, while
+exposing the true hot glow between the frequent cracks.  As the creature moves,
+the widening cracks burst out small jets of flame and heat.~
+2231818 0 -1000 E
+60 0 0 0d0+0 0d0+0
+0 0 0 0 0 625
+3 3 0 24 19 1 3
+BareHandAttack: 8
+Str: 75
+Dex: 72
+Int: 68
+Wis: 75
+Con: 76
+Cha: 86
+AFF2: 4352
+AFF3: 0
+MOB2: 0
+PERC: 200
+HIDE: 0
+Lifeforce: 4
+Composition: 11
+Stance: 6
+E
+T 62580
+#62590
+toothless-shadow-dragon night-fury~
+Toothless~
+A shadow passes by overhead.~
+It looks unfinished.~
+9179146 1048608 500 E
+45 0 0 0d0+0 0d0+0
+0 0 0 0 0 625
+3 4 1 2 15 0 4
+BareHandAttack: 12
+Str: 89
+Dex: 92
+Int: 71
+Wis: 80
+Con: 67
+Cha: 55
+AFF2: 12582912
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

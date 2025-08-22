@@ -1,0 +1,243 @@
+name: Gorukai
+password: Xyv3q0rbA4
+currenttitle: Maugrim
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 5
+race: 8
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 16502
+birthtime: 1179451220
+timeplayed: 20872651
+lastlogintime: 1645190394
+host: 162.233.153.155
+height: 63
+weight: 141
+base_height: 63
+base_weight: 141
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: lyz
+effectflags: cn 0 0
+prefflags: hno 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 51102
+lastlevel: 12
+hitpoints: 1173/1074
+mana: 980/980
+move: 130/130
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 64
+wisdom: 68
+dexterity: 91
+constitution: 96
+charisma: 51
+cash: 143 14787 8053 7794
+experience: 115724664
+title: Maugrim
+quit_reason: 3
+saveroom: 0
+skills:
+4 1000
+12 1000
+13 1000
+14 1000
+17 1000
+27 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+92 1000
+96 1000
+99 1000
+131 1000
+132 1000
+188 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+417 1000
+420 1000
+421 1000
+422 1000
+423 1000
+424 485
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 1000
+445 1000
+450 150
+451 1000
+452 150
+457 151
+458 194
+459 222
+460 277
+461 190
+463 1000
+464 1000
+465 1000
+466 1000
+468 1000
+473 1000
+0 0
+trophy:
+1 51011 0.500000
+1 51009 1.000000
+1 51008 2.000000
+1 51001 0.500000
+1 51002 0.500000
+1 51020 2.000000
+1 51000 2.500000
+1 51004 0.500000
+1 51003 4.500000
+1 51102 1.000000
+1 51101 10.500000
+1 51100 10.500000
+1 3503 0.500000
+1 17204 2.500000
+1 3500 1.500000
+1 3506 0.500000
+1 3509 1.000000
+1 3508 2.500000
+1 3501 1.500000
+1 3066 0.500000
+1 3061 0.500000
+0 0 0
+tells:
+1645189634 @WChinok@W tells you, 'you may as well been killing bugs@W'@0
+1645189700 @WChinok@W tells you, 'anti's were one of the classes adjusted, not just pyro necro@W'@0
+1645189724 @WChinok@W tells you, 'with ALL classes, that last level is more XP@W'@0
+1645189782 @WChinok@W tells you, 'druids are on a different scale@W'@0
+1645189831 @WChinok@W tells you, 'and honestly, when I looked, that's why I said -- I need to double-check this, because 99-100 is like nearly 3 levels of XP@W'@0
+1645189854 @WChinok@W tells you, 'lol no, I hadn't looked :)@W'@0
+1645189887 @WChinok@W tells you, 'nope, they've all disentigrated now.. only holk and lufa corpses left now.@W'@0
+1645189960 @WChinok@W tells you, 'and no, dirtying up my mud, leaving corpses all over the place, I just cleaned up!!@W'@0
+1645189976 @WChinok@W tells you, 'I am just joking of course :)@W'@0
+1645190039 @WChinok@W tells you, 'there is a lot of stuff we do tell you-- like corpses with no stuff in them -- last only about 4 hours , but corpses with ANY equipment in them last 48 hours, even through reboot@W'@0
+$
+gossips:
+1645189279 Signeus gossips, 'you never explained it the first time'
+1645189290 Signeus gossips, 'you're always super cryptic'
+1645189305 Chinok gossips, 'I did, weather you listen or not is another story.'
+1645189335 Chinok gossips, 'lol before you needed X to get to level **, now you need X+some more...'
+1645189363 Chinok gossips, 'it was an oversight that those classes needed less xp'
+1645189372 Chinok gossips, 'yeah, and he's going to get yelled at for giving numbers..'
+1645189388 Chinok gossips, 'I absoutletly did'
+1645189399 Chinok gossips, 'you were too pissed off to read it'
+1645189427 Chinok gossips, 'nope, we don't give numbers.. that's a rule'
+1645189475 Chinok gossips, 'the numbers is the only thing that'gets my goat' -- the rest was what I had already told you'
+$
+effects:
+108 0 0 0 0 32768 0
+0 0 0 0 0
+mem:
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+17 1 1
+17 1 1
+17 1 1
+17 1 1
+17 1 1
+46 1 1
+4 1 1
+4 1 1
+4 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+92 1 1
+188 1 1
+188 1 1
+188 1 1
+27 1 1
+27 1 1
+27 1 1
+27 1 1
+27 1 1
+96 1 1
+96 1 1
+96 1 1
+46 1 1
+96 1 1
+33 1 1
+33 1 1
+33 1 1
+96 1 1
+12 1 1
+4 1 1
+17 1 1
+46 1 1
+4 1 1
+92 1 1
+99 1 1
+84 1 1
+84 1 1
+12 1 1
+12 1 1
+17 1 1
+17 1 1
+46 1 1
+46 1 1
+4 1 1
+4 1 1
+92 1 1
+27 1 1
+12 1 1
+99 1 1
+99 1 1
+131 1 1
+131 1 1
+131 1 1
+132 1 1
+132 1 1
+132 1 1
+132 1 1
+132 1 1
+188 1 1
+4 1 1
+84 1 1
+131 1 1
+27 1 1
+99 1 2
+0 0 0
+aliases:
+hitall hitall all
+m mount horse
+hw cast 'unholy word'
+df drink fountain
+gcc get all.coins corpse
+gccc get all.coins 2.corpse
+- enter well
+lic look in corpse
+gc get all.coins
+gs group self
+who who -where
+gac get all corpse
+0

@@ -1,0 +1,99 @@
+name: Dresdan
+password: DrLbh75tNk
+prompt: &1HP:%h/%H &3MV:%v/%V &6EXP:%e
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19696
+birthtime: 1599083304
+timeplayed: 6794
+lastlogintime: 1673853735
+host: 075.159.156.101
+height: 73
+weight: 173
+base_height: 73
+base_weight: 173
+base_size: 2
+natural_size: 2
+alignment: 3
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 21/49
+mana: 1/0
+move: 87/120
+damroll: 3
+hitroll: 3
+strength: 93
+intelligence: 64
+wisdom: 77
+dexterity: 85
+constitution: 84
+charisma: 57
+cash: 12 8 11 6
+bank: 0 1 1 1
+experience: 21675
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 69
+415 50
+416 50
+421 62
+438 50
+443 50
+444 56
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 41003 1.000000
+1 8014 1.000000
+1 8000 1.000000
+1 36003 2.000000
+1 8013 2.000000
+1 8011 2.000000
+1 8002 2.000000
+1 8015 3.000000
+1 8023 1.000000
+1 8022 2.000000
+1 51900 2.000000
+0 0 0
+tells:
+1673847760 @WDaedela@W tells you, 'nope@W'@0
+1673847785 @WDaedela@W tells you, 'it's just a little more expensive so it's harder to get at first.  But I gave you enough money to pick up a full set@W'@0
+1673847864 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1673847881 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1673847953 @WGranite@W tells you, 'I hope it protects you well.@W'@0
+1673847976 @WGranite@W tells you, 'A fine specimen for my stock.@W'@0
+1673847984 @WDaedela@W tells you, 'you can also use "wear 2.shield"@W'@0
+1673848017 @WFecil@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
+1673848165 @WBigby@W tells you, 'Hmmm, you had my hopes up for a second there.@W'@0
+1673849009 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1673851922 Daedela gossips, 'congrats Jinleen!'
+1673851922 Norath gossips, 'how do i read additional pages of a map?'
+1673851933 Daedela gossips, 'which maps?'
+1673851943 Norath gossips, 'city of anduin'
+1673851963 Daedela gossips, 'use the key words in blue at the bottom of the map'
+1673851985 Daedela gossips, 'you can click and drag the containers'
+1673852048 Daedela gossips, 'Norath you can also use "section1" "section2" and "section3"'
+1673852063 Norath gossips, 'ah that worked'
+1673852864 Daedela gossips, 'Dresdan if you have any other questions, feel free to ask.  Hopefully I can help better than with Mudlet!'
+1673852944 Daedela gossips, 'oh yeah, that's a dangerous zone for someone you're level!  You can check help areas to see the approximate level of the zone you're in'
+$

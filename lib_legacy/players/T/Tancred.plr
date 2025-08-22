@@ -1,0 +1,102 @@
+name: Tancred
+password: TaBb624KpK
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20314
+birthtime: 1659917761
+timeplayed: 4077
+lastlogintime: 1659921838
+host: 024.017.036.249
+height: 38
+weight: 177
+base_height: 38
+base_weight: 177
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: xy
+effectflags: k w q
+prefflags: ghnoxC ae
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 28/28
+mana: 0/0
+move: 128/128
+damroll: 4
+hitroll: 5
+strength: 82
+intelligence: 88
+wisdom: 95
+dexterity: 80
+constitution: 77
+charisma: 74
+experience: 5500
+quit_reason: 5
+saveroom: 3003
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 54
+424 51
+438 50
+443 50
+444 50
+451 51
+457 50
+458 50
+459 50
+460 50
+462 50
+463 51
+466 50
+0 0
+trophy:
+1 8014 1.000000
+1 8013 1.000000
+1 8015 1.000000
+1 8016 1.000000
+1 51900 1.000000
+0 0 0
+tells:
+1659918835 @WThe Master of the Revel@W tells you, 'Now that you're ready to level,@W'@0
+1659918835 @WThe Master of the Revel@W tells you, 'It's time to find a Guild Master!@W'@0
+1659918835 @WThe Master of the Revel@W tells you, 'There are Guild Masters in every town.@W'@0
+1659918835 @WThe Master of the Revel@W tells you, 'You will advance to the next level.@W'@0
+1659918835 @WThe Master of the Revel@W tells you, 'Your Guild Master here in Mielikki@W'@0
+1659918835 @WThe Master of the Revel@W tells you, 'Will also grant you your first quest.@W'@0
+1659918835 @WThe Master of the Revel@W tells you, 'Which will drop randomly from mobs across the world.@W'@0
+1659918835 @WThe Master of the Revel@W tells you, 'Bring back what they ask for and you'll be well rewarded!@W'@0
+1659918841 @WThe Master of the Revel@W tells you, 'Congratulations again, graduate!@W'@0
+1659918841 @WThe Master of the Revel@W tells you, 'May you climb to ever greater fortune!@W'@0
+$
+gossips:
+1659920941 Daedela gossips, 'yeah, that's really true'
+1659920952 Daedela gossips, 'it's part of why we allow multiplaying'
+1659921015 Daedela gossips, 'that's pretty awesome!'
+1659921132 Daedela gossips, 'yeah, very true'
+1659921150 Daedela gossips, 'open source problems where the interface isn't point and click'
+1659921217 Daedela gossips, 'yep, we're up on Mudlet!'
+1659921244 Daedela gossips, 'I honestly don't know.  Strider might though'
+1659921277 Strider gossips, 'No paying.  Just submitted a pull request to add it'
+1659921490 Daedela gossips, 'I actually don't know'
+1659921528 Daedela gossips, 'I went looking a while back but couldn't find anything reliable'
+$
+mem:
+16 0 8
+0 0 0

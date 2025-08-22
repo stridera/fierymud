@@ -1,0 +1,272 @@
+name: Oxter
+password: OxBhHIJmT9
+currenttitle: Yadila
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 0
+race: 0
+level: 99
+home: 3046
+lifeforce: 0
+composition: 0
+id: 1963
+birthtime: 934680495
+timeplayed: 13705129
+lastlogintime: 1637972119
+host: 068.096.245.059
+height: 61
+weight: 131
+base_height: 61
+base_weight: 131
+base_size: 2
+natural_size: 2
+alignment: -78
+playerflags: lyz
+effectflags: 0 0 0
+prefflags: hnoCD 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+loadroom: 10053
+lastlevel: 7
+hitpoints: 509/509
+mana: 100/100
+move: 94/94
+damroll: 3
+hitroll: 3
+strength: 83
+intelligence: 91
+wisdom: 92
+dexterity: 72
+constitution: 66
+charisma: 60
+cash: 114 472 602 7
+bank: 6 2050 25400 28500
+experience: 126967199
+title: Yadila
+quit_reason: 3
+saveroom: 0
+skills:
+2 1000
+5 1000
+8 1000
+10 1000
+19 1000
+20 1000
+26 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+65 1000
+66 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+104 1000
+105 1000
+106 1000
+107 1000
+108 1000
+109 1000
+110 1000
+111 1000
+112 1000
+113 1000
+184 1000
+185 1000
+186 1000
+228 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 711
+443 1000
+444 1000
+447 1000
+451 1000
+452 1000
+453 561
+454 1000
+455 1000
+456 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 999
+0 0
+trophy:
+1 5223 0.500000
+1 5222 5.000000
+1 5220 4.500000
+1 5221 5.500000
+1 5201 3.000000
+1 5210 4.000000
+1 5200 4.500000
+1 5211 5.000000
+1 5113 1.000000
+1 5121 1.000000
+1 5122 0.500000
+1 5120 3.000000
+1 5102 0.500000
+1 5100 1.000000
+1 5101 0.500000
+1 5103 0.500000
+1 5104 2.000000
+1 5112 1.000000
+1 5484 1.500000
+1 5483 1.500000
+1 5485 1.000000
+0 0 0
+tells:
+1570755996 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1570756021 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1570756023 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+$
+gossips:
+1614663600 Someone gossips, 'hi :)'
+1637971901 Chinok gossips, 'hey oxter'
+1637971961 Chinok gossips, 'lol it looked like you were having some trouble getting on'
+$
+effects:
+19 3 10 28 8 0 0
+29 7 40 17 2 0 0
+0 0 0 0 0
+mem:
+29 1 2
+29 1 1
+52 0 1
+52 1 1
+52 1 1
+65 1 1
+65 1 1
+65 1 1
+65 1 1
+65 1 1
+65 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+100 1 1
+100 1 1
+101 1 1
+20 1 1
+32 1 1
+113 0 1
+113 1 1
+109 1 1
+10 1 1
+10 1 1
+31 1 1
+31 1 1
+31 1 1
+186 1 1
+186 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+8 1 1
+8 1 1
+8 1 1
+8 1 1
+19 1 1
+19 1 1
+19 1 1
+109 1 1
+8 1 1
+8 1 1
+5 1 1
+5 1 1
+39 1 1
+104 1 1
+104 1 1
+185 1 1
+104 1 1
+57 1 1
+57 1 1
+68 1 1
+32 1 1
+32 1 1
+66 1 1
+52 1 1
+52 1 1
+52 1 1
+108 1 1
+109 1 1
+109 1 1
+10 1 1
+10 1 1
+10 1 1
+10 1 1
+10 1 1
+10 1 1
+111 1 1
+111 1 1
+111 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+68 1 1
+2 1 1
+2 1 1
+2 1 1
+2 1 1
+110 1 1
+108 1 1
+112 1 1
+105 1 1
+106 1 1
+108 1 1
+108 1 1
+185 1 1
+100 1 1
+0 0 0
+aliases:
+stp cast 'stone' puddinhead
+ffff look faegern
+fff cast 'stone' faegern
+df drink fountain
+gcc get coins corpse
+ru cast 'stone' rufianus
+gg cast 'stone' geeter
+ttt cast 'stone' tsed
+sl cast 'stone' slo
+csg cast 'stone' gung
+aa cast 'dimension' bugegy
+pp assist pal
+tr cast 'stone' trampass
+ag assist gung
+kkk cast 'stone' karde
+ma cast 'magic missile'
+z scan
+stt cast 'stone' tugrok
+stk cast 'stone' kresselack
+tellhim t davar well
+casthim cast 'fly' davar
+aaa http://www.svoca.com/fiery/
+0

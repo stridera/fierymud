@@ -1,0 +1,1443 @@
+1
+vnum: 12538
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 11
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    
+~
+~~
+vnum: 52001
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: afgnopqrstuvwx
+name: ring protection elven elven-ring
+shortdesc: an elven ring
+desc: A ring with golden elven leaves lies here.
+type: 8
+weight: 0.50
+cost: 18090
+timer: 0
+level: 85
+effects: d 0 0
+wear: 3
+applies:
+3 3
+9 -12
+26 28
+~
+extradesc: ring protection elven elven-ring
+The golden elven leaves sparkle without reflecting any light.  The glinting
+appearance comes from the ring itself, and would probably serve to warm the
+finger it is worn on.    
+~
+~~
+vnum: 17212
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: jewel heart dusty little jewel-of-the-heart Questobject
+shortdesc: the jewel of the heart
+desc: A dusty little jewel lies here.
+type: 8
+weight: 0.20
+cost: 1782
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+13 20
+~
+extradesc: jewel heart dusty little jewel-of-the-heart Questobject
+This beautiful little jewel is shaped oddly, and appears to be very valuable to someone at least.
+~
+triggers:
+16307
+~
+~~
+vnum: 17212
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: jewel heart dusty little jewel-of-the-heart Questobject
+shortdesc: the jewel of the heart
+desc: A dusty little jewel lies here.
+type: 8
+weight: 0.20
+cost: 1782
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+13 20
+~
+extradesc: jewel heart dusty little jewel-of-the-heart Questobject
+This beautiful little jewel is shaped oddly, and appears to be very valuable to someone at least.
+~
+triggers:
+16307
+~
+~~
+vnum: 20035
+location: 5
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: breastplate obsidian coated
+shortdesc: an obsidian coated breastplate
+desc: An obsidian coated breastplate is lying here forgotten by someone.
+type: 9
+weight: 10.00
+cost: 2500
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 9
+applies:
+2 2
+~
+extradesc: breastplate obsidian
+This breastplate is made of steel and obsidian.  The breastplate itself is made
+of strong steel and is coated with razor sharp obsidian to make it look nice.
+It edges are flied down so you don't hurt yourself while wearing this heavy
+breastplate.  Its thickness shows that it would be very hard to penetrate with
+any weapon.  As you look at the face of the breastplate you see a carving of a
+blackthorn, the symbol of the dark monks.    
+~
+~~
+vnum: 55552
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ghnopqrstuvwxyz
+name: magic skullcap seer
+shortdesc: &3&bSkullcap of the Seer&0
+desc: A powerful magic skullcap lies on the ground, waiting for its owner to return.
+type: 9
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+applies:
+1 3
+2 3
+~
+extradesc: magic skullcap seer
+Being in the presence of something like this is enough to know that deep arcane
+powers have been placed in this skullcap.  Made from simple cloth and studded
+with small aquamarines, it is not only very beautiful, it is capable of
+handling some of the most powerful enchantments.  This one is dedicated to
+seeing and clarity of vision.
+~
+~~
+vnum: 55555
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: ghnopqrstuvwxyz
+name: enchanted leggings seer
+shortdesc: &3&bLeggings of the Seer&0
+desc: Folded neatly in a bag here is a pair of deeply enchanted leggings.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+applies:
+5 3
+6 3
+18 2
+~
+extradesc: enchanted leggings seer
+These long velvet leggings are given to very wise mages to assist in their
+pursuit of magical knowledge.  Usually crafted for a formal dedication
+ceremony, much room for magical development is left with these leggings,
+allowing them to grow with their wearer as a caster's magic grows in power.
+~
+~~
+vnum: 49017
+location: 8
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: shoes feathered
+shortdesc: a pair of feathered shoes
+desc: A pair of shoes with wings flutter around here!
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65
+applies:
+14 35
+~
+extradesc: shoes feathered
+These starry blue shoes seem to be alive! They have wings attached to them
+and make little loopings when they know you're looking at them.~
+~~
+vnum: 6104
+location: 9
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: gauntlets steel dwarven
+shortdesc: fine steel dwarven gauntlets
+desc: Some fine steel gauntlets lie here.
+type: 9
+weight: 2.70
+cost: 1500
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 129
+extradesc: gauntlets fine steel dwarven
+Finely articulated, these gauntlets cover the forearm to the back of the
+hand. Each joint is beautifully crafted, each one three parts. They are
+obviously dwarven-made, being embossed and shiny.
+~
+~~
+vnum: 55553
+location: 10
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: ghnopqrstuvwxyz
+name: archmage archmages long elegant sleeves seer
+shortdesc: &3&bSleeves of the Seer&0
+desc: Some archmage's long, elegant sleeves lay folded on a stand.
+type: 9
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+applies:
+3 3
+4 3
+~
+extradesc: archmage archmages long elegant sleeves seer
+Made from rich velvet, these sleeves bear the residual magic of many, many
+uses.  Originally crafted for a great archmage and clearly enchanted during
+that process, these sleeves have since taken on addition power from being used
+in numerous arcane rituals.
+~
+~~
+vnum: 58418
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wings pair-translucent-faerie-wings
+shortdesc: a pair of translucent faerie wings
+desc: A pair of translucent faerie wings scintillate.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+3 2
+24 -10
+~
+extradesc: wings translucent pair faerie
+These wings look so real! A metallic golden frame supports two
+somewhat large wings made of some kind of silk that stretches to
+the point of being almost transparent. Some kind of sparkly things
+are woven into the silk, making the wings shimmer as they move.
+~
+~~
+vnum: 58431
+location: 13
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flowers plaited plaited-flowers belt
+shortdesc: some plaited flowers
+desc: Some plaited flowers form a sort of belt.
+type: 9
+weight: 0.75
+cost: 1000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+applies:
+6 3
+~
+extradesc: flowers belt plaited
+You see a loose belt made of braided wildflowers. The daisies and
+honeysuckles were connected by threading each flower through its
+neighbor somehow. They must be enchanted, for you cannot separate
+any of the flowers from the belt.
+~
+~~
+vnum: 20306
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracelet snake fang
+shortdesc: a snake fang bracelet
+desc: A small bracelet made of snake fangs lies on the ground here.
+type: 9
+weight: 0.70
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 4097
+applies:
+19 1
+18 1
+1 1
+~
+extradesc: bracelet snake fang
+This bracelet is made out of a very durable weaved grass that has several
+spaced out snake fangs weaved into it.  The fangs are about an inch in length
+and give the bracelet a menacing look.  The grass is a dull green color and it
+is weaved tightly so it looks almost like it is one piece of grass.    
+~
+~~
+vnum: 16033
+location: 15
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracers charred pair odd black metal bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 16
+effects: 0 0 0
+wear: 4097
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred pair odd black metal bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    
+~
+~~
+vnum: 5104
+location: 16
+values:
+0
+1
+3
+11
+0
+0
+0
+~
+flags: fghnu
+name: dagger stone stone-dagger
+shortdesc: a stone dagger
+desc: A stone dagger has been abandoned here.
+type: 5
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+~~
+vnum: 49065
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agiD
+name: pearl pear rare
+shortdesc: a rare pear shaped pearl
+desc: A small pear shaped pearl lies forgotten here.
+type: 8
+weight: 0.01
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+26 5
+13 10
+14 10
+~
+extradesc: pearl pear rare
+This pearl is like no other you have seen before.  Instead of being a circular
+shape like most pearls are this pearl is in the shape of a pear.  It is also
+quite a bit larger than most pearls too.    
+~
+~~
+vnum: 51006
+location: 21
+values:
+0
+0
+250
+0
+0
+0
+0
+~
+flags: ag
+name: eyes balls ice-eyes
+shortdesc: a pair of Ice Eyes
+desc: Two balls of ice lie here, casting a magical glow of light all around.
+type: 1
+weight: 1.03
+cost: 500
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 65537
+applies:
+18 2
+14 20
+~
+extradesc: ice eyes magical pair two
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.
+~
+~~
+vnum: 20301
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fang lion
+shortdesc: a lion fang
+desc: A gleaming lions tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 20301
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fang lion
+shortdesc: a lion fang
+desc: A gleaming lions tooth lies in the dust here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+1 1
+~
+extradesc: fang lion tooth gleaming
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.    
+~
+~~
+vnum: 3040
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge mielikki-guard-badge small silver gold icon
+shortdesc: Badge of the Mielikki Guard
+desc: A small silver and gold icon lies here.
+type: 9
+weight: 0.01
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+1 3
+2 2
+24 3
+~
+~~
+vnum: 20300
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 23708
+location: 127
+values:
+1
+0
+355
+0
+0
+0
+0
+~
+flags: afgopuwx
+name: pendant necklace shining
+shortdesc: a shining pendant
+desc: A shining necklace lies in the dirt.
+type: 1
+weight: 1.00
+cost: 1000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+applies:
+3 2
+17 1
+5 1
+~
+extradesc: shining pendant necklace
+It looks as if someone caught a ball of pure light and set it on a fine chain.
+The form of the ball is constantly changing as it sparkles in different
+directions.    
+~
+~~
+vnum: 11704
+location: 127
+values:
+50
+10
+8
+1
+0
+0
+0
+~
+flags: g
+name: stick hardened leather
+shortdesc: a stick made of hardened leather
+desc: A small stick made of hardened leather lies here.
+type: 3
+weight: 1.00
+cost: 45
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 46412
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cockatiel jeweled bird
+shortdesc: a beautiful jeweled cockatiel
+desc: A beautiful jeweled cockatiel has been lost here!
+type: 8
+weight: 1.50
+cost: 800
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+applies:
+13 5
+~
+extradesc: jeweled cockatiel bird
+     Someone had to have paid thousands of gold pieces for such a spectacular
+piece of artwork - yet this wondrous little figurine came from within an
+actual bird's egg!  Accurate down to the smallest detail, this heavy metal
+statuette of a cockatiel is encrusted with jewels of all sorts: dark brown
+faceted tourmaline stares back as the bird's eyes, small citrines and rubies
+create the distinctive orange cheek patches, and smoky quartz and clear
+diamonds make up the feathers.
+~
+~~
+vnum: 55585
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem dust dust-amber
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55610
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem shard shard-jade
+shortdesc: a jade shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55591
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: diamond gem crushed crushed-diamond
+shortdesc: a crushed diamond
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+5 1
+20 1
+32 1
+100 1
+101 1
+8 1
+19 1
+39 1
+37 1
+99 1
+186 1
+2 1
+30 1
+50 1
+83 1
+102 1
+103 1
+105 1
+106 1
+107 1
+10 1
+29 1
+38 1
+62 1
+67 1
+76 1
+26 1
+52 1
+57 1
+68 1
+77 1
+66 1
+75 1
+108 1
+111 1
+109 1
+112 1
+113 1
+65 1
+184 1
+185 1
+~
+~~
+vnum: 5104
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: gnu
+name: dagger stone stone-dagger
+shortdesc: a stone dagger
+desc: A stone dagger has been abandoned here.
+type: 5
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+~~
+vnum: 215
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sash amber silk long
+shortdesc: a long, amber silk sash
+desc: An amber sash lies coiled up here.
+type: 9
+weight: 0.32
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+~~
+vnum: 55363
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: slippers worn
+shortdesc: worn slippers
+desc: A pile of worn cloth armor lies here unusable.
+type: 11
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+~~
+vnum: 55504
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrtuvwxyz
+name: red-veined red veined obsidian vambraces chaotic
+shortdesc: &1&bChaotic Vambraces&0
+desc: Some evil paladin's red-veined obsidian vambraces twinkle with a dark gleam here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+applies:
+18 3
+1 2
+~
+extradesc: red-veined obsidian vambraces chaotic
+The obsidian of the vambraces is run through with dark red swirls and streaks,
+like unholy blood coursing through the veins of a demon's hide.  The sight of a
+warrior clad all in armor of this nature would be awe-inspiring and horrific at
+the same time.
+~
+~~
+vnum: 16009
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwyz
+name: shield storm large black stormshield
+shortdesc: the Stormshield
+desc: A large black shield is almost hidden by debris.
+type: 9
+weight: 2.20
+cost: 5000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 513
+applies:
+1 1
+~
+extradesc: shield stormshield
+   This is the legendary Stormshield, once used by the Lords of this keep.
+Resembling a large heater shield, there is a heraldic design emblazoned
+upon it. It is said that this shield was forged by the Gods themselves in
+the beginning of the world.
+~
+extradesc: design heraldic herald
+   An argent hawk outstretched, upon an azure field. 
+~
+~~
+vnum: 3034
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring ruby delicate
+shortdesc: a ruby earring
+desc: A delicate ruby earring lies on the floor.
+type: 11
+weight: 0.01
+cost: 1800
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+applies:
+6 1
+~
+extradesc: ruby earring
+The deep, rich red ruby is mounted on a silver cabuchon setting.
+It seems to glow with inner light.
+~
+~~
+vnum: 41117
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: agnopru
+name: singing-shield translucent singing shield energy
+shortdesc: the Singing Shield
+desc: A translucent wave of bowl-shaped energy floats here.
+type: 9
+weight: 5.00
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 513
+applies:
+19 1
+~
+extradesc: singing-shield translucent singing shield energy
+A shimmering wave of transluscent energy has been shaped into a concave
+bowl of protection. Faint swirls of gray, blue, and green wash through 
+it in pulses like waves past an ocean shore.
+~
+~~
+vnum: 52004
+location: 127
+values:
+80
+5
+2
+42
+0
+0
+0
+~
+flags: agoprt
+name: wand recall sagece recall-wand sagece-wand
+shortdesc: the Wand of Sagece
+desc: A dusty, cracked, old wand sits here.
+type: 3
+weight: 0.60
+cost: 1400
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+extradesc: wand recall sagece recall-wand sagece-wand
+This is a wonderful, magical wand, capable of acts beyond normal imagination.
+It is about two feet long, with a small dragon head at the top.    
+~
+~~
+vnum: 3058
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 17212
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: jewel heart dusty little jewel-of-the-heart Questobject
+shortdesc: the jewel of the heart
+desc: A dusty little jewel lies here.
+type: 8
+weight: 0.20
+cost: 1782
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+13 20
+~
+extradesc: jewel heart dusty little jewel-of-the-heart Questobject
+This beautiful little jewel is shaped oddly, and appears to be very valuable to someone at least.
+~
+triggers:
+16307
+~
+~~
+vnum: 52006
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: agklmnprtu
+name: boots sagece sagece-boots
+shortdesc: the boots of Sagece
+desc: Some white-lined boots float here.
+type: 9
+weight: 3.30
+cost: 4800
+timer: 0
+level: 75
+effects: 0 0 0
+wear: 65
+extradesc: boots sagece boots-sagece
+They look like normal grey leather boots, and are lined in white silk.  But
+they glow faintly, which most boots don't do.    
+~
+~~
+vnum: 48101
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: i
+name: shell rainbow-shell
+shortdesc: the Rainbow Shell
+desc: A seashell glittering with rainbow hues uplifts your spirit.
+type: 8
+weight: 2.00
+cost: 3000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 16385
+applies:
+26 5
+13 20
+~
+extradesc: rainbow shell seashell sea glittering
+You can't help but be entranced by this beautiful shell. As large as your
+hand, it is striated with rainbow colors that glitter in the light. You
+know this shell would sell for a high price in any market, but do you
+really want to part with the sea's breathtaking work of art?
+~
+~~
+vnum: 16034
+location: 127
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: muyz
+name: gauntlets charred black set chain linked
+shortdesc: charred gauntlets
+desc: A black set of chain linked gauntlets lies here.
+type: 9
+weight: 3.80
+cost: 0
+timer: 0
+level: 18
+effects: 0 0 0
+wear: 129
+applies:
+1 3
+13 15
+18 -2
+~
+extradesc: gauntlets charred black set chain linked
+These guantlets have smoldered in the heat of a black flame for many ages, as
+in apparent by the perpetual signs of soot lingering in all of the crevices.  
+They are solid and well fashioned, yet appear to have degraded in the flames
+over the years.    
+~
+~~
+vnum: 48109
+location: 127
+values:
+0
+0
+150
+0
+0
+0
+0
+~
+flags: gA
+name: fiery fiery-eye eye jewel
+shortdesc: the fiery eye
+desc: A jewel burning with an intense inner light lies here.
+type: 1
+weight: 0.40
+cost: 900
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+18 -1
+13 20
+~
+extradesc: fiery fiery-eye eye jewel
+This jewel is the size of your fist! Beneath its multifaced surface you
+perceive an intense reddish light so intense it seems a reflection of
+Vulcera's fiery passion and hot desires.
+~
+~~
+vnum: 3003
+location: 127
+values:
+8
+8
+7
+0
+0
+0
+0
+~
+flags: 0
+name: firebreather bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 1.02
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 1006
+location: 127
+values:
+30
+26
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 3.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~

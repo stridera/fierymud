@@ -1,0 +1,2375 @@
+1
+vnum: 36104
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: ring coral-ring barely-visible-circle smooth-coral
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lies on the ground.
+type: 8
+weight: 0.30
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+3 2
+24 -5
+~
+extradesc: coral-ring barely-visible-circle smooth-coral
+The coral ring seems totally flawless.  It is made of the finest coral you have
+ever seen, and fades from a light pink on one side to white on the other.  It
+is smoothed completely and coated with a clear substance so that it is not the
+least bit abrasive.~
+~~
+vnum: 58018
+location: 2
+values:
+35
+3
+3
+28
+0
+0
+0
+~
+flags: kl 0
+name: ring goddess-pearl-ring exquisite-pearl-ring questobject
+shortdesc: the goddess' pearl ring
+desc: An exquisite pearl ring has somehow been lost here.
+type: 4
+weight: 0.10
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16387
+hiddenness: 0
+applies:
+24 -4
+4 2
+18 4
+~
+extradesc: ring goddess-pearl-ring exquisite-pearl-ring questobject
+The main body of this exquisite ring is made of bright silver that seems to
+glow aquamarine-blue with an inner light.  The pearl that adorns it is stunning
+and larger than usual, with deep blue sapphires running otter-swift around the
+main center of attention.  The ring is neither wide nor narrow, making it
+wearable by either men or women.~
+~~
+vnum: 59026
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: adornment-light shimmering-glint small-chain
+shortdesc: an adornment of light
+desc: A shimmering glint of light shines from a small chain on the ground.
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 524293
+hiddenness: 0
+applies:
+4 1
+2 -1
+6 1
+~
+extradesc: adornment-light shimmering-glint small-chain
+A small ball of light glows from an unknown source, but somehow still remains
+attached to a shining platinum chain.  It looks like a common necklace, except
+for the small glint of light that emits tiny beams that illuminate the palm of
+your hand.  Occasionally the light grows brighter for an instant, then fades
+back to normal.~
+~~
+vnum: 20303
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace large-crocodile-tooth-necklace
+shortdesc: a crocodile-tooth necklace
+desc: A large crocodile-tooth necklace lies discarded here.
+type: 8
+weight: 1.20
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 12
+~
+extradesc: large-crocodile-tooth-necklace
+This is a very interesting and intricate necklace.  It is made of an
+intricately braided green material and a has a large crocodile tooth at the
+very center.  It must have taken many hours to make this amazing necklace.~
+~~
+vnum: 55393
+location: 5
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: plate acolyte-plate magical-thin-metal-plate magic
+shortdesc: an acolyte plate
+desc: A slightly magical thin metal plate lies here.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 2
+13 10
+~
+extradesc: acolyte-plate slight-magical-thin-metal-plate
+Newly forged, this magical metal plate was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.~
+~~
+vnum: 55524
+location: 6
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnopqrstvwxyzD abefghij
+name: helm-glade wooden-helm
+shortdesc: &3&bHelm of the Glade&0
+desc: A wooden helm lies here tangled in vines.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+4 3
+13 30
+28 60
+~
+extradesc: helm-glade wooden-helm
+Unwilling to be dislodged, the vines have actually grown into and through the
+wood of this helm.  The helm itself appears to have been formed naturally, with
+very little if any human alteration.  Powerful natural magic emanates from this
+helm, indicating that it is more than what it seems.~
+~~
+vnum: 53030
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: myz fgh
+name: cuisse thick-leather-cuisse skirt
+shortdesc: a thick leather cuisse
+desc: A thick leather cuisse sits here.
+type: 9
+weight: 7.50
+cost: 600
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 -1
+1 1
+~
+extradesc: cuisse thick-leather-cuisse skirt
+Used to protect the thighs from damage in a battle, a cuisse is a handy item to
+find.  The creature who has fashioned this piece of armor has created an item
+that can be worn on the legs, but attaches to the body like a skirt.~
+~~
+vnum: 55451
+location: 8
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dhmnopqrstvwxyz abefghij
+name: boots-nature leaves-sewn-leather
+shortdesc: &2Boots of Nature&0
+desc: Fluttering in the wind are boots made of leaves sewn on leather.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+3 4
+13 15
+~
+extradesc: boots-nature leaves-sewn-leather
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into boots in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.~
+~~
+vnum: 55397
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz ab
+name: gauntlets acolyte-gauntlets magical-thin-plate-gauntlets magic
+shortdesc: acolyte gauntlets
+desc: A slightly magical set of thin plate gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+2 2
+13 5
+~
+extradesc: acolyte-gauntlets slightly-magical-thin-plate-gauntlets
+Newly forged, these magical metal gauntlets were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.~
+~~
+vnum: 55392
+location: 10
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: vambraces acolyte-vambraces magical-thin-metal-vambraces magic
+shortdesc: acolyte vambraces
+desc: A slightly magical set of thin metal vambraces lies here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 2
+13 7
+~
+extradesc: vambraces acolyte-vambraces magical-thin-metal-vambraces magic
+Newly forged, these magical metal vambraces were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.~
+~~
+vnum: 58604
+location: 12
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: robes violet-colored-linen-robes heap-violet-linen
+shortdesc: some &5violet-colored&0 linen robes
+desc: A heap of violet linen claims your eye.
+type: 9
+weight: 1.50
+cost: 300
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+3 2
+~
+extradesc: robes violet-colored-linen-robes heap-violet-linen
+Fine purple cloth, unwrinkled linen, forms what is clearly a robe of high
+value.  Golden embroidery lines the hems, cuffs, and shawl collar.  Though
+light, the robes seem magical in nature.~
+~~
+vnum: 5530
+location: 13
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: belt eldoria-reward 3rd-eldorian-guard-belt third
+shortdesc: a belt of the 3rd Eldorian Guard
+desc: A small belt lies here.
+type: 9
+weight: 0.96
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+1 2
+~
+~~
+vnum: 55396
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: bracer acolyte-bracer magical-thin-metal-bracer magic
+shortdesc: an acolyte bracer
+desc: A slightly magical thin metal bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 5
+6 2
+~
+extradesc: acolyte-bracer slightly-magical-thin-metal-bracer
+Newly forged, this magical metal bracer was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.~
+~~
+vnum: 11703
+location: 15
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agD 0
+name: bracelet misty-blue-bracelet shimmering
+shortdesc: a misty blue bracelet
+desc: A misty blue bracelet is lying here, shimmering slightly.
+type: 8
+weight: 1.10
+cost: 200
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+24 -5
+13 10
+~
+~~
+vnum: 51014
+location: 20
+values:
+0
+5
+10
+6
+0
+0
+0
+~
+flags: gw be
+name: staff-winds long-staff wind
+shortdesc: the Staff of Winds
+desc: A long staff lies here, stirring up some blustery wind.
+type: 5
+weight: 4.00
+cost: 2100
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 32769
+hiddenness: 0
+applies:
+23 -2
+14 25
+~
+extradesc: staff wind staff-of-wind weather
+As you bring the staff closer to you, you notice a wind generate around you
+almost as though it was protecting you.  The staff makes you feel more
+agile, and gives you en energy boost when you hold it!~
+triggers:
+122
+~
+~~
+vnum: 12550
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 8
+weight: 0.07
+cost: 250
+timer: 1010
+level: 40
+effects: dx 0 0
+wear: 65537
+hiddenness: 0
+applies:
+4 2
+28 150
+~
+~~
+vnum: 5536
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: faceguard small-faceguard eldoria-reward face-guard 3rd-eldorian-guard-faceguard third
+shortdesc: a faceguard of the 3rd Eldorian Guard
+desc: A small faceguard lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+18 1
+~
+~~
+vnum: 20301
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 8
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+1 1
+~
+extradesc: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.~
+~~
+vnum: 1607
+location: 24
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA 0
+name: fang viper-fang pointy
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.40
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+13 3
+~
+extradesc: viper-fang pointy
+About 2 inches long, and razor-sharp, this fang looks like it could pierce
+steel.  Or be worn as an earring...~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 48104
+location: 26
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: head shrivelled-severed-head-jungle-tribesman
+shortdesc: a shrivelled, severed head
+desc: The shrivelled head of a Jungle tribesman lies here.
+type: 8
+weight: 8.00
+cost: 50
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+3 1
+~
+extradesc: head shrivelled-severed-head-jungle-tribesman
+This grotesque trophy makes you want to puke.  Why would you ever want to look
+at such a thing??~
+~~
+vnum: 55396
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: bracer acolyte-bracer magical-thin-metal-bracer magic
+shortdesc: an acolyte bracer
+desc: A slightly magical thin metal bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 5
+6 2
+~
+extradesc: acolyte-bracer slightly-magical-thin-metal-bracer
+Newly forged, this magical metal bracer was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.~
+~~
+vnum: 59026
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: adornment-light shimmering-glint small-chain
+shortdesc: an adornment of light
+desc: A shimmering glint of light shines from a small chain on the ground.
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 524293
+hiddenness: 0
+applies:
+4 1
+2 -1
+6 1
+~
+extradesc: adornment-light shimmering-glint small-chain
+A small ball of light glows from an unknown source, but somehow still remains
+attached to a shining platinum chain.  It looks like a common necklace, except
+for the small glint of light that emits tiny beams that illuminate the palm of
+your hand.  Occasionally the light grows brighter for an instant, then fades
+back to normal.~
+~~
+vnum: 55621
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: agate gem flawed-agate
+shortdesc: a flawed agate
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55583
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-shard
+shortdesc: an amber shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 7300
+location: 127
+values:
+0
+4
+4
+3
+0
+0
+0
+~
+flags: gmnyz acfghij
+name: blade swamp-blade rusty-old-blade
+shortdesc: the Swamp Blade
+desc: Someone has left a rusty old blade here.
+type: 5
+weight: 5.00
+cost: 140
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+1 2
+13 10
+~
+~~
+vnum: 55394
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: greaves acolyte-greaves magical-thin-metal-greaves magic
+shortdesc: acolyte greaves
+desc: A slightly magical set of thin metal greaves lies here.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+1 2
+13 7
+~
+extradesc: greaves acolyte-greaves magical-thin-metal-greaves magic
+Newly forged, these magical metal greaves were made to reflect your acceptance
+to your god.  Treated well, they will carry you through your beginning trials
+and on to greater wisdom.~
+~~
+vnum: 59022
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agk 0
+name: bracelet bracelet-consecrated-spirit small-bracelet-stone-gold-beads
+shortdesc: the bracelet of the consecrated spirit
+desc: A small bracelet made of stone and gold beads is lying on the ground.
+type: 9
+weight: 0.30
+cost: 1300
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+24 -4
+13 5
+14 5
+~
+extradesc: bracelet bracelet-consecrated-spirit small-bracelet-stone-gold-beads
+The bracelet is formed from small beads of gold and grayish colored stones.  
+It is very old and shows the marks from years of use.  The stone beads are
+cracked and worn down on the edges and a few of them have chipped apart.  The
+gold beads are starting to tarnish and fade, almost matching the dull luster of
+the stone, from prolonged contact with the sweat from the skin.~
+~~
+vnum: 18004
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: green-linen-robe crumpled-heap
+shortdesc: a &2green linen&0 robe
+desc: A green robe lies in a crumpled heap here.
+type: 9
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+3 3
+18 -1
+~
+extradesc: green-linen-robe crumpled-heap
+The robe is made of a fine satin-like material.  You get a strange tingling
+feeling as you run your finger along its seams.~
+~~
+vnum: 50204
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: bandanna purple-black-bandanna small-wadded-up-cloth-purple-black
+shortdesc: a purple-and-black bandanna
+desc: A small wadded-up cloth of purple and black lies here.
+type: 9
+weight: 0.30
+cost: 0
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+4 3
+23 -1
+6 1
+~
+extradesc: bandanna purple-black-bandanna small-wadded-up-cloth-purple-black
+Bright purple skull-faces and assorted other bones are scattered across this
+black square of cloth in a whimsical pattern.  It looks like just the thing to
+keep the sun off your head.    ~
+~~
+vnum: 3031
+location: 127
+values:
+1
+250
+78
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 55343
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban burned-turban armor
+shortdesc: a burned turban
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: turban burned-turban armor
+This turban is burned beyond use.~
+~~
+vnum: 7302
+location: 127
+values:
+50
+260
+250
+0
+0
+0
+0
+~
+flags: bg 0
+name: potion murky murky-potion swamp-potion
+shortdesc: a murky potion
+desc: A murky potion has been dropped here.
+type: 10
+weight: 0.30
+cost: 800
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55334
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots burned-boots armor
+shortdesc: burned boots
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: boots burned-boots armor
+These boots are burned beyond use.~
+~~
+vnum: 55007
+location: 127
+values:
+0
+3
+6
+5
+0
+0
+0
+~
+flags: bg 0
+name: club crystalline-club-encrusted-jade-jewels
+shortdesc: a crystalline club
+desc: A crystalline club encrusted with jade jewels lies here.
+type: 5
+weight: 8.00
+cost: 2000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+18 2
+2 -2
+~
+extradesc: club crystalline-club-encrusted-jade-jewels
+This club is mysteriously transparent and there is a vien of pure blue flowing
+through it.  All about the club are jaden gems of brilliant green.  ~
+~~
+vnum: 55018
+location: 127
+values:
+0
+3
+4
+11
+0
+0
+0
+~
+flags: bg 0
+name: dagger fang-shaped-dagger long-fang
+shortdesc: a fang-shaped dagger
+desc: A dagger in the shape of a long fang lies abandoned here.
+type: 5
+weight: 1.20
+cost: 600
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+3 2
+5 2
+~
+extradesc: dagger fang-shaped-dagger long-fang
+The weapon has a long thin blade that looks as though it could do quite a bit
+of damage if used properly.  The most distinguishing feature is the handel that
+looks to be made from the tooth of a giant carnivore.~
+~~
+vnum: 49035
+location: 127
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 16303
+location: 127
+values:
+30
+250
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: brew mistletoe-brew light-green-potion
+shortdesc: the mistletoe brew
+desc: A light green potion lies among the grasses.
+type: 10
+weight: 0.75
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mistletoe-brew light-green-potion
+You look at the messy green gunk in the crystal potion.  You wonder who would
+want to keep something like this.~
+~~
+vnum: 12532
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book plans
+shortdesc: a leatherbound book
+desc: A leatherbound book lies here, no title visible. 
+adesc:
+Nothing.~
+type: 8
+weight: 2.00
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: book page1 part1
+9th day of the Month of Discovery, 352
+
+   If your reading this, well, the plans didn't go off correctly.  I wanted a
+legacy to carry on.  This tower was to be it.  In my days, I saw many places,
+full of traps and treachery, but also of wealth and other spoils.  I strived to
+leave such a place myself.  Alas, I plan on destroying these notes when it is
+done, thus if you are reading this, the tower is not.  As I write this, the
+enchanted tower has been completed ; a grand four stories tall.  It's too bad I
+will be destroying part of it soon.  . .
+ 
+  Work will not be finished for months, I fear, and with my ailing health, I
+may not live to see it done.  I've called upon many favors - I'm afraid even my
+soul will be the cost in the end.  So far, there's not much loot in here, most
+has been sold for the protectors of the castle.  Sweet irony.    
+
+   In the end, I have turned to demons to protect the lair, and slave labor to
+build it.  What have I become.  Perhaps this is what is truly killing me.  Tis
+only luck that the blue dragon has made the tower his perch.  What would it
+cost for such a guardian?    
+
+The writing continues in part2, part3, part4, part5, part6, part7~
+extradesc: part2
+   First, I ask myself, why am I building this tower?  I have adventured for
+many years, and have always been fascinated by places I had gone, both in the
+architecture, and the secrets held within.  I have decided to leave a legacy
+behind me.  Someone has to die for a tomb to be looted.    
+
+   Alas, with a life of adventure came a life with no heirs, so my money is
+worthless after I die anyhow.  I am still in good health now, but getting older
+every day.  Thus, my life's goal.    
+
+   I have enlisted a few of my more mystical friends for the construction.  
+This shall be no ordinary tower, by any means.  For one, we have concocted an
+enchantment for the stone of the tower, such that it shall rebuild itself if
+e'er it gets destroyed.  The bits of stone are attacted to one another, such
+that no matter the distance, they will slowly be pulled together again.  Yea,
+it may take millenia if they are far apart, but the tower shall never be
+destroyed.    ~
+extradesc: part3
+   This was quite costly, but I believe it will be a good investment in the
+long run.  No matter what happens, the tower will never quite die.    
+ 
+   The basement has been created.  We decided upon an infinite hallway to
+protect my study.  It too wasn't terribly hard to create, merely a modified
+dimension door spell.  I had to give up my grandmother's broach, though, to get
+the work done.  My friends are quite stingy, they are.    
+
+   Finding workers from an area far enough away that they won't be able to find
+their way back was quite tough.  The southern continent was a good choice.  To
+get back without help, they'd have to raft the blue fog sea.  I've ne'er seen a
+bigger ship down there in my days.  Getting them back there will be tougher.  
+Our ride got called off to tend to her father, dying of old age. ~
+extradesc: part4
+   Had the druid community not severed ties with me after the unfortunate
+incident in the forest...  I hadn't honestly meant to hurt anything, especially
+not the animals, and how was I to know that the owl was a shapechanger...  
+Life would be much easier. 
+
+   We just had a few incidents in the construction.  The sub basement floor
+collapsed.  It turns out a giant worm has burrowed under the tower.  It turns
+out to have some intelligence, I think.  I... agreed to keep it fed if it
+did no damage.  I didn't realize how much it eats.  We may need to exterminate
+it.    
+
+   Some fool put a door on the second floor of the tower to the outside.  
+Unfortunately, they're nothing outside of it.  I've locked it to avoid any more
+accidents.  Two deaths were bad enough.  Perhaps they would have survived, but
+evidently the door happened to lead right above where the worm had burrowed,
+thus the pit was quite deep.    ~
+extradesc: part5
+   Part of our labor force has decided to abandon the project.  A few of
+them...  Were threatening to break their vow.  I had to put them down.  I think
+the rest will understand the graveness of the situation, and will realize the
+penalties for betraying me.    
+
+   The work force has mutinied.  After hearing tales of what I did to those
+that left, they snuck out after I offered them a two day break.  I will track
+them down one by one and punish them all.  Traitors.  First, though, I must
+find a replacement work force...  Work most continue - the tower must be
+completed I have taken ill as of late, quite severely.  I hope it will pass,
+but I must press on in case it does not.  I am ...  Seeking connections at the
+moment.    
+
+   I have sought an audience with the Demon Lord Krisenna.  We have struck a
+deal; he seems quite benevolent at the moment.  Hopefully it will stay that
+way.  The deal works in both our favors.  They provide the workers and
+protection, and I provide them with a safe entry way into our world.  They have
+finished the external tower, and have retreated into the bowels to finish up.~
+extradesc: part6
+   I have allowed them free reign to create themselves a sealed off passageway
+to keep anyone who might make their way in from getting to them.  I am not even
+allowed to see what they are doing there, lest I bother them, or give others
+knowledge of how to do the same thing.    ~
+extradesc: part7
+   I have just stumbled back across this book, and it weighs heavily on my
+mind.  I have seen my soul blacken over time.  Alas, I think it is too late for
+me.  They have taken almost all of my goods as tribute, and they have an iron
+grip on the tower.  I plot, hoping to find a way to get rid of them, but I fear
+the deal is done.~
+~~
+vnum: 55379
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings worn-leggings armor
+shortdesc: worn leggings
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: leggings worn-leeggings armor
+These leggings are worn beyond use.~
+~~
+vnum: 58601
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: spyglass spy-glass cylindrical object
+shortdesc: a spyglass
+desc: A cylindrical object rolls out of reach.
+type: 8
+weight: 0.75
+cost: 2000
+timer: 0
+level: 10
+effects: x 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 5
+~
+extradesc: spyglass spy-glass cylindrical object
+This object is made up of many cylinders in progressive sizes that collapse to
+make a little object the size of a drinking cup, and expands to form a long,
+narrowing tube with glass at either end.  When you look through it, you can see
+things close up, or so the legends go.~
+~~
+vnum: 6052
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: contract
+shortdesc: a contract for the Chieftains O'Connor, McLeod, and Cameron
+desc: A contract for someone's head has been accidentally left out!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: undefined
+Nothing.~
+triggers:
+6055
+~
+~~
+vnum: 5303
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: assignment
+shortdesc: an assignment for a monstrous canopy spider
+desc: A contract for someone's head has been accidentally left out!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+5315
+~
+~~
+vnum: 49023
+location: 127
+values:
+5
+0
+0
+1
+0
+0
+0
+~
+flags: a 0
+name: mushroom full-grown blue food
+shortdesc: a blue mushroom
+desc: A full-grown mushroom stands in the shade.
+type: 19
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom full-grown blue food
+It's blue and looks quite inedible.~
+~~
+vnum: 13301
+location: 127
+values:
+0
+3
+3
+14
+0
+0
+0
+~
+flags: mnuvyz afghij
+name: pick well-polished-miner's-pick well-polished-miner's-pick
+shortdesc: a well-polished miner's pick
+desc: A polished miner's pick lies here, getting dirty.
+adesc:
+Nothing.~
+type: 5
+weight: 5.00
+cost: 320
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: pick well-polished-miner's-pick well-polished-miner's-pick
+It is a worn but serviceable pickaxe with a leather-covered wooden handle.  
+Blades polished to a brilliant gleam, it looks like it has been cared for
+lovingly by the dwarf who last owned it.  Near where the blade connects to the
+shaft there is a maker's mark etched into the metal.~
+extradesc: mark maker's makers etching
+The maker's mark is a mountain with a tiered city, showing that it's from
+Anduin.  Below it is a line of runes reading "Jasper Ironfeld 464".    ~
+~~
+vnum: 17802
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe
+shortdesc: a canoe
+desc: A canoe lies abandoned here.
+type: 22
+weight: 25.00
+cost: 700
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map mielikki map-of-mielikki
+                  Mielikki, the forest town, by Kara-Sithri
+  
+                                                             &3***POINTS OF INTEREST***&0
+          &3#&0              &6&b2&0                                 |&6&b1&0: Temple to Mielikki
+          &9&b|              |&0                                 |&6&b2&0: Altar to Mielikki
+          &9&bSB&0         &B&1&b3&0 - &6&b1&0   &1???&0        &517&0 - &9&bNC&0            |&B&1&b3&0: Cleric Guild
+          &9&b|              |    |              |&0             |&B&1&b4&0: Warrior Guild
+      &521&0  &9&bSB        TC - TC - TC             NC -&0 &518&0       |&B&1&b5&0: Rogue Guild
+      &9&b|   |         |    |    |              |&0             |&B&1&b6&0: Sorcerer Guild
+      &2&b7&0 &9&b- SB -&0 &38&0    &9&bTC -&0 &C&4&b*&0 &9&b-  TC&0   &515&0 - &B&1&b4&0    &9&bNC -&0 &519&0       |&2&b7&0: Forest Inn
+          &9&b|         |    |    |    |         |&0             |&38&0: Post Office
+ &3#&0 &9&b- SQ - WM - WM - TC - TC - TC - EM - EM - CS - EM -&0 &3#&0   |&59&0: Drako's Bronze Shop
+     &9&b|          |   |         |              |&0             |&510&0: Garm's Shield Emporium
+ &59&0 &9&b- SR -&0 &510&0    &513&0  &514&0 &9&b-&0 &B&1&b5&0    &9&bDA - DA - DA   SC&0            |&511&0: Shauna's Hosue of Iron
+     &9&b|          |                  |    |    |&0             |&512&0: Beowyn's Steel
+&511&0 &9&b- SR -&0 &512&0    &B&1&b6&0        &3&b21&0        &516&0  &9&bdump  SC -&0 &520&0       |&513&0: Bigby's House of Magic
+     &9&b|                   |                   |&0             |&514&0: Fine Jewelry
+    &9&bNCP - NC - NC - NC - NC - NC - NC - NC - NCS&0           |&515&0: Santiago's Weapons
+          &9&b|              &0&1#&0&9&b         |&0                       |&516&0: Sloshed Squirrel Tavern
+     &9&bRP - RP - RP   TH - TH - TH   WW&0                      |&517&0: Helena's Bakery
+     &9&b|    |    |    |    |    |    |&0                       |&518&0: Aaron's General Store
+     &9&bRP -&0 &C&4&b*&0  &9&b- RP   TH - TH - TH   WW -&0 &1???&0                |&519&0: Lisa's House of Leather
+     &9&b|    |    |                   |&0                       |&520&0: Freddy's Toy Shop
+     &9&bRP - RP - RP                  WW&0                      |&521&0: Cartographer's Room
+          &9&b|                        |&0                       |&3&b22&0: Bank
+         &9&bGrey&0                      &3#&0                       |&C&4&b*&0: Fountain
+        &9&bCastle&0                                             |&3#&0: City Gates     
+                                                                 |&1???&0: New Adventures! 
+ 
+                                                               &9&b***ROADS***&0
+                                                           |SB: Sleepy Blvd.
+                                                           |SQ: Smelter's Sq.
+                                                           |WM: West main St.
+                                                           |TC: Town Center
+                                                           |EM: East Main St.
+                                                           |CS: Commerce Sq.
+                                                           |NC: N. Commerce Ave.
+                                                           |SC: S. Commerce Ave.
+                                                           |DA: Dark Alley
+                                                           |SR: Smelter's Row
+                                                           |NCP: New Castle Plaza
+                                                           |NC: New castle Rd.
+                                                           |NCS: New Castle Sq.
+                                                           |WW: Windy Way
+                                                           |RP: Royal Plaza
+                                                           |TH: Town Hall~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild~
+~~
+vnum: 5310
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: order
+shortdesc: an order for a singing chain
+desc: An search order for a treasure hunt lays here.
+type: 12
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+5327
+~
+~~
+vnum: 20300
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+14 20
+~
+extradesc: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.~
+~~
+vnum: 55391
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: helm acolyte-helm magical-thin-plate magic
+shortdesc: an acolyte helm
+desc: A slightly magical thin plate helm lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+14 5
+13 7
+~
+extradesc: helm acolyte-helm magical-thin-plate magic
+Newly forged, this magical metal helm was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.~
+~~
+vnum: 11706
+location: 127
+values:
+0
+3
+5
+11
+0
+0
+0
+~
+flags: g 0
+name: dagger misty-blue-dagger
+shortdesc: a misty blue dagger
+desc: A misty blue dagger has been dropped here.
+type: 5
+weight: 1.10
+cost: 590
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+18 1
+~
+extradesc: dagger misty-blue-dagger
+The dagger is made of a misty blue metal that seems to pulsate slightly.  The
+dagger's blade changes shape slowly as it grows new teeth to replace older
+teeth as they fade away.~
+~~
+vnum: 55452
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: adghmnopqrstvwxyz abefghij
+name: bracer-nature leaves-sewn-leather
+shortdesc: &2Bracer of Nature&0
+desc: Fluttering in the wind are bracers made of leaves sewn on leather.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+19 2
+~
+extradesc: bracer-nature leaves-sewn-leather
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into a bracer in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.~
+~~
+vnum: 12530
+location: 127
+values:
+0
+4
+3
+11
+0
+0
+0
+~
+flags: A 0
+name: ornate-dagger dagger-gold-foil-handle-sapphire-studs
+shortdesc: an ornate dagger
+desc: A dagger with a gold foil handle and sapphire studs lies here, out of place.
+type: 5
+weight: 0.70
+cost: 0
+timer: 10
+level: 50
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: ornate-dagger dagger-gold-foil-handle-sapphire-studs
+The rough steel blade of this dagger does no justice to its overall beauty.  
+The handle has been foiled in gold leaf, with 8 small sapphires ringing the
+top.~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+~
+~~
+vnum: 55571
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: aquamarine gem aquamarine-dust
+shortdesc: some aquamarine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55594
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hematite gem uncut-hematite
+shortdesc: an uncut hematite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55574
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: onyx gem uncut-onyx
+shortdesc: an uncut onyx
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 13322
+location: 127
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: DE 0
+name: circlet silvery-circle pale-circlet
+shortdesc: a pale circlet
+desc: Barely visible, a silvery circle rests on the ground.
+type: 1
+weight: 1.40
+cost: 5000
+timer: 500
+level: 15
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+17 4
+3 2
+4 2
+11 5
+~
+extradesc: circlet silvery-circle pale-circlet
+Translucent yet solid, the circlet is made of some unknown material, definitely
+magical in nature.  When it touches light, it shimmers oddly, almost sparkling.
+Cool to the touch, it hums faintly and radiates a sense of calm to anyone near
+it.~
+~~
+vnum: 20303
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace large-crocodile-tooth-necklace
+shortdesc: a crocodile-tooth necklace
+desc: A large crocodile-tooth necklace lies discarded here.
+type: 8
+weight: 1.20
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 12
+~
+extradesc: large-crocodile-tooth-necklace
+This is a very interesting and intricate necklace.  It is made of an
+intricately braided green material and a has a large crocodile tooth at the
+very center.  It must have taken many hours to make this amazing necklace.~
+~~
+vnum: 55010
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: pelt polar-bear-pelt pure-white-cloak fur leather
+shortdesc: a polar bear pelt
+desc: A pure white cloak is hidden in the snow.
+type: 9
+weight: 2.10
+cost: 1100
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+4 1
+19 1
+~
+extradesc: pelt polar-bear-pelt pure-white-cloak fur leather
+You hold a snow white short cloak.  It's just long and wide enough to cover
+your shoulders and half of your back.  Its fur lining keeps you warm and offers
+some protection.~
+~~
+vnum: 18004
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: green-linen-robe crumpled-heap
+shortdesc: a &2green linen&0 robe
+desc: A green robe lies in a crumpled heap here.
+type: 9
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+3 3
+18 -1
+~
+extradesc: green-linen-robe crumpled-heap
+The robe is made of a fine satin-like material.  You get a strange tingling
+feeling as you run your finger along its seams.~
+~~
+vnum: 55448
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: adghmnopqrstvwxyz abefghij
+name: sleeves-nature leaves-sewn-leather
+shortdesc: &2Sleeves of Nature&0
+desc: Fluttering in the wind is a set of sleeves made of leaves sewn on leather.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+6 3
+2 3
+18 1
+~
+extradesc: sleeves-nature leaves-sewn-leather
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into sleeves in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.~
+~~
+vnum: 58015
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: kl 0
+name: bracelet goddess-bracelet piece-pearl questobject
+shortdesc: the goddess' bracelet
+desc: A bracelet made of one piece of pearl has been dropped here.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+26 4
+1 6
+~
+extradesc: bracelet goddess-bracelet piece-pearl questobject
+It is a fine bracelet that looks like it was carved from one large pearl, with
+a twisting whorled design inlaid with gold.  It fits over the wrist, sliding on
+without a clasp or hinge.  It glows with the lustrous inner light that only the
+finest pearls have.~
+~~
+vnum: 55453
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: adghmnopqrstvwxyz abefghij
+name: gloves-nature leaves-sewn-leather
+shortdesc: &2Gloves of Nature&0
+desc: Fluttering in the wind is a pair of gloves made of leaves sewn on leather.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+18 1
+14 10
+~
+extradesc: gloves-nature leaves-sewn-leather
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into gloves in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.~
+~~
+vnum: 62513
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 nopqrst
+name: ring wolf-tooth-ring carved fang-enormous-wolf
+shortdesc: a wolf-tooth ring
+desc: A ring carved from the fang of an enormous wolf is here in the dirt.
+type: 8
+weight: 0.50
+cost: 80000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+2 3
+5 3
+19 1
+14 20
+~
+~~
+vnum: 7300
+location: 127
+values:
+0
+4
+4
+3
+0
+0
+0
+~
+flags: gmnyz acfghij
+name: blade swamp-blade rusty-old-blade
+shortdesc: the Swamp Blade
+desc: Someone has left a rusty old blade here.
+type: 5
+weight: 5.00
+cost: 140
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+1 2
+13 10
+~
+~~
+vnum: 58012
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: myzD afgh
+name: fan black-lacquered-war-fan
+shortdesc: a war-fan
+desc: A black lacquered war-fan lies open here.
+type: 9
+weight: 1.20
+cost: 500
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+extradesc: fan black-lacquered-war-fan
+The fan looks much more threatening than your run-of-the-mill fan!  For
+starters, its rods are made of black-lacquered wood.  Instead of finely painted
+rice paper over the rods, you see thick white cloth, with a golden ball painted
+on both sides.  It could hang folded from your hand, and then, with a flick of
+your wrist, it could extend, becoming quite a parrying device.~
+~~
+vnum: 10302
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: towel green-men's-towel green-mens-towel fabric
+shortdesc: a green men's towel
+desc: A green towel has been tossed on the ground here.
+type: 9
+weight: 0.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+extradesc: towel green-men's-towel green-mens-towel fabric
+This is a large, fluffy towel dyed dark green.  Though it is well-made, it
+looks like it's seen plenty of use and has a slight sulfur smell from the
+mineral water.  Still, it would be good either to dry oneself off or to wear
+around the waist to preserve decency while bathing.  A small tag on one of the
+hems says "Phoenix Feather Hot Springs".~
+~~
+vnum: 7301
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots swamp-boots grungy-old-boots leather
+shortdesc: the Swamp Boots
+desc: A pair of grungy old boots has been left here.
+type: 9
+weight: 2.50
+cost: 130
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 25
+5 1
+~
+~~
+vnum: 55020
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: ring granite-ring small-circle-black-stone questobject
+shortdesc: a granite ring
+desc: A small circle of black stone catches your eye.
+type: 8
+weight: 0.04
+cost: 450
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+1 -1
+24 -20
+~
+extradesc: ring granite-ring small-circle-black-stone questobject
+Made of a dark granite inset with tiny crystals, it has been fashioned into a
+ring and polished until the black stone both catches and absorbs the light.~
+~~

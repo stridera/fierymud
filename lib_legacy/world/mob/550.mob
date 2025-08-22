@@ -1,0 +1,549 @@
+#55001
+huitzipa nemesis war~
+Huitzipa~
+Huitzipa the nemesis of war is sleeping here.~
+Before you is the Technitzitlan nemesis of war.  He looks mean as you notice
+many the many bony plates and spikes covering his body.  His claws don't look
+overly inviting either.  You better run while you still can!    ~
+10 16384 -1000 E
+50 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+0 0 1 0 14 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 500
+Lifeforce: 1
+Composition: 0
+Stance: 4
+E
+T 55699
+#55002
+Xapizo nemesis death~
+Xapizo~
+Xapizo the nemesis of death is sleeping here.~
+Before you is the Technitzitlan nemesis of death.  He wavers into and out of
+reality as you try to look at him closely.  Xapizo looks almost completely
+emaciated and strikes fear into you as you consider this living giant skeleton.~
+10 16384 -1000 E
+50 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+0 0 1 0 14 0 2
+Str: 30
+Dex: 75
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 500
+Lifeforce: 1
+Composition: 10
+Stance: 4
+E
+T 55699
+#55003
+gale-wind wind gale force~
+the gale wind~
+A gale wind is here howling at the earth.~
+You notice something rather different about this breeze, it's alive!  It
+doesn't look very happy with you either.  Can you outrun the wind?    ~
+2058 1048576 0 E
+20 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+4 4 0 24 17 0 2
+BareHandAttack: 12
+Str: 30
+Dex: 93
+Int: 61
+Wis: 73
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 200
+Lifeforce: 5
+Composition: 2
+Stance: 6
+E
+T 55694
+#55004
+leopard warrior trainee male leopard-warrior-male~
+a Leopard Warrior~
+A trainee of the Leopard Order stands here guarding the snow.~
+Before you stands a warrior in training.  He is fixed upon his current duties
+and looks well disciplined.  He could probably do you harm, so stay clear.    ~
+6220 0 350 E
+25 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 1 3 13 0 2
+Str: 30
+Dex: 30
+Int: 65
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#55005
+leopard warrior female trainee leopard-warrior-female~
+a Leopard Warrior~
+A trainee of the Leopard Order stands here guarding the snow.~
+Before you stands a warrior in training.  She is fixed upon her current duties
+and looks well disciplined.  She could probably do you harm, so stay clear.  ~
+1054796 0 350 E
+25 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 2 3 13 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#55006
+leopard apprentice shaman male apprentice-shaman-male~
+a leopard shaman apprentice~
+An apprentice to the Leopard Shaman is here practicing spells.~
+Before you stands an apprentice in training.  He is focused upon learning the
+many spells and discipline it takes to be a shaman of the leopard order.  He
+looks intent on guarding his home, so stay clear.    ~
+6348 0 350 E
+25 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 1 0 13 0 2
+Str: 30
+Dex: 60
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#55007
+leopard apprentice shaman female apprentice-shaman-female~
+a leopard shaman apprentice~
+An apprentice to the Leopard Shaman is here practicing spells.~
+Before you stands an apprentice in training.  She is focused upon learning the
+many spells and discipline it takes to be a shaman of the leopard order.  She
+looks intent on guarding her home, so stay clear.    ~
+1054796 0 350 E
+25 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 2 21 13 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#55008
+knight leopard warrior order leopard-knight~
+a Leopard Knight~
+A Knight of the Leopard Order stands here guarding his home.~
+You look upon a strong and battle scarred Knight of the Leopard Order.  He
+looks serene as he stands guard vigilantly over his homeland.  The knight takes
+orders from a higher authority and looks mean in his battleworn armors.    ~
+2103372 0 750 E
+30 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 1 3 13 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#55009
+knight leopard order warrior female knight-female~
+a Leopard Knight~
+A knight of the Leopard Order stands here guarding her home.~
+You look upon a strong and battle scarred Knight of the Leopard Order.  She
+looks serene as she stands guard vigilantly over her homeland.  The knight
+takes order from a higher authority and looks mean in her battle worn armors.
+  ~
+1054796 0 750 E
+30 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 2 3 0 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 80
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#55010
+leopard shaman male leopard-shaman-male~
+a Leopard Shaman~
+A Leopard Shaman is here training minions of the order.~
+You look upon a confident and wise person who has been through many battles.  
+He looks at you casually with passing interest and arrogance.  He must be a
+powerful person to disregard you so.  His robes and staff make him look as
+though he may be an important person in this society.    ~
+2103372 0 750 E
+30 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 1 0 13 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#55011
+leopard shaman female leopard-shaman-female~
+a Leopard Shaman~
+A Leopard Shaman is here training minions of the order.~
+You look upon a confident and wise person who has been through many battles.  
+She looks at you casually with passing interest and arrogance.  She must be a
+powerful person to disregard you so.  Her robes and staff make her look as
+though she may be an important person in this society.    ~
+1054796 0 750 E
+30 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 2 21 13 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#55012
+champion leopard order warrior knight champion-leopard knight-champion~
+the Knight Champion~
+The Knight Champion of the Leopard Order looks down upon you.~
+This is a big man.  His look is wise and battleworn.  He looks strong and agile
+as his many years as Champion of the order have given him vast experience in
+the art of combat.  He observes you with a skeptical eye.    ~
+2062 0 1000 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 1 3 13 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 72
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55010
+T 55011
+T 55012
+T 55013
+T 55014
+T 55015
+T 55016
+T 55696
+#55013
+master shaman leopard high master-leopard-shaman master-shaman~
+the Master Shaman~
+The Master Shaman of the Snow Leopard Kingdom is here contemplating.~
+This woman is very beautiful and seems powerful by her nature.  She is dressed
+in fine flowing robes and there is an aura of power radiating from where she
+floats.  She mumbles something about regret of her predecessors losing the
+focus that helps bind great evil powers in the kingdom.  She speaks of battles
+with demons and barbarians.  She seems upset.    ~
+2062 0 1000 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 2 0 13 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55001
+T 55002
+T 55003
+T 55004
+T 55005
+T 55007
+T 55031
+T 55041
+T 55042
+T 307
+T 311
+T 314
+T 55696
+T 55024
+T 308
+T 55696
+T 55006
+T 55043
+T 55044
+T 55045
+T 55008
+#55014
+snow polar bear white skin it polar-bear snow-white~
+a polar bear~
+A large snow white bear looks at you with interest.~
+This creature is large and it looks hungry as it searches for food.  It prowls
+and looks at you hungrily, better hope it's eaten recently.    ~
+1048648 0 0 E
+22 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 1 24 14 0 3
+Str: 30
+Dex: 79
+Int: 68
+Wis: 75
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55696
+#55015
+ice golem ice-golem solid~
+an Ice Golem~
+A golem of solid ice stands here next to the altar.~
+You look upon a statue over eight feet tall of solid ice.  It glows strangely
+and looks almost alive.  The sneer on the face of this creature tells you it
+does not like you around.  You wonder what it is guarding?    ~
+2062 0 -500 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 0 3 17 0 3
+BareHandAttack: 9
+Str: 30
+Dex: 30
+Int: 62
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 16777216
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 5
+Stance: 6
+E
+T 53310
+T 53311
+T 55696
+#55016
+granite golem solid granite-golem~
+a Granite Golem~
+A golem of solid granite stands here next to the portal.~
+You look upon a statue over eight feet tall of solid granite.  It glows
+strangely and looks almost alive.  The sneer on the face of this creature tells
+you it does not like you around.  You wonder what it is guarding?    ~
+2062 0 -500 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 0 3 17 0 3
+BareHandAttack: 9
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 9
+Stance: 6
+E
+#55017
+merchant traveling traveling-merchant~
+a traveling merchant~
+A traveling merchant walks about here contemplating deals.~
+This man looks rather travel worn and weary.  He scans the horizon as if
+looking for a purpose in his life.  He offers many deals and looks as though he
+could con even you.    ~
+204 0 750 E
+25 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 1 18 13 0 2
+Str: 30
+Dex: 82
+Int: 74
+Wis: 74
+Con: 30
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#55018
+ice snake snow white ice-snake strange-looking~
+an ice snake~
+A strange-looking white snake slithers about the ice.~
+You barely notice what looks like a piece of the ice slither at you.  It stalks
+you slowly and you sense it's ready to strike!    ~
+2120 262144 0 E
+20 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 30
+Dex: 90
+Int: 59
+Wis: 82
+Con: 30
+Cha: 57
+AFF2: 512
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 200
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#55020
+Suralla Iceeye cunning mage blue-shrouded Questmaster~
+Suralla Iceeye~
+A cunning blue-shrouded mage is here.~
+Suralla is slender, even for a mage.  Her eyes are a dark, crystaline blue,
+glowing softly.  See seems to look everywhere and no where all at once,
+sweeping her eyes across the room.  She is covered in clothing, but nothing
+identifiable as one particular garment.  There is a lone blue shape embedded on
+the back side of her right hand.    ~
+2138 17825800 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 550
+4 4 2 21 0 0 2
+BareHandAttack: 6
+Str: 98
+Dex: 81
+Int: 67
+Wis: 64
+Con: 81
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55000
+T 55020
+T 55022
+T 55023
+T 55026
+T 55021
+T 55028
+T 307
+T 308
+T 311
+T 314
+$

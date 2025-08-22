@@ -1,0 +1,46 @@
+32770 255 1
+subclass_name anti-paladin
+22 1 5
+actor_level 26
+price 15541
+skill_level 100
+word2 slashing
+skill_name 2h
+17 1 15
+5522_reward 1
+5524_reward 2
+5549_reward 1
+5520_reward 1
+5546_reward 2
+5556_reward 1
+5558_reward 1
+5518_reward 1
+5547_reward 1
+5509_trophies 2
+5507_trophies 15
+5503_trophies 41
+5505_trophies 23
+eg_faction 94
+bl_faction 0
+7 2 21
+55654_gems_acquired 3
+55621_gems_acquired 3
+55336_armor_acquired 1
+55610_gems_acquired 3
+55632_gems_acquired 3
+55328_armor_acquired 1
+55348_armor_acquired 1
+55344_armor_acquired 1
+55340_armor_acquired 1
+55599_gems_acquired 3
+55643_gems_acquired 3
+55593_gems_acquired 3
+55581_gems_acquired 3
+55324_armor_acquired 1
+55312_armor_acquired 1
+55573_gems_acquired 3
+55577_gems_acquired 3
+55569_gems_acquired 3
+55304_armor_acquired 1
+55308_armor_acquired 1
+55300_armor_acquired 1

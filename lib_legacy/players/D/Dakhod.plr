@@ -1,0 +1,120 @@
+name: Dakhod
+password: DaI1626eRr
+prompt: &1&b%h&0&1hp &2&b%v&0&2mv&0> 
+poofin: Dakhod beams down from a spaceship.
+poofout: Dakhod beams up to a spaceship.
+sex: 1
+class: 2
+race: 19
+level: 102
+home: 3001
+lifeforce: 4
+composition: 11
+id: 15414
+birthtime: 1136265473
+timeplayed: 13535991
+lastlogintime: 1718015438
+host: 173.175.180.228
+height: 11304
+weight: 3434338
+base_height: 84
+base_weight: 244
+base_size: 2
+natural_size: 9
+alignment: -999
+playerflags: glnxy
+effectflags: t 0 0
+prefflags: hikmnorsvAC c
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 5
+hitpoints: 300/300
+mana: 500000/1081
+move: 300/300
+damroll: 40
+hitroll: 40
+strength: 25
+intelligence: 25
+wisdom: 25
+dexterity: 25
+constitution: 25
+charisma: 25
+cash: 98989059 100000657 100003711 100004382
+bank: 100000001 100000000 100000000 99999999
+experience: 300000006
+olczones: 0 201686952
+logview: 40
+wiztitle: &1&bPirate&0
+quit_reason: 1
+saveroom: 3054
+trophy:
+1 1 1.000000
+2 17314 1.000000
+1 48632 1.000000
+1 53313 1.000000
+1 48815 1.000000
+1 3094 2.000000
+1 3070 1.000000
+1 3055 23.000000
+1 3050 2.000000
+1 3052 1.000000
+1 3051 1.000000
+1 3059 1.000000
+1 6105 10.000000
+1 49203 4.000000
+2 11925 1.000000
+1 18510 1.000000
+1 43019 1.000000
+1 23732 1.000000
+1 8013 2.000000
+1 48000 13.000000
+1 51001 4.000000
+0 0 0
+tells:
+1580784655 @WRans@W tells you, 'yeah, but I was a diabolist or something@W'@0
+1580784670 @WRans@W tells you, 'but not that@W'@0
+1580784683 @WRans@W tells you, 'what was the evil rogue subclass, I forget?@W'@0
+1580785332 @WRuns@W tells you, 'stone@W'@0
+1590463453 @WStrider@W tells you, 'I think so@W'@0
+1590463485 @WStrider@W tells you, 'haha.. true@W'@0
+1597209693 @WHortur@W tells you, 'krell/kain. dorkface@W'@0
+1597209706 @WHortur@W tells you, 'who else did you do with that :P@W'@0
+1597209873 @WStrider@W tells you, 'I'm starting to question his mental state :P@W'@0
+1597872737 @WGriffette@W tells you, 'pretty good! managed to level a bunch today.@W'@0
+$
+gossips:
+1654929530 Strider gossips, 'Not much.  Should probably go to sleep but meh'
+1654929553 Strider gossips, 'insomnia is the worst'
+1654929584 Daedela gossips, 'ah yay summer'
+1654929590 Daedela gossips, 'what do you teach?'
+1654929629 Strider gossips, 'I have Search and Rescue training in 8 hours...'
+1654929664 Daedela gossips, 'oh cool, sounds like a lot'
+1654929677 Daedela gossips, 'sorry to hear you have training in the morning Strider.  I have rehearsal tomorrow afternoon'
+1654929756 Strider gossips, 'yeah.  Ok, going to sleep now.  Nice to see you around though.'
+1654929766 Daedela gossips, 'good night, and thanks for the help!'
+1654929814 Daedela gossips, 'truly scary'
+1654929888 Strider gossips, 'lol'
+$
+aliases:
+z cast 'stone skin' fayris
+ft goto 3009
+inn goto 3054
+ww cast 'wall of stone' w
+f drink fountain
+we cast 'wall of stone' e
+ws cast 'wall of stone' s
+wn cast 'wall of stone' n
+fh cast 'full heal'
+board goto 3002
+x at 3009 drop corpse
+1 at tithlo zstat
+2 at tithlo look
+3 at tithlo cast 'full heal' tithlo
+4 at tithlo cast 'stone skin' tithlo
+5 at tithlo cast 'blur' tithlo
+6 at tithlo cast 'haste' tithlo
+0
+grants:
+rrestore Chinok 105
+~

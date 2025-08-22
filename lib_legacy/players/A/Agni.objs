@@ -1,0 +1,1371 @@
+1
+vnum: 3031
+location: 0
+values:
+1
+250
+91
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 18001
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 18001
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 41007
+location: 5
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: plate chitinous-plate chitinous chitin flake
+shortdesc: a chitinous-plate
+desc: A large flake of chitin has fallen off a Hiver's thorax here.
+type: 9
+weight: 15.00
+cost: 45
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 9
+extradesc: chitinous-plate plate chitinous
+The rough platter of insectoid scales seems to have no distinct color.
+Shifting hues move across its surface as light strikes it from different
+angles. All colors? Or none? You shake your head in wonder.
+~
+~~
+vnum: 1014
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mnouwyz
+name: helmet steel
+shortdesc: a steel-studded helmet
+desc: A steel-studded helmet lies on the ground.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+~~
+vnum: 1019
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: leggings leather
+shortdesc: &3a pair of leather leggings&0
+desc: &3A pair of leather leggings lies on the ground here.&0
+type: 9
+weight: 7.30
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+~~
+vnum: 1026
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouwyz
+name: boots steel steel-toed-boots
+shortdesc: steel-toed boots
+desc: &7A pair of steel boots lies on the ground here.&0
+type: 9
+weight: 5.10
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+~~
+vnum: 12007
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnotu
+name: spaulders steel cups
+shortdesc: a pair of steel spaulders
+desc: A pair of steel cups nestled together lies here.
+type: 9
+weight: 11.00
+cost: 900
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 257
+extradesc: steel cups spaulders
+These cups fit exactly around their wearer's shoulder, protecting
+it from the all-too-frequent blows that break through a fighter's
+defenses. They're plain, with only an embossing around their edges
+as decoration. Leather straps hold the spaulders tight against the
+shoulders and down part of the arm, criss-crossing at the chest
+and back.
+~
+~~
+vnum: 41006
+location: 16
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: nu
+name: blade spur serrated fighting sharpened leg
+shortdesc: a serrated fighting-blade
+desc: A sharpened leg spur digs into the ground.
+type: 5
+weight: 1.00
+cost: 120
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+extradesc: fighting-blade blade serrated spur sharpened 
+Tooth-like serrations give this blade a wicked edge. The sawing action
+of the teeth catches extra bits of flesh as it slashes. A tapered end
+forms a natural grip.
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3031
+location: -1
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55574
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem crushed crushed-jade
+shortdesc: a crushed jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 16903
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: mo
+name: club bone
+shortdesc: a bone club
+desc: A large bone lies half buried in the ground.
+type: 5
+weight: 2.00
+cost: 100
+timer: 0
+level: 4
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+extradesc: club bone
+The bone is rather heavy, and can deliver quite a punch. Strangely, the
+balance is good enough for you to swing it like a club.
+~
+~~
+vnum: 16902
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: boots white white-boots
+shortdesc: a pair of white boots
+desc: A pair of white boots is here.
+type: 9
+weight: 2.00
+cost: 20
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 65
+applies:
+14 10
+~
+extradesc: boots white white-boots
+The boots are made of a strange sort of leather which is totally white. 
+There is a rather strange feel to it too.
+~
+~~
+vnum: 1601
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: foot lucky-rabbits-foot lucky-rabbit-foot
+shortdesc: a lucky rabbit's foot
+desc: A lucky rabbit's foot is covered in dirt on the ground.
+type: 11
+weight: 0.23
+cost: 10
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+17 1
+~
+extradesc: foot lucky-rabbits-foot lucky-rabbit-foot
+Quite large for a rabbit's foot, the previous owner must have been rather
+fearsome to have produced such a magnificient specimen.  The last owner must
+not have been very lucky, however, having lost such a vital appendage.  Some
+flecks of blood stick in the matted rabbit's hair around the area from which
+the leg once protruded.  A thick strand of twine runs through the foot,
+allowing it to be worn.
+~
+~~
+vnum: 1601
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: foot lucky-rabbits-foot lucky-rabbit-foot
+shortdesc: a lucky rabbit's foot
+desc: A lucky rabbit's foot is covered in dirt on the ground.
+type: 11
+weight: 0.23
+cost: 10
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+13 2
+17 1
+~
+extradesc: foot lucky-rabbits-foot lucky-rabbit-foot
+Quite large for a rabbit's foot, the previous owner must have been rather
+fearsome to have produced such a magnificient specimen.  The last owner must
+not have been very lucky, however, having lost such a vital appendage.  Some
+flecks of blood stick in the matted rabbit's hair around the area from which
+the leg once protruded.  A thick strand of twine runs through the foot,
+allowing it to be worn.
+~
+~~
+vnum: 3500
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: feather sparrows-feather sparrow cute-yellow-feather drifting
+shortdesc: a sparrow's feather
+desc: A cute yellow feather is drifting around here.
+type: 21
+weight: 0.01
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: feather sparrows-feather sparrow cute-yellow-feather drifting
+Aww, it's a cute little wing feather from a song sparrow.  It looks delicate,
+but could probably be used as a quill to scribe with in a pinch.
+~
+~~
+vnum: 23750
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: parsley sprig herb spice food
+shortdesc: a sprig of parsley
+desc: A sprig of parsley is sitting here, ready to garnish a dish.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: sprig parsley herb spice
+A fluffy little herb, parsley is often used to add flavor or color to
+otherwise unremarkable dishes.    
+~
+~~
+vnum: 17201
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 17201
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 17201
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 17201
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 17201
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 12012
+location: 127
+values:
+0
+1
+5
+7
+0
+0
+0
+~
+flags: mtu
+name: mallet rawhide-mallet rawhide
+shortdesc: a rawhide mallet
+desc: A mallet rests on its head against a wall.
+type: 5
+weight: 1.90
+cost: 55
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: rawhide mallet
+This mallet is simply made, with a oak wood shaft about the
+length of your forearm and a head made of many layers of
+rawhide pressed together and dried. It'd be useful for
+a handyman.
+~
+~~
+vnum: 41011
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: honeycomb sticky comb sweet food chunk hiver honey
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: sticky-comb comb sweet food
+Hexagonal wax chambers are filled with an amber fluid. It covers your hands
+with sticky goodness as you examine it.
+~
+~~
+vnum: 3022
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnovwyz
+name: longsword sword steel
+shortdesc: a steel longsword
+desc: A steel-bladed longsword lies on the ground, sheathed.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: longsword sword long steel
+It is a plain steel longsword, with a fairly sharp blade and a
+leather-wrapped hilt. Short bronze crossguards keep the hand a
+little safe.
+~
+~~
+vnum: 41011
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: honeycomb sticky comb sweet food chunk hiver honey
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: sticky-comb comb sweet food
+Hexagonal wax chambers are filled with an amber fluid. It covers your hands
+with sticky goodness as you examine it.
+~
+~~
+vnum: 41006
+location: 127
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: nu
+name: blade spur serrated fighting sharpened leg
+shortdesc: a serrated fighting-blade
+desc: A sharpened leg spur digs into the ground.
+type: 5
+weight: 1.00
+cost: 120
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+extradesc: fighting-blade blade serrated spur sharpened 
+Tooth-like serrations give this blade a wicked edge. The sawing action
+of the teeth catches extra bits of flesh as it slashes. A tapered end
+forms a natural grip.
+~
+~~
+vnum: 16100
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnouvwyz
+name: scimitar
+shortdesc: a scimitar
+desc: A scimitar lies on the ground here.
+type: 5
+weight: 2.00
+cost: 200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+applies:
+2 1
+~
+extradesc: scimitar
+This scimitar is made of the finest steel in the land.  Its blade is keen and
+sharp.  
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+200
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 15.04
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

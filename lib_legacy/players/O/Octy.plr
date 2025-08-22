@@ -1,0 +1,75 @@
+name: Octy
+password: OcckgaPK65
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20057
+birthtime: 1637345711
+timeplayed: 224
+lastlogintime: 1637345935
+host: 067.164.100.066
+height: 47
+weight: 176
+base_height: 47
+base_weight: 176
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 14
+thirst: 4
+lastlevel: 0
+hitpoints: 26/26
+mana: 0/0
+move: 126/126
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 64
+wisdom: 73
+dexterity: 81
+constitution: 75
+charisma: 63
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+1637345889 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1637345733 Porto gossips, 'hey octy'
+1637345816 Porto gossips, 'new to Fiery?'
+1637345841 Chinok gossips, 'Hey Octy, welcome back'
+1637345846 Porto gossips, 'nice! well come back'
+1637345853 Chinok gossips, 'just yell if you need anything, we are here to help'
+1637345909 Chinok gossips, 'haunted house, yes, it's south of town, but it's prpbably more level 4ish.. '
+1637345919 Porto gossips, 'I don't know of or remember one that a level 1 would be able to handle but the fields west of town should be good.'
+1637345933 Chinok gossips, 'west of town, in the bug fields'
+$

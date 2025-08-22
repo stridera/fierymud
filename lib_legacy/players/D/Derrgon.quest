@@ -1,0 +1,75 @@
+66 255 0
+63 1 1
+step totem
+65 1 2
+scorpion 1
+lever 1
+48 255 4
+fire_ring 1
+sash 0
+charles 1
+lashes 0
+61 5 2
+target1 0
+hunt 0
+72 5 2
+target1 0
+bounty 0
+64 255 1
+got_cherry 0
+60 3 5
+necklacetask2 0
+necklacetask3 0
+necklacetask4 1
+necklacetask1 1
+attack_counter 0
+59 5 2
+target1 0
+hunt 0
+70 5 2
+treasure1 0
+hunt 0
+22 1 0
+32797 255 1
+subclass_name paladin
+17 1 24
+5548_reward 1
+5550_reward 1
+5554_reward 1
+5536_reward 1
+5528_reward 1
+5546_reward 1
+5532_reward 1
+5534_reward 1
+5516_reward 1
+5520_reward 1
+5558_reward 1
+5524_reward 1
+5518_reward 1
+5522_reward 1
+5513_trophies 5
+5511_trophies 8
+5515_trophies 4
+5507_trophies 22
+5503_trophies 32
+5509_trophies 43
+5505_trophies 22
+eg_ally 1
+eg_faction 200
+bl_faction 0
+7 2 15
+55599_gems_acquired 3
+55610_gems_acquired 3
+55332_armor_acquired 1
+55328_armor_acquired 1
+55577_gems_acquired 3
+55581_gems_acquired 3
+55573_gems_acquired 3
+55304_armor_acquired 1
+55312_armor_acquired 1
+55316_armor_acquired 1
+55324_armor_acquired 1
+55308_armor_acquired 1
+55320_armor_acquired 1
+55569_gems_acquired 3
+55300_armor_acquired 1

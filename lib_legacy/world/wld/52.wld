@@ -1,0 +1,1767 @@
+#5200
+On a Ladder in a Fiery Hole~
+   You are maintaining a precarious hold on some red-hot niches melted into the
+walls of this black obsidian pit.  Smoke and flames wash over you, making it
+difficult to remain here, but somehow you manage to keep your grip.  You can
+either climb up higher in the pit, or you can drop down to the fiery tunnels
+below.    ~
+52 72 12
+D4
+You some handholds you could use to climb up.~
+~
+0 -1 5191
+D5
+You see the bottom of this fiery pit.~
+~
+0 -1 5201
+S
+#5201
+The Bottom of a Fiery Hole~
+   You are standing at the bottom of a hole filled with smoke and flames.  
+This is probably not the best place to take a rest.  It looks like you could
+possibly climb up if you can find good handholds further up.  However, the heat
+and fumes could quite possibly overwhelm you if you try.  To the south, there
+seem to be some tunnels.  It's hard to tell if they have been carved through
+the lava or if they might be natural phenomena.    ~
+52 8 12
+D2
+You see what appears to be a lava tube.~
+~
+0 -1 5202
+D4
+You some handholds you could use to climb up.~
+~
+0 -1 5200
+S
+#5202
+The Lava Tube~
+   This appears to be a more-or-less naturally formed lava tube.  The lava tube
+continues on to the north and east from here.    ~
+52 8 12
+D0
+You see a lava tube.~
+~
+0 -1 5201
+D1
+You see a lava tube.~
+~
+0 -1 5203
+S
+#5203
+The Lava Tube~
+   This appears to be a more-or-less naturally formed lava tube.  The lava tube
+continues on to the east and west from here.    ~
+52 8 12
+D1
+You see a lava tube.~
+~
+0 -1 5204
+D3
+You see a lava tube.~
+~
+0 -1 5202
+S
+#5204
+The Lava Tube~
+   This appears to be a more-or-less naturally formed lava tube.  The lava tube
+continues on to the east and west from here.    ~
+52 8 12
+D1
+You see a lava tube.~
+~
+0 -1 5205
+D3
+You see a lava tube.~
+~
+0 -1 5203
+S
+#5205
+The Lava Tube~
+   This appears to be a more-or-less naturally formed lava tube.  The lava tube
+continues on to the south and west from here.    ~
+52 8 12
+D2
+You see the lava tube begin to widen.~
+~
+0 -1 5206
+D3
+You see a lava tube.~
+~
+0 -1 5204
+S
+#5206
+Entrance to the Lava Bubble~
+   The lava tube begins to widen here at the mouth of a huge chamber.  It would
+appear that a bubble got stuck in the lava here forming a large chamber
+immediately to the south.  The lava tube continues on to the north from here,
+or you can enter the bubble to the south.    ~
+52 8 12
+D0
+You see a lava tube.~
+~
+0 -1 5205
+D2
+You see a section of the lava bubble.~
+~
+0 -1 5207
+S
+#5207
+The Lava Bubble~
+   You can't help but marvel, at least a little bit, at the size of this bubble
+in the rock hard lava all around you.  However, the sound of scurrying
+creatures from all different directions should give you something else to be
+distracted by.  The bubble continues on to the east, south, and west from here.
+You can also leave the bubble to the north.    ~
+52 8 12
+D0
+You see an exit from this lava bubble.~
+~
+0 -1 5206
+D1
+You see a section of the lava bubble.~
+~
+0 -1 5209
+D2
+You see a section of the lava bubble.~
+~
+0 -1 5211
+D3
+You see a section of the lava bubble.~
+~
+0 -1 5208
+S
+#5208
+The Lava Bubble~
+   You can't help but marvel, at least a little bit, at the size of this bubble
+in the rock hard lava all around you.  However, the sound of scurrying
+creatures from all different directions should give you something else to be
+distracted by.  The bubble continues on to the east and south from here.    ~
+52 8 12
+D1
+You see a section of the lava bubble.~
+~
+0 -1 5207
+D2
+You see a section of the lava bubble.~
+~
+0 -1 5210
+S
+#5209
+The Lava Bubble~
+   You can't help but marvel, at least a little bit, at the size of this bubble
+in the rock hard lava all around you.  However, the sound of scurrying
+creatures from all different directions should give you something else to be
+distracted by.  The bubble continues on to the south and west from here.    ~
+52 8 12
+D2
+You see a section of the lava bubble.~
+~
+0 -1 5212
+D3
+You see a section of the lava bubble.~
+~
+0 -1 5207
+S
+#5210
+The Lava Bubble~
+   You can't help but marvel, at least a little bit, at the size of this bubble
+in the rock hard lava all around you.  However, the sound of scurrying
+creatures from all different directions should give you something else to be
+distracted by.  The bubble continues on to the north and east from here.    ~
+52 8 12
+D0
+You see a section of the lava bubble.~
+~
+0 -1 5208
+D1
+You see a section of the lava bubble.~
+~
+0 -1 5211
+S
+#5211
+The Lava Bubble~
+   You can't help but marvel, at least a little bit, at the size of this bubble
+in the rock hard lava all around you.  However, the sound of scurrying
+creatures from all different directions should give you something else to be
+distracted by.  The bubble continues on to the north, east, south, and west
+from here.    ~
+52 8 12
+D0
+You see a section of the lava bubble.~
+~
+0 -1 5207
+D1
+You see a section of the lava bubble.~
+~
+0 -1 5212
+D2
+You see a section of the lava bubble.~
+~
+0 -1 5214
+D3
+You see a section of the lava bubble.~
+~
+0 -1 5210
+S
+#5212
+The Lava Bubble~
+   You can't help but marvel, at least a little bit, at the size of this bubble
+in the rock hard lava all around you.  However, the sound of scurrying
+creatures from all different directions should give you something else to be
+distracted by.  The bubble continues on to the north, east, south, and west
+from here.    ~
+52 8 12
+D0
+You see a section of the lava bubble.~
+~
+0 -1 5209
+D1
+You see a section of the lava bubble.~
+~
+0 -1 5213
+D2
+You see a section of the lava bubble.~
+~
+0 -1 5215
+D3
+You see a section of the lava bubble.~
+~
+0 -1 5211
+S
+#5213
+The Lava Bubble~
+   You can't help but marvel, at least a little bit, at the size of this bubble
+in the rock hard lava all around you.  However, the sound of scurrying
+creatures from all different directions should give you something else to be
+distracted by.  The bubble continues on to the south and west from here.    ~
+52 8 12
+D2
+You see a section of the lava bubble.~
+~
+0 -1 5216
+D3
+You see a section of the lava bubble.~
+~
+0 -1 5212
+S
+#5214
+The Lava Bubble~
+   You can't help but marvel, at least a little bit, at the size of this bubble
+in the rock hard lava all around you.  However, the sound of scurrying
+creatures from all different directions should give you something else to be
+distracted by.  The bubble continues on to the north and east from here.    ~
+52 8 12
+D0
+You see a section of the lava bubble.~
+~
+0 -1 5211
+D1
+You see a section of the lava bubble.~
+~
+0 -1 5215
+S
+#5215
+The Lava Bubble~
+   You can't help but marvel, at least a little bit, at the size of this bubble
+in the rock hard lava all around you.  However, the sound of scurrying
+creatures from all different directions should give you something else to be
+distracted by.  The bubble continues on to the east, north, and west from here.
+You can also leave the bubble to the south.    ~
+52 8 12
+D0
+You see a section of the lava bubble.~
+~
+0 -1 5212
+D1
+You see a section of the lava bubble.~
+~
+0 -1 5216
+D2
+You see an exit from this lava bubble.~
+~
+0 -1 5217
+D3
+You see a section of the lava bubble.~
+~
+0 -1 5214
+S
+#5216
+The Lava Bubble~
+   You can't help but marvel, at least a little bit, at the size of this bubble
+in the rock hard lava all around you.  However, the sound of scurrying
+creatures from all different directions should give you something else to be
+distracted by.  The bubble continues on to the north and west from here.    ~
+52 8 12
+D0
+You see a section of the lava bubble.~
+~
+0 -1 5213
+D3
+You see a section of the lava bubble.~
+~
+0 -1 5215
+S
+#5217
+Entrance to the Lava Bubble~
+   The lava tube begins to widen here at the mouth of a huge chamber.  It would
+appear that a bubble got stuck in the lava here forming a large chamber
+immediately to the north.  A tunnel through the lava begins to the south of
+here, or you can enter the bubble to the north.    ~
+52 12 12
+D0
+You see a section of the lava bubble.~
+~
+0 -1 5215
+D2
+You see a lava tunnel.~
+~
+0 -1 5218
+S
+#5218
+The Lava Tunnels~
+   You are standing in a tunnel carved out of the lava.  It would appear that
+someone, or something, has enlarged a naturally formed lava tube into a rather
+sizable tunnel.  The tunnel continues on to the north and south from here.    ~
+52 8 12
+D0
+You see a lava tunnel.~
+~
+0 -1 5217
+D2
+You see a lava tunnel.~
+~
+0 -1 5219
+S
+#5219
+The Lava Tunnels~
+   You are standing in a tunnel carved out of the lava.  It would appear that
+someone, or something, has enlarged a naturally formed lava tube into a rather
+sizable tunnel.  The tunnel continues on to the north and west from here.    ~
+52 24 12
+D0
+You see a lava tunnel.~
+~
+0 -1 5218
+D3
+~
+~
+0 -1 5221
+S
+T 5200
+#5220
+The Chamber of Fire~
+   This is an artificial offshoot of the natural lava tunnels around.  The rock
+is crispy red, much like the center of a living flame.  The walls even seem to
+waver, appearing to be burning.  There is a small stone shelf on the eastern
+wall, holding nothing.    ~
+52 524444 12
+D3
+~
+flamewall flame~
+1 5210 5219
+S
+T 5201
+#5221
+The Lava Tunnels~
+   You are standing in a tunnel carved out of the lava.  It would appear that
+someone, or something, has enlarged a naturally formed lava tube into a rather
+sizable tunnel.  The tunnel continues on to the east and west from here.    ~
+52 8 12
+D1
+You see a lava tunnel.~
+~
+0 -1 5219
+D3
+You see a lava tunnel.~
+~
+0 -1 5222
+S
+#5222
+The Lava Tunnels~
+   You are standing in a tunnel carved out of the lava.  It would appear that
+someone, or something, has enlarged a naturally formed lava tube into a rather
+sizable tunnel.  The tunnel continues on to the east and west from here.    ~
+52 8 12
+D1
+You see a lava tunnel.~
+~
+0 -1 5221
+D3
+You see a lava tunnel.~
+~
+0 -1 5223
+S
+#5223
+The Lava Tunnels~
+   You are standing in a tunnel carved out of the lava.  It would appear that
+someone, or something, has enlarged a naturally formed lava tube into a rather
+sizable tunnel.  The tunnel continues on to the north and east from here.    ~
+52 8 12
+D0
+You see a lava tunnel.~
+~
+0 -1 5224
+D1
+You see a lava tunnel.~
+~
+0 -1 5222
+S
+#5224
+The Lava Tunnels~
+   You are standing in a tunnel carved out of the lava.  It would appear that
+someone, or something, has enlarged a naturally formed lava tube into a rather
+sizable tunnel.  The tunnel continues on to the south and west from here.    ~
+52 8 12
+D2
+You see a lava tunnel.~
+~
+0 -1 5223
+D3
+You see a lava tunnel.~
+~
+0 -1 5225
+S
+#5225
+The Lava Tunnels~
+   You are standing in a tunnel carved out of the lava.  It would appear that
+someone, or something, has enlarged a naturally formed lava tube into a rather
+sizable tunnel.  The tunnel continues on to the east and west from here.  A
+sizable crack splits the tunnel to the north.    ~
+52 8 12
+D0
+You see a crack in the wall large enough to enter.~
+~
+0 -1 5238
+D1
+You see a lava tunnel.~
+~
+0 -1 5224
+D3
+You see a lava tunnel.~
+~
+0 -1 5226
+S
+#5226
+The Lava Tunnels~
+   You are standing in a tunnel carved out of the lava.  It would appear that
+someone, or something, has enlarged a naturally formed lava tube into a rather
+sizable tunnel.  The tunnel continues on to the east and west from here.    ~
+52 8 12
+D1
+You see a lava tunnel.~
+~
+0 -1 5225
+D3
+You see a lava tunnel.~
+~
+0 -1 5227
+S
+#5227
+The Lava Tunnels~
+   You are standing in a tunnel carved out of the lava.  It would appear that
+someone, or something, has enlarged a naturally formed lava tube into a rather
+sizable tunnel.  The tunnel continues on to the east and south from here.    ~
+52 8 12
+D1
+You see a lava tunnel.~
+~
+0 -1 5226
+D2
+You see a lava tunnel.~
+~
+0 -1 5228
+S
+#5228
+The Lava Tunnels~
+   You are standing in a tunnel carved out of the lava.  It would appear that
+someone, or something, has enlarged a naturally formed lava tube into a rather
+sizable tunnel.  The tunnel continues on to the north and west from here.    ~
+52 8 12
+D0
+You see a lava tunnel.~
+~
+0 -1 5227
+D3
+You see a lava tunnel.~
+~
+0 -1 5229
+S
+#5229
+The Lava Tunnels~
+   You are standing in a tunnel carved out of the lava.  It would appear that
+someone, or something, has enlarged a naturally formed lava tube into a rather
+sizable tunnel.  The tunnel continues on to the east and west from here.    ~
+52 8 12
+D1
+You see a lava tunnel.~
+~
+0 -1 5228
+D3
+You see a lava tunnel.~
+~
+0 -1 5230
+S
+#5230
+The Lava Tunnels~
+   You are standing in a tunnel carved out of the lava.  It would appear that
+someone, or something, has enlarged a naturally formed lava tube into a rather
+sizable tunnel.  The tunnel continues on to the east and west from here.    ~
+52 8 12
+D1
+You see a lava tunnel.~
+~
+0 -1 5229
+D3
+The lava tunnel grows even wider to the west.~
+~
+0 -1 5231
+S
+#5231
+Entrance to the Lava Cave~
+   You are standing at the entrance to a huge cave, carved out of the lava.  
+You can help but wonder what lives therein.  The cave is just to the west of
+here.  The lava tunnels continue on to the east.    ~
+52 12 12
+D1
+You see a lava tunnel.~
+~
+0 -1 5230
+D3
+You see a section of the lava cave.~
+~
+0 -1 5232
+S
+#5232
+The Lava Cave~
+   A mighty cave has been carved from the volcanic rock.  You can only shudder
+to think what kind of mighty beast would be strong enough to do this.  The
+sounds of primitive tools striking rock echo throughout the chamber.  This is
+surely not a safe place to dally.  The lava cave continues on to the north and
+west.  You can also retreat to the relative safety of the lava tunnels to the
+east of here.    ~
+52 8 12
+D0
+You see a section of the lava cave.~
+~
+0 -1 5297
+D1
+You see an exit from this lava cave.~
+~
+0 -1 5231
+D3
+You see a section of the lava cave.~
+~
+0 -1 5233
+S
+#5233
+The Lava Cave~
+   A mighty cave has been carved from the volcanic rock.  You can only shudder
+to think what kind of mighty beast would be strong enough to do this.  The
+sounds of primitive tools striking rock echo throughout the chamber.  This is
+surely not a safe place to dally.  The lava cave continues on to the north,
+east, and west from here.    ~
+52 8 12
+D0
+You see a section of the lava cave.~
+~
+0 -1 5234
+D1
+You see a section of the lava cave.~
+~
+0 -1 5232
+D3
+You see a section of the lava cave.~
+~
+0 -1 5294
+S
+#5234
+The Lava Cave~
+   A mighty cave has been carved from the volcanic rock.  You can only shudder
+to think what kind of mighty beast would be strong enough to do this.  The
+sounds of primitive tools striking rock echo throughout the chamber.  This is
+surely not a safe place to dally.  The lava cave continues on to the north,
+east, south, and west from here.    ~
+52 8 12
+D0
+You see a section of the lava cave.~
+~
+0 -1 5295
+D1
+You see a section of the lava cave.~
+~
+0 -1 5297
+D2
+You see a section of the lava cave.~
+~
+0 -1 5233
+D3
+You see a section of the lava cave.~
+~
+0 -1 5235
+S
+#5235
+The Lava Cave~
+   A mighty cave has been carved from the volcanic rock.  You can only shudder
+to think what kind of mighty beast would be strong enough to do this.  The
+sounds of primitive tools striking rock echo throughout the chamber.  This is
+surely not a safe place to dally.  The lava cave continues on to the east and
+south.  There appears to be a smaller hidden exit to the west.    ~
+52 8 12
+D1
+You see a section of the lava cave.~
+~
+0 -1 5234
+D2
+You see a section of the lava cave.~
+~
+0 -1 5294
+D3
+It definitely looks like you could wiggle your way through.~
+~
+0 -1 5236
+S
+#5236
+Near the Lava Ledge~
+   You stand in a smallish tunnel.  Steam rolls in from the west and there
+looks to be a ledge off in the distance.  To the east, there is a small
+entrance into what appears to be a massive cave.    ~
+52 12 12
+D1
+You see a section of the lava cave.~
+~
+0 -1 5235
+D3
+You see a slippery looking ledge.~
+~
+0 -1 5237
+S
+#5237
+The Ledge near the Wall of Steam~
+   There is a solid wall of rolling steam to the west of here.  There also
+seems to be a ledge, so perhaps you shouldn't go that way unless you have
+wings..  You could also move deeper into the lava tunnels to the east.    ~
+52 8 12
+D1
+You see a lava tunnel.~
+~
+0 -1 5236
+D3
+Nothing.~
+~
+0 -1 12801
+S
+#5238
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+west of here.  A largish tunnel can be seen through a crack to the south.    ~
+52 8 12
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5225
+D3
+You see a tunnel through the crack in the lava.~
+~
+0 -1 5239
+S
+#5239
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+north and east of here.    ~
+52 8 12
+D0
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5240
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5238
+S
+#5240
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+south and west of here.    ~
+52 8 12
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5239
+D3
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5241
+S
+#5241
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+east and west of here.    ~
+52 8 12
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5240
+D3
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5242
+S
+#5242
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+north, east, and west of here.    ~
+52 8 12
+D0
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5243
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5241
+D3
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5290
+S
+#5243
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+north, south, and west of here.    ~
+52 8 12
+D0
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5244
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5242
+D3
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5289
+S
+#5244
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+north and south of here.    ~
+52 8 12
+D0
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5245
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5243
+S
+#5245
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+north, south, and west of here.    ~
+52 8 12
+D0
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5246
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5244
+D3
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5279
+S
+#5246
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+south and west of here.  Slightly larger cracks lead off to the north and east.
+  ~
+52 8 12
+D0
+The crack widens to the north. You hear hissing.~
+~
+0 -1 5280
+D1
+The crack widens to the east. You hear hissing.~
+~
+0 -1 5282
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5245
+D3
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5247
+S
+#5247
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+east, south, and west of here.    ~
+52 8 12
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5246
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5279
+D3
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5248
+S
+#5248
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+east, south, and west of here.    ~
+52 8 12
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5247
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5286
+D3
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5249
+S
+#5249
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+east and west of here.  To the north, a large polished hallway can be seen
+nearby.    ~
+52 8 12
+D0
+You see a magnificent obsidian hallway.~
+~
+0 -1 5250
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5248
+D3
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5283
+S
+#5250
+The Obsidian Hallway~
+   You are in a highly polished, very definitely man-made, hallway.  The walls
+are of glimmering obsidian and appear to be flawless to the naked eye.  The
+hallway continues on to the north.  The south wall is cracked wide open and big
+enough for you to enter.    ~
+52 12 12
+D0
+You see a magnificent obsidian hallway.~
+~
+0 -1 5251
+D2
+You see a crack in the wall large enough to enter.~
+~
+0 -1 5249
+S
+#5251
+The Obsidian Hallway~
+   You are in a highly polished, very definitely man-made, hallway.  The walls
+are of glimmering obsidian and appear to be flawless to the naked eye.  The
+hallway continues on to the north and south.    ~
+52 8 12
+D0
+You see a magnificent obsidian hallway.~
+~
+0 -1 5252
+D2
+You see a magnificent obsidian hallway.~
+~
+0 -1 5250
+S
+#5252
+The Obsidian Hallway~
+   You are in a highly polished, very definitely man-made, hallway.  The walls
+are of glimmering obsidian and appear to be flawless to the naked eye.  The
+hallway continues on to the east and south.    ~
+52 8 12
+D1
+You see a magnificent obsidian hallway.~
+~
+0 -1 5253
+D2
+You see a magnificent obsidian hallway.~
+~
+0 -1 5251
+S
+#5253
+The Obsidian Hallway~
+   You are in a highly polished, very definitely man-made, hallway.  The walls
+are of glimmering obsidian and appear to be flawless to the naked eye.  The
+hallway continues on to the east and west.    ~
+52 8 12
+D1
+You see a magnificent obsidian hallway.~
+~
+0 -1 5254
+D3
+You see a magnificent obsidian hallway.~
+~
+0 -1 5252
+S
+#5254
+The Obsidian Hallway~
+   You are in a highly polished, very definitely man-made, hallway.  The walls
+are of glimmering obsidian and appear to be flawless to the naked eye.  The
+hallway continues on to the north and west.    ~
+52 8 12
+D0
+You see a magnificent obsidian hallway.~
+~
+0 -1 5255
+D3
+You see a magnificent obsidian hallway.~
+~
+0 -1 5253
+S
+#5255
+The Obsidian Hallway~
+   You are in a highly polished, very definitely man-made, hallway.  The walls
+are of glimmering obsidian and appear to be flawless to the naked eye.  The
+hallway continues on to the south and west.    ~
+52 8 12
+D2
+You see a magnificent obsidian hallway.~
+~
+0 -1 5254
+D3
+You see a magnificent obsidian hallway.~
+~
+0 -1 5256
+S
+#5256
+The Obsidian Hallway~
+   You are in a highly polished, very definitely man-made, hallway.  The walls
+are of glimmering obsidian and appear to be flawless to the naked eye.  The
+hallway continues on to the east and west.    ~
+52 8 12
+D1
+You see a magnificent obsidian hallway.~
+~
+0 -1 5255
+D3
+You see a magnificent obsidian hallway.~
+~
+0 -1 5257
+S
+#5257
+The Obsidian Hallway~
+   You are in a highly polished, very definitely man-made, hallway.  The walls
+are of glimmering obsidian and appear to be flawless to the naked eye.  The
+hallway continues on to the east and west.    ~
+52 8 12
+D1
+You see a magnificent obsidian hallway.~
+~
+0 -1 5256
+D3
+You see the entrance to the fire temple.~
+~
+0 -1 5258
+S
+#5258
+Entrance to the Fire Temple~
+   You are in a highly polished, very definitely man-made, hallway.  The walls
+are of glimmering obsidian and appear to be flawless to the naked eye.  The
+hallway continues on to the east and opens up into a magnificent, but evil,
+temple to the west.    ~
+52 8 12
+D1
+You see a magnificent obsidian hallway.~
+~
+0 -1 5257
+D3
+You see the fire temple.~
+~
+0 -1 5259
+S
+#5259
+The Fire Temple~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the north, south, and west.  You can leave the
+temple to the east.    ~
+52 8 12
+D0
+You see the fire temple.~
+~
+0 -1 5260
+D1
+You see the fire temple.~
+~
+0 -1 5258
+D2
+You see the fire temple.~
+~
+0 -1 5261
+D3
+You see the fire temple.~
+~
+0 -1 5263
+S
+#5260
+The Fire Temple~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the south and west.    ~
+52 8 12
+D2
+You see the fire temple.~
+~
+0 -1 5259
+D3
+You see the fire temple.~
+~
+0 -1 5262
+S
+#5261
+The Fire Temple~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the north and west.    ~
+52 8 12
+D0
+You see the fire temple.~
+~
+0 -1 5259
+D3
+You see the fire temple.~
+~
+0 -1 5264
+S
+#5262
+The Fire Temple~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the east, south, and west.    ~
+52 8 12
+D1
+You see the fire temple.~
+~
+0 -1 5260
+D2
+You see the fire temple.~
+~
+0 -1 5263
+D3
+You see the fire temple.~
+~
+0 -1 5266
+S
+#5263
+The Fire Temple~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the north, south, east, and west.    ~
+52 8 12
+D0
+You see the fire temple.~
+~
+0 -1 5262
+D1
+You see the fire temple.~
+~
+0 -1 5259
+D2
+You see the fire temple.~
+~
+0 -1 5264
+D3
+You see the fire temple.~
+~
+0 -1 5267
+S
+#5264
+The Fire Temple~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the north, east, and west.    ~
+52 8 12
+D0
+You see the fire temple.~
+~
+0 -1 5263
+D1
+You see the fire temple.~
+~
+0 -1 5261
+D3
+You see the fire temple.~
+~
+0 -1 5268
+S
+#5265
+The Fire Temple~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the south and west.    ~
+52 8 12
+D2
+You see the fire temple.~
+~
+0 -1 5266
+D3
+You see the fire temple.~
+~
+0 -1 5270
+S
+#5266
+The Fire Temple~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the north, south, east, and west.    ~
+52 8 12
+D0
+You see the fire temple.~
+~
+0 -1 5265
+D1
+You see the fire temple.~
+~
+0 -1 5262
+D2
+You see the fire temple.~
+~
+0 -1 5267
+D3
+You see the fire temple.~
+~
+0 -1 5271
+S
+#5267
+East of the Fire Temple Altar~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the north, south, and east.  The Evil Fire
+Temple Altar is to the west.    ~
+52 8 12
+D0
+You see the fire temple.~
+~
+0 -1 5266
+D1
+You see the fire temple.~
+~
+0 -1 5263
+D2
+You see the fire temple.~
+~
+0 -1 5268
+D3
+You see the fire temple altar.~
+~
+0 -1 5272
+S
+#5268
+The Fire Temple~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the north, south, east, and west.    ~
+52 8 12
+D0
+You see the fire temple.~
+~
+0 -1 5267
+D1
+You see the fire temple.~
+~
+0 -1 5264
+D2
+You see the fire temple.~
+~
+0 -1 5269
+D3
+You see the fire temple.~
+~
+0 -1 5273
+S
+#5269
+The Fire Temple~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the north and west.    ~
+52 8 12
+D0
+You see the fire temple.~
+~
+0 -1 5268
+D3
+You see the fire temple.~
+~
+0 -1 5274
+S
+#5270
+The Fire Temple~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the east and south.    ~
+52 8 12
+D1
+You see the fire temple.~
+~
+0 -1 5265
+D2
+You see the fire temple.~
+~
+0 -1 5271
+S
+#5271
+North of the Fire Temple Altar~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the north and east.  The Evil Fire Temple Altar
+is to the south.    ~
+52 8 12
+D0
+You see the fire temple.~
+~
+0 -1 5270
+D1
+You see the fire temple.~
+~
+0 -1 5266
+D2
+You see the fire temple altar.~
+~
+0 -1 5272
+S
+#5272
+The Fire Temple Altar~
+   You are standing at the Evil Fire Temple Altar.  The glimmering obsidian
+altar is covered with the ashes of the many sacrifices burned alive here to
+glorify the twisted evil of fire misused.  The Fire Temple continues on to the
+north, east, and south.  A small alcove is just west of here.    ~
+52 8 12
+D0
+You see the fire temple.~
+~
+0 -1 5271
+D1
+You see the fire temple.~
+~
+0 -1 5267
+D2
+You see the fire temple.~
+~
+0 -1 5273
+D3
+You see a small alcove.~
+~
+0 -1 5275
+S
+#5273
+South of the Fire Temple Altar~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the east and south.  The Evil Fire Temple Altar
+is to the north.    ~
+52 8 12
+D0
+You see the fire temple altar.~
+~
+0 -1 5272
+D1
+You see the fire temple.~
+~
+0 -1 5268
+D2
+You see the fire temple.~
+~
+0 -1 5274
+S
+#5274
+The Fire Temple~
+   You are standing in the evil Fire Temple.  The glimmering obsidian walls,
+floors, ceiling, and pillars all glorify the "glory" of fire used to evil ends.
+The Fire Temple continues on to the north and east.    ~
+52 8 12
+D0
+You see the fire temple.~
+~
+0 -1 5273
+D1
+You see the fire temple.~
+~
+0 -1 5269
+S
+#5275
+Behind the Fire Temple Altar~
+   You are standing in a small alcove behind the Fire Temple Altar.  Perhaps
+this is where the evil priests prepare for their horrifying ceremonies.  The
+only exit from this alcove is to the east.    ~
+52 8 12
+D1
+You see the fire temple.~
+~
+0 -1 5272
+D2
+There seems to be a slight crack in the wall.~
+wall crack~
+1 -1 5276
+S
+#5276
+The Fire Priest's Treasure Room~
+   This is apparently where the treasures stolen from the many sacifices are
+stored.  I wouldn't let the High Priest find you back here.  Unless you are
+volunteering to be the next sacrifice!  The back of a secret door faces you to
+the north.  It should be easy to get out of here.    ~
+52 8 12
+D0
+You see the back of a secret door.~
+secret-door secret door~
+1 -1 5275
+D2
+Odd. There isn't any junk piled up against the wall.~
+wall~
+1 -1 5277
+S
+#5277
+Top of the Secret Lava Well~
+   You are at the top of a well filled with molten lava.  Although you could
+descend, it probably wouldn't be a terribly smart thing to do!  The back of a
+secret door faces you to the north.  That would be a far safer way to leave
+this place.    ~
+52 8 12
+D0
+You see the back of a secret door.~
+secret-door secret door~
+2 -1 5276
+D5
+Hard to tell. Too much lava bubbling up.~
+~
+0 -1 5278
+S
+#5278
+The Secret Lava Well~
+   Nothing but lava below you.  You're not going any further down!  The only
+viable exit is up.  Better get moving along before you become extra crispy
+adventurer nuggets.    ~
+52 12 12
+D4
+A far safer place then here.~
+~
+0 -1 5277
+S
+T 5278
+#5279
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+north, east, and south of here.    ~
+52 8 12
+D0
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5247
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5245
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5288
+S
+#5280
+Near the Hissing Chamber~
+   The lava cracks open up into a largish chamber to the east of here.  There
+is the unmistable sound of hissing coming from the chamber beyond.  It doesn't
+sound like a living sound, but it makes you uneasy nonetheless.  The lava
+cracks continue on to the south from here.    ~
+52 8 12
+D1
+You see a large chamber. You hear hissing sounds.~
+~
+0 -1 5281
+D2
+You see a crack in the wall large enough to enter.~
+~
+0 -1 5246
+S
+#5281
+The Hissing Chamber~
+   You are in a large, rock-filled chamber.  Fissures in the rock release a
+large variety of bad-smelling, and potentially dangerous, natural gases into
+the air all around you.  Even more distressing are the many small flames
+burning all around you.  Perhaps this is not a smart place to explore?  The
+hissing chamber continues on to the north and east.  You can also leave the
+chamber to the south and west.    ~
+52 8 12
+D0
+You see a large chamber. You hear hissing sounds.~
+~
+0 -1 5291
+D1
+You see a large chamber. You hear hissing sounds.~
+~
+0 -1 5293
+D2
+You see a small chamber.~
+~
+0 -1 5282
+D3
+You see a small chamber.~
+~
+0 -1 5280
+S
+#5282
+Near the Hissing Chamber~
+   The lava cracks open up into a largish chamber to the north of here.  There
+is the unmistable sound of hissing coming from the chamber beyond.  It doesn't
+sound like a living sound, but it makes you uneasy nonetheless.  The lava
+cracks continue on to the west from here.    ~
+52 8 12
+D0
+You see a large chamber. You hear hissing sounds.~
+~
+0 -1 5281
+D3
+You see a crack in the wall large enough to enter.~
+~
+0 -1 5246
+S
+#5283
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+east and south of here.    ~
+52 8 12
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5249
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5284
+S
+#5284
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+north and east of here.    ~
+52 8 12
+D0
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5283
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5285
+S
+#5285
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+east and west of here.    ~
+52 8 12
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5286
+D3
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5284
+S
+#5286
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+north, south, and west of here.    ~
+52 8 12
+D0
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5248
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5287
+D3
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5285
+S
+#5287
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+north and east of here.    ~
+52 8 12
+D0
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5286
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5288
+S
+#5288
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+north, south, and west of here.    ~
+52 8 12
+D0
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5279
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5289
+D3
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5287
+S
+#5289
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+north, east, and south of here.    ~
+52 8 12
+D0
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5288
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5243
+D2
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5290
+S
+#5290
+The Cracked Lava~
+   You are moving about in a series of cracks and fissures in what would
+otherwise be solid volcanic rock.  It's not as tight a fit as you might
+imagine, but it's by no means comfortable.  You see navigable cracks to the
+north and east of here.    ~
+52 8 12
+D0
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5289
+D1
+There is a crack in the lava large enough to enter.~
+~
+0 -1 5242
+S
+#5291
+The Hissing Chamber~
+   You are in a large, rock-filled chamber.  Fissures in the rock release a
+large variety of bad-smelling, and potentially dangerous, natural gases into
+the air all around you.  Even more distressing are the many small flames
+burning all around you.  Perhaps this is not a smart place to explore?  The
+hissing chamber continues on to the east and south.    ~
+52 8 12
+D1
+You see a large chamber. You hear hissing sounds.~
+~
+0 -1 5292
+D2
+You see a large chamber. You hear hissing sounds.~
+~
+0 -1 5281
+S
+#5292
+The Hissing Chamber~
+   You are in a large, rock-filled chamber.  Fissures in the rock release a
+large variety of bad-smelling, and potentially dangerous, natural gases into
+the air all around you.  Even more distressing are the many small flames
+burning all around you.  Perhaps this is not a smart place to explore?  The
+hissing chamber continues on to the south and west.    ~
+52 8 12
+D2
+You see a large chamber. You hear hissing sounds.~
+~
+0 -1 5293
+D3
+You see a large chamber. You hear hissing sounds.~
+~
+0 -1 5291
+S
+#5293
+The Hissing Chamber~
+   You are in a large, rock-filled chamber.  Fissures in the rock release a
+large variety of bad-smelling, and potentially dangerous, natural gases into
+the air all around you.  Even more distressing are the many small flames
+burning all around you.  Perhaps this is not a smart place to explore?  The
+hissing chamber continues on to the north and west.    ~
+52 8 12
+D0
+You see a large chamber. You hear hissing sounds.~
+~
+0 -1 5292
+D3
+You see a large chamber. You hear hissing sounds.~
+~
+0 -1 5281
+S
+#5294
+The Lava Cave~
+   A mighty cave has been carved from the volcanic rock.  You can only shudder
+to think what kind of mighty beast would be strong enough to do this.  The
+sounds of primitive tools striking rock echo throughout the chamber.  This is
+surely not a safe place to dally.  The lava cave continues on to the north and
+east from here.    ~
+52 8 12
+D0
+You see a section of the lava cave.~
+~
+0 -1 5235
+D1
+You see a section of the lava cave.~
+~
+0 -1 5233
+S
+#5295
+The Lava Cave~
+   A mighty cave has been carved from the volcanic rock.  You can only shudder
+to think what kind of mighty beast would be strong enough to do this.  The
+sounds of primitive tools striking rock echo throughout the chamber.  This is
+surely not a safe place to dally.  The lava cave continues on to the east and
+south from here.    ~
+52 8 12
+D1
+You see a section of the lava cave.~
+~
+0 -1 5296
+D2
+You see a section of the lava cave.~
+~
+0 -1 5234
+S
+#5296
+The Lava Cave~
+   A mighty cave has been carved from the volcanic rock.  You can only shudder
+to think what kind of mighty beast would be strong enough to do this.  The
+sounds of primitive tools striking rock echo throughout the chamber.  This is
+surely not a safe place to dally.  The lava cave continues on to the east,
+south, and west from here.    ~
+52 8 12
+D1
+You see a section of the lava cave.~
+~
+0 -1 5299
+D2
+You see a section of the lava cave.~
+~
+0 -1 5297
+D3
+You see a section of the lava cave.~
+~
+0 -1 5295
+S
+#5297
+The Lava Cave~
+   A mighty cave has been carved from the volcanic rock.  You can only shudder
+to think what kind of mighty beast would be strong enough to do this.  The
+sounds of primitive tools striking rock echo throughout the chamber.  This is
+surely not a safe place to dally.  The lava cave continues on to the north,
+east, south, and west from here.    ~
+52 8 12
+D0
+You see a section of the lava cave.~
+~
+0 -1 5296
+D1
+You see a section of the lava cave.~
+~
+0 -1 5298
+D2
+You see a section of the lava cave.~
+~
+0 -1 5232
+D3
+You see a section of the lava cave.~
+~
+0 -1 5234
+S
+#5298
+The Lava Cave~
+   A mighty cave has been carved from the volcanic rock.  You can only shudder
+to think what kind of mighty beast would be strong enough to do this.  The
+sounds of primitive tools striking rock echo throughout the chamber.  This is
+surely not a safe place to dally.  The lava cave continues on to the north and
+west from here.    ~
+52 8 12
+D0
+You see a section of the lava cave.~
+~
+0 -1 5299
+D3
+You see a section of the lava cave.~
+~
+0 -1 5297
+S
+#5299
+The Lava Cave~
+   A mighty cave has been carved from the volcanic rock.  You can only shudder
+to think what kind of mighty beast would be strong enough to do this.  The
+sounds of primitive tools striking rock echo throughout the chamber.  This is
+surely not a safe place to dally.  The lava cave continues on to the south and
+west from here.    ~
+52 8 12
+D2
+You see a section of the lava cave.~
+~
+0 -1 5298
+D3
+You see a section of the lava cave.~
+~
+0 -1 5296
+S
+$~

@@ -1,0 +1,62 @@
+name: Maloomi
+password: MasCgA0WLN
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18414
+birthtime: 1358504424
+timeplayed: 15
+lastlogintime: 1358504449
+host: 065.128.020.204
+height: 67
+weight: 139
+base_height: 67
+base_weight: 139
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 28/28
+mana: 0/0
+move: 128/128
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 76
+wisdom: 82
+dexterity: 84
+constitution: 90
+charisma: 68
+experience: 1
+quit_reason: 5
+saveroom: 3001
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0

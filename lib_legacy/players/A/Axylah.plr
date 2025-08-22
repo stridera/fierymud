@@ -1,0 +1,73 @@
+name: Axylah
+password: AxpNhCJNQl
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19343
+birthtime: 1521495432
+timeplayed: 1526
+lastlogintime: 1521522073
+host: 024.120.053.014
+height: 60
+weight: 117
+base_height: 60
+base_weight: 117
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 3
+lastlevel: 0
+hitpoints: 19/19
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 76
+intelligence: 97
+wisdom: 100
+dexterity: 74
+constitution: 64
+charisma: 58
+experience: 953
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 54
+424 51
+438 50
+443 50
+444 50
+447 60
+451 50
+452 50
+453 51
+459 50
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 18007 1.000000
+0 0 0
+mem:
+5 1 9
+0 0 0

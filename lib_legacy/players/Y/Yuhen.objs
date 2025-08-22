@@ -1,0 +1,1568 @@
+1
+vnum: 2327
+location: 0
+values:
+0
+300
+300
+0
+0
+0
+0
+~
+flags: 0 0
+name: lightstone elf elven elven-lightstone light stone
+shortdesc: an elven lightstone
+desc: An elven lightstone glares brightly here.
+type: 1
+weight: 0.30
+cost: 3000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+applies:
+24 -3
+~
+extradesc: lightstone elf elven elven-lightstone light stone
+Made of glittery opaque white stone dotted with flecks of gold,
+this stone can be made to glow with a mere thought.
+~
+~~
+vnum: 62569
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gikq 0
+name: purity-ring recharging
+shortdesc: Purity
+desc: The ring of purity lies forgoten on the ground, recharging it's strngth.
+type: 11
+weight: 0.02
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 3
+applies:
+13 10
+17 2
+~
+triggers:
+62572
+62573
+~
+variables:
+ready 0
+maxcharge 1
+delay 200
+charges 1
+~
+~~
+vnum: 23787
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: locket locket-forgotten tiny-silver-locket chain-knot questobject
+shortdesc: the Locket of the Forgotten
+desc: A tiny silver locket lies here, its chain in a knot.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+13 50
+~
+extradesc: locket-forgotten tiny-silver-locket chain-knot
+Cast from the finest dwarven silver, this locket is beautifully carved and
+decorated by wonderfully complex patterns and runes.  A tiny clasp on one side
+locks the hinge on one side of the locket, enclosing the memories of those who
+have passed on and become forgotten.  An aura of mourning and remoteness
+surrounds the locket, flowing from the tiny portrait painted within-the face is
+neither male nor female, neither old nor young.  Expressionless, the face
+nevertheless seems to be lonely, crying for remembrance.    
+~
+~~
+vnum: 546
+location: 5
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: imnoquvwyzAB 0
+name: tight-troll-hide
+shortdesc: a tight-fitting troll hide
+desc: A pile of greenish-grey hide lays here, crumpled on the ground.
+type: 9
+weight: 10.00
+cost: 0
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 9
+applies:
+1 3
+2 -3
+5 5
+26 350
+~
+triggers:
+62570
+~
+~~
+vnum: 541
+location: 8
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: imnouvwyz 0
+name: white-winged-boots
+shortdesc: White Winged Boots
+desc: Tall boots, of white leather are here, with white-silvery wings on the sides.
+adesc:
+   The boots stretch white leather just to the knee, buckling all the way up.
+The tall base and added heel add almost 4 inches of height to the wearer.  On
+the sides of the boots are small white wings, pressed in white-silver, offering
+added protection and stability to the footware.
+~
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 60
+effects: y 0 0
+wear: 65
+applies:
+18 2
+19 2
+14 40
+1 2
+11 5
+~
+~~
+vnum: 62575
+location: 9
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: pqrs 0
+name: hobo-gloves mitten mittens glove convertible-fingerless-gloves
+shortdesc: &4&ba pair of convertible fingerless gloves&0
+desc: Someone has lost a pair of hobo gloves here.
+type: 11
+weight: 1.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 129
+applies:
+17 3
+23 -5
+19 2
+~
+~~
+vnum: 542
+location: 16
+values:
+0
+2
+9
+3
+0
+0
+0
+~
+flags: mnouvwyz 0
+name: axe Conviction
+shortdesc: &1C&bon&3v&bic&7&btion&0
+desc: A large single bladed axe is here embedded into the ground.
+type: 5
+weight: 6.00
+cost: 15000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 8193
+applies:
+1 3
+2 -3
+5 2
+19 3
+18 -2
+17 1
+~
+~~
+vnum: 539
+location: 17
+values:
+0
+4
+4
+3
+0
+0
+0
+~
+flags: imnruvyz 0
+name: Justice sword
+shortdesc: &4&bJu&0&6&bst&7i&bce&0
+desc: A long, double-bladed sword rests against the wall.
+type: 5
+weight: 4.00
+cost: 12000
+timer: 0
+level: 50
+effects: m 0 o
+wear: 8193
+applies:
+2 2
+6 4
+18 3
+13 15
+~
+~~
+vnum: 548
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horse-blinders
+shortdesc: &9&bblack leather horse blinders&0
+desc: Some black horse blinders are here on the floor.
+type: 11
+weight: 1.00
+cost: 0
+timer: 0
+level: 25
+effects: cq 0 0
+wear: 65537
+applies:
+5 5
+19 1
+14 60
+28 -70
+~
+~~
+vnum: 62551
+location: 22
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mask imanhotep golden maks ihmanotep
+shortdesc: he Maks of Ihmanotep
+desc: A misshapen mask lays on the ground here, strangely beautiful in its asymmetry.
+adesc:
+This mask is a mangeled wreck. Who did this?!
+~
+type: 11
+weight: 1.00
+cost: 0
+timer: 0
+level: 0
+effects: x 0 0
+wear: 131073
+applies:
+25 1
+24 -5
+28 200
+17 2
+5 7
+~
+~~
+vnum: 550
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aiopqrstwxy 0
+name: light-glint shining-ear-cuff
+shortdesc: &7a sh&binin&6g &7ear c&7uff&0
+desc: A glint of light shines up from the ground.
+type: 11
+weight: 0.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 262145
+applies:
+9 -5
+26 5
+28 15
+23 -2
+5 3
+17 1
+~
+~~
+vnum: 550
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aiopqrstwxy 0
+name: light-glint shining-ear-cuff
+shortdesc: &7a sh&binin&6g &7ear c&7uff&0
+desc: A glint of light shines up from the ground.
+type: 11
+weight: 0.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 262145
+applies:
+9 -5
+26 5
+28 15
+23 -2
+5 3
+17 1
+~
+~~
+vnum: 549
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: imnoquvwyzAB 0
+name: crest-dragon-hunter
+shortdesc: &3&bCrest &2&bof the &0&2Dragon &1&bHunter
+desc: A dragon crest shines brightly from the ground.
+type: 11
+weight: 1.00
+cost: 0
+timer: 0
+level: 80
+effects: 0 i 0
+wear: 524289
+applies:
+17 14
+13 80
+23 -20
+20 -10
+24 -10
+~
+~~
+vnum: 1099
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book ansi-color-book-fiery-yay
+shortdesc: the ansi color book of fiery yay
+desc: A book describing ansi color lies here unattended.
+adesc:
+Nothing.
+~
+type: 12
+weight: 0.50
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+extradesc: book ansi-color-book-fiery-yay
+ 1    - &1Red&0          1 b - &1&bBright Red&0
+&0&7 & 2    - &0&2Green&0        & 2 & b - &0&2&bBright Green&0
+ 3    - &3Brown&0        3 b - &3&bYellow&0
+&0&7 & 4    - &0&4Blue&0         & 4 & b - &0&4&bBright Blue&0
+&0&7 & 5    - &0&5Purple&0       & 5 & b - &0&5&bBright Purple&0
+&0&7 & 6    - &0&6Teal&0         & 6 & b - &0&6&bBright Teal&0
+&0&7 & 7    - &0&7White&0        & 7 & b - &0&7&bBright White&0
+ 8    - &8Bright&0
+&0&7 & 9    - &0&9Black&0        & 9 & b - &0&9&bBright Black&0
+
+ Remember to put &&0 at the end of each line to clear the ANSI strings!
+~
+~~
+vnum: 1207
+location: 127
+values:
+100000
+1
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: hole portable-hole large-black-hole
+shortdesc: a portable hole
+desc: A large black hole lies here folded upon itself.
+type: 15
+weight: 15.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1048577
+~~
+vnum: 1613
+location: -1
+values:
+0
+194
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion scientific
+shortdesc: a scientific potion
+desc: A scientific potion rests on the workbench.
+type: 10
+weight: 0.30
+cost: 1000
+timer: 20
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: potion scientific
+The colors of this mixture swirl together in an odd sort of rhythm.
+~
+~~
+vnum: 48906
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: goprstwxD 0
+name: cloak cloak-ancient-wisdoms thin-cloak
+shortdesc: the Cloak of Ancient Wisdoms
+desc: Some unfortunate soul has dropped a thin cloak here.
+type: 9
+weight: 3.00
+cost: 6000
+timer: 0
+level: 85
+effects: 0 0 0
+wear: 1025
+applies:
+3 5
+13 25
+~
+extradesc: cloak-ancient-wisdoms thin-cloak
+You behold a cloak made of some kind of thin, blood-red damasked silk 
+embroidered over with dark blue silk thread in cunning designs. The 
+collar is lined in thick, deep brown fur. You get the uncanny feeling 
+that this flowing cloak isn't quite what it seems. It seems to have a 
+sense of power to it. Some sense of intuition you didn't even know you 
+had tells you to handle this cloak carefully.
+~
+~~
+vnum: 48500
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map caelian caelia
+shortdesc: a map of the Caelian Region
+desc: A travel-stained map has been dropped here.
+type: 12
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map caelian caelia
+The Caelian Region  |           -Nikozia-
+by Kara-Sithri      |                  ..............
+--------------------               ..........................
+^^^    ^^^ [Anduin]        .................. Sunken Castle ...
+   Graveyard                .....................................
+ ^^^         ^^^         ..... The Northern Swamp ............
+      Temple ^^               ................................
+              ^^^          ..................................
+^^^  ^^ ^^^             .............. Mystwatch ........
+   ^^^^^   ^^^^           .....................
+   Old Merchant Trail       .. The Swamp ..........
+      ^^^   ^^^          .............      The
+Desert    ^^^                .........    Citadel     Misty
+      ^^^^                   [Mielikki]               Cavern    ^^^^^^^^
+       Abbey                                   %%%%%           ^^^^^^
+                The           Blue     %%%%%%%%%%%%%%%%%%%% Smugglers
+^^^^^^^      Farmlands         Fog    %%%%%%%%%%%%%%%%%%%%%%% ^^^  ^^^
+ ^^^^                              %% Twisted %%%%%%%%%%%%%%% ^^^^   ^^^
+                                    %% Forest %%%%%%%%%%%%%% ^^^^^
+~
+~~
+vnum: 62569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gikq 0
+name: purity-ring recharging
+shortdesc: Purity
+desc: The ring of purity lies forgoten on the ground, recharging it's strngth.
+type: 11
+weight: 0.02
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 3
+applies:
+13 10
+17 2
+~
+triggers:
+62572
+62573
+~
+variables:
+ready 0
+charges 1
+delay 200
+maxcharge 1
+~
+~~
+vnum: 51075
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: jlopqrstwx 0
+name: mask skin human
+shortdesc: a mask of human skin
+desc: A small floppy piece of skin lies here.
+type: 11
+weight: 2.00
+cost: 40
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 131073
+applies:
+4 2
+3 2
+5 2
+6 -10
+~
+extradesc: mask skin human
+How grotesque.  Some person's face - sex now indistinguishable - was stripped
+to provide this awful covering.  No hairs remain on it anywhere, and it has
+been tanned to prevent deterioration and to give it a supple, smooth feel.  
+The eyelids are missing, and small strings are attached which go around the
+wearer's ears.
+~
+~~
+vnum: 595
+location: -1
+values:
+10000
+1
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: stocking christmas
+shortdesc: a bright red Christmas stocking
+desc: A bright red Christmas stocking looks as though it's been left behind.
+adesc:
+Nothing.
+~
+type: 15
+weight: 0.80
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 17
+extradesc: stocking christmas cap hat sock_hat GOD_EQ
+A bright red christmas stocking, it looks comfortable and
+warm, fitting snuggly on just about any head.  It has a large,
+white puffy ball that hangs from the end of the stocking and
+glittering letters that read : Jolly Fat Bastard.
+~
+extradesc: lining
+Ye are now the proud owner of a 2002 Christmas stocking from Pergus
+~
+~~
+vnum: 36024
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sizzle marks
+shortdesc: sizzle marks from Zzur's grill
+desc: P
+type: 9
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+~~
+vnum: 905
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abgD 0
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 3149
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-frost-stallion-doll tiny-proud-white-horse
+shortdesc: a miniature frost stallion doll
+desc: A tiny, proud white horse lies calmly on one side.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+applies:
+14 50
+~
+extradesc: doll miniature-frost-stallion-doll tiny-proud-white-horse
+This slender-legged, bright white doll has a look of nobility in its
+well-crafted stitches.  Clumps of stuffing ripple under its skin and its
+underlying wire frame allows the doll to stand on its four little legs with
+grace and assuredness.
+~
+~~
+vnum: 3116
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: bracelet sapphire-bracelet bright-blue-bracelet
+shortdesc: a sapphire bracelet
+desc: Light glitters across a bright blue bracelet lying here.
+type: 8
+weight: 0.20
+cost: 15000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 4097
+applies:
+6 3
+~
+extradesc: sapphire-bracelet bright-blue-bracelet
+Twinkling in the light like a halo of blue fire, the sapphires on this bracelet
+are linked together by a thin chain of beautifully polished silver.  Each
+sapphire is mounted in a small silver rectangle, following the chain around in
+a circle.  The sapphire quality is exquisite, flawlessly reflecting a brilliant
+bright blue color.    
+~
+~~
+vnum: 3018
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: band golden wedding ring
+shortdesc: a golden wedding band
+desc: A fine golden ring lies here.
+type: 8
+weight: 0.02
+cost: 6000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+applies:
+6 2
+~
+extradesc: golden wedding ring band
+This is a plain wedding ring, polished to a sheen and quite
+comfortable.
+~
+~~
+vnum: 3019
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring diamond engagement
+shortdesc: a diamond engagement ring
+desc: A fabulous diamond ring lies here.
+type: 8
+weight: 0.02
+cost: 18000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: diamond engagement ring
+This golden ring has a large, flawless diamond setting. The diamond
+looks like a spark of blue-white fire, and it catches any light in
+a pleasing fashion.
+~
+~~
+vnum: 16907
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring diamond
+shortdesc: a diamond ring
+desc: A sparkling diamond ring catches your eye.
+type: 8
+weight: 0.20
+cost: 320
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 3
+applies:
+6 3
+~
+extradesc: ring diamond
+The diamond sparkles with a merry light, as if it were alive.
+You can't help but admire the skill of the jeweler.
+~
+~~
+vnum: 30011
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: band platinum wedding ring
+shortdesc: a platinum wedding band
+desc: A delicate silvery ring was lost here.
+type: 8
+weight: 0.05
+cost: 6000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+applies:
+6 2
+~
+extradesc: band platinum wedding ring
+Light and delicate, this silvery ring embodies fine workmanship.  The inner
+surface is smooth and polished.  The outside is slightly curved, and features a
+pair of intertwined lines that run the length of the ring's surface.    
+~
+~~
+vnum: 30012
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wristband ruby
+shortdesc: a ruby-encrusted wristband
+desc: A silver and gold wristband encrusted with deep red rubies sits on the ground.
+type: 8
+weight: 0.30
+cost: 15000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+applies:
+6 3
+~
+extradesc: wristband ruby
+Smoothly polished silver and gold links intermingle in a vaguely serpentine
+pattern.  Small red rubies are set in a meandering row all down the middle,
+with three rather large rubies that glow deeply in any ambient light.  The
+effect is mesmerizing.    
+~
+~~
+vnum: 12321
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aopwx 0
+name: long flowing cloak shining moonlight cloak-moonlight moonlight-cloak
+shortdesc: a cloak of moonlight
+desc: A long flowing cloak, shining under the light of moon flutters in the breeze.
+type: 11
+weight: 0.50
+cost: 15000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 1025
+applies:
+24 -5
+4 3
+17 4
+~
+extradesc: long flowing cloak shining moonlight cloak-moonlight moonlight-cloak
+You hold some unknown, almost ethereal material which has been fashioned into a
+cloak.  Its silver-blue color and innate luminescence makes it quite unlike any
+mundane fabric.  Amazingly soft to the touch, it seems this cloak was woven
+from the light of the moon itself.
+~
+~~
+vnum: 12323
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agopwxD 0
+name: glowing drop droplet moonlight droplet-moonlight moonlight-droplet
+shortdesc: a droplet of moonlight
+desc: A single glowing drop dangles from a twig.
+type: 11
+weight: 0.01
+cost: 15000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 262145
+applies:
+17 1
+4 2
+13 5
+24 -5
+~
+extradesc: glowing drop droplet moonlight droplet-moonlight moonlight-droplet
+A crystal teardrop containing what appears to be a drop of pale silver-blue
+liquid light is set in a simple silver backing.
+~
+~~
+vnum: 5201
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx 0
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 3
+applies:
+13 8
+3 4
+4 4
+5 2
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 12322
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: silver moonstone ring silver-moonstone-ring moonstone-ring silver-ring
+shortdesc: a silver and moonstone ring
+desc: A moonstone ring has been forgotten here, lost.
+type: 11
+weight: 0.01
+cost: 11000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 3
+applies:
+17 2
+4 3
+5 2
+13 5
+~
+extradesc: silver moonstone ring silver-moonstone-ring moonstone-ring silver-ring
+Rings such as these are often used for devotional purposes as well as
+decorative ones.  The simple silver band has a colorful polished moonstone set
+into it.
+~
+~~
+vnum: 50209
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring onyx-studded silver wide
+shortdesc: a silver, onyx-studded ring
+desc: A wide silver ring studded with black stones has been dropped here.
+type: 9
+weight: 0.02
+cost: 2000
+timer: 0
+level: 22
+effects: 0 0 0
+wear: 3
+applies:
+1 1
+~
+extradesc: ring onyx-studded silver wide
+Small, round black studs protrude from the centerline of this wide silver band.
+They are polished, and gleam darkly.    
+~
+~~
+vnum: 49011
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: goprt 0
+name: ring jade stone precious jade-ring
+shortdesc: a jade ring
+desc: A ring of precious stone lies at your feet.
+type: 8
+weight: 0.02
+cost: 5000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+24 -10
+2 2
+~
+extradesc: jade ring
+It's a jade ring that once must have adorned the hand of a very special
+woman.~
+triggers:
+16347
+~
+variables:
+got_jade 1
+~
+~~
+vnum: 23800
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring platinum blue diamond blue-diamond-ring
+shortdesc: a blue diamond ring
+desc: A platinum ring set with a rare blue diamond lies here.
+type: 8
+weight: 0.04
+cost: 10000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 3
+applies:
+17 3
+4 1
+3 2
+~
+extradesc: ring platinum blue diamond
+This ring is very beautiful.  The diamond is a rare blue color, accented by the
+platinum it is set in.  Faint outlines of a swirling cloud motif add texture to
+the ring, though barely enough to notice.  It looks like it was made for a
+lady's hand...  A very wealthy lady's hand.    
+~
+~~
+vnum: 13661
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring amethyst shiny silver amethyst-ring
+shortdesc: a silver and amethyst ring
+desc: A shiny silver ring is set about with leaf-shaped amethysts.
+adesc:
+Nothing.
+~
+type: 11
+weight: 0.02
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+applies:
+3 2
+~
+extradesc: silver amethyst ring
+This shiny silver ring is slender enough for a woman to wear,
+but not excessively feminine in shape. It is set all around with
+amethyst cabuchons, unfaceted and round-faced, set into silver
+edgings that are raised slightly to show off the purple jewels.
+~
+~~
+vnum: 23801
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: goprswx 0
+name: golden ring sapphire sapphires hawk hawk-ring
+shortdesc: a sapphire hawk ring
+desc: A golden ring inset with a sapphire lies here.
+type: 11
+weight: 0.03
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 3
+applies:
+9 -5
+24 -5
+6 3
+~
+extradesc: golden ring sapphire sapphires hawk hawk-ring
+A slender golden band with delicate whorls of knotwork is the setting for a
+rather remarkable gem.  Though it is a small sapphire, no bigger than a wheat
+kernel, it is shaped into the form of a hawk descending onto ints prey, talons
+outsretched.  It was surely crafted by magic, for what gemcrafter, no matter
+how skilled, could perfectly replicate something that small and detailed?    
+~
+~~
+vnum: 53419
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gp 0
+name: ring gleaming-sapphire-ring
+shortdesc: a sapphire ring
+desc: A gleaming sapphire ring lies forgotten here.
+type: 8
+weight: 0.02
+cost: 16000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 3
+applies:
+3 6
+2 3
+28 10
+14 15
+19 1
+18 1
+~
+extradesc: gleaming-sapphire-ring
+This ring is made of the purest gold with a large glowing sapphire
+set into it.  An inscription around the sapphire is expertly carved into
+the gold.  It reads,
+	"Tyme shalt only make myne love for thee stronger."
+~
+~~
+vnum: 58018
+location: -1
+values:
+35
+3
+3
+28
+0
+0
+0
+~
+flags: kl 0
+name: goddess-ring goddess ring pearl pearl-ring
+shortdesc: the goddess' pearl ring
+desc: An exquisite pearl ring has somehow been lost here.
+type: 4
+weight: 0.10
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16387
+applies:
+24 -4
+4 2
+18 4
+~
+extradesc: pearl goddess ring
+   The main body of this exquisite ring is made of bright silver
+that seems to glow aquamarine-blue with an inner light. The pearl
+that adorns it is stunning and larger than usual, with deep blue
+sapphires running otter-swift around the main center of attention.
+The ring is neither wide nor narrow, making it wearable by either
+men or women.
+~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Dec 27 2012
+  To: Chinok
+From: Gung
+
+Here is the description for the TCD sleeping room
+The sleeping quarters ap@0pear to be barracks and is a large, magnificent room used for temporary 
+occupancy.  Their main object of the barracks is to separate clan members from the civilian population 
+and reinforce discipline, training and esprit de corps. It is sometimes called the discipline factory. 
+Built on a site originally intended for a mansion of the Pergus, the room has several large squares, each open on the south side. 
+The largest square, Gung's Square, has arcaded colonnades on the east and west sides, and the other sides are faced with granite.  
+The squares are linked with glass faced structures which gives no privacy to the occupants.
+There is a large gallery near the entrance with a main focus on arts, craft and wares, including exhibits on: 
+Dargentan's coins, silverware from Sunken Castle, furniture salvaged from Templace, folklife and costumes gathered throughout the realm, ceramics, glassware, etc. 
+Included are artifacts such as Elven vases, gauntlets worn by Metamorpho when he was slain by Morpheo, 
+a life belt and oar salvaged from the wreck of the ship Ehlissa and a pocket book carried by Elron whilst imprisoned in the Barracks.   
+Ventilation is poor in the prison room, a sewer has been ventilated into it and there is much damp
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 62551
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mask imanhotep golden maks ihmanotep
+shortdesc: he Maks of Ihmanotep
+desc: A misshapen mask lays on the ground here, strangely beautiful in its asymmetry.
+adesc:
+This mask is a mangeled wreck. Who did this?!
+~
+type: 11
+weight: 1.00
+cost: 0
+timer: 0
+level: 0
+effects: x 0 0
+wear: 131073
+applies:
+25 1
+24 -5
+28 200
+17 2
+5 7
+~
+~~
+vnum: 62551
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mask imanhotep golden maks ihmanotep
+shortdesc: he Maks of Ihmanotep
+desc: A misshapen mask lays on the ground here, strangely beautiful in its asymmetry.
+adesc:
+This mask is a mangeled wreck. Who did this?!
+~
+type: 11
+weight: 1.00
+cost: 0
+timer: 0
+level: 0
+effects: x 0 0
+wear: 131073
+applies:
+25 1
+24 -5
+28 200
+17 2
+5 7
+~
+~~
+vnum: 62551
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mask imanhotep golden maks ihmanotep
+shortdesc: he Maks of Ihmanotep
+desc: A misshapen mask lays on the ground here, strangely beautiful in its asymmetry.
+adesc:
+This mask is a mangeled wreck. Who did this?!
+~
+type: 11
+weight: 1.00
+cost: 0
+timer: 0
+level: 0
+effects: x 0 0
+wear: 131073
+applies:
+25 1
+24 -5
+28 200
+17 2
+5 7
+~
+~~
+vnum: 62507
+location: 127
+values:
+0
+4
+4
+3
+0
+0
+0
+~
+flags: gimnyz 0
+name: misty blue sword
+shortdesc: a misty blue sword
+desc: A misty blue sword has been dropped here.
+type: 5
+weight: 3.00
+cost: 700000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 8193
+applies:
+19 2
+~
+~~
+vnum: 8756
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: locket first born firstborn 
+shortdesc: the locket of the firstborn
+desc: A locket is lying here in the dust.
+type: 11
+weight: 0.13
+cost: 64570
+timer: 0
+level: 95
+effects: 0 0 0
+wear: 5
+applies:
+5 45
+26 10
+~
+extradesc: locket first born firstborn 
+This locket is quite cheep like something you would expect to find in a child's jewelery   box but there must  be more then meets the eye. It must have been a gift from a powerful mage to his firstborn.
+~
+~~

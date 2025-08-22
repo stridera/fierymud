@@ -1,0 +1,1007 @@
+#6001
+shingle baker shopkeeper~
+Shingle~
+Shingle wipes his hands on his dirty apron as you walk over to his counter.~
+He looks terribly happy, even though he's incredibly scruffy and 
+dirty. He smells strongly of food, a scent that follows him as he
+saunters around his shop.~
+18510 0 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 1 24 3 0 2
+Str: 79
+Dex: 77
+Int: 70
+Wis: 77
+Con: 30
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6002
+rickshaw suth bartender shopkeeper~
+Rickshaw Suth~
+Rickshaw watches you calmly, while he skillfully mixes a drink.~
+This short, stout dwarf is the owner of the Red Feathered Nest. He looks
+extremely capable and patient, and he walks among the patrons of the casino
+with a pleased, proprietary air.~
+18638 36 -100 E
+99 0 0 0d0+3000 10d10+50
+0 0 0 0 0 60
+3 3 1 24 3 0 2
+Str: 88
+Dex: 79
+Int: 71
+Wis: 71
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6003
+phillip bartender shopkeeper~
+Phillip~
+Phillip watches you calmly, while he skillfully mixes a drink.~
+This tall dwarf is spear bald, with a full white beard. He moves and looks
+quite tired, and occasionally has to stop fights and arguments in the bar.~
+18638 0 0 E
+99 0 0 0d0+0 0d0+50
+0 0 0 0 0 60
+3 3 1 24 3 0 2
+Str: 85
+Dex: 78
+Int: 76
+Wis: 71
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6004
+witch bartender ole anduin shopkeeper~
+the Ole Witch~
+The Ole Witch watches you calmly, as she skillfully mixes a strange drink.~
+This old, bent woman has been called "the Ole Witch" for so long, she
+answers to nothing else. She cackles and hurls abuse constantly as she
+putters around the tavern.~
+18510 0 0 E
+90 0 0 0d0+0 10d10+0
+0 0 0 0 0 60
+3 3 2 24 3 0 2
+Str: 91
+Dex: 82
+Int: 68
+Wis: 79
+Con: 30
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6005
+bungle shopkeeper~
+Bungle~
+Bungle stands here behind a counter, making a quick fix to a suit of armor.~
+This old dwarf is taller than average, and quite cheerful looking. His
+gnarled hands are incredibly agile as he handles leather goods, and he
+always has a kind word for visitors to his shop.~
+18634 0 10 E
+50 0 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 1 24 3 0 2
+Str: 86
+Dex: 86
+Int: 73
+Wis: 70
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6006
+signess thief guildmaster master princess~
+Princess Signess~
+Princess Signess instructs some pupils here.~
+She is tall and regal, with raven-black hair severely bound back and
+an autocratic expression. Her nose is rather pointed, and her dark eyes
+somewhat shrewish as they examine whatever she regards.~
+536889422 1068 -1000 E
+99 0 -4 0d0+200 10d10+10
+0 0 0 0 0 60
+3 3 2 2 0 0 2
+Str: 94
+Dex: 76
+Int: 62
+Wis: 80
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55734
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#6007
+ruin wormheart highpriest priest high guildmaster~
+Ruin Wormheart~
+Ruin Wormheart, the High Priest of Blackmourne, is standing here.~
+Ruin Wormheart has been the High Priest of Blackmourne since the Rift Wars..  
+For over 300 years!!  None has dare challenge him for the position, for it is
+rumored that he is demonspawn and retains some demonic powers.  Looking at him,
+you feel a chill creep down into your very soul.~
+536889550 1068 -1000 E
+99 0 0 0d0+0 0d0+50
+0 0 0 0 0 60
+3 3 1 16 13 0 2
+Str: 99
+Dex: 83
+Int: 58
+Wis: 72
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55719
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 316
+T 315
+T 3155
+T 3159
+T 326
+T 55706
+T 318
+#6008
+knight undead templar~
+the Undead Knight Templar~
+An undead knight templar is guarding the entrance.~
+Standing before you is a frightening figure.  Once a holy knight of the Order
+of Kirn, he has been corrupted into the service of Blackmourne.  Eternal
+service.  Glancing at the knight's hand, you notice it has but four fingers,
+a sure sign of devotion to Blackmourne.~
+18510 0 -1000 E
+90 0 0 0d0+0 0d0+50
+0 0 0 0 0 60
+3 3 0 5 0 0 2
+Str: 86
+Dex: 80
+Int: 74
+Wis: 74
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#6009
+assassin fellow nondescript~
+a nondescript fellow~
+A nondescript fellow loiters here.~
+He's of perfectly average height and weight, with nondescript features.
+There's nothing about him that's memorable.~
+6154 16777216 -1000 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 1 9 13 0 2
+Str: 92
+Dex: 73
+Int: 81
+Wis: 71
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6010
+thief master~
+the Master Thief~
+A Master Thief is guarding the entrance.~
+He is a thief who has specialized in killing others as effectively as possible,
+using all sorts of weapons.  His superior knowledge of how and where to use
+them combined with his extraordinary stealth makes him a deadly opponent.~
+2058 0 -999 E
+50 0 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 1 24 13 0 2
+Str: 90
+Dex: 79
+Int: 74
+Wis: 73
+Con: 30
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6011
+guard anduin city cityguard~
+an Anduin cityguard~
+A cityguard of Anduin is standing here watching you closely.~
+Stern looking, this guard is one of the city's protectors and seems well
+qualified.  He looks strong enough to take on whatever anyone can dish out.~
+2264 0 500 E
+10 0 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 1 3 3 0 2
+Str: 97
+Dex: 88
+Int: 61
+Wis: 67
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6012
+guard anduin gate gateguard~
+an Anduin gateguard~
+A gateguard of Anduin is standing here watching you closely.~
+A veteran of the common guard, this guard seems to be enjoying
+his prestigious position as guardian of one of the town's many
+entrances. His warrior skills make him ideal for the job.~
+2138 0 500 E
+99 0 -4 0d0+500 10d10+40
+0 0 0 0 0 60
+3 3 1 3 3 0 2
+Str: 95
+Dex: 74
+Int: 68
+Wis: 76
+Con: 30
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6013
+priest evil~
+the priest of Blackmourne~
+A priest of Blackmourne stands here, head bowed in prayer.~
+This gaunt, pale man looks unhealthy in an extremely odd way. He has
+dark, intense eyes that seem a little frantic, but he moves with a
+calculated grace.~
+6344 164 -800 E
+90 0 0 0d0+0 0d0+25
+0 0 0 0 0 60
+3 3 1 1 13 0 2
+Str: 86
+Dex: 74
+Int: 68
+Wis: 88
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6014
+statue guardian knight~
+the statue~
+A black marble statue stands here.~
+This tall statue is highly stylized, depicting a man in black robes with
+his arms at his sides. It stands upon a base that has no plaque, but the
+symbols of Blackmourne adorn the edges of its robes.~
+4170 36 -1000 E
+90 0 0 0d0+0 2d2+0
+0 0 0 0 0 60
+3 3 0 24 17 0 2
+BareHandAttack: 5
+Str: 92
+Dex: 82
+Int: 63
+Wis: 70
+Con: 30
+Cha: 46
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 9
+Stance: 6
+E
+#6015
+Falstin grocer shopkeeper~
+Falstin, the grocer~
+Falstin is standing here, waiting to sell you something, needed or not.~
+This fastidious little man looks both fussy and prim, with his tidy
+moustache and his neatly combed hair. His clothing coordinates perfectly
+with his shoes and belt.~
+18510 36 0 E
+50 0 0 0d0+0 10d10+0
+0 0 0 0 0 60
+3 3 1 24 13 0 2
+Str: 98
+Dex: 77
+Int: 65
+Wis: 74
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6016
+pawnbroker pawn broker shopkeeper anduin_pawnbroker~
+the pawnbroker~
+A pawnbroker talks with customers.~
+This black-clad fellow seems quite nondescript, with wispy, thinning
+dark hair and a compactly built dwarven body. He tends to smile a bit
+too broadly and to talk in an extremely eloquent manner.~
+26714 36 0 E
+99 0 0 0d0+0 5d5+0
+0 0 0 0 0 60
+3 3 1 2 3 0 2
+Str: 89
+Dex: 85
+Int: 68
+Wis: 70
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+T 10314
+T 10315
+T 3180
+#6017
+receptionist~
+the receptionist~
+The receptionist of the Red Feathered Nest is here, smiling brightly.~
+It looks unfinished.  The receptionist sits in front of you, looking at you
+like you were the center of the universe.  Although innocent looking and
+beautiful, there is an aura of power about her.  It would be in your best
+interests not to mess with her.  You notice a tired look on her face.  She
+beams a pretty smile at you!    ~
+18442 8 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 2 24 0 0 2
+Str: 82
+Dex: 85
+Int: 69
+Wis: 83
+Con: 83
+Cha: 52
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 1000
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6018
+guard burly~
+a burly guard~
+A burly human guard moves through the crowd, looking for trouble.~
+He's fairly young, very muscular, and not very bright-looking -- in
+other words, the ideal guard. He has a belligerent look on his rough
+features, but he moves with the grace of a trained soldier.~
+2136 0 0 E
+30 20 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 1 3 0 0 2
+Str: 87
+Dex: 81
+Int: 71
+Wis: 67
+Con: 69
+Cha: 79
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6019
+guard skeletal skeleton~
+a skeletal guard~
+A skeletal guard stands along the wall.~
+This horrendous skeleton, flesh long since melted from its bones, moves
+with odd creaking noises. Generally, it stands at attention along the wall,
+its weapon held in a skeletal hand, but when it must fight, its empty eye
+sockets begin to glow oddly orange-red.~
+194570 0 0 E
+99 0 0 0d0+0 0d0+50
+0 0 0 0 0 60
+3 3 0 3 0 0 2
+Str: 99
+Dex: 74
+Int: 67
+Wis: 77
+Con: 74
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 10
+Stance: 6
+E
+#6020
+haren assassin man guildmaster handsome~
+Haren~
+A great assassin, your guildmaster, stands before you.~
+Tall and quite attractive, this man still seems somehow foreboding,
+perhaps a little ominous in bearing. He speaks in very commanding tones,
+and doesn't hesitate to speak his mind.~
+26634 1064 0 E
+99 0 0 0d0+500 10d10+50
+0 0 0 0 0 60
+3 3 1 9 0 0 2
+Str: 78
+Dex: 78
+Int: 73
+Wis: 89
+Con: 66
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55734
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#6021
+guard tough looking human~
+a tough-looking human guard~
+A tough-looking human guard stands nearby.~
+He's a middle-aged man, average in height and weight, but muscular and
+stern-looking. He stands at rigid attention while on duty, surveying his
+surroundings with an almost casual air.~
+14362 0 0 E
+90 0 -3 0d0+0 10d10+35
+0 0 0 0 0 60
+3 3 1 3 0 0 2
+Str: 86
+Dex: 85
+Int: 73
+Wis: 75
+Con: 77
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+T 6034
+#6022
+green-woman gnome apothecary~
+the Green Woman~
+A tiny gnomish woman works shrouded amongst the plants~
+If wrinkles could talk, this woman would be an entire history book!  The
+gnarled skin of her ancient face look closer to the bark of the tiny trees she
+is tending than anything human.  She moves slowly but surely, tying bundles and
+pruning plants and sweeping up the trimmings.  Yet you notice she is carefully
+watching you the whole time, her ears always perked in your direction.~
+-2147459062 1032 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 2 24 2 0 1
+Str: 78
+Dex: 83
+Int: 50
+Wis: 70
+Con: 87
+Cha: 86
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55037
+T 55038
+T 55039
+T 6033
+T 6003
+#6031
+gnome drunken drunk~
+a drunken gnome~
+A drunken gnome staggers around.~
+He's short and dwarflike, but the resemblance ends there. He has a
+little tiny beard that is spattered with food, and unkempt clothes.
+He also positively reeks of beer.~
+200 0 0 E
+1 0 0 0d0+3 0d0+0
+0 0 0 0 0 60
+3 3 1 24 2 0 1
+Str: 82
+Dex: 80
+Int: 66
+Wis: 71
+Con: 83
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 6001
+T 3001
+#6032
+priestess black black-priestess diabolist guildmaster~
+the Black Priestess~
+The Black Priestess worships at the obscene altar.~
+She's in middle adulthood, and strikingly beautiful in a diabolical
+way. Her long black hair, fringed with bangs across her icy blue eyes,
+flows halfway down her back. She speaks in a sultry voice, and moves
+with a serpentine grace.~
+671342618 1064 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 2 16 0 0 2
+Str: 74
+Dex: 77
+Int: 80
+Wis: 82
+Con: 75
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55718
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+T 2314
+T 5355
+T 5357
+#6040
+assassin guard deadly~
+a deadly assassin~
+A deadly assassin is here, confidently guarding his guild.~
+This man has evil written all over his face.  He has killed for cheap and has
+killed for nothing at all.  He is well equipped and shows many battle scars all
+over his arms and neck.  It would prove wise to leave this man be.    ~
+536959002 0 -1000 E
+99 0 0 0d0+0 0d0+50
+0 0 0 0 0 60
+3 3 1 9 0 0 2
+Str: 78
+Dex: 74
+Int: 83
+Wis: 80
+Con: 72
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6041
+thief dirty guilty~
+a guilty thief~
+A dirty thief stands here, protecting his guildhall.~
+This poor excuse for a man is standing here eyeing you down.  Although he looks
+like your average bum of the street, this man could rob a ten pound weight out
+of your hand without you knowing.  Sanford stands here, blocking his guildhall.~
+536956938 0 -1000 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 1 2 0 0 2
+Str: 84
+Dex: 84
+Int: 80
+Wis: 73
+Con: 74
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6050
+timulos fasthand master rogue Questmaster~
+Timulos Fasthand~
+A master of the rogue arts stands here.~
+Quick of eye and hand, Timulos has done much and bettered many.  He is tall and
+seems to sink into the shadows where there never seemed to be any.  The man is
+watching everything as it happens, even in the darkness around.  He seems to
+know what is happening and appears to be a master of his body and mind.    ~
+18522 16778272 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 1 2 11 0 2
+BareHandAttack: 14
+Str: 78
+Dex: 99
+Int: 78
+Wis: 64
+Con: 77
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 6005
+T 6006
+T 6007
+T 6008
+T 6009
+T 6010
+T 6011
+T 6012
+T 6013
+T 6014
+T 6015
+T 6016
+T 30006
+T 6025
+T 6021
+T 6022
+T 6023
+T 6024
+#6051
+berix assassin shady-man~
+Berix~
+A shady man offers contracts for illicit services.~
+It would be inaccurate to say this scruffy human man stands out like a sore
+thumb, as he's clearly taken steps to blend into a crowd.  He wears a long
+black cloak and a hood mostly obscuring his face.  Even still, he gives off a
+most unpleasant vibe, like that of the kind of person they tell you to watch
+out for in dark alleys.  He grins and smiles, but even that pleasant gesture is
+off-putting at best.~
+2147508314 8 -1000 E
+99 0 0 0d0+0 0d0+0
+0 0 0 100000000 0 60
+3 3 1 9 0 0 2
+Str: 70
+Dex: 73
+Int: 91
+Wis: 98
+Con: 66
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 6050
+T 6051
+T 6052
+T 6053
+T 6057
+T 6059
+T 6060
+#6053
+barker man~
+the barker~
+A man stands here waving people eastward, into the bar.~
+He's very tall, and has a loud voice.  He keeps waving people eastward,
+encouraging them to try the different vices available.    ~
+16394 0 0 E
+60 0 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 1 24 0 0 2
+Str: 83
+Dex: 79
+Int: 72
+Wis: 77
+Con: 72
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6060
+union-guard bard-guard actor-desperate man~
+a union guard~
+An actor desperate for work between gigs has been assigned to watch the door.~
+The young performer has probably been cast as a guard in a number of plays.  
+His outfit is ill-fitting like a recycled costume, his weapons old and beat up
+like a cheap stage prop.  But for young and aspiring performers like him, any
+job with a paycheck is a job worth taking.  As an actor, he can at least act
+like he can do this.~
+-2013241318 40 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 1 19 0 0 2
+Str: 90
+Dex: 97
+Int: 66
+Wis: 71
+Con: 73
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6061
+bard-union-guild-master guildmaster old-man~
+the Bard Union Master~
+The Bard Union Master sits here checking the guild roster.~
+This fastidious old man has been the business manager of the Union for years,
+probably decades.  He has outsung, outdanced, outtoured, and outlasted every
+last one of his competitors until now, finally, he sits in the top chair.  He
+is quite handsome, especially for a man pushing 90!  Small wonder his career
+has lasted as long as it has.~
+-1476370406 40 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 60
+3 3 1 19 0 0 2
+Str: 76
+Dex: 78
+Int: 79
+Wis: 74
+Con: 76
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55738
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55705
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#6080
+horsemaster anti-paladin-guildmaster horse-master~
+the Horsemaster~
+The Horsemaster paces up and down, waiting.~
+He is tall and capable-looking, but somewhat pale. He looks extremely
+impatient, and paces up and down feverishly when not otherwise occupied.~
+536928266 1064 -1000 E
+99 0 -5 0d0+0 5d5+0
+0 0 0 0 0 60
+3 3 1 5 0 0 2
+Str: 100
+Dex: 91
+Int: 61
+Wis: 79
+Con: 66
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55725
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+$

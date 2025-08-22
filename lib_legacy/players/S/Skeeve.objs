@@ -1,0 +1,775 @@
+1
+vnum: 17806
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: claw bear's-claw sharp-claw bears-claw bear-claw
+shortdesc: a bear's claw
+desc: A sharp claw lies on the ground.
+type: 8
+weight: 0.50
+cost: 500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16389
+hiddenness: 0
+applies:
+1 3
+5 3
+~
+extradesc: claw bear's-claw sharp-claw bears-claw bear-claw
+The bear's claw is yellowed with age.  There are also very strange etchings on
+its' surface.~
+~~
+vnum: 20303
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace large-crocodile-tooth-necklace
+shortdesc: a crocodile-tooth necklace
+desc: A large crocodile-tooth necklace lies discarded here.
+type: 8
+weight: 1.20
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 12
+~
+extradesc: large-crocodile-tooth-necklace
+This is a very interesting and intricate necklace.  It is made of an
+intricately braided green material and a has a large crocodile tooth at the
+very center.  It must have taken many hours to make this amazing necklace.~
+~~
+vnum: 55393
+location: 5
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz ab
+name: plate acolyte-plate magical-thin-metal-plate magic
+shortdesc: an acolyte plate
+desc: A slightly magical thin metal plate lies here.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 2
+13 10
+~
+extradesc: acolyte-plate slight-magical-thin-metal-plate
+Newly forged, this magical metal plate was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.~
+~~
+vnum: 55391
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz ab
+name: helm acolyte-helm magical-thin-plate magic
+shortdesc: an acolyte helm
+desc: A slightly magical thin plate helm lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+14 5
+13 7
+~
+extradesc: helm acolyte-helm magical-thin-plate magic
+Newly forged, this magical metal helm was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.~
+~~
+vnum: 55394
+location: 7
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz ab
+name: greaves acolyte-greaves magical-thin-metal-greaves magic
+shortdesc: acolyte greaves
+desc: A slightly magical set of thin metal greaves lies here.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+1 2
+13 7
+~
+extradesc: greaves acolyte-greaves magical-thin-metal-greaves magic
+Newly forged, these magical metal greaves were made to reflect your acceptance
+to your god.  Treated well, they will carry you through your beginning trials
+and on to greater wisdom.~
+~~
+vnum: 55395
+location: 8
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz ab
+name: boots acolyte-boots magical-thin-metal-boots magic
+shortdesc: acolyte boots
+desc: A set of sligtly magical thin metal boots lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 10
+13 4
+~
+extradesc: acolyte-boots slightly-magical-thin-metal-boots
+Newly forged, these magical metal boots were made to reflect your acceptance to
+your god.  Treated well, they will carry you through your beginning trials and
+on to greater wisdom.~
+~~
+vnum: 55397
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz ab
+name: gauntlets acolyte-gauntlets magical-thin-plate-gauntlets magic
+shortdesc: acolyte gauntlets
+desc: A slightly magical set of thin plate gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+2 2
+13 5
+~
+extradesc: acolyte-gauntlets slightly-magical-thin-plate-gauntlets
+Newly forged, these magical metal gauntlets were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.~
+~~
+vnum: 55392
+location: 10
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz ab
+name: vambraces acolyte-vambraces magical-thin-metal-vambraces magic
+shortdesc: acolyte vambraces
+desc: A slightly magical set of thin metal vambraces lies here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 2
+13 7
+~
+extradesc: vambraces acolyte-vambraces magical-thin-metal-vambraces magic
+Newly forged, these magical metal vambraces were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.~
+~~
+vnum: 20304
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: cloak zebra-skin-cloak large-striped-cloak hide
+shortdesc: a zebra skin cloak
+desc: A large striped cloak lies in the dust here.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+1 2
+19 1
+~
+extradesc: zebra-skin-cloak large-striped-cloak hide
+This unique cloak is made out of pure zebra's fur.  The many stripes throughout
+the cloak give it a very intricate look.  This cloak must be very rare and
+valuable to skin collectors.~
+~~
+vnum: 5530
+location: 13
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: belt eldoria-reward 3rd-eldorian-guard-belt third
+shortdesc: a belt of the 3rd Eldorian Guard
+desc: A small belt lies here.
+type: 9
+weight: 0.96
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+1 2
+~
+~~
+vnum: 55396
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz ab
+name: bracer acolyte-bracer magical-thin-metal-bracer magic
+shortdesc: an acolyte bracer
+desc: A slightly magical thin metal bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 5
+6 2
+~
+extradesc: acolyte-bracer slightly-magical-thin-metal-bracer
+Newly forged, this magical metal bracer was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.~
+~~
+vnum: 1617
+location: 15
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wristband wristband-nordus wrist-band city-logo
+shortdesc: the wristband of Nordus
+desc: A wristband, stamped with a city logo, lies here.
+type: 8
+weight: 0.80
+cost: 200
+timer: 20
+level: 5
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+4 1
+3 1
+~
+extradesc: wristband-nordus wrist-band city-logo
+This wristband is metal, but somehow slightly stretchy, almost elastic.  Its
+finely grained metal is stamped with the outline of a city; it appears to be
+Nordus.~
+~~
+vnum: 5546
+location: 16
+values:
+2
+4
+2
+7
+0
+0
+0
+~
+flags: k 0
+name: staff long-staff eldoria-reward third 3rd-eldorian-guard-staff
+shortdesc: a staff of the 3rd Eldorian Guard
+desc: A long staff lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 5401
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring tiny-silver-earring small-silver-stud
+shortdesc: a tiny silver earring
+desc: A small silver stud lies here.
+type: 8
+weight: 0.01
+cost: 10
+timer: 10
+level: 5
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+24 -1
+13 5
+~
+extradesc: tiny-silver-earring small-silver-stud
+This simple silver stud is a perfect a lustrous accessory.~
+~~
+vnum: 8031
+location: 25
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: scale blue-drakling-scale small-blue-scale
+shortdesc: a &4&bblue&0 drakling scale
+desc: A small blue scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 5
+~
+~~
+vnum: 20300
+location: 26
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+14 20
+~
+extradesc: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.~
+~~
+vnum: 5212
+location: 27
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: DE 0
+name: flame gray-flame grey-flame small-pillar fire questobject
+shortdesc: a gray flame
+desc: A small pillar of gray flame flickers here.
+type: 1
+weight: 0.50
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 15
+2 1
+~
+extradesc: gray-flame grey-flame small-pillar questobject
+The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  Its luminosity is both too
+bright and too dim, yet seems to light the area perfectly.~
+triggers:
+5207
+~
+~~
+vnum: 23
+location: 127
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3030
+location: 127
+values:
+1
+150
+37
+0
+0
+0
+0
+~
+flags: 0 0
+name: torch large
+shortdesc: a torch
+desc: A large torch lies here.
+type: 1
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: torch
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.~
+~~
+vnum: 20
+location: 127
+values:
+256
+224
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 5301
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: assignment
+shortdesc: an assignment for a large buck
+desc: A contract for someone's head has been accidentally left out!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+5315
+~
+~~
+vnum: 55566
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55302
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: mittens decayed-mittens armor
+shortdesc: decayed mittens
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mittens decayed-mittens armor
+These mittens are decayed beyond use.  Perhaps the Sorcerer guild master will
+know what to do with them.~
+~~
+vnum: 55572
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem tourmaline-dust
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~

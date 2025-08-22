@@ -1,0 +1,84 @@
+name: Xandorphious
+password: XaDheyPsy.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19070
+birthtime: 1464220875
+timeplayed: 36918
+lastlogintime: 1464817895
+host: 068.034.145.117
+height: 46
+weight: 196
+base_height: 46
+base_weight: 196
+base_size: 2
+natural_size: 2
+alignment: 917
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 97/104
+mana: 1/0
+move: 10/116
+damroll: 4
+hitroll: 5
+strength: 99
+intelligence: 67
+wisdom: 78
+dexterity: 74
+constitution: 70
+charisma: 77
+cash: 1 49 210 26
+bank: 1 10 30 0
+experience: 153238
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 63
+416 50
+421 120
+438 90
+443 50
+444 50
+463 73
+464 51
+465 79
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 16101 0.500000
+1 16103 1.000000
+1 16107 3.500000
+1 18510 1.500000
+1 16312 0.500000
+1 16310 0.500000
+1 18514 1.000000
+1 18507 1.000000
+1 16108 1.500000
+1 16100 0.500000
+1 16102 2.500000
+1 2001 4.000000
+1 2005 10.500000
+1 2004 10.000000
+1 2003 15.000000
+1 3132 4.000000
+1 3131 1.500000
+1 8015 0.500000
+1 8023 0.500000
+1 18509 0.500000
+0 0 0

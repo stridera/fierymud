@@ -1,0 +1,104 @@
+name: Afix
+password: AfNM1S84Q8
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 4
+level: 17
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19296
+birthtime: 1512706698
+timeplayed: 63109
+lastlogintime: 1738891203
+host: 067.167.192.166
+height: 82
+weight: 279
+base_height: 82
+base_weight: 279
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: gxy
+effectflags: k w 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 143/223
+mana: 28/28
+move: 97/172
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 62
+wisdom: 66
+dexterity: 80
+constitution: 94
+charisma: 61
+cash: 11 1100 3243 66
+experience: 1116006
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 186
+407 66
+415 50
+416 50
+419 1000
+421 206
+427 1000
+430 56
+438 50
+443 50
+444 50
+463 50
+464 50
+465 149
+466 50
+467 50
+468 105
+0 0
+trophy:
+1 5514 0.333333
+1 5513 1.000000
+1 7051 0.333333
+1 18503 0.333333
+1 18511 1.000000
+1 18552 0.666666
+1 18501 2.333333
+1 18518 1.666666
+1 18515 1.000000
+1 18550 1.000000
+1 18520 2.333333
+1 18551 2.333333
+1 18519 1.333334
+1 18505 0.333333
+1 18512 0.666667
+1 18507 6.000000
+1 18517 2.666666
+1 18510 0.999999
+1 8308 0.333333
+1 8302 0.333333
+1 8303 0.333333
+0 0 0
+tells:
+$
+gossips:
+1737587069 Dairyu gossips, 'woot grtz'
+1737587083 Someone gossips, 'thank you!'
+$
+effects:
+33 0 -10 1 2048 0 0
+131 0 -3 24 0 0 0
+131 0 0 0 0 0 16384
+0 0 0 0 0
+aliases:
+exa examine corpse
+gac get all all.corpse
+who who -w
+0

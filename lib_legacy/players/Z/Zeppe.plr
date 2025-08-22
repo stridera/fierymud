@@ -1,0 +1,143 @@
+name: Zeppe
+password: ZetF5NKOAL
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 6
+race: 9
+level: 15
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20535
+birthtime: 1686366240
+timeplayed: 97893
+lastlogintime: 1689710663
+host: 098.122.170.225
+height: 74
+weight: 162
+base_height: 74
+base_weight: 162
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: kx 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 5
+lastlevel: 0
+hitpoints: 190/190
+mana: 22/22
+move: 165/165
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 63
+wisdom: 62
+dexterity: 96
+constitution: 89
+charisma: 56
+cash: 11 115 281 19
+experience: 979242
+quit_reason: 1
+saveroom: 3054
+skills:
+16 1000
+18 1000
+32 1000
+402 166
+404 200
+410 52
+411 50
+415 132
+416 160
+417 50
+421 120
+423 50
+424 57
+430 88
+438 160
+443 50
+444 50
+447 62
+451 50
+452 54
+457 50
+462 50
+463 50
+464 50
+465 200
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 12005 1.000000
+1 12003 2.000000
+1 12007 1.500000
+1 12015 0.500000
+1 3501 1.000000
+1 3500 1.000000
+1 16107 1.500000
+1 17304 0.500000
+1 17306 0.500000
+1 55216 1.500000
+1 17200 0.500000
+1 17209 2.000000
+1 17201 0.500000
+1 17208 5.500000
+1 17205 2.000000
+1 17204 5.500000
+1 16103 0.500000
+1 16111 1.000000
+1 16106 0.500000
+1 16102 0.500000
+1 20306 2.000000
+0 0 0
+tells:
+1687133540 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1687133548 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
+1687133557 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
+1687133566 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1687133569 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1687133598 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
+1688609190 @WKathra@W tells you, 'Thanks for the deal.@W'@0
+1688609192 @WKathra@W tells you, 'Thanks for the deal.@W'@0
+1689708438 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689708627 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1688607700 Daedela gossips, 'hello!'
+1688607881 Mejna gossips, 'Thanks Chinok! :)'
+1688609703 Necmoy gossips, 'well my cat has decided my arms arent mine anymore tonight'
+1688609716 Mejna gossips, 'heh'
+1688609721 Necmoy gossips, 'so im gonna go cause typing is a little difficult'
+1688609728 Mejna gossips, 'can relate'
+1688609736 Necmoy gossips, 'take care all!'
+1689705616 Meina gossips, 'Congratz Necmoy!'
+1689705651 Necmoy gossips, 'thanks :)'
+1689708435 Mejna gossips, 'you doint ok Zeppe?'
+$
+effects:
+1 1 11 17 0 0 0
+3 4 -4 24 0 0 0
+3 4 0 0 0 0 16384
+0 0 0 0 0
+mem:
+16 1 6
+18 1 2
+32 1 2
+32 1 2
+32 1 2
+32 1 2
+32 1 2
+32 1 2
+16 1 6
+16 1 6
+16 1 6
+16 1 6
+16 1 6
+0 0 0

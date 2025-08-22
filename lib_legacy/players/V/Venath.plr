@@ -1,0 +1,151 @@
+name: Venath
+password: VeeDMWDC2r
+currenttitle: VENgeful wrATH
+description
+Moo, I is a nice looking heffer...~
+prompt: &3&b%N&0%-<&1&b%ph&0&1hp&0>%-<&2&b%pv&0&2mv&0>%x%-(&6&b%n&0)%_
+poofin: A bright &1&bfireball&0 strikes the ground from above and the dissipating flames reveal the form of &3Venath&b&0.
+poofout: &3&bVenath&0 is consumed by a &1&bpillar of fire&0 which ascends rapidly into the heavens.
+autoinvis: 100
+sex: 1
+class: 13
+race: 0
+level: 102
+home: 1208
+lifeforce: 0
+composition: 0
+id: 17049
+birthtime: 1218162627
+timeplayed: 7025842
+lastlogintime: 1737503724
+host: 156.146.194.021
+height: 68
+weight: 134
+base_height: 68
+base_weight: 134
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: ktx 0 0
+prefflags: fghimnosvAF ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+invislevel: 100
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1232/1028
+mana: 1160/1060
+move: 102/102
+damroll: 40
+hitroll: 40
+strength: 100
+intelligence: 100
+wisdom: 100
+dexterity: 100
+constitution: 100
+charisma: 100
+cash: 24368 4443 23104 55659
+experience: 300000002
+pagelength: 36
+logview: 40
+title: 
+title: 
+wiztitle: &5Magician&0
+quit_reason: 7
+saveroom: 3054
+trophy:
+1 1 1.000000
+1 18822 1.000000
+1 11797 2.000000
+1 11799 4.000000
+1 1200 1.000000
+1 23800 1.000000
+1 6006 1.000000
+1 58409 1.000000
+1 52012 2.000000
+1 11798 2.000000
+1 16002 0.500000
+1 16000 1.000000
+1 16001 2.000000
+1 16004 1.000000
+1 2809 0.500000
+1 2801 1.000000
+1 3056 2.000000
+1 3052 0.166667
+1 3051 0.166667
+1 1208 27.000000
+1 48003 34.000000
+0 0 0
+tells:
+1697470203 @WZaver@W tells you, 'you gotta quest for another mohawk for me? Everyone is jelous of mersh now :D@W'@0
+1697470459 @WZaver@W tells you, 'sweet :D@W'@0
+1697497672 @WDaedela@W tells you, 'you advanced him too far@W'@0
+1697503221 @WChinok@W tells you, 'thanks for announcing to the world that baddie creation is open :P@W'@0
+1697744505 @WChoak@W tells you, 'you know daedela likes to send me around the mud!@W'@0
+1697744568 @WChoak@W tells you, 'yeah I wouldn't put it past him! Any of his recent quests are go to sc like 10 times then hit up ickle@W'@0
+1697744574 @WChoak@W tells you, 'I prefer that too :D@W'@0
+1697856484 @WKresselack@W tells you, 'thanks!@W'@0
+1698285603 @WChinok@W tells you, 'the hidden stair, but shhhh@W'@0
+1730312747 @WThort@W tells you, 'oh thanks! but I think I'm all set. I luckily had double the needed materials@W'@0
+$
+gossips:
+1737501972 Pigu gossips, 'yo yo'
+1737502067 Thort gossips, 'oh then it's a reset item'
+1737502280 Yote gossips, 'woot grats'
+1737502291 Pigu gossips, 'thanks'
+1737503486 Discord gossips, 'Daedela: My pronouns are he/him/hole'
+1737503503 Discord gossips, 'venath.2005: LMFAO'
+1737503504 Yote gossips, 'allllllrighty then'
+1737503596 Discord gossips, 'venath.2005: You should make that your title LMFAO'
+1737503596 Thort gossips, 'lol that's hilarious'
+1737503648 Yote gossips, 'yes!'
+$
+aliases:
+returncode tele code 3499
+smail at 3088 mail $1
+rmail at 3088 receive mail
+mboard goto 3002
+mpost goto 3088
+maxskill skillset $1 '$2' 1000
+wic gecho &3&b[&0&1W&3&bA&0&1&bR&0&1N&0&1&bI&0&3&bN&0&1G&0&3&b]&0&1&b$*&0 &3&b[&0&1W&3&bA&0&1&bR&0&1N&0&1&bI&0&3&bN&0&1G&0&3&b]&0
+aic gecho [&1&bA&0&3&bT&0&2&bT&0&6&bE&0&5&bN&0&6&bT&0&2&bI&0&3&bO&0&1&bN&0]&3&b$*&0 [&1&bA&0&3&bT&0&2&bT&0&6&bE&0&5&bN&0&6&bT&0&2&bI&0&3&bO&0&1&bN&0]
+colorhelp oestat 1098
+gic gecho [&2&bVenath&0]&2&b$*&0
+yic gecho [&3&bVenath&0]&3&b$*&0
+ric gecho [&1&bVenath&0]&1&b$*&0
+mid load obj 3050
+grainbow gecho A bright&0 &1&bR&0&6&bA&0&3&bI&0&2&bN&0&4&bB&0&5&bO&0&1&bW&0 appears in the sky.
+godfart gecho &6&bA low rumble from above slowly crescendos into an awesome&0 &1roar&0 &6&band&0 &2&ba foul wind blows&0 &6&binto your face.&0
+ifountain goto 10016
+minn goto 3054
+rainbowcackle gossip @RM@yU@YA@GH@BA@MH@bA@R!!!&0
+colorcheck say COLOR CHECK: @BB&0 @CC&0 @GG&0 @LL&0 @MM&0 @RR&0 @VV&0 @WW&0 @YY&0 @bb&0 @cc&0 @dd&0 @ee&0 @ff&0 @gg&0 @hh&0 @ii&0 @jj&0 @kk&0 @ll&0 @mm&0 @nn&0 @oo&0 @pp&0 @qq&0 @rr&0 @ss&0 @tt&0 @uu&0 @vv&0 @ww&0 @xx&0 @yy&0 @zz&0
+mfountain goto 3009
+aarena goto 6232
+gohome goto 1208
+cookie load obj 23887;at $1 give cookie $1
+tinn tele $1 3054
+trats tele $1 48015
+fakepoof gecho &1&bThe peaceful feeling in the room subsides... You don't feel quite as safe anymore.&0
+wh who -w
+fakerats tele $1 48015;transfer $1
+gdeath gecho &1&bThere's been a DEATH!&0
+mlpost load mob 3095
+ic gecho [Venath]$*
+gratz gecho &3&bCongratulations to $1 for reaching level $2!&0
+9hellsstart at 2200 say Start the Nine Hells quest.
+gds get corpse;at shanta drop corpse
+healinggas rr &3Venath&0 spreads his cheeks and farts across the realms, &2nauseating&0 everyone in his path. 
+0
+grants:
+tedit Chinok 105
+advance Chinok 105
+users Laoris 103
+oedit Laoris 103
+skillset Laoris 103
+rrestore Chinok 105
+~
+grantgroups:
+worldinfo Laoris 103
+~

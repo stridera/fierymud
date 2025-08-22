@@ -1,0 +1,111 @@
+name: Freyr
+password: FrRBMMX7Q9
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19583
+birthtime: 1587934766
+timeplayed: 47123
+lastlogintime: 1588436998
+host: 173.050.100.109
+height: 64
+weight: 163
+base_height: 64
+base_weight: 163
+base_size: 2
+natural_size: 2
+alignment: 91
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+loadroom: 3001
+lastlevel: 0
+hitpoints: 147/137
+mana: 1/0
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 74
+wisdom: 85
+dexterity: 92
+constitution: 100
+charisma: 74
+cash: 0 15 60 66
+bank: 7 80 50 0
+experience: 289347
+quit_reason: 3
+saveroom: 0
+skills:
+402 148
+404 150
+415 50
+416 50
+421 148
+430 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 148
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 7004 3.000000
+1 7052 1.000000
+1 7050 1.000000
+1 18000 1.000000
+1 18001 1.000000
+1 5421 3.000000
+1 5420 5.000000
+1 5408 8.000000
+1 5404 3.000000
+1 3505 3.000000
+1 61509 2.000000
+1 61514 1.000000
+1 61510 1.000000
+1 61508 2.000000
+1 61506 1.000000
+1 61523 1.000000
+1 4101 1.000000
+1 61519 1.000000
+1 61504 1.000000
+1 61526 4.000000
+1 61500 1.000000
+0 0 0
+tells:
+1588024991 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1588024992 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1588024992 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1588194447 @WLisa@W tells you, 'Hrm, it doesn't look too worn, I suppose.@W'@0
+1588194464 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1588194468 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1588194479 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1588194485 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1588194490 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1588194494 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+$
+gossips:
+1588027038 Meina gossips, 'Gratz on level 10!'
+1588027055 Meina gossips, 'Have you thought about whether you want to subclass or are you going to stick with Warrior? :)'
+1588027254 Meina gossips, 'Cool :)'
+1588194339 Meina gossips, 'Hi Freyr!'
+1588194344 Meina gossips, 'how goes it?'
+1588194368 Meina gossips, 'Busy Wednesday, but good!'
+1588194778 Meina gossips, 'Need any help?'
+1588194825 Meina gossips, 'and if you have a normal playtime that works for you, I can see about getting on and grouping up more :) I  may know of some characters that are about your level!'
+1588436962 Chinok gossips, 'welcome'
+1588436967 Chinok gossips, 'oh, hi Akiko'
+$

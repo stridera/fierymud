@@ -1,0 +1,82 @@
+name: Torkar
+password: ToXds2rG6O
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20228
+birthtime: 1650076735
+timeplayed: 7063
+lastlogintime: 1650083854
+host: 107.139.176.194
+height: 29
+weight: 87
+base_height: 29
+base_weight: 87
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 17
+thirst: 10
+lastlevel: 0
+hitpoints: 26/26
+mana: 1/0
+move: 87/106
+damroll: 2
+hitroll: 4
+strength: 88
+intelligence: 94
+wisdom: 92
+dexterity: 87
+constitution: 78
+charisma: 76
+experience: 18811
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+447 50
+451 53
+452 50
+453 50
+459 50
+460 50
+462 50
+464 64
+0 0
+tells:
+$
+gossips:
+1650078960 Tarnoth gossips, 'grats!'
+1650078966 Catan gossips, 'ty!'
+1650079034 Zaver gossips, 'gratz!'
+1650079039 Holk gossips, 'Gratz Torkar'
+1650079206 Zaver gossips, 'night all!'
+1650079245 Chinok gossips, 'night Z'
+1650080492 Chinok gossips, 'gratz Vorath'
+1650081771 Keric gossips, 'gratz'
+1650081796 Tarnoth gossips, 'Thank you'
+1650081950 Chinok gossips, 'thank you!'
+$

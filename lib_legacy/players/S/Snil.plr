@@ -1,0 +1,173 @@
+name: Snil
+password: Sn3vD8tUSm
+prompt: &5Bre: %db%_&5Lay: %dl%_&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 4
+race: 28
+level: 86
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20191
+birthtime: 1646945901
+timeplayed: 734269
+lastlogintime: 1722544387
+host: 136.038.235.105
+height: 77
+weight: 347
+base_height: 77
+base_weight: 347
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: ckm 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1180/1008
+mana: 739/739
+move: 211/211
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 70
+wisdom: 76
+dexterity: 92
+constitution: 99
+charisma: 66
+cash: 387 874 2411 1839
+experience: 80253100
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+21 1000
+22 1000
+28 1000
+34 1000
+43 1000
+88 1000
+92 1000
+97 1000
+99 1000
+204 1000
+241 1000
+402 52
+404 732
+407 804
+411 900
+412 901
+415 72
+416 520
+417 50
+420 895
+421 895
+422 899
+423 546
+424 649
+430 260
+431 52
+434 288
+438 391
+441 877
+443 50
+444 213
+450 50
+451 752
+452 64
+455 50
+457 733
+458 94
+459 160
+460 51
+461 67
+462 50
+463 793
+464 50
+465 880
+466 50
+467 57
+468 146
+473 50
+488 488
+0 0
+trophy:
+1 53311 3.500000
+1 53304 3.000000
+1 53302 2.000000
+1 53306 2.500000
+1 53313 0.500000
+1 53305 4.000000
+1 53303 1.500000
+1 53315 19.500000
+1 53314 6.000000
+1 53312 4.500000
+1 11702 0.500000
+1 11710 1.000000
+1 11701 0.500000
+1 2805 0.500000
+1 2802 0.500000
+1 2803 0.500000
+1 2807 0.500000
+1 2804 0.500000
+1 2801 4.000000
+0 0 0
+tells:
+1697382842 @WThorfinn@W tells you, 'I wouldn't mind having guard it seems like a good tool in the kit but rescue is big@W'@0
+1697382880 @WThorfinn@W tells you, 'if i dont get rescue maybe we need to let me tank fights for a bit, then you take aggro with rescue while I heal up@W'@0
+1697382911 @WThorfinn@W tells you, 'sketchy tho cuz my ac wont be high@W'@0
+1697382937 @WThorfinn@W tells you, 'gotcha, but its good to have@W'@0
+1697382986 @WThorfinn@W tells you, 'that sounds like a good idea for ease of use with many characters@W'@0
+1721074913 @WBigby@W tells you, 'You can only hold 36.@W'@0
+1721074913 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1721074919 @WBigby@W tells you, 'You can only hold 36.@W'@0
+1721074919 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1721074922 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1721093255 Ghaundar gossips, 'thx'
+1721093299 Zaver gossips, 'all 30! Noice'
+1721093306 Ghaundar gossips, 'yup!'
+1721094410 Discord gossips, 'Daedela: Congratulations'
+1721094521 Discord gossips, 'Aerelm: Thank you.'
+1721094649 Aerelm gossips, 'Thanks.'
+1721095359 Daedela gossips, 'well let's see how this goes'
+1721095646 Zaver gossips, 'Hey Jranor and Orrun'
+1721095679 Orrun gossips, 'Hello'
+1721095790 Zaver gossips, 'so much Pal :D'
+1721095864 Orrun gossips, 'It's true!'
+1721100279 Daedela gossips, 'Hey everyone, just wanted to let you know we're aware of the color bug with the new Mudlet update.  Check the Mudlet GUI channel on Discord for instructions on a quick fix'
+$
+aliases:
+holy cast 'holy word'
+lg enter well;d;e;s;e;e;e;e;e;n;e;n;level gain;s;w;s;w;w;w;w;w;n;w;u;enter well
+soul cast 'soulshield'
+dispel cast 'dispel magic' $*
+rc get curse sack;recite curse $*
+gcc get all.coins all.corpse
+bless cast 'bless' $*
+id get identify sack;recite identify $*
+ec examine corpse
+ul unlock $*;open $*
+ba breath acid
+df drink fountain
+who who -w
+fa first ai
+of order followers $*
+sm summon mount
+ha hitall all
+armor cast 'armor' $*
+gac get all all.corpse
+ga get all
+heal cast 'heal' $*
+0

@@ -1,0 +1,5004 @@
+#8001
+Farmer's Row~
+   A dirt road stretches from here to the east for some distance, leading to a
+large walled city.  A small path leads off into the fields to the south.  The
+forest is quite thick to the north, but another, more established road begins
+to the west.    ~
+80 0 10
+D1
+Farmer's Row continues to the east.~
+~
+0 -1 8002
+D2
+You see a small path.~
+~
+0 -1 8026
+D3
+You see an old merchant's trail.~
+~
+0 -1 2001
+S
+#8002
+Farmer's Row~
+   The farmers have divided the fields into four areas and rotate the crops
+each season to preserve the soil.  The four crops are carrots, clover,
+tomatoes, and wheat.  Farmer's Row continues on to the east and west.  The
+forest to the north is impassable.  The carrot fields are to the south.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8003
+D2
+You see carrot fields.~
+~
+0 -1 8027
+D3
+You see Farmer's Row.~
+~
+0 -1 8001
+S
+#8003
+Farmer's Row~
+   The road is quite popular and travelers often stop and visit with the
+farmers.  Farmer's Row continues on to the east and west.  The forest to the
+north is impossible to enter.  The carrot fields are to the south.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8004
+D2
+You see the carrot fields.~
+~
+0 -1 8028
+D3
+You see Farmer's Row.~
+~
+0 -1 8002
+S
+#8004
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is
+impassable.  The carrot fields are south of here.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8005
+D2
+You see carrot fields.~
+~
+0 -1 8029
+D3
+You see Farmer's Row.~
+~
+0 -1 8003
+S
+#8005
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  Carrot fields are to the south.  Further east is the west gate
+leading to town.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8006
+D2
+You see carrot fields.~
+~
+0 -1 8030
+D3
+You see Farmer's Row.~
+~
+0 -1 8004
+S
+#8006
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north breaks
+briefly for a little dirt road that leads away among the trees.  The carrot
+fields are to the south.  Far to the east is the village of Mielikki.    ~
+80 64 10
+D0
+~
+~
+0 -1 8840
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8007
+D2
+You see carrot fields.~
+~
+0 -1 8031
+D3
+You see Farmer's Row.~
+~
+0 -1 8005
+S
+#8007
+Farmer's Row~
+   Farmer's Row continues on to the east and west.  The forest to the north is
+impossible to enter.  To the south is the Western path through the fields.  
+Further east is the west gate leading to town.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8008
+D2
+You see the Eastern path through the fields.~
+~
+0 -1 8032
+D3
+You see Farmer's Row.~
+~
+0 -1 8006
+S
+#8008
+Farmer's Row~
+   Farmer's Row continues to the east and west.  The forest to the north is
+impassable.  To the south is the clover field.  Further east is the west gate
+leading to town.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8009
+D2
+You see clover fields.~
+~
+0 -1 8033
+D3
+You see Farmer's Row.~
+~
+0 -1 8007
+S
+#8009
+Farmer's Row~
+   Farmer's Row continues to the east and west.  The forest to the north is
+mostly impassible, but there is a narrow break in the trees that looks like an
+enterprising adventurer could squeeze through.  The clover field is to the
+south, and further east is the west gate leading to town.
+~
+80 0 10
+D0
+~
+~
+0 -1 41090
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8010
+D2
+You see the clover fields.~
+~
+0 -1 8034
+D3
+You see Farmer's Row.~
+~
+0 -1 8008
+S
+#8010
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  To the south is the clover field.  Further east is the west gate
+leading to town.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8011
+D2
+You see clover fields.~
+~
+0 -1 8035
+D3
+You see Farmer's Row.~
+~
+0 -1 8009
+S
+#8011
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  The clover fields are to the south.  Further east is the west gate
+leading to town.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8012
+D2
+You see the clover fields.~
+~
+0 -1 8036
+D3
+You see Farmer's Row.~
+~
+0 -1 8010
+S
+#8012
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  The clover field is to the south.  Further east is the west gate
+leading to town.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8013
+D2
+You see clover fields.~
+~
+0 -1 8037
+D3
+You see Farmer's Row.~
+~
+0 -1 8011
+S
+#8013
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  The Main path through the fields is to the south.  Further to the
+south there is a well.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8014
+D2
+You see the main path through the fields. Further to the south you see a well.~
+~
+0 -1 8038
+D3
+You see Farmer's Row.~
+~
+0 -1 8012
+S
+#8014
+Farmer's Row~
+   Farmer's Row continues to the east and west.  The forest to the north is
+impossible to enter.  The tomato patch is to the south.  Further east is the
+west gate leading to town.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8015
+D2
+You see delicious red tomatoes.~
+~
+0 -1 8039
+D3
+You see Farmer's Row.~
+~
+0 -1 8013
+S
+#8015
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  The tomato patch is to the south.  Further east is the west gate
+leading to town.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8016
+D2
+You see delicious red tomatoes.~
+~
+0 -1 8040
+D3
+You see Farmer's Row.~
+~
+0 -1 8014
+S
+#8016
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  The tomato fields are to the south.  Further east is the west gate
+leading to town.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8017
+D2
+You see delicious red tomatoes.~
+~
+0 -1 8041
+D3
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8015
+S
+#8017
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  To the south is the tomato field.  Further east is the west gate
+leading to town.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8018
+D2
+You see delicious red tomatoes.~
+~
+0 -1 8042
+D3
+You see Farmer's square.~
+~
+0 -1 8016
+S
+#8018
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  The tomato patch is to the south.  Further east is the west gate
+leading to town.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8019
+D2
+You see delicious red tomatoes.~
+~
+0 -1 8043
+D3
+You see Farmer's Row.~
+~
+0 -1 8017
+S
+#8019
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  To the south is the Eastern path through the fields.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8020
+D2
+You see the east path through the fields.~
+~
+0 -1 8044
+D3
+You see Farmer's Row.~
+~
+0 -1 8018
+S
+#8020
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  The wheat field is to the south.  Further east is the west gate
+leading to town.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8021
+D2
+You see the wheat field.~
+~
+0 -1 8045
+D3
+You see Farmer's Row.~
+~
+0 -1 8019
+S
+#8021
+Farmer's Row Intersection~
+   Farmer's Row continues to the east and west.  The forest to the north is
+thick and imposing, but an opening reveals a dusty path leading north.  The
+wheat field is to the south.  To the east is the entrance to a temple, and
+beyond that, the west gate leading to town.~
+80 0 10
+D0
+~
+~
+0 -1 8668
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8022
+D2
+You see the wheat field.~
+~
+0 -1 8046
+D3
+You see Farmer's Row.~
+~
+0 -1 8020
+S
+#8022
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  The wheat field is to the south.    ~
+80 0 10
+D1
+You see Farmer's Row. Due east is the west gate leading to town.~
+~
+0 -1 8023
+D2
+You see the wheat fields. The tall wheat is golden in color.~
+~
+0 -1 8047
+D3
+You see Farmer's Row.~
+~
+0 -1 8021
+S
+#8023
+Farmer's Row~
+   Farmer's Row continues east and west.  The forest to the north is impossible
+to enter.  The wheat field is to the south.    ~
+80 0 10
+D1
+
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8024
+D2
+You see the wheat fields. The tall grains will soon be ready to harvest.~
+~
+0 -1 8048
+D3
+You see Farmer's Row.~
+~
+0 -1 8022
+S
+#8024
+Farmer's Row~
+   The farmers have divided the fields into 4 areas.  They rotate the crops
+each season to preserve the soil and their beloved land.  Farmer's Row
+continues on to the east and west.  The forest to the north is impossible to
+enter.  The wheat field is to the south.    ~
+80 0 10
+D1
+You see Farmer's Row. Further east is the west gate leading to town.~
+~
+0 -1 8025
+D2
+You see wheat fields, the tall golden wheat almost ready to harvest.~
+~
+0 -1 8049
+D3
+You see Farmer's Row.~
+~
+0 -1 8023
+S
+#8025
+Farmer's Row~
+   This is an east-west dirt road north of the farmlands.  The west gate is
+visible just to the east, and the road itself stretches far to the west.  To
+the south, a vast expanse of fields can be clearly seen.  An open archway
+stands to the north, leading to a small building.    ~
+80 0 10
+D0
+~
+~
+0 0 36009
+D1
+You see outside the west gate. Further east is the town.~
+~
+0 -1 3043
+D2
+~
+~
+0 -1 8050
+D3
+You see Farmer's Row.~
+~
+0 -1 8024
+S
+#8026
+Along The Western Fence (26)~
+   A small dirt path leading south lies between a fence and the fields.  The
+fence surrounds the farm land on 3 sides, here on the west, the south and on
+the east sides.  On the other side of the fence is a densely populated forest,
+brush and bramble making it impossible to go west at the present time.  To the
+east is the carrot field.  Farmer's Row is north of here.    ~
+80 0 2
+D0
+You see  Farmer's Row.~
+~
+0 -1 8001
+D1
+You see the carrot field.~
+~
+0 -1 8027
+D2
+You see a small dirt path.~
+~
+0 -1 8051
+E
+fence~
+The fence looks very sturdy, but could use a coat of 
+paint! There are some small holes in the fence.  
+Through the holes you see glimpses of a forest, it
+looks impassable.~
+S
+#8027
+Carrot Top Heaven (27)~
+   This is the very northwestern edge of the farmers' fields, with
+the fence marking its boundaries visible to the west. Carrots grow
+here, their feathery tops arranged in neatly tended rows, extending
+to the east and south.~
+80 0 2
+D0
+~
+~
+0 -1 8002
+D1
+~
+~
+0 -1 8028
+D2
+~
+~
+0 -1 8052
+D3
+~
+~
+0 -1 8026
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8028
+Carrot Top Heaven (28)~
+   Well tended rows of feathery-topped carrots grow in this field. 
+It is a large field, too, extending in all directions save north,
+where the long Farmer's Row runs across.~
+80 0 2
+D0
+~
+~
+0 -1 8003
+D1
+~
+~
+0 -1 8029
+D2
+~
+~
+0 -1 8053
+D3
+~
+~
+0 -1 8027
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8029
+Carrot Top Heaven (29)~
+   Well tended rows of feathery-topped carrots grow in this field. 
+It is a large field, too, extending in all directions save north,
+where the long Farmer's Row runs across.~
+80 0 2
+D0
+~
+~
+0 -1 8004
+D1
+~
+~
+0 -1 8030
+D2
+~
+~
+0 -1 8054
+D3
+~
+~
+0 -1 8028
+S
+#8030
+Carrot Top Heaven (30)~
+   Well tended rows of feathery-topped carrots grow in this field. 
+It is a large field, too, extending in all directions save north,
+where the long Farmer's Row runs across.~
+80 0 2
+D0
+~
+~
+0 -1 8005
+D1
+~
+~
+0 -1 8031
+D2
+~
+~
+0 -1 8055
+D3
+~
+~
+0 -1 8029
+S
+#8031
+Carrot Top Heaven (31)~
+   Fluffy carrot tops blow in every breeze across this ripening field.
+There are several narrow roads around it, including Farmer's Row to the
+north and the Western Path running to the east. The carrot patch itself
+continues to the south and west.~
+80 0 2
+D0
+~
+~
+0 -1 8006
+D1
+~
+~
+0 -1 8032
+D2
+~
+~
+0 -1 8056
+D3
+~
+~
+0 -1 8030
+S
+#8032
+The Western Path (32)~
+   This little dirt path runs from north to south through various fields.
+A carrot patch lies westward, and to the east a fallow field can be seen.
+Farmer's Row is directly northward.~
+80 0 10
+D0
+~
+~
+0 -1 8007
+D1
+~
+~
+0 -1 8033
+D2
+~
+~
+0 -1 8057
+D3
+~
+~
+0 -1 8031
+S
+#8033
+The Clover Field (33)~
+   This is the western edge of the clover field. There is little of
+interest here, for the land is fallow this season. Not even animals
+graze upon the sweet clover. A path marking the field's boundary is
+visible to the west, and Farmer's Row runs to the north.~
+80 0 2
+D0
+~
+~
+0 -1 8008
+D1
+~
+~
+0 -1 8034
+D2
+~
+~
+0 -1 8058
+D3
+~
+~
+0 -1 8032
+S
+#8034
+The Clover Field (34)~
+   Only soft sweet green clover grows in this field. There doesn't
+appear to be any other use for the area. Farmer's Row lies northward,
+but the clover field continues in all other directions.~
+80 0 2
+D0
+~
+~
+0 -1 8009
+D1
+~
+~
+0 -1 8035
+D2
+~
+~
+0 -1 8059
+D3
+~
+~
+0 -1 8033
+S
+#8035
+The Clover Field (35)~
+   Only soft sweet green clover grows in this field. There doesn't
+appear to be any other use for the area. Farmer's Row lies northward,
+but the clover field continues in all other directions.~
+80 0 2
+D0
+~
+~
+0 -1 8010
+D1
+~
+~
+0 -1 8036
+D2
+~
+~
+0 -1 8060
+D3
+~
+~
+0 -1 8034
+S
+#8036
+The Clover Field (36)~
+   Only soft sweet green clover grows in this field. There doesn't
+appear to be any other use for the area. Farmer's Row lies northward,
+but the clover field continues in all other directions.~
+80 0 2
+D0
+~
+~
+0 -1 8011
+D1
+~
+~
+0 -1 8037
+D2
+~
+~
+0 -1 8061
+D3
+~
+~
+0 -1 8035
+S
+#8037
+The Clover Field (37)~
+   Only soft, sweet clover grows in this field. There isn't even any
+livestock grazing here. The fallow land continues to the south and west,
+with Farmer's Row to the north and the Main Path to the east.~
+80 0 2
+D0
+~
+~
+0 -1 8012
+D1
+~
+~
+0 -1 8038
+D2
+~
+~
+0 -1 8062
+D3
+~
+~
+0 -1 8036
+S
+#8038
+The Main Path (38)~
+   This little dirt path runs from north to south from Farmer's Row down
+out of sight among fields of growing plants. Clover grows to the west,
+and long trellises of tomatoes to the east.~
+80 0 10
+D0
+~
+~
+0 -1 8013
+D1
+~
+~
+0 -1 8039
+D2
+~
+~
+0 -1 8063
+D3
+~
+~
+0 -1 8037
+S
+#8039
+The Tomato Patch (39)~
+   Well-tended rows of tomatoes grow on trellises in neatly pruned
+rows. The smell of ripening tomatoes is quite strong here, and among
+the green leaves one can see the red dots of the fruit. This is the
+western edge of the patch, with the Main Path to the west and Farmer's
+Row directly north.~
+80 0 2
+D0
+~
+~
+0 -1 8014
+D1
+~
+~
+0 -1 8040
+D2
+~
+~
+0 -1 8064
+D3
+~
+~
+0 -1 8038
+S
+#8040
+The Tomato Patch (40)~
+   Neatly tended rows of tomato plants extend in all directions, their
+ripe fruit bobbing from trellises. The field of tomatoes is very large.
+Farmer's Row is directly to the north.~
+80 0 2
+D0
+~
+~
+0 -1 8015
+D1
+~
+~
+0 -1 8041
+D2
+~
+~
+0 -1 8065
+D3
+~
+~
+0 -1 8039
+S
+#8041
+The Tomato Patch (41)~
+   Farmer's Row is to the north.  The tomato patch continues on to the east,
+south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8016
+D1
+~
+~
+0 -1 8042
+D2
+~
+~
+0 -1 8066
+D3
+~
+~
+0 -1 8040
+S
+#8042
+The Tomato Patch (42)~
+   Long rows of trellised tomato plants grow here in neatly tended patches
+of green spotted with red fruit. The air is scented subtly with the plants,
+the breezes blowing past the green leaves constantly. The patch extends in
+all directions save north, where Farmer's Row runs past.~
+80 0 2
+D0
+~
+~
+0 -1 8017
+D1
+~
+~
+0 -1 8043
+D2
+~
+~
+0 -1 8067
+D3
+~
+~
+0 -1 8041
+S
+#8043
+The Tomato Patch (43)~
+   Long rows of tomato trellises grow along this field. The ripening
+tomatoes have a pleasant scent, when the breeze blows. Farmer's Row runs
+to the north, and the Eastern Path is visible to the east. The fields
+of tomatoes extend to the south and west.~
+80 0 2
+D0
+~
+~
+0 -1 8018
+D1
+~
+~
+0 -1 8044
+D2
+~
+~
+0 -1 8068
+D3
+~
+~
+0 -1 8042
+S
+#8044
+The Eastern Path (44)~
+   This narrow dirt path runs between a tomato patch to the west and a
+golden wheat field to the east. The path looks fairly well tended, and
+is clear of debris. Farmer's Row runs past to the north.~
+80 0 10
+D0
+~
+~
+0 -1 8019
+D1
+~
+~
+0 -1 8045
+D2
+~
+~
+0 -1 8069
+D3
+~
+~
+0 -1 8043
+S
+#8045
+The Wheat Field (45)~
+   Farmer's Row is to the north.  The Eastern path is to the west.  The wheat
+field continues to the east and south.    ~
+80 0 2
+D0
+~
+~
+0 -1 8020
+D1
+~
+~
+0 -1 8046
+D2
+~
+~
+0 -1 8070
+D3
+~
+~
+0 -1 8044
+S
+#8046
+The Wheat Field (46)~
+   Farmer's Row is to the north.  The wheat field continues to the east, south,
+and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8021
+D1
+~
+~
+0 -1 8047
+D2
+~
+~
+0 -1 8071
+D3
+~
+~
+0 -1 8045
+S
+#8047
+The Wheat Field (47)~
+   Farmer's Row is to the north.  The wheat field continues to the east, south,
+and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8022
+D1
+~
+~
+0 -1 8048
+D2
+~
+~
+0 -1 8072
+D3
+~
+~
+0 -1 8046
+S
+#8048
+The Wheat Field (48)~
+   Golden wheat sways gently with the wind.  Farmer's Row is to the north.  
+The wheat field continues to the east, south and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8023
+D1
+~
+~
+0 -1 8049
+D2
+~
+~
+0 -1 8073
+D3
+~
+~
+0 -1 8047
+S
+#8049
+The Wheat Field (49)~
+   The lush golden wheat fields blow in the breezes, bringing the pleasant
+scent of beer across the field. A small path lies to the east, but the
+field itself continues to the south and west. Farmer's Row can be seen
+just to the north.~
+80 0 2
+D0
+~
+~
+0 -1 8024
+D1
+~
+~
+0 -1 8050
+D2
+~
+~
+0 -1 8074
+D3
+~
+~
+0 -1 8048
+S
+#8050
+Along The Eastern Fence (50)~
+   A small dirt path lies between a fence and the fields.  Beyond the fence is
+the west wall.  The path continues to the south.  The wheat fields are to the
+west.  Farmer's Row is north of here.    ~
+80 0 2
+D0
+You see Farmer's Row.~
+~
+0 -1 8025
+D2
+You see a small path along the fence.~
+~
+0 -1 8075
+D3
+You see the wheat field.~
+~
+0 -1 8049
+E
+fence~
+The fence looks very sturdy, but could use a coat of 
+paint! There are some small holes in the fence. 
+Through the holes you see glimpses of the west wall.~
+S
+#8051
+Along The Western Fence (51)~
+   You are on a small dirt path along the western fence.  To the east is the
+carrot field.  The path along the fence continues north and south.  Farmer's
+Row is due north.    ~
+80 0 2
+D0
+You see a small dirt path. Farther to the north is Farmer's Row.~
+~
+0 -1 8026
+D1
+You see the carrot field.~
+~
+0 -1 8052
+D2
+You see a small dirt path.~
+~
+0 -1 8076
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint! 
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8052
+Carrot Top Heaven (52)~
+   A well-tended field of growing carrots grows here. The feathery tops
+of the carrots blow in every breeze, bringing the pleasant scent of
+growing plants. The fence marking off the boundary of the fields is
+visible to the west.~
+80 0 2
+D0
+~
+~
+0 -1 8027
+D1
+~
+~
+0 -1 8053
+D2
+~
+~
+0 -1 8077
+D3
+~
+~
+0 -1 8051
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8053
+Carrot Top Heaven (53)~
+   Orderly rows of carrot plants grow in a large field. The rows are
+hoed and pruned well, and the feathery tops blow in the breeze. The
+field extends in all directions.~
+80 0 2
+D0
+~
+~
+0 -1 8028
+D1
+~
+~
+0 -1 8054
+D2
+~
+~
+0 -1 8078
+D3
+~
+~
+0 -1 8052
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8054
+Carrot Top Heaven (54)~
+   Orderly rows of carrot plants grow in a large field. The rows are
+hoed and pruned well, and the feathery tops blow in the breeze. The
+field extends in all directions.~
+80 0 2
+D0
+~
+~
+0 -1 8029
+D1
+~
+~
+0 -1 8055
+D2
+~
+~
+0 -1 8079
+D3
+~
+~
+0 -1 8053
+E
+carrot~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8055
+Carrot Top Heaven (55)~
+   Orderly rows of carrot plants grow in a large field. The rows are
+hoed and pruned well, and the feathery tops blow in the breeze. The
+field extends in all directions.~
+80 0 2
+D0
+~
+~
+0 -1 8030
+D1
+~
+~
+0 -1 8056
+D2
+~
+~
+0 -1 8080
+D3
+~
+~
+0 -1 8054
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8056
+Carrot Top Heaven (56)~
+   Fluffy carrot tops blow in every breeze across this ripening field.
+The field extends in all directions save to the east, where a path
+runs along the boundary of the field.~
+80 0 2
+D0
+~
+~
+0 -1 8031
+D1
+~
+~
+0 -1 8057
+D2
+~
+~
+0 -1 8081
+D3
+~
+~
+0 -1 8055
+S
+#8057
+The Western Path (57)~
+   This is the Western path.  It divides the carrot patch from the clover
+field.  Farmer's Row is due north.  The carrot patch is to the west and to the
+east is the clover field.  The Western path continues to the south.    ~
+80 0 10
+D0
+~
+~
+0 -1 8032
+D1
+~
+~
+0 -1 8058
+D2
+~
+~
+0 -1 8082
+D3
+~
+~
+0 -1 8056
+S
+#8058
+The Clover Field (58)~
+   This is the western edge of the clover field. There is little of
+interest here, for the land is fallow this season. Not even animals
+graze upon the sweet clover. A path marking the field's boundary is
+visible to the west.~
+80 0 2
+D0
+~
+~
+0 -1 8033
+D1
+~
+~
+0 -1 8059
+D2
+~
+~
+0 -1 8083
+D3
+~
+~
+0 -1 8057
+S
+#8059
+The Clover Field (59)~
+   A lush clover field extends in all directions. Not even animals
+graze upon the sweet clover, and the field obviously lies fallow this
+season.~
+80 0 2
+D0
+~
+~
+0 -1 8034
+D1
+~
+~
+0 -1 8060
+D2
+~
+~
+0 -1 8084
+D3
+~
+~
+0 -1 8058
+S
+#8060
+The Clover Field (60)~
+   A lush clover field extends in all directions. Not even animals
+graze upon the sweet clover, and the field obviously lies fallow this
+season.~
+80 0 2
+D0
+~
+~
+0 -1 8035
+D1
+~
+~
+0 -1 8061
+D2
+~
+~
+0 -1 8085
+D3
+~
+~
+0 -1 8059
+S
+#8061
+The Clover Field (61)~
+   A lush clover field extends in all directions. Not even animals
+graze upon the sweet clover, and the field obviously lies fallow this
+season.~
+80 0 2
+D0
+~
+~
+0 -1 8036
+D1
+~
+~
+0 -1 8062
+D2
+~
+~
+0 -1 8086
+D3
+~
+~
+0 -1 8060
+S
+#8062
+The Clover Field (62)~
+   This is the eastern edge of a very large field of clover. The field
+lays fallow, with not even animals grazing upon it. The Main Path runs
+just to the east here.~
+80 0 2
+D0
+~
+~
+0 -1 8037
+D1
+~
+~
+0 -1 8063
+D2
+~
+~
+0 -1 8087
+D3
+~
+~
+0 -1 8061
+S
+#8063
+The Main Path (63)~
+   The Main path divides the clover field from the tomato patch and there is a
+well on the path.  Farmer's Row is due north.  The clover field is to the west.
+The tomato patch is to the east.  The Main path continues to the south.    ~
+80 0 10
+D0
+~
+~
+0 -1 8038
+D1
+~
+~
+0 -1 8064
+D2
+~
+~
+0 -1 8088
+D3
+~
+~
+0 -1 8062
+S
+#8064
+The Tomato Patch (64)~
+   Well-tended rows of tomatoes grow on trellises in neatly pruned
+rows. The smell of ripening tomatoes is quite strong here, and among
+the green leaves one can see the red dots of the fruit. This is the
+western edge of the patch, with the Main Path to the west.~
+80 0 2
+D0
+~
+~
+0 -1 8039
+D1
+~
+~
+0 -1 8065
+D2
+~
+~
+0 -1 8089
+D3
+~
+~
+0 -1 8063
+S
+#8065
+The Tomato Patch (65)~
+   Neatly tended rows of tomato plants extend in all directions, their
+ripe fruit bobbing from trellises. The field of tomatoes is very large.~
+80 0 2
+D0
+~
+~
+0 -1 8040
+D1
+~
+~
+0 -1 8066
+D2
+~
+~
+0 -1 8090
+D3
+~
+~
+0 -1 8064
+S
+#8066
+The Tomato Patch (66)~
+   Beautiful trellises of tomatoes grow in neat, orderly rows in this
+field. Each plant is carefully tended, and the breeze carries the scent
+of tomatoes on it. The patch extends in all directions but south, where
+a road runs.~
+80 0 2
+D0
+~
+~
+0 -1 8041
+D1
+~
+~
+0 -1 8067
+D2
+~
+~
+0 -1 8091
+D3
+~
+~
+0 -1 8065
+S
+#8067
+The Tomato Patch (67)~
+   Long rows of trellised tomato plants grow here in neatly tended patches
+of green spotted with red fruit. The air is scented subtly with the plants,
+the breezes blowing past the green leaves constantly. The patch extends in
+all directions.~
+80 0 2
+D0
+~
+~
+0 -1 8042
+D1
+~
+~
+0 -1 8068
+D2
+~
+~
+0 -1 8092
+D3
+~
+~
+0 -1 8066
+S
+#8068
+The Tomato Patch (68)~
+   Long rows of tomato trellises grow along this field. The ripening
+tomatoes have a pleasant scent, when the breeze blows. The fields extend
+in all directions but to the east, where a path is visible.~
+80 0 2
+D0
+~
+~
+0 -1 8043
+D1
+~
+~
+0 -1 8069
+D2
+~
+~
+0 -1 8093
+D3
+~
+~
+0 -1 8067
+S
+#8069
+The Eastern Path (69)~
+   This narrow little dirt path divides the tomato patch to the west and
+the wheat fields to the east. The path extends north all the way to
+Farmer's Row, and south for a short distance.~
+80 0 10
+D0
+~
+~
+0 -1 8044
+D1
+~
+~
+0 -1 8070
+D2
+~
+~
+0 -1 8094
+D3
+~
+~
+0 -1 8068
+S
+#8070
+The Wheat Field (70)~
+   Farmer's Row is due north.  The wheat field continues to the north, east,
+south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8045
+D1
+~
+~
+0 -1 8071
+D2
+~
+~
+0 -1 8095
+D3
+~
+~
+0 -1 8069
+S
+#8071
+The Wheat Field (71)~
+   Farmer's Row is due north.  The wheat field continues to the north, east,
+south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8046
+D1
+~
+~
+0 -1 8072
+D2
+~
+~
+0 -1 8096
+D3
+~
+~
+0 -1 8070
+S
+#8072
+The Wheat Field (72)~
+   Farmer's Row is due north.  The wheat field continues to the north, east,
+south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8047
+D1
+~
+~
+0 -1 8073
+D2
+~
+~
+0 -1 8097
+D3
+~
+~
+0 -1 8071
+S
+#8073
+The Wheat Field (73)~
+   Farmer's Row is due north.  The wheat field continues to the north, east,
+south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8048
+D1
+~
+~
+0 -1 8074
+D2
+~
+~
+0 -1 8098
+D3
+~
+~
+0 -1 8072
+S
+#8074
+The Wheat Field (74)~
+   Farmer's Row is further to the north.  Along the eastern fence is to the
+east.  The Wheat field continues to the north, south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8049
+D1
+~
+~
+0 -1 8075
+D2
+~
+~
+0 -1 8099
+D3
+~
+~
+0 -1 8073
+S
+#8075
+Along The Eastern Fence (75)~
+   The north/south path continues in both directions.  The wheat field is to
+the west.  Farmer's Row is due north.    ~
+80 0 2
+D0
+You see the small path. Due north is Farmer's Row.~
+~
+0 -1 8050
+D2
+You see the small path.~
+~
+0 -1 8100
+D3
+You see the wheat fields.~
+~
+0 -1 8074
+E
+fence~
+The wooden fence is sturdy, but could use a coat of paint. 
+Through some small holes in the fence you see the west wall.~
+S
+#8076
+Along The Western Fence (76)~
+   The north/south path continues in both directions.  To the east is the
+carrot field.    ~
+80 0 2
+D0
+You see a small dirt path. Farther to the north is Farmer's Row.~
+~
+0 -1 8051
+D1
+You see the carrot fields.~
+~
+0 -1 8077
+D2
+You see a small dirt path.~
+~
+0 -1 8101
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it
+looks impossible to enter.~
+S
+#8077
+Carrot Top Heaven (77)~
+   To the west is along the Western fence.  The carrot patch continues to the
+north, east,and south.  Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8052
+D1
+~
+~
+0 -1 8078
+D2
+~
+~
+0 -1 8102
+D3
+~
+~
+0 -1 8076
+E
+carrot~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8078
+Carrot Top Heaven (78)~
+   Orderly rows of carrot plants grow in a large field. The rows are
+hoed and pruned well, and the feathery tops blow in the breeze. The
+field extends in all directions.~
+80 0 2
+D0
+~
+~
+0 -1 8053
+D1
+~
+~
+0 -1 8079
+D2
+~
+~
+0 -1 8103
+D3
+~
+~
+0 -1 8077
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8079
+Carrot Top Heaven (79)~
+   Orderly rows of carrot plants grow in a large field. The rows are
+hoed and pruned well, and the feathery tops blow in the breeze. The
+field extends in all directions.~
+80 0 2
+D0
+~
+~
+0 -1 8054
+D1
+~
+~
+0 -1 8080
+D2
+~
+~
+0 -1 8104
+D3
+~
+~
+0 -1 8078
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8080
+Carrot Top Heaven (80)~
+   Orderly rows of carrot plants grow in a large field. The rows are
+hoed and pruned well, and the feathery tops blow in the breeze. The
+field extends in all directions.~
+80 0 2
+D0
+~
+~
+0 -1 8055
+D1
+~
+~
+0 -1 8081
+D2
+~
+~
+0 -1 8105
+D3
+~
+~
+0 -1 8079
+E
+blah~
+Nothing.~
+S
+#8081
+Carrot Top Heaven (81)~
+   Fluffy carrot tops blow in every breeze across this ripening field.
+The field extends in all directions save to the east, where a path
+runs along the boundary of the field.~
+80 0 2
+D0
+~
+~
+0 -1 8056
+D1
+~
+~
+0 -1 8082
+D2
+~
+~
+0 -1 8106
+D3
+~
+~
+0 -1 8080
+S
+#8082
+The Western Path (82)~
+   This is the Western path.  It divides the carrot patch from the clover
+field.  Farmer's Row is due north.  The carrot patch is to the west and to the
+east is the clover field.  The Western path continues to the south.    ~
+80 0 10
+D0
+~
+~
+0 -1 8057
+D1
+~
+~
+0 -1 8083
+D2
+~
+~
+0 -1 8107
+D3
+~
+~
+0 -1 8081
+S
+#8083
+The Clover Field (83)~
+   This is the western edge of the clover field. There is little of
+interest here, for the land is fallow this season. Not even animals
+graze upon the sweet clover. A path marking the field's boundary is
+visible to the west.~
+80 0 2
+D0
+~
+~
+0 -1 8058
+D1
+~
+~
+0 -1 8084
+D2
+~
+~
+0 -1 8108
+D3
+~
+~
+0 -1 8082
+S
+#8084
+The Clover Field (84)~
+   A lush clover field extends in all directions. Not even animals
+graze upon the sweet clover, and the field obviously lies fallow this
+season.~
+80 0 2
+D0
+~
+~
+0 -1 8059
+D1
+~
+~
+0 -1 8085
+D2
+~
+~
+0 -1 8109
+D3
+~
+~
+0 -1 8083
+S
+#8085
+The Clover Field (85)~
+   A lush clover field extends in all directions. Not even animals
+graze upon the sweet clover, and the field obviously lies fallow this
+season.~
+80 0 2
+D0
+~
+~
+0 -1 8060
+D1
+~
+~
+0 -1 8086
+D2
+~
+~
+0 -1 8110
+D3
+~
+~
+0 -1 8084
+S
+#8086
+The Clover Field (86)~
+   A lush clover field extends in all directions. Not even animals
+graze upon the sweet clover, and the field obviously lies fallow this
+season.~
+80 0 2
+D0
+~
+~
+0 -1 8061
+D1
+~
+~
+0 -1 8087
+D2
+~
+~
+0 -1 8111
+D3
+~
+~
+0 -1 8085
+S
+#8087
+The Clover Field (87)~
+   This is the eastern edge of a very large field of clover. The field
+lays fallow, with not even animals grazing upon it. The Main Path runs
+just to the east here.~
+80 0 2
+D0
+~
+~
+0 -1 8062
+D1
+~
+~
+0 -1 8088
+D2
+~
+~
+0 -1 8112
+D3
+~
+~
+0 -1 8086
+S
+#8088
+The Main Path (88)~
+   This little path leads north-south through some pleasantly well-tended
+growing fields. Fallow fields of clover lie to the west, and tomato patches
+to the east.
+   A well stands just south of here.~
+80 0 10
+D0
+~
+~
+0 -1 8063
+D1
+~
+~
+0 -1 8089
+D2
+~
+~
+0 -1 8113
+D3
+~
+~
+0 -1 8087
+S
+#8089
+The Tomato Patch (89)~
+   Well-tended rows of tomatoes grow on trellises in neatly pruned
+rows. The smell of ripening tomatoes is quite strong here, and among
+the green leaves one can see the red dots of the fruit. This is the
+western edge of the patch, with the Main Path to the west.~
+80 0 2
+D0
+~
+~
+0 -1 8064
+D1
+~
+~
+0 -1 8090
+D2
+~
+~
+0 -1 8114
+D3
+~
+~
+0 -1 8088
+S
+#8090
+The Tomato Patch (90)~
+   Neatly tended rows of tomato plants extend in all directions, their
+ripe fruit bobbing from trellises. The field of tomatoes is very large.~
+80 0 2
+D0
+~
+~
+0 -1 8065
+D1
+~
+~
+0 -1 8091
+D2
+~
+~
+0 -1 8115
+D3
+~
+~
+0 -1 8089
+S
+#8091
+The Tomato Patch (91)~
+   Farmer's Row is due north.  The tomato patch continues on to the north,
+east, south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8066
+D1
+~
+~
+0 -1 8092
+D2
+~
+~
+0 -1 8116
+D3
+~
+~
+0 -1 8090
+S
+#8092
+The Tomato Patch (92)~
+   Long rows of trellised tomato plants grow here in neatly tended patches
+of green spotted with red fruit. The air is scented subtly with the plants,
+the breezes blowing past the green leaves constantly. The patch extends in
+all directions.~
+80 0 2
+D0
+~
+~
+0 -1 8067
+D1
+~
+~
+0 -1 8093
+D2
+~
+~
+0 -1 8117
+D3
+~
+~
+0 -1 8091
+S
+#8093
+The Tomato Patch (93)~
+   Long rows of tomato trellises grow along this field. The ripening
+tomatoes have a pleasant scent, when the breeze blows. The fields extend
+in all directions but to the east, where a path is visible.~
+80 0 2
+D0
+~
+~
+0 -1 8068
+D1
+~
+~
+0 -1 8094
+D2
+~
+~
+0 -1 8118
+D3
+~
+~
+0 -1 8092
+S
+#8094
+The Eastern Path (94)~
+   This narrow little dirt path divides the tomato patch to the west and
+the wheat fields to the east. The path extends north all the way to
+Farmer's Row, and south for a short distance.~
+80 0 10
+D0
+~
+~
+0 -1 8069
+D1
+~
+~
+0 -1 8095
+D2
+~
+~
+0 -1 8119
+D3
+~
+~
+0 -1 8093
+S
+#8095
+The Wheat Field (95)~
+   Farmer's Row is due north.  The wheat field continues to the north, east,
+south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8070
+D1
+~
+~
+0 -1 8096
+D2
+~
+~
+0 -1 8120
+D3
+~
+~
+0 -1 8094
+S
+#8096
+The Wheat Field (96)~
+   Farmer's Row is due north.  The wheat field continues to the north, east,
+south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8071
+D1
+~
+~
+0 -1 8097
+D2
+~
+~
+0 -1 8121
+D3
+~
+~
+0 -1 8095
+S
+#8097
+The Wheat Field (97)~
+   Farmer's Row is due north.  The wheat field continues to the north, east,
+south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8072
+D1
+~
+~
+0 -1 8098
+D2
+~
+~
+0 -1 8122
+D3
+~
+~
+0 -1 8096
+S
+#8098
+The Wheat field (98)~
+   Farmer's Row is due north.  The wheat field continues to the north, east,
+south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8073
+D1
+~
+~
+0 -1 8099
+D2
+~
+~
+0 -1 8123
+D3
+~
+~
+0 -1 8097
+S
+#8099
+The Wheat Field (99)~
+   Farmer's Row is due north.  Along the eastern fence is to the east.  The
+wheat field continues to the north, south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8074
+D1
+~
+~
+0 -1 8100
+D2
+~
+~
+0 -1 8124
+D3
+~
+~
+0 -1 8098
+S
+#8100
+Along The Eastern Fence (100)~
+   The north/south path continues in both directions.  The wheat fields are to
+the west.    ~
+80 4 2
+D0
+You see the small path. Farmer's Row is due north.~
+~
+0 -1 8075
+D2
+You see the small path.~
+~
+0 -1 8125
+D3
+You see the wheat fields.~
+~
+0 -1 8099
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of the west wall.~
+S
+#8101
+Along The Western Fence (101)~
+   The small dirt path running north/south continues.  To the east is the
+carrot field.    ~
+80 0 2
+D0
+You see a small dirt path. Farther to the north is Farmer's Row.~
+~
+0 -1 8076
+D1
+You see the carrot field.~
+~
+0 -1 8102
+D2
+You see a small dirt path.~
+~
+0 -1 8126
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint! 
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8102
+Carrot Top Heaven (102)~
+   To the west is along the Western fence.  The carrot patch continues to the
+north, east, and south.  Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8077
+D1
+~
+~
+0 -1 8103
+D2
+~
+~
+0 -1 8127
+D3
+~
+~
+0 -1 8101
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8103
+Carrot Top Heaven (103)~
+   Orderly rows of carrot plants grow in a large field. The rows are
+hoed and pruned well, and the feathery tops blow in the breeze. The
+field extends in all directions.~
+80 0 2
+D0
+~
+~
+0 -1 8078
+D1
+~
+~
+0 -1 8104
+D2
+~
+~
+0 -1 8128
+D3
+~
+~
+0 -1 8102
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8104
+Carrot Top Heaven (104)~
+   Orderly rows of carrot plants grow in a large field. The rows are
+hoed and pruned well, and the feathery tops blow in the breeze. The
+field extends in all directions.~
+80 0 2
+D0
+~
+~
+0 -1 8079
+D1
+~
+~
+0 -1 8105
+D2
+~
+~
+0 -1 8129
+D3
+~
+~
+0 -1 8103
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8105
+Carrot Top Heaven (105)~
+   Orderly rows of carrot plants grow in a large field. The rows are
+hoed and pruned well, and the feathery tops blow in the breeze. The
+field extends in all directions.~
+80 0 2
+D0
+~
+~
+0 -1 8080
+D1
+~
+~
+0 -1 8106
+D2
+~
+~
+0 -1 8130
+D3
+~
+~
+0 -1 8104
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8106
+Carrot Top Heaven (106)~
+   Fluffy carrot tops blow in every breeze across this ripening field.
+The field extends in all directions save to the east, where a path
+runs along the boundary of the field.~
+80 0 2
+D0
+~
+~
+0 -1 8081
+D1
+~
+~
+0 -1 8107
+D2
+~
+~
+0 -1 8131
+D3
+~
+~
+0 -1 8105
+S
+#8107
+The Western Path (107)~
+   The Western path divides the carrot patch from the clover field.  Farmer's
+Row is due north.  The carrot patch is to the west and to the east is the
+clover field.  The Western path continues to the south.    ~
+80 0 10
+D0
+~
+~
+0 -1 8082
+D1
+~
+~
+0 -1 8108
+D2
+~
+~
+0 -1 8132
+D3
+~
+~
+0 -1 8106
+S
+#8108
+The Clover Field (108)~
+   This is the western edge of the clover field. There is little of
+interest here, for the land is fallow this season. Not even animals
+graze upon the sweet clover. A path marking the field's boundary is
+visible to the west.~
+80 0 2
+D0
+~
+~
+0 -1 8083
+D1
+~
+~
+0 -1 8109
+D2
+~
+~
+0 -1 8133
+D3
+~
+~
+0 -1 8107
+S
+#8109
+The Clover Field (109)~
+   Farmer's Row is due north.  The clover field continues to the north, east,
+south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8084
+D1
+~
+~
+0 -1 8110
+D2
+~
+~
+0 -1 8134
+D3
+~
+~
+0 -1 8108
+S
+#8110
+The Clover Field (110)~
+   Farmer's Row is due north.  The clover field continues to the north, east,
+south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8085
+D1
+~
+~
+0 -1 8111
+D2
+~
+~
+0 -1 8135
+D3
+~
+~
+0 -1 8109
+S
+#8111
+The Clover Field (111)~
+   Farmer's Row is due north.  The clover field continues to the north, east,
+south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8086
+D1
+~
+~
+0 -1 8112
+D2
+~
+~
+0 -1 8136
+D3
+~
+~
+0 -1 8110
+S
+#8112
+The Clover Field (112)~
+   This is the eastern edge of a very large field of clover. The field
+lays fallow, with not even animals grazing upon it. The Main Path runs
+just to the east here.~
+80 0 2
+D0
+~
+~
+0 -1 8087
+D1
+~
+~
+0 -1 8113
+D2
+~
+~
+0 -1 8137
+D3
+~
+~
+0 -1 8111
+S
+#8113
+The Main Path (113)~
+   The path runs to the north and south through farmlands. Clover fields,
+fallow and rich with green, fragrant clover, grow to the west, and a large
+tomato patch grows to the east. The path widens into a circle near the
+middle of this part of it.~
+80 4 10
+D0
+~
+~
+0 -1 8088
+D1
+~
+~
+0 -1 8114
+D2
+~
+~
+0 -1 8138
+D3
+~
+~
+0 -1 8112
+S
+#8114
+The Tomato Patch (114)~
+   Well-tended rows of tomatoes grow on trellises in neatly pruned
+rows. The smell of ripening tomatoes is quite strong here, and among
+the green leaves one can see the red dots of the fruit. This is the
+western edge of the patch, with the Main Path to the west.~
+80 0 2
+D0
+~
+~
+0 -1 8089
+D1
+~
+~
+0 -1 8115
+D2
+~
+~
+0 -1 8139
+D3
+~
+~
+0 -1 8113
+S
+#8115
+The Tomato Patch (115)~
+   Neatly tended rows of tomato plants extend in all directions, their
+ripe fruit bobbing from trellises. The field of tomatoes is very large.~
+80 0 2
+D0
+~
+~
+0 -1 8090
+D1
+~
+~
+0 -1 8116
+D2
+~
+~
+0 -1 8140
+D3
+~
+~
+0 -1 8114
+S
+#8116
+The Tomato Patch (116)~
+   Farmer's Row is due north.  The tomato patch continues on to the north,
+east, south, and west.    ~
+80 0 2
+D0
+~
+~
+0 -1 8091
+D1
+~
+~
+0 -1 8117
+D2
+~
+~
+0 -1 8141
+D3
+~
+~
+0 -1 8115
+S
+#8117
+The Tomato Patch (117)~
+   Long rows of trellised tomato plants grow here in neatly tended patches
+of green spotted with red fruit. The air is scented subtly with the plants,
+the breezes blowing past the green leaves constantly. The patch extends in
+all directions.~
+80 0 2
+D0
+~
+~
+0 -1 8092
+D1
+~
+~
+0 -1 8118
+D2
+~
+~
+0 -1 8142
+D3
+~
+~
+0 -1 8116
+S
+#8118
+The Tomato Patch (118)~
+   Long rows of tomato trellises grow along this field. The ripening
+tomatoes have a pleasant scent, when the breeze blows. The fields extend
+in all directions but to the east, where a path is visible.~
+80 0 2
+D0
+~
+~
+0 -1 8093
+D1
+~
+~
+0 -1 8119
+D2
+~
+~
+0 -1 8143
+D3
+~
+~
+0 -1 8117
+S
+#8119
+The Eastern Path (119)~
+   This narrow little dirt path divides the tomato patch to the west and
+the wheat fields to the east. The path extends north all the way to
+Farmer's Row, and south for a short distance.~
+80 0 10
+D0
+~
+~
+0 -1 8094
+D1
+~
+~
+0 -1 8120
+D2
+~
+~
+0 -1 8144
+D3
+~
+~
+0 -1 8118
+S
+#8120
+The Wheat Field (120)~
+   Fields of golden wheat sway in every slightest breeze to create a
+rippling effect. The field extends to the north, south, and east, with
+a path visible to the west.~
+80 0 2
+D0
+~
+~
+0 -1 8095
+D1
+~
+~
+0 -1 8121
+D2
+~
+~
+0 -1 8145
+D3
+~
+~
+0 -1 8119
+S
+#8121
+The Wheat Field (121)~
+   Fields of golden wheat sway in every slightest breeze to create a
+rippling effect. The field extends to the north, south, east, and west.~
+80 0 2
+D0
+~
+~
+0 -1 8096
+D1
+~
+~
+0 -1 8122
+D2
+~
+~
+0 -1 8146
+D3
+~
+~
+0 -1 8120
+S
+#8122
+The Wheat Field (122)~
+   Fields of golden wheat sway in every slightest breeze to create a
+rippling effect. The field extends to the north, south, east, and west.~
+80 0 2
+D0
+~
+~
+0 -1 8097
+D1
+~
+~
+0 -1 8123
+D2
+~
+~
+0 -1 8147
+D3
+~
+~
+0 -1 8121
+S
+#8123
+The Wheat field (123)~
+   Fields of golden wheat sway in every slightest breeze to create a
+rippling effect. The field extends to the north, south, east, and west.~
+80 0 2
+D0
+~
+~
+0 -1 8098
+D1
+~
+~
+0 -1 8124
+D2
+~
+~
+0 -1 8148
+D3
+~
+~
+0 -1 8122
+S
+#8124
+The Wheat Field (124)~
+   Fields of golden wheat sway in every slightest breeze to create a
+rippling effect. The field extends to the north, south, and west, ending
+at the east before a fence.~
+80 0 2
+D0
+~
+~
+0 -1 8099
+D1
+~
+~
+0 -1 8125
+D2
+~
+~
+0 -1 8149
+D3
+~
+~
+0 -1 8123
+S
+#8125
+Along The Eastern Fence (125)~
+   The north/south path continues in both directions.  The wheat fields are to
+the west.    ~
+80 0 2
+D0
+You see the small path. Farmer's Row is due north.~
+~
+0 -1 8100
+D2
+You see the small path.~
+~
+0 -1 8150
+D3
+You see the wheat fields.~
+~
+0 -1 8124
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of the west wall.~
+S
+#8126
+Along The Western Fence (126)~
+   The north/south path continues in both directions.  To the east is the
+carrot field.    ~
+80 0 2
+D0
+You see a small dirt path. Farther to the north is Farmer's Row.~
+~
+0 -1 8101
+D1
+You see the carrot field.~
+~
+0 -1 8127
+D2
+You see a small dirt path.~
+~
+0 -1 8151
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8127
+Carrot Top Heaven (127)~
+   To the west is the path along the Western fence.  The carrot patch continues
+to the north and east.  To the south is the Southern path.  Farmer's Row is due
+north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8102
+D1
+~
+~
+0 -1 8128
+D2
+~
+~
+0 -1 8152
+D3
+~
+~
+0 -1 8126
+E
+carrot~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8128
+Carrot Top Heaven (128)~
+   The field is full of carrots growing in neat, orderly rows. All that
+is visible of the vegetables is their feathery green tops blowing in the
+breezes. The Southern Path runs along the southern edge of this field,
+heading east to west.~
+80 0 2
+D0
+~
+~
+0 -1 8103
+D1
+~
+~
+0 -1 8129
+D2
+~
+~
+0 -1 8153
+D3
+~
+~
+0 -1 8127
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8129
+Carrot Top Heaven (129)~
+   The field is full of carrots growing in neat, orderly rows. All that
+is visible of the vegetables is their feathery green tops blowing in the
+breezes. The Southern Path runs along the southern edge of this field,
+heading east to west.~
+80 0 2
+D0
+~
+~
+0 -1 8104
+D1
+~
+~
+0 -1 8130
+D2
+~
+~
+0 -1 8154
+D3
+~
+~
+0 -1 8128
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8130
+Carrot Top Heaven (130)~
+   The field is full of carrots growing in neat, orderly rows. All that
+is visible of the vegetables is their feathery green tops blowing in the
+breezes. The Southern Path runs along the southern edge of this field,
+heading east to west.~
+80 0 2
+D0
+~
+~
+0 -1 8105
+D1
+~
+~
+0 -1 8131
+D2
+~
+~
+0 -1 8155
+D3
+~
+~
+0 -1 8129
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8131
+Carrot Top Heaven (131)~
+   Fluffy carrot tops blow in every breeze across this ripening field.
+The field extends in all directions save to the east, where a path
+runs along the field's boundaries, and the south, where the Southern
+Path runs across.~
+80 0 2
+D0
+~
+~
+0 -1 8106
+D1
+~
+~
+0 -1 8132
+D2
+~
+~
+0 -1 8156
+D3
+~
+~
+0 -1 8130
+E
+blah~
+This orange vegetable would make any rabbit smile (if rabbits could smile).~
+S
+#8132
+The Western Path (132)~
+   This narrow dirt road runs north to south toward another road, forming
+an intersection just to the south. It divides the clover fields to the
+east from the carrot fields to the west.~
+80 0 10
+D0
+~
+~
+0 -1 8107
+D1
+~
+~
+0 -1 8133
+D2
+~
+~
+0 -1 8157
+D3
+~
+~
+0 -1 8131
+S
+#8133
+The Clover Field (133)~
+   This is the western edge of the clover field. There is little of
+interest here, for the land is fallow this season. Not even animals
+graze upon the sweet clover. A path marking the field's boundary is
+visible to the west, and the Southern Path along the south.~
+80 0 2
+D0
+~
+~
+0 -1 8108
+D1
+~
+~
+0 -1 8134
+D2
+~
+~
+0 -1 8158
+D3
+~
+~
+0 -1 8132
+S
+#8134
+The Clover Field (134)~
+   Soft beds of sweet clover, mostly three-leafed, grows in this
+fallow field. No other use is made of it, and not even animals graze
+here. The Southern Path runs along the south part of this field,
+with houses visible beyond that.~
+80 0 2
+D0
+~
+~
+0 -1 8109
+D1
+~
+~
+0 -1 8135
+D2
+~
+~
+0 -1 8159
+D3
+~
+~
+0 -1 8133
+S
+#8135
+The Clover Field (135)~
+   Soft beds of sweet clover, mostly three-leafed, grows in this
+fallow field. No other use is made of it, and not even animals graze
+here. The Southern Path runs along the south part of this field,
+with houses visible beyond that.~
+80 0 2
+D0
+~
+~
+0 -1 8110
+D1
+~
+~
+0 -1 8136
+D2
+~
+~
+0 -1 8160
+D3
+~
+~
+0 -1 8134
+S
+#8136
+The Clover Field (136)~
+   Soft beds of sweet clover, mostly three-leafed, grows in this
+fallow field. No other use is made of it, and not even animals graze
+here. The Southern Path runs along the south part of this field,
+with houses visible beyond that.~
+80 0 2
+D0
+~
+~
+0 -1 8111
+D1
+~
+~
+0 -1 8137
+D2
+~
+~
+0 -1 8161
+D3
+~
+~
+0 -1 8135
+S
+#8137
+The Clover Field (137)~
+   Soft beds of sweet clover, mostly three-leafed, grows in this
+fallow field. No other use is made of it, and not even animals graze
+here. The Southern Path runs along the south part of this field,
+with houses visible beyond that. The Main Path runs just to the
+east.~
+80 0 2
+D0
+~
+~
+0 -1 8112
+D1
+~
+~
+0 -1 8138
+D2
+~
+~
+0 -1 8162
+D3
+~
+~
+0 -1 8136
+S
+#8138
+The Main Path (138)~
+   There is a well to the north.  Farmer's Row is due north.  The clover field
+is to the west.  The tomato patch is to the east.  The Main path continues to
+the north and intersects with the Southern path to the south.    ~
+80 0 10
+D0
+~
+~
+0 -1 8113
+D1
+~
+~
+0 -1 8139
+D2
+~
+~
+0 -1 8163
+D3
+~
+~
+0 -1 8137
+S
+#8139
+The Tomato Patch (139)~
+   Long rows of tomato trellises grow along this field. The ripening
+tomatoes have a pleasant scent, when the breeze blows. The fields extend
+to the north and east, with paths forming their boundary to the south and
+west. The Main Path runs just west of here.~
+80 0 2
+D0
+~
+~
+0 -1 8114
+D1
+~
+~
+0 -1 8140
+D2
+~
+~
+0 -1 8164
+D3
+~
+~
+0 -1 8138
+S
+#8140
+The Tomato Patch (140)~
+   Long rows of tomato trellises grow along this field. The ripening
+tomatoes have a pleasant scent, when the breeze blows. The fields extend
+in all directions but to the south, where a path is visible.~
+80 0 2
+D0
+~
+~
+0 -1 8115
+D1
+~
+~
+0 -1 8141
+D2
+~
+~
+0 -1 8165
+D3
+~
+~
+0 -1 8139
+S
+#8141
+The Tomato Patch (141)~
+   Long rows of tomato trellises grow along this field. The ripening
+tomatoes have a pleasant scent, when the breeze blows. The fields extend
+in all directions but to the south, where a path is visible.~
+80 0 2
+D0
+~
+~
+0 -1 8116
+D1
+~
+~
+0 -1 8142
+D2
+~
+~
+0 -1 8166
+D3
+~
+~
+0 -1 8140
+S
+#8142
+The Tomato Patch (142)~
+   Long rows of tomato trellises grow along this field. The ripening
+tomatoes have a pleasant scent, when the breeze blows. The fields extend
+in all directions but to the south, where a path is visible.~
+80 0 2
+D0
+~
+~
+0 -1 8117
+D1
+~
+~
+0 -1 8143
+D2
+~
+~
+0 -1 8167
+D3
+~
+~
+0 -1 8141
+S
+#8143
+The Tomato Patch (143)~
+   Long rows of tomato trellises grow along this field. The ripening
+tomatoes have a pleasant scent, when the breeze blows. The fields extend
+to the north and west, bounded at the east and south by paths.~
+80 0 2
+D0
+~
+~
+0 -1 8118
+D1
+~
+~
+0 -1 8144
+D2
+~
+~
+0 -1 8168
+D3
+~
+~
+0 -1 8142
+S
+#8144
+The Eastern Path (144)~
+   This narrow little dirt path divides the tomato patch to the west and
+the wheat fields to the east. The path extends north all the way to
+Farmer's Row, and south for a short distance.~
+80 0 10
+D0
+~
+~
+0 -1 8119
+D1
+~
+~
+0 -1 8145
+D2
+~
+~
+0 -1 8169
+D3
+~
+~
+0 -1 8143
+S
+#8145
+The Wheat Field (145)~
+   Farmer's Row is due north.  The wheat field continues to the north and east.
+The Eastern path is to the west.  The Southern path is to the south.    ~
+80 0 2
+D0
+~
+~
+0 -1 8120
+D1
+~
+~
+0 -1 8146
+D2
+~
+~
+0 -1 8170
+D3
+~
+~
+0 -1 8144
+S
+#8146
+The Wheat Field (146)~
+   Farmer's Row is due north.  The wheat field continues to the north, east,
+and west.  The Southern path is to the south.    ~
+80 0 2
+D0
+~
+~
+0 -1 8121
+D1
+~
+~
+0 -1 8147
+D2
+~
+~
+0 -1 8171
+D3
+~
+~
+0 -1 8145
+S
+#8147
+The Wheat Field (147)~
+   Farmer's Row is due north.  The wheat field continues to the north, east,
+and west.  The Southern path is to the south.    ~
+80 0 2
+D0
+~
+~
+0 -1 8122
+D1
+~
+~
+0 -1 8148
+D2
+~
+~
+0 -1 8172
+D3
+~
+~
+0 -1 8146
+S
+#8148
+The Wheat Field (148)~
+   Farmer's Row is to the north.  The wheat field continues to the north, east,
+and west.  The Southern path is to the south.    ~
+80 0 2
+D0
+~
+~
+0 -1 8123
+D1
+~
+~
+0 -1 8149
+D2
+~
+~
+0 -1 8173
+D3
+~
+~
+0 -1 8147
+S
+#8149
+The Wheat Field (149)~
+   Farmer's Row is further north.  Along the eastern fence is to the east.  
+The Wheat field continues to the north and west.  The Southern path is to the
+south.    ~
+80 0 2
+D0
+~
+~
+0 -1 8124
+D1
+~
+~
+0 -1 8150
+D2
+~
+~
+0 -1 8174
+D3
+~
+~
+0 -1 8148
+S
+#8150
+Along The Eastern Fence (150)~
+   The north/south path continues in both directions.  The wheat fields are to
+the west.    ~
+80 0 2
+D0
+You see the small path. Farmer's Row is due north.~
+~
+0 -1 8125
+D2
+You see the small path.~
+~
+0 -1 8175
+D3
+You see the wheat fields.~
+~
+0 -1 8149
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint! 
+There are some small holes in the fence. Through the holes 
+you see glimpses of the west wall.~
+S
+#8151
+Along The Western Fence (151)~
+   The fields have ended and you see the Southern path running east between the
+fields and the farmer's huts.  The path along the western fence continues north
+and south.    ~
+80 0 2
+D0
+You see a small dirt path. Farther to the north is Farmer's Row.~
+~
+0 -1 8126
+D1
+You see yet another dirt path, this one between 
+the fields and the farmer's huts.~
+~
+0 -1 8152
+D2
+You see a small dirt path.~
+~
+0 -1 8176
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8152
+The Southern Path (152)~
+   The Southern path divides the fields from the farmer's huts.  The carrot
+patch is to the north.  The Southern path runs east/west.  The farmer's yard is
+to the south.    ~
+80 0 10
+D0
+~
+~
+0 -1 8127
+D1
+~
+~
+0 -1 8153
+D2
+~
+~
+0 -1 8177
+D3
+~
+~
+0 -1 8151
+S
+#8153
+The Southern Path (153)~
+   The east/west path continues.  The carrot patch is to the north.    ~
+80 0 10
+D0
+~
+~
+0 -1 8128
+D1
+~
+~
+0 -1 8154
+D3
+~
+~
+0 -1 8152
+S
+#8154
+The Southern Path (154)~
+   The east/west path continues.  The carrot patch is to the north.    ~
+80 0 10
+D0
+~
+~
+0 -1 8129
+D1
+~
+~
+0 -1 8155
+D3
+~
+~
+0 -1 8153
+S
+#8155
+The Southern Path (155)~
+   The east/west path continues in both directions.  The carrot patch is to the
+north.    ~
+80 0 10
+D0
+~
+~
+0 -1 8130
+D1
+~
+~
+0 -1 8156
+D3
+~
+~
+0 -1 8154
+S
+#8156
+The Southern Path (156)~
+   The east/west path continues.  The carrot patch is to the north.  To the
+south is the farmer's yard.    ~
+80 0 10
+D0
+~
+~
+0 -1 8131
+D1
+~
+~
+0 -1 8157
+D2
+~
+~
+0 -1 8181
+D3
+~
+~
+0 -1 8155
+S
+#8157
+The Southern/Western Path Intersection (157)~
+   The Western path meets the Southern path and ends here.  The Southern path
+continues east and west.  The Western path is to the north and to the south is
+the farmer's yard.    ~
+80 0 10
+D0
+~
+~
+0 -1 8132
+D1
+~
+~
+0 -1 8158
+D2
+~
+~
+0 -1 8182
+D3
+~
+~
+0 -1 8156
+S
+#8158
+The Southern Path (158)~
+   This little path runs along the south end of the farmers' fields.
+It is narrow and full of ruts, but easily enough traveled. Small crude
+houses are visible all around the south here.~
+80 0 10
+D0
+~
+~
+0 -1 8133
+D1
+~
+~
+0 -1 8159
+D2
+~
+~
+0 -1 8183
+D3
+~
+~
+0 -1 8157
+S
+#8159
+The Southern Path (159)~
+   This little path runs along the south end of the farmers' fields.
+It is narrow and full of ruts, but easily enough traveled. Small crude
+houses are visible all around the south here.~
+80 0 10
+D0
+~
+~
+0 -1 8134
+D1
+~
+~
+0 -1 8160
+D3
+~
+~
+0 -1 8158
+S
+#8160
+The Southern Path (160)~
+   This little path runs along the south end of the farmers' fields.
+It is narrow and full of ruts, but easily enough traveled. Small crude
+houses are visible all around the south here.~
+80 0 10
+D0
+~
+~
+0 -1 8135
+D1
+~
+~
+0 -1 8161
+D3
+~
+~
+0 -1 8159
+S
+#8161
+The Southern Path (161)~
+   The dirt path runs along the southern part of the fields. To the south,
+houses are visible. Clover fields lie to the north.~
+80 0 10
+D0
+~
+~
+0 -1 8136
+D1
+~
+~
+0 -1 8162
+D3
+~
+~
+0 -1 8160
+S
+#8162
+The Southern Path (162)~
+   The east/west path continues.  The clover field is to the north.  The
+farmer's yard is to the south.    ~
+80 0 10
+D0
+~
+~
+0 -1 8137
+D1
+~
+~
+0 -1 8163
+D2
+~
+~
+0 -1 8187
+D3
+~
+~
+0 -1 8161
+S
+#8163
+The Southern/Main Path Intersection (163)~
+   The Main path meets the Southern path and ends here.  The Main path
+continues on to the north.  The Southern path continues to the east and west.
+The farmer's yard is to the south.    ~
+80 0 10
+D0
+~
+~
+0 -1 8138
+D1
+~
+~
+0 -1 8164
+D2
+~
+~
+0 -1 8188
+D3
+~
+~
+0 -1 8162
+S
+#8164
+The Southern Path (164)~
+   The Southern path continues east and west.  The tomato patch is to the
+north.  The farmer's yard is to the south.    ~
+80 0 10
+D0
+~
+~
+0 -1 8139
+D1
+~
+~
+0 -1 8165
+D2
+~
+~
+0 -1 8189
+D3
+~
+~
+0 -1 8163
+S
+#8165
+The Southern Path (165)~
+   The Southern path continues east and west.  The tomato patch is to the
+north.    ~
+80 0 10
+D0
+~
+~
+0 -1 8140
+D1
+~
+~
+0 -1 8166
+D3
+~
+~
+0 -1 8164
+S
+#8166
+The Southern Path (166)~
+   The east/west path continues in both directions.  The tomato patch is to the
+north.    ~
+80 0 10
+D0
+~
+~
+0 -1 8141
+D1
+~
+~
+0 -1 8167
+D3
+~
+~
+0 -1 8165
+S
+#8167
+The Southern Path (167)~
+   The east/west path continues in both directions.  The tomato patch is to the
+north.    ~
+80 0 10
+D0
+~
+~
+0 -1 8142
+D1
+~
+~
+0 -1 8168
+D3
+~
+~
+0 -1 8166
+S
+#8168
+The Southern Path (168)~
+   The Southern path continues east and west.  The tomato patch is to the
+north.  The farmer's yard is to the south.    ~
+80 0 10
+D0
+~
+~
+0 -1 8143
+D1
+~
+~
+0 -1 8169
+D2
+~
+~
+0 -1 8193
+D3
+~
+~
+0 -1 8167
+S
+#8169
+The Southern/Eastern Path Intersection (169)~
+   The Eastern path meets with the Southern path and ends here.  The Southern
+path continues east and west.  The farmer's yard is to the south.    ~
+80 0 10
+D0
+~
+~
+0 -1 8144
+D1
+~
+~
+0 -1 8170
+D2
+~
+~
+0 -1 8194
+D3
+~
+~
+0 -1 8168
+S
+#8170
+The Southern Path (170)~
+   The Southern path continues to the east and west.  The wheat field is to the
+north.  The farmer's yard is to the south.    ~
+80 0 10
+D0
+~
+~
+0 -1 8145
+D1
+~
+~
+0 -1 8171
+D2
+~
+~
+0 -1 8195
+D3
+~
+~
+0 -1 8169
+S
+#8171
+The Southern Path (171)~
+   The east/west path goes on in both directions.  To the north is the wheat
+field.    ~
+80 0 10
+D0
+~
+~
+0 -1 8146
+D1
+~
+~
+0 -1 8172
+D3
+~
+~
+0 -1 8170
+S
+#8172
+The Southern Path (172)~
+   The east/west path goes on in both directions.  To the north is the wheat
+field.    ~
+80 0 10
+D0
+~
+~
+0 -1 8147
+D1
+~
+~
+0 -1 8173
+D3
+~
+~
+0 -1 8171
+S
+#8173
+The Southern Path (173)~
+   The east/west path goes on in both directions.  To the north is the wheat
+field.    ~
+80 0 10
+D0
+~
+~
+0 -1 8148
+D1
+~
+~
+0 -1 8174
+D3
+~
+~
+0 -1 8172
+S
+#8174
+The Southern Path (174)~
+   The narrow path runs from east to west at the southern end of the fields.
+A golden wheat field grows to the north, and houses can be seen standing to
+the south.~
+80 0 10
+D0
+~
+~
+0 -1 8149
+D1
+~
+~
+0 -1 8175
+D2
+~
+~
+0 -1 8199
+D3
+~
+~
+0 -1 8173
+S
+#8175
+Along The Eastern Fence (175)~
+   The fields have ended and you see the Southern path running west between the
+fields and the farmer's huts.  The path along the fence continues to the north
+and south.    ~
+80 0 2
+D0
+You see the small path. Farmer's Row is due north.~
+~
+0 -1 8150
+D2
+You see the small path.~
+~
+0 -1 8200
+D3
+You see the Southern path.~
+~
+0 -1 8174
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of the west wall.~
+S
+#8176
+Along The Western Fence (176)~
+   The path along the western fence continues north and south.  To the east
+lies the farmer's yard.    ~
+80 0 2
+D0
+You see the small path immeadiately north of you 
+and farther north you see Farmer's Row.~
+~
+0 -1 8151
+D1
+The farmer's wife has really made the old farm 
+yard look inviting, hasn't she?~
+~
+0 -1 8177
+D2
+~
+~
+0 -1 8201
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8177
+The Farmer's Yard (177)~
+   The farmer's wife has worked hard to make the farmer's home look nice.  
+There are many flowers, plants and bushes in the yard.  To the north is the
+Southern path.  To the east is the kitchen.  To the west is the path along the
+western fence.  The path along the southern fence is to the south.  Farmer's
+Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8152
+D1
+~
+~
+0 -1 8178
+D2
+~
+~
+0 -1 8202
+D3
+~
+~
+0 -1 8176
+S
+#8178
+The Farm Kitchen (178)~
+   You are now in the farmer's kitchen.  Do you always just walk into a
+stranger's house with out knocking?  You see an old fashioned iron stove in the
+corner.  There is a fireplace in the middle of the south wall.  There is also a
+table in the middle of the room.  The farmer's yard is to the west and the
+living room is to the east.    ~
+80 8 0
+D1
+~
+~
+0 -1 8179
+D3
+~
+~
+0 -1 8177
+S
+#8179
+The Farmer's Living Room (179)~
+   You really should go before the farmer or his wife get home and catch you
+snooping.  The kitchen is to the west and to the east is the bedroom.    ~
+80 8 0
+D1
+~
+~
+0 -1 8180
+D3
+~
+~
+0 -1 8178
+S
+#8180
+The Farmer's Bedroom (180)~
+   The bed is made and floor has been swept.  The farmer's wife is a great
+homemaker!  The only exits are the living room to the west and the yard to the
+east.    ~
+80 8 0
+D1
+~
+~
+0 -1 8181
+D3
+~
+~
+0 -1 8179
+S
+#8181
+The Farmer's Yard (181)~
+   The back yard is as neat as the front.  To the north is the Southern path.
+The bedroom is to the west and the yard continues to the east.  The path along
+the southern fence is to the south.  Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8156
+D1
+~
+~
+0 -1 8182
+D2
+~
+~
+0 -1 8206
+D3
+~
+~
+0 -1 8180
+S
+#8182
+The Farmer's Yard (182)~
+   Nothing tangible seperates one yard from the other, and they all look the
+same.  The yard continues to the east and west.  To the north is the Southern
+path.  The path along the southern fence is to the south.  Farmer's Row is due
+north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8157
+D1
+~
+~
+0 -1 8183
+D2
+~
+~
+0 -1 8207
+D3
+~
+~
+0 -1 8181
+S
+#8183
+The Farmer's Yard (183)~
+   The lilac trees are in full bloom.  They look so pretty.  The kitchen is to
+the east.  To the north is the Southern path.  The path along the southern
+fence is to the south.  To the west the yard continues.  Farmer's Row is due
+north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8158
+D1
+~
+~
+0 -1 8184
+D2
+~
+~
+0 -1 8208
+D3
+~
+~
+0 -1 8182
+S
+#8184
+The Farm Kitchen (184)~
+   You are now in the farmer's kitchen.  Do you always just walk into a
+stranger's house with out knocking?  You see an old fashioned iron stove in the
+corner.  There is a fireplace in the middle of the south wall.  There is also a
+table in the middle of the room.  The farmer's yard is to the west and the
+living room is to the east.    ~
+80 8 0
+D1
+~
+~
+0 -1 8185
+D3
+~
+~
+0 -1 8183
+D5
+A cellar door blocks the way down.~
+cellar door~
+1 0 8226
+S
+#8185
+The Farmer's Living Room (185)~
+   A few pieces of simple furniture have been placed around the living room.  
+As in the kitchen there is a fireplace along the southern wall.  The kitchen is
+to the west and to the east is the bedroom.    ~
+80 8 0
+D1
+~
+~
+0 -1 8186
+D3
+~
+~
+0 -1 8184
+E
+fireplace~
+A bright and cheery fire has been lit to guard against the cold.~
+S
+#8186
+The Farmer's Bedroom (186)~
+   The bed is made and the floor has been swept.  The farmer's wife is a great
+homemaker!  The only exits are the living room to the west and the farmer's
+yard to the east.    ~
+80 8 0
+D1
+~
+~
+0 -1 8187
+D3
+~
+~
+0 -1 8185
+E
+bed~
+The bed is made and looks quite comfortable.~
+S
+#8187
+The Farmer's Yard (187)~
+   To the north is the Southern path.  The path along the southern fence is to
+the south.  The farmer's bedroom is to the west and the yard goes on to the
+east.  Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8162
+D1
+~
+~
+0 -1 8188
+D2
+~
+~
+0 -1 8212
+D3
+~
+~
+0 -1 8186
+S
+#8188
+The Farmer's Yard (188)~
+   The yard continues to the east and west.  To the north is the Southern/Main
+path intersection.  The path along the southern fence is to the south.  
+Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8163
+D1
+~
+~
+0 -1 8189
+D2
+~
+~
+0 -1 8213
+D3
+~
+~
+0 -1 8187
+S
+#8189
+The Farmer's Yard (189)~
+   The yard continues to the west.  The kitchen is to the east.  To the north
+is the Southern path.  The path along the southern fence is to the south.  
+Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8164
+D1
+~
+~
+0 -1 8190
+D2
+~
+~
+0 -1 8214
+D3
+~
+~
+0 -1 8188
+S
+#8190
+The Farm Kitchen (190)~
+   You are now in the farmer's kitchen.  Do you always just walk into a
+stranger's house with out knocking?  You see an old fashioned iron stove in the
+corner.  There is a fireplace in the middle of the south wall.  There is also a
+table in the middle of the room.  The farmer's yard is to the west and the
+living room is to the east.    ~
+80 8 0
+D1
+~
+~
+0 -1 8191
+D3
+~
+~
+0 -1 8189
+S
+#8191
+The Farmer's Living Room (191)~
+   The flowers make the living room smell nice.  There is a fireplace in each
+room of the hut.  The kitchen is to the west and to the east is the bedroom.  ~
+80 8 0
+D1
+~
+~
+0 -1 8192
+D3
+~
+~
+0 -1 8190
+S
+#8192
+The Farmer's Bedroom (192)~
+   Just like all the other rooms the bedroom is as neat as a pin.  There is a
+fireplace along the southern wall.  The only exits are the living room to the
+west and the yard to the east.    ~
+80 8 0
+D1
+~
+~
+0 -1 8193
+D3
+~
+~
+0 -1 8191
+E
+fireplace~
+The wood is here and ready to go. All you need is a match!~
+E
+bed~
+It may be simple, but it sure looks inviting...care to take a nap?~
+S
+#8193
+The Farmer's Yard (193)~
+   The Farmer's yard continues to the east.  To the west is the farmer's hut.
+The Southern path is to the north.  To the south is along the southern fence.
+  ~
+80 0 2
+D0
+~
+~
+0 -1 8168
+D1
+~
+~
+0 -1 8194
+D2
+~
+~
+0 -1 8218
+D3
+~
+~
+0 -1 8192
+S
+#8194
+The Farmer's Yard (194)~
+   The Farmer's yard continues east and west.  The Southern path is to the
+north.  To the south is along the southern fence.    ~
+80 0 2
+D0
+~
+~
+0 -1 8169
+D1
+~
+~
+0 -1 8195
+D2
+~
+~
+0 -1 8219
+D3
+~
+~
+0 -1 8193
+S
+#8195
+The Farmer's Yard (195)~
+   The farmer's wife has worked hard to make the farmer's home look nice.  She
+has planted many flowers and plants in the yard.  The kitchen is to the east.
+To the north is the Southern path.  The path along the fence is to the south.
+Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8170
+D1
+~
+~
+0 -1 8196
+D2
+~
+~
+0 -1 8220
+D3
+~
+~
+0 -1 8194
+S
+#8196
+The Farm Kitchen (196)~
+   This small, primitive kitchen has a wooden floor and several racks
+and shelves filled with cooking utensils. A stove in one corner gives off
+plenty of warmth in cold weather.~
+80 8 0
+D1
+~
+~
+0 -1 8197
+D3
+~
+~
+0 -1 8195
+S
+#8197
+The Farmer's Living Room (197)~
+   The fireplace has a roaring fire in it, and the place is clean and
+tidy. Doors lead east and west.~
+80 8 0
+D1
+~
+~
+0 -1 8198
+D3
+~
+~
+0 -1 8196
+S
+#8198
+The Farmer's Bedroom (198)~
+   The bed is made and floor has been swept.  The farmer's wife is a great
+homemaker!  The only exits are the living room to the west and the yard to the
+east.    ~
+80 8 0
+D1
+~
+~
+0 -1 8199
+D3
+~
+~
+0 -1 8197
+S
+#8199
+The Farmer's Yard (199)~
+   The Southern path is to the north.  Along the eastern fence is to the east.
+To the south is along the Southern fence.  The farmer's hut is to the west.  ~
+80 0 2
+D0
+~
+~
+0 -1 8174
+D1
+~
+~
+0 -1 8200
+D2
+~
+~
+0 -1 8224
+D3
+~
+~
+0 -1 8198
+S
+#8200
+Along The Eastern Fence (200)~
+   The path along the fence continues to the north and south.  The farmer's
+yard is to the west.    ~
+80 0 2
+D0
+You see the small path. Farmer's Row is due north.~
+~
+0 -1 8175
+D2
+You see the small path.~
+~
+0 -1 8225
+D3
+You see the farmer's yard.~
+~
+0 -1 8199
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of the west wall.~
+S
+#8201
+Along The Fence (SW Corner) (201)~
+   This is the southwest corner of the farmlands.  You can go north along the
+western fence, or south into a rocky area.  A small dirt path leads east.    ~
+80 0 2
+D0
+You see a small dirt path. Farther to the north is Farmer's Row.~
+~
+0 -1 8176
+D1
+You see a small dirt path. Farther to the east you see 
+the west wall of the city looming over the fence.~
+~
+0 -1 8202
+D2
+~
+~
+0 0 1600
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint! 
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8202
+Along The Southern Fence (202)~
+   The small dirt path runs east/west along the southern fence.  Farmer's Row
+is due north.  There is a gap in the fence to the south, but you can't see where
+it leads.  You can go east or west along the southern fence or north to the
+farmer's yard or south which leads to the unknown.~
+80 0 2
+D0
+~
+~
+0 -1 8177
+D1
+~
+~
+0 -1 8203
+D2
+~
+~
+0 0 1601
+D3
+~
+~
+0 -1 8201
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8203
+Along The Southern Fence (203)~
+   The small dirt path runs east/west along the southern fence.    ~
+80 0 2
+D1
+~
+~
+0 -1 8204
+D2
+~
+~
+0 0 1602
+D3
+~
+~
+0 -1 8202
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8204
+Along The Southern Fence (204)~
+   The small dirt path runs east/west along the southern fence.    ~
+80 0 2
+D1
+~
+~
+0 -1 8205
+D3
+~
+~
+0 -1 8203
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8205
+Along The Southern Fence (205)~
+   The small dirt path runs east/west along the southern fence.    ~
+80 0 2
+D1
+~
+~
+0 -1 8206
+D3
+~
+~
+0 -1 8204
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8206
+Along The Southern Fence (206)~
+   The small dirt path runs east/west along the southern fence.  To the north
+is the farmer's yard.  Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8181
+D1
+~
+~
+0 -1 8207
+D3
+~
+~
+0 -1 8205
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8207
+Along The Southern Fence (207)~
+   The small dirt path runs east/west along the southern fence.  To the north
+is the farmer's yard.  Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8182
+D1
+~
+~
+0 -1 8208
+D3
+~
+~
+0 -1 8206
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint! 
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8208
+Along The Southern Fence (208)~
+   The small dirt path runs east/west along the southern fence.  To the north
+is the farmer's yard.  Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8183
+D1
+~
+~
+0 -1 8209
+D3
+~
+~
+0 -1 8207
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8209
+Along The Southern Fence (209)~
+   The small dirt path runs east/west along the southern fence.    ~
+80 0 2
+D1
+~
+~
+0 -1 8210
+D3
+~
+~
+0 -1 8208
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8210
+Along The Southern Fence (210)~
+   The small dirt path runs east/west along the southern fence.    ~
+80 0 2
+D1
+~
+~
+0 -1 8211
+D3
+~
+~
+0 -1 8209
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8211
+Along The Southern Fence (211)~
+   The small dirt path runs east/west along the southern fence.    ~
+80 0 2
+D1
+~
+~
+0 -1 8212
+D3
+~
+~
+0 -1 8210
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8212
+Along The Southern Fence (212)~
+   The small dirt path runs east/west along the southern fence.  To the north
+is the farmer's yard.  Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8187
+D1
+~
+~
+0 -1 8213
+D3
+~
+~
+0 -1 8211
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint! 
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8213
+Along The Southern Fence (213)~
+   The small dirt path runs east/west along the southern fence.  To the north
+is the farmer's yard.  Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8188
+D1
+~
+~
+0 -1 8214
+D3
+~
+~
+0 -1 8212
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint! 
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8214
+Along The Southern Fence (214)~
+   The small dirt path runs east/west along the southern fence.  To the north
+is the farmer's yard.  Farmer's Row is due north.    ~
+80 0 2
+D0
+~
+~
+0 -1 8189
+D1
+~
+~
+0 -1 8215
+D3
+~
+~
+0 -1 8213
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8215
+Along The Southern Fence (215)~
+   The small dirt path runs east/west along the southern fence.    ~
+80 0 2
+D1
+~
+~
+0 -1 8216
+D3
+~
+~
+0 -1 8214
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8216
+Along The Southern Fence (216)~
+   The small dirt path runs east/west along the southern fence.    ~
+80 0 2
+D1
+You see the small path.~
+~
+0 -1 8217
+D3
+You see the small path.~
+~
+0 -1 8215
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8217
+A Gate in the Southern Fence (217)~
+   The small dirt path runs east/west here, between the farmer's house to the
+north and the southern fence.  A gate opens in the fence here.  There is a path
+beyond the gate running south up a hill.~
+80 0 2
+D1
+You see the small path.~
+~
+0 -1 8218
+D2
+It's an open sort of gate - really just a big opening with a post at either
+side to support the fence.  The path beyond rises very slowly as it approaches
+a hill to the southeast.~
+~
+0 -1 13601
+D3
+You see the small path.~
+~
+0 -1 8216
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8218
+Along The Southern Fence (218)~
+   The small dirt path runs east/west along the southern fence.  To the north
+is the farmer's yard.  Farmer's Row is due north.    ~
+80 0 2
+D0
+You see the farmer's yard. Farmer's Row is due north.~
+~
+0 -1 8193
+D1
+You see the small path.~
+~
+0 -1 8219
+D3
+You see the small path.~
+~
+0 -1 8217
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8219
+Along The Southern Fence (219)~
+   The small dirt path runs east/west along the southern fence.  To the north
+is the farmer's yard.  Farmer's Row is due north.    ~
+80 0 2
+D0
+You see the farmer's yard. Farmer's Row is due north.~
+~
+0 -1 8194
+D1
+You see a small path.~
+~
+0 -1 8220
+D3
+You see a small path.~
+~
+0 -1 8218
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8220
+Along The Southern Fence (220)~
+   The small dirt path runs east/west along the southern fence.  To the north
+is the farmer's yard.  Farmer's Row is due north.    ~
+80 0 2
+D0
+You see the farmer's yard. Farmer's Row is due north.~
+~
+0 -1 8195
+D1
+You see the small path.~
+~
+0 -1 8221
+D3
+You see the small path.~
+~
+0 -1 8219
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8221
+Along The Southern Fence (221)~
+   The small dirt path runs east/west along the southern fence.    ~
+80 0 2
+D1
+You see the small path.~
+~
+0 -1 8222
+D3
+You see the small path.~
+~
+0 -1 8220
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8222
+Along The Southern Fence (222)~
+   The small dirt path runs east/west along the southern fence.    ~
+80 0 2
+D1
+You see the small path.~
+~
+0 -1 8223
+D3
+You see the small path.~
+~
+0 -1 8221
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8223
+Along The Southern Fence (223)~
+   The small dirt path runs east/west along the southern fence.    ~
+80 0 2
+D1
+~
+~
+0 -1 8224
+D3
+You see the small path.~
+~
+0 -1 8222
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8224
+Along The Southern Fence (224)~
+   The small dirt path runs east/west along the southern fence.  To the north
+is the farmer's yard.  Farmer's Row is due north.    ~
+80 0 2
+D0
+You see the farmer's yard. Farmer's Row is due north.~
+~
+0 -1 8199
+D1
+You see the small path.~
+~
+0 -1 8225
+D3
+You see the small path.~
+~
+0 -1 8223
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of a forest, it looks impossible to enter.~
+S
+#8225
+Along The Fence (SE Corner) (225)~
+   This is the southeast corner of the farmlands.  You can go north along the
+eastern fence or west along the southern fence.    ~
+80 0 2
+D0
+You see the small path.  Farmer's Row is due north.~
+~
+0 -1 8200
+D3
+You see the small path.~
+~
+0 -1 8224
+E
+fence~
+The fence looks very sturdy, but could use a coat of paint!  
+There are some small holes in the fence. Through the holes 
+you see glimpses of the west wall.~
+S
+#8226
+Storeroom (W)~
+  This is a storeroom where stocks of different vegetables are kept by
+the farmer in case of a bad season.  There's mold along the floorboards, and
+a dank smell fills the room.  The storeroom continues to the east.~
+80 262152 0
+D1
+~
+~
+0 0 8227
+D4
+An outline in the ceiling wood could probably be opened.~
+cellar door~
+1 -1 8184
+S
+#8227
+Storeroom (E)~
+  Wooden walls line this underground storage area.  The dank smell of moisture
+and mold permeate the room.  The only exit is west.~
+80 262152 0
+D3
+~
+~
+0 0 8226
+S
+$~

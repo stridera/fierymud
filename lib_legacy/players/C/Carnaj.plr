@@ -1,0 +1,72 @@
+name: Carnaj
+password: CaBdAKG7Ig
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20198
+birthtime: 1647125081
+timeplayed: 19
+lastlogintime: 1647125101
+host: 090.191.170.046
+height: 34
+weight: 86
+base_height: 34
+base_weight: 86
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: xy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 22/22
+mana: 0/0
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 79
+intelligence: 100
+wisdom: 97
+dexterity: 74
+constitution: 63
+charisma: 48
+experience: 1
+quit_reason: 5
+saveroom: 3001
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+447 50
+451 50
+452 50
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+tells:
+$
+gossips:
+$

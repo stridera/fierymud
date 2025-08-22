@@ -1,0 +1,104 @@
+name: Korsibar
+password: KoPQZRTPvH
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19511
+birthtime: 1578256390
+timeplayed: 4342
+lastlogintime: 1578347361
+host: 068.011.053.064
+height: 66
+weight: 165
+base_height: 66
+base_weight: 165
+base_size: 2
+natural_size: 2
+alignment: 915
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 2
+lastlevel: 0
+hitpoints: 53/53
+mana: 1/0
+move: 104/126
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 63
+wisdom: 75
+dexterity: 93
+constitution: 94
+charisma: 44
+cash: 0 14 71 91
+experience: 18778
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8802 0.333333
+1 8800 0.250000
+1 8806 0.250000
+1 8801 0.250000
+1 8809 0.250000
+1 8804 0.750000
+1 8807 0.250000
+1 8805 0.500000
+1 8808 0.500000
+1 36004 0.250000
+1 36003 2.000000
+1 36001 2.000000
+1 36002 2.000000
+1 8016 0.500000
+1 8012 0.250000
+1 8023 0.250000
+1 8021 0.250000
+1 8011 0.500000
+1 8022 0.250000
+1 8013 0.250000
+1 8014 0.500000
+0 0 0
+tells:
+1578346969 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1578347180 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1578347293 @WElspeth the Jeweler@W tells you, 'I'll give you 0p, 0g, 8s, 3c for that!@W'@0
+1578347318 @WAaron@W tells you, 'You bring it to me when you get it and we'll talk.@W'@0
+1578347319 @WAaron@W tells you, 'You bring it to me when you get it and we'll talk.@W'@0
+$
+gossips:
+1578346790 Sanibak gossips, 'what part of town is he in'
+1578346798 Chinok gossips, 'you found the bakery ?'
+1578346804 Strider gossips, 'east row'
+1578346814 Sanibak gossips, 'ah ok I see'
+1578346819 Sanibak gossips, 'I got the zmud map off the forums'
+1578346825 Chinok gossips, 'yep, his shop is 2 south'
+1578346919 Derillion gossips, 'I'm trying to sell shirt from my inv and it just returns an empty line'
+1578346925 Derillion gossips, 'no message that he won't buy it etc'
+1578346956 Chinok gossips, 'a few items are !sell.. but he should still tell you why'
+1578347359 Sanibak gossips, 'going to head out for a bit. later'
+$

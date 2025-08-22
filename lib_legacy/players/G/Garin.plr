@@ -1,0 +1,90 @@
+name: Garin
+password: Ga.NNC7Htf
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20482
+birthtime: 1679873056
+timeplayed: 2995
+lastlogintime: 1679927406
+host: 071.077.210.162
+height: 70
+weight: 201
+base_height: 70
+base_weight: 201
+base_size: 3
+natural_size: 3
+alignment: 6
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8025
+hunger: 17
+thirst: 10
+lastlevel: 0
+hitpoints: 65/59
+mana: 1/0
+move: 163/163
+damroll: 5
+hitroll: 4
+strength: 91
+intelligence: 66
+wisdom: 72
+dexterity: 81
+constitution: 89
+charisma: 64
+cash: 0 43 121 170
+bank: 0 1 1 1
+experience: 18150
+quit_reason: 7
+saveroom: 8025
+skills:
+402 50
+404 64
+415 50
+416 50
+419 1000
+421 52
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 55
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8022 1.000000
+1 8011 1.000000
+1 8010 1.000000
+1 8016 1.000000
+1 8014 1.000000
+0 0 0
+tells:
+1679926527 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1679927281 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1679927303 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1679879738 Mersh gossips, 'gratz!'
+1679879786 Keric gossips, 'whatca getting at barrows?'
+1679879806 Mersh gossips, 'had to forage in a room down here and now considering staying for liches ring...'
+1679879810 Mersh gossips, 'need anything?'
+1679879820 Keric gossips, 'nah'
+1679879831 Keric gossips, 'love teleporting around that place with kress'
+1679879837 Mersh gossips, 'haha'
+1679879845 Mersh gossips, 'extra wiches brews are always nice too'
+1679879875 Keric gossips, 'lich ring is pretty nice'
+1679879885 Keric gossips, 'didnt know until i got one'
+$

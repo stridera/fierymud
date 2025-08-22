@@ -1,0 +1,129 @@
+name: Harnv
+password: HavhLXwJoH
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18090
+birthtime: 1323333490
+timeplayed: 8623727
+lastlogintime: 1729255466
+host: 001.146.156.027
+height: 77
+weight: 221
+base_height: 77
+base_weight: 221
+base_size: 3
+natural_size: 3
+alignment: -816
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: huxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1425/1227
+mana: 980/980
+move: 158/158
+damroll: 5
+hitroll: 4
+strength: 91
+intelligence: 60
+wisdom: 81
+dexterity: 84
+constitution: 90
+charisma: 59
+cash: 929 3206 11703 12060
+bank: 4254 10995 62892 36793
+experience: 116386599
+quit_reason: 1
+saveroom: 3054
+skills:
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 502
+416 200
+419 1000
+420 1000
+421 1000
+422 1000
+427 1000
+430 632
+431 1000
+434 1000
+438 369
+441 1000
+443 50
+444 1000
+463 1000
+464 51
+465 521
+466 590
+467 1000
+468 1000
+473 1000
+0 0
+trophy:
+1 53301 0.250000
+1 53300 0.250000
+1 53309 0.333333
+1 53308 0.333333
+1 53304 0.500000
+1 53311 2.000000
+1 53313 0.250000
+1 53302 1.000000
+1 53306 1.750000
+1 53303 0.750000
+1 53312 2.000000
+1 53314 0.750000
+1 53315 2.250000
+1 4015 0.500000
+1 4011 0.833333
+1 4002 1.500000
+1 4013 0.250000
+1 4010 0.250000
+1 4016 0.250000
+1 4000 1.500000
+1 4004 0.250000
+0 0 0
+tells:
+1729252763 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1729252825 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1729252920 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1729253474 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1729254191 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1729254578 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1729254664 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1729254765 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1729255107 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+1729255410 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
+$
+gossips:
+1718521233 Woogy gossips, 'curious, devs take the restrictions off from running more than 2 accounts? i played a long time ago, remember that being a thing but seeing a number of folks running up to like 4'
+1718521251 Marlia gossips, 'yeah - I think 4 is the limit now'
+1718521264 Marlia gossips, 'I'm sure I've run 5 too and noone has complained'
+1718521302 Woogy gossips, 'haha i ran 3 for a brief moment after i kinda figured. same thing, no one said anything... struggled to make it all work lol'
+1718521303 Marlia gossips, 'help rules .... 5 is the limit'
+1718521334 Marlia gossips, 'if it goes wrong with 4 or 5 it often goes VERY WRONG'
+1718521345 Woogy gossips, 'haha i bet'
+1718521383 Woogy gossips, 'my little L20 warrior, rescue isnt quite up to snuff at max skill yet'
+1718523430 Woogy gossips, 'one of those very wrong moments'
+1718550522 Discord gossips, 'Daedela: Ah I thought Moonda might be yours Marlia'
+$
+effects:
+210 2 586 13 0 0 0
+0 0 0 0 0
+aliases:
+b put ivory bag
+a get ring
+0

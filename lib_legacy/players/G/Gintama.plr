@@ -1,0 +1,73 @@
+name: Gintama
+password: Gi53d5baK8
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19198
+birthtime: 1504129951
+timeplayed: 5866
+lastlogintime: 1504223932
+host: 070.189.217.130
+height: 61
+weight: 168
+base_height: 61
+base_weight: 168
+base_size: 2
+natural_size: 2
+alignment: 34
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 42/40
+mana: 1/0
+move: 140/140
+damroll: 3
+hitroll: 3
+strength: 87
+intelligence: 65
+wisdom: 65
+dexterity: 84
+constitution: 98
+charisma: 68
+experience: 14323
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+463 50
+464 50
+465 53
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 16906 0.666667
+1 16905 0.666667
+1 16901 0.666667
+1 16902 1.333333
+1 16900 1.333333
+1 16908 1.333333
+1 3508 0.333333
+1 3500 2.000000
+1 3501 2.333333
+1 3503 0.666667
+1 3502 0.833333
+0 0 0

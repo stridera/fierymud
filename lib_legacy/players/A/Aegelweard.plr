@@ -1,0 +1,177 @@
+name: Aegelweard
+password: AeHUDGjmBJ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 4
+race: 0
+level: 39
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19436
+birthtime: 1557061462
+timeplayed: 867433
+lastlogintime: 1631406516
+host: 075.066.113.210
+height: 71
+weight: 120
+base_height: 71
+base_weight: 120
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: cm 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 70
+loadroom: 12024
+hunger: 7
+thirst: 16
+lastlevel: 0
+hitpoints: 500/461
+mana: 152/152
+move: 138/138
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 60
+wisdom: 87
+dexterity: 94
+constitution: 97
+charisma: 50
+cash: 19 2740 3549 8112
+bank: 105 6970 30000 20000
+experience: 9718092
+quit_reason: 7
+saveroom: 12024
+cooldowns:
+8 9000/9000
+10 8870/18000
+-1 0
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+21 1000
+22 1000
+34 1000
+88 1000
+402 424
+404 440
+407 440
+411 400
+415 436
+416 440
+417 50
+420 440
+421 440
+423 440
+424 440
+430 440
+434 365
+438 211
+443 111
+444 440
+450 50
+451 269
+457 440
+458 440
+459 303
+460 241
+461 85
+462 50
+463 440
+464 50
+465 430
+466 50
+468 114
+0 0
+trophy:
+1 3501 1.000000
+1 18007 1.000000
+1 12015 2.000000
+1 12023 4.000000
+1 12001 4.000000
+1 12011 4.000000
+1 12007 8.000000
+1 12004 6.000000
+1 12005 1.000000
+1 12008 5.000000
+1 12009 3.000000
+1 12002 4.000000
+1 12012 2.000000
+1 12017 1.000000
+1 12024 5.000000
+1 12003 2.000000
+1 12006 1.000000
+1 50207 1.500000
+1 50206 0.500000
+1 50212 0.500000
+1 50200 0.500000
+0 0 0
+tells:
+1571170914 @WDorath@W tells you, 'do you use mudlet mud client?@W'@0
+1572291441 @WChinok@W tells you, 'but if you must see :D@W'@0
+1572291448 @WChinok@W tells you, 'https://twitter.com/ReganKelseyy/status/1188646066071015425?ref_src=twsrcEtfwCtwcampEtweetembedCtwtermE1188674513367642112=httpsAFFsportsmockery.comF2019F10Fmlb-bans-julia-rose-after-she-flashed-her-boobs-with-two-other-
+1572291448 
+1573309525 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1579800384 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1624593074 @WChinok@W tells you, 'hi@W'@0
+$
+gossips:
+1624591187 Chinok gossips, 'hi Aegelweard'
+1624591330 Chinok gossips, 'lol yep, channels are hard.. I keep saying that :)'
+1624591365 Chinok gossips, 'well that's cause you're just weird looking :)'
+1624591513 Chinok gossips, 'I wouldn't lie :)'
+1624592450 Chinok gossips, 'if you can't remember anything, give a yell, I'm here to help'
+1624592510 Chinok gossips, 'lol I think it is, but some people find it frustrating :)'
+1624593015 Chinok gossips, 'not just me, but me and my friends!'
+1624593047 Chinok gossips, 'type lastgos and lasttel (might not work on last tel)'
+1624593109 Chinok gossips, 'ah.. ok.. '
+1624593161 Chinok gossips, 'night all '
+$
+effects:
+3 10 0 0 0 0 16384
+3 10 -5 24 0 0 0
+3 10 1 18 0 0 0
+1 2 12 17 0 0 0
+0 0 0 0 0
+mem:
+3 1 1
+16 1 1
+16 1 2
+16 1 2
+16 1 2
+16 1 1
+12 1 1
+1 1 1
+1 1 1
+1 1 1
+1 1 1
+13 1 1
+12 1 1
+13 1 1
+3 1 1
+1 1 1
+1 1 1
+12 1 1
+13 1 1
+1 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+22 1 6
+22 1 6
+34 1 1
+22 1 6
+22 1 6
+22 1 6
+22 1 4
+0 0 0

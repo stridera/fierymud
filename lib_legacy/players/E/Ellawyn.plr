@@ -1,0 +1,68 @@
+name: Ellawyn
+password: ElZrpJbqPm
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 9
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20858
+birthtime: 1730734143
+timeplayed: 2858
+lastlogintime: 1730737074
+host: 151.034.012.066
+height: 66
+weight: 146
+base_height: 66
+base_weight: 146
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 40/40
+mana: 0/0
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 89
+intelligence: 64
+wisdom: 72
+dexterity: 88
+constitution: 89
+charisma: 62
+experience: 6050
+quit_reason: 3
+saveroom: 0
+skills:
+402 52
+404 51
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+$
+gossips:
+1730736669 Thort gossips, 'congrats!!'
+$

@@ -1,0 +1,25 @@
+1
+vnum: 23
+location: 0
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: D 0
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~

@@ -1,0 +1,94 @@
+name: Neyah
+password: NeMZnmoQZ3
+prompt: -
+autoinvis: 0
+sex: 2
+class: 18
+race: 0
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20463
+birthtime: 1677088078
+timeplayed: 4245
+lastlogintime: 1677092592
+host: 108.053.040.203
+height: 62
+weight: 121
+base_height: 62
+base_weight: 121
+base_size: 2
+natural_size: 2
+alignment: 24
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 16
+loadroom: 3054
+lastlevel: 0
+hitpoints: 55/51
+mana: 1/0
+move: 147/154
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 62
+wisdom: 73
+dexterity: 97
+constitution: 92
+charisma: 52
+cash: 0 15 120 133
+experience: 33000
+quit_reason: 1
+saveroom: 3054
+skills:
+401 80
+403 80
+408 72
+415 50
+416 50
+421 60
+438 50
+443 50
+444 50
+463 50
+464 61
+465 50
+493 80
+0 0
+trophy:
+1 8603 2.000000
+1 8608 1.000000
+1 8613 2.000000
+1 8606 1.000000
+1 8605 3.000000
+1 36001 3.000000
+1 8001 1.000000
+1 8014 1.000000
+1 8016 1.000000
+1 8023 1.000000
+1 8002 1.000000
+1 8022 1.000000
+1 8000 1.000000
+1 36004 2.000000
+1 36003 4.000000
+1 36002 8.000000
+1 8013 3.000000
+0 0 0
+tells:
+1677089510 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1677088147 Chinok gossips, 'welcome Neyah'
+1677088158 Chinok gossips, 'yell if you need any help'
+1677088581 Chinok gossips, 'you should have been born with a map'
+1677088601 Chinok gossips, 'if that don't help, let me know'
+1677089493 Chinok gossips, 'gratz on 3 Neyah!'
+1677091201 Chinok gossips, 'they are scavengers, he probably just picked it up .. then wore it all'
+1677091605 Someone gossips, 'oooo boy first hide above 900'
+1677091639 Chinok gossips, 'nice'
+1677092574 Chinok gossips, 'gratz on 4!'
+$

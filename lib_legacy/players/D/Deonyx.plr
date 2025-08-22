@@ -1,0 +1,75 @@
+name: Deonyx
+password: DexJ6bQ2V6
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19265
+birthtime: 1510232909
+timeplayed: 1454
+lastlogintime: 1684417626
+host: 188.082.077.009
+height: 60
+weight: 163
+base_height: 60
+base_weight: 163
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 23/23
+mana: 1/0
+move: 106/106
+damroll: 3
+hitroll: 3
+strength: 76
+intelligence: 70
+wisdom: 84
+dexterity: 97
+constitution: 74
+charisma: 63
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+493 50
+0 0
+tells:
+1578098720 @WChinok@W tells you, 'thanks! will do@W'@0
+1578098907 @WChinok@W tells you, 'thanks -- LATER@W'@0
+$
+gossips:
+1578098389 Chinok gossips, 'we do usually have some regulars that show up in the next hour or so...'
+1578098424 Chinok gossips, 'ah, after midnight already!'
+1578098432 Chinok gossips, 'assuming UK :)'
+1578098466 Chinok gossips, 'I work for -- umm lets say a large bank out of the UK, so I tend to work a lot of UK hours.'
+1578098492 Chinok gossips, 'if you're using mudlet (I assume you are) map should be on the right... '
+1578098502 Chinok gossips, 'under the 'chat' window'
+1578098540 Chinok gossips, 'cool. thanks'
+1578098577 Chinok gossips, 'doing OK on staff right now, need players :)'
+1578098631 Chinok gossips, 'yeah, Strider has been on there, we had a discord channel specifically for fiery for a bit, but it kinda died out.'
+1578098635 Chinok gossips, 'will check it out.'
+$

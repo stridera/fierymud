@@ -1,0 +1,142 @@
+name: Minty
+password: MiMB9HVsNh
+currenttitle: Teddy-Bear
+description
+This half-elf has her long brown hair in a ponytail.
+Her green eyes sparkle mischieviously.
+
+~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 9
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19489
+birthtime: 1570227909
+timeplayed: 64226
+lastlogintime: 1644012466
+host: 076.184.241.147
+height: 70
+weight: 150
+base_height: 70
+base_weight: 150
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 10
+loadroom: 3054
+lastlevel: 0
+hitpoints: 88/88
+mana: 1/0
+move: 103/106
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 86
+wisdom: 92
+dexterity: 74
+constitution: 79
+charisma: 74
+cash: 15 92 78 126
+experience: 298166
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 1000
+416 1000
+423 80
+424 75
+438 50
+443 50
+444 69
+451 74
+457 67
+458 54
+459 50
+460 53
+462 51
+463 74
+466 50
+0 0
+trophy:
+1 16300 0.250000
+1 16303 1.500000
+1 16310 0.250000
+1 16105 0.250000
+1 16110 5.000000
+1 16103 0.500000
+1 16106 0.750000
+1 2004 0.500000
+1 8001 0.500000
+1 8002 0.500000
+1 8013 0.500000
+1 8000 1.000000
+1 8021 1.500000
+1 16111 0.750000
+1 16107 3.583333
+1 2002 0.250000
+1 2001 0.250000
+1 2005 1.000000
+1 2003 2.583333
+1 8023 0.750000
+1 8011 1.750000
+0 0 0
+tells:
+1580855667 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1580855667 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1580855667 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1590525728 @WGilgal@W tells you, 'list@W'@0
+1618525816 @WDaedela@W tells you, 'I hear you like pets@W'@0
+1618525837 @WDaedela@W tells you, 'Do you have a favorite?@W'@0
+1618525880 @WDaedela@W tells you, 'well good thing a wolf is already available!@W'@0
+1618528801 @WGriffette@W tells you, 'hi@W'@0
+1644011232 @WMeina@W tells you, 'https://DigitalCookie.GirlScouts.org/scout/evamarie66375@W'@0
+1644011820 @WMeina@W tells you, 'https://DigitalCookie.GirlScouts.org/scout/evamarie66375@W'@0
+$
+gossips:
+1644011363 Daedela gossips, 'but so totally worth it'
+1644011393 Daedela gossips, 'girl scout cookie season is dangerous...  My husband and I typically buy 45-50 boxes a year D:'
+1644011418 Astrid gossips, 'is that all ?\'
+1644011431 Astrid gossips, 'my wife buys a year supply'
+1644011449 Daedela gossips, 'she buys more than that??'
+1644011478 Astrid gossips, 'i have seen her walk up to a table and the girls ask her how many boxes she would like and she asked how many in a case?'
+1644011500 Astrid gossips, 'no i am not playing...'
+1644011508 Daedela gossips, 'yeah, we do the same haha'
+1644011862 Meina gossips, 'I think last year we ended up with 2 cases of each kind of cookie easily.'
+1644012343 Meina gossips, 'Good job posting on the board Minty!'
+$
+mem:
+16 0 5
+16 1 5
+16 1 5
+13 1 5
+1 0 3
+3 0 9
+0 0 0
+aliases:
+topetshop d
+k cas 'cure light' $*
+0

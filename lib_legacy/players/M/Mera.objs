@@ -1,0 +1,3385 @@
+1
+vnum: 16201
+location: 0
+values:
+0
+3000
+3000
+0
+0
+0
+0
+~
+flags: ag
+name: sceptre rod kings golden
+shortdesc: a golden sceptre
+desc: A golden sceptre glitters in the light.
+type: 1
+weight: 1.20
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+17 3
+~
+extradesc: sceptre rod kings
+The sceptre is made of pure gold, and is encrusted in jewels. Intricate carvingsdepicting wings snakes decorate this majestic rod.~
+~~
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 5201
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 7002
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant zadash sword
+shortdesc: a silver sword pendant
+desc: A pendant shaped like a sword lies here.
+type: 8
+weight: 0.20
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+applies:
+1 1
+24 -2
+~
+~~
+vnum: 12500
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gk
+name: amulet aegis shield protection
+shortdesc: an Aegis amulet
+desc: A shield shaped amulet here seems to have failed to protect its previous user.
+type: 11
+weight: 0.30
+cost: 3000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 5
+applies:
+17 5
+~
+extradesc: amulet aegis shield protection
+A polished silver and gold checkered shield is attached to a fine silver chain.
+The amulet is about the size of an eyeball, and shimmer faintly in the light.
+  
+~
+~~
+vnum: 1040
+location: 5
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: gA
+name: breastplate odd-breastplate-gaia breast-plate
+shortdesc: &0&3a breastplate of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3An odd breastplate lies here.&0
+type: 9
+weight: 14.00
+cost: 0
+timer: 5
+level: 1
+effects: 0 0 0
+wear: 9
+applies:
+24 -5
+~
+extradesc: odd-breastplate-gaia breast-plate
+&0This odd looking breastplate appears to be crafted from a piece of solid wood,
+chiseled and sanded with a powerful magic to perfection. Glowing vines weave
+themselves around the wooden breastplate, adding their steel-like endurance
+to its powerful frame.&0
+~
+~~
+vnum: 55524
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz
+name: wooden vines helm glade
+shortdesc: &3&bHelm of the Glade&0
+desc: A wooden helm lays here tangled in vines.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+applies:
+4 3
+~
+extradesc: wooden vines helm glade
+Unwilling to be dislodged, the vines have actually grown into and through the
+wood of this helm.  The helm itself appears to have been formed naturally, with
+very little if any human alteration.  Powerful natural magic emanates from this
+helm, indicating that it is more than what it seems.
+~
+~~
+vnum: 55527
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz
+name: furry goat-hide leather pants glade
+shortdesc: &3&bLeather Pants of the Glade&0
+desc: Furry goat-hide pants flap from a nearby tree.
+type: 9
+weight: 7.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+applies:
+2 4
+1 3
+~
+extradesc: furry goat-hide leather pants glade
+These are no ordinary goat-hide pants!  Strange, residual fae magic lingers on
+them, indicating that powerful magic resided in the creature these were taken
+from.  Sewn with great care, leggings like these are quite special indeed.
+~
+~~
+vnum: 55528
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz
+name: pressed birth leaf leather boots glade
+shortdesc: &3&bBoots of the Glade&0
+desc: A pair of pressed birch leaf leather boots rests next to a dying fire.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+applies:
+4 2
+1 2
+~
+extradesc: pressed birch leaf leather boots glade
+Several layers of pressed birch leaves have been sewn on to tanned hide to
+create these boots.  These boots still seem to be in sturdy condition, ready to
+handle any climate or condition, even though they have seen years of use.  Odd
+that the leaves still seem to be fresh, as if picked from a tree and stitched
+on this morning.
+~
+~~
+vnum: 55530
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz
+name: glowing mass silver spider webbing gloves glade
+shortdesc: &3&bGloves of the Glade&0
+desc: A glowing mass of silver spider webbing floats on the wind.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+1 3
+3 4
+~
+extradesc: glowing mass silver spider webbing gloves glade
+Crafted from the incredibly rare silk of the silver spider, webbing such as
+this is nearly indestructible, in addition to being able to hold the most
+powerful enchantments.  These gloves are both beautiful and blithe, as soft as
+the light that glimmers off them and as soft as the wind.
+~
+~~
+vnum: 55525
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz
+name: oak tubes vines leaves sleeves glade
+shortdesc: &3&bSleeves of the Glade&0
+desc: Hollowed out oak tubes lay here, hidden under vines and leaves.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+applies:
+5 2
+6 4
+~
+extradesc: oak tubes vines leaves sleeves glade
+Made from the holy oak, a symbol of strength and stability, these tubes are
+enhanced to act as natural armor.  Each sleeves is made of two smaller tubes,
+wrapped in leafy vines that act as threads and cords.  Not exactly a fashion
+statement, there is a raw natural beauty to these sleeves.
+~
+~~
+vnum: 53315
+location: 11
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: dragon-shield shield dragon's claw
+shortdesc: a dragon's cult shield
+desc: A shield with the image of a dragon's claw lies here.
+type: 9
+weight: 8.00
+cost: 2250
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 513
+applies:
+5 2
+2 2
+~
+extradesc: shield dragon's claw
+This white heater-shaped shield bears the symbol of the cult of Tri-Aszp
+on its front: a bleeding dragon's claw.  You notice that it is extremely
+well balanced.
+~
+~~
+vnum: 55029
+location: 12
+values:
+250
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: -0.00
+cost: 600
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    
+~
+~~
+vnum: 58018
+location: -1
+values:
+31
+3
+3
+15
+0
+0
+0
+~
+flags: pr
+name: goddess-ring goddess ring pearl pearl-ring
+shortdesc: the goddess' pearl ring
+desc: An exquisite pearl ring has somehow been lost here.
+type: 4
+weight: 0.10
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16387
+applies:
+24 -4
+4 2
+~
+extradesc: pearl goddess ring
+Kwan Yin's love of the sea is obvious in this exquisite ring's
+workmanship. The body of the ring is sea-silver, almost blue with memory
+of the ocean. One absolutely stunning pearl adorns the ring, with deep
+blue sapphires running otter-swift around the pearl.~
+~~
+vnum: 532
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: op
+name: ring dream realm ring-dream-realm ring-dream dream-realm quest
+shortdesc: the Ring of the Dream Realm
+desc: A powerful ring lies hidden in the shadows.
+type: 8
+weight: 0.10
+cost: 55000
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 3
+applies:
+3 4
+4 4
+~
+extradesc: ring dream realm
+Drawing power from the mysterious realm of slumber and dreams, this ring
+molds to your finger giving you a greater understanding of the world around
+you. The face of the ring is a constantly swirling milky cloud.
+~
+~~
+vnum: 6118
+location: -1
+values:
+0
+1
+0
+1
+0
+0
+0
+~
+flags: 0
+name: broom
+shortdesc: a broom
+desc: A broom lies flat on the ground here.
+type: 4
+weight: 0.90
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 24577
+extradesc: broom
+It's a plain-looking broom with broomstraw bound to its lower
+tip by withes.
+~
+~~
+vnum: 16309
+location: -1
+values:
+15
+3
+2
+29
+0
+0
+0
+~
+flags: 0
+name: wand black
+shortdesc: a black wand
+desc: A black wand is here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+extradesc: wand black
+   The wand is jet black in colour, and it seems to absorb all the light that
+falls on it. Etched on one end are the words :
+		May the eyes never set their sights on me.
+~
+~~
+vnum: 5207
+location: -1
+values:
+40
+28
+0
+0
+0
+0
+0
+~
+flags: ag
+name: potion red vial red-potion
+shortdesc: a red potion
+desc: A vial containing a red potion tempts you.
+type: 10
+weight: 0.20
+cost: 300
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+extradesc: potion red vial red-potion
+The strange looking vial holds a bright red magical liquid.
+~
+~~
+vnum: 5207
+location: -1
+values:
+40
+28
+0
+0
+0
+0
+0
+~
+flags: ag
+name: potion red vial red-potion
+shortdesc: a red potion
+desc: A vial containing a red potion tempts you.
+type: 10
+weight: 0.20
+cost: 300
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+extradesc: potion red vial red-potion
+The strange looking vial holds a bright red magical liquid.
+~
+~~
+vnum: 5207
+location: -1
+values:
+40
+28
+0
+0
+0
+0
+0
+~
+flags: ag
+name: potion red vial red-potion
+shortdesc: a red potion
+desc: A vial containing a red potion tempts you.
+type: 10
+weight: 0.20
+cost: 300
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+extradesc: potion red vial red-potion
+The strange looking vial holds a bright red magical liquid.
+~
+~~
+vnum: 16303
+location: -1
+values:
+75
+15
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potion green mistletoe brew
+shortdesc: the mistletoe brew
+desc: A light green potion lies among the grasses.
+type: 10
+weight: 0.75
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+extradesc: potion green mistletoe brew
+   You look at the messy green gunk in the crystal potion. You wonder who 
+would want to keep something like this.
+~
+~~
+vnum: 58406
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: tambourine gypsy-tambourine gypsy tam
+shortdesc: a gypsy tambourine
+desc: A gypsy tambourine plays itself sadly here.
+type: 8
+weight: 0.50
+cost: 1000
+timer: 0
+level: 70
+effects: d 0 0
+wear: 16385
+applies:
+24 -5
+~
+extradesc: tambourine gypsy
+This tambourine is made of two wooden discs pegged together. Through
+the gaps in between them, someone has thrust pairs of small brass
+circles. The slightest movement makes the circles jingle together,
+producing a wild, mysterious cacophony.
+~
+~~
+vnum: 58355
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flower paradise-flower paradise quest
+shortdesc: a paradise flower
+desc: A beautiful orange flower grows wild on a bush here.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+applies:
+18 1
+13 5
+~
+extradesc: paradise flower
+This perfect orange flower's petals are soft as silk. It exudes a
+strange, exotic fragrance that allures you, making you feel stronger,
+and somehow more alert to any dangers around you.
+~
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 2329
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: wreath bay leaves bay-leaf-wreath
+shortdesc: a wreath of bay leaves
+desc: A wreath of bay leaves lies here.
+type: 9
+weight: 0.75
+cost: 40
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 17
+applies:
+13 10
+~
+extradesc: wreath bay leaves bay-leaf-wreath
+Made of fresh-smelling bay leaves, this wreath's branches
+twine around themselves.
+~
+~~
+vnum: 18878
+location: -1
+values:
+99
+1
+1
+189
+0
+0
+0
+~
+flags: bgopwx
+name: wand wand-dead jet-black-wand shiftcorpse
+shortdesc: the wand of the dead
+desc: A jet black wand absorbs all light here.
+adesc:
+$n holds the wand and utters a single word, 'insetgpuyh'
+~
+type: 3
+weight: 0.40
+cost: 100000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: wand-dead jet-black-wand shiftcorpse
+About the length of a shortsword, this wand is rather large, but a tingling
+aura suggests that it may hold some unseen power.  Near one end of the wand, a
+ring of small runes wraps around the wand.
+~
+extradesc: runes
+The writing on the wand is in an ancient elvish script and difficult to read,
+but seems to describe the wand's contract and usage.  Tapping the wand's power
+requires a binding and sacrifice as part of the contract with an unidentified
+being of darkness.
+~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: g
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 1219
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: candy hard food
+shortdesc: a piece of sweet hard candy
+desc: A piece of sweet hard candy lies here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1219
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: candy hard food
+shortdesc: a piece of sweet hard candy
+desc: A piece of sweet hard candy lies here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 16006
+location: -1
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag
+name: orb ball crystal globe wind winds orb-of-winds
+shortdesc: the Orb of Winds
+desc: A crystal orb floats around you.
+type: 1
+weight: 0.50
+cost: 1000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+18 2
+20 -2
+~
+extradesc: orb
+   The orb is totally weightless and possesses a very bright glow. Gazing 
+into its crystalline depths, there seems to be insubstantial forms 
+floating within it. Before you can decide what lies within, you are 
+forced to look away, lest its light blinds you.
+~
+~~
+vnum: 11799
+location: -1
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: kD
+name: cloud sheet layer thin
+shortdesc: a thin sheet of cloud
+desc: A thin layer of cloud rests upon the ground here.
+type: 9
+weight: 0.01
+cost: 1400
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 9
+applies:
+1 -2
+6 4
+26 5
+5 -2
+~
+~~
+vnum: 1041
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gmnvwyzA
+name: armplates arm-plates-gaia pair-odd-armplates
+shortdesc: &0&3some arm plates of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3A pair of odd armplates lie here.&0
+type: 9
+weight: 9.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+applies:
+13 5
+~
+extradesc: arm-plates-gaia pair-odd-armplates
+&0A set of wooden armplates, each carved from a single piece of gleaming wood.
+Wild vines grow in and around the joints, their mystical lengths pulsating w
+with some hidden life.
+~
+~~
+vnum: 11811
+location: -1
+values:
+3
+4
+5
+11
+0
+0
+0
+~
+flags: adfprstD
+name: bolt energy small light
+shortdesc: a small bolt of energy
+desc: A bolt of light flickers rapidly here.
+type: 5
+weight: -2.00
+cost: 2000
+timer: 0
+level: 65
+effects: mn 0 0
+wear: 8193
+applies:
+2 3
+5 -2
+~
+~~
+vnum: 41120
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring sea sea-ring blue clear
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 9
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 30
+~
+extradesc: sea-ring blue ring water dolphin clear
+A series of playful dolphins chase each other around the perimeter of
+the sea-blue ring. It is difficult to determine exactly what the ring
+is made of -- clear, yet neither crystal nor glass. 
+~
+~~
+vnum: 36104
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag
+name: coral ring coral-ring
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lays on the ground.
+type: 9
+weight: 0.30
+cost: 200
+timer: 0
+level: 13
+effects: 0 0 0
+wear: 3
+applies:
+3 1
+24 -5
+~
+extradesc: coral ring coral-ring
+The coral ring seems totally flawless. It is made of the finest coral
+you have ever seen, and fades from a light pink on one side to white
+on the other. It is smoothed completely and coated with a clear substance
+so that it is not the least bit abrasive.~
+~~
+vnum: 5554
+location: -1
+values:
+0
+800
+800
+0
+0
+0
+0
+~
+flags: k
+name: crystal light 3bl_item small glowing
+shortdesc: a crystal
+desc: A small crystal lies here glowing.
+type: 1
+weight: 0.40
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 53317
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjop
+name: amulet silver dragon's eye
+shortdesc: a dragon's eye amulet
+desc: A silver amulet embedded with a dragon's eye lies here.
+type: 8
+weight: 1.50
+cost: 1100
+timer: 0
+level: 53
+effects: 0 0 0
+wear: 5
+applies:
+3 2
+2 -1
+28 53
+~
+extradesc: amulet silver eye
+This amulet is made of pure silver and in its center is embedded the huge
+eye of a dragon.  A gold chain allows it it be worn around the neck.
+~
+~~
+vnum: 18505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bgoprtD
+name: book tome discipline book-of-discipline
+shortdesc: the Book of Discipline
+desc: A great tome is before you.
+type: 8
+weight: 1.30
+cost: 80
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+applies:
+4 1
+3 1
+~
+extradesc: book tome book-of-discipline
+   Before you is the great Book of Discipline. Written in it are the 
+teachings of the great St. George, to whom this monastery is dedicated to.
+It is said that great wisdom is held by the tome.
+~
+~~
+vnum: 58431
+location: 13
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flowers plaited plaited-flowers belt
+shortdesc: some plaited flowers
+desc: Some plaited flowers form a sort of belt.
+type: 9
+weight: 0.75
+cost: 1000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+applies:
+6 3
+~
+extradesc: flowers belt plaited
+You see a loose belt made of braided wildflowers. The daisies and
+honeysuckles were connected by threading each flower through its
+neighbor somehow. They must be enchanted, for you cannot separate
+any of the flowers from the belt.
+~
+~~
+vnum: 55529
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz
+name: single small lotus blossom bracer glade
+shortdesc: &3&bBracer of the Glade&0
+desc: A single small lotus blossom sits on top of a twisted stem here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+applies:
+13 10
+18 2
+~
+extradesc: single small lotus blossom bracer glade
+The stem of this lotus actually goes nowhere, ending in a simple knot.  
+However, it could easily be wrapped around the wrist, creating a beautiful and
+exotic bracer.  The lotus is the ultimate representation of the ability of
+nature to produce beauty and perfection from the darkest of places.  Such an
+ever-growing blossom as this is created only for very powerful druids.
+~
+~~
+vnum: 16033
+location: 15
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracers charred pair odd black metal bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 16
+effects: 0 0 0
+wear: 4097
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred pair odd black metal bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    
+~
+~~
+vnum: 53017
+location: 16
+values:
+0
+2
+5
+6
+0
+0
+0
+~
+flags: goprstw
+name: staff fire yew knotted
+shortdesc: the Staff of Fire
+desc: A knotted yew staff leans against the wall.
+type: 5
+weight: 5.00
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+24 -3
+~
+~~
+vnum: 12550
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 11
+weight: 0.07
+cost: 250
+timer: 0
+level: 40
+effects: dx 0 0
+wear: 65537
+applies:
+4 2
+~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: mask imanhotep golden
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 9
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+applies:
+1 2
+4 2
+~
+extradesc: mask
+The mask is made of solid gold and is encrusted with jewels. It has an aura
+of power around it.~
+~~
+vnum: 35004
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring crow-feather
+shortdesc: a crow-feather earring
+desc: A black feather rests on the ground.
+type: 11
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+applies:
+5 1
+~
+extradesc: earring crow-feather
+A jet black feather is attatched by leather to a small silver hoop.  The hoop
+itself is tiny, and the feather seems to hang down from it.    
+~
+~~
+vnum: 17805
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: o
+name: tooth cougar earring
+shortdesc: a finely-polished cougar's tooth
+desc: A carnivore's tooth lies half hidden on the ground.
+type: 8
+weight: 0.10
+cost: 1000
+timer: 0
+level: 14
+effects: 0 0 0
+wear: 262145
+applies:
+2 2
+~
+extradesc: tooth cougar
+   The tooth looks like some sort of earring, as small runes are carved on its
+yellowed ivory surface.    
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some if its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 48104
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: h
+name: head shrivelled severed-head
+shortdesc: a shrivelled, severed head
+desc: The shrivelled head of a jungle savage lies here.
+type: 12
+weight: 8.00
+cost: 50
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1064961
+applies:
+3 1
+17 5
+~
+extradesc: shrivelled head severed
+This grotesque trophy makes you want to puke. Why would you ever want to
+look at such a thing??
+~
+~~
+vnum: 53305
+location: 127
+values:
+0
+3
+3
+5
+0
+0
+0
+~
+flags: gmo
+name: mace dragon fist
+shortdesc: a dragon's fist mace
+desc: A mace carved to look like a dragon's fist lies here.
+type: 5
+weight: 7.00
+cost: 2000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 8193
+applies:
+18 3
+19 3
+~
+extradesc: mace dragon's claw
+This mace is made of shiny metal similar to steel only much lighter.  The
+head of the mace is ornately carved to look like a curled dragon's claw.
+The detail and workmanship are outstanding.
+~
+~~
+vnum: 16033
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracers charred pair odd black metal bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 16
+effects: 0 0 0
+wear: 4097
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred pair odd black metal bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    
+~
+~~
+vnum: 48906
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: goprstwx
+name: cloak cloak-ancient-wisdoms thin-cloak
+shortdesc: the Cloak of Ancient Wisdoms
+desc: Some unfortunate soul has dropped a thin cloak here.
+type: 9
+weight: 3.00
+cost: 6000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 1025
+applies:
+3 5
+13 25
+~
+extradesc: cloak-ancient-wisdoms thin-cloak
+You behold a cloak made of some kind of thin, blood-red damasked silk 
+embroidered over with dark blue silk thread in cunning designs. The 
+collar is lined in thick, deep brown fur. You get the uncanny feeling 
+that this flowing cloak isn't quite what it seems. It seems to have a 
+sense of power to it. Some sense of intuition you didn't even know you 
+had tells you to handle this cloak carefully.
+~
+triggers:
+18887
+~
+~~
+vnum: 1041
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gmnvwyzA
+name: armplates arm-plates-gaia pair-odd-armplates
+shortdesc: &0&3some arm plates of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3A pair of odd armplates lie here.&0
+type: 9
+weight: 9.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+applies:
+13 5
+~
+extradesc: arm-plates-gaia pair-odd-armplates
+&0A set of wooden armplates, each carved from a single piece of gleaming wood.
+Wild vines grow in and around the joints, their mystical lengths pulsating w
+with some hidden life.
+~
+~~
+vnum: 49020
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: mor
+name: gloves sturdy leather heavy-duty
+shortdesc: sturdy leather gloves
+desc: A pair of heavy-duty leather gloves has dropped out of someone's back pocket.
+type: 9
+weight: 1.50
+cost: 250
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 129
+extradesc: gloves sturdy leather heavy-duty
+These are meant for heavy-duty work!~
+~~
+vnum: 1042
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gA
+name: legplates leg-plates-gaia pair-odd-legplates
+shortdesc: &0&3some leg plates of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3A pair of odd legplates lie here.&0
+type: 9
+weight: 13.50
+cost: 0
+timer: 5
+level: 1
+effects: 0 0 0
+wear: 33
+applies:
+13 5
+~
+extradesc: leg-plates-gaia pair-odd-legplates
+&0A pair of oddly carved legplates, designed to cover the upper and lower leg
+as well as the knee with a seperate plate. Vibrant green vines hold the armor
+together, keeping it securly in place while enforcing it with a mystical
+force.
+~
+~~
+vnum: 58414
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crown golden gypsy-crown gypsy
+shortdesc: the Gypsy Crown
+desc: A golden crown inlaid with emeralds rolls around here.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 17
+applies:
+5 8
+~
+extradesc: crown gypsy
+This crown seems pretty heavy. It's made of thick gold, and probably
+incredibly expensive. The gold is shaped into the traditional peaks of 
+crowns. A green emerald, marquise-cut, is set into each peak, and several 
+of them in various cuts adorn the very front of the crown's tallest peak,
+which would be centered over the wearer's forehead.
+~
+~~
+vnum: 48907
+location: 127
+values:
+30
+0
+0
+0
+0
+0
+0
+~
+flags: mnoprsvwxyz
+name: vest cailaran-vest green-vest
+shortdesc: the Cailaran Vest
+desc: A green vest lies folded here.
+type: 9
+weight: 8.00
+cost: 20000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 9
+applies:
+19 2
+~
+extradesc: cailaran-vest green-vest
+This is the Cailaran Vest, which you've heard of in stories, seen in 
+tapestries and paintings, even idly imagined seeking (and finding). It's 
+a long green vest, belted around the waist with a bronze clasp, and 
+flowing to the calves. The grass-green silk is lightly embroidered in 
+golden thread in a criss-cross pattern. The double-breasted collar is 
+embroidered as well, in golden four-pointed stars. It'd look perfect with 
+a silk blouse and breeches.
+~
+triggers:
+18887
+~
+~~
+vnum: 12500
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gk
+name: amulet aegis shield protection
+shortdesc: an Aegis amulet
+desc: A shield shaped amulet here seems to have failed to protect its previous user.
+type: 11
+weight: 0.30
+cost: 3000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 5
+applies:
+17 5
+~
+extradesc: amulet aegis shield protection
+A polished silver and gold checkered shield is attached to a fine silver chain.
+The amulet is about the size of an eyeball, and shimmer faintly in the light.
+  
+~
+~~
+vnum: 51073
+location: 127
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: agi
+name: sun light bright miniature-sun
+shortdesc: a Miniature Sun
+desc: A ball of bright light is enclosed in an orb of glass.
+type: 1
+weight: 5.00
+cost: 600
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+26 2
+18 2
+~
+extradesc: small sun minature glowing orb glass ball
+This small ball of light is giving off an immense amount of light.
+It is enclosed in some type of a glass orb that seems to keep the outside
+of the ball cool to the touch and manageable.  The inside glows like a small
+sun, radiating bright light in all directions.  If you have this item,
+luck, determination and the Gods are with you.
+~
+~~
+vnum: 53305
+location: 127
+values:
+0
+3
+3
+5
+0
+0
+0
+~
+flags: gmo
+name: mace dragon fist
+shortdesc: a dragon's fist mace
+desc: A mace carved to look like a dragon's fist lies here.
+type: 5
+weight: 7.00
+cost: 2000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 8193
+applies:
+18 3
+19 3
+~
+extradesc: mace dragon's claw
+This mace is made of shiny metal similar to steel only much lighter.  The
+head of the mace is ornately carved to look like a curled dragon's claw.
+The detail and workmanship are outstanding.
+~
+~~
+vnum: 53017
+location: 127
+values:
+0
+2
+5
+6
+0
+0
+0
+~
+flags: goprstw
+name: staff fire yew knotted
+shortdesc: the Staff of Fire
+desc: A knotted yew staff leans against the wall.
+type: 5
+weight: 5.00
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+applies:
+24 -3
+~
+~~
+vnum: 53018
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: mouwyz
+name: bracers coiled serpent
+shortdesc: the Serpent Bracers
+desc: Bracers formed like coiled serpents rest here.
+type: 9
+weight: 8.00
+cost: 1500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 257
+applies:
+1 2
+~
+~~
+vnum: 53018
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: mouwyz
+name: bracers coiled serpent
+shortdesc: the Serpent Bracers
+desc: Bracers formed like coiled serpents rest here.
+type: 9
+weight: 8.00
+cost: 1500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 257
+applies:
+1 2
+~
+~~
+vnum: 53000
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: gjlmnouvwyz
+name: sword long longsword flaming
+shortdesc: a flaming sword
+desc: A long sword engulfed in blue flame lies here.
+type: 5
+weight: 3.20
+cost: 2000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+3 3
+~
+~~
+vnum: 53001
+location: 127
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: jlmortuz
+name: breastplate breast plate mythril
+shortdesc: a mythril breastplate
+desc: A breastplate of gleaming white metal lies here.
+type: 9
+weight: 6.40
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 9
+applies:
+14 10
+~
+~~
+vnum: 53001
+location: 127
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: jlmortuz
+name: breastplate breast plate mythril
+shortdesc: a mythril breastplate
+desc: A breastplate of gleaming white metal lies here.
+type: 9
+weight: 6.40
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 9
+applies:
+14 10
+~
+~~
+vnum: 3033
+location: 127
+values:
+20
+1
+1
+3
+0
+0
+0
+~
+flags: 0
+name: cane mayor short mayors-cane questobject
+shortdesc: the mayor's cane
+desc: A short cane is resting here in the way.
+type: 3
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: cane mayor short mayors-cane questobject
+The mayor's cane is simply a short piece of wood to help him with walking in
+his old age.  It is probably worthless otherwise.    
+~
+triggers:
+6019
+~
+~~
+vnum: 1248
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: strawberry chocolate chocolate-covered covered delicious delicious-looking candy food
+shortdesc: a chocolate-covered strawberry
+desc: A delicious-looking piece of candy is sitting here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: strawberry chocolate chocolate-covered covered delicious candy
+A plump, fresh, red strawberry has been dipped into chocolate, looking
+absolutely tantalizing.  It smells slightly fruity and very sweet, inducing the
+salivary glands to work their hardest.    
+~
+~~
+vnum: 1248
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: strawberry chocolate chocolate-covered covered delicious delicious-looking candy food
+shortdesc: a chocolate-covered strawberry
+desc: A delicious-looking piece of candy is sitting here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: strawberry chocolate chocolate-covered covered delicious candy
+A plump, fresh, red strawberry has been dipped into chocolate, looking
+absolutely tantalizing.  It smells slightly fruity and very sweet, inducing the
+salivary glands to work their hardest.    
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55802
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: meat fresh rabbit warm bit piece food
+shortdesc: a warm bit of fresh rabbit meat
+desc: A warm piece of rabbit meat lies here.
+type: 19
+weight: 0.50
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: fresh rabbit meat warm bit piece
+It looks like raw meat.
+~
+~~
+vnum: 55802
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: meat fresh rabbit warm bit piece food
+shortdesc: a warm bit of fresh rabbit meat
+desc: A warm piece of rabbit meat lies here.
+type: 19
+weight: 0.50
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: fresh rabbit meat warm bit piece
+It looks like raw meat.
+~
+~~
+vnum: 55801
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horsemeat horse meat chunk food
+shortdesc: a chunk of horsemeat
+desc: A warm chunk of fresh horsemeat lies here getting dirty.
+type: 19
+weight: 1.00
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: horsemeat horse meat chunk food
+This warm bit of horsemeat has a gamey scent.
+~
+~~
+vnum: 55803
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tail deer-tail deer white
+shortdesc: a deer tail
+desc: A deer tail, disattached from its owner, lies here.
+type: 11
+weight: 0.08
+cost: 50
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 1048577
+applies:
+18 1
+~
+extradesc: deer tail deer-tail white
+It is a little white deer tail which has little strips of brown down the side.
+~
+~~
+vnum: 55802
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: meat fresh rabbit warm bit piece food
+shortdesc: a warm bit of fresh rabbit meat
+desc: A warm piece of rabbit meat lies here.
+type: 19
+weight: 0.50
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: fresh rabbit meat warm bit piece
+It looks like raw meat.
+~
+~~
+vnum: 16106
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: scimitar golden golden-scimitar
+shortdesc: a golden scimitar
+desc: A gleaming golden scimitar lies upon a large rock.
+type: 5
+weight: 2.00
+cost: 1000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+applies:
+19 2
+~
+extradesc: scimitar golden
+This weapon seems to be made of pure gold.  It is however extremely light and
+has a very good balance.  
+~
+~~
+vnum: 16106
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: scimitar golden golden-scimitar
+shortdesc: a golden scimitar
+desc: A gleaming golden scimitar lies upon a large rock.
+type: 5
+weight: 2.00
+cost: 1000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+applies:
+19 2
+~
+extradesc: scimitar golden
+This weapon seems to be made of pure gold.  It is however extremely light and
+has a very good balance.  
+~
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+applies:
+5 2
+~
+extradesc: saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  
+~
+~~
+vnum: 5207
+location: 127
+values:
+40
+28
+0
+0
+0
+0
+0
+~
+flags: ag
+name: potion red vial red-potion
+shortdesc: a red potion
+desc: A vial containing a red potion tempts you.
+type: 10
+weight: 0.20
+cost: 300
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+extradesc: potion red vial red-potion
+The strange looking vial holds a bright red magical liquid.
+~
+~~
+vnum: 58412
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: book book-of-kaaz lost-letters girr leatherbound
+shortdesc: a Book: The Lost Letters of Girr'Kaaz
+desc: A leatherbound book seems to be lying here.
+type: 12
+weight: 0.50
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+extradesc: book book-of-kaaz lost-letters girr leatherbound
+The book is leatherbound. It's quite old, obviously. When you open it,
+a cloud of fine dust flies up, tickling your nose and stinging your eyes. 
+Each of the yellowed, crumbling pages is written in the same crabbed, 
+faltering handwriting. It's quite difficult to read, but you puzzle it 
+out slowly. A Table of Contents says that the thin volume contains five 
+separate letters. It is divided into sections by a beautiful coloured 
+painting bound right into the book.
+  You can look at section1, section2, section3, section4, or section5. 
+~
+extradesc: section1
+This page's facing page features a beautiful illumined picture of a man
+facing a large group of demonic creatures. He holds up his glowing hands
+and seems to have no fear at all in his face. The text reads:
+
+  I have been traveling our realm for many years, and find myself
+  falling to anger at the blatant slap in the face issued to the
+  Order of Mielikki by Blackmourne's minions. Now, I know, being an
+  old priest who has been fighting Evil for many years, that I should
+  exercise discretion, that this will pass. But somehow, this latest
+  assault on our charter feels different, and I have no confidence
+  that the Gods of our land will protect us this time from the
+  Archenemy.
+
+  Morpheous, one of our patron gods, has been molding us for many
+  years under the tutelage of the wise Kaaz clan. I suppose it is
+  inevitable that our society, so deftly ruled and so wisely shepherded,
+  would become a cause for jealousy. In my prayers, I have sensed the
+  hatred and envy of the foul god Blackmourne. I pray he does not raise
+  his hand against the world -- for if he does, who can stop a god?
+  Not even the Kaaz clan could stand against all the evil a god may
+  cause.
+
+  Be ready for anything. The call to defend our gracious Goddess
+  may come at any time, and we must not allow Blackmourne to prevail.
+
+
+                                In Yr. Service
+                                Girr'Kaaz, High Priest of Mielikki
+~
+extradesc: section2
+This section is faced with a picture of a decayed, disgusting human 
+figure wearing a long, black silk robe. His face reveals no trace of 
+normal human gentleness and kindness -- the cloak of his many years hangs 
+very heavy on him. He's pure evil. The text on the next page reads:
+
+  I have been traveling our realm for many years, my brothers and
+  sisters in the faith, and I know that my learning is as yet not
+  complete. However, bear with the words of one who is still learning:
+
+  HOW can the Lord of Templace not demand the head of Ruin Wormheart
+  on a golden plate? How can he not see the perfidy and cruelty of this
+  supposed priest? Every day brings a new rumour and a new crime, and
+  every day we see more of those vile Undead Knights coming into our
+  beautiful cities. Wormheart is daring us to do something, my brothers.
+  I pray none of us acts before the right time has come.
+
+  Merely by reading the words of Ruin Wormheart's missives, one may
+  get a feeling for the hatred of this person and those around him.
+  He cloaks these evil, vile feelings in words of sweetness and light,
+  but none of those who worship the Goddess can fail to see the truth.
+
+  My warnings, brothers and sisters: Do not fall prey to this guild,
+  and do not allow Ruin to provoke you... Yet. Our time will come, and
+  we will wipe this degenerate guild from the face of the earth!
+
+                                In Yr. Service
+                                Girr'Kaaz, High Priest of Mielikki
+
+~
+extradesc: section3
+This section begins with a picture of the dwarven city, Anduin. The
+city's walls are in ruins; warriors, both human and not, fight for
+their very lives against a monstrous horde of demonic creatures. The
+text of the message reads:
+
+  Brethren,
+
+  I have traveled this realm for many years now, and I hope that
+  you all know me well enough to know that I would not waste your
+  time without good reason or without just cause. 
+
+  But this latest outrage demands our immediate attention! Those
+  who can, journey to the twin cities at greatest haste. Those who
+  cannot... Please favour your brethren with prayer and supplication.
+  We will have to make our stand, and we will have to be victorious,
+  or else our Guild will be wiped from the face of the earth.
+
+  The demons that Blackmourne has called forth have already destroyed
+  the city of the priests, and they have their eyes on the entire known
+  world. We must act now, or we will lose the crowning city of the
+  known realm to the foul creatures beyond the rift. Blackmourne has
+  gained an ally in the equally evil god Angus, and together, their
+  efforts in creating a rift between the demon plane, Gaar'laxxil, and
+  our own has shaken the very foundations of our world. The demons know
+  that should they win this war, they will feast on the fruits of our
+  very world. What folly have we bred in endeavouring to create good!
+
+                                In Yr. Service
+                                Girr'Kaaz, High Priest of Mielikki
+~
+extradesc: section4
+This last section begins with a barely-colored painting of what must
+be the City of Templace in its glory years. You recognize the Bronze
+Golems and the huge gates immediately. In front of it are three human
+figures, facing two huge humanoid figures. And above the two huge men
+flies the biggest dragon you have ever seen... The text of the letter
+reads:
+
+  My brethren, I write to you with unfortunate news. I was in the
+  city when the greatest atrocity of our age occurred, and it is with
+  the heaviest of hearts that I pass these words on to you. Templace
+  is destroyed, and it can never be rebuilt, and the devastation to
+  the nearby area will never be undone!
+
+  Angus and Blackmourne opened a rift in the very fabric of this plane, 
+  bringing forth horrors from beyond it that no one's mind could 
+  comprehend. But our fair Templace stood strong through all the 
+  attacks. In desperation, they called forth the great black dragon
+  Sagece from the Plane of Gaar'laxxil. As the beast stepped through
+  the rift, her delicate foot-claws grazed the surface of the lake near
+  Templace, and it turned black as coal in that moment.
+
+  Our leaders, the great Kaaz clan, defied the assembled evils of the
+  very gods, but the great dragon had help of the vilest sort -- from
+  the direct hand of Blackmourne himself. Girr'Kaaz's power was such that
+  without Blackmourne's aid, Sagece could never have defeated him. 
+  Morpheous was deeply saddened by the destruction of his high priest, but
+  imagine his horror when he went to claim the body, and saw that a wound  
+  that could only have come from the blade of his own godly brother! He
+  wept, my brethren. Morpheous disappeared from view with the sorry
+  remains of our leader. I do not know what will happen now, but the
+  skies seem to be holding their breaths. Pray, my brethren.
+
+                                In Yr. Service
+                                Elythaz, Cardinal of Templace-that-was 
+
+~
+extradesc: section5
+These pages of the book face a painting, beautifully rendered, of 
+some sort of aerial explosion on a scale unimaginable to mortal eyes.
+The text, written in a spidery script, reads:
+
+  My brethren, there is again peace in our land, but at such a cost I
+  hesitate to relay the story to you, for fear you will think I have
+  taken leave of my senses.
+
+  The All-Father himself, Metamorpho, appeared out of swirling mists
+  when the city of Templace was destroyed. He was burning with the most
+  holy wrath one can imagine, as terrible as an army with banners. He
+  took up Morpheus, Blackmourne, and Angus, and all was quiet, save for
+  the cries of the wounded. I tried my best to heal whom I could, but my
+  strength was nearly gone. Like everybody on the field -- demon, human,
+  and victim alike -- I carefully watched for the gods' return.
+
+  When they did return, our gracious lord Morpheous, still holding the
+  broken body of our Girr'Kaaz, performed a rite none have ever seen.
+  Elia was furious that she could not perform the funeral rites, but
+  she loves Morpheous as much as a human heart can love a god, so she
+  allowed Morpheous to set his binding upon the world. The sky sparkled
+  both with the power of the enchantment, and with the presence of many
+  other gods, some of whom were newborn, some old and dear presences.
+  They put their seal upon the ceremony. When it was over, Girr'Kaaz's 
+  body turned to a kind of faerie-light that scattered all over the
+  world. I write you only what I have seen, brethren.
+
+  The gods did disappear just afterward, though I think Morpheous gazed
+  upon the battlefield a short while. The Kaaz clan, what was left of it,
+  scattered as well. I have not seen any of them since the battle.
+
+  So that is where we are now, my brethren. Our mission is to rebuild
+  this sorely shattered world and finish erasing the evils brought here
+  by those whose greed nearly shattered everything we hold dear. If you
+  happen to meet one of the Kaaz, do not alarm them, but report their
+  movements to the Guild. I pray for their mental healing.
+
+                          In Yr. Service,
+                          Ausentharn, A Priest of the Northlands
+
+~
+~~
+vnum: 51022
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abgD
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 1.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+3 1
+4 1
+14 -100
+9 5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and you can see a piece of it is missing.  That little piece would probably
+protect the holder against most spells, the whole book can protect a town
+against all but the most concerted attacks.    
+~
+triggers:
+51009
+~
+variables:
+alreadyrun 1
+~
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 48500
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: map caelian caelia
+shortdesc: a map of the Caelian Region
+desc: A travel-stained map has been dropped here.
+type: 12
+weight: 0.10
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 1
+extradesc: map caelian caelia
+The Caelian Region  |           -Nikozia-
+by Kara-Sithri      |                  ..............
+--------------------               ..........................
+^^^    ^^^ [Anduin]        .................. Sunken Castle ...
+   Graveyard                .....................................
+ ^^^         ^^^         ..... The Northern Swamp ............
+      Temple ^^               ................................
+              ^^^          ..................................
+^^^  ^^ ^^^             .............. Mystwatch ........
+   ^^^^^   ^^^^           .....................
+   Old Merchant Trail       .. The Swamp ..........
+      ^^^   ^^^          .............      The
+Desert    ^^^                .........    Citadel     Misty
+      ^^^^                   [Mielikki]               Cavern    ^^^^^^^^
+       Abbey                                   %%%%%           ^^^^^^
+                The           Blue     %%%%%%%%%%%%%%%%%%%% Smugglers
+^^^^^^^      Farmlands         Fog    %%%%%%%%%%%%%%%%%%%%%%% ^^^  ^^^
+ ^^^^                              %% Twisted %%%%%%%%%%%%%%% ^^^^   ^^^
+                                    %% Forest %%%%%%%%%%%%%% ^^^^^
+~
+~~
+vnum: 48407
+location: 127
+values:
+90
+209
+44
+0
+0
+0
+0
+~
+flags: ag
+name: decanter crystal-decanter
+shortdesc: a crystal decanter
+desc: A decanter made of crystal is here, sparkling in the light.
+type: 10
+weight: 0.80
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3216
+location: 127
+values:
+20
+44
+-1
+-1
+0
+0
+0
+~
+flags: fg
+name: potion orange
+shortdesc: an orange potion
+desc: A small orange potion lies here.
+type: 10
+weight: 0.20
+cost: 1400
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: potion orange
+In the flask is an orange liquid that smells a lot like lemons.
+~
+~~
+vnum: 10037
+location: 127
+values:
+48
+44
+18
+0
+0
+0
+0
+~
+flags: 0
+name: cider skin large-skin
+shortdesc: a large skin
+desc: A large skin leaks discolored liquid here.
+type: 17
+weight: 3.87
+cost: 70
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: large-skin
+It appears to be sewn from the hide of a large animal--a caribou from
+the scent of it.
+~
+~~
+vnum: 55302
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: mittens decayed
+shortdesc: decayed mittens
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1006
+location: 127
+values:
+30
+30
+0
+0
+0
+0
+0
+~
+flags: 0
+name: waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 3.96
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 5205
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jerky beef beef-jerky food
+shortdesc: a piece of beef jerky
+desc: A piece of beef jerky gathers dust here.
+type: 19
+weight: 0.30
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: jerky beef beef-jerky food
+This is a fairly sizable, and rather salty looking, piece of jerky.
+~
+~~
+vnum: 20303
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: necklace tooth crocodile
+shortdesc: a crocodile-tooth necklace
+desc: A large crocodile-tooth necklace lies discarded here.
+type: 9
+weight: 1.20
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+applies:
+13 12
+~
+extradesc: necklace crocodile tooth
+This is a very interesting and intricate necklace.  It is made of an
+intricately braided green material and a has a large crocodile tooth at the
+very center.  It must have taken many hours to make this amazing necklace.    
+~
+~~
+vnum: 20303
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: necklace tooth crocodile
+shortdesc: a crocodile-tooth necklace
+desc: A large crocodile-tooth necklace lies discarded here.
+type: 9
+weight: 1.20
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+applies:
+13 12
+~
+extradesc: necklace crocodile tooth
+This is a very interesting and intricate necklace.  It is made of an
+intricately braided green material and a has a large crocodile tooth at the
+very center.  It must have taken many hours to make this amazing necklace.    
+~
+~~
+vnum: 16312
+location: -1
+values:
+15
+2
+2
+16
+0
+0
+0
+~
+flags: 0
+name: pipe druid
+shortdesc: a druid's pipe
+desc: A reed pipe lies among the bushes.
+type: 4
+weight: 1.00
+cost: 100
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+extradesc: pipe druid reed
+   The pipe is made of reeds you'd normally find on river banks. A haunting
+sound seems to emit from it as the wind blows past you.
+~
+~~
+vnum: 20306
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracelet snake-fang-bracelet small fangs
+shortdesc: a snake fang bracelet
+desc: A small bracelet made of snake fangs lies on the ground here.
+type: 9
+weight: 0.70
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 4097
+applies:
+19 1
+18 1
+1 1
+~
+extradesc: bracelet snake fang
+This bracelet is made out of a very durable weaved grass that has several
+spaced out snake fangs weaved into it.  The fangs are about an inch in length
+and give the bracelet a menacing look.  The grass is a dull green color and it
+is weaved tightly so it looks almost like it is one piece of grass.    
+~
+~~
+vnum: 58408
+location: -1
+values:
+5
+5
+-1
+0
+0
+0
+0
+~
+flags: a
+name: locket golden-locket golden filigree gold chain
+shortdesc: a golden locket on a filigree chain
+desc: A gold locket on a filigree chain lies here.
+type: 15
+weight: 0.10
+cost: 1200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+6 5
+~
+extradesc: golden locket chain filigree gold
+You've never seen such exquisite goldworking. This locket, on its
+whisper-thin golden link necklace, seems very old. The hinges on
+it are coming a bit loose, but it's still pretty tightly closed.
+~
+~~
+vnum: 58409
+location: -2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: portrait miniature-painting hand-painted-miniature-portrait
+shortdesc: a hand-painted miniature portrait
+desc: A hand-painted portrait the size of your palm lies here.
+type: 8
+weight: 0.40
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: portrait miniature-painting hand-painted-miniature-portrait
+The woman in this painting is amazingly beautiful, but in the same
+way that a deadly sword is beautiful. She's exactly like a sword --
+whipcord-lithe, slender, well-muscled, and seems as if she is about
+to strike. Her eyes seem incredibly intelligent and perceptive. The
+portrait is no bigger than the palm of your hand, making the artistry
+of the representation seem all the more amazing. 
+   The woman in the painting is looking right out at the viewer. As
+you watch, her full, lush lips move, and you hear words: "My little
+Frederick, remember that I am always watching over you." You hear no
+more.
+~
+~~
+vnum: 5516
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: holy symbol eldoria-trophy small white 3rd-eldorian-guard-symbol
+shortdesc: a holy symbol of the 3rd Eldorian Guard
+desc: A small white symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+applies:
+4 1
+~
+extradesc: holy symbol eldoria-trophy small white 3rd-eldorian-guard-symbol
+A mild feeling of benevolence radiates from this white medal.
+~
+~~
+vnum: 23821
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tiara gleaming sapphire sapphire-tiara
+shortdesc: a sapphire tiara
+desc: A gleaming tiara lies here.
+type: 11
+weight: 0.80
+cost: 2000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 17
+applies:
+17 3
+24 -5
+23 -5
+13 20
+~
+extradesc: tiara gleaming sapphire sapphire-tiara
+Very cold to the touch, this circlet is made of silver worked into angular
+designs and inset with a large, teardrop-shaped sapphire at the crown.  The
+silver gleams brightly, showing no sign of tarnish, and the sapphire is a true
+deep blue with an inner radiance all its own.    
+~
+~~
+vnum: 12500
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gk
+name: amulet aegis shield protection
+shortdesc: an Aegis amulet
+desc: A shield shaped amulet here seems to have failed to protect its previous user.
+type: 11
+weight: 0.30
+cost: 3000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 5
+applies:
+17 5
+~
+extradesc: amulet aegis shield protection
+A polished silver and gold checkered shield is attached to a fine silver chain.
+The amulet is about the size of an eyeball, and shimmer faintly in the light.
+  
+~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    
+~
+~~

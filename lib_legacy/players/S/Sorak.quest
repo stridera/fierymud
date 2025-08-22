@@ -1,0 +1,70 @@
+8 255 0
+14 255 8
+final_item 53458
+ward_count 5
+ward_53453 1
+ward_53455 1
+ward_53454 1
+ward_53456 1
+ward_53457 1
+room 16903
+10 255 0
+17 1 23
+5541_reward 1
+5557_reward 1
+5525_reward 2
+5533_reward 1
+5531_reward 1
+5527_reward 1
+5543_reward 1
+5515_reward 1
+5523_reward 1
+5539_reward 1
+5555_reward 1
+5519_reward 2
+5521_reward 1
+5512_trophies 10
+5514_trophies 6
+5517_reward 1
+5540_reward 1
+5504_trophies 43
+5506_trophies 32
+5510_trophies 22
+5508_trophies 32
+eg_faction 0
+bl_faction 200
+32772 4 2
+part neutral
+subclass_name pyromancer
+7 3 31
+55613_gems_acquired 1
+55668_gems_acquired 1
+55631_gems_acquired 1
+55351_armor_acquired 1
+55712_gems_acquired 1
+55379_armor_acquired 1
+55367_armor_acquired 1
+55375_armor_acquired 1
+55359_armor_acquired 1
+55355_armor_acquired 1
+55646_gems_acquired 1
+55602_gems_acquired 3
+55331_armor_acquired 1
+55371_armor_acquired 1
+55690_gems_acquired 1
+55363_armor_acquired 1
+55335_armor_acquired 1
+55343_armor_acquired 1
+55322_armor_acquired 1
+55583_gems_acquired 3
+55318_armor_acquired 1
+55579_gems_acquired 3
+55314_armor_acquired 1
+55326_armor_acquired 1
+55591_gems_acquired 3
+55575_gems_acquired 3
+55310_armor_acquired 1
+55571_gems_acquired 3
+55302_armor_acquired 1
+55306_armor_acquired 1
+55567_gems_acquired 3

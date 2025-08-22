@@ -1,0 +1,101 @@
+name: Etwel
+password: Et8p4v1WhT
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA %ih&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 2
+race: 11
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 15383
+birthtime: 1135127552
+timeplayed: 9787334
+lastlogintime: 1738199677
+host: 104.048.170.022
+height: 40
+weight: 138
+base_height: 40
+base_weight: 138
+base_size: 1
+natural_size: 1
+alignment: -8
+playerflags: glxyz
+effectflags: fkt 0 0
+prefflags: hknoxzC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+lastlevel: 12
+hitpoints: 427/873
+mana: 980/980
+move: 123/128
+damroll: 3
+hitroll: 6
+strength: 88
+intelligence: 84
+wisdom: 70
+dexterity: 92
+constitution: 100
+charisma: 62
+cash: 4 147 674 756
+bank: 1219 14939 44984 33294
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+409 1000
+410 600
+411 1000
+412 1000
+415 1000
+416 109
+420 1000
+421 1000
+431 50
+438 50
+443 116
+444 1000
+463 50
+464 1000
+465 669
+472 50
+476 1000
+478 1000
+494 103
+0 0
+trophy:
+1 16202 1.000000
+1 16204 3.000000
+1 16201 5.000000
+1 16200 5.000000
+1 16110 1.000000
+1 16107 1.000000
+1 18510 1.000000
+1 18509 1.000000
+1 53403 0.333333
+1 53410 0.666667
+1 53417 0.333333
+1 53402 0.583333
+1 53409 0.250000
+0 0 0
+tells:
+1738199181 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1738197460 Thort gossips, 'or maybe it just wasn't reported because you can still recall out.'
+1738197466 Discord gossips, 'glorious_gull_07269: I think I've been in at room but had a way to leave so never thought it was a bug'
+1738197475 Thort gossips, 'I didn't even know it was a bug, I was just chatting about it because it was my first time back in 25 years'
+1738197478 Discord gossips, 'glorious_gull_07269: Thought that was a design choice haha'
+1738197510 Discord gossips, 'venath.2005: Zaver has been playing for a long time though LOL'
+1738197531 Discord gossips, 'glorious_gull_07269: I think something similar at griffin isle but Dae fixed that one for me'
+1738197819 Discord gossips, 'Daedela: It's a conditional bug.  I run the Barrows frequently, but I never noticed because I never encountered the conditions for it TO bug'
+1738198226 Thort gossips, 'what's the condition? wanting the treasure? lol'
+1738198394 Discord gossips, 'Daedela: Yes haha'
+1738198405 Discord gossips, 'Daedela: No, not really'
+$

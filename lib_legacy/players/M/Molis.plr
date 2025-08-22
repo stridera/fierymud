@@ -1,0 +1,111 @@
+name: Molis
+password: Mo0WPTmczq
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 0
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19664
+birthtime: 1595343251
+timeplayed: 39269
+lastlogintime: 1719331478
+host: 069.200.233.069
+height: 63
+weight: 177
+base_height: 63
+base_weight: 177
+base_size: 2
+natural_size: 2
+alignment: 13
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 38/38
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 74
+intelligence: 98
+wisdom: 99
+dexterity: 80
+constitution: 63
+charisma: 56
+cash: 10 100 264 0
+bank: 1000000 0 0 0
+experience: 65999
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 53
+424 83
+438 50
+443 50
+444 50
+447 60
+451 60
+452 77
+453 50
+459 50
+460 51
+462 50
+464 68
+0 0
+trophy:
+1 3066 1.000000
+1 1601 3.000000
+1 8023 1.000000
+1 36003 1.000000
+1 8010 1.000000
+1 8011 2.000000
+1 8021 2.000000
+1 8015 2.000000
+1 8016 1.000000
+1 8002 2.000000
+1 3500 4.000000
+1 3502 7.000000
+1 16900 1.000000
+1 3501 3.000000
+1 3503 4.000000
+1 7051 2.000000
+1 7001 1.000000
+0 0 0
+tells:
+1597869788 @WChinok@W tells you, 'it teleports you to a random place anywhere in the world@W'@0
+1597869823 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1597869825 @WChinok@W tells you, 'while a scroll of teleport, will only teleport you to a random room in the area @W'@0
+1598910500 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1598910508 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1598910527 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1598910532 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1605292329 @WA half-elven maid@W tells you, 'Sorry, I don't stock that item.@W'@0
+1631733850 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1631733892 @WBigby@W tells you, 'What do you want to buy?@W'@0
+$
+gossips:
+1630957051 Chinok gossips, 'afka min... '
+1630957443 Chinok gossips, 'the first 10 levels are more to get you used to how things work -- yes rocky foothills is too hard.'
+1630957467 Chinok gossips, 'after level 5, you can start going east of town, killing hedgehogs, and in citadel '
+1631733699 Chinok gossips, 'Hi Molis'
+1636903964 Chinok gossips, 'hey molis'
+1636904017 Tensel gossips, 'hey'
+1636904133 Tensel gossips, 'nothing, just saying het.'
+1636904133 Tensel gossips, '*hey'
+1637349097 Chinok gossips, 'hey Molis'
+1719331104 Chinok gossips, 'hi Molis'
+$

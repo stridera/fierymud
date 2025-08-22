@@ -1,0 +1,78 @@
+name: Crysis
+password: CrmMBKv2uM
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19231
+birthtime: 1505167940
+timeplayed: 3310
+lastlogintime: 1505514636
+host: 071.038.027.038
+height: 65
+weight: 151
+base_height: 65
+base_weight: 151
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 21/21
+mana: 1/0
+move: 118/118
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 100
+wisdom: 88
+dexterity: 86
+constitution: 82
+charisma: 66
+cash: 0 4 14 19
+experience: 4803
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 55
+438 50
+443 50
+444 50
+447 54
+451 57
+452 51
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 18000 0.666667
+1 18004 0.333333
+1 18006 0.333333
+1 18005 0.333333
+1 18001 0.333333
+1 18007 1.000000
+0 0 0
+mem:
+32 0 9
+0 0 0

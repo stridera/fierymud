@@ -1,0 +1,2102 @@
+1
+vnum: 3031
+location: 0
+values:
+1
+250
+116
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 1601
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: foot lucky-rabbit's-foot
+shortdesc: a lucky rabbit's foot
+desc: A lucky rabbit's foot is covered in dirt on the ground.
+type: 9
+weight: 0.23
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 2
+~
+extradesc: lucky-rabbit's-foot
+Quite large for a rabbit's foot, the previous owner must have been rather
+fearsome to have produced such a magnificient specimen.  The last owner must
+not have been very lucky, however, having lost such a vital appendage.  Some
+flecks of blood stick in the matted rabbit's hair around the area from which
+the leg once protruded.  A thick strand of twine runs through the foot,
+allowing it to be worn.~
+~~
+vnum: 6214
+location: 5
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: dress pretty-blue-linen-dress blue-linen-dress
+shortdesc: a pretty &4blue linen&0 dress
+desc: A blue linen dress lies on the ground.
+type: 9
+weight: 2.10
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+6 1
+~
+extradesc: pretty-blue-linen-dress blue-linen-dress
+This modest dress is sewn from regular linen, and dyed a light medium- blue.  
+It has three-quarter sleeves and a calf-length hem, with a circular keyhole
+collar.~
+~~
+vnum: 55391
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: helm acolyte-helm magical-thin-plate magic
+shortdesc: an acolyte helm
+desc: A slightly magical thin plate helm lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+14 5
+13 7
+~
+extradesc: helm acolyte-helm magical-thin-plate magic
+Newly forged, this magical metal helm was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.~
+~~
+vnum: 1019
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz 0
+name: pants crude-leather-pants
+shortdesc: crude leather pants
+desc: Some crude leather pants lie here.
+type: 9
+weight: 8.60
+cost: 250
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 -1
+~
+extradesc: crude-leather-pants
+Crafted of a crude leather, and studded with metal knobs for added protection
+against physical attacks.  They are a bit heavy, and far too encumbering for a
+sorcerer to wear.~
+~~
+vnum: 55395
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: boots acolyte-boots magical-thin-metal-boots magic
+shortdesc: acolyte boots
+desc: A set of sligtly magical thin metal boots lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 10
+13 4
+~
+extradesc: acolyte-boots slightly-magical-thin-metal-boots
+Newly forged, these magical metal boots were made to reflect your acceptance to
+your god.  Treated well, they will carry you through your beginning trials and
+on to greater wisdom.~
+~~
+vnum: 55397
+location: 9
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: gauntlets acolyte-gauntlets magical-thin-plate-gauntlets magic
+shortdesc: acolyte gauntlets
+desc: A slightly magical set of thin plate gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+2 2
+13 5
+~
+extradesc: acolyte-gauntlets slightly-magical-thin-plate-gauntlets
+Newly forged, these magical metal gauntlets were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.~
+~~
+vnum: 55392
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: vambraces acolyte-vambraces magical-thin-metal-vambraces magic
+shortdesc: acolyte vambraces
+desc: A slightly magical set of thin metal vambraces lies here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 2
+13 7
+~
+extradesc: vambraces acolyte-vambraces magical-thin-metal-vambraces magic
+Newly forged, these magical metal vambraces were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.~
+~~
+vnum: 58801
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: m 0
+name: cloak tattered-wolf-fur-cloak tattered-pile-fur
+shortdesc: a tattered wolf fur cloak
+desc: You see a tattered pile of fur here.
+type: 9
+weight: 5.00
+cost: 75
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: cloak tattered-wolf-fur-cloak tattered-pile-fur
+The cloak is heavy and looks very warm, except for some ripped spots. The 
+holes might have come from some sharp object, and though it's been 
+carefully cleaned, probably by some freezing soldier, you can see the 
+remains of bloodstains around the holes' edges. You consider wearing it 
+yourself, since it still looks somewhat servicable.~
+~~
+vnum: 17204
+location: 13
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cord golden-cord
+shortdesc: the golden cord
+desc: A golden cord lies on the ground.
+type: 9
+weight: 0.50
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+3 1
+13 -1
+~
+extradesc: cord golden-cord
+You look upon a length of cord made of finely spun gold threads.  It seems to
+emanate a strange aura.~
+~~
+vnum: 55396
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmoprstwxyz 0
+name: bracer acolyte-bracer magical-thin-metal-bracer magic
+shortdesc: an acolyte bracer
+desc: A slightly magical thin metal bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 5
+6 2
+~
+extradesc: acolyte-bracer slightly-magical-thin-metal-bracer
+Newly forged, this magical metal bracer was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.~
+~~
+vnum: 58805
+location: 16
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: gmo 0
+name: mace broken-dragon's-fist-mace broken-dragons-fist-mace
+shortdesc: a broken dragon's fist mace
+desc: A broken dragon's fist mace lies here awaiting repair.
+type: 5
+weight: 1.40
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: mace broken-dragon's-fist-mace broken-dragons-fist-mace
+You've heard stories about this weapon, barely whispered stories told by
+warriors who were lucky to escape alive from the Dragon Cult, located far from
+here.  It's made of something that looks like steel, but is much lighter, lucky
+for you!  The end of the mace is shaped like a dragon's slightly clenched
+clawed forefoot.  But it's fallen on hard times--its handle is broken, and its
+surface chipped slightly, affecting its heft and balance.  It's still quite
+usable, though no experienced warrior would be interested in wielding it, since
+its power is greatly reduced because of its condition.  But a junior trainee
+would be thrilled to have this once-impressive weapon.~
+~~
+vnum: 8032
+location: 25
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale black-drakling-scale small-black-scale
+shortdesc: a &9&bblack&0 drakling scale
+desc: A small black scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 10
+~
+~~
+vnum: 58820
+location: 26
+values:
+12
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pouch belt-pouch leather-beltpouch leather-belt-pouch
+shortdesc: a belt pouch
+desc: A leather belt pouch lies here on the ground.
+type: 15
+weight: 0.50
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+17 1
+~
+extradesc: pouch belt-pouch leather-beltpouch leather-belt-pouch
+This leather belt has a cloth pouch attached to it.  The belt's buckle is
+engraved with the insignia of the Ice Warrior Academy near Ickle -- a polar
+bear gripping a green-and-gold banner in its mouth.~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem tourmaline-dust
+shortdesc: some tourmaline dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem crushed-malachite
+shortdesc: a crushed malachite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55577
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem crushed-citrine
+shortdesc: a crushed citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 58814
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo 0
+name: boots nice-warm-winter-boots
+shortdesc: a nice warm pair of winter boots
+desc: A nice pair of warm boots rest here.
+type: 9
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: boots nice-warm-winter-boots
+These warm boots are made of thick leather with the fur side facing inward.  A
+thong ties each one shut at the top, keeping warmth inside.~
+~~
+vnum: 30207
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: boots lightweight-brown-boots light-weight stained-leather-boots
+shortdesc: lightweight brown boots
+desc: A pair of stained leather boots stands off to one side.
+type: 9
+weight: 2.00
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: boots lightweight-brown-boots light-weight stained-leather-boots
+These boots are made of lightweight brown leather.  Reinforcement around the
+toe and heel provides some protection, but they are better at enhancing agility
+than stopping sword-blows.~
+~~
+vnum: 58807
+location: -1
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: nu 0
+name: dagger practice-dagger blade knife
+shortdesc: a practice dagger
+desc: A practice blade leans against a wall.
+type: 5
+weight: 0.75
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+26 1
+~
+extradesc: practice-dagger blade
+This blade has obviously seen better times.  Its edge has dozens of little
+nicks and imperfections in it.  The handle is wrapped in cheap strips of
+leather; numerous sweat stains cover it.~
+~~
+vnum: 55758
+location: -1
+values:
+0
+1
+5
+11
+0
+0
+0
+~
+flags: nrsuv 0
+name: dagger small-white-dagger
+shortdesc: a small white dagger
+desc: A small white dagger lies here.
+type: 5
+weight: 0.75
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 55760
+location: -1
+values:
+0
+2
+3
+11
+0
+0
+0
+~
+flags: nrsuv 0
+name: dagger small-black-dagger
+shortdesc: a small black dagger
+desc: A small black dagger lies here.
+type: 5
+weight: 0.75
+cost: 0
+timer: 0
+level: 6
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 55202
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: bracelet bronze-bracelet brown-metal-band
+shortdesc: a bronze bracelet
+desc: A brown metal band has been discarded here.
+type: 9
+weight: 1.30
+cost: 300
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+extradesc: bronze-bracelet brown-metal-band
+It is a simple and primitive narrow sheet of bronze bent into a bracelet.  It
+offers some simple protection.~
+~~
+vnum: 55203
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: bracelet iron-bracelet crudely-forged-band-red-metal
+shortdesc: an iron bracelet
+desc: A crudely forged band of red metal lies here.
+type: 9
+weight: 1.40
+cost: 800
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+extradesc: iron-bracelet crudely-forged-band-red-metal
+This crudely forged band of heavy iron looks to be very protective.  It is
+inscribed with many mysterious runes.~
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem amethyst-dust
+shortdesc: some amethyst dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem amber-dust
+shortdesc: some amber dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55302
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: mittens decayed-mittens armor
+shortdesc: decayed mittens
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mittens decayed-mittens armor
+These mittens are decayed beyond use.  Perhaps the Sorcerer guild master will
+know what to do with them.~
+~~
+vnum: 55302
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: mittens decayed-mittens armor
+shortdesc: decayed mittens
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mittens decayed-mittens armor
+These mittens are decayed beyond use.  Perhaps the Sorcerer guild master will
+know what to do with them.~
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: citrine gem citrine-dust
+shortdesc: some citrine dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map mielikki map-of-mielikki
+                  Mielikki, the forest town, by Kara-Sithri
+  
+                                                             &3***POINTS OF INTEREST***&0
+          &3#&0              &6&b2&0                                 |&6&b1&0: Temple to Mielikki
+          &9&b|              |&0                                 |&6&b2&0: Altar to Mielikki
+          &9&bSB&0         &B&1&b3&0 - &6&b1&0   &1???&0        &517&0 - &9&bNC&0            |&B&1&b3&0: Cleric Guild
+          &9&b|              |    |              |&0             |&B&1&b4&0: Warrior Guild
+      &521&0  &9&bSB        TC - TC - TC             NC -&0 &518&0       |&B&1&b5&0: Rogue Guild
+      &9&b|   |         |    |    |              |&0             |&B&1&b6&0: Sorcerer Guild
+      &2&b7&0 &9&b- SB -&0 &38&0    &9&bTC -&0 &C&4&b*&0 &9&b-  TC&0   &515&0 - &B&1&b4&0    &9&bNC -&0 &519&0       |&2&b7&0: Forest Inn
+          &9&b|         |    |    |    |         |&0             |&38&0: Post Office
+ &3#&0 &9&b- SQ - WM - WM - TC - TC - TC - EM - EM - CS - EM -&0 &3#&0   |&59&0: Drako's Bronze Shop
+     &9&b|          |   |         |              |&0             |&510&0: Garm's Shield Emporium
+ &59&0 &9&b- SR -&0 &510&0    &513&0  &514&0 &9&b-&0 &B&1&b5&0    &9&bDA - DA - DA   SC&0            |&511&0: Shauna's Hosue of Iron
+     &9&b|          |                  |    |    |&0             |&512&0: Beowyn's Steel
+&511&0 &9&b- SR -&0 &512&0    &B&1&b6&0        &3&b21&0        &516&0  &9&bdump  SC -&0 &520&0       |&513&0: Bigby's House of Magic
+     &9&b|                   |                   |&0             |&514&0: Fine Jewelry
+    &9&bNCP - NC - NC - NC - NC - NC - NC - NC - NCS&0           |&515&0: Santiago's Weapons
+          &9&b|              &0&1#&0&9&b         |&0                       |&516&0: Sloshed Squirrel Tavern
+     &9&bRP - RP - RP   TH - TH - TH   WW&0                      |&517&0: Helena's Bakery
+     &9&b|    |    |    |    |    |    |&0                       |&518&0: Aaron's General Store
+     &9&bRP -&0 &C&4&b*&0  &9&b- RP   TH - TH - TH   WW -&0 &1???&0                |&519&0: Lisa's House of Leather
+     &9&b|    |    |                   |&0                       |&520&0: Freddy's Toy Shop
+     &9&bRP - RP - RP                  WW&0                      |&521&0: Cartographer's Room
+          &9&b|                        |&0                       |&3&b22&0: Bank
+         &9&bGrey&0                      &3#&0                       |&C&4&b*&0: Fountain
+        &9&bCastle&0                                             |&3#&0: City Gates     
+                                                                 |&1???&0: New Adventures! 
+ 
+                                                               &9&b***ROADS***&0
+                                                           |SB: Sleepy Blvd.
+                                                           |SQ: Smelter's Sq.
+                                                           |WM: West main St.
+                                                           |TC: Town Center
+                                                           |EM: East Main St.
+                                                           |CS: Commerce Sq.
+                                                           |NC: N. Commerce Ave.
+                                                           |SC: S. Commerce Ave.
+                                                           |DA: Dark Alley
+                                                           |SR: Smelter's Row
+                                                           |NCP: New Castle Plaza
+                                                           |NC: New castle Rd.
+                                                           |NCS: New Castle Sq.
+                                                           |WW: Windy Way
+                                                           |RP: Royal Plaza
+                                                           |TH: Town Hall~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild~
+~~
+vnum: 6216
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: ribbon blue-hair-ribbon blue-silk-hair-ribbon
+shortdesc: a &4blue&0 hair-ribbon
+desc: A blue silk hair-ribbon flutters over the ground.
+type: 9
+weight: 0.05
+cost: 15
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+6 2
+~
+extradesc: blue-hair-ribbon blue-silk-hair-ribbon
+It is a simple blue hair ribbon.~
+~~
+vnum: 61504
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agA 0
+name: heart fiery-wisp-heart throbbing-glowing-orange-ember questobject
+shortdesc: a fiery wisp heart
+desc: A slowly throbbing, glowing orange ember is burning a hole in the ground.
+type: 12
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: heart fiery-wisp-heart throbbing-glowing-orange-ember questobject
+This tiny burning mote shines brightly with an orangey-yellow light.  Its light
+is so bright as to hurt the eyes, yet it is only a bit warm to the touch.  
+Though difficult to look at, it feels like a hard little pea, or perhaps a bead
+of glass.    ~
+~~
+vnum: 120
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: crumbs handful food
+shortdesc: a handful of crumbs
+desc: Some crumbs lie in the corner.
+type: 19
+weight: 0.08
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: crumbs handful food
+A bunch of stale bits of bread lie here.  They look as though they could
+provide a modicum of sustenance...  To a very hungry person, that is.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 16903
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: mo 0
+name: club large-bone-club
+shortdesc: a bone club
+desc: A large bone lies half buried in the ground.
+type: 5
+weight: 2.00
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: club large-bone-club
+The bone is rather heavy, and can deliver quite a punch.  Strangely, the
+balance is good enough for you to swing it like a club.~
+~~
+vnum: 8603
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pelt brown-coyote-pelt brown-colored-coyote-pelt hide
+shortdesc: a brown coyote pelt
+desc: A brown colored coyote pelt has been tossed here.
+type: 9
+weight: 6.00
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+2 1
+13 5
+~
+extradesc: brown-coyote-pelt brown-colored-coyote-pelt
+This brown pelt looks as if it could impart the agility and vitality of its
+former owner.  It is well constructed and would offer some degree of protection
+against your foes.~
+~~
+vnum: 3031
+location: 127
+values:
+0
+250
+5
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 1601
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: foot lucky-rabbit's-foot
+shortdesc: a lucky rabbit's foot
+desc: A lucky rabbit's foot is covered in dirt on the ground.
+type: 9
+weight: 0.23
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 2
+~
+extradesc: lucky-rabbit's-foot
+Quite large for a rabbit's foot, the previous owner must have been rather
+fearsome to have produced such a magnificient specimen.  The last owner must
+not have been very lucky, however, having lost such a vital appendage.  Some
+flecks of blood stick in the matted rabbit's hair around the area from which
+the leg once protruded.  A thick strand of twine runs through the foot,
+allowing it to be worn.~
+~~
+vnum: 61516
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cap mushroom-cap
+shortdesc: a mushroom cap
+desc: The cap of a mushroom lies flat on the ground.
+type: 9
+weight: 1.50
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+4 1
+6 1
+~
+extradesc: mushroom-cap
+This looks like the cap of a rather large mushroom.  It's big enough to cover
+the top of a human's head!  It is dried, and the consistency of stiff leather.
+It's a pale orange color, with barely visible white spots.~
+~~
+vnum: 1022
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz 0
+name: sleeves quilted-canvas-sleeves cloth hide glowing pile
+shortdesc: some quilted canvas sleeves
+desc: A pile of cloth and hide lies here glowing.
+type: 9
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+extradesc: quilted-canvas-sleeves cloth hide glowing pile
+These sleeves are remarkably light and offer a sense of protection unseen.  
+There is hide padding on the elbows to provide a little extra protection.~
+~~
+vnum: 28
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: mowyz 0
+name: mace steel-mace
+shortdesc: a mace
+desc: A steel mace lies on the ground, out of the way.
+type: 5
+weight: 5.00
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 55803
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tail deer-tail
+shortdesc: a deer tail
+desc: A deer tail, disattached from its owner, lies here.
+type: 12
+weight: 0.08
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+18 1
+~
+extradesc: deer-tail
+It is a little white deer tail which has little strips of brown down the side.~
+~~
+vnum: 58811
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wrap dark-brown-wrap
+shortdesc: a dark brown wrap
+desc: A dark brown wrap's hung on a peg.
+type: 9
+weight: 2.50
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+26 3
+~
+extradesc: dark-brown-wrap
+You see a dark brown expanse of homespun woolen cloth.  Simple in its cut and
+design, this garment would keep the worst of the weather off you.~
+~~
+vnum: 58816
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: shield small-wooden-academy-shield small-wooden-shield
+shortdesc: a small wooden Academy shield
+desc: A small wooden shield lies here.
+type: 9
+weight: 1.00
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: shield small-wooden-academy-shield small-wooden-shield
+This shield isn't much bigger than your hand, and it's in pretty bad shape,
+with nicks and dents covering its wooden surface.  The insignia of the Ice
+Warriors adorns its front -- a polar bear gripping a green- and-gold banner in
+its mouth.~
+~~
+vnum: 58819
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pants dark-grey-wool-pants warm-looking
+shortdesc: a pair of dark grey wool pants
+desc: A pair of warm-looking wool pants lies here.
+type: 9
+weight: 1.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+13 3
+~
+extradesc: dark-grey-wool-pants warm-looking
+You see a simple pair of homespun woolen pants.  The garment's been dyed a dark
+grey color.  They seem very utilitarian.~
+~~
+vnum: 58817
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tuque knitted-tuque warm-looking-knitted-cap
+shortdesc: a knitted tuque
+desc: A warm-looking knitted cap lies here.
+type: 9
+weight: 0.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+13 3
+~
+extradesc: tuque knitted-tuque warm-looking-knitted-cap
+You behold a simple knitted tuque that resembles a very large and wide sock.  
+It's made of undyed wool.~
+~~
+vnum: 58809
+location: 127
+values:
+0
+200
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: candle
+shortdesc: a candle
+desc: A candle rolls on the ground.
+type: 1
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: candle
+This candle is made of uncolored wax, with a cotton wick. Very standard.~
+~~
+vnum: 55211
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: gmo 0
+name: mace dwarven-mace dwarf spiked-mace runes steel
+shortdesc: a dwarven mace
+desc: A spiked mace with runes has been left here.
+type: 5
+weight: 4.00
+cost: 800
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+1 2
+~
+extradesc: dwarven-mace dwarf spiked-mace runes steel
+You look upon one mean looking mace.  It has four spikes about it's globe and
+is covered in strange runes.~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 8008
+location: 127
+values:
+48
+28
+2
+0
+0
+0
+0
+~
+flags: 0 0
+name: bottle wine
+shortdesc: a vintage bottle of wine
+desc: A vintage bottle of wine rests here.
+type: 17
+weight: 1.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bottle wine
+  This bottle contains a rare, vintage wine.  It was carefully made
+from vine-ripened grapes, pressed, and fermented to produce a classic.~
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 55210
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mr 0
+name: cloak heavy-runed-leather-cloak large-leather-cloak strange-markings
+shortdesc: a heavy runed leather cloak
+desc: A large leather cloak with strange markings lies here.
+type: 9
+weight: 6.00
+cost: 40
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+14 -15
+~
+extradesc: heavy-runed-leather-cloak large-leather-cloak strange-markings
+This piece of thick leather has been expertly tanned and burnt with many odd
+runes.  It looks to be a good piece of protection.~
+~~
+vnum: 55204
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: buckler spiked-iron-buckler-rimmed-in-mythril large-bowl sharp-spines
+shortdesc: a spiked iron buckler rimmed in mythril
+desc: What looks like a large bowl with sharp spines is almost hidden here.
+type: 9
+weight: 2.50
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: spiked-iron-buckler-rimmed-in-mythril large-bowl sharp-spines
+This ancient piece of armor looks incredibly ornate and protective.  It is
+heavy and look intimidating.  It's polished mythril rim would blind an enemy in
+the sun.  A prize to be guarded.~
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 41011
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: honeycomb honey-comb chunk-sweet-hiver food questobject
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: honeycomb honey-comb chunk-sweet-hiver food questobject
+Hexagonal wax chambers are filled with an amber fluid.  It covers your hands
+with sticky goodness as you examine it.~
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 20
+location: 127
+values:
+256
+38
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~

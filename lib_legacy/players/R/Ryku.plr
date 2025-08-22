@@ -1,0 +1,80 @@
+name: Ryku
+password: RyRAmWIup5
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 32
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20504
+birthtime: 1682623912
+timeplayed: 1493
+lastlogintime: 1682625412
+host: 050.126.047.148
+height: 9
+weight: 5
+base_height: 9
+base_weight: 5
+base_size: 0
+natural_size: 0
+alignment: 998
+playerflags: y
+effectflags: u 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 4
+lastlevel: 0
+hitpoints: 21/21
+mana: 0/0
+move: 106/106
+damroll: 0
+hitroll: 6
+strength: 83
+intelligence: 90
+wisdom: 77
+dexterity: 76
+constitution: 76
+charisma: 66
+cash: 0 4 9 13
+bank: 0 1 1 1
+experience: 6600
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 54
+424 50
+438 50
+443 50
+444 50
+447 60
+451 50
+452 50
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 51900 2.000000
+0 0 0
+tells:
+$
+gossips:
+$
+mem:
+32 1 8
+100 1 9
+0 0 0

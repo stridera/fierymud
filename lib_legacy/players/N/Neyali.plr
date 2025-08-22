@@ -1,0 +1,91 @@
+name: Neyali
+password: NeMZnmoQZ3
+prompt: -
+autoinvis: 0
+sex: 2
+class: 18
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20460
+birthtime: 1676920129
+timeplayed: 7661
+lastlogintime: 1729752343
+host: 096.234.021.100
+height: 64
+weight: 123
+base_height: 64
+base_weight: 123
+base_size: 2
+natural_size: 2
+alignment: 30
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ahxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 8
+lastlevel: 0
+hitpoints: 46/46
+mana: 1/0
+move: 130/138
+damroll: 3
+hitroll: 3
+strength: 89
+intelligence: 66
+wisdom: 69
+dexterity: 100
+constitution: 83
+charisma: 54
+cash: 0 12 96 64
+bank: 0 1 1 1
+experience: 16500
+quit_reason: 1
+saveroom: 3054
+skills:
+401 68
+403 70
+408 61
+415 50
+416 50
+421 53
+438 50
+443 50
+444 50
+463 50
+464 53
+465 50
+493 65
+0 0
+trophy:
+1 36004 2.000000
+1 36003 5.000000
+1 36001 3.000000
+1 36002 1.000000
+1 8021 1.000000
+1 16900 2.000000
+1 16908 2.000000
+1 8001 2.000000
+1 8016 1.000000
+1 8012 1.000000
+1 8010 1.000000
+1 51900 1.000000
+0 0 0
+tells:
+1729750052 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1729750614 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1676920157 Kra gossips, 'Hey Neyali'
+1676921212 Holk gossips, 'hey Neyali'
+1676921292 Holk gossips, 'If you have any questions, feel free to ask, someone will try to answer you'
+1729749024 Derrgon gossips, 'hi'
+1729749076 Derrgon gossips, 'new here too? :)'
+1729749088 Derrgon gossips, 'awesome'
+1729750638 Discord gossips, 'Daedela: Congrats!'
+1729752044 Derrgon gossips, 'nice'
+1729752053 Discord gossips, 'Daedela: Congrats!'
+$

@@ -1,0 +1,113 @@
+name: Travero
+password: Trpy78vyTF
+description
+Nothing.
+~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18428
+birthtime: 1360570545
+timeplayed: 139324
+lastlogintime: 1619059146
+host: 050.106.017.177
+height: 76
+weight: 121
+base_height: 76
+base_weight: 121
+base_size: 2
+natural_size: 2
+alignment: 535
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 170/170
+mana: 16/16
+move: 0/100
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 81
+wisdom: 71
+dexterity: 82
+constitution: 70
+charisma: 58
+cash: 22 1238 1120 310
+bank: 75 5 10 25
+experience: 618658
+quit_reason: 1
+saveroom: 3054
+skills:
+402 180
+404 180
+415 180
+416 180
+421 180
+430 150
+438 154
+443 50
+444 50
+463 50
+464 50
+465 180
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3502 1.000000
+1 3507 1.000000
+1 3509 1.000000
+1 3500 1.000000
+1 3501 2.000000
+1 3503 4.000000
+1 18005 1.000000
+1 18006 1.000000
+1 18003 3.000000
+1 18004 2.000000
+1 18007 5.000000
+1 18001 3.000000
+1 12005 1.000000
+1 12003 2.000000
+1 12011 2.000000
+1 12025 2.000000
+1 12007 2.000000
+1 12014 2.000000
+1 12004 2.000000
+1 12023 4.000000
+1 12024 4.000000
+0 0 0
+tells:
+1619052910 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1619053722 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1619053733 @WAaron@W tells you, 'I'll give you 0p, 0g, 0s, 4c for that!@W'@0
+1619053755 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1619054505 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1619054514 @WElspeth the Jeweler@W tells you, 'I'll give you 0p, 0g, 4s, 4c for that!@W'@0
+1619054522 @WElspeth the Jeweler@W tells you, 'I'll give you 0p, 0g, 4s, 4c for that!@W'@0
+1619054530 @WElspeth the Jeweler@W tells you, 'I'll give you 0p, 0g, 4s, 4c for that!@W'@0
+1619054557 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1619054662 @WBigby@W tells you, 'I'll give you 0p, 0g, 4s, 0c for that!@W'@0
+$
+gossips:
+1619050956 Chinok gossips, 'welcome Travero'
+1619050997 Chinok gossips, 'let us know if you need any help.'
+1619051086 Chinok gossips, 'I didn't recognize the name'
+1619051164 Chinok gossips, 'how long you guess it's been ?'
+1619051204 Chinok gossips, 'so not too bad, the 'big crash' in 99 caused everyone to start over :)'
+1619051253 Chinok gossips, 'not starting from scratch, you're level 13 :)'
+1619051273 Chinok gossips, 'no problem, glad to be here'
+1619054181 Fayris gossips, 'hi fiery'
+1619054185 Keric gossips, 'sup'
+1619054270 Chinok gossips, 'hey fayris, and frumly'
+$

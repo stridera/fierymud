@@ -1,0 +1,166 @@
+name: Golanth
+password: ToM1HpVcFg
+prompt: &_&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%db&b&2>%_&0<%t>:<%o> 
+autoinvis: 0
+sex: 1
+class: 4
+race: 26
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19747
+birthtime: 1604817178
+timeplayed: 1350809
+lastlogintime: 1737962350
+host: 052.119.120.201
+height: 61
+weight: 135
+base_height: 61
+base_weight: 135
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxyz
+effectflags: ckm 0 0
+prefflags: bhnoxC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1341/1143
+mana: 980/980
+move: 264/271
+damroll: 3
+hitroll: 3
+strength: 99
+intelligence: 66
+wisdom: 87
+dexterity: 92
+constitution: 100
+charisma: 86
+cash: 1011 1696 61650 14083
+experience: 121676898
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+21 1000
+22 1000
+28 1000
+34 1000
+43 1000
+88 1000
+92 1000
+97 1000
+99 1000
+201 1000
+241 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+417 1000
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 1000
+450 1000
+451 1000
+452 1000
+453 50
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 1000
+468 1000
+473 1000
+486 1000
+0 0
+trophy:
+1 4009 0.400000
+1 4010 0.200000
+1 4013 0.200000
+1 4007 0.600000
+1 4015 0.200000
+1 4008 0.200000
+1 4004 0.200000
+1 53417 0.200000
+1 43003 1.200000
+1 43017 0.200000
+1 43016 0.200000
+1 43013 0.600000
+1 43002 1.200000
+1 43010 0.200000
+1 43011 0.200000
+1 43009 0.200000
+1 43008 0.200000
+1 43007 0.200000
+1 43006 0.200000
+1 43019 2.000000
+1 8509 0.600000
+0 0 0
+tells:
+1687847062 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1687851881 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1687853851 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1687853859 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1687931315 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1687938742 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1687938756 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1688016502 @WShazz@W tells you, 'Take good care of that.@W'@0
+1688024763 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1688109003 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1706854979 Karoth gossips, 'heya all'
+1706855047 Phillameia gossips, 'Hello!'
+1706855174 Felessan gossips, 'How's it going?'
+1706855195 Karoth gossips, 'not bad, yourself?'
+1706855233 Felessan gossips, 'Doing alright.  Just watching TV before bed, doing quest stuff'
+1706856067 Karoth gossips, 'just waking up here, thinking of things I want to accomplish and realizing I have too much work to do it :('
+1706856075 Felessan gossips, 'Booooo'
+1706859891 A kobold scout shouts, 'Help meeeeee!!'
+1706859895 A gnoll spiritbreaker shouts, 'Kill the slave!'
+1706859899 A kobold scout shouts, 'Nooo!  Save meee!!'
+$
+aliases:
+chw c 'holy word'
+bh bash heucuva
+ccc c 'cure crit' $*
+cpe c 'protection from evil' $*
+cde c 'dispel evil' $*
+re rescue $*
+ga get all
+gat get all 2.corpse
+gac get all corpse
+bash bash $*; st
+ccs c 'cure serious' $*
+ccl c 'cure light' $*
+cdm c 'dispel magic' $*
+ch c 'heal' $*
+0

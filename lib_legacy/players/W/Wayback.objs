@@ -1,0 +1,1762 @@
+1
+vnum: 1004
+location: 0
+values:
+1
+240
+136
+0
+0
+0
+0
+~
+flags: 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern. It holds about fifteen hours worth of fuel.
+~
+~~
+vnum: 36014
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring tiny-copper-ring thin-circle-copper-coin
+shortdesc: a tiny copper ring
+desc: A thin circle of copper resembles a coin.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: tiny-copper-ring thin-circle-copper-coin
+A thin copper wire bears the symbol of the Kaaz clan.
+~
+~~
+vnum: 5506
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring eldoria-trophy white 3rd-eldorian-guard-ring
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+extradesc: ring eldoria-trophy white 3rd-eldorian-guard-ring
+It's a ring made of a white metal and bearing the signet of the 3rd Eldorian
+Guard that protects Eldoria from invaders.
+~
+~~
+vnum: 17202
+location: 3
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gnoprtu
+name: amulet silver magus
+shortdesc: the Amulet of the Magus
+desc: A silver amulet lies on the ground here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+applies:
+24 -2
+~
+extradesc: amulet silver
+This amulet is made of pure silver and is decorated by various magical symbols.
+You sense some power in this artifact.
+~
+~~
+vnum: 18001
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 1002
+location: 5
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: robe flowing-crimson-robe bundle-crimson-cloth
+shortdesc: &0&1a flowing crimson robe&0
+desc: &0&1A bundle of crimson cloth lies here.&0
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: flowing-crimson-robe bundle-crimson-cloth
+This long robe is crafted from a deep blood red crimson. It comes with a
+matching sash, used to tighten it about the waist. Not very effective in
+combat, but better then nothing.
+~
+~~
+vnum: 46401
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crest feathered feathered-crest
+shortdesc: a beautiful feathered crest
+desc: A beautiful feathered crest has been left here.
+type: 9
+weight: 0.50
+cost: 300
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 17
+applies:
+18 1
+~
+extradesc: crest feathered
+     Long yellow and grey feathers make up this piece of stylish headwear.
+Upon the pate of some hapless bird it must have been beautifully expressive,
+as the crest itself would swing up or lie back against the bird's head to
+express interest, excitement, fear, and love.  Holding the feathered garment in
+your hands, you cannot help but feel sorry for the bird and wonder if you might
+be able to recreate even a degree of its vitality.
+~
+~~
+vnum: 55402
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: noprstuvwx
+name: sandals apprentice
+shortdesc: apprentice sandals
+desc: A pair of slightly magical reed sandals wiggles slightly.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 65
+applies:
+2 1
+13 3
+~
+extradesc: apprentice sandals
+Newly sewn, these magical cloth sandals were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!
+~
+~~
+vnum: 55404
+location: 9
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: noprstuvwx
+name: gloves apprentice
+shortdesc: apprentice gloves
+desc: A pair of leather gloves hums slightly with magical power.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 129
+applies:
+14 10
+13 2
+~
+extradesc: apprentice gloves
+Newly sewn, these magical cloth gloves were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!
+~
+~~
+vnum: 46411
+location: 10
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sleeves downy downy-sleeves pair
+shortdesc: a pair of downy sleeves
+desc: Someone has dropped a pair of downy sleeves here.
+type: 9
+weight: 1.25
+cost: 400
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 257
+extradesc: sleeves downy pair
+     Made of a thin, stretchy material lined with a warm layer of fuzzy down,
+these sleeves would be perfect for keeping your arms warm beneath your
+overcoat.  However, the thin material would provide little benefit for warriors
+and might seem even a bit sissified for the more beastly of occupations.  The
+thin material has enough stretch to it that you might even be able to wear the
+sleeves about your legs like a pair of tights in a stretch (no pun intended!)
+~
+~~
+vnum: 46404
+location: 12
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak winged pile feathers winged-cloak
+shortdesc: the winged cloak
+desc: A pile of feathers lies at your feet.
+type: 9
+weight: 2.00
+cost: 1000
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 1025
+applies:
+2 2
+~
+extradesc: cloak winged feathers pile
+     This warm, large garment is tailored entirely from feathers.  Upon closer
+examination, the cloak looks to be made up of a long cape and two wings
+attached to the sides into which you could slip your arms.  Though somewhat
+restrictive of your movement, the wings give you a feeling of freedom, almost
+as if you could take to the skies and soar amongst the birds themselves.
+~
+~~
+vnum: 1031
+location: 13
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: belt braided-leather-belt
+shortdesc: a braided leather belt
+desc: A braided leather belt lies here.
+type: 9
+weight: 0.85
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+extradesc: braided-leather-belt
+&0A thick belt, crafted from brown leather. It is adorned with a simple
+bronze buckle, which shines like new. Several notches run along the belt's
+length, allowing it to be adjusted for a wide assortment of sizes.
+~
+~~
+vnum: 36015
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: p
+name: bracelet thin-copper-bracelet small
+shortdesc: a thin copper bracelet
+desc: A small bracelet of copper lies here collecting dust.
+type: 9
+weight: 0.07
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+applies:
+12 1
+~
+extradesc: bracelet thin-copper-bracelet small
+A band of copper is covered with runes depicting a tale of the magical battle
+of the rift wars...    
+~
+~~
+vnum: 55760
+location: 16
+values:
+0
+2
+3
+11
+0
+0
+0
+~
+flags: nrsuv
+name: dagger small black
+shortdesc: a small black dagger
+desc: A small black dagger lies here.
+type: 5
+weight: 0.75
+cost: 0
+timer: 0
+level: 6
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 18001
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 46405
+location: 22
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: noprv
+name: beak hookbills hookbills-beak
+shortdesc: the hookbill's beak
+desc: The sharp beak of a hookbill lies on the ground here.
+type: 5
+weight: 1.50
+cost: 100
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 155649
+applies:
+18 1
+~
+extradesc: beak hookbill sharp
+     The beak of a parrot, this grey hook-shaped bill has razor-sharp edges
+honed daily by its former owner.  Though most birds are not aggressive, only
+the most foolhardy would not look to its own defense.  It looks as if someone
+has drilled two holes in the sides of the beak and run a leather thong through
+them so that you could tie the hookbill onto your head; it might also function
+well as a kind of dagger in hand.
+~
+~~
+vnum: 8031
+location: 25
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: blue drakling scale
+shortdesc: a blue drakling scale
+desc: A small blue scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 5
+~
+~~
+vnum: 18
+location: 26
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 55578
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem dust dust-chrysoberyl
+shortdesc: some chrysoberyl dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: topaz gem crushed crushed-topaz
+shortdesc: a crushed topaz
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55569
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem crushed crushed-amethyst
+shortdesc: a crushed amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55581
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem dust dust-jade
+shortdesc: some jade dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 17203
+location: 127
+values:
+10
+7
+0
+32
+0
+0
+0
+~
+flags: gnoprtu
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.
+~
+~~
+vnum: 41011
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: honeycomb sticky comb sweet food chunk hiver honey
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: sticky-comb comb sweet food
+Hexagonal wax chambers are filled with an amber fluid. It covers your hands
+with sticky goodness as you examine it.
+~
+~~
+vnum: 3059
+location: 127
+values:
+20
+43
+0
+0
+0
+0
+0
+~
+flags: g
+name: potion clear remove-poison
+shortdesc: a clear potion of remove poison
+desc: A small potion of clear liquid lies here.
+type: 10
+weight: 0.15
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 16905
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: mushroom black food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: mushroom black food
+The mushroom looks disgusting, but it has a surprisingly nice aroma. It 
+seems to say, come on, take a nibble ....
+~
+~~
+vnum: 16905
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: mushroom black food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: mushroom black food
+The mushroom looks disgusting, but it has a surprisingly nice aroma. It 
+seems to say, come on, take a nibble ....
+~
+~~
+vnum: 16906
+location: 127
+values:
+15
+1
+3
+0
+0
+0
+0
+~
+flags: 0
+name: potion green
+shortdesc: a green potion
+desc: A murky green potion is here.
+type: 10
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: potion green
+The liquid has an odd astringent odour which reminds you of
+castor oil from your youth.
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 19
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: rations ration iron food
+shortdesc: some iron rations
+desc: Some iron rations have been set here.
+type: 19
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: iron rations
+These lightweight rations aren't the best-tasting, but they are the traveler's
+best food for long trips -- they never spoil, and fill the stomach for many
+hours.  There is dried meat of unknown origin here, mixed with nuts.  The whole
+mess is glued together into a bar by means of some waxy, fatty substance.    
+~
+~~
+vnum: 17213
+location: 127
+values:
+1
+31
+0
+0
+0
+0
+0
+~
+flags: D
+name: scroll rough graphed roughly-graphed
+shortdesc: a roughly-graphed scroll
+desc: A crude scroll with heavy graph lines lies here rolled up.
+type: 2
+weight: 1.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: scroll rough graphed roughly-graphed
+This appears to be the work of an apprentice, for crude lines are drawn roughly
+all across its surface.  The somewhat faint silvery lines have a discernable
+metallic gleam.  Most of the lines are drawn in one of two orthogonal
+directions, parallel to one or the other of the mostly rectangular edges of the
+document.  Four other lines drawn at acute angles create a diamond in the
+middle, albeit somewhat distorted.
+~
+~~
+vnum: 17210
+location: 127
+values:
+15
+18
+20
+14
+0
+0
+0
+~
+flags: gD
+name: scroll yellowed
+shortdesc: a yellowed scroll
+desc: A scroll lies here.
+type: 2
+weight: 1.00
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: scroll yellowed
+This scroll seems to be very old. The parchment has already been yellowed
+with age.
+~
+~~
+vnum: 1006
+location: 127
+values:
+300
+300
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water waterskin leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 21.56
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: water waterskin leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.&0
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 46411
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sleeves downy downy-sleeves pair
+shortdesc: a pair of downy sleeves
+desc: Someone has dropped a pair of downy sleeves here.
+type: 9
+weight: 1.25
+cost: 400
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 257
+extradesc: sleeves downy pair
+     Made of a thin, stretchy material lined with a warm layer of fuzzy down,
+these sleeves would be perfect for keeping your arms warm beneath your
+overcoat.  However, the thin material would provide little benefit for warriors
+and might seem even a bit sissified for the more beastly of occupations.  The
+thin material has enough stretch to it that you might even be able to wear the
+sleeves about your legs like a pair of tights in a stretch (no pun intended!)
+~
+~~
+vnum: 17209
+location: 127
+values:
+0
+1
+8
+11
+0
+0
+0
+~
+flags: nu
+name: dagger bronze bronze-dagger
+shortdesc: a bronze dagger
+desc: A dagger of bronze lies upon the ground.
+type: 5
+weight: 0.75
+cost: 1322
+timer: 0
+level: 7
+effects: 0 0 0
+wear: 8193
+applies:
+2 2
+~
+extradesc: dagger bronze
+The dagger is made of finely crafted bronze and its hilt is of ivory. Arcane
+tracings are carved upon the hilt of this weapon.
+~
+~~
+vnum: 46407
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: droppings nasty-bird-droppings food
+shortdesc: some nasty bird droppings
+desc: The grounds crew has neglected to clean up a bit of droppings here.
+type: 19
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 81
+applies:
+17 1
+~
+extradesc: droppings nasty bit bird
+     Yech!  Though the birds within the aviary's walls are far from
+domesticated - much less housebroken - happening upon such a nasty bit of
+droppings is an unpleasant surprise; generally the aviary grounds crew seem to
+do a pretty good job keeping the paths clean, turning such offal into the soil
+to act as fertilizer for the exotic plant life.
+     The core of the droppings is a greenish-grey snakelike solid, surrounded
+by an off-white liquid that is quickly drying in the sun.  Though bird
+droppings do not have the disgusting smell of other animal feces, they are
+still rather repulsive nonetheless.
+~
+~~
+vnum: 17203
+location: 127
+values:
+10
+7
+2
+32
+0
+0
+0
+~
+flags: gnoprtu
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.
+~
+~~
+vnum: 5504
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+extradesc: skull eldoria-trophy white-skull 3rd-eldorian-guard-skull
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+32 5
+100 5
+5 5
+8 7
+39 5
+19 18
+~
+~~
+vnum: 46409
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: breeches feather pair feather-breeches
+shortdesc: a pair of feather breeches
+desc: A pair of feather breeches has been discarded here.
+type: 9
+weight: 1.00
+cost: 400
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 33
+extradesc: feather breeches pair
+     These fine pants are made of a light fabric to which are sewn hundreds of
+soft feathers.  The plumage looks to have come from all sorts of birds, with
+long blue and green feathers likely from parrots lined up beside the smaller
+browns, whites,  and greys of birds like finches and budgerigars.  Though their
+value as armor might be questionable, the breeches do look to be rather warm
+and even comfortable - and a must-have for every dandy's wardrobe!
+~
+~~
+vnum: 5508
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+extradesc: badge eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 46414
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: feather royal-blue-feather deep-blue-kingfisher-feather
+shortdesc: a royal blue feather
+desc: A deep blue feather is sitting here, getting dirty.
+type: 21
+weight: 0.25
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+applies:
+6 1
+~
+extradesc: feather royal-blue-feather deep-blue-kingfisher-feather
+This beautifully curving feather is a deep royal blue, just like the kingfisher
+it comes from.  It's a primary flight feather from the left wing, so it would
+probably make an excellent writing pen.
+~
+~~

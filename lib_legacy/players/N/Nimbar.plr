@@ -1,0 +1,92 @@
+name: Nimbar
+password: NiKxMutyZO
+description
+This is a Lightning dragonborn. He stands 6'6" tall, and his hard, scaly, blue skin glistens with a bright sheen.
+Although he is wearing clothes and wielding weapons, you get the impression that he probably doesn't need them. The edges of his mouth are dry and cracked, and you suspect that this is the result of having some sort of breath weapon.
+Around his neck, is a silver chain, with a platinum medallion attached to it. The edges are unpainted, but in the center is painted a blue, unblinking eye, on a black background. This dragonborn is obviously a follower of Odin.
+ 
+~
+prompt: [&1%h&0/%H]&1Hps&0 [&4%v&0/%V]&5Mvs&0 ==]
+autoinvis: 0
+sex: 1
+class: 1
+race: 29
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20364
+birthtime: 1665548620
+timeplayed: 5947
+lastlogintime: 1665680511
+host: 024.035.152.072
+height: 75
+weight: 181
+base_height: 75
+base_weight: 181
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 23/23
+mana: 1/0
+move: 114/114
+damroll: 3
+hitroll: 3
+strength: 74
+intelligence: 95
+wisdom: 90
+dexterity: 71
+constitution: 74
+charisma: 61
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+205 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+435 82
+438 50
+443 50
+444 50
+451 50
+456 50
+457 50
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+tells:
+1665678404 @WSlink@W tells you, 'if ya didnt see, you can run 5 characters at once here bro@W'@0
+$
+gossips:
+1665679125 Chinok gossips, 'more humanoid'
+1665679303 Fril gossips, 'I think so. In the fields with the bug try breathe lightning to be sure :D'
+1665679338 Fril gossips, 'oh type inn'
+1665679341 Fril gossips, 'it is an innate skill'
+1665679425 Chinok gossips, 'there are infinite lights in the game, but not til about level 40ish'
+1665679432 Mersh gossips, 'the blinding beauty is a bug I think'
+1665679457 Mersh gossips, 'no cap'
+1665679558 Mersh gossips, 'yeah yeah haha that is the only race it isn't a bug on :D it shows up for my too'
+1665679560 Mersh gossips, '*me'
+1665679740 Chinok gossips, 'get a skill called corner.'
+$

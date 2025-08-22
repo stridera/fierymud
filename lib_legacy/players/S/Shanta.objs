@@ -1,0 +1,1180 @@
+1
+vnum: 16006
+location: 0
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag
+name: orb ball crystal globe wind winds orb-of-winds
+shortdesc: the Orb of Winds
+desc: A crystal orb floats around you.
+type: 1
+weight: 0.50
+cost: 1000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+18 2
+20 -2
+~
+extradesc: orb
+   The orb is totally weightless and possesses a very bright glow. Gazing 
+into its crystalline depths, there seems to be insubstantial forms 
+floating within it. Before you can decide what lies within, you are 
+forced to look away, lest its light blinds you.
+~
+~~
+vnum: 41120
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring sea sea-ring blue clear
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 9
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 30
+~
+extradesc: sea-ring blue ring water dolphin clear
+A series of playful dolphins chase each other around the perimeter of
+the sea-blue ring. It is difficult to determine exactly what the ring
+is made of -- clear, yet neither crystal nor glass. 
+~
+~~
+vnum: 41120
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring sea sea-ring blue clear
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 9
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 30
+~
+extradesc: sea-ring blue ring water dolphin clear
+A series of playful dolphins chase each other around the perimeter of
+the sea-blue ring. It is difficult to determine exactly what the ring
+is made of -- clear, yet neither crystal nor glass. 
+~
+~~
+vnum: 23811
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: k
+name: memento platinum locket lover's lovers soul lovers-soul
+shortdesc: a memento of a lover's soul
+desc: A platinum locket glimmers here.
+type: 8
+weight: 0.07
+cost: 30000
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 5
+applies:
+5 5
+~
+extradesc: memento lover's lovers lovers-soul soul locket platinum
+A small locket, barely larger than a fingernail, is nonetheless very valuable
+as it is made out of the rare and precious metal platinum.  Flipping the tiny
+catch reveals a lock of hair tied with a thick thread.  The hair looks to be
+made of precious metals itself, but it is very soft to the touch and radiates a
+comforting feeling, gold and silver catching the light and shining brightly.  
+A feeling of sadness and loss infuses the locket, and if it had any identifying
+marks they were rubbed away by the constant feeling of hands against the metal.
+It is undoubtedly valuable in more ways than one.  An inscription runs around
+the edge of the amulet.    
+~
+extradesc: inscription
+It reads,
+"My thought will be for you
+My love will be in you
+You are the one to love me
+So I will live forever"
+~
+~~
+vnum: 23811
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: k
+name: memento platinum locket lover's lovers soul lovers-soul
+shortdesc: a memento of a lover's soul
+desc: A platinum locket glimmers here.
+type: 8
+weight: 0.07
+cost: 30000
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 5
+applies:
+5 5
+~
+extradesc: memento lover's lovers lovers-soul soul locket platinum
+A small locket, barely larger than a fingernail, is nonetheless very valuable
+as it is made out of the rare and precious metal platinum.  Flipping the tiny
+catch reveals a lock of hair tied with a thick thread.  The hair looks to be
+made of precious metals itself, but it is very soft to the touch and radiates a
+comforting feeling, gold and silver catching the light and shining brightly.  
+A feeling of sadness and loss infuses the locket, and if it had any identifying
+marks they were rubbed away by the constant feeling of hands against the metal.
+It is undoubtedly valuable in more ways than one.  An inscription runs around
+the edge of the amulet.    
+~
+extradesc: inscription
+It reads,
+"My thought will be for you
+My love will be in you
+You are the one to love me
+So I will live forever"
+~
+~~
+vnum: 53023
+location: 5
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz
+name: jerkin leather cuir bouilli
+shortdesc: the Cuir Bouilli
+desc: A jerkin made of hardened, boiled leather lies here.
+type: 9
+weight: 8.00
+cost: 600
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 9
+applies:
+5 5
+~
+~~
+vnum: 55510
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ghkmopqrstuvwxyz
+name: mythril saintly helm
+shortdesc: &5&bSaintly Helm&0
+desc: Symbols of divine clarity adorn a mythril helm resting here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+applies:
+3 4
+6 2
+~
+extradesc: mythril saintly helm
+Large, decorative symbols for sight and clarity cover this sanctified helm.  
+Both symbols are stylistically enclosed in the sign of the original wearer's
+patron spirit.  Blessed by the gods, this helm grants clerics a closer
+connection to their deities in their travels.
+~
+~~
+vnum: 53501
+location: 7
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: klmosuvwyz
+name: greaves pair-sleet-greaves thin-white-legplates leg-plates
+shortdesc: a pair of sleet greaves
+desc: Thin white legplates lie crisscrossed on the ground.
+type: 9
+weight: 5.00
+cost: 5490
+timer: 0
+level: 76
+effects: 0 0 0
+wear: 33
+applies:
+18 1
+1 1
+13 13
+~
+extradesc: pair-sleet-greaves thin-white-legplates leg-plates
+Cast from an odd white metal, the outside of these greaves are cold as ice,
+but can withstand quite a bit of damage.  They are padded on the inside with
+white fur, preventing the frigid white metal from touching skin.  The plate
+metal is slightly curved and much thinner than average steel, undoubtedly
+created by some uncomprehensible elven miracle.    
+~
+~~
+vnum: 49017
+location: 8
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: b
+name: shoes feathered
+shortdesc: a pair of feathered shoes
+desc: A pair of shoes with wings flutter around here!
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65
+applies:
+14 35
+~
+extradesc: shoes feathered
+These starry blue shoes seem to be alive! They have wings attached to them
+and make little loopings when they know you're looking at them.~
+~~
+vnum: 55439
+location: 9
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: agmopqrstuvwxyz
+name: divine believer believers gauntlets believers-gauntlets
+shortdesc: &5Believer's Gauntlets&0
+desc: Resting on the ground is a divine pair of gauntlets.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+applies:
+3 3
+1 2
+~
+extradesc: divine believer believers gauntlets believers-gauntlets
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.
+~
+~~
+vnum: 47005
+location: 10
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: mtu
+name: bracers shadow black
+shortdesc: the Shadow Bracers
+desc: A pair of black bracers lie against the wall.
+type: 9
+weight: 5.50
+cost: 1000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 257
+applies:
+1 1
+~
+extradesc: shadow-bracers bracers black shadow
+You peer into the bracers, and you can only see the silhouette of them in
+the midday sun.  All light is shadowed out by them, and you can see how they
+could be quite useful on your arms.
+~
+~~
+vnum: 58417
+location: 12
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: fD
+name: cloak feathers swan princess
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+18 2
+2 5
+~
+extradesc: cloak white feathers swan princess
+This beautiful cloak is made of some kind of silky white fabric
+sewn all over with the most amazing white feathers. Each full,
+white feather has a single dark blue dot near its tip, giving
+the cloak a kind of shimmery nature as it turns from white to
+dappled. The cloak fits closely about its wearer's body, with
+a white leather clasp holding it closed at the throat and at
+the waist.
+~
+~~
+vnum: 58431
+location: 13
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flowers plaited plaited-flowers belt
+shortdesc: some plaited flowers
+desc: Some plaited flowers form a sort of belt.
+type: 9
+weight: 0.75
+cost: 1000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+applies:
+6 3
+~
+extradesc: flowers belt plaited
+You see a loose belt made of braided wildflowers. The daisies and
+honeysuckles were connected by threading each flower through its
+neighbor somehow. They must be enchanted, for you cannot separate
+any of the flowers from the belt.
+~
+~~
+vnum: 58015
+location: 14
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: kl
+name: goddess-bracelet bracelet pearl pearl-bracelet goddess
+shortdesc: the goddess' bracelet
+desc: A bracelet made of one piece of pearl has been dropped here.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 20481
+applies:
+26 4
+1 6
+~
+extradesc: pearl bracelet goddess
+   It is a fine bracelet that looks like it was carved from one
+large pearl, with a twisting whorled design inlaid with gold. It
+fits over the wrist, sliding on without a clasp or hinge. It glows
+with the lustrous inner light that only the finest pearls have.
+~
+~~
+vnum: 58015
+location: 15
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: kl
+name: goddess-bracelet bracelet pearl pearl-bracelet goddess
+shortdesc: the goddess' bracelet
+desc: A bracelet made of one piece of pearl has been dropped here.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 20481
+applies:
+26 4
+1 6
+~
+extradesc: pearl bracelet goddess
+   It is a fine bracelet that looks like it was carved from one
+large pearl, with a twisting whorled design inlaid with gold. It
+fits over the wrist, sliding on without a clasp or hinge. It glows
+with the lustrous inner light that only the finest pearls have.
+~
+~~
+vnum: 905
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abgD
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 905
+location: 19
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abgD
+name: spellbook book large tome book-of-healing
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+applies:
+26 10
+13 100
+1 -5
+2 -5
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.
+~
+triggers:
+51009
+~
+~~
+vnum: 12550
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 11
+weight: 0.07
+cost: 250
+timer: 1010
+level: 40
+effects: dx 0 0
+wear: 65537
+applies:
+4 2
+28 80
+~
+~~
+vnum: 53502
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gklA
+name: stud tiny-white-stud miniscule-speck-white
+shortdesc: a tiny white stud
+desc: A miniscule speck of white almost escapes detection here.
+type: 9
+weight: 0.01
+cost: 3420
+timer: 0
+level: 71
+effects: 0 0 0
+wear: 262145
+applies:
+4 2
+6 2
+13 17
+~
+extradesc: tiny-white-stud miniscule-speck-white
+Small and round, this ear stud is made of an odd white metal and shaped
+somewhat like a little sphere.  It feels cool against skin, strangely drawn to
+it as if magnetic, allowing it to stick to an ear without a piercing.    
+~
+~~
+vnum: 53502
+location: 24
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gklA
+name: stud tiny-white-stud miniscule-speck-white
+shortdesc: a tiny white stud
+desc: A miniscule speck of white almost escapes detection here.
+type: 9
+weight: 0.01
+cost: 3420
+timer: 0
+level: 71
+effects: 0 0 0
+wear: 262145
+applies:
+4 2
+6 2
+13 17
+~
+extradesc: tiny-white-stud miniscule-speck-white
+Small and round, this ear stud is made of an odd white metal and shaped
+somewhat like a little sphere.  It feels cool against skin, strangely drawn to
+it as if magnetic, allowing it to stick to an ear without a piercing.    
+~
+~~
+vnum: 1269
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: brooch silver silver-brooch
+shortdesc: a silver brooch
+desc: A small silver flame glows here.
+adesc:
+A shiny silver brooch, shaped in that a small flame.  It has a sharp
+pin that lets if fasten nicely to a jacket lapel or collar.
+~
+type: 9
+weight: 0.45
+cost: 1000000
+timer: 0
+level: 75
+effects: h 0 0
+wear: 524289
+applies:
+18 2
+6 2
+19 3
+~
+extradesc: brooch silver flame
+A shiny silver brooch, shaped in that a small flame.  It has a sharp
+pin that lets if fasten nicely to a jacket lapel or collar.
+~
+triggers:
+18888
+~
+~~
+vnum: 49025
+location: 26
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tail griffin griffin-tail
+shortdesc: a griffin tail
+desc: The golden-brown tail of a griffin lies here seperated from its owner.
+type: 9
+weight: 1.25
+cost: 500
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1048577
+applies:
+3 1
+13 5
+~
+extradesc: tail
+It's long and rather strong, too. Maybe you could use it as a belt...~
+~~
+vnum: 12503
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: jmnrstuvyz
+name: gloves bladed blades blade long sharp
+shortdesc: a pair of bladed gloves
+desc: A pair of gloves with long, sharp blades lies here. 
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 129
+applies:
+19 2
+~
+extradesc: gloves blades bladed
+The gloves each feature 3 long blades originating from the top of the hand.  
+When wielding a weapon or making a fist, the long blades extend past the hand,
+making it more difficult to block a blow without taking damage.  The blades
+seem to be connected to a large metal plate sandwiched between two layers of
+leather.  A wide strap allows one to tighten the whole apparatus to the hand for
+stability.    
+~
+~~
+vnum: 55029
+location: 127
+values:
+250
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: 0.00
+cost: 600
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    
+~
+~~
+vnum: 53023
+location: 127
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: mowyz
+name: jerkin leather cuir bouilli
+shortdesc: the Cuir Bouilli
+desc: A jerkin made of hardened, boiled leather lies here.
+type: 9
+weight: 8.00
+cost: 600
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 9
+applies:
+5 5
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+~~
+vnum: 16000
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: gjlmnortuwyz
+name: blade sword shadowy-blade
+shortdesc: a shadowy blade
+desc: A vague form of a sword is lying here.
+type: 5
+weight: 1.60
+cost: 400
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 8193
+applies:
+4 2
+~
+extradesc: sword blade
+   You cannot see the form of the sword clearly, it seems to waver between 
+the physical and ethereal plane. Though its appearance is insubstantial, 
+the feel of the weapon is very much solid, well balanced, as well as 
+sharp.
+~
+~~
+vnum: 16008
+location: 127
+values:
+0
+1
+10
+14
+0
+0
+0
+~
+flags: mnotuvwyz
+name: halberd rusty-halberd rusty
+shortdesc: a rusty halberd
+desc: A large, rusty halberd lies off to the side.
+type: 5
+weight: 2.50
+cost: 5
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 32769
+applies:
+1 2
+~
+extradesc: halberd
+   A large axe head is firmly attached to one end of a 7 feet long pole. 
+It appears to be a rather old version of this weapon, as the axe blade 
+lacks the spike with which to thrust at an opponent.   
+~
+~~
+vnum: 16000
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: gjlmnortuwyz
+name: blade sword shadowy-blade
+shortdesc: a shadowy blade
+desc: A vague form of a sword is lying here.
+type: 5
+weight: 1.60
+cost: 400
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 8193
+applies:
+4 2
+~
+extradesc: sword blade
+   You cannot see the form of the sword clearly, it seems to waver between 
+the physical and ethereal plane. Though its appearance is insubstantial, 
+the feel of the weapon is very much solid, well balanced, as well as 
+sharp.
+~
+~~
+vnum: 16005
+location: 127
+values:
+0
+2
+6
+11
+0
+0
+0
+~
+flags: mnortuvwyz
+name: rapier basket hilted thin
+shortdesc: a basket-hilted rapier
+desc: A thin rapier lies abandoned on the ground.
+type: 5
+weight: 1.50
+cost: 600
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 8193
+applies:
+2 1
+~
+extradesc: rapier
+   This rapier is made of a very light but strong metal. You experience a
+tingling sensation as you hold it. Its hilt is inlaid in gold and has
+curious circular designs engraved on it.
+~
+~~
+vnum: 16005
+location: 127
+values:
+0
+2
+6
+11
+0
+0
+0
+~
+flags: mnortuvwyz
+name: rapier basket hilted thin
+shortdesc: a basket-hilted rapier
+desc: A thin rapier lies abandoned on the ground.
+type: 5
+weight: 1.50
+cost: 600
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 8193
+applies:
+2 1
+~
+extradesc: rapier
+   This rapier is made of a very light but strong metal. You experience a
+tingling sensation as you hold it. Its hilt is inlaid in gold and has
+curious circular designs engraved on it.
+~
+~~

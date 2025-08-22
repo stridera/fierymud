@@ -1,0 +1,94 @@
+name: Exash
+password: Exrdgjf8Ln
+prompt: >
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 6
+home: 3002
+lifeforce: 0
+composition: 0
+id: 20400
+birthtime: 1672179568
+timeplayed: 39878
+lastlogintime: 1686333688
+host: 150.230.020.007
+height: 45
+weight: 200
+base_height: 45
+base_weight: 200
+base_size: 2
+natural_size: 2
+alignment: 999
+playerflags: gxy
+effectflags: k w q
+prefflags: hxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 102/96
+mana: 1/0
+move: 148/150
+damroll: 4
+hitroll: 5
+strength: 90
+intelligence: 88
+wisdom: 68
+dexterity: 76
+constitution: 86
+charisma: 54
+cash: 1 34 178 66
+bank: 60 0 0 0
+experience: 103984
+quit_reason: 1
+saveroom: 3054
+skills:
+402 54
+404 110
+415 50
+416 50
+421 74
+438 50
+443 50
+444 54
+463 50
+464 50
+465 93
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18004 2.000000
+1 18002 1.000000
+1 18001 3.000000
+1 18003 5.000000
+1 18007 6.000000
+1 17204 4.000000
+0 0 0
+tells:
+1686306992 @WShauna@W tells you, 'Hmph, what a rip off.@W'@0
+1686306993 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1686307040 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1686307269 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1686308817 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1686308820 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1686308821 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1686308823 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1686312196 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1686312199 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+$
+gossips:
+1686307700 Chinok gossips, 'if you're just learning, solo is probably less death-ridden to be sure :)'
+1686307798 Chinok gossips, 'but at level 5, you can't get too adventurous :)'
+1686307984 Chinok gossips, 'you've seen 'help area' command ??'
+1686307998 Chinok gossips, 'have you found the eatting food trick?'
+1686308032 Chinok gossips, 'so eatting food, will increase hp, drinking water, will increase mv'
+1686308042 Chinok gossips, 'you just can't do it while fighting'
+1686308140 Chinok gossips, 'and once you get higher, there are potions that can help too'
+1686308195 Chinok gossips, 'back to what I was saying, you've seen the 'help area' command ?'
+1686308339 Chinok gossips, 'each area in that list also has a help command, to help you find it, and tell you about it.'
+1686308693 Chinok gossips, 'lol yeah, it's a bit of a maze.  takes some trial and error to find where to go'
+$

@@ -1,0 +1,174 @@
+#1700
+Courtyard~
+   A great place for a picnic!  The fountain runs clear and cold, a few trees
+scattered about the yard provide shade and some shelter for the horses.  A
+trickle of water runs along one side under the trees, providing a coolness for
+hot days.  Short soft green grass covers most of the courtyard, and invites one
+to camp here.  A log lies by the stream and has been carved to make a place to
+sit up off the ground.  A door to the north enters into the >>KotF<< hall.    
+~
+17 36765696 2
+D0
+~
+~
+0 -1 1701
+D2
+~
+door~
+0 -1 3009
+S
+#1701
+The Meeting Room~
+   A room certainly large enough to accomadate all of the member at a time.  
+The myst beast trophy stands in the north west corner of the room.  Windows on
+the north wall reveal only a view of the rough path up the hill.  There is a
+comfortable looking couch facing the fireplace and traditionally used by the
+circle of five.  The clans crest is a glowing gold in the middle of the couch.
+Book shelves along one wall are filled with scrolls, maps, notes and small
+trophies.  A staircase ascends upwards to some dormitory cubicles.
+~
+17 34668544 0
+D2
+~
+~
+0 -1 1700
+D4
+~
+~
+0 -1 1703
+D5
+~
+fireplace~
+1 -1 1702
+S
+#1702
+Secret Room~
+   A small, dark, roughly dug cellar, dimly lit by smokey torchs on the walls.
+Ventilation is poor here, and one would not want to be here long.  There is a
+chest in the corner, which bears the clans crest, and a bulletin board stands
+between two of the torches.  There is a bamboo ladder leading up the fireplace
+here.    
+~
+17 1114112 0
+D3
+The tunnel at the base of the west wall seems to run straight into the earth.
+It is not well lit, making it diffiult to tell how far it goes.  The mouth of
+the tunnel seems crudely dug out, but the earth is braced with wooden beams,
+making it seem safe enough.
+~
+tunnel~
+0 -1 1704
+D4
+~
+fireplace~
+1 -1 1701
+S
+T 1700
+#1703
+The Dormitory Room~
+   This room is actually divided into cubicles, so that each clannie can have a
+sleeping area to themselves.  The men's cubicles tend to be on the spartan side
+with naught but a bunk, a basin, a small mirror above the basin, and a
+footlocker.  However the bunks are covered deeply with soft furs and a large
+soft pillow is at the head of each.  The femmes cubicles on the other hand, are
+furnished very much with Martha Stewart Every Day in mind--Curtains over the
+windows, bedside tables with figurines and vases of flowers.  A large mirror
+hangs over the basin, and gauzy canopies over the bunks from ceiling to floor.
+Bunks are also deeply covered with soft furs and lots of pillows, and a small
+wardrobe is fitted into one corner of each cubicle.  A common area on the south
+side of the room has a few comfortable chairs and some small tables scattered
+around a large window overlooking the courtyard.  A stairwell leads down into
+the meeting room below.
+~
+17 34668564 0
+D5
+~
+~
+0 -1 1701
+S
+T 1703
+#1704
+A Branch in the Tunnel~
+   A short way from the roughly dug cellar to the east, the earthen tunnel
+abruptly splits in three directions.  The main tunnel seems to continue off to
+the west, but similarly sized branches split off to the north and south.  This
+area is not well lit; the light from the torches to the east is hardly visible
+here.
+~
+0 1114368 0
+D0
+The tunnel to the north looks roughly like the other two, dark holes into the
+earth with no indication of their destinations.  This tunnel seems slightly
+chillier than the other two, and an almost imperceptible draft seems to be
+blowing in.
+~
+~
+0 -1 1705
+D1
+~
+~
+0 -1 1702
+D2
+The tunnel to the south is much like the other two dark holes in the earth, but
+this one is marked by a uniquely repulsing odor.
+~
+~
+0 -1 1707
+D3
+The earth tunnel to the west is pitch black with no discernible characteristics
+to distinguish it from the other two.
+~
+~
+0 -1 1706
+S
+#1705
+A Frigid Stock Room~
+   The tunnel to the south abruptly lets out into a frigid stock room.  
+Shelves line the walls here, stocked with all manner of lanterns, quills, and
+torches; in one corner, a large pile of frozen-looking waterskins sit, looking
+like a large, bulbous qua-jit.  To the south, the tunnel goes back to its dark
+origin, but somehow the entrance from this side is far too small to be
+entered--some great magicks beyond detection must be at work here.  A freezing
+draft wafts through a small curtained door to the north.
+~
+0 34669056 0
+D0
+A small curtained door sits in the wall, allowing a chilly draft to waft
+through.
+~
+curtain~
+1 -1 10031
+S
+#1706
+A Tidy Home~
+   The tunnel ends abruptly in a little home.  It's extremely tidy, with a
+carpet on the floor and dwarven tapestries on the walls.  Besides that, there's
+little here of interest, besides some wooden furniture and a lantern.  The
+ceiling here is only marginally higher than that of the tunnel to the east.  
+The mouth of the tunnel on this end is strangely far too small to be entered
+from this side.
+~
+0 1114624 0
+D0
+A door leads outside.
+~
+door~
+1 -1 6114
+S
+#1707
+A Dingy Army Tent~
+   The tunnel on the northern side of the tent lets out into a large army tent.
+Two rows of sleeping mats line the tent walls, forming a narrow walk-way down
+the center.  A uniquely horrid stench rises from the mats, filling the air with
+a repulsing odor.  Escape back to the tunnel is impossible however, since the
+entrance on this side seems to be oddly not much larger than an ant-hill.  The
+other exit is the tent door to the south.
+~
+0 1114624 0
+D2
+The canvas of the tent walls splits to form a door to the south.
+~
+door~
+0 -1 30101
+S
+$~

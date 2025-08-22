@@ -1,0 +1,99 @@
+name: Spex
+password: SpLxVBHzAn
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 32
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20920
+birthtime: 1737931503
+timeplayed: 1582
+lastlogintime: 1738859807
+host: 012.150.032.144
+height: 8
+weight: 7
+base_height: 8
+base_weight: 7
+base_size: 0
+natural_size: 0
+alignment: 998
+playerflags: gxy
+effectflags: u 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 2
+lastlevel: 0
+hitpoints: 23/23
+mana: 1/0
+move: 106/106
+damroll: 0
+hitroll: 6
+strength: 54
+intelligence: 100
+wisdom: 91
+dexterity: 72
+constitution: 96
+charisma: 53
+cash: 0 0 1 50
+experience: 9351
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 54
+424 61
+438 50
+443 50
+444 50
+447 60
+451 50
+452 50
+453 59
+459 50
+460 50
+462 50
+464 51
+0 0
+trophy:
+1 8022 1.000000
+1 8002 3.000000
+1 8012 2.000000
+1 8010 2.000000
+1 8000 1.000000
+1 8011 1.000000
+1 8015 1.000000
+0 0 0
+tells:
+1737931674 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737931687 @WAaron@W tells you, 'Hmm, you appear to be a little short of cash for this item.@W'@0
+1737931696 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1737931788 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1738859288 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1738859778 @WChinok@W tells you, 'it's open@W'@0
+1738859796 @WChinok@W tells you, 'the quest was to ask :)@W'@0
+$
+gossips:
+1738859354 Chinok gossips, 'gratz on 2 Spex'
+1738859372 Chinok gossips, 'yell if you need any help or advice'
+1738859522 Chinok gossips, 'yeah, anyone can be evil'
+1738859547 Chinok gossips, 'well... :) not so much I don't think'
+1738859629 Chinok gossips, 'well Seelie Faerie is the one you'd want to run evil'
+1738859675 Chinok gossips, 'well that's an 'evil race' -- we usually give a quest to open those up to people'
+$
+aliases:
+who who -w
+exa examine corpse
+gac get all all.corpse
+0

@@ -1,0 +1,117 @@
+name: Jinleen
+password: Jif8F/YZXm
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 9
+race: 6
+level: 11
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20418
+birthtime: 1673838243
+timeplayed: 10103
+lastlogintime: 1713644174
+host: 066.199.058.082
+height: 39
+weight: 163
+base_height: 39
+base_weight: 163
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: k w 0
+prefflags: hnouC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 20
+thirst: 10
+lastlevel: 0
+hitpoints: 150/128
+mana: 12/12
+move: 159/159
+damroll: 4
+hitroll: 5
+strength: 96
+intelligence: 61
+wisdom: 62
+dexterity: 96
+constitution: 93
+charisma: 54
+cash: 0 210 340 333
+experience: 344177
+quit_reason: 1
+saveroom: 3054
+skills:
+401 160
+403 74
+404 71
+405 91
+408 82
+410 50
+415 50
+416 50
+421 96
+438 50
+440 114
+443 50
+444 72
+463 50
+464 109
+465 50
+0 0
+trophy:
+1 36300 1.000000
+1 36303 2.000000
+1 36002 2.000000
+1 36001 3.000000
+1 36003 3.000000
+1 2004 1.000000
+1 2001 1.000000
+1 3506 1.000000
+1 3503 3.000000
+1 17204 3.000000
+1 3508 12.000000
+1 3509 3.000000
+1 3502 2.000000
+1 3500 12.000000
+1 4303 1.000000
+1 4300 1.000000
+1 4302 4.000000
+1 4301 1.000000
+1 8015 1.000000
+1 8013 1.000000
+1 8021 1.000000
+0 0 0
+tells:
+1673930779 @WDaedela@W tells you, 'I should from the IP but I can't remember haha@W'@0
+1673930783 @WXorath@W tells you, 'cool; i'm close to leveling@W'@0
+1673930818 @WDaedela@W tells you, 'I'm guessing Kresselack haha@W'@0
+1673930821 @WXorath@W tells you, 'oh that sounds interesting...@W'@0
+1673930827 @WXorath@W tells you, 'starts in Anduin right@W'@0
+1673930850 @WDaedela@W tells you, 'great@W'@0
+1673930850 @WXorath@W tells you, 'i found the rogue when i mapped Anduin, i think i know where to begin@W'@0
+1673930868 @WDaedela@W tells you, 'glad you liked it!  I also did a small revamp to the thief quest@W'@0
+1674433081 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1674433082 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1673930467 Daedela gossips, 'hey Choak, are you there?'
+1673930614 Daedela gossips, 'congratulations!'
+1673930647 Xorath gossips, 'grats!'
+1673930661 Athmaur gossips, 'ty'
+1673930724 Daedela gossips, 'congrats Jinleen!'
+1673930736 Athmaur gossips, 'grats'
+1673930741 Daedela gossips, 'good, glad you like it!'
+1674433072 Choak gossips, 'Hey Jinleen!'
+1675657331 Athmaur gossips, 'night all'
+1682298099 Chinok gossips, 'welcome Jinleen'
+$
+aliases:
+gc g all.coins from all.corpse
+lc l in corpse
+gm g all.gem from all.corpse
+0

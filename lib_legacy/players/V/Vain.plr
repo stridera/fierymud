@@ -1,0 +1,94 @@
+name: Vain
+password: VaP9vk6nXV
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19908
+birthtime: 1619966220
+timeplayed: 2780
+lastlogintime: 1619969001
+host: 071.254.204.199
+height: 75
+weight: 169
+base_height: 75
+base_weight: 169
+base_size: 2
+natural_size: 2
+alignment: 39
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 15
+thirst: 16
+lastlevel: 0
+hitpoints: 31/31
+mana: 0/0
+move: 101/112
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 68
+wisdom: 70
+dexterity: 91
+constitution: 78
+charisma: 65
+cash: 0 20 94 81
+experience: 14411
+quit_reason: 1
+saveroom: 3054
+skills:
+403 51
+415 50
+416 50
+421 58
+438 50
+443 50
+444 50
+464 53
+465 50
+467 50
+0 0
+trophy:
+1 36001 2.000000
+1 8014 1.000000
+1 16908 1.000000
+1 8020 1.000000
+1 8012 1.000000
+1 8002 1.000000
+1 36002 6.000000
+1 36003 8.000000
+1 8010 1.000000
+0 0 0
+tells:
+1619967573 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1619967612 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1619968589 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1619968598 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1619968626 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1619968917 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1619968925 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1619968930 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1619968937 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+1619968948 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
+$
+gossips:
+1619967617 Chinok gossips, 'it's D if I remember right'
+1619967704 Chinok gossips, 'I wouldn't use him yet.. your skills can only get 'so good' at level 2'
+1619967726 Chinok gossips, 'and every time you use him, his price goes up expotinally'
+1619968234 Chinok gossips, 'btw, the full in-game help file is searchable from the website, sometimes easier to find what you're looking for'
+1619968240 Chinok gossips, 'www.fierymud.org/help'
+1619968310 Chinok gossips, 'lol gotta watch those mages :)'
+1619968550 Chinok gossips, 'be careful in that topiary, some of those guys are tough'
+1619968633 Chinok gossips, 'I have to leave, but enjoy.. usually there are more people on.. suspect some might join'
+1619968687 Chinok gossips, 'ok, on leaving.. you can camp -- if you are outdoors, or there is a inn in town '
+1619968704 Chinok gossips, 'you can just disconnect too, but no guarantee you will be safe when you return :)'
+$

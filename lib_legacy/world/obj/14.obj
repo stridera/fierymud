@@ -1,0 +1,174 @@
+#1400
+fountain gold milk milk-fountain GUILD_ITEM GoT_ITEM~
+a milk fountain~
+A fountain of fresh milk flows here.~
+~
+23 0 0 0
+999999 999999 10 0 0 0 0
+1400.00 0 0 0 0 0 0 0
+E
+gold fountain milk~
+A small marble fountain streaked with gold sits in the corner, magically
+flowing with fresh, warm milk.  It smells excellent and would perfectly
+complement everything from cereal to cookies.  An inscription at the bottom
+says "Guardians of Truth, 2006".    ~
+#1401
+poupelin pastry poupelin_pastry GUILD_ITEM GoT_ITEM food~
+a poupelin~
+A pastry with bird feet sticking out has been dropped here.~
+~
+19 0 1 0
+2 0 0 0 0 0 0
+0.50 1000 0 0 0 0 0 0
+E
+poupelin pastry~
+Made of a thin dough with a partridge inside (feet sticking up) and including
+such other ingredients as nutmeg, ginger, chopped marjoram, new butter, and
+saffroned sour lemon slices, the poupelin is a legendary pastry.  The secrets
+of its baking are only known to a select few in the world.  Such a pastry is
+truly a work of art!    ~
+#1402
+pie chicken pot pot_pie GUILD_ITEM GoT_ITEM food~
+a chicken pot pie~
+A chicken pot pie has been left here, smelling delicious!~
+~
+19 0 1 0
+5 0 0 0 0 0 0
+0.40 1000 0 0 0 0 0 0
+E
+chicken pot pie ~
+Set in a brown ceramic dish and steaming hot, this pot pie smells of chicken,
+herbs, freshly baked crust and other tastiness.  It looks both nutritious and
+delicious.  Mmm.    ~
+#1403
+pie blueberry slice pie_slice blueberry_pie GUILD_ITEM GoT_ITEM food~
+a slice of blueberry pie~
+A single slice of blueberry pie is here, begging to be eaten.~
+~
+19 0 1 0
+3 0 0 0 0 0 0
+0.60 10 0 0 0 0 0 0
+E
+blueberry slice pie~
+Crispy browned crust sprinkled with sugar lines the hot blueberry filling of
+this freshly sliced pie.  It would probably burn one's mouth and stain it
+purple with the hot berry juice, but that's half the fun, isn't it?    ~
+#1404
+cream puff dough pastry cream_puff dough_puff GUILD_ITEM GoT_ITEM food~
+a cream puff~
+A puffy pastry sits here, waiting to be eaten.~
+~
+19 0 1 0
+1 0 0 0 0 0 0
+0.60 10 0 0 0 0 0 0
+E
+cream puff dough pastry~
+Tasty and delicious, the cream puff would go well with coffee.  Light and
+fluffy but filled with thick cream, the cream puff is a standard of pastry
+shops everywhere.  The dough swirls up, cloudlike, into a triangular shape that
+pleases the eyes as well as the taste buds.    ~
+#1405
+portal gold-white glimmering glimmering_portal GUILD_ITEM GoT_ITEM~
+a gold-white portal~
+A golden-white portal glimmers against the southern wall.~
+~
+24 0 0 0
+3009 0 0 0 0 0 0
+0.00 0 -1 0 0 0 0 0
+#1406
+eyes truth glasses eye_glasses truth_glasses GUILD_ITEM GoT_ITEM~
+the Eyes of Truth~
+A plain pair of glasses rest here, forgotten by someone.~
+~
+8 1088 65537 0
+3 0 0 0 0 0 0
+0.70 0 0 8 0 0 4194304 0
+T 1402
+E
+eyes truth glasses~
+This is just a plain pair of glasses until worn.  Once placed over the eyes,
+they begin to glow with a golden light and transform into a thin line of energy
+that hums for a moment and then seemingly vanishes except for a small glyph
+representing "Truth" that can be seen deep in the pupils of the wearer.    ~
+A
+3 3
+A
+4 3
+A
+24 -5
+A
+28 100
+#1407
+armor GoT_PRSENT_ARMOR herlequin~
+a massive suit of charcoal black armor~
+A massive suit of charchoal black armor stands lifeless in the corner.~
+~
+8 0 0 0
+0 0 0 0 0 0 0
+65.00 0 0 0 0 0 0 0
+E
+armor herlequin charcoal black suit~
+   A massive suit of very sturdy armor, charcoal black, is prompted up
+as a trophy. A large plume protrudes from the top of the armored helmet
+while it's chestplate is engraved with what appears to be an unholy symbol
+that looks that of the sky god himself.~
+#1408
+parchment paper GoT clan-dues agreement lease~
+the GoT lease agreement~
+A piece of parchment titled with the initals GoT lies here abandoned.~
+~
+12 604045328 1 0
+0 0 0 0 0 0 0
+0.02 0 0 0 0 0 0 0
+E
+parchment paper agreement lease~
+   This deed entitles the clan known as GoT to the following items
+as paid for in their initial construction costs so long as they
+continue to pay maintainance costs of 10% of the total construction
+costs by the 5th of each month. At the time dues are collected the
+seal on this lease shall be updated to reflect the date the next
+collection shall take place.
+
+Note- Lease agreements pay be inspected at any time to verify that
+      all dues are up-to-date.
+
+
+Clan Construction details follow and a Holy Seal is placed at the bottem.~
+E
+details~
+   The following are details surround the costs and maintain of the
+clans hall and item:
+
+Inital Construction cost (2 rooms)   - 15K
+Additional rooms (1)                 -  3K
+Inn/Innkeeper                        -  8K
+Fountain (Milk filled)               -  2K
+Clan Mobs (Bean bag chairs)          -  3K
+Shop with four basic items (table)   -  7K
+One basic clan item                  -  3K
+Improved Ability on Item (1 DR)      -  5K
+Portal back to town                  -  Free  - Exception because clan is on SoCo
+Herlequin Suit of Armor              -  Free  - Gift from Acerite
+--------------------------------------------
+Total                                - 46K
+
+
+Upkeep is 10% of total cost          - 4.6K
+Note- All prices are in platinum.~
+E
+seal holy~
+A holy seal is stamped at the bottom of this parchment it reads:
+
+&9&b              / \&0
+&3            /     \&0
+&3&b          /         \&0
+&3&b        /             \&0
+&8       <      GoT      >&0
+&8        \             /&0
+&3&b          \         /&0
+&3&b            \     /&0
+&3              \ /&0
+
+Dues paid through: January 5
+Collected by: Kourrya~
+$~

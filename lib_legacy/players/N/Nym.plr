@@ -1,0 +1,99 @@
+name: Nym
+password: Ny9FfSW8jb
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 26
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20231
+birthtime: 1650131739
+timeplayed: 5073
+lastlogintime: 1650137543
+host: 107.139.176.194
+height: 77
+weight: 369
+base_height: 77
+base_weight: 369
+base_size: 2
+natural_size: 2
+alignment: -3
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 20
+thirst: 16
+lastlevel: 0
+hitpoints: 72/68
+mana: 1/0
+move: 105/142
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 74
+wisdom: 81
+dexterity: 85
+constitution: 92
+charisma: 38
+experience: 37250
+quit_reason: 1
+saveroom: 3054
+skills:
+201 1000
+402 50
+404 50
+415 50
+416 50
+421 52
+438 50
+443 50
+444 50
+453 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+486 54
+0 0
+trophy:
+1 8806 0.200000
+1 1601 3.200001
+1 1602 2.000000
+1 13610 0.200000
+1 8022 1.200000
+1 8020 1.800000
+1 8012 1.200000
+1 8010 2.600000
+1 8015 1.600000
+1 8000 1.400000
+1 8021 2.200000
+1 8011 1.800000
+1 8016 1.600000
+1 8023 1.400000
+1 8014 1.600000
+1 8001 2.000000
+1 8013 2.400000
+1 8002 2.400000
+0 0 0
+tells:
+$
+gossips:
+1650136634 Kresselack gossips, 'gratz nym'
+1650136640 Choak gossips, 'oh for the book earrings?'
+1650136642 Choak gossips, 'gratz!'
+1650136645 Kresselack gossips, 'yea'
+1650136660 Choak gossips, 'yeah I don't remember either been a LONG time since I did that quest'
+1650136664 Kresselack gossips, 'me to lol'
+1650136674 Tarnoth gossips, 'I would help but never done it.'
+1650136681 Tarnoth gossips, 'just a newbie here'
+1650136843 Kresselack gossips, 'nice'
+1650136849 Paver gossips, 'thanks :D'
+$

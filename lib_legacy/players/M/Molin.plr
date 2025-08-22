@@ -1,0 +1,111 @@
+name: Molin
+password: MoKhiv2TkH
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 13
+race: 0
+level: 57
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17805
+birthtime: 1292900028
+timeplayed: 360621
+lastlogintime: 1561506586
+host: 098.230.096.142
+height: 72
+weight: 131
+base_height: 72
+base_weight: 131
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 719/662
+mana: 324/324
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 56
+wisdom: 75
+dexterity: 86
+constitution: 100
+charisma: 51
+cash: 286 7647 136 5
+bank: 1000 15000 50000 0
+experience: 37964837
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+14 850/1110
+-1 0
+skills:
+404 620
+411 118
+412 620
+414 82
+415 95
+416 50
+420 620
+421 615
+422 620
+430 340
+438 50
+443 580
+444 458
+446 620
+448 1000
+449 1000
+463 50
+601 50
+602 50
+605 50
+606 50
+0 0
+trophy:
+1 53023 2.000000
+1 53006 3.000000
+1 7302 0.750000
+1 7301 1.750000
+1 7300 5.000000
+1 16002 0.500000
+1 16000 0.750000
+1 16004 0.500000
+1 16001 0.750000
+1 3064 1.000000
+1 55216 0.500000
+1 18551 0.500000
+1 18517 1.000000
+1 18510 1.000000
+1 18513 1.000000
+1 18508 0.500000
+1 18514 1.000000
+1 18506 1.000000
+1 18502 0.500000
+1 18500 0.500000
+1 18507 2.000000
+0 0 0
+effects:
+601 33 41 26 0 0 0
+0 0 0 0 0
+aliases:
+dcs drag corpse s
+ggc get all.gem corpse
+ds drink from skin
+ec examine corpse
+gcc get all.coins corpse
+gac get all corpse
+ga get all
+fs fill skin fountain
+dff drink from fountain
+0

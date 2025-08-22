@@ -1,0 +1,30 @@
+Id  : 3
+Name: Guardians of Truth&0
+Abbr: &3&8>>GoT<<&0&0
+Dues: 1000
+Fee : 300
+ALvl: 20
+Gold: 40000
+Priv: setdesc 12
+Priv: enroll 11
+Priv: expel 12
+Priv: promote 12
+Priv: demote 12
+Priv: setappfee 11
+Priv: withdraw 10
+Priv: setapplev 11
+Priv: setalt 12
+Priv: settitle 12
+Priv: setdues 11
+Rank: - Explorer&0
+Rank: - Seeker&0
+Rank: - Illuminator&0
+Rank: - Protector&0
+Rank: - Champion&0
+Rank: - Guardian&0
+Rank: - Sentinel&0
+Rank: &3&8Defender of The Faith&0&0
+Rank: &4&8Avatar &0of &4&8Justice&0&0
+Rank: &8&9Lord &0of &3Radiance&0&0
+Rank: &3&8Golden &0Disciple&0
+Rank: &2&8Defe&0&2nder of &8Light&0&0

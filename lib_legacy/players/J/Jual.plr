@@ -1,0 +1,62 @@
+name: Jual
+password: JunNy7mj25
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18351
+birthtime: 1349016226
+timeplayed: 2712
+lastlogintime: 1349536625
+host: 068.098.054.184
+height: 88
+weight: 198
+base_height: 88
+base_weight: 198
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 28/26
+mana: 1/0
+move: 159/160
+damroll: 5
+hitroll: 4
+strength: 98
+intelligence: 66
+wisdom: 64
+dexterity: 89
+constitution: 92
+charisma: 55
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0

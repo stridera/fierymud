@@ -1,0 +1,75 @@
+name: Cannadaigh
+password: CaF3hp/NZX
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 29
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20738
+birthtime: 1706574397
+timeplayed: 925
+lastlogintime: 1706575356
+host: 108.245.223.019
+height: 75
+weight: 271
+base_height: 75
+base_weight: 271
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: xy
+effectflags: k 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 20
+thirst: 14
+lastlevel: 0
+hitpoints: 40/40
+mana: 0/0
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 81
+wisdom: 71
+dexterity: 80
+constitution: 85
+charisma: 70
+bank: 0 1 1 1
+experience: 6050
+quit_reason: 5
+saveroom: 3021
+skills:
+402 52
+404 50
+415 50
+416 50
+421 50
+435 66
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 51900 2.000000
+0 0 0
+tells:
+1706575335 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1706574448 Chinok gossips, 'welcome young dragonborn Cannadaigh!'
+1706574531 Chinok gossips, 'we're here to help, if you have any questions or need any advice, just yell.'
+1706575291 Chinok gossips, 'gratz on 2 Cannadaigh'
+$

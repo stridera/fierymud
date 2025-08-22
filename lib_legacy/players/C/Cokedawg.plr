@@ -1,0 +1,78 @@
+name: Cokedawg
+password: Co8o2LVXHE
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20119
+birthtime: 1642635549
+timeplayed: 972
+lastlogintime: 1647281437
+host: 173.222.000.077
+height: 83
+weight: 216
+base_height: 83
+base_weight: 216
+base_size: 3
+natural_size: 3
+alignment: -2
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -15/30
+mana: 1/0
+move: 102/134
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 64
+wisdom: 68
+dexterity: 87
+constitution: 77
+charisma: 64
+experience: 563
+quit_reason: 10
+saveroom: 3518
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1647280605 Strider gossips, 'Want to do my swim test for me next week?'
+1647280609 Mersh gossips, 'haha'
+1647280626 Mersh gossips, 'wrong name then..'
+1647280628 Chinok gossips, 'I'm more a rumNcokeDAWG'
+1647280644 Mersh gossips, 'haha'
+1647280705 Strider gossips, 'They're both rather interesting names'
+1647280746 Chinok gossips, 'this time change is brutal.. I'm exhausted already'
+1647280827 Chinok gossips, '-- anyway, yell if you need any help, advice, or clarifications.'
+1647280836 Mersh gossips, 'Hey holk'
+1647280852 Holk gossips, 'Hey Mersh'
+$

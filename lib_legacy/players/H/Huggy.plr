@@ -1,0 +1,74 @@
+name: Huggy
+password: HuE8sGK9K5
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18211
+birthtime: 1334018950
+timeplayed: 10558
+lastlogintime: 1334720504
+host: 024.022.063.011
+height: 73
+weight: 249
+base_height: 73
+base_weight: 249
+base_size: 3
+natural_size: 3
+alignment: -19
+playerflags: y
+effectflags: 0 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 17
+thirst: 10
+lastlevel: 0
+hitpoints: 50/47
+mana: 1/0
+move: 150/150
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 53
+wisdom: 70
+dexterity: 87
+constitution: 86
+charisma: 61
+experience: 29485
+quit_reason: 3
+saveroom: 0
+skills:
+402 64
+404 50
+415 50
+416 50
+419 1000
+421 73
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 57
+466 50
+467 50
+468 50
+0 0
+aliases:
+ascreate alias
+"assist skittles" as
+as "assist skittles"
+ac "assist skittles"
+az "assist Skittles"
+an "assist skittles"
+"an" assist skittles
+tc take all corpse
+0

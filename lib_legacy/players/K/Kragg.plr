@@ -1,0 +1,90 @@
+name: Kragg
+password: KrPCSumhFt
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 10
+race: 10
+level: 18
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19271
+birthtime: 1510781082
+timeplayed: 81763
+lastlogintime: 1557017546
+host: 071.201.188.013
+height: 79
+weight: 191
+base_height: 79
+base_weight: 191
+base_size: 3
+natural_size: 3
+alignment: 664
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 215/197
+mana: 32/32
+move: 146/146
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 57
+wisdom: 69
+dexterity: 100
+constitution: 84
+charisma: 53
+cash: 0 508 646 3
+experience: 1248216
+quit_reason: 1
+saveroom: 3054
+skills:
+401 230
+402 50
+404 50
+411 138
+415 53
+416 50
+419 1000
+421 179
+427 1000
+428 50
+434 50
+438 50
+443 58
+444 50
+463 50
+464 194
+465 54
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18507 3.000000
+1 20300 0.666667
+1 20313 0.333333
+1 20306 0.666667
+1 20307 0.666667
+1 20301 1.000000
+1 16107 1.333333
+1 16103 0.333333
+1 2001 0.333333
+1 2004 0.333333
+1 2005 0.333333
+1 2003 0.333333
+1 8001 0.333333
+1 8000 0.333333
+1 8002 0.333333
+1 8012 0.333333
+1 8010 0.333333
+1 8030 0.333333
+1 8014 0.333333
+1 8016 0.333333
+1 18501 0.333333
+0 0 0

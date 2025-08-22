@@ -1,0 +1,139 @@
+#7300
+lizard man neo neo-lizard-man reptilian creature humanoid~
+a neo-lizard man~
+A nearly humanoid reptilian creature stands here, watching you coldly.~
+It doesn't quite look intelligent, but it is obviously a step higher
+on the scale than a simple lizard. It watches you coldly, as if you
+were nothing more to it than a possible meal. There seems to be only
+a trace of intelligence in this creature.~
+102762568 263168 0 E
+20 0 0 0d0+0 0d0+0
+0 0 0 0 0 73
+3 3 0 24 13 0 2
+BareHandAttack: 9
+Str: 90
+Dex: 83
+Int: 74
+Wis: 80
+Con: 30
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#7301
+bile crusher northern northern-crusher-bile~
+the Northern Crusher Bile~
+The Northern Crusher Bile is here with an evil gleam in his eyes.~
+Larger than a regular bile, the Crusher Biles are an Elite Force.
+Bred for a love of violence and given the strength to rip someone's
+arms off, the Crusher are the most feared of the bile.~
+102762572 1028 -400 E
+26 0 0 0d0+0 0d0+0
+0 0 0 0 0 73
+3 3 1 24 17 0 2
+BareHandAttack: 6
+Str: 84
+Dex: 84
+Int: 68
+Wis: 70
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#7302
+bile rot bile-rot~
+the Bile Rot~
+The Bile Rot is standing here, ready to tear your head off.~
+Standing well over 7 feet tall, this creature was once a bile but a
+horrible transformation has taken place. Infected with some sort of
+disease, the Bile Rot has grown to enormous proportions. You can see
+worms crawling from its eye sockets and there appears to be something
+moving underneath of its skin.~
+102762572 1028 -100 E
+30 0 0 0d0+0 0d0+0
+0 0 0 0 0 73
+3 3 1 24 17 0 2
+BareHandAttack: 10
+Str: 96
+Dex: 86
+Int: 66
+Wis: 75
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#7310
+hermit crazy old crazy-old-hermit swamp-hermit~
+the crazy hermit~
+The crazy old hermit stands here, ready to fight if necessary.~
+He's a large fellow, but very old, with a wispy grey beard and equally
+sparse grey hair. He talks to himself constantly and moves with great
+deliberation and slowness.~
+270534670 4 0 E
+55 0 0 0d0+0 0d0+0
+0 0 0 0 0 73
+3 3 1 8 0 0 2
+Str: 95
+Dex: 77
+Int: 71
+Wis: 75
+Con: 30
+Cha: 50
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 62551
+T 55699
+#7475
+ranger man mysteriously cloaked~
+a mysteriously cloaked man~
+A mysteriously cloaked man rests against his longbow here.~
+This cloaked figure is a gracious ranger, looking out for the young but
+adventurous.  He is tall and sleek, and well built, ready to help if need be.~
+-2147227558 33566760 800 E
+90 0 0 0d0+0 0d0+0
+0 0 0 0 0 73
+3 3 1 6 1 0 2
+Str: 89
+Dex: 72
+Int: 74
+Wis: 76
+Con: 80
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 7475
+$

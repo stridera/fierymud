@@ -1,0 +1,131 @@
+name: Jotunite
+password: Jo5HPjNyUT
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 29
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20922
+birthtime: 1738033597
+timeplayed: 25551
+lastlogintime: 1739083835
+host: 023.016.052.134
+height: 78
+weight: 242
+base_height: 78
+base_weight: 242
+base_size: 2
+natural_size: 2
+alignment: 91
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 64/64
+mana: 1/0
+move: 143/152
+damroll: 3
+hitroll: 3
+strength: 68
+intelligence: 94
+wisdom: 89
+dexterity: 82
+constitution: 86
+charisma: 64
+cash: 0 144 1116 1547
+experience: 244963
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+39 1000
+100 1000
+101 1000
+205 1000
+415 50
+416 50
+423 139
+424 140
+435 54
+438 50
+443 130
+444 50
+447 72
+451 54
+452 133
+453 134
+454 51
+456 50
+459 57
+460 59
+462 59
+464 51
+0 0
+trophy:
+1 61525 1.000000
+1 61528 1.000000
+1 3506 1.000000
+1 3509 2.000000
+1 3508 5.000000
+1 18006 1.000000
+1 18004 1.000000
+1 18001 2.000000
+1 18005 3.000000
+1 18007 4.000000
+1 18002 3.000000
+1 8606 2.000000
+1 8604 4.000000
+1 8605 5.000000
+1 8015 3.000000
+1 8020 2.000000
+1 8013 1.000000
+1 8000 3.000000
+1 8001 2.000000
+1 8022 1.000000
+1 8011 4.000000
+0 0 0
+tells:
+1738040566 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1738040573 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1738040576 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1738040580 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1738040584 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1738040585 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1738040678 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1739078072 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739078376 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1739078385 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+$
+gossips:
+1738530635 Chinok gossips, 'yep, in your 'badge' slot'
+1738530667 Chinok gossips, 'you can cast 'identify' on them -- to show what stats they give you'
+1738551381 Chinok gossips, 'welcome back Jotunite'
+1738551553 Someone gossips, 'woo grats :D'
+1738635318 Anexis gossips, 'ew, that sucks tho'
+1738635451 Chinok gossips, 'it's OK, it wasn' too bad.'
+1738696923 Flynt gossips, 'So I found the chest that says teleport on it. and has a small box inside.'
+1738696993 Teomner gossips, 'hey jotunite'
+1738697064 Discord gossips, 'Daedela: That would be helpful!'
+1739077172 Anexis gossips, 'night fiery!'
+$
+aliases:
+amr1 look journal guild armor phase one
+eint cast enhance jotunite int
+dinv cast 'detect invisibility' jotunite
+invs cast 'concealment'
+dmaj cast 'detect magic' jotunite
+blit breathe lightning
+mmis cast 'magic' $1
+flam cast 'burn' $1
+0

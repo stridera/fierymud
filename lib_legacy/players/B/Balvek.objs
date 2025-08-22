@@ -1,0 +1,319 @@
+1
+vnum: 3031
+location: 18
+values:
+1
+250
+247
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 3020
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: 0 0
+name: dagger long-thin-blade
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: dagger long-thin-blade
+The dagger's blade is razor sharp.~
+~~
+vnum: 3020
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: 0 0
+name: dagger long-thin-blade
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: dagger long-thin-blade
+The dagger's blade is razor sharp.~
+~~
+vnum: 55305
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots flimsy-leather-boots armor
+shortdesc: flimsy leather boots
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: boots flimsy-leather-boots armor
+These boots are flimsy beyond use.  Perhaps the Rogue guild master will know
+what to do with them.~
+~~
+vnum: 1150
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myzD afgh
+name: shield small-wooden-shield
+shortdesc: a wooden shield
+desc: A small wooden shield has been abandoned here.
+type: 9
+weight: 3.50
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+extradesc: shield small-wooden-shield
+A small wooden disc bolted along its edges, this shield is designed to be held
+close to the body.  A pair of leather handles on its back allows its user to
+hold it in a variety of ways.  The shield itself is undecorated.~
+~~
+vnum: 3020
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: 0 0
+name: dagger long-thin-blade
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: dagger long-thin-blade
+The dagger's blade is razor sharp.~
+~~
+vnum: 3020
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: 0 0
+name: dagger long-thin-blade
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: dagger long-thin-blade
+The dagger's blade is razor sharp.~
+~~
+vnum: 61506
+location: 127
+values:
+1
+1
+3
+11
+0
+0
+0
+~
+flags: 0 0
+name: knife dagger small-flint-knife small-yellowish-knife yellow questobject
+shortdesc: a small flint knife
+desc: A small yellowish knife is stuck in the turf.
+type: 5
+weight: 0.50
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+18 1
+~
+extradesc: knife dagger small-flint-knife small-yellowish-knife yellow questobject
+This little knife was chipped from the yellowish, slightly translucent flint
+found in the hills.  It has a wooden handle, wound with sinew, attached to one
+end.  Though small, it is quite sharp.~
+~~
+vnum: 61510
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: buttercup flower
+shortdesc: a buttercup
+desc: A bright yellow flower lies here attached to a short stem.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 540673
+hiddenness: 0
+extradesc: buttercup flower
+The yellow of this flower is so deep and shiny that it's reflected off any
+surface brought near.  The stem is still green and unwilted, so it can't have
+been picked long ago.    ~
+~~
+vnum: 340
+location: 127
+values:
+0
+1
+8
+5
+0
+0
+0
+~
+flags: dmoprstuvwx abefgh
+name: mace runed-mace mace-engraved-holy-runes
+shortdesc: a runed mace
+desc: A mace engraved with holy runes stands on its head.
+type: 5
+weight: 4.00
+cost: 1000
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: mace runed-mace mace-engraved-holy-runes
+This weapon is a steel ball mace affixed to a sturdy wooden shaft.  Its surface
+is covered with runic embellishments, dedicating this mace to the service of
+divinity, though its power is quite diminished.  The symbols indicate a
+relationship with the Knights Templar.  Perhaps the Templar Magistrate in
+Mielikki will know more.~
+triggers:
+317
+319
+~
+~~
+vnum: 3020
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: 0 0
+name: dagger long-thin-blade
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: dagger long-thin-blade
+The dagger's blade is razor sharp.~
+~~

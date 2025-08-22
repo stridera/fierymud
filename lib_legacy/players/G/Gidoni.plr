@@ -1,0 +1,90 @@
+name: Gidoni
+password: Te.dKEP1Ta
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 9
+race: 6
+level: 63
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17298
+birthtime: 1236663582
+timeplayed: 404
+lastlogintime: 1236663996
+host: 064.255.084.050
+height: 73
+weight: 215
+base_height: 73
+base_weight: 215
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: lwy
+effectflags: k w 0
+prefflags: hnoxC a
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 1
+hunger: 19
+thirst: 14
+lastlevel: 11
+hitpoints: 686/560
+mana: 100/100
+move: 146/156
+damroll: 4
+hitroll: 5
+strength: 82
+intelligence: 71
+wisdom: 67
+dexterity: 93
+constitution: 94
+charisma: 54
+cash: 274 398 1544 1654
+experience: 31934000
+quit_reason: 1
+saveroom: 3054
+skills:
+401 50
+403 50
+404 50
+405 50
+408 50
+410 50
+411 50
+415 50
+416 50
+418 50
+420 50
+421 50
+438 50
+440 50
+443 50
+444 50
+464 50
+465 50
+477 50
+0 0
+trophy:
+1 5515 2.500000
+1 5517 7.000000
+1 5523 1.500000
+1 5513 4.000000
+1 5514 3.000000
+1 5516 5.000000
+1 5518 7.500000
+1 5519 6.000000
+1 5520 5.000000
+1 5521 4.000000
+1 5522 8.500000
+1 7301 0.500000
+1 7300 1.500000
+1 55231 1.000000
+1 17803 0.500000
+1 17809 0.500000
+1 17802 0.500000
+1 17805 3.000000
+1 17808 0.500000
+1 17804 4.000000
+1 17801 1.000000
+0 0 0

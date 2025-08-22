@@ -1,0 +1,115 @@
+name: Jalor
+password: Jai0VxOHPd
+prompt: &1%n&0%-%x<Hide:%i><%t>:<%o>%_<&2%hh&0(&2&b%HH&0)%-&2%vv&0(&2&b%VV&0)>%-<TC:%dt>%_
+autoinvis: 0
+sex: 1
+class: 9
+race: 6
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18576
+birthtime: 1378183883
+timeplayed: 131563
+lastlogintime: 1737500374
+host: 156.146.194.021
+height: 75
+weight: 178
+base_height: 75
+base_weight: 178
+base_size: 2
+natural_size: 2
+alignment: -999
+playerflags: gxyz
+effectflags: k w 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: -1
+thirst: -1
+lastlevel: 0
+hitpoints: 1050/852
+mana: 980/980
+move: 130/130
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 100
+wisdom: 100
+dexterity: 100
+constitution: 100
+charisma: 100
+cash: 214 2074 9764 10708
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+404 1000
+405 1000
+408 1000
+410 1000
+411 1000
+412 1000
+415 1000
+416 1000
+418 1000
+420 1000
+421 1000
+438 1000
+440 1000
+443 1000
+444 1000
+463 50
+464 1000
+465 1000
+477 1000
+0 0
+trophy:
+1 51020 2.000000
+1 51002 3.000000
+1 51023 0.500000
+1 51014 0.500000
+1 51021 0.500000
+1 51001 2.000000
+1 51024 4.000000
+1 51003 1.500000
+1 51006 0.833333
+1 51009 0.833333
+1 18512 1.000000
+1 18553 0.500000
+1 18550 0.500000
+1 18500 0.500000
+1 18503 0.500000
+1 18511 1.500000
+1 18507 0.500000
+1 18510 0.500000
+1 51102 0.500000
+1 51101 0.500000
+1 51010 1.833333
+0 0 0
+tells:
+1661206229 @WZaver@W tells you, 'hide@W'@0
+$
+gossips:
+1698292941 Chinok gossips, 'err 200'
+1698293001 Chinok gossips, 'so, there was some issue Laoris had about .. OMG 10 years ago, that caused play time to be screwy'
+1698293079 Discord gossips, 'Daedela: Are your stats 100?'
+1698293087 Discord gossips, 'Daedela: Then you did'
+1698293136 Chinok gossips, 'you started in 2013, so you hit that bug ...'
+1698293158 Chinok gossips, 'it really don't impact anything tho, so don't worry too much about it'
+1698293254 Chinok gossips, 'like I said, about 10-15 years ago :)'
+1737500252 Tynder gossips, 'Isn't there another fancy container? A gaping black hole or something?'
+1737500283 Tynder gossips, 'No, you're thinking of Daedela. I'm talking about a container.'
+1737500304 Unoliph gossips, 'theres a doll thats a large container'
+$
+aliases:
+wh wh -w
+hitall gsay Tanks, hitall all!
+strength innate strength
+tc throatcut $1
+invis innate invis
+0

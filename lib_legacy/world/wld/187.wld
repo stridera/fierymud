@@ -1,0 +1,127 @@
+#18700
+Before an Old Monastery~
+   The path leads though a slightly grassy area on the flat clifftop.  The
+crashing of waves can be heard to the east and the green sea stretches out to
+the horizon. The path leads back against the hills slightly so the monastery
+is protected on three sides by the high, sheer limestone cliffs. The building
+is modestly constructed, carved in part from the rock itself, looks very old
+and unchanged except for what appears to be a new solid door of metal and
+wood.
+~
+187 3866624 10
+D0
+The heavy wooden door is new looking and very sturdily made.
+It's bordered with metal reinforcements and accoutrements.
+There is a carving in the center of the door.
+~
+door metal wood~
+1 18701 18701
+D2
+~
+~
+0 -1 3600
+E
+door~
+The heavy wooden door is new looking and very sturdily made.
+It's bordered with metal reinforcements and accoutrements.
+There is a carving in the center of the door.
+~
+E
+carving~
+The carving is a circle composed of five circles linked together.
+In the center of the five circles is carved the guild icon.
+~
+S
+#18701
+The Courtyard~
+   This is a large open courtyard that serves as both an entrance and staging
+area.  Two sides of this rectangular area, house unknown and boarded up rooms.
+The very center has a small very neat garden.  There is a door located just off
+the dirt and grass of the courtyard under an awned walkway that laps the
+perimeter.
+~
+187 3866624 2
+D0
+A sturdy door leads into the castle.
+~
+door~
+1 -1 18702
+D2
+The heavy wooden door is new looking and very sturdily made.
+It's bordered with metal reinforcements and accoutrements.
+There is a carving in the center of the door.
+~
+door wood metal~
+1 -1 18700
+E
+door~
+The heavy wooden door is new looking and very sturdily made.
+It's bordered with metal reinforcements and accoutrements.
+There is a carving in the center of the door.
+~
+E
+carving~
+The carving is a circle composed of five circles linked together.
+In the center of the five circles is carved the guild icon.
+~
+S
+#18702
+Pandor Gathering Room~
+   This room is dominated by a huge round table surrounded by chairs.  Rugs and
+tapestries adorn the walls and floor.  Behind some of the tapestries there are
+the outlines of arches.  Smaller groupings of chairs separated by small tables
+are placed around the room's perimeter.  Wall sconces and a large oil lamp
+chandelier provide the light.    
+   A simple wooden door stands to the north, and a much sturdier one to
+the south.
+~
+187 3866632 1
+D0
+A simple door stands in the north wall.
+~
+door~
+1 -1 18703
+D2
+A sturdy door stands in the south wall.
+~
+door~
+1 -1 18701
+E
+tapestry~
+The tapestry depicts a scene of Paladins and Priests doing battle with a
+demon lord.  Off to one side is a ranger fighting an ice dragon.
+~
+E
+table~
+The table is very old, of oaken wood, with worn edges and many scratches.
+It is carved in the center with the same design seen on the door.
+~
+E
+chair~
+The chair is deeply padded and invites you to relax in it.
+~
+S
+#18703
+The Pandor Rec Room~
+   This large chamber, well-crafted of stone, is a taxidermist's
+nightmare.  An entire mist beast with a miner's pick still buried in its
+skull sits in the southeast corner. Over a cavernous stone fireplace are
+the mounted heads of a wyvern, a griffin, and an ice couatl, all arranged
+around a large oil painting of the original Circle of Five. A large,
+comfortable-looking couch upholstered in crimson demon skin stands before
+the fireplace. Scatter rugs all over the floor are the well-cured hides
+of bears, wolves, and cougars. Some lesser horrors are mounted at head height
+over the waist high bookshelves along the east and south walls. The floor to
+ceiling windows on the north give a stunning view of the ocean, and provide
+light in the daytime.  At night the room is lit as desired by wall sconces   
+and table lamps on the three small tables placed haphazardly about the room. 
+   The only visible exit stands to the south.
+~
+187 8 0
+D2
+A simple door stands here.
+~
+door~
+1 -1 18702
+S
+$~

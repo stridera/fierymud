@@ -1,0 +1,1396 @@
+1
+vnum: -1
+location: 5
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tunic decorated blue woolen dark
+shortdesc: a decorated, dark blue woolen tunic
+desc: A dark blue tunic lies here.
+type: 11
+weight: 3.00
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: tunic dark blue decorated woolen
+This tunic is well made of densely woven wool, dyed dark blue. It is
+about knee length, and its square neckline, three-quarter-length
+sleeves' hems, and the lower hemline are all decorated with black and
+gold striped ribbon.
+~
+~~
+vnum: -1
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring tooth
+shortdesc: a &0&b&9wolf&0&b&8 tooth&0&b&9 ring&0
+desc: &0A hollowed &b&9wolf&0&b&8 tooth&0 lies here.&0
+adesc:
+&0It looks quite sharp.&0
+~
+type: 9
+weight: 0.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+applies:
+19 1
+~
+~~
+vnum: 1225
+location: 127
+values:
+99
+15
+15
+208
+0
+0
+0
+~
+flags: abeAD 0
+name: thing shiny
+shortdesc: a shiny thing
+desc: A shiny thing sticks out from a shiny necklace. 
+type: 3
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: A 0 0
+wear: 16389
+applies:
+17 6
+19 2
+~
+~~
+vnum: 1225
+location: 127
+values:
+99
+15
+15
+208
+0
+0
+0
+~
+flags: abeAD 0
+name: thing shiny
+shortdesc: a shiny thing
+desc: A shiny thing sticks out from a shiny necklace. 
+type: 3
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: A 0 0
+wear: 16389
+applies:
+17 6
+19 2
+~
+~~
+vnum: 1040
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: gA 0
+name: breastplate odd-breastplate-gaia breast-plate
+shortdesc: &0&3a breastplate of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3An odd breastplate lies here.&0
+type: 9
+weight: 14.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+applies:
+24 -5
+~
+extradesc: odd-breastplate-gaia breast-plate
+&0This odd looking breastplate appears to be crafted from a piece of solid wood,
+chiseled and sanded with a powerful magic to perfection. Glowing vines weave
+themselves around the wooden breastplate, adding their steel-like endurance
+to its powerful frame.&0
+~
+~~
+vnum: 55559
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnpqrstuvwxyz 0
+name: invisible coif assassin
+shortdesc: &9&bCoif of the Assassin&0
+desc: A nearly invisible coif blends into the darkest shadows of the room.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+applies:
+18 2
+6 2
+~
+extradesc: invisible coif assassin
+Made out of pure shadow, a coif like this allows the wearer to do more than
+hide; they gain the senses of the shadows themselves.  Prized by rogues and
+assassins alike, a coif like this is rarely found, but given to a person who
+has advanced to the highest ranks in their guild.
+~
+~~
+vnum: 1042
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gA 0
+name: legplates leg-plates-gaia pair-odd-legplates
+shortdesc: &0&3some leg plates of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3A pair of odd legplates lie here.&0
+type: 9
+weight: 13.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+applies:
+13 5
+~
+extradesc: leg-plates-gaia pair-odd-legplates
+&0A pair of oddly carved legplates, designed to cover the upper and lower leg
+as well as the knee with a seperate plate. Vibrant green vines hold the armor
+together, keeping it securly in place while enforcing it with a mystical
+force.
+~
+~~
+vnum: 1041
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gmnvwyzA 0
+name: armplates arm-plates-gaia pair-odd-armplates
+shortdesc: &0&3some arm plates of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3A pair of odd armplates lie here.&0
+type: 9
+weight: 9.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+applies:
+13 5
+~
+extradesc: arm-plates-gaia pair-odd-armplates
+&0A set of wooden armplates, each carved from a single piece of gleaming wood.
+Wild vines grow in and around the joints, their mystical lengths pulsating w
+with some hidden life.
+~
+~~
+vnum: 1225
+location: 127
+values:
+99
+15
+15
+208
+0
+0
+0
+~
+flags: abeAD 0
+name: thing shiny
+shortdesc: a shiny thing
+desc: A shiny thing sticks out from a shiny necklace. 
+type: 3
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: A 0 0
+wear: 16389
+applies:
+17 6
+19 2
+~
+~~
+vnum: 1099
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: book ansi-color-book-fiery-yay
+shortdesc: the ansi color book of fiery yay
+desc: A book describing ansi color lies here unattended.
+adesc:
+&0&7 & 1    - &0&1Red&0          & 1 & b - &0&1&bBright Red&0
+
+&0&7 & 2    - &0&2Green&0        & 2 & b - &0&2&bBright Green&0
+
+&0&7 & 3    - &0&3Brown&0        & 1 & b - &0&3&bYellow&0
+
+&0&7 & 4    - &0&4Blue&0         & 4 & b - &0&4&bBright Blue&0
+
+&0&7 & 5    - &0&5Purple&0       & 5 & b - &0&5&bBright Purple&0
+
+&0&7 & 6    - &0&6Teal&0         & 6 & b - &0&6&bBright Teal&0
+
+&0&7 & 7    - &0&7White&0        & 7 & b - &0&7&bBright White&0
+
+&0&7 & 8    - &0&8Unkown&0       & 8 & b - &0&8&bBright Unkown&0
+
+&0&7 & 9    - &0&9Black&0        & 9 & b - &0&9&bBright Black&0
+
+&0&7 remember to put & 0 at the end of each line to clear the ansi strings
+~
+type: 16
+weight: 0.50
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+extradesc: book
+ 1    - &1Red&0          1 b - &1&bBright Red&0
+&0&7 & 2    - &0&2Green&0        & 2 & b - &0&2&bBright Green&0
+.&73    - &3Brown&0        3 b - &3&bYellow&0
+&0&7 & 4    - &0&4Blue&0         & 4 & b - &0&4&bBright Blue&0
+&0&7 & 5    - &0&5Purple&0       & 5 & b - &0&5&bBright Purple&0
+&0&7 & 6    - &0&6Teal&0         & 6 & b - &0&6&bBright Teal&0
+&0&7 & 7    - &0&7White&0        & 7 & b - &0&7&bBright White&0
+&0&7 & 8    - &0&8Unknown&0      & 8 & b - &0&8&bBright Unknown&0
+&0&7 & 9    - &0&9Black&0        & 9 & b - &0&9&bBright Black&0
+
+ Remember to put &&0 at the end of each line to clear the ANSI strings!
+~
+~~
+vnum: 3003
+location: 127
+values:
+8
+8
+7
+0
+0
+0
+0
+~
+flags: 0 0
+name: firebreather bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 1.02
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 52004
+location: 127
+values:
+80
+5
+3
+42
+0
+0
+0
+~
+flags: agoprt 0
+name: wand recall sagece recall-wand sagece-wand
+shortdesc: the Wand of Sagece
+desc: A dusty, cracked, old wand sits here.
+type: 3
+weight: 0.60
+cost: 1400
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+extradesc: wand recall sagece recall-wand sagece-wand
+This is a wonderful, magical wand, capable of acts beyond normal imagination.
+It is about two feet long, with a small dragon head at the top.    
+~
+~~
+vnum: 534
+location: 127
+values:
+0
+3
+4
+11
+0
+0
+0
+~
+flags: gknu 0
+name: dagger ministry dagger-ministry quest
+shortdesc: Ministry
+desc: A patterned dagger emits incredible waves of power right at you.
+type: 5
+weight: 1.20
+cost: 8000
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 8193
+applies:
+4 5
+24 -5
+~
+extradesc: dagger ministry
+Ripped from the depths of the realm, this artifact radiates energy beyond
+your understanding. You grasp its hilt and the power of good envelopes you,
+making you complete in the ways of the light. A new fire burns in your
+eyes, making you feel refreshed and arrogant.
+~
+~~
+vnum: 51007
+location: 127
+values:
+0
+2
+6
+2
+0
+0
+0
+~
+flags: gmnouwyz 0
+name: whip barbed-whip
+shortdesc: a barbed whip
+desc: There is a small coil of leather drying in the sun here.
+type: 5
+weight: 5.40
+cost: 180
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 8193
+applies:
+6 3
+~
+extradesc: barbed-whip barbed whip
+This small coil of leather with a metal spike on the end could be used as a 
+whip in close combat.  It's very sturdy and could probably go through many
+battles without harm.
+~
+~~
+vnum: 23887
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 23887
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+shortdesc: a cookie
+desc: A tasty chocolate chip cookie sits here.
+type: 19
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: cookie chocolate chip tasty choco chocolate-chip chocolate-chip-cookie food
+About the size of your palm, a soft, freshly baked cookie with tiny melting
+chocolate chips tantalizes your taste buds as its scent wafts up into your
+nostrils.  It would surely be the tastiest thing ever, so what are you waiting
+for?  Eat it!    
+~
+~~
+vnum: 53314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~
+vnum: 53314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~
+vnum: 53314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~
+vnum: 53314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~
+vnum: 53314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: heart ice ice-heart
+shortdesc: an ice heart
+desc: A gleaming heart made of pure ice lies here.
+adesc:
+Nothing.
+~
+type: 8
+weight: 0.67
+cost: 2500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+19 2
+~
+extradesc: ice heart
+This heart is made of gleaming ice and contains the essence that helped tie
+the elemental to this plane.  It is rumored to bestow great powers to anyone
+who wear it around their neck on a chain made of gold.  However such rumors
+are not always true...
+~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Feb 09 2018
+  To: Jelos
+From: Venath
+
+board post 106. :)
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3003
+location: 127
+values:
+32
+32
+7
+0
+0
+0
+0
+~
+flags: 0 0
+name: firebreather bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 2.59
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+32
+32
+7
+0
+0
+0
+0
+~
+flags: 0 0
+name: firebreather bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 2.59
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+32
+32
+7
+0
+0
+0
+0
+~
+flags: 0 0
+name: firebreather bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 2.59
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+32
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 0.50
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+32
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 0.50
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+32
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 0.50
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+32
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 0.50
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+32
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 0.50
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+32
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 0.50
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+32
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 0.50
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+32
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 0.50
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+32
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 0.50
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 3003
+location: 127
+values:
+32
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bottle black
+shortdesc: a black bottle
+desc: A firebreather has been left here.
+type: 17
+weight: 0.50
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: firebreather bottle
+This bottle has a warning label.
+~
+extradesc: warning label
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+~~
+vnum: 52130
+location: 127
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: figure dakhod-action-figure miniature-pirate doll toy seawater
+shortdesc: a Dakhod action figure
+desc: A miniature pirate lies in a pool of seawater here.
+type: 1
+weight: 0.50
+cost: 22000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: dakhod-action-figure miniature-pirate doll toy seawater
+This action figure appears to be an exact replica of Dakhod!  With a peg leg
+and a hook for a hand, the attention to detail is stunning.  This action figure
+comes complete with karate chop action when its legs are squeezed, and a
+pullstring on his back.    
+~
+triggers:
+52131
+52130
+52133
+52132
+~
+~~
+vnum: 422
+location: 127
+values:
+99
+20
+20
+95
+0
+0
+0
+~
+flags: 0 0
+name: planewalker staff rod
+shortdesc: the planewalker's staff
+desc: A long, slender staff with a golden headpiece floats here.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 50
+effects: cdefmn 0 0
+wear: 32769
+applies:
+4 3
+3 3
+18 2
+19 2
+25 1
+~
+~~
+vnum: 48005
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: gjnruD 0
+name: dress indigo silk
+shortdesc: an indigo silk dress
+desc: A beautiful dress has been left here.
+type: 9
+weight: 1.80
+cost: 1400
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 9
+applies:
+24 -5
+~
+extradesc: witchs-dress witch dress beautiful-dress
+Made of a very fine, smooth material, it is elegant enough to satisfy any 
+noblewoman. You imagine it would look very sexy on you.
+~
+~~
+vnum: 8009
+location: 127
+values:
+512
+388
+1
+0
+0
+0
+0
+~
+flags: 0 0
+name: beer barrel
+shortdesc: a barrel of beer
+desc: A barrel of beer sits upright on the floor.
+type: 17
+weight: 33.30
+cost: 300
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+extradesc: barrel beer
+  A well-constructed, watertight container, this barrel contains enough
+beer for a party!
+~
+~~
+vnum: 52023
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: abghmo 0
+name: shield dragon dragon-shield
+shortdesc: a dragon shield
+desc: A shield made of dragon skin and tempered with dragon fire is here.
+type: 9
+weight: 13.00
+cost: 8900
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 513
+applies:
+19 -50
+18 -50
+~
+extradesc: shield dragon dragon-shield
+This shield is huge.  There are large, cracked dragon claws curving out form
+the top and bottom towards the outside.  There is a half-covered grey symbol
+surrounded by the coal color of the shield.    
+~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Sep 16 2019
+  To: Jelos
+From: Meina
+
+Look Yeah - it was 2002, in Columbus, OH and that's when I discovered that@0
+Tosoh and his buddies lived half a mile from me lol.  My sister and Tanle were
+still dating and stayed with me.  I think we should do a reunion in 2020 :D
+
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Sep 14 2019
+  To: Jelos
+From: Chinok
+
+does it work
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+7
+1
+0
+0
+0
+~
+flags: dD 0
+name: corpse Nauis
+shortdesc: the corpse of Nauis
+desc: &0The corpse of Nauis&0 is lying here.
+type: 15
+weight: 280.00
+cost: 0
+timer: 0
+decomp: 8
+level: 34
+effects: 0 0 0
+wear: 0
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+6
+1
+0
+0
+0
+~
+flags: dD 0
+name: corpse Naigus
+shortdesc: the corpse of Naigus
+desc: &0The corpse of Naigus&0 is lying here.
+type: 15
+weight: 282.00
+cost: 0
+timer: 0
+decomp: 9
+level: 17
+effects: 0 0 0
+wear: 0
+~~
+vnum: 48804
+location: 127
+values:
+0
+3
+6
+5
+0
+0
+0
+~
+flags: gmnouvwyzABD 0
+name: baton lightweight-baton slender-metallic-rod
+shortdesc: a lightweight baton
+desc: Condensation forms on a slender metallic rod lying here.
+type: 5
+weight: 2.40
+cost: 34902
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+extradesc: lightweight-baton slender-metallic-rod
+The baton feels extremely cool to the touch, as if its brushed metal
+surface is pulling all the heat from its surroundings.  It feels
+hollow and perfectly balanced, yet the metal seems to be somewhat
+stronger than anything this light should be.
+~
+~~

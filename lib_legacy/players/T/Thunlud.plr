@@ -1,0 +1,121 @@
+name: Thunlud
+password: ThgMwd/LjM
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 10
+race: 10
+level: 32
+home: 3038
+lifeforce: 0
+composition: 0
+id: 15229
+birthtime: 1130597850
+timeplayed: 429019
+lastlogintime: 1614482560
+host: 209.055.070.171
+height: 81
+weight: 241
+base_height: 81
+base_weight: 241
+base_size: 3
+natural_size: 3
+alignment: -7
+playerflags: glxy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 8050
+thirst: 16
+lastlevel: 4
+hitpoints: 434/434
+mana: 102/102
+move: 130/130
+damroll: 5
+hitroll: 4
+strength: 91
+intelligence: 69
+wisdom: 72
+dexterity: 98
+constitution: 74
+charisma: 61
+cash: 6 773 3180 1050
+experience: 5544164
+quit_reason: 7
+saveroom: 8050
+skills:
+401 366
+402 370
+403 370
+404 370
+410 368
+411 370
+415 364
+416 370
+419 1000
+421 370
+427 1000
+428 150
+431 200
+434 272
+438 86
+443 370
+444 140
+463 210
+464 288
+465 224
+466 150
+467 50
+468 150
+0 0
+trophy:
+1 13617 1.000000
+1 13614 0.500000
+1 13623 1.000000
+1 13613 2.000000
+1 13618 2.000000
+1 13616 1.000000
+1 13605 1.000000
+1 13607 1.000000
+1 13606 1.000000
+1 13604 1.000000
+1 13624 3.000000
+1 13612 13.000000
+1 13625 3.000000
+1 13611 8.000000
+1 13610 4.000000
+1 13602 7.500000
+1 13603 13.500000
+1 13601 21.500000
+1 8013 1.000000
+1 36300 1.000000
+1 50217 1.000000
+0 0 0
+tells:
+1613157085 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1613157092 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1613157459 @WGranite@W tells you, 'A fine specimen for my stock.@W'@0
+1613157467 @WGranite@W tells you, 'A fine specimen for my stock.@W'@0
+1613157636 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1613157640 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1613157723 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1613157750 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1613239105 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1613239107 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1613242483 Tlan gossips, 'oooo you blessed my sorc... thats why it didnt work'
+1614115074 Vawk gossips, 'thalone an angle of darkness ring any bells'
+1614115093 Vawk gossips, 'was thinking lav lab but was weaping'
+1614482456 Chinok gossips, 'I can't confirm or deny that :)'
+1614482472 Vawk gossips, 'i think so but i would just keep all gems untell you have more then 6 of a single gem then sell those off'
+1614482482 Kiash gossips, 'heh nod, I shall continue to hoard :p'
+1614482507 Chinok gossips, 'I have a character that has 10 of each type of gem :)'
+1614482538 Kiash gossips, 'if you can see in the bag i have...its pretty stacked...but still missing some for quests'
+1614482543 Vawk gossips, 'need to write a trigger that cleans out my gem bag and sells off the extras'
+1614482545 Kiash gossips, '23 of one, and 2 of the one i need'
+$
+aliases:
+1 bash footman
+0

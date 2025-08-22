@@ -1,0 +1,83 @@
+name: Zixen
+password: Zi69GI4WFk
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19418
+birthtime: 1549305159
+timeplayed: 5850
+lastlogintime: 1549312964
+host: 174.216.023.230
+height: 73
+weight: 147
+base_height: 73
+base_weight: 147
+base_size: 2
+natural_size: 2
+alignment: 19
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 22
+thirst: 6
+lastlevel: 0
+hitpoints: 56/56
+mana: 1/0
+move: 83/118
+damroll: 3
+hitroll: 3
+strength: 89
+intelligence: 65
+wisdom: 74
+dexterity: 88
+constitution: 83
+charisma: 64
+cash: 0 2 43 44
+experience: 19391
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 72
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 53
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 5420 1.000000
+1 5404 2.000000
+1 3066 0.500000
+1 3500 1.000000
+1 3509 0.500000
+1 3506 0.500000
+1 3508 2.000000
+1 18001 1.500000
+1 18002 3.500000
+1 18000 0.500000
+1 18005 2.500000
+1 18007 4.000000
+0 0 0
+effects:
+1 2 10 17 0 0 0
+3 2 0 0 0 0 16384
+3 2 -2 24 0 0 0
+3 2 1 18 0 0 0
+0 0 0 0 0

@@ -1,0 +1,69 @@
+name: Stonas
+password: StvjSutzEG
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20762
+birthtime: 1709761922
+timeplayed: 951
+lastlogintime: 1709762885
+host: 070.120.169.025
+height: 60
+weight: 158
+base_height: 60
+base_weight: 158
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ahnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 11
+thirst: 6
+lastlevel: 0
+hitpoints: 26/25
+mana: 1/0
+move: 141/141
+damroll: 3
+hitroll: 3
+strength: 99
+intelligence: 72
+wisdom: 82
+dexterity: 87
+constitution: 92
+charisma: 64
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1709762608 Chinok gossips, 'welcome Stonas if you need any help, or advice, just yell'
+1709762752 Chinok gossips, 'welcome Stonas if you need any help, or advice, just yell'
+1709762802 Chinok gossips, 'west of town is the best place for a young one to get some levels'
+$

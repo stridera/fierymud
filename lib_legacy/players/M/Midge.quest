@@ -1,0 +1,95 @@
+4 7 0
+55 1 0
+62 8 5
+trophytask2 0
+trophytask1 1
+attack_counter 0
+trophytask4 0
+trophytask3 0
+61 9 2
+target1 0
+hunt running
+59 255 2
+target1 0
+hunt 0
+56 1 1
+bounty running
+58 1 1
+armor_vnum 55378
+10 255 0
+17 1 26
+5516_trophies 2
+5533_reward 0
+5543_reward 1
+5529_reward 1
+5553_reward 1
+5515_reward 1
+5525_reward 1
+5542_reward 1
+5523_reward 1
+5541_reward 1
+5521_reward 1
+5539_reward 1
+5519_reward 1
+5540_reward 1
+5517_reward 1
+5557_reward 1
+5555_reward 1
+5512_trophies 11
+5514_trophies 9
+5510_trophies 23
+5506_trophies 14
+5508_trophies 21
+5504_trophies 16
+bl_ally 1
+eg_faction -1
+bl_faction 159
+7 3 42
+55681_gems_acquired 3
+55692_gems_acquired 3
+55703_gems_acquired 3
+55714_gems_acquired 3
+55725_gems_acquired 3
+55736_gems_acquired 3
+55747_gems_acquired 3
+55380_armor_acquired 1
+55364_armor_acquired 1
+55360_armor_acquired 1
+55376_armor_acquired 1
+55372_armor_acquired 1
+55356_armor_acquired 1
+55368_armor_acquired 1
+55670_gems_acquired 3
+55332_armor_acquired 1
+55336_armor_acquired 1
+55340_armor_acquired 1
+55348_armor_acquired 1
+55352_armor_acquired 1
+55328_armor_acquired 1
+55344_armor_acquired 1
+55637_gems_acquired 3
+55604_gems_acquired 3
+55615_gems_acquired 3
+55626_gems_acquired 3
+55648_gems_acquired 3
+55659_gems_acquired 3
+55593_gems_acquired 3
+55589_gems_acquired 3
+55585_gems_acquired 3
+55577_gems_acquired 3
+55573_gems_acquired 3
+55569_gems_acquired 3
+55581_gems_acquired 3
+55312_armor_acquired 1
+55308_armor_acquired 1
+55300_armor_acquired 1
+55304_armor_acquired 1
+55316_armor_acquired 1
+55320_armor_acquired 1
+55324_armor_acquired 1
+45 255 5
+rest 10
+fight 13
+explore 6
+gear 15
+speech 3

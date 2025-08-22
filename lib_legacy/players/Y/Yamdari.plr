@@ -1,0 +1,75 @@
+name: Yamdari
+password: YaSN9NKIwq
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18998
+birthtime: 1440180286
+timeplayed: 1982
+lastlogintime: 1440185866
+host: 173.161.044.133
+height: 66
+weight: 106
+base_height: 66
+base_weight: 106
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8025
+lastlevel: 0
+hitpoints: 33/33
+mana: 1/0
+move: 89/100
+damroll: 3
+hitroll: 3
+strength: 87
+intelligence: 96
+wisdom: 100
+dexterity: 67
+constitution: 56
+charisma: 54
+experience: 6430
+quit_reason: 7
+saveroom: 8025
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+451 51
+457 50
+458 50
+459 50
+460 50
+462 50
+463 51
+466 50
+0 0
+trophy:
+1 8001 1.000000
+1 8012 1.000000
+1 8011 2.000000
+1 8002 2.000000
+1 8010 1.000000
+0 0 0

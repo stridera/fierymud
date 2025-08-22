@@ -1,0 +1,112 @@
+name: Tal
+password: TasFtkSDUx
+prompt: %n%-&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_<&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 41
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18982
+birthtime: 1436204117
+timeplayed: 32222
+lastlogintime: 1487885046
+host: 069.181.183.053
+height: 76
+weight: 259
+base_height: 76
+base_weight: 259
+base_size: 3
+natural_size: 3
+alignment: 939
+playerflags: gy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 8
+hunger: 2
+thirst: 12
+lastlevel: 0
+hitpoints: 604/522
+mana: 168/168
+move: 160/160
+damroll: 5
+hitroll: 4
+strength: 99
+intelligence: 58
+wisdom: 57
+dexterity: 95
+constitution: 92
+charisma: 61
+cash: 142 1201 4171 99
+experience: 11571209
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+407 65
+411 96
+412 78
+415 50
+416 50
+419 1000
+420 52
+421 70
+422 50
+427 1000
+430 54
+431 50
+434 50
+438 50
+443 50
+444 50
+463 57
+464 50
+465 78
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36100 2.000000
+1 5404 1.000000
+1 16105 1.000000
+1 16110 8.000000
+1 16108 1.000000
+1 16107 1.000000
+1 2002 1.000000
+1 55231 3.000000
+1 36101 6.000000
+1 36106 3.000000
+1 11750 0.500000
+1 11703 1.000000
+1 11701 4.000000
+1 11809 1.500000
+1 11704 1.500000
+1 2808 4.000000
+1 11702 3.500000
+1 11710 3.000000
+1 5420 1.000000
+1 5408 2.000000
+1 3501 1.000000
+0 0 0
+tells:
+$
+gossips:
+$
+aliases:
+ew enter well
+well tell samun moonwell
+ds drink skin
+lic look in corpse
+k kill $1
+` get all from all.corpse
+who who -w
+df drink fountain
+lib look in saddle
+0

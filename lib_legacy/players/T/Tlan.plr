@@ -1,0 +1,128 @@
+name: Tlan
+password: Tl92XC4ELp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 9
+level: 12
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18615
+birthtime: 1386998141
+timeplayed: 227313
+lastlogintime: 1615160032
+host: 067.044.224.036
+height: 68
+weight: 131
+base_height: 68
+base_weight: 131
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8050
+lastlevel: 0
+hitpoints: 69/69
+mana: 13/14
+move: 110/110
+damroll: 3
+hitroll: 3
+strength: 64
+intelligence: 92
+wisdom: 91
+dexterity: 68
+constitution: 81
+charisma: 69
+cash: 0 321 2218 1833
+experience: 486000
+quit_reason: 7
+saveroom: 8050
+cooldowns:
+10 8810/18000
+-1 0
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+39 1000
+100 1000
+101 1000
+415 170
+416 170
+423 170
+424 170
+438 160
+443 170
+444 165
+447 170
+451 167
+452 160
+453 170
+454 163
+459 163
+460 160
+462 160
+464 160
+0 0
+trophy:
+1 3508 1.000000
+1 3500 1.000000
+1 3509 2.000000
+1 3501 1.000000
+1 3506 1.000000
+1 36001 6.000000
+1 36002 3.000000
+1 36003 2.000000
+1 13603 0.500000
+1 13601 0.500000
+1 13602 0.500000
+1 13610 1.000000
+1 13617 1.000000
+1 13614 0.500000
+1 13612 2.000000
+0 0 0
+tells:
+1615157297 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1615157298 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1615157300 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1615157772 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1615157775 @WHelena@W tells you, 'I only sell bread and donuts, all home made.@W'@0
+1615157778 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1615157781 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1615157783 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1615157784 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1615158780 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1615159629 Yawk gossips, 'and ac +ac on the item is good but in your score haveing -ac is best'
+1615159673 Yawk gossips, 'as far as i know all the rest of the stats are normal'
+1615159687 Daedela gossips, 'correct'
+1615159715 Yawk gossips, 'sweet 3 more correct answers and i get a gold star sticker :)'
+1615159727 Daedela gossips, 'I thought you said gold star stalker xD'
+1615159766 Yawk gossips, 'no... but there should be :)'
+1615159869 Vawk gossips, 'gods are like that sometimes just be glad they arn't chaseing you with dragons '
+1615159908 Chinok gossips, 'we do that too, '
+1615159909 Strider gossips, 'He needs to at least double his level before he's fat enough for the dragons to care.  Now he's all gristle, skin, and bone'
+1615159984 Daedela gossips, 'yep!'
+$
+mem:
+5 1 3
+5 1 3
+5 1 3
+5 1 3
+5 1 3
+5 1 3
+5 1 3
+8 1 7
+8 1 8
+8 1 7
+8 1 7
+0 0 0

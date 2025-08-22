@@ -1,0 +1,599 @@
+#32401
+merchant woman feeble merchant-woman~
+a merchant woman~
+A feeble old woman weeps over the wagon.~
+She is old, and clearly has suffered some hurt in the recent past.
+Bruises and scratches mar her skin, and she looks close to tears.
+For all this, she is almost insubstantial, and in bright light,
+looks almost transparent. She has intelligent, inquisitive grey eyes,
+and when she speaks, doesn't sound threatening.~
+26714 32768 -1000 E
+20 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 2 2 0 0 2
+BareHandAttack: 8
+Str: 84
+Dex: 94
+Int: 74
+Wis: 72
+Con: 30
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#32402
+bandit human~
+a desperate bandit~
+A desperate human bandit skulks in wait for his next victim.~
+Standing just over six feet tall, this burly man is built like a skilled
+warrior. His arms and legs are heavily muscled, and the many scars marking
+his face show he has been in many battles before. A thick layer of black
+stubble covers his face, and the stench of stale sweat drifts around him.
+He is dressed in worn leather armor almost as scarred-up as he is.~
+100685900 0 -1000 E
+14 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 1 10 0 0 2
+BareHandAttack: 13
+Str: 99
+Dex: 89
+Int: 82
+Wis: 54
+Con: 30
+Cha: 47
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#32403
+leader bandit chieftess Bledeq~
+a bandit chieftess~
+A bandit chieftess, magnificently arrayed, skulks here.~
+All traces of her previous state are gone, replaced with the hardened
+expression of a ruthless bandit. With her cloak gone, the worn leather
+armor below is visible. She commands an air of respect, which is apparent
+in her combat stance and graceful movement. If someone is foolish enough
+to underestimate her, they deserve what they get.~
+100665434 0 -1000 E
+15 20 10 0d0+1000 0d0+0
+0 0 0 324
+3 3 2 2 0 0 2
+BareHandAttack: 13
+Str: 81
+Dex: 89
+Int: 67
+Wis: 64
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55695
+#32404
+bren gypsy lord gypsy-lord~
+a gypsy lord~
+A gypsy lord listens to the distant music.~
+Bren, lord of the gypsies, is a lithe man, built like a agile hunting cat.  
+His dark black hair and eyes only add to this impression, keeping with the
+feline-like appearance.  He is dressed in a simple silk tunic and a pair of
+leather breeches.  He wears soft soled leather boots, which muffle the sound he
+makes while walking.  Though his physical looks are that of someone with little
+or no compassion, he is one of the kindest gypsies in the camp.    ~
+47130 0 0 E
+42 20 10 0d0+0 0d0+0
+0 0 0 324
+1 1 1 3 0 0 2
+BareHandAttack: 13
+Str: 100
+Dex: 78
+Int: 74
+Wis: 71
+Con: 30
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55699
+#32405
+gypsy-dancer lithe-dancer gypsy dancer lithe~
+a lithe dancer~
+A lithe gypsy dancer leaps and twirls to the beat of the music.~
+&0This young gypsy is about ninteen years old, her figure already much like a
+grown woman. She is dressed in a loose fitting silk tunic, and layers of
+colorful skirts, each one a band from the rainbow. She wears a few scarfs
+around her neck, each one so thin it is nearly transparent. She moves her body
+to the beat of the music, its subtle movements attracting all the men around
+her.&0~
+43016 32768 0 E
+25 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 2 13 0 0 2
+BareHandAttack: 13
+Str: 85
+Dex: 81
+Int: 70
+Wis: 77
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#32406
+gypsy musician~
+a gypsy musician~
+A gypsy musician plays a guitar, filling the camp with song.~
+Armed with only a guitar and giant grin, this young gypsy man seems content
+with his life and current surroundings.  He plays vigorously on his instrument
+keeping the music flowing throughout the camp.  Dressed in loose fitting silk
+clothing, he looks more like a merchant than a gypsy.~
+2248 0 0 E
+23 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 1 3 0 0 2
+BareHandAttack: 13
+Str: 87
+Dex: 70
+Int: 81
+Wis: 66
+Con: 30
+Cha: 77
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#32407
+guard gypsy gypsy-guard~
+a gypsy guard~
+A gypsy guards the camp's entrance.~
+This middle-aged gypsy stands erect and proud, watching over the entrance to
+the camp.  Unlike the other gypsies, he seems to block out the joyful music and
+dancing, instead concentrating fully on his duty.  He stands just under six
+feet tall and is dressed in leather armor, which drapes itself over his
+muscular torso.~
+6234 1032 0 E
+30 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 1 3 0 0 2
+BareHandAttack: 13
+Str: 100
+Dex: 79
+Int: 72
+Wis: 62
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#32408
+gypsy child gypsy-child~
+a gypsy child~
+A gypsy child runs through the camp.~
+&0This young lad isn't old enough to play a mandolin yet, nor does he possess
+the skills needed to guard the camp, so he is allowed to run free, leaping
+with joy as the music fills the skies. Dirt covers part of his face, left
+there by the constant falls he takes, when his legs get tangled together.
+This doesn't seem to hamper his enjoyment however, his laughing voice almost
+as loud as the music at times.&0~
+2184 0 1000 E
+15 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 1 13 0 0 2
+BareHandAttack: 13
+Str: 94
+Dex: 80
+Int: 62
+Wis: 74
+Con: 30
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 56405
+#32409
+tired gypsy~
+a tired gypsy~
+A tired gypsy sleeps on his feather bed.~
+Exhaustion has gotten the the upper hand over this poor gypsy, who has partied
+way too much recently. His hair is unkempt, having been pushed out of place
+while tossing and turning in his feather bed. Though he is sound asleep a
+grin covers his face, as the gypsy music seeps into his mind and entangles
+his dreams.~
+2122 0 0 E
+23 20 10 0d0+0 0d0+0
+0 0 0 324
+0 0 1 3 0 0 2
+BareHandAttack: 13
+Str: 89
+Dex: 86
+Int: 74
+Wis: 84
+Con: 30
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 4
+E
+#32410
+elga gypsy witch gypsy-witch~
+the gypsy witch~
+The gypsy witch sits here in a simple wooden chair.~
+She doesn't look like much, the average hunched over, wispy-haired
+old woman, but her eyes glitter, and her voice is soft but forceful.
+Gnarled hands move in mysterious ways as she speaks in her quavering
+manner. She is bundled up like a grandmother, but runes are sewn along
+the edges of her clothing.~
+2138 36904 0 E
+39 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 2 0 0 0 2
+BareHandAttack: 13
+Str: 70
+Dex: 70
+Int: 88
+Wis: 78
+Con: 30
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55032
+T 55033
+T 55696
+#32411
+guard tower tower-guard~
+a tower guard~
+A tower guard watches over the area.~
+   This tall, muscular guard looks to be in his mid-twenties. Of
+average appearance for a human, his eyes are particularly watchful,
+and he himself doesn't seem easily startled. He carries himself with
+grace and agility.~
+6218 1032 1000 E
+30 15 10 0d0+0 0d0+0
+0 0 0 324
+3 3 1 3 0 0 2
+BareHandAttack: 13
+Str: 93
+Dex: 76
+Int: 74
+Wis: 74
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#32412
+cleric henya~
+a cleric of Henya~
+A cleric of Henya looks for adventure.~
+She is very young, with rosy cheeks and bright blue eyes. Her air
+of total innocence is not marred by her excited wanderings. Blonde
+hair tumbles in curls down past her shoulders, and she herself doesn't
+appear very experienced in the world, not being muscled or even wary,
+as most travelers are.~
+6168 4096 1000 E
+12 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 2 1 0 0 2
+BareHandAttack: 13
+Str: 75
+Dex: 78
+Int: 79
+Wis: 91
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55694
+#32413
+deer southern-deer~
+a southern deer~
+A southern deer darts through the area.~
+Much hardier then their northern cousins, this nimble deer looks to be half
+starved.  Her ribs can be seen poking out through her skin, and her eyes look
+pitifully weak.  She sniffs around hungrily, trying to find a bit of grass.  ~
+2248 1024 1000 E
+7 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 2 24 14 0 1
+BareHandAttack: 9
+Str: 83
+Dex: 80
+Int: 74
+Wis: 68
+Con: 30
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#32414
+farmer soco-farmer~
+a farmer~
+A farmer walks through here.~
+&0This sturdy looking man is covered in dirt, probably from doing some type
+of field work. He is dressed in simple clothing, worn and dirty from years of
+working the land. Though his life is hard, he makes more then enough to feed
+his family, which is more then many citizens of Kerristone.&0~
+2248 0 0 E
+12 10 10 0d0+0 0d0+0
+0 0 0 324
+3 3 1 24 0 0 2
+BareHandAttack: 13
+Str: 95
+Dex: 78
+Int: 77
+Wis: 74
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#32415
+mercenary traveling traveling-mercenary~
+a traveling mercenary~
+A traveling mercenary wanders through the area, looking for work.~
+&0This young man must be in his early twenties, though his eyes show the
+experience of someone twice that age. His face is covered with scars, from
+both blade and magic. He currently is without a job, wandering the land for
+some work. &0~
+88 1032 0 E
+15 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 1 10 0 0 2
+BareHandAttack: 3
+Str: 92
+Dex: 78
+Int: 72
+Wis: 73
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#32416
+hare grey grey-hare~
+a grey hare~
+A grey hare leaps through the area.~
+&0This large grasslande hare is quite large for his species, reaching almost
+two feet in length, and weighing several pounds.  This is mainly due to the
+lush plains and mild weather conditions.  For this reason, this hare is hunted
+frequently for its mean, a favorite among plainsmen and Keep nobles alike.    ~
+200 1024 1000 E
+3 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 1 24 14 0 1
+BareHandAttack: 4
+Str: 92
+Dex: 85
+Int: 66
+Wis: 70
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#32420
+man trainer~
+a &0&3horse &0trainer~
+&0A man renting &3horses&0 stands here.&0~
+&0This man is quite large and looks strong enough to look after himself.&0~
+188490 1064 0 E
+55 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 1 6 0 0 2
+Str: 92
+Dex: 82
+Int: 64
+Wis: 64
+Con: 30
+Cha: 74
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 32410
+T 32411
+T 32413
+T 32414
+#32421
+horse~
+a &0well trained &3horse&0~
+&0A well trained &3horse&0 stands here.&0~
+It looks unfinished.~
+262154 0 0 E
+1 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 1 13 17 0 2
+Str: 79
+Dex: 79
+Int: 72
+Wis: 84
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 32407
+T 32408
+#32422
+black thing~
+&0&b&9The Thing&0~
+&0&b&9The Thing &0stands here.&0~
+Scary.~
+256072 1064 0 E
+100 0 10 0d0+30000 30d100+40
+0 0 0 324
+3 3 0 1 16 0 5
+Str: 74
+Dex: 76
+Int: 78
+Wis: 88
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 32412
+#32423
+stallion horse~
+a muscular stallion~
+A muscular stallion prances here.~
+He's big and very strong-looking, with a dark grey coat that
+darkens to black at his hooves and head. A white star streaks
+down the center of his face.~
+262154 1024 0 E
+40 20 10 0d0+0 0d0+2
+0 0 0 324
+3 3 1 24 14 0 1
+Str: 90
+Dex: 76
+Int: 69
+Wis: 73
+Con: 30
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 32407
+T 32419
+#32424
+stablehand~
+a &0stablehand&0~
+&0A stablehand stands here.&0~
+It looks unfinished.~
+10 0 0 E
+40 20 10 0d0+0 0d0+0
+0 0 0 324
+3 3 1 13 17 0 2
+Str: 84
+Dex: 92
+Int: 66
+Wis: 72
+Con: 30
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

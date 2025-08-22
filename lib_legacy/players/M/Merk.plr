@@ -1,0 +1,162 @@
+name: Merk
+password: MeS8CzYzRB
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 7
+race: 0
+level: 29
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17647
+birthtime: 1272579212
+timeplayed: 71189
+lastlogintime: 1323056308
+host: 098.230.002.016
+height: 75
+weight: 163
+base_height: 75
+base_weight: 163
+base_size: 2
+natural_size: 2
+alignment: -41
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 247/247
+mana: 84/84
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 83
+intelligence: 94
+wisdom: 100
+dexterity: 64
+constitution: 64
+charisma: 57
+cash: 85 1316 6 6
+experience: 4424600
+quit_reason: 1
+saveroom: 3054
+skills:
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+33 1000
+40 1000
+42 1000
+43 1000
+88 1000
+89 1000
+90 1000
+91 1000
+144 1000
+145 1000
+146 1000
+147 1000
+206 1000
+207 1000
+215 1000
+415 50
+416 50
+417 50
+421 90
+423 335
+424 140
+429 50
+438 50
+443 50
+444 73
+451 159
+452 50
+454 50
+455 50
+457 119
+458 70
+459 50
+460 50
+462 50
+463 97
+466 50
+0 0
+trophy:
+1 5200 1.333333
+1 5211 0.666667
+1 5210 1.333333
+1 5201 0.666667
+1 5121 0.666667
+1 5122 0.333333
+1 5120 2.000000
+1 5113 0.666667
+1 5104 1.333333
+1 5111 0.666667
+1 5110 1.333333
+1 5103 1.000000
+1 5112 1.000000
+1 5100 1.333333
+1 5101 1.666667
+1 5404 0.333333
+0 0 0
+mem:
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+144 1 1
+144 1 1
+88 1 2
+88 1 2
+88 1 2
+88 1 2
+88 1 2
+144 1 1
+144 1 1
+144 1 1
+144 1 1
+144 1 1
+16 1 1
+88 1 2
+16 1 1
+42 1 5
+14 1 5
+15 1 5
+15 1 5
+15 1 5
+0 0 0
+aliases:
+ccs cast 'cure serious'
+ccc cast 'cure critic'
+ccsc cast 'cure serious' carl
+al assist lanelot
+cal cast 'armor' lanelot
+ccsl cast 'cure serious' lanelot
+ccll cast 'cure light' lanelot
+fsff fill skin from fountain
+dff drink from fountain
+dfs drink from skin
+gac get all corpse
+gcc get coins corpse
+ggc get gem corpse
+grc get rusted corpse
+ccl cast 'cure light'
+kh kill hedgehog
+kr kill rat
+kc kill creature
+kg kill gremlin
+kb kill beast
+ca cast 'armor'
+ccsm cast 'cure serious' merl
+ac assist carl
+0

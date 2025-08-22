@@ -1,0 +1,468 @@
+#51100
+The Northern Swamps~
+You are standing in the Northern Swamps, knee-deep in muck.
+~
+511 4 14
+D1
+The swamp continues to the east.
+~
+~
+0 -1 51101
+D3
+The swamp continues to the west.
+~
+~
+0 -1 7379
+S
+#51101
+The Northern Swamps~
+You are standing in the Northern Swamps, knee-deep in muck.
+~
+511 4 14
+D0
+The swamp continues to the north.
+~
+~
+0 -1 51102
+D3
+The swamp continues to the west.
+~
+~
+0 -1 51100
+S
+#51102
+The Northern Swamps~
+You are standing in the Northern Swamps, knee-deep in muck.
+~
+511 0 14
+D0
+The swamp continues to the north.
+~
+~
+0 -1 51103
+D2
+The swamp continues to the south.
+~
+~
+0 -1 51101
+S
+#51103
+The Northern Swamps~
+You are standing in the Northern Swamps, knee-deep in muck.
+~
+511 0 14
+D1
+The swamp continues to the east.
+~
+~
+0 -1 51104
+D2
+The swamp continues to the south.
+~
+~
+0 -1 51102
+S
+#51104
+The Northern Swamps~
+You are standing in the Northern Swamps, knee-deep in muck.
+~
+511 0 14
+D2
+The swamp continues to the south.
+~
+~
+0 -1 51105
+D3
+The swamp continues to the west.
+~
+~
+0 -1 51103
+S
+#51105
+The Northern Swamps~
+You are standing in the Northern Swamps, knee-deep in muck.
+~
+511 0 14
+D0
+The swamp continues to the north.
+~
+~
+0 -1 51104
+D1
+The swamp continues to the east, you notice the swamp getting shallower.
+~
+~
+0 -1 51106
+S
+#51106
+The Northern Swamps~
+   The swamp is considerably more shallow here, and a small dirt road starts to
+appear to the east.    
+~
+511 0 14
+D1
+To the east you can see a small dirt road appear.
+~
+~
+0 -1 51107
+D3
+To the west the swamp gets deeper.
+~
+~
+0 -1 51105
+S
+#51107
+A Small Dirt Road~
+   You are now on a small dirt road.  This path suggests that not too many
+people travel it, but it is worn down enough so that travel is much easier now.
+You notice that there is abundant vegetation on both sides of the path.  Wild
+flowers are blooming and you notice a sweet smell permeating the surrounding
+air.    
+~
+511 0 3
+D1
+The small dirt road appears to continue to the east.
+~
+~
+0 -1 51108
+D3
+You notice the swamp is very shallow to the west and the road that you are
+on originates from there.
+~
+~
+0 -1 51106
+S
+#51108
+A Turn in the Small Dirt Road~
+   This small dirt road now comes to a sharp turn and curves off to the north.
+The vegetation is getting thinner as the road widens.  There has been more
+activity on this part of the road, as the dirt is considerably more packed.  
+~
+511 0 3
+D0
+The path gets wider and more worn down to the north.
+~
+~
+0 -1 51109
+D3
+The dirt road gets smaller to tthe east.
+~
+~
+0 -1 51107
+S
+#51109
+A Small Dirt Road~
+   The dirt road is getting wide enough now for a group of three to walk
+comfortably side by side.  You notice many small woodland trails converging
+into this road.  You imagine you could travel to many places, but the trails
+are very small, and right now you are more interested as to where this road
+leads.    
+~
+511 0 2
+D0
+The path continues on to the north.
+~
+~
+0 -1 51110
+D2
+You can see the road getting narrower to the south.
+~
+~
+0 -1 51108
+S
+#51110
+The Strange Road~
+   You notice that the road has evened out.  There is now enough room for four
+people to walk side by side, and the road is well traveled.  There are signs
+that people have recently been by, as there is some cloth, wood and pieces of
+metal lying about.  You also notice that the vegetation has been changing as
+you continue along the path.  The plants look taller, and some of the plants
+seem to be watching you.  A chill runs down your spine and you feel a tingling
+sensation fill your body for a brief moment.    
+~
+511 0 2
+D0
+The path continues to the north.
+~
+~
+0 -1 51111
+D2
+The road continues on to the south.
+~
+~
+0 -1 51109
+S
+#51111
+A Turn in the Small Dirt Road~
+   You notice that the road has evened out.  There is now enough room for four
+people to walk side by side, and the road is well traveled.  There are signs
+that people have recently been by, as there is some cloth, wood and pieces of
+metal lying about.  You also notice that the vegetation has been changing as
+you continue along the path.  The plants look taller, and some of the plants
+seem to be watching you.  A chill runs down your spine and you feel a tingling
+sensation fill your body for a brief moment.    
+~
+511 0 2
+D1
+To the east you can see a multi-colored road.
+~
+~
+0 -1 51112
+D2
+The road continues on to the south.
+~
+~
+0 -1 51110
+S
+#51112
+The Beginning of the Multi-Coloured Road~
+   You can see that there are different colored pebbles on the ground here.  
+There are deep greens, blues, reds and some yellow stones littering the road.
+The stones are slowly changing colors, cycling through the entire spectrum of
+the rainbow, and the effect is wondrous!  You also notice that the plants
+continue to grow larger and more threatening as you continue on down the path.
+~
+511 0 10
+D1
+The multi-colored road continues to the east.
+~
+~
+0 -1 51113
+D3
+You can see a dirt road to the west.
+~
+~
+0 -1 51111
+S
+#51113
+The Multi-Coloured Road~
+   This road is very colorful, much more than the beginning.  The pebbles
+entirely cover the road, and their constant color changing is entrancing.  
+There is also heat being emanated from the rocks; the heat gently warms your
+body, making you feel relaxed as you continue your journey.  The plants on the
+side of the road now seem like they are moving and you can see large thorns and
+what seem to be teeth in the plants.    
+~
+511 0 10
+D1
+The multi-colored road continues to the east.
+~
+~
+0 -1 51114
+D3
+The multi-colored road continues to the west.
+~
+~
+0 -1 51112
+S
+#51114
+The Multi-Coloured Road~
+   This road continues on to the east and west.  You notice that there is not
+one single pebble that is not changing color.  The road almost seems alive.  
+As you continue down the path you notice that there is now small animals
+running around and darting in and out of the road and scurrying all around.  
+The animals are small and quick; you can't see them for long enough to identify
+what they actually are.    
+~
+511 0 10
+D1
+~
+~
+0 0 51115
+D3
+The multi-colored road continues to the west.
+~
+~
+0 -1 51113
+S
+#51115
+A Turn in the Multi-Coloured Road~
+   As this road continues you can't help but notice how strange the wildlife
+and vegetation is.  You have never in all of your travels seen anything quite
+like it before.  The plants are strange and wonderful, while the wildlife is
+also very different.  You could almost swear that there is magic in the air,
+but there is no discernable source that you can see.  The air here feels almost
+charged with energy and you can feel that energy flowing through your body.  
+The road ahead turns to the north.    
+~
+511 0 10
+D0
+The road ahead is especially beautiful.
+~
+~
+0 -1 51116
+D3
+~
+~
+0 0 51114
+S
+#51116
+A Beautiful Camp Area on the Multi-Coloured Road~
+   This part of the road is wider than others.  You can see a small camp area
+off to the right.  There is a stream not too far off in the distance, and brisk
+cool water flows through it.  There is also a well for replenishing your water
+supply here.  However as you lift the bucket from deep within the earth you
+notice that the water is boiling hot and it is purple!  What is the cause for
+this?  Maybe the magic that you have felt throughout your trip has caused the
+water supply to become altered, maybe its a natural occurrence; either way that
+water isn't going into your body.  The road continues on to the north where the
+road seems to change from it's beautiful but strange multi-colored pebbles back
+to a normal road.    
+~
+511 4 2
+D0
+Ahead you can see the road changes slightly.
+~
+~
+0 -1 51117
+D2
+This road continues to the south.
+~
+~
+0 -1 51115
+S
+#51117
+The Beginning of the Road to Nordus~
+   As you look around you can see that the road is changing rapidly.  Just a
+short while ago the road was virtually alive, and this road is the complete
+opposite.  The plain dirt road that is common in most parts of this great land
+is also here.  What is causing these frequent changes in your surroundings?  
+Maybe the answer lies ahead.  There is a sign firmly planted into the ground
+here.    
+~
+511 0 10
+D0
+You can see the road change direction to the north.
+~
+~
+0 -1 51118
+D2
+This road continues to the south.
+~
+~
+0 -1 51116
+E
+sign~
+Go back while you still have a chance!
+There is no hope for those that continue to proceed along this path.
+~
+S
+#51118
+A Turn in the Road to Nordus~
+   This road is very plain.  Nothing adorns it at all.  The plants are all
+wilted and dying.  You can't hear any wildlife moving and the path is very
+monotonous.  The road is making you depressed and you just want to continue
+with your journey and forget this drab road.    
+~
+511 0 10
+D2
+This road continues to the south.
+~
+~
+0 -1 51117
+D3
+You can see the road continue to the west.
+~
+~
+0 -1 51119
+S
+#51119
+The Road to Nordus~
+   This plain road is very depressing.  It is very quiet and while it gives you
+time to think.  The only things that you can think of are the most depressing
+things that have happened to you.  Not one good thought has crossed your mind
+ever since you have started upon this road.    
+~
+511 0 10
+D1
+The road continues to the east.
+~
+~
+0 -1 51118
+D3
+You can see the road continue to the west.
+~
+~
+0 -1 51120
+S
+#51120
+A Bend in the Road to Nordus~
+   As you walk down this road you wish that the road would just end.  You can
+almost not stand it anymore.  Sadness fills your heart and you can't even think
+of one good thought.  Everything you look at reminds you of something else
+depressing.  You hope that this road will end soon.  The road ahead seems to be
+changing, but you just figure it's an illusion as nothing good could ever
+happen.    
+~
+511 0 10
+D0
+You can see the path ahead turns into a gravel path.
+~
+~
+0 -1 51121
+D1
+The road continues to the east.
+~
+~
+0 -1 51119
+S
+#51121
+The Path to the Gate~
+   This path is all gravel.  The road is considerably less wide than before.  
+You notice that you can finally think of happy things and the depression that
+overwhelmed you previously has lifted.  You notice that there is a gate in the
+distance.  Maybe you can finally find some answers.    
+~
+511 0 1
+D0
+The gravel path continues to the north.
+~
+~
+0 -1 51122
+D2
+You can see a dirt road to the south.
+~
+~
+0 -1 51120
+S
+#51122
+The Path to the Gate~
+   This part of the path is pleasant.  There is lush green vegetation all
+around and you stop to take a drink from the stream that is trickling
+alongside.  The gate that you saw previously is getting more pronounced now and
+you are almost able to make out detail.  This part of the path is particularly
+pleasant.  Maybe you could stop and take a rest here.  Seems safe enough.    
+~
+511 4 1
+D0
+The path continues to the north.
+~
+~
+0 -1 51123
+D2
+The path continues to the south.
+~
+~
+0 -1 51121
+S
+#51123
+The Path to the Gate~
+   You can now see the gate with great detail.  It is not far now -- you can't
+wait to see what is up ahead.  You need to replenish some supplies and maybe
+find a bed to rest your weary body on for a night.  You hope that you can relax
+a bit and have some fun.  The path is very clean and tidy right here.  You
+notice that it's very worn down and there are signs of recent activity.    
+~
+511 4 1
+D0
+The Gate is to the North.
+~
+~
+0 -1 51000
+D2
+The path continues to the south.
+~
+~
+0 -1 51122
+S
+$~

@@ -1,0 +1,201 @@
+name: Ganthiel
+password: GabxmW0gAW
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 4
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 16262
+birthtime: 1167147218
+timeplayed: 4243847
+lastlogintime: 1393128225
+host: 201.214.122.180
+height: 63
+weight: 134
+base_height: 63
+base_weight: 134
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: aglxyz
+effectflags: cmn 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+hunger: 7
+lastlevel: 14
+hitpoints: 1167/1068
+mana: 980/980
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 76
+wisdom: 84
+dexterity: 94
+constitution: 100
+charisma: 72
+cash: 182 5700 12468 1745
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+21 1000
+22 1000
+28 1000
+34 1000
+43 1000
+88 1000
+92 1000
+97 1000
+99 1000
+191 200
+402 856
+404 927
+407 877
+411 1000
+412 1000
+415 132
+416 1000
+417 151
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 342
+431 150
+434 847
+438 50
+441 483
+443 50
+444 199
+450 150
+451 1000
+452 157
+457 743
+458 635
+459 319
+460 470
+461 741
+462 190
+463 995
+464 1000
+465 1000
+466 50
+468 51
+473 207
+0 0
+trophy:
+1 4000 10.000000
+1 23732 1.500000
+1 5451 1.000000
+1 5403 0.500000
+1 5404 3.000000
+1 11710 0.500000
+1 2807 1.000000
+1 2808 1.500000
+1 11810 0.500000
+1 2809 0.500000
+1 11702 1.000000
+1 11701 1.000000
+1 11809 1.500000
+1 2806 1.500000
+1 43002 2.500000
+1 43011 1.000000
+1 5102 5.000000
+1 5104 8.000000
+1 5112 9.000000
+1 5113 1.000000
+1 5110 3.000000
+0 0 0
+mem:
+1 1 1
+1 1 1
+3 1 1
+3 1 1
+13 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+92 1 1
+34 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+34 1 1
+22 1 1
+22 1 1
+22 1 1
+22 1 1
+22 1 1
+22 1 1
+92 1 1
+92 1 1
+92 1 1
+92 1 1
+28 1 1
+28 1 1
+3 1 1
+3 1 1
+1 1 1
+1 1 1
+28 1 1
+28 1 1
+43 1 1
+43 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+28 1 1
+97 1 1
+28 1 1
+97 1 1
+97 1 1
+97 1 1
+97 1 1
+97 1 1
+14 1 1
+12 1 1
+28 1 1
+12 1 1
+12 1 1
+0 0 0
+aliases:
+wh wh -w
+cc c 'cure critic'
+ccm c 'cure critic' mecke
+armor c 'armor'
+prot c 'prot'
+dri drink water
+soul c 'soulshield'
+gr group
+food c 'create food'
+gcc g all.coins all.corpse
+1 rescue vesta
+pray rest;medi;pray
+aaa w;l banshee;e
+2 assi vesta
+ho c 'holy word'
+asi assi kinto
+sec g ring corpse;wear ring
+0

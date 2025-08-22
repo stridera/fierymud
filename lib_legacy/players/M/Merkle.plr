@@ -1,0 +1,143 @@
+name: Merkle
+password: MeGCcjppeR
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 11
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19990
+birthtime: 1628218552
+timeplayed: 76548
+lastlogintime: 1640659401
+host: 068.043.166.247
+height: 38
+weight: 42
+base_height: 38
+base_weight: 42
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC ae
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 15
+loadroom: 3054
+hunger: 13
+thirst: 2
+lastlevel: 0
+hitpoints: 81/81
+mana: 12/12
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 74
+intelligence: 97
+wisdom: 97
+dexterity: 60
+constitution: 72
+charisma: 69
+cash: 0 25 244 175
+experience: 421501
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 17800/18000
+-1 0
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+39 1000
+100 1000
+101 1000
+415 160
+416 160
+423 160
+424 160
+438 50
+443 139
+444 60
+447 150
+451 59
+452 140
+453 160
+454 63
+459 140
+460 128
+462 141
+464 139
+0 0
+trophy:
+1 58801 1.000000
+1 58810 1.000000
+1 58806 1.000000
+1 3506 1.000000
+1 36003 1.000000
+1 18007 1.000000
+1 16906 2.000000
+1 16903 2.000000
+1 3508 1.000000
+1 5475 8.000000
+1 3501 2.000000
+1 3502 1.000000
+1 3503 2.000000
+1 3500 5.000000
+1 7051 1.000000
+1 8020 4.000000
+1 8030 3.000000
+1 8001 11.000000
+1 8010 8.000000
+1 8000 7.000000
+1 8023 8.000000
+0 0 0
+tells:
+1628423933 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1628424038 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1628467996 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1628468215 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1640652694 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1640652695 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1640652696 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1640654410 @WAaver@W tells you, 'you need a fiery red drakling scale?@W'@0
+1640654448 @WAaver@W tells you, 'it is a good badge until like level 40@W'@0
+1640654500 @WAaver@W tells you, 'gotta help me kill a dragon first in the fields@W'@0
+$
+gossips:
+1640658343 Chinok gossips, 'current score, me 29, Merkle 0'
+1640658363 Bolle gossips, 'still full health?'
+1640658364 Mersh gossips, 'eh?'
+1640658375 Chinok gossips, 'he's not hit me yet.'
+1640658380 Bolle gossips, 'persistent'
+1640658381 Mersh gossips, 'you doing pvp?'
+1640658477 Chinok gossips, 'dunno about pvp, but fiery has a tournament arena -- where players can fight, and not lose xp or equipment'
+1640658683 Chinok gossips, 'with the score 36 to 0 -- Merkle has concided... '
+1640658695 Chinok gossips, 'err conceded .'
+1640658720 Chinok gossips, 'if by almost, you mean, you still didn't hit me, then you are 100% correct'
+1640658793 Mersh gossips, 'you can do it Merkle'
+$
+mem:
+100 1 3
+5 1 4
+5 1 3
+5 1 3
+5 1 3
+5 1 3
+100 1 3
+8 1 7
+19 1 7
+39 1 7
+0 0 0
+aliases:
+ct cast 'chill touch' $1
+mm cast 'magic missile' $1
+bh cast 'burning hands' $1
+peta order followers kill $1
+0

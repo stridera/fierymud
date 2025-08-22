@@ -1,0 +1,77 @@
+name: Zandorphious
+password: ZaRgiYKt/v
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 9
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19074
+birthtime: 1464818307
+timeplayed: 28689
+lastlogintime: 1464901445
+host: 068.034.145.117
+height: 69
+weight: 138
+base_height: 69
+base_weight: 138
+base_size: 2
+natural_size: 2
+alignment: 949
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 2018
+hunger: 2
+lastlevel: 0
+hitpoints: 50/50
+mana: 1/0
+move: 89/100
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 93
+wisdom: 92
+dexterity: 76
+constitution: 58
+charisma: 59
+cash: 0 101 398 350
+experience: 75624
+quit_reason: 7
+saveroom: 2018
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 51
+416 50
+423 50
+424 100
+438 50
+443 50
+444 50
+451 102
+457 74
+458 60
+459 60
+460 50
+462 51
+463 71
+466 50
+0 0
+mem:
+16 1 7
+206 1 7
+20 1 7
+84 1 7
+1 1 7
+0 0 0

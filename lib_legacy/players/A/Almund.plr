@@ -1,0 +1,92 @@
+name: Almund
+password: AlDAbZeMbw
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20591
+birthtime: 1691621376
+timeplayed: 12999
+lastlogintime: 1691812796
+host: 099.074.127.058
+height: 66
+weight: 172
+base_height: 66
+base_weight: 172
+base_size: 2
+natural_size: 2
+alignment: 59
+playerflags: xy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 5/43
+mana: 1/0
+move: 142/142
+damroll: 3
+hitroll: 3
+strength: 68
+intelligence: 68
+wisdom: 86
+dexterity: 74
+constitution: 84
+charisma: 86
+bank: 0 5 6 8
+experience: 49499
+quit_reason: 5
+saveroom: 3001
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 90
+424 68
+438 50
+443 50
+444 54
+451 51
+457 59
+458 54
+459 50
+460 53
+462 52
+463 63
+466 50
+0 0
+tells:
+1691624839 @WGranite@W tells you, 'I hope it protects you well.@W'@0
+1691628245 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1691628265 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1691628566 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1691807811 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1691808025 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+$
+mem:
+16 0 7
+16 0 7
+84 0 7
+20 0 7
+0 0 0
+aliases:
+csl cast 'cause light' $1
+crl cast 'cure light' $1
+ww order wolf kill $1
+0

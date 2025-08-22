@@ -1,0 +1,111 @@
+name: Kragar
+password: KrILLez2xj
+description
+You feel frightened as you look at him. He glares down at you with fiery red eyes. You quickly glance away.
+~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 9
+race: 6
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 16107
+birthtime: 1160101236
+timeplayed: 619126
+lastlogintime: 1493420203
+host: 108.249.157.226
+height: 49
+weight: 173
+base_height: 49
+base_weight: 173
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxyz
+effectflags: k w 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 100
+loadroom: 2011
+hunger: 15
+thirst: 18
+lastlevel: 7
+hitpoints: 1054/856
+mana: 100/100
+move: 152/152
+damroll: 4
+hitroll: 5
+strength: 94
+intelligence: 74
+wisdom: 62
+dexterity: 91
+constitution: 91
+charisma: 55
+cash: 1783 12412 2458 1822
+experience: 105805999
+quit_reason: 7
+saveroom: 2011
+skills:
+401 1000
+403 278
+404 308
+405 151
+408 186
+410 750
+411 1000
+412 1000
+415 315
+416 230
+418 316
+420 1000
+421 1000
+438 53
+440 1000
+443 72
+444 173
+464 1000
+465 53
+477 150
+0 0
+trophy:
+1 2004 1.000000
+1 2001 0.500000
+1 8021 0.500000
+1 58020 1.000000
+1 58021 1.000000
+1 58023 1.000000
+1 58024 2.000000
+1 58011 2.000000
+1 58029 8.000000
+1 58031 2.000000
+1 58013 11.000000
+1 58027 12.000000
+1 58015 5.000000
+1 58035 26.000000
+1 58026 44.000000
+1 58034 12.000000
+1 58001 1.000000
+1 58037 2.000000
+1 2002 1.000000
+1 16107 1.000000
+1 2003 3.000000
+0 0 0
+aliases:
+coif rem horns ; wear coif
+horny rem coif ; wear horns
+gc get all.coins all.corpse
+st assist stenenvust
+nug assist nuggz;b
+tse assist tsed; b
+tro assist trok
+br assist brungius
+dag wield dagger; wield dagger
+dar assist darst; b
+tr assist trok; b
+zav assist zaver;b
+q look in corpse
+la get all corpse
+0

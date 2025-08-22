@@ -1,0 +1,127 @@
+name: Childress
+password: Chb1UZ6BQ9
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 2
+race: 0
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 11925
+birthtime: 1051848906
+timeplayed: 11691723
+lastlogintime: 1645132918
+host: 162.233.153.155
+height: 62
+weight: 131
+base_height: 62
+base_weight: 131
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxyz
+effectflags: t 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 58339
+lastlevel: 13
+hitpoints: 968/869
+mana: 980/980
+move: 142/142
+damroll: 3
+hitroll: 3
+strength: 78
+intelligence: 62
+wisdom: 72
+dexterity: 96
+constitution: 99
+charisma: 61
+cash: 2591 17815 58 51
+bank: 11500 19000 106140 132888
+experience: 105805999
+quit_reason: 7
+saveroom: 58339
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+409 1000
+410 600
+411 1000
+412 1000
+415 1000
+416 1000
+420 1000
+421 1000
+438 1000
+443 1000
+444 1000
+464 1000
+465 1000
+467 1000
+476 1000
+478 1000
+0 0
+trophy:
+1 18517 1.000000
+1 18510 1.000000
+1 11805 1.000000
+1 11803 0.750000
+1 2803 0.250000
+1 2802 0.500000
+1 2805 0.250000
+1 2809 0.583333
+1 2801 1.833333
+1 11703 0.250000
+1 11809 1.833333
+1 11750 3.583333
+1 11701 2.500000
+1 2806 2.083333
+1 11702 2.700000
+1 11704 1.283333
+1 2808 2.750000
+1 3075 0.500000
+1 11710 3.500000
+1 8808 1.000000
+1 8809 1.000000
+0 0 0
+tells:
+1642344384 @WLokar@W tells you, 'you asked about others so I told you :D @W'@0
+1644766879 @WFreddy@W tells you, 'Yay, I hope you enjoy it!@W'@0
+1644766921 @WFreddy@W tells you, 'Yay, I hope you enjoy it!@W'@0
+1644766931 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644766975 @WFreddy@W tells you, 'Yay, I hope you enjoy it!@W'@0
+1644767009 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644767208 @WFreddy@W tells you, 'Yay, I hope you enjoy it!@W'@0
+1644767212 @WFreddy@W tells you, 'Yay, I hope you enjoy it!@W'@0
+1644767223 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644767224 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1645132755 Eslander gossips, 'do you know the total down time?'
+1645132772 Eslander gossips, 'sure I already got it but I can show you.'
+1645132773 Chinok gossips, 'btw, XP numbers verified.. it's working fine.. you are level 99, killing level 40 stuff.. it don't move the xp meter much'
+1645132788 Chinok gossips, 'I do.. yes'
+1645132793 Chinok gossips, 'about 5 total hours'
+1645132818 Chinok gossips, '1 hour the first time, 4 hurs the 2nd'
+1645132847 Eslander gossips, 'dang . yeah that second one felt like it went on forever!'
+1645132861 Eslander gossips, 'yeah just a couple mobs'
+1645132869 Eslander gossips, 'with stone skin'
+1645132887 Ilish gossips, ':D'
+$
+aliases:
+who who -where
+- enter well
+gs group self
+ce consent ermenegildo
+ar assist rhino
+gcc get all.coins corpse
+gc get all.coins
+ae assist ermenegildo
+gac get all corpse
+lic look in corpse
+df drink fountain
+0

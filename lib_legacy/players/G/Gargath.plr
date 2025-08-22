@@ -1,0 +1,211 @@
+name: Gargath
+password: GaGmnkB6dG
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 19
+race: 28
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20889
+birthtime: 1733905431
+timeplayed: 428799
+lastlogintime: 1737976072
+host: 052.119.120.201
+height: 76
+weight: 334
+base_height: 76
+base_weight: 334
+base_size: 2
+natural_size: 2
+alignment: -806
+playerflags: gxyz
+effectflags: k 0 0
+prefflags: hnoxCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1263/1065
+mana: 980/980
+move: 267/267
+damroll: 3
+hitroll: 3
+strength: 79
+intelligence: 81
+wisdom: 82
+dexterity: 66
+constitution: 100
+charisma: 100
+cash: 2751 6812 4075 4457
+experience: 126967199
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+7 1000
+8 1000
+10 1000
+15 1000
+16 1000
+17 1000
+18 1000
+19 1000
+20 1000
+21 1000
+24 1000
+29 1000
+31 1000
+32 1000
+33 1000
+35 1000
+37 1000
+39 1000
+41 1000
+43 1000
+62 1000
+68 1000
+79 1000
+83 1000
+84 1000
+85 1000
+86 1000
+88 1000
+89 1000
+90 1000
+91 1000
+94 1000
+99 1000
+100 1000
+103 1000
+112 1000
+114 1000
+136 1000
+142 1000
+152 1000
+184 1000
+185 1000
+186 1000
+190 1000
+191 1000
+195 1000
+197 1000
+204 1000
+219 1000
+228 1000
+240 1000
+241 1000
+242 1000
+243 1000
+246 1000
+267 1000
+401 1000
+403 791
+405 800
+408 791
+409 790
+410 500
+411 822
+412 1000
+415 50
+416 50
+420 786
+421 797
+423 790
+424 1000
+438 564
+443 510
+444 805
+447 1000
+451 1000
+452 1000
+453 500
+454 500
+455 790
+456 500
+457 750
+459 1000
+460 791
+462 791
+463 50
+464 1000
+465 56
+488 815
+490 1000
+551 50
+552 50
+554 1000
+555 1000
+556 50
+557 50
+558 50
+559 50
+560 50
+0 0
+trophy:
+1 11704 0.666667
+1 11703 1.000000
+1 2806 2.583333
+1 2807 2.416667
+1 2808 4.000000
+1 2802 4.416667
+1 2804 1.166667
+1 2805 3.833333
+1 2809 2.916667
+1 2801 17.583330
+1 2803 3.750000
+1 52013 0.500000
+1 52012 0.250000
+1 52011 0.250000
+1 52006 0.250000
+1 52003 0.250000
+1 52016 0.950000
+1 52000 0.200000
+1 48105 0.200000
+1 48102 0.400000
+1 47029 0.200000
+0 0 0
+tells:
+1737671502 @WThort@W tells you, 'opening a well come here for a moment@W'@0
+1737674983 @WThort@W tells you, 'no clue why I sent everyone. I'm at the inn@W'@0
+1737675604 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1737677147 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737715101 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737715102 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737715163 @WJhanna@W tells you, 'Be certain that you treasure it.@W'@0
+1737715181 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1737715199 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737715200 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1737971768 Vawk gossips, 'ok looks like both the countdowns are working for prompt but i couldn't chant agro after suport.. chanting suport after agro worked fine if that helps figureout the bug'
+1737971969 Someone gossips, 'yeah, looking at it now'
+1737972134 Vawk gossips, 'i like the new system i think it will help some of the other chants shine i have the bad habbit of only useing a few'
+1737972152 Someone gossips, 'that was my hope'
+1737972156 Someone gossips, 'now to get it working!'
+1737973952 Someone gossips, 'Found the bug, thanks Awk!'
+1737973979 Mawk gossips, 'no thank you i just find broken things your the one makeing it better :)'
+1737974038 Someone gossips, 'haha, thanks, that's kind of you :)'
+1737974229 Mawk gossips, 'wierd Aelfric is near the first door wonder how that happend'
+1737974267 Zathspar gossips, 'haha either he teleported away while someone was attacking him, or someone just opened the door and let him wander out I guess!'
+$
+effects:
+551 4 296 13 0 0 0
+551 4 9 17 0 0 0
+551 4 -14 24 0 0 0
+551 4 -10 23 0 0 0
+551 4 -13 22 0 0 0
+551 4 -13 21 0 0 0
+551 4 -13 20 0 0 0
+551 4 4 19 0 0 0
+551 4 4 18 0 0 0
+0 0 0 0 0
+aliases:
+ga get all
+gac get all corpse
+gat get all 2.corpse
+kill backstab $*
+0

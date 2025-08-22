@@ -1,0 +1,104 @@
+name: Krull
+password: KrE963zavC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 14
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18331
+birthtime: 1345771251
+timeplayed: 10668
+lastlogintime: 1347152890
+host: 098.230.031.140
+height: 71
+weight: 150
+base_height: 71
+base_weight: 150
+base_size: 2
+natural_size: 2
+alignment: 144
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 191/191
+mana: 16/19
+move: 111/122
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 64
+wisdom: 73
+dexterity: 91
+constitution: 85
+charisma: 58
+cash: 213 17496 1499 1675
+experience: 735871
+quit_reason: 1
+saveroom: 3054
+skills:
+402 52
+404 84
+415 50
+416 50
+421 59
+430 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 63
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18004 2.000000
+1 18003 2.000000
+1 18002 3.000000
+1 18005 4.000000
+1 36001 1.000000
+1 36002 2.000000
+1 3500 2.000000
+1 3503 2.000000
+1 3508 4.000000
+1 16108 0.500000
+1 16110 0.500000
+1 16106 0.500000
+1 16103 0.500000
+1 16111 1.000000
+1 16107 4.500000
+1 2002 0.500000
+1 5121 1.000000
+1 5122 0.500000
+1 5120 2.000000
+1 5112 2.500000
+1 5101 1.500000
+0 0 0
+aliases:
+lg level gain
+dff drink from fountain
+fsff fill skin from fountain
+eb eat bread
+gac get all corpse
+kl kill lady
+kg kill grasshopper
+kr kill roach
+dfs drink from skin
+kf kill fly
+ka kill ant
+kc kill cricket
+kb kill brownie
+kp kill priest
+ks kill seether
+km kill mage
+kh kill hedge
+0

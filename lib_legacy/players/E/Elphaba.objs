@@ -1,0 +1,2194 @@
+1
+vnum: 12449
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring green leaves ring-green-leaves
+shortdesc: a ring of &2green leaves&0
+desc: A ring made of tiny branches and leaves lies here.
+type: 8
+weight: 0.01
+cost: 0
+timer: 0
+level: 90
+effects: 0 k 0
+wear: 3
+hiddenness: 0
+applies:
+3 5
+2 3
+19 1
+18 1
+4 3
+27 3
+~
+extradesc: ring green leaves ring-green-leaves
+The ring is made of tiny, slender branches, still living, their
+equally tiny green leaves forming a wreath.~
+~~
+vnum: 12406
+location: 2
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring light circle undulating small ring-light
+shortdesc: a ring of &7&blight&0
+desc: A small circle of undulating light floats in midair.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+19 3
+3 3
+5 3
+2 3
+27 3
+~
+extradesc: ring light small circle undulating ring-light
+Warm to the touch and bright as the morning light, this small ring seems to
+have no physical structure or support.  It appears to have been made of light
+fused into a semi-solid and stable shape that adjusts naturally in size.~
+~~
+vnum: 48919
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace shadow-necklace dark-beaded-necklace
+shortdesc: the Shadow Necklace
+desc: A dark-beaded necklace lies hidden in shadows.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 50
+14 -25
+27 3
+~
+extradesc: necklace shadow-necklace dark-beaded-necklace
+It's a fairly simple necklace -- teak beads carved into geometric shapes are
+strung onto dark thread to form a circle of beads.  Here and there little
+strings of beads are strung along the main circlet to form interesting
+geometric designs.  This necklace is a charm from the Wizardess Thekra; you
+recognize it at once.~
+~~
+vnum: 53025
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agk 0
+name: amulet-ophidia small-green-gem golden-amulet sparkles
+shortdesc: the Amulet of Ophidia
+desc: A small green gem inside a golden amulet sparkles brightly.
+type: 8
+weight: 0.42
+cost: 5000000
+timer: 0
+level: 60
+effects: 0 l 0
+wear: 5
+hiddenness: 0
+applies:
+20 -20
+24 -10
+13 10
+14 10
+27 3
+~
+~~
+vnum: 23778
+location: 5
+values:
+30
+0
+0
+0
+0
+0
+0
+~
+flags: AD 0
+name: dress plain-black-dress folded gaz-dress
+shortdesc: a plain black dress
+desc: A plain black dress has been neatly folded here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+13 35
+18 1
+27 5
+~
+extradesc: dress plain-black-dress folded gaz-dress
+   It looks like it was made for a teenage girl, but this dress is very plain
+with no ornamentation or embroidery.  The thick cloth it is made of - perhaps
+linen - reaches down past the knees and looks like it isn't in the best shape.
+Still, though plain, it serves its purpose well.    ~
+~~
+vnum: 12456
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hat pointy-black-hat
+shortdesc: a pointy black hat
+desc: A wide-brimmed pointy black hat stands slouched over.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+1 4
+28 6
+3 5
+27 5
+~
+~~
+vnum: 2215
+location: 7
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: leggings black shimmering shimmering-black-leggings
+shortdesc: a pair of shimmering black leggings
+desc: A pile of black plates lies discarded here.
+type: 9
+weight: 3.70
+cost: 100
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+13 10
+27 5
+~
+extradesc: leggings black shimmering shimmering-black-leggings
+Constructed from thick metallic plates, they shimmer from black to
+a dark charcoal gray.  The plates themselves are very light and oddly
+warm to the touch.  If you didn't know better, you would almost say
+they glow with an blackened aura.~
+~~
+vnum: 12454
+location: 8
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: slippers glittering-ruby-slippers
+shortdesc: a pair of &1g&bl&3it&1ter&3i&1in&0&1g ruby slippers&0
+desc: A pair of glittering ruby slippers sparkles in the light.
+type: 9
+weight: 1.00
+cost: 90000
+timer: 0
+level: 1
+effects: u 0 0
+wear: 65
+hiddenness: 0
+applies:
+27 5
+3 5
+4 5
+2 5
+~
+~~
+vnum: 510
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: ghqAD 0
+name: gloves black-hand-tailored-gloves comfortable-looking-black-gloves auvcan-gloves
+shortdesc: black hand-tailored gloves
+desc: A pair of comfortable-looking black gloves lies here.
+type: 9
+weight: 0.60
+cost: 10000
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+2 5
+13 10
+26 10
+4 5
+27 4
+3 5
+~
+extradesc: gloves black-hand-tailored-gloves comfortable-looking-black-gloves auvcan-gloves
+This pair of finely-tooled black gloves has been altered to accommodate for
+years of abuse.  The thumb, middle, and ring fingers have been cut off from
+both hands, and the back of the hand is exposed.  A small strap with a steel
+clasp keeps them securely fastened.~
+~~
+vnum: -1
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: adgnopqrstuvwxyz abeij
+name: sleeves sleeves-seer archmage's-long-elegant-sleeves archmages-long-elegant-sleeves black-sleeves
+shortdesc: long, elegant black sleeves
+desc: Some archmage's long, elegant sleeves lie folded on a stand.
+type: 9
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+3 1
+4 1
+13 20
+28 10
+27 3
+~
+extradesc: sleeves-seer archmage's-long-elegant-sleeves archemages-long-elegant-sleeves
+Made from rich velvet, these sleeves bear the residual magic of many, many
+uses.  Originally crafted for a great archmage and clearly enchanted during
+that process, these sleeves have since taken on addition power from being used
+in numerous arcane rituals.~
+~~
+vnum: 48801
+location: 12
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gopwxD 0
+name: stormcloak storm-cloak glittering-cloak
+shortdesc: the Stormcloak
+desc: Someone has dropped a glittering cloak here.
+type: 9
+weight: 4.00
+cost: 12000
+timer: 0
+level: 90
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: stormcloak storm-cloak glittering-cloak
+You behold the legendary Stormcloak, once worn by the mighty Stormlord, Holder
+of Tempests, himself.  The dark indigo cloth the cloak is made of scintillates,
+giving the impression of thousands of tiny indigo-colored gems woven right into
+its brocade surface.  It's quite heavy, with a handspan-wide collar held
+together by a bronze clasp, beautifully worked into the shape of a horned demon
+whose raised fists make the clasp circular in form.  The ankle-length cloak is
+lined in black silk and edged in crimson.  Your blood stirs inside you as you
+look at it, touch it.~
+~~
+vnum: 12398
+location: 13
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: belt belt-stars glimmering-incredible-beauty-silver-belt-sparkling-lights star-belt
+shortdesc: a belt of stars
+desc: Glimmering with incredible beauty is a silver belt set with sparkling lights.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+13 25
+4 2
+5 2
+24 -5
+27 3
+~
+extradesc: belt-stars glimmering-incredible-beauty-silver-belt-sparkling-lights
+This belt appears to be made of small silver discs set with dark blue starstone
+hemispheres.  However, upon closer inspection, you realize the glittering dots
+within the hemispheres are not merely reflecting light - they are diminutive
+pinpoints of luminescence contained in some kind of crystalline matrix.  They
+swirl and float, giving a cosmic life to each disc.  Surely a treasure like
+this must be a gift from the Gods!~
+~~
+vnum: 568
+location: 14
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: dginoprstuvwxAD aeij
+name: binding planar-binding large-silvery-ring
+shortdesc: a planar binding
+desc: A large silvery ring gleams here.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+13 40
+3 3
+27 5
+~
+extradesc: planar-binding large-silvery-ring
+This large silvery ring looks like it could fit loosely around a wrist.  A
+series of random runes is etched into the band.  This metal has the odd
+property that runes written in ink upon its surface become permanently etched
+in silver.~
+~~
+vnum: 568
+location: 15
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: dginoprstuvwxAD aeij
+name: binding planar-binding large-silvery-ring
+shortdesc: a planar binding
+desc: A large silvery ring gleams here.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+13 40
+3 3
+27 5
+~
+extradesc: planar-binding large-silvery-ring
+This large silvery ring looks like it could fit loosely around a wrist.  A
+series of random runes is etched into the band.  This metal has the odd
+property that runes written in ink upon its surface become permanently etched
+in silver.~
+~~
+vnum: 329
+location: 16
+values:
+0
+10
+4
+16
+0
+0
+0
+~
+flags: dnoprstuvwx abcij
+name: staff staff-frozen-deep-staff glorious-willow-staff icy might ice
+shortdesc: the staff of the frozen deep
+desc: A glorious willow staff radiating with icy might freezes here.
+type: 5
+weight: 3.00
+cost: 10000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+17 10
+5 5
+20 -10
+27 3
+~
+extradesc: staff staff-frozen-deep-staff glorious-willow-staff icy might ice
+This glorious staff, fashioned from a length of willow nearly the size of an
+adult human, represents pinnacle mastery over the very essence of elemental ice
+itself.  Decorated heavily with runes and sigils of water and ice and topped
+with a large pure sapphire, the staff is an exquisite masterwork of elemental
+craftsmanship - the perfect synthesis of art and magic.~
+triggers:
+303
+304
+305
+~
+~~
+vnum: 12455
+location: 18
+values:
+200
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: book grimmerie grimoire
+shortdesc: the Grimmerie
+desc: An ancient grimoire of powerful and esoteric magic lays here forgotten.
+type: 26
+weight: 3.00
+cost: 1000000
+timer: 0
+level: 1
+effects: 0 0 o
+wear: 16385
+hiddenness: 0
+applies:
+3 5
+4 5
+24 -25
+27 5
+~
+extradesc: book grimmerie grimoire
+This is the ancient book of thaumaturgy sought by the great Wizards of old.  
+Dynasties have fallen, continents destroyed, just for a page from this book.~
+spells:
+5 1
+101 1
+20 1
+32 1
+100 1
+8 1
+19 1
+39 1
+99 1
+186 1
+31 1
+37 1
+106 1
+105 1
+50 1
+103 1
+30 1
+107 1
+83 1
+102 1
+2 1
+228 1
+10 1
+76 1
+62 1
+67 1
+29 1
+38 1
+26 1
+57 1
+68 1
+77 1
+52 1
+66 1
+111 1
+110 1
+108 1
+109 1
+112 1
+113 1
+65 1
+185 1
+184 1
+104 1
+7 1
+~
+~~
+vnum: 569
+location: 21
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: giAD 0
+name: lenses dark-vision black-lenses
+shortdesc: the Dark Vision
+desc: A pair of black lenses sits here.
+type: 8
+weight: 0.01
+cost: 0
+timer: 0
+level: 90
+effects: cdefx w 0
+wear: 65537
+hiddenness: 0
+applies:
+28 100
+27 5
+19 1
+~
+extradesc: lenses dark-vision black-lenses
+This pair of glasses is odd in that both its lenses are almost pitch
+black.  Facing them, it is impossible to see through them, but from
+behind the lenses, vision is clear, if slightly darkened.  Some things
+appear visible through the lenses that are invisible otherwise.~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: mask-imanhotep golden-burial-mask
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 8
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+1 2
+4 2
+27 2
+~
+extradesc: mask-imanhotep golden-burial-mask
+The mask is made of solid gold and is encrusted with jewels.  It has an aura of
+power around it.~
+~~
+vnum: 53502
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gklA c
+name: stud tiny-white-stud miniscule-speck-white earring
+shortdesc: a tiny white stud
+desc: A miniscule speck of white almost escapes detection here.
+type: 8
+weight: 0.01
+cost: 3420
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+4 2
+6 2
+13 17
+27 3
+~
+extradesc: stud tiny-white-stud miniscule-speck-white earring
+Small and round, this ear stud is made of an odd white metal and shaped
+somewhat like a little sphere.  It feels cool against skin, strangely drawn to
+it as if magnetic, allowing it to stick to an ear without a piercing.~
+~~
+vnum: 53502
+location: 24
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gklA c
+name: stud tiny-white-stud miniscule-speck-white earring
+shortdesc: a tiny white stud
+desc: A miniscule speck of white almost escapes detection here.
+type: 8
+weight: 0.01
+cost: 3420
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+4 2
+6 2
+13 17
+27 3
+~
+extradesc: stud tiny-white-stud miniscule-speck-white earring
+Small and round, this ear stud is made of an odd white metal and shaped
+somewhat like a little sphere.  It feels cool against skin, strangely drawn to
+it as if magnetic, allowing it to stick to an ear without a piercing.~
+~~
+vnum: 549
+location: 25
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: ehiqAB 0
+name: crest crest-dragon-hunter dragon-crest
+shortdesc: &3&bCrest&2 of the &0&2Dragon&1&b Hunter&0
+desc: A dragon crest shines brightly from the ground.
+type: 8
+weight: 1.00
+cost: 0
+timer: 0
+level: 80
+effects: 0 i 0
+wear: 524289
+hiddenness: 0
+applies:
+13 80
+23 -20
+20 -10
+24 -10
+27 2
+19 1
+~
+~~
+vnum: 62508
+location: 26
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: biD 0
+name: bear glass-bear hollow-sturdy-glass-bear-figurine
+shortdesc: a glass bear
+desc: A hollow, yet sturdy, glass bear figurine is lying on the ground.
+type: 8
+weight: 1.00
+cost: 300000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 1064965
+hiddenness: 0
+applies:
+1 6
+5 5
+13 10
+26 6
+19 1
+27 1
+~
+extradesc: bear glass-bear hollow-sturdy-glass-bear-figurine
+Shaped in this glass is the face of a raging bear.  The mere sight of it's
+terrible eyes are disturbing.  It seems so real!  It hums with the power of the
+awful bear trapped inside it, barely contained.  You wonder if it's even safe
+to handle.~
+~~
+vnum: -1
+location: 27
+values:
+90
+20
+20
+26
+0
+0
+0
+~
+flags: 0 0
+name: broom
+shortdesc: a broom
+desc: A broom lies flat on the ground here.
+type: 3
+weight: 0.90
+cost: 10
+timer: 0
+level: 1
+effects: u i 0
+wear: 2113537
+hiddenness: 0
+applies:
+3 5
+13 50
+26 10
+~
+extradesc: broom
+It's a plain-looking broom with broomstraw bound to its lower tip by withes.~
+~~
+vnum: 48407
+location: 127
+values:
+99
+53
+210
+44
+0
+0
+0
+~
+flags: ag 0
+name: decanter crystal-decanter
+shortdesc: a crystal decanter
+desc: A decanter made of crystal is here, sparkling in the light.
+type: 10
+weight: 0.80
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 55029
+location: 127
+values:
+250
+1
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: 0.00
+cost: 600
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    ~
+~~
+vnum: 17203
+location: -1
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu 0
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.~
+~~
+vnum: 17203
+location: -1
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu 0
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.~
+~~
+vnum: 17203
+location: -1
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu 0
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.~
+~~
+vnum: 17203
+location: -1
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu 0
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.~
+~~
+vnum: 55033
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: crystal-ball
+shortdesc: a crystal ball
+desc: A crystal ball rests on a small stand here.
+type: 8
+weight: 3.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: crystal-ball stand
+This large crystalline orb is the perfect tool for divination magic,
+particularly for scrying.  Cleansed and hand-picked by the Oracle of Justice,
+this crystal ball was chosen exclusively for you!~
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10315
+location: -1
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag 0
+name: emerald brilliant-emerald green-gem-remarkable-beauty beautiful
+shortdesc: a brilliant emerald
+desc: A green gem of remarkable beauty rests on the floor.
+type: 1
+weight: 0.02
+cost: 30000
+timer: 0
+level: 65
+effects: 0 j 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 10
+14 50
+27 3
+17 2
+~
+extradesc: emerald brilliant-emerald green-gem-remarkable-beauty beautiful
+It's a large emerald, about the size of a bean.  It glows with a brilliant
+green light, illuminating the area around it.  It is undoubtedly enchanted,
+since it's warm to the touch and gives off a faint sense of well-being to
+anyone who picks it up.  Looking closely, the very faint outline of a hawk is
+visible on one facet.~
+~~
+vnum: 53424
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg 0
+name: globe glass-globe snow-globe snowglobe
+shortdesc: a glass globe
+desc: A glass globe containing snowflakes lies here.
+type: 12
+weight: 1.30
+cost: 20
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 -3
+3 -3
+5 5
+4 -3
+~
+extradesc: glass-globe snow-globe snowglobe
+As you peer into the globe you can see a courtyard and a tall tower amongst the
+snow.  Hang on, little people shapes are MOVING in there.  This is very
+disturbing!  When shaken, the snow inside flutters around madly, but the little
+people seem unaffected.    ~
+triggers:
+53416
+49257
+53415
+~
+~~
+vnum: 55557
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: agnopqrstuvwxyz aeij
+name: bracelet-seer pure-arcane-force
+shortdesc: &3&bBracelet of the Seer&0
+desc: A bracelet made of pure arcane force rests amongst the rocks.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+27 3
+5 2
+18 1
+~
+extradesc: bracelet-seer pure-arcane-force
+Forged from solidified magic, this bracelet is the embodiment of true magical
+power.  Iridescent colors glint off the bracelet, which has a soft internal
+glow of its own.  The surface of the bracelet slides and reacts when touched,
+like oil on water, swirling the colors with the movement.~
+~~
+vnum: 55552
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: adgnopqrstuvwxyz abeij
+name: skullcap-seer skull-cap powerful-magic-skullcap
+shortdesc: &3&bSkullcap of the Seer&0
+desc: A powerful magic skullcap lies on the ground, waiting for its owner to return.
+type: 9
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+1 4
+28 60
+27 3
+~
+extradesc: skullcap-seer skull-cap powerful-magic-skullcap
+Being in the presence of something like this is enough to know that deep arcane
+powers have been placed in this skullcap.  Made from simple cloth and studded
+with small aquamarines, it is not only very beautiful, it is capable of
+handling some of the most powerful enchantments.  This one is dedicated to
+seeing and clarity of vision.~
+~~
+vnum: 55554
+location: -1
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: adgnopqrstuvwxyzD abeij
+name: robe-seer enchanted-arcane-robe
+shortdesc: &3&bRobe of the Seer&0
+desc: An extremely enchanted arcane robe is displayed here on a mannequin.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+13 50
+27 3
+28 10
+~
+extradesc: robe-seer enchanted-arcane-robe
+This robe is made not from cloth or silk or any other known fabric, but is made
+from Wyrd Weave, a substance spun from the fabric of magic itself.  Such a robe
+is a vast undertaking to make, requiring the most powerful arcane substances
+and materials known.  Once created and attuned to a wearer, the robe changes to
+match a sorcerer's mood and style, as well as~
+~~
+vnum: 55558
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: adgnopqrstuvwxyz abeij
+name: gloves seer
+shortdesc: &3&bGloves of the Seer&0
+desc: Gloves adorned with mystical runes lie next to an experiment station here.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+2 3
+13 10
+27 3
+~
+extradesc: gloves seer
+These gloves are used in magical experimentation and during mystic rituals.  
+The runes on each glove represent different spheres of creation, enhancing a
+sorcerer's connection to said powers.  Sewn from simple cloth, then painted and
+decorated with pearls, these gloves are a mark of a very powerful sorcerer.~
+~~
+vnum: 55555
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: adgnopqrstuvwxyz abeij
+name: leggings-seer enchanted-leggings
+shortdesc: &3&bLeggings of the Seer&0
+desc: Folded neatly in a bag here is a pair of deeply enchanted leggings.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+5 3
+27 3
+18 2
+~
+extradesc: leggings-seer enchanted-leggings
+These long velvet leggings are given to very wise mages to assist in their
+pursuit of magical knowledge.  Usually crafted for a formal dedication
+ceremony, much room for magical development is left with these leggings,
+allowing them to grow with their wearer as a caster's magic grows in power.~
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 55556
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: adgnopqrstuvwxyz abeij
+name: slippers-seer arcane-symbols
+shortdesc: &3&bSlippers of the Seer&0
+desc: A pair of slippers covered in arcane symbols has been left here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: u 0 0
+wear: 65
+hiddenness: 0
+applies:
+5 2
+27 3
+~
+extradesc: slippers-seer arcane-symbols
+Simple cloth slippers are the basis for these embroidered shoes.  Created
+during a period of intense ritual working, each stitch, each fold, each piece
+of fabric bears a spell or enchantment to protect and fuel a grand wizard.  
+Slippers like these are very powerful, very rare items that should be handled
+with care.~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 339
+location: 127
+values:
+0
+10
+4
+17
+0
+0
+0
+~
+flags: dnoprstuvwx abcij
+name: staff staff-disintegration-staff glorious-yew-staff-radiating-devastating-might earth acid
+shortdesc: the staff of disintegration
+desc: A glorious yew staff radiating with devastating might stands here.
+type: 5
+weight: 3.00
+cost: 10000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+20 -20
+23 -20
+24 -20
+17 5
+13 20
+27 3
+~
+extradesc: staff staff-disintegration-staff glorious-yew-staff-radiating-devastating-might earth acid
+This glorious staff, fashioned from a length of yew nearly the size of an adult
+human, represents pinnacle mastery over the very essence of elemental earth
+itself.  It is capable of using the forces of the earth to pull apart and
+disintegrate any object or creature it encounters.  Decorated heavily with
+runes and sigils of earth and death and topped with a large pure emerald, the
+staff is an exquisite masterwork of elemental craftsmanship - the perfect
+synthesis of art and magic.~
+triggers:
+303
+304
+305
+~
+~~
+vnum: 309
+location: 127
+values:
+0
+10
+4
+18
+0
+0
+0
+~
+flags: dnoprstuvwxDE abcij
+name: staff staff-maelstrom-staff glorious-aspen-staff electrical-might air lightning
+shortdesc: the staff of the maelstrom
+desc: A glorious aspen staff radiating with electrical might floats here.
+type: 5
+weight: 3.00
+cost: 10000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+14 50
+2 5
+20 -10
+23 -10
+24 -10
+27 3
+~
+extradesc: staff staff-maelstrom-staff glorious-aspen-staff electrical-might
+This glorious staff, fashioned from a length of aspen nearly the size of an
+adult human, represents pinnacle mastery over air and lightning, the very power
+of the maelstrom itself.  Decorated heavily with runes and sigils of air and
+lightning and topped with a large pure diamond, the staff is an exquisite
+masterwork of elemental craftsmanship - the perfect synthesis of art and magic.~
+triggers:
+303
+304
+305
+~
+~~
+vnum: 12399
+location: 127
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: abgDE 0
+name: starseed star-seed single-pinpoint-light
+shortdesc: a starseed
+desc: A single pinpoint of light twinkles against the dome of the sky.
+adesc:
+A starseed twinkles brilliantly as you lift it aloft, illuminating your surroundings.~
+type: 1
+weight: 0.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 o
+wear: 3948545
+hiddenness: 0
+applies:
+13 50
+17 2
+5 1
+24 -10
+3 1
+27 3
+~
+extradesc: starseed star-seed single-pinpoint-light
+Examining this tiny light more closely, it becomes obvious this is no meager
+glass or crystal.  It is the heart of a newborn star, breathed into creation
+through divine providence.  Within it lay all the hopes and dreams of creation,
+which perhaps could become another legendary soul, or a cosmic array of life
+and potential.~
+~~
+vnum: 23828
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: feather garuda-feather shining-blue-feather sparkly-blue-feather pen quill
+shortdesc: a &6&bshining blue&0 feather
+desc: A sparkly blue feather rests on the ground here.
+type: 21
+weight: 0.40
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+3 2
+4 2
+14 10
+18 2
+27 3
+~
+extradesc: feather garuda-feather shining-blue-feather sparkly-blue-feather pen quill
+It's a gorgeous wing feather from the rare ice garuda.  Slightly chilly to the
+touch, this kind of feather is prized among cryomancers for use as a quill.  
+The sparkles are really tiny ice crystals embedded in the feather.~
+~~
+vnum: 319
+location: 127
+values:
+0
+10
+4
+15
+0
+0
+0
+~
+flags: dnoprstuvwx abcij
+name: staff staff-glorious-flame-staff glorious-rowan-staff-fiery-might fire
+shortdesc: the staff of the glorious flame
+desc: A glorious rowan staff radiating with fiery might burns here.
+type: 5
+weight: 3.00
+cost: 10000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+13 50
+1 5
+27 3
+~
+extradesc: staff staff-glorious-flame-staff glorious-rowan-staff-fiery-might fire
+This glorious staff, fashioned from a length of rowan nearly the size of an
+adult human, represents pinnacle mastery over the very essence of elemental
+fire itself.  Decorated heavily with runes and sigils of fire and flame and
+topped with a large pure ruby, the staff is an exquisite masterwork of
+elemental craftsmanship - the perfect synthesis of art and magic.~
+triggers:
+303
+304
+305
+~
+~~

@@ -1,0 +1,61 @@
+name: Spawt
+password: SpG9Kj4C7C
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19330
+birthtime: 1518405508
+timeplayed: 38218
+lastlogintime: 1518813841
+host: 165.237.199.134
+height: 48
+weight: 193
+base_height: 48
+base_weight: 193
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: xy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8025
+hunger: 10
+lastlevel: 0
+hitpoints: 84/84
+mana: 1/0
+move: 88/128
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 66
+wisdom: 82
+dexterity: 84
+constitution: 77
+charisma: 56
+experience: 117974
+quit_reason: 7
+saveroom: 8025
+skills:
+402 50
+404 110
+415 50
+416 50
+421 110
+438 50
+443 50
+444 50
+463 50
+464 50
+465 101
+466 50
+467 50
+468 50
+0 0

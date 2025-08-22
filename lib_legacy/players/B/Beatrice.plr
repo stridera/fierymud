@@ -1,0 +1,76 @@
+name: Beatrice
+password: Bexb/5Jscm
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19379
+birthtime: 1532708508
+timeplayed: 2627
+lastlogintime: 1671034729
+host: 099.145.177.019
+height: 63
+weight: 104
+base_height: 63
+base_weight: 104
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+badpasswords: 2
+lastlevel: 0
+hitpoints: 27/27
+mana: 1/0
+move: 108/108
+damroll: 3
+hitroll: 3
+strength: 93
+intelligence: 78
+wisdom: 73
+dexterity: 72
+constitution: 75
+charisma: 78
+experience: 1
+quit_reason: 5
+saveroom: 51901
+skills:
+402 50
+404 50
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+1671034515 @WThe Combat Clerk@W tells you, 'Your trainer is to the north.@W'@0
+$
+gossips:
+1671033439 Mand gossips, 'vash I found it'
+1671033457 Mand gossips, 'make holk track me'
+1671033559 Chinok gossips, 'you doing ok Beatrice.  Let us know if you need any help or advice'
+1671033773 Mand gossips, 'uh oh chillin in the void Beatrice'
+1671033819 Mand gossips, ':D'
+1671033822 Chinok gossips, 'well give us a yell if you need any help.'
+1671033853 Chinok gossips, 'best place for a young warrior to get started is west of town, in the bug fields. (after training)'
+1671034685 Holk gossips, 'like what?'
+1671034702 Chinok gossips, 'will get him back on track, he skipped a room'
+1671034711 Chinok gossips, 'I just have to get him to the right room'
+$

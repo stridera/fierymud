@@ -1,0 +1,379 @@
+#17800
+yellow-cougar cougar coug yellow beast~
+a cougar~
+A cougar glares at you with deadly intent.~
+A large, yellow cougar is trying to slink away unnoticed as you watch it.~
+2099272 1024 -250 E
+18 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+3 3 0 24 14 0 2
+BareHandAttack: 8
+Str: 89
+Dex: 92
+Int: 66
+Wis: 70
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#17801
+bear brown large beast brown-bear~
+a bear~
+A large, brown bear growls angrily at you.~
+   You see a very large and hungry brown bear scavenging in the underbush. It
+seems to dislike your intrusion into its activities.~
+102762568 0 0 E
+20 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+3 3 0 24 14 0 3
+BareHandAttack: 9
+Str: 89
+Dex: 90
+Int: 70
+Wis: 77
+Con: 30
+Cha: 52
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55695
+#17802
+majestic-eagle eagle majestic bird~
+an eagle~
+An eagle soars in the sky above you.~
+   You see a majestic eagle flying right above you. You can't help but admire 
+this great creature of the air.~
+2099272 1048576 250 E
+18 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+4 4 0 24 14 0 2
+BareHandAttack: 11
+Str: 82
+Dex: 78
+Int: 74
+Wis: 74
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#17803
+tribesman tribe man cougar cougar-tribesman~
+a tribesman~
+A tribesman of the cougar tribe glares at you with hostile intentions.~
+The tribesman does not seem to like you coming into his tribe's territory.
+He seems ready to drive you away.~
+2124 1024 -300 E
+10 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+3 3 1 6 0 0 2
+Str: 78
+Dex: 83
+Int: 64
+Wis: 69
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#17804
+tribeman man bear clan bear-tribesman~
+the tribesman~
+A tribesman of the bear clan walks past you.~
+   The tribesman seems to be the very strong but dumb type. He seems to be
+returning home from an expedition of some sort.~
+2124 0 0 E
+14 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+3 3 1 6 0 0 2
+Str: 78
+Dex: 78
+Int: 74
+Wis: 76
+Con: 30
+Cha: 74
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#17805
+tribesman man eagle eagle-tribesman tribe~
+the tribesman~
+A member of the eagle tribe looks at you with an appraising eye.~
+   The tribesman stares at you from his point of vantage. He seems to be
+sizing you up for some reason or another.~
+33556556 0 300 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+3 3 1 6 0 0 2
+Str: 90
+Dex: 93
+Int: 62
+Wis: 82
+Con: 30
+Cha: 50
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#17806
+shaman man old-cougar-shaman~
+the shaman~
+The shaman seems to be waiting here for something.~
+A man of great age and wisdom is seated here. He seems to be in some
+sort of trance, although he is obviously aware of your presence.~
+2058 12328 50 E
+20 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+1 1 1 8 0 0 2
+Str: 99
+Dex: 79
+Int: 59
+Wis: 78
+Con: 30
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 17801
+T 17802
+T 17803
+T 307
+T 308
+T 311
+T 314
+T 55695
+#17807
+chief cougar cougar-chief chieftan~
+the Chief~
+The chief of the cougar tribe busy inspecting his weapons.~
+   The chief of the cougar tribe is a very muscular, tanned middle aged man.
+He seems to be very capable of causing great harm to people.~
+2062 33554432 -400 E
+15 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+3 3 1 6 0 0 2
+Str: 96
+Dex: 79
+Int: 69
+Wis: 78
+Con: 30
+Cha: 49
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55694
+#17808
+chief bear bear-chief chieftan~
+the Chief~
+The chief of the bear clan is busy eating his fish.~
+The chieftain of this clan is large and slow of movement, but one look
+at the size of his muscles and you know that you wouldn't want to
+rouse his anger. He spits out a fish-bone while you look at him. Perhaps
+you had better just leave before he takes an interest in you.~
+2062 67108864 0 E
+19 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+3 3 1 6 0 0 2
+Str: 82
+Dex: 91
+Int: 62
+Wis: 78
+Con: 30
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55694
+#17809
+chief eagle eagle-chief chieftan~
+the Chief~
+The chief of the eagle clan is busy contemplating the world.~
+   The chief of the eagle clan is a wizened old man of great knowledge and
+experience. He seems to be deep in thought.~
+33556490 16777216 400 E
+17 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+3 3 1 6 0 0 2
+Str: 99
+Dex: 75
+Int: 60
+Wis: 81
+Con: 30
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55694
+#17810
+hunter man stalker~
+the hunter~
+The hunter is busy stalking his prey.~
+   The hunter is a very well equipped man. He seems to have travelled a great
+distance to hunt for food for his family.~
+2099276 1024 0 E
+14 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+3 3 1 6 0 0 2
+Str: 77
+Dex: 80
+Int: 61
+Wis: 83
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#17811
+fetch apparition fetch-apparition~
+the Fetch~
+A horrible apparition stands before you.~
+   You are confronted by an apparition of your greatest fear! You feel a
+terrible urge to flee this place, or die in the attempt.~
+102778888 1049640 -800 E
+22 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+4 4 0 24 17 0 2
+BareHandAttack: 12
+Str: 82
+Dex: 85
+Int: 69
+Wis: 73
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 5346
+T 17800
+#17812
+apprentice appr shamans-apprentice shaman's-apprentice~
+the shaman's apprentice~
+The shaman's apprentice is trying to hide from something.~
+A young boy is trying to hide here in the darkness. His eyes are large
+with fear and he is shivering and talking to himself. His body seems to
+have several partially healed wounds on it.~
+2188 262144 0 E
+10 0 0 0d0+0 0d0+0
+0 0 0 0 0 178
+3 3 1 8 0 0 2
+Str: 97
+Dex: 82
+Int: 73
+Wis: 75
+Con: 30
+Cha: 46
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 17804
+T 17805
+T 17806
+#17813
+half frozen burning planted shrub Questmob~
+a half frozen half burning shrub~
+A shrub half burning and half frozen is planted here.~
+This shrub is burning - and frozen.  It seems to be in agony, as shrubs go.  
+On half of it there are icicles hanging from the branches and leaves, while the
+other half is burning is sickening fire.  It is a shame that there does not
+seem to be anyone willing to put out the flames.    ~
+2122 0 0 E
+15 20 0 0d0+0 0d0+0
+0 0 0 0 0 178
+3 3 0 24 12 0 2
+BareHandAttack: 2
+Str: 82
+Dex: 76
+Int: 71
+Wis: 82
+Con: 77
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+T 17813
+T 55025
+$

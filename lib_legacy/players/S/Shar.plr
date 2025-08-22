@@ -1,0 +1,129 @@
+name: Shar
+password: ShfgEpKpZu
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 11
+race: 0
+level: 18
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18728
+birthtime: 1407796912
+timeplayed: 113245
+lastlogintime: 1515129067
+host: 099.097.090.156
+height: 61
+weight: 144
+base_height: 61
+base_weight: 144
+base_size: 2
+natural_size: 2
+alignment: 22
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 10
+lastlevel: 0
+hitpoints: 111/111
+mana: 32/32
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 92
+wisdom: 90
+dexterity: 82
+constitution: 88
+charisma: 72
+cash: 7 85 324 339
+bank: 15 1004 3587 2117
+experience: 1646416
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+33 1000
+39 1000
+45 1000
+87 1000
+100 1000
+101 1000
+121 1000
+415 50
+416 50
+423 230
+424 230
+438 50
+443 50
+444 95
+447 150
+451 184
+452 91
+453 116
+454 50
+459 53
+460 63
+461 123
+462 50
+464 127
+0 0
+trophy:
+1 62509 0.583333
+1 5404 0.166667
+1 5103 0.166667
+1 5102 0.166667
+1 5201 0.166667
+1 5211 0.833333
+1 5200 0.666667
+1 5210 1.000000
+1 5113 0.166667
+1 5121 0.333333
+1 5122 0.166667
+1 5120 1.000000
+1 5110 0.166667
+1 5101 0.333333
+1 5104 0.166667
+1 5479 0.166667
+1 5403 0.166667
+1 8002 0.166667
+1 8034 0.500000
+1 8033 0.500000
+1 8032 0.500000
+0 0 0
+mem:
+100 1 1
+121 1 1
+121 1 1
+121 1 1
+5 1 4
+5 1 4
+5 1 4
+5 1 4
+121 1 1
+121 1 1
+121 1 1
+5 1 4
+45 1 7
+87 1 4
+33 1 7
+0 0 0
+aliases:
+df drink fountain
+jj ass raylen
+gac get all all.corpse
+ll look in corpse
+av assist valis
+cb cast 'burning hands'
+cm cast 'magic missile'
+gg assist gilden
+cd cast 'decay'
+0

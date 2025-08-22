@@ -1,0 +1,63 @@
+4 7 0
+19 2 1
+choice 1
+23 1 4
+actor_level 56
+price 562
+skill_level 610
+skill_name chant
+10 255 0
+32771 255 1
+subclass_name monk
+17 1 32
+5539_reward 1
+5512_trophies 5
+5516_trophies 2
+5540_reward 1
+5557_reward 1
+5555_reward 1
+5504_trophies 4
+5510_trophies 8
+5514_trophies 2
+5506_trophies 1
+5508_trophies 7
+5536_reward 1
+5534_reward 1
+5511_trophies 11
+5515_trophies 4
+5513_trophies 13
+5524_reward 1
+5549_reward 1
+5522_reward 3
+5548_reward 1
+5520_reward 2
+5546_reward 2
+5556_reward 10
+5558_reward 3
+5547_reward 2
+5518_reward 2
+5509_trophies 22
+5503_trophies 43
+5507_trophies 30
+5505_trophies 22
+eg_faction 173
+bl_faction 27
+7 3 18
+55342_armor_acquired 1
+55608_gems_acquired 3
+55334_armor_acquired 1
+55350_armor_acquired 1
+55338_armor_acquired 1
+55641_gems_acquired 3
+55330_armor_acquired 1
+55346_armor_acquired 1
+55597_gems_acquired 2
+55316_armor_acquired 1
+55304_armor_acquired 1
+55581_gems_acquired 2
+55312_armor_acquired 1
+55577_gems_acquired 3
+55573_gems_acquired 3
+55300_armor_acquired 1
+55569_gems_acquired 3
+55308_armor_acquired 1

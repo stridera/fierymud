@@ -1,0 +1,102 @@
+name: Suki
+password: SuSHwPFLdh
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 5
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20452
+birthtime: 1676277609
+timeplayed: 10098
+lastlogintime: 1676287712
+host: 066.075.047.134
+height: 61
+weight: 144
+base_height: 61
+base_weight: 144
+base_size: 2
+natural_size: 2
+alignment: -999
+playerflags: gxy
+effectflags: k w 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 36/36
+mana: 0/0
+move: 122/122
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 66
+wisdom: 66
+dexterity: 100
+constitution: 80
+charisma: 65
+cash: 0 8 104 96
+experience: 32999
+quit_reason: 1
+saveroom: 3054
+skills:
+401 70
+403 50
+408 50
+415 50
+416 50
+421 52
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+493 50
+0 0
+trophy:
+1 16909 0.500000
+1 16903 1.000000
+1 16902 3.000000
+1 16906 2.500000
+1 16901 1.000000
+1 16907 0.500000
+1 16900 1.000000
+1 16908 2.000000
+1 16905 2.000000
+1 36003 1.000000
+1 36001 2.500000
+1 36002 5.500000
+1 8001 0.500000
+1 8000 0.500000
+1 8023 0.500000
+1 8013 0.500000
+1 8016 1.000000
+1 8022 1.000000
+1 8002 0.500000
+1 8015 0.500000
+0 0 0
+tells:
+1676284971 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1676284972 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1676284973 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1676284976 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1676284977 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1676284978 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1676280605 Daedela gossips, 'so this way we can talk across channels all day!  It's really great when people are on and doing stuff'
+1676280624 Discord gossips, 'Ninetails: And a great way to read chat history without being logged in'
+1676280640 Discord gossips, 'Daedela: YES.  The other major reason Strider set this up'
+1676280648 Discord gossips, 'Ninetails: That so useful lol'
+1676280669 Discord gossips, 'Daedela: It's great for when people have questions but all of us are away from computers or whatnot'
+1676280687 Discord gossips, 'Ninetails: Or chatting at work!'
+1676283177 Boq gossips, 'congratulations!!'
+1676283186 Daedela gossips, 'yay!'
+1676284779 Elphaba gossips, 'congratulations!'
+1676284815 Boq gossips, 'Woohoo!'
+$

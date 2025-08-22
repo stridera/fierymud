@@ -1,0 +1,47 @@
+name: Kuranvi
+password: Ku3XhYGOfj
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 0
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18417
+birthtime: 1358860858
+timeplayed: 0
+lastlogintime: 1358860858
+host: 075.166.131.192
+height: 73
+weight: 173
+base_height: 73
+base_weight: 173
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 0/0
+mana: 100/100
+move: 118/118
+damroll: 0
+hitroll: 0
+strength: 92
+intelligence: 72
+wisdom: 72
+dexterity: 76
+constitution: 82
+charisma: 70
+experience: 0
+quit_reason: 0
+saveroom: 0
+skills:
+0 0

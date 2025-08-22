@@ -1,0 +1,115 @@
+name: Daed
+password: DawzMJV/yd
+prompt: %hh(%HH) %vv(%VV) %aA %dc%_%t:%o
+sex: 1
+class: 13
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 15104
+birthtime: 1127449985
+timeplayed: 9188977
+lastlogintime: 1738027523
+host: 104.048.170.022
+height: 64
+weight: 153
+base_height: 64
+base_weight: 153
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glyz
+effectflags: 0 0 0
+prefflags: hnozC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 10053
+lastlevel: 11
+hitpoints: 1175/1076
+mana: 100/100
+move: 138/138
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 56
+wisdom: 74
+dexterity: 92
+constitution: 97
+charisma: 52
+cash: 67 543 1505 931
+bank: 2404 31135 179136 169851
+experience: 137547799
+quit_reason: 1
+saveroom: 10053
+skills:
+404 1000
+411 188
+412 1000
+414 152
+415 56
+416 53
+420 1000
+421 1000
+422 1000
+430 333
+438 74
+443 407
+444 465
+446 1000
+448 1000
+449 1000
+463 320
+475 968
+495 92
+601 1000
+602 1000
+603 1000
+604 1000
+605 1000
+606 1000
+607 1000
+608 1000
+609 1000
+610 1000
+0 0
+trophy:
+1 10310 1.000000
+1 10311 3.000000
+1 10304 1.000000
+1 10302 2.000000
+1 53303 3.000000
+1 53312 3.000000
+1 2331 1.000000
+1 2328 3.000000
+1 2329 2.000000
+1 11701 3.000000
+1 2807 1.000000
+1 11750 4.000000
+1 2806 2.000000
+1 53022 1.000000
+1 53007 7.000000
+1 53000 1.000000
+1 16005 3.000000
+1 16004 2.000000
+1 16000 2.000000
+0 0 0
+tells:
+$
+gossips:
+1738026721 Discord gossips, 'Daedela: Yeah, it's from the scout leaders in Frost Valley'
+1738026740 Someone gossips, 'tough to locate object on keys'
+1738026968 Eone gossips, 'mammoth tuck key is on trapper'
+1738026976 Someone gossips, 'tusk'
+1738027304 Discord gossips, 'Daedela: That doesn't get you into the tower'
+1738027396 Eone gossips, 'nothing like a random teleport to get you into hard to reach places:)'
+1738027409 Thort gossips, 'I love doing that! where did you use it?'
+1738027426 Eone gossips, 'doom'
+1738027426 Discord gossips, 'Chinok: especially now that you have local, and world teleports now'
+1738027481 Eone gossips, 'bypass all those pesky keys'
+$
+aliases:
+st stand
+0

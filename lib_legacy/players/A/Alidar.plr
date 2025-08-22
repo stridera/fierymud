@@ -1,0 +1,51 @@
+name: Alidar
+password: AlID40rxDg
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 0
+level: 0
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20788
+birthtime: 1715726026
+timeplayed: 0
+lastlogintime: 1715726026
+host: 184.166.049.104
+height: 53
+weight: 152
+base_height: 53
+base_weight: 152
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 0/0
+mana: 100/100
+move: 124/124
+damroll: 0
+hitroll: 0
+strength: 68
+intelligence: 96
+wisdom: 83
+dexterity: 70
+constitution: 82
+charisma: 62
+experience: 0
+quit_reason: 0
+saveroom: 0
+skills:
+0 0
+tells:
+$
+gossips:
+$

@@ -1,0 +1,87 @@
+name: Grintakh
+password: Gr0iCLotMh
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 8
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20880
+birthtime: 1733068402
+timeplayed: 16291
+lastlogintime: 1733683419
+host: 104.226.193.146
+height: 86
+weight: 216
+base_height: 86
+base_weight: 216
+base_size: 3
+natural_size: 3
+alignment: 34
+playerflags: xy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 15/123
+mana: 1/0
+move: 2/162
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 70
+wisdom: 75
+dexterity: 72
+constitution: 84
+charisma: 60
+bank: 0 13 173 19
+experience: 198668
+quit_reason: 5
+saveroom: 3040
+skills:
+402 60
+404 65
+415 51
+416 57
+419 1000
+421 96
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 74
+466 50
+467 50
+468 64
+0 0
+tells:
+1733683110 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1733683118 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1733683123 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1733683125 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1733683126 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1733683128 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1733683129 @WShauna@W tells you, 'Get out of my shop until you have some money!@W'@0
+1733683132 @WShauna@W tells you, 'If you don't see it I don't have it.@W'@0
+1733683169 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1733683223 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1733070769 Derrgon gossips, 'grats'
+1733499300 Chinok gossips, 'gratz Grintakh on 6!'
+1733499327 Narrith gossips, 'Grat!'
+1733609494 Discord gossips, 'Daedela: Yeah what's up?'
+1733609606 Daedela gossips, 'oh my!'
+1733609637 Daedela gossips, 'oops yep.  Lemme fix'
+1733609843 Daedela gossips, 'fixed'
+1733615890 Discord gossips, 'Daedela: Welcome back!'
+$

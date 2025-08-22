@@ -1,0 +1,18 @@
+#492
+Black Ice Desert~
+49299 30 2 100 0 7
+M 0 49201 1 49225 	(a grace tree)
+M 0 49250 1 49225 	(the lost mage)
+M 0 49204 4 49219 	(a raging windstorm)
+D 0 49242 4 1 	(Under the Plateau)
+M 0 49205 1 49242 	(a statue of glass)
+G 1 49201 20 -1 	(a pair of black ice legplates)
+D 0 49210 5 5 	(Black Ice Desert)
+O 0 49200 2 49217 	(a small red sign)
+M 0 49203 8 49230 	(a torrid wind)
+M 0 49203 8 49228 	(a torrid wind)
+M 0 49202 8 49239 	(a famlur)
+M 0 49202 8 49233 	(a famlur)
+M 0 49200 1 49226 	(a famlur)
+S
+$

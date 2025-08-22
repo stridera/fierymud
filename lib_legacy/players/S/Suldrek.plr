@@ -1,0 +1,80 @@
+name: Suldrek
+password: Su2EGfAAQ3
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20550
+birthtime: 1687968777
+timeplayed: 1066
+lastlogintime: 1687969846
+host: 003.128.186.025
+height: 87
+weight: 212
+base_height: 87
+base_weight: 212
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 2
+lastlevel: 0
+hitpoints: 49/45
+mana: 0/0
+move: 166/166
+damroll: 5
+hitroll: 4
+strength: 94
+intelligence: 76
+wisdom: 76
+dexterity: 82
+constitution: 91
+charisma: 49
+experience: 6050
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 51
+415 50
+416 50
+419 1000
+421 51
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8002 2.000000
+1 8000 1.000000
+1 8015 2.000000
+1 8010 1.000000
+1 8001 2.000000
+1 8012 3.000000
+1 8014 3.000000
+0 0 0
+tells:
+$
+gossips:
+1687968980 Meina gossips, 'Hello Suldrek and Amadan :) What's up?'
+1687968985 Meina gossips, 'and hiya Mirallison!'
+1687968997 Amadan gossips, 'Heyo'
+1687969706 Jore gossips, 'gratz!'
+$

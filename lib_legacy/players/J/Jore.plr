@@ -1,0 +1,107 @@
+name: Jore
+password: Jooe8Ch2EN
+prompt: &0&5Aid: %df%_&0&5Cut: %dr%_&2&b<&0&2%hh&0(&2&b%HH&0)&2%vv&0(&2&b%VV&0)&2&b><&0&2%iH&2&b><&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 9
+race: 6
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20520
+birthtime: 1683659295
+timeplayed: 1270951
+lastlogintime: 1722543590
+host: 136.038.235.105
+height: 38
+weight: 186
+base_height: 38
+base_weight: 186
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: yz
+effectflags: k w 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 20
+thirst: 16
+lastlevel: 0
+hitpoints: 1234/1036
+mana: 980/980
+move: 318/318
+damroll: 4
+hitroll: 5
+strength: 94
+intelligence: 74
+wisdom: 69
+dexterity: 100
+constitution: 95
+charisma: 34
+cash: 265 2860 14714 14943
+experience: 105219199
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+404 67
+405 197
+408 1000
+410 699
+411 1000
+412 1000
+415 50
+416 50
+418 50
+420 424
+421 505
+438 60
+440 1000
+443 50
+444 149
+463 50
+464 1000
+465 50
+477 50
+0 0
+tells:
+1690082788 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690084466 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690161436 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690165985 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690167219 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690167662 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690252962 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1690252978 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1691010251 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1691263843 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1691334057 Gyy gossips, 'Gy and Ry mostly... also had Ly, Ny, and Wy'
+1691334088 Astrid gossips, 'ok I remember you... I was on with Hokus and Pokus'
+1691334094 Gyy gossips, 'my guild was Warmacle and we had several members back in the day'
+1691334110 Gyy gossips, 'ahh yes, I remember you too... good to see you again'
+1691334118 Astrid gossips, 'i had Morris and Risk'
+1691334155 Astrid gossips, 'same here funny I was at college back then w i have 3 kids and a house'
+1691344033 Herix gossips, 'gratz'
+1691371956 The illusion of the Large Shade gossips, '*yawn*'
+1691372306 Herix gossips, 'gratz!'
+1691372314 Gyy gossips, 'thanks :)'
+1691372387 Discord gossips, 'Daedela: Congrats!'
+$
+aliases:
+rc get curse sack;recite curse $*
+df drink fountain
+who who -w
+tass innate tass
+fa first aid
+ul unlock $*;open $*
+ec examine corpse
+invis innate invisible
+gcc get all.coins all.corpse
+id get identify sack;recite identify $*
+0

@@ -1,0 +1,242 @@
+name: Rylai
+password: RytivP68IA
+currenttitle: Tymnira
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 0
+race: 2
+level: 98
+home: 3046
+lifeforce: 0
+composition: 0
+id: 15246
+birthtime: 1131410515
+timeplayed: 8554407
+lastlogintime: 1492229500
+host: 096.060.195.111
+height: 31
+weight: 49
+base_height: 31
+base_weight: 49
+base_size: 1
+natural_size: 1
+alignment: 867
+playerflags: ly
+effectflags: k 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 85
+loadroom: 3054
+lastlevel: 8
+hitpoints: 516/516
+mana: 980/960
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 92
+intelligence: 100
+wisdom: 76
+dexterity: 54
+constitution: 72
+charisma: 70
+cash: 99 959 8 3
+experience: 117837927
+pagelength: 50
+clan: 3
+title: Tymnira
+quit_reason: 3
+saveroom: 0
+skills:
+2 1000
+5 1000
+8 1000
+10 1000
+19 1000
+20 1000
+26 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+65 1000
+66 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+106 1000
+107 1000
+108 1000
+109 1000
+110 1000
+111 1000
+112 1000
+113 820
+184 1000
+185 1000
+186 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 313
+443 75
+444 199
+447 1000
+451 1000
+452 1000
+453 1000
+454 963
+455 1000
+456 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 76
+0 0
+trophy:
+1 16109 1.000000
+1 11710 0.500000
+1 2808 0.250000
+1 2809 0.450000
+1 2807 0.200000
+1 2806 0.450000
+1 11702 1.550000
+0 0 0
+mem:
+113 0 1
+112 1 2
+112 1 1
+113 1 1
+113 1 1
+113 1 1
+113 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+66 1 1
+65 0 1
+65 1 1
+65 1 1
+65 1 1
+65 1 1
+65 1 1
+185 1 1
+185 1 1
+185 1 1
+185 1 1
+184 1 1
+2 1 1
+2 1 1
+52 1 1
+102 1 1
+102 1 2
+102 1 2
+8 1 2
+8 1 2
+8 1 2
+186 1 1
+186 1 1
+186 1 1
+186 1 1
+186 1 1
+186 1 1
+57 1 1
+108 1 2
+29 1 1
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+105 1 1
+105 1 1
+105 1 1
+105 1 1
+108 1 2
+52 1 1
+52 1 1
+52 1 1
+52 1 1
+52 1 1
+52 1 1
+52 1 1
+110 1 1
+110 1 1
+110 1 1
+110 1 1
+110 1 1
+76 1 1
+76 1 1
+76 1 1
+76 1 1
+76 1 1
+76 1 1
+76 1 1
+76 1 1
+19 1 1
+19 1 1
+19 1 1
+19 1 1
+19 1 1
+19 1 1
+31 0 1
+31 0 1
+31 1 1
+0 0 0
+aliases:
+chain c 'chain lightning' $*
+harness c 'harness' $*
+cone c 'cone of cold' $*
+dete c 'detect invis $*
+globe c 'major globe' $*
+fast c 'haste' $*
+swarm c 'meteorswarm' $*
+goto c 'relocate' $*
+mass c 'mass invis' $*
+bigby c 'bigby' $*
+stone c 'stone' $*
+inv c 'invisibility' $*
+bolt c 'lightning bolt' $*
+lev c 'levitate' $*
+create c 'minor creation' $*
+bagem put all.gem bag
+gem get all.gem all.corpse
+coins get all.coins all.corpse
+burn c 'burning hands' $*
+tele c 'teleport'
+door c 'dimension door' $*
+1 c 'stone skin' vitkus
+2 c 'stone skin' veruk
+3 c 'stone skin' faegern
+4 c 'stone skin' gilgal
+ray c 'ray of enfeeblement' $*
+chill c 'chill touch' $*
+grasp c 'shocking grasp' $*
+fire c 'fireball' $*
+0

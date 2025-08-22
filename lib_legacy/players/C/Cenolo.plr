@@ -1,0 +1,142 @@
+name: Cenolo
+password: CeRrSq5RFn
+prompt: <%hH %vV>%_<&0%o&0>%di
+autoinvis: 0
+sex: 1
+class: 1
+race: 2
+level: 16
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20481
+birthtime: 1679779726
+timeplayed: 65106
+lastlogintime: 1680047686
+host: 184.081.198.017
+height: 37
+weight: 43
+base_height: 37
+base_weight: 43
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gy
+effectflags: k 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 30
+loadroom: 3054
+badpasswords: 1
+thirst: 4
+lastlevel: 0
+hitpoints: 76/114
+mana: 25/25
+move: 57/151
+damroll: 2
+hitroll: 4
+strength: 71
+intelligence: 96
+wisdom: 94
+dexterity: 64
+constitution: 67
+charisma: 66
+cash: 0 479 1543 1240
+bank: 10 206 762 818
+experience: 938549
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 210
+416 210
+423 210
+424 210
+438 69
+443 210
+444 201
+451 62
+457 210
+458 68
+459 95
+460 93
+462 52
+463 171
+466 200
+0 0
+trophy:
+1 5112 2.000000
+1 5102 1.000000
+1 5475 13.000000
+1 5484 7.000000
+1 5483 8.000000
+1 5485 8.000000
+1 16108 1.000000
+1 16103 1.000000
+1 16101 1.000000
+1 16107 2.000000
+1 16100 2.000000
+1 2003 2.000000
+1 13626 1.000000
+1 13606 1.000000
+1 13610 1.000000
+1 17209 1.000000
+1 17201 1.000000
+1 17208 3.000000
+1 17202 3.000000
+1 17205 2.000000
+1 17203 2.000000
+0 0 0
+tells:
+1680016333 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680022369 @WBigby@W tells you, 'You can only hold 22.@W'@0
+1680022369 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680022369 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680022375 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680030450 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1680030453 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680030453 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680044229 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680044248 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1680026823 Fireson gossips, 'gratz'
+1680026938 Paver gossips, 'ty!'
+1680027634 Paver gossips, 'ty'
+1680027641 Chinok gossips, 'gratz Paver!'
+1680027644 Paver gossips, 'ty!'
+1680028467 Paver gossips, 'yeah strange stuff happens with that hole...'
+1680028996 Chinok gossips, 'nice con, dex, and str, but not too bright :)'
+1680029029 Paver gossips, 'eh?'
+1680029041 Chinok gossips, 'you just hit level 10, and cna see your stats now :)'
+1680029050 Paver gossips, 'haha yup :D'
+$
+mem:
+1 1 2
+12 1 2
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+3 1 6
+85 1 6
+88 1 5
+88 1 5
+88 1 5
+88 1 5
+0 0 0

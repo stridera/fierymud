@@ -1,0 +1,194 @@
+1
+vnum: 1100
+location: 5
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz fgh
+name: jacket soft-leather-jacket
+shortdesc: a soft leather jacket
+desc: A soft leather jacket lies neatly folded on the ground.
+type: 9
+weight: 7.50
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: soft-leather-jacket 
+Butter-soft light tan leather makes a jacket that buttons down the front with
+pretty bronze buttons.  It has short capsleeves and a dapper collar, but other
+than that, it's quite plain.~
+~~
+vnum: 1024
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mquyz abefgh
+name: helmet studded-leather-helmet
+shortdesc: a studded leather helmet
+desc: A studded leather helmet lies here.
+type: 9
+weight: 3.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+extradesc: studded-leather-helmet
+&0A simple helmet, designed to cover most of the head.  It leaves the face
+open, allowing the user a wide viewing arc.  It is crafted from a thick
+leather, and studded with inch long spikes to add further protection against
+attacks.~
+~~
+vnum: 1104
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz fgh
+name: pants thick-leather-pants
+shortdesc: thick leather pants
+desc: A pair of leather pants is lying in a heap on the ground.
+type: 9
+weight: 8.10
+cost: 150
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+extradesc: thick-leather-pants
+These pants are full-cut, made from good solid tan leather.  Though hardly
+fashionable, at least with the dignified crowd, they're oddly appealing to most
+people.  At least they'll afford their wearer's legs with some protection.~
+~~
+vnum: 1106
+location: 8
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz fgh
+name: boots sturdy-leather-boots
+shortdesc: sturdy leather boots
+desc: A pair of leather boots stands off to the side.
+type: 9
+weight: 2.80
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+extradesc: sturdy-leather-boots
+These work boots are made of dark brown leather.  They go about calf-high, and
+though they're unornamented, the leather is finely worked and tooled along its
+edges.  They have no cuffs, and a very low heel -- quite suitable for anybody
+wanting some basic protection.~
+~~
+vnum: 1102
+location: 9
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz fgh
+name: gloves leather-gloves
+shortdesc: leather gloves
+desc: A pair of leather gloves lies neatly folded out of the way.
+type: 9
+weight: 1.30
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+extradesc: leather-gloves
+Beige leather makes up these soft gloves.  They're made to fit just about
+anybody's hands.~
+~~
+vnum: 1105
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz fgh
+name: sleeves thick-leather-sleeves
+shortdesc: thick leather sleeves
+desc: A pair of leather sleeves lies curled up together on the ground.
+type: 9
+weight: 5.90
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+extradesc: thick-leather-sleeves
+Cylinders of leather form a pair of sleeves, designed to hook onto a vest of
+whatever type you please.  They're made of tan leather, and are completely
+unornamented.~
+~~
+vnum: 28
+location: 16
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: myz 0
+name: mace steel-mace
+shortdesc: a mace
+desc: A steel mace lies on the ground, out of the way.
+type: 5
+weight: 5.00
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~

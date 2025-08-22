@@ -1,0 +1,167 @@
+name: Knak
+password: KnCDiCJNQO
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> %dt%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 19
+race: 34
+level: 31
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20911
+birthtime: 1737197423
+timeplayed: 89041
+lastlogintime: 1739091029
+host: 052.119.120.201
+height: 62
+weight: 112
+base_height: 62
+base_weight: 112
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoxCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 12
+lastlevel: 0
+hitpoints: 311/311
+mana: 96/96
+move: 216/221
+damroll: 3
+hitroll: 3
+strength: 62
+intelligence: 95
+wisdom: 91
+dexterity: 73
+constitution: 100
+charisma: 98
+cash: 236 746 1817 283
+experience: 6209878
+quit_reason: 10
+saveroom: 46273
+skills:
+2 1000
+5 1000
+8 1000
+15 1000
+16 1000
+18 1000
+19 1000
+20 1000
+21 1000
+31 1000
+32 1000
+33 1000
+35 1000
+37 1000
+39 1000
+41 1000
+43 1000
+83 1000
+84 1000
+85 1000
+86 1000
+88 1000
+89 1000
+90 1000
+91 1000
+100 1000
+103 1000
+114 1000
+186 1000
+197 1000
+219 1000
+228 1000
+241 1000
+243 1000
+246 1000
+401 360
+403 330
+405 81
+408 330
+409 330
+415 50
+416 50
+421 350
+423 330
+424 351
+438 330
+443 330
+444 330
+447 340
+451 259
+452 331
+453 350
+454 346
+456 340
+457 350
+459 352
+460 333
+462 336
+463 330
+464 359
+465 330
+490 352
+551 50
+552 50
+556 50
+0 0
+trophy:
+1 46206 0.250000
+1 46207 0.250000
+1 46208 0.250000
+1 46202 1.000000
+1 46209 0.500000
+1 46215 0.500000
+1 46210 0.500000
+1 46211 2.250000
+1 46212 0.500000
+1 46200 2.000000
+1 46203 1.500000
+1 46213 1.500000
+1 4500 0.250000
+1 8711 0.750000
+1 8713 5.250000
+1 2304 0.250000
+1 2301 0.500000
+1 59010 0.250000
+1 59020 0.500000
+1 59024 0.500000
+1 59025 0.250000
+0 0 0
+tells:
+1738651672 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738744799 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738746116 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1738746736 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1738747427 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1738919894 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738920321 @WThe Green Woman@W tells you, 'Thank you dearie, be safe with that!@W'@0
+1738920358 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738924589 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739090110 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+$
+gossips:
+1738319571 Pawk gossips, 'you too well done'
+1738319576 Lathyrus gossips, 'thank you!'
+1738567220 Peegu gossips, 'thanks'
+1738745521 An old man shouts, 'Woo Hoo!'
+1738916803 Lathyrus gossips, 'Hello!'
+1739089578 Doren shouts, 'Help!  Help!'
+1739090004 Rhodotheus gossips, 'Hello'
+1739090010 Rahem gossips, 'hey'
+1739090129 Rhodotheus gossips, 'How's it going?'
+1739090267 Selean gossips, 'thanks'
+$
+effects:
+3 5 0 0 0 0 16384
+3 5 -5 24 0 0 0
+0 0 0 0 0
+aliases:
+kill backstab $*
+0

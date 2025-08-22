@@ -1,0 +1,66 @@
+name: Yuhenn
+password: YuqIZxsxDE
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 10
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18335
+birthtime: 1346082552
+timeplayed: 466
+lastlogintime: 1346083019
+host: 208.088.011.066
+height: 77
+weight: 182
+base_height: 77
+base_weight: 182
+base_size: 3
+natural_size: 3
+alignment: 63
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 12
+lastlevel: 0
+hitpoints: 27/26
+mana: 0/0
+move: 146/146
+damroll: 5
+hitroll: 4
+strength: 88
+intelligence: 71
+wisdom: 72
+dexterity: 97
+constitution: 84
+charisma: 53
+experience: 5499
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 51101 10.500000
+0 0 0

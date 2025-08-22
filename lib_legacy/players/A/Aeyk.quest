@@ -1,0 +1,34 @@
+23 1 5
+actor_level 27
+price 266
+skill_level 320
+word2 chant
+skill_name quick
+17 1 13
+5552_reward 1
+5532_reward 1
+5515_trophies 5
+5513_trophies 8
+5516_reward 0
+5511_trophies 11
+5505_trophies 19
+5503_trophies 30
+5507_trophies 32
+5509_trophies 27
+eg_ally 1
+eg_faction 193
+bl_faction -1
+32772 255 2
+part white
+subclass_name pyromancer
+7 2 10
+55579_gems_acquired 3
+55314_armor_acquired 1
+55583_gems_acquired 3
+55318_armor_acquired 1
+55575_gems_acquired 3
+55310_armor_acquired 1
+55571_gems_acquired 3
+55306_armor_acquired 1
+55567_gems_acquired 3
+55302_armor_acquired 1

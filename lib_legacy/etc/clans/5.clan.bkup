@@ -1,0 +1,18 @@
+Id  : 5
+Name: Pirates of the Caribbean&0
+Abbr: &1&8>>PotC<<&0&0
+Priv: setdesc 2
+Priv: enroll 2
+Priv: expel 2
+Priv: promote 2
+Priv: demote 2
+Priv: setappfee 2
+Priv: withdraw 2
+Priv: setapplev 2
+Priv: setalt 1
+Priv: settitle 2
+Priv: setdues 2
+Rank: Buccaneer&0
+Rank: Captain&0
+Mmbr: Laochan 1 Laolao
+Mmbr: Dakhod 2

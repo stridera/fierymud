@@ -1,0 +1,254 @@
+name: Vangar
+password: VaXAO4tcu.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 16
+race: 2
+level: 99
+home: 3003
+lifeforce: 0
+composition: 0
+id: 15031
+birthtime: 1125273585
+timeplayed: 11843535
+lastlogintime: 1326944265
+host: 099.029.187.026
+height: 29
+weight: 46
+base_height: 29
+base_weight: 46
+base_size: 1
+natural_size: 1
+alignment: -1000
+playerflags: lny
+effectflags: ck 0 0
+prefflags: bhnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 8
+loadroom: 3054
+lastlevel: 8
+hitpoints: 797/797
+mana: 100/100
+move: 69/104
+damroll: 2
+hitroll: 4
+strength: 79
+intelligence: 96
+wisdom: 97
+dexterity: 64
+constitution: 77
+charisma: 53
+cash: 1098 3251 19061 64552
+bank: 4598 17000 135651 747920
+experience: 105805999
+pagelength: 40
+quit_reason: 3
+saveroom: 0
+skills:
+4 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+28 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+94 1000
+96 1000
+99 1000
+118 1000
+122 1000
+131 1000
+132 1000
+133 1000
+134 1000
+135 1000
+136 1000
+137 1000
+139 1000
+140 1000
+141 1000
+142 1000
+206 1000
+207 1000
+415 328
+416 691
+421 1000
+423 1000
+424 1000
+438 56
+443 54
+444 71
+451 386
+452 134
+453 192
+455 80
+457 939
+458 83
+459 183
+460 168
+461 532
+462 80
+463 111
+466 50
+0 0
+trophy:
+1 62500 12.000000
+1 62505 0.500000
+1 62502 0.500000
+1 62501 1.000000
+1 62507 0.500000
+1 2316 1.000000
+1 2309 1.000000
+1 2306 1.000000
+1 2308 1.000000
+1 2310 1.000000
+1 16906 2.000000
+1 16901 1.000000
+1 16904 1.000000
+1 16908 1.000000
+1 16900 1.000000
+1 23706 1.000000
+1 23732 1.000000
+1 12021 0.500000
+1 12022 0.500000
+1 12007 0.500000
+1 12020 4.000000
+0 0 0
+mem:
+16 1 2
+20 1 2
+20 1 2
+20 1 2
+20 1 2
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+18 1 2
+21 1 2
+87 1 2
+87 1 2
+87 1 2
+133 1 2
+133 1 2
+131 1 2
+131 1 2
+131 1 2
+14 1 2
+15 1 2
+43 1 1
+90 1 1
+90 1 1
+90 1 1
+90 1 1
+90 1 1
+134 1 2
+134 1 2
+4 1 2
+4 1 2
+40 1 2
+40 1 2
+40 1 2
+42 1 1
+42 1 2
+44 1 2
+46 1 2
+137 1 2
+92 1 2
+70 1 2
+28 1 1
+28 1 1
+28 1 1
+28 1 2
+28 1 2
+28 1 2
+23 1 1
+23 1 2
+73 1 2
+94 1 2
+94 1 2
+94 1 2
+94 1 2
+139 1 2
+139 1 2
+139 1 2
+139 1 2
+139 1 2
+53 1 1
+53 1 2
+53 1 2
+53 1 2
+53 1 2
+53 1 2
+53 1 2
+53 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+96 1 2
+96 1 2
+96 1 2
+96 1 2
+96 1 2
+96 1 2
+141 1 2
+54 1 1
+54 1 1
+54 1 1
+54 1 1
+54 1 1
+54 1 1
+140 1 2
+0 0 0
+aliases:
+dp cast 'dark pres' $1
+wings cast 'wings of hell'
+unholy cast 'unholy word'
+pc cast 'preserve' corpse
+dispel cast 'dispel m' $1
+summon cast 'summon' $1
+styg cast 'styg' $1
+word cast 'w o r'
+heal cast 'heal' $1
+ga group self
+harm cast 'full harm' $1
+silence cast 'silence' $1
+vig cast 'vig s' $1
+fh cast 'full heal' $1
+demon cast 'demonskin' $1
+df cast 'dark feast' corpse
+` get all corpse
+getall get all all.corpse
+getgem get all.gem all.corpse
+getit get all.coins all.corpse
+0

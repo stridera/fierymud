@@ -1,0 +1,81 @@
+name: Andantalus
+password: Anl6a1LtEZ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 32
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20702
+birthtime: 1700884172
+timeplayed: 2543
+lastlogintime: 1700886727
+host: 067.162.105.113
+height: 8
+weight: 6
+base_height: 8
+base_weight: 6
+base_size: 0
+natural_size: 0
+alignment: 1000
+playerflags: xy
+effectflags: u 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 12
+lastlevel: 0
+hitpoints: 15/18
+mana: 1/0
+move: 71/103
+damroll: 0
+hitroll: 6
+strength: 61
+intelligence: 100
+wisdom: 94
+dexterity: 68
+constitution: 100
+charisma: 40
+bank: 0 1 1 1
+experience: 6599
+quit_reason: 5
+saveroom: 36003
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 53
+424 60
+438 50
+443 50
+444 50
+447 60
+451 52
+452 57
+453 52
+459 50
+460 50
+462 52
+464 50
+0 0
+trophy:
+1 36001 2.000000
+1 36002 2.000000
+1 36003 2.000000
+1 51900 1.000000
+0 0 0
+tells:
+$
+gossips:
+1700885252 Daedela gossips, 'Good evening!'
+1700885264 Daedela gossips, 'Welcome Andantalus!'
+1700885927 Daedela gossips, 'oh no, how did he kill you?'
+$

@@ -1,0 +1,150 @@
+name: Gidion
+password: GivSdV6hY.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0) <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 10
+race: 4
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 14924
+birthtime: 1121107166
+timeplayed: 6728268
+lastlogintime: 1739030180
+host: 208.093.179.007
+height: 50
+weight: 171
+base_height: 50
+base_weight: 171
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: glxyz
+effectflags: k w 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 37000
+lastlevel: 5
+hitpoints: 1472/1175
+mana: 980/980
+move: 144/168
+damroll: 5
+hitroll: 4
+strength: 93
+intelligence: 54
+wisdom: 78
+dexterity: 88
+constitution: 100
+charisma: 49
+cash: 904 1714 5039 5453
+bank: 31 0 0 0
+experience: 105805999
+pagelength: 50
+clan: 3
+quit_reason: 7
+saveroom: 37000
+skills:
+401 1000
+402 1000
+403 1000
+404 1000
+410 850
+411 1000
+412 1000
+415 1000
+416 1000
+419 1000
+420 700
+421 700
+422 1000
+427 1000
+428 150
+430 1000
+431 1000
+434 1000
+438 1000
+443 1000
+444 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 1000
+468 1000
+473 1000
+474 1000
+0 0
+trophy:
+1 37009 12.000000
+1 48915 0.500000
+1 48922 0.200000
+1 4505 4.000000
+1 8703 1.000000
+1 8711 2.000000
+1 6904 1.000000
+1 7051 1.000000
+1 16310 1.000000
+1 16313 1.000000
+1 18510 1.000000
+1 52006 0.250000
+1 58401 0.333333
+1 58412 0.333333
+1 53003 0.333333
+1 53305 0.333333
+1 23730 0.333333
+1 23729 2.666667
+1 48120 0.333333
+1 2308 0.333333
+1 2307 0.333333
+0 0 0
+tells:
+1620768563 @WDavar@W tells you, 'Gilgal requested i send a well Incoming@W'@0
+1620771248 @WDavar@W tells you, 'Gilgal requested i send a well Incoming@W'@0
+1737990971 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1738067208 @WDavar@W tells you, 'one gem please@W'@0
+1738181432 @WDavar@W tells you, 'one gem please@W'@0
+1738317792 @WDavar@W tells you, 'one gem please@W'@0
+1738320358 @WDavar@W tells you, 'one gem please@W'@0
+1738329657 @WDavar@W tells you, 'one gem please@W'@0
+1738331280 @WDavar@W tells you, 'one gem please@W'@0
+1738765250 @WDavar@W tells you, 'Yawk requested i send a well Incoming@W'@0
+$
+gossips:
+1738319169 Pawk gossips, 'welldone'
+1738319197 Knak gossips, 'Thank you'
+1738319571 Pawk gossips, 'you too well done'
+1738319576 Lathyrus gossips, 'thank you!'
+1738319782 An old man shouts, 'Woo Hoo!'
+1738802358 Thort gossips, 'yeehaw doom!'
+1738803416 Gilgal gossips, 'anyone need a starsword?'
+1738803473 Chinok gossips, 'wow, never remember that question going unanswered'
+1738803833 Gilgal gossips, '2 hours 3 min from start to fang :) but i skipped almost all the eq'
+1738916803 Lathyrus gossips, 'Hello!'
+1738941651 Thort gossips, 'mornin!'
+$
+aliases:
+y ass zawk
+2 resc teomner
+tarnished p all.tarnished bag
+worn p all.worn bag
+corroded p all.corroded bag
+crushed p all.crushed bag
+rusted p all.rusted bag
+flimsy p all.flimsy bag
+decayed p all.decayed bag
+burned p all.burned bag
+gax g all.coins all.corpse
+gac g all all.corpse
+id recite identify $*
+x g all.coins
+gag g all.gem all.corpse
+volcano buntoi nakkarri karisto
+mines s3w7n2e4nw3n2e2n2enesennnennnnwnnnneeeennnnwwsesswwnnnnnn
+v tell $*.corpse hi
+1 drin water
+disarming is what the tiggerset is called to disarm bot
+h hide
+0

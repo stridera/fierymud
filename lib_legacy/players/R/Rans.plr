@@ -1,0 +1,112 @@
+name: Rans
+password: RagXElbaop
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 4
+level: 44
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19425
+birthtime: 1552363465
+timeplayed: 137936
+lastlogintime: 1586223243
+host: 170.253.191.183
+height: 86
+weight: 199
+base_height: 86
+base_weight: 199
+base_size: 3
+natural_size: 3
+alignment: -786
+playerflags: gxy
+effectflags: k w 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 3054
+hunger: 11
+thirst: 22
+lastlevel: 0
+hitpoints: 516/428
+mana: 193/193
+move: 164/164
+damroll: 5
+hitroll: 4
+strength: 91
+intelligence: 72
+wisdom: 63
+dexterity: 97
+constitution: 90
+charisma: 54
+cash: 34 1967 4815 5748
+bank: 120 2000 8000 4000
+experience: 12998926
+quit_reason: 1
+saveroom: 3054
+skills:
+401 490
+403 490
+405 278
+408 490
+410 366
+411 490
+415 222
+416 284
+419 1000
+420 81
+421 212
+427 1000
+438 50
+443 50
+444 93
+464 490
+465 50
+467 50
+472 464
+478 75
+0 0
+trophy:
+1 5213 2.000000
+1 5202 1.375000
+1 5212 2.291667
+1 5204 1.250000
+1 5203 0.875000
+1 5211 1.750000
+1 5200 1.500000
+1 5210 1.500000
+1 5201 1.750000
+1 5120 0.976190
+1 5104 0.125000
+1 5404 0.250000
+1 43019 0.714286
+1 43020 0.285714
+1 58302 0.571429
+1 58301 0.571429
+1 58303 0.428571
+1 58304 0.571429
+1 55216 0.142857
+1 55702 0.285714
+1 55701 0.142857
+0 0 0
+tells:
+1580784616 @WDakhod@W tells you, 'hola@W'@0
+1580784624 @WDakhod@W tells you, 'hows it going@W'@0
+1580784643 @WDakhod@W tells you, 'it says you are a rogue@W'@0
+1580784669 @WDakhod@W tells you, 'hrmm i dunno ask chinok...i think evil races may have been broken for a bit@W'@0
+$
+gossips:
+1586223154 Chinok gossips, 'well thanks for stopping by.. come by more, bring friends :D'
+1586223155 Runs gossips, 'not sure'
+1586223176 Strider gossips, 'Sure, but he gives away so much money for human ... what.. comfort?'
+1586223182 Chinok gossips, 'the part where he owns part of them, was something I read elsewhere, -- could have been fake, I didn't look it up'
+1586223183 Strider gossips, 'He's a good guy.'
+1586223201 Runs gossips, 'now he is yeah'
+1586223203 Strider gossips, 'I met him once.. he really is nice'
+1586223210 Runs gossips, 'kindof a cutthroat dick back in the day haha'
+1586223226 Chinok gossips, 'it was business ...'
+1586223235 Strider gossips, 'Yeah, you probably had to be to get to where he is'
+$

@@ -1,0 +1,189 @@
+#8600
+key intricate lattice~
+the lattice key~
+A key made with an intricate lattice work design rests here.~
+~
+18 4 1 1
+0 0 0 0 0 0 0
+0.02 20 0 0 0 0 0 0
+E
+key lattice~
+This delicate little key looks as if it could crumble under the slightest 
+pressure. It is beautiful.~
+#8601
+fountain liquid water ~
+a fountain~
+A stunning handcarved fountain is here.~
+~
+23 0 0 1
+9999999 9999999 0 0 0 0 0
+10000004.00 20 0 0 0 0 0 0
+E
+fountain~
+Carved from a solid piece of white rock, this fountain is really out of place.
+It shows a single large MeerCat reared up on its hind legs looking around the
+area for danger.  There is an inscription on the side.    ~
+E
+inscription~
+The inscription reads:
+To the MeerCat people, I owe my life to you. Although I can never hope to
+repay that debt, I hope this fountain will quench the thirst of you and your
+children for generations to come. I shall never forget your hospitality.
+-Beraak~
+#8602
+badge guard's-badge guards-badge~
+a guard's badge~
+A badge belonging to one of the guards has been dropped here.~
+~
+9 64 524289 1
+1 0 0 0 0 0 0
+0.04 300 0 0 0 0 0 0
+E
+badge guard's-badge guards-badge~
+A small red badge with a picture of the MeerCat royal family stitched onto it.~
+#8603
+pelt brown-coyote-pelt brown-colored-coyote-pelt hide~
+a brown coyote pelt~
+A brown colored coyote pelt has been tossed here.~
+~
+9 0 1025 1
+0 0 0 0 0 0 0
+6.00 100 0 0 0 0 0 0
+E
+brown-coyote-pelt brown-colored-coyote-pelt~
+This brown pelt looks as if it could impart the agility and vitality of its
+former owner.  It is well constructed and would offer some degree of protection
+against your foes.~
+A
+2 1
+A
+13 5
+#8604
+belt snakeskin-belt snake-skin~
+a snakeskin belt~
+Some snakeskin sits here in a tight coil.~
+~
+9 0 2049 1
+1 0 0 0 0 0 0
+0.95 300 0 0 0 0 0 0
+E
+snakeskin-belt snake-skin~
+This belt is made from the skin of a feared indigenous species of snake
+renowned for the accuracy and damage of their strikes.~
+A
+2 1
+#8605
+feather buzzard's-feather buzzards-feather pen quill~
+a buzzard feather~
+A buzzard's feather drifts lazily to the ground here.~
+~
+21 0 16385 1
+0 0 0 0 0 0 0
+0.02 5 0 0 0 0 0 0
+E
+feather buzzard's-feather buzzards-feather~
+A dark feather from the powerful buzzard, these creatures are very well known
+for their strength, not their beauty.~
+A
+1 1
+A
+6 -1
+#8606
+stick pointy-stick sharpened-stick~
+a pointy stick~
+A sharpened stick is stuck into the ground here.~
+~
+5 0 8193 1
+0 1 4 11 0 0 0
+3.00 10 0 0 0 0 0 0
+E
+pointy-stick sharpened-stick~
+A very simply weapon, very easy to use.  If properly handled it could be a
+formidible weapon.~
+A
+5 1
+#8607
+boots gila-boots rough-scaley-boots leather~
+gila boots~
+A pair of rough, scaley boots sits on the ground.~
+~
+9 0 65 1
+1 0 0 0 0 0 0
+2.60 100 0 0 0 0 0 0
+E
+gila-boots rough-scaley-boots~
+The creatures that fashioned these boots let nothing go to waste.  These orange
+and yellow boots are very comfortable, you could walk all day in them.  The
+thick skin and durable construction, would also offer you a fair degree of
+protection in battle.~
+A
+14 10
+#8608
+branch  tree-branch thick-branch~
+a tree branch~
+A thick branch of a tree is here, detached from its owner.~
+~
+5 64 8193 1
+0 1 5 5 0 0 0
+4.00 20 0 0 0 0 0 0
+E
+tree-branch thick-branch~
+A simple tree branch.  If you got hit with it, it would smart quite a bit.  
+Maybe it could knock some sense into you.~
+A
+3 1
+#8609
+pants coyote-skin-pants leather~
+coyote skin pants~
+A pair of coyote skin pants is here looking stylish.~
+~
+9 0 33 1
+2 0 0 0 0 0 0
+7.30 200 0 0 0 0 0 0
+E
+coyote-skin-pants leather~
+Stylish and functional too.  These pants will insulate the heat as well as the
+cold.  Now you have more of a reason to live!~
+A
+5 1
+#8610
+vest woven-vest wool~
+a woven vest~
+A woven vest sits here.~
+~
+9 0 9 1
+2 0 0 0 0 0 0
+6.00 20 0 0 0 0 0 0
+E
+woven-vest wool~
+A simple vest protects the vicera from, lets say, unwanted intrusion.  Its
+light construction also allows for easier and unhindered movement.~
+A
+2 2
+#8611
+tooth snake-tooth small-tooth earring~
+a snake tooth~
+A small tooth with a post attached sits here in the dirt.~
+~
+8 0 262145 1
+0 0 0 0 0 0 0
+0.01 200 0 0 0 0 0 0
+E
+snake-tooth small-tooth earring~
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.~
+A
+2 2
+#8612
+candle small-beeswax-candle wax~
+a small beeswax candle~
+A small beeswax candle is here.~
+~
+1 0 16385 1
+0 150 150 0 0 0 0
+0.20 20 0 0 0 0 0 0
+E
+small-beeswax-candle wax~
+A small candle fashioned from beeswax will light the path ahead.  It is
+protected from the wind by a thin glass covering.~
+$~

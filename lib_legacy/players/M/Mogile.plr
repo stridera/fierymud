@@ -1,0 +1,76 @@
+name: Mogile
+password: MoWSwMF.zh
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19516
+birthtime: 1578514713
+timeplayed: 432
+lastlogintime: 1578515148
+host: 024.147.038.015
+height: 75
+weight: 142
+base_height: 75
+base_weight: 142
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 18
+thirst: 12
+lastlevel: 0
+hitpoints: 27/27
+mana: 0/0
+move: 111/122
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 68
+wisdom: 58
+dexterity: 98
+constitution: 85
+charisma: 57
+experience: 1
+quit_reason: 5
+saveroom: 3500
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1578514742 Mejna gossips, 'Hello!'
+1578514764 Chinok gossips, 'what ya mean 'figure it out' ?'
+1578514781 Meina gossips, 'what mudclient'
+1578514792 Chinok gossips, 'lol I'v enever been able to get cmud to work with gcmp...'
+1578514799 Chinok gossips, 'mudlet works'
+1578514817 Chinok gossips, 'out of the box'
+1578514975 Chinok gossips, 'me too, still prefer it actually'
+1578514977 Mejna gossips, 'Do you have an account on the forum?'
+1578514990 Chinok gossips, 'but not been able to get gcmp working'
+1578515028 Mejna gossips, 'Good way to post stuff like screenshots of what is broken/not working, sometimes much easier to troubleshoot that way than via text here.'
+$

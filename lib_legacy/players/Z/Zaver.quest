@@ -1,0 +1,102 @@
+56 2 4
+target3 0
+target2 0
+target1 0
+bounty running
+70 1 1
+hunt running
+61 255 2
+target1 0
+hunt 0
+60 255 5
+necklacetask3 0
+necklacetask1 0
+attack_counter 0
+necklacetask2 0
+necklacetask4 0
+59 255 2
+target1 0
+hunt 0
+4 255 0
+11 1 4
+556 1
+12420 1
+6309 1
+6308 1
+29 255 19
+bad5 0
+bad4 0
+bad3 0
+bad2 0
+bad1 0
+invoke 0
+summon 0
+prayer 0
+reliquary 0
+north 0
+south 0
+east 0
+west 0
+item5 0
+item4 0
+item3 0
+41110 0
+item2 0
+item1 0
+15 1 0
+19 255 1
+choice 1
+23 1 5
+word2 healing
+actor_level 99
+price 4974
+skill_level 1000
+skill_name sphere
+17 1 2
+eg_faction 0
+bl_faction 0
+7 3 38
+55742_gems_acquired 3
+55731_gems_acquired 3
+55352_armor_acquired 1
+55380_armor_acquired 1
+55376_armor_acquired 1
+55360_armor_acquired 1
+55610_gems_acquired 3
+55344_armor_acquired 1
+55643_gems_acquired 3
+55599_gems_acquired 3
+55569_gems_acquired 3
+55573_gems_acquired 3
+55300_armor_acquired 1
+55577_gems_acquired 3
+55593_gems_acquired 1
+55312_armor_acquired 1
+55316_armor_acquired 1
+55324_armor_acquired 1
+55581_gems_acquired 3
+55308_armor_acquired 1
+55320_armor_acquired 1
+55621_gems_acquired 3
+55654_gems_acquired 3
+55665_gems_acquired 3
+55632_gems_acquired 3
+55328_armor_acquired 1
+55340_armor_acquired 1
+55332_armor_acquired 1
+55348_armor_acquired 1
+55709_gems_acquired 3
+55368_armor_acquired 1
+55372_armor_acquired 1
+55720_gems_acquired 3
+55356_armor_acquired 1
+55676_gems_acquired 3
+55687_gems_acquired 3
+55364_armor_acquired 1
+55698_gems_acquired 3
+2 255 0
+10 255 0
+5 255 3
+ring 1
+cloak 1
+boots 1

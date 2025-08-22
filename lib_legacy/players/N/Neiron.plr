@@ -1,0 +1,87 @@
+name: Neiron
+password: NeMs7D4sMo
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 32
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20548
+birthtime: 1687725599
+timeplayed: 1064
+lastlogintime: 1687730912
+host: 050.231.120.146
+height: 9
+weight: 7
+base_height: 9
+base_weight: 7
+base_size: 0
+natural_size: 0
+alignment: 998
+playerflags: xy
+effectflags: u 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 11
+lastlevel: 0
+hitpoints: 18/18
+mana: 1/0
+move: 102/104
+damroll: 0
+hitroll: 6
+strength: 77
+intelligence: 97
+wisdom: 100
+dexterity: 74
+constitution: 66
+charisma: 54
+experience: 605
+quit_reason: 5
+saveroom: 3025
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 51
+438 50
+443 50
+444 50
+451 50
+457 51
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+trophy:
+1 8001 0.500000
+0 0 0
+tells:
+$
+gossips:
+1687729977 Daedela gossips, 'well hello!'
+1687730051 Amadan gossips, 'Way to go Denka!'
+1687730055 Denka gossips, 'thank you!'
+1687730226 Golanth gossips, 'hurray!  Congratulations!'
+1687730239 Amadan gossips, 'Thank you!'
+1687730276 Denka gossips, 'wooo free level'
+1687730285 Amadan gossips, 'You are on fire!'
+1687730303 Denka gossips, 'just lucky enough to have all the crap I needed for the next spirit mace'
+$
+mem:
+16 0 9
+0 0 0

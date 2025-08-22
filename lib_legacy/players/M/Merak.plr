@@ -1,0 +1,126 @@
+name: Merak
+password: MeypWfPMeJ
+prompt: Hp: &2%h&0 (&2&b%H&0) Mv: &2%v&0 (&2&b%V&0)&2&b Exp: [%e] Aff: [%l]%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 2
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20096
+birthtime: 1641192157
+timeplayed: 49902
+lastlogintime: 1642427474
+host: 088.195.136.107
+height: 34
+weight: 45
+base_height: 34
+base_weight: 45
+base_size: 1
+natural_size: 1
+alignment: 729
+playerflags: y
+effectflags: k 0 0
+prefflags: ahnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3500
+badpasswords: 4
+lastlevel: 0
+hitpoints: 70/70
+mana: 1/0
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 83
+intelligence: 91
+wisdom: 100
+dexterity: 68
+constitution: 56
+charisma: 59
+cash: 0 23 179 182
+experience: 209139
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 50
+416 50
+423 134
+424 140
+438 140
+443 50
+444 50
+451 52
+457 127
+458 72
+459 51
+460 52
+462 50
+463 134
+466 50
+0 0
+trophy:
+1 17208 1.000000
+1 3500 0.250000
+1 17201 1.000000
+1 17203 1.416667
+1 17202 2.333333
+1 17205 2.583333
+1 17204 3.833333
+1 3502 0.333333
+0 0 0
+tells:
+1641283755 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1641283755 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1641283758 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1641283764 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1641283765 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1641293032 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1641293032 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1641293032 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1641293032 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1641293033 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+$
+gossips:
+1641305075 Astrid gossips, 'congraz'
+1641305080 Murgh gossips, 'ty'
+1641305081 Rokari gossips, 'congrats!'
+1641305286 Murgh gossips, 'how do i smother flames / stop burning?'
+1641305295 Rokari gossips, 'douse'
+1641305300 Rokari gossips, 'if you douse at a fountain'
+1641305304 Risk gossips, 'douse '
+1641305306 Rokari gossips, 'it always works'
+1641305316 Murgh gossips, 'thanks!'
+1641305340 Rokari gossips, 'otherwise - you may have to douse like 10 times to get doused'
+$
+mem:
+16 0 5
+16 0 5
+1 1 5
+16 0 5
+16 0 5
+12 1 5
+16 0 5
+89 1 9
+0 0 0
+aliases:
+k kill $1
+aa cast 'cause light' $1
+pp cast 'cure light'
+0

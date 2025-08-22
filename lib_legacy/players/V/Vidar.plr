@@ -1,0 +1,98 @@
+name: Vidar
+password: ViBHQQmwrH
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 75
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17405
+birthtime: 1247961757
+timeplayed: 586207
+lastlogintime: 1500081450
+host: 184.043.028.038
+height: 71
+weight: 230
+base_height: 71
+base_weight: 230
+base_size: 3
+natural_size: 3
+alignment: 640
+playerflags: gy
+effectflags: 0 0 0
+prefflags: hnotxC a
+privflags: d
+savingthrows: 0 0 0 0 0
+wimpy: 100
+loadroom: 10053
+lastlevel: 0
+hitpoints: 1068/918
+mana: 562/562
+move: 162/162
+damroll: 5
+hitroll: 4
+strength: 82
+intelligence: 67
+wisdom: 68
+dexterity: 95
+constitution: 93
+charisma: 60
+cash: 1 106 190 227
+bank: 386 4623 19700 17715
+experience: 54650242
+quit_reason: 1
+saveroom: 10053
+skills:
+402 650
+404 790
+407 515
+411 750
+412 790
+415 50
+416 50
+419 1000
+420 790
+421 790
+422 790
+427 1000
+430 174
+431 50
+434 156
+438 50
+441 164
+443 50
+444 472
+463 744
+464 272
+465 475
+466 50
+467 128
+468 247
+473 50
+0 0
+trophy:
+1 55220 1.000000
+1 55222 7.000000
+1 55240 5.000000
+1 55229 6.000000
+1 55241 5.000000
+1 10310 1.000000
+1 10307 1.000000
+1 10314 1.000000
+1 10304 1.000000
+1 10311 5.000000
+1 36401 2.000000
+1 53414 3.000000
+1 53400 4.000000
+1 53401 1.000000
+1 53406 1.000000
+1 53306 1.000000
+1 53305 1.000000
+1 53315 3.000000
+1 53303 3.000000
+1 53314 2.000000
+1 53312 5.500000
+0 0 0

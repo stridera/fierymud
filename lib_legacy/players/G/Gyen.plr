@@ -1,0 +1,245 @@
+name: Gyen
+password: GyM4RNh7UE
+prompt: &2&b%ph <&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 21
+race: 9
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17155
+birthtime: 1228182343
+timeplayed: 1909403
+lastlogintime: 1429667051
+host: 098.231.133.187
+height: 66
+weight: 156
+base_height: 66
+base_weight: 156
+base_size: 2
+natural_size: 2
+alignment: 441
+playerflags: gxyz
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 518/518
+mana: 980/980
+move: 106/106
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 94
+wisdom: 92
+dexterity: 90
+constitution: 79
+charisma: 58
+cash: 77 380 1030 45
+bank: 1679 31578 131456 990
+experience: 105805999
+clan: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+8 1000
+19 1000
+20 1000
+29 1000
+30 1000
+31 1000
+37 1000
+38 1000
+39 1000
+51 1000
+52 1000
+57 1000
+62 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+106 1000
+107 1000
+108 1000
+111 1000
+112 1000
+113 1000
+171 1000
+172 1000
+173 1000
+174 1000
+175 1000
+176 1000
+177 1000
+178 1000
+180 1000
+182 1000
+183 1000
+415 86
+416 50
+421 1000
+423 1000
+424 1000
+438 430
+443 1000
+444 652
+447 976
+451 1000
+452 1000
+454 1000
+456 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 77
+0 0
+trophy:
+1 48019 3.500000
+1 52003 0.142857
+1 52016 0.166667
+1 55016 1.000000
+1 5201 9.000000
+1 5200 13.000000
+1 5211 13.000000
+1 5210 9.000000
+1 48120 0.333333
+1 2321 1.000000
+1 2336 1.000000
+1 2335 1.000000
+1 2334 1.000000
+1 2332 3.000000
+1 2333 11.000000
+1 2308 1.000000
+1 2307 1.000000
+1 2305 1.000000
+1 2310 2.000000
+1 48003 1.000000
+1 48914 0.500000
+0 0 0
+mem:
+20 1 2
+20 1 2
+100 1 1
+172 1 2
+99 1 1
+99 1 1
+30 1 2
+62 1 2
+30 1 2
+100 1 1
+31 1 2
+175 1 2
+175 1 2
+175 1 2
+175 1 2
+175 1 2
+175 1 2
+106 1 2
+177 1 2
+177 1 2
+177 1 2
+177 1 2
+62 1 2
+108 1 2
+108 1 2
+108 1 2
+39 1 2
+180 1 2
+19 1 2
+29 1 2
+113 1 1
+177 1 2
+52 1 1
+31 1 2
+175 1 2
+57 1 2
+29 1 2
+30 1 2
+30 1 2
+52 1 1
+52 1 2
+19 1 2
+175 1 2
+112 1 2
+2 1 2
+2 1 2
+99 1 1
+30 1 2
+52 1 2
+99 1 1
+30 1 2
+175 1 2
+108 1 2
+52 1 2
+52 1 2
+52 1 2
+52 1 2
+108 1 2
+67 1 2
+176 1 1
+176 1 1
+52 1 2
+31 1 2
+68 1 1
+178 1 2
+178 1 2
+178 1 2
+178 1 2
+178 1 2
+31 1 2
+0 0 0
+aliases:
+who who -w
+templace w;w;n;n;w;w;n;n;w;w;n;n;w;w;n;n;n;w;w;w;n;n;n;e;e;n;e;e;s;e;n;n;w;n;w;n;w;n;w;w;w;n;w;s;w;w;n;n;n;n;n;e;e;n;e;e;e;e;s;e;e;e;n;n;n;w;w;n;w;w;w;w;w;w;w;w;w;w;w
+r rest;mem
+bbb n; ca 'iceb' keep;ca 'iceb' keep;s
+uaine s;s;s;s;e;e;e;e;e;s;s;e;e;s;s;s;e;e;n;w;w;n;w;n;w;w;w;n;w;n;n;n;n;w;w;w
+well s;s;s;s;s;s;s;s;e;e;e;e;e;e;e;e;s;s;e;e;e;s;s;s;s;s;s;e;s;s;s;e;s;s;s;w;s;s;e;e;e;e;s;e;e;s;s;s;s;e;n;e;n;e;s;s;w;s;s;s;u;s;d;e;e;s;s;w;s;s;e;s;s;w;s;s;s;w;s;s;s;s;op gate;s;s;s;s
+gy u;e;d;e;s;e;e;n;d;n;n;e;e;e;e;s;s;w;s;s;s;e;d
+waste s;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;n;n;n;w;w;w;w;w;w;w;w;w;w;n;n;w;n;u;w;w;n;u;e;n;w;n;n;n;n;w;w;s;w;n;n
+333 ca 'stone' $1
+fountain u;n;buy green;n;e;e;n;dri fountain;dri fountain;dri fountain;fill barrel fountain
+barrow s;s;s;s;s;s;s;s;s;s;w;s;w;w;s;s;s;w;w;w;s;w;w;s;w;s;w;s;e;s;e;s;e;e;e;s;e;s;e;e;s;e;e;e;e;s;e;e;n;e;u;n;e;e;e;e;s;e;e;n;n;e;e
+hee say floor phrase is open sesame
+haa say floor phrase is eingang bitte
+hoo say buntoi nakkarri karisto
+wall s;w;w;w;n;n;n;n;n;n;n;e;e;n;n;n;n;w;n;n;n;e;e;n;n;e;e;n;e;s;e;n;n;n;e;n;n;n;n;w;n;n;n;n;e;e;e;e;n;n;n;n;w;w;s;e;s;s;w;w;n;n;n;n;n;n
+lair n;w;u;w;s;s;s;e;u;n;w;s;s;e;u;n;w;w;s;s;w;u
+jetty s;e;e;e;e;e;e;e;e;s;s;s;s;s;e;s;s;s;e;s;s;w;w;w;w;s;s;s;s;s;s;e;s;e;s;w;s;e;e;n;e;s;s;w;s;s;e;s;w;d;w;s;w
+ccc l i corpse
+gcc get all.coins all.corpse
+ppp fol $1;consent $1
+gac get all corpse
+st st;fly
+8 dri barrel;get bread saddle;eat bread
+9 ass gyde;ass dimentio
+; l n;l s;l e;l w;l u;l d
+5 ca 'iceb' $1
+4 ca 'li b' $1
+6 ca 'fre' $1
+relo ca 'relo' $1;st;fly
+doom w;w;n;n;w;w;n;n;w;w;n;n;w;w;n;n;n;w;w;w;n;n;n;w;w;w;s;w;w;n;d;n;n;w;w;n;n;n;n;e;e;e;n;n;w;n;n;n;e;e;n;n;n;n;e;e;e;e;e;e;e;n;n;n;op door
+iden get identify case;recite identify $1
+fiery rem large;rem large;hold infidel;hold infidel
+book rem all.infidel;hold large;hold large
+ice ca 'wall of ice' $1
+brew d;d;d;e;op door;e;un door;op door;e;op door;n;d;w;w;sea door;op door;s;op door e;e;op door;s;d;w;sea bookcase;op bookcase;w;w;s;sea panel;un panel;op panel;e;d;w;n;n;n;op door;n;sea panel;op panel;n;w;w;n;n;e;sea door;op door
+back w;w;s;s;e;e;s;s;s;s;s;e;u;w;n;e;e;e;u;n;w;w;n;e;e;u;s;w;w;w;u;u;u;s
+444 ca 'maj g' $1
+hii say darkness hear my call unto you
+eldoria s;w;w;w;n;n;n;n;n;n;n;e;e;n;n;n;n;w;n;n;n;w;s;w;n;n;n;n;n;n;n;n;n;e;e;e;n;n;w;n;w;n;n;n;w;w;w;w;s;w;w;w;s;s;s;s;w;w;s
+aaa get band;put band case
+0

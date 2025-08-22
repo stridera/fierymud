@@ -1,0 +1,132 @@
+name: Yote
+password: YoJNJYgzm7
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 6
+race: 0
+level: 21
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20913
+birthtime: 1737336242
+timeplayed: 108796
+lastlogintime: 1737852668
+host: 067.167.192.166
+height: 70
+weight: 119
+base_height: 70
+base_weight: 119
+base_size: 2
+natural_size: 2
+alignment: 542
+playerflags: gxy
+effectflags: x 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 318/297
+mana: 44/44
+move: 66/213
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 76
+wisdom: 76
+dexterity: 82
+constitution: 99
+charisma: 72
+cash: 73 1341 5025 485
+bank: 50 0 0 0
+experience: 2197391
+quit_reason: 1
+saveroom: 3054
+skills:
+8 1000
+16 1000
+18 1000
+32 1000
+144 1000
+402 54
+404 260
+410 54
+411 260
+415 50
+416 50
+417 50
+421 251
+423 51
+424 61
+430 60
+438 68
+443 50
+444 50
+447 64
+451 60
+452 50
+454 55
+457 50
+458 52
+462 52
+463 50
+464 50
+465 260
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 12007 0.250000
+1 12003 1.000000
+1 12015 0.250000
+1 12016 0.250000
+1 16111 0.250000
+1 16105 0.250000
+1 16110 2.500000
+1 16103 0.333333
+1 16107 0.500000
+1 20314 0.250000
+1 20300 0.250000
+1 20301 0.250000
+1 20306 0.750000
+1 20302 0.500000
+1 20305 0.250000
+1 16106 0.500000
+1 5213 0.583333
+1 5204 0.250000
+1 5203 0.250000
+1 5212 0.250000
+1 5202 1.000000
+0 0 0
+tells:
+1737552463 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737553084 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1737553085 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1737553086 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
+1737553092 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1737560176 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1737560176 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1737562663 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737562707 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737586438 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+$
+gossips:
+1737562335 Unoliph gossips, 'ty'
+1737563325 Tynder gossips, 'Hi Beldawk!'
+1737563341 Beldawk gossips, 'hi'
+1737563354 Tynder gossips, 'Are you new to Fiery?'
+1737563366 Beldawk gossips, 'na one of the many awks'
+1737563377 Tynder gossips, 'Well this is awk.'
+1737563388 Chinok gossips, 'lol'
+1737563439 Beldawk gossips, 'ya i do AWKward very'
+1737564013 Unoliph gossips, 'mutter got all excited for my new ring its !ranger'
+1737850606 An old man shouts, 'Woo Hoo!'
+$
+aliases:
+gac get all all.corpse
+exa exam corpse
+who who -w
+0

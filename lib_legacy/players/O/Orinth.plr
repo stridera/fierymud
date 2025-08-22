@@ -1,0 +1,105 @@
+name: Orinth
+password: OrCjb71tQc
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19015
+birthtime: 1443314361
+timeplayed: 62648
+lastlogintime: 1584242685
+host: 072.182.058.184
+height: 72
+weight: 123
+base_height: 72
+base_weight: 123
+base_size: 2
+natural_size: 2
+alignment: 913
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 12
+thirst: 12
+lastlevel: 0
+hitpoints: 163/169
+mana: 14/16
+move: 50/122
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 68
+wisdom: 88
+dexterity: 90
+constitution: 90
+charisma: 54
+cash: 0 238 1080 763
+experience: 576840
+quit_reason: 1
+saveroom: 3054
+skills:
+402 170
+404 180
+415 50
+416 50
+421 175
+430 50
+438 61
+443 50
+444 50
+463 54
+464 50
+465 180
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 61506 0.500000
+1 61523 0.500000
+1 61524 1.500000
+1 61508 1.500000
+1 61517 0.500000
+1 61507 1.000000
+1 61512 3.000000
+1 61509 1.500000
+1 61510 1.500000
+1 17205 0.500000
+1 17202 0.500000
+1 17204 3.000000
+1 17203 0.500000
+1 3506 0.500000
+1 3500 1.500000
+1 3509 1.000000
+1 3508 2.000000
+1 8014 0.500000
+1 8020 0.500000
+1 8001 0.500000
+1 8002 2.000000
+0 0 0
+tells:
+1584226741 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1584238131 Chinok gossips, 'even at level 80, it still fails 10-% of the time'
+1584238403 Chinok gossips, 'why would you assume at level 12, you could do better ?'
+1584238415 Chinok gossips, 'when your skill is -- what -- awful ?'
+1584238464 Naefir gossips, 'Poor, but at level 12, if I were to spend all of my time just trying bashing things, I should be able to get it to a higher level, but it's artifically capped.'
+1584238480 Naefir gossips, 'but also, if I'm level 12, and they're level 5, I should have a pretty good chance to bash them'
+1584238575 Chinok gossips, 'but . if you see the * -- when you type skill'
+1584238590 Chinok gossips, 'that means, IT is the highest you can get it for level 12'
+1584238673 Chinok gossips, 'remember -- everything is a roll.. if you roll 3 -- chances are your bash fails.. if you roll 12, chances are it suceeds'
+1584238790 Chinok gossips, 'lol not interested in arguing over the % sucess of skills'
+1584238824 Chinok gossips, 'it is skill / level based'
+$
+aliases:
+k kill $1
+0

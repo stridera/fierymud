@@ -1,0 +1,100 @@
+name: Hotsy
+password: Ho/A9TMZX6
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 19
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18637
+birthtime: 1390589366
+timeplayed: 94605
+lastlogintime: 1392424064
+host: 098.246.191.221
+height: 42
+weight: 140
+base_height: 42
+base_weight: 140
+base_size: 1
+natural_size: 1
+alignment: 17
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: hxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 168/213
+mana: 36/36
+move: 111/114
+damroll: 3
+hitroll: 6
+strength: 95
+intelligence: 63
+wisdom: 58
+dexterity: 96
+constitution: 90
+charisma: 61
+cash: 18 910 3155 989
+experience: 1394065
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 12610/18000
+-1 0
+skills:
+401 240
+403 58
+405 67
+408 50
+411 240
+415 50
+416 50
+421 90
+438 50
+443 50
+444 82
+464 237
+465 50
+467 50
+472 71
+0 0
+trophy:
+1 4107 0.500000
+1 4117 0.500000
+1 4125 0.500000
+1 4118 0.500000
+1 4109 0.500000
+1 4105 1.000000
+1 4103 0.500000
+1 4104 0.500000
+1 4102 2.000000
+1 4101 0.500000
+1 18503 0.500000
+1 16310 0.500000
+1 18507 0.500000
+1 18509 0.500000
+1 3500 0.500000
+1 18510 1.500000
+1 18515 0.500000
+1 18501 0.500000
+1 18519 0.500000
+1 18551 0.500000
+1 18518 0.500000
+0 0 0
+effects:
+8 0 -7 1 0 0 0
+0 0 0 0 0
+aliases:
+an assist nakir
+"at" assist totsy
+at assist totsy
+"tc" take all corpse
+gac get all corpse
+ba backstab
+tc take all corpse
+0

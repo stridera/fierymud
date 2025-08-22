@@ -1,0 +1,69 @@
+name: Labia
+password: LaLcmgaxCt
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19786
+birthtime: 1606188168
+timeplayed: 596
+lastlogintime: 1606188764
+host: 050.110.002.142
+height: 69
+weight: 135
+base_height: 69
+base_weight: 135
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 25/25
+mana: 0/0
+move: 112/112
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 56
+wisdom: 87
+dexterity: 78
+constitution: 79
+charisma: 66
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+1606188247 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1606188357 Someone gossips, 'hi Labia welcome'
+1606188364 Someone gossips, 'not sure you're name is going to be appropriate'
+$

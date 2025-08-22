@@ -1,0 +1,89 @@
+name: Aestheus
+password: Aeq0SCYeUp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20293
+birthtime: 1656695740
+timeplayed: 2548
+lastlogintime: 1656698288
+host: 066.189.024.056
+height: 74
+weight: 128
+base_height: 74
+base_weight: 128
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 7
+lastlevel: 0
+hitpoints: 19/19
+mana: 0/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 83
+intelligence: 86
+wisdom: 85
+dexterity: 78
+constitution: 72
+charisma: 58
+cash: 0 0 10 2
+experience: 6598
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 55
+424 51
+438 50
+443 50
+444 50
+447 52
+451 51
+452 51
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+1656697377 @WThe Master of the Revel@W tells you, 'Now that you're ready to level,@W'@0
+1656697377 @WThe Master of the Revel@W tells you, 'It's time to find a Guild Master!@W'@0
+1656697377 @WThe Master of the Revel@W tells you, 'There are Guild Masters in every town.@W'@0
+1656697377 @WThe Master of the Revel@W tells you, 'You will advance to the next level.@W'@0
+1656697377 @WThe Master of the Revel@W tells you, 'Your Guild Master here in Mielikki@W'@0
+1656697377 @WThe Master of the Revel@W tells you, 'Will also grant you your first quest.@W'@0
+1656697377 @WThe Master of the Revel@W tells you, 'Which will drop randomly from mobs across the world.@W'@0
+1656697377 @WThe Master of the Revel@W tells you, 'Bring back what they ask for and you'll be well rewarded!@W'@0
+1656697383 @WThe Master of the Revel@W tells you, 'Congratulations again, graduate!@W'@0
+1656697383 @WThe Master of the Revel@W tells you, 'May you climb to ever greater fortune!@W'@0
+$
+gossips:
+1656696180 Holk gossips, 'Hows it going Aestheus?'
+$
+mem:
+32 0 8
+0 0 0

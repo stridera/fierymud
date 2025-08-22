@@ -1,0 +1,65 @@
+name: Getts
+password: GeHeMhWlAO
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19674
+birthtime: 1596722772
+timeplayed: 136
+lastlogintime: 1596722908
+host: 073.087.083.240
+height: 38
+weight: 139
+base_height: 38
+base_weight: 139
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: y
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 15
+thirst: 6
+lastlevel: 0
+hitpoints: 24/24
+mana: 0/0
+move: 106/106
+damroll: 3
+hitroll: 6
+strength: 82
+intelligence: 67
+wisdom: 74
+dexterity: 94
+constitution: 84
+charisma: 63
+experience: 931
+quit_reason: 3
+saveroom: 0
+skills:
+403 51
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0
+trophy:
+1 3062 1.000000
+0 0 0
+tells:
+$
+gossips:
+$

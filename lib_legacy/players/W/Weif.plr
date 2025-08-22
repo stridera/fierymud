@@ -1,0 +1,74 @@
+name: Weif
+password: We5PgAlcZ3
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20328
+birthtime: 1661024265
+timeplayed: 1725
+lastlogintime: 1661026126
+host: 174.115.010.148
+height: 65
+weight: 165
+base_height: 65
+base_weight: 165
+base_size: 2
+natural_size: 2
+alignment: 7
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 1
+lastlevel: 0
+hitpoints: 28/27
+mana: 1/0
+move: 138/138
+damroll: 3
+hitroll: 3
+strength: 79
+intelligence: 67
+wisdom: 67
+dexterity: 94
+constitution: 91
+charisma: 67
+experience: 4625
+quit_reason: 5
+saveroom: 3024
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+421 53
+438 50
+443 50
+444 50
+463 50
+464 51
+465 50
+0 0
+trophy:
+1 16900 3.000000
+1 3062 1.000000
+1 3500 1.000000
+0 0 0
+tells:
+$
+gossips:
+1661024348 Mersh gossips, 'He weif'
+1661024351 Mersh gossips, '*hey'
+1661024455 Mersh gossips, 'welcoem back'
+1661024548 Mersh gossips, 'Hello Davonskevort'
+1661025007 Discord gossips, 'felessan: Hello hello!'
+1661025270 Mersh gossips, 'ty'
+$

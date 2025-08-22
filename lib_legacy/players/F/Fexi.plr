@@ -1,0 +1,91 @@
+name: Fexi
+password: FedqeorU52
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19367
+birthtime: 1528298755
+timeplayed: 67707
+lastlogintime: 1703814931
+host: 104.228.087.146
+height: 83
+weight: 227
+base_height: 83
+base_weight: 227
+base_size: 3
+natural_size: 3
+alignment: 816
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ahnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 185/172
+mana: 16/16
+move: 149/150
+damroll: 5
+hitroll: 4
+strength: 99
+intelligence: 64
+wisdom: 76
+dexterity: 78
+constitution: 86
+charisma: 62
+cash: 40 405 2033 1919
+experience: 639322
+quit_reason: 1
+saveroom: 3054
+skills:
+402 180
+404 180
+415 120
+416 120
+419 1000
+421 180
+427 1000
+430 58
+438 140
+443 50
+444 58
+463 50
+464 50
+465 180
+466 120
+467 120
+468 120
+0 0
+trophy:
+1 41011 1.000000
+1 41010 1.000000
+1 41004 2.000000
+1 41007 3.000000
+1 41009 1.000000
+1 41005 6.000000
+1 41001 11.000000
+1 41003 5.000000
+1 41013 3.000000
+1 18006 1.000000
+1 18003 3.000000
+1 18004 2.000000
+1 18000 5.000000
+1 18005 5.000000
+1 18002 3.000000
+1 18001 4.000000
+1 18007 8.000000
+1 5504 0.500000
+1 5503 1.000000
+1 7051 1.000000
+1 5502 3.000000
+0 0 0
+tells:
+$
+gossips:
+$

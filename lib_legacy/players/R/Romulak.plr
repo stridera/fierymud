@@ -1,0 +1,164 @@
+name: Romulak
+password: Roo5lDIXKl
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 1
+level: 47
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20803
+birthtime: 1719448972
+timeplayed: 3749175
+lastlogintime: 1724702587
+host: 174.224.176.100
+height: 66
+weight: 155
+base_height: 66
+base_weight: 155
+base_size: 2
+natural_size: 2
+alignment: 992
+playerflags: xy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 80
+loadroom: 3001
+lastlevel: 0
+hitpoints: 236/236
+mana: 220/220
+move: 220/220
+damroll: 3
+hitroll: 3
+strength: 65
+intelligence: 100
+wisdom: 86
+dexterity: 61
+constitution: 94
+charisma: 58
+bank: 563 5449 15608 9908
+experience: 18400486
+quit_reason: 5
+saveroom: 3001
+skills:
+2 1000
+5 1000
+8 1000
+10 1000
+19 1000
+20 1000
+26 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+106 1000
+107 1000
+186 1000
+228 1000
+246 1000
+415 520
+416 520
+421 520
+423 520
+424 520
+438 310
+443 310
+444 520
+447 398
+451 499
+452 520
+453 520
+454 520
+456 510
+458 520
+459 520
+460 520
+462 520
+464 520
+465 310
+0 0
+trophy:
+1 55225 0.500000
+1 55227 0.250000
+1 55213 0.250000
+1 55228 0.750000
+1 10313 0.250000
+1 10309 1.250000
+1 47002 4.500000
+1 47003 2.000000
+1 12505 0.250000
+1 12509 0.250000
+1 12510 0.500000
+1 12511 0.250000
+1 55216 1.500000
+1 16200 2.250000
+1 16204 0.500000
+1 16202 0.833333
+1 16201 2.000000
+1 5204 0.500000
+1 5203 1.250000
+1 5202 1.500000
+1 5212 2.000000
+0 0 0
+tells:
+1724096740 @WCalimar@W tells you, 'stoneme@W'@0
+1724096876 @WCalimar@W tells you, 'stoneme@W'@0
+1724097028 @WCalimar@W tells you, 'hasteme@W'@0
+1724097031 @WCalimar@W tells you, 'stoneme@W'@0
+1724097107 @WCalimar@W tells you, 'do first@W'@0
+1724097147 @WCalimar@W tells you, 'stoneme@W'@0
+1724163678 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1724163678 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1724163678 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1724164883 @WCalimar@W tells you, 'do sit@W'@0
+$
+gossips:
+1724164196 Calimar gossips, 'why would when I dropped all, and tried to get it all back, most of it is gone?'
+1724164233 Calimar gossips, 'did it really sink to the bottom of the lake?'
+1724165292 Discord gossips, 'Zaver: If you were on water anything that wasn't float is gone'
+1724165469 Calimar gossips, 'that's insane'
+1724165483 Calimar gossips, 'my entire inventory, all my bags, all my stuff'
+1724165533 Chinok gossips, 'yeah, dropping all needs to be done in a ver safe space, mobs will pick stuff up, people will pick stuff up, and if you're on water, it sinks!'
+1724165534 Calimar gossips, 'seems like a cruel joke to have the fisherman pop alligator boots...drop all doesn't drop the boots, it drops all'
+1724165673 Chinok gossips, 'not getting the cruel joke part, any command with all in it, means everything'
+1724165702 Calimar gossips, 'usually you can use truncated versions for items, so drop can, drops my canoe'
+1724165712 Calimar gossips, 'whatever, doesn't matter'
+$
+aliases:
+k kil fetch
+kk say i have failed my quest
+cf cast fireball $*
+cw cast web $*
+mm c 'magic missile' $*
+lc look in corpse
+cm cast 'minor creation' $*
+ga get all
+cb cast burn $*
+cl cast lightning $*
+x recite recall
+cc cast 'cone of cold' $*
+cs cast 'color spray'
+0

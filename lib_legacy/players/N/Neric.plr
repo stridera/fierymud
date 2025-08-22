@@ -1,0 +1,116 @@
+name: Neric
+password: NeznrWR8qQ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 30
+level: 8
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20172
+birthtime: 1645667782
+timeplayed: 8574
+lastlogintime: 1697598153
+host: 066.199.058.082
+height: 70
+weight: 247
+base_height: 70
+base_weight: 247
+base_size: 2
+natural_size: 2
+alignment: -97
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnouC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 13
+thirst: 16
+lastlevel: 0
+hitpoints: 128/120
+mana: 1/0
+move: 142/142
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 58
+wisdom: 78
+dexterity: 84
+constitution: 92
+charisma: 56
+cash: 0 55 179 3
+experience: 191860
+quit_reason: 1
+saveroom: 3054
+skills:
+402 64
+404 130
+415 50
+416 50
+421 121
+438 54
+443 50
+444 68
+463 50
+464 50
+465 74
+466 50
+467 50
+468 50
+489 173
+0 0
+trophy:
+1 8023 1.000000
+1 8002 0.500000
+1 8011 0.500000
+1 8021 0.500000
+1 8014 1.000000
+1 8020 0.500000
+1 8015 0.500000
+1 8010 1.000000
+1 8022 0.500000
+1 8016 1.333333
+1 8012 2.000000
+1 8329 4.000000
+1 41004 0.500000
+1 41001 2.500000
+1 41003 1.500000
+1 18507 2.500000
+1 18510 0.500000
+1 8331 3.500000
+1 8330 6.000000
+1 8000 1.500000
+1 8013 2.000000
+0 0 0
+tells:
+1645669657 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1645853708 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1645853708 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1645853708 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1645853737 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1646607570 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1646607570 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1646607570 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1646607570 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1646607571 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+$
+gossips:
+1646001754 Chinok gossips, 'Pashku, it's all Daedela's fault :) -- '
+1646001776 Daedela gossips, 'oh no, blame Kien for that one'
+1646001778 Ilish gossips, 'I would do it with only 1 char :D'
+1646001780 Daedela gossips, 'I didn't build that place haha'
+1646607531 Zaver gossips, 'cute!'
+1646607620 Zaver gossips, 'there are some bugs with dragon born imms have asked ut not to log them in'
+1647147226 Chinok gossips, 'i assume neric was to be a dragonborn ?'
+1647147235 Cerix gossips, 'he was gas dragonborn'
+1647147241 Chinok gossips, 'thanks'
+1647147255 Chinok gossips, 'he's fixed...'
+$
+aliases:
+bg breathe gas
+gc g all.coins from all.corpse
+lc l in corpse
+0

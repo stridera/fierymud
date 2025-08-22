@@ -1,0 +1,186 @@
+5 255 3
+boots 1
+cloak 1
+ring 1
+15 255 0
+47 1 1
+gem_vnum 0
+69 1 2
+elf 1
+shake 1
+4 255 2
+oak 1
+ladder 1
+68 1 2
+feather 1
+alicorn 1
+1 255 3
+got_item:37082 1
+got_item:37081 1
+got_item:37080 1
+67 1 1
+cloak 1
+29 255 19
+bad5 0
+bad4 0
+bad3 0
+bad2 0
+bad1 0
+invoke 0
+summon 0
+prayer 0
+reliquary 0
+east 0
+north 0
+south 0
+west 0
+item5 0
+item3 0
+item4 0
+goblet 41110
+item2 0
+item1 0
+19 255 1
+choice 2
+63 255 1
+step complete
+2 255 2
+reward yes
+shell 1
+10 255 0
+72 255 4
+target2 necro_fang
+target3 dia_fang
+target1 0
+bounty 0
+66 255 0
+55 1 0
+65 1 2
+scorpion 1
+lever 1
+62 255 5
+trophytask1 0
+attack_counter 0
+trophytask4 0
+trophytask2 0
+trophytask3 0
+13 255 6
+satisfied_tree:12046 1
+satisfied_tree:12016 1
+satisfied_tree:12014 1
+satisfied_tree:12017 1
+satisfied_tree:12018 1
+num_trees 5
+32823 255 2
+target 55220
+subclass_name berserker
+48 7 4
+fire_ring 1
+sash 0
+charles 0
+lashes 0
+18 255 7
+item7 0
+item6 0
+item5 0
+item4 0
+item2 0
+item1 0
+item3 0
+17 1 32
+5538_reward 1
+5552_reward 1
+5554_reward 1
+5536_reward 1
+5528_reward 1
+5532_reward 1
+5550_reward 1
+5530_reward 1
+5516_reward 1
+5549_reward 1
+5524_reward 1
+5548_reward 1
+5522_reward 1
+5546_reward 1
+5520_reward 1
+5558_reward 1
+5551_reward 1
+5547_reward 1
+5534_reward 1
+5526_reward 1
+5518_reward 1
+5556_reward 1
+5515_trophies 12
+5507_trophies 18
+5511_trophies 11
+5509_trophies 20
+5503_trophies 19
+5505_trophies 9
+5513_trophies 10
+eg_ally 1
+eg_faction 196
+bl_faction 0
+64 255 1
+got_cherry 0
+56 255 4
+target3 0
+target2 0
+target1 0
+bounty 0
+61 255 2
+target1 0
+hunt 0
+70 255 2
+treasure1 0
+hunt 0
+59 255 2
+target1 0
+hunt 0
+7 3 42
+55726_gems_acquired 3
+55672_gems_acquired 3
+55686_gems_acquired 3
+55696_gems_acquired 3
+55710_gems_acquired 3
+55742_gems_acquired 3
+55717_gems_acquired 3
+55382_armor_acquired 1
+55378_armor_acquired 1
+55358_armor_acquired 1
+55362_armor_acquired 1
+55370_armor_acquired 1
+55374_armor_acquired 1
+55366_armor_acquired 1
+55631_gems_acquired 3
+55619_gems_acquired 3
+55665_gems_acquired 3
+55607_gems_acquired 3
+55595_gems_acquired 3
+55655_gems_acquired 3
+55638_gems_acquired 3
+55330_armor_acquired 1
+55350_armor_acquired 1
+55346_armor_acquired 1
+55334_armor_acquired 1
+55342_armor_acquired 1
+55354_armor_acquired 1
+55338_armor_acquired 1
+55569_gems_acquired 3
+55593_gems_acquired 3
+55577_gems_acquired 3
+55581_gems_acquired 3
+55585_gems_acquired 3
+55589_gems_acquired 3
+55573_gems_acquired 3
+55300_armor_acquired 1
+55308_armor_acquired 1
+55304_armor_acquired 1
+55320_armor_acquired 1
+55316_armor_acquired 1
+55312_armor_acquired 1
+55324_armor_acquired 1
+45 255 4
+stand 1
+rest 11
+loot 6
+fight 10

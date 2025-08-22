@@ -1,0 +1,65 @@
+name: Lindir
+password: Likqn.Ct.Z
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 34
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20749
+birthtime: 1707899603
+timeplayed: 150
+lastlogintime: 1707899825
+host: 080.187.064.161
+height: 64
+weight: 150
+base_height: 64
+base_weight: 150
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 22
+thirst: 20
+lastlevel: 0
+hitpoints: 25/25
+mana: 1/0
+move: 120/120
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 84
+wisdom: 82
+dexterity: 92
+constitution: 90
+charisma: 69
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+493 50
+0 0
+tells:
+$
+gossips:
+$

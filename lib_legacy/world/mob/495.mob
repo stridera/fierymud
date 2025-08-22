@@ -1,0 +1,315 @@
+#49500
+woman receptionist dark cloaked~
+a dark, cloaked woman~
+A fragile looking woman stands waiting here.~
+A jestful gleam emits from under the woman's cloak, that barely covers her face.
+She seems young, perhaps early twenties, and doesn't seem to show much motion.
+She stands vigilantly in front of the darkened path, perhaps it leads to the
+rooms.  She has long black hair and pale white skin, beautiful and silent.    ~
+114698 40 -1000 E
+99 5 0 0d0+0 0d0+30
+0 0 0 0 0 495
+3 3 2 11 0 0 2
+Str: 80
+Dex: 84
+Int: 85
+Wis: 82
+Con: 64
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 1000
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#49501
+man form vague apparition figure~
+a vague figure~
+A form of a man stands here without motion.~
+Standing behind the counter is but a apparition of form.  About six feet high,
+he is of well forged stock.  Broad shoulders and thick chest suggest this man
+is no stranger to work.  A grey cloak grips his body, as his hood shades any
+light from his face.  Though his eyes hidden, an odd feeling of "omniscient"
+fills the room.    ~
+10 8192 -1000 E
+80 20 0 0d0+0 0d0+0
+0 0 0 0 0 495
+3 3 1 3 0 0 2
+Str: 88
+Dex: 88
+Int: 62
+Wis: 71
+Con: 81
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#49502
+dryken feeble old man~
+a dryken~
+A feeble old man stands silently here.~
+   Silent and still, like a living walking painting.  The man stands just over
+six feet, dawning an old grey robe that flows towards the ground.  Simple and
+strange, this old man appears very fragile and weak.  He is bald and his skin
+wrinkled, appearing more fit to be lying down than walking.  His face stares
+into nothingness, as his eyes unknown because they are simply gone.  Yet a
+vigilant presence trembles not like a blind man, but stands like a warrior.  ~
+16456 8200 -1000 E
+80 0 0 0d0+0 0d0+0
+0 0 0 0 0 495
+3 3 1 0 0 0 2
+Str: 76
+Dex: 76
+Int: 78
+Wis: 84
+Con: 72
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#49503
+driceme'y figure man~
+Driceme'y~
+A barely noticable figure rest in the shadows.~
+   The man stands about six feet in height and yet he doesn't appear to be
+broad under that thick cloak.  His eyes must be as black as the shadows for
+they cannot be seen.  However his hands show his bright white skin, as if he
+hasn't seen the sun in a lifetime.    ~
+81930 8192 -1000 E
+80 0 0 0d0+0 0d0+0
+0 0 0 0 0 495
+3 3 1 0 0 0 2
+Str: 72
+Dex: 72
+Int: 76
+Wis: 86
+Con: 72
+Cha: 75
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#49504
+man figure thin traek~
+Traek~
+A thin figure of a man rest in the shadows here.~
+   Motionless and appearing still-life, a reflection of light gleams back from
+his eyes.  An aura of fear inhabits the air, only exceeded by a sharp painful
+feeling of withdrawal.  He must be the shopkeeper or at least the only other
+form of life in this room.    ~
+18442 8192 -1000 E
+90 20 0 0d0+0 3d0+2
+0 0 0 0 0 495
+3 3 0 3 0 0 2
+Str: 86
+Dex: 84
+Int: 66
+Wis: 76
+Con: 82
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#49505
+woman elf tremlece~
+Tremlece~
+A beautiful woman elf feebly stands chained here to the wall. ~
+   From the clouded complexion of dirt and ash, it is obvious she has been here
+for some time.  Even through her remarkable beauty, she appears possessed by
+the gleam in her eyes.  With long black hair and stunning blue eyes she has a
+smile; yet something else seems to be on her mind other than happiness to
+view another.    ~
+81930 4106 0 E
+65 20 0 0d0+0 0d0+0
+0 0 0 0 0 495
+3 3 2 24 1 0 2
+BareHandAttack: 9
+Str: 95
+Dex: 70
+Int: 58
+Wis: 82
+Con: 88
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#49506
+guardian guardian-tresyn large-suit-armor monster~
+Guardian of Tresyn~
+A very large suit of armor stands in silence.~
+   Truly startling to anyone who has not laid eyes on this before.  Standing at
+least nine feet tall this monster is nearly a small building within itself.  
+The armor doesn't appear to be occupied, though to be sure is to be too brave.
+The metal is crafted by hand by the looks and thicker than some doors are.  It
+holds a monstrous sword in its hands facing tip down and standing sentinel,
+awaiting or guarding something.    ~
+91658 4202504 -1000 E
+95 6 -10 0d0+0 5d0+12
+0 0 0 0 0 495
+3 3 1 3 19 1 5
+BareHandAttack: 3
+Str: 86
+Dex: 80
+Int: 64
+Wis: 78
+Con: 80
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 0
+Stance: 6
+E
+#49514
+necromancer guildmaster figure man~
+a dark undead man~
+A dark and undead figure sits perfectly still here.~
+Sitting completely still, this large impossing creature, for he does not
+seem to be a man, seems almost completely lifeless. His skin is a pale white
+while his eyes are nothing more than darkened spheres.  His garb is nothing
+more than a tattered black robe, although even that adds to his undead presence.~
+536889354 8 0 E
+90 20 0 0d0+0 0d0+0
+0 0 0 0 0 495
+3 3 1 11 0 0 2
+Str: 72
+Dex: 73
+Int: 90
+Wis: 84
+Con: 69
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+T 3155
+T 3159
+T 55706
+#49522
+sorcerer guildmaster woman mage~
+the dark archmage~
+A dark and ghastly mage stares blankly at some symbols on the walls.~
+Dressed in a long black robe, this woman is obviously of great power
+and understanding, for the aura surrounding her body demands respect.
+Even with her great power, she seems as though she is no longer in
+her right mind, for all she does is stare blankly at the walls.~
+536889354 8 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 495
+3 3 2 0 0 0 2
+Str: 74
+Dex: 70
+Int: 88
+Wis: 88
+Con: 68
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 3155
+T 3159
+T 55706
+#49525
+thief guildmaster man figure~
+the master thief~
+A cloaked figure sits behind the fire here.~
+Completely hidden behind his cloak, this figure sit next to the fire,
+occationally tending to it, maintaining it's dark glow. Through his
+dark grab, the occational eye can be seen peeking out in notice of
+others that enter or exits his view.~
+18442 40 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 495
+3 3 1 2 0 0 2
+Str: 78
+Dex: 86
+Int: 74
+Wis: 70
+Con: 84
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 3155
+T 3159
+T 55706
+#49562
+man figure thin traek~
+Traek~
+A thin figure of a man rest in the shadows here.~
+   Motionless and appearing still-life, a reflection of light gleams back from
+his eyes.  An aura of fear inhabits the air, only exceeded by a sharp painful
+feeling of withdrawal.  He must be the shopkeeper or at least the only other
+form of life in this room.~
+18442 0 -1000 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 495
+3 3 0 3 0 0 2
+Str: 90
+Dex: 79
+Int: 68
+Wis: 81
+Con: 81
+Cha: 52
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+$

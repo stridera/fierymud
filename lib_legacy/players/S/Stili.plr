@@ -1,0 +1,83 @@
+name: Stili
+password: StTN6ioBX8
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 9
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18358
+birthtime: 1349495918
+timeplayed: 31748
+lastlogintime: 1349596111
+host: 096.052.041.169
+height: 68
+weight: 120
+base_height: 68
+base_weight: 120
+base_size: 2
+natural_size: 2
+alignment: 944
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 12
+thirst: 14
+lastlevel: 0
+hitpoints: 109/109
+mana: 1/-2
+move: 42/106
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 59
+wisdom: 73
+dexterity: 94
+constitution: 78
+charisma: 60
+cash: 0 54 231 3
+experience: 237294
+quit_reason: 1
+saveroom: 3054
+skills:
+403 58
+405 50
+415 50
+416 50
+421 116
+438 50
+443 50
+444 55
+464 140
+465 50
+467 50
+0 0
+trophy:
+1 8604 0.500000
+1 16111 0.500000
+1 16103 0.500000
+1 16108 0.250000
+1 16106 0.750000
+1 16101 0.500000
+1 16102 1.250000
+1 16107 1.750000
+1 16100 1.500000
+1 8806 0.250000
+1 8800 0.250000
+1 8801 0.250000
+1 8804 0.500000
+1 8809 0.250000
+1 8805 0.750000
+1 8807 0.250000
+1 8808 0.750000
+1 2005 1.500000
+1 2001 0.500000
+1 2003 1.750000
+1 2004 1.750000
+0 0 0

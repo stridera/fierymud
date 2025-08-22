@@ -1,0 +1,145 @@
+name: Finlas
+password: FiDy/FT7Hd
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 6
+race: 1
+level: 45
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20753
+birthtime: 1708062015
+timeplayed: 328969
+lastlogintime: 1716381907
+host: 082.212.042.129
+height: 68
+weight: 142
+base_height: 68
+base_weight: 142
+base_size: 2
+natural_size: 2
+alignment: 999
+playerflags: gxy
+effectflags: kx 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 494/494
+mana: 193/202
+move: 287/287
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 80
+wisdom: 80
+dexterity: 92
+constitution: 99
+charisma: 50
+cash: 6 81 435 437
+bank: 566 3156 12738 8239
+experience: 15604711
+quit_reason: 1
+saveroom: 3054
+spellcasts:
+3 41
+0 0
+skills:
+8 1000
+15 1000
+16 1000
+18 1000
+32 1000
+37 1000
+88 1000
+144 1000
+264 1000
+266 1000
+402 50
+404 500
+407 50
+410 321
+411 500
+415 50
+416 50
+417 50
+420 114
+421 301
+422 54
+423 159
+424 500
+430 50
+438 50
+443 50
+444 88
+447 104
+451 500
+452 50
+454 50
+456 50
+457 183
+458 431
+459 435
+462 50
+463 50
+464 50
+465 500
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 2806 0.200000
+1 11809 1.000000
+1 11701 3.000000
+1 11710 2.800000
+1 11703 1.600000
+1 2803 0.400000
+1 11702 2.400000
+1 11704 1.600000
+1 2808 5.399999
+1 50209 0.400000
+1 50218 0.200000
+1 50211 0.400000
+1 50207 0.400000
+1 50206 0.400000
+1 50202 0.600000
+1 50205 0.600000
+1 50213 0.600000
+1 16106 0.200000
+1 16105 0.200000
+1 2002 0.200000
+1 2802 0.600000
+0 0 0
+tells:
+1712399167 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712399169 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712568871 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712758365 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712759172 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712759174 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712759741 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712759745 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1713270992 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1713523863 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1716295438 Karoth gossips, 'yeah its hard to really disconnect nowadays'
+1716295472 Chinok gossips, 'I spend a week in northern Ontario Canada every year for that.. no signal to anything'
+1716295480 Karoth gossips, 'that sounds awesome'
+1716297440 Chinok gossips, 'gratz on 48!'
+1716297507 Karoth gossips, 'thx :)'
+1716297880 Chinok gossips, 'gratz on 43!'
+1716297888 Lindor gossips, 'ty :)'
+1716378603 Karoth gossips, 'heya how's ti going'
+1716379182 Chinok gossips, 'well -- I'm up anyway.. there's that'
+1716379218 Karoth gossips, 'better than the alternative!'
+$
+effects:
+144 6 11 17 0 0 0
+266 1 0 0 0 2 0
+229 15 3 2 0 0 0
+0 0 0 0 0

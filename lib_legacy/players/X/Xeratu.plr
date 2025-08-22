@@ -1,0 +1,85 @@
+name: Xeratu
+password: XelOMrXkW2
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 3
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19986
+birthtime: 1628118116
+timeplayed: 2197
+lastlogintime: 1628121212
+host: 152.044.072.047
+height: 46
+weight: 157
+base_height: 46
+base_weight: 157
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k 0 q
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 46/42
+mana: 1/0
+move: 154/154
+damroll: 4
+hitroll: 5
+strength: 95
+intelligence: 58
+wisdom: 66
+dexterity: 87
+constitution: 92
+charisma: 63
+experience: 9730
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 52
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 52
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3508 1.000000
+1 3500 1.500000
+1 3506 0.500000
+1 8015 1.000000
+1 8001 1.000000
+1 8023 1.000000
+1 8016 2.000000
+1 8002 1.000000
+1 8014 1.000000
+0 0 0
+tells:
+$
+gossips:
+1628118369 Daedela gossips, 'I can help though'
+1628118375 Daedela gossips, 'what do you need changed/altered?'
+1628118404 Daedela gossips, 'I can just change your race'
+1628118438 Daedela gossips, 'What race do you want to be?'
+1628118449 Daedela gossips, 'okay'
+1628118472 Daedela gossips, 'you're welcome!'
+1628119982 Chinok gossips, 'BTW -- the multi-play limit is 5 these days.'
+1628120011 Zenhaivne gossips, 'nice, we thought it was 2'
+1628120026 Chinok gossips, 'yeah, it's changed '
+1628120886 Daedela gossips, 'did you want a race reset?'
+$

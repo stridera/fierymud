@@ -1,0 +1,88 @@
+name: Gooblet
+password: Go1Y7rDU.S
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 27
+level: 1
+home: 3002
+lifeforce: 0
+composition: 0
+id: 20399
+birthtime: 1672127537
+timeplayed: 783
+lastlogintime: 1672128321
+host: 073.221.018.061
+height: 73
+weight: 338
+base_height: 73
+base_weight: 338
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3002
+hunger: 7
+lastlevel: 0
+hitpoints: 23/23
+mana: 0/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 77
+intelligence: 97
+wisdom: 91
+dexterity: 70
+constitution: 63
+charisma: 66
+cash: 0 0 0 9
+experience: 931
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+203 1000
+206 1000
+415 50
+416 50
+423 60
+424 53
+438 50
+443 50
+444 50
+451 50
+454 50
+457 51
+458 52
+459 50
+460 50
+462 50
+463 50
+466 50
+487 56
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+1672128002 @WThe Combat Clerk@W tells you, 'Your trainer is to the east.@W'@0
+1672128008 @WThe Combat Clerk@W tells you, 'Your trainer is to the east.@W'@0
+1672128010 @WThe Combat Clerk@W tells you, 'Your trainer is to the east.@W'@0
+1672128011 @WThe Combat Clerk@W tells you, 'Your trainer is to the east.@W'@0
+1672128068 @WThe Combat Clerk@W tells you, 'Your trainer is to the east.@W'@0
+$
+gossips:
+$
+mem:
+16 0 8
+0 0 0

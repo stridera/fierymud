@@ -1,0 +1,89 @@
+name: Cyrn
+password: CyRjjnqIxp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 3
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20467
+birthtime: 1677752897
+timeplayed: 2023
+lastlogintime: 1677754925
+host: 024.054.160.157
+height: 7
+weight: 6
+base_height: 7
+base_weight: 6
+base_size: 0
+natural_size: 0
+alignment: 998
+playerflags: gxy
+effectflags: k w q
+prefflags: ghnoxC ae
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 9
+lastlevel: 0
+hitpoints: 51/48
+mana: 0/0
+move: 110/113
+damroll: 0
+hitroll: 6
+strength: 90
+intelligence: 70
+wisdom: 76
+dexterity: 100
+constitution: 82
+charisma: 64
+cash: 0 4 15 8
+bank: 0 1 1 1
+experience: 16500
+quit_reason: 1
+saveroom: 3054
+skills:
+401 63
+403 61
+408 50
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+463 50
+464 55
+465 50
+493 53
+0 0
+trophy:
+1 8010 2.000000
+1 8023 1.000000
+1 8013 1.000000
+1 8022 2.000000
+1 8011 1.000000
+1 8014 3.000000
+1 8002 2.000000
+1 8000 2.000000
+1 8020 1.000000
+1 51900 1.000000
+0 0 0
+tells:
+1677753990 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1677753629 Daedela gossips, 'yeah it basically is'
+1677753643 Daedela gossips, 'that last room in the tutorial will have some really helpful tips on where to go and how to advance'
+1677753696 Daedela gossips, 'barbarian and dwarf are great mercenaries'
+1677754011 Daedela gossips, 'congratulations!'
+1677754130 Daedela gossips, 'you'll need to use two'
+1677754137 Daedela gossips, 'two ;'
+1677754198 Daedela gossips, 'level 25.  You can check help skill_rogue for your current progression'
+1677754208 Daedela gossips, 'help skill_mercenary will show you the merc progression'
+1677754229 Daedela gossips, 'each of the classes and subclasses has a different mix of skills and the levels they gain them at'
+1677754668 Daedela gossips, 'remember, you can't gain any more exp until you go back and level'
+$

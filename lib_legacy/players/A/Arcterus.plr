@@ -1,0 +1,107 @@
+name: Arcterus
+password: Arz8cV/G6s
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 29
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20402
+birthtime: 1672516390
+timeplayed: 3025
+lastlogintime: 1672519418
+host: 096.238.184.141
+height: 74
+weight: 297
+base_height: 74
+base_weight: 297
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gy
+effectflags: k 0 0
+prefflags: ghxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8041
+badpasswords: 3
+lastlevel: 0
+hitpoints: 33/33
+mana: 0/0
+move: 112/112
+damroll: 3
+hitroll: 3
+strength: 77
+intelligence: 78
+wisdom: 78
+dexterity: 85
+constitution: 72
+charisma: 75
+cash: 0 4 6 8
+bank: 0 1 1 1
+experience: 27394
+quit_reason: 7
+saveroom: 8041
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+205 1000
+415 50
+416 50
+423 80
+424 65
+435 69
+438 50
+443 50
+444 50
+447 62
+451 50
+452 59
+453 56
+456 50
+459 51
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 8020 1.000000
+1 8013 1.000000
+1 8002 2.000000
+1 8016 3.000000
+1 8021 2.000000
+1 8023 1.000000
+1 8022 1.000000
+1 8014 1.000000
+1 8001 2.000000
+1 8010 6.000000
+1 8000 2.000000
+1 8011 4.000000
+1 51900 1.000000
+0 0 0
+tells:
+1672518744 @WFecil@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
+$
+gossips:
+1672518177 Gorath gossips, 'does a remove curse (non cleric class) method exist?'
+1672518194 Chinok gossips, 'there's a scroll that can'
+1672518203 Gorath gossips, 'ah ok, nifty'
+1672518219 Chinok gossips, 'there is a potion too, but think it only works on people'
+1672518232 Discord gossips, 'blaz2009: Give it a few levels'
+1672518251 Kra gossips, 'don't know why that just went through... Send it a few hours ago'
+1672518304 Chinok gossips, 'Arcterus there's a discord server -- where we can send messages without being logged in.'
+1672518317 Discord gossips, 'chinok: discord messages come through like this.'
+1672518592 Kra gossips, 'Congratz arch'
+1672518612 Chinok gossips, 'help spell_sorc will show you all the different spells, and circles'
+$
+mem:
+32 0 7
+5 0 7
+101 1 7
+0 0 0

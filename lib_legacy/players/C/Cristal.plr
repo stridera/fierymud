@@ -1,0 +1,63 @@
+name: Cristal
+password: Cr4psHTZho
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 9
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18787
+birthtime: 1417075926
+timeplayed: 2300
+lastlogintime: 1417078233
+host: 076.115.143.115
+height: 70
+weight: 107
+base_height: 70
+base_weight: 107
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 37/35
+mana: 0/0
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 72
+wisdom: 76
+dexterity: 94
+constitution: 100
+charisma: 72
+experience: 5500
+quit_reason: 1
+saveroom: 3054
+skills:
+403 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+464 54
+465 50
+467 50
+0 0
+trophy:
+1 8013 1.000000
+1 8000 2.000000
+1 8023 1.000000
+1 8015 1.000000
+1 8011 1.000000
+0 0 0

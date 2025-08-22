@@ -1,0 +1,85 @@
+name: Cade
+password: CardymJJoi
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 11
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19304
+birthtime: 1513787380
+timeplayed: 115877
+lastlogintime: 1515647277
+host: 216.064.009.004
+height: 41
+weight: 142
+base_height: 41
+base_weight: 142
+base_size: 1
+natural_size: 1
+alignment: 987
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: aghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 9
+thirst: 16
+lastlevel: 0
+hitpoints: 117/117
+mana: 12/12
+move: 102/102
+damroll: 3
+hitroll: 6
+strength: 85
+intelligence: 68
+wisdom: 84
+dexterity: 94
+constitution: 81
+charisma: 54
+cash: 0 467 366 24
+experience: 352744
+quit_reason: 1
+saveroom: 3054
+skills:
+401 160
+403 160
+405 155
+408 160
+415 84
+416 50
+421 94
+438 124
+443 50
+444 50
+464 152
+465 64
+467 50
+0 0
+trophy:
+1 17307 1.500000
+1 17300 1.000000
+1 8329 2.000000
+1 8331 1.000000
+1 41013 2.000000
+1 55700 1.250000
+1 55216 2.500000
+1 2004 8.250000
+1 7003 1.000000
+1 7053 3.000000
+1 7004 4.500000
+1 7051 4.333333
+1 4101 2.000000
+1 16900 1.000000
+1 36003 2.000000
+1 18007 1.000000
+1 13610 3.000000
+1 13602 1.000000
+1 13601 2.000000
+1 12016 1.000000
+1 12007 2.000000
+0 0 0

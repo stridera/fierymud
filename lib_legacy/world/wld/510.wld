@@ -1,0 +1,1540 @@
+#51000
+The Gate of Nordus~
+   You are standing at the gate of Nordus.  The walls are a mere 5 feet tall,
+yet no matter how hard you try you cannot pass over the walls.  There is some
+kind of magic preventing you from going over.  To the north you see a gate that
+seems to lead to the village.  A strange tingling sensation encircles your body
+as you get closer to the gate and the village.    ~
+510 524416 1
+D0
+You see a small metal gate to the north.~
+gate metal metal-gate~
+1 -1 51001
+D2
+There is a path to the south.~
+~
+0 -1 51123
+S
+#51001
+A Path to the Courtyard~
+   You are now on a short path that leads to the main Courtyard of Nordus.  
+It's not very worn down, and large pebbles and stones make your feet ache as
+you continue towards the Courtyard.    ~
+510 0 1
+D0
+To the north is the Courtyard of Nordus.~
+~
+0 -1 51002
+D2
+This path leads to the gate of Nordus to the south.~
+gate metal metal-gate~
+1 -1 51000
+S
+#51002
+The Main Courtyard of Nordus~
+   This is the main Courtyard of Nordus.  There are exits in all directions,
+that lead to different sections of the village.  To the north is the center of
+this Courtyard.    ~
+510 0 1
+D0
+To the north is the center of the main Courtyard.~
+~
+0 -1 51003
+D1
+You can see the SE corner of the Courtyard.~
+~
+0 -1 51046
+D2
+A path leading to the gate is to the south.~
+~
+0 -1 51001
+D3
+You can see the SW corner of the Courtyard to the west.~
+~
+0 -1 51025
+S
+#51003
+The Center of the Courtyard~
+   This is the main Courtyard of Nordus.  There are exits all around, leading
+to different sections of this large village.  There is a sign here.    ~
+510 0 1
+D0
+To the north you can see a small building in the distance.~
+~
+0 -1 51004
+D1
+You can see a small path leading off to the east.~
+~
+0 -1 51047
+D2
+You see the Courtyard to the south.~
+~
+0 -1 51002
+D3
+You can see the Courtyard to the west.~
+~
+0 -1 51024
+E
+sign large large-sign~
+Welcome to the Village of Nordus, traveler!
+You can find many things inside our humble village, here is a handy guide.
+To the north can be found the High Council's Chambers.
+Travel west to sample some of our many shops and our fine Inn.
+To the east you can find the common grounds, where people meet to have fun.
+To exit our fine village, go south through the gate.
+Enjoy your stay at Nordus.~
+S
+#51004
+The Courtyard of Nordus~
+   Where you stand now is really worn down, no rocks or pebbles can be seen.  
+There seems to have been a lot of activity in this area; now however, there is
+none.  To the north a ways away you can see a small building.    ~
+510 0 1
+D0
+To the north is a path leading to a building.~
+~
+0 -1 51005
+D1
+You can see the NE corner of the Courtyard.~
+~
+0 -1 51049
+D2
+To the south is the center of the Courtyard.~
+~
+0 -1 51003
+D3
+You can see the NW corner of the Courtyard.~
+~
+0 -1 51050
+S
+#51005
+A Small Worn Down Path~
+   This a small worn down path, that leads to a building to the north.  There
+seems to have been some recent activity, as you can see footprints and other
+tracks suggesting recent usage.  The building to the north looms closer into
+view.    ~
+510 0 1
+D0
+The path continues to the north.~
+~
+0 -1 51006
+D2
+To the south, the Courtyard can be seen.~
+~
+0 -1 51004
+S
+#51006
+A Small Worn Down Path~
+   This path continues to the north where the building can be seen clearly now.
+Various shrubs and bushes litter the path on both sides.  However you notice
+that the shrubs and bushes seem to be glowing.  You try to pick one, but you
+get a quick ZAP!  , and retract quickly.  What kind of magic is this?    ~
+510 0 1
+D0
+You can see a building directly ahead to the north.~
+~
+0 -1 51007
+D2
+You can see a small path leading south.~
+~
+0 -1 51005
+S
+#51007
+The Entrance to the High Council's Chambers~
+   You are standing at the entrance of the building where the High Council
+meets and discusses various matters about the village.  Many people must come
+here as all around is well traveled, and the landscaping is beautiful.  Trees,
+bushes, shrubs and wildflowers litter the surroundings, making the air smell
+sweet and inviting, and the view relaxes the eye.    ~
+510 0 1
+D0
+A large door blocks your entrance to the north.~
+door large large-door~
+1 -1 51008
+D2
+To the south a small path can be seen.~
+~
+0 -1 51006
+S
+#51008
+The Council Greeting Room~
+   You have entered the building, and what a sight it is.  Although made out of
+common materials, it is remarkably beautiful.  This is where the guests of the
+council are greeted and directed to the appropriate room, so as not to disturb
+others hard at work.  You hear squishy noises coming from the walls, and if you
+didn't know better you'd say the walls were alive, but that's impossible.  The
+walls can't be alive...  Can they?    ~
+510 8 0
+D0
+You can see a large room the north, it looks to be a dining room.~
+~
+0 -1 51011
+D1
+You can see a coat closet to the east.~
+~
+0 -1 51009
+D2
+You see a large door, blocking your way out.~
+door large large-door~
+1 -1 51007
+D3
+To the west you can see a waiting room.~
+~
+0 -1 51010
+E
+wall walls~
+As you look at the walls, they seem to contract and expand, almost like a 
+muscle.  If you didn't know better, you'd say these walls are living!~
+S
+#51009
+The Coat Closet~
+   You are standing in a musty coat closet.  The guest's coats are taken and
+placed in here in a customary manner, to be stored until they leave.  There are
+still a couple of coats hanging up.  Maybe someone is still here.    ~
+510 8 0
+D3
+You see the greeting room to the west.~
+~
+0 -1 51008
+S
+#51010
+The Waiting Room~
+   You are standing in the waiting room, where guests are asked to wait until
+the council is ready to see them.  The chairs and couches are very comfortable
+and inviting.  There are pictures adorning the wall that depict beautiful lands
+and wondrous scenes of nature.  There are small tables with arrangements of
+flowers on them, making the room smell pleasant.  You also notice the fireplace
+in the center of the room that is burning softly and casting gentle heat into
+the room, making the atmosphere almost perfect.    ~
+510 8 0
+D1
+You can see the greeting room to the east.~
+~
+0 -1 51008
+S
+#51011
+The Council's Dining Room~
+   You are standing in the Council's dining room, where they entertain guests.
+This room is spacious and is decorated beautifully with flowers and stained
+glass, giving the room a glowing hue.  The table can easily seat 20 people, and
+by the looks of it the council is just about to eat.  The table is set and
+waiting for people.  Five baskets of bread, some kind of local bird is already
+served on all of the plates.  There are glasses full of red wine near each
+plate.  In the middle table there is a beautiful arrangement of flowers.    ~
+510 8 0
+D1
+You can see a staircase to the east.~
+~
+0 -1 51013
+D2
+You can see the greeting room to the south.~
+~
+0 -1 51008
+D3
+You can see the kitchen to the west.~
+~
+0 -1 51012
+S
+#51012
+The Council Kitchen~
+   You are standing in the kitchen of the Council.  You can see food on the
+counters.  There is a person here, presumably the chef, who is chopping up some
+food, to add to the virtual feast.  You notice that the floor is slippery and
+full of a slimy substance, what could it be?    ~
+510 8 0
+D1
+You can see the dining room to the east.~
+~
+0 -1 51011
+E
+floor slimy substance~
+As you look at the floor it is covered by a slimy substance,  that is very
+cold to the touch, and smells like cinnamon.  What could it be?~
+S
+T 18521
+#51013
+A Staircase Leading to The Second Level~
+   This foyer leads to a stair landing that rises upward to the second level of
+the building.  It's very small and meager looking.  The only thing in the whole
+room is a wooden staircase that looks very sturdy.    ~
+510 8 0
+D3
+You can see the dining room to the west.~
+~
+0 -1 51011
+D4
+You can see the second level from here.~
+~
+0 -1 51014
+S
+#51014
+The Top of the Staircase~
+   You are standing at the top of the staircase.  There is a hall to your east,
+with doors on either side, that leads to some kind of meeting chamber.  
+Directly to your north you can see a closed door.  You can feel a strange
+tingling sensation as you continue onward.    ~
+510 8 0
+D0
+You can see a flimsy door to the north.~
+door flimsy flimsy-door~
+1 -1 51023
+D1
+You can see a hall to the east.~
+~
+0 -1 51015
+D5
+You can see the bottom of the stairwell.~
+~
+0 -1 51013
+S
+#51015
+A Small Hall~
+   You are standing in a small hall that leads towards a meeting room of some
+kind.  Maybe the meeting room of the High Council.  There are doors to your
+north and south, or you can continue to the east.    ~
+510 8 0
+D0
+There is a wooden door to the north.~
+door~
+1 -1 51016
+D1
+You can see the hall continue to the east.~
+~
+0 -1 51018
+D2
+There is a small wooden door to the south.  There seems to be a nameplate on
+the door.    ~
+door wooden-door wooden~
+1 -1 51017
+D3
+You can see the top of the staircase to the west.~
+~
+0 -1 51014
+E
+nameplate name~
+The nameplate is highly polished and reads: "Offices of Councillor Luchiaans".~
+S
+#51016
+A Small Office~
+   You are standing in a small office.  It's cluttered in here and you can
+barely move around.  Either the person that occupied this office was very
+messy, or it got destroyed by someone or something.    ~
+510 8 0
+D2
+There is a wooden door to the south.~
+door wooden wooden-door~
+1 -1 51015
+S
+#51017
+A Small Office~
+   This is a very tidy office, everything is neatly in its place.  The desk is
+cleared and the books on the bookshelf are well organized.  Obviously the owner
+of this office was not planning on doing much work in here though, as you can
+see no writing implements, and there is an air of abandonment about the room.~
+510 8 0
+D0
+You can see a wooden door to the north.~
+door wooden-door wooden~
+1 -1 51015
+E
+books~
+There are many books in the shelf.  There are books about all the classical
+subject matters.  There is quite an impressive collection here.~
+E
+bookshelf~
+The bookshelf is carved with fine art work.  It is sturdy and looks as though
+it has been around for a while.  It must have taken a master craftsman to
+do this type of work!~
+S
+#51018
+A Small Hall~
+   You are traveling down a small hallway.  To the east not far away you can
+see a meeting room that is fairly large.  To the north there is an open door.
+Your skin tingles more and more as you continue farther down the hall.    ~
+510 8 0
+D0
+You can see an open door to the north.~
+~
+0 -1 51019
+D1
+You can see the end of the hall to the east.~
+~
+0 -1 51020
+D3
+You can see a small hall to the west.~
+~
+0 -1 51015
+S
+#51019
+A Small Closet of Supplies~
+   You are in what could be termed a janitor's closet.  Cleaning supplies,
+mops, sponges and other miscellaneous items litter this room.  You notice that
+something in this room doesn't seem right.  The light in here is very dim and
+there is a yellowish tint to it.  You can also hear your breathing more than
+usual, something seems to be amplifying your senses.  What a strange place you
+are in!    ~
+510 8 0
+D2
+You can see a small hall to the south.~
+~
+0 -1 51018
+S
+#51020
+The End of The Hall~
+   You are standing at the end of the hall.  To the south is an ornate door,
+and to the east is the large meeting room that has been piquing your curiosity.
+There is a sweet smell coming from the south, and you can feel a strange
+sensation coming from the east.    ~
+510 8 0
+D0
+~
+door~
+1 0 51080
+D1
+You can see a large meeting room directly to the east.~
+~
+0 -1 51022
+D2
+You can see an ornate door with strange markings and symbols covering it.~
+door ornate ornate-door~
+2 51000 51021
+D3
+You can see the hall continue to the west.~
+~
+0 -1 51018
+S
+#51021
+Rana Theroxa's Chamber~
+   You are standing inside Rana Theroxa's chamber.  Being the elected official
+of the people, he is the highest ranking official in Nordus.  He holds the
+title of Lord.  This room is very ornate, and has trophies and statues
+decorating it.  Letters, complaints, petitions, and other miscellaneous papers
+cover the desk in the center of the room.~
+510 8 0
+D0
+You see an ornate door to the north.~
+door ornate ornate-door~
+2 51000 51020
+E
+desk~
+You look at the clutter on the desk and you can't really make out any
+important information.  The papers are technical in nature and look to be 
+some kind of draft for a law, it's very unclear as to what was actually trying
+to be written.~
+E
+trophy trophies plaque plaques~
+The trophies on the wall are from miscellaneous places, some are hunting
+trophies and plaques, some are from public service and for Rana Theroxa's
+dedication to his village.~
+S
+#51022
+The Council's Meeting Room~
+   You are standing in the room where the council meets, it is very modest.  
+There is a large table in the middle of the room, with 10 chairs surrounding
+it.  Papers clutter part of the table as if someone has been working hard on
+something.  There is a large picture on the wall that depicts a flowing river
+with people fishing on the banks.  The chairs are not very lavish but they look
+comfortable.  All the chairs are empty, but you get the feeling that there is
+someone or something in here with you.  You feel a chill go down your spine as
+you sense movement behind you.    ~
+510 8 0
+D3
+You can see a hall to the west.~
+~
+0 -1 51020
+S
+#51023
+Darkness......~
+   As you enter this room, all light seems to be absorbed.  You can't see a
+thing.  You feel dizzy and your senses are distorted.  You can only hear a low
+growling noise that comes from all around you.    ~
+510 136 0
+D0
+~
+door~
+1 -1 51003
+S
+#51024
+The Courtyard of Nordus~
+   You are standing in the Courtyard of Nordus.  You can go west and make your
+way to the inn and shops, or you could go back to the Courtyard to the east and
+south.    ~
+510 0 1
+D0
+You can see the NW corner of the Courtyard to the north.~
+~
+0 -1 51050
+D1
+The center of the Courtyard is to the east.~
+~
+0 -1 51003
+D2
+You can see the Courtyard of Nordus to the south.~
+~
+0 -1 51025
+D3
+You can see a road going to the west.~
+~
+0 -1 51026
+S
+#51025
+The SW Courtyard of Nordus~
+   You are in the SW corner of the Courtyard.  You can go east or north from
+here.  This Courtyard is very barren, however you notice that there are some
+strange colored flowers growing here.    ~
+510 0 1
+D0
+You can see the Courtyard to the north.~
+~
+0 -1 51024
+D1
+You can see the Courtyard to the east.~
+~
+0 -1 51002
+E
+flowers~
+You have never seen this type of flower before, the centre of each flower looks
+almost like a human face...  Wait, it IS a human face, and it's screaming...  ~
+S
+#51026
+Merchants Row~
+   You are standing on a road that leads towards the shop building and the inn.
+You can travel east and go back to the Courtyard or west to make your way to
+the shops and the Flirting Puppy Inn.    ~
+510 0 1
+D1
+You can see the Courtyard to the east.~
+~
+0 -1 51024
+D2
+You can see a small shack to the south.~
+~
+0 -1 51048
+D3
+Merchant Row continues to the west, where you can see the Shops building.~
+~
+0 -1 51027
+S
+#51027
+Merchants Row~
+   You are standing on Merchants Row.  To your north you can see the shop
+building.  To the west you can see the inn.  You can go back to the east to get
+back to the Courtyard.    ~
+510 0 1
+D0
+You can see the Shops Building to the north.~
+~
+0 -1 51028
+D1
+You can see Merchants Row continue to the east.~
+~
+0 -1 51026
+D3
+You can see the INN to the east.~
+~
+0 -1 51041
+S
+#51028
+The Entrance to Shop Center~
+   You are at the entrance to the shops.  There is a hall to your north.  
+Shops litter the hall ahead, although it appears that none of the shops are
+open at this time.  There is a bad smell coming from somewhere around here.  
+You can also see flowers that are glowing unnaturally all over the walls and
+ceilings.    ~
+510 8 0
+D0
+You can see a hallway to the north.~
+~
+0 -1 51029
+D2
+You can see Merchants Row to the south.~
+~
+0 -1 51027
+S
+#51029
+A Hallway Full of Shops~
+   You are walking down a hallway full of shops.  To the west and east you can
+see the two major shops in this section, a Pawn Shop and an Armor Shop.  
+Neither shop looks open; however, there are people inside them.    ~
+510 8 0
+D0
+The hallway continues to the north and there are more shops.~
+~
+0 -1 51032
+D1
+You can see the Armor Shop to the east.~
+~
+0 -1 51031
+D2
+You can see the entrance to this building to the south.~
+~
+0 -1 51028
+D3
+You can see the Pawn Shop to the west.~
+~
+0 -1 51030
+S
+#51030
+Nordus Pawn and Novelty~
+   This pawn shop is illuminated by a strange light that has no apparent
+source.  It's particularly warm in this shop.  The dirt here is fine, not
+coarse like in most of the village.  You can see what appears to be some kind
+of creature just sitting on the counter here.  You wonder what has happened to
+this whole village.  A boarded-up door to the north has a note on it.    ~
+510 12 0
+D0
+PLTWK ZHWIL OIXMB XGFVZ LIYBX~
+door~
+3 -1 -1
+D1
+You can see the hallway to the east.~
+~
+0 -1 51029
+E
+chain coin~
+When you look at the coin that is attached to the chain, you notice that the
+chain is also connected to something, removing more dirt you can see that
+there is some kind of an opening, perhaps a grate or grating of somekind.
+But what is it's purpose?  Where does it lead?  You notice there is a keyhole
+in the grating.~
+E
+indented indent~
+You look at the indent in the floor and move some dirt around and you notice
+that there is a coin attached to a chain under the dirt.~
+E
+dirt floor~
+As you look at the ground you can make out a single set of footprints that
+are everywhere, perhaps the shopkeeper's footprints.  You notice one spot in
+the dirt that looks indented a bit.~
+S
+T 51000
+T 51002
+#51031
+The Nordus Armory~
+   You are standing in the Nordus Armory.  There are many pieces of fine armor,
+solidly attached to the wall.  You notice that this room seems rather cold
+compared to other rooms.  You also notice that this room has a rather pleasant
+odor seemingly originating from nowhere.  There is a sign posted on the wall.~
+510 8 0
+D3
+You can see the hallway to the east.~
+~
+0 -1 51029
+E
+sign~
+The sign reads:
+To all who enter here, LEAVE!
+I am one of the remaining "normal" people that are left.  Our town has been
+attacked by a magical force the likes that we have never seen.  People have
+been slowly changing into strange, exotic and horrific creatures.  Some have
+just disappeared. Some people in town, while not physically changed, have
+lost their ability to think rationally, and have become crazy.  There are
+only a handful of us left and we are all suspicious of each other.
+Rana Theroxa and the High Council, the Elders, myself and the Pawn shop owner
+and some of the villagers are all that is left!  I fear I am going soon also.
+                     Be forewarned, LEAVE WHILE YOU CAN!~
+S
+#51032
+A Hallway Full of Shops~
+   As you walk down the hallway, you can't help but notice some peculiar
+things.  Some areas are warmer than others, some are much colder.  There is
+abundant vegetation and wildlife in some places, while others are barren.  You
+wonder what is causing these various changes.    ~
+510 8 0
+D0
+You can see a stairwell, leading to the second level of this building.~
+~
+0 -1 51035
+D1
+You can see the village of Nordus Magic Shop to the east.~
+~
+0 -1 51034
+D2
+The hallway continues to the south.~
+~
+0 -1 51029
+D3
+You see a Weapon Shop to the west.~
+~
+0 -1 51033
+S
+#51033
+The Nordus Weaponry~
+   As you enter you notice but one thing.  The shop is barren.  No vegetation,
+wildlife, or any unusual temperatures.  The shop seems to be devoid of energy;
+there is nothing, Just a table adorns this otherwise abandoned shop.  You do
+notice out of the corner of your eye something move.  You look again but don't
+see anything; Maybe it was your imagination.    ~
+510 8 0
+D1
+You see a hallway to the east.~
+~
+0 -1 51032
+S
+#51034
+The Apothecary of Nordus~
+   When you enter you notice that time seems to go slower, but if you move it
+speeds up.  Almost like quicksand, but quick-time.  The more you move the
+faster time seems to go.  What is going on here?  You notice that the shop
+keeper is here, maybe he is the cause for these mutations and strange
+occurrences.    ~
+510 8 0
+D3
+To the west you can see a hallway.~
+~
+0 -1 51032
+S
+#51035
+A Stairwell Leading to The Second Level~
+   This place is very very dark.  You can barely see.  The exception to this is
+the stairwell, which is glowing softly.  You think you can make it to the
+second level by the outline of the stairs.    ~
+510 8 0
+D2
+You can see a hallway to the south.~
+~
+0 -1 51032
+D4
+You can see the top of the stairwell straight up.~
+~
+0 -1 51036
+S
+#51036
+The Top of The Stairwell~
+   You are at the top of the stairwell, and you can see all down the hallway.
+It's fairly dark, but your light-source is bright enough to help you see.  At
+the end of the hallway you can see a bright light.    ~
+510 8 0
+D2
+To the south the hallway continues.~
+~
+0 -1 51037
+D5
+You can see the bottom of the glowing stairwell.~
+~
+0 -1 51035
+S
+#51037
+The Second Level of Shop Center~
+   As you walk down this hallway you can see that there don't seem to be any
+shops that even look to be open.  They are all shut up airtight.  Why is the
+second level so sealed, and the first so open?  There is a sign hastily mounted
+on a supporting beam here.    ~
+510 8 0
+D0
+To the north you can see a stairwell.~
+~
+0 -1 51036
+D2
+You can see down the hallway to the south.~
+~
+0 -1 51038
+E
+sign~
+There are no open shops on this level. This building was under construction
+when IT started to happen. We have halted construction until it is safe to
+continue.~
+S
+#51038
+The Second Level of Shop Center~
+   This part of the hallway is especially dark.  However you feel that strange
+tingling sensation and it's very intense here.  You can't concentrate as your
+body is overwhelmed by the strength of the sensation.  It's flooding all parts
+of your body, almost consuming you.    ~
+510 8 0
+D0
+You can see the hall continue to the north.~
+~
+0 -1 51037
+D2
+You can see the end of the hallway to the south.~
+~
+0 -1 51039
+S
+#51039
+The End of The Hallway~
+   As you continue your journey you see what has illuminated the end of this
+hallway.  The entire floor where you stand is glowing brightly and there is no
+apparent source.  The light is warm and comforting.  You don't want to leave,
+as you feel very comfortable and safe.  You notice a peculiar odor coming from
+somewhere.    ~
+510 8 0
+D0
+The hallway continues to the north.~
+~
+0 -1 51038
+D1
+You can smell a foul odor coming from the east.~
+~
+0 -1 51040
+S
+#51040
+Bloody's Den~
+   This room smells HORRID.  You can't even begin to comprehend what is causing
+the odor.  You look quickly around the room and find the source of this
+revolting stench.  Looking more closely you can see streaks of blood and little
+pieces of flesh that are turning putrid.  The stench is overwhelming and you
+can't take it for much longer.    ~
+510 8 0
+D3
+You can see a hallway to the west.~
+~
+0 -1 51039
+S
+#51041
+The Entrance to The Flirting Puppy Inn~
+   You are now standing at the entrance to the Flirting Puppy Inn.  You can
+just imagine this place where there are people bustling around, but not a soul
+can be seen.  To the west you can see the Gambling casino, to the north the Inn
+can be found, to the south you can see a Pub, and to exit this fine
+establishment, you can leave through the east.  The lack of people in the
+Flirting Puppy sends a chill down your spine.  Where is everyone?    ~
+510 8 0
+D0
+You can see the INN of the Flirting Puppy to the north.~
+~
+0 -1 51042
+D1
+You can see Merchants Row to the east.~
+~
+0 -1 51027
+D2
+You can see the Pub to the south.~
+~
+0 -1 51045
+D3
+You can see the Casino to the east.~
+~
+0 -1 51044
+S
+#51042
+The Inn of the Flirting Puppy~
+   You are now in a small room, there is not much decor around you.  You can
+see a receptionists desk, but no receptionist.  There is a blue-green moss
+covering the walls here, and you notice a pungent odor coming from upstairs.  ~
+510 8 0
+D2
+You can see the entrance to this building to the south.~
+~
+0 -1 51041
+D4
+You can see the second level of the Flirting Puppy.~
+~
+0 -1 51043
+S
+#51043
+The Upper Level of The Flirting Puppy~
+   This large room is very barren.  Its large size does not make up for the
+fact that there is nothing in here.  You can smell a horrible odor coming from
+somewhere in this room.  A golden light surrounds you as you walk through the
+room, almost as if you are surrounded by a forcefield.    ~
+510 0 0
+D5
+You can see the Inn of the Flirting Puppy downward.~
+~
+0 -1 51042
+S
+#51044
+The Casino of The Flirting Puppy~
+   You are standing inside the Casino of The Flirting Puppy.  You can see many
+card and dice tables around you.  You can imagine what it could have been like
+with people here, but it's empty and you're the only soul in sight.  You can
+imagine yourself having a great time in here; if only you knew what happened to
+everyone.    ~
+510 8 0
+D1
+You can see the Entrance to the east.~
+~
+0 -1 51041
+S
+#51045
+The Pub of The Flirting Puppy~
+   You are standing in a dimly lit room.  The smell of alcohol permeates the
+air.  There are tables set up all around the room, and a long bar in front of
+the room.  You can just imagine ordering a nice Firebreather and gulping it
+down with some friends as you chat and soak up the relaxing atmosphere.  You
+get depressed at the fact that there is no one here to enjoy all of this with
+you.    ~
+510 8 0
+D0
+You can see the Entrance to the north.~
+~
+0 -1 51041
+S
+T 48200
+#51046
+The SE Corner of the Courtyard~
+   You are in the SE corner of the Courtyard of Nordus.  There isn't much in
+the way of decoration, in fact it's rather plain.  You can see a small
+distortion to your south.  The air here tingles and makes your hair dance on
+edge.  What is going on here?    ~
+510 0 1
+D0
+You can see the Courtyard to the North.~
+~
+0 -1 51047
+D3
+You can see the Courtyard to the west.~
+~
+0 -1 51002
+E
+distortion air~
+You can see what seems like a shimmering of time and space.  When you try
+and touch the disturbance, your hand get a quick shock, the distortion wavers
+slightly and then it starts to hum.  When you back away from it, it returns
+to it's original state.  Strange things are amist here.~
+S
+#51047
+In the Courtyard of Nordus~
+   You are standing in the easterly section of the Courtyard.  There is much
+wear and tear on the earth in this particular place, and it gets even more worn
+down if you continue to the east.  You can see a small building and a rather
+large area far to the east; it looks like a common ground for the village, a
+place to meet and relax.    ~
+510 0 1
+D0
+You can see the NE section of the Courtyard to the north.~
+~
+0 -1 51049
+D1
+You can see a rather large worn down path leading to the east.~
+~
+0 -1 51051
+D2
+You can see the SE section of the Courtyard.~
+~
+0 -1 51046
+D3
+You can see the Courtyard to the west.~
+~
+0 -1 51003
+S
+#51048
+A Small Shack~
+   You stand inside a small shack.  Many things litter the ground, but are of
+no value to you in your journey.  There is a picture on the wall, and a small
+desk in the corner.    ~
+510 8 0
+D0
+You can see Merchants Row to the north.~
+~
+0 -1 51026
+E
+picture painting~
+You can see an unfinished painting on the wall.  It depicts horrible changes
+of the town.  People are running scared from someone or something, there is
+a soft glowing aura to the painting as if it is magical in nature.  You touch
+the painting and find out it's very soft and lush, but yet, durable and
+sturdy at the same time.  ~
+E
+desk Desk table~
+You can see a small piece of paper laying on the desk.~
+E
+paper small piece~
+You look at the paper, and see that it is a letter:
+
+To whomever finds this,
+    Ever since that travelling sorcerer arrived here with his strange
+trinkets for sale, things have been going wrong in this town. He must have
+got some hold over the council to get elected, and after that people
+started to go crazy and attack each other for no reason. Then they started
+to disappear into 'rehabilitation' but never returned.
+    There are now only a few of us left and even I am not safe any more,
+only last night some mindless creatures tried to attack me in my own house
+and when I tried to use magic against them, I found it hard to remember the
+right words. I write this in the hope that someone will avenge this town.
+                   May the Goddess of Mielikki have mercy on us
+-Shema~
+S
+#51049
+The NE corner of the Courtyard~
+   This part of the Courtyard is not very well worn down.  It's not well lit
+either.  Shadows creep in from every direction.  A cold chill runs down your
+back and you feel as though you are being watched, but by who or what?    ~
+510 0 1
+D2
+You can see the Courtyard to the South.~
+~
+0 -1 51047
+D3
+You can see the Courtyard to the west.~
+~
+0 -1 51004
+S
+#51050
+The NW corner of the Courtyard~
+   This corner of the Courtyard is very shoddy.  There are miscellaneous items
+of trash lying around.  You can see ripped clothing of all sorts covering the
+area here.  You also notice pools of blood on the ground, and the smell of
+death permeates the air.    ~
+510 0 0
+D0
+A plain door in the north wall almost escapes your notice.~
+door~
+0 0 51078
+D1
+You can see the Courtyard to the east.~
+~
+0 -1 51004
+D2
+You can see the Courtyard to the south.~
+~
+0 -1 51024
+E
+clothes cloth ripped~
+You can see ripped clothing, soaked in blood, lying on the ground here. The
+stains are still damp, indicating that the injury that caused the bleeding
+occurred recently.~
+E
+trash ground~
+Small broken cups plates and miscellaneous items litter the floor here.  It's
+like someone dropped some personal items and just left them here.~
+S
+#51051
+A Large Worn Down Path~
+   You stand on a large path leading to the east.  You can go east to get to
+the gathering grounds or to the west back to the Courtyard.  This path is very
+desolate.  No vegetation nor wildlife of any kind can be seen.  The air here
+seems very clean and fresh, almost pure.    ~
+510 0 2
+D1
+This path continues on to the east.~
+~
+0 -1 51052
+D3
+You can see the Courtyard to the west.~
+~
+0 -1 51047
+S
+#51052
+A Large Lush Path~
+   You are now standing in a lush field of vegetation, with a path leading
+right through it to the gathering ground.  It's amazing, the change in scenery,
+it can't be natural at all.  You look closer at the plants and can actually see
+them growing!  What wonderful and strange magic is at work?    ~
+510 0 0
+D0
+You can see a small turn in the path to the north.~
+~
+0 -1 51053
+D3
+You can see a large path to the west.~
+~
+0 -1 51051
+S
+#51053
+A Small Turn in the Path~
+   This is where the path turns slightly, you can see the gathering ground
+directly to the east.  There air here seems to be very humid and warm.  You
+notice also that the air seems to have a reddish hue to it.  The path continues
+southward.    ~
+510 0 2
+D1
+You can see the Gathering Grounds directly to the east.~
+~
+0 -1 51054
+D2
+You can see a path to the south.~
+~
+0 -1 51052
+S
+#51054
+The Gathering Ground~
+   You are standing directly in the middle of the gathering ground.  There are
+many logs setup in a circular fashion around a large fire pit, where a great
+feast could be cooked, and where people could go for warmth through the night.
+The fire is still red hot, indicating that someone has been here recently.  
+There is a small building to the south.    ~
+510 0 1
+D2
+You can see a small building to the south.~
+~
+0 -1 51055
+D3
+You can see a small turn in the path to the west.~
+~
+0 -1 51053
+S
+#51055
+The Entrance to a Solid Building~
+   You are standing before a very sturdy looking building.  The one door in the
+front of the building is locked and you can't see any other way in.  There are
+some markings on the door, as if someone or something tried to make its way
+inside.  You wonder what could possibly be inside.    ~
+510 0 0
+D0
+You can see the Gathering Grounds to the north.~
+~
+0 -1 51054
+D2
+There is a solid door blocking your way to the south.~
+door solid solid-door~
+2 51002 51056
+S
+#51056
+Inside of the Solid Building~
+   You are standing inside of the building.  There is a table in the middle of
+the room, some pictures hang on the wall and some food is left uneaten on the
+counter behind you.  You can hear noise coming from the east.    ~
+510 8 0
+D0
+You can see a solid door to the north.~
+door solid solid-door~
+2 51002 51055
+D1
+You can see a small room to the east.~
+~
+0 -1 51057
+S
+#51057
+An Old Musty-Smelling Room~
+   This room smells very musty, dust covers every inch of the floor.  You try
+and hold back your sneezes.  The floor beneath you shows signs of recent
+activity and you think you can see someone moving in the shadows.  Whoever it
+is, he or she makes no noise as if trying to hide.  But from who or what?    ~
+510 8 0
+D3
+You can see a small room to the west.~
+~
+0 -1 51056
+E
+floor ground dust~
+You look at the floor and it's very scuffed up with footprints.  Recent 
+activity is very appearent and.  The dust in the area is very thick, except
+for on the floor, it's very strange.~
+S
+#51058
+A Warm Study~
+   This is Luchiaan's study.  There is a bookcase on one wall, full of books
+arranged in alphabetical order.  There is a chair to one side of the room.  A
+fireplace in the center of the room heats the surrounding area.  There is a
+desk in the far corner with a comfortable looking chair.  You notice there is
+clutter on the desk.    ~
+510 520 0
+D3
+You can see a small hallway to the west.~
+~
+0 -1 51059
+D4
+~
+trapdoor~
+1 51015 51030
+E
+desk clutter~
+You can see a clutter of papers and writing tools lying all over the desk.
+Someone has been writing a lot down on paper.  You can't make much of it out,
+as the writing is not too legible, however you can see something about spells
+and perfecting a new technique.  The rest is garbled and unreadable.~
+S
+#51059
+A Small Well Lit Hallway~
+   You are walking down a hall made entirely of stone.  There are many torches
+attached to the wall that light this hall completely.  You can see some moss
+growing on the floor and walls.  The moss is slimy to the touch and smells
+sweet.  You notice a pair of rats scurry past your feet, both are carrying a
+piece of the moss in their mouths.  The hallway continues down to the west, and
+a bubbling noise can be heard from the north.    ~
+510 520 0
+D0
+You can see a dimly lit hallway to the north.~
+~
+0 -1 51060
+D1
+You can see a small study to the east.~
+~
+0 -1 51058
+D3
+You can continue down the hallway to the west.~
+~
+0 -1 51061
+S
+#51060
+An Echoing Hallway~
+   All through this hall bubbling and boiling noises can be heard coming from
+the north.  There is a sour smell permeating the air as well.  You can barely
+think to yourself as the noise and smells are penetrating to your senses.  You
+start to become lightheaded, continuing your trip would be wise.  The walls are
+cracked and chipped to the east, smooth to the west, rough upwards and very
+cold below your feet.    ~
+510 520 0
+D0
+You can see a small lab to the north.~
+~
+0 -1 51062
+D1
+~
+door secret-door secret~
+2 -1 51070
+D2
+You can see a well lit hallway.~
+~
+0 -1 51059
+E
+floor~
+The floor is incredibly cold to the touch, in fact the cold penetrates your
+footware and makes your feet chilly.~
+E
+smooth~
+The walls are so smooth they resemble a highly polished metal or glass.  
+It is a very eerie feeling.~
+E
+rough ceiling~
+The ceiling above you is incredibly rough, almost as if it were sandpaper.~
+E
+cracked chipped~
+As you look at the wall you notice that there are many stones falling out of 
+this section of the wall.  As you touch the wall it crumbles a bit, causing
+debris to fall on the floow.  You also notice that where the debris fell
+from the wall, there is a faint outline of some sort of secret door.~
+S
+#51061
+A Well Lit Hallway~
+   As you walk down this well lit hallway, you can hear a clinking sound, like
+that of metal clashing against metal from the south.  This hall also continues
+to the west, where you can smell the pleasant odor of a well cooked meal.  You
+notice that there seems to be electricity in the air; it makes your hair stand
+on end and your skin tingle.    ~
+510 520 0
+D1
+You can see a well lit hall to the east.~
+~
+0 -1 51059
+D2
+You can see an arched hallway to the south.~
+~
+0 -1 51063
+D3
+You can continue down this hallway to the west.~
+~
+0 -1 51065
+S
+#51062
+A Small Laboratory~
+   You are standing in a small laboratory with many beakers and test tubes.  
+There is a very sour smell that emanates from one of the experiments.  The
+smallness of this room indicates that this is just a preparatory lab, and that
+basic solutions and compounds are made here for use elsewhere.    ~
+510 520 0
+D2
+You can see a small hall with terrible acoustics to the south.~
+~
+0 -1 51060
+S
+#51063
+An Arched Hallway~
+   You are now inside of an arched hallway.  The construction of this hallway
+looks different than the other rooms.  The walls and ceiling are made out of a
+different material, smooth to the touch.  It feels smooth and it's shiny like
+steel, yet it's positively stone.  You can see a door to the west, where the
+clanking noise is originating from.    ~
+510 520 0
+D0
+You can see a well lit hallway to the north.~
+~
+0 -1 51061
+D3
+You can see a very sturdy and solid redwood door.~
+door redwood-door redwood~
+2 51004 51064
+S
+#51064
+The Experiment Chamber~
+   The smell of rotting flesh and death penetrates the air and fills your
+nostrils, you do all you can to hold back your vomiting reflex.  There is a
+pile of organs from many different animals laying in a corner, and in the
+opposite corner there is a pile of bones with some flesh still clinging to
+them.  You bring your attention to the center of the room, where you can see
+many small and some large animals laying in the middle of the room, with many
+wounds of various natures.  Some are lifeless piles of flesh, with a beating
+heart keeping them just barely alive.  Others are small woodland creatures with
+grievous wounds that will kill them slowly.  You find the source of the
+clanking that you heard in the hall.  Amidst all of the horrific scenes, there
+is a part man, part rat creature shackled to the wall.  He is slamming his
+wrists against the floor in an attempt to get himself free,but his efforts are
+fruitless.  You wish you could help each and every one of them, but you know
+that nothing but death can save these poor souls now.    ~
+510 520 0
+D1
+You can see a solid redwood door.~
+door redwood-door redwood~
+2 51004 51063
+S
+#51065
+A Turn in the Well Lit Hallway~
+   You are standing at a turn in the well lit tunnel.  There are torches lining
+each side of the wall.  This tunnel continues to the north, where you can see a
+VERY large door at the end of the hall.  There is also a small door to your
+west.    ~
+510 520 0
+D0
+The well lit hallway continues to the north.~
+~
+0 -1 51067
+D1
+You can continue down this hall to the east.~
+~
+0 -1 51061
+D3
+You can see a large metal door to the west.~
+door metal-door metal~
+1 -1 51066
+S
+#51066
+A Small Supply Closet~
+   You are standing in a small supply closet.  There are miscellaneous
+chemicals on some shelves.  There is a large bucket of a strange substance that
+you have never seen before, it is emitting a humming sound.  You try to open
+the bucket but it's sealed by a magical force.  You try to pick the bucket up,
+however it seems to weigh a ton.    ~
+510 520 0
+D1
+You can see a metal door to the east.~
+metal-door metal door~
+1 -1 51065
+S
+#51067
+A Well Lit Hallway, Leading to a Large Door~
+   Continuing down the hallway you notice how extremely bright this passage is.
+There is a large door at the end of this hallway slightly to the north.  The
+torches are burning unnaturally bright, and they throw off a lot of heat.    ~
+510 520 0
+D0
+You can see the last leg of this hallway to the north.~
+~
+0 -1 51068
+D2
+The hall continues to the south.~
+~
+0 -1 51065
+S
+#51068
+The Opal Door~
+   You are in an ante-chamber of sorts.  This part of the hallway is circular,
+and is much larger than the rest of the hallway.  A large Opal Door blocks your
+way to the north, where you can sense a large force of some kind.  It's very
+bright in here, and you can see every detail of the room, almost like your
+vision is improved in here.    ~
+510 520 0
+D0
+A large Opal Door blocks your way.~
+door opal-door opal large opal~
+2 51005 51069
+D2
+The hallway continues to the south.~
+~
+0 -1 51067
+S
+#51069
+The Great Laboratory of Luchiaans~
+   This room is absolutely HUGE!  There is equipment everywhere, compounds,
+liquids, books and scrolls everywhere you look.  The floor is spotless and you
+can almost see your reflection.  There is one large table with many experiments
+going on at once, with several smaller tables off to the right and left.  
+Bubbling beakers, test tubes filled with a rainbow of colors line a whole wall
+of this room.  There must be thousands of potions there.  There is a very large
+desk with large tomes covering every inch of it.  Papers and scrolls cover
+every square inch of the desks.  The air is electric with magical energy.    ~
+510 520 0
+D2
+You can see a large Opal Door to the south.~
+door opal-door door opal large~
+2 51005 51068
+E
+parchment parchments~
+There is some text on one of the parchments, but it looks like code:
+LOIBA KZGAD WASFH WAVQA KBVQR GVQUS AUGMR MZLF~
+E
+tables table~
+They are covered with strange articles and parchments.~
+E
+scroll scrolls~
+It is in a jargon not familiar to you.~
+S
+#51070
+A Small Hidden Room~
+   You are now in a small hidden room.  You can't make out much of anything.  
+In the middle of the room you can see a small chest.  There is also a carving
+in the wall that you can barely read.    ~
+510 524828 0
+D3
+You can see a small secret door to the west.~
+door secret-door secret~
+1 -1 51060
+E
+carving~
+The carving isn't very readable, this is what you can make out:
+
+" Y u ha   found t e tre  ur  r  m.  Gr  t rew  ds c n be fou d.
+us  you  im g n tion.  Te  p r ."
+
+That is all you can make out and it's not much.  What could it mean?~
+S
+#51071
+A Secret Room!~
+   You have stumbled upon a secret room.  This room looks as though it's in
+some kind of a void.  There are no definitive walls or edges.  It's almost as
+though you are standing in space.  You notice a small chest in the center of
+the room.  The chest is highly decorated and very ornate.  The chest looks like
+it has something important in it.    ~
+510 8 0
+D4
+There seems to be some sort of indent in the ceiling.~
+trapdoor~
+1 0 51072
+S
+#51072
+A room in the maze~
+This place seems a bit confusing! Obviously Luchiaans didn't intend
+for many people to be coming through here. The apparent exits waver
+slightly as if they are only temporary.~
+510 4194944 0
+D4
+The entrance wavers slightly as you look at it.
+~
+~
+0 -1 51076
+S
+T 51001
+#51073
+A room in the maze~
+This place seems a bit confusing! Obviously Luchiaans didn't intend
+for many people to be coming through here. The apparent exits waver
+slightly as if they are only temporary.~
+510 4194944 0
+D2
+The entrance wavers slightly as you look at it.
+~
+~
+0 -1 51074
+D4
+This doorway looks more solid than the others.
+~
+~
+0 -1 51077
+S
+T 51001
+#51074
+A room in the maze~
+This place seems a bit confusing! Obviously Luchiaans didn't intend
+for many people to be coming through here. The apparent exits waver
+slightly as if they are only temporary.~
+510 4194944 0
+D0
+The entrance wavers slightly as you look at it.
+~
+~
+0 -1 51075
+D5
+The entrance wavers slightly as you look at it.
+~
+~
+0 -1 51075
+S
+T 51001
+#51075
+A room in the maze~
+This place seems a bit confusing! Obviously Luchiaans didn't intend
+for many people to be coming through here. The apparent exits waver
+slightly as if they are only temporary.~
+510 4194944 0
+D2
+The entrance wavers slightly as you look at it.
+~
+~
+0 -1 51072
+D3
+The entrance wavers slightly as you look at it.
+~
+~
+0 -1 51076
+D5
+The entrance wavers slightly as you look at it.
+~
+~
+0 -1 51076
+S
+T 51001
+#51076
+A room in the maze~
+This place seems a bit confusing! Obviously Luchiaans didn't intend
+for many people to be coming through here. The apparent exits waver
+slightly as if they are only temporary.~
+510 4194944 0
+D0
+The entrance wavers slightly as you look at it.
+~
+~
+0 -1 51074
+D2
+The entrance wavers slightly as you look at it.
+~
+~
+0 -1 51074
+S
+T 51001
+#51077
+A Plain Room~
+This room is very plain, and only has two features that you can see. The first
+is a hole in the centre of the floor which has a pattern engraved around it, 
+and the second is a stone arch.~
+510 4194944 0
+D5
+You can't see much through here, hints of colour seem to shift in the darkness.~
+~
+0 0 51073
+E
+pattern hole~
+The pattern around the hole doesn't seem to be very regular on close inspection.
+Perhaps it's actually a spell of some sort?~
+E
+arch stone~
+You wander around it and it just seems like a doorway that is missing its door.~
+S
+T 51012
+#51078
+The Calm Room~
+This room is uncannily clean given the state of the rest of the town, and
+seems to radiate a calmness that suffuses your body and makes you want to
+smile for no reason.~
+510 520 0
+D2
+~
+door~
+1 0 51050
+S
+T 51004
+T 51007
+T 51006
+#51079
+The Phoenix Nest~
+   This room is quite small and is almost totally taken up by a nest.  You
+think it strange that Rana would keep a bird as a pet as he seems more of a cat
+person.    ~
+510 520 0
+D2
+~
+door~
+2 51031 51080
+S
+#51080
+Rana Theroxa's Office~
+   This is a large well-appointed office with tasteful decorations and a
+sizeable desk.  There is a door to the south which has a couple of empty
+coat-hooks on it, and a small door to the north.    ~
+510 524296 0
+D0
+~
+door small~
+2 51031 51079
+D2
+~
+door~
+1 0 51020
+S
+#51099
+Nordus Holding Room~
+This is the holding room for Nordus things.
+~
+0 33554952 0
+S
+$~

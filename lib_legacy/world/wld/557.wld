@@ -1,0 +1,1184 @@
+#55701
+Black Rock Path~
+   A wide path made of crushed black stone winds south from the gate.  Off in
+the distance you can see an old oak tree rocking softly in the wind.  The path
+leads south from here.  To the east is the safety of city walls.  A huge rock
+colosseum stands to the north.
+~
+557 0 4
+D0
+~
+~
+0 -1 55796
+D1
+~
+~
+0 -1 6160
+D2
+~
+~
+0 -1 55702
+S
+#55702
+Black Rock Path~
+   This path, made of crushed black rock, leads north and south from here.  To
+the south a ways you can see an old oak tree.  It appears as if its leaves are
+black, instead of the usual green.  Something about that tree sends a shiver
+down your spine.
+~
+557 0 4
+D0
+~
+~
+0 -1 55701
+D2
+~
+~
+0 -1 55736
+S
+#55703
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 10
+D0
+~
+~
+0 -1 55704
+D2
+~
+~
+0 -1 2015
+S
+#55704
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 4 10
+D1
+~
+~
+0 -1 58355
+D2
+~
+~
+0 -1 55703
+D3
+~
+~
+0 -1 55705
+S
+#55705
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55706
+D1
+~
+~
+0 -1 55704
+S
+#55706
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D2
+~
+~
+0 -1 55705
+D4
+~
+~
+0 -1 55707
+S
+#55707
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D3
+~
+~
+0 -1 55708
+D5
+~
+~
+0 -1 55706
+S
+#55708
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D1
+~
+~
+0 -1 55707
+D3
+~
+~
+0 -1 55709
+S
+#55709
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55710
+D1
+~
+~
+0 -1 55708
+S
+#55710
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D2
+~
+~
+0 -1 55709
+D4
+~
+~
+0 -1 55711
+S
+#55711
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D1
+~
+~
+0 -1 55712
+D5
+~
+~
+0 -1 55710
+S
+#55712
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+   A small spring can be seen to the south.
+~
+557 0 5
+D0
+~
+~
+0 -1 55713
+D1
+~
+~
+0 -1 55793
+D2
+~
+~
+0 -1 55720
+D3
+~
+~
+0 -1 55711
+S
+#55713
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D2
+~
+~
+0 -1 55712
+D3
+~
+~
+0 -1 55714
+S
+#55714
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55715
+D1
+~
+~
+0 -1 55713
+S
+#55715
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55716
+D2
+~
+~
+0 -1 55714
+S
+#55716
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55717
+D2
+~
+~
+0 -1 55715
+S
+#55717
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55718
+D2
+~
+~
+0 -1 55716
+S
+#55718
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D2
+~
+~
+0 -1 55717
+D3
+~
+~
+0 -1 55719
+S
+#55719
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D1
+~
+~
+0 -1 55718
+D3
+~
+~
+0 -1 55766
+S
+#55720
+A Steaming Hot Spring~
+   A natural pocket in the side of the rocky outcropping forms a dramatic
+backdrop to the large, circular spring in the middle of it.  The black stone of
+the gorge's walls is the perfect foil for the steam gently rising off of the
+spring.
+   The trail is visible to the north.
+~
+557 0 5
+D0
+~
+~
+0 -1 55712
+S
+#55721
+Black Rock Path~
+   The path bends again here, leading both west and south.  To the southwest
+the giant oak tree looms.  For a brief second you think you hear a voice
+calling your name.  Then you realize it is only the wind rustling through the
+leaves...
+~
+557 0 4
+D2
+~
+~
+0 -1 55722
+D3
+~
+~
+0 -1 55736
+S
+#55722
+Black Rock Path~
+   The path of crushed black rock leads north and south, passing by the great
+oak, which lies to the west.  You find yourself looking down at the black rocks
+of the path, so as to avert your gaze from the tree.  Mixed in with the black
+rocks of the path you notice something white.  It appears to be a fragment of a
+bone....
+~
+557 0 4
+D0
+~
+~
+0 -1 55721
+D2
+~
+~
+0 -1 55723
+D3
+~
+~
+0 -1 55725
+S
+#55723
+Black Rock Path~
+   The path bends here leading both north and west.  Off to the west a short
+distance away you can see some sort of dwelling.  From here it looks rather ill
+kept, maybe even crumbling.
+~
+557 0 4
+D0
+~
+~
+0 -1 55722
+D3
+~
+~
+0 -1 55724
+S
+#55724
+Black Rock Path~
+   The black rock path leads east to west.  To the north the eerie oak trees
+sways in the wind.  Out of the rustling of the leaves you hear a sickly voice
+calling your name...
+~
+557 0 4
+D0
+~
+~
+0 -1 55725
+D1
+~
+~
+0 -1 55723
+D3
+~
+~
+0 -1 55726
+S
+#55725
+Giant Oak Tree~
+   Before you stands a huge oak tree.  The leaves of this tree are black,
+instead of the usual green, and appear to be covered with some sort of gooey
+substance.  The bark of the tree appears cracked in many places and a thick
+black substance oozes out from it.  The sight of the tree sends shivers down
+your spine.
+~
+557 0 4
+D0
+~
+~
+0 -1 55736
+D1
+~
+~
+0 -1 55722
+D2
+~
+~
+0 -1 55724
+S
+#55726
+Black Rock Path~
+   A ways to the west you can see a small dwelling of some sort.  It appears to
+be crumbling in places and entirely without a roof.  For a moment you get the
+feeling that someone is watching you.  Turning around all you can see is the
+oak tree swaying in the wind.
+~
+557 0 4
+D1
+~
+~
+0 -1 55724
+D3
+~
+~
+0 -1 55727
+S
+#55727
+Black Rock Path~
+   To the south an old building made of roughly cut stone stands.  The path
+leads to the east and west from here.  The building is dark and crumbling in
+places.
+~
+557 0 4
+D1
+~
+~
+0 -1 55726
+D3
+~
+~
+0 -1 55728
+S
+#55728
+Black Rock Path~
+   The black rock path bends here leading to the south and east.  To the south
+the crumbling building stands dark and foreboding.  A strange scratching sound
+can be heard coming from inside the building.  To the west is a thick hedge,
+blocking passage beyond it.
+~
+557 0 4
+D1
+~
+~
+0 -1 55727
+D2
+~
+~
+0 -1 55729
+D3
+A tall hedge runs alongside the path.  There seem to be a few worn branches
+right about here.
+~
+hedge~
+1 -1 8501
+S
+#55729
+Black Rock Path~
+   The black rock path passes by the door to an old building, which is located
+to the east.  The old wooden door hangs crazily on one hinge.  The path
+continues off to the north and south, and from the inside the building to the
+east you can hear a strange scratching sound.
+~
+557 0 4
+D0
+~
+~
+0 -1 55728
+D1
+~
+~
+0 -1 55734
+D2
+~
+~
+0 -1 55730
+S
+#55730
+Black Rock Path~
+   The path passes by the lower section of the house.  A small window offers
+you a view inside.  Inside the house you can see broken furniture strewn about
+a bare earthen floor.  The path continues to the north and south.
+~
+557 0 4
+D0
+~
+~
+0 -1 55729
+D2
+~
+~
+0 -1 55731
+S
+#55731
+Black Rock Path~
+   The path bends here leading to the north and east.  A ways down the path to
+the south you can see what looks like some sort of old graveyard.  A tight
+crevice can be noticed with a steep climb going upward, it looks like a
+dangerous climb.  A chilly wind blows across you from the south sending a
+shiver down your spine.
+~
+557 0 4
+D0
+~
+~
+0 -1 55730
+D1
+~
+~
+0 -1 55732
+D4
+~
+~
+0 -1 55792
+S
+#55732
+Black Rock Path~
+   The path bends again, leading west and south from here.  The old building is
+to the north and again you get the feeling that someone is watching you.  
+Turning around all you see is the old crumbling building.  Maybe it was just
+your imagination.
+~
+557 0 4
+D2
+~
+~
+0 -1 55733
+D3
+~
+~
+0 -1 55731
+S
+#55733
+Black Rock Path~
+   The black rock path ends a dark and forboding cemetery that opens up to the
+south.  It probably would be wise to return back along the path to the north.
+You can only wonder what horrors lie before you to the south...
+~
+557 0 4
+D0
+~
+~
+0 -1 55732
+D2
+~
+~
+0 -1 47004
+S
+#55734
+Crumbling Building (entrance)~
+   You step into the darkness of this old crumbling building.  The wooden roof
+as long since crumbled into the piles of broken wood that line the bare earthen
+floor.  Parts of the walls have begun to crumble as well.  A shiver runs down
+your spine as you wonder what hideous deeds were done in the building.
+~
+557 8 0
+D2
+~
+~
+0 -1 55735
+D3
+~
+~
+0 -1 55729
+S
+#55735
+Crumbling Building~
+   The eastern wall of the building has almost totally collapsed.  Broken bits
+of furniture lies strewn about the bare earthen floor in piles.  You can only
+wonder what this hideous building was once used for.
+~
+557 8 0
+D0
+~
+~
+0 -1 55734
+S
+#55736
+Black Rock Path~
+   Before you to the south the giant oak tree towers.  Its leaves are a sickly
+black color.  The path bends here, perhaps to avoid the tree, leading both
+north and east.
+~
+557 0 4
+D0
+~
+~
+0 -1 55702
+D1
+~
+~
+0 -1 55721
+D2
+~
+~
+0 -1 55725
+S
+#55766
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D1
+~
+~
+0 -1 55719
+D2
+~
+~
+0 -1 55767
+S
+#55767
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55766
+D3
+~
+~
+0 -1 55768
+S
+#55768
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55769
+D1
+~
+~
+0 -1 55767
+S
+#55769
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55770
+D2
+~
+~
+0 -1 55768
+S
+#55770
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.  To the north
+there appears to be a cut tunnel through the side of the mountain.  The Black
+Rock Path continues leading up as well as to the south.    
+~
+557 0 5
+D0
+~
+~
+0 -1 12593
+D2
+~
+~
+0 -1 55769
+D4
+~
+~
+0 -1 55771
+S
+#55771
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D1
+~
+~
+0 -1 55772
+D5
+~
+~
+0 -1 55770
+S
+#55772
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D3
+~
+~
+0 -1 55771
+D5
+~
+~
+0 -1 55773
+S
+#55773
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D1
+~
+~
+0 -1 55774
+D4
+~
+~
+0 -1 55772
+S
+#55774
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D2
+~
+~
+0 -1 55775
+D3
+~
+~
+0 -1 55773
+S
+#55775
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55774
+D1
+~
+~
+0 -1 55776
+S
+#55776
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D1
+~
+~
+0 -1 55777
+D3
+~
+~
+0 -1 55775
+S
+#55777
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55778
+D3
+~
+~
+0 -1 55776
+S
+#55778
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D2
+~
+~
+0 -1 55777
+D5
+~
+~
+0 -1 55779
+S
+#55779
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55780
+D4
+~
+~
+0 -1 55778
+S
+#55780
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55781
+D2
+~
+~
+0 -1 55779
+S
+#55781
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D1
+~
+~
+0 -1 55782
+D2
+~
+~
+0 -1 55780
+S
+#55782
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D1
+~
+~
+0 -1 55783
+D3
+~
+~
+0 -1 55781
+S
+#55783
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D1
+~
+~
+0 -1 55784
+D3
+~
+~
+0 -1 55782
+S
+#55784
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D1
+~
+~
+0 -1 55785
+D3
+~
+~
+0 -1 55783
+S
+#55785
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D2
+~
+~
+0 -1 55786
+D3
+~
+~
+0 -1 55784
+S
+#55786
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55785
+D2
+~
+~
+0 -1 55787
+S
+#55787
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55786
+D3
+~
+~
+0 -1 55788
+S
+#55788
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D1
+~
+~
+0 -1 55787
+D2
+~
+~
+0 -1 55789
+S
+#55789
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55788
+D2
+~
+~
+0 -1 55790
+S
+#55790
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55789
+D2
+~
+~
+0 -1 55791
+S
+#55791
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D0
+~
+~
+0 -1 55790
+D1
+~
+~
+0 -1 55792
+S
+#55792
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D3
+~
+~
+0 -1 55791
+D5
+~
+~
+0 -1 55731
+S
+#55793
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, just loose rock between the walls of the mountainside.    
+~
+557 0 5
+D3
+~
+~
+0 -1 55712
+D4
+~
+~
+0 -1 55794
+S
+#55794
+Black Rock Path~
+   You can tightly squeeze through the surrounding rock.  This place is
+desolate and dry and it seems to grow colder.  A fierce wind blows all about
+you almost pinning you against the rocks around you.  The path is difficult to
+determine, but you find a huge temple entrance carved into the granite of the
+cliff wall.  The statues are elaborate and horrific and depict magical people
+seeminginly undead and in a trance.  The smell coming from the temple reeks of
+rotting flesh and you wonder if you should proceed inward.  The temple entrance
+leads south into the crevice wall.    
+~
+557 0 5
+D2
+~
+~
+0 -1 17301
+D5
+~
+~
+0 -1 55793
+S
+#55796
+The Entrance to Black Rock Lodge~
+   A great monument to battle looms large over the Black Rock Trail.  Placed
+just outside the gates of the City of Anduin, the lodge is both a testament to
+and a rebellion against the trappings of civilization.  The Lodge seems to grow
+out of the trail itself, being made from the same black stone as the path
+leading to it.  The Lodge is fitted with a single massive wooden front door.
+~
+0 4 4
+D0
+~
+~
+0 -1 55797
+D2
+~
+~
+0 -1 55701
+S
+#55797
+Black Rock Lodge~
+   Black Rock Lodge is home to the Anduin branch of the Berserker Guild.  It
+has been kept for generations by the dwarves who live in the surrounding hills.
+Open to the sky above and exposing the dirt below, Black Rock Lodge is more a
+colosseum than a hunting lodge.  Battle pits dot the Lodge floor and hefty iron
+portcullises bar entry to or from the Lodge's deeper recesses.
+~
+0 35652100 0
+D2
+~
+~
+0 -1 55796
+S
+$~

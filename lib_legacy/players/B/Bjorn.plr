@@ -1,0 +1,112 @@
+name: Bjorn
+password: BjdxGU0PoK
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17640
+birthtime: 1272173392
+timeplayed: 1103226
+lastlogintime: 1713047792
+host: 097.120.082.157
+height: 71
+weight: 200
+base_height: 71
+base_weight: 200
+base_size: 3
+natural_size: 3
+alignment: 101
+playerflags: yz
+effectflags: 0 0 0
+prefflags: hnouxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1423/1225
+mana: 980/980
+move: 158/168
+damroll: 5
+hitroll: 4
+strength: 99
+intelligence: 51
+wisdom: 85
+dexterity: 94
+constitution: 96
+charisma: 45
+cash: 614 2813 1103 1209
+bank: 0 3000 0 0
+experience: 116386599
+quit_reason: 1
+saveroom: 3054
+skills:
+402 1000
+404 657
+407 1000
+411 1000
+412 1000
+415 50
+416 50
+419 1000
+420 1000
+421 1000
+422 1000
+427 1000
+430 356
+431 1000
+434 501
+438 203
+441 1000
+443 50
+444 760
+463 1000
+464 734
+465 1000
+466 50
+467 50
+468 1000
+473 50
+0 0
+trophy:
+1 58413 0.250000
+1 58406 0.500000
+1 58405 1.000000
+1 58417 0.333333
+1 58411 0.333333
+1 58412 1.333333
+1 48907 1.000000
+1 48806 1.000000
+1 48815 1.000000
+1 48811 3.000000
+1 48810 1.000000
+1 8001 1.000000
+1 10040 1.000000
+1 3060 1.000000
+1 23711 0.500000
+1 23737 1.500000
+1 23708 0.500000
+1 23734 2.500000
+1 23700 8.000000
+1 23709 1.500000
+1 23707 2.500000
+0 0 0
+tells:
+1621487552 @WWhiphal@W tells you, 'snug tights@W'@0
+$
+gossips:
+1627348802 Wittawat gossips, 'Hello'
+1627348806 Apoc gossips, 'hi'
+1627348822 Wittawat gossips, 'Howdy?'
+1627349061 Wittawat gossips, 'Congratz Bro'
+1627349072 Apoc gossips, 'thanks!'
+1627349081 Wittawat gossips, '*smile*'
+1713047505 Discord gossips, 'Daedela: Hehe that we have no control over'
+1713047551 Discord gossips, 'Daedela: We've got decent integration with Mudlet, but it's not very user friendly'
+1713047682 Discord gossips, 'Daedela: I doubt that.  I don't think Mudlet has mobile support'
+1713047707 Discord gossips, 'Daedela: Yeah!  It still needs some work haha.  It's pretty chaotic'
+$

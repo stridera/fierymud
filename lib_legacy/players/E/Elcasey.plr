@@ -1,0 +1,53 @@
+name: Elcasey
+password: ElBZZB2b1E
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 0
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20785
+birthtime: 1715543095
+timeplayed: 0
+lastlogintime: 1715543095
+host: 173.170.073.091
+height: 170
+weight: 317
+base_height: 170
+base_weight: 317
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 0/0
+mana: 100/100
+move: 140/140
+damroll: 0
+hitroll: 0
+strength: 95
+intelligence: 74
+wisdom: 71
+dexterity: 77
+constitution: 80
+charisma: 65
+experience: 0
+quit_reason: 0
+saveroom: 0
+skills:
+419 1000
+427 1000
+0 0
+tells:
+$
+gossips:
+$

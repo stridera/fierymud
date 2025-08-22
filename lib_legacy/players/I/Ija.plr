@@ -1,0 +1,236 @@
+name: Ija
+password: IjLvYQMfWI
+currenttitle: &3&bthe perma-noob&0
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b><%dl><%di>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 5
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 14365
+birthtime: 1107392723
+timeplayed: 10702073
+lastlogintime: 1738972604
+host: 208.093.179.007
+height: 73
+weight: 160
+base_height: 73
+base_weight: 160
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxyz
+effectflags: c 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 11
+hitpoints: 1843/1645
+mana: 980/980
+move: 200/200
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 100
+wisdom: 100
+dexterity: 100
+constitution: 100
+charisma: 100
+cash: 5806 20490 7074 4020
+bank: 0 40 0 0
+experience: 121676898
+pagelength: 40
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+4 1000
+7 1000
+12 1000
+13 1000
+14 1000
+17 1000
+27 1000
+33 1000
+46 1000
+47 1000
+48 1000
+49 1000
+58 1000
+63 1000
+65 1000
+69 1000
+71 1000
+78 1000
+81 1000
+84 1000
+85 1000
+86 1000
+92 1000
+96 1000
+98 1000
+99 1000
+104 1000
+108 1000
+113 1000
+127 1000
+128 1000
+130 1000
+131 1000
+132 1000
+138 1000
+143 1000
+167 1000
+176 1000
+178 1000
+179 1000
+181 1000
+188 1000
+189 1000
+191 1000
+210 1000
+212 1000
+235 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+417 1000
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 1000
+445 1000
+450 1000
+451 1000
+452 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 50
+468 1000
+473 1000
+607 1000
+609 1000
+610 1000
+0 0
+trophy:
+1 48901 1.000000
+1 12301 1.000000
+1 55016 2.000000
+1 48635 1.000000
+1 48631 0.833333
+1 52006 0.250000
+1 4009 0.250000
+1 4010 0.250000
+1 4013 0.333333
+1 53417 0.250000
+1 43017 0.250000
+1 8509 0.750000
+1 12523 0.250000
+1 12514 0.333333
+1 12515 0.333333
+1 12500 1.000000
+1 12502 0.500000
+1 46207 0.250000
+1 46206 0.250000
+1 46208 0.250000
+1 46202 0.250000
+0 0 0
+tells:
+1738182625 @WThort@W tells you, 'unless I'm going crazy and I had an identical conversation with Dairyu?@W'@0
+1738182714 @WThort@W tells you, 'yeah, because I went and updated the ID sheet@W'@0
+1738185365 @WThort@W tells you, 'you happen to have a vampire claw? cursed or otherwise?@W'@0
+1738185695 @WDavar@W tells you, 'one gem please@W'@0
+1738354058 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1738354059 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1738354061 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1738717731 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738717744 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738788087 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1738788477 Chinok gossips, 'so FYI -- current fiery only allows bless to be cast on weapons, if the weapon has no other buffs'
+1738788512 Thort gossips, 'there's more gotchas than that though. it's also magic, glowing, humming.'
+1738788532 Chinok gossips, 'technically, magic, glowing, and humming are buffs :D'
+1738788547 Thort gossips, 'there are items that aren't stat buffed that have those attributes.'
+1738788564 Chinok gossips, 'yep.'
+1738788612 Thort gossips, 'yeah, we're assuming the limb got changed at some point. there are two different variations out there.'
+1738788622 Chinok gossips, 'we are discussing, we may allow 1 buff or something.. we're still tossing ideas'
+1738788647 Chinok gossips, 'or maybe we don't count foucs as a buff'
+1738788667 Thort gossips, 'intertwined with the weapon modification feature that was discussed?'
+1738788731 Thort gossips, 'err I mean the elemental weapon enchanting feedback that was discussed'
+$
+effects:
+210 1 580 13 0 0 0
+92 3 0 0 0 64 0
+235 11 0 0 8192 0 0
+131 15 0 0 0 0 16384
+131 15 2 19 0 0 0
+131 15 -12 24 0 0 0
+132 3 15 17 0 256 0
+108 0 0 0 0 32768 0
+52 0 13 0 4194304 0 0
+0 0 0 0 0
+aliases:
+blind c 'blind' $*
+disp c 'dispel mag' $*
+soul c 'souls'
+cult 11e4n2e4nwnunwwnndwnww
+nordus s3w7n2e4nw3n2e2n2enesen2ne4nw4n4e4n2wse2s2w6nwn2n2en
+4 resc flas
+demon c 'demons' $*
+2.resc piffaroz
+chinuk new imm
+9 resc faegern
+5 resc rylai
+1 resc mosiah
+harm c 'harm' $*
+aderci gig
+unh c  'unh'
+gag g all.gem all.corpse
+id rec identify $*
+gax get all.coins all.corpse
+grm group mosiah
+gac g all all.corpse
+cons consent mosiah
+folm follow mosiah
+v kill man
+good c 'dis good' $*
+x g all.coins
+f kill monk
+folo foll offa
+dark c 'dark p' $*
+7 resc fasq
+6 resc mosiah
+yy ass ashyer
+t {;st;ret n;}
+h hitall
+remortavg 5 levels a day finished in 19 days 
+1744 ac
+3 resc yawk
+2 resc yawk
+armor c 'demonskin' $*
+bless c 'dark p' $*
+y ass yawk
+0

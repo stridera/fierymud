@@ -1,0 +1,117 @@
+name: Lissa
+password: LiIEvQUOq2
+currenttitle: Simpsson
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 1
+race: 0
+level: 11
+home: 3003
+lifeforce: 0
+composition: 0
+id: 16581
+birthtime: 1184264359
+timeplayed: 72013
+lastlogintime: 1429667285
+host: 098.231.133.187
+height: 66
+weight: 103
+base_height: 66
+base_weight: 103
+base_size: 2
+natural_size: 2
+alignment: 80
+playerflags: glxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 2304
+lastlevel: 7
+hitpoints: 101/101
+mana: 100/100
+move: 118/118
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 94
+wisdom: 96
+dexterity: 76
+constitution: 83
+charisma: 62
+cash: 3 55 223 237
+experience: 323500
+quit_reason: 7
+saveroom: 2304
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 53
+416 50
+423 123
+424 74
+438 50
+443 50
+444 55
+451 70
+457 70
+458 50
+459 50
+460 54
+462 50
+463 61
+466 50
+0 0
+trophy:
+1 8016 2.000000
+1 36001 1.000000
+1 36003 1.000000
+1 8010 1.500000
+1 8011 3.000000
+1 8012 0.500000
+1 8015 1.500000
+1 8000 3.000000
+1 8014 2.500000
+1 13611 1.333000
+1 13610 1.333000
+1 13602 0.333000
+1 13616 0.667000
+1 13604 1.333000
+1 13606 0.667000
+1 13615 0.667000
+1 13601 0.333000
+1 8013 1.000000
+1 8022 1.500000
+1 8023 1.000000
+1 8001 1.000000
+0 0 0
+mem:
+16 1 4
+16 1 4
+16 1 4
+16 1 4
+16 1 4
+0 0 0
+aliases:
+cf cast 'create food'
+df drink fountain
+fs fill skin fountain
+ds drink skin
+ef eat food
+c cackle
+wi emote whistles innocently.
+pose emote strikes a pose!
+cl cast 'cure light'
+0

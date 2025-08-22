@@ -1,0 +1,75 @@
+name: Allroy
+password: Al9cUGK3II
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19105
+birthtime: 1474822548
+timeplayed: 2706
+lastlogintime: 1474828514
+host: 050.090.081.165
+height: 60
+weight: 169
+base_height: 60
+base_weight: 169
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8025
+lastlevel: 0
+hitpoints: 32/32
+mana: 1/0
+move: 92/100
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 86
+wisdom: 83
+dexterity: 68
+constitution: 70
+charisma: 71
+experience: 5500
+quit_reason: 7
+saveroom: 8025
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 52
+424 50
+438 50
+443 50
+444 50
+451 50
+457 50
+458 50
+459 50
+460 50
+462 50
+463 51
+466 50
+0 0
+trophy:
+1 8015 1.000000
+1 8010 1.000000
+1 8000 1.000000
+1 8022 1.000000
+1 8011 3.000000
+0 0 0

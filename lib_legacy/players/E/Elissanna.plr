@@ -1,0 +1,69 @@
+name: Elissanna
+password: El4JtY0J.3
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20368
+birthtime: 1666311567
+timeplayed: 383
+lastlogintime: 1666311950
+host: 070.235.038.235
+height: 64
+weight: 97
+base_height: 64
+base_weight: 97
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 13
+thirst: 2
+lastlevel: 0
+hitpoints: 27/27
+mana: 0/0
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 72
+wisdom: 72
+dexterity: 81
+constitution: 83
+charisma: 59
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1666311596 Chinok gossips, 'welcome Elissanna'
+1666311611 Daedela gossips, 'hello!'
+1666311709 Mersh gossips, 'a bunch of mobs messing up yhe cartographer room '
+$

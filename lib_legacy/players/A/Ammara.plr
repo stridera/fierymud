@@ -1,0 +1,125 @@
+name: Ammara
+password: AmPcuQ5zzh
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 10
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20703
+birthtime: 1701016690
+timeplayed: 13938
+lastlogintime: 1732504202
+host: 066.199.058.082
+height: 79
+weight: 170
+base_height: 79
+base_weight: 170
+base_size: 3
+natural_size: 3
+alignment: -109
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnouxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 24
+lastlevel: 0
+hitpoints: 151/161
+mana: 1/0
+move: 160/198
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 62
+wisdom: 75
+dexterity: 90
+constitution: 96
+charisma: 44
+cash: 1 192 472 134
+experience: 298254
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 13250/18000
+-1 0
+skills:
+402 72
+404 150
+415 51
+416 50
+419 1000
+421 141
+427 1000
+430 50
+438 50
+443 50
+444 72
+463 50
+464 50
+465 98
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36301 1.000000
+1 2002 1.000000
+1 16909 1.000000
+1 16902 2.000000
+1 16906 0.500000
+1 16901 0.500000
+1 16908 1.500000
+1 16900 3.500000
+1 17204 3.500000
+1 2005 0.500000
+1 2001 0.500000
+1 2003 1.000000
+1 2004 1.500000
+1 36306 1.500000
+1 36303 6.500000
+1 36300 4.000000
+1 6910 0.500000
+1 55244 0.500000
+1 55214 0.500000
+1 55224 0.500000
+1 7051 0.500000
+0 0 0
+tells:
+1701044112 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1701397431 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1701397434 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1714798981 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1714884080 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1714884084 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1714884094 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1718002414 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1718002857 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1721534598 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1701022164 Cammara gossips, 'lol'
+1701043396 Ekon gossips, 'Hey mmara clan'
+1701043866 Ekon gossips, 'ty'
+1702096397 Chinok gossips, 'WB Ammara'
+1702096441 Chinok gossips, 'how's it going?'
+1702096479 Chinok gossips, 'cool! -- have fun!'
+1702096491 Chinok gossips, 'and yell, if you need any help or advice'
+1721534686 Discord gossips, 'Daedela: Hey there'
+1721534810 Discord gossips, 'Daedela: How's it going out there in Ethilian?'
+1732503585 Discord gossips, 'Daedela: Congrats!'
+$
+effects:
+3 3 -2 24 0 0 0
+3 3 0 0 0 0 16384
+1 3 10 17 0 0 0
+0 0 0 0 0
+aliases:
+gc g all.coins from corpse
+lc l in corpse
+ii as cammara
+0

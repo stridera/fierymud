@@ -1,0 +1,221 @@
+name: Choak
+password: HeUGWqoesl
+currenttitle: Infantum
+description
+Choak Infantum is lowly @&@2Druid@&@0 always willing to help those in need.
+If you need a ride back to town just tell him @&@6well@&@0.
+
+@&@r**** QUEST ****@&@0
+If you would like to start a quest from me just @&@Wtell@&@0 me @&@Wquest@&@0.
+
+In order for this quest to work all commands must be told IE: @&@Wtell choak <command/response>@&@0.~
+prompt: &2&b<&0&2%aA&2&b><&0%l&2&b>%_&0&5Sch: %ds%_&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 7
+race: 9
+level: 99
+home: 3003
+lifeforce: 0
+composition: 0
+id: 14834
+birthtime: 1118262280
+timeplayed: 74726433
+lastlogintime: 1738946069
+host: 136.038.231.125
+height: 66
+weight: 124
+base_height: 66
+base_weight: 124
+base_size: 2
+natural_size: 2
+alignment: -13
+playerflags: lyz
+effectflags: k 0 0
+prefflags: hnosxCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+lastlevel: 9
+hitpoints: 806/806
+mana: 100/100
+move: 251/251
+damroll: 3
+hitroll: 3
+strength: 81
+intelligence: 97
+wisdom: 100
+dexterity: 66
+constitution: 65
+charisma: 57
+cash: 154 7 3 3
+experience: 105805999
+clan: 4
+title: Infantum
+quit_reason: 10
+saveroom: 3054
+skills:
+6 1000
+11 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+27 1000
+28 1000
+30 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+51 1000
+63 1000
+70 1000
+71 1000
+73 1000
+74 1000
+88 1000
+89 1000
+90 1000
+91 1000
+99 1000
+118 1000
+144 1000
+145 1000
+146 1000
+147 1000
+148 1000
+149 1000
+150 1000
+151 1000
+152 1000
+153 1000
+154 1000
+155 1000
+156 1000
+206 1000
+207 1000
+215 1000
+241 1000
+243 1000
+245 1000
+247 1000
+263 1000
+415 1000
+416 1000
+417 1000
+421 1000
+423 1000
+424 1000
+429 1000
+438 1000
+443 1000
+444 1000
+451 1000
+452 1000
+453 1000
+454 1000
+455 1000
+456 1000
+457 1000
+458 1000
+459 1000
+460 1000
+462 1000
+463 1000
+464 55
+465 50
+466 1000
+0 0
+trophy:
+1 3133 0.333333
+1 16107 3.000000
+1 2304 1.000000
+1 4103 0.500000
+1 16909 1.000000
+1 16902 4.000000
+1 16906 1.000000
+1 16901 2.000000
+1 16900 34.000000
+1 16309 0.200000
+1 49028 0.333333
+1 49024 0.333333
+1 49002 0.333333
+1 11703 0.500000
+1 49037 0.333333
+1 49034 0.333333
+1 49036 0.333333
+1 53306 0.666667
+1 53302 1.000000
+1 53315 2.333333
+1 53303 0.666667
+0 0 0
+tells:
+1738908586 @WYawk@W tells you, 'well@W'@0
+1738909239 @WYawk@W tells you, 'well@W'@0
+1738910238 @WMawk@W tells you, 'well@W'@0
+1738910455 @WGilgal@W tells you, 'well@W'@0
+1738919411 @WKnak@W tells you, 'well@W'@0
+1738919644 @WTavsan@W tells you, 'well@W'@0
+1738921833 @WRhodotheus@W tells you, 'well@W'@0
+1738941766 @WThort@W tells you, 'well@W'@0
+1738942669 @WTynder@W tells you, 'well@W'@0
+1738944183 @WTynder@W tells you, 'well@W'@0
+$
+gossips:
+1738887562 Yixx gossips, 'yaya :D'
+1738894740 Anexis gossips, 'yay thx'
+1738894765 Emawk gossips, 'ty'
+1738895275 Chinok gossips, 'gratz on 68 Antix'
+1738895279 Antix gossips, 'thank'
+1738895523 Chinok gossips, 'gratz on 72 Anexis!'
+1738895533 Anexis gossips, 'thx'
+1738897004 Anexis gossips, 'gnite yall!'
+1738897008 Emawk gossips, 'night'
+1738916803 Lathyrus gossips, 'Hello!'
+1738941254 Thort gossips, 'yawwnn'
+1738941651 Thort gossips, 'mornin!'
+1738945963 Xawk gossips, 'the skill is called instant kill'
+$
+aliases:
+moon cast 'moonwell' $*
+of order followers $*
+harm cast 'harm' $*
+ul unlock $*;open $*
+id get identify sack;recite identify $*
+dispel cast 'dispel magic' $*
+moonwell cast 'moonwell' $*
+mb cast moonbeam $*
+lb cast 'lightning bolt' $*
+rmp rest;meditate;pray
+rheal cast 'moonwell' $1;enter well;cast 'heal' $1;enter well
+greater cast 'great endu' $1
+summon cast 'summon' $1
+vig cast 'invig'
+earth cast 'earth' $1
+gac get all corpse
+well cast 'moonwell' $1
+sra shapechange reptile anaconda
+df drink fountain
+heal cast 'heal' $1
+ec examine corpse
+ga get all
+wor cast 'w o r'
+gcc get coins corpse
+m meditate
+dmagic cast 'detect magic' $1
+dalign cast 'detect alignment' $1
+dpoison cast 'detect poison' $1
+bolt cast 'lightning bolt' $*
+sun cast 'sunray' $*
+gaia cast 'armor of gaia'
+bs cast 'barkskin' $*
+doom cast 'creeping doom'
+who who -w
+0

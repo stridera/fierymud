@@ -1,0 +1,49 @@
+#55801
+horsemeat horse meat chunk food~
+a chunk of horsemeat~
+A warm chunk of fresh horsemeat lies here getting dirty.~
+~
+19 0 1 1
+7 0 0 0 0 0 0
+1.00 5 0 0 0 0 0 0
+E
+horsemeat horse meat chunk food~
+This warm bit of horsemeat has a gamey scent.~
+#55802
+meat fresh rabbit warm bit piece food~
+a warm bit of fresh rabbit meat~
+A warm piece of rabbit meat lies here.~
+~
+19 0 1 1
+4 0 0 0 0 0 0
+0.50 5 0 0 0 0 0 0
+E
+fresh rabbit meat warm bit piece~
+It looks like raw meat.~
+#55803
+tail deer-tail~
+a deer tail~
+A deer tail, disattached from its owner, lies here.~
+~
+12 0 1048577 1
+0 0 0 0 0 0 0
+0.08 50 0 0 0 0 0 0
+E
+deer-tail~
+It is a little white deer tail which has little strips of brown down the side.~
+A
+18 1
+#55804
+creek freshwater water~
+a freshwater creek~
+A freshwater creek burbles through here.~
+~
+23 0 0 1
+9999 9999 0 0 0 0 0
+9999.00 20 0 0 0 0 0 0
+T 2806
+E
+water freshwater fresh creek~
+It's full of absolutely, crystal clear water. The stones that make
+up its bed are easily seen.~
+$~

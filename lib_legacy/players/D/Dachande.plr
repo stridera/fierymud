@@ -1,0 +1,70 @@
+name: Dachande
+password: Da.wjORPcK
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20934
+birthtime: 1738814324
+timeplayed: 602
+lastlogintime: 1738814934
+host: 107.205.149.047
+height: 44
+weight: 171
+base_height: 44
+base_weight: 171
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k w q
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 4
+lastlevel: 0
+hitpoints: 29/27
+mana: 0/0
+move: 171/171
+damroll: 4
+hitroll: 5
+strength: 94
+intelligence: 66
+wisdom: 82
+dexterity: 84
+constitution: 100
+charisma: 65
+cash: 0 0 0 12
+experience: 6049
+quit_reason: 3
+saveroom: 0
+skills:
+402 52
+404 51
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 51900 3.000000
+0 0 0
+tells:
+$
+gossips:
+1738814368 Anexis gossips, 'hail Dachande!'
+$

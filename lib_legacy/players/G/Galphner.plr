@@ -1,0 +1,70 @@
+name: Galphner
+password: GaRyaqmeKg
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18599
+birthtime: 1384224162
+timeplayed: 1112
+lastlogintime: 1447278366
+host: 024.130.042.224
+height: 67
+weight: 123
+base_height: 67
+base_weight: 123
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: xy
+effectflags: k 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 8
+lastlevel: 0
+hitpoints: 19/19
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 91
+wisdom: 86
+dexterity: 80
+constitution: 68
+charisma: 65
+experience: 952
+quit_reason: 5
+saveroom: 3005
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+447 50
+451 50
+452 50
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 18007 1.000000
+0 0 0

@@ -1,0 +1,118 @@
+name: Nessarose
+password: NemXRFYRAb
+currenttitle: Thropp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 2
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19976
+birthtime: 1627637975
+timeplayed: 6680
+lastlogintime: 1641179330
+host: 052.119.120.201
+height: 66
+weight: 105
+base_height: 66
+base_weight: 105
+base_size: 2
+natural_size: 2
+alignment: 107
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 73/75
+mana: 1/0
+move: 106/124
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 96
+wisdom: 98
+dexterity: 78
+constitution: 92
+charisma: 72
+cash: 97 5 20 32
+experience: 236800
+quit_reason: 10
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 50
+416 50
+423 67
+424 51
+438 50
+443 50
+444 50
+451 52
+457 50
+458 51
+459 50
+460 50
+462 50
+463 56
+466 50
+0 0
+trophy:
+1 16903 1.000000
+1 16905 1.000000
+1 16909 0.250000
+1 16907 4.250000
+1 16902 2.333333
+1 16906 1.750000
+1 16901 0.250000
+1 16900 9.666666
+1 16908 3.000000
+1 8022 0.500000
+1 8030 0.500000
+1 8015 0.500000
+1 8023 0.750000
+1 8013 1.250000
+1 8011 1.000000
+1 8021 1.500000
+1 8010 1.500000
+1 8012 1.750000
+1 8016 1.500000
+1 8014 1.750000
+1 8000 0.750000
+0 0 0
+tells:
+1627672170 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1627672250 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+$
+gossips:
+1641179315 Someone gossips, 'Congratz :P'
+$
+mem:
+16 1 6
+16 1 6
+16 1 6
+1 1 5
+16 1 5
+16 1 5
+0 0 0
+aliases:
+ga get all
+0

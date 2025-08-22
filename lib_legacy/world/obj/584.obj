@@ -1,0 +1,837 @@
+#58401
+feather glowing-phoenix-feather long-delicate-phoenix-feather glowing questobject~
+a glowing phoenix feather~
+A long, delicate phoenix feather glows like a star here.~
+~
+1 536870976 2113537 70
+0 -1 -1 0 0 0 0
+0.00 30000 0 0 0 0 0 0
+T 5324
+T 5332
+E
+feather glowing-phoenix-feather long-delicate-phoenix-feather glowing questobject~
+This delicate golden feather is about as long as your forearm.  The long, lacy
+fronds of the feather's plumage waft slightly in the breeze.  Oh, and it also
+glows like the sun.  Just touching it makes your spirit soar!~
+A
+6 5
+A
+27 3
+#58402
+box goblins-box goblin goblin's plain-little-wooden-box tightly-closed~
+the goblin's box~
+A plain little wooden box is tightly closed.~
+~
+15 536870978 1 100
+10 15 58403 0 0 0 0
+1.00 200 0 0 0 0 0 0
+E
+box goblins-box goblin goblin's plain-little-wooden-box tightly-closed~
+You behold a very simple wooden box. The tiny slats of the fist-sized 
+container are made of poorly cured wood that is warped and cracked in 
+places. A richly patina'd bronze clasp fastens the box's lid shut. ~
+#58403
+key mythical DON'T LOAd THIS OR AZ WILL KIL YOU~
+the Mythical Key~
+A very ornamental mythical key lies here.~
+~
+18 4 16385 100
+1 0 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+mythical key~
+This golden key is ornamented with small gems, but it's not very heavy or 
+even very complicated looking. Scratched into its surface, you see some 
+words scratched into its surface in a strange, runish script.~
+E
+words script word~
+The words are in a language you cannot understand, one that the gods
+alone comprehend. If you were, in fact, immortal, you'd know that
+the words read something like "PROPERTY OF METAMORPHO", but if you're
+not, you don't. There's a small circle stamped near the key's end.~
+E
+end circle~
+Just where the key's shaft becomes a circle, a small circle is stamped
+into the metal surface. The circle has an engraving of what appears to
+be a rectangular box of some sort inside it.~
+#58405
+well sparkling artesian artesian-well~
+a sparkling artesian well~
+A sparkling artesian well bubbles up from the ground.~
+~
+23 16 0 1
+9999 9999 0 0 0 0 0
+10004.00 0 0 0 0 0 0 0
+T 2806
+E
+sparkling artesian well~
+This well, a pool of water edged in red-brown bricks, bubbles up from
+beneath your feet. To drink from it, you must kneel on the bricks
+carefully!~
+#58406
+tambourine gypsy-tambourine tam~
+a gypsy tambourine~
+A gypsy tambourine plays itself sadly here.~
+~
+8 0 16385 70
+0 0 0 0 0 0 0
+0.50 1000 0 8 0 0 0 0
+E
+tambourine gypsy-tambourine tam~
+This tambourine is made of two wooden discs pegged together.  Through the gaps
+in between them, someone has thrust pairs of small brass circles.  The
+slightest movement makes the circles jingle together, producing a wild,
+mysterious cacophony.~
+A
+24 -15
+A
+27 3
+#58407
+letter ancient-letter folded~
+an ancient letter~
+An ancient letter is folded up on the ground.~
+~
+12 0 1 1
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+letter ancient-letter folded~
+It is written in ink that has gone brown with age on parchment that
+is nearly yellow. The edges crumble as you read; you take special
+care not to destroy this missive from the past. But it reads only:
+
+      My beloved Arturio, please believe that I act only to protect
+      you and Frederick. Remember the chants and spells I taught
+      you and the rest of our family, and remember that yours is
+      a rich heritage. Should you ever need the help of the Goddess
+      Mielikki, you need only ask.
+
+The letter has been folded and refolded many, many times.~
+#58408
+locket golden-locket-filigree-chain gold-locket-filigree-chain necklace~
+a golden locket on a filigree chain~
+A gold locket on a filigree chain lies here.~
+~
+15 1 5 70
+5 5 -1 0 0 0 0
+0.10 1200 0 0 0 0 0 0
+E
+locket golden-locket-filigree-chain gold-locket-filigree-chain necklace~
+You've never seen such exquisite goldworking.  This locket, on its whisper-thin
+golden link necklace, seems very old.  The hinges on it are coming a bit loose,
+but it's still pretty tightly closed.~
+A
+6 5
+A
+27 3
+#58409
+portrait miniature-painting hand-painted-miniature-portrait~
+a hand-painted miniature portrait~
+A hand-painted portrait the size of your palm lies here.~
+~
+8 0 1 1
+0 0 0 0 0 0 0
+0.40 500 0 0 0 0 0 0
+E
+portrait miniature-painting hand-painted-miniature-portrait~
+The woman in this painting is amazingly beautiful, but in the same
+way that a deadly sword is beautiful. She's exactly like a sword --
+whipcord-lithe, slender, well-muscled, and seems as if she is about
+to strike. Her eyes seem incredibly intelligent and perceptive. The
+portrait is no bigger than the palm of your hand, making the artistry
+of the representation seem all the more amazing. 
+   The woman in the painting is looking right out at the viewer. As
+you watch, her full, lush lips move, and you hear words: "My little
+Frederick, remember that I am always watching over you." You hear no
+more.~
+#58410
+dreamcoat dream-coat long-partecolored-robe~
+the Dreamcoat~
+A long, partecolored robe lies folded on the ground.~
+~
+9 536870912 1025 70
+5 0 0 0 0 0 0
+1.50 3000 0 0 0 0 0 0
+E
+dreamcoat dream-coat long-partecolored-robe~
+This coat is made of long, narrow strips of cloth and leather sewn together
+into a long-sleeved, heavy robe with inlaid armholes.  The cloth is red, blue,
+and purple velvet, alternating with black leather.  When you put it on, your
+head tingles with new ideas and the residue of dreams, making you feel a little
+wild-eyed.~
+A
+4 3
+A
+3 3
+A
+27 3
+#58411
+desk wooden-desk wooden drawer cherry-wood exquisitely-carved~
+a wooden desk~
+A cherry-wood desk, exquisitely carved, stands here.~
+~
+15 536870912 0 1
+50 15 58423 0 0 0 0
+9999.00 0 0 0 0 0 0 0
+E
+desk wooden-desk cherry-wood exquisitely-carved~
+This desk is hand-made, and seems very old. A traditional rolltop desk 
+with lots of room to write letters on, it has a multitude of little 
+drawers. One in particular feels a bit loose.~
+E
+drawer~
+The desk has two drawers going up its sides. One of the drawers -- the
+one on the upper left-hand side -- rattles a bit as you pull on it, as
+if locked many eons ago.~
+#58412
+book book-of-kaaz lost-letters girr leatherbound~
+a Book: The Lost Letters of Girr'Kaaz~
+A leatherbound book seems to be lying here.~
+~
+12 536870912 1 50
+1 0 0 0 0 0 0
+0.50 0 0 0 0 0 0 0
+T 5342
+E
+book book-of-kaaz lost-letters girr leatherbound~
+The book is leatherbound. It's quite old, obviously. When you open it,
+a cloud of fine dust flies up, tickling your nose and stinging your eyes. 
+Each of the yellowed, crumbling pages is written in the same crabbed, 
+faltering handwriting. It's quite difficult to read, but you puzzle it 
+out slowly. A Table of Contents says that the thin volume contains five 
+separate letters. It is divided into sections by a beautiful coloured 
+painting bound right into the book.
+  You can look at section1, section2, section3, section4, or section5. ~
+E
+section1~
+This page's facing page features a beautiful illumined picture of a man
+facing a large group of demonic creatures. He holds up his glowing hands
+and seems to have no fear at all in his face. The text reads:
+
+  I have been traveling our realm for many years, and find myself
+  falling to anger at the blatant slap in the face issued to the
+  Order of Mielikki by Blackmourne's minions. Now, I know, being an
+  old priest who has been fighting Evil for many years, that I should
+  exercise discretion, that this will pass. But somehow, this latest
+  assault on our charter feels different, and I have no confidence
+  that the Gods of our land will protect us this time from the
+  Archenemy.
+
+  Morpheous, one of our patron gods, has been molding us for many
+  years under the tutelage of the wise Kaaz clan. I suppose it is
+  inevitable that our society, so deftly ruled and so wisely shepherded,
+  would become a cause for jealousy. In my prayers, I have sensed the
+  hatred and envy of the foul god Blackmourne. I pray he does not raise
+  his hand against the world -- for if he does, who can stop a god?
+  Not even the Kaaz clan could stand against all the evil a god may
+  cause.
+
+  Be ready for anything. The call to defend our gracious Goddess
+  may come at any time, and we must not allow Blackmourne to prevail.
+
+
+                                In Yr. Service
+                                Girr'Kaaz, High Priest of Mielikki~
+E
+section2~
+This section is faced with a picture of a decayed, disgusting human 
+figure wearing a long, black silk robe. His face reveals no trace of 
+normal human gentleness and kindness -- the cloak of his many years hangs 
+very heavy on him. He's pure evil. The text on the next page reads:
+
+  I have been traveling our realm for many years, my brothers and
+  sisters in the faith, and I know that my learning is as yet not
+  complete. However, bear with the words of one who is still learning:
+
+  HOW can the Lord of Templace not demand the head of Ruin Wormheart
+  on a golden plate? How can he not see the perfidy and cruelty of this
+  supposed priest? Every day brings a new rumour and a new crime, and
+  every day we see more of those vile Undead Knights coming into our
+  beautiful cities. Wormheart is daring us to do something, my brothers.
+  I pray none of us acts before the right time has come.
+
+  Merely by reading the words of Ruin Wormheart's missives, one may
+  get a feeling for the hatred of this person and those around him.
+  He cloaks these evil, vile feelings in words of sweetness and light,
+  but none of those who worship the Goddess can fail to see the truth.
+
+  My warnings, brothers and sisters: Do not fall prey to this guild,
+  and do not allow Ruin to provoke you... Yet. Our time will come, and
+  we will wipe this degenerate guild from the face of the earth!
+
+                                In Yr. Service
+                                Girr'Kaaz, High Priest of Mielikki~
+E
+section3~
+This section begins with a picture of the dwarven city, Anduin. The
+city's walls are in ruins; warriors, both human and not, fight for
+their very lives against a monstrous horde of demonic creatures. The
+text of the message reads:
+
+  Brethren,
+
+  I have traveled this realm for many years now, and I hope that
+  you all know me well enough to know that I would not waste your
+  time without good reason or without just cause. 
+
+  But this latest outrage demands our immediate attention! Those
+  who can, journey to the twin cities at greatest haste. Those who
+  cannot... Please favour your brethren with prayer and supplication.
+  We will have to make our stand, and we will have to be victorious,
+  or else our Guild will be wiped from the face of the earth.
+
+  The demons that Blackmourne has called forth have already destroyed
+  the city of the priests, and they have their eyes on the entire known
+  world. We must act now, or we will lose the crowning city of the
+  known realm to the foul creatures beyond the rift. Blackmourne has
+  gained an ally in the equally evil god Angus, and together, their
+  efforts in creating a rift between the demon plane, Gaar'laxxil, and
+  our own has shaken the very foundations of our world. The demons know
+  that should they win this war, they will feast on the fruits of our
+  very world. What folly have we bred in endeavouring to create good!
+
+                                In Yr. Service
+                                Girr'Kaaz, High Priest of Mielikki~
+E
+section4~
+This last section begins with a barely-colored painting of what must
+be the City of Templace in its glory years. You recognize the Bronze
+Golems and the huge gates immediately. In front of it are three human
+figures, facing two huge humanoid figures. And above the two huge men
+flies the biggest dragon you have ever seen... The text of the letter
+reads:
+
+  My brethren, I write to you with unfortunate news. I was in the
+  city when the greatest atrocity of our age occurred, and it is with
+  the heaviest of hearts that I pass these words on to you. Templace
+  is destroyed, and it can never be rebuilt, and the devastation to
+  the nearby area will never be undone!
+
+  Angus and Blackmourne opened a rift in the very fabric of this plane, 
+  bringing forth horrors from beyond it that no one's mind could 
+  comprehend. But our fair Templace stood strong through all the 
+  attacks. In desperation, they called forth the great black dragon
+  Sagece from the Plane of Gaar'laxxil. As the beast stepped through
+  the rift, her delicate foot-claws grazed the surface of the lake near
+  Templace, and it turned black as coal in that moment.
+
+  Our leaders, the great Kaaz clan, defied the assembled evils of the
+  very gods, but the great dragon had help of the vilest sort -- from
+  the direct hand of Blackmourne himself. Girr'Kaaz's power was such that
+  without Blackmourne's aid, Sagece could never have defeated him. 
+  Morpheous was deeply saddened by the destruction of his high priest, but
+  imagine his horror when he went to claim the body, and saw that a wound  
+  that could only have come from the blade of his own godly brother! He
+  wept, my brethren. Morpheous disappeared from view with the sorry
+  remains of our leader. I do not know what will happen now, but the
+  skies seem to be holding their breaths. Pray, my brethren.
+
+                                In Yr. Service
+                                Elythaz, Cardinal of Templace-that-was ~
+E
+section5~
+These pages of the book face a painting, beautifully rendered, of 
+some sort of aerial explosion on a scale unimaginable to mortal eyes.
+The text, written in a spidery script, reads:
+
+  My brethren, there is again peace in our land, but at such a cost I
+  hesitate to relay the story to you, for fear you will think I have
+  taken leave of my senses.
+
+  The All-Father himself, Metamorpho, appeared out of swirling mists
+  when the city of Templace was destroyed. He was burning with the most
+  holy wrath one can imagine, as terrible as an army with banners. He
+  took up Morpheus, Blackmourne, and Angus, and all was quiet, save for
+  the cries of the wounded. I tried my best to heal whom I could, but my
+  strength was nearly gone. Like everybody on the field -- demon, human,
+  and victim alike -- I carefully watched for the gods' return.
+
+  When they did return, our gracious lord Morpheous, still holding the
+  broken body of our Girr'Kaaz, performed a rite none have ever seen.
+  Elia was furious that she could not perform the funeral rites, but
+  she loves Morpheous as much as a human heart can love a god, so she
+  allowed Morpheous to set his binding upon the world. The sky sparkled
+  both with the power of the enchantment, and with the presence of many
+  other gods, some of whom were newborn, some old and dear presences.
+  They put their seal upon the ceremony. When it was over, Girr'Kaaz's 
+  body turned to a kind of faerie-light that scattered all over the
+  world. I write you only what I have seen, brethren.
+
+  The gods did disappear just afterward, though I think Morpheous gazed
+  upon the battlefield a short while. The Kaaz clan, what was left of it,
+  scattered as well. I have not seen any of them since the battle.
+
+  So that is where we are now, my brethren. Our mission is to rebuild
+  this sorely shattered world and finish erasing the evils brought here
+  by those whose greed nearly shattered everything we hold dear. If you
+  happen to meet one of the Kaaz, do not alarm them, but report their
+  movements to the Guild. I pray for their mental healing.
+
+                          In Yr. Service,
+                          Ausentharn, A Priest of the Northlands~
+#58413
+shield-mother's-love shield-mothers-love glows-pink glowing radiates-love-kindness~
+a Shield of Mother's Love...It glows pink!~
+A shield radiates love and kindness...It glows pink!~
+~
+9 51384320 513 70
+18 0 0 0 0 0 0
+4.00 3000 0 0 0 0 0 0
+E
+shield-mother's-love shield-mothers-love glows-pink glowing radiates-love-kindness~
+This shield is made of bright blue-white steel, but it glows with a faint pink
+aura.  The design on the front is ancient and very familiar, though you can't
+immediately place it for now.  And if you put your ear against its softly
+thrumming surface, you can hear what seems to be a lullaby, in a strong female
+voice touched with gentleness.~
+A
+13 30
+A
+27 2
+X
+225
+#58414
+crown gypsy-crown golden-crown-inlaid-emeralds emerald~
+the Gypsy Crown~
+A golden crown inlaid with emeralds rolls around here.~
+~
+8 0 17 70
+7 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+crown gypsy-crown golden-crown-inlaid-emeralds emerald~
+This crown seems pretty heavy.  It's made of thick gold, and probably
+incredibly expensive.  The gold is shaped into the traditional peaks of crowns.
+A green emerald, marquise-cut, is set into each peak, and several of them in
+various cuts adorn the very front of the crown's tallest peak, which would be
+centered over the wearer's forehead.~
+A
+5 8
+#58415
+enchiridion large-leatherbound-book ench questobject~
+the Enchiridion~
+A large leatherbound book glows golden.~
+~
+3 536870913 16385 70
+90 3 3 38 0 0 0
+1.00 0 0 0 0 0 0 0
+T 5342
+E
+enchiridion large-leatherbound-book ench questobject~
+The glowing pages glow with power, telling a story older than time itself --
+that of gods and mortals, struggles with beasts greater than any the world has
+ever known, true love and blackest hatred, friendship and betrayal..  All
+couched in the language of ancient times to form a manual of behavior for
+magicians in the aftermath of a war the likes of which may never be seen
+again...  Though the majority of the ancient book's thick pages seem torn out
+or damaged, enough of it remains for you to see that it must be very valuable.
+The cover looks like a good place to start learning about this book.~
+E
+cover~
+The cover of the book reads:
+
+                      THE ENCHIRIDION:
+
+                       BEING A MANUAL 
+             FOR THE RECOVERY OF MAGISH VITALITY
+
+You open the book, and see page1.~
+E
+page1~
+Hear the words of one who speaks across time: the Gypsy Seeress
+Mressnerah:
+
+      My dear Hrathis,
+
+      Long ago, my master told these things to me, and now 
+      that I am old, I wish to pass them down to you. When
+      you have come into your full power, you will understand
+      why I demanded certain things of you.
+
+      Long ago, magicians walked this world with impunity. 
+      There was nothing we could not do. I remember those days
+      very well indeed. The Cardinal of Templace himself was
+      amazed at our bravery, for we could face the Riftwar
+      beasts alone, with only our magicks to protect us.
+
+The book continues on page2.~
+E
+page2~
+The second page continues:
+
+      But the wizard-dragon Sagece, that foul beast from the
+      Demon Planes, despised our kind and put her entire energies
+      to work to destroy our control over the human worlds.
+
+      This she did, all too well. I was old even when I felt the
+      shockwave of whatever spell she cast that was to spell our
+      doom. I looked down at my body and saw the rejuvenation I
+      had depended on for beauty disappear, the strength I'd 
+      always felt dissipate like fog before the morning light.
+      From then on, I was helpless physically; only when I had
+      the protection of much stronger folk could I work my most
+      devastating magicks.
+
+      But behold, Hrathis. There is way to reverse this evil
+      enchantment.
+
+The page ends. The next page is page3.~
+E
+page3~
+This page seems very washed out. In fact, it's almost impossible to
+make out any details of what was once printed here. All you can see is
+what appears to be a blueprint of some kind of large machine. The small
+caption near the bottom of the page reads "NAU I S". That is all you
+can tell for sure.~
+A
+24 -5
+A
+27 3
+#58416
+hood-stolen-youth purple-leather~
+the Hood of Stolen Youth~
+A hood made of purple leather glows with an eerie light.~
+~
+9 536870912 17 70
+6 0 0 0 0 0 0
+1.00 1200 0 0 0 0 0 0
+E
+hood-stolen-youth purple-leather~
+The hood is purple leather, soft as silk, ornamented with golden ribbon around
+the edges.  Its lappets hang down the wearer's chest and back, allowing the
+hood to fall back.  An attendant air of disaster seems to hang around this
+hood, but you must admit, it is very flattering.~
+A
+27 3
+#58417
+cloak swan-princess-cloak-feathers cloak-white-feathers-shimmers questobject~
+the Swan Princess' Cloak of Feathers~
+A cloak of white feathers shimmers in the light.~
+~
+9 536870944 1025 70
+5 0 0 0 0 0 0
+2.00 4000 0 1048576 0 0 0 0
+E
+cloak swan-princess-cloak-feathers cloak-white-feathers-shimmers questobject~
+This beautiful cloak is made of some kind of silky white fabric sewn all over
+with the most amazing white feathers.  Each full, white feather has a single
+dark blue dot near its tip, giving the cloak a kind of shimmery nature as it
+turns from white to dappled.  The cloak fits closely about its wearer's body,
+with a white leather clasp holding it closed at the throat and at the waist.~
+A
+18 2
+A
+2 5
+A
+27 2
+#58418
+wings translucent-faerie-wings questobject~
+a pair of translucent faerie wings~
+A pair of translucent faerie wings scintillate.~
+~
+8 536870912 1025 70
+0 0 0 0 0 0 0
+0.01 3000 0 1048576 0 0 0 0
+E
+wings translucent-faerie-wings questobject~
+These wings look so real!  A metallic golden frame supports two somewhat large
+wings made of some kind of silk that stretches to the point of being almost
+transparent.  Some kind of sparkly things are woven into the silk, making the
+wings shimmer as they move.~
+A
+3 2
+A
+24 -10
+A
+27 3
+#58419
+scythe iron-scythe vicious-looking-scythe~
+an iron scythe~
+A vicious-looking scythe stands against a wall.~
+~
+5 33566784 8193 70
+0 5 4 3 0 0 0
+3.00 700 0 32768 0 0 0 0
+E
+scythe iron-scythe vicious-looking-scythe~
+The scythe's blade is about the length of a human's leg, curved inward and
+polished to a shine.  It's mounted onto a wooden shaft about the same length as
+the blade.  Overall, it's a gruesome weapon.~
+X
+993
+#58420
+blade-forgotten-kings long-heavy-sword jewelled-pommel questobject~
+the Blade of the Forgotten Kings~
+A long, heavy sword with a jewelled pommel rests here.~
+~
+5 53489728 8193 80
+0 5 4 3 0 0 0
+2.50 6000 0 0 0 0 0 0
+E
+blade-forgotten-kings long-heavy-sword jewelled-pommel questobject~
+This sword's easily the length of your entire arm, and the blade itself is
+thick and wide, with a blood groove deeply etched into its center.  It's
+clearly incredibly old.  You just can't find this kind of workmanship these
+days.~
+A
+4 2
+A
+19 3
+A
+27 1
+X
+997
+#58421
+stomach part fish cod-stomach cod food~
+the cod's stomach~
+A smelly fish part rots here.~
+~
+19 0 1 1
+6 0 0 1 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+stomach cod fish part~
+How disgusting! This bit of slick leathery fish bulges slightly, from
+whatever its previous owner ate just before they parted ways. It smells
+absolutely foul.~
+#58422
+paper immortality secret quest piece nondescript~
+a piece of paper with the secret of immortality on it~
+A nondescript paper lies here.~
+~
+12 536870913 1 100
+0 0 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+paper immortality secret quest piece nondescript~
+A pity you can't read anything on this paper. It's written
+in the language of the gods. If you could read it, you'd
+know exactly what magicks are required to become immortal.
+Of course, if you could read it, you'd also already be
+immortal.~
+#58423
+lockpick lock-pick pick lock thin piece iron~
+a lockpick~
+A thin piece of iron lies here.~
+~
+18 1224708 16385 70
+0 0 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+lock pick thin piece iron lockpick~
+It's a thin, light piece of oblong iron with a tiny hook at one end.
+Nondescript and easy to carry concealed, it gives nimble fingers
+that much better of a chance of opening locks.~
+A
+18 2
+A
+3 2
+X
+992
+#58424
+stomach part fish cod-stomach cod~
+the cod's stomach~
+A smelly fish part rots here.~
+~
+15 32 16385 1
+11 5 -1 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+stomach cod fish part~
+How disgusting! This bit of slick leathery fish bulges slightly, from
+whatever its previous owner ate just before they parted ways. It smells
+absolutely foul.~
+#58425
+breastpiece scalemail-breastpiece breast-piece breastpiece-scalemail scale-mail~
+a scalemail breastpiece~
+A breastpiece of scalemail glints with hidden power.~
+~
+9 51384320 9 70
+24 0 0 0 0 0 0
+8.00 2500 0 0 0 0 0 0
+E
+breastpiece scalemail-breastpiece breast-piece breastpiece-scalemail scale-mail~
+This mail is made of some sort of steel alloy worked into fish scale-shaped
+pieces that interlace together, providing a light but very strong protection
+against damage.  Each scale is embossed along its edges.~
+X
+1011
+#58426
+little-vial-faerie-elixir cunning clear-liquid questobject~
+a little vial of faerie elixir~
+A cunning little vial of clear liquid floats past.~
+~
+10 1610612736 1 40
+90 61 18 252 0 0 0
+0.20 0 0 0 0 0 0 0
+E
+little-vial-faerie-elixir cunning clear-liquid questobject~
+This little glass bottle looks so delicate you swear you could destroy it with
+a gentle breath of air.  Its stopper is made of some kind of filigree that
+somehow still keeps the liquid in the vial from spilling out.  The liquid
+itself is clear and seems to bubble and sway all by itself inside the bottle.~
+#58427
+soup cauldron bubbling~
+the soup~
+A cauldron bubbles on the hearth.~
+~
+15 0 0 1
+10 5 -1 0 0 0 0
+30.00 0 0 0 0 0 0 0
+E
+soup cauldron bubbling~
+The soup is incredibly bad-smelling. Small humanoid bones float in it,
+along with chopped-up vegetables.~
+#58429
+pendant alicorn-pendant tip-spiral-horn-chain necklace~
+an alicorn pendant~
+You see the tip of a spiral horn on a chain.~
+~
+8 0 5 70
+2 0 0 0 0 0 0
+0.01 1500 0 0 0 0 0 0
+E
+pendant alicorn-pendant tip-spiral-horn-chain necklace~
+This pendant is made of the very tip of a spiral horn.  It's been drilled so a
+primitive chain can support it.  The horn glows with power.~
+A
+18 2
+A
+19 3
+#58430
+tights snug-fitting-purple-tights ball fabric~
+a pair of snug-fitting purple tights~
+A pair of tights has been rolled into a ball and discarded.~
+~
+9 536870912 33 70
+9 0 0 0 0 0 0
+0.50 750 0 0 0 0 0 0
+E
+tights snug-fitting-purple-tights ball fabric~
+These tights look like they'd be a perfect fit!  A tie-waist secures them at
+the waist, and the thick woolen material goes from there all the way down to
+your feet.  They look quite old, and seem to glow with some kind of magical
+power.  Perhaps they're enchanted!~
+A
+13 10
+#58431
+flowers plaited-flowers flower belt~
+some plaited flowers~
+Some plaited flowers form a sort of belt.~
+~
+9 536870912 2049 70
+8 0 0 0 0 0 0
+0.75 1000 0 0 0 0 0 0
+E
+flowers plaited-flowers flower belt~
+You see a loose belt made of braided wildflowers.  The daisies and honeysuckles
+were connected by threading each flower through its neighbor somehow.  They
+must be enchanted, for you cannot separate any of the flowers from the belt.~
+A
+6 3
+A
+27 3
+#58432
+girth storm-giant's-girth storm-giants-girth blue-steel-girth lightning~
+the Storm Giant's Girth~
+A blue steel girth flashes with its own lightning.~
+~
+9 51384384 2049 70
+13 0 0 0 0 0 0
+3.00 2500 0 0 0 0 0 0
+E
+girth storm-giant's-girth storm-giants-girth blue-steel-girth lightning~
+You can see that this girth must be not only magical, but intrinsically strong,
+for though it is very old, there are no dents, dings, or scratches in its
+shockingly blue surface.  It reflects a fierce strike of lightning as you look
+at it.  But no lightning flashed right then in the sky....~
+X
+1011
+#58433
+bracers warder's-bracers warders-bracers large-bracers~
+the Warder's Bracers~
+A large pair of bracers lies here.~
+~
+9 56119304 257 60
+10 0 0 0 0 0 0
+1.50 3500 0 0 0 0 0 0
+E
+bracers warder's-bracers warders-bracers large-bracers~
+You can tell that only royalty could have afforded to make these.  Made of some
+dark-green metal alloy, these bracers, made to fit and buckle around a very
+large arm, are worked in a cunning scrolling design.  They're obviously very
+old, as well; the metal feels worn in places, as though decades of contact with
+the same arms have altered their shape slightly.~
+A
+19 2
+X
+1049587
+#58434
+fetter slave-fetter steel~
+a slave fetter~
+A fetter's been discarded by a freed slave.~
+~
+9 53489664 4097 70
+4 0 0 0 0 0 0
+1.00 200 0 0 0 0 0 0
+E
+fetter slave-fetter steel~
+This very old shackle's made of steel.  There are numerous little dents in its
+surface, but it still seems supernaturally strong.  It fastens with a steel
+clip.~
+A
+19 2
+X
+994
+#58435
+official document legal papers~
+the papers~
+Some official looking legal documents are blowing in the wind.~
+~
+12 536870916 1 1
+0 0 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+official document legal papers~
+These papers seem to be a deed of some sort.  As you read on you notice a large
+sum of money was paid to a merchant for the purchase of a young blond haired
+maiden.  This paper entitles the bearer of this deed, ownership to the
+aforementioned maiden.    ~
+#58436
+shard dreamshard dagger dream-shard radiant-shard-crystallized-dreams~
+the Dreamshard~
+A radiant shard of crystallized dreams coalesces from the ether.~
+~
+5 1610613824 8193 70
+0 5 5 11 0 0 0
+2.00 0 0 0 0 0 4194304 0
+E
+shard dreamshard dagger dream-shard radiant-shard-crystallized-dreams~
+Legends tell of times when the veil between the worlds grows thin and small
+slivers of what exists beyond the penumbra slip into the mortal realm.  In the
+most miraculous of instances, these slivers crystallize and form objects known
+as "Dreamshards."  
+ 
+As a manifestation of the collective unconscious, this dagger is a testament to
+the power of wonder and hope.  It scintillates with the inner light of the 
+stuff of dreams themselves.~
+A
+2 3
+A
+18 3
+A
+13 20
+#58492
+key chicken-bone-key chicken bone~
+a chicken bone key~
+A key made of chicken bones lies here.~
+~
+18 4 16385 35
+0 0 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+chicken bone key~
+Ewww! How disgusting! It's made of the ribs of a dead chicken. The bones 
+are rotted and dry from age, and feel vaguely greasy. The smell is just 
+amazing.~
+$~

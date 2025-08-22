@@ -1,0 +1,77 @@
+21 1 4
+actor_level 37
+price 15716
+skill_level 150
+skill_name track
+66 255 0
+63 1 1
+step totem
+47 1 1
+gem_vnum 0
+65 1 2
+scorpion 1
+lever 1
+48 255 4
+fire_ring 1
+sash 0
+charles 1
+lashes 0
+62 4 5
+trophytask2 0
+trophytask3 0
+trophytask4 0
+trophytask1 1
+attack_counter 0
+61 5 2
+target1 0
+hunt 0
+72 5 2
+target1 0
+bounty 0
+64 255 1
+got_cherry 0
+59 5 2
+target1 0
+hunt 0
+70 5 2
+treasure1 0
+hunt 0
+32775 255 1
+subclass_name mercenary
+17 1 22
+5516_reward 1
+5522_reward 1
+5534_reward 1
+5518_reward 1
+5550_reward 1
+5532_reward 1
+5546_reward 1
+5548_reward 1
+5528_reward 1
+5558_reward 1
+5536_reward 1
+5515_trophies 4
+5513_trophies 4
+5524_reward 2
+5511_trophies 9
+5509_trophies 28
+5505_trophies 27
+5503_trophies 43
+5507_trophies 37
+eg_ally 1
+eg_faction 200
+bl_faction 0
+7 2 13
+55603_gems_acquired 3
+55333_armor_acquired 1
+55345_armor_acquired 1
+55329_armor_acquired 1
+55584_gems_acquired 3
+55580_gems_acquired 3
+55576_gems_acquired 3
+55313_armor_acquired 1
+55572_gems_acquired 3
+55317_armor_acquired 1
+55301_armor_acquired 1
+55305_armor_acquired 1
+55309_armor_acquired 1

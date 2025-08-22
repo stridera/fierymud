@@ -1,0 +1,147 @@
+name: Athualpal
+password: At3PNdIMIa
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 20
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19184
+birthtime: 1498068518
+timeplayed: 139349
+lastlogintime: 1676860136
+host: 073.187.036.249
+height: 69
+weight: 120
+base_height: 69
+base_weight: 120
+base_size: 2
+natural_size: 2
+alignment: 824
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 153/153
+mana: 36/40
+move: 123/124
+damroll: 3
+hitroll: 3
+strength: 70
+intelligence: 76
+wisdom: 97
+dexterity: 78
+constitution: 84
+charisma: 58
+cash: 10 316 1921 1341
+bank: 50 0 0 0
+experience: 1537000
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+33 1000
+34 1000
+42 1000
+43 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+206 1000
+207 1000
+415 59
+416 50
+421 50
+423 240
+424 240
+438 160
+443 50
+444 50
+451 136
+457 240
+458 110
+459 102
+460 51
+462 50
+463 240
+466 50
+0 0
+trophy:
+1 18517 0.250000
+1 18501 0.250000
+1 18518 0.250000
+1 18511 0.750000
+1 18502 0.250000
+1 18507 1.750000
+1 61512 0.666667
+1 61526 0.666667
+1 61502 0.333333
+1 61528 1.333333
+1 61501 0.333333
+1 61500 0.666667
+1 61503 0.333333
+1 61525 1.000000
+1 17204 2.666667
+1 17202 0.333333
+1 3506 0.333333
+1 3500 0.666667
+1 3509 0.666667
+1 3508 1.000000
+1 8020 0.333333
+0 0 0
+tells:
+1673231580 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1673231580 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1673231580 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1673231580 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1673231580 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1673531986 Chinok gossips, 'a deer tail'
+1673531999 Chinok gossips, 'wind chimes'
+1673532017 Chinok gossips, 'leprechaun's ear,'
+1673532028 Chinok gossips, 'and a lot more stuff when you get higher levels'
+1673533605 Athmaur gossips, 'work calls ><'
+1674195612 Discord gossips, 'Daedela: Congrats!'
+1674195628 Stienmaur gossips, 'ty'
+1674195633 Discord gossips, 'Daedela: Congrats again!'
+1676859707 Chinok gossips, 'gratz on 15 and 20!'
+1676859763 Stienmaur gossips, 'ty'
+$
+mem:
+16 1 2
+1 1 2
+16 1 1
+16 1 1
+16 1 2
+88 1 4
+88 1 4
+88 1 3
+3 1 4
+1 1 1
+88 1 3
+1 1 1
+15 1 8
+15 1 8
+15 1 8
+3 1 4
+0 0 0

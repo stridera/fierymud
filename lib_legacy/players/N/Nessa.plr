@@ -1,0 +1,184 @@
+name: Nessa
+password: NemXRFYRAb
+currenttitle: Thropp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 15
+race: 2
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19976
+birthtime: 1627637975
+timeplayed: 935301
+lastlogintime: 1737962674
+host: 052.119.120.201
+height: 66
+weight: 105
+base_height: 66
+base_weight: 105
+base_size: 2
+natural_size: 2
+alignment: 973
+playerflags: gxyz
+effectflags: ck 0 0
+prefflags: hnoxCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 773/773
+mana: 980/980
+move: 271/271
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 96
+wisdom: 98
+dexterity: 78
+constitution: 92
+charisma: 72
+cash: 1089 1083 7421 83
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+28 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+47 1000
+48 1000
+51 1000
+53 1000
+54 1000
+70 1000
+74 1000
+81 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+97 1000
+99 1000
+115 1000
+116 1000
+117 1000
+118 1000
+119 1000
+120 1000
+122 1000
+123 1000
+124 1000
+126 1000
+127 1000
+128 1000
+129 1000
+130 1000
+142 1000
+206 1000
+207 1000
+208 1000
+209 1000
+210 1000
+241 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+451 1000
+452 1000
+455 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+463 1000
+466 1000
+0 0
+trophy:
+1 4009 0.400000
+1 4010 0.200000
+1 53415 0.200000
+1 53417 0.200000
+1 53408 0.200000
+1 43003 1.200000
+1 43017 0.400000
+1 43016 0.200000
+1 43002 1.200000
+1 43010 0.200000
+1 43009 0.200000
+1 43011 0.200000
+1 43007 0.200000
+1 43008 0.200000
+1 43006 0.200000
+1 43019 0.200000
+1 8509 0.600000
+1 12524 0.200000
+1 12523 0.200000
+1 12518 0.200000
+1 12514 0.200000
+0 0 0
+tells:
+1682247232 @WShazz@W tells you, 'Take good care of that.@W'@0
+1682284386 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1682311265 @WShazz@W tells you, 'Take good care of that.@W'@0
+1682327222 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1682663167 @WShazz@W tells you, 'Take good care of that.@W'@0
+1707360334 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1707360787 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1707361036 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1707374642 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1707375070 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1682288289 Discord gossips, 'Zaver: I needed Medusa and didnt want to lose that key Incase someone else was going in but I forgot who I was talking to'
+1682311168 Chinok gossips, 'night all'
+1682311212 Fiyero gossips, 'night!'
+1682576113 The Lord of the Realm shouts, 'It has been long since I have taken this form! Beware--this time I will be the victorious one!'
+1706870014 Galinda gossips, 'Congrats!'
+1706870018 Karoth gossips, 'thanks :)'
+1707359418 Elphaba gossips, 'oh hiii'
+1707361449 An Ogakh veteran shouts, 'I'll kill every last one of you!'
+1707361453 A gnoll spiritbreaker shouts, 'Kill the slave!'
+1707361457 An Ogakh veteran shouts, 'You'll never take me alive!'
+$
+effects:
+210 0 588 13 0 0 0
+0 0 0 0 0
+aliases:
+gat get all 2.corpse
+gac get all corpse
+ga get all
+0

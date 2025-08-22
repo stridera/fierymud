@@ -1,0 +1,107 @@
+#2801
+hat blue-captain's-hat blue-captains-hat~
+a blue captain's hat~
+A blue captains hat has been left here.~
+~
+9 64 17 25
+4 0 0 0 0 0 0
+1.00 180 0 0 0 0 0 0
+E
+hat blue-captain's-hat blue-captains-hat~
+The hat is obviously of the highest quality, if a bit weather-beaten.  The
+light blue colour of the hat and the silver embroidery make it an attractive,
+if eccentric, addition to anybody's wardrobe.~
+A
+1 1
+A
+2 -1
+#2802
+boots heavy-leather-boots~
+a pair of heavy leather boots~
+A pair of heavy leather boots are lying here.~
+~
+9 50335808 65 40
+6 0 0 0 0 0 0
+2.80 220 0 0 0 0 0 0
+A
+1 2
+A
+14 -50
+X
+224
+#2803
+sash pirate golden cloth golden-pirate-sash~
+a golden pirate sash~
+A piece of golden cloth lies crumped on the ground here.~
+~
+9 536870976 2049 40
+5 0 0 0 0 0 0
+1.00 450 0 0 0 0 0 0
+A
+14 25
+#2804
+outfit dashing-pirate-outfit spiffy-pirate-outfit~
+a dashing pirate outfit~
+A spiffy pirate outfit is here. Grab it quick!~
+~
+9 64 9 40
+8 0 0 0 0 0 0
+2.50 800 0 0 0 0 0 0
+A
+9 -2
+A
+14 10
+#2805
+rapier thin-rapier~
+a thin rapier~
+A thin rapier is lying on the ground.~
+~
+5 53489728 8193 35
+0 3 5 3 0 0 0
+1.30 150 0 0 0 0 0 0
+A
+6 2
+X
+997
+#2806
+scimitar iron-scimitar~
+an iron scimitar~
+An iron scimitar lies here, waiting to be claimed.~
+~
+5 53490240 8193 45
+0 3 5 3 0 0 0
+2.10 150 0 0 0 0 0 0
+A
+18 -1
+A
+19 1
+X
+997
+#2807
+thigh-bone white dragon long questobject~
+a white dragon's thigh bone~
+A long pure white bone chills the ground here.~
+~
+8 0 1 0
+0 0 0 0 0 0 0
+5.00 0 0 0 0 0 0 0
+E
+thigh-bone white dragon long questobject~
+This large white bone is as cold as ice or snow to the touch, yet shows no
+signs of freezing.  From the shape, you guess this is a femur.  From the size
+you assume it once belonged in a very large creature.~
+#2808
+cup dragon-bone-cup freezing cold questobject~
+a dragon bone cup~
+A freezing cold bone cup frosts the ground around it.~
+~
+8 0 16385 0
+0 0 0 0 0 0 0
+0.05 0 0 0 0 0 0 0
+E
+dragon-bone-cup freezing cold~
+Made from a single large bone, this cup has powerful magical properties which
+make it ideal for storing and transporting liquids.  There are no markings or
+signs of craftsmanship anywhere on the vessel.  Aside from being cold to the
+touch, it is otherwise unremarkable.~
+$~

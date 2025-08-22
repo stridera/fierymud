@@ -1,0 +1,135 @@
+name: Hulo
+password: HuyioskNOf
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 4
+race: 0
+level: 17
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20901
+birthtime: 1736283252
+timeplayed: 128246
+lastlogintime: 1737852668
+host: 067.167.192.166
+height: 70
+weight: 115
+base_height: 70
+base_weight: 115
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: cm 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 249/232
+mana: 28/28
+move: 35/195
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 61
+wisdom: 85
+dexterity: 74
+constitution: 95
+charisma: 52
+cash: 31 444 1557 1481
+bank: 220 0 0 0
+experience: 1275830
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+402 50
+404 220
+407 220
+415 52
+416 220
+417 50
+421 197
+423 55
+424 198
+430 50
+434 220
+438 50
+443 50
+444 50
+450 50
+451 211
+457 106
+458 89
+459 96
+460 50
+463 66
+464 50
+465 192
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 12007 0.250000
+1 12003 1.000000
+1 12015 0.250000
+1 12016 0.250000
+1 16111 0.250000
+1 16105 0.250000
+1 16110 2.500000
+1 16103 0.333333
+1 16107 0.500000
+1 20314 0.250000
+1 20300 0.250000
+1 20301 0.250000
+1 20306 0.750000
+1 20302 0.500000
+1 20305 0.250000
+1 16106 0.500000
+1 5213 0.583333
+1 5204 0.250000
+1 5203 0.250000
+1 5212 0.250000
+1 5202 1.000000
+0 0 0
+tells:
+1736474169 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1736478787 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1736482813 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1736808503 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1736809111 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1736815402 @WBigby@W tells you, 'You can only hold 4.@W'@0
+1736815402 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1736815437 @WLisa@W tells you, 'Hrm, it doesn't look too worn, I suppose.@W'@0
+1736815445 @WLisa@W tells you, 'Hrm, it doesn't look too worn, I suppose.@W'@0
+1737053556 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1737506254 Chinok gossips, 'no blizard here, too dang cold, currently 8 deg'
+1737506759 Chinok gossips, 'low of -4 tonight'
+1737506798 Yote gossips, 'currently -2 here, but it FEELS like -15'
+1737506834 Discord gossips, 'venath.2005: Texas is bipolar AF. Had 70 degrees a few days ago. Now it's 22 in the mornings.'
+1737507113 Chinok gossips, 'we hit 49 Friday'
+1737507482 Discord gossips, 'Daedela: It's 59 here'
+1737509657 Yote gossips, 'was the path between the beach and the tunnels removed?'
+1737509670 Yote gossips, 'beach and misty caverns rather'
+1737510500 Discord gossips, 'Thort: Yote: no that's still connected.'
+1737850606 An old man shouts, 'Woo Hoo!'
+$
+aliases:
+cayt c armor yote
+cbyt c bless yote
+ca c armor
+cb c bless
+gac get all all.corpse
+exa exam corpse
+who who -w
+0

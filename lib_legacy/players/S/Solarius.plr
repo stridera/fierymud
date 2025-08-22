@@ -1,0 +1,103 @@
+name: Solarius
+password: SoJCjvl/rM
+prompt: &2&b<&0&1%hh&0(&1&b%HH&0)&6%vv&0(&6&b%VV&0)&2&b><&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> <%l>%
+autoinvis: 0
+sex: 1
+class: 0
+race: 0
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19372
+birthtime: 1531840891
+timeplayed: 313663
+lastlogintime: 1634658861
+host: 108.039.112.080
+height: 70
+weight: 123
+base_height: 70
+base_weight: 123
+base_size: 2
+natural_size: 2
+alignment: 326
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3500
+lastlevel: 0
+hitpoints: 48/48
+mana: 1/0
+move: 102/108
+damroll: 3
+hitroll: 3
+strength: 78
+intelligence: 92
+wisdom: 86
+dexterity: 68
+constitution: 75
+charisma: 64
+experience: 175869
+quit_reason: 7
+saveroom: 3500
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 130
+424 130
+438 108
+443 55
+444 120
+447 74
+451 109
+452 125
+453 50
+459 50
+460 55
+462 50
+464 129
+0 0
+tells:
+1595527676 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1595528768 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1595528790 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1595530057 @WAaron@W tells you, 'Hmm, you appear to be a little short of cash for this item.@W'@0
+1595944954 @WMolis@W tells you, 'hi. I just reached level 2 and I'm wondering if I need to do anything?@W'@0
+1632149931 @WHelena@W tells you, 'I would love to give you this for free but I have rent to pay.@W'@0
+1632149952 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1632238967 @WHelena@W tells you, 'I would love to give you this for free but I have rent to pay.@W'@0
+1634396184 @WA bespectacled dwarf@W tells you, 'You can only afford 4.@W'@0
+1634396188 @WA bespectacled dwarf@W tells you, 'You are too poor!@W'@0
+$
+gossips:
+1634437147 Chinok gossips, 'CONGRATZ!!!'
+1634437152 Chinok gossips, 'you little thief!'
+1634437160 Arakius gossips, 'thanks'
+1634439340 Chinok gossips, 'gratz Solarius'
+1634655792 Chinok gossips, 'welcome back'
+1634655799 Quillion gossips, 'thank you'
+1634657183 Chinok gossips, 'well good news is, you found the highlands'
+1634657806 Quillion gossips, 'i dropped all my stuff and eq before hand wand was willing to take the xp hit to be sure :P'
+1634657822 Quillion gossips, 'i prolly could have fleed and lived, but work had me distracted'
+1634657835 Chinok gossips, 'lol'
+$
+mem:
+32 0 6
+32 0 6
+32 0 6
+32 0 6
+32 0 6
+100 0 6
+0 0 0
+aliases:
+mm cast 'magic missile'
+fud c minor ration
+aq assist quillion
+0

@@ -1,0 +1,109 @@
+name: Vito
+password: ViySJglcrE
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20108
+birthtime: 1642173379
+timeplayed: 16388
+lastlogintime: 1643246157
+host: 024.066.021.152
+height: 68
+weight: 163
+base_height: 68
+base_weight: 163
+base_size: 2
+natural_size: 2
+alignment: 39
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: bghnoxC ace
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8004
+lastlevel: 0
+hitpoints: 108/101
+mana: 1/0
+move: 107/138
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 68
+wisdom: 76
+dexterity: 84
+constitution: 96
+charisma: 56
+cash: 0 17 139 48
+experience: 154390
+pagelength: 50
+quit_reason: 7
+saveroom: 8004
+skills:
+402 120
+404 120
+415 50
+416 50
+421 106
+438 80
+443 50
+444 50
+463 50
+464 52
+465 80
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8605 8.000000
+1 8606 3.000000
+1 8604 8.000000
+1 7002 1.000000
+1 7051 2.000000
+1 6909 1.000000
+1 6910 2.000000
+1 16900 3.000000
+1 16908 1.000000
+1 16905 1.000000
+1 16902 2.000000
+1 8002 1.000000
+1 8010 1.000000
+1 8021 1.000000
+1 8013 3.000000
+1 8012 2.000000
+1 8020 1.000000
+1 8014 1.000000
+1 8001 1.000000
+1 8000 5.000000
+1 8015 7.000000
+0 0 0
+tells:
+1643243697 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1643243697 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1643243705 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1643243709 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1643243720 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1643243730 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1643243743 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1643243745 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1643244083 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1643244124 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+$
+gossips:
+1643240001 Chinok gossips, 'it's commerce ave, (I believe)'
+1643240004 Chinok gossips, 'to the north'
+1643241702 Chinok gossips, 'gratz vito!'
+1643243733 Chinok gossips, 'gratz on 7 Vito... '
+1643243739 Chinok gossips, 'afk 20 mins, gotta run to town :('
+1643244568 Roric gossips, ''help area' has been a fine guide for me so far.'
+1643244681 Rokari gossips, 'I like to rotate bug fields west of town, light forest east of down, kaaz and the dairy'
+1643244702 Roric gossips, 'rotation is the aim of the game as i read somewhere.'
+1643244734 Rokari gossips, 'type trophy and anything in red you are getting less experience for because you have not killed a wide enough variety of mobs'
+1643244734 Roric gossips, 'help experience, "if you keep killing the same monster over and over the exp will decrease, see trophy."'
+$

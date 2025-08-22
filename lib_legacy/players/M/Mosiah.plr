@@ -1,0 +1,206 @@
+name: Mosiah
+password: MoxBosgj6f
+currenttitle: &9&bRestorer of the Fallen &3&b>>GoT<<&0
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b><%df>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 99
+home: 1401
+lifeforce: 0
+composition: 0
+id: 18737
+birthtime: 1409309189
+timeplayed: 1155840
+lastlogintime: 1739080414
+host: 208.093.179.007
+height: 44
+weight: 189
+base_height: 44
+base_weight: 189
+base_size: 2
+natural_size: 2
+alignment: 697
+playerflags: gxyz
+effectflags: k w q
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 640/783
+mana: 980/980
+move: 147/152
+damroll: 4
+hitroll: 5
+strength: 88
+intelligence: 88
+wisdom: 83
+dexterity: 83
+constitution: 98
+charisma: 55
+cash: 6536 8881 16069 6
+experience: 105805999
+pagelength: 44
+clan: 3
+quit_reason: 1
+saveroom: 3054
+spellcasts:
+6 49
+3 65
+0 0
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+27 1000
+28 1000
+33 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+47 1000
+48 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+74 1000
+81 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+95 1000
+96 1000
+97 1000
+99 1000
+131 1000
+206 1000
+207 1000
+208 1000
+209 1000
+210 1000
+235 1000
+241 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+451 1000
+452 1000
+453 1000
+455 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+463 1000
+466 1000
+0 0
+trophy:
+1 23806 1.000000
+1 11701 1.000000
+1 18504 1.000000
+1 11797 0.250000
+1 11799 0.500000
+1 2305 1.000000
+1 2309 2.000000
+1 48922 0.200000
+1 53305 1.000000
+1 53314 1.000000
+1 53315 3.000000
+1 53306 2.000000
+0 0 0
+tells:
+1615318532 @WGidion@W tells you, 'summon@W'@0
+1615699460 @WEmawk@W tells you, 'summon@W'@0
+1618457566 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1618457567 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1618457568 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1618457768 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1620575664 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1737813889 @WDavar@W tells you, 'one gem please@W'@0
+1737961288 @WDavar@W tells you, 'one gem please@W'@0
+1737962653 @WDavar@W tells you, 'Mawk requested i send a well Incoming@W'@0
+$
+gossips:
+1619125520 Meina gossips, 'this is so incredibly bad that it is timing out even trying to talk to a db on the same intranet.'
+1619125523 Meina gossips, ':|'
+1619125539 Chinok gossips, 'might be the db is having issues'
+1619125577 Chinok gossips, 'or it's all been hacked'
+1619126056 Meina gossips, 'we shall see. i got it to be up long enough to grab a file i needed.'
+1737720217 Chinok gossips, 'hey AWK guys, remember there's a 5 player limit ? :)'
+1737720235 Gidion gossips, 'sorry wasn't counting playing dressup'
+1738774403 Davar gossips, 'most of my clerics hit around the same (granted i build them that way)'
+1738774483 Thort gossips, 'I'm sure I could build popy to hit harder. But I just don't use him as a damage dealer.'
+1738793817 Risa gossips, 'ohya thx :D'
+$
+aliases:
+ray c 'flamestrike' $*
+curec c 'cure c' $*
+cures c 'cure s'
+x g all.coins
+pain c 'g v' $*
+cvb c 'cure critic' $*
+id recite identify $*
+gax g all.coins all.corpse
+gh c 'grou heal'
+summon c 'summon' $*
+bless c 'bless' $*
+dis c 'dis mag' $*
+vit c 'd h' $*
+t c 'word of r'
+r rest
+res c 'res' $*
+clericdisarming is the name of the tiggerset for clerics
+sil c 'sil' $*
+druid tell druid(name) taksi please'
+armor c 'armor' $*
+clangate 'aderci
+undead c 'de und' $*
+evil c 'dis evil' $*
+blind c 'blind' $*
+fh c 'full heal' $*
+word c 'word of rec'
+gag g all.gem all.corpse
+heal c 'heal' $*
+unh c 'unholy'
+vig c 'vig c' $*
+hol c 'holy'
+gac g all all.corpse
+curel c 'cure l' $*
+harm c 'f harm' $*
+clantitle Restorer of the Fallen light black text
+y ass smrt
+dh c 'dragons h' $*
+0

@@ -1,0 +1,726 @@
+#13601
+gremlin large~
+a large gremlin~
+A large gremlin skulks around.~
+This gremlin is very ugly and not making a sound,he is very strong looking and
+very sneaky.    ~
+67108938 262144 -600 E
+6 0 10 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 10 13 0 2
+Str: 95
+Dex: 87
+Int: 80
+Wis: 52
+Con: 30
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 13601
+#13602
+gremlin fierce looking little~
+a fierce-looking little gremlin~
+A fierce little gremlin wanders the hillside.~
+He's not very large, perhaps hip-high to the average human, with 
+mottled green skin and a thatch of brownish hair on his head. He
+has abnormally large and malevolent eyes, and large, pointed ears
+that stick out, catlike, at odd angles to his head. He lumbers around
+with an odd, creeping gait, snarling and growling.~
+74 0 -500 E
+4 0 9 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 3 13 0 2
+Str: 96
+Dex: 81
+Int: 71
+Wis: 70
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 13602
+#13603
+gremlin captain~
+a gremlin captain~
+A tall, fierce gremlin captain stands here.~
+He's tall, almost as tall as a human woman, with mottled brown-and
+green skin and an almost scaly appearance. His large, pointed ears
+are tufted at the ends, and these, with his large, malevolent eyes,
+give him the appearance of a very angry housecat. Hunched over
+slightly, he looks alert and ready.~
+67108938 0 -600 E
+12 2 8 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 3 17 0 2
+Str: 90
+Dex: 80
+Int: 76
+Wis: 75
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55694
+#13604
+hare brown~
+a brown hare~
+A brown hare lopes along, feeding.~
+This rabbit-like creature is wilder and rangier than a
+normal rabbit, with long ears and an inquisitive demeanor.
+It looks very well fed, but scars on its ears and body
+indicate that it's seen some fighting.~
+72 0 0 E
+4 2 10 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 86
+Dex: 84
+Int: 64
+Wis: 72
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13605
+fawn deer~
+a fawn~
+A scrawny fawn wanders the hills, looking for his mother.~
+This young fawn is quite scrawny and weak, his spotted coat of fur
+marred with scratches. He has the very beginnings of antlers growing
+out of his head, but is still very small and young. He walks with an
+easy grace, stumbling only occasionally in his search.~
+72 0 0 E
+3 6 10 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 24 14 0 1
+BareHandAttack: 9
+Str: 90
+Dex: 70
+Int: 78
+Wis: 68
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13606
+deer graceful~
+a graceful deer~
+A graceful deer grazes here.~
+This full-grown deer has a coat of rich, brownish-red hair and 
+large, soft, soulful brown eyes. Her long, graceful legs end in
+cloven hooves, carrying her elegantly and easily wherever she
+wishes to go. She has no antlers, being female.~
+72 0 0 E
+5 5 9 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 2 24 14 0 2
+BareHandAttack: 9
+Str: 95
+Dex: 79
+Int: 64
+Wis: 73
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13607
+fox red~
+a red fox~
+A devious fox wanders through the area, hunting.~
+This adult fox has a rich, glorious coat of reddish-brown fur, darkening to
+brown at the feet.  His ears and nose are also dark, forming a sort of mask
+across his face, while the tip of his tail is a tantalizing, pure white.  He is
+quite agile.~
+72 0 0 E
+4 6 9 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 0 24 14 0 2
+BareHandAttack: 4
+Str: 92
+Dex: 87
+Int: 72
+Wis: 74
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13608
+dog bulldog~
+a bulldog~
+A tenacious-looking bulldog scavenges for food.~
+This medium-sized dog has a coat of beige-colored fur, very short and
+coarse. He looks very overweighted in the front, with massive front
+shoulders and a broad chest. His head is very large for his body size,
+and dominated by nature's most effective jaws. He doesn't appear
+aggressive, keeping his distance if allowed to.~
+270540872 0 0 E
+6 5 8 0d0+0 0d0+2
+0 0 0 0 0 136
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 80
+Dex: 82
+Int: 71
+Wis: 74
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13609
+laurinda druidess druid morgan~
+a young druidess~
+A young, pretty druidess watches the gate.~
+She is young, with smooth, tanned skin and radiantly healthy
+auburn hair. Tall for a woman, she looks patient and wise, but
+still young enough to act like a girl.~
+74 0 0 E
+13 4 6 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 2 7 9 0 2
+Str: 76
+Dex: 72
+Int: 80
+Wis: 86
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13610
+gremlin sentinel~
+a gremlin sentinel~
+A gremlin crouches nearby, standing guard.~
+This smallish humanoid has mottled green and brown skin and a
+scowling face that looks almost human. His long, pointed ears
+stick out from his head at haphazard angles, and his thatch of
+mud-colored hair defies all attempts at grooming. He's filthy,
+smells bad, and doesn't look to be in a good mood.~
+74 0 -300 E
+10 0 7 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 3 17 0 2
+Str: 93
+Dex: 84
+Int: 64
+Wis: 66
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13611
+warrior gremlin old~
+an old gremlin warrior~
+An old gremlin warrior stands here, ready for battle.~
+Although he appears to be quite old, he has large muscles and hard-set eyes
+that are unwavering. He is a typical gremlin, with mottled green-and-
+brown skin and pointed cat's-ears, but his thatch of hair is neatly
+braided down his back, and his muscles look impressive, for one who
+is not even hip-tall on a human.~
+74 0 -500 E
+11 5 7 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 0 3 13 0 2
+Str: 82
+Dex: 88
+Int: 78
+Wis: 68
+Con: 30
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13612
+skeleton armor clad~
+an armor-clad skeleton~
+An armor-clad skeleton stands here, as if on display.~
+This large skeleton looks human, and has been bare of flesh for
+many years. The bones are now yellowed and cracking. Oddly, the
+bones are still clad in the tatters and shreds of armor and clothes,
+with even a tabard present, though now in ruins and unable to be
+made out clearly.~
+67108938 0 -700 E
+13 2 5 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 14 0 0 2
+Str: 93
+Dex: 81
+Int: 65
+Wis: 75
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 10
+Stance: 6
+E
+T 55694
+#13613
+brown beaver~
+a brown beaver~
+A large brown beaver is here, swimming through the water.~
+This four-legged mammal is covered in thick, dense, oily brown fur,
+and has a flat, dark grey tail. When in the water, he is both
+graceful and pleasant to watch.~
+2097226 0 0 E
+5 7 9 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 24 14 0 1
+BareHandAttack: 4
+Str: 85
+Dex: 86
+Int: 77
+Wis: 72
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13614
+glowing-poltergeist balinn~
+a glowing poltergeist~
+An ancient poltergeist flings malign energies around.~
+It's difficult to make out details about this misty grey shade. The
+energies it flings are both bright and dark, shades of white and blue,
+radiating out from it.~
+67166302 0 -750 E
+14 2 10 0d0+0 0d0+0
+0 0 0 0 0 136
+4 4 1 11 17 0 2
+BareHandAttack: 12
+Str: 86
+Dex: 72
+Int: 86
+Wis: 80
+Con: 30
+Cha: 58
+AFF2: 1
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+T 55694
+#13615
+rat black-rat black~
+a black-furred rat~
+A mangy, black-furred rat skitters past.~
+It's very large, for a rat, with beady black eyes and mangy,
+ragged black fur. Its long, hairless tail twitches and lashes,
+and it shows its long, yellowed teeth frequently as it chitters
+and squeaks.~
+8 0 0 E
+4 0 10 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 96
+Dex: 79
+Int: 65
+Wis: 70
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13616
+bird bright-bird~
+a bright bird~
+A bright bird with long wings flies here.~
+This bird is very big and its wings are very long and full of colorful
+feathers.  It seems to be looking for food.~
+8 1048576 0 E
+5 0 10 0d0+0 0d0+0
+0 0 0 0 0 136
+4 4 0 24 14 0 1
+BareHandAttack: 9
+Str: 68
+Dex: 98
+Int: 80
+Wis: 69
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13617
+shade wandering-shade ghost~
+a mournful shade~
+A shade wanders the halls, moaning.~
+This ethereal being shows to the mortal eye as greyish mist with
+ragged edges, almost like a fluttering cloak. Where a man would have
+eyes, it has only two glowing spots, and it moans without a mouth
+or throat.~
+76 0 -700 E
+12 4 10 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 0 3 17 0 2
+BareHandAttack: 12
+Str: 81
+Dex: 84
+Int: 86
+Wis: 67
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+#13618
+bullfrog frog~
+a bullfrog~
+A bullfrog sits here, croaking.~
+This frog is large even by bullfrog standards. If left alone, he 
+doesn't appear to care about what's going on around him, content to
+sit and croak. His skin is dark green, except for his throat, which
+is creamy white. He has occasional warts on his skin. When he croaks,
+his throat bulges out dramatically.~
+72 0 0 E
+3 0 10 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 24 14 0 1
+BareHandAttack: 8
+Str: 80
+Dex: 91
+Int: 71
+Wis: 73
+Con: 30
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13619
+hunter treasure dwarven treasure-hunter dwarf~
+a dwarven treasure-hunter~
+A dwarven treasure-hunter pokes around here.~
+This scruffy little dwarf is stout and strong, burly and muscular.
+He's seen hard times, as evidenced by the scars on his body and his
+general unkempt appearance. Even his beard is ratty. His eyes gleam
+with acquisitive eagerness.~
+72 0 -300 E
+12 0 10 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 24 3 0 2
+Str: 88
+Dex: 86
+Int: 72
+Wis: 74
+Con: 30
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13620
+dwarf dwarven treasure hunter treasure-hunter old~
+an old dwarven treasure-hunter~
+An old dwarven treasure-hunter hobbles around here.~
+This short, scruffy dwarf has seen many better days. His messy,
+unkempt beard is ragged and badly in need of brushing and trimming,
+and his skin is dirty and covered in scratches and scars. He is short,
+like all dwarves, but still retains some of his youthful muscles.~
+72 0 -500 E
+6 0 10 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 3 3 0 2
+Str: 82
+Dex: 80
+Int: 68
+Wis: 79
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13621
+dwarf adventurer dwarven dwarven-adventurer~
+a dwarven adventurer~
+A dwarven adventurer surveys his surroundings.~
+This dwarf is short, like all his kind, but powerfully built, especially
+in his upper body. He has a neatly trimmed beard and braided hair, and
+his bright, dark eyes look inquisitive and keen.~
+78 0 -300 E
+8 4 10 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 3 3 0 2
+Str: 80
+Dex: 85
+Int: 77
+Wis: 78
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13622
+servant zombie zombie-servant~
+a zombie servant~
+A zombie servant finishes its tasks.~
+This macabre corpse is re-animated, but rotting where it stands.
+The funereal reek is quite powerful. The zombie is dressed in its
+traditional servants' clothes, though they are also moulding and
+rotting, and it seems to be going through the same tasks it did
+in life.~
+74 0 -500 E
+7 3 10 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 0 24 0 0 2
+Str: 88
+Dex: 89
+Int: 71
+Wis: 75
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#13623
+butler decaying~
+a decaying butler~
+A decaying butler waits here, trapped in endless service.~
+He is very, very dead -- he reeks of rotting flesh and decay. His
+facial features are obliterated by rot, and the flesh is melting from
+his bones very gradually. Bones show through here and there. He doesn't
+appear to be distressed or angry, only waiting.~
+74 0 -200 E
+8 0 0 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 24 0 0 2
+Str: 88
+Dex: 89
+Int: 58
+Wis: 73
+Con: 30
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#13624
+insane dwarf mad-dwarf~
+a mad dwarf~
+An insane dwarf runs down the halls, screaming.~
+This dwarf is small, like all his kind, and powerfully built. But
+he is massively unkempt, dirty, greasy, and ungroomed. His beard
+is falling out in patches, and his eyes glitter and glint with
+madness. He screams and howls, clambering in an effort to get away.~
+100665548 0 -800 E
+12 0 10 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 1 3 3 0 2
+Str: 87
+Dex: 80
+Int: 70
+Wis: 75
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13625
+priest mad mad-priest~
+a mad priest~
+A priest stands here in rags, mumbling incoherently.~
+He's human, and still alive, but that's about all one could say for him.
+Clearly in the last throes of madness, he raves and gibbers, roaming
+around in rags and lurching from one horror to the next. His eyes
+glitter insanely.~
+72 0 -500 E
+12 6 10 0d0+0 0d0+3
+0 0 0 0 0 136
+3 3 1 1 0 0 2
+Str: 88
+Dex: 83
+Int: 74
+Wis: 68
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#13626
+wyrmling green-wyrmling dragon juvenile-green-dragon~
+a green wyrmling~
+A juvenile green dragon hisses from atop a pile of treasure.~
+This dragon is called a wyrmling because it is still in the first few years of
+its life.  It is a fearsome, scaled reptilian creature with a sinuous body and
+thin wings.  Its scales are a vivid emerald green color with darker green and
+black highlights.  It is smaller in size than its fully-grown adult
+counterpart, yet still possesses a powerful, muscular body that can move with
+surprising agility and speed.  Its eyes are a bright, piercing green, and its
+teeth and claws are sharp and deadly.  Overall, this wyrmling is a fearsome and
+dangerous creature, one that should not be underestimated by any hero foolish
+enough to cross its path!~
+2090 0 -750 E
+10 20 0 0d0+0 0d0+0
+0 0 0 0 0 136
+3 3 0 0 25 0 1
+BareHandAttack: 4
+Str: 78
+Dex: 72
+Int: 87
+Wis: 78
+Con: 78
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 3084
+$

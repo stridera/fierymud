@@ -1,0 +1,677 @@
+#1800
+hunter~
+a hunter~
+A forest hunter regards visitors with suspicion.~
+This leather-tough man looks like he's in early middle age. His skin
+is tough and scarred, and his black hair is held back neatly with a
+cord. He scowls most of the time, and speaks very little.~
+35653708 0 600 E
+12 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+0 3 1 3 0 0 2
+Str: 90
+Dex: 81
+Int: 72
+Wis: 76
+Con: 79
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 4
+E
+#1801
+wild boar~
+a wild boar~
+A wild boar roots for food here.~
+The boar has two coarse fangs, both with dried blood at the tips.  Its muscular
+body is aptly suited for the forest, where it is kill or be killed.  Its fur is
+caked in mud, with leaves and twigs sticking out here and there.    ~
+72 1024 0 E
+10 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 0 24 14 0 2
+BareHandAttack: 9
+Str: 87
+Dex: 95
+Int: 64
+Wis: 73
+Con: 78
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#1802
+weary traveler~
+a weary traveler~
+A weary traveler makes his way through the woods. ~
+This muscular young man looks incredibly weary, and his clothes are
+travel-stained. His dark green eyes give him an unusual appearance.~
+200 1032 300 E
+14 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 1 6 1 0 2
+Str: 81
+Dex: 61
+Int: 91
+Wis: 84
+Con: 66
+Cha: 72
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#1803
+hunter bestial bestial-hunter~
+a bestial hunter~
+A bestial hunter roars as he hunts his meal.~
+This ugly humanoid is huge, and covered in hundreds of cuts and
+sores. He spends his time wandering alone, roaring unintelligibly most
+of his waking hours. His huge forearms and thick legs bespeak monstrous
+strength.~
+104 1024 -400 E
+15 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 1 3 4 1 3
+Str: 99
+Dex: 82
+Int: 75
+Wis: 69
+Con: 74
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55694
+#1804
+spider~
+a tree spider~
+A deadly spider spins its web in a tree, awaiting its next victim.~
+&0This spider is quite large and has huge fangs, it looks very dangerous.&0~
+100728906 1064 0 E
+4 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 0 24 14 0 1
+BareHandAttack: 1
+Str: 90
+Dex: 80
+Int: 77
+Wis: 73
+Con: 73
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 40
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#1805
+forest creature~
+a forest creature~
+A forest creature hunts furtively for prey.~
+&0This creature looks like a cross between a wolf and a bull.  It has large
+twisted horns on its head and a hairy muscular body.  It wanders about here in
+search of its next victim.  &0~
+2105416 1024 -700 E
+14 0 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 1 24 14 0 2
+BareHandAttack: 4
+Str: 92
+Dex: 76
+Int: 68
+Wis: 75
+Con: 79
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#1806
+panther~
+a panther~
+A panther prowls around here.~
+It's a large, sleek cat with long fangs and even longer claws on each
+paw. It moves utterly silently, twitching its long tail when it sees
+prey through its round, golden eyes.~
+100927560 294920 0 E
+9 0 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 0 24 14 0 2
+Str: 87
+Dex: 90
+Int: 84
+Wis: 58
+Con: 78
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#1807
+lurker pit trap sand circle ground~
+the pit lurker~
+A small sand-colored circle of ground lies in the path.~
+It's six-legged, with its front two legs suited for grasping prey.
+There are no discernible eyes, and its hide is thick and sand-colored.~
+100663368 262144 0 E
+9 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 0 9 14 0 1
+Str: 84
+Dex: 82
+Int: 84
+Wis: 88
+Con: 76
+Cha: 76
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 90
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55694
+#1808
+fallen nymph burning eyes fallen-nymph izaro~
+a fallen nymph~
+A nymph with dark burning eyes peers into your soul.~
+The fallen nymph hovers slightly off the ground.  Her red eyes burn
+with an anger that has driven her to insanity.  She seems to be 
+clutching something in her hand.~
+102761034 0 -1000 E
+20 0 0 0d0+0 1d0+0
+0 0 3 0 0 18
+4 4 2 0 34 0 2
+BareHandAttack: 6
+Str: 72
+Dex: 77
+Int: 79
+Wis: 92
+Con: 74
+Cha: 60
+AFF2: 0
+AFF3: 16384
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 1807
+T 1806
+T 55695
+#1809
+fungus giant black~
+a giant fungus~
+A giant black fungus grows here. ~
+The giant black fungus consists of dozens of rigid tendrils that root it to the
+ground, with a rounded cap at the top. Three larger, flexible tendrils wave in 
+the wind. . . or are they waving at you?~
+245770 0 -300 E
+8 0 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 0 24 12 0 2
+BareHandAttack: 2
+Str: 91
+Dex: 82
+Int: 74
+Wis: 68
+Con: 76
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+T 1808
+#1810
+black fungus~
+a black fungus~
+A black fungus is firmly rooted in the ground here. ~
+This fungus is the smaller kin of the giant fungus.  It has fewer
+root tendrils than the giant fungii, and has a smaller cap.  The
+fungus is a matte black, and it absorbs what little light reaches it. 
+The wet forest atmosphere is a veritable breeding ground for these
+fungii.~
+258122 0 0 E
+8 0 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 0 24 12 0 2
+Str: 84
+Dex: 82
+Int: 67
+Wis: 74
+Con: 85
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+T 1808
+#1811
+beautiful women nymph~
+a forest nymph~
+A beautiful woman clings to a tree here.~
+The woman has flowing green hair that reaches her waist.  Her skin is a radiant
+bronze, and she wears an outfit made of leaves that seems to match her hair
+perfectly.  The scent of honeysuckle seems to eminate from her hair, although
+you don't see such flowers around.  She has a graceful demeanor.~
+16777354 0 0 E
+100 0 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 2 7 34 0 2
+Str: 76
+Dex: 74
+Int: 86
+Wis: 86
+Con: 67
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 1807
+#1812
+monster thorn creature~
+a thorn monster~
+A monstrous creature made entirely of thorny vines stands guard here. ~
+The thorn monster towers above you. It seems to be entirely made of thorns;
+you realize it must be some sort of magical construct.  It stands facing the
+east, barring the way west.    ~
+30794 0 -1000 E
+18 0 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 1 3 12 0 4
+BareHandAttack: 10
+Str: 83
+Dex: 86
+Int: 73
+Wis: 72
+Con: 76
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 12
+Stance: 6
+E
+T 1812
+#1813
+shade thelmor man ~
+the Shade of Thelmor~
+The shade of a man wearing tattered robes drifts here. ~
+The shade was once a large man with broad shoulders.  He wears robes that
+while once stately, are now tattered, scorched, and torn.  His eyes burn
+with desire for something, but it is not readily apparent what.  He paces
+here contemplating his situation. ~
+2105354 0 0 E
+20 0 0 0d0+0 0d0+0
+0 0 1 0 0 18
+3 3 1 3 0 0 2
+Str: 91
+Dex: 81
+Int: 71
+Wis: 73
+Con: 75
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+T 1800
+T 55695
+#1814
+bird black flightless~
+a flightless bird~
+A black bird with crooked wings scurries along the ground. ~
+The taint of the forest has had an adverse affect on this birds species. 
+Its wings are malformed, rendering it incapable of flight.  Its long 
+black feathers stick out at odd angles, and it has a bare patch here and
+there. ~
+268435464 0 -500 E
+9 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+1 3 0 24 14 0 1
+Str: 82
+Dex: 86
+Int: 68
+Wis: 70
+Con: 85
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#1815
+sentient tree~
+a sentient tree~
+A tree sways back and forth in the wind. ~
+The tree looks like an ordinary tree - like any other you might find
+in the vicinity. However, upon further inspection, it has what seems
+to be a human face, contorted in agony.  Perhaps it is just a trick of 
+the light, or perhaps some dark magic has been inflicted upon it. ~
+17031178 0 -1000 E
+10 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 0 24 12 0 3
+BareHandAttack: 2
+Str: 82
+Dex: 73
+Int: 77
+Wis: 74
+Con: 81
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+#1816
+beast thorn lesser monster~
+a lesser thorn monster~
+A miniature thorn beast roams about the forest. ~
+This thorn monster is rather small, but made entirely of finger thick vines
+with thin, almost imperceptable thorns.  At full maturity, he would be a fairly
+dangerous creature, but perhaps not now, since he does not yet have his "adult
+thorns."~
+2351116 0 1000 E
+10 0 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 0 3 12 0 2
+Str: 88
+Dex: 81
+Int: 65
+Wis: 75
+Con: 77
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 12
+Stance: 6
+E
+#1817
+vine thorny thorn thorny-vine~
+a thorny vine~
+A long, thorny vine has woven itself through the underbrush here. ~
+The vine is as thick as a human's wrist, and is covered in finger long 
+thorns.   The thorns have a black, almost dewy liquid oozing out of them, 
+suggesting that they might be poisoned.  One end of the vine seems to be 
+wrapped around one of the indigenous trees here, but the other end seems
+to roam across the ground freely. ~
+229386 0 0 E
+9 0 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 0 24 12 0 2
+BareHandAttack: 6
+Str: 91
+Dex: 85
+Int: 62
+Wis: 72
+Con: 89
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+T 1817
+#1818
+mysterious-ranger elf woman elven~
+a mysterious ranger~
+A cloaked elven woman rests by the spring.~
+A tall, slender elven woman rests by the bubbling forest spring.  She wears a
+long cloak casually draped over her back and spread out to catch the breeze.  
+Alongside the cloak, she carries a longbow covered in silvered runes and an
+ornate quiver filled with red-feathered arrows.  Her serene face is turned
+skyward, listening to something you can't quite make out.~
+-2147459062 1032 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 2 6 1 0 2
+Str: 79
+Dex: 74
+Int: 77
+Wis: 82
+Con: 84
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 1824
+T 1825
+T 1827
+T 1828
+T 1831
+T 1835
+#1819
+north-wind Boreas~
+the North Wind~
+The cold North Wind blows across the land.~
+The North Wind is a strong and powerful force, bringing bone-chilling cold with
+its violent temper.  Everywhere it goes snowflakes dance through its icy
+blasts.  It makes its home among the frozen reaches near Ickle and Mt.  
+Frostbite.~
+-2147459062 8 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+4 4 0 24 17 0 2
+BareHandAttack: 12
+Str: 68
+Dex: 70
+Int: 64
+Wis: 73
+Con: 82
+Cha: 98
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 2
+Stance: 6
+E
+T 1829
+T 1834
+#1820
+South-wind Notus Auster~
+the South Wind~
+The blistering South Wind dessicates the land.~
+The South Wind brings with it all the blistering heat following Midsummer like
+fire blowing across the world.  Crops wither in its wake and it lays the
+forests to rest.  It makes its home in the farthest reaches of South Caelia.~
+-2147459062 8 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+4 4 0 24 17 0 2
+BareHandAttack: 12
+Str: 66
+Dex: 77
+Int: 69
+Wis: 69
+Con: 83
+Cha: 88
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 2
+Stance: 6
+E
+T 1829
+T 1834
+#1821
+east-wind Eurus~
+the East Wind~
+The stormy East Wind rages with fury and bluster.~
+The turbulent East Wind, long responsible for sinking ships by churning the
+oceans to froth, is the wind of storms.  It begs to run free from the volcano
+to return to its home on the Arabel Ocean.~
+-2147459062 8 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+4 4 0 24 17 0 2
+BareHandAttack: 12
+Str: 71
+Dex: 75
+Int: 55
+Wis: 65
+Con: 97
+Cha: 88
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 2
+Stance: 6
+E
+T 1829
+T 1834
+#1822
+west-wind Zephyrus~
+the West Wind~
+The gentle West Wind graces the land with its rejuvenating presence.~
+The West Wind is the wind of spring flowers and green grass.  The scent of
+flowers and spring rain wafts from its cool, nurturing breezes.  Its home is
+the far reaches beyond the Gothra plains.~
+-2147459062 8 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+4 4 0 24 17 0 2
+BareHandAttack: 12
+Str: 67
+Dex: 78
+Int: 70
+Wis: 67
+Con: 85
+Cha: 86
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 2
+Stance: 6
+E
+T 1829
+T 1834
+#1850
+guardian nothing nothingness swirl void~
+the void guardian~
+A swirl of nothingness hovers above the rock. ~
+   It exists, but barely so.  A swirl of something stirs up dust from the rock
+below but it has no definite form.    ~
+134471706 40 0 E
+100 20 0 0d0+0 0d0+0
+0 0 0 0 0 18
+3 3 0 24 17 0 2
+Str: 97
+Dex: 90
+Int: 70
+Wis: 60
+Con: 74
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 7
+Stance: 6
+E
+T 1813
+T 1821
+T 1822
+T 1823
+T 1811
+$

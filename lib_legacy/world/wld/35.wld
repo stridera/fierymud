@@ -1,0 +1,1695 @@
+#3500
+Field Path Intersection~
+   You are standing just east of the East Gate on a four-way intersection in
+the middle of a lush green field.  The chatter of the wildlife comes from all
+directions.  They sound awfully cute, don't they?    ~
+35 4 2
+D0
+You see the Northern Field Path.~
+~
+0 -1 3501
+D1
+You see the Small Path through the Fields.~
+~
+0 -1 3503
+D2
+You see the Southern Field Path.~
+~
+0 -1 3502
+D3
+You see the outside of the town's Eastern Gate.~
+~
+0 -1 3019
+S
+#3501
+Beginning of the Northern Field Path~
+   You are standing in the beginning of the Northern Field Path.  It appears to
+be a relatively short path, ending at a strange citadel just northeast of here.
+You can return to the Small Field Path to the south, or continue down the
+Northern Field Path to the north.    ~
+35 0 2
+D0
+You see a turn in the Northern Field path.~
+~
+0 -1 3544
+D2
+You see the Field Path intersection.~
+~
+0 -1 3500
+S
+#3502
+Southern Field Path~
+   You are standing on a path running through lush green fields.  The Southern
+Field Path ends at an intersection to the north as well as continuing on to the
+south.  To the east is a large clearing.    ~
+35 0 2
+D0
+You see the Field Path intersection.~
+~
+0 -1 3500
+D1
+You see a field clearing.~
+~
+0 -1 3523
+D2
+You see the Southern Field Path.~
+~
+0 -1 3519
+S
+#3503
+Small Path through the Fields~
+   You are standing on an east-west path through lush green fields.  The sounds
+of furry wildlife surround you.  There is a four-way intersection in the path
+to the west and the path continues on to the east.    ~
+35 0 2
+D1
+You see the Small Path through the fields.~
+~
+0 -1 3504
+D3
+You see the Field Path intersection.~
+~
+0 -1 3500
+S
+#3504
+Small Path through the Fields~
+   You are standing on an east-west path through lush green fields.  The path
+continues on to the west.  To the east is an intersection in the path and the
+outskirts of a light forested area.    ~
+35 0 2
+D1
+You see the Light Forest Trail intersection.~
+~
+0 -1 3505
+D3
+You see the Small Path through the fields.~
+~
+0 -1 3503
+S
+#3505
+Light Forest Trail Intersection~
+   You are standing just inside a light forest on an east-west path.  The
+forest ends to the west, giving way to lush green fields.  The small path
+descends sharply to the east, passing through what looks to be burnt
+undergrowth.  To the south, a trail runs deeper into the forest.    ~
+35 0 2
+D1
+You see a burnt path through the undergrowth.~
+~
+0 -1 3506
+D2
+You see the Light Forest Trail.~
+~
+0 -1 3507
+D3
+You see the Small Path through the fields.~
+~
+0 -1 3504
+S
+#3506
+Burnt Path through the Undergrowth~
+   You are standing on a downward sloping path that appears to have been rather
+crudely burned through the light forest undergrowth.  An underground passage
+begins just east of here, or you can head above-ground by going west.    ~
+35 0 3
+D1
+You see mists rising out of an underground passage.~
+~
+0 -1 5401
+D3
+You see the Light Forest Trail intersection.~
+~
+0 -1 3505
+S
+#3507
+Light Forest Trail~
+   You are standing at the beginning of a path through some light forest.  The
+trail continues on to the south.  To the north, this trail intersects with the
+small field path.  The sounds of small animals at play surround you.  They
+really do sound awfully cute..  Really!    ~
+35 0 2
+D0
+You see the Light Forest Trail intersection.~
+~
+0 -1 3505
+D2
+You see the Light Forest trail.~
+~
+0 -1 3508
+S
+#3508
+Light Forest Trail~
+   The Light Forest Trail runs north and south from here.  The light forest
+ends a short ways north of here and gets denser to the south.  You can't help
+but appreciate the serenity surrounding you.    ~
+35 0 2
+D0
+You see the Light Forest trail.~
+~
+0 -1 3507
+D2
+You see the Light Forest trail.~
+~
+0 -1 3509
+S
+#3509
+Light Forest Trail~
+   You are standing at a T-crossing in the Light Forest Trail here.  The Light
+Forest Trail itself continues on to the north and south from here.  To the
+west, you see another path running through a darker forested area.    ~
+35 0 2
+D0
+You see the Light Forest trail.~
+~
+0 -1 3508
+D2
+You see a turn in the Light Forest trail.~
+~
+0 -1 3510
+D3
+You see a path through the Dark Forest.~
+~
+0 -1 3511
+S
+#3510
+A Turn in the Light Forest Trail~
+   The Light Forest Trail turns here, continuing on to the north and east.  
+The forest thickens significantly to the south, and looks to be completely
+impassable to the west.  The trees seem to be larger to the south as well.    ~
+35 0 2
+D0
+You see the Light Forest trail.~
+~
+0 -1 3509
+D1
+You see an intersection in the Light Forest trail.~
+~
+0 -1 3516
+S
+#3511
+Dark Forest Path~
+   You are standing at the end of a path running through a dark forested area.
+The path continues on to the west and ends here, intersecting with a trail
+running through the lighter forested area to the east.    ~
+35 0 2
+D1
+You see the Light Forest trail.~
+~
+0 -1 3509
+D3
+You see a turn in a path running through the Dark Forest.~
+~
+0 -1 3512
+S
+#3512
+A Turn in the Dark Forest Path~
+   You are standing in a turn in a path running through a dark forested area.
+The path continues on to the east and south from here.  There is noticably less
+wildlife in this area, making it rather ominous.    ~
+35 0 2
+D1
+You see the end of the path running through the Dark Forest.~
+~
+0 -1 3511
+D2
+You see a path running through the Dark Forest.~
+~
+0 -1 3513
+S
+#3513
+Dark Forest Path~
+   You are standing on a path through a dark forested area.  This path ends
+just to the north, as well as continuing on to the south.  The forest here is
+dark and seems to be slightly more dangerous than most of the other areas you
+have seen in this forest.    ~
+35 0 2
+D0
+You see a turn in the path running through the Dark Forest.~
+~
+0 -1 3512
+D2
+You see a path running through the Dark Forest.~
+~
+0 -1 3514
+S
+#3514
+Dark Forest Path~
+   You are standing on a path in a dark forested area.  The path ends just
+south of here, as well as continuing on to the north.  To the west, you can see
+the end of the Southern Field Path.  The path to the south looks especially
+dangerous.  The Southern Field Path looks to be the safe bet.    ~
+35 0 2
+D0
+You see a path running through the Dark Forest.~
+~
+0 -1 3513
+D2
+You see the end of the path running through the Dark Forest.~
+~
+0 -1 3515
+D3
+You see the end of the Southern Field path.~
+~
+0 -1 3522
+S
+#3515
+Dark Forest Path~
+   You are standing on a path at the edge of a dark forested area.  South of
+here you can see the outskirts of the Twisted Forest.  The path also continues
+on to the north, though the dark forest.    ~
+35 0 2
+D0
+You see a path running through the Dark Forest.~
+~
+0 -1 3514
+D2
+You see the outskirts of the Twisted Forest.~
+~
+0 -1 12000
+S
+#3516
+Light Forest Trail~
+   You are standing on an east to west running section of the Light Forest
+Trail.  There is a turn in the trail to the west of here.  The trail also
+continues on to the east as well.  To the south, there is another trail into
+deeper parts of the forest.    ~
+35 0 2
+D1
+You see the Light Forest trail.~
+~
+0 -1 3517
+D2
+You see a trail through the Deep Forest.~
+~
+0 -1 3518
+D3
+You see a bend in the Light Forest trail.~
+~
+0 -1 3510
+S
+#3517
+Light Forest Trail~
+   You are standing on the Light Forest Trail.  The trail is running east to
+west here.  Tracks from all sorts of common forest creatures can be seen along
+this part of the trail.    ~
+35 0 2
+D1
+You see a turn in the Light Forest trail.~
+~
+0 -1 3524
+D3
+You see an intersection in the Light Forest trail.~
+~
+0 -1 3516
+S
+#3518
+A T-crossing in the Deep Forest Trail~
+   You are standing at a t-crossing in the Deep Forest.  The trail continues on
+through the Deep Forest itself to the south and west from this area.  To the
+north, you can leave the Deep Forest by making your way out on to the Light
+Forest Trail.  The mighty trees of the Deep Forest seem to be even larger to
+the south of this spot.    ~
+35 0 2
+D0
+You see an intersection with the Light Forest trail.~
+~
+0 -1 3516
+D2
+You see a turn in the trail through the Deep Forest.~
+~
+0 -1 3532
+D3
+You see a turn in the trail through the Deep Forest.~
+~
+0 -1 3533
+E
+trees tree~
+These trees are simply huge. Some of them look to be at LEAST twenty
+feet in diameter, and are probably several centuries old.~
+S
+#3519
+Southern Field Path~
+   You are standing on a path running through lush green fields.  The Southern
+Field Path runs north and south from here.  The woods to the west are very
+dense but it looks as though you can squeeze through in this place.  There is
+also a large clearing to the east.    ~
+35 0 2
+D0
+You see the Southern Field path.~
+~
+0 -1 3502
+D1
+You see a field clearing.~
+~
+0 -1 3543
+D2
+You see the Southern Field path.~
+~
+0 -1 3520
+D3
+~
+~
+0 0 3549
+S
+#3520
+Southern Field Path~
+   You are still on the Southern Field Path, which continues on to the north
+and south from here.  The sounds of wildlife surround you here.    ~
+35 0 2
+D0
+You see the Southern Field path.~
+~
+0 -1 3519
+D2
+You see the Southern Field path.~
+~
+0 -1 3521
+S
+#3521
+Southern Field Path~
+   From here, you can see the end of the Southern Field Path to the south.  
+The Southern Field Path continues on to the north as well.  From every
+direction emanate the sounds of wildlife.    ~
+35 0 2
+D0
+You see the Southern Field path.~
+~
+0 -1 3520
+D2
+You see the end of the Southern Field path.~
+~
+0 -1 3522
+S
+#3522
+The End of the Southern Field Path~
+   The Southern Field Path ends here.  The path extends to the north, or one
+can make one's way to the dark forest path that lies just eastward.  The forest
+itself grows more quiet and eerie to the south, with twisting shadows making
+the ground almost black at all hours.    ~
+35 0 2
+D0
+You see the Southern Field path.~
+~
+0 -1 3521
+D1
+You see a path running through the Dark Forest.~
+~
+0 -1 3514
+S
+#3523
+Field Clearing (NW)~
+   You are standing in the northwest corner of a large clearing in the fields.
+This area looks rather well travelled, but not by creatures you're used to
+seeing.  The field clearing continues on to the south and east.  To the west is
+the Southern Field Path.    ~
+35 0 2
+D1
+You see a field clearing.~
+~
+0 -1 3541
+D2
+You see a field clearing.~
+~
+0 -1 3543
+D3
+You see the Southern Field path.~
+~
+0 -1 3502
+S
+#3524
+A Turn in the Light Forest Trail~
+   You are standing at a turn in the Light Forest Trail.  From here, the trail
+continues on to the west and south.  The path looks to be rather lightly
+travelled, but not all of the tracks here are recognizable.    ~
+35 0 2
+D2
+You see the Light Forest trail.~
+~
+0 -1 3525
+D3
+You see the Light Forest trail.~
+~
+0 -1 3517
+S
+#3525
+Light Forest Trail~
+   The Light Forest Path runs to the north and south from here.  The forest
+definately looks to be thicker to the west of here.  This trail, however, seems
+to be skirting around the edge of the denser forest for now.    ~
+35 0 2
+D0
+You see a turn in the Light Forest trail.~
+~
+0 -1 3524
+D2
+You see a turn in the Light Forest trail.~
+~
+0 -1 3526
+S
+#3526
+Another Turn in the Light Forest Trail~
+   You are standing in yet another turn in the Light Forest Trail, as it
+carefully avoids entering the deep forest to the south and west of here.  The
+Light Forest Trail continues on to the north and east from this spot.    ~
+35 0 2
+D0
+You see the Light Forest trail.~
+~
+0 -1 3525
+D1
+You see another turn in the Light Forest trail.~
+~
+0 -1 3527
+S
+#3527
+A Turn in the Light Forest Trail~
+   You are standing at another turn in the Light Forest Trail.  There is yet
+another turn in the trail just west of here, and the trail ends a little ways
+to the south of this area.    ~
+35 0 2
+D2
+You see the end of the Light Forest trail.~
+~
+0 -1 3528
+D3
+You see another turn in the Light Forest trail.~
+~
+0 -1 3526
+S
+#3528
+The End of the Light Forest Trail~
+   The Light Forest Trail ends here.  From here, you can either follow the
+Light Forest Trail north, or you can enter the Deep Forest to the west.    ~
+35 0 2
+D0
+You see a turn in the Light Forest trail.~
+~
+0 -1 3527
+D3
+You see a trail through the Deep Forest.~
+~
+0 -1 3529
+S
+#3529
+A T-crossing on the Deep Forest Trail~
+   You are standing at a T-crossing in the Deep Forest.  The trail through the
+Deep Forest continues on to the west, as well as continuing deeper into the
+Deep Forest to the south.  You can also leave the Deep Forest entirely by
+heading east from this spot.  The trees in this area are huge.  Some of them
+look to be hundreds of years old, at least!    ~
+35 0 2
+D1
+You see the end of the Light Forest trail.~
+~
+0 -1 3528
+D2
+You see the Deep Forest.~
+~
+0 -1 3539
+D3
+You see a turn in the trail through the Deep Forest.~
+~
+0 -1 3530
+E
+trees tree~
+These trees are simply huge. Some of them look to be at LEAST twenty
+feet in diameter, and are probably several centuries old.~
+S
+#3530
+A Bend in the Deep Forest Trail~
+   You are standing in a bend in the trail through the Deep Forest.  The trail
+itself continues on to the north and east from here.  The trees are quite large
+around here..  Very impressive indeed.    ~
+35 0 2
+D0
+You see a turn in the trail through the Deep Forest.~
+~
+0 -1 3531
+D1
+You see a t-crossing in the Deep Forest.~
+~
+0 -1 3529
+E
+trees tree~
+These trees are simply huge. Some of them look to be at LEAST twenty
+feet in diameter, and are probably several centuries old.~
+S
+#3531
+A Bend in the Deep Forest Trail~
+   You are standing in yet another turn in the twisty path through the Deep
+Forest.  The trail continues on to the south and west from here.  The trees
+tower above you here, blocking out all light from the sky.    ~
+35 0 2
+D2
+You see another bend in the Deep Forest trail.~
+~
+0 -1 3530
+D3
+You see another bend in the Deep Forest trail.~
+~
+0 -1 3532
+E
+trees tree~
+These trees are simply huge. Some of them look to be at LEAST twenty
+feet in diameter, and are probably several centuries old.~
+S
+#3532
+A Turn in the Deep Forest Trail~
+   You are standing in a bend in the trail through the Deep Forest.  The trail
+continues on to the north and east from this spot, winding its way through the
+majestic trees of the Deep Forest.    ~
+35 0 2
+D0
+You see a t-crossing in the Deep Forest.~
+~
+0 -1 3518
+D1
+You see another turn in the deep forest trail.~
+~
+0 -1 3531
+E
+trees tree~
+These trees are simply huge. Some of them look to be at LEAST twenty
+feet in diameter, and are probably several centuries old.~
+S
+#3533
+A Bend in the Deep Forest Trail~
+   You are standing on a trail through the Deep Forest.  The Deep Forest
+becomes impassable to the west, but the trail continues on to the east and
+south from this spot.  The trees to the west look timeless, as if they have
+been here since the beginning of time.    ~
+35 0 2
+D1
+You see a t-crossing in the Deep Forest.~
+~
+0 -1 3518
+D2
+You see a trail through the Deep Forest.~
+~
+0 -1 3534
+E
+trees tree~
+These trees are simply huge. Some of them look to be at LEAST twenty
+feet in diameter, and are probably several centuries old.~
+S
+#3534
+Deep Forest Trail~
+   You are standing on a north to south running section of the trail that runs
+through the Deep Forest.  You can head even deeper into the mighty trees of the
+Deep Forest to the south, or you can follow the path north.  The trees
+definately seem to be getting larger to the south.    ~
+35 0 2
+D0
+You see a bend in the trail through the Deep Forest.~
+~
+0 -1 3533
+D2
+You see a trail through the Deep Forest.~
+~
+0 -1 3535
+E
+trees tree~
+These trees are simply huge. Some of them look to be at LEAST twenty
+feet in diameter, and are probably several centuries old.~
+S
+#3535
+Deep Forest Trail~
+   You are standing on a north to south running section of a trail running
+through the majestic Deep Forest.  You can head deep into the Deep Forest to
+the south, or you can head into less dense sections of the forest by heading
+north from this spot.  The trees here, majestic as they are, are even larger to
+the south, unbelievable as that may seem!    ~
+35 0 2
+D0
+You see a trail through the Deep Forest.~
+~
+0 -1 3534
+D2
+You see the Deep Forest.~
+~
+0 -1 3536
+E
+trees tree~
+These trees are simply huge. Some of them look to be at LEAST twenty
+feet in diameter, and are probably several centuries old.~
+S
+#3536
+Deep Inside the Deep Forest~
+   You are now deep inside the Deep Forest.  The trees here are simply the most
+impressive works of nature you have ever seen before.  You can leave this
+section of the Deep Forest to the north, or head even deeper into the forest to
+the east.    ~
+35 0 2
+D0
+You see a trail through the Deep Forest.~
+~
+0 -1 3535
+D1
+You see the Deep Forest.~
+~
+0 -1 3537
+E
+trees tree~
+These tress are simply beyond belief! You don't see a tree in this
+area that is less than 30 feet in diameter, and SOME of them look to
+be as much as 50 feet across! Some of these trees must be a thousand
+years old, possibly even thousands. Very impressive, indeed!~
+S
+#3537
+Deep Inside the Deep Forest~
+   You are now about as deep inside the Deep Forest as you could ever get.  
+The trees here are awe inspiring, a true tribute to the Goddess of Nature,
+Mielikki.  These trees, some of them as wide as 50 feet across, completely
+block out the sky, which seems to create a sense of timelessness here,
+somewhere deep inside the Deep Forest.  You can head for less dense areas of
+the Deep Forest to the west, or journey further into the Deep Forest by heading
+out to the east from here.    ~
+35 0 2
+D1
+You see the Deep Forest.~
+~
+0 -1 3540
+D3
+You see the Deep Forest.~
+~
+0 -1 3536
+E
+trees tree~
+These tress are simply beyond belief! You don't see a tree in this
+area that is less than 30 feet in diameter, and SOME of them look to
+be as much as 50 feet across! Some of these trees must be a thousand
+years old, possibly even thousands. Very impressive, indeed!~
+S
+#3539
+Deep Inside the Deep Forest~
+   You are now deep inside the Deep Forest.  The trees here are absolutely
+fabulous.  Mielikki, the Goddess of Nature, has truly outdone herself!  You can
+leave this section of the Deep Forest to the north, or you can head even deeper
+into the Deep Forest by heading west from here.    ~
+35 0 2
+D0
+You see a t-crossing in the Deep Forest.~
+~
+0 -1 3529
+D1
+You see a narrow trail.~
+~
+0 -1 36300
+D3
+You see the Deep Forest.~
+~
+0 -1 3540
+E
+trees tree~
+These tress are simply beyond belief! You don't see a tree in this
+area that is less than 30 feet in diameter, and SOME of them look to
+be as much as 50 feet across! Some of these trees must be a thousand
+years old, possibly even thousands. Very impressive, indeed!~
+S
+#3540
+Deep Inside the Deep Forest~
+   You are now about as deep inside the Deep Forest as you could possibly get.
+The trees here are awe inspiring, a true tribute to the powers of Mielikki, the
+Goddess of Nature.  The trees, some of them as wide as 50 feet across,
+completely block out the sky, which seems to create a sense of timelessness
+here, deep inside the Deep Forest.  You can continue on in the deepest parts of
+the Deep Forest to the west, or you can make your way to less dense sections of
+the forest by heading east from here.    ~
+35 0 2
+D1
+You see the Deep Forest.~
+~
+0 -1 3539
+D3
+You see the Deep Forest.~
+~
+0 -1 3537
+E
+oak~
+The oak appears to have a door built right into it.~
+E
+trees tree~
+These tress are simply beyond belief! You don't see a tree in this
+area that is less than 30 feet in diameter, and SOME of them look to
+be as much as 50 feet across! Some of these trees must be a thousand
+years old, possibly even thousands. Very impressive, indeed! And 
+in particular, one tree, a mighty oak, stands a little apart from
+all the rest.~
+S
+#3541
+Field Clearing (NE)~
+   You are standing in the northeast corner of a large field clearing.  The
+field clearing continues on to the south and west.  From here, you can just
+barely see the Southern Field Path in the distance to the west.    ~
+35 0 2
+D2
+You see a field clearing.~
+~
+0 -1 3542
+D3
+You see a field clearing.~
+~
+0 -1 3523
+S
+#3542
+Field Clearing (SE)~
+   You are standing in the southeast corner of a large field clearing.  The
+field clearing continues on to the north and west.  From here, you can just
+barely see the Southern Field Path in the distance to the west.    ~
+35 0 2
+D0
+You see a field clearing.~
+~
+0 -1 3541
+D3
+You see a field clearing.~
+~
+0 -1 3543
+S
+#3543
+Field Clearing (SW)~
+   You are standing in the southwest corner of a large clearing in the fields.
+It looks like many strange creatures frequent the area, but you're not familiar
+with their tracks.  The field clearing continues on to the north and east.  To
+the west is the Southern Field Path.    ~
+35 0 2
+D0
+You see a field clearing.~
+~
+0 -1 3523
+D1
+You see a field clearing.~
+~
+0 -1 3542
+D3
+You see the Southern Field path.~
+~
+0 -1 3519
+S
+#3544
+Turn in the Northern Field Path~
+   You are standing on the Northern Field Path.  From here, the Citadel is just
+east and slightly north of here.  You can continue on towards the Citadel to
+the east, or head back for the Small Field Path to the south.    ~
+35 0 2
+D1
+You see the Northern Field path.~
+~
+0 -1 3545
+D2
+You see the beginning of the Northern Field path.~
+~
+0 -1 3501
+S
+#3545
+Northern Field Path~
+   The Northern Field path continues on here, going to the east and west of
+this spot.  The strange citadel is a small distance to the east, or you can
+make your way back to the Small Field Path to the west.    ~
+35 0 2
+D1
+You see the Northern Field path.~
+~
+0 -1 3546
+D3
+You see a turn in the Northern Field path.~
+~
+0 -1 3544
+S
+#3546
+Northern Field Path~
+   You are standing on the Northern Field Path.  The mysterious citadel is
+northeast of here; you can reach it by following the path to the east.  You can
+also follow the path away from the citadel to the west.    ~
+35 0 2
+D1
+You see a bend in the Northern Field path.~
+~
+0 -1 3547
+D3
+You see the Northern Field path.~
+~
+0 -1 3545
+S
+#3547
+Bend in the Northern Field Path~
+   You are standing in a bend in the Northern Field Path.  From here, the
+mysterious citadel is directly north of you.  If you do not wish to head for
+the citadel, you can also follow the path westwards.  The forest becomes more
+dense to the east and the hills rise behind the trees a few miles back.  A
+light trail starts through the forest to the east.    ~
+35 0 2
+D0
+You see the end of the Northern Field path.~
+~
+0 -1 3548
+D1
+~
+~
+0 0 3551
+D3
+You see the Northern Field path.~
+~
+0 -1 3546
+S
+#3548
+End of the Northern Field Path~
+   You are standing at the end of the Northern Field Path, just outside a
+mysterious looking citadel.  Although there are still the sounds of many small
+animals nearby, there seem to be many fewer of them in this area.  You can
+enter the citadel to the north, or you can head back down the Northern Field
+Path to the south.    ~
+35 4 2
+D0
+You see the entrance to the mysterious citadel.~
+~
+0 -1 17200
+D2
+You see a bend in the Northern Field path.~
+~
+0 -1 3547
+S
+#3549
+A Narrow Forest Path~
+   The path from the main fields is difficult to pass as the dense green
+vegetation seems to pull from all directions.  There is less light here as the
+deep canopy of trees hides the sky from sight.  Lush ferns and large mushrooms
+grow on the forest floor.    ~
+35 33554436 3
+D1
+~
+~
+0 0 3519
+D3
+~
+~
+0 0 3550
+S
+#3550
+Grounds of Silverwing~
+   The trees part to envelop a small circular clearing with a small bit of
+sunlight in the center.  There are small targets scattered about riddled with
+arrows.  A simple shelter is built into the trees and the giggling of pixies
+can be heard in the treetops.    ~
+35 33554448 3
+D1
+~
+~
+0 0 3549
+S
+#3551
+A Light Forest Trail~
+   This part of the trail seems lighter than normal although there are deep
+ruts in the trail as though something heavy has been drug through the area
+regularly.  There are some large grey white boulders scattered about through
+the trees that look like they have been dumped there.  The path continues to
+the east and west.    ~
+35 68 3
+D1
+~
+~
+0 0 3552
+D3
+~
+~
+0 0 3547
+S
+#3552
+A Light Forest Trail~
+   This part of the trail is well worn and ruts are everywhere as though this
+is a common place for large wagons to converge.  There are many large grey
+white boulders scattered about through the trees along with many more smaller
+rocks of all kinds that look to have been dumped there.  The path continues to
+the east and west.    ~
+35 0 3
+D1
+~
+~
+0 0 3553
+D3
+~
+~
+0 0 3551
+S
+#3553
+A Light Forest Trail~
+   The trail slowly slopes upward and the trees begin to thin out as the ground
+hardens into rock in places.  The hills to the west are plainly visible and the
+dense forest trails back down to the east.  Large rocks lay scattered to the
+side of the trail as though they have freed themselves from the slopes above
+somehow.    ~
+35 0 3
+D3
+~
+~
+0 0 3552
+D4
+~
+~
+0 0 3554
+S
+#3554
+A Worn Rut in the Foothills~
+   The grade of the trail is quite steep but manageable.  There are very few
+trees here as they attempt to cling to life in the bit of soil between large
+rock formations.  There are large scars in the rock face of the trail that
+indicate its direction.  The trail continues down into the woods or eastward
+into the mountains.    ~
+35 0 4
+D1
+~
+~
+0 0 3555
+D5
+~
+~
+0 0 3553
+S
+#3555
+A Worn Rut in the Foothills~
+   The grade of the trail is quite steep but manageable.  There are very few
+trees here as they attempt to cling to life in the bit of soil between large
+rock formations.  There are large scars in the rock face of the trail that
+indicate its direction.  The trail continues west to the woods or eastward into
+the mountains.    ~
+35 0 4
+D1
+~
+~
+0 0 3556
+D3
+~
+~
+0 0 3554
+S
+#3556
+A Cut Section in the Foothills~
+   The grade of the road is better than before as you step by the wagons and
+tools of workers who seem to be flattening the trail by cutting out long
+switchbacks in the rockface that slowly climb through the foothills to the top
+of the ridges above you.    ~
+35 0 4
+D2
+~
+~
+0 0 3557
+D3
+~
+~
+0 0 3555
+S
+#3557
+A Bend in the Road~
+   The elevation change through this section of road is dramatic.  To the west
+a town is smartly centered in some fields among the dense forest.  Far far to
+the north a hazy set of snow capped mountains can be seen just barely on the
+horizon.  At this altitude they must be hundreds of miles away.  A similar set
+of black mountains can be seen to the west.  An orange haze of dust appears to
+be blowing over them.    ~
+35 0 4
+D0
+~
+~
+0 0 3556
+D1
+~
+~
+0 0 3558
+S
+#3558
+High in the Grey White Mountains~
+   The grade of the road doesn't seem to change quite as much anymore as this
+looks to be in the higher parts of this ridgeline.  The road rolls in and out
+of rock formations and it's noticeably cooler here than at the lower
+elevations.    ~
+35 68 5
+D1
+~
+~
+0 0 3559
+D3
+~
+~
+0 0 3557
+S
+#3559
+High in the Grey White Mountains~
+   The grade of the road doesn't seem to change quite as much anymore as this
+looks to be in the higher parts of this ridgeline.  The road rolls in and out
+of rock formations and it's noticeably cooler here than at the lower
+elevations.  The road contines into the mountains to the west and switches
+steeply downward to the north.    ~
+35 0 5
+D0
+~
+~
+0 0 3560
+D3
+~
+~
+0 0 3558
+S
+#3560
+A Steep Climb~
+   This part of the road is a long series of very steep switchbacks.  The ridge
+to the north is a long climb upward and the base of these mountains can be seen
+down to the north a ways.  The air is cool and salty.    ~
+35 0 5
+D2
+~
+~
+0 0 3559
+D5
+~
+~
+0 0 3561
+S
+#3561
+Among the Grey White Mountains~
+   The slope of the hills is easy to traverse and the trail rises into the
+mountains above.  Lush green vegitation covers the rocks and the soil here
+supports many small bushes and shrubs.  The trail continues to climb into the
+mountains above and slopes downward to the east.  The ocean can be seen to the
+east as far as the eye can see.    ~
+35 0 5
+D1
+~
+~
+0 0 3562
+D4
+~
+~
+0 0 3560
+S
+#3562
+Tree Covered Hills~
+   As the trail leads up from the cliffs above the ocean, the soil begins to
+bear a grove of trees that seems to be worn by the mountainous coastline like a
+green belt of leaves.  The entire grove seems only 100 feet wide as the trail
+cuts down through it.  The view of what is directly below is blocked.    ~
+35 0 4
+D0
+~
+~
+0 0 3563
+D3
+~
+~
+0 0 3561
+S
+#3563
+Rolling Through the Trees~
+   The forest is dense and the trail snakes though the trees, avoiding
+rock formations. The path climbs through the trees to the south and continues
+up over a rock above. The dense green vegetation mixes well with the salty
+air of the ocean.~
+35 0 3
+D2
+~
+~
+0 0 3562
+D4
+~
+~
+0 0 3564
+S
+#3564
+Rolling Through the Trees~
+   The forest is dense and the trail snakes though the trees, avoiding rock
+formations. The dense green vegetation mixes well with the salty air of the
+ocean. The trail winds through the trees and disappears over a rock below,
+continuing through the trees and rock formations northward.~
+35 0 3
+D0
+~
+~
+0 0 3565
+D5
+~
+~
+0 0 3563
+S
+#3565
+Rolling Through the Trees~
+   The forest is dense and the trail snakes though the trees avoiding rock
+formations.  Sloping to the east the ocean can be seen clearly.  The trees grow
+denser as the trail snakes into the forest southward.    ~
+35 0 3
+D1
+~
+~
+0 0 3566
+D2
+~
+~
+0 0 3564
+S
+#3566
+Grey Spray Road~
+   The road is amazingly smooth but very well worn.  Large scars appear on the
+road as if many centuries of wagon travel have worn it down.  The air is filled
+with a humidity that almost wets the skin.  The ocean can be seen behind the
+road as it extends to the east.  The road tails off into a trail which splits,
+leading north into the foothills or west into the forest.~
+35 0 10
+D0
+~
+~
+0 -1 61575
+D1
+~
+~
+0 0 3567
+D3
+~
+~
+0 0 3565
+S
+#3567
+Grey Spray Road~
+   The road is amazingly smooth but very well worn.  Large scars appear on the
+road as if many centuries of wagon travel have worn it down.  The air is filled
+with a humidity that almost wets the skin.  The road continues to the south and
+west.    ~
+35 0 10
+D2
+~
+~
+0 0 3568
+D3
+~
+~
+0 0 3566
+S
+#3568
+Grey Spray Road~
+   The road is amazingly smooth but very well worn.  Large scars appear on the
+road as if many centuries of wagon travel have worn it down.  The air is filled
+with a humidity that almost wets the skin.  The road continues to the north and
+east.    ~
+35 0 10
+D0
+~
+~
+0 0 3567
+D1
+~
+~
+0 0 3569
+S
+#3569
+Grey Spray Road~
+   The road is amazingly smooth but very well worn.  Large scars appear on the
+road, as if many centuries of wagon travel have worn it down.  The air is
+filled with a humidity that almost wets the skin.  The road continues to the
+north and east.  A road cuts off to the north from here leading to a an old,
+formal-looking building, perhaps a monastery.  The smell of the sea is very
+strong here; the road is high up enough on a cliff that the water is visible
+far below stretching as far as the eye can see.    ~
+35 0 10
+D1
+~
+~
+0 0 3570
+D3
+~
+~
+0 0 3568
+S
+#3570
+Grey Spray Road~
+   The road is amazingly smooth but very well worn.  Large scars appear on the
+road as if many centuries of wagon travel have worn it down.  The air is filled
+with a humidity that almost wets the skin.  Hundreds of feet below, the calming
+sound of waves hitting sand and rock echoes upwards.  Mysteriously, the
+well-worn road seems to dead-end here, but a slightly overgrown path splits off
+to the north.~
+35 0 10
+D3
+~
+~
+0 0 3569
+S
+#3571
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3570
+D2
+~
+~
+0 0 3572
+S
+#3572
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3571
+D2
+~
+~
+0 0 3573
+S
+#3573
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3572
+D2
+~
+~
+0 0 3574
+S
+#3574
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3573
+D2
+~
+~
+0 0 3575
+S
+#3575
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3574
+D2
+~
+~
+0 0 3576
+S
+#3576
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3575
+D1
+~
+~
+0 0 3577
+S
+#3577
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D2
+~
+~
+0 0 3578
+D3
+~
+~
+0 0 3576
+S
+#3578
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3577
+D2
+~
+~
+0 0 3579
+S
+#3579
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3578
+D1
+~
+~
+0 0 3580
+S
+#3580
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D2
+~
+~
+0 0 3581
+D3
+~
+~
+0 0 3579
+S
+#3581
+path~
+   Here it cuts away from the sea and back into the mountains as the top of the
+coast line slowly goes down in elevation to the south along the ocean~
+35 512 0
+D0
+~
+~
+0 0 3580
+D3
+~
+~
+0 0 3582
+S
+#3582
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D1
+~
+~
+0 0 3581
+D5
+~
+~
+0 0 3583
+S
+#3583
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D3
+~
+~
+0 0 3584
+D4
+~
+~
+0 0 3582
+S
+#3584
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D1
+~
+~
+0 0 3583
+D2
+~
+~
+0 0 3585
+S
+#3585
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3584
+D4
+~
+~
+0 0 3586
+S
+#3586
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D2
+~
+~
+0 0 3587
+D5
+~
+~
+0 0 3585
+S
+#3587
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3586
+D3
+~
+~
+0 0 3588
+S
+#3588
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D1
+~
+~
+0 0 3587
+D2
+~
+~
+0 0 3589
+S
+#3589
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3588
+D3
+~
+~
+0 0 3590
+S
+#3590
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D1
+~
+~
+0 0 3589
+D2
+~
+~
+0 0 3591
+S
+#3591
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3590
+D2
+~
+~
+0 0 3592
+S
+#3592
+path~
+   You are in an unfinished room.    ~
+35 512 0
+D0
+~
+~
+0 0 3591
+D3
+~
+~
+0 0 3593
+S
+#3593
+Mountains~
+   You are in an unfinished room.    ~
+35 512 0
+D1
+~
+~
+0 0 3592
+D5
+~
+~
+0 0 3594
+S
+#3594
+Edge of Foothills~
+   From there the grey rock path leaves the foothills and enters a range of
+snow capped mountains.  Continuing up into these mountains could be a very
+difficult journey.  Directly east of here lies you can make out the flickering
+lights of a distant village, and westward lies a row of forbidding black peaks.
+Far to the south you can see that it leads down out of the foothills.  The path
+runs north and up from here.    ~
+35 0 0
+D0
+~
+~
+0 0 3595
+D4
+~
+~
+0 0 3593
+S
+#3595
+Grey Rock Path~
+   You are on a grey rock path that winds through the wooded foothills.  
+Further north you see the trail enters the mountains.  At that point the path
+look difficult to traverse.  The ice caps stare down at you almost daring you
+to attempt passage through this barren land.  A ways east you can make out the
+flickering lights of a distant village, and westward lies a row of forbidding
+black peaks.  A ways south you see the trail you are on leads down out of the
+foothills.  The path runs south and west from here.    ~
+35 512 0
+D2
+~
+~
+0 0 3594
+D3
+~
+~
+0 0 3596
+S
+#3596
+Grey Rock Path~
+   You are on a grey rock path that winds through the wooded foothills.  
+Further north you see the trail snaking up into the hills through a series of
+switchbacks.  Beyond that lies a range of snow capped mountains rising above
+the tops of the hills.  Off to the north east you faintly see the flickering
+lights of a distant village.  To the west you can barely make out a range of
+forbiding black mountains whose caps are lost in the clouds.  Further south you
+see the trail leads down out of these foothills.  The path runs north and west
+from here.    ~
+35 512 0
+D1
+~
+~
+0 0 3595
+D2
+~
+~
+0 0 3597
+S
+#3597
+Grey Rock Path~
+   You are on a grey rock path that winds through the wooded foothills.  
+Further north you see the trail snaking up into the hills through a series of
+switchbacks.  Beyond that lies a range of snow capped mountains rising above
+the tops of the hills.  Off to the north east you faintly see the flickering
+lights of a distant village.  To the west you can barely make out a range of
+forbiding black mountains whose caps are lost in the clouds.  Further south you
+see the trail leads down out of these foothills.  The path runs north and west
+from here.    ~
+35 512 0
+D0
+~
+~
+0 0 3596
+D3
+~
+~
+0 0 3598
+S
+#3598
+Grey Rock Path~
+   You are on a grey rock path that winds through the wooded foothills.  
+Further north you see the trail snaking up into the hills through a series of
+switchbacks.  Beyond that lies a range of snow capped mountains rising above
+the tops of the hills.  Off to the north east you faintly see the flickering
+lights of a distant village.  To the west you can barely make out a range of
+forbiding black mountains whose caps are lost in the clouds.  Looking south
+along the trail you see that it leads down out of these foothills and into much
+easier terrain.  The trail runs east and down from here.    ~
+35 512 0
+D1
+~
+~
+0 0 3597
+D5
+~
+~
+0 0 3599
+S
+#3599
+Edge of the foothills~
+   You are standing on a path at the edge of some wooded foothills.  Looking
+north you see the path you are on snaking up into the hills through a series of
+switchbacks.  Further to the north you can see a range of snow capped mountains
+knifing up into the clouds.  As you trace the line of the hills to the north
+east you can faintly see the flickering lights of some distant village.  
+Looking west youcan barely make out a range of forbiding black mountains whose
+caps are lost in the clouds.  You are sure that peaks that tall would be capped
+with snow, ice and fierce winds.  Crossing them would be a treacherous journey
+indeed.  If you follow the path to the south you enter some soft rolling hills
+that are beautiful and richly covered with foliage.  The soft inviting roar of
+a waterfall drifts in from somewhere south of your position.  The trail runs up
+and south from here.    ~
+35 580 4
+D4
+~
+~
+0 0 3598
+S
+#3600
+A Small Side Path~
+   The path leads through a slightly grassy area on the flat clifftop.  The
+crashing of waves can be heard to the east and the green sea stretches out to
+the horizon.  The well worn road lies to the south.  An old well made building
+seems to lie to the north.    ~
+35 3867136 10
+D0
+~
+~
+0 0 3601
+D2
+~
+~
+0 0 3569
+S
+#3601
+Before an Old Monastery~
+   The path leads though a slightly grassy area on the flat clifftop.  The
+crashing of waves can be heard to the east and the green sea stretches out to
+the horizon.  The path leads back against the hills slightly so the monastery
+is protected on three sides by the high, sheer limestone cliffs.  The building
+is modestly constructed, carved in part from the rock itself, looks very old
+and unchanged except for what appears to be a new solid door of metal and wood.~
+35 3867136 10
+D0
+The heavy wooden door is new looking and very sturdily made.
+It's bordered with metal reinforcements and accoutrements.
+There is a carving in the center of the door.~
+door metal wood~
+2 18701 3600
+D2
+~
+~
+0 0 3600
+E
+carving~
+The carving is a circle composed of five circles linked together.
+In the center of the five circles is carved the guild icon.~
+E
+door~
+The heavy wooden door is new looking and very sturdily made.
+It's bordered with metal reinforcements and accoutrements.
+There is a carving in the center of the door.~
+S
+$~

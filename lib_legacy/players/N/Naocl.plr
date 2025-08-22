@@ -1,0 +1,115 @@
+name: Naocl
+password: NaLMso42Wo
+prompt: %hh(%HH) %vv(%VV)%1:%ih %aA(%dt)%l%_&0%t:%o
+autoinvis: 0
+sex: 1
+class: 9
+race: 6
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17094
+birthtime: 1221979058
+timeplayed: 1459062
+lastlogintime: 1738114760
+host: 104.048.170.022
+height: 47
+weight: 194
+base_height: 47
+base_weight: 194
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxyz
+effectflags: k w 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 10053
+lastlevel: 0
+hitpoints: 908/864
+mana: 980/980
+move: 162/162
+damroll: 4
+hitroll: 5
+strength: 92
+intelligence: 60
+wisdom: 62
+dexterity: 98
+constitution: 97
+charisma: 56
+cash: 82 248 480 2822
+bank: 1152 17169 76359 65525
+experience: 105805999
+quit_reason: 1
+saveroom: 10053
+cooldowns:
+10 5970/18000
+-1 0
+skills:
+401 1000
+403 1000
+404 1000
+405 1000
+408 1000
+410 750
+411 1000
+412 1000
+415 51
+416 60
+418 190
+420 1000
+421 1000
+438 63
+440 1000
+443 50
+444 755
+463 50
+464 1000
+465 135
+477 1000
+0 0
+trophy:
+1 53021 2.000000
+1 53024 2.000000
+1 53007 7.000000
+1 53023 4.000000
+1 18007 1.000000
+1 53421 2.000000
+1 53422 2.000000
+1 53420 14.000000
+1 53418 11.000000
+1 53419 31.000000
+1 53423 120.000000
+1 53416 1.000000
+1 53414 1.000000
+1 53401 1.000000
+1 53400 3.000000
+1 8704 2.000000
+1 8702 2.000000
+1 8706 2.000000
+1 8701 4.000000
+1 8703 4.000000
+1 8705 4.000000
+0 0 0
+tells:
+1738112712 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738112713 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738112713 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738112713 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738112713 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1738114566 Tynder gossips, 'yes'
+1738114582 Discord gossips, 'glorious_gull_07269: Yep. That's the one I was thinking of... Is it reset it R?'
+1738114586 Discord gossips, 'glorious_gull_07269: Item'
+1738114595 Tynder gossips, 'I don't know. It glows.'
+1738114595 Chinok gossips, 'pretty sure it is'
+1738114604 Discord gossips, 'glorious_gull_07269: Whomp whomp'
+1738114621 Tynder gossips, 'it's 4D7   AVG 16'
+1738114630 Tynder gossips, 'damage type shock'
+1738114643 Chinok gossips, 'that's shocking!'
+1738114689 Tynder gossips, 'it weighs -2'
+$

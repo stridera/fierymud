@@ -1,0 +1,90 @@
+name: Arathon
+password: ArGfVnKRhR
+currenttitle: (kress's swimmer)
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18154
+birthtime: 1331261625
+timeplayed: 3547
+lastlogintime: 1334779502
+host: 173.096.072.161
+height: 72
+weight: 149
+base_height: 72
+base_weight: 149
+base_size: 2
+natural_size: 2
+alignment: -127
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 22
+lastlevel: 0
+hitpoints: 70/65
+mana: 1/0
+move: 136/144
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 54
+wisdom: 79
+dexterity: 86
+constitution: 100
+charisma: 50
+cash: 0 23 203 224
+experience: 55000
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 14980/18000
+-1 0
+skills:
+403 53
+415 50
+416 50
+421 78
+438 65
+443 50
+444 62
+464 57
+465 50
+467 50
+0 0
+trophy:
+1 8016 0.500000
+1 8001 0.500000
+1 8010 0.500000
+1 8013 0.500000
+1 8000 1.000000
+1 61526 0.500000
+1 61519 0.500000
+1 61504 0.500000
+1 61525 2.000000
+1 61501 1.000000
+1 61503 1.000000
+1 61502 1.000000
+1 61506 0.500000
+1 61523 0.500000
+1 61510 1.000000
+1 61508 0.500000
+1 61514 1.000000
+1 61500 2.500000
+1 8002 1.500000
+1 8015 0.500000
+1 8021 0.500000
+0 0 0
+aliases:
+gc g coins in corpse
+lc l in corpse
+jj as carath
+0

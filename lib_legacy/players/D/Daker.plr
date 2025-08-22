@@ -1,0 +1,98 @@
+name: Daker
+password: Da4YtBqhaC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19523
+birthtime: 1579033574
+timeplayed: 7673
+lastlogintime: 1586705767
+host: 072.177.064.138
+height: 76
+weight: 133
+base_height: 76
+base_weight: 133
+base_size: 2
+natural_size: 2
+alignment: -12
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 1
+lastlevel: 0
+hitpoints: 39/39
+mana: 1/0
+move: 104/104
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 86
+wisdom: 94
+dexterity: 76
+constitution: 73
+charisma: 60
+experience: 24406
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 80
+424 73
+438 50
+443 50
+444 50
+451 50
+457 52
+458 56
+459 63
+460 52
+462 50
+463 57
+466 50
+0 0
+trophy:
+1 18003 0.666667
+1 18001 0.666667
+1 18005 1.333333
+1 18007 1.000000
+0 0 0
+tells:
+1579034165 @WGranite@W tells you, 'If it's not a shield then I am not interested.@W'@0
+1579034170 @WDrako@W tells you, 'I only deal in bronze at the moment, try Beowyn.@W'@0
+1579034196 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
+1579039660 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+$
+gossips:
+1579044609 Strider gossips, 'I can make you one :P'
+1579044619 Drave gossips, 'the corpse of daker: you can't take that'
+1579044622 Drave gossips, 'i tried with consetn'
+1579044638 Strider gossips, 'you can drag corpses'
+1579044650 Drave gossips, 'i just looted it, but ogod to knwo :P'
+1579045237 Drave gossips, 'lesser endurance is an awesome way to let my casters ttake an extra hit'
+1579045274 Strider gossips, ':)'
+1579045922 Drave gossips, 'where is the inn? THe tavern isn't it'
+1579045954 Strider gossips, 'labeled inn on your map.. go there and go up'
+1584411547 Chinok gossips, 'welcome Daker'
+$
+mem:
+206 0 7
+1 0 7
+206 0 7
+0 0 0

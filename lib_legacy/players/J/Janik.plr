@@ -1,0 +1,236 @@
+name: Janik
+password: Jai0VxOHPd
+prompt: &3&b%n&0%-<&2%hh&0(&2&b%HH&0)%-&2%vv&0(&2&b%VV&0)>%-&5&b%x&0%_[Spells:%-%l]%_<%t>:<%o>
+sex: 1
+class: 21
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 14675
+birthtime: 1113597193
+timeplayed: 8880809
+lastlogintime: 1696293211
+host: 156.146.194.021
+height: 72
+weight: 163
+base_height: 72
+base_weight: 163
+base_size: 2
+natural_size: 2
+alignment: 110
+playerflags: glxyz
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 104
+loadroom: 3054
+lastlevel: 6
+hitpoints: 516/516
+mana: 980/980
+move: 106/106
+damroll: 3
+hitroll: 3
+strength: 80
+intelligence: 100
+wisdom: 96
+dexterity: 78
+constitution: 74
+charisma: 70
+cash: 66 4 0 9
+bank: 48901 8 0 9
+experience: 119925600
+pagelength: 30
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+8 1000
+19 1000
+20 1000
+29 1000
+30 1000
+31 1000
+37 1000
+38 1000
+39 1000
+51 1000
+52 1000
+57 1000
+62 1000
+67 1000
+68 1000
+76 1000
+77 1000
+78 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+106 1000
+107 1000
+108 1000
+111 1000
+112 1000
+113 810
+171 1000
+172 1000
+173 1000
+174 1000
+175 1000
+176 1000
+177 1000
+178 1000
+179 1000
+180 1000
+181 1000
+182 1000
+183 1000
+191 200
+228 1000
+263 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+447 1000
+451 1000
+452 1000
+454 1000
+456 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 1000
+0 0
+trophy:
+1 3067 0.500000
+1 3061 0.166667
+1 3143 0.250000
+1 3066 0.309524
+1 3051 1.233333
+1 3060 2.361905
+1 3050 0.476191
+1 3052 1.152381
+1 3062 0.142857
+1 3055 0.666667
+1 3059 1.819048
+1 51004 0.333333
+1 51020 1.000000
+1 51008 0.666667
+1 51005 0.500000
+1 51002 0.833333
+1 51009 0.666666
+1 51000 0.666666
+1 51011 1.000000
+1 51006 0.666666
+1 51003 0.666667
+0 0 0
+tells:
+1696191064 @WThe old cartographer@W tells you, 'What do you want to buy?@W'@0
+1696191114 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+$
+gossips:
+1696181720 Discord gossips, 'Zaver: Gratz!'
+1696182426 Thorfinn gossips, 'have a great day everyone!'
+1696190787 Discord gossips, 'Zaver: Monks are still good but I think they need a off attack round punch skill like the guy in doom that has the sphere'
+1696190844 Discord gossips, 'venath.2005: My fairly stacked monk is getting 3 hits at 130-140 each. So.not bad but.hmmmm'
+$
+mem:
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+19 1 1
+19 1 1
+19 1 1
+19 1 1
+19 1 1
+19 1 1
+19 1 1
+19 1 1
+99 1 1
+29 1 1
+29 1 1
+29 1 1
+62 1 1
+62 1 1
+62 1 1
+62 1 1
+175 1 1
+175 1 1
+175 1 1
+175 1 1
+175 1 1
+175 1 1
+31 1 1
+31 1 1
+31 1 1
+180 1 1
+180 1 1
+180 1 1
+180 1 1
+180 1 1
+181 1 1
+106 1 1
+52 1 1
+52 1 1
+52 1 1
+52 1 1
+52 1 1
+68 1 1
+68 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+177 1 1
+177 1 1
+177 1 1
+177 1 1
+112 1 1
+113 1 1
+111 1 1
+111 1 1
+111 1 1
+111 1 1
+178 1 1
+178 1 1
+178 1 1
+178 1 1
+178 1 1
+2 1 1
+2 1 1
+2 1 1
+2 1 1
+2 1 1
+2 1 1
+108 1 1
+57 1 1
+20 1 1
+20 1 1
+78 1 1
+78 1 1
+0 0 0
+aliases:
+bs gsay Jalor, backstab!
+assist gsay Assist $1
+nt gsay New Target, $1
+cm gsay Mila, $1 $2
+wh wh -w
+ddoor c 'dimension door' $1
+protect gtell Mila please protect $1!
+ghit gsay Mila, hit $1
+gbash gsay Mila, bash $1
+0

@@ -1,0 +1,78 @@
+name: Serialbawx
+password: SeeUfRRMHn
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 3
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18361
+birthtime: 1349648605
+timeplayed: 15348
+lastlogintime: 1349847523
+host: 184.076.014.142
+height: 41
+weight: 198
+base_height: 41
+base_weight: 198
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 10
+thirst: 20
+lastlevel: 0
+hitpoints: 31/47
+mana: 1/-1
+move: 58/156
+damroll: 4
+hitroll: 5
+strength: 74
+intelligence: 62
+wisdom: 71
+dexterity: 93
+constitution: 94
+charisma: 67
+cash: 0 8 22 7
+experience: 20253
+quit_reason: 1
+saveroom: 3054
+skills:
+403 57
+415 50
+416 50
+421 61
+438 54
+443 50
+444 50
+464 54
+465 50
+467 50
+0 0
+trophy:
+1 8606 1.000000
+1 8016 1.000000
+1 8010 1.000000
+1 36003 2.000000
+1 36001 2.000000
+1 36002 3.000000
+1 8001 1.000000
+1 8000 1.000000
+1 8012 1.000000
+1 8015 1.000000
+1 8014 4.000000
+1 8013 1.000000
+1 8023 2.000000
+1 8002 2.000000
+0 0 0
+aliases:
+dff drink from fountain
+0

@@ -1,0 +1,112 @@
+name: Jaurel
+password: JazSrOPqgn
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20217
+birthtime: 1649079430
+timeplayed: 23275
+lastlogintime: 1663332158
+host: 066.024.083.202
+height: 62
+weight: 151
+base_height: 62
+base_weight: 151
+base_size: 2
+natural_size: 2
+alignment: -90
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 5
+loadroom: 10053
+lastlevel: 0
+hitpoints: 100/100
+mana: 1/0
+move: 104/104
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 65
+wisdom: 77
+dexterity: 87
+constitution: 73
+charisma: 61
+cash: 0 52 256 128
+experience: 166383
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 97
+415 50
+416 50
+421 120
+438 50
+443 50
+444 50
+463 50
+464 50
+465 89
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 10052 1.000000
+1 55222 1.500000
+1 55229 2.000000
+1 55240 2.500000
+1 55241 3.000000
+1 61528 0.500000
+1 17204 2.500000
+1 3509 1.000000
+1 3508 1.000000
+1 3065 1.000000
+1 3066 2.000000
+1 3132 1.000000
+1 3130 6.000000
+1 3131 9.000000
+1 61523 1.000000
+1 61510 1.000000
+1 3507 1.000000
+1 12016 1.000000
+1 12015 1.000000
+1 3503 1.000000
+1 12001 1.000000
+0 0 0
+tells:
+1649183709 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1649183711 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1649183712 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1649269974 @WLokar@W tells you, 'consent me@W'@0
+1649427920 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1649427922 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1649427923 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1649427923 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1649427924 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1649427925 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1649435922 Snil gossips, 'gratz'
+1649435931 Vash gossips, 'thanks'
+1649436179 Chinok gossips, 'if anyone has any questions or needs any advice, just yell... '
+1649436342 Holk gossips, 'WINNING LOTTO #'s PLEASE!!!'
+1649436372 Tors gossips, 'if he knew those we would have his full attention the item database would be done'
+1649436378 Althalus gossips, 'I would love some of that PowerBall Lottery you all have down South!!!'
+1649436508 Chinok gossips, 'I'd love it too, if I'd win it.. bought 3 tickets last week.. out of 3 tickets, didn't have a single number -- think I should win a prize for unluckiest '
+1650306314 Tarnoth gossips, 'beginning to think that I should wait until I level up my rogues to 10'
+1650306442 Chinok gossips, 'you have til level 25.. '
+1663331700 Laird gossips, 'hi unless your holk i've already talked to him one greeting per person :)'
+$
+aliases:
+gac get all corpse
+0

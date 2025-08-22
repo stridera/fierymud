@@ -1,0 +1,94 @@
+name: Tereta
+password: TezDgTo85R
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 0
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18903
+birthtime: 1427421883
+timeplayed: 80324
+lastlogintime: 1429406879
+host: 065.027.185.062
+height: 64
+weight: 147
+base_height: 64
+base_weight: 147
+base_size: 2
+natural_size: 2
+alignment: -30
+playerflags: y
+effectflags: 0 0 0
+prefflags: hC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 34/34
+mana: 1/-1
+move: 102/102
+damroll: 3
+hitroll: 3
+strength: 76
+intelligence: 91
+wisdom: 94
+dexterity: 74
+constitution: 72
+charisma: 57
+cash: 4 40 263 275
+experience: 58942
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 64
+424 59
+438 50
+443 50
+444 50
+447 60
+451 74
+452 54
+453 54
+459 50
+460 50
+462 50
+464 53
+0 0
+trophy:
+1 16108 0.200000
+1 16102 0.200000
+1 16107 0.600000
+1 16110 0.200000
+1 2003 0.200000
+1 2004 0.200000
+1 2002 0.200000
+1 2001 0.200000
+1 8021 0.500000
+1 3502 1.333333
+1 3500 2.000000
+1 3509 0.500000
+1 3508 2.000000
+1 3506 1.500000
+1 3501 3.000000
+1 8016 1.500000
+1 8010 1.500000
+1 8001 0.500000
+1 8014 2.000000
+1 8002 0.500000
+1 8020 1.000000
+0 0 0
+mem:
+32 0 7
+5 0 7
+0 0 0

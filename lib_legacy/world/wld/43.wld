@@ -1,0 +1,1826 @@
+#4300
+Entrance to the Theatre~
+   You have entered into a magical world where peasants stand in place of
+kings, where witches and warlocks can endearingly twist the fates of total
+strangers to determine the outcome of an evening.  It's a place where the most
+talented performers and musicians from all walks of life come to shine for one
+glorious moment.  Intricate, fading designs cover the crimson red walls of the
+theatre.  False gold columns run the length of the walls, stretching up into
+the heavens.  The house waits before you to the west.    ~
+43 76 0
+D0
+   A ticket booth is built into the entryway.  People can pay a few coins to
+see the shows and be entertained for the evening.    ~
+~
+3 -1 -1
+D1
+~
+~
+0 0 6211
+D3
+~
+~
+0 0 4303
+D4
+   Above you hangs a giant balcony, making up the second floor of the audience
+seating.    ~
+~
+3 -1 -1
+E
+columns~
+   A ticket booth is built into the entryway.  People can pay a few coins to
+see the shows and be entertained for the evening.    ~
+S
+#4301
+The House~
+   Beautiful red velvet seats have been attached to the floor in rows, slowly
+slanting down to the stage to the west.  The theatre is lit, just enough to see
+the aisle you're in and the one a few feet ahead of you, but your eyes are
+dependent on the light from the stage to see much of anything else.  The
+balcony overhead blocks your view of the ceiling though.  A stairway leads to
+the balcony above you.    ~
+43 33554440 0
+D2
+~
+~
+0 0 4302
+D3
+~
+~
+0 0 4306
+D4
+~
+~
+0 0 4311
+E
+seat seats~
+   Each seat is very soft and comfortable!  Obviously, each patron needs to be
+comfortable enough to sit for two solid hours, which these seats definitely
+allow for.  Every seat in the house has an excellent view of the stage, making
+this an ideal space to watch a performance in.    ~
+S
+#4302
+The House~
+   Beautiful red velvet seats have been attached to the floor in rows, sloping
+slightly downward to meet the stage.  The theatre is lit, just enough to see
+the aisle you're in and the one a few feet ahead of you, but your eyes are
+dependent on the light from the stage to see much of anything else.  The
+balcony overhead blocks your view of the ceiling though.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4301
+D2
+~
+~
+0 0 4303
+D3
+~
+~
+0 0 4307
+D4
+   The balcony overhead obscures the ceiling, but it is high enough that anyone
+but those sitting in the very last row can see the entire proscenium opening.
+  ~
+~
+3 -1 -1
+E
+seat seats~
+   Each seat is very soft and comfortable!  Obviously, each patron needs to be
+comfortable enough to sit for two solid hours, which these seats definitely
+allow for.  Every seat in the house has an excellent view of the stage, making
+this an ideal space to watch a performance in.    ~
+S
+#4303
+The House~
+   Beautiful red velvet seats have been attached to the floor in rows, sloping
+slightly downward to meet the stage.  The theatre is lit, just enough to see
+the aisle you're in and the one a few feet ahead of you, but your eyes are
+dependent on the light from the stage to see much of anything else.  The
+balcony overhead blocks your view of the ceiling though.  Behind you to the
+east you see the exit.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4302
+D1
+~
+~
+0 0 4300
+D2
+~
+~
+0 0 4304
+D3
+~
+~
+0 0 4308
+D4
+   The balcony overhead obscures the ceiling, but it is high enough that anyone
+but those sitting in the very last row can see the entire proscenium opening.
+  ~
+~
+3 -1 -1
+E
+seat seats~
+   Each seat is very soft and comfortable!  Obviously, each patron needs to be
+comfortable enough to sit for two solid hours, which these seats definitely
+allow for.  Every seat in the house has an excellent view of the stage, making
+this an ideal space to watch a performance in.    ~
+S
+#4304
+The House~
+   Beautiful red velvet seats have been attached to the floor in rows, sloping
+slightly downward to meet the stage.  The theatre is lit, just enough to see
+the aisle you're in and the one a few feet ahead of you, but your eyes are
+dependent on the light from the stage to see much of anything else.  The
+balcony overhead blocks your view of the ceiling though.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4303
+D2
+~
+~
+0 0 4305
+D3
+~
+~
+0 0 4309
+D4
+   The balcony overhead obscures the ceiling, but it is high enough that anyone
+but those sitting in the very last row can see the entire proscenium opening.
+  ~
+~
+3 -1 -1
+E
+seat seats~
+   Each seat is very soft and comfortable!  Obviously, each patron needs to be
+comfortable enough to sit for two solid hours, which these seats definitely
+allow for.  Every seat in the house has an excellent view of the stage, making
+this an ideal space to watch a performance in.    ~
+S
+#4305
+The House~
+   Beautiful red velvet seats have been attached to the floor in rows, slowly
+slanting down to the stage to the west.  The theatre is lit, just enough to see
+the aisle you're in and the one a few feet ahead of you, but your eyes are
+dependent on the light from the stage to see much of anything else.  The
+balcony overhead blocks your view of the ceiling though.  A stairway leads to
+the balcony above you.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4304
+D3
+~
+~
+0 0 4310
+D4
+~
+~
+0 0 4315
+E
+seat seats~
+   Each seat is very soft and comfortable!  Obviously, each patron needs to be
+comfortable enough to sit for two solid hours, which these seats definitely
+allow for.  Every seat in the house has an excellent view of the stage, making
+this an ideal space to watch a performance in.    ~
+S
+#4306
+The House~
+   Beautiful red velvet seats have been attached to the floor in rows, sloping
+slightly downward to meet the stage.  The theatre is lit, just enough to see
+the aisle you're in and the one a few feet ahead of you, but your eyes are
+dependent on the light from the stage to see much of anything else.  The
+balcony overhead blocks your view of the ceiling though.    ~
+43 33554440 0
+D1
+~
+~
+0 0 4301
+D2
+~
+~
+0 0 4307
+D3
+~
+curtain~
+1 0 4321
+D4
+   The balcony overhead obscures the ceiling, but it is high enough that anyone
+but those sitting in the very last row can see the entire proscenium opening.
+  ~
+~
+3 -1 -1
+E
+seat seats~
+   Each seat is very soft and comfortable!  Obviously, each patron needs to be
+comfortable enough to sit for two solid hours, which these seats definitely
+allow for.  Every seat in the house has an excellent view of the stage, making
+this an ideal space to watch a performance in.    ~
+S
+#4307
+The House~
+   Beautiful red velvet seats have been attached to the floor in rows, sloping
+slightly downward to meet the stage.  The theatre is lit, just enough to see
+the aisle you're in and the one a few feet ahead of you, but your eyes are
+dependent on the light from the stage to see much of anything else.  The
+balcony overhead blocks your view of the ceiling though.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4306
+D1
+~
+~
+0 0 4302
+D2
+~
+~
+0 0 4308
+D3
+~
+~
+0 -1 4322
+D4
+   The balcony overhead obscures the ceiling, but it is high enough that anyone
+but those sitting in the very last row can see the entire proscenium opening.
+  ~
+~
+3 -1 -1
+E
+seat seats~
+   Each seat is very soft and comfortable!  Obviously, each patron needs to be
+comfortable enough to sit for two solid hours, which these seats definitely
+allow for.  Every seat in the house has an excellent view of the stage, making
+this an ideal space to watch a performance in.    ~
+S
+#4308
+The House~
+   Beautiful red velvet seats have been attached to the floor in rows, sloping
+slightly downward to meet the stage.  The theatre is lit, just enough to see
+the aisle you're in and the one a few feet ahead of you, but your eyes are
+dependent on the light from to see much of anything else.  The balcony overhead
+blocks your view of the ceiling though.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4307
+D1
+~
+~
+0 0 4303
+D2
+~
+~
+0 0 4309
+D3
+~
+~
+0 -1 4323
+D4
+   The balcony overhead obscures the ceiling, but it is high enough that anyone
+but those sitting in the very last row can see the entire proscenium opening.
+  ~
+~
+3 -1 -1
+E
+seat seats~
+   Each seat is very soft and comfortable!  Obviously, each patron needs to be
+comfortable enough to sit for two solid hours, which these seats definitely
+allow for.  Every seat in the house has an excellent view of the stage, making
+this an ideal space to watch a performance in.    ~
+S
+#4309
+The House~
+   Beautiful red velvet seats have been attached to the floor in rows, sloping
+slightly downward to meet the stage.  The theatre is lit, just enough to see
+the aisle you're in and the one a few feet ahead of you, but your eyes are
+dependent on the light from the stage to see much of anything else.  The
+balcony overhead blocks your view of the ceiling though.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4308
+D1
+~
+~
+0 0 4304
+D2
+~
+~
+0 0 4310
+D3
+~
+~
+0 -1 4324
+D4
+   The balcony overhead obscures the ceiling, but it is high enough that anyone
+but those sitting in the very last row can see the entire proscenium opening.
+  ~
+~
+3 -1 -1
+E
+seat seats~
+   Each seat is very soft and comfortable!  Obviously, each patron needs to be
+comfortable enough to sit for two solid hours, which these seats definitely
+allow for.  Every seat in the house has an excellent view of the stage, making
+this an ideal space to watch a performance in.    ~
+S
+#4310
+The House~
+   Beautiful red velvet seats have been attached to the floor in rows, sloping
+slightly downward to meet the stage.  The theatre is lit, just enough to see
+the aisle you're in and the one a few feet ahead of you, but your eyes are
+dependent on the light from the stage to see much of anything else.  The
+balcony overhead blocks your view of the ceiling though.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4309
+D1
+~
+~
+0 0 4305
+D3
+~
+curtain~
+1 0 4325
+D4
+   The balcony overhead obscures the ceiling, but it is high enough that anyone
+but those sitting in the very last row can see the entire proscenium opening.
+  ~
+~
+3 -1 -1
+E
+seat seats~
+   Each seat is very soft and comfortable!  Obviously, each patron needs to be
+comfortable enough to sit for two solid hours, which these seats definitely
+allow for.  Every seat in the house has an excellent view of the stage, making
+this an ideal space to watch a performance in.    ~
+S
+#4311
+The Balcony~
+   The second level of the house is just as beautiful as the first, but in
+addition the view of the gorgeous ceiling is unobstructed.  The seats are
+situated in sloped rows, identical to the level below you.  Somehow, being up
+in the balcony liberates you, the feeling of the theatre so invigorating it
+brings you a little bit closer to the gods.  After all, there must be a reason
+theatre has been used as a ritual for centuries.  There is a stairway leading
+back down to the main floor.    ~
+43 33554440 0
+D2
+~
+~
+0 0 4312
+D3
+~
+~
+0 0 4316
+D4
+   Above your head sits a marvelous domed ceiling.    ~
+0~
+3 -1 -1
+D5
+~
+~
+0 0 4301
+E
+ceiling~
+   Just as extravagant as the detailed walls, the upper crowing of the theatre
+is ringed with faux gold cherubim faces, enclosing a huge dome.  At the apex of
+the dome is a huge relief of a golden sun, its beams blazing outward.  
+Openings in the ceiling allow for lights to be hung and light both the house
+and the stage.  In a full production, the stage is lit as if by a multicolored,
+radiant sun.    ~
+S
+#4312
+The Balcony~
+   The second level of the house is just as beautiful as the first, but in
+addition the view of the gorgeous ceiling is unobstructed.  The seats are
+situated in rows, identical to the level below you.  Somehow, being up in the
+balcony liberates you, the feeling of the theatre so invigorating it brings you
+a little bit closer to the gods.  After all, there must be a reason theatre has
+been used as a ritual for centuries.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4311
+D2
+~
+~
+0 0 4313
+D3
+~
+~
+0 0 4317
+D4
+   Above your head sits a marvelous domed ceiling.    ~
+~
+3 -1 -1
+E
+ceiling~
+   Just as extravagant as the detailed walls, the upper crowing of the theatre
+is ringed with faux gold cherubim faces, enclosing a huge dome.  At the apex of
+the dome is a huge relief of a golden sun, its beams blazing outward.  
+Openings in the ceiling allow for lights to be hung and light both the house
+and the stage.  In a full production, the stage is lit as if by a multicolored,
+radiant sun.    ~
+S
+#4313
+The Balcony~
+   The second level of the house is just as beautiful as the first, but in
+addition the view of the gorgeous ceiling is unobstructed.  The seats are
+situated in rows, identical to the level below you.  Somehow, being up in the
+balcony liberates you, the feeling of the theatre so invigorating it brings you
+a little bit closer to the gods.  After all, there must be a reason theatre has
+been used as a ritual for centuries.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4312
+D2
+~
+~
+0 0 4314
+D3
+~
+~
+0 0 4318
+D4
+   Carefully concealed near the back of the balcony is a ladder and a trapdoor.
+The trapdoor seems completely blocked from the other side.    ~
+trapdoor~
+2 0 4354
+E
+ceiling~
+   Just as extravagant as the detailed walls, the upper crowing of the theatre
+is ringed with faux gold cherubim faces, enclosing a huge dome.  At the apex of
+the dome is a huge relief of a golden sun, its beams blazing outward.  
+Openings in the ceiling allow for lights to be hung and light both the house
+and the stage.  In a full production, the stage is lit as if by a multicolored,
+radiant sun.    ~
+S
+#4314
+The Balcony~
+   The second level of the house is just as beautiful as the first, but in
+addition the view of the gorgeous ceiling is unobstructed.  The seats are
+situated in rows, identical to the level below you.  Somehow, being up in the
+balcony liberates you, the feeling of the theatre so invigorating it brings you
+a little bit closer to the gods.  After all, there must be a reason theatre has
+been used as a ritual for centuries.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4313
+D2
+~
+~
+0 0 4315
+D3
+~
+~
+0 0 4319
+D4
+   Above your head sits a marvelous domed ceiling.    ~
+~
+3 -1 -1
+E
+ceiling~
+   Just as extravagant as the detailed walls, the upper crowing of the theatre
+is ringed with faux gold cherubim faces, enclosing a huge dome.  At the apex of
+the dome is a huge relief of a golden sun, its beams blazing outward.  
+Openings in the ceiling allow for lights to be hung and light both the house
+and the stage.  In a full production, the stage is lit as if by a multicolored,
+radiant sun.    ~
+S
+#4315
+The Balcony~
+   The second level of the house is just as beautiful as the first, but in
+addition the view of the gorgeous ceiling is unobstructed.  The seats are
+situated in sloped rows, identical to the level below you.  Somehow, being up
+in the balcony liberates you, the feeling of the theatre so invigorating it
+brings you a little bit closer to the gods.  After all, there must be a reason
+theatre has been used as a ritual for centuries.  There is a stairway leading
+back down to the main floor.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4314
+D3
+~
+~
+0 0 4320
+D4
+   Above your head sits a marvelous domed ceiling.    ~
+~
+3 -1 -1
+D5
+~
+~
+0 0 4305
+E
+ceiling~
+   Just as extravagant as the detailed walls, the upper crowing of the theatre
+is ringed with faux gold cherubim faces, enclosing a huge dome.  At the apex of
+the dome is a huge relief of a golden sun, its beams blazing outward.  
+Openings in the ceiling allow for lights to be hung and light both the house
+and the stage.  In a full production, the stage is lit as if by a multicolored,
+radiant sun.    ~
+S
+#4316
+The Balcony~
+   The second level of the house is just as beautiful as the first, but in
+addition the view of the gorgeous ceiling is unobstructed.  The seats are
+situated in rows, identical to the level below you.  Somehow, being up in the
+balcony liberates you, the feeling of the theatre so invigorating it brings you
+a little bit closer to the gods.  After all, there must be a reason theatre has
+been used as a ritual for centuries.    ~
+43 33554440 0
+D1
+~
+~
+0 0 4311
+D2
+~
+~
+0 0 4317
+D4
+   Above your head sits a marvelous domed ceiling.    ~
+~
+3 -1 -1
+E
+ceiling~
+   Just as extravagant as the detailed walls, the upper crowing of the theatre
+is ringed with faux gold cherubim faces, enclosing a huge dome.  At the apex of
+the dome is a huge relief of a golden sun, its beams blazing outward.  
+Openings in the ceiling allow for lights to be hung and light both the house
+and the stage.  In a full production, the stage is lit as if by a multicolored,
+radiant sun.    ~
+S
+#4317
+The Balcony~
+   The second level of the house is just as beautiful as the first, but in
+addition the view of the gorgeous ceiling is unobstructed.  The seats are
+situated in rows, identical to the level below you.  Somehow, being up in the
+balcony liberates you, the feeling of the theatre so invigorating it brings you
+a little bit closer to the gods.  After all, there must be a reason theatre has
+been used as a ritual for centuries.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4316
+D1
+~
+~
+0 0 4312
+D2
+~
+~
+0 0 4318
+D4
+   Above your head sits a marvelous domed ceiling.    ~
+~
+3 -1 -1
+E
+ceiling~
+   Just as extravagant as the detailed walls, the upper crowing of the theatre
+is ringed with faux gold cherubim faces, enclosing a huge dome.  At the apex of
+the dome is a huge relief of a golden sun, its beams blazing outward.  
+Openings in the ceiling allow for lights to be hung and light both the house
+and the stage.  In a full production, the stage is lit as if by a multicolored,
+radiant sun.    ~
+S
+#4318
+The Balcony~
+   The second level of the house is just as beautiful as the first, but in
+addition the view of the gorgeous ceiling is unobstructed.  This seat, in the
+front of the balcony in the center of the theatre, is said to be the best seat
+in the house.  The seats are situated in rows, identical to the level below
+you.  Somehow, being up in the balcony liberates you, the feeling of the
+theatre so invigorating it brings you a little bit closer to the gods.  After
+all, there must be a reason theatre has been used as a ritual for centuries.~
+43 33554440 0
+D0
+~
+~
+0 0 4317
+D1
+~
+~
+0 0 4313
+D2
+~
+~
+0 0 4319
+D4
+   Above your head sits a marvelous domed ceiling.    ~
+~
+3 -1 -1
+E
+ceiling~
+   Just as extravagant as the detailed walls, the upper crowing of the theatre
+is ringed with faux gold cherubim faces, enclosing a huge dome.  At the apex of
+the dome is a huge relief of a golden sun, its beams blazing outward.  
+Openings in the ceiling allow for lights to be hung and light both the house
+and the stage.  In a full production, the stage is lit as if by a multicolored,
+radiant sun.    ~
+S
+T 6207
+#4319
+The Balcony~
+   The second level of the house is just as beautiful as the first, but in
+addition the view of the gorgeous ceiling is unobstructed.  The seats are
+situated in rows, identical to the level below you.  Somehow, being up in the
+balcony liberates you, the feeling of the theatre so invigorating it brings you
+a little bit closer to the gods.  After all, there must be a reason theatre has
+been used as a ritual for centuries.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4318
+D1
+~
+~
+0 0 4314
+D2
+~
+~
+0 0 4320
+D4
+   Above your head sits a marvelous domed ceiling.    ~
+~
+3 -1 -1
+E
+ceiling~
+   Just as extravagant as the detailed walls, the upper crowing of the theatre
+is ringed with faux gold cherubim faces, enclosing a huge dome.  At the apex of
+the dome is a huge relief of a golden sun, its beams blazing outward.  
+Openings in the ceiling allow for lights to be hung and light both the house
+and the stage.  In a full production, the stage is lit as if by a multicolored,
+radiant sun.    ~
+S
+#4320
+The Balcony~
+   The second level of the house is just as beautiful as the first, but in
+addition the view of the gorgeous ceiling is unobstructed.  The seats are
+situated in rows, identical to the level below you.  Somehow, being up in the
+balcony liberates you, the feeling of the theatre so invigorating it brings you
+a little bit closer to the gods.  After all, there must be a reason theatre has
+been used as a ritual for centuries.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4319
+D1
+~
+~
+0 0 4315
+D4
+   Above your head sits a marvelous domed ceiling.    ~
+~
+3 -1 -1
+E
+ceiling~
+   Just as extravagant as the detailed walls, the upper crowing of the theatre
+is ringed with faux gold cherubim faces, enclosing a huge dome.  At the apex of
+the dome is a huge relief of a golden sun, its beams blazing outward.  
+Openings in the ceiling allow for lights to be hung and light both the house
+and the stage.  In a full production, the stage is lit as if by a multicolored,
+radiant sun.    ~
+S
+#4321
+In The Wings~
+   You stand just off stage, hiding behind a masking curtain so you can't be
+seen from the house.  Looking around the backstage area, the glamour of the
+theatre quickly fades away to reveal the work that goes into putting on a show.
+All the walls are painted black to avoid any kind of attention.  Cables and
+ropes hang from all manners of pulleys and set pieces, ready to open this or
+move that or do any other number of strange, set-changing things.  Only the
+minds of the criminally insane technical crew could possibly grasp the workings
+of the strange devices here.    ~
+43 9 0
+D1
+~
+door~
+1 0 4306
+D2
+~
+~
+0 0 4322
+D3
+~
+~
+0 0 4326
+S
+#4322
+Down Stage Left~
+   The front left edge of the stage is thought to be a position of ending and
+finality.  The old wooden stage is sturdy and well built, but has obviously
+been used in thousands of productions since its creation.  Standing at the
+front of the stage, you can only imagine the thrill a performer would feel with
+the eyes of every person in the theatre watching them.  From here, you can make
+your way off stage north or move upstage by going west.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4321
+D1
+~
+~
+0 -1 4307
+D2
+~
+~
+0 0 4323
+D3
+~
+~
+0 0 4327
+S
+#4323
+Down Stage Center~
+   The view of the house from here is spectacular!  You can see all the way to
+the back of the audience from here.  The old wooden stage is sturdy and well
+built, but has obviously been used in thousands of productions since its
+creation.  Standing at the front of the stage, you can only image the thrill a
+performer would feel with the eyes of every person in the theatre watching
+them.  You can make your way upstage by going west.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4322
+D1
+~
+~
+0 -1 4308
+D2
+~
+~
+0 0 4324
+D3
+~
+~
+0 0 4328
+S
+#4324
+Down Stage Right~
+   Standing at the front right edge of the stage is said to be a position of
+potential and beginning.  Maybe it looks that way, but it sure doesn't feel
+like it.  The old wooden stage is sturdy and well built, but has obviously been
+used in thousands of productions since its creation.  Standing at the front of
+the stage, you can only image the thrill a performer would feel with the eyes
+of every person in the theatre watching them.  From here, you can make your way
+off stage south or move upstage by going west.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4323
+D1
+~
+~
+0 -1 4309
+D2
+~
+~
+0 0 4325
+D3
+~
+~
+0 0 4329
+S
+#4325
+In the Wings~
+   You stand just off stage, hiding behind a masking curtain so you can't be
+seen from the house.  Looking around the backstage area, the glamour of the
+theatre quickly fades away to reveal the work that goes into putting on a show.
+All the walls are painted black to avoid any kind of attention.  Cables and
+ropes hang from all manners of pulleys and set pieces, ready to open this or
+move that or do any other number of strange, set-changing things.  Only the
+minds of the criminally insane technical crew could possibly grasp the workings
+of the strange devices here.    ~
+43 9 0
+D0
+~
+~
+0 0 4324
+D1
+~
+door~
+1 0 4310
+D3
+~
+~
+0 0 4330
+S
+#4326
+In the Wings~
+   You stand just off stage, hiding behind the masking curtain so you can't be
+seen from the house.  Looking around the backstage area, the glamour of the
+theatre quickly fades away to reveal the work that goes into putting on a show
+in this place.  Small prop tables are set up against the walls.    ~
+43 9 0
+D1
+~
+~
+0 0 4321
+D2
+~
+~
+0 0 4327
+D3
+~
+~
+0 0 4331
+E
+Table Tables Prop Props~
+   These tables are where actors are SUPPOSED to return their hand props after
+bringing them off stage.  Everything from a fake cigarette, which is cheap and
+easily replaceable, to a real steel sword, which is expensive and very, very
+dangerous, can qualify as a prop, so it is vital that everything be returned to
+its proper place.    ~
+S
+#4327
+Stage Left~
+   You stand just off to the left of the middle of the stage.  A large curtain
+masks the exit from the stage, support by a tall pillar.  Strangely, you don't
+feel any farther from the all-seeing eyes of the audience here.  You can make
+your way off stage by going north or move upstage by going west.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4326
+D1
+~
+~
+0 0 4322
+D2
+~
+~
+0 0 4328
+D3
+~
+~
+0 0 4332
+S
+#4328
+Center Stage~
+   A spotlight shines down on this part of the stage, the glorious center
+stage.  You have access to all parts of the stage here, but why would you want
+to move?  Here, everyone can see you.  You are the star, shining as bright as
+the sun.  This is called the power spot, the true center of the stage.    ~
+43 0 0
+D0
+~
+~
+0 0 4327
+D1
+~
+~
+0 0 4323
+D2
+~
+~
+0 0 4329
+D3
+~
+~
+0 0 4333
+S
+#4329
+Stage Right~
+   You stand just off to the right of the middle of the stage.  A large curtain
+masks the exit from the stage, support by a tall pillar.  Strangely, you don't
+feel any farther from the all-seeing eyes of the audience here.  A small tower
+of platforms had been constructed to give a director levels to play with.  
+They give great visual interest, as well as several great hiding spots.  You
+can make your way off stage by going south or move upstage by going west, or
+you can climb the tower and head upstage on that instead.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4328
+D1
+~
+~
+0 0 4324
+D2
+~
+~
+0 0 4330
+D3
+~
+~
+0 0 4334
+D4
+~
+~
+0 0 4368
+S
+#4330
+In The Wings~
+   You stand just off stage, hiding behind the masking curtain so you can't be
+seen from the house.  Looking around the backstage area, the glamour of the
+theatre quickly fades away to reveal the work that goes into putting on a show
+in this place.  Small prop tables are set up against the walls.    ~
+43 9 0
+D0
+~
+~
+0 0 4329
+D1
+~
+~
+0 0 4325
+D3
+~
+~
+0 0 4335
+E
+Table Tables Prop Props~
+   These tables are where actors are SUPPOSED to return their hand props after
+bringing them off stage.  Everything from a fake cigarette, which is cheap and
+easily replaceable, to a real steel sword, which is expensive and very, very
+dangerous, can qualify as a prop, so it is vital that everything be returned to
+its proper place.    ~
+S
+#4331
+In The Wings~
+   You stand just off stage, hiding behind a masking curtain so you can't be
+seen from the house.  Looking around the backstage area, the glamour of the
+theatre quickly fades away to reveal the work that goes into putting on a show.
+All the walls are painted black to avoid any kind of attention.  The off-stage
+end of the on-stage balcony ends in an unpainted, unfinished platform with
+small, steep wooden steps cobbled together to allow an actor to get from the
+balcony to the ground.  There is a black door going west from here.    ~
+43 9 0
+D1
+~
+~
+0 0 4326
+D2
+~
+~
+0 0 4332
+D3
+   There is a solid black door leading out of the backstage area.    ~
+door~
+1 0 4337
+D4
+~
+~
+0 0 4365
+S
+#4332
+Up Stage Left~
+   A giant set piece has been erected here in front of the upstage curtain,
+giving this far corner of the stage a second level so a performer can be better
+seen by the audience.  The set piece is a large balcony with a rail and a long
+metal pole stretching from the base of the stage to the ceiling.  You can make
+your way off stage north under the balcony.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4331
+D1
+~
+~
+0 0 4327
+D2
+~
+~
+0 0 4333
+S
+#4333
+Up Stage Center~
+   There is nothing here except the large black curtain at the back of the
+stage.  There are two large set pieces that you can see, one north and one
+south.  Otherwise, the stage is empty.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4332
+D1
+~
+~
+0 0 4328
+D2
+~
+~
+0 0 4334
+E
+curtain~
+   The curtain is slightly open, revealing something huge hidden behind it.  ~
+S
+T 4398
+#4334
+Up Stage Right~
+   A giant set piece has been erected here in front of the upstage curtain,
+giving this far corner of the stage a second level so that a performer can be
+better seen by the audience.  The set piece is a series of platforms and ramps,
+going from the ground to the height of the stage left balcony.  Each platform
+looks sturdy enough to hold several performers, giving this piece a
+mountain-like look.  You can make your way off stage south, or you can climb
+the tower of platforms.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4333
+D1
+~
+~
+0 0 4329
+D2
+~
+~
+0 0 4335
+D4
+~
+~
+0 0 4366
+S
+#4335
+In the Wings~
+   You stand just off stage, hiding behind a masking curtain so you can't be
+seen from the house.  Looking around the backstage area, the glamour of the
+theatre quickly fades away to reveal the work that goes into putting on a show.
+All the walls are painted black to avoid any kind of attention.  There is a
+black door going west from here.    ~
+43 9 0
+D0
+~
+~
+0 0 4334
+D1
+~
+~
+0 0 4330
+D3
+   There is a solid black door leading out of the backstage area.    ~
+door~
+1 0 4341
+S
+#4336
+Inside the Fire Box~
+   The entire inside of the box is painted black and covered with soot.  It
+smells very heavily of flammable chemicals for some odd reason.  The walls and
+floor and also scored with scorch marks.  The door closes and seals behind you
+and you hear a sudden 'click' as it's locked as well.  This can't be a good
+place to be right now.    ~
+43 589993 9
+S
+T 4399
+#4337
+A Stairwell~
+   The backstage door opens into a dimly lit stairwell that leads down under
+the stage.  The area below you looks brighter than the backstage area,
+indicating that perhaps the lower level is actually in use.  There is another
+door going south.    ~
+43 9 0
+D1
+   There is a solid black door leading out of the backstage area.    ~
+door~
+1 0 4331
+D2
+   An old wooden door block off the backstage area.    ~
+door~
+1 0 4338
+D5
+~
+~
+0 0 4342
+S
+#4338
+Behind the Stage~
+   This area is where most of the props for shows are kept.  A large number of
+tools wait here as well, ready to repair anything at a moment's notice.  
+Pieces of wood that this area is probably also used for set construction as
+well as storage.  A good little workshop indeed!    ~
+43 8 0
+D0
+   An old wooden door block off the backstage area.    ~
+door~
+1 0 4337
+D2
+~
+~
+0 0 4339
+E
+tools~
+   Saws, hammers, nails, even crank drills are all around this room.  
+Everything could be described in one of two ways: well loved or junk.    ~
+S
+#4339
+Behind the Stage~
+   This area is where most of the props for shows are kept.  A large number of
+tools wait here as well, ready to repair anything at a moment's notice.  
+Pieces of wood that this area is probably also used for set construction as
+well as storage.  A good little workshop indeed!    ~
+43 8 0
+D0
+~
+~
+0 0 4338
+D2
+~
+~
+0 0 4340
+D3
+   There is a ladder set into the wall, leading up to a small trapdoor in the
+ceiling.    ~
+~
+3 -1 -1
+D4
+~
+~
+0 0 4364
+E
+tools~
+   Saws, hammers, nails, even crank drills are all around this room.  
+Everything could be described in one of two ways: well loved or junk.    ~
+S
+#4340
+Behind the Stage~
+   This area is where most of the props for shows are kept.  A large number of
+tools wait here as well, ready to repair anything at a moment's notice.  
+Pieces of wood that this area is probably also used for set construction as
+well as storage.  A good little workshop indeed!    ~
+43 8 0
+D0
+~
+~
+0 0 4339
+D2
+   An old wooden door block off the backstage area.    ~
+door~
+1 0 4341
+E
+tools~
+   Saws, hammers, nails, even crank drills are all around this room.  
+Everything could be described in one of two ways: well loved or junk.    ~
+S
+#4341
+A Stairwell~
+   The backstage door opens into a dimly lit stairwell that leads down under
+the stage.  The area below you looks brighter than the backstage area,
+indicating that perhaps the lower level is actually in use.  There is another
+door going north.    ~
+43 9 0
+D0
+   An old wooden door block off the backstage area.    ~
+door~
+1 0 4340
+D1
+   There is a solid black door leading out of the backstage area.    ~
+door~
+1 0 4335
+D5
+~
+~
+0 0 4343
+S
+#4342
+A Stairwell~
+   As you descend the stairs, you hear muffled voices coming through a simple
+door to the west.  You can go back up the stairs and to the back stage area if
+you want.    ~
+43 9 0
+D3
+~
+door~
+1 0 4346
+D4
+~
+~
+0 0 4337
+S
+#4343
+A Stairwell~
+   As you descend the stairs, you hear muffled voices coming through a simple
+door to the west.  You can go back up the stairs and to the back stage area if
+you want.    ~
+43 9 0
+D3
+   A simple wooden door with the word 'Womens' written on it stands here.    ~
+door~
+1 0 4350
+D4
+~
+~
+0 0 4341
+S
+#4344
+Top of the Stage Right Tower~
+   What a fantastic spot to be in!  Though it's not as focused as center stage,
+there's not a single eye in the house that could miss a person standing on this
+top platform.  Everything is visible from here, including a great view of the
+house balcony and anything happening on the stage left turret.  Sadly there's
+only one way to go from here: down.    ~
+43 33554440 0
+D5
+~
+~
+0 0 4366
+S
+#4345
+Lewis's Dressing Room~
+   This gaudily decorated dressing room belongs to the actor in the Role of
+Lewis.  Made to make the actor feel more in character, there are bodybuilding
+and wrestling books strewn about the room, pictures of beautiful, half-naked
+women hung on the walls, weights in one corner and several prop swords in the
+other.  However, the enormous, fashionable wardrobe and dozens of kinds of
+makeup make a drastic contrast to the manliness of the room.  A large mirror is
+set over a countertop here for the actor to check his makeup in.    ~
+43 33554440 0
+D2
+~
+door~
+1 4300 4346
+E
+makeup counter~
+   Every shade of color in the rainbow is scattered about in this dressing
+room.  Streaks and stains are all over the mirror and the counter.    ~
+E
+mirror~
+   Are those lip prints on the mirror?  Was the actor seriously kissing his own
+reflection?!  Something else catches your attention though.  It looks like
+something is poking out from behind the mirror.    ~
+S
+#4346
+The Men's Dressing Room~
+   Entering into this area, you walk into a large room filled with racks of
+costumes and personal clothing.  Even with all the racks, this room is still a
+total mess, junk scattered all over the floor, street clothes tossed into a
+pile or slung over the back of a chair.  The room reeks to high Hell of dirty
+socks, but there is an unexpectedly comfortable, homey feeling here as well.  
+The dressing room continues south.    ~
+43 33554440 0
+D0
+   There is a door leading north, a big gold star hanging on it.    ~
+door~
+1 4300 4345
+D1
+~
+door~
+1 0 4342
+D2
+~
+~
+0 0 4347
+D3
+   The west wall is lined with a single giant mirror over a long countertop.  
+Several stools sit under the counter, giving the actors a place to sit while
+they take care of their makeup and hair.    ~
+~
+3 -1 -1
+E
+star~
+   Written on the star is the name 'Lewis'.    ~
+S
+#4347
+The Men's Dressing Room~
+   Entering into this area, you walk into a large room filled with racks of
+costumes and personal clothing.  Even with all the racks, this room is still a
+total mess, junk scattered all over the floor, street clothes tossed into a
+pile or slung over the back of a chair.  The room reeks to high Hell of dirty
+socks, but there is an unexpectedly comfortable, homey feeling here as well.  
+A large couch is in here as well for the actors to sit on while they wait for
+their cue.  However, no one has time to sit in this business.  Everyone is
+running around frantically, making sure all their props are in place and making
+sure they've warmed up for the show.  The dressing room continues south.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4346
+D2
+   There is a door to thsouth, unmarked and unlocked.    ~
+door~
+1 0 4348
+D3
+   The west wall is lined with a single giant mirror over a long countertop.  
+Several stools sit under the counter, giving the actors a place to sit while
+they take care of their makeup and hair.  There is a door leading west at the
+end of the mirror, a star hanging on it.    ~
+door~
+1 4301 4352
+E
+star~
+   Written on the star is the name 'Charlemagne'.    ~
+E
+couch~
+   Wow, this thing is filthy!  Talk about your second-hand goods.  Someone
+probably picked this up off the street and stuck it in here for lack of a
+better place to put it.    ~
+S
+#4348
+A Hallway~
+   This simple white hallway connects the men's and women's dressing rooms.  
+Doors on the north and south ends separate the two areas of the basement.    ~
+43 33554440 0
+D0
+   A simple wooden door with the word 'Mens' written on it stands here.    ~
+door~
+1 0 4347
+D2
+   A simple wooden door with the word 'Womens' written on it stands here.    ~
+door~
+1 0 4349
+S
+#4349
+The Women's Dressing Room~
+   This large room is filled with racks of costumes and personal clothing.  
+However, even with all the dresses and other huge costume pieces, this room is
+neat and fairly clean.  It smells like fresh flowers, though the ego in this
+room could kill a whale.  The west wall is lined with a single giant mirror
+over a long countertop.  Several stools sit under the counter, giving the
+actresses a place to sit while they take care of their makeup and hair.  A
+large couch is in here as well for the actors to sit on while they wait for
+their cue.  However, no one has time to sit in this business.  Everyone is
+running around frantically, making sure all their props are in place and making
+sure they've warmed up for the show.    ~
+43 33554440 0
+D0
+   There is a door to the north, unmarked and unlocked.    ~
+door~
+1 0 4348
+D2
+~
+~
+0 0 4350
+D3
+   There is a door leading west at the end of the mirror, a huge golden star
+shining on it.    ~
+door~
+1 4302 4353
+E
+couch~
+   Though the actual couch is falling apart, a make-shift cover of clean sheets
+has been tucked over it, and a few pillows are tossed onto the couch for
+effect.  Fortunately, the sheets are very dark in color so most stains don't
+show on it, though an occasional makeup streak is visible.    ~
+E
+star~
+   Written in beautiful, flowing script is the name and title, 'Fastrada, Queen
+of all that is'.    ~
+S
+#4350
+The Women's Dressing Room~
+   You enter into a large room filled with racks of dresses and dance uniforms.
+However, even with all the dresses and other huge costume pieces, this room is
+neat and fairly clean.  All of the performers' street clothes are hung
+carefully on a separate rack, apart from the costumes.  This dressing room
+smells like fresh flowers and is pleasing to the eye, but the ego in this room
+could kill a whale.  The dressing room continues north.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4349
+D1
+Nothing.~
+door~
+1 0 4343
+D2
+   There is a door leading south, a golden star hanging on it.    ~
+door~
+1 4303 4351
+D3
+   The west wall is lined with a single giant mirror over a long countertop.  
+Several stools sit under the counter, giving the actresses a place to sit while
+they take care of their makeup and hair.    ~
+~
+3 -1 -1
+E
+star~
+   On the star is written 'Catherine'.    ~
+S
+#4351
+Catherine's Dressing Room~
+   An average, ordinary kind of dressing room for an average, ordinary kind of
+woman.  Everything is in its place, the counter tidy and clean.  A simple
+bouquet of flowers is displayed on the counter in front of the mirror, all the
+costumes are hung neatly and carefully.  However, something seems missing.  
+Looking around, you realize that there isn't a stool in here, nor is there any
+kind of makeup or even a pair of shoes.  The actress seems to have misplaced
+them!    ~
+43 33554440 0
+D0
+~
+door~
+1 4303 4350
+S
+T 4365
+T 4363
+#4352
+Charlemagne's Dressing Room~
+   Royal purple hangings and antique swords of all kinds adorn the walls, and
+there's even a bed in one corner.  Clearly, this is a room of a king!  The
+actor's costumes are haphazardly thrown on the costume rack, his makeup
+scattered around in front of his mirror.  The mirror is dirty, smeared with
+makeup and dust.  The bed is messy from use, though that could have happened
+years ago, given how clean this place is.  Posters and notes are tacked up all
+around the room.    ~
+43 33554440 0
+D1
+~
+door~
+1 4301 4347
+E
+Note notes poster posters~
+   Tacked on one of the walls is a large piece of paper that reads, 'The part
+is to be portrayed by an actor of enormous power!  ' The actor has obviously
+let the 'power' go to his head.    ~
+S
+#4353
+Fastrada's Dressing Room~
+   This room is perfect.  Too perfect.  Perfectly decorated, perfectly kept,
+and everything is neat and very, very clean.  Something feels very amiss here,
+though what it is you can't quite place your finger on...  It's almost sinister
+in nature.  This of course isn't helped by the large book sitting on the
+counter, titled, '101 Ways to Bake Cookies and Kill Your Husband'.  Perhaps a
+few of these actors are taking their roles a little too seriously.  
+Extravagance attempts to hide the deceit in this room; beautifully colored
+tapestries adorn the walls, accented by rich red roses and brilliant gold
+jewelry.  No expense was spared in the decorations.    ~
+43 33554440 0
+D1
+~
+door~
+1 4302 4349
+E
+book~
+   Quick, easy recipies are combined with every happy homemaker's desire to
+make her husband both happy and dead.  Seditious plots against every Emperor in
+history are laid out in detail, along with suggested deviations to '...  Keep
+your homemade plot from becoming too cliche and most importantly, too
+noticeable.  ' What kind of housewife and mother could possibly need a book
+like this?    ~
+S
+#4354
+The Catwalk~
+   Using this rickety catwalk, one can get quickly get from the balcony in the
+house to the shop behind the stage.  From the catwalk hang lights that
+illuminate the theatre and the stage.  Unfortunately it is that dark up here
+and strange noises echo in the darkness.  One noise in particular sounds like
+grunting, but there can't be anything very large up here, can there?  Surely
+only a brave soul would be able to spend an entire performance up here!  There
+is a ladder leading down from the catwalk to a trapdoor to the balcony here.  
+The catwalk continues to the west.    ~
+43 9 0
+D3
+~
+~
+0 0 4355
+D5
+   A small padlock seals up a trapdoor leading down off the catwalk.    ~
+trapdoor~
+1 4304 4313
+S
+#4355
+The Catwalk~
+   A rickety catwalk hangs over the theatre here.  Using this, one can get
+quickly get from the balcony in the house to the shop behind the stage.  
+However, it's very dark up here and strange noises echo from the darkness.  
+One noise in particular sounds like a grunting, but there can't be anything
+very large up here, can there?  From the catwalk hang lights that illuminate
+the theatre and the stage.  Surely only a brave soul would be able to spend an
+entire performance up here, making sure things go smoothly.    ~
+43 9 0
+D1
+~
+~
+0 0 4354
+D3
+~
+~
+0 0 4356
+D5
+   It appears this catwalk hangs above the domed ceiling of the house,
+obscuring it from sight.  Only the occasional opening below you allows a
+glimpse at the house below.    ~
+~
+3 -1 -1
+S
+#4356
+The Catwalk~
+   A rickety catwalk hangs over the theatre here.  Using this, one can get
+quickly get from the balcony in the house to the shop behind the stage.  
+However, it's very dark up here and strange noises echo from the darkness.  
+One noise in particular sounds like a grunting, but there can't be anything
+very large up here, can there?  From the catwalk hang lights that illuminate
+the theatre and the stage.  Surely only a brave soul would be able to spend an
+entire performance up here, making sure things go smoothly.    ~
+43 9 0
+D1
+~
+~
+0 0 4355
+D3
+~
+~
+0 0 4357
+D5
+   It appears this catwalk hangs above the domed ceiling of the house,
+obscuring it from sight.  Only the occasional opening below you allows a
+glimpse at the house below.    ~
+~
+3 -1 -1
+S
+#4357
+The Catwalk~
+   A rickety catwalk hangs over the theatre here.  Using this, one can get
+quickly get from the balcony in the house to the shop behind the stage.  
+However, it's very dark up here and strange noises echo from the darkness.  
+One noise in particular sounds like a grunting, but there can't be anything
+very large up here, can there?  From the catwalk hang lights that illuminate
+the theatre and the stage.  Surely only a brave soul would be able to spend an
+entire performance up here, making sure things go smoothly.    ~
+43 9 0
+D1
+~
+~
+0 0 4356
+D3
+~
+~
+0 0 4359
+D5
+   It appears this catwalk hangs above the domed ceiling of the house,
+obscuring it from sight.  Only the occasional opening below you allows a
+glimpse at the house below.    ~
+~
+3 -1 -1
+S
+#4358
+Above the Stage~
+   This loft hangs nearly fifty feet above the stage below you!  From here one
+can hang lights and set pieces, which can then be 'flown' down to the stage by
+the pulley system in the ceiling.  The loft is littered with small piles of
+garbage, like someone has been collecting random stuff and leaving it to rot or
+collect dust up here.    ~
+43 9 0
+D2
+~
+~
+0 0 4359
+D5
+   Nothing rests between you and the stage far below you.  Perhaps looking down
+isn't a good idea.    ~
+~
+3 -1 -1
+E
+pile piles garbage~
+   Old costumes, parts of old sets, rotten food, pages from old scripts, even
+production posters litter the loft.  A couple of the piles have been pushed
+together though, almost like something was using them as a bed.    ~
+S
+#4359
+Above the Stage~
+   This loft hangs nearly fifty feet above the stage below you!  From here one
+can hang lights and set pieces, which can then be 'flown' down to the stage by
+the pulley system in the ceiling.  The loft is littered with small piles of
+garbage, like someone has been collecting random stuff and leaving it to rot or
+collect dust up here.    ~
+43 9 0
+D0
+~
+~
+0 0 4358
+D1
+~
+~
+0 0 4357
+D2
+~
+~
+0 0 4360
+D3
+~
+~
+0 0 4362
+D5
+   Nothing rests between you and the stage far below you.  Perhaps looking down
+isn't a good idea.    ~
+~
+3 -1 -1
+E
+pile piles garbage~
+   Old costumes, parts of old sets, rotten food, pages from old scripts, even
+production posters litter the loft.  A couple of the piles have been pushed
+together though, almost like something was using them as a bed.    ~
+S
+#4360
+Above the Stage~
+   This loft hangs nearly fifty feet above the stage below you!  From here one
+can hang lights and set pieces, which can then be 'flown' down to the stage by
+the pulley system in the ceiling.  The loft is littered with small piles of
+garbage, like someone has been collecting random stuff and leaving it to rot or
+collect dust up here.    ~
+43 9 0
+D0
+~
+~
+0 0 4359
+D5
+   Nothing rests between you and the stage far below you.  Perhaps looking down
+isn't a good idea.    ~
+~
+3 -1 -1
+E
+pile piles garbage~
+   Old costumes, parts of old sets, rotten food, pages from old scripts, even
+production posters litter the loft.  A couple of the piles have been pushed
+together though, almost like something was using them as a bed.    ~
+S
+#4361
+Above the Stage~
+   This loft hangs nearly fifty feet above the stage below you!  From here one
+can hang lights and set pieces, which can then be 'flown' down to the stage by
+the pulley system in the ceiling.  The loft is littered with small piles of
+garbage, like someone has been collecting random stuff and leaving it to rot or
+collect dust up here.    ~
+43 9 0
+D2
+~
+~
+0 0 4362
+D5
+   Nothing rests between you and the stage far below you.  Perhaps looking down
+isn't a good idea.    ~
+~
+3 -1 -1
+E
+pile piles garbage~
+   Old costumes, parts of old sets, rotten food, pages from old scripts, even
+production posters litter the loft.  A couple of the piles have been pushed
+together though, almost like something was using them as a bed.    ~
+S
+#4362
+Above the Stage~
+   This loft hangs nearly fifty feet above the stage below you!  From here one
+can hang lights and set pieces, which can then be 'flown' down to the stage by
+the pulley system in the ceiling.  The loft is littered with small piles of
+garbage, like someone has been collecting random stuff and leaving it to rot or
+collect dust up here.  A long ladder stretches from the west end of the loft to
+the storage room behind the stage.    ~
+43 9 0
+D0
+~
+~
+0 0 4361
+D1
+~
+~
+0 0 4359
+D2
+~
+~
+0 0 4363
+D5
+~
+trapdoor~
+2 4304 4364
+E
+pile piles garbage~
+   Old costumes, parts of old sets, rotten food, pages from old scripts, even
+production posters litter the loft.  A couple of the piles have been pushed
+together though, almost like something was using them as a bed.    ~
+S
+#4363
+Above the Stage~
+   This loft hangs nearly fifty feet above the stage below you!  From here one
+can hang lights and set pieces, which can then be 'flown' down to the stage by
+the pulley system in the ceiling.  The loft is littered with small piles of
+garbage, like someone has been collecting random stuff and leaving it to rot or
+collect dust up here.    ~
+43 9 0
+D0
+~
+~
+0 0 4362
+D5
+   Nothing rests between you and the stage far below you.  Perhaps looking down
+isn't a good idea.    ~
+~
+3 -1 -1
+E
+pile piles garbage~
+   Old costumes, parts of old sets, rotten food, pages from old scripts, even
+production posters litter the loft.  A couple of the piles have been pushed
+together though, almost like something was using them as a bed.    ~
+S
+#4364
+The Ladder Above the Shop~
+   This long ladder, which is securely set into the wall, is the only way from
+the storage room to the catwalk above the stage.  Just above you is a trapdoor.
+It looks like going down will land you behind the stage.    ~
+43 9 0
+D4
+~
+trapdoor~
+1 4304 4362
+D5
+~
+~
+0 0 4339
+S
+#4365
+Up Stage Left Balcony~
+   From the front, this set piece is painted looks like a turret or a tower
+balcony.  From the back, this is clearly just a huge pile of lumber and
+plywood.  It leads off stage to the west, allowing an actor to enter or exit
+into the shadows.  A solid metal pole runs from the ceiling down to the floor
+so someone can quickly get to the stage floor, about fifteen feet below,
+without going off stage.    ~
+43 33554440 0
+D0
+~
+~
+0 0 4331
+D5
+~
+~
+0 0 4332
+S
+#4366
+Middle of the Stage Right Tower~
+   The tower is in truth an abstract set piece, not looking like anything in
+particular normally, but could easily be dressed as something fun and wild.  A
+larger platform sits about half way up the tower, extending east to the middle
+of the stage.  This is a great location to see from, letting you look out over
+almost the entire stage.    ~
+43 33554440 0
+D1
+~
+~
+0 0 4368
+D4
+~
+~
+0 0 4344
+D5
+~
+~
+0 0 4334
+S
+#4368
+On a Tower of Platforms~
+   A series of steps leads up about eight feet to a single large platform.  
+From this elevated position, it's much easier to be seen and to see more of the
+action on the rest of the stage.  The tower is in truth an abstract set piece,
+not looking like anything in particular normally, but could easily be dressed
+as something fun and wild.    ~
+43 0 0
+D3
+~
+~
+0 0 4366
+D5
+~
+~
+0 0 4329
+S
+#4369
+The Rehearsal Studio~
+   The underbelly of the theatre isn't nearly the seedy den of iniquity one
+might expect.  Being built below the crenelations of Festival Street however,
+just beyond the walls is the open sky, allowing natural light in the lower
+level through small windows.  It's not exactly bright, but it's not impossible
+to see either.  The rehearsal studio takes up most of the lower level.  The
+floor is sprung wood, ideal for dancing.  Floor to ceiling mirrors cover one
+wall making it easy for an actor to see what they might look like from the
+audience.  Props, scenery, and costumes are stored in various places down here,
+certainly home to more than a few rats.  At the far end of the room serves as
+the business office for the Leading Player, leader of the troupe.~
+43 33554460 0
+D4
+You can make your way back up to the stage from here.~
+~
+0 -1 4333
+S
+$~

@@ -1,0 +1,213 @@
+#11701
+potion silty glowing~
+a silty potion~
+A silty potion has been left here.~
+~
+10 65 1 40
+7 3 35 88 0 0 0
+0.20 20 0 0 0 0 0 0
+#11702
+potion white bright~
+a bright white potion~
+A bright white potion is lying on the ground here.~
+~
+10 64 1 10
+12 34 254 43 0 0 0
+0.50 1500 0 0 0 0 0 0
+E
+bright white potion~
+It is a bright, almost glowing white potion. The liquid in the glass
+vial is milky and opaque, and smells faintly of herbs.~
+#11703
+bracelet misty-blue-bracelet shimmering~
+a misty blue bracelet~
+A misty blue bracelet is lying here, shimmering slightly.~
+~
+8 536870977 4097 35
+2 0 0 0 0 0 0
+1.10 200 0 0 0 0 0 0
+A
+24 -5
+A
+13 5
+A
+27 1
+#11704
+stick hardened leather~
+a stick made of hardened leather~
+A small stick made of hardened leather lies here.~
+~
+3 64 16385 40
+50 10 10 1 0 0 0
+1.00 45 0 0 0 0 0 0
+#11705
+splinter ruby-splinter~
+a ruby splinter~
+Someone has dropped a ruby splinter here.~
+~
+1 536870977 2113537 55
+0 2500 2500 0 0 0 0
+0.01 480 0 0 0 0 0 0
+E
+splinter ruby-splinter~
+If it weren't for its bright red color, this precious splinter would go
+unnoticed because of its tiny size.  However, as soon as it is picked up it
+begins to emit a magical light.  It has clearly been enchanted.~
+A
+13 10
+A
+14 -20
+A
+27 2
+#11706
+dagger misty-blue-dagger~
+a misty blue dagger~
+A misty blue dagger has been dropped here.~
+~
+5 64 8193 50
+0 3 5 11 0 0 0
+1.10 590 0 0 0 0 0 0
+E
+dagger misty-blue-dagger~
+The dagger is made of a misty blue metal that seems to pulsate slightly.  The
+dagger's blade changes shape slowly as it grows new teeth to replace older
+teeth as they fade away.~
+A
+19 1
+A
+18 1
+A
+27 3
+#11707
+potion violet glowing~
+a violet potion~
+A violet potion has been left here.~
+~
+10 65 1 40
+7 1 3 34 0 0 0
+0.30 20 0 0 0 0 0 0
+#11708
+potion dark glowing~
+a dark potion~
+A dark potion has been left here.~
+~
+10 65 1 40
+7 61 17 33 0 0 0
+0.20 20 0 0 0 0 0 0
+#11710
+sign signpost wooden broken partially-broken~
+a signpost~
+A partially broken wooden sign is stuck in the path here.~
+~
+12 536870928 0 25
+0 0 0 0 0 0 0
+40.00 20 0 0 0 0 0 0
+E
+sign signpost wooden broken partially-broken~
+The sign is scratched as if an animal frequently sharpens its claws upon it.
+The upper right corner is broken off, taking some of the writing which was
+on the sign with it.  The sign reads:
+
+   Be very wary wayward traveler.  From this point on the mi
+   and the creatures more fierce than those previously encoun
+   trail.  Be especially weary of the most sinister of them, called a
+   by we unfortunate souls.  I was the first and last to escape the danger,
+   and took it upon myself to return and place this warning.
+
+There is nothing further on the sign or post other than a thick damp caused
+no doubt by the fog surrounding everything here.~
+#11797
+vambraces myst-vambraces long-bits-myst~
+a pair of myst vambraces~
+Some long bits of myst lie here, seeming to conform to the ground.~
+~
+9 603979840 257 85
+8 0 0 0 0 0 0
+1.20 40 0 0 0 0 0 0
+E
+vambraces myst-vambraces long-bits-myst~
+These vambraces are of exceptional quality, and are simply bits of a magically
+bound myst.  They seem to conform to any shape of any arm which dons them, and
+seem to repel light and seem to absorb impacts and then quickly reform the
+dented portion.  The myst is a dull, absent grey color.~
+A
+2 4
+A
+24 -25
+A
+3 -3
+A
+18 1
+#11798
+coins huge pile treasure~
+some coins~
+A huge pile of treasure.~
+~
+20 0 1 1
+51 1179 5323 15932 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+coins huge pile treasure~
+It looks like a lot of coins of various colors.~
+#11799
+cloud thin-sheet-cloud thin-layer-cloud~
+a thin sheet of cloud~
+A thin layer of cloud rests upon the ground here.~
+~
+9 1610612736 9 70
+24 0 0 0 0 0 0
+0.01 1400 0 0 0 0 0 0
+A
+1 -2
+A
+6 4
+A
+26 5
+A
+5 -2
+A
+27 3
+#11800
+ball mist ball-mist~
+some of itself~
+Some mist floats about temporarily.~
+~
+12 0 1 0
+0 0 0 0 0 0 0
+999.00 0 0 0 0 0 0 0
+E
+ball mist~
+It is some mist, very fluffy.~
+#11810
+bones plants bone plant digested bits~
+some bones and plants~
+Some partially digested bits of bone and plant.~
+~
+12 0 1 1
+0 0 0 0 0 0 0
+5.00 3 0 0 0 0 0 0
+#11811
+bolt small-bolt-energy bolt-light~
+a small bolt of energy~
+A bolt of light flickers rapidly here.~
+~
+5 537297065 8193 80
+0 4 7 18 0 0 0
+-2.00 2000 0 12288 0 0 0 0
+A
+2 3
+A
+5 -2
+A
+27 3
+X
+1
+#11812
+vine bit solid old~
+a bit of vine~
+This is a solid bit of old vine.~
+~
+5 68100 8193 85
+0 1 4 11 0 0 0
+1.00 14 0 0 0 0 0 0
+$~

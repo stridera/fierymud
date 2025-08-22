@@ -1,0 +1,76 @@
+name: Doyoo
+password: DouHNOokA9
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20274
+birthtime: 1654785891
+timeplayed: 288
+lastlogintime: 1654786180
+host: 120.235.089.130
+height: 76
+weight: 129
+base_height: 76
+base_weight: 129
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 14
+thirst: 4
+lastlevel: 0
+hitpoints: 28/28
+mana: 0/0
+move: 112/112
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 74
+wisdom: 78
+dexterity: 82
+constitution: 78
+charisma: 66
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+1654786100 @WThe Instructor of Adventure@W tells you, 'I'm your Intro to Adventuring instructor.@W'@0
+1654786100 @WThe Instructor of Adventure@W tells you, 'I'll be teaching you the basics of:@W'@0
+1654786100 @WThe Instructor of Adventure@W tells you, 'Communication, inventory management, and movement.@W'@0
+1654786105 @WThe Instructor of Adventure@W tells you, 'It sends your message to everything in the room,@W'@0
+1654786105 @WThe Instructor of Adventure@W tells you, 'Even NPCs and monsters.@W'@0
+1654786105 @WThe Instructor of Adventure@W tells you, 'I'm listening for you to say exactly that,@W'@0
+1654786105 @WThe Instructor of Adventure@W tells you, 'No extra words or punctuation.@W'@0
+1654786120 @WThe Academy Recruiter@W tells you, 'Hello there!@W'@0
+1654786120 @WThe Academy Recruiter@W tells you, 'Are you here for new player training?@W'@0
+1654786124 @WThe Academy Recruiter@W tells you, 'You can resume or repeat your training at any time if you wish.@W'@0
+$
+gossips:
+$

@@ -1,0 +1,183 @@
+name: Ari
+password: ArEGb7906t
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 7
+race: 1
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19759
+birthtime: 1604899451
+timeplayed: 635042
+lastlogintime: 1737962122
+host: 052.119.120.201
+height: 66
+weight: 135
+base_height: 66
+base_weight: 135
+base_size: 2
+natural_size: 2
+alignment: -23
+playerflags: gxyz
+effectflags: k j 0
+prefflags: hnoxCD ac
+privflags: 0
+savingthrows: 0 0 0 -30 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 786/786
+mana: 980/980
+move: 256/256
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 92
+wisdom: 98
+dexterity: 84
+constitution: 78
+charisma: 98
+cash: 4883 1766 5701 287
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+6 1000
+11 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+27 1000
+28 1000
+30 1000
+32 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+51 1000
+63 1000
+70 1000
+71 1000
+73 1000
+74 1000
+88 1000
+89 1000
+90 1000
+91 1000
+99 1000
+118 1000
+144 1000
+145 1000
+146 1000
+147 1000
+148 1000
+149 1000
+150 1000
+151 1000
+152 1000
+153 1000
+154 1000
+155 1000
+156 1000
+206 1000
+207 1000
+215 1000
+241 1000
+243 1000
+245 1000
+247 1000
+263 1000
+415 1000
+416 1000
+417 1000
+421 1000
+423 1000
+424 1000
+429 1000
+438 1000
+443 1000
+444 1000
+451 1000
+452 1000
+453 1000
+454 1000
+455 1000
+456 1000
+457 1000
+458 1000
+459 1000
+460 1000
+462 1000
+463 1000
+464 1000
+465 1000
+466 1000
+0 0
+trophy:
+1 8316 0.500000
+1 8307 0.500000
+1 8308 1.000000
+1 8302 0.500000
+1 8300 1.000000
+1 8301 0.500000
+1 5120 1.000000
+1 5102 1.000000
+1 23802 0.250000
+1 23820 1.500000
+1 23801 0.250000
+1 23814 0.250000
+1 4009 0.200000
+1 4013 0.200000
+1 4003 0.200000
+1 4011 1.400000
+1 4007 1.200000
+1 4001 0.800000
+1 4000 2.000000
+1 4004 0.200000
+1 53417 0.200000
+0 0 0
+tells:
+1682764982 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1682840874 @WShazz@W tells you, 'Take good care of that.@W'@0
+1682841112 @WShazz@W tells you, 'Take good care of that.@W'@0
+1682849838 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1682915803 @WShazz@W tells you, 'Take good care of that.@W'@0
+1706430029 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1706432154 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1706499609 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1706499869 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735021559 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1735014940 Thort gossips, 'thanks you!'
+1735018211 Tavsan gossips, 'shit'
+1735023950 Thort gossips, 'fack'
+1735023959 Tavsan gossips, 'I got knocked down'
+1735024048 Cerworn gossips, 'if FLynt uses smoke, it'll blind things and stop them from switching or using hitall'
+1735024068 Thort gossips, 'he needs to target an x.target though'
+1735024076 Cerworn gossips, 'you REALLY should fix that then'
+1735024077 Thort gossips, 'i'll manually type'
+1735024085 Thort gossips, 'yeah, for sure. it hasn't really bit me until now'
+1735024103 Cerworn gossips, 'being able to spam blind and silence is pretty helpful in these settings'
+$
+aliases:
+cwr c 'word of recall'
+cdm c 'dispel magic' $*
+ccl c 'cure light' $*
+ccs c 'cure seri' $*
+ccc c 'cure crit' $*
+ch c 'heal' $*
+ga get all
+gac get all corpse
+gat get all 2.corpse
+0

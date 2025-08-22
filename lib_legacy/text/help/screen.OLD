@@ -1,0 +1,22 @@
+-------------------------------------------------------------------------------
+Movement:                          | Communication:
+NORTH SOUTH EAST WEST UP DOWN      | SAY GSAY SHOUT TELL ASK WHISPER NOTELL
+LOOK EXITS ENTER LEAVE             | NOSHOUT
+SLEEP WAKE REST SIT STAND          | 
+(LOCK UNLOCK OPEN CLOSE)           |		 PETITION 
+-------------------------------------------------------------------------------
+Objects:                           | Information: (TYPE THESE COMMANDS!)
+GET DROP PUT GIVE WEAR HOLD WIELD  | SCORE HELP INFO WHO NEWS TIME WEATHER
+GRAB INVENTORY EQUIPMENT REMOVE    | CONSIDER WIZLIST SKILLS ATTRIBUTE
+EXAMINE EAT DRINK TASTE SIP POUR   | SPELLS CREDITS TOGGLE TROPHY EXP
+-------------------------------------------------------------------------------
+Combat:                            | Utility: PROMPT ! BUG IDEA TYPO QUIT SAVE
+KILL WIELD FLEE ASSIST TRACK       | COMMANDS SOCIALS DISPLAY CAMP RENT
+(KICK BASH RESCUE BACKSTAB CAST)   |------------------------------------------- 
+MEMORIZE PRAY MEDITATE		   | Toggle: BRIEF COMPACT VICIOUS EXITS
+-------------------------------------------------------------------------------
+Further information available by HELP <keyword>, keyword being a command or 
+(for example) one of the following:
+
+SOCIAL SHOPS INNS CLASS CLERIC WARRIOR THIEF MAGIC SPELLS LINK
+-------------------------------------------------------------------------------

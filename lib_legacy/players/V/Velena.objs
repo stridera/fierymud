@@ -1,0 +1,969 @@
+1
+vnum: 3031
+location: 0
+values:
+1
+250
+230
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 36008
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.~
+~~
+vnum: 58408
+location: 4
+values:
+5
+5
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: locket golden-locket-filigree-chain gold-locket-filigree-chain necklace
+shortdesc: a golden locket on a filigree chain
+desc: A gold locket on a filigree chain lies here.
+type: 15
+weight: 0.10
+cost: 1200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+6 5
+27 3
+~
+extradesc: locket golden-locket-filigree-chain gold-locket-filigree-chain necklace
+You've never seen such exquisite goldworking.  This locket, on its whisper-thin
+golden link necklace, seems very old.  The hinges on it are coming a bit loose,
+but it's still pretty tightly closed.~
+~~
+vnum: 36016
+location: 5
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo 0
+name: shirt bonemail-shirt bone-mail old-pile small-bone-rings
+shortdesc: a bonemail shirt
+desc: An old pile of small bone rings lies heaped here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+18 1
+~
+extradesc: bonemail-shirt bone-mail old-pile small-bone-rings
+Gross!  This armor appears to me made of small circles of bone.  It seems
+rather protective though.~
+~~
+vnum: 53501
+location: 7
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: klmosuvwyz 0
+name: greaves sleet-greaves thin-white-legplates leg-plates
+shortdesc: a pair of sleet greaves
+desc: Thin white legplates lie crisscrossed on the ground.
+type: 9
+weight: 5.00
+cost: 5490
+timer: 0
+level: 75
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+18 1
+19 1
+13 13
+1 3
+27 3
+~
+extradesc: greaves sleet-greaves thin-white-legplates leg-plates
+Cast from an odd white metal, the outside of these greaves are cold as ice, but
+can withstand quite a bit of damage.  They are padded on the inside with white
+fur, preventing the frigid white metal from touching skin.  The plate metal is
+slightly curved and much thinner than average steel, undoubtedly created by
+some uncomprehensible elven miracle.~
+triggers:
+5324
+5332
+~
+~~
+vnum: -1
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandals pair-reed-sandals
+shortdesc: some reed sandals
+desc: A pair of reed sandals lies here.
+type: 9
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+extradesc: pair-reed-sandals
+These sandals are formed by neatly woven reeds and leather straps to cover the
+feet.    ~
+~~
+vnum: 1123
+location: 9
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: gauntlets jointed-iron-gauntlets
+shortdesc: jointed iron gauntlets
+desc: A pair of iron gauntlets rests on the ground.
+type: 9
+weight: 2.70
+cost: 1100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+extradesc: jointed-iron-gauntlets
+These black iron gauntlets are designed to strap onto their wearer's hands.  
+Mostly, they protect the back of the hand.  Light tooling is worked across
+their edges.~
+~~
+vnum: -1
+location: 10
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: m 0
+name: sleeves quilted-canvas-sleeves quilted-sleeves pile-cloth-hide glowing
+shortdesc: some quilted canvas sleeves
+desc: A pile of cloth and hide lies here glowing.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+extradesc: sleeves quilted-canvas-sleeves quilted-sleeves pile-cloth-hide glowing
+These sleeves are remarkably light and offer a sense of protection unseen.  
+There is hide padding on the elbows to provide a little extra protection.    ~
+~~
+vnum: 16009
+location: 11
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwyz 0
+name: stormshield storm-shield large-black-shield
+shortdesc: the Stormshield
+desc: A large black shield is almost hidden by debris.
+type: 9
+weight: 2.20
+cost: 5000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+1 1
+18 2
+27 2
+~
+extradesc: stormshield storm-shield large-black-shield
+This is the legendary Stormshield, once used by the Lords of Mystwatch.  
+Resembling a large heater shield, there is a heraldic design emblazoned upon
+it.  It is said that this shield was forged by the Gods themselves in the
+beginning of the world.~
+extradesc: design heraldic herald
+   An argent hawk outstretched, upon an azure field. ~
+triggers:
+5324
+5332
+~
+~~
+vnum: 23823
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aAD 0
+name: wings dragon-wings heap-silver-scales
+shortdesc: a pair of dragon wings
+desc: A heap of silver scales lies here.
+type: 8
+weight: 21.00
+cost: 10000
+timer: 0
+level: 85
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+19 2
+14 20
+13 20
+~
+extradesc: wings dragon-wings heap-silver-scales
+A quicksilver mess of barely-defined scales and membranes resolves itself into
+a pair of wings upon closer inspection.  They seem to magically resize
+themselves if worn, becoming closer to the size of the wearer as though to fit
+them personally.  Once worn, they attach themselves seamlessly to the wearer's
+back and look like an extra set of limbs that could probably be used for their
+original purpose: flight.  Their value seems beyond reckoning.~
+~~
+vnum: 36010
+location: 13
+values:
+15
+5
+0
+0
+0
+0
+0
+~
+flags: opr 0
+name: belt small-belt-potions canvas
+shortdesc: a small belt of potions
+desc: A belt of canvas lies here.
+type: 15
+weight: 1.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+extradesc: small-belt-potions canvas
+A wide canvas belt with buttons along its borders is revealed to be a
+container.~
+~~
+vnum: 28
+location: 16
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: mowyz 0
+name: mace steel-mace
+shortdesc: a mace
+desc: A steel mace lies on the ground, out of the way.
+type: 5
+weight: 5.00
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 51006
+location: 21
+values:
+0
+0
+3
+0
+0
+0
+0
+~
+flags: ag 0
+name: eyes ice-eyes two-balls-ice
+shortdesc: a pair of Ice Eyes
+desc: Two balls of ice lie here, casting a magical glow of light all around.
+type: 1
+weight: 1.03
+cost: 500
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+5 2
+2 2
+18 1
+24 -5
+27 2
+~
+extradesc: eyes ice-eyes two-balls-ice
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.~
+~~
+vnum: 53502
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gklA 0
+name: stud tiny-white-stud miniscule-speck-white earring
+shortdesc: a tiny white stud
+desc: A miniscule speck of white almost escapes detection here.
+type: 8
+weight: 0.01
+cost: 3420
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+4 2
+6 2
+13 17
+27 3
+~
+extradesc: stud tiny-white-stud miniscule-speck-white earring
+Small and round, this ear stud is made of an odd white metal and shaped
+somewhat like a little sphere.  It feels cool against skin, strangely drawn to
+it as if magnetic, allowing it to stick to an ear without a piercing.~
+~~
+vnum: 8031
+location: 25
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: scale blue-drakling-scale small-blue-scale
+shortdesc: a &4&bblue&0 drakling scale
+desc: A small blue scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 5
+~
+~~
+vnum: 58409
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: portrait miniature-painting hand-painted-miniature-portrait
+shortdesc: a hand-painted miniature portrait
+desc: A hand-painted portrait the size of your palm lies here.
+type: 8
+weight: 0.40
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: portrait miniature-painting hand-painted-miniature-portrait
+The woman in this painting is amazingly beautiful, but in the same
+way that a deadly sword is beautiful. She's exactly like a sword --
+whipcord-lithe, slender, well-muscled, and seems as if she is about
+to strike. Her eyes seem incredibly intelligent and perceptive. The
+portrait is no bigger than the palm of your hand, making the artistry
+of the representation seem all the more amazing. 
+   The woman in the painting is looking right out at the viewer. As
+you watch, her full, lush lips move, and you hear words: "My little
+Frederick, remember that I am always watching over you." You hear no
+more.~
+~~
+vnum: 1127
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: girth iron-banded-girth small-iron-girth
+shortdesc: an iron-banded girth
+desc: A small iron girth lies at your feet.
+type: 9
+weight: 2.10
+cost: 2100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+extradesc: iron-banded-girth small-iron-girth
+This wide belt is made up of lots of slim, long pieces of heavy, cold black
+iron banded together with wire.  It clasps at the front with a simple iron
+buckle.  Other than the buckle's tooling, it is not decorated.~
+~~
+vnum: 16903
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: mo 0
+name: club large-bone-club
+shortdesc: a bone club
+desc: A large bone lies half buried in the ground.
+type: 5
+weight: 2.00
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: club large-bone-club
+The bone is rather heavy, and can deliver quite a punch.  Strangely, the
+balance is good enough for you to swing it like a club.~
+~~
+vnum: 1126
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: leggings iron-banded-leggings
+shortdesc: iron-banded leggings
+desc: A set of iron leggings lies here unattended.
+type: 9
+weight: 15.50
+cost: 2600
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+extradesc: iron-banded-leggings
+These heavy plates of iron are designed to strap around their wearer's legs,
+forming strong and durable protection.  The knees feature cleverly worked
+joints, though apart from this, they're quite plain, just thick black iron.~
+~~
+vnum: 4007
+location: 127
+values:
+2
+3
+7
+3
+0
+0
+0
+~
+flags: gjlmnpqrtuvz 0
+name: blade-chaos dark-sword black-flames
+shortdesc: a blade of &1Chaos&0
+desc: A dark sword lies here encased in black flames.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+2 1
+19 2
+5 -2
+27 2
+~
+extradesc: blade-chaos dark-sword black-flames
+Created from only the purest of dark magick, the blade is light and seemingly
+quite strong.  Blackened flames erupt from all around the blade, surrounding it
+in serenity and chaos.~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 20
+location: 127
+values:
+25
+22
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: quill feather-quill long-white-feather pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill feather-quill long-white-feather pen
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)~
+triggers:
+51990
+~
+~~
+vnum: 49032
+location: 127
+values:
+20
+1
+1
+14
+0
+0
+0
+~
+flags: b 0
+name: misthorn mist-horn
+shortdesc: a misthorn
+desc: There's a horn lying in front of you.
+type: 3
+weight: 1.10
+cost: 2000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: misthorn mist-horn
+Once used by a man with powerful lungs, it will never again make a sound.  A
+big rock is firmly stuck inside.~
+~~
+vnum: 53325
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale perfect-white-dragon-scale
+shortdesc: a white dragon scale
+desc: A perfect white dragon scale lies here.
+type: 9
+weight: 2.00
+cost: 10000
+timer: 1000
+level: 60
+effects: 0 0 0
+wear: 540673
+hiddenness: 0
+applies:
+13 30
+18 2
+27 2
+~
+extradesc: scale perfect-white-dragon-scale
+About as large as a human's palm, this pure white scale comes from the tender
+shoulder area of a white dragon.  It is a beautiful scale, shining brightly in
+the light and feeling slightly cool to the touch.  Dragons are very magical
+creatures, so the scale would probably be valuable to a researching sorcerer or
+anyone else interested in unlocking the power of a dragon's skin.~
+~~
+vnum: 16213
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: scarab ruby-scarab
+shortdesc: a ruby scarab
+desc: A ruby scarab lies at your feet.
+type: 9
+weight: 0.25
+cost: 5000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 3
+13 25
+27 1
+~
+extradesc: scarab ruby-scarab
+The ruby was cut in the shape of a scarab, one of the holy symbols of this
+land.~
+~~
+vnum: 43009
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gnopru 0
+name: paw panther's-paw panthers-paw large-feline's-paw large-felines-paw
+shortdesc: a panther's paw
+desc: A large feline's paw rests here, awaiting a sprint.
+type: 12
+weight: 1.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 40
+6 2
+~
+extradesc: paw panther's-paw panthers-paw large-feline's-paw large-felines-paw
+The rather large paw seems to emit the elemental energy of its previous owner.
+Mere proximity to this item seems to enhance your sense of smell...  You can't
+help but wonder what other use this item might have...~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 1006
+location: 127
+values:
+30
+30
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: waterskin well-crafted-leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: well-crafted-leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.  &0~
+~~
+vnum: 51017
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg 0
+name: magic small-piece-petrified-magic small-chunk-glittering-material questobject
+shortdesc: a small piece of petrified magic
+desc: A small chunk of glittering material is here changing colors.
+type: 8
+weight: 9.00
+cost: 40
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+20 1
+27 3
+23 -1
+24 -1
+~
+extradesc: magic small-piece-petrified-magic small-chunk-glittering-material questobject
+As you gaze at this remarkably heavy material you feel invigorated and
+more alive!  The material glows and hums softly while giving off a slight
+trace of smoke that smells sweet like candy.  ~
+triggers:
+51008
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 1006
+location: 127
+values:
+30
+6
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: waterskin well-crafted-leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: well-crafted-leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.  &0~
+~~

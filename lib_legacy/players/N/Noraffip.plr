@@ -1,0 +1,111 @@
+name: Noraffip
+password: NouljPYcLS
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19521
+birthtime: 1579013583
+timeplayed: 33480
+lastlogintime: 1583938937
+host: 104.228.084.194
+height: 84
+weight: 236
+base_height: 84
+base_weight: 236
+base_size: 3
+natural_size: 3
+alignment: 171
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ahnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 150/140
+mana: 1/0
+move: 146/146
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 68
+wisdom: 77
+dexterity: 86
+constitution: 84
+charisma: 50
+cash: 0 17890 27 30
+experience: 307771
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 150
+415 50
+416 50
+419 1000
+421 118
+427 1000
+430 50
+438 97
+443 50
+444 50
+463 53
+464 50
+465 113
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 5408 1.500000
+1 5420 1.000000
+1 5404 2.000000
+1 36300 1.500000
+1 36306 0.500000
+1 36303 5.500000
+1 8610 1.000000
+1 8609 0.500000
+1 8608 0.500000
+1 8614 0.500000
+1 8616 2.500000
+1 8611 1.500000
+1 8613 1.500000
+1 8603 6.000000
+1 8615 3.500000
+1 8612 2.500000
+1 8606 2.500000
+1 8605 7.500000
+1 8604 8.000000
+1 3508 0.500000
+1 17203 0.500000
+0 0 0
+tells:
+1579207643 @WGranite@W tells you, 'I hope it protects you well.@W'@0
+1579207664 @WBeowyn@W tells you, 'I am sure it will save your life many times, come again!@W'@0
+1579207682 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1579207689 @WShauna@W tells you, 'If you don't see it I don't have it.@W'@0
+1579207692 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1579207705 @WShauna@W tells you, 'I don't trade in such items.@W'@0
+1579207789 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1579207870 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1579207905 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+1579207940 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
+$
+gossips:
+1579208400 Someone shouts, 'Ok, lets get those crates moving people.'
+1579208400 Someone shouts, 'Move it, move it, MOVE IT!'
+1579208580 The chief smuggler guard shouts, 'Ok, lets get those crates moving people.'
+1579208580 The chief smuggler guard shouts, 'Move it, move it, MOVE IT!'
+1579208870 The chief smuggler guard shouts, 'Ok, lets get those crates moving people.'
+1579208870 The chief smuggler guard shouts, 'Move it, move it, MOVE IT!'
+1579208980 The chief smuggler guard shouts, 'Ok, lets get those crates moving people.'
+1579208980 The chief smuggler guard shouts, 'Move it, move it, MOVE IT!'
+1579209280 The chief smuggler guard shouts, 'Ok, lets get those crates moving people.'
+1579209280 The chief smuggler guard shouts, 'Move it, move it, MOVE IT!'
+$

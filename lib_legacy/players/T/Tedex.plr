@@ -1,0 +1,62 @@
+name: Tedex
+password: TetrWqAhel
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19098
+birthtime: 1471649460
+timeplayed: 51
+lastlogintime: 1471649519
+host: 097.122.164.228
+height: 64
+weight: 137
+base_height: 64
+base_weight: 137
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 26/25
+mana: 0/0
+move: 137/144
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 60
+wisdom: 68
+dexterity: 87
+constitution: 100
+charisma: 60
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0

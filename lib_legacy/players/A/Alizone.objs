@@ -1,0 +1,1680 @@
+1
+vnum: 5212
+location: 0
+values:
+1
+400
+767
+0
+0
+0
+0
+~
+flags: 0 0
+name: flame gray-flame grey-flame small-pillar fire questobject
+shortdesc: a gray flame
+desc: A small pillar of gray flame flickers here.
+type: 1
+weight: 0.50
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 15
+2 1
+~
+extradesc: gray-flame grey-flame small-pillar questobject
+The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  Its luminosity is both too
+bright and too dim, yet seems to light the area perfectly.~
+triggers:
+5207
+~
+~~
+vnum: 16103
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: ring dull-sandstone-ring sand-stone
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+18 1
+1 3
+5 2
+~
+extradesc: sandstone-ring dull sand-stone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  ~
+triggers:
+5324
+5332
+~
+~~
+vnum: 16103
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: ring dull-sandstone-ring sand-stone
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+18 1
+1 3
+5 2
+~
+extradesc: sandstone-ring dull sand-stone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  ~
+triggers:
+5324
+5332
+~
+~~
+vnum: 36101
+location: 3
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mno 0
+name: neckguard heavy-rock-neckguard neck-guard tough-stone
+shortdesc: a heavy rock neckguard
+desc: A neckguard constructed of tough stone lies here.
+type: 9
+weight: 4.00
+cost: 250
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+1 2
+~
+extradesc: heavy-rock-neckguard neck-guard tough-stone
+The rock neckguard appears to be chipped and sculpted from a single large
+stone.  Previously constructed for the huge Bozaks, it is almost too large for
+your neck.  The neckguard is sturdy enough to withstand almost any attack.~
+~~
+vnum: 36101
+location: 4
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mno 0
+name: neckguard heavy-rock-neckguard neck-guard tough-stone
+shortdesc: a heavy rock neckguard
+desc: A neckguard constructed of tough stone lies here.
+type: 9
+weight: 4.00
+cost: 250
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+1 2
+~
+extradesc: heavy-rock-neckguard neck-guard tough-stone
+The rock neckguard appears to be chipped and sculpted from a single large
+stone.  Previously constructed for the huge Bozaks, it is almost too large for
+your neck.  The neckguard is sturdy enough to withstand almost any attack.~
+~~
+vnum: 1140
+location: 5
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: breastplate steel-breastplate breast-plate
+shortdesc: a steel breastplate
+desc: A steel breast plate shines up at you from the ground.
+type: 9
+weight: 16.00
+cost: 9000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: steel-breastplate breast-plate
+A shiny disc of polished steel makes the main part of this piece of armor.  
+Tooled across its edges with a scrolling design, everything about it, from the
+subtle decorations to the fine straps, makes it look expensive and highly
+effective.  There are only a few little dents in its surface to mar its
+mirror-like perfection.~
+~~
+vnum: 5518
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: helm eldoria-reward discarded 3rd-eldorian-guard-helm third iron
+shortdesc: a helm of the 3rd Eldorian Guard
+desc: A helm lies discarded nearby.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+14 5
+~
+extradesc: eldoria-reward discarded 3rd-eldorian-guard-helm third iron
+It's a helmet of middling quality with the insignia of the 3rd Eldorian Guard
+imprinted on it.~
+~~
+vnum: 1126
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: leggings iron-banded-leggings
+shortdesc: iron-banded leggings
+desc: A set of iron leggings lies here unattended.
+type: 9
+weight: 15.50
+cost: 2600
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+extradesc: iron-banded-leggings
+These heavy plates of iron are designed to strap around their wearer's legs,
+forming strong and durable protection.  The knees feature cleverly worked
+joints, though apart from this, they're quite plain, just thick black iron.~
+~~
+vnum: 1125
+location: 8
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: boots iron-banded-boots
+shortdesc: iron-banded boots
+desc: Some iron-banded boots have been left here.
+type: 9
+weight: 4.90
+cost: 350
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+extradesc: iron-banded-boots 
+This is one heavy pair of boots!  Black iron strips are bolted to a pair of
+black leather boots, making them immensely protective as well as cumbersome.  
+They are unornamented, though they do bear some light dents, testimony to their
+usefulness.~
+~~
+vnum: 5522
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz 0
+name: sleeves eldoria-reward 3rd-eldorian-guard-leather-sleeves third
+shortdesc: leather sleeves of the 3rd Eldorian Guard
+desc: Some leather sleeves lies discarded nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 1
+~
+~~
+vnum: 16300
+location: 20
+values:
+0
+3
+8
+3
+0
+0
+0
+~
+flags: gmnouvwyz 0
+name: claymore heavy-claymore great-sword greatsword
+shortdesc: a claymore
+desc: A heavy claymore is stuck in the ground.
+type: 5
+weight: 20.00
+cost: 800
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 32769
+hiddenness: 0
+applies:
+5 3
+~
+extradesc: claymore heavy-claymore great-sword greatsword
+The claymore is a heavy broadsword but its craftsmanship is a little crude.  
+You find that its balance is quite good and the blade is keen.~
+~~
+vnum: 1607
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA 0
+name: fang viper-fang pointy
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.40
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+13 3
+~
+extradesc: viper-fang pointy
+About 2 inches long, and razor-sharp, this fang looks like it could pierce
+steel.  Or be worn as an earring...~
+~~
+vnum: 1607
+location: 24
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA 0
+name: fang viper-fang pointy
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.40
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+13 3
+~
+extradesc: viper-fang pointy
+About 2 inches long, and razor-sharp, this fang looks like it could pierce
+steel.  Or be worn as an earring...~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 20300
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+14 20
+~
+extradesc: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.~
+~~
+vnum: 16034
+location: 127
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: muyz 0
+name: gauntlets charred-gauntlets black-chain-linked-gauntlets
+shortdesc: charred gauntlets
+desc: A black set of chain linked gauntlets lies here.
+type: 9
+weight: 3.80
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+1 3
+13 15
+18 -2
+~
+extradesc: gauntlets charred-gauntlets black-chain-linked-gauntlets
+These gauntlets have smoldered in the heat of a black flame for many ages, as
+in apparent by the perpetual signs of soot lingering in all of the crevices.  
+They are solid and well fashioned, yet appear to have degraded in the flames
+over the years.~
+~~
+vnum: 55010
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: owyz 0
+name: pelt polar-bear-pelt pure-white-cloak fur leather
+shortdesc: a polar bear pelt
+desc: A pure white cloak is hidden in the snow.
+type: 9
+weight: 2.10
+cost: 1100
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+4 1
+19 1
+~
+extradesc: pelt polar-bear-pelt pure-white-cloak fur leather
+You hold a snow white short cloak.  It's just long and wide enough to cover
+your shoulders and half of your back.  Its fur lining keeps you warm and offers
+some protection.~
+~~
+vnum: 16031
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: muyz 0
+name: girdle shadow-girdle wide-black-band-metallic-links
+shortdesc: a shadow girdle
+desc: A wide black band of metallic links is piled up here.
+type: 9
+weight: 3.30
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+2 3
+5 3
+1 -3
+27 1
+~
+extradesc: girdle shadow-girdle wide-black-band-metallic-links
+This girdle is little more than a thick shadow.  It is a black band of tightly
+interwoven, metalic links which are bound together to form the girdle.  Each
+link is made of an incoporeal substance, shrouded within a tangible frame.~
+~~
+vnum: 16033
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracers charred-bracers black-metal-bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred-bracers black-metal-bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    ~
+~~
+vnum: 16033
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracers charred-bracers black-metal-bands
+shortdesc: charred bracers
+desc: A pair of black metal bands lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 20
+9 10
+~
+extradesc: bracers charred-bracers black-metal-bands
+These bracers look as though they are regular metal which has been extracted
+from a long and coolly burning fire.  They are scarcely more than bands of
+metal any longer, but are solid despite the long, slow burn.    ~
+~~
+vnum: 3022
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnovwyz 0
+name: longsword long-sword
+shortdesc: a longsword
+desc: A longsword has been left here.
+adesc:
+Nothing.~
+type: 5
+weight: 3.00
+cost: 240
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: longsword long-sword
+The sword is about three and a half feet in length, and the blade is very
+sharp.  It's plain and undecorated, allowing its steel to speak for itself.~
+~~
+vnum: 1124
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: sleeves iron-banded-sleeves
+shortdesc: iron-banded sleeves
+desc: A set of iron sleeves lies on the ground.
+type: 9
+weight: 11.00
+cost: 1200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+extradesc: iron-banded-sleeves
+These heavy black cylinders of iron are designed to strap around their wearer's
+forearms.  They bear light dents, testifying to their effectiveness, but other
+than that, are unmarked.~
+~~
+vnum: 55384
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz 0
+name: helm trainee-helm magic-power
+shortdesc: a trainee helm
+desc: A helm of slight magic power lies here.
+type: 9
+weight: 4.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+18 1
+13 7
+~
+extradesc: helm trainee-helm magic-power
+Newly forged, this magical metal helm was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 8033
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale green-drakling-scale small-green-scale
+shortdesc: a &2green&0 drakling scale
+desc: A small green scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+~~
+vnum: 8031
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: scale blue-drakling-scale small-blue-scale
+shortdesc: a &4&bblue&0 drakling scale
+desc: A small blue scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 5
+~
+~~
+vnum: 8032
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale black-drakling-scale small-black-scale
+shortdesc: a &9&bblack&0 drakling scale
+desc: A small black scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 10
+~
+~~
+vnum: 17201
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz 0
+name: sword glowing-sword faint-light
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+18 1
+~
+extradesc: sword glowing-sword faint-light
+You realise that this is a normal longsword which has been enchanted.  It seems
+to be somewhat easier to wield.~
+~~
+vnum: 36100
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace bat-tooth-necklace sharp teeth
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+extradesc: bat-tooth-necklace sharp teeth
+When examined closely, it is easy to see the necklace was constructed hastily
+with clumsy hands.  The teeth vary in shape and size making you wonder if more
+than bat teeth were used.  Even with all of its flaws, you can tell the
+necklace held some significance to the owner.~
+~~
+vnum: 8602
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: badge guard's-badge guards-badge
+shortdesc: a guard's badge
+desc: A badge belonging to one of the guards has been dropped here.
+type: 9
+weight: 0.04
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: badge guard's-badge guards-badge
+A small red badge with a picture of the MeerCat royal family stitched onto it.~
+~~
+vnum: 8330
+location: 127
+values:
+1
+2
+6
+3
+0
+0
+0
+~
+flags: aklmnowx 0
+name: axe sacred-axe dark-green-axe
+shortdesc: a sacred axe
+desc: A dark green axe lies here on the ground.
+type: 5
+weight: 4.00
+cost: 1000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: sacred-axe dark-green-axe
+This sacred axe was made out of the hardest and rarest trees of all the Frakati
+land.  Its shiny surface and deep colors make it gleem like an emerald.  The
+possesor of this sword must truly be important to the Frakati.~
+~~
+vnum: 8331
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: aklmnowx 0
+name: armor dark-green-body-armor bodyarmor sacred-frakati-body-armor
+shortdesc: dark green body armor
+desc: A set of sacred Frakati body armor lies here on the ground.
+type: 9
+weight: 18.00
+cost: 1000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+1 1
+~
+extradesc: dark-green-body-armor bodyarmor sacred-frakati-body-armor
+This dark set of armor glows hazy green as you look at it.  Made from the
+hardest tree trunk in the Frakati land, this armor is almost incapable of being
+damaged by any steel or iron weapons.~
+~~
+vnum: 16100
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnouvwyz 0
+name: scimitar iron
+shortdesc: a scimitar
+desc: A scimitar lies on the ground here.
+type: 5
+weight: 2.00
+cost: 200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+2 1
+~
+extradesc: scimitar iron
+This scimitar is made of the finest steel in the land.  Its blade is keen and
+sharp.  ~
+~~
+vnum: 5510
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: token eldoria-trophy small-white-token 3rd-eldorian-guard-token third questobject
+shortdesc: a token of the 3rd Eldorian Guard
+desc: A small white token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy small-white-token 3rd-eldorian-guard-token third questobject
+It's a small, white token with the insignia of the 3rd Eldorian Guard.~
+~~
+vnum: 5504
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull  eldoria-trophy white-skull 3rd-eldorian-guard-skull third questobject
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy white-skull 3rd-eldorian-guard-skull third questobject
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.~
+~~
+vnum: 3031
+location: 127
+values:
+0
+250
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 1127
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: girth iron-banded-girth small-iron-girth
+shortdesc: an iron-banded girth
+desc: A small iron girth lies at your feet.
+type: 9
+weight: 2.10
+cost: 2100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+extradesc: iron-banded-girth small-iron-girth
+This wide belt is made up of lots of slim, long pieces of heavy, cold black
+iron banded together with wire.  It clasps at the front with a simple iron
+buckle.  Other than the buckle's tooling, it is not decorated.~
+~~
+vnum: 5547
+location: 127
+values:
+2
+4
+2
+3
+0
+0
+0
+~
+flags: knuv 0
+name: shortsword short-sword eldoria-reward 3rd-eldorian-guard-shortsword third
+shortdesc: a shortsword of the 3rd Eldorian Guard
+desc: A shortsword lies here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 1152
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: shield large-steel-shield
+shortdesc: a large steel shield
+desc: A large steel shield has been left here.
+type: 9
+weight: 4.50
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+extradesc: shield large-steel-shield
+Beaten steel makes up the main part of this door-shaped shield.  Large enough
+to protect most of its user's body, it is only lightly decorated along its
+edges with simple tooling.  Three leather straps along its back provide a
+secure grip.~
+~~
+vnum: 55389
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz 0
+name: bracer trainee-bracer magical-plate-bracer magic
+shortdesc: a trainee bracer
+desc: A slightly magical plate bracer lies here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+6 1
+13 5
+18 1
+~
+extradesc: bracer trainee-bracer magical-plate-bracer magic
+Newly forged, this magical metal bracer was made just for you.  It is a good
+little piece of equipment that will help you as you begin your adventures.~
+~~
+vnum: 5524
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: wristguards eldoria-reward leather 3rd-eldorian-guard-wristguards wrist-guard guards wristguard third
+shortdesc: wristguards of the 3rd Eldorian Guard
+desc: Some leather wristguards lie discarded nearby.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+1 1
+~
+~~
+vnum: 1123
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motu 0
+name: gauntlets jointed-iron-gauntlets
+shortdesc: jointed iron gauntlets
+desc: A pair of iron gauntlets rests on the ground.
+type: 9
+weight: 2.70
+cost: 1100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+extradesc: jointed-iron-gauntlets
+These black iron gauntlets are designed to strap onto their wearer's hands.  
+Mostly, they protect the back of the hand.  Light tooling is worked across
+their edges.~
+~~
+vnum: 3034
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring delicate-ruby-earring
+shortdesc: a ruby earring
+desc: A delicate ruby earring lies on the floor.
+type: 8
+weight: 0.01
+cost: 1800
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+6 1
+~
+extradesc: earring delicate-ruby-earring
+The deep, rich red ruby is mounted on a silver cabuchon setting.  It seems to
+glow with inner light.~
+~~
+vnum: 3034
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring delicate-ruby-earring
+shortdesc: a ruby earring
+desc: A delicate ruby earring lies on the floor.
+type: 8
+weight: 0.01
+cost: 1800
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+6 1
+~
+extradesc: earring delicate-ruby-earring
+The deep, rich red ruby is mounted on a silver cabuchon setting.  It seems to
+glow with inner light.~
+~~
+vnum: 3105
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bangers plate-bangers-mash tasty-sausages-mashed-potatoes food
+shortdesc: a plate of bangers and mash
+desc: Some tasty sausages and mashed potatoes sit on a plate here.
+type: 19
+weight: 1.00
+cost: 25
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: plate-bangers-mash tasty-sausages-mashed-potatoes
+Gravy is poured over tasty-looking sausages and a lump of mashed potatoes.  
+The sausages appear to be beef, seasoned with a variety of herbs and onions.  ~
+~~
+vnum: 5504
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull  eldoria-trophy white-skull 3rd-eldorian-guard-skull third questobject
+shortdesc: a skull of the 3rd Eldorian Guard
+desc: A white skull lies nearby.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy white-skull 3rd-eldorian-guard-skull third questobject
+It's a white skull from a member of the 3rd Eldorian Guard that defends the
+region of Eldoria from invaders.~
+~~
+vnum: 5508
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-badge third questobject
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.~
+~~
+vnum: 5508
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: badge eldoria-trophy white 3rd-eldorian-guard-badge third questobject
+shortdesc: a badge of the 3rd Eldorian Guard
+desc: A white badge lies nearby.
+type: 13
+weight: 0.09
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+extradesc: eldoria-trophy white 3rd-eldorian-guard-bagde
+It's a white badge with the crest of the 3rd Eldorian Guard on it.~
+~~
+vnum: 36100
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace bat-tooth-necklace sharp teeth
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+extradesc: bat-tooth-necklace sharp teeth
+When examined closely, it is easy to see the necklace was constructed hastily
+with clumsy hands.  The teeth vary in shape and size making you wonder if more
+than bat teeth were used.  Even with all of its flaws, you can tell the
+necklace held some significance to the owner.~
+~~
+vnum: 17212
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: jewel-heart dusty-little-jewel questobject
+shortdesc: the jewel of the heart
+desc: A dusty little jewel lies here.
+type: 8
+weight: 0.20
+cost: 1782
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 20
+~
+extradesc: jewel-heart dusty-little-jewel questobject
+This beautiful little jewel is shaped oddly, and appears to be very valuable to someone at least.~
+triggers:
+16307
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+228
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~

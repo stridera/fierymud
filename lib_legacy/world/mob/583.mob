@@ -1,0 +1,149 @@
+#58301
+goblin-flier goblin flier~
+a Goblin Flier~
+A small green flier flits away in a suspicious manner.
+~
+This quietly scuttling little flier is made of what seems to be green
+leaves folded in a sphere, with ropes connecting it to a tiny basket of 
+tiny green creatures armed with spears that hangs below it. While it's 
+obviously a tool of reconnaissance, it seems like it would also make a 
+formidable opponent. 
+~
+2252 1310720 -400 E
+18 0 0 0d0+0 0d0+0
+0 0 0 583
+4 4 0 24 18 0 2
+BareHandAttack: 11
+Str: 96
+Dex: 90
+Int: 64
+Wis: 86
+Con: 70
+Cha: 46
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#58302
+scuttling-whatsit scuttling whatsit~
+a scuttling Whatsit~
+A waist-tall, grey-skinned, stinking Whatsit tries to flee from you.
+~
+This pasty-skinned little creature is about the size of a large dog,
+and vaguely bipedal. It has strong-looking jaws in its hairless snout,
+and an emaciated body whose ribs stick out. It has no hair at all.
+~
+2252 262144 -400 E
+18 0 0 0d0+0 0d0+0
+0 0 0 583
+3 3 0 24 14 0 1
+Str: 87
+Dex: 85
+Int: 70
+Wis: 59
+Con: 99
+Cha: 51
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#58303
+iguana iguanadon creature~
+an iguanadon~
+A large creature that resembles an iguana forages for food.
+~
+This is clearly not an iguana, unless it's a much bigger version of one. 
+Perhaps this is where the little iguanas further south come from. This 
+creature is green-scaled and four-limbed like its older cousin. It moves 
+sluggishly, one leg at a time.
+~
+2124 262144 -400 E
+20 0 0 0d0+0 0d0+0
+0 0 0 583
+3 3 0 24 14 0 1
+Str: 77
+Dex: 75
+Int: 81
+Wis: 73
+Con: 83
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#58304
+longhorn-ram longhorn ram~
+a longhorn ram~
+A longhorn ram calmly walks across the mountain path.
+~
+How did this ram get out of the high mountains? At any rate, it's
+here, walking around and looking in vain for something green to eat. Its 
+fur is shaggy, a natural consequence of life in the high altitudes of the 
+Syric Mountains.
+~
+2124 262144 -400 E
+17 0 0 0d0+0 0d0+0
+0 0 0 583
+3 3 0 24 14 0 1
+Str: 89
+Dex: 75
+Int: 67
+Wis: 74
+Con: 71
+Cha: 76
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#58375
+ranger cloaked elf mysteriously~
+a mysteriously cloaked figure~
+A cloaked ranger leans gently on his bow.
+~
+A tall, slender elf leans gently on his bow.  He is clothed in a smoke-gray
+cloak to ward off the powerful sun, and slung over his muscled arm is a large
+water sack of sorts.  All of his garments are worn in such a way as to keep
+sand and loose stones from hitching a ride.  From under his dark cowl his
+gleaming eyes scan the horizon.    
+~
+-2147481574 33566888 900 E
+90 0 0 0d0+0 0d0+0
+0 0 0 583
+3 3 1 6 1 0 2
+Str: 90
+Dex: 80
+Int: 76
+Wis: 72
+Con: 78
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 58375
+$

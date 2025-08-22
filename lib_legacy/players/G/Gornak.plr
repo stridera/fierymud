@@ -1,0 +1,75 @@
+name: Gornak
+password: GowzkgPvYn
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20323
+birthtime: 1660519891
+timeplayed: 1158
+lastlogintime: 1661712988
+host: 050.092.204.039
+height: 80
+weight: 209
+base_height: 80
+base_weight: 209
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 29/27
+mana: 1/0
+move: 152/152
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 63
+wisdom: 74
+dexterity: 85
+constitution: 87
+charisma: 57
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1660519915 Tors gossips, 'Hey Gornak'
+1660520391 Discord gossips, 'felessan: Hello there!'
+1660520793 Discord gossips, 'Venath: General Kenobi'
+1660520803 Dril gossips, 'eh?'
+1660520828 Discord gossips, 'Venath: Felessan said hello there'
+1660520839 Dril gossips, 'haha I see'
+1660520869 Discord gossips, 'Venath: Made sense in discord  LOL'
+1660520874 Dril gossips, 'haha'
+1660520877 Dril gossips, 'fair enough.'
+$

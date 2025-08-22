@@ -1,0 +1,98 @@
+name: Runen
+password: RuKePuYcVq
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20614
+birthtime: 1693879032
+timeplayed: 1824
+lastlogintime: 1694709655
+host: 166.176.248.129
+height: 40
+weight: 179
+base_height: 40
+base_weight: 179
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k w q
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 34/30
+mana: 1/0
+move: 158/158
+damroll: 4
+hitroll: 5
+strength: 77
+intelligence: 67
+wisdom: 96
+dexterity: 65
+constitution: 91
+charisma: 66
+cash: 0 3 16 7
+experience: 9298
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 52
+438 50
+443 50
+444 50
+451 50
+457 50
+458 51
+459 50
+460 51
+462 50
+463 53
+466 50
+0 0
+trophy:
+1 3500 1.000000
+1 3501 3.000000
+1 36002 3.000000
+1 36003 2.000000
+1 8020 1.000000
+0 0 0
+tells:
+1693879962 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1693879966 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1693879967 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1693879968 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1693879970 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1693879970 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1693880090 @WSantiago@W tells you, 'No credit here, come back when you have some cash.@W'@0
+1693880120 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+$
+gossips:
+1693879605 Aewynawk gossips, 'any hints on how to get to Nukreth Spire'
+1693879634 Aewynawk gossips, 'found the part of the road that talks about nukreth mtn but didn't find a hidden path?'
+1693879726 Dorath gossips, 'it's in the west'
+1693879763 Aewynawk gossips, 'i'm guessing its connected to pine barrens'
+1693879768 Dorath gossips, 'yes'
+1693879773 Dorath gossips, 'south of Uchet Hills'
+$
+mem:
+1 0 9
+12 0 9
+0 0 0

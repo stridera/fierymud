@@ -1,0 +1,97 @@
+name: Airic
+password: Aibm81674H
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 12
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19431
+birthtime: 1555439049
+timeplayed: 43299
+lastlogintime: 1557428786
+host: 136.165.138.235
+height: 71
+weight: 128
+base_height: 71
+base_weight: 128
+base_size: 2
+natural_size: 2
+alignment: 861
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 10053
+hunger: 1
+thirst: 10
+lastlevel: 0
+hitpoints: 161/161
+mana: 12/14
+move: 46/100
+damroll: 3
+hitroll: 3
+strength: 99
+intelligence: 72
+wisdom: 74
+dexterity: 81
+constitution: 70
+charisma: 68
+cash: 0 17 29 640
+bank: 0 469 45 0
+experience: 450869
+quit_reason: 1
+saveroom: 10053
+skills:
+402 164
+404 165
+415 50
+416 50
+421 160
+430 68
+438 150
+443 50
+444 114
+463 109
+464 50
+465 161
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 46415 0.500000
+1 46409 1.000000
+1 46403 0.500000
+1 18006 0.500000
+1 18007 1.000000
+1 3133 0.500000
+1 3130 2.500000
+1 3131 4.500000
+1 3132 3.000000
+1 12016 0.500000
+1 12015 0.500000
+1 17204 5.000000
+1 5403 1.000000
+1 5404 1.500000
+1 5421 2.500000
+1 5420 4.000000
+1 5408 6.000000
+1 8022 1.000000
+1 41003 1.500000
+1 41005 0.500000
+1 41001 3.000000
+0 0 0
+effects:
+20 1 0 0 16 0 0
+0 0 0 0 0
+aliases:
+who who  -w
+gac get all corpse
+assm ass mirna
+gcc get coins corpse
+0

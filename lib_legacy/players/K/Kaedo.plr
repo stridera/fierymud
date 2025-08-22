@@ -1,0 +1,120 @@
+name: Kaedo
+password: Kan259TEB2
+currenttitle: (pahorans swimmer)
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 11
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18158
+birthtime: 1331263568
+timeplayed: 18324
+lastlogintime: 1331404996
+host: 076.027.030.014
+height: 39
+weight: 186
+base_height: 39
+base_weight: 186
+base_size: 2
+natural_size: 2
+alignment: 958
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+thirst: 8
+lastlevel: 0
+hitpoints: 106/106
+mana: 12/12
+move: 100/100
+damroll: 4
+hitroll: 5
+strength: 87
+intelligence: 87
+wisdom: 90
+dexterity: 84
+constitution: 58
+charisma: 59
+cash: 0 56 627 398
+experience: 371689
+clan: 3
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 50
+416 50
+423 63
+424 85
+438 50
+443 50
+444 50
+451 59
+457 79
+458 52
+459 50
+460 50
+462 50
+463 154
+466 50
+0 0
+trophy:
+1 3508 0.500000
+1 3507 0.500000
+1 3501 1.000000
+1 36001 1.500000
+1 36002 2.000000
+1 36003 2.000000
+1 8010 0.500000
+1 1605 0.500000
+1 1602 4.000000
+1 1601 3.000000
+1 8022 1.000000
+1 8030 0.500000
+1 8002 3.000000
+1 8016 2.000000
+1 8012 1.000000
+1 8014 4.000000
+1 8011 2.000000
+1 8015 5.000000
+1 8021 1.500000
+1 8013 4.000000
+1 8000 3.000000
+0 0 0
+mem:
+16 0 4
+16 1 4
+16 1 4
+1 1 4
+16 1 4
+16 1 4
+0 0 0
+aliases:
+dff drink fountain
+gac get all all.corpse
+ggc get all.gem all.corpse
+ap assist pearo
+af assist fess
+aff assist flas
+cl c 'cure light' $*
+gcc get all.coins all.corpse
+0

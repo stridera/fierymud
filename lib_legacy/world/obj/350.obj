@@ -1,0 +1,182 @@
+#35000
+spring pool bubbling~
+a bubbling spring~
+A &6spring&0 of &6&bclear water&0 bubbles to the surface here.~
+Clear, drinkable water bubbles up through the ground here from an underground
+spring.    ~
+23 0 0 1
+9999 9999 0 0 0 0 0
+9999.00 0 0 0 0 0 0 0
+E
+spring pool bubbling water~
+Clear, drinkable water bubbles up through the ground from and underground
+spring.  The water is cool to the touch, and it forms a small pool here before
+overflowing into a stream to the east.    ~
+#35001
+seeds food~
+some seeds~
+A small stash of seeds are piled here.~
+~
+19 0 1 1
+8 0 0 0 0 0 0
+0.46 0 0 0 0 0 0 0
+E
+seeds food~
+A mixed pile of seeds from several different grasses and wildflowers.  They
+seem fresh and should make a tasty snack.    ~
+#35003
+vest raccoon-skin-vest small-pile-fur hide leather~
+a raccoon-skin vest~
+A small pile of fur lies here.~
+~
+9 0 9 1
+1 0 0 0 0 0 0
+2.40 0 0 0 0 0 0 0
+E
+vest raccoon-skin-vest small-pile-fur hide leather~
+This soft, fur vest has been made from several raccoon skins.  The vest allows
+for easy movement, and it still lends some protection to the wearer.~
+A
+14 5
+A
+28 8
+#35004
+earring crow-feather-earring black-feather~
+a crow-feather earring~
+A black feather rests on the ground.~
+~
+8 536870912 262145 1
+0 0 0 0 0 0 0
+0.02 0 0 0 0 0 0 0
+E
+earring crow-feather-earring black-feather~
+A jet black feather is attatched by leather to a small silver hoop.  The hoop
+itself is tiny, and the feather seems to hang down from it.~
+A
+5 1
+#35005
+pouch black-fur-pouch~
+a black-fur pouch~
+A black-fur pouch has been left here.~
+~
+15 0 1048577 1
+40 1 -1 0 0 0 0
+1.50 0 0 0 0 0 0 0
+E
+pouch black-fur-pouch~
+This pouch is made of the finest black fur that has been stitched together with
+slender leather straps to form this container.  Well made it seems like it
+should hold a good bit before filling.    ~
+#35006
+leggings golden-fur-leggings pile-golden-fur hide leather~
+a pair of golden-fur leggings~
+A pile of golden fur has been dropped here.~
+~
+9 0 33 1
+1 0 0 0 0 0 0
+3.40 0 0 0 0 0 0 0
+E
+leggings golden-fur-leggings pile-golden-fur hide leather~
+The leggings are soft and made to fit well around any wearer.  The fur is a
+gentle golden color, and the pair of leggings seems to be made up of many small
+creatures.~
+A
+14 3
+#35007
+knife hunting-knife polished-piece-bone dagger~
+a hunting knife~
+A polished piece of bone juts out from the ground.~
+~
+5 0 8193 1
+1 1 4 3 0 0 0
+0.47 0 0 0 0 0 0 0
+E
+knife hunting-knife polished-piece-bone dagger~
+With a polished hilt of bone the knife has a good grip, and the blade is well
+balanced for easy cutting.  The knife has been kept sharp, and it is suited
+well for cutting through the hides of animals.    ~
+A
+18 1
+#35008
+sleeves fox-fur-sleeves pelt hide leather~
+a pair of fox-fur sleeves~
+A pelt from a fox lies crumpled here.~
+~
+9 0 257 1
+1 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+sleeves fox-fur-sleeves pelt hide leather~
+Cured with an expert hand this pelt has been made into a sturdy pair of
+sleeves.  They are a reddish tint and should provide good protection from the
+weather.~
+A
+2 1
+#35009
+stream water tiny~
+a tiny stream~
+A tiny &6&bstream&0 trickles through the meadow.~
+~
+23 0 0 1
+999 999 0 0 0 0 0
+999.00 0 0 0 0 0 0 0
+E
+stream water tiny~
+There is an image hovering just on the surface of the stream.  The figure looks
+familiar, but it's distorted by the flow so that there is just a blur.    ~
+#35010
+map map-brushlands brush-lands extra-features~
+a map of the brushlands~
+A map with extra features on the back gathers dust here.~
+~
+12 0 1 1
+0 0 0 0 0 0 0
+0.20 100 0 0 0 0 0 0
+E
+map map-brushlands brush-lands extra-features~
+Pog's guide to the Brushlands-
+
+
+     mmmmmmmttggggggg
+     mmmmmmmttggggggg
+     mmmmmmmtgggggggg  ppp    ppp
+     mmmmmmttgggggggg  p p    p p
+     mmmmmtttggggggggppp pppppp ppp
+     mmmmmttggggggggg             ppp
+     mmmmmttggggggggg
+   mmmmmmmttggggggggg
+   mmmmmmmt
+   mmmmmmmt
+   mmmmmmmm
+   mmmmmmmm
+   mmmm
+   mmmm
+
+Legend: m- meadow area
+        t- deep trench
+        g- tall grasses
+        p- trail pass near Anduin~
+E
+features back extra~
+Pog's notes on the Brushland Region:
+Many creatures make these grasses their home.
+Abundant water in the southwest, and plenty of food
+make this area a haven for all sorts of creatures of the forest.
+
+My soul is happy to see this.~
+#35011
+feather red-feather red-cardinal-feather pen quill~
+a &1&bred cardinal&0 feather~
+A red feather floats around on the breeze.~
+~
+21 536870912 16385 1
+0 0 0 0 0 0 0
+0.07 10 0 0 0 0 0 0
+E
+feather red-feather red-cardinal-feather pen quill~
+This is the tailfeather of a red cardinal from the Brushlands west of the city
+of Anduin.  It would make a hondsome quill for a sorcerer who wants a little
+extra flair when scribing spells.~
+A
+13 1
+$~

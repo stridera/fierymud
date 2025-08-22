@@ -1,0 +1,84 @@
+name: Japhen
+password: JapPYc2nIS
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18795
+birthtime: 1422358808
+timeplayed: 2864
+lastlogintime: 1555101692
+host: 136.165.138.235
+height: 39
+weight: 199
+base_height: 39
+base_weight: 199
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 11
+thirst: 8
+lastlevel: 0
+hitpoints: 66/62
+mana: 1/0
+move: 148/148
+damroll: 4
+hitroll: 5
+strength: 93
+intelligence: 71
+wisdom: 70
+dexterity: 83
+constitution: 89
+charisma: 60
+cash: 0 7 276 9
+experience: 44090
+quit_reason: 1
+saveroom: 3054
+skills:
+402 52
+404 75
+415 50
+416 50
+421 58
+438 50
+443 50
+444 55
+463 50
+464 50
+465 59
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18000 1.000000
+1 18001 2.000000
+1 18007 6.000000
+1 36004 1.000000
+1 8013 1.000000
+1 8023 1.000000
+1 36003 12.000000
+1 36001 14.000000
+1 36002 17.000000
+1 8012 1.000000
+1 8014 2.000000
+1 8022 1.000000
+1 8021 1.000000
+1 8016 2.000000
+1 8015 3.000000
+0 0 0
+aliases:
+gcc get coins corpse
+gac get all corpse
+0

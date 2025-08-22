@@ -1,0 +1,66 @@
+name: Kopman
+password: KolFPjAxpL
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20857
+birthtime: 1730301630
+timeplayed: 46
+lastlogintime: 1730301685
+host: 072.038.197.243
+height: 41
+weight: 171
+base_height: 41
+base_weight: 171
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: xy
+effectflags: k w q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 29/27
+mana: 0/0
+move: 157/157
+damroll: 4
+hitroll: 5
+strength: 86
+intelligence: 77
+wisdom: 64
+dexterity: 78
+constitution: 92
+charisma: 65
+experience: 1
+quit_reason: 5
+saveroom: 3002
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+$

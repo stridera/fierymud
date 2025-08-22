@@ -1,0 +1,114 @@
+name: Medon
+password: MeFAQO1cdg
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 9
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17263
+birthtime: 1235412609
+timeplayed: 702225
+lastlogintime: 1429667072
+host: 098.231.133.187
+height: 74
+weight: 165
+base_height: 74
+base_weight: 165
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 966/867
+mana: 980/980
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 66
+wisdom: 86
+dexterity: 94
+constitution: 100
+charisma: 62
+cash: 327 621 1110 1216
+bank: 1843 10624 13 15
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+404 1000
+405 1000
+408 1000
+410 750
+411 1000
+412 1000
+415 51
+416 50
+418 662
+420 1000
+421 1000
+438 545
+440 1000
+443 1000
+444 464
+464 1000
+465 53
+477 1000
+0 0
+trophy:
+1 48510 0.142857
+1 48502 0.400000
+1 48500 0.333333
+1 48501 0.333333
+1 48511 2.000000
+0 0 0
+aliases:
+111 recite green
+aaa s;s;n;b maid
+bbb s;b maid
+realm e;n;n;e;w;s;n
+eldoria s;w;w;w;n;n;n;n;n;n;n;e;e;n;n;n;n;w;n;n;n;w;s;w;n;n;n;n;n;n;n;n;n;e;e;e;n;n;w;n;w;n;n;n;w;w;w;w;s;w;w;w;s;s;s;s;w;w;s
+tc rem dagger;get chaos case;wear chaos;throat $1;rem chaos;wear dagger;put chaos case
+tr rem dagger;wear scythe
+p ass jekyl
+9 ass zombie;ass skeleton;ass bleck;ass gyen;ass gyde
+hit rem all.feather;rem all.stolen;wear all.band;wear all.shadows;rem all.bracelet;wear all.fetter
+regen rem all.band;rem all.dagger;wear all.stolen;hold wing;hold wing;rem all.fetter;wear all.lightning
+satin d;e;s;e;e;e;e;s;e;e;s;op grate;d;d;n;e;e;s;s;sea door;op door;w;w;w;w;b slime;get satin corpse;e;e;e;e;n;n;w;w;s;u;u;n;w;w;n;w;w;w;w;n;w;u
+iden get identify case;recite identify $1
+hoo say buntoi nakkarri karisto
+doom w;w;n;n;w;w;n;n;w;w;n;n;w;w;n;n;n;w;w;w;n;n;n;w;w;w;s;w;w;n;d;n;n;w;w;n;n;n;n;e;e;e;n;n;w;n;n;n;e;e;n;n;n;n;e;e;e;e;e;e;e;n;n;n;op door
+jetty s;e;e;e;e;e;e;e;e;s;s;s;s;s;e;s;s;s;e;s;s;w;w;w;w;s;s;s;s;s;s;e;s;e;s;w;s;e;e;n;e;s;s;w;s;s;e;s;w;d;w;s;w
+lair n;w;u;w;s;s;s;e;u;n;w;s;s;e;u;n;w;w;s;s;w;u
+wall s;w;w;w;n;n;n;n;n;n;n;e;e;n;n;n;n;w;n;n;n;e;e;n;n;e;e;n;e;s;e;n;n;n;e;n;n;n;n;w;n;n;n;n;e;e;e;e;n;n;n;n;w;w;s;e;s;s;w;w;n;n;n;n;n;n
+hee say floor phrase is open sesame
+haa say floor phrase is eingang bitte
+barrow s;s;s;s;s;s;s;s;s;s;w;s;w;w;s;s;s;w;w;w;s;w;w;s;w;s;w;s;e;s;e;s;e;e;e;s;e;s;e;e;s;e;e;e;e;s;e;e;n;e;u;n;e;e;e;e;s;e;e;n;n;e;e
+waste s;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;n;n;n;w;w;w;w;w;w;w;w;w;w;n;n;w;n;u;w;w;n;u;e;n;w;n;n;n;n;w;w;s;w;n;n
+gy u;e;d;e;s;e;e;n;d;n;n;e;e;e;e;s;s;w;s;s;s;e;d
+well s;s;s;s;s;s;s;s;e;e;e;e;e;e;e;e;s;s;e;e;e;s;s;s;s;s;s;e;s;s;s;e;s;s;s;w;s;s;e;e;e;e;s;e;e;s;s;s;s;e;n;e;n;e;s;s;w;s;s;s;u;s;d;e;e;s;s;w;s;s;e;s;s;w;s;s;s;w;s;s;s;s;op gate;s;s;s;s
+templace w;w;n;n;w;w;n;n;w;w;n;n;w;w;n;n;n;w;w;w;n;n;n;e;e;n;e;e;s;e;n;n;w;n;w;n;w;n;w;w;w;n;w;s;w;w;n;n;n;n;n;e;e;n;e;e;e;e;s;e;e;e;n;n;n;w;w;n;w;w;w;w;w;w;w;w;w;w;w
+fountain u;op door;w;n;w;s;buy green;n;e;e;n;dri fountain;dri fountain;fill water fountain
+ppp follow $1;consent $1
+gcc get coins all.corpse
+gac get all corpse
+6 kill rabbit;kill brownie;kill mouse;kill crow;kill sparrow;kill hedgehog;kill fox;kill deer
+who who -w
+ccc l i corpse
+7 ki beetle;ki green;ki ant;ki lady;ki fly;ki cockroach;ki cricket;ki spider
+st stand;fly
+fire n;e;e;s;d;d;s;s;e;e;s;s;u;u;n;e;n;n;w;w;s;s;w;w;s;u;e;s;e
+water n;e;e;s;d;d;s;s;e;e;e;s;d;w;s;s;w;w;s;w
+air n;e;e;s;d;d;s;s;w;w;n;u;u;u
+0

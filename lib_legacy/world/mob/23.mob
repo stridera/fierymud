@@ -1,0 +1,1394 @@
+#2300
+roc northern norther-roc male-roc~
+a northern roc~
+A northern roc sails above the mountain path.~
+This bird resembles a twenty foot eagle; its massive brown wings stretch out on
+either side to catch the wind and support its bulky weight.  Two streaks of
+white feathers run down each side of his face and converge along the back,
+marking him as a male of the northern species.  This roc's mighty talons are
+powerful enough to shred armor, and his impressive lifting ability allows him
+to fly with even a horse within his mighty grasp.  He guards his nest with a
+cold viciousness, letting no one pass.    ~
+102828056 1049640 0 E
+12 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+4 4 1 3 14 0 4
+BareHandAttack: 8
+Str: 90
+Dex: 86
+Int: 72
+Wis: 76
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2301
+roc giant-northern-roc female-roc~
+a giant northern roc~
+A giant northern roc flies across the path.~
+&0The plain brown of this giant roc marks her as a female.  She appears to be
+about thirty feet across, even larger then most males.  Her vicious claws and
+hooked beak are twice as long, allowing her to hunt better then her mate.  It
+is known throughout the realms that a female roc is a dangerous animal to
+cross, especially if she has hatchlings nearby.    ~
+101779544 1049640 0 E
+15 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+4 4 2 3 14 0 4
+BareHandAttack: 8
+Str: 97
+Dex: 80
+Int: 66
+Wis: 70
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2302
+roc roc-hatchling~
+a roc hatchling~
+A roc hatchling snaps in the air, searching for food.~
+&0Though just a baby, this hatchling is far from harmless. It stands about the
+size of a human male, perhaps six feet tall. Armed with a hooked beak and
+claws to match, it can put up quite a fight for its age. The hatchling
+squawks in hunger, as it peers around with big black eyes searching for any
+sign of its parents.~
+100665354 16778280 0 E
+8 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 0 24 14 0 2
+BareHandAttack: 4
+Str: 79
+Dex: 97
+Int: 63
+Wis: 65
+Con: 30
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2303
+roc roc-hatchling~
+a roc hatchling~
+A roc hatchling squawks loudly for its parents.~
+Though just a baby, this hatchling is far from harmless.  It stands about the
+size of a human male, perhaps six feet tall.  Armed with a hooked beak and
+claws to match, it can put up quite a fight for its age.  The hatchling squawks
+in hunger as it peers around with big black eyes searching for any sign of its
+parents.    ~
+100665370 16778280 0 E
+12 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 0 24 14 0 2
+BareHandAttack: 4
+Str: 85
+Dex: 77
+Int: 79
+Wis: 69
+Con: 30
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2304
+statue stone stone-statue humanoid~
+a stone statue~
+The stone statue of a humanoid stands against the northern wall.~
+A statue of a a humanoid rests against the wall here.  Its face is blank and
+the smooth gray stone is polished to perfection.  From the build, it appears to
+be male.  It stands a bit over six feet tall and must weight at least seven
+hundred pounds.    ~
+2138 1192 0 E
+20 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 0 3 0 0 2
+BareHandAttack: 13
+Str: 93
+Dex: 75
+Int: 65
+Wis: 62
+Con: 30
+Cha: 78
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 9
+Stance: 6
+E
+T 2300
+#2305
+spider bulbous forest bulbous-forest-spider~
+a bulbous forest spider~
+A bulbous forest spider scurries across the ground.~
+&0This dark green spider is about four feet across, its thin legs poking out at
+eight odd angles.  Vicious fangs drip with some unknown venom, as the spider
+glares around with its round eyes.  Its abdomen is three times the size of its
+upper body, containing all of its internal organs and life fluids.    ~
+2115688 1032 0 E
+15 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 0 3 14 0 2
+BareHandAttack: 4
+Str: 99
+Dex: 97
+Int: 62
+Wis: 71
+Con: 30
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#2306
+spider canopy giant giant-canopy-spider-warrior~
+a giant canopy spider~
+A giant canopy spider stands watch over his lair.~
+&0Unlike most spiders, this canopy spider belongs to a sophisticated colony
+similiar to the ant.  He is about five feet long with slender legs designed
+to grasp on bark and flimsy branches with ease.  This one has the markings of a
+warrior, three vertical brown bars along its back.    ~
+16490 1032 0 E
+20 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 3 14 0 2
+BareHandAttack: 4
+Str: 85
+Dex: 77
+Int: 73
+Wis: 75
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#2307
+spider canopy giant giant-canopy-spider-hunter~
+a giant canopy spider~
+A giant canopy spider darts through the branches, dragging along its prey.~
+&0This canopy spider is about five feet long, and is armed with a pair of
+vicious fangs.  His multi-sided eyes gleam with cunning, as he darts through
+the canopy dragging a quivering cocoon behind.  The brown markings along the
+spider's back marks him as a hunter.    ~
+1067112 1032 0 E
+20 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 6 14 0 2
+BareHandAttack: 4
+Str: 92
+Dex: 70
+Int: 74
+Wis: 68
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#2308
+spider canopy monstrous monstrous-canopy-spider~
+a monstrous canopy spider~
+A monstrous canopy spider glares about her domain.~
+&0This gigantic canopy spider is over twice the size of her brethren, perhaps
+ten feet long.  Her abdomen is the size of a small horse, and is marked with an
+exotic design of brown and emerald lines.  She is armed with a pair of vicious
+mandibles, each similiar to a serrated scimitar.  She is the head of this
+colony, the sole female in sight.    ~
+1067256 1064 0 E
+28 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 2 3 14 0 3
+BareHandAttack: 4
+Str: 84
+Dex: 83
+Int: 66
+Wis: 68
+Con: 30
+Cha: 72
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+T 55697
+T 5314
+#2309
+spider camouflaged hunter camouflaged-hunter-spider~
+a camouflaged hunter spider~
+A camouflaged hunter spider stalks his prey through the forest.~
+&0This vicious spider is covered with a mottled design of different greens,
+creating a perfect camouflage affect in thick forests.  He is about four feet
+long, but his thin legs are designed to move through the underbrush with little
+noise.  &0~
+1067064 263208 0 E
+18 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 3 14 0 2
+BareHandAttack: 4
+Str: 87
+Dex: 95
+Int: 68
+Wis: 66
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 180
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#2310
+spider tree vicious vicious-tree-spider~
+a vicious tree spider~
+A vicious tree spider darts through the forest, checking her webs.~
+&0This breed of spider has an odd way of hunting.  It sets out several separate
+webs throughout its territory, darting between them to check for prey.  She is
+dark green in color, covered with thousands of bristle-like hairs which allow
+her to move through webs without any problems.  The spider is about six feet
+long, but is very slender allowing her to leap from tree to tree without
+disturbing a leaf.    ~
+2115688 1032 0 E
+20 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 2 3 14 0 2
+BareHandAttack: 4
+Str: 79
+Dex: 82
+Int: 63
+Wis: 86
+Con: 30
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#2311
+patriarch dark-patriarch cultist~
+a dark patriarch~
+The dark patriarch of the cult stands here, tossing meat into the flames.~
+A cloaked figure perhaps six feet tall, most of his facial features are bathed
+in shadows created by his deep hood.  From what is visible, it's obvious this
+man is half-orc.  A pig-like snout and enlarged fangs reveal his true heritage,
+along with the foul stench and gutteral speech.  A master amongst his people,
+this patriarch is the leader of the whole cult, a position that comes with a
+great deal of power and influence.    ~
+68170 1032 -1000 E
+60 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 1 13 0 2
+Str: 78
+Dex: 84
+Int: 86
+Wis: 99
+Con: 30
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 2301
+T 2313
+T 2312
+T 2308
+T 55699
+T 2314
+T 5357
+#2312
+cultist dark-cultist-guard robed-cultist~
+a dark cultist~
+A robed cultist stands within the tunnel, guarding it from intrusion.~
+This young man is wrapped in a thick black cloak, hiding his true identity from
+all but his brethren.  He stands proudly at the cavern entrance, guarding it
+from infidels.  Armed with a curved black scimitar, he appears to be a skilled
+fighter.    ~
+6746 9256 -1000 E
+45 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 5 13 0 2
+BareHandAttack: 13
+Str: 92
+Dex: 94
+Int: 58
+Wis: 70
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2314
+cultist robed-cultist~
+a robed cultist~
+A robed cultist dances around the cavern, chanting in a hellish language.~
+Dark flowing robes cover this woman, masking her true features from view.  She
+waves her hands through the air as she dances around the room, her body
+twisting and turning to the rythmatic chanting that spews from her vicious
+mouth.  Waves of ebony hair flow out from beneath her hood, hinting at her
+human or perhaps even elven heritage.    ~
+1051336 1032 -1000 E
+40 20 10 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 2 1 0 0 2
+Str: 75
+Dex: 76
+Int: 81
+Wis: 81
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2315
+aldern~
+Aldern~
+Aldern stands here, watching over his store with a wary gaze.~
+&0Aldern is a moderate sized man, dressed in simple wool clothing.  His sandy
+brown hair lies combed in place, its length just reaching down to his
+shoulders.  He has deep emerald eyes, like the darkest of forests.  Standing
+behind a counter, Aldern watches as people enter his establishment.    ~
+16779338 1032 1000 E
+45 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 3 0 0 2
+Str: 94
+Dex: 81
+Int: 68
+Wis: 70
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2316
+soldier armored-soldier gateguard guard~
+an armored soldier~
+An armored soldier watches the gate, carefully inspecting passers-by.~
+&0Dressed in a fine suit of chainmail, this yound man looks prepared for
+battle.  He stands just under six feet tall, and is of average weight for a
+human.  His dark brown hair is pulled back into a simple pony tail, keeping it
+held securely in place.  A slender longsword hangs from his belt, its hilt
+wrapped tightly in leather.    ~
+33560650 1024 860 E
+36 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 3 0 0 2
+Str: 90
+Dex: 88
+Int: 62
+Wis: 62
+Con: 30
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2317
+soldier armored-soldier gateguard guard~
+an armored soldier~
+An armored soldier stands here, watching the gate intently.~
+&0Dressed in a fine suit of chainmail, this yound man looks prepared for
+battle.  He stands just under six feet tall, and is of average weight for a
+human.  His dark brown hair is pulled back into a simple pony tail, keeping it
+held securely in place.  A slender longsword hangs from his belt, its hilt
+wrapped tightly in leather.    ~
+33560650 1024 860 E
+36 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 3 0 0 2
+Str: 94
+Dex: 82
+Int: 65
+Wis: 82
+Con: 30
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2318
+horse groomed-horse~
+a groomed horse~
+A well-groomed horse stands in the stables, feeding on hay and grain.~
+&0This well-built horse looks capable of withstanding the rugged badlands.  
+Bred for rough terrain, his powerful muscles look quite relaxed, feeding upon
+the sweet grains offered in the stables.    ~
+268699722 0 0 E
+15 20 0 0d0+0 0d0+0
+0 0 100 10 0 23
+3 3 1 3 14 0 3
+BareHandAttack: 10
+Str: 82
+Dex: 85
+Int: 68
+Wis: 74
+Con: 30
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2319
+Naleen Naleen-Moonwalker bartender~
+Naleen Moonwalker~
+Naleen Moonwalker stands behind the bar, tending to customers.~
+&0The slightly pointed ears and soft angular facial features immediately
+reveals this woman's half-elven heritage.  Her flowing blonde hair lies tied in
+a thick braid that reaches almost to her waist, its golden length combed neatly
+and surprisngly clean considering her working enviroment.  The grace in
+Naleen's step however reveals much more then her physical appearance.  She
+holds herself like a warrior, possessing deft agility and coordination.    ~
+33556570 16778248 1000 E
+50 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 2 6 9 0 2
+BareHandAttack: 3
+Str: 90
+Dex: 83
+Int: 78
+Wis: 67
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2320
+soldier border-soldier~
+a border soldier~
+A well-armed border soldier stands here, eyes open for danger.~
+This young man appears to be in his late twenties, having spent most of his
+adult life training to be a warrior.  He is of moderate size for a human, and
+has been outfitted with a longsword and a suit of chainmail.  A dark cloak of
+leather drapes over his body, warding off the cold when needed and offering
+some camouflage against an attacker's arrow.    ~
+35657800 1024 400 E
+24 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 3 0 0 2
+BareHandAttack: 3
+Str: 94
+Dex: 92
+Int: 80
+Wis: 84
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2321
+captain guard-captain~
+the guard captain~
+The captain of the guard stands here, keeping the area secure.~
+&0This man appears to be about thirty years old, his weathered face showing the
+first signs of wrinkles.  He is still powerfully built however, a warrior far
+from decline.  He is dressed in a loose crimson tunic, draped over his shirt of
+chainmail.  A golden crown is just barely visible on the tunic's front, half
+covered by his dark flowing cloak.  A sword hangs at his belt, ready to be
+drawn at the first sign of danger.    ~
+34605128 1024 600 E
+35 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 3 0 0 2
+BareHandAttack: 3
+Str: 96
+Dex: 83
+Int: 69
+Wis: 68
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2322
+venth lord-venth~
+Lord Venth~
+Lord Venth sits here, going over several old maps.~
+&0This elderly man looks to be in his early fifties, though by his powerful
+stature and clear eyes it's obvious he hasn't lost the fighting edge that
+earned him the title of Lord in Solta's army.  Assigned to manage the northern
+borderhold, Lord Venth has spent the last few years within this walled village.~
+33556554 1032 1000 E
+45 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+1 1 1 3 0 0 2
+Str: 82
+Dex: 85
+Int: 66
+Wis: 75
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 53458
+T 55699
+T 6054
+#2323
+soldier sleeping-soldier~
+a soldier~
+A soldier snores softly, tucked into his bunk.~
+&0This soldier must have just recently gotten off shift.  He lies fully clothed
+in his bunk, sound asleep.  A low snore escapes his beard-covered face, as he
+dreams of something far more pleasant then the borderhold he is stationed in.
+He must be in his early twenties, and by the depth of his sleep he might not
+yet be used to the hard soldier life.    ~
+33556554 1032 650 E
+23 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+0 0 1 3 0 0 2
+Str: 87
+Dex: 79
+Int: 77
+Wis: 68
+Con: 30
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 4
+E
+#2324
+adventurer wary-adventurer~
+a wary adventurer~
+A wary adventurer wanders about the borderhold.~
+&0This well-built human appears to be a fighter of some type.  He is dressed in
+a suit of ringmail, and has a wooden shield straped to his back.  A cloak of
+brown blankets most of his body, its leathery surface marked with over a week's
+worth of mud and dirt.  The grim faced adventurer keeps glancing from side to
+side, keeping an eye out for danger.    ~
+2099288 0 250 E
+20 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 3 0 0 2
+BareHandAttack: 3
+Str: 92
+Dex: 88
+Int: 63
+Wis: 74
+Con: 30
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2325
+dwarf drunken-dwarf~
+a drunken dwarf~
+A drunken dwarf stands here, telling a tale of his adventures.~
+&0This dark haired dwarf is dressed in a rough woolen tunic, gray in color.  
+His armor must have been discarded in favor of lighter clothing.  A hand axe
+hangs at his side, lying forgotten as the dwarf spins a tale of orc slaying in
+the nearby badlands.  His breath reeks of ale, and by his slurred speech it is
+obvious he has drunk several barrels of ale by himself.    ~
+33560586 1024 1000 E
+22 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+1 1 1 3 3 0 2
+Str: 89
+Dex: 85
+Int: 68
+Wis: 72
+Con: 30
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2326
+warrior dwarven-warrior dwarf~
+a dwarven warrior~
+A dwarven warrior slumps here, downing a tankard of ale.~
+&0Part of a band of dwarven warriors, this experienced adventurer leans back in
+his chair and listens to his friend recount their latest journey.  He is
+dressed in a well crafted tunic of ringmail, most likely dwarven in origin.  A
+pot helm sits nearby on the table, currently unused.    ~
+33560586 1024 1000 E
+24 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+1 1 1 3 3 0 2
+Str: 92
+Dex: 87
+Int: 64
+Wis: 68
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55577
+#2327
+maiden elven-maiden elf~
+an elven maiden~
+An elven maiden slips through town, obviously trying to hide something.~
+   &0This elven maiden looks oddly out of place.  She is dressed in a forest
+green cloak that covers most of her body, leaving little of the leather tunic
+and breeches visible underneath.  Her soft blonde hair only just spills out
+from beneath her hood, leaving little in sight.  Her soft angular features and
+the tiny hint of pointed ears from beneath her hair give away her true nature,
+but reveal nothing of what she is doing here.    ~
+1050696 1032 1000 E
+33 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 2 6 1 0 2
+Str: 88
+Dex: 76
+Int: 72
+Wis: 53
+Con: 30
+Cha: 79
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2328
+elemental plant plant-elemental~
+a plant elemental~
+A plant elemental blends with the surrounding underbrush.~
+A mass of animated vegetation, it stands perhaps six feet tall, with half a
+dozen writhing vines leaping out from its body in random directions.  Created
+by the druids and given conciousness by the Earthmother, this guardian of
+nature would do anything to ensure the vale's safty.    ~
+35674392 4104 1000 E
+35 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 0 3 12 0 2
+Str: 86
+Dex: 84
+Int: 74
+Wis: 82
+Con: 30
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+T 53457
+#2329
+treant ancient oak tree ancient-oak-tree~
+an ancient oak tree~
+An ancient oak tree stands guard over the forest.~
+At first glance, this tree seems much like the others in the area: tall,
+heathy, and quite stationary.  Upon closer inspection, a sort of face is
+visible within its bark.  It is a kindly face, wrinkled with the passing of
+time.  Its limbs seem more like arms, its leaves like hair.  This tree is
+really a treant, one of the guardians of the forests and a stout ally of the
+druid council.    ~
+33560856 33554440 1000 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 7 12 0 5
+BareHandAttack: 6
+Str: 82
+Dex: 88
+Int: 87
+Wis: 82
+Con: 30
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+#2330
+druid high-druid loken~
+the high druid~
+The high druid stands here, contemplating some mystery.~
+&0Head of the druid council, Loken the high druid has served the Earthmother
+for all of his life. His wrinkled face doesn't even come close to revealing
+his true age of several centuries, having had his lifespan increased by
+nature a dozen times. Currently, Loken stands amidst his brothers, seeking
+new recruits and sitting council with old members.~
+33560842 1032 0 E
+60 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 7 0 0 2
+Str: 69
+Dex: 77
+Int: 85
+Wis: 91
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 2305
+T 2306
+T 2307
+T 55699
+T 6054
+#2331
+druid elder-druid~
+an elder druid~
+An elder druid passes through the vale, tending to its growth.~
+&0This elderly human appears to be in his early fifties. He is dressed in a
+long flowing robe, which is cinched around his waist by a simple rope
+belt. A bit of a beard has begun to grow on his tanned face, the color of
+new snow. He is at home in the wild, stepping through plant life without
+cracking a twig.~
+35653896 5128 0 E
+45 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 7 0 0 2
+Str: 88
+Dex: 70
+Int: 88
+Wis: 94
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2332
+dryad silent silent-dryad~
+a silent dryad~
+A silent dryad stands guard over the forest.~
+This silent creature stands here, like a tree amongst the surrounding forest.
+Her skin is like soft bark, subtle yet surprisingly resistant.  Her soft hair
+flows down like leaves from her head, deep emerald like the color of her
+emotionless eyes.  Spurred on by some unknown force, this dryad protects these
+forests with unparraled wrath.  None, not even druids, are welcomed.    ~
+268435562 12296 0 E
+36 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 2 6 34 0 2
+Str: 84
+Dex: 84
+Int: 70
+Wis: 72
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2333
+dryad darting-dryad stealthy-dryad~
+a stealthy dryad~
+A dryad darts through the trees, making no sound.~
+A beautiful creature that is one with nature, the dryad is formed like a young
+woman.  She moves like a deer, making not a sound as her lithe body slips
+between tunk and bush with equal ease.  Akin to a tree spirit, this young dryad
+has sworn to protect this forest from all invaders, even if their intentions
+may be noble.    ~
+1054744 262152 1000 E
+21 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 2 3 34 0 2
+Str: 90
+Dex: 86
+Int: 74
+Wis: 76
+Con: 30
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 210
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2334
+dryad ancient ancient-dryad~
+an ancient dryad~
+An ancient dryad stands here, communing with nature.~
+&0The ancient bark-like skin of this magnificant dryad is wrinkled and
+rough, like the surface of the oldest oak. Her long green hair lies rolling
+down her shoulders, reaching well past her waist. A loose fitting green
+robe hangs from her slender form, worn only for its appearance.&0~
+2314 4104 0 E
+37 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 2 7 34 0 2
+Str: 75
+Dex: 76
+Int: 77
+Wis: 94
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55696
+#2335
+dryad wrinkled-dryad~
+a wrinkled dryad~
+A wrinkled dryad stands watch over her tree.~
+This ancient dryad has withdrawn into the forest's heart, staying near to the
+tree she is bonded with.  She is dressed in a translucent gown of pale green
+cloth, draping over her wrinkled body like mist.  Even though her eyes show a
+calm wisdom, the dryad's oath to defnd this forest will drive her to attack
+even a fellow druid.    ~
+172090 4104 1000 E
+38 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 2 7 34 0 2
+Str: 75
+Dex: 78
+Int: 83
+Wis: 90
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55696
+#2336
+dryad elder-dryad~
+an elder dryad~
+An elder dryad peers out from behind some foliage.~
+&0Sworn to protect these forests from all intruders without mercy, this
+elder dryad has spent most of her life slaying unknowing wanderers. In
+her old age, she has withdrawn from the outer forest to visit her
+birth tree. Her skin is bark-like, rough and pale brown in color.
+The dryad's eyes are deep emerald in color, similiar to the long
+flowing hair that drapes down her slender back.~
+2106 12296 0 E
+39 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 2 7 34 0 2
+Str: 64
+Dex: 77
+Int: 86
+Wis: 87
+Con: 30
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2337
+sprite water water-sprite~
+a water sprite~
+A water sprite floats through the crystal waters, guarding her lake.~
+&0This little creature is barely three feet high. Her slender form is elf-like,
+down to her pointed minature ears. A pair of insect feelers jut out from her
+forehead, similiar to that of a butterfly. Glossy semi-translucent wings
+push her light body through the water, as she swims from one side of the lake
+to the other enjoying the enviroment. Even though not evil, a water sprite
+will do anything to protect her lake from harm.&0~
+2122 17825864 0 E
+30 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+4 4 2 0 32 0 0
+Str: 77
+Dex: 68
+Int: 79
+Wis: 98
+Con: 30
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 306
+T 307
+T 308
+T 311
+T 314
+T 55696
+#2338
+sprite forest-sprite~
+a forest sprite~
+A forest sprite darts through the trees on a pair of wings.~
+&0This little creature is barely two feet tall, with the build of an elven
+maiden.  Her pale skin is the color of leaves, a mixture of greens that match
+her solid emerald eyes and billowing hair.  A pair of antennae stick up from
+her forehead, in a manner similiar to insects.  She is armed with a pair of
+translucent wings and powerful magic, devoting her whole life to defending
+these woods from outsiders, be they friendly or not.    ~
+35653976 34603016 1000 E
+35 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+4 4 2 1 32 0 0
+BareHandAttack: 11
+Str: 80
+Dex: 78
+Int: 74
+Wis: 76
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2339
+druid slender-druid relocate-druid~
+a slender druid~
+A slender druid stands watch over this sacred grove.~
+&0This half-elf appears to be in his prime, with his dark blonde hair
+still lacking even the touch of gray. His pointed ears stick up from
+beneath these golden waves, giving him a more elven the human appearance.
+This however is quickly dispelled by his stubby beard, which although
+not very full is quite distinct. He stands in a robe of flowing green
+cloth, watching over these holy stones with his life.~
+33556570 33555464 1000 E
+55 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 7 9 0 2
+Str: 80
+Dex: 75
+Int: 89
+Wis: 93
+Con: 30
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 49253
+T 49226
+#2340
+soldier~
+a soldier~
+A soldier chews some beige mush quite unenthusiastically.~
+Well-built and athletic in appearance, this young man has spent much of his
+adult life training as a soldier.  Dressed in a light tunic and breeches, he is
+obviously not on duty.  He chomps on some unsavory-looking food, looking only
+moderately happy to be having a meal.    ~
+33554442 0 0 E
+25 0 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 3 0 0 2
+Str: 78
+Dex: 79
+Int: 79
+Wis: 72
+Con: 82
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2341
+merchant traveling weatherbeaten man traveling-merchant~
+a traveling merchant~
+A weatherbeaten man paces forward along the road.~
+He looks like he hasn't had a bath in days.  Hefting a pack full of
+merchandise, he constantly scans back and forth for signs of bandits.  Mud
+covers his lower legs, as though he had been walking in a rainstorm recently.
+Still, he looks like he could take care of himself in a fight if he had to.  ~
+8 0 0 E
+15 0 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 18 0 0 2
+Str: 83
+Dex: 83
+Int: 68
+Wis: 67
+Con: 77
+Cha: 77
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2342
+mercenary muscular unemployed-caravan-guard~
+an unemployed caravan guard~
+A muscular mercenary hunts for work here.~
+This scowling man looks like one of the locals who is often hired to provide a
+little deterring force to a merchant caravan in hopes of avoiding conflict with
+the bandit gangs that roam South Caelia.  Though he does not currently have a
+caravan to guard, his weapons are sharp and his armor has the shine of care.  ~
+8 0 0 E
+15 0 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 10 0 0 2
+Str: 91
+Dex: 82
+Int: 85
+Wis: 76
+Con: 71
+Cha: 48
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2343
+pilgrim druid traveling druid-pilgrim~
+a pilgrim~
+A druid on a pilgrimage travels the roads.~
+She has the delicate look of one with elven blood, though her round eyes speak
+of a mixed heritage.  Long, chestnut brown hair is braided back to keep it out
+of her face in the windy environment of South Caelia.  Her simple robes and
+familiarity with the wildlife of the region mark her as a druid.    ~
+8 0 0 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 2 7 9 0 2
+Str: 74
+Dex: 80
+Int: 81
+Wis: 89
+Con: 64
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2344
+rabbit spotted southeastern south-eastern spotted-rabbit~
+a spotted Southeastern rabbit~
+A spotted rabbit nearly blends in with the surroundings.~
+A small brown rabbit with white spots, this speckled little bunny is a hardy
+inhabitant of South Caelia, feasting on the grasses that thrive in the chill,
+temperate climate.  Its fur is thick and warm, and popular in some areas as a
+lining on jackets and muffs.  Its ears twitch ever so slightly, listening for
+danger.    ~
+8 0 0 E
+4 0 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 0 18 14 0 1
+Str: 82
+Dex: 85
+Int: 73
+Wis: 72
+Con: 70
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2345
+orc scout orc-scout strange-looking figure~
+an orc scout~
+A strange-looking figure watches you suspiciously.~
+Heavily cloaked in the chill air, this figure's yellow eyes are visible though
+its hood is pulled up.  Its frame is large, either muscular or fat, and the
+clothes are a style that isn't often seen around this area.  Moreover, the
+figure isn't carrying merchant goods nor does it have the look of a druidic
+pilgrim.  What is it doing here...?    ~
+8 0 -500 E
+14 0 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 2 8 1 2
+Str: 93
+Dex: 96
+Int: 67
+Wis: 60
+Con: 78
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2346
+antelope plains pronged-horns pronghorn pains-antelope creature dashing~
+a plains antelope~
+A creature with pronged horns dashes across the plains.~
+Tan on the back, legs, and head and creamy white on his underbelly, the
+antelope has dark, vicious-looking brown horns and moves very swiftly.  It
+grazes on the abundant grasses and is the subject of hunts for both its
+venison-like meat and its impressive horns.    ~
+262216 0 0 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 3 14 0 2
+BareHandAttack: 14
+Str: 92
+Dex: 80
+Int: 59
+Wis: 84
+Con: 83
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2347
+soldier suspicious-soldier pudgy-border-soldier orc-spy~
+a suspicious soldier~
+A pudgy border soldier walks around, looking slightly suspicious.~
+Unlike any of the other border soldiers within the keep, this particular one is
+dressed in a hooded cloak, covering his features, with the usual suit of
+chainmail draped upon it.  He is rather pudgy, his belly bulging out a little
+against the chainmail.  A slender longsword hangs from his belt, and he grips
+its hilt tightly, his sallow, rather yellowish skin showing beneath his
+sleeves.    ~
+200 0 -500 E
+30 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 3 8 1 2
+Str: 98
+Dex: 79
+Int: 71
+Wis: 69
+Con: 82
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2348
+stablehand skinny-stablehand skinny-young-boy~
+a skinny stablehand~
+A skinny young boy stands here, grooming the horses.~
+Dusty-haired and skinny, this young boy is dressed in dirtied garb, tending the
+horses in the stables.  He doesn't look particularly happy to be here, but the
+work doesn't seem to bother him too much.    ~
+26 1064 0 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 23
+3 3 1 24 0 0 2
+Str: 88
+Dex: 86
+Int: 68
+Wis: 72
+Con: 76
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

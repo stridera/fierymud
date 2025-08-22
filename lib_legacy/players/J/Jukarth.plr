@@ -1,0 +1,77 @@
+name: Jukarth
+password: JucY0sMBeo
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 4
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20644
+birthtime: 1697503344
+timeplayed: 1088
+lastlogintime: 1709519880
+host: 156.146.194.021
+height: 80
+weight: 287
+base_height: 80
+base_weight: 287
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: gxy
+effectflags: k w 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 10
+lastlevel: 0
+hitpoints: 35/33
+mana: 1/0
+move: 181/181
+damroll: 4
+hitroll: 4
+strength: 98
+intelligence: 72
+wisdom: 62
+dexterity: 78
+constitution: 97
+charisma: 61
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1709519232 Chinok gossips, 'yeah, http://www.mudlet.org will get you there :)'
+1709519239 Chinok gossips, 'loll yeah, Trolls aren't too bright'
+1709519320 Chinok gossips, 'average intelligence for a troll is like the dumber than the dumbest elf by like 40%'
+1709519440 Chinok gossips, 'you should eat more chicken Jukarth'
+1709519443 Frila gossips, 'arg....'
+1709519470 Frila gossips, 'yeah I need to do some....um...work...why did I make these characters? LOL'
+1709519490 Chinok gossips, 'high expectations ?'
+1709519691 Chinok gossips, 'Mardox, you've at least done a little work'
+1709519694 Mardox gossips, 'oh my, I'm higher level than I thought I was lol'
+1709519725 Mardox gossips, 'I need to get a new computer'
+$

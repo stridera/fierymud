@@ -1,0 +1,121 @@
+name: Krygus
+password: KrPFqVkwaC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 9
+race: 6
+level: 12
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19460
+birthtime: 1563305762
+timeplayed: 93865
+lastlogintime: 1609559627
+host: 066.193.130.006
+height: 39
+weight: 167
+base_height: 39
+base_weight: 167
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: k w 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 164/140
+mana: 13/13
+move: 148/154
+damroll: 4
+hitroll: 5
+strength: 79
+intelligence: 58
+wisdom: 82
+dexterity: 96
+constitution: 92
+charisma: 62
+cash: 0 105 306 26
+experience: 419140
+quit_reason: 1
+saveroom: 3054
+skills:
+401 170
+403 167
+405 51
+408 159
+410 50
+415 50
+416 50
+420 50
+421 115
+438 50
+440 56
+443 50
+444 62
+464 131
+465 50
+0 0
+trophy:
+1 13602 0.250000
+1 13601 0.583333
+1 13603 0.250000
+1 13610 0.750000
+1 8001 0.250000
+1 3143 0.250000
+1 8013 0.250000
+1 8015 0.250000
+1 41012 0.250000
+1 41006 1.000000
+1 41021 0.250000
+1 41015 0.333333
+1 41002 0.750000
+1 41011 0.250000
+1 41007 0.500000
+1 41010 0.250000
+1 41008 0.250000
+1 41009 0.250000
+1 41005 1.500000
+1 41004 0.500000
+1 41003 1.500000
+0 0 0
+tells:
+1580690203 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1581743695 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1594093941 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1594094087 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1594097088 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1594097089 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1594097089 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1594097090 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1594097104 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1594097108 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1609559355 Nauis gossips, 'crud, now i'm confused about which is which, thanks for that'
+1609559379 Meina gossips, 'Rounders is about poker'
+1609559389 Nauis gossips, 'no, i'm definitely thinking of swingers. which google tells me is from 1996, dang.'
+1609559401 Meina gossips, 'they aren't really alike'
+1609559412 Meina gossips, 'I am just super bad with those two movies, which i did not watch when they were new'
+1609559427 Meina gossips, 'and was forced to watch with boyfriend (now hubs) :D'
+1609559491 Meina gossips, 'also, re: mandalorian - i kinda hope they just develop a new storyline and abandon the force awakens arc'
+1609559515 Golanth gossips, 'I agree.  They've hit peak spectacle creep'
+1609559528 Meina gossips, 'cuz.... that storyline just did not make sense. it wasn't bad per se, it just didn't fit with the entire previous saga. '
+1609559535 Golanth gossips, 'needs a hard right turn'
+$
+aliases:
+bs backstab $1
+asn assist naigus
+who who -w
+asd assist saigus
+lic look in corpse
+gbb get 2 bread bag
+ebb eat bread
+ann assist nauis
+akk assist kuvira
+amm assist mimbelag
+0

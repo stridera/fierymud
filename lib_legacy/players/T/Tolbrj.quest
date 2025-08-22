@@ -1,0 +1,81 @@
+2 5 0
+1 255 3
+got_item:37082 1
+got_item:37081 1
+got_item:37080 1
+6 2 0
+16 2 3
+find_key 1
+find_blood 2
+given_light 1
+10 255 0
+17 1 33
+5545_reward 1
+5553_reward 1
+5535_reward 1
+5527_reward 2
+5533_reward 1
+5531_reward 1
+5543_reward 2
+5529_reward 1
+5557_reward 1
+5539_reward 1
+5542_reward 1
+5515_reward 1
+5525_reward 1
+5523_reward 2
+5555_reward 1
+5521_reward 1
+5540_reward 2
+5511_trophies 2
+5507_trophies 9
+5509_trophies 5
+5513_trophies 2
+5505_trophies 2
+5503_trophies 5
+5517_reward 2
+5519_reward 2
+5512_trophies 11
+5514_trophies 4
+5510_trophies 21
+5506_trophies 20
+5508_trophies 44
+5504_trophies 47
+eg_faction -1
+bl_faction 183
+32775 255 1
+subclass_name mercenary
+7 3 33
+55369_armor_acquired 1
+55658_gems_acquired 2
+55349_armor_acquired 1
+55345_armor_acquired 1
+55713_gems_acquired 2
+55680_gems_acquired 1
+55691_gems_acquired 1
+55702_gems_acquired 3
+55365_armor_acquired 1
+55614_gems_acquired 3
+55625_gems_acquired 2
+55333_armor_acquired 1
+55337_armor_acquired 1
+55353_armor_acquired 1
+55361_armor_acquired 1
+55373_armor_acquired 1
+55377_armor_acquired 1
+55603_gems_acquired 3
+55329_armor_acquired 1
+55592_gems_acquired 3
+55588_gems_acquired 3
+55325_armor_acquired 1
+55313_armor_acquired 1
+55321_armor_acquired 1
+55584_gems_acquired 3
+55317_armor_acquired 1
+55309_armor_acquired 1
+55568_gems_acquired 3
+55580_gems_acquired 3
+55576_gems_acquired 3
+55572_gems_acquired 3
+55301_armor_acquired 1
+55305_armor_acquired 1

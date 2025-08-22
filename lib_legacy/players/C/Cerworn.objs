@@ -1,0 +1,5163 @@
+1
+vnum: 12422
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: silver moonstone ring silver-moonstone-ring moonstone-ring silver-ring
+shortdesc: a &bsilver&0 and &6&bmoonstone&0 ring
+desc: A moonstone ring has been forgotten here, lost.
+type: 8
+weight: 0.01
+cost: 11000
+timer: 0
+level: 90
+effects: 0 gj 0
+wear: 3
+hiddenness: 0
+applies:
+4 3
+5 3
+13 10
+24 -10
+27 4
+~
+extradesc: silver moonstone ring silver-moonstone-ring moonstone-ring silver-ring
+Rings such as these are often used for devotional purposes as well as
+decorative ones.  The simple silver band has a colorful polished moonstone set
+into it.~
+~~
+vnum: 12422
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: silver moonstone ring silver-moonstone-ring moonstone-ring silver-ring
+shortdesc: a &bsilver&0 and &6&bmoonstone&0 ring
+desc: A moonstone ring has been forgotten here, lost.
+type: 8
+weight: 0.01
+cost: 11000
+timer: 0
+level: 90
+effects: 0 gj 0
+wear: 3
+hiddenness: 0
+applies:
+4 3
+5 3
+13 10
+24 -10
+27 4
+~
+extradesc: silver moonstone ring silver-moonstone-ring moonstone-ring silver-ring
+Rings such as these are often used for devotional purposes as well as
+decorative ones.  The simple silver band has a colorful polished moonstone set
+into it.~
+~~
+vnum: 2208
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace pentagram circle cord
+shortdesc: a shiny pentagram
+desc: A shiny, silver pentagram hanging from a small cord has been dropped here.
+type: 8
+weight: 0.05
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+extradesc: necklace pentagram circle cord
+A shiny pentagram encircled by a wire thin piece of silver, it hangs
+loosely from a black leather cord.  The silver is rather tarnished
+and dull, but still makes an attractive emblem nonetheless.~
+~~
+vnum: -1
+location: 4
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dprs ac
+name: necklace silver-goddess-necklace
+shortdesc: a silver goddess necklace
+desc: A pendant of the triple goddess lays here.
+type: 8
+weight: 0.00
+cost: 0
+timer: 0
+level: 90
+effects: 0 il 0
+wear: 5
+hiddenness: 0
+applies:
+4 4
+5 3
+3 4
+24 -15
+23 -15
+27 4
+~
+extradesc: necklace silver-goddess-necklace
+This pure silver pendant is shaped in the traditional symbol of the triple
+goddess: a full round disc symbolizing the full moon, flanked on the left and
+right sides by waxing and waning crescent moons.  The symbol is hung from a
+simple leather cord.~
+~~
+vnum: 12414
+location: 5
+values:
+30
+0
+0
+0
+0
+0
+0
+~
+flags: opwx 0
+name: shimmering ethereal fabric robes moonlight robes-moonlight moonlight-robes
+shortdesc: robes of &6&bm&7oo&6nl&7igh&6t&0
+desc: Shimmering ethereal fabric dangles from a nearby tree in the moonlight.
+type: 9
+weight: 1.00
+cost: 15000
+timer: 0
+level: 90
+effects: 0 g 0
+wear: 9
+hiddenness: 0
+applies:
+24 -20
+5 5
+2 4
+4 2
+27 5
+~
+extradesc: shimmering ethereal fabric robes moonlight robes-moonlight moonlight-robes
+Multiple layers of barely tangible silver-blue fabric unfold into a full length
+robe with draping sleeves and hood.  The fabric itself is unlike any other in
+the world, seemingly made of pale light itself.  The robes are covered in tiny
+sequins that shimmer and quake with the slightest movement, giving the garment
+a shifting, scintillating appearance.~
+~~
+vnum: 12415
+location: 6
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: kopswxy 0
+name: exquisite crown silver branches crystals moon diadem quartz moon-diadem-silver-quartz moon-diadem silver-diadem quartz-diadem
+shortdesc: a silver and quartz moon diadem
+desc: An exquisite crown of silver branches and crystals sits on a stone.
+type: 8
+weight: 1.00
+cost: 12000
+timer: 0
+level: 90
+effects: 0 0 o
+wear: 17
+hiddenness: 0
+applies:
+4 3
+3 3
+24 -10
+27 4
+~
+extradesc: exquisite crown silver branches crystals moon diadem quartz moon-diadem-silver-quartz moon-diadem silver-diadem quartz-diadem
+A splay of intricately detailed silver branches forms the basis of this diadem.
+Affixed among the branches are several rough quartz points of various sizes,
+fanned out and pointing towards the heavens.  Set at the base of the diadem is
+an up-turned crescent moon.  The diadem clearly has some mystic purpose.~
+~~
+vnum: 12439
+location: 7
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cobwebs garment delicate gossamer skirt delicate-gossamer-skirt gossamer-skirt
+shortdesc: a delicate &5&bgossamer&0 skirt
+desc: Cobwebs seem to have been fashioned into some sort of garment.
+type: 9
+weight: 1.00
+cost: 13872
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+3 5
+6 5
+24 -15
+23 -15
+13 50
+27 5
+~
+extradesc: cobwebs garment delicate gossamer skirt delicate-gossamer-skirt gossamer-skirt
+Made of cobwebs and bits of thread, this sheer skirt provides a small bit of
+coverage but is clearly more designed for aesthetics than modesty.  Walking the
+fine line between practical and fantastical, such clothing like this is a
+signature of the Fair Folk who walk the dreamlands of the Reverie.~
+~~
+vnum: 12430
+location: 8
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: prst 0
+name: silvery silk slippers silverspider silverspider-silk-slippers silverspider-slippers
+shortdesc: &0&bsilverspider&0 silk slippers
+desc: A pair of silvery silk slippers are tucked in a corner.
+type: 9
+weight: 0.20
+cost: 11894
+timer: 0
+level: 90
+effects: g 0 0
+wear: 65
+hiddenness: 0
+applies:
+24 -15
+23 -15
+3 4
+14 25
+4 4
+27 5
+~
+extradesc: silvery silk slippers silverspider silverspider-silk-slippers silverspider-slippers
+These delicate slippers are woven from the webbing of the extremely rare
+Silverspider.  Named for the silvery shimmer of the webbing it produces, the
+threads of this creature are extremely strong and highly enchantable.~
+~~
+vnum: 55516
+location: 9
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gkmopqrstuvwxyz 0
+name: gauntlets saintly-gauntlets divine-mythril-gauntlets
+shortdesc: &5&bSaintly Gauntlets&0
+desc: A pair of divine mythril gauntlets has been placed on a small table here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+13 20
+5 3
+27 3
+~
+extradesc: gauntlets saintly-gauntlets divine-mythril-gauntlets
+Made more for protection and recognition than strength and battle prowess,
+these gauntlets are made from many small plates linked together, but are
+relatively unadorned.  Strong spiritual enchantments have been placed on these
+gauntlets however; the healing aura around them is unmistakable.~
+~~
+vnum: 12409
+location: 10
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: my 0
+name: silver snake bracers silver-snake-bracers silver-bracers snake-bracers
+shortdesc: silver snake bracers
+desc: A pair of silver snake bracers rest in the grass.
+type: 9
+weight: 2.00
+cost: 1000
+timer: 0
+level: 90
+effects: y 0 0
+wear: 257
+hiddenness: 0
+applies:
+4 5
+2 4
+18 2
+19 2
+6 3
+27 3
+~
+extradesc: silver snake bracers silver-snake-bracers silver-bracers snake-bracers
+A pair of entwining silver snakes forms a beautiful coil pattern which fits
+snuggly around the upper arm.  Fine filigree scales decorate each serpent
+giving them a realistic and life-like appearance.  Only the small crescent
+moons on the snakes' foreheads betray their ceremonial purpose.~
+~~
+vnum: 12410
+location: 11
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: kmy 0
+name: large polished disc crescent shield moon shield-moon moon-shield
+shortdesc: the Shield of the Moon
+desc: A large polished disc with the image of a crescent sits upon an altar.
+type: 9
+weight: 4.00
+cost: 1500
+timer: 0
+level: 90
+effects: mn 0 0
+wear: 513
+hiddenness: 0
+applies:
+4 2
+19 2
+24 -10
+23 -10
+27 5
+~
+extradesc: large polished disc crescent shield moon shield-moon moon-shield
+This large circular shield appears to be made of silver or electrum.  It has a
+single curved line etched on its face, creating the image of a large crescent
+moon inscribed on a full moon.  Runes rune along the circular edge of the
+shield, forming a prayer to some ancient goddess.~
+~~
+vnum: 12421
+location: 12
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: aopwx 0
+name: long flowing cloak shining moonlight cloak-moonlight moonlight-cloak
+shortdesc: a cloak of &6&bm&7oo&6nl&7igh&6t&0
+desc: A long flowing cloak, shining under the light of moon flutters in the breeze.
+type: 9
+weight: 0.50
+cost: 15000
+timer: 0
+level: 90
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+24 -15
+4 5
+23 -15
+27 5
+3 5
+~
+extradesc: long flowing cloak shining moonlight cloak-moonlight moonlight-cloak
+You hold some unknown, almost ethereal material which has been fashioned into a
+cloak.  Its silver-blue color and innate luminescence makes it quite unlike any
+mundane fabric.  Amazingly soft to the touch, it seems this cloak was woven
+from the light of the moon itself.~
+~~
+vnum: 12431
+location: 13
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gopwxD 0
+name: coil silver silvery cord silvery-cord
+shortdesc: a silvery cord
+desc: A coil of silver cord lays here in the dust.
+type: 9
+weight: 0.01
+cost: 18374
+timer: 0
+level: 90
+effects: u 0 0
+wear: 2049
+hiddenness: 0
+applies:
+2 4
+3 4
+4 4
+6 4
+14 25
+27 5
+~
+extradesc: coil silver silvery cord silvery-cord
+This simple silvery cord is far more than meets the eye.  Such cords represent
+the connection between body and soul in astral travel.  It also tethers mortals
+to the physical world when traveling through the fey realms in the Reverie.  
+Made more of magic than material, such a cord is a rare and valuable treasure.~
+~~
+vnum: 58015
+location: 14
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: kl 0
+name: bracelet goddess-bracelet piece-pearl questobject
+shortdesc: the goddess' bracelet
+desc: A bracelet made of one piece of pearl has been dropped here.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+26 4
+1 6
+27 1
+~
+extradesc: bracelet goddess-bracelet piece-pearl questobject
+It is a fine bracelet that looks like it was carved from one large pearl, with
+a twisting whorled design inlaid with gold.  It fits over the wrist, sliding on
+without a clasp or hinge.  It glows with the lustrous inner light that only the
+finest pearls have.~
+~~
+vnum: 58015
+location: 15
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: kl 0
+name: bracelet goddess-bracelet piece-pearl questobject
+shortdesc: the goddess' bracelet
+desc: A bracelet made of one piece of pearl has been dropped here.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+26 4
+1 6
+27 1
+~
+extradesc: bracelet goddess-bracelet piece-pearl questobject
+It is a fine bracelet that looks like it was carved from one large pearl, with
+a twisting whorled design inlaid with gold.  It fits over the wrist, sliding on
+without a clasp or hinge.  It glows with the lustrous inner light that only the
+finest pearls have.~
+~~
+vnum: 12412
+location: 16
+values:
+0
+4
+4
+11
+0
+0
+0
+~
+flags: oprstwx ae
+name: athame black athame small ritual dagger steel marble black-handled-athame black-athame
+shortdesc: a &9&bblack-handled&0 athame
+desc: A small ritual dagger of steel and black marble has been placed on an altar.
+type: 5
+weight: 1.00
+cost: 1000
+timer: 0
+level: 90
+effects: 0 q 0
+wear: 8193
+hiddenness: 0
+applies:
+4 5
+24 -20
+3 5
+27 5
+~
+extradesc: black athame small ritual dagger steel marble black-handled-athame black-athame
+With a handle of black marble, this double-edged dagger is ideally crafted for
+use in ritual magic.  A pentagram of mother-of-pearl is inlaid on the
+crossguard, symbolizing the union of the four directional Elements under
+Spirit.  Though black-handled athames are traditionally used for magic and not
+weaponry, it is still as sharp and dangerous as any other dagger.~
+~~
+vnum: 12446
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pale light swirls tiny pool moonlight swirls-moonlight moonlight-swirls
+shortdesc: swirls of &6&bm&7oo&6nl&7igh&6t&0
+desc: Pale light swirls in a tiny pool on the ground.
+type: 8
+weight: 0.01
+cost: 19582
+timer: 0
+level: 90
+effects: cdef 0 0
+wear: 65537
+hiddenness: 0
+applies:
+4 2
+28 100
+27 5
+19 1
+3 1
+6 1
+~
+extradesc: pale light swirls tiny pool moonlight swirls-moonlight moonlight-swirls
+You pick up what can only be described as liquid light, gently swirling in a
+small pool.  The pool splits into two small droplets of equal size, each alight
+with similar incandescence.  Strangely, they do not leave any smears or traces
+behind, remaining perfectly coherent.~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: mask-imanhotep golden-burial-mask
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 8
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+1 2
+4 2
+27 2
+~
+extradesc: mask-imanhotep golden-burial-mask
+The mask is made of solid gold and is encrusted with jewels.  It has an aura of
+power around it.~
+~~
+vnum: 12423
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agopwxD 0
+name: glowing drop droplet moonlight droplet-moonlight moonlight-droplet
+shortdesc: a droplet of &6&bm&7oo&6nl&7igh&6t&0
+desc: A single glowing drop dangles from a twig.
+type: 8
+weight: 0.01
+cost: 15000
+timer: 0
+level: 90
+effects: 0 k 0
+wear: 262145
+hiddenness: 0
+applies:
+4 5
+5 3
+3 5
+24 -10
+23 -10
+27 4
+~
+extradesc: glowing drop droplet moonlight droplet-moonlight moonlight-droplet
+A crystal teardrop containing what appears to be a drop of pale silver-blue
+liquid light is set in a simple silver backing.~
+~~
+vnum: 12423
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agopwxD 0
+name: glowing drop droplet moonlight droplet-moonlight moonlight-droplet
+shortdesc: a droplet of &6&bm&7oo&6nl&7igh&6t&0
+desc: A single glowing drop dangles from a twig.
+type: 8
+weight: 0.01
+cost: 15000
+timer: 0
+level: 90
+effects: 0 k 0
+wear: 262145
+hiddenness: 0
+applies:
+4 5
+5 3
+3 5
+24 -10
+23 -10
+27 4
+~
+extradesc: glowing drop droplet moonlight droplet-moonlight moonlight-droplet
+A crystal teardrop containing what appears to be a drop of pale silver-blue
+liquid light is set in a simple silver backing.~
+~~
+vnum: 525
+location: 25
+values:
+90
+20
+20
+42
+0
+0
+0
+~
+flags: abAD 0
+name: pin nexus-cloak-pin blue-white-pin
+shortdesc: the Nexus Cloak Pin
+desc: A blue and white pin is floating just above the ground.
+type: 3
+weight: 0.08
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 540673
+hiddenness: 0
+applies:
+2 2
+5 2
+18 2
+19 2
+27 2
+~
+extradesc: pin nexus-cloak-pin blue-white-pin
+Only three inches long, this blue and white pin follows a trisecting path
+around itself.  From each of it's three points the pin extends following the
+body of the pin itself tightly.  The pin seems to have something written on it.~
+triggers:
+49299
+18888
+~
+~~
+vnum: 12411
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bell small-silver-bell
+shortdesc: a small silver bell
+desc: A bell chiming a beautiful tone hangs in the wind.
+type: 9
+weight: 0.02
+cost: 1000
+timer: 0
+level: 90
+effects: 0 jk 0
+wear: 1064961
+hiddenness: 0
+applies:
+24 -10
+14 10
+27 4
+3 2
+4 2
+~
+extradesc: small silver bell small-silver-bell silver-bell
+Inscribed with symbols of water and celestial bodies, this conical handbell has
+an appearance as beautiful as its sound.  The small hand bell is well polished
+and cleaned, though evidence of wear and use can be seen inside the cone.~
+~~
+vnum: 12499
+location: 27
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: abgD 0
+name: pinpoint light star seed starseed
+shortdesc: a &7&bstarseed&0
+desc: A single pinpoint of light twinkles against the dome of the sky.
+adesc:
+A starseed twinkles brilliantly as you lift it aloft, illuminating your surroundings.~
+type: 1
+weight: 0.00
+cost: 0
+timer: 0
+level: 90
+effects: h 0 o
+wear: 2900225
+hiddenness: 0
+applies:
+27 5
+17 2
+4 2
+3 2
+5 2
+24 -15
+~
+extradesc: pinpoint light star seed starseed
+Examining this tiny light more closely, it becomes obvious this is no meager
+glass or crystal.  It is the heart of a newborn star, breathed into creation
+through divine providence.  Within it lay all the hopes and dreams of creation,
+which perhaps could become another legendary soul, or a cosmic array of life
+and potential.~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 1207
+location: 127
+values:
+100000
+1
+0
+0
+90
+0
+0
+~
+flags: D 0
+name: hole portable-hole large-black-hole
+shortdesc: a portable hole
+desc: A large black hole lies here folded upon itself.
+type: 15
+weight: 15.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+~~
+vnum: 12532
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book plans leatherbound-book
+shortdesc: a leatherbound book
+desc: A leatherbound book lies here, no title visible. 
+adesc:
+Nothing.~
+type: 8
+weight: 2.00
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: book page1 part1
+9th day of the Month of Discovery, 352
+
+   If your reading this, well, the plans didn't go off correctly.  I wanted a
+legacy to carry on.  This tower was to be it.  In my days, I saw many places,
+full of traps and treachery, but also of wealth and other spoils.  I strived to
+leave such a place myself.  Alas, I plan on destroying these notes when it is
+done, thus if you are reading this, the tower is not.  As I write this, the
+enchanted tower has been completed ; a grand four stories tall.  It's too bad I
+will be destroying part of it soon.  . .
+ 
+  Work will not be finished for months, I fear, and with my ailing health, I
+may not live to see it done.  I've called upon many favors - I'm afraid even my
+soul will be the cost in the end.  So far, there's not much loot in here, most
+has been sold for the protectors of the castle.  Sweet irony.    
+
+   In the end, I have turned to demons to protect the lair, and slave labor to
+build it.  What have I become.  Perhaps this is what is truly killing me.  Tis
+only luck that the blue dragon has made the tower his perch.  What would it
+cost for such a guardian?    
+
+The writing continues in part2, part3, part4, part5, part6, part7~
+extradesc: part2
+   First, I ask myself, why am I building this tower?  I have adventured for
+many years, and have always been fascinated by places I had gone, both in the
+architecture, and the secrets held within.  I have decided to leave a legacy
+behind me.  Someone has to die for a tomb to be looted.    
+
+   Alas, with a life of adventure came a life with no heirs, so my money is
+worthless after I die anyhow.  I am still in good health now, but getting older
+every day.  Thus, my life's goal.    
+
+   I have enlisted a few of my more mystical friends for the construction.  
+This shall be no ordinary tower, by any means.  For one, we have concocted an
+enchantment for the stone of the tower, such that it shall rebuild itself if
+e'er it gets destroyed.  The bits of stone are attacted to one another, such
+that no matter the distance, they will slowly be pulled together again.  Yea,
+it may take millenia if they are far apart, but the tower shall never be
+destroyed.    ~
+extradesc: part3
+   This was quite costly, but I believe it will be a good investment in the
+long run.  No matter what happens, the tower will never quite die.    
+ 
+   The basement has been created.  We decided upon an infinite hallway to
+protect my study.  It too wasn't terribly hard to create, merely a modified
+dimension door spell.  I had to give up my grandmother's broach, though, to get
+the work done.  My friends are quite stingy, they are.    
+
+   Finding workers from an area far enough away that they won't be able to find
+their way back was quite tough.  The southern continent was a good choice.  To
+get back without help, they'd have to raft the blue fog sea.  I've ne'er seen a
+bigger ship down there in my days.  Getting them back there will be tougher.  
+Our ride got called off to tend to her father, dying of old age. ~
+extradesc: part4
+   Had the druid community not severed ties with me after the unfortunate
+incident in the forest...  I hadn't honestly meant to hurt anything, especially
+not the animals, and how was I to know that the owl was a shapechanger...  
+Life would be much easier. 
+
+   We just had a few incidents in the construction.  The sub basement floor
+collapsed.  It turns out a giant worm has burrowed under the tower.  It turns
+out to have some intelligence, I think.  I... agreed to keep it fed if it
+did no damage.  I didn't realize how much it eats.  We may need to exterminate
+it.    
+
+   Some fool put a door on the second floor of the tower to the outside.  
+Unfortunately, they're nothing outside of it.  I've locked it to avoid any more
+accidents.  Two deaths were bad enough.  Perhaps they would have survived, but
+evidently the door happened to lead right above where the worm had burrowed,
+thus the pit was quite deep.    ~
+extradesc: part5
+   Part of our labor force has decided to abandon the project.  A few of
+them...  Were threatening to break their vow.  I had to put them down.  I think
+the rest will understand the graveness of the situation, and will realize the
+penalties for betraying me.    
+
+   The work force has mutinied.  After hearing tales of what I did to those
+that left, they snuck out after I offered them a two day break.  I will track
+them down one by one and punish them all.  Traitors.  First, though, I must
+find a replacement work force...  Work most continue - the tower must be
+completed I have taken ill as of late, quite severely.  I hope it will pass,
+but I must press on in case it does not.  I am ...  Seeking connections at the
+moment.    
+
+   I have sought an audience with the Demon Lord Krisenna.  We have struck a
+deal; he seems quite benevolent at the moment.  Hopefully it will stay that
+way.  The deal works in both our favors.  They provide the workers and
+protection, and I provide them with a safe entry way into our world.  They have
+finished the external tower, and have retreated into the bowels to finish up.~
+extradesc: part6
+   I have allowed them free reign to create themselves a sealed off passageway
+to keep anyone who might make their way in from getting to them.  I am not even
+allowed to see what they are doing there, lest I bother them, or give others
+knowledge of how to do the same thing.    ~
+extradesc: part7
+   I have just stumbled back across this book, and it weighs heavily on my
+mind.  I have seen my soul blacken over time.  Alas, I think it is too late for
+me.  They have taken almost all of my goods as tribute, and they have an iron
+grip on the tower.  I plot, hoping to find a way to get rid of them, but I fear
+the deal is done.~
+triggers:
+5342
+~
+~~
+vnum: 58415
+location: -1
+values:
+90
+3
+3
+38
+0
+0
+0
+~
+flags: aD 0
+name: enchiridion large-leatherbound-book ench questobject
+shortdesc: the Enchiridion
+desc: A large leatherbound book glows golden.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -5
+27 3
+~
+extradesc: enchiridion large-leatherbound-book ench questobject
+The glowing pages glow with power, telling a story older than time itself --
+that of gods and mortals, struggles with beasts greater than any the world has
+ever known, true love and blackest hatred, friendship and betrayal..  All
+couched in the language of ancient times to form a manual of behavior for
+magicians in the aftermath of a war the likes of which may never be seen
+again...  Though the majority of the ancient book's thick pages seem torn out
+or damaged, enough of it remains for you to see that it must be very valuable.
+The cover looks like a good place to start learning about this book.~
+extradesc: cover
+The cover of the book reads:
+
+                      THE ENCHIRIDION:
+
+                       BEING A MANUAL 
+             FOR THE RECOVERY OF MAGISH VITALITY
+
+You open the book, and see page1.~
+extradesc: page1
+Hear the words of one who speaks across time: the Gypsy Seeress
+Mressnerah:
+
+      My dear Hrathis,
+
+      Long ago, my master told these things to me, and now 
+      that I am old, I wish to pass them down to you. When
+      you have come into your full power, you will understand
+      why I demanded certain things of you.
+
+      Long ago, magicians walked this world with impunity. 
+      There was nothing we could not do. I remember those days
+      very well indeed. The Cardinal of Templace himself was
+      amazed at our bravery, for we could face the Riftwar
+      beasts alone, with only our magicks to protect us.
+
+The book continues on page2.~
+extradesc: page2
+The second page continues:
+
+      But the wizard-dragon Sagece, that foul beast from the
+      Demon Planes, despised our kind and put her entire energies
+      to work to destroy our control over the human worlds.
+
+      This she did, all too well. I was old even when I felt the
+      shockwave of whatever spell she cast that was to spell our
+      doom. I looked down at my body and saw the rejuvenation I
+      had depended on for beauty disappear, the strength I'd 
+      always felt dissipate like fog before the morning light.
+      From then on, I was helpless physically; only when I had
+      the protection of much stronger folk could I work my most
+      devastating magicks.
+
+      But behold, Hrathis. There is way to reverse this evil
+      enchantment.
+
+The page ends. The next page is page3.~
+extradesc: page3
+This page seems very washed out. In fact, it's almost impossible to
+make out any details of what was once printed here. All you can see is
+what appears to be a blueprint of some kind of large machine. The small
+caption near the bottom of the page reads "NAU I S". That is all you
+can tell for sure.~
+triggers:
+5342
+~
+~~
+vnum: 16209
+location: -1
+values:
+70
+34
+35
+43
+0
+0
+0
+~
+flags: D 0
+name: book-kings large-leather-bound-tome questobject
+shortdesc: the Book of Kings
+desc: A large, leather bound tome sits on a shelf.
+type: 2
+weight: 2.00
+cost: 7000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: book-kings large-leather-bound-tome questobject
+The book is large and heavy, and is sealed with red wax.  Large, golden words
+are set in its cover.  There is a tingling sensation as you touch this tome,
+making you realise that this must be a book of power.  One of its stories tells
+of a visit from a band of powerful sorcerers who were impressed with Neris'
+kindness and presented her with a holy scarab that has some power to it.  The
+leader of the sorcerers is shown speaking aloud to Neris refering to her as
+"Neris'Kaan", or "Neris the Kind".~
+triggers:
+5342
+~
+~~
+vnum: 58415
+location: -1
+values:
+90
+3
+3
+38
+0
+0
+0
+~
+flags: aD 0
+name: enchiridion large-leatherbound-book ench questobject
+shortdesc: the Enchiridion
+desc: A large leatherbound book glows golden.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -5
+27 3
+~
+extradesc: enchiridion large-leatherbound-book ench questobject
+The glowing pages glow with power, telling a story older than time itself --
+that of gods and mortals, struggles with beasts greater than any the world has
+ever known, true love and blackest hatred, friendship and betrayal..  All
+couched in the language of ancient times to form a manual of behavior for
+magicians in the aftermath of a war the likes of which may never be seen
+again...  Though the majority of the ancient book's thick pages seem torn out
+or damaged, enough of it remains for you to see that it must be very valuable.
+The cover looks like a good place to start learning about this book.~
+extradesc: cover
+The cover of the book reads:
+
+                      THE ENCHIRIDION:
+
+                       BEING A MANUAL 
+             FOR THE RECOVERY OF MAGISH VITALITY
+
+You open the book, and see page1.~
+extradesc: page1
+Hear the words of one who speaks across time: the Gypsy Seeress
+Mressnerah:
+
+      My dear Hrathis,
+
+      Long ago, my master told these things to me, and now 
+      that I am old, I wish to pass them down to you. When
+      you have come into your full power, you will understand
+      why I demanded certain things of you.
+
+      Long ago, magicians walked this world with impunity. 
+      There was nothing we could not do. I remember those days
+      very well indeed. The Cardinal of Templace himself was
+      amazed at our bravery, for we could face the Riftwar
+      beasts alone, with only our magicks to protect us.
+
+The book continues on page2.~
+extradesc: page2
+The second page continues:
+
+      But the wizard-dragon Sagece, that foul beast from the
+      Demon Planes, despised our kind and put her entire energies
+      to work to destroy our control over the human worlds.
+
+      This she did, all too well. I was old even when I felt the
+      shockwave of whatever spell she cast that was to spell our
+      doom. I looked down at my body and saw the rejuvenation I
+      had depended on for beauty disappear, the strength I'd 
+      always felt dissipate like fog before the morning light.
+      From then on, I was helpless physically; only when I had
+      the protection of much stronger folk could I work my most
+      devastating magicks.
+
+      But behold, Hrathis. There is way to reverse this evil
+      enchantment.
+
+The page ends. The next page is page3.~
+extradesc: page3
+This page seems very washed out. In fact, it's almost impossible to
+make out any details of what was once printed here. All you can see is
+what appears to be a blueprint of some kind of large machine. The small
+caption near the bottom of the page reads "NAU I S". That is all you
+can tell for sure.~
+triggers:
+5342
+~
+~~
+vnum: 16209
+location: -1
+values:
+70
+34
+35
+43
+0
+0
+0
+~
+flags: D 0
+name: book-kings large-leather-bound-tome questobject
+shortdesc: the Book of Kings
+desc: A large, leather bound tome sits on a shelf.
+type: 2
+weight: 2.00
+cost: 7000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: book-kings large-leather-bound-tome questobject
+The book is large and heavy, and is sealed with red wax.  Large, golden words
+are set in its cover.  There is a tingling sensation as you touch this tome,
+making you realise that this must be a book of power.  One of its stories tells
+of a visit from a band of powerful sorcerers who were impressed with Neris'
+kindness and presented her with a holy scarab that has some power to it.  The
+leader of the sorcerers is shown speaking aloud to Neris refering to her as
+"Neris'Kaan", or "Neris the Kind".~
+triggers:
+5342
+~
+~~
+vnum: 1099
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book ansi-color-book-fiery-yay
+shortdesc: the ansi color book of fiery yay
+desc: A book describing ansi color lies here unattended.
+adesc:
+Nothing.~
+type: 12
+weight: 0.50
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: book ansi-color-book-fiery-yay
+ 1    - &1Red&0          1 b - &1&bBright Red&0
+ 2    - &2Green&0        2 b - &2&bBright Green&0
+ 3    - &3Brown&0        3 b - &3&bYellow&0
+ 4    - &4Blue&0         4 b - &4&bBright Blue&0
+ 5    - &5Purple&0       5 b - &5&bBright Purple&0
+ 6    - &6Teal&0         6 b - &6&bBright Teal&0
+ 7    - &7White&0        7 b - &7&bBright White&0
+ 8    - &8underline&0    &&b  -&bbright&0
+ 9    - &9Black&0        9 b - &9&bBright Black&0
+
+ Remember to put &&0 at the end of each line to clear the ANSI strings!~
+~~
+vnum: 58008
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: adgjlnoprstuwxD eij
+name: book wizard's-book wizards-book glowing-book golden-pages questobject
+shortdesc: the wizard's book
+desc: A glowing book with golden pages lies open here.
+type: 26
+weight: 1.00
+cost: 6000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: book wizard's-book wizards-book glowing-book golden-pages questobject
+The book almost hums with power.  You approach it reverently, ready to see the
+face of some god in its pages, but then...  Then...  You feel its sheer evil
+nature and realize this is not a text to praise a god, but entrap one!~
+~~
+vnum: 1807
+location: -1
+values:
+60
+3
+3
+151
+0
+0
+0
+~
+flags: D 0
+name: book leaves forest
+shortdesc: the book of the forest
+desc: A book made from the broad leaves of a tree rests here. 
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: book
+   The cover of the book is formed from a solid chunk of bark, with the spine
+made somewhat flexible by soaking it in some liquid and gently bending it into
+shape.  Each page seems to have once been a leaf from a local tree, torn into a
+roughly rectangular shape.  The writing is done in some kind of charcoal or ash
+- because of this, the contrast makes some of the words hard to decipher.  On
+the whole, the book is in fairly good shape, and is still readable.    
+
+The headings in the book are PAGE1 PAGE2 . . .  PAGE8~
+extradesc: page1
+Well, I must do something to keep myself from going mad.  I figure I shall 
+write my thoughts, as I have an eternity to postulate about things. Why,  
+you may ask, do I have an eternity?  Settle in, the story is quite long.
+
+Years ago, I was king of a prosperous kingdom in a land you've probably 
+never heard of.  We farmed our land quite efficiently, and there were no
+major problems in the kingdom for years at a time.  Then,  I had a son,
+Errious, brought to me by my lovely wife.  He was a strong young lad, and 
+quite fit to take over the throne after I passed on.  
+
+He loved to travel, and over time mapped out parts of the land outside our 
+borders, where noone in our family had likely set foot on for generations.  
+In the process, he met a lovely elven woman by the name of Norina. He made 
+sure to stop by her home as often as he could in his journies, often for 
+just a day at a time, while relaxing after exploring. 
+
+The text continues on PAGE2~
+extradesc: PAGE2
+Now, around the time that Errious was to return, I fell ill, and was bedridden
+for several weeks with a delierious fever. In the meantime, my wife took over
+rule of the kingdom, which was the norm when I was unavailable.  When my fever
+finally broke, I was disheartened to find out that my son had not yet returned. 
+
+My wife had sent one of our finest horsemen to the area where we knew he had 
+headed. Several days later, we found his head, and a note.  It seems that our 
+neighbors didn't like our latest visits.  In the meantime, my wife had rallied 
+our knights, and had sent them to attack our newfound enemies. 
+
+In hindsight, it was a hasty decision.  It was a fairly even match, but because
+of that, the war raged on.  With our proximity, they managed to destroy our
+crops, and we in turn, immolated theirs.  Both sides were suffering greatly,
+and no real progress was being made in either's favor. 
+
+The story continues on PAGE3~
+extradesc: PAGE3
+Finally, after several weeks of battle, both sides spirit had been broken, and
+we sent a courier to ask for a diplomatic meeting between their leader, Izaro,
+and myself.  By this point, his kingdom too was greatly suffering, and he
+agreed.  We agreed to meet.    
+ 
+In the meeting we discussed the war- after saying somethings that shouldn't be
+said, it turned out that Errious had been seeing Norina, who was Izaro's
+daughter.  Alas, Norina was married to a prince from a nearby kingdom, who was
+helping his father put down a peasant revolt during the 'visits'.    
+
+One day, he had returned to find Norina and Errious.  He claimed that Errious
+had killed Norina, and he defended himself.  I know that cannot be true- I
+raised him better than that.  More likely they were both killed in a fit of
+jealousy.  In either case Norina and Errious both died that day, and both our
+people demanded blood.    
+
+The drama unfolds on PAGE4~
+extradesc: PAGE4
+We sent our men away, and agreed secretly to a dual to end it all.  Both our 
+sides had lost too much, and the fighting needed to end now.  We chose to meet 
+far away from the kingdom, and take turns leading farther into the forest, far 
+away from any help one's kingdom could give.  It was to be a truely one on one 
+battle. 
+
+We eventually reached an area of dense forest with a clearing, and mutually 
+decided it would be the setting of the battle.  I could tell by his ways that 
+he was a spellcaster, and he could tell by my sword that I wasn't.  As the 
+battle begun, I immediately rushed him, and kept him dazed enough to keep him 
+from casting. 
+
+And so the battle went.  He was a quick man, and kept from taking too many 
+blows, but I was wearing him down.  But then, he managed to sprint out of my 
+range, and got off one spell.  I never believed in my life that one spell could 
+end my life, but as he finished his incantation, I looked up and saw a large 
+ball of light, heading for me.
+
+The end is on PAGE5~
+extradesc: PAGE5
+The large ball of light turned out to be a burning rock, and it was quite 
+enormous. Before I could react, it crushed me.  One spell, and I was dead.  I 
+suppose my soul wanted vengeance.  I couldn't just die, and thus I'm here now.
+Somehow, he managed to capture me in this. . . room.  For some reason I can't 
+escape. 
+
+So I sit, and think, and write.  I know not what happened to Izaro- he could 
+not have made it very far, as wounded as he was.  The forest was still full of 
+dangerous beasts, and the smell of blood was sure to attract more. But I 
+cannot help but feel he wasn't destroyed, otherwise why would my soul be 
+trapped here?
+
+Someday, I will destroy him, and in doing so, hopefully be free to finally 
+venture into the afterlife.  Until then, I write. Someday, someone may find 
+this, and I hope it will teach them something.  War is stupid. If only I would 
+have realized the consequences so long ago, maybe things would not be as they 
+are. ~
+extradesc: PAGE6
+This page consists of a number of sketches of what seems to be the same thing 
+from different angles.  It appears to be a suit of armor with some sort of 
+wings attached to the back of it. The wings are connected with some elaborate 
+pulley system to the arms, giving the look of a bird which tangled itself up
+in a net.
+
+The caption reads 'Para-assault System'. ~
+extradesc: PAGE7
+This page consists of a lot of doodles and nondescript drawings, but nothing of
+real interest.    ~
+extradesc: PAGE8
+In my time here, I have learned much about nature.  I've learned to make
+fire from basically nothing.  I've learned to use the remnants of that fire to
+write this book.  I've learned that with the right point of view, nature is a
+powerful entity.  
+
+As such, I write the following such that you might glimpse just a touch of 
+the powers of nature that I have learned in my many years here. May nature be 
+there for you whenever you need her.  
+
+King Thelmor 
+
+Beneath the signature is a series of runes that are rather indecipherable, 
+especially in their current condition.  It would be amazing if whatever he 
+imbued this book with still worked.    ~
+triggers:
+5347
+~
+~~
+vnum: 12532
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book plans leatherbound-book
+shortdesc: a leatherbound book
+desc: A leatherbound book lies here, no title visible. 
+adesc:
+Nothing.~
+type: 8
+weight: 2.00
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: book page1 part1
+9th day of the Month of Discovery, 352
+
+   If your reading this, well, the plans didn't go off correctly.  I wanted a
+legacy to carry on.  This tower was to be it.  In my days, I saw many places,
+full of traps and treachery, but also of wealth and other spoils.  I strived to
+leave such a place myself.  Alas, I plan on destroying these notes when it is
+done, thus if you are reading this, the tower is not.  As I write this, the
+enchanted tower has been completed ; a grand four stories tall.  It's too bad I
+will be destroying part of it soon.  . .
+ 
+  Work will not be finished for months, I fear, and with my ailing health, I
+may not live to see it done.  I've called upon many favors - I'm afraid even my
+soul will be the cost in the end.  So far, there's not much loot in here, most
+has been sold for the protectors of the castle.  Sweet irony.    
+
+   In the end, I have turned to demons to protect the lair, and slave labor to
+build it.  What have I become.  Perhaps this is what is truly killing me.  Tis
+only luck that the blue dragon has made the tower his perch.  What would it
+cost for such a guardian?    
+
+The writing continues in part2, part3, part4, part5, part6, part7~
+extradesc: part2
+   First, I ask myself, why am I building this tower?  I have adventured for
+many years, and have always been fascinated by places I had gone, both in the
+architecture, and the secrets held within.  I have decided to leave a legacy
+behind me.  Someone has to die for a tomb to be looted.    
+
+   Alas, with a life of adventure came a life with no heirs, so my money is
+worthless after I die anyhow.  I am still in good health now, but getting older
+every day.  Thus, my life's goal.    
+
+   I have enlisted a few of my more mystical friends for the construction.  
+This shall be no ordinary tower, by any means.  For one, we have concocted an
+enchantment for the stone of the tower, such that it shall rebuild itself if
+e'er it gets destroyed.  The bits of stone are attacted to one another, such
+that no matter the distance, they will slowly be pulled together again.  Yea,
+it may take millenia if they are far apart, but the tower shall never be
+destroyed.    ~
+extradesc: part3
+   This was quite costly, but I believe it will be a good investment in the
+long run.  No matter what happens, the tower will never quite die.    
+ 
+   The basement has been created.  We decided upon an infinite hallway to
+protect my study.  It too wasn't terribly hard to create, merely a modified
+dimension door spell.  I had to give up my grandmother's broach, though, to get
+the work done.  My friends are quite stingy, they are.    
+
+   Finding workers from an area far enough away that they won't be able to find
+their way back was quite tough.  The southern continent was a good choice.  To
+get back without help, they'd have to raft the blue fog sea.  I've ne'er seen a
+bigger ship down there in my days.  Getting them back there will be tougher.  
+Our ride got called off to tend to her father, dying of old age. ~
+extradesc: part4
+   Had the druid community not severed ties with me after the unfortunate
+incident in the forest...  I hadn't honestly meant to hurt anything, especially
+not the animals, and how was I to know that the owl was a shapechanger...  
+Life would be much easier. 
+
+   We just had a few incidents in the construction.  The sub basement floor
+collapsed.  It turns out a giant worm has burrowed under the tower.  It turns
+out to have some intelligence, I think.  I... agreed to keep it fed if it
+did no damage.  I didn't realize how much it eats.  We may need to exterminate
+it.    
+
+   Some fool put a door on the second floor of the tower to the outside.  
+Unfortunately, they're nothing outside of it.  I've locked it to avoid any more
+accidents.  Two deaths were bad enough.  Perhaps they would have survived, but
+evidently the door happened to lead right above where the worm had burrowed,
+thus the pit was quite deep.    ~
+extradesc: part5
+   Part of our labor force has decided to abandon the project.  A few of
+them...  Were threatening to break their vow.  I had to put them down.  I think
+the rest will understand the graveness of the situation, and will realize the
+penalties for betraying me.    
+
+   The work force has mutinied.  After hearing tales of what I did to those
+that left, they snuck out after I offered them a two day break.  I will track
+them down one by one and punish them all.  Traitors.  First, though, I must
+find a replacement work force...  Work most continue - the tower must be
+completed I have taken ill as of late, quite severely.  I hope it will pass,
+but I must press on in case it does not.  I am ...  Seeking connections at the
+moment.    
+
+   I have sought an audience with the Demon Lord Krisenna.  We have struck a
+deal; he seems quite benevolent at the moment.  Hopefully it will stay that
+way.  The deal works in both our favors.  They provide the workers and
+protection, and I provide them with a safe entry way into our world.  They have
+finished the external tower, and have retreated into the bowels to finish up.~
+extradesc: part6
+   I have allowed them free reign to create themselves a sealed off passageway
+to keep anyone who might make their way in from getting to them.  I am not even
+allowed to see what they are doing there, lest I bother them, or give others
+knowledge of how to do the same thing.    ~
+extradesc: part7
+   I have just stumbled back across this book, and it weighs heavily on my
+mind.  I have seen my soul blacken over time.  Alas, I think it is too late for
+me.  They have taken almost all of my goods as tribute, and they have an iron
+grip on the tower.  I plot, hoping to find a way to get rid of them, but I fear
+the deal is done.~
+triggers:
+5342
+~
+~~
+vnum: 16209
+location: -1
+values:
+70
+34
+35
+43
+0
+0
+0
+~
+flags: D 0
+name: book-kings large-leather-bound-tome questobject
+shortdesc: the Book of Kings
+desc: A large, leather bound tome sits on a shelf.
+type: 2
+weight: 2.00
+cost: 7000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: book-kings large-leather-bound-tome questobject
+The book is large and heavy, and is sealed with red wax.  Large, golden words
+are set in its cover.  There is a tingling sensation as you touch this tome,
+making you realise that this must be a book of power.  One of its stories tells
+of a visit from a band of powerful sorcerers who were impressed with Neris'
+kindness and presented her with a holy scarab that has some power to it.  The
+leader of the sorcerers is shown speaking aloud to Neris refering to her as
+"Neris'Kaan", or "Neris the Kind".~
+triggers:
+5342
+~
+~~
+vnum: 58008
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: adgjlnoprstuwxD eij
+name: book wizard's-book wizards-book glowing-book golden-pages questobject
+shortdesc: the wizard's book
+desc: A glowing book with golden pages lies open here.
+type: 26
+weight: 1.00
+cost: 6000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: book wizard's-book wizards-book glowing-book golden-pages questobject
+The book almost hums with power.  You approach it reverently, ready to see the
+face of some god in its pages, but then...  Then...  You feel its sheer evil
+nature and realize this is not a text to praise a god, but entrap one!~
+~~
+vnum: 58008
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: adgjlnoprstuwxD eij
+name: book wizard's-book wizards-book glowing-book golden-pages questobject
+shortdesc: the wizard's book
+desc: A glowing book with golden pages lies open here.
+type: 26
+weight: 1.00
+cost: 6000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: book wizard's-book wizards-book glowing-book golden-pages questobject
+The book almost hums with power.  You approach it reverently, ready to see the
+face of some god in its pages, but then...  Then...  You feel its sheer evil
+nature and realize this is not a text to praise a god, but entrap one!~
+~~
+vnum: 16209
+location: -1
+values:
+70
+34
+35
+43
+0
+0
+0
+~
+flags: D 0
+name: book-kings large-leather-bound-tome questobject
+shortdesc: the Book of Kings
+desc: A large, leather bound tome sits on a shelf.
+type: 2
+weight: 2.00
+cost: 7000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: book-kings large-leather-bound-tome questobject
+The book is large and heavy, and is sealed with red wax.  Large, golden words
+are set in its cover.  There is a tingling sensation as you touch this tome,
+making you realise that this must be a book of power.  One of its stories tells
+of a visit from a band of powerful sorcerers who were impressed with Neris'
+kindness and presented her with a holy scarab that has some power to it.  The
+leader of the sorcerers is shown speaking aloud to Neris refering to her as
+"Neris'Kaan", or "Neris the Kind".~
+triggers:
+5342
+~
+~~
+vnum: 58415
+location: -1
+values:
+90
+3
+3
+38
+0
+0
+0
+~
+flags: aD 0
+name: enchiridion large-leatherbound-book ench questobject
+shortdesc: the Enchiridion
+desc: A large leatherbound book glows golden.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -5
+27 3
+~
+extradesc: enchiridion large-leatherbound-book ench questobject
+The glowing pages glow with power, telling a story older than time itself --
+that of gods and mortals, struggles with beasts greater than any the world has
+ever known, true love and blackest hatred, friendship and betrayal..  All
+couched in the language of ancient times to form a manual of behavior for
+magicians in the aftermath of a war the likes of which may never be seen
+again...  Though the majority of the ancient book's thick pages seem torn out
+or damaged, enough of it remains for you to see that it must be very valuable.
+The cover looks like a good place to start learning about this book.~
+extradesc: cover
+The cover of the book reads:
+
+                      THE ENCHIRIDION:
+
+                       BEING A MANUAL 
+             FOR THE RECOVERY OF MAGISH VITALITY
+
+You open the book, and see page1.~
+extradesc: page1
+Hear the words of one who speaks across time: the Gypsy Seeress
+Mressnerah:
+
+      My dear Hrathis,
+
+      Long ago, my master told these things to me, and now 
+      that I am old, I wish to pass them down to you. When
+      you have come into your full power, you will understand
+      why I demanded certain things of you.
+
+      Long ago, magicians walked this world with impunity. 
+      There was nothing we could not do. I remember those days
+      very well indeed. The Cardinal of Templace himself was
+      amazed at our bravery, for we could face the Riftwar
+      beasts alone, with only our magicks to protect us.
+
+The book continues on page2.~
+extradesc: page2
+The second page continues:
+
+      But the wizard-dragon Sagece, that foul beast from the
+      Demon Planes, despised our kind and put her entire energies
+      to work to destroy our control over the human worlds.
+
+      This she did, all too well. I was old even when I felt the
+      shockwave of whatever spell she cast that was to spell our
+      doom. I looked down at my body and saw the rejuvenation I
+      had depended on for beauty disappear, the strength I'd 
+      always felt dissipate like fog before the morning light.
+      From then on, I was helpless physically; only when I had
+      the protection of much stronger folk could I work my most
+      devastating magicks.
+
+      But behold, Hrathis. There is way to reverse this evil
+      enchantment.
+
+The page ends. The next page is page3.~
+extradesc: page3
+This page seems very washed out. In fact, it's almost impossible to
+make out any details of what was once printed here. All you can see is
+what appears to be a blueprint of some kind of large machine. The small
+caption near the bottom of the page reads "NAU I S". That is all you
+can tell for sure.~
+triggers:
+5342
+~
+~~
+vnum: 23817
+location: -1
+values:
+70
+3
+3
+208
+0
+0
+0
+~
+flags: adgklopwx e
+name: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+shortdesc: Raven's holy prayer bowl
+desc: An abandoned bowl inlaid with silver rests here.
+type: 3
+weight: 2.50
+cost: 20000
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+A bowl made of a blackened metal inlaid with silver sits here.  Inside it are
+smudge marks that smell faint but sweet, probably from incense.  The silver
+forms intricate knotwork shapes, some tarnished but others bright.  At the
+bottom is the symbol of a raven with wings outstretched outlined in silver with
+feathers and talons marked with thinner lines than the rest of the inlay.~
+~~
+vnum: 23817
+location: -1
+values:
+70
+3
+3
+208
+0
+0
+0
+~
+flags: adgklopwx e
+name: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+shortdesc: Raven's holy prayer bowl
+desc: An abandoned bowl inlaid with silver rests here.
+type: 3
+weight: 2.50
+cost: 20000
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+A bowl made of a blackened metal inlaid with silver sits here.  Inside it are
+smudge marks that smell faint but sweet, probably from incense.  The silver
+forms intricate knotwork shapes, some tarnished but others bright.  At the
+bottom is the symbol of a raven with wings outstretched outlined in silver with
+feathers and talons marked with thinner lines than the rest of the inlay.~
+~~
+vnum: 43013
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bkD 0
+name: book-redemption ancient-text questobject
+shortdesc: the Book of Redemption
+desc: An ancient text has been left here.
+type: 8
+weight: 1.10
+cost: 0
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+3 2
+6 2
+13 10
+27 2
+~
+extradesc: book-redemption ancient-text questobject
+Quickly scanning through the text, you piece together a tale of good cause
+corrupted and evil unleashed.  Once the letters begin dancing on the page, you
+avert your gaze as to not completely lose your mind.~
+triggers:
+5342
+~
+~~
+vnum: 43013
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bkD 0
+name: book-redemption ancient-text questobject
+shortdesc: the Book of Redemption
+desc: An ancient text has been left here.
+type: 8
+weight: 1.10
+cost: 0
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+3 2
+6 2
+13 10
+27 2
+~
+extradesc: book-redemption ancient-text questobject
+Quickly scanning through the text, you piece together a tale of good cause
+corrupted and evil unleashed.  Once the letters begin dancing on the page, you
+avert your gaze as to not completely lose your mind.~
+triggers:
+5342
+~
+~~
+vnum: 43013
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bkD 0
+name: book-redemption ancient-text questobject
+shortdesc: the Book of Redemption
+desc: An ancient text has been left here.
+type: 8
+weight: 1.10
+cost: 0
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+3 2
+6 2
+13 10
+27 2
+~
+extradesc: book-redemption ancient-text questobject
+Quickly scanning through the text, you piece together a tale of good cause
+corrupted and evil unleashed.  Once the letters begin dancing on the page, you
+avert your gaze as to not completely lose your mind.~
+triggers:
+5342
+~
+~~
+vnum: 43013
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bkD 0
+name: book-redemption ancient-text questobject
+shortdesc: the Book of Redemption
+desc: An ancient text has been left here.
+type: 8
+weight: 1.10
+cost: 0
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+3 2
+6 2
+13 10
+27 2
+~
+extradesc: book-redemption ancient-text questobject
+Quickly scanning through the text, you piece together a tale of good cause
+corrupted and evil unleashed.  Once the letters begin dancing on the page, you
+avert your gaze as to not completely lose your mind.~
+triggers:
+5342
+~
+~~
+vnum: 1807
+location: -1
+values:
+60
+3
+3
+151
+0
+0
+0
+~
+flags: D 0
+name: book leaves forest
+shortdesc: the book of the forest
+desc: A book made from the broad leaves of a tree rests here. 
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: book
+   The cover of the book is formed from a solid chunk of bark, with the spine
+made somewhat flexible by soaking it in some liquid and gently bending it into
+shape.  Each page seems to have once been a leaf from a local tree, torn into a
+roughly rectangular shape.  The writing is done in some kind of charcoal or ash
+- because of this, the contrast makes some of the words hard to decipher.  On
+the whole, the book is in fairly good shape, and is still readable.    
+
+The headings in the book are PAGE1 PAGE2 . . .  PAGE8~
+extradesc: page1
+Well, I must do something to keep myself from going mad.  I figure I shall 
+write my thoughts, as I have an eternity to postulate about things. Why,  
+you may ask, do I have an eternity?  Settle in, the story is quite long.
+
+Years ago, I was king of a prosperous kingdom in a land you've probably 
+never heard of.  We farmed our land quite efficiently, and there were no
+major problems in the kingdom for years at a time.  Then,  I had a son,
+Errious, brought to me by my lovely wife.  He was a strong young lad, and 
+quite fit to take over the throne after I passed on.  
+
+He loved to travel, and over time mapped out parts of the land outside our 
+borders, where noone in our family had likely set foot on for generations.  
+In the process, he met a lovely elven woman by the name of Norina. He made 
+sure to stop by her home as often as he could in his journies, often for 
+just a day at a time, while relaxing after exploring. 
+
+The text continues on PAGE2~
+extradesc: PAGE2
+Now, around the time that Errious was to return, I fell ill, and was bedridden
+for several weeks with a delierious fever. In the meantime, my wife took over
+rule of the kingdom, which was the norm when I was unavailable.  When my fever
+finally broke, I was disheartened to find out that my son had not yet returned. 
+
+My wife had sent one of our finest horsemen to the area where we knew he had 
+headed. Several days later, we found his head, and a note.  It seems that our 
+neighbors didn't like our latest visits.  In the meantime, my wife had rallied 
+our knights, and had sent them to attack our newfound enemies. 
+
+In hindsight, it was a hasty decision.  It was a fairly even match, but because
+of that, the war raged on.  With our proximity, they managed to destroy our
+crops, and we in turn, immolated theirs.  Both sides were suffering greatly,
+and no real progress was being made in either's favor. 
+
+The story continues on PAGE3~
+extradesc: PAGE3
+Finally, after several weeks of battle, both sides spirit had been broken, and
+we sent a courier to ask for a diplomatic meeting between their leader, Izaro,
+and myself.  By this point, his kingdom too was greatly suffering, and he
+agreed.  We agreed to meet.    
+ 
+In the meeting we discussed the war- after saying somethings that shouldn't be
+said, it turned out that Errious had been seeing Norina, who was Izaro's
+daughter.  Alas, Norina was married to a prince from a nearby kingdom, who was
+helping his father put down a peasant revolt during the 'visits'.    
+
+One day, he had returned to find Norina and Errious.  He claimed that Errious
+had killed Norina, and he defended himself.  I know that cannot be true- I
+raised him better than that.  More likely they were both killed in a fit of
+jealousy.  In either case Norina and Errious both died that day, and both our
+people demanded blood.    
+
+The drama unfolds on PAGE4~
+extradesc: PAGE4
+We sent our men away, and agreed secretly to a dual to end it all.  Both our 
+sides had lost too much, and the fighting needed to end now.  We chose to meet 
+far away from the kingdom, and take turns leading farther into the forest, far 
+away from any help one's kingdom could give.  It was to be a truely one on one 
+battle. 
+
+We eventually reached an area of dense forest with a clearing, and mutually 
+decided it would be the setting of the battle.  I could tell by his ways that 
+he was a spellcaster, and he could tell by my sword that I wasn't.  As the 
+battle begun, I immediately rushed him, and kept him dazed enough to keep him 
+from casting. 
+
+And so the battle went.  He was a quick man, and kept from taking too many 
+blows, but I was wearing him down.  But then, he managed to sprint out of my 
+range, and got off one spell.  I never believed in my life that one spell could 
+end my life, but as he finished his incantation, I looked up and saw a large 
+ball of light, heading for me.
+
+The end is on PAGE5~
+extradesc: PAGE5
+The large ball of light turned out to be a burning rock, and it was quite 
+enormous. Before I could react, it crushed me.  One spell, and I was dead.  I 
+suppose my soul wanted vengeance.  I couldn't just die, and thus I'm here now.
+Somehow, he managed to capture me in this. . . room.  For some reason I can't 
+escape. 
+
+So I sit, and think, and write.  I know not what happened to Izaro- he could 
+not have made it very far, as wounded as he was.  The forest was still full of 
+dangerous beasts, and the smell of blood was sure to attract more. But I 
+cannot help but feel he wasn't destroyed, otherwise why would my soul be 
+trapped here?
+
+Someday, I will destroy him, and in doing so, hopefully be free to finally 
+venture into the afterlife.  Until then, I write. Someday, someone may find 
+this, and I hope it will teach them something.  War is stupid. If only I would 
+have realized the consequences so long ago, maybe things would not be as they 
+are. ~
+extradesc: PAGE6
+This page consists of a number of sketches of what seems to be the same thing 
+from different angles.  It appears to be a suit of armor with some sort of 
+wings attached to the back of it. The wings are connected with some elaborate 
+pulley system to the arms, giving the look of a bird which tangled itself up
+in a net.
+
+The caption reads 'Para-assault System'. ~
+extradesc: PAGE7
+This page consists of a lot of doodles and nondescript drawings, but nothing of
+real interest.    ~
+extradesc: PAGE8
+In my time here, I have learned much about nature.  I've learned to make
+fire from basically nothing.  I've learned to use the remnants of that fire to
+write this book.  I've learned that with the right point of view, nature is a
+powerful entity.  
+
+As such, I write the following such that you might glimpse just a touch of 
+the powers of nature that I have learned in my many years here. May nature be 
+there for you whenever you need her.  
+
+King Thelmor 
+
+Beneath the signature is a series of runes that are rather indecipherable, 
+especially in their current condition.  It would be amazing if whatever he 
+imbued this book with still worked.    ~
+triggers:
+5347
+~
+~~
+vnum: 23817
+location: -1
+values:
+70
+3
+3
+208
+0
+0
+0
+~
+flags: adgklopwx e
+name: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+shortdesc: Raven's holy prayer bowl
+desc: An abandoned bowl inlaid with silver rests here.
+type: 3
+weight: 2.50
+cost: 20000
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+A bowl made of a blackened metal inlaid with silver sits here.  Inside it are
+smudge marks that smell faint but sweet, probably from incense.  The silver
+forms intricate knotwork shapes, some tarnished but others bright.  At the
+bottom is the symbol of a raven with wings outstretched outlined in silver with
+feathers and talons marked with thinner lines than the rest of the inlay.~
+~~
+vnum: 23817
+location: -1
+values:
+70
+3
+3
+208
+0
+0
+0
+~
+flags: adgklopwx e
+name: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+shortdesc: Raven's holy prayer bowl
+desc: An abandoned bowl inlaid with silver rests here.
+type: 3
+weight: 2.50
+cost: 20000
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+A bowl made of a blackened metal inlaid with silver sits here.  Inside it are
+smudge marks that smell faint but sweet, probably from incense.  The silver
+forms intricate knotwork shapes, some tarnished but others bright.  At the
+bottom is the symbol of a raven with wings outstretched outlined in silver with
+feathers and talons marked with thinner lines than the rest of the inlay.~
+~~
+vnum: 58415
+location: -1
+values:
+90
+3
+3
+38
+0
+0
+0
+~
+flags: aD 0
+name: enchiridion large-leatherbound-book ench questobject
+shortdesc: the Enchiridion
+desc: A large leatherbound book glows golden.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -5
+27 3
+~
+extradesc: enchiridion large-leatherbound-book ench questobject
+The glowing pages glow with power, telling a story older than time itself --
+that of gods and mortals, struggles with beasts greater than any the world has
+ever known, true love and blackest hatred, friendship and betrayal..  All
+couched in the language of ancient times to form a manual of behavior for
+magicians in the aftermath of a war the likes of which may never be seen
+again...  Though the majority of the ancient book's thick pages seem torn out
+or damaged, enough of it remains for you to see that it must be very valuable.
+The cover looks like a good place to start learning about this book.~
+extradesc: cover
+The cover of the book reads:
+
+                      THE ENCHIRIDION:
+
+                       BEING A MANUAL 
+             FOR THE RECOVERY OF MAGISH VITALITY
+
+You open the book, and see page1.~
+extradesc: page1
+Hear the words of one who speaks across time: the Gypsy Seeress
+Mressnerah:
+
+      My dear Hrathis,
+
+      Long ago, my master told these things to me, and now 
+      that I am old, I wish to pass them down to you. When
+      you have come into your full power, you will understand
+      why I demanded certain things of you.
+
+      Long ago, magicians walked this world with impunity. 
+      There was nothing we could not do. I remember those days
+      very well indeed. The Cardinal of Templace himself was
+      amazed at our bravery, for we could face the Riftwar
+      beasts alone, with only our magicks to protect us.
+
+The book continues on page2.~
+extradesc: page2
+The second page continues:
+
+      But the wizard-dragon Sagece, that foul beast from the
+      Demon Planes, despised our kind and put her entire energies
+      to work to destroy our control over the human worlds.
+
+      This she did, all too well. I was old even when I felt the
+      shockwave of whatever spell she cast that was to spell our
+      doom. I looked down at my body and saw the rejuvenation I
+      had depended on for beauty disappear, the strength I'd 
+      always felt dissipate like fog before the morning light.
+      From then on, I was helpless physically; only when I had
+      the protection of much stronger folk could I work my most
+      devastating magicks.
+
+      But behold, Hrathis. There is way to reverse this evil
+      enchantment.
+
+The page ends. The next page is page3.~
+extradesc: page3
+This page seems very washed out. In fact, it's almost impossible to
+make out any details of what was once printed here. All you can see is
+what appears to be a blueprint of some kind of large machine. The small
+caption near the bottom of the page reads "NAU I S". That is all you
+can tell for sure.~
+triggers:
+5342
+~
+~~
+vnum: 55003
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: adgopwxD e
+name: codex xapizan-codex book-ancient-script questobject
+shortdesc: the Xapizan Codex
+desc: A book of ancient script lies here on the verge of fading to dust.
+type: 8
+weight: 4.00
+cost: 3000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 3
+3 2
+27 1
+~
+extradesc: codex xapizan-codex book-ancient-script questobject
+This ancient script contains the verse to many powerful spells.  It's covered
+in many strange symbols and bound by a large leather strap.  It looks as though
+it may disintegrate in your hands at any moment.~
+triggers:
+5347
+~
+~~
+vnum: 12520
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook silver-trimmed-leather-spellbook spell-book
+shortdesc: a silver-trimmed leather spellbook
+desc: A silver-trimmed leather spellbook lies open, face down.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 2
+1 -2
+27 2
+~
+extradesc: spellbook silver leather book
+The leather is pale grey, very supple, and thin.  The silver trim is painted on
+in long, quick strokes.  No symbols or drawings adorn the spine or cover; only
+faint wrinkles criscross the leather.~
+spells:
+5 1
+84 1
+16 1
+20 1
+32 1
+100 1
+41 1
+89 1
+85 1
+8 1
+88 1
+18 1
+19 1
+21 1
+39 1
+90 1
+86 1
+15 1
+114 1
+186 1
+31 1
+197 1
+43 1
+37 1
+91 1
+246 1
+219 1
+103 1
+83 1
+33 1
+35 1
+241 1
+243 1
+2 1
+228 1
+10 1
+17 1
+62 1
+29 1
+142 1
+68 1
+94 1
+240 1
+99 1
+136 1
+242 1
+191 1
+24 1
+195 1
+152 1
+79 1
+112 1
+185 1
+190 1
+184 1
+7 1
+~
+~~
+vnum: 58008
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: adgjlnoprstuwxD eij
+name: book wizard's-book wizards-book glowing-book golden-pages questobject
+shortdesc: the wizard's book
+desc: A glowing book with golden pages lies open here.
+type: 26
+weight: 1.00
+cost: 6000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: book wizard's-book wizards-book glowing-book golden-pages questobject
+The book almost hums with power.  You approach it reverently, ready to see the
+face of some god in its pages, but then...  Then...  You feel its sheer evil
+nature and realize this is not a text to praise a god, but entrap one!~
+~~
+vnum: 12520
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook silver-trimmed-leather-spellbook spell-book
+shortdesc: a silver-trimmed leather spellbook
+desc: A silver-trimmed leather spellbook lies open, face down.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 2
+1 -2
+27 2
+~
+extradesc: spellbook silver leather book
+The leather is pale grey, very supple, and thin.  The silver trim is painted on
+in long, quick strokes.  No symbols or drawings adorn the spine or cover; only
+faint wrinkles criscross the leather.~
+~~
+vnum: 12520
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook silver-trimmed-leather-spellbook spell-book
+shortdesc: a silver-trimmed leather spellbook
+desc: A silver-trimmed leather spellbook lies open, face down.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 2
+1 -2
+27 2
+~
+extradesc: spellbook silver leather book
+The leather is pale grey, very supple, and thin.  The silver trim is painted on
+in long, quick strokes.  No symbols or drawings adorn the spine or cover; only
+faint wrinkles criscross the leather.~
+spells:
+5 1
+20 1
+100 1
+101 1
+19 1
+200 1
+157 1
+158 1
+99 1
+31 1
+220 1
+159 1
+26 1
+105 1
+161 1
+50 1
+160 1
+102 1
+2 1
+228 1
+62 1
+67 1
+29 1
+83 1
+162 1
+38 1
+163 1
+68 1
+107 1
+52 1
+170 1
+57 1
+108 1
+164 1
+165 1
+166 1
+112 1
+113 1
+168 1
+169 1
+65 1
+167 1
+~
+~~
+vnum: 58415
+location: -1
+values:
+90
+3
+3
+38
+0
+0
+0
+~
+flags: aD 0
+name: enchiridion large-leatherbound-book ench questobject
+shortdesc: the Enchiridion
+desc: A large leatherbound book glows golden.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -5
+27 3
+~
+extradesc: enchiridion large-leatherbound-book ench questobject
+The glowing pages glow with power, telling a story older than time itself --
+that of gods and mortals, struggles with beasts greater than any the world has
+ever known, true love and blackest hatred, friendship and betrayal..  All
+couched in the language of ancient times to form a manual of behavior for
+magicians in the aftermath of a war the likes of which may never be seen
+again...  Though the majority of the ancient book's thick pages seem torn out
+or damaged, enough of it remains for you to see that it must be very valuable.
+The cover looks like a good place to start learning about this book.~
+extradesc: cover
+The cover of the book reads:
+
+                      THE ENCHIRIDION:
+
+                       BEING A MANUAL 
+             FOR THE RECOVERY OF MAGISH VITALITY
+
+You open the book, and see page1.~
+extradesc: page1
+Hear the words of one who speaks across time: the Gypsy Seeress
+Mressnerah:
+
+      My dear Hrathis,
+
+      Long ago, my master told these things to me, and now 
+      that I am old, I wish to pass them down to you. When
+      you have come into your full power, you will understand
+      why I demanded certain things of you.
+
+      Long ago, magicians walked this world with impunity. 
+      There was nothing we could not do. I remember those days
+      very well indeed. The Cardinal of Templace himself was
+      amazed at our bravery, for we could face the Riftwar
+      beasts alone, with only our magicks to protect us.
+
+The book continues on page2.~
+extradesc: page2
+The second page continues:
+
+      But the wizard-dragon Sagece, that foul beast from the
+      Demon Planes, despised our kind and put her entire energies
+      to work to destroy our control over the human worlds.
+
+      This she did, all too well. I was old even when I felt the
+      shockwave of whatever spell she cast that was to spell our
+      doom. I looked down at my body and saw the rejuvenation I
+      had depended on for beauty disappear, the strength I'd 
+      always felt dissipate like fog before the morning light.
+      From then on, I was helpless physically; only when I had
+      the protection of much stronger folk could I work my most
+      devastating magicks.
+
+      But behold, Hrathis. There is way to reverse this evil
+      enchantment.
+
+The page ends. The next page is page3.~
+extradesc: page3
+This page seems very washed out. In fact, it's almost impossible to
+make out any details of what was once printed here. All you can see is
+what appears to be a blueprint of some kind of large machine. The small
+caption near the bottom of the page reads "NAU I S". That is all you
+can tell for sure.~
+triggers:
+5342
+~
+~~
+vnum: 58008
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: adgjlnoprstuwxD eij
+name: book wizard's-book wizards-book glowing-book golden-pages questobject
+shortdesc: the wizard's book
+desc: A glowing book with golden pages lies open here.
+type: 26
+weight: 1.00
+cost: 6000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: book wizard's-book wizards-book glowing-book golden-pages questobject
+The book almost hums with power.  You approach it reverently, ready to see the
+face of some god in its pages, but then...  Then...  You feel its sheer evil
+nature and realize this is not a text to praise a god, but entrap one!~
+~~
+vnum: 59006
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book worn poetry leather-bound-poetry-book
+shortdesc: a book of poetry
+desc: A tattered and worn out leather bound book stands on end.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 1
+3 1
+~
+extradesc: book
+The worn out leather book binding is almost falling apart.  It is very old
+and the leather is well oiled from being handed by unclean hands.  The pages in
+the book are hand written with a variety of inks giving light to the idea that
+the pages were written on different days as if a journal would be.  You can
+read a few of the first pages: page1, page2 and page3.~
+extradesc: page3
+For all that are powerful
+Bringing fists down on the weak
+Smashing their souls
+And breaking the meek
+
+May they soon meet their maker
+Brought forth for their misdeed
+Wrought down into the ground
+Stomped flat their greed
+
+For soon the good will arise
+And bring evil to its end
+Stop our troubled existence 
+Then let us to ascend~
+extradesc: page1
+   The quaint sounds of spring fill my ears with a joy not found else where.  
+The breeze showers my skin with the sensations of the air.  This feeling
+empowers me with the creativity that is unrivaled by others.  Like floating on
+top of the world without the weight of gravity to pull me down.    ~
+extradesc: page2
+............THOUGHTS............
+   Thoughts drain like water
+  Down into the consciousness 
+   Collected in a small form
+Then spread out to be recollected 
+  Rearranged and transformed 
+Until they collide with perfection 
+     Forming what would be
+          What could be
+ The greatest thought of them all~
+triggers:
+5342
+~
+~~
+vnum: 18505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bdgkmopstwxyD befgh
+name: book-discipline great tome questobject
+shortdesc: the Book of Discipline
+desc: A great tome is before you.
+type: 8
+weight: 1.30
+cost: 80
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 1
+3 1
+6 1
+27 1
+~
+extradesc: book-discipline great tome questobject
+Before you is the great Book of Discipline.  Written in it are the teachings of
+the great St.  George, to whom this monastery is dedicated to.  It is said that
+great wisdom is held by the tome.~
+triggers:
+5342
+~
+~~
+vnum: 12520
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook silver-trimmed-leather-spellbook spell-book
+shortdesc: a silver-trimmed leather spellbook
+desc: A silver-trimmed leather spellbook lies open, face down.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 2
+1 -2
+27 2
+~
+extradesc: spellbook silver leather book
+The leather is pale grey, very supple, and thin.  The silver trim is painted on
+in long, quick strokes.  No symbols or drawings adorn the spine or cover; only
+faint wrinkles criscross the leather.~
+~~
+vnum: 59006
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book worn poetry leather-bound-poetry-book
+shortdesc: a book of poetry
+desc: A tattered and worn out leather bound book stands on end.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 1
+3 1
+~
+extradesc: book
+The worn out leather book binding is almost falling apart.  It is very old
+and the leather is well oiled from being handed by unclean hands.  The pages in
+the book are hand written with a variety of inks giving light to the idea that
+the pages were written on different days as if a journal would be.  You can
+read a few of the first pages: page1, page2 and page3.~
+extradesc: page3
+For all that are powerful
+Bringing fists down on the weak
+Smashing their souls
+And breaking the meek
+
+May they soon meet their maker
+Brought forth for their misdeed
+Wrought down into the ground
+Stomped flat their greed
+
+For soon the good will arise
+And bring evil to its end
+Stop our troubled existence 
+Then let us to ascend~
+extradesc: page1
+   The quaint sounds of spring fill my ears with a joy not found else where.  
+The breeze showers my skin with the sensations of the air.  This feeling
+empowers me with the creativity that is unrivaled by others.  Like floating on
+top of the world without the weight of gravity to pull me down.    ~
+extradesc: page2
+............THOUGHTS............
+   Thoughts drain like water
+  Down into the consciousness 
+   Collected in a small form
+Then spread out to be recollected 
+  Rearranged and transformed 
+Until they collide with perfection 
+     Forming what would be
+          What could be
+ The greatest thought of them all~
+triggers:
+5342
+~
+~~
+vnum: 55004
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bmnuvyzD bfghij
+name: codex-war tome ancient-book questobject
+shortdesc: the Codex of War
+desc: An ancient book lies here on the edge of destruction.
+type: 8
+weight: 4.00
+cost: 400
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 4
+2 -4
+19 1
+~
+extradesc: codex-war tome ancient-book questobject
+You look upon a powerful verse of war and destruction.~
+triggers:
+5347
+~
+~~
+vnum: 16209
+location: -1
+values:
+70
+34
+35
+43
+0
+0
+0
+~
+flags: D 0
+name: book-kings large-leather-bound-tome questobject
+shortdesc: the Book of Kings
+desc: A large, leather bound tome sits on a shelf.
+type: 2
+weight: 2.00
+cost: 7000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: book-kings large-leather-bound-tome questobject
+The book is large and heavy, and is sealed with red wax.  Large, golden words
+are set in its cover.  There is a tingling sensation as you touch this tome,
+making you realise that this must be a book of power.  One of its stories tells
+of a visit from a band of powerful sorcerers who were impressed with Neris'
+kindness and presented her with a holy scarab that has some power to it.  The
+leader of the sorcerers is shown speaking aloud to Neris refering to her as
+"Neris'Kaan", or "Neris the Kind".~
+triggers:
+5342
+~
+~~
+vnum: 16209
+location: -1
+values:
+70
+34
+35
+43
+0
+0
+0
+~
+flags: D 0
+name: book-kings large-leather-bound-tome questobject
+shortdesc: the Book of Kings
+desc: A large, leather bound tome sits on a shelf.
+type: 2
+weight: 2.00
+cost: 7000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: book-kings large-leather-bound-tome questobject
+The book is large and heavy, and is sealed with red wax.  Large, golden words
+are set in its cover.  There is a tingling sensation as you touch this tome,
+making you realise that this must be a book of power.  One of its stories tells
+of a visit from a band of powerful sorcerers who were impressed with Neris'
+kindness and presented her with a holy scarab that has some power to it.  The
+leader of the sorcerers is shown speaking aloud to Neris refering to her as
+"Neris'Kaan", or "Neris the Kind".~
+triggers:
+5342
+~
+~~
+vnum: 55003
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: adgopwxD e
+name: codex xapizan-codex book-ancient-script questobject
+shortdesc: the Xapizan Codex
+desc: A book of ancient script lies here on the verge of fading to dust.
+type: 8
+weight: 4.00
+cost: 3000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 3
+3 2
+27 1
+~
+extradesc: codex xapizan-codex book-ancient-script questobject
+This ancient script contains the verse to many powerful spells.  It's covered
+in many strange symbols and bound by a large leather strap.  It looks as though
+it may disintegrate in your hands at any moment.~
+triggers:
+5347
+~
+~~
+vnum: 51023
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abgD 0
+name: spellbook book large tome book-of-healing large-book
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+26 10
+13 50
+1 -5
+2 -5
+27 2
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.~
+triggers:
+51009
+~
+~~
+vnum: 43013
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bkD 0
+name: book-redemption ancient-text questobject
+shortdesc: the Book of Redemption
+desc: An ancient text has been left here.
+type: 8
+weight: 1.10
+cost: 0
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+3 2
+6 2
+13 10
+27 2
+~
+extradesc: book-redemption ancient-text questobject
+Quickly scanning through the text, you piece together a tale of good cause
+corrupted and evil unleashed.  Once the letters begin dancing on the page, you
+avert your gaze as to not completely lose your mind.~
+triggers:
+5342
+~
+~~
+vnum: 55004
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bmnuvyzD bfghij
+name: codex-war tome ancient-book questobject
+shortdesc: the Codex of War
+desc: An ancient book lies here on the edge of destruction.
+type: 8
+weight: 4.00
+cost: 400
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 4
+2 -4
+19 1
+~
+extradesc: codex-war tome ancient-book questobject
+You look upon a powerful verse of war and destruction.~
+triggers:
+5347
+~
+~~
+vnum: 55004
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bmnuvyzD bfghij
+name: codex-war tome ancient-book questobject
+shortdesc: the Codex of War
+desc: An ancient book lies here on the edge of destruction.
+type: 8
+weight: 4.00
+cost: 400
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 4
+2 -4
+19 1
+~
+extradesc: codex-war tome ancient-book questobject
+You look upon a powerful verse of war and destruction.~
+triggers:
+5347
+~
+~~
+vnum: 43013
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bkD 0
+name: book-redemption ancient-text questobject
+shortdesc: the Book of Redemption
+desc: An ancient text has been left here.
+type: 8
+weight: 1.10
+cost: 0
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+3 2
+6 2
+13 10
+27 2
+~
+extradesc: book-redemption ancient-text questobject
+Quickly scanning through the text, you piece together a tale of good cause
+corrupted and evil unleashed.  Once the letters begin dancing on the page, you
+avert your gaze as to not completely lose your mind.~
+triggers:
+5342
+~
+~~
+vnum: 59006
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book worn poetry leather-bound-poetry-book
+shortdesc: a book of poetry
+desc: A tattered and worn out leather bound book stands on end.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 1
+3 1
+~
+extradesc: book
+The worn out leather book binding is almost falling apart.  It is very old
+and the leather is well oiled from being handed by unclean hands.  The pages in
+the book are hand written with a variety of inks giving light to the idea that
+the pages were written on different days as if a journal would be.  You can
+read a few of the first pages: page1, page2 and page3.~
+extradesc: page3
+For all that are powerful
+Bringing fists down on the weak
+Smashing their souls
+And breaking the meek
+
+May they soon meet their maker
+Brought forth for their misdeed
+Wrought down into the ground
+Stomped flat their greed
+
+For soon the good will arise
+And bring evil to its end
+Stop our troubled existence 
+Then let us to ascend~
+extradesc: page1
+   The quaint sounds of spring fill my ears with a joy not found else where.  
+The breeze showers my skin with the sensations of the air.  This feeling
+empowers me with the creativity that is unrivaled by others.  Like floating on
+top of the world without the weight of gravity to pull me down.    ~
+extradesc: page2
+............THOUGHTS............
+   Thoughts drain like water
+  Down into the consciousness 
+   Collected in a small form
+Then spread out to be recollected 
+  Rearranged and transformed 
+Until they collide with perfection 
+     Forming what would be
+          What could be
+ The greatest thought of them all~
+triggers:
+5342
+~
+~~
+vnum: 59006
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book worn poetry leather-bound-poetry-book
+shortdesc: a book of poetry
+desc: A tattered and worn out leather bound book stands on end.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 1
+3 1
+~
+extradesc: book
+The worn out leather book binding is almost falling apart.  It is very old
+and the leather is well oiled from being handed by unclean hands.  The pages in
+the book are hand written with a variety of inks giving light to the idea that
+the pages were written on different days as if a journal would be.  You can
+read a few of the first pages: page1, page2 and page3.~
+extradesc: page3
+For all that are powerful
+Bringing fists down on the weak
+Smashing their souls
+And breaking the meek
+
+May they soon meet their maker
+Brought forth for their misdeed
+Wrought down into the ground
+Stomped flat their greed
+
+For soon the good will arise
+And bring evil to its end
+Stop our troubled existence 
+Then let us to ascend~
+extradesc: page1
+   The quaint sounds of spring fill my ears with a joy not found else where.  
+The breeze showers my skin with the sensations of the air.  This feeling
+empowers me with the creativity that is unrivaled by others.  Like floating on
+top of the world without the weight of gravity to pull me down.    ~
+extradesc: page2
+............THOUGHTS............
+   Thoughts drain like water
+  Down into the consciousness 
+   Collected in a small form
+Then spread out to be recollected 
+  Rearranged and transformed 
+Until they collide with perfection 
+     Forming what would be
+          What could be
+ The greatest thought of them all~
+triggers:
+5342
+~
+~~
+vnum: 59006
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book worn poetry leather-bound-poetry-book
+shortdesc: a book of poetry
+desc: A tattered and worn out leather bound book stands on end.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 1
+3 1
+~
+extradesc: book
+The worn out leather book binding is almost falling apart.  It is very old
+and the leather is well oiled from being handed by unclean hands.  The pages in
+the book are hand written with a variety of inks giving light to the idea that
+the pages were written on different days as if a journal would be.  You can
+read a few of the first pages: page1, page2 and page3.~
+extradesc: page3
+For all that are powerful
+Bringing fists down on the weak
+Smashing their souls
+And breaking the meek
+
+May they soon meet their maker
+Brought forth for their misdeed
+Wrought down into the ground
+Stomped flat their greed
+
+For soon the good will arise
+And bring evil to its end
+Stop our troubled existence 
+Then let us to ascend~
+extradesc: page1
+   The quaint sounds of spring fill my ears with a joy not found else where.  
+The breeze showers my skin with the sensations of the air.  This feeling
+empowers me with the creativity that is unrivaled by others.  Like floating on
+top of the world without the weight of gravity to pull me down.    ~
+extradesc: page2
+............THOUGHTS............
+   Thoughts drain like water
+  Down into the consciousness 
+   Collected in a small form
+Then spread out to be recollected 
+  Rearranged and transformed 
+Until they collide with perfection 
+     Forming what would be
+          What could be
+ The greatest thought of them all~
+triggers:
+5342
+~
+~~
+vnum: 59006
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book worn poetry leather-bound-poetry-book
+shortdesc: a book of poetry
+desc: A tattered and worn out leather bound book stands on end.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 1
+3 1
+~
+extradesc: book
+The worn out leather book binding is almost falling apart.  It is very old
+and the leather is well oiled from being handed by unclean hands.  The pages in
+the book are hand written with a variety of inks giving light to the idea that
+the pages were written on different days as if a journal would be.  You can
+read a few of the first pages: page1, page2 and page3.~
+extradesc: page3
+For all that are powerful
+Bringing fists down on the weak
+Smashing their souls
+And breaking the meek
+
+May they soon meet their maker
+Brought forth for their misdeed
+Wrought down into the ground
+Stomped flat their greed
+
+For soon the good will arise
+And bring evil to its end
+Stop our troubled existence 
+Then let us to ascend~
+extradesc: page1
+   The quaint sounds of spring fill my ears with a joy not found else where.  
+The breeze showers my skin with the sensations of the air.  This feeling
+empowers me with the creativity that is unrivaled by others.  Like floating on
+top of the world without the weight of gravity to pull me down.    ~
+extradesc: page2
+............THOUGHTS............
+   Thoughts drain like water
+  Down into the consciousness 
+   Collected in a small form
+Then spread out to be recollected 
+  Rearranged and transformed 
+Until they collide with perfection 
+     Forming what would be
+          What could be
+ The greatest thought of them all~
+triggers:
+5342
+~
+~~
+vnum: 58008
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: adgjlnoprstuwxD eij
+name: book wizard's-book wizards-book glowing-book golden-pages questobject
+shortdesc: the wizard's book
+desc: A glowing book with golden pages lies open here.
+type: 26
+weight: 1.00
+cost: 6000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: book wizard's-book wizards-book glowing-book golden-pages questobject
+The book almost hums with power.  You approach it reverently, ready to see the
+face of some god in its pages, but then...  Then...  You feel its sheer evil
+nature and realize this is not a text to praise a god, but entrap one!~
+~~
+vnum: 58008
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: adgjlnoprstuwxD eij
+name: book wizard's-book wizards-book glowing-book golden-pages questobject
+shortdesc: the wizard's book
+desc: A glowing book with golden pages lies open here.
+type: 26
+weight: 1.00
+cost: 6000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: book wizard's-book wizards-book glowing-book golden-pages questobject
+The book almost hums with power.  You approach it reverently, ready to see the
+face of some god in its pages, but then...  Then...  You feel its sheer evil
+nature and realize this is not a text to praise a god, but entrap one!~
+~~
+vnum: 58008
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: adgjlnoprstuwxD eij
+name: book wizard's-book wizards-book glowing-book golden-pages questobject
+shortdesc: the wizard's book
+desc: A glowing book with golden pages lies open here.
+type: 26
+weight: 1.00
+cost: 6000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: book wizard's-book wizards-book glowing-book golden-pages questobject
+The book almost hums with power.  You approach it reverently, ready to see the
+face of some god in its pages, but then...  Then...  You feel its sheer evil
+nature and realize this is not a text to praise a god, but entrap one!~
+~~
+vnum: 18505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bdgkmopstwxyD befgh
+name: book-discipline great tome questobject
+shortdesc: the Book of Discipline
+desc: A great tome is before you.
+type: 8
+weight: 1.30
+cost: 80
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 1
+3 1
+6 1
+27 1
+~
+extradesc: book-discipline great tome questobject
+Before you is the great Book of Discipline.  Written in it are the teachings of
+the great St.  George, to whom this monastery is dedicated to.  It is said that
+great wisdom is held by the tome.~
+triggers:
+5342
+~
+~~
+vnum: 55003
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: adgopwxD e
+name: codex xapizan-codex book-ancient-script questobject
+shortdesc: the Xapizan Codex
+desc: A book of ancient script lies here on the verge of fading to dust.
+type: 8
+weight: 4.00
+cost: 3000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 3
+3 2
+27 1
+~
+extradesc: codex xapizan-codex book-ancient-script questobject
+This ancient script contains the verse to many powerful spells.  It's covered
+in many strange symbols and bound by a large leather strap.  It looks as though
+it may disintegrate in your hands at any moment.~
+triggers:
+5347
+~
+~~
+vnum: 59006
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book worn poetry leather-bound-poetry-book
+shortdesc: a book of poetry
+desc: A tattered and worn out leather bound book stands on end.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 1
+3 1
+~
+extradesc: book
+The worn out leather book binding is almost falling apart.  It is very old
+and the leather is well oiled from being handed by unclean hands.  The pages in
+the book are hand written with a variety of inks giving light to the idea that
+the pages were written on different days as if a journal would be.  You can
+read a few of the first pages: page1, page2 and page3.~
+extradesc: page3
+For all that are powerful
+Bringing fists down on the weak
+Smashing their souls
+And breaking the meek
+
+May they soon meet their maker
+Brought forth for their misdeed
+Wrought down into the ground
+Stomped flat their greed
+
+For soon the good will arise
+And bring evil to its end
+Stop our troubled existence 
+Then let us to ascend~
+extradesc: page1
+   The quaint sounds of spring fill my ears with a joy not found else where.  
+The breeze showers my skin with the sensations of the air.  This feeling
+empowers me with the creativity that is unrivaled by others.  Like floating on
+top of the world without the weight of gravity to pull me down.    ~
+extradesc: page2
+............THOUGHTS............
+   Thoughts drain like water
+  Down into the consciousness 
+   Collected in a small form
+Then spread out to be recollected 
+  Rearranged and transformed 
+Until they collide with perfection 
+     Forming what would be
+          What could be
+ The greatest thought of them all~
+triggers:
+5342
+~
+~~
+vnum: 43013
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bkD 0
+name: book-redemption ancient-text questobject
+shortdesc: the Book of Redemption
+desc: An ancient text has been left here.
+type: 8
+weight: 1.10
+cost: 0
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+3 2
+6 2
+13 10
+27 2
+~
+extradesc: book-redemption ancient-text questobject
+Quickly scanning through the text, you piece together a tale of good cause
+corrupted and evil unleashed.  Once the letters begin dancing on the page, you
+avert your gaze as to not completely lose your mind.~
+triggers:
+5342
+~
+~~
+vnum: 43013
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bkD 0
+name: book-redemption ancient-text questobject
+shortdesc: the Book of Redemption
+desc: An ancient text has been left here.
+type: 8
+weight: 1.10
+cost: 0
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+3 2
+6 2
+13 10
+27 2
+~
+extradesc: book-redemption ancient-text questobject
+Quickly scanning through the text, you piece together a tale of good cause
+corrupted and evil unleashed.  Once the letters begin dancing on the page, you
+avert your gaze as to not completely lose your mind.~
+triggers:
+5342
+~
+~~
+vnum: 51023
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abgD 0
+name: spellbook book large tome book-of-healing large-book
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+26 10
+13 50
+1 -5
+2 -5
+27 2
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.~
+triggers:
+51009
+~
+~~
+vnum: 58415
+location: -1
+values:
+90
+3
+3
+38
+0
+0
+0
+~
+flags: aD 0
+name: enchiridion large-leatherbound-book ench questobject
+shortdesc: the Enchiridion
+desc: A large leatherbound book glows golden.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -5
+27 3
+~
+extradesc: enchiridion large-leatherbound-book ench questobject
+The glowing pages glow with power, telling a story older than time itself --
+that of gods and mortals, struggles with beasts greater than any the world has
+ever known, true love and blackest hatred, friendship and betrayal..  All
+couched in the language of ancient times to form a manual of behavior for
+magicians in the aftermath of a war the likes of which may never be seen
+again...  Though the majority of the ancient book's thick pages seem torn out
+or damaged, enough of it remains for you to see that it must be very valuable.
+The cover looks like a good place to start learning about this book.~
+extradesc: cover
+The cover of the book reads:
+
+                      THE ENCHIRIDION:
+
+                       BEING A MANUAL 
+             FOR THE RECOVERY OF MAGISH VITALITY
+
+You open the book, and see page1.~
+extradesc: page1
+Hear the words of one who speaks across time: the Gypsy Seeress
+Mressnerah:
+
+      My dear Hrathis,
+
+      Long ago, my master told these things to me, and now 
+      that I am old, I wish to pass them down to you. When
+      you have come into your full power, you will understand
+      why I demanded certain things of you.
+
+      Long ago, magicians walked this world with impunity. 
+      There was nothing we could not do. I remember those days
+      very well indeed. The Cardinal of Templace himself was
+      amazed at our bravery, for we could face the Riftwar
+      beasts alone, with only our magicks to protect us.
+
+The book continues on page2.~
+extradesc: page2
+The second page continues:
+
+      But the wizard-dragon Sagece, that foul beast from the
+      Demon Planes, despised our kind and put her entire energies
+      to work to destroy our control over the human worlds.
+
+      This she did, all too well. I was old even when I felt the
+      shockwave of whatever spell she cast that was to spell our
+      doom. I looked down at my body and saw the rejuvenation I
+      had depended on for beauty disappear, the strength I'd 
+      always felt dissipate like fog before the morning light.
+      From then on, I was helpless physically; only when I had
+      the protection of much stronger folk could I work my most
+      devastating magicks.
+
+      But behold, Hrathis. There is way to reverse this evil
+      enchantment.
+
+The page ends. The next page is page3.~
+extradesc: page3
+This page seems very washed out. In fact, it's almost impossible to
+make out any details of what was once printed here. All you can see is
+what appears to be a blueprint of some kind of large machine. The small
+caption near the bottom of the page reads "NAU I S". That is all you
+can tell for sure.~
+triggers:
+5342
+~
+~~
+vnum: 51023
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abgD 0
+name: spellbook book large tome book-of-healing large-book
+shortdesc: a large book
+desc: A large old book lies here.
+type: 8
+weight: 10.00
+cost: 20
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+26 10
+13 50
+1 -5
+2 -5
+27 2
+~
+extradesc: spellbook book large tome
+This is no ordinary book, this is the book of healing that for centuries has
+kept Nordus free of plagues and serious illnesses.  The whole book is magical,
+and there are records of how its power prevented the village of Nordus being
+overcome by plagues on several occasions.~
+triggers:
+51009
+~
+~~
+vnum: 23817
+location: -1
+values:
+70
+3
+3
+208
+0
+0
+0
+~
+flags: adgklopwx e
+name: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+shortdesc: Raven's holy prayer bowl
+desc: An abandoned bowl inlaid with silver rests here.
+type: 3
+weight: 2.50
+cost: 20000
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+A bowl made of a blackened metal inlaid with silver sits here.  Inside it are
+smudge marks that smell faint but sweet, probably from incense.  The silver
+forms intricate knotwork shapes, some tarnished but others bright.  At the
+bottom is the symbol of a raven with wings outstretched outlined in silver with
+feathers and talons marked with thinner lines than the rest of the inlay.~
+~~
+vnum: 23817
+location: -1
+values:
+70
+3
+3
+208
+0
+0
+0
+~
+flags: adgklopwx e
+name: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+shortdesc: Raven's holy prayer bowl
+desc: An abandoned bowl inlaid with silver rests here.
+type: 3
+weight: 2.50
+cost: 20000
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+A bowl made of a blackened metal inlaid with silver sits here.  Inside it are
+smudge marks that smell faint but sweet, probably from incense.  The silver
+forms intricate knotwork shapes, some tarnished but others bright.  At the
+bottom is the symbol of a raven with wings outstretched outlined in silver with
+feathers and talons marked with thinner lines than the rest of the inlay.~
+~~
+vnum: 23817
+location: -1
+values:
+70
+3
+3
+208
+0
+0
+0
+~
+flags: adgklopwx e
+name: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+shortdesc: Raven's holy prayer bowl
+desc: An abandoned bowl inlaid with silver rests here.
+type: 3
+weight: 2.50
+cost: 20000
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+A bowl made of a blackened metal inlaid with silver sits here.  Inside it are
+smudge marks that smell faint but sweet, probably from incense.  The silver
+forms intricate knotwork shapes, some tarnished but others bright.  At the
+bottom is the symbol of a raven with wings outstretched outlined in silver with
+feathers and talons marked with thinner lines than the rest of the inlay.~
+~~
+vnum: 58415
+location: -1
+values:
+90
+3
+3
+38
+0
+0
+0
+~
+flags: aD 0
+name: enchiridion large-leatherbound-book ench questobject
+shortdesc: the Enchiridion
+desc: A large leatherbound book glows golden.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -5
+27 3
+~
+extradesc: enchiridion large-leatherbound-book ench questobject
+The glowing pages glow with power, telling a story older than time itself --
+that of gods and mortals, struggles with beasts greater than any the world has
+ever known, true love and blackest hatred, friendship and betrayal..  All
+couched in the language of ancient times to form a manual of behavior for
+magicians in the aftermath of a war the likes of which may never be seen
+again...  Though the majority of the ancient book's thick pages seem torn out
+or damaged, enough of it remains for you to see that it must be very valuable.
+The cover looks like a good place to start learning about this book.~
+extradesc: cover
+The cover of the book reads:
+
+                      THE ENCHIRIDION:
+
+                       BEING A MANUAL 
+             FOR THE RECOVERY OF MAGISH VITALITY
+
+You open the book, and see page1.~
+extradesc: page1
+Hear the words of one who speaks across time: the Gypsy Seeress
+Mressnerah:
+
+      My dear Hrathis,
+
+      Long ago, my master told these things to me, and now 
+      that I am old, I wish to pass them down to you. When
+      you have come into your full power, you will understand
+      why I demanded certain things of you.
+
+      Long ago, magicians walked this world with impunity. 
+      There was nothing we could not do. I remember those days
+      very well indeed. The Cardinal of Templace himself was
+      amazed at our bravery, for we could face the Riftwar
+      beasts alone, with only our magicks to protect us.
+
+The book continues on page2.~
+extradesc: page2
+The second page continues:
+
+      But the wizard-dragon Sagece, that foul beast from the
+      Demon Planes, despised our kind and put her entire energies
+      to work to destroy our control over the human worlds.
+
+      This she did, all too well. I was old even when I felt the
+      shockwave of whatever spell she cast that was to spell our
+      doom. I looked down at my body and saw the rejuvenation I
+      had depended on for beauty disappear, the strength I'd 
+      always felt dissipate like fog before the morning light.
+      From then on, I was helpless physically; only when I had
+      the protection of much stronger folk could I work my most
+      devastating magicks.
+
+      But behold, Hrathis. There is way to reverse this evil
+      enchantment.
+
+The page ends. The next page is page3.~
+extradesc: page3
+This page seems very washed out. In fact, it's almost impossible to
+make out any details of what was once printed here. All you can see is
+what appears to be a blueprint of some kind of large machine. The small
+caption near the bottom of the page reads "NAU I S". That is all you
+can tell for sure.~
+triggers:
+5342
+~
+~~
+vnum: 23817
+location: -1
+values:
+70
+3
+3
+208
+0
+0
+0
+~
+flags: adgklopwx e
+name: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+shortdesc: Raven's holy prayer bowl
+desc: An abandoned bowl inlaid with silver rests here.
+type: 3
+weight: 2.50
+cost: 20000
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+A bowl made of a blackened metal inlaid with silver sits here.  Inside it are
+smudge marks that smell faint but sweet, probably from incense.  The silver
+forms intricate knotwork shapes, some tarnished but others bright.  At the
+bottom is the symbol of a raven with wings outstretched outlined in silver with
+feathers and talons marked with thinner lines than the rest of the inlay.~
+~~
+vnum: 23817
+location: -1
+values:
+70
+3
+3
+208
+0
+0
+0
+~
+flags: adgklopwx e
+name: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+shortdesc: Raven's holy prayer bowl
+desc: An abandoned bowl inlaid with silver rests here.
+type: 3
+weight: 2.50
+cost: 20000
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+A bowl made of a blackened metal inlaid with silver sits here.  Inside it are
+smudge marks that smell faint but sweet, probably from incense.  The silver
+forms intricate knotwork shapes, some tarnished but others bright.  At the
+bottom is the symbol of a raven with wings outstretched outlined in silver with
+feathers and talons marked with thinner lines than the rest of the inlay.~
+~~
+vnum: 23817
+location: -1
+values:
+70
+3
+3
+208
+0
+0
+0
+~
+flags: adgklopwx e
+name: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+shortdesc: Raven's holy prayer bowl
+desc: An abandoned bowl inlaid with silver rests here.
+type: 3
+weight: 2.50
+cost: 20000
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: bowl raven's-holy-prayer-bowl ravens-holy-prayer-bowl abandoned-bowl-inlaid-silver questobject
+A bowl made of a blackened metal inlaid with silver sits here.  Inside it are
+smudge marks that smell faint but sweet, probably from incense.  The silver
+forms intricate knotwork shapes, some tarnished but others bright.  At the
+bottom is the symbol of a raven with wings outstretched outlined in silver with
+feathers and talons marked with thinner lines than the rest of the inlay.~
+~~
+vnum: 58008
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: adgjlnoprstuwxD eij
+name: book wizard's-book wizards-book glowing-book golden-pages questobject
+shortdesc: the wizard's book
+desc: A glowing book with golden pages lies open here.
+type: 26
+weight: 1.00
+cost: 6000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: book wizard's-book wizards-book glowing-book golden-pages questobject
+The book almost hums with power.  You approach it reverently, ready to see the
+face of some god in its pages, but then...  Then...  You feel its sheer evil
+nature and realize this is not a text to praise a god, but entrap one!~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 55029
+location: 127
+values:
+250
+1
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: 0.00
+cost: 600
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    ~
+~~
+vnum: 48415
+location: -1
+values:
+0
+5
+6
+6
+0
+0
+0
+~
+flags: dgkmoprstwxyzD ab
+name: staff silveroak-staff silver-oak limb-silveroak-tree
+shortdesc: a Silveroak Staff
+desc: A staff made from the limb of a Silveroak tree lies here.
+type: 5
+weight: 7.40
+cost: 2000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+13 30
+27 3
+~
+extradesc: silveroak-staff silver-oak staff-limb-silveroak-tree
+This staff was made from the limb of a Silveroak tree. Perhaps the Druid
+who originally owned this powerful staff received it as a gift from the
+tree, for it is inconceivable that anyone would harm a Silveroak by
+cutting off a limb. The staff retains the tree's bark and shimmers brightly
+in the light.~
+~~
+vnum: 349
+location: -1
+values:
+0
+3
+10
+5
+0
+0
+0
+~
+flags: dmoprstuvwx abefgh
+name: mace mace-disruption-mace mace-unspeakable-power
+shortdesc: the mace of disruption
+desc: A mace of unspeakable power beckons the dead to the grave.
+type: 5
+weight: 4.00
+cost: 1000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+13 50
+27 3
+~
+extradesc: mace mace-disruption-mace mace-unspeakable-power
+This relatively simple mace is almost completely unadorned.  It is perfectly
+smooth simple steel on well-varnished wood, lacking almost any distinctive
+characteristics.  It radiates no magic, which is often the case of artifacts of
+supreme power.  A single inscription is written around the base of the mace
+head, where it attaches to the haft.~
+extradesc: inscription
+The inscription reads: "I am the phoenix who guides the souls to the
+Netherworld when they go forth.  " It is clear this mace serves one purpose and
+one purpose only: to send the souls of the unquiet dead back to their eternal
+rest.~
+triggers:
+317
+319
+305
+~
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 48407
+location: 127
+values:
+99
+53
+210
+44
+0
+0
+0
+~
+flags: ag 0
+name: decanter crystal-decanter
+shortdesc: a crystal decanter
+desc: A decanter made of crystal is here, sparkling in the light.
+type: 10
+weight: 0.80
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 12419
+location: 127
+values:
+500
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cast iron cauldron cast-iron-cauldron iron-cauldron
+shortdesc: a cast iron cauldron
+desc: Resting on its side is a cast iron cauldron.
+type: 15
+weight: 5.00
+cost: 4000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+24 -15
+4 5
+3 5
+23 -15
+27 4
+~
+extradesc: cast iron cauldron cast-iron-cauldron iron-cauldron
+Crudely smelted and cast to boil liquids, it is obvious this iron pot has been
+the origin of countless potions and mystic recipes over the years.  It looks
+like it would make a fine carrying vessel as well.~
+~~
+vnum: 18526
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: spade grave-spade sturdy-hand-shovel questobject
+shortdesc: a grave spade
+desc: A sturdy hand shovel stands impaled in the dirt.
+type: 8
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spade grave-spade sturdy-hand-shovel
+Instead of gardens, this well-worn hand shovel has been used to turn the earth
+over hundreds, if not thousands of graves.  It bears a red cross on white
+shield, the mark of the Abbey of St.  George west of the Mielikki farmlands.~
+triggers:
+320
+~
+~~

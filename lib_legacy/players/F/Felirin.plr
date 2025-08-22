@@ -1,0 +1,106 @@
+name: Felirin
+password: Fe2y37G6AH
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 11
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18832
+birthtime: 1425242171
+timeplayed: 74979
+lastlogintime: 1429716601
+host: 002.104.047.135
+height: 74
+weight: 164
+base_height: 74
+base_weight: 164
+base_size: 2
+natural_size: 2
+alignment: 150
+playerflags: y
+effectflags: 0 0 0
+prefflags: hxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 103/103
+mana: 10/10
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 68
+intelligence: 79
+wisdom: 85
+dexterity: 72
+constitution: 68
+charisma: 87
+cash: 0 187 747 781
+experience: 370119
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 100
+416 50
+423 83
+424 148
+438 50
+443 50
+444 100
+451 94
+457 120
+458 50
+459 50
+460 70
+462 50
+463 91
+466 50
+0 0
+trophy:
+1 41012 0.333333
+1 41006 0.333333
+1 41021 0.333333
+1 41015 0.666667
+1 41014 0.833333
+1 41007 0.666667
+1 41002 3.500000
+1 41011 0.833333
+1 41010 0.833333
+1 41003 4.666667
+1 41004 1.166667
+1 41008 1.333333
+1 41005 6.666668
+1 41009 1.166667
+1 41001 12.833329
+1 41013 2.000000
+0 0 0
+mem:
+16 1 4
+16 1 4
+16 1 4
+16 1 4
+16 1 4
+16 1 4
+16 1 4
+88 1 8
+88 1 8
+88 1 8
+0 0 0

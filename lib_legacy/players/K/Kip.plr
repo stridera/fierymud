@@ -1,0 +1,249 @@
+name: Kip
+password: KiDvEhikaz
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%df&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 2
+class: 20
+race: 9
+level: 99
+home: 3046
+lifeforce: 0
+composition: 0
+id: 14677
+birthtime: 1113717555
+timeplayed: 794722
+lastlogintime: 1334980381
+host: 070.170.088.071
+height: 61
+weight: 126
+base_height: 61
+base_weight: 126
+base_size: 2
+natural_size: 2
+alignment: -678
+playerflags: glxyz
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 3054
+hunger: 19
+thirst: 2
+lastlevel: 4
+hitpoints: 525/525
+mana: 980/980
+move: 114/114
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 92
+wisdom: 94
+dexterity: 86
+constitution: 84
+charisma: 82
+cash: 241 4610 22547 293
+experience: 105805999
+pagelength: 40
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+19 1000
+20 1000
+26 1000
+29 1000
+31 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+67 1000
+68 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+107 1000
+108 1000
+112 1000
+113 1000
+157 1000
+158 1000
+159 1000
+160 1000
+161 1000
+162 1000
+163 1000
+164 1000
+165 1000
+166 1000
+168 1000
+169 1000
+170 1000
+200 1000
+220 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 571
+447 1000
+451 1000
+452 528
+453 1000
+455 273
+458 1000
+459 1000
+460 1000
+462 1000
+464 1000
+0 0
+trophy:
+1 5210 1.500000
+1 5200 5.000000
+1 5211 4.000000
+1 5120 1.000000
+1 8020 0.500000
+1 8001 1.500000
+1 8016 1.000000
+1 8011 1.500000
+1 36003 1.000000
+1 36002 3.000000
+1 36001 2.500000
+1 2004 0.500000
+1 3508 0.500000
+1 3506 0.500000
+1 3509 1.500000
+1 3501 0.500000
+1 3503 0.500000
+1 3502 1.000000
+1 8015 2.000000
+1 8012 3.500000
+1 8023 1.500000
+0 0 0
+mem:
+52 1 1
+52 1 1
+52 1 1
+52 1 2
+62 1 1
+170 1 1
+170 1 1
+170 1 1
+170 1 1
+170 1 1
+168 1 1
+168 1 1
+168 1 1
+168 1 1
+168 1 1
+168 1 1
+20 1 2
+20 1 2
+100 1 2
+19 1 1
+157 1 1
+157 1 1
+99 1 1
+99 1 1
+99 1 1
+159 1 1
+31 1 1
+31 1 1
+31 1 1
+68 1 1
+107 1 1
+29 1 1
+29 1 1
+67 1 1
+162 1 1
+162 1 1
+112 1 2
+164 1 1
+26 1 1
+26 1 2
+166 1 1
+26 1 2
+39 1 2
+107 1 1
+31 1 1
+164 1 1
+162 1 1
+170 1 1
+68 1 1
+5 1 1
+19 1 2
+164 1 1
+166 1 1
+31 1 2
+62 1 1
+163 1 1
+26 1 2
+26 1 2
+162 1 1
+170 1 1
+170 1 2
+39 1 2
+57 1 1
+57 1 1
+105 1 1
+2 1 1
+2 1 1
+2 1 1
+113 1 2
+113 1 1
+166 1 1
+100 1 2
+158 1 2
+220 1 2
+2 1 2
+162 1 1
+68 1 2
+170 1 1
+164 1 1
+200 1 1
+200 1 1
+200 1 1
+108 1 1
+108 1 1
+165 1 1
+5 1 2
+5 1 2
+5 1 2
+5 1 1
+5 1 1
+0 0 0
+aliases:
+oo op door n
+ct cast 'telep'
+00 cast 'melt' door
+gac get all corpse
+m mount warhorse
+ec exa corpse
+ccc cast 'cremate'
+css cast 'stone sk' tryx
+ggc get all.coins corpse
+gg get all.coins
+ds drink skin
+gf get food bp; eat food
+cbh cast 'burning hands'
+cfd cast 'fire darts'
+1 cast 'deton'
+11 cast 'deton' $1
+2 cast 'dispel m'
+22 cast 'dispel m' $1
+3 cast 'pos field'
+33 cast 'pos field' $1
+4 cast 'acid burst'
+44 cast 'acid burst' $1
+fs fill skin fountain
+0

@@ -1,0 +1,62 @@
+name: Joshman
+password: Jo29UVeHNp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18907
+birthtime: 1427478310
+timeplayed: 61
+lastlogintime: 1427478391
+host: 071.082.143.028
+height: 45
+weight: 198
+base_height: 45
+base_weight: 198
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 q
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 30/30
+mana: 0/0
+move: 126/126
+damroll: 4
+hitroll: 5
+strength: 76
+intelligence: 77
+wisdom: 93
+dexterity: 82
+constitution: 75
+charisma: 61
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0

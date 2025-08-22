@@ -1,0 +1,120 @@
+name: Serik
+password: SeH9jRyyzm
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 9
+race: 6
+level: 26
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19159
+birthtime: 1492400735
+timeplayed: 96199
+lastlogintime: 1713696662
+host: 066.199.058.082
+height: 45
+weight: 197
+base_height: 45
+base_weight: 197
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxy
+effectflags: k w 0
+prefflags: hnouzC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 22
+lastlevel: 0
+hitpoints: 314/262
+mana: 67/67
+move: 162/171
+damroll: 4
+hitroll: 5
+strength: 97
+intelligence: 56
+wisdom: 63
+dexterity: 93
+constitution: 100
+charisma: 54
+cash: 70 2838 10174 7053
+experience: 3090363
+quit_reason: 1
+saveroom: 3054
+skills:
+401 300
+403 85
+404 57
+405 50
+408 56
+410 52
+411 300
+415 50
+416 50
+421 262
+438 50
+440 301
+443 50
+444 139
+463 50
+464 300
+465 50
+0 0
+trophy:
+1 8015 1.000000
+1 8012 1.000000
+1 18517 1.000000
+1 18550 1.000000
+1 18501 1.000000
+1 18551 1.000000
+1 8021 0.500000
+1 8010 0.500000
+1 8000 0.500000
+1 18552 1.000000
+1 18519 2.000000
+1 18509 0.500000
+1 18500 1.333333
+1 18507 4.500000
+1 18518 1.000000
+1 18520 2.500000
+1 18515 1.500000
+1 18512 2.000000
+1 18502 1.500000
+1 18513 2.833333
+1 18510 1.500000
+0 0 0
+tells:
+1698556439 @WLerik@W tells you, 'b@W'@0
+1698556441 @WLerik@W tells you, 'b@W'@0
+1698556448 @WLerik@W tells you, 'b@W'@0
+1698556526 @WLerik@W tells you, 'b@W'@0
+1698556552 @WLerik@W tells you, 'b@W'@0
+1698556567 @WLerik@W tells you, 'b@W'@0
+1698556727 @WLerik@W tells you, 'b@W'@0
+1698556735 @WLerik@W tells you, 'b@W'@0
+1698556808 @WLerik@W tells you, 'b@W'@0
+1698556815 @WLerik@W tells you, 'b@W'@0
+$
+gossips:
+1673752650 Lerik gossips, 'its south of town'
+1673752656 Chinok gossips, 'out the south exit from town'
+1673752678 Isiac gossips, 'meet at fountain in 1 min'
+1673752679 Hackwriter gossips, 'i though just gremlin area south'
+1673752680 Chinok gossips, 'commonly called (BFT) Blue Fog Trail'
+1673752689 Hackwriter gossips, 'ok'
+1673752769 Chinok gossips, 'gratz Pyran!!'
+1673752787 Gorath gossips, 'can i tag along ^_^'
+1673752815 Isiac gossips, 'if you want to gorath'
+1673753358 Chinok gossips, 'everyone doing OK ?'
+$
+aliases:
+az as zombie
+ask as skeleton
+kk as lerik
+gc g all.coins from corpse
+lc l in corpse
+aa as 2.zombie
+0

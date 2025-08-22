@@ -1,0 +1,110 @@
+name: Meeka
+password: MeHZsbOcZG
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b><&0&2%aA&2&b><&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 9
+race: 11
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20332
+birthtime: 1661177442
+timeplayed: 1195322
+lastlogintime: 1722544137
+host: 136.038.235.105
+height: 40
+weight: 92
+base_height: 40
+base_weight: 92
+base_size: 1
+natural_size: 1
+alignment: -1000
+playerflags: yz
+effectflags: fk 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 793/793
+mana: 980/980
+move: 274/274
+damroll: 3
+hitroll: 6
+strength: 81
+intelligence: 75
+wisdom: 76
+dexterity: 86
+constitution: 98
+charisma: 51
+cash: 6 25 344 225
+experience: 105564101
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+404 1000
+405 1000
+408 1000
+410 750
+411 1000
+412 1000
+415 1000
+416 1000
+418 1000
+420 1000
+421 1000
+438 1000
+440 1000
+443 1000
+444 1000
+463 1000
+464 1000
+465 1000
+477 1000
+0 0
+trophy:
+1 3067 0.750000
+1 3061 0.250000
+1 3060 0.250000
+0 0 0
+tells:
+1675104827 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1675106298 @WHackwriter@W tells you, 'i dont understand@W'@0
+1675106310 @WHackwriter@W tells you, 'ahh@W'@0
+1675952511 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1675953349 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1676047331 @WCalken@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
+1676316914 @WKra@W tells you, 'Ready.@W'@0
+1676567904 @WFecil@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
+1676567908 @WJulk@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
+1676568484 @WCalken@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
+$
+gossips:
+1696256290 Mardox gossips, 'oh I was thinking gate guards and stone castle mostly. staying away from the mages too'
+1696256303 Mersh gossips, 'the gate guards hit hard'
+1696256380 Thorfinn gossips, 'i found salt lollll'
+1696256385 Mersh gossips, 'junk it ;D'
+1696256388 Mardox gossips, 'dont use it'
+1696256392 Ulthar gossips, 'how about the peppercorn?'
+1696256405 Thorfinn gossips, 'is that near the salt?'
+1696256414 Ulthar gossips, 'oh, wait I know where the peppercorn is'
+1696256425 Thorfinn gossips, 'i need all the spices lol'
+1701229728 Discord gossips, 'Daedela: The damage holy/unholy weapons do'
+$
+aliases:
+gcc get all.coins all.corpse
+who who -w
+ec examine corpse
+ul unlock $*;open $*
+id get identify sack;recite identify $*
+of order followers $*
+df drink fountain
+tu tripup
+0

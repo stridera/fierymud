@@ -1,0 +1,334 @@
+#5300
+guardian grey grey-guardian~
+the Grey Guardian~
+The Grey Guardian is protecting this entrance.~
+This is one of the noble Grey Guardians, sworn to protect
+the Paladin's Guild at any cost. His life of fighting evil
+makes him a most worthy opponent!~
+2074 0 1000 E
+95 20 0 0d0+0 0d0+0
+0 0 0 0 0 53
+3 3 1 4 0 0 2
+Str: 81
+Dex: 73
+Int: 77
+Wis: 72
+Con: 30
+Cha: 82
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#5301
+knight grey grey-knight paladin guildmaster master~
+the Grey Knight~
+The Grey Knight, your guildmaster, is standing here.~
+This is your master, the legendary Grey Knight!
+
+He is large and tough looking. Battle-scarred and wizened
+by the years, you know the Grey Knight has been defending
+the innocent since long before you were born!~
+10266 1064 1000 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 53
+3 3 1 4 0 0 2
+Str: 86
+Dex: 82
+Int: 72
+Wis: 74
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55729
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#5302
+monk large powerful guardian guard~
+a powerful monk~
+A powerful monk blocks the entrance into the guild.~
+He stands here with his head up high.  He has mastered all of the skills which
+he desires and can conquer anything he chooses.  This monk would make for a
+most deadly opponent.    ~
+26 0 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 53
+3 3 1 13 9 0 2
+Str: 90
+Dex: 88
+Int: 68
+Wis: 76
+Con: 84
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#5303
+monk master guildmaster head-monk high most-high~
+the Head Monk~
+A peaceful monk, your guildmaster, is standing here.~
+This man has fought more demons than one could ever imagine.  He stands here
+full of confidence, knowing that his days of fighting are over, and his days of
+teaching have just begun.    ~
+536872970 1064 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 53
+3 3 1 13 17 0 2
+Str: 88
+Dex: 83
+Int: 62
+Wis: 66
+Con: 88
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55731
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#5304
+archive-guard bard-guard stern-looking-woman~
+an archive guard~
+A stern looking woman with pointed glasses watches the door to the archives.~
+This woman is dressed like a typical troubadour but something about her
+movements is jarring for a performer of this rank.  Perhaps she might be a
+loaner member from the Mercenary Guild rather than the Bard Guild.~
+-2013241318 40 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 53
+3 3 2 19 0 0 2
+Str: 77
+Dex: 94
+Int: 74
+Wis: 74
+Con: 79
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#5305
+master-herald bard guildmaster guild-master~
+the Master Herald~
+The Master Herald, head of the guild, hums as she reads some old music.~
+Brilliance and a knack for memorization helped elevate this woman to the head
+of the Order.  As head of the Order, it is her job to know and retell the
+lineages and titles of all the noble families in Caelia, as well as the
+protocols for greeting and announcing formal visitors to Grey Castle.  
+Additionally her elven lifespan allows for plenty of time for learning, making
+her an ideal knowledge keeper.  Her light but full voice pitch-perfectly
+carries the notes of the centuries-old sheet music she is reading through.~
+-1476370406 1064 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 53
+3 3 2 19 1 0 2
+Str: 93
+Dex: 99
+Int: 57
+Wis: 70
+Con: 72
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55738
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55705
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#5306
+Pumahl beast-master barbarian~
+Pumahl~
+Pumahl the Beast Master watches the hall.~
+Before you stands the great Beast Master Pumahl.  Long brown hair accentuates
+their lithe, firmly muscled body which is wrapped in an assortment of furs and
+hides.  Pumahl is thin for a barbarian, though still exceptionally tall for a
+humanoid.  They watch the Hall with the sharp focus of a trained tracker and an
+unnerving stillness uncommon to most barbarians.~
+2281955354 8 500 E
+99 0 0 0d0+0 0d0+0
+0 0 0 100000000 0 53
+3 3 3 6 10 0 3
+Str: 84
+Dex: 74
+Int: 73
+Wis: 81
+Con: 80
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 5310
+T 5311
+T 5312
+T 5313
+T 5317
+T 5319
+T 5333
+#5307
+Honus treasure-hunter extraorinaire man~
+Honus~
+Honus, Treasure Hunter extraordinaire, surveys the massive pile of wealth.~
+Standing at 6 feet tall with a lean, athletic build, Honus possesses an air of
+confident charm that draws attention wherever he goes.  His piercing hazel eyes
+are always alert, constantly scanning his surroundings for clues and hidden
+treasures.  Honus has a chiseled jawline and churlish smile that adds to his
+roguish appeal.  His short, tousled chestnut hair is hidden beneath a
+wide-brimmed hat that shields him from the elements during his daring
+expeditions.~
+2282479642 8 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 1000000 0 53
+3 3 1 18 0 0 2
+Str: 81
+Dex: 83
+Int: 70
+Wis: 78
+Con: 75
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 5320
+T 5321
+T 5322
+T 5323
+T 5325
+T 5326
+T 5328
+T 5330
+T 5331
+T 5334
+#5308
+Hakujo monk yamabushi wizened-old-monk~
+Hakujo~
+A wizened old monk maintains the mandala.~
+The wizened old man before you is the Keeper of the Mandala.  Hakujo's dress
+indicates he is not of the Grey Castle Order, but a Yamabushi, a mountain
+warrior monk, one of the esoteric orders of monks.  He is dressed in a
+billowing white robe which is tied up around the forearms and shins.  Over it
+he wears a voluminous tan sleeveless outer robe and gold-embroidered
+harness-collar with large red tufts which represent the climbing ropes
+Yamabushi use outdoors.  His long white hair and beard stand in stark contrast
+to his deep tan skin, a typical complexion for people from Odaishyozen.~
+2147639322 40 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 1000000 0 53
+3 3 1 13 0 0 2
+Str: 82
+Dex: 88
+Int: 70
+Wis: 74
+Con: 84
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 5335
+T 5336
+T 5337
+T 5338
+T 5340
+T 5341
+T 5343
+T 5344
+T 5345
+T 5354
+$

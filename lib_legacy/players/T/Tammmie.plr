@@ -1,0 +1,67 @@
+name: Tammmie
+password: Ta4AGRc5J7
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 3
+class: 18
+race: 32
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20577
+birthtime: 1690125351
+timeplayed: 1051
+lastlogintime: 1690126406
+host: 099.038.092.052
+height: 8
+weight: 8
+base_height: 8
+base_weight: 8
+base_size: 0
+natural_size: 0
+alignment: 986
+playerflags: y
+effectflags: u 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 9
+lastlevel: 0
+hitpoints: 23/23
+mana: 0/0
+move: 105/105
+damroll: 0
+hitroll: 6
+strength: 86
+intelligence: 80
+wisdom: 74
+dexterity: 94
+constitution: 90
+charisma: 62
+experience: 1101
+quit_reason: 3
+saveroom: 0
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+421 52
+438 50
+443 50
+444 50
+463 50
+464 53
+465 50
+493 50
+0 0
+trophy:
+1 3061 1.000000
+0 0 0
+tells:
+$
+gossips:
+$

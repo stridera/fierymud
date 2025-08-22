@@ -1,0 +1,83 @@
+1
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 36016
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: shirt bonemail-shirt bone-mail-shirt old-pile-small-bone-rings
+shortdesc: a bonemail shirt
+desc: An old pile of small bone rings lies heaped here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+applies:
+18 1
+~
+extradesc: bonemail-shirt bone-mail-shirt old-pile-small-bone-rings
+Gross!  This armor appears to me made of small circles of bone.  It seems
+rather protective though.    
+~
+~~
+vnum: 1017
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: tunic beige-cloth-tunic beige-length-cloth
+shortdesc: a beige cloth tunic
+desc: A beige length of cloth lies folded here.
+type: 9
+weight: 2.50
+cost: 2
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: beige-cloth-tunic beige-length-cloth
+This simple tunic is crafted from a rather boring beige cloth.  It isn't very
+thick, made more for style than for overall protection.  It wouldn't provide
+much protection, but it is certainly better than wearing nothing!  It's a
+one-size-fits-all model, so it should fit anyone.
+~
+~~

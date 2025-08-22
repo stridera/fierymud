@@ -1,0 +1,68 @@
+name: Tzawk
+password: TzEjNT67Ft
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 4
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19902
+birthtime: 1619223861
+timeplayed: 87
+lastlogintime: 1693251885
+host: 208.093.179.078
+height: 76
+weight: 194
+base_height: 76
+base_weight: 194
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: gxy
+effectflags: k w 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 29/25
+mana: 1/0
+move: 182/182
+damroll: 5
+hitroll: 4
+strength: 93
+intelligence: 58
+wisdom: 68
+dexterity: 97
+constitution: 99
+charisma: 52
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+$

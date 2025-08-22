@@ -1,0 +1,120 @@
+name: Kuragari
+password: KuUslFjAok
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 22
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19487
+birthtime: 1569779774
+timeplayed: 130848
+lastlogintime: 1592103415
+host: 076.014.030.036
+height: 36
+weight: 126
+base_height: 36
+base_weight: 126
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 239/239
+mana: 48/48
+move: 120/120
+damroll: 3
+hitroll: 6
+strength: 94
+intelligence: 82
+wisdom: 84
+dexterity: 100
+constitution: 94
+charisma: 82
+cash: 37 529 2509 2755
+experience: 2144968
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+405 59
+408 270
+411 1000
+415 50
+416 50
+421 93
+438 50
+443 50
+444 73
+464 268
+465 73
+467 50
+472 50
+0 0
+trophy:
+1 11701 0.142857
+1 11750 0.142857
+1 12003 0.500000
+1 62509 0.142857
+1 11710 0.428571
+1 2806 0.142857
+1 2808 0.714286
+1 11704 0.595238
+1 5510 0.666667
+1 5509 0.666667
+1 5508 1.333333
+1 5507 1.333333
+1 5506 0.666667
+1 5505 0.666667
+1 5504 1.000000
+1 5503 0.333333
+1 5502 1.000000
+1 5501 1.333333
+1 7003 2.000000
+1 7053 2.000000
+1 4106 0.333333
+0 0 0
+tells:
+1570425157 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1578372892 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1578376720 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1578376725 @WBigby@W tells you, 'You can only hold 1.@W'@0
+1578376725 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1578372337 Nauis gossips, 'i'm thinking i missed most of the folks on First Monday tonight?'
+1578372348 Meina gossips, 'we are it'
+1578372351 Meina gossips, 'lol'
+1578372360 Nauis gossips, 'gasp! sad day! ...wait, that came out wrong'
+1578372385 Nauis gossips, 'i'm sure some of you are very fine people *wink*'
+1578374247 Gennaire gossips, 'woohoo! hp broke 500!'
+1578374275 Nauis gossips, 'nice!'
+1578374286 Nauis gossips, 'Grats Gennie!'
+1578376695 Mejna gossips, 'did we all live?'
+1578376708 Nauis gossips, 'yeah'
+$
+effects:
+3 2 0 0 0 0 16384
+3 2 -12 24 0 0 0
+3 2 2 18 0 0 0
+0 0 0 0 0
+aliases:
+bs backstab $*
+; gt $*
+wa wake;stand
+fc follow $1;consent $1
+drink_alias drink skin
+eat_alias get 2 bread sack;eat bread;eat bread
+tac take all all.corpse
+bless cast bless $1
+0

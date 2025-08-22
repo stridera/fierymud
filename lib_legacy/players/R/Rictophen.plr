@@ -1,0 +1,47 @@
+name: Rictophen
+password: Riykr3cQRU
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 0
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19395
+birthtime: 1539907086
+timeplayed: 0
+lastlogintime: 1539907086
+host: 075.118.198.054
+height: 61
+weight: 91
+base_height: 61
+base_weight: 91
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 0/0
+mana: 100/100
+move: 100/100
+damroll: 0
+hitroll: 0
+strength: 81
+intelligence: 87
+wisdom: 90
+dexterity: 70
+constitution: 68
+charisma: 71
+experience: 0
+quit_reason: 0
+saveroom: 0
+skills:
+0 0

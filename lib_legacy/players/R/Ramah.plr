@@ -1,0 +1,126 @@
+name: Ramah
+password: RamMs/EVkr
+currenttitle: free range locally sourced organic
+prompt: &3&bPRODUCTION&0&5&b>&0 &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
+poofin: you realise that your not alone anymore.
+poofout: The air begins to quiver and you once again find yourself alone!
+autoinvis: 101
+sex: 1
+class: 6
+race: 3
+level: 102
+home: 3001
+lifeforce: 0
+composition: 7
+id: 17953
+birthtime: 1311445005
+timeplayed: 15414045
+lastlogintime: 1739062846
+host: 208.093.179.007
+height: 181
+weight: 533
+base_height: 82
+base_weight: 191
+base_size: 3
+natural_size: 4
+alignment: -602
+playerflags: y
+effectflags: ktux w q
+prefflags: himnosvAC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 103
+invislevel: 101
+loadroom: 1270
+lastlevel: 0
+hitpoints: 1619/1415
+mana: 1081/1081
+move: 168/168
+damroll: 7
+hitroll: 4
+strength: 100
+intelligence: 100
+wisdom: 100
+dexterity: 100
+constitution: 100
+charisma: 100
+cash: 100008355 67575 70452 76403
+experience: 300000006
+pagelength: 50
+clan: 3
+logview: 40
+wiztitle: &1&b Hunter&0
+quit_reason: 10
+saveroom: 1270
+trophy:
+1 3095 1.000000
+1 1263 1.000000
+1 5420 1.000000
+1 5408 2.000000
+1 8796 1.000000
+1 48911 1.000000
+1 48807 1.000000
+1 62507 1.000000
+1 12500 1.000000
+1 48920 3.000000
+1 5501 1.000000
+1 5512 1.000000
+1 5522 1.000000
+1 5521 1.000000
+1 5516 3.000000
+1 5515 1.000000
+1 5514 2.000000
+1 6103 2.000000
+2 18183 1.000000
+1 8034 1.000000
+1 23712 1.000000
+0 0 0
+tells:
+1574301782 @WXianga@W tells you, 'how long you been playing Fiery for?@W'@0
+1574303000 @WXianga@W tells you, 'did you know azkrael?@W'@0
+1574303089 @WXianga@W tells you, 'azkrael was an imm@W'@0
+1574303096 @WXianga@W tells you, 'if i remember correctly@W'@0
+1574303117 @WXianga@W tells you, 'created a few zones in fiery :)@W'@0
+1574303169 @WXianga@W tells you, 'ahh, always think of az when i go to farm :P@W'@0
+1574303193 @WXianga@W tells you, 'dairy farm if you do "look well" near the gate, has azkraels name on it :P created the zone@W'@0
+1574303205 @WXianga@W tells you, 'he put his name on the well lol@W'@0
+1574303333 @WXianga@W tells you, 'if you come to me, you can see the well@W'@0
+1738594622 @WChinok@W tells you, 'hi Ramah, sorry was on the phone@W'@0
+$
+gossips:
+1738771919 Anexis gossips, 'ha! goteem'
+1738771942 Flynt gossips, 'perfect timing'
+1738771948 Peegu gossips, 'nicely done'
+1738945963 Xawk gossips, 'the skill is called instant kill'
+1739060449 Anexis gossips, '*wave* what's up yalls?'
+1739060476 Xawk gossips, 'picking on a demi god or lokaris sidepiece i forget the lore'
+1739060478 Discord gossips, 'venath.2005: What's up ya sexy bish'
+1739060496 Chinok gossips, 'hey hey!'
+1739062239 Chinok gossips, 'gratz Risa and Antix'
+1739062245 Risa gossips, 'thx'
+$
+aliases:
+imminn 1270
+syslog show file syslog
+tedit trigedit $*
+towninn 3054
+helpme Wizhelp is the command to see godcommands
+databelt 1205
+zsave zedit save $*
+gac g all all.corpse
+:hortur: bjorn and kirams assassin
+make c 'mi cr' $*
+1216 quest board
+phase quest stat phase_armor $*
+rsave redit save $*
+osave oedit save $*
+msave medit save $*
+highlightnames is the name of the file to highlight names for pscan
+58339room just outside kod
+monkeyspit to exit snoop snoop without a target
+yhwolie iedit is how you make -1 items 
+0
+grants:
+rrestore Chinok 105
+pscan Strider 103
+~

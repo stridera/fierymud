@@ -1,0 +1,73 @@
+name: Tamarindo
+password: Tal.UTTkPN
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19500
+birthtime: 1578090811
+timeplayed: 3710
+lastlogintime: 1675972931
+host: 074.111.191.229
+height: 68
+weight: 139
+base_height: 68
+base_weight: 139
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 25/25
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 79
+wisdom: 73
+dexterity: 95
+constitution: 73
+charisma: 55
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+493 50
+0 0
+tells:
+$
+gossips:
+1578090945 Strider gossips, 'Everything working ok?'
+1578091026 Strider gossips, 'Have you tried changing the font size in prefs?'
+1578091083 Strider gossips, 'but not emco?'
+1578091106 Strider gossips, 'I keep thinking of submitting a pull request to mudlet to add control-scroll support for font size'
+1578091125 Strider gossips, 'or control +/-'
+1578091128 Chinok gossips, 'would make sense... works in most other programs'
+1578091131 Strider gossips, 'yeah'
+1675971871 Chinok gossips, 'welcome Tamarindo'
+1675971889 Chinok gossips, 'played here before ?'
+1675972041 Chinok gossips, 'ahhh, well welcome, let us know if you need any help or advice.'
+$

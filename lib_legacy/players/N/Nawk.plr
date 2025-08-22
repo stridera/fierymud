@@ -1,0 +1,120 @@
+name: Nawk
+password: NaVU8hs21A
+currenttitle: Nawk... &9&bWho's There?
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0) <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 2
+race: 6
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17296
+birthtime: 1236579514
+timeplayed: 1623872
+lastlogintime: 1739086189
+host: 208.093.179.007
+height: 75
+weight: 129
+base_height: 75
+base_weight: 129
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxyz
+effectflags: kt w 0
+prefflags: hnozC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1052/854
+mana: 980/980
+move: 138/138
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 74
+wisdom: 78
+dexterity: 100
+constitution: 96
+charisma: 58
+cash: 695 528 3311 1098
+experience: 105738881
+pagelength: 30
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+409 1000
+410 600
+411 1000
+412 1000
+415 1000
+416 1000
+420 1000
+421 1000
+431 50
+438 1000
+443 1000
+444 1000
+463 50
+464 1000
+465 1000
+472 50
+476 1000
+478 1000
+494 50
+0 0
+trophy:
+1 55216 2.000000
+1 48015 0.500000
+1 48017 0.666667
+1 55242 1.000000
+1 55231 1.000000
+0 0 0
+tells:
+1738180859 @WThort@W tells you, 'okay, I did find a trapdoor in one of the staircases next to the kingpriest. I think there's rats in it and another chest.@W'@0
+1738181071 @WThort@W tells you, 'aaaahhh.. yes and the hand. I remember this now. there's a skeleton in the room and you need to open his hand@W'@0
+1738181107 @WThort@W tells you, 'it's got the heartstone@W'@0
+1738181149 @WThort@W tells you, 'there chest was also empty, but locked. Weird.@W'@0
+1738183167 @WDavar@W tells you, 'Vawk requested i send a well Incoming@W'@0
+1738184886 @WDavar@W tells you, 'one gem please@W'@0
+1738185110 @WDavar@W tells you, 'one gem please@W'@0
+1738526497 @WDavar@W tells you, 'one gem please@W'@0
+1739068755 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739079618 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1738609960 Chinok gossips, 'that's the main stuff'
+1739070501 Chinok gossips, 'poor Nawk'
+1739070505 Chinok gossips, 'and gratz Risa'
+1739070530 Risa gossips, 'thx :)'
+1739070758 Chinok gossips, 'ROFL yeah, I have limited sympathy for you on that one :)'
+1739072807 Discord gossips, 'venath.2005: Brutha Kress'
+1739072811 Kresselack gossips, 'sup'
+1739072826 Chinok gossips, 'hey Kress'
+1739073397 Chinok gossips, 'gratz on 79!'
+1739073404 Anexis gossips, 'thank'
+1739077172 Anexis gossips, 'night fiery!'
+$
+aliases:
+dt drag teomner $*
+f flee
+t ass skeleton
+gac g all all.corpse
+dis disen
+z ass zombie
+gax g  all.coins all
+the_chestplate_of_hope regen
+tele recite teleport
+tel recite teleport
+doomtintercection nnnnwnn
+y ass traff
+yy ass skeleton
+0

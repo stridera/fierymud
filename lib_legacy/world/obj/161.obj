@@ -1,0 +1,143 @@
+#16100
+scimitar iron~
+a scimitar~
+A scimitar lies on the ground here.~
+~
+5 53489664 8193 10
+0 1 8 3 0 0 0
+2.00 200 0 0 0 0 0 0
+E
+scimitar iron~
+This scimitar is made of the finest steel in the land.  Its blade is keen and
+sharp.  ~
+A
+2 1
+X
+997
+#16101
+shield hide-shield camel-hide~
+a hide shield~
+A shield made of camel hide is on the ground.~
+~
+9 50335744 513 10
+4 0 0 0 0 0 0
+1.90 100 0 0 0 0 0 0
+E
+shield hide-shield camel-hide~
+Poorly constructed of rough wood with a thick layer of tightly stretched camel
+hide over it, this shield nevertheless does its job, standing between its
+wearer and attackers.  It appears to have seen quite the history of violence,
+with numerous gashes and dents in the hide, but still holds together somehow.~
+A
+5 1
+X
+225
+#16102
+saddle leather-saddle~
+a leather saddle~
+A leather saddle lies abandoned here.~
+~
+15 0 9 10
+200 0 -1 0 0 0 0
+8.00 100 0 0 0 0 0 0
+E
+leather-saddle~
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  ~
+A
+5 2
+#16103
+ring dull-sandstone-ring sand-stone~
+a sandstone ring~
+A dull sandstone ring lies in the dirt.~
+~
+8 2 3 15
+1 0 0 0 0 0 0
+0.20 2000 0 0 0 0 0 0
+T 5324
+T 5332
+E
+sandstone-ring dull sand-stone~
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  ~
+A
+18 1
+A
+1 3
+A
+5 2
+#16104
+lever small-lever scorp-level small-wooden-lever~
+a small lever~
+A small wooden lever lies on the ground here.~
+~
+18 4 1 5
+2 0 0 0 0 0 0
+0.60 0 0 0 0 0 0 0
+#16105
+staff ironwood-staff iron-wood sturdy-staff~
+an ironwood staff~
+A sturdy staff is propped against the wall.~
+~
+5 536870912 8193 10
+0 2 3 6 0 0 0
+2.00 100 0 0 0 0 0 0
+E
+staff ironwood-staff iron-wood sturdy-staff~
+This staff is made of an extremely hard and rare wood. It would make quite a 
+formidable weapon.~
+A
+18 2
+#16106
+scimitar gleaming-golden-scimitar gold~
+a golden scimitar~
+A gleaming golden scimitar lies upon a large rock.~
+~
+5 53489729 8193 10
+0 2 4 3 0 0 0
+2.00 1000 0 0 0 0 0 0
+E
+scimitar gleaming-golden-scimitar gold~
+This weapon seems to be made of pure gold.  It is however extremely light and
+has a very good balance.  ~
+A
+19 2
+X
+997
+#16107
+djembe weather-worn-drum desert-drum~
+a desert drum~
+A weather-worn drum rests in the sand.~
+An earthy rhythm beats from the desert drum.~
+30 0 1064961 25
+25 3 3 23 0 0 0
+1.50 0 0 0 0 0 0 0
+T 327
+E
+djembe weather-worn-drum desert-drum~
+This drum is fashioned from a single log of hardwood, carved into an
+upside-down vase shape.  A patch of animal skin is stretched tight across the
+wider end and lashed down with rope, forming a powerfully resonant drum head.~
+A
+17 2
+A
+5 3
+A
+27 1
+#16110
+sash small-bronze-sash bronze-colored-sash questobject~
+a small bronze sash~
+A bronze colored sash lies here, junked.~
+~
+8 0 2049 10
+0 0 0 0 0 0 0
+1.20 140 0 0 0 0 0 0
+T 5113
+E
+sash small-bronze-sash bronze-colored-sash questobject~
+This is just a small bronze piece of fabric, woven into a colorful sash.    ~
+A
+2 2
+A
+5 1
+$~

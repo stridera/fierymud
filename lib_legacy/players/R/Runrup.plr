@@ -1,0 +1,132 @@
+name: Runrup
+password: RuifHEwbbF
+prompt: <%hh(%HH) %vv(%VV)> <%aA> <%ih> <%df>%_<%t>:<%o>
+autoinvis: 0
+sex: 2
+class: 9
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17431
+birthtime: 1248568335
+timeplayed: 1308207
+lastlogintime: 1364684522
+host: 098.065.167.073
+height: 75
+weight: 183
+base_height: 75
+base_weight: 183
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: hnouxC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 1
+thirst: 14
+lastlevel: 0
+hitpoints: 840/840
+mana: 980/980
+move: 150/150
+damroll: 5
+hitroll: 4
+strength: 85
+intelligence: 69
+wisdom: 76
+dexterity: 94
+constitution: 86
+charisma: 54
+cash: 148 1062 6270 6866
+bank: 2432 26485 120519 116430
+experience: 104047861
+clan: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+7 1000
+47 1000
+48 1000
+49 1000
+58 1000
+63 1000
+65 1000
+69 1000
+71 1000
+78 1000
+81 1000
+98 1000
+104 1000
+108 1000
+113 1000
+127 1000
+128 1000
+130 1000
+138 1000
+143 1000
+167 1000
+176 1000
+178 1000
+179 1000
+181 1000
+189 1000
+191 1000
+210 1000
+212 1000
+401 1000
+403 1000
+404 1000
+405 1000
+408 1000
+410 1000
+411 1000
+412 1000
+415 1000
+416 1000
+418 904
+420 1000
+421 1000
+438 1000
+440 1000
+443 1000
+444 1000
+464 1000
+465 1000
+477 1000
+607 1000
+609 1000
+610 1000
+0 0
+trophy:
+1 55234 2.000000
+0 0 0
+aliases:
+ef eat food
+gafc g food all.corpse
+gfc g food corpse
+brep b reptilian
+aso ass sorak
+asv ass vidar
+eep emo eeps
+bhum b humanoid
+br b rabbit
+df drink fountain
+bh backstab hedgehog
+bg backstab gremlin
+kh kill hedgehog
+gr g food
+kk kick
+grdy emo cleans and sharpens her daggers.
+gac get all corpse
+kg kill gremlin
+ks kill skeleton
+db drink skin
+bs backstab skeleton
+sh say heal
+ascn ass cnas
+mh mount horse
+0

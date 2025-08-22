@@ -1,0 +1,114 @@
+name: Yago
+password: YaOaes4Ozv
+currenttitle: Nighthawk
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 9
+race: 0
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 15811
+birthtime: 1148918086
+timeplayed: 3137971
+lastlogintime: 1434393286
+host: 050.150.041.243
+height: 73
+weight: 134
+base_height: 73
+base_weight: 134
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 8050
+hunger: 23
+thirst: 22
+lastlevel: 11
+hitpoints: 871/871
+mana: 100/100
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 93
+intelligence: 85
+wisdom: 62
+dexterity: 98
+constitution: 69
+charisma: 58
+cash: 1 2 8 3
+bank: 200 500 0 0
+experience: 105805999
+pagelength: 50
+quit_reason: 7
+saveroom: 8050
+skills:
+401 1000
+403 401
+404 151
+405 169
+408 155
+410 750
+411 1000
+412 1000
+415 96
+416 445
+418 667
+420 1000
+421 1000
+438 55
+440 1000
+443 50
+444 50
+464 1000
+465 52
+477 50
+0 0
+trophy:
+1 43007 0.500000
+1 43006 0.500000
+1 43008 0.500000
+1 43019 1.000000
+1 43020 0.500000
+1 16109 0.500000
+1 16105 0.500000
+1 16103 1.500000
+1 16111 0.500000
+1 2002 1.000000
+1 2001 0.500000
+1 16110 8.500000
+1 16107 9.000000
+1 16106 3.500000
+1 18510 1.000000
+1 2806 0.500000
+1 2801 1.500000
+1 2802 1.000000
+1 2804 0.500000
+1 2808 0.500000
+1 11701 2.000000
+0 0 0
+aliases:
+as sulla
+22 b mild
+9 g all.bread; g all.bread all.corpse
+id recite identify $1
+6 pick door n
+2 gt hitall
+41 rem staff; rem staff
+55 g all all.corpse
+14 hold staff; hold staff
+11 wield shadows
+4 b drakling
+13 REM DAGGER; REM DAGGER
+5 g all.gem all.corpse
+8 drink skin; drink skin; eat bread; eat bread
+1 wield dagger; wield dagger
+` flee
+3 assist sulla
+0

@@ -1,0 +1,1291 @@
+#8600
+A Dry Dusty Path~
+   Fine particles of dust cover everything, making all that is seen an
+orangy-tan color.  This small path however is well traveled, with many small
+tracks littering it.  Given the dusty, dry composition of the ground, they must
+have been made very recently.
+~
+86 0 2
+D0
+~
+~
+0 0 8601
+D2
+~
+~
+0 0 8672
+S
+#8601
+A Dry Dusty Path~
+   Thick brush and scrub flank both sides of the path.  The tracks seem to be
+getting denser further down the trail.  Every now and again a strange creature
+can be heard barking in the distance.
+~
+86 0 2
+D2
+~
+~
+0 0 8600
+D3
+~
+~
+0 0 8602
+S
+#8602
+A Dry Dusty Path~
+   Thick brush and scrub flank both sides of the path.  The tracks seem to be
+getting denser further down the trail.  Every now and again a strange creature
+can be heard barking in the distance.
+~
+86 0 2
+D0
+~
+~
+0 0 8603
+D1
+~
+~
+0 0 8601
+S
+#8603
+A Dry Dusty Path~
+   Thick brush and scrub flank both sides of the path.  The tracks seem to be
+getting denser farther down the trail.  Every now and again a strange creature
+can be heard barking in the distance.  A little ways to the northwest, there
+seems to be a strange gate of some sorts.
+~
+86 0 2
+D0
+~
+~
+0 0 8604
+D2
+~
+~
+0 0 8602
+S
+#8604
+A Dry Dusty Path~
+   The path takes a strange and rather sudden turn to the east here, as if it
+were avoiding something.  At first glance there appears to be no reason for the
+change.  The thick scrub seems blocks any attempt to leave the path.    
+~
+86 0 2
+D0
+~
+scrub brush~
+1 0 8614
+D1
+~
+~
+0 0 8605
+D2
+~
+~
+0 0 8603
+S
+#8605
+A Dry Dusty Path~
+   Thick brush and scrub flank both sides of the path.  The tracks seem to be
+far more numerous here than before.  Every now and again a strange creature can
+be heard barking in the distance.  A little ways to the northwest, there seems
+to be a strange gate of some sorts.
+~
+86 0 2
+D0
+~
+~
+0 0 8606
+D3
+~
+~
+0 0 8604
+S
+#8606
+A Dry Dusty Path~
+   Thick brush and scrub flank both sides of the path.  The tracks seem to be
+far more numerous here than before.  Every now and again a strange creature can
+be heard barking in the distance.  A little ways to the northwest, there seems
+to be a strange gate of some sorts.
+~
+86 0 2
+D0
+~
+~
+0 0 8607
+D2
+~
+~
+0 0 8605
+S
+#8607
+A Dry Dusty Path~
+   The path here takes a sharp turn westwardly, and that gate can be better
+observed from this point.  A beautiful, albeit crude, path begins to the west.
+The creatures of this realm must be pretty resourceful to make such beauty come
+forth from such a barren land.    
+~
+86 0 2
+D1
+~
+~
+0 -1 8610
+D2
+~
+~
+0 0 8606
+D3
+~
+~
+0 0 8611
+S
+#8608
+A Dry Dusty Path~
+   The ground is slightly soggy, and a path runs east-west through the bushes.
+It seems to peter out to the east and become more distinct to the west.  It is
+impossible to see far due to the everpresent brush.
+~
+86 68 2
+D1
+~
+~
+0 0 7011
+D3
+~
+~
+0 0 8609
+S
+#8609
+A Dry Dusty Path~
+   Beautiful flowers and low growing ivy start to line the path now.  There are
+also statues and busts here, although they are not very aesthetically pleasing.
+The are crudely crafted, as if done by children.  But, they all seem to be very
+well taken care of, some even with decoration like they are worshipped or
+honored.    
+~
+86 0 2
+D1
+~
+~
+0 0 8608
+D3
+~
+~
+0 0 8610
+S
+#8610
+A Dry Dusty Path~
+   Beautiful flowers and low growing ivy start to line the path now.  There are
+also statues and busts here, although they are not very aesthetically pleasing.
+The are crudely crafted, as if done by children.  But, they all seem to be very
+well taken care of, some even with decoration like they are worshipped or
+honored.    
+~
+86 0 2
+D1
+~
+~
+0 0 8609
+D3
+~
+~
+0 0 8607
+S
+#8611
+A Dry Dusty Path~
+   Beautiful flowers and low growing ivy start to line the path now.  There are
+also statues and busts here, although they are not very aesthetically pleasing.
+The are crudely crafted, as if done by children.  But, they all seem to be very
+well taken care of, some even with decoration like they are worshipped or
+honored.    
+~
+86 0 2
+D1
+~
+~
+0 0 8607
+D3
+~
+~
+0 0 8612
+S
+#8612
+A Dry Dusty Path~
+   How beautiful!  The sweet smell of honeysuckle and roses float lazily by,
+filling the mind with images that are almost dreamlike in nature.  To the
+north, an arched trellis is covered with a multitude of brightly colored
+flowers, most of which you have never seen.  The creatures that reside here are
+definitely talented in the art and science of horticulture.    
+~
+86 0 2
+D0
+~
+~
+0 0 8613
+D1
+~
+~
+0 0 8611
+S
+#8613
+The Gates of the Kingdom of the Meer Cats~
+   Through the gates of the trellis a small complex of mounds can be seen.  
+Many creatures can be seen darting to and fro, occasionally rearing up on their
+hind legs, scouring the horizon for danger.  The sounds coming from inside this
+compound slightly resemble barks, although it's tough to classify them one way
+or the other.
+~
+86 4 2
+D0
+A beautiful arched wooden trellis is covered with various flowers.
+~
+trellis~
+1 8600 8615
+D2
+~
+~
+0 0 8612
+E
+trellis~
+A beautiful arched wooden trellis is covered with various flowers.
+~
+S
+#8614
+A Coyote's Den~
+   The strong smells of musk and urine fill this dark, cramped den.  Hundreds
+of bones, heavily gnawed, are strewn around the ground.  It is extremely
+difficult to see anything, but it is quite obvious that this den is not empty.
+~
+86 8 0
+D2
+~
+scrub brush~
+1 0 8604
+S
+#8615
+Outer Courtyard -Southwest~
+   This outer path of the courtyard is composed very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D0
+~
+~
+0 0 8616
+D1
+~
+~
+0 0 8638
+D2
+A beautiful arched wooden trellis is covered with various flowers.
+~
+trellis~
+1 8600 8613
+S
+#8616
+Outer Courtyard -West~
+   This outer path of the courtyard is comprised very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D0
+~
+~
+0 0 8617
+D2
+~
+~
+0 0 8615
+S
+#8617
+Outer Courtyard -West~
+   Evenly spaced around the outskirts of this courtyard, four dirt mounds can
+be seen.  The are composed of solidly packed earth.  They look as though they
+can be easily scaled, and since there is no way around them, there doesn't seem
+to be much of a choice.    
+~
+86 0 2
+D2
+~
+~
+0 0 8616
+D4
+~
+~
+0 0 8618
+S
+#8618
+A Dirt Mound~
+   High atop this dirt mound, the surrounding countryside can be fully
+appreciated.  Nearby to the east is the forest town of Mielikki.  To the east
+sits an open aired room, bustling with creatures.  Even from this distance the
+decoration of the open aired area seems more elaborate.
+~
+86 0 4
+D0
+~
+~
+0 0 8639
+D1
+~
+~
+0 0 8643
+D5
+~
+~
+0 0 8617
+S
+#8619
+Outer Courtyard -West~
+   This outer path of the courtyard is comprised very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D0
+~
+~
+0 0 8620
+D4
+~
+~
+0 0 8639
+S
+#8620
+Outer Courtyard -West~
+   This outer path of the courtyard is comprised very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D0
+~
+~
+0 0 8621
+D2
+~
+~
+0 0 8619
+S
+#8621
+Outer Courtyard -Northwest~
+   The path takes a sharp turn here.  A little ways from here, another dirt
+mound pokes high above the ground.  Very dense scrub and brush provides an
+effective 'fence' of sorts, keeping danger out.    
+~
+86 0 2
+D1
+~
+~
+0 0 8622
+D2
+~
+~
+0 0 8620
+S
+#8622
+Outer Courtyard -North~
+   This outer path of the courtyard is comprised very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D1
+~
+~
+0 0 8623
+D3
+~
+~
+0 0 8621
+S
+#8623
+Outer Courtyard -North~
+   Evenly spaced around the outskirts of this courtyard, four dirt mounds can
+be seen.  The are composed of solidly packed earth.  They look as though they
+can be easily scaled, and since there is no way around them, there doesn't seem
+to be much of a choice.    
+~
+86 0 2
+D3
+~
+~
+0 0 8622
+D4
+~
+~
+0 0 8624
+S
+#8624
+A Dirt Mound~
+   High atop this dirt mound, the surrounding countryside can be fully
+appreciated.  Nearby to the east is the forest town of Mielikki.  To the south
+sits an open aired room, bustling with creatures.  Even from this distance the
+decoration of the open aired area seems more elaborate.
+~
+86 0 4
+D1
+~
+~
+0 0 8640
+D2
+~
+~
+0 0 8647
+D5
+~
+~
+0 0 8623
+S
+#8625
+Outer Courtyard -North~
+   This outer path of the courtyard is comprised very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D1
+~
+~
+0 0 8626
+D4
+~
+~
+0 0 8640
+S
+#8626
+Outer Courtyard -North~
+   This outer path of the courtyard is comprised very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D1
+~
+~
+0 0 8627
+D3
+~
+~
+0 0 8625
+S
+#8627
+Outer Courtyard -Northeast~
+   The path takes a sharp turn here.  A little ways from here, another dirt
+mound pokes high above the ground.  Very dense scrub and brush provides an
+effective 'fence' of sorts, keeping danger out.    
+~
+86 0 2
+D2
+~
+~
+0 0 8628
+D3
+~
+~
+0 0 8626
+S
+#8628
+Outer Courtyard -East~
+   This outer path of the courtyard is comprised very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D0
+~
+~
+0 0 8627
+D2
+~
+~
+0 0 8629
+S
+#8629
+Outer Courtyard -East~
+   Evenly spaced around the outskirts of this courtyard, four dirt mounds can
+be seen.  The are composed of solidly packed earth.  They look as though they
+can be easily scaled, and since there is no way around them, there doesn't seem
+to be much of a choice.    
+~
+86 0 2
+D0
+~
+~
+0 0 8628
+D4
+~
+~
+0 0 8630
+S
+#8630
+A Dirt Mound~
+   High atop this dirt mound, the surrounding countryside can be fully
+appreciated.  Far to the south is the beautiful city of Anduin.  To the west
+sits an open aired room, bustling with creatures.  Even from this distance the
+decoration of the open aired area seems more elaborate.    
+~
+86 0 4
+D2
+~
+~
+0 0 8641
+D3
+~
+~
+0 0 8651
+D5
+~
+~
+0 0 8629
+S
+#8631
+Outer Courtyard -East~
+   This outer path of the courtyard is comprised very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D2
+~
+~
+0 0 8632
+D4
+~
+~
+0 0 8641
+S
+#8632
+Outer Courtyard -East~
+   This outer path of the courtyard is comprised very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D0
+~
+~
+0 0 8631
+D2
+~
+~
+0 0 8633
+S
+#8633
+Outer Courtyard -Southeast~
+   The path takes a sharp turn here.  A little ways from here, another dirt
+mound pokes high above the ground.  Very dense scrub and brush provides an
+effective 'fence' of sorts, keeping danger out.    
+~
+86 0 2
+D0
+~
+~
+0 0 8632
+D3
+~
+~
+0 0 8634
+S
+#8634
+Outer Courtyard -South~
+   This outer path of the courtyard is comprised very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D1
+~
+~
+0 0 8633
+D3
+~
+~
+0 0 8635
+S
+#8635
+Outer Courtyard -South~
+   Evenly spaced around the outskirts of this courtyard, four dirt mounds can
+be seen.  The are composed of solidly packed earth.  They look as though they
+can be easily scaled, and since there is no way around them, there doesn't seem
+to be much of a choice.    
+~
+86 0 2
+D1
+~
+~
+0 0 8634
+D4
+~
+~
+0 0 8636
+S
+#8636
+A Dirt Mound~
+   High atop this dirt mound, the surrounding countryside can be fully
+appreciated.  Far to the south is the beautiful city of Anduin.  To the north
+sits an open aired room, bustling with creatures.  Even from this distance the
+decoration of the open aired area seems more elaborate.    
+~
+86 0 4
+D0
+~
+~
+0 0 8655
+D3
+~
+~
+0 0 8642
+D5
+~
+~
+0 0 8635
+S
+#8637
+Outer Courtyard -South~
+   This outer path of the courtyard is composed very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D3
+~
+~
+0 0 8638
+D4
+~
+~
+0 0 8642
+S
+#8638
+Outer Courtyard -South~
+   This outer path of the courtyard is composed very simply of dirt and small
+rocks.  The meer cat peoples are not masters of various and exotic
+technologies, but there is a subtle beauty to their world.
+~
+86 0 2
+D1
+~
+~
+0 0 8637
+D3
+~
+~
+0 0 8615
+S
+#8639
+A Dirt Mound~
+   High atop this dirt mound, the surrounding countryside come be fully
+appreciated.  Nearby to the east is the forest town of Mielikki.  Immediately
+to the east, a small hole sits surrounded by many tracks.
+~
+86 0 4
+D1
+~
+~
+0 0 8646
+D2
+~
+~
+0 0 8618
+D5
+~
+~
+0 0 8619
+S
+#8640
+A Dirt Mound~
+   High atop this dirt mound, the surrounding countryside come be fully
+appreciated.  Nearby to the east is the forest town of Mielikki.  Immediately
+to the south, a small hole sits surrounded by many tracks.
+~
+86 0 4
+D2
+~
+~
+0 0 8650
+D3
+~
+~
+0 0 8624
+D5
+~
+~
+0 0 8625
+S
+#8641
+A Dirt Mound~
+   High atop this dirt mound, the surrounding countryside come be fully
+appreciated.  Nearby to the east is the forest town of Mielikki.  Immediately
+to the west, a small hole sits surrounded by many tracks.
+~
+86 0 4
+D0
+~
+~
+0 0 8630
+D3
+~
+~
+0 0 8654
+D5
+~
+~
+0 0 8631
+S
+#8642
+A Dirt Mound~
+   High atop this dirt mound, the surrounding countryside come be fully
+appreciated.  Far to the south is the beautiful city of Anduin.  Immediately to
+the north, a small hole sits surrounded by many tracks.    
+~
+86 0 4
+D0
+~
+~
+0 0 8658
+D1
+~
+~
+0 0 8636
+D5
+~
+~
+0 0 8637
+S
+#8643
+A Dirt Mound~
+   Twenty feet below lies a relatively decorated path that leads toward the
+center of this complex.  There also lies a small hole to the north that is
+inacessible from here.    
+~
+86 0 4
+D3
+~
+~
+0 0 8618
+D5
+~
+~
+0 0 8644
+S
+#8644
+The Court Promenade~
+   Beautiful, small stones lines the path towards what appears to be an open
+aired court of some type.  There are many small creatures darting around in
+this court.  There is a sense of urgency in everyone, and everything.    
+~
+86 0 10
+D1
+~
+~
+0 0 8645
+D4
+~
+~
+0 0 8643
+S
+#8645
+An Open-Aired Court~
+   Crudely cut stones pave the ground here in what seems to be a monument of
+some type.  In the center of the court sits a very attractive fountain with a
+statue on top.  Other then that the surroundings are rather mundane.    
+~
+86 0 1
+D0
+~
+~
+0 0 8663
+D1
+~
+~
+0 0 8666
+D3
+~
+~
+0 0 8644
+S
+#8646
+Entrance to the Inner World of the Meer Cats~
+   Many little tracks litter the ground.  A small hole in the ground here
+descends into the darkness below.  A small rack sits here, filled with what
+looks like sharpened sticks.  A rotted wooden sign sits here.    
+~
+86 0 4
+D3
+~
+~
+0 0 8639
+D5
+~
+~
+0 0 8659
+E
+rotted wooden sign~
+It reads:
+All is quiet on all fronts. Enjoy the peace and prosperity brought to us by the king.
+~
+S
+#8647
+A Dirt Mound~
+   Twenty feet below lies a relatively decorated path that leads toward the
+center of this complex.  There also lies a small hole to the east that is
+inacessible from here.    
+~
+86 0 4
+D0
+~
+~
+0 0 8624
+D5
+~
+~
+0 0 8648
+S
+#8648
+The Court Promenade~
+   Beautiful, small stones lines the path towards what appears to be an open
+aired court of some type.  There are many small creatures darting around in
+this court.  There is a sense of urgency in everyone, and everything.    
+~
+86 0 10
+D2
+~
+~
+0 0 8649
+D4
+~
+~
+0 0 8647
+S
+#8649
+An Open-Aired Court~
+   Crudely cut stones pave the ground here in what seems to be a monument of
+some type.  In the center of the court sits a very attractive fountain with a
+statue on top.  Other then that the surroundings are rather mundane.    
+~
+86 0 1
+D0
+~
+~
+0 0 8648
+D1
+~
+~
+0 0 8664
+D2
+~
+~
+0 0 8663
+S
+#8650
+Entrance to the Inner World of the Meer Cats~
+   A small hole in the ground here descends into the darkness below.  The
+ground here seems very heavily traveled.  A small stone wall, about three feet
+high, gives the impression that this is a fortification of some sorts.    
+~
+86 0 4
+D0
+~
+~
+0 0 8640
+D5
+~
+~
+0 0 8660
+S
+#8651
+A Dirt Mound~
+   Twenty feet below lies a relatively decorated path that leads toward the
+center of this complex.  There also lies a small hole to the south that is
+inacessible from here.    
+~
+86 0 4
+D1
+~
+~
+0 0 8630
+D5
+~
+~
+0 0 8652
+S
+#8652
+The Court Promenade~
+   Beautiful, small stones lines the path towards what appears to be an open
+aired court of some type.  There are many small creatures darting around in the
+court.  There is a sense of urgency in everyone, and everything.    
+~
+86 0 10
+D3
+~
+~
+0 0 8653
+D4
+~
+~
+0 0 8651
+S
+#8653
+An Open-Aired Court~
+   Crudely cut stones pave the ground here in what seems to be a monument of
+some type.  In the center of the court sits a very attractive fountain with a
+statue on top.  Other then that the surroundings are rather mundane.    
+~
+86 0 1
+D1
+~
+~
+0 0 8652
+D2
+~
+~
+0 0 8665
+D3
+~
+~
+0 0 8664
+S
+#8654
+Entrance to the Inner World of the Meer Cats~
+   A small hole in the ground here descends into the darkness below.  The
+ground here seems very heavily traveled.  There are two raised platforms, that
+would give one a commanding view of the city.  A small sign sits above the
+entrance to the hole.    
+~
+86 0 4
+D1
+~
+~
+0 0 8641
+D5
+~
+~
+0 0 8661
+E
+small sign~
+It reads:
+Next guard meeting 15:00.
+Next training-- day of the coyote, 06:00
+
+Captain of the Guard
+~
+S
+#8655
+A Dirt Mound~
+   Twenty feet below lies a relatively decorated path that leads toward the
+center of this complex.  There also lies a small hole to the north that is
+inacessible from here.    
+~
+86 0 4
+D2
+~
+~
+0 0 8636
+D5
+~
+~
+0 0 8656
+S
+#8656
+The Court Promenade~
+   Beautiful, small stones lines the path towards what appears to be an open
+aired court of some type.  There are many small creatures darting around in the
+court.  There is a sense of urgency in everyone, and everything.    
+~
+86 0 10
+D0
+~
+~
+0 0 8657
+D4
+~
+~
+0 0 8655
+S
+#8657
+An Open-Aired Court~
+   Crudely cut stones pave the ground here in what seems to be a monument of
+some type.  In the center of the court sits a very attractive fountain with a
+statue on top.  Other then that the surroundings are rather mundane.    
+~
+86 0 1
+D0
+~
+~
+0 0 8665
+D2
+~
+~
+0 0 8656
+D3
+~
+~
+0 0 8666
+S
+#8658
+Entrance to the Inner World of the Meer Cats~
+   A small hole in the ground here descends into the darkness below.  
+Beautiful purple fabric lines three of the walls and a coarse tan colored
+fabric acts as a roof, giving it some insulation from the elements, which can
+be very extreme in this region.  A sign sits here, ornately decorated and
+golden in color.    
+~
+86 0 4
+D2
+~
+~
+0 0 8642
+D5
+~
+~
+0 0 8662
+E
+sign golden~
+It reads:
+Residence of the King and Queen of the MeerCats, meetings by appointment only.
+NO Trespassing!!!
+~
+S
+#8659
+Entrance to the Warriors Barracks~
+   The hides of many animals line the walls as the trophies of past victories.
+Many weapons and shields hang proudly on the walls as well.  Some of these
+items are prized war tools, others are trophies seized from enemies long dead
+and forgotten.
+~
+86 8 0
+D4
+~
+~
+0 0 8646
+S
+#8660
+A Worker's Hovel~
+   The conditions in this living space are extremely harsh.  A small reed or
+straw mat is on the ground, in the middle of the room.  A crudely constructed
+table with some loose parchment littered across it is here.  There is a small
+path that leads toward the west, which must be where the populace lives, but is
+is far too small to be entered.    
+~
+86 8 0
+D4
+~
+~
+0 0 8650
+S
+#8661
+The Guards' Dining Hall~
+   This room contains very little decoration.  A small weapons rack and some
+racks with uniform-like clothing sit along the wall.  A large dining room table
+sits here with some fresh, hot food on it.  There is a path that extends away
+to the east, but it is far to small to enter.    
+~
+86 8 0
+D4
+~
+~
+0 0 8654
+S
+#8662
+The Royal Residence~
+   Opulent purple tapestries line this beautiful, yet simply decorated room.  
+A huge painting of the royal family hangs prominently on the wall.  Three
+carved chairs sit in the corner, one raised slightly higher then the other two.
+A passage way extends to the west, but it is far too small to be entered.    
+~
+86 12 0
+D4
+~
+~
+0 0 8658
+S
+#8663
+An Open-Aired Court~
+   Crudely cut stones pave the ground here in what seems to be a monument of
+some type.  In the center of the court sits a very attractive fountain with a
+statue on top.  Other then that the surroundings are rather mundane.    
+~
+86 0 1
+D0
+~
+~
+0 0 8649
+D1
+~
+~
+0 0 8667
+D2
+~
+~
+0 0 8645
+S
+#8664
+An Open-Aired Court~
+   Crudely cut stones pave the ground here in what seems to be a monument of
+some type.  In the center of the court sits a very attractive fountain with a
+statue on top.  Other then that the surroundings are rather mundane.    
+~
+86 0 1
+D1
+~
+~
+0 0 8653
+D2
+~
+~
+0 0 8667
+D3
+~
+~
+0 0 8649
+S
+#8665
+An Open-Aired Court~
+   Crudely cut stones pave the ground here in what seems to be a monument of
+some type.  In the center of the court sits a very attractive fountain with a
+statue on top.  Other then that the surroundings are rather mundane.    
+~
+86 0 1
+D0
+~
+~
+0 0 8653
+D2
+~
+~
+0 0 8657
+D3
+~
+~
+0 0 8667
+S
+#8666
+An Open-Aired Court~
+   Crudely-cut stones pave the ground here in what seems to be a monument of
+some type.  In the center of the court sits a very attractive fountain with a
+statue on top.  Other than that, the surroundings are rather mundane.
+~
+86 0 1
+D0
+~
+~
+0 0 8667
+D1
+~
+~
+0 0 8657
+D3
+~
+~
+0 0 8645
+S
+#8667
+MeerCat Court Fountain~
+   The ground here is constructed of perfectly polished granite or something
+similar.  The ground is also spotless, the creatures of this realm must take
+great care in its upkeep.    
+~
+86 0 1
+D0
+~
+~
+0 0 8664
+D1
+~
+~
+0 0 8665
+D2
+~
+~
+0 0 8666
+D3
+~
+~
+0 0 8663
+S
+#8668
+A Dry Dusty Path~
+   A path leads north.  Its southern end comes to an abrupt end here at a
+screen of trees, which obscures the lands to the south.  A narrow break leads
+through the trees.  A small wooden building lies off to the east.  No entrances
+are visible here.
+~
+86 68 2
+D0
+~
+~
+0 0 8669
+D2
+~
+~
+0 0 8021
+S
+#8669
+A Dry Dusty Path~
+   A dusty path leads through the woods here along the eastern flank of a low
+earthen ridge.  From the markings on the path, traffic would appear to be
+light.  The path continues north and south.
+~
+86 0 2
+D0
+~
+~
+0 0 8670
+D2
+~
+~
+0 0 8668
+S
+#8670
+A Dry Dusty Path~
+   This is the north end of a low earthen ridge.  A path leads south along it.
+At this point it turns east to avoid an impenetrable wood, for this is the
+middle of a forest.  A small building lies off in the distance to the
+southeast.
+~
+86 0 2
+D1
+~
+~
+0 0 8671
+D2
+~
+~
+0 0 8669
+S
+#8671
+A Dry Dusty Path~
+   This is a path of fine, dry, tan-colored dirt.  It leads east-west through
+the middle of a deep forest.  The path appears little-traveled but in good
+repair.
+~
+86 0 2
+D1
+~
+~
+0 0 8672
+D3
+~
+~
+0 0 8670
+S
+#8672
+A Dry Dusty Path~
+   A path runs through the forest here.  To the north, the trees seem to be
+thinning.  The path also continues west.  A very fine dirt blows about and
+coats everything, giving all seen an orange-tan blanket of earth.
+~
+86 0 2
+D0
+~
+~
+0 0 8600
+D3
+~
+~
+0 0 8671
+S
+$~

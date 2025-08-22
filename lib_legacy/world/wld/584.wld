@@ -1,0 +1,3076 @@
+#58400
+A Deep Forest's Edge~
+   Perched on the very cliff of the tallest mountain in the Syric Range, where
+the forest tapers away, this part of the land has a magnificent view of the
+lands immediately surrounding it.  Purple mountain peaks stand all around to
+the north and south, with the Caelian Region spreading far below.  The
+evergreen forest itself is dense and dark, thinning only right at the edge of
+the cliff.    
+~
+584 0 3
+D3
+The forest continues, thick and mysterious.
+~
+~
+0 -1 58543
+S
+#58401
+A Deep Forest's Edge~
+   The evergreen forest of ancient trees thins and tapers off here, at a steep
+cliff.  Beyond the cliff, purple mountains rise up far away.  This mountain is
+the largest one, but all of them are huge.  Below, far below, the countryside
+around the ranges is visible.  To the north, the forest opens up enough to
+allow passage.    
+~
+584 0 3
+D0
+The forest continues.
+~
+~
+0 -1 58416
+S
+#58402
+A Deep Forest's Edge~
+   The evergreen forest to the east tapers off here, on the very edge of a
+steep cliff that overlooks the rest of the Syric Mountain Range and even the
+surrounding countryside.  The crisp, clear air is a frigid wind this far up the
+mountain.  The only way away from the cliff is a break in the forest to the
+east.    
+~
+584 0 3
+D1
+The forest's edge continues.
+~
+~
+0 -1 58403
+S
+#58403
+A Deep Forest's Edge~
+The forest tapers off here, at the edge of a very steep cliff overlooking
+other mountains and, far below, the surrounding countryside. Frigid winds
+buffet the few saplings that grow here. It is possible to enter the forest
+to the north and west.
+~
+584 0 3
+D0
+The forest continues.
+~
+~
+0 -1 58418
+D3
+The forest's edge continues.
+~
+~
+0 -1 58402
+S
+#58404
+A Deep Forest's Edge~
+Perched on the very cliff of the tallest mountain in the Syric Range, 
+this evergreen forest has a magnificent view of the lands immediately
+surrounding it. Purple mountain peaks poke up out of the mists here and
+there, far away. A frigid, crisp wind blows strongly here. The forest
+itself is dense and dark, to the north and east. 
+~
+584 0 3
+D0
+The forest continues.
+~
+~
+0 -1 58437
+D1
+The forest continues.
+~
+~
+0 -1 58405
+S
+#58405
+A Deep Forest~
+   The evergreen trees crowd closely together, as if commemorating some
+remarkable event that happened long ago.  It's quite chilly up here, you notice
+immediately; this must be because of the higher altitude.  The forest itself is
+a fairly narrow semicircle that curves around the side of a mountain, a peak
+you can feel all around you, as if it were a living creature.    
+~
+584 0 3
+D1
+The forest continues to the east.
+~
+~
+0 -1 58406
+D3
+The forest continues in its circular flow around the mountain.
+~
+~
+0 -1 58404
+S
+#58406
+A Deep Forest~
+   The evergreen trees crowd closely together, as if commemorating some
+remarkable event that happened long ago.  It's quite chilly up here, you notice
+immediately; this must be because of the higher altitude.  The forest itself is
+a fairly narrow semicircle that curves around the side of a mountain, a peak
+you can feel all around you, as if it were a living creature.    
+~
+584 0 3
+D0
+You see a footpath to the north.
+~
+~
+0 -1 58441
+D2
+The forest continues to the south, circling the mountain.
+~
+~
+0 -1 58535
+D3
+The forest continues to the west.
+~
+~
+0 -1 58405
+S
+#58407
+A Crude Footpath~
+   This crudely-made dirt path runs through the middle of a large, old forest.
+Though the path is mostly clear of debris, here and there grass grows right in
+its center.  Thick evergreen boughs from the trees overhang the way all along
+here.  The path runs to the north and east.    
+~
+584 0 2
+D0
+The path continues to the north a short distance.
+~
+~
+0 -1 58442
+D1
+The path continues for a ways to the east, up against the side of the
+mountain.
+~
+~
+0 -1 58408
+S
+#58408
+A Crude Footpath~
+   This path seems fairly recent, since grass still grows here and there in it,
+though branches and debris are largely absent from it.  Thick evergreen trees
+blot out most of the light from above, The path runs to the east and west,
+while you can also enter the forest to the south.    
+~
+584 0 2
+D1
+The trail continues to the east for a ways, up against the side of
+the mountain.
+~
+~
+0 -1 58409
+D2
+The forbiddingly dark and magical forest lies southward.
+~
+~
+0 -1 58537
+D3
+The path continues a short distance to the west.
+~
+~
+0 -1 58407
+S
+#58409
+A Crude Footpath~
+   This narrow, packed-earth path runs through a large, ancient forest.  Grass
+still grows here and there in it, though branches and debris are largely absent
+from view.  Thick evergreen trees blot out most of the light from above with
+their overhanging branches.  You notice that you're up against the very face of
+the mountain, which rises above you.  The path runs to the east and west for a
+distance.    
+~
+584 0 2
+D1
+The path continues a ways.
+~
+~
+0 -1 58410
+D3
+The path continues a ways.
+~
+~
+0 -1 58408
+S
+#58410
+A Crude Footpath~
+   This path seems fairly recent, since grass still grows here and there in it,
+though at least whoever made the path cleared away most of the branches and
+debris.  Thick evergreen trees blot out any light from above, making the trail
+seem dark and mysterious.  You notice that you're up against the very face of
+the mountain, which rises above you.  The path runs to the east and west.    
+~
+584 0 2
+D1
+The path continues.
+~
+~
+0 -1 58411
+D3
+The path continues for quite a distance.
+~
+~
+0 -1 58409
+S
+#58411
+A Crude Footpath~
+   This path seems fairly recent, since grass still grows here and there in it,
+though at least whoever made the path cleared away most of the branches and
+debris.  Thick evergreen trees blot out any light from above, making the trail
+seem dark and mysterious.  You notice that you're up against the very face of
+the mountain, which rises above you.  The path runs to the west for a distance,
+while it also branches out to the south.    
+~
+584 0 2
+D2
+The path continues to the south for a ways.
+~
+~
+0 -1 58540
+D3
+The path continues on to the west for a ways.
+~
+~
+0 -1 58410
+S
+#58412
+A Crude Footpath~
+   This path seems fairly recent, since grass still grows here and there in it,
+though at least whoever made the path cleared away most of the branches and
+debris.  Thick evergreen trees blot out any light from above, making the trail
+seem dark and mysterious.  You notice that you're up against the very face of
+the mountain, which rises above you.  The path runs to the east for a distance,
+while it also branches out to the south.    
+~
+584 0 10
+D1
+The path extends to the east for quite a ways.
+~
+~
+0 -1 58413
+D2
+The path continues for a ways to the south.
+~
+~
+0 -1 58541
+S
+#58413
+A Crude Footpath~
+   This path seems fairly recent, since grass still grows here and there in it,
+though at least whoever made the path cleared away most of the branches and
+debris.  Thick evergreen trees blot out any light from above, making the trail
+seem dark and mysterious.  You notice that you're up against the very face of
+the mountain, which rises above you.  The path runs to the east a ways and to
+the west.    
+~
+584 0 2
+D1
+The path continues a long way to the east.
+~
+~
+0 -1 58414
+D2
+You can leave the path and enter a dark, magical forest to the south.
+~
+~
+0 -1 58542
+D3
+The path continues a short way before turning out of sight.
+~
+~
+0 -1 58412
+S
+#58414
+A Crude Footpath~
+   This path seems fairly recent, since grass still grows here and there in it,
+though at least whoever made the path cleared away most of the branches and
+debris.  Thick evergreen trees blot out any light from above, making the trail
+seem dark and mysterious.  You notice that you're up against the very face of
+the mountain, which rises above you.  The path runs to the east a ways, and to
+the south and west.    
+~
+584 0 2
+D1
+The path continues a long way to the east.
+~
+~
+0 -1 58415
+D2
+You can leave the path and enter a dark, magical forest to the south.
+~
+~
+0 -1 58543
+D3
+The path continues a short way before turning out of sight.
+~
+~
+0 -1 58413
+S
+#58415
+A Crude Footpath~
+   This path seems fairly recent, since grass still grows here and there in it,
+though at least whoever made the path cleared away most of the branches and
+debris.  Thick evergreen trees blot out any light from above, making the trail
+seem dark and mysterious.  You notice that you're up against the very face of
+the mountain, which rises above you.  The path runs to the east and west for a
+ways.    
+~
+584 0 2
+D1
+The path continues a short way before turning out of sight.
+~
+~
+0 -1 58416
+D3
+The path continues a long way to the west.
+~
+~
+0 -1 58414
+S
+#58416
+A Crude Footpath~
+   This path seems fairly recent, since grass still grows here and there in it,
+though at least whoever made the path cleared away most of the branches and
+debris.  Thick evergreen trees blot out any light from above, making the trail
+seem dark and mysterious.  You notice that you're up against the very face of
+the mountain, which rises above you.  The path runs to the east and west, while
+you can also enter the forest to the south.    
+~
+584 0 2
+D1
+The path continues a short way before turning out of sight.
+~
+~
+0 -1 58417
+D2
+You can leave the path and enter a dark, magical forest to the south.
+~
+~
+0 -1 58401
+D3
+The path continues a long way to the west.
+~
+~
+0 -1 58415
+S
+#58417
+A Crude Footpath~
+   This path seems fairly recent, since grass still grows here and there in it,
+though at least whoever made the path cleared away most of the branches and
+debris.  Thick evergreen trees blot out any light from above, making the trail
+seem dark and mysterious.  The path runs to the north and west.    
+~
+584 0 2
+D0
+The path continues, curving around the side of the mountain.
+~
+~
+0 -1 58420
+D3
+The path continues against the mountainside.
+~
+~
+0 -1 58416
+S
+#58418
+A Deep Forest~
+   The evergreen trees crowd closely together, as if commemorating some
+remarkable event that happened long ago.  It's quite chilly up here, you notice
+immediately; this must be because of the higher altitude.  The forest itself is
+a fairly narrow semicircle that curves around the side of a mountain, a peak
+you can feel all around you, as if it were a living creature.    
+~
+584 0 3
+D0
+You see a footpath to the north. Beyond that, the cliff wall of the 
+mountain rises, cold and implacable.
+~
+~
+0 -1 58421
+D1
+The forest continues.
+~
+~
+0 -1 58419
+D2
+The forest continues to the south.
+~
+~
+0 -1 58403
+S
+#58419
+The Edge of a Dark Forest~
+   This forest is composed mostly of evergreen trees that stand very close
+together in the semidarkness of tightly-interlaced branches.  It's quite cold,
+this high up the mountains.  You stand on the edge of a cliff, looking out over
+majestic vistas.  The forest ends just as suddenly as the cliff begins.  It's
+quite high up here, high enough that you have an excellent view of the
+surrounding mountains and other features of the land.    
+~
+584 0 3
+D0
+A game trail is visible from here.
+~
+~
+0 -1 58422
+D3
+The forest continues to the west.
+~
+~
+0 -1 58418
+S
+#58420
+A Crude Footpath~
+   This path seems fairly recent, since grass still grows here and there in it,
+though at least whoever made the path cleared away most of the branches and
+debris.  Thick evergreen trees blot out any light from above, making the trail
+seem dark and mysterious.  The path runs to the south and east.    
+~
+584 0 2
+D1
+The path continues to the east a ways. Beyond that, you see the
+mysterious forest.
+~
+~
+0 -1 58421
+D2
+The path continues a short distance before curving out of view.
+~
+~
+0 -1 58417
+S
+#58421
+A Crude Footpath~
+   This path seems fairly recent, since grass still grows here and there in it,
+though at least whoever made the path cleared away most of the branches and
+debris.  Thick evergreen trees blot out any light from above, making the trail
+seem dark and mysterious.  The path runs to the east and west.    
+~
+584 0 2
+D1
+The path continues.
+~
+~
+0 -1 58422
+D2
+You can leave the path for the forest.
+~
+~
+0 -1 58418
+D3
+The path continues.
+~
+~
+0 -1 58420
+S
+#58422
+A Crude Footpath~
+   This simple little dirt path runs through a large forest.  Ancient evergreen
+trees overhang the path with their branches, filtering out most of the light
+and casting shadows onto the path itself.  Grass grows here and there, though
+there are few stones or other debris.  The path runs to the north and west.  
+~
+584 0 2
+D0
+The path continues, curving out of sight.
+~
+~
+0 -1 58425
+D1
+You can leave the path for the forest here.
+~
+~
+0 -1 58423
+D2
+You can leave the path for the forest here.
+~
+~
+0 -1 58419
+D3
+The path continues.
+~
+~
+0 -1 58421
+S
+#58423
+A Deep Forest's Edge~
+   The forest borders a steep cliff in a thick, bushy tangle of branches and
+trunks, with the chilly air blowing past them.  Below, down the cliff, other
+mountains rise up through the clouds, though none is as tall as this mountain.
+A faint, glowing path leads to the east, though it is difficult to make out
+clearly.    
+~
+584 0 3
+D1
+A faint, glowing path runs to the east.
+~
+~
+0 -1 58424
+D3
+A path runs just west of here.
+~
+~
+0 -1 58422
+S
+#58424
+A Cliffside Altar~
+   This ledge stands at the edge of an ancient evergreen forest.  Tiny
+footsteps run through the dirt here, leading up to an altar made of obsidian
+glass.  The jet-dark glass is made into thick sheets that seem to cover
+something that decomposed inside it long ago into bones, though by now the
+bones are so badly worn that no one could tell what creature they were in life.
+Other than that, this is a very simple altar, at the very edge of a monstrously
+steep cliff.    
+~
+584 0 3
+D0
+The forest's edge continues.
+~
+~
+0 -1 58427
+D3
+A glowing path runs to the west.
+~
+~
+0 -1 58423
+S
+#58425
+A Crude Footpath Up Against a Steep Mountain~
+   This little dirt path runs through a thick, evergreen forest, skirting the
+edge of the mountain.  Grass grows here and there in it, though it is largely
+free of other debris.  Thick evergreen branches overhang the trail and also
+filter out most of the light from above.  The path runs to the south and east.
+~
+584 0 2
+D1
+The path continues before curving out of sight to the east.
+~
+~
+0 -1 58426
+D2
+The path continues before curving out of sight to the south.
+~
+~
+0 -1 58422
+S
+#58426
+A Crude Footpath~
+   A simple little path runs through a thick forest, skirting the edge of the
+mountain.  Though grass grows in it here and there, it is mostly free of
+debris.  Thick evergreen branches blot out most of the light from above.  The
+path runs to the north and west.    
+~
+584 0 2
+D0
+The path ends to the north.
+~
+~
+0 -1 58428
+D3
+The path bends to the west, following the curve of the mountain.
+~
+~
+0 -1 58425
+S
+#58427
+The King's Sacrifice~
+   A glowing path leads to a stone tablet standing in the middle of a thick,
+forest glade.  Magical-seeming fireflies dance around the tablet, illumining it
+very gently.  The trees form a little grove around the tablet, which is made of
+white marble, mounted on a base of dark marble.  The flat circle, about as wide
+across as a human is tall, is engraved deeply, obviously as a marker of some
+sort, though to what, you cannot tell from here.    
+~
+584 0 3
+D0
+The forest continues to the north.
+~
+~
+0 -1 58429
+D2
+A glowing path leads to the south.
+~
+~
+0 -1 58424
+E
+mural carvings three figures~
+One figure is of someone who is clearly a king, dressed in royal
+robes and wearing a crown. Beside him stands a woman who is just
+as clearly his queen -- and your breath catches in your throat
+at her raw majesty and power. This is no fainting flower of a
+woman, but, rather, a warrioress with clear and obvious strengths.
+She must be one of the most powerful fighters of her age. Standing
+in front of the first two is a youth, his face full of hope and
+joy -- and power of his own. Though the tablet is old, their
+expressions are not weathered away; you can see that they are a
+proud and regal family.
+~
+E
+circle stone tablet marker~
+The stone tablet is circular in shape. Its diameter is easily the
+length of a man's body. Made of elegant marble, it is carved with
+three proud humanoid figures.
+~
+S
+#58428
+A Crude Footpath Up Against a Mountain~
+   This narrow, primitive path skirts the very edge of a tall mountain that
+rises to the north.  The path seems to end here in a last spurt of
+trail-ishness, and beyond it, the forest itself takes over.  There is no
+obvious reason for it to end, except for the density of the ancient evergreen
+trees themselves.    
+~
+584 0 3
+D0
+The forest continues to the north.
+~
+~
+0 -1 58460
+D2
+The path continues to the south.
+~
+~
+0 -1 58426
+S
+#58429
+A Deep Forest~
+   This dark forest of evergreens is dense and difficult to walk through.  The
+air is cold, and the light fitful, coming down through the thick branches of
+the trees as it does.  To the south, you see the trees give way for a grove of
+some kind, while, to the north and east, the forest continues.    
+~
+584 0 3
+D0
+The forest continues for a ways.
+~
+~
+0 -1 58431
+D1
+The forest ends at a ledge to the east.
+~
+~
+0 -1 58430
+D2
+A circular stone tablet stands to the south.
+~
+~
+0 -1 58427
+S
+#58430
+The Edge of a Deep Forest~
+   This part of the forest skirts the edge of a huge cliff that falls away to
+the south through valleys.  The crisp, cold wind brings no noises of animals or
+birds, though it does whistle slightly as it passes by the large evergreen
+trees.  Passage is difficult; the only visible way through here is to the west.
+~
+584 0 3
+D3
+The forest continues.
+~
+~
+0 -1 58429
+S
+#58431
+A Deep Forest~
+   Tall, stark evergreens make up this thick forest, their branches
+twining together to cast shadows down to the ground. The sky is impossible
+to see from below those trees. There is no path per se through them, but
+there are narrow openings one may squeeze through to the east and south.
+~
+584 0 3
+D1
+The forest continues.
+~
+~
+0 -1 58432
+D2
+The forest continues.
+~
+~
+0 -1 58429
+S
+#58432
+The Edge of a Deep Forest~
+   Thick trees clustered close together end abruptly at the edge of a steep
+cliff that careers straight down into mist.  You can't tell what's at the
+bottom!  The ledge is circular in shape, you determine, girdling a tall
+mountain that rises far to the west.    
+~
+584 0 3
+D0
+The forest's edge continues.
+~
+~
+0 -1 58435
+D3
+The forest continues. Not far away, you see a steep cliff.
+~
+~
+0 -1 58431
+S
+#58433
+A Deep Forest Up Against a Mountain~
+   This enchanted forest -- for it is clearly under some kind of ancient spell
+-- circles the highest mountain in the entire Syric Mountain Range like a
+ribbon.  Here it comes up against the edge of the mountain itself.  You can run
+your hands along the mountain's steep surface and admire how it rises so far
+above your head that it skims the clouds.  The forest is tapering off here.  
+~
+584 0 3
+D1
+The forest continues.
+~
+~
+0 -1 58434
+D2
+The forest continues.
+~
+~
+0 -1 58460
+S
+#58434
+A Deep Forest Up Against a Mountain~
+   This enchanted forest -- for it is clearly under some kind of ancient spell
+-- circles the highest mountain in the entire Syric Mountain Range like a
+ribbon.  Here it comes up against the edge of the mountain itself.  You can run
+your hands along the mountain's steep surface and admire how it rises so far
+above your head that it skims the clouds.  The mountain slopes very steeply up
+to the north, making it impossible for the trees to grow.    
+~
+584 0 3
+D1
+The forest continues.
+~
+~
+0 -1 58435
+D3
+The forest continues.
+~
+~
+0 -1 58433
+S
+#58435
+A Deep Forest's Edge~
+   Evergreen trees make up this part of the dense forest.  Their boughs filter
+out most of the light from above.  A frigid wind whistles through them.  The
+ground slopes upward gently, swelling toward the north.    
+~
+584 0 3
+D0
+The forest ends to the north.
+~
+~
+0 -1 58436
+D2
+The forest's edge continues.
+~
+~
+0 -1 58432
+D3
+The forest continues.
+~
+~
+0 -1 58434
+S
+#58436
+A Deep Forest Up Against a Mountain~
+   This large, ancient evergreen forest circles the highest mountain in the
+entire Syric Mountain Range like a ribbon.  Here it comes up against the edge
+of the mountain itself.  The bare mountain itself rises up into the clouds.  
+The forest ends here, where the mountain's slope is so steep, to the north,
+that it cannot support tree life.    
+~
+584 0 3
+D2
+The forest continues.
+~
+~
+0 -1 58435
+S
+#58437
+The Edge of a Deep Forest~
+   This magical forest of evergreens ends at a sheer cliff face that slopes off
+to the south.  There's no way to climb down it, and even if you could, you
+can't lay odds that you'd survive the rocky chasm that you think is the floor
+of the valley.  The mountain itself rises to the north; the trees cover its
+slope for the most part.    
+~
+584 0 3
+D0
+The forest continues to the north.
+~
+~
+0 -1 58444
+D2
+The forest edge continues to the south.
+~
+~
+0 -1 58404
+S
+#58439
+A Crude Footpath~
+   This little trail runs to the north and east through a large, dense
+evergreen forest.  Grass grows here and there in it, though it is free of other
+debris.  Some of the trees near the path are nicked by what looks for all the
+world like blade-cuts.    
+~
+584 0 2
+D0
+The footpath continues for a ways.
+~
+~
+0 -1 58445
+D1
+The footpath continues.
+~
+~
+0 -1 58441
+S
+#58440
+A Deep Forest Up Against a Mountain~
+   This large, evergreen forest circles a narrow flat stretch of land that
+girdles the mountain before it slopes upward again.  The light filters down
+through the branches of the trees, casting shadows on the ground.  The way is
+clear to the north and west.    
+~
+584 0 3
+D0
+The forest ends to the north.
+~
+~
+0 -1 58458
+D3
+The forest continues.
+~
+~
+0 -1 58456
+S
+#58441
+A Crude Footpath~
+   This path leads through an enchanted forest.  At first you think that it
+must be fairly recent, since it appears so rarely-traveled, but that can't be
+so -- the trees are so carefully arranged around the path.  Just beyond the
+confines of the narrow dirt path, rusted helmets, chain vests, and swords can
+be seen rotting on the ground.    
+~
+584 0 2
+D0
+You see a burned wooden object to the north, in the forest.
+~
+~
+0 -1 58446
+D1
+The footpath continues.
+~
+~
+0 -1 58442
+D2
+You can leave the footpath and enter the mysterious forest.
+~
+~
+0 -1 58406
+D3
+The footpath continues.
+~
+~
+0 -1 58439
+E
+helmets chain vests swords~
+They're not in any particular order -- in fact, they appear to have
+been tossed onto the ground randomly. Moss and plants grow up around
+and through most of them.
+~
+S
+#58442
+A Crude Footpath~
+   This footpath hugs the edge of a steeply sloping mountain that rises to the
+north, far above your head.  The forest crowds around the path, seeming almost
+enchanted.    
+~
+584 0 2
+D2
+The path continues to the south, curving out of sight.
+~
+~
+0 -1 58407
+D3
+The path continues on to the west for a short distance.
+~
+~
+0 -1 58441
+S
+#58443
+A Deep Forest~
+   This large, dark evergreen forest is so dense that the only way through it
+from here is to the north.  The cold mountain wind whistles through the topmost
+branches of the evergreens.  The trees have sharp nicks and cuts in their bark,
+visible even from far away.    
+~
+584 0 3
+D0
+The forest continues to the north.
+~
+~
+0 -1 58447
+S
+#58444
+A Deep Forest~
+   The evergreen trees crowd closely together in this ancient forest.  
+Mountain wind blows crisp and clean through the old trees.  The forest itself
+is a fairly narrow semicircle that curves around the side of a huge mountain.
+Aside from the wind itself, this place is utterly quiet.    
+~
+584 0 3
+D1
+You see a footpath to the east.
+~
+~
+0 -1 58445
+D2
+The forest continues to the south.
+~
+~
+0 -1 58437
+S
+#58445
+A Crude Footpath~
+   This narrow little footpath is mostly bare of debris and branches, but grass
+still grows here and there along its length.  The pine trees that surround it
+on both sides are lightly dusted with frost, and sometimes some white flakes
+blow onto the trail the branches overhang.    
+~
+584 0 2
+D0
+The footpath continues to the north.
+~
+~
+0 -1 58449
+D1
+You see a burned, broken down object to the east.
+~
+~
+0 -1 58446
+D2
+The footpath continues to the south.
+~
+~
+0 -1 58439
+D3
+You can leave the path and explore the forest to the west.
+~
+~
+0 -1 58444
+S
+#58446
+The Site of an Ancient Battle~
+   You enter a little grove.  The trees stand in a semicircle around a burned
+and broken wooden wagon.  The wagon is of the type gypsies and merchants use to
+transport people and goods.  But now it's so blackened by fire that the only
+way you can tell it's a wagon's husk is the presence of some rusted-out
+iron-reinforced wheels around it.  A few broken swords lie around, more
+testimony to the ancient battle.    
+~
+584 0 3
+D2
+You see a footpath running just south of here.
+~
+~
+0 -1 58441
+D3
+You see a footpath running just west of here.
+~
+~
+0 -1 58445
+S
+#58447
+The Edge of a Deep Forest~
+   This part of the forest borders the very edge of a steep downward cliff.  
+The mountain the trees encircle rises far above the forest to the north.  You
+have a magnificent view of the panoramaic vista below and before you.
+~
+584 0 3
+D0
+The forest continues to the north.
+~
+~
+0 -1 58450
+D1
+The forest continues to the east.
+~
+~
+0 -1 58448
+D2
+The forest's border continues to the south.
+~
+~
+0 -1 58443
+S
+#58448
+A Deep Forest~
+   The evergreen trees crowd closely together, as if commemorating some
+remarkable event that happened long ago.  It's quite chilly up here, you notice
+immediately; this must be because of the higher altitude.  The forest itself is
+a fairly narrow semicircle that curves around the side of a mountain, a peak
+you can feel all around you, as if it were a living creature.    
+~
+584 0 3
+D0
+The forest continue sto the north.
+~
+~
+0 -1 58451
+D3
+The forest continues to the west.
+~
+~
+0 -1 58447
+S
+#58449
+A Crude Footpath's End~
+   This narrow little footpath is mostly bare of debris and branches, but you
+suspect it's been a long time since anyone walked on it.  It ends here, in a
+cluster of pine needles and loose, moist earth.  The forest extends in all
+directions -- but there is nothing in sight that this path could have been
+leading toward.    
+~
+584 0 2
+D0
+You can enter a stand of trees to the north.
+~
+~
+0 -1 58452
+D2
+The footpath continues.
+~
+~
+0 -1 58445
+S
+#58450
+The Edge of a Deep Forest~
+   Dense, evergreen trees form the cliffside ledge of a narrow band of level
+ground around a huge mountain that rises to the north.  It's quite cold, with a
+frigid wind blowing through the branches of the ancient trees.  Other than the
+sound of the wind, it is utterly quiet.    
+~
+584 0 3
+D2
+The forest's edge continues.
+~
+~
+0 -1 58447
+S
+#58451
+A Deep Forest~
+   The evergreen trees crowd closely together, so close that traveling is
+almost difficult.  Though most light is blocked out, somehow a chill wind
+manages to whistle through the trees.  The forest itself is a fairly narrow
+semicircle that curves around the side of a mountain, but nobody could see the
+mountain's peak through all of the branches crowding out the sky.    
+~
+584 0 3
+D0
+The forest continues to the north, circling around the mountain.
+~
+~
+0 -1 58453
+D1
+The forest continues to the east.
+~
+~
+0 -1 58452
+D2
+The forest continues to the south.
+~
+~
+0 -1 58448
+S
+#58452
+A Deep Forest Up Against a Mountain~
+   The evergreen forest juts up against the side of a steep mountain that rises
+far above your head, into the clouds.  The forest itself encircles the mountain
+like a ribbon.  The trees are huge, probably hundreds of years old.    
+~
+584 0 3
+D0
+The forest continues.
+~
+~
+0 -1 58454
+D2
+You see a footpath to the south.
+~
+~
+0 -1 58449
+D3
+The forest continues.
+~
+~
+0 -1 58451
+S
+#58453
+The Edge of a Deep Forest~
+   These dense, evergreen trees form the cliffside ledge of a narrow band of
+level ground around a huge mountain that rises to the north.  It's quite cold
+up here, with a frigid mountain wind whistling through the branches of the
+large trees.  Other than the noise of the wind, however, the forest is utterly
+quiet.    
+~
+584 0 3
+D2
+The forest continues.
+~
+~
+0 -1 58451
+S
+#58454
+A Deep Forest Up Against a Mountain~
+   The evergreen forest juts up against the side of a steep mountain that rises
+far above your head, into the clouds.  The forest itself encircles the mountain
+like a ribbon.  The trees are huge, probably hundreds of years old.    
+~
+584 0 3
+D0
+The forest continues to the north.
+~
+~
+0 -1 58456
+D2
+The forest continues to the south.
+~
+~
+0 -1 58452
+S
+#58455
+The Edge of a Deep Forest~
+   These dense, evergreen trees form the cliffside ledge of a narrow band of
+level ground around a huge mountain that rises to the north.  It's quite cold
+up here, with a frigid mountain wind whistling through the branches of the
+large trees.  Other than the noise of the wind, however, the forest is utterly
+quiet.    
+~
+584 0 3
+D1
+The forest thickens and deepens to the east.
+~
+~
+0 -1 58456
+S
+#58456
+A Deep Forest~
+   These dense, evergreen trees form the cliffside ledge of a narrow band of
+level ground around a huge mountain that rises to the north.  It's quite cold
+up here, with a frigid mountain wind whistling through the branches of the
+large trees.  Other than the noise of the wind, however, the forest is utterly
+quiet.    
+~
+584 0 3
+D0
+The forest seems to end to the north.
+~
+~
+0 -1 58457
+D1
+The forest seems to end to the east.
+~
+~
+0 -1 58440
+D2
+The forest continues.
+~
+~
+0 -1 58454
+D3
+The forest continues to the west.
+~
+~
+0 -1 58455
+S
+#58457
+A Deep Forest's End~
+   These dense, evergreen trees form the cliffside ledge of a narrow band of
+level ground around a huge mountain that rises to the north.  It's quite cold
+up here, with a frigid mountain wind whistling through the branches of the
+large trees.  Other than the noise of the wind, however, the forest is utterly
+quiet.  The trees thin out as the cliff of the mountain rises to the north, far
+too steeply to climb or even to support tree life.    
+~
+584 0 3
+D1
+The forest's edge continues.
+~
+~
+0 -1 58458
+D2
+The forest continues to the south.
+~
+~
+0 -1 58456
+S
+#58458
+A Deep Forest's End~
+   These dense, evergreen trees form the cliffside ledge of a narrow band of
+level ground around a huge mountain that rises to the north.  It's quite cold
+up here, with a frigid mountain wind whistling through the branches of the
+large trees.  Other than the noise of the wind, however, the forest is utterly
+quiet.  The trees thin out as the cliff of the mountain rises to the north, far
+too steeply to climb or even to support tree life.    
+~
+584 0 3
+D1
+The forest's edge continues, ending to the east.
+~
+~
+0 -1 58459
+D2
+The forest's edge continues to the south.
+~
+~
+0 -1 58440
+D3
+The forest's edge continues, ending to the west.
+~
+~
+0 -1 58457
+S
+#58459
+A Deep Forest's End~
+   These dense, evergreen trees form the cliffside ledge of a narrow band of
+level ground around a huge mountain that rises to the north.  It's quite cold
+up here, with a frigid mountain wind whistling through the branches of the
+large trees.  Other than the noise of the wind, however, the forest is utterly
+quiet.  The trees thin out as the cliff of the mountain rises to the north, far
+too steeply to climb or even to support tree life.    
+~
+584 0 3
+D3
+The forest's edge continues.
+~
+~
+0 -1 58458
+S
+#58460
+A Very Steep Climb~
+   This cliff is part of a mountain that rises to the west and south.  It's
+just barely climbable.  Trees cluster around in a half-circle to the north,
+while a footpath begins to the south.    
+~
+584 0 3
+D0
+The forest seems to end to the north.
+~
+~
+0 -1 58433
+D2
+A footpath begins to the south.
+~
+~
+0 -1 58428
+D4
+You can climb a steep slope above, though you can't tell what lies
+up there.
+~
+~
+0 -1 58461
+S
+#58461
+A Quiet Wood~
+   Trees cover the sloping top of a very tall mountain that towers over the
+rest of the peaks in the Syric Mountain Range.  The trees are dark evergreens.
+They're a little on the thin side -- not very fully limbed.  The mist on the
+mountain wafts around the trees, shrouding them and half-obscuring them.    
+~
+584 4 3
+D3
+The forest continues.
+~
+~
+0 -1 58462
+D5
+A steep cliff heads down, into a forest.
+~
+~
+0 -1 58460
+S
+#58462
+A Quiet Wood~
+   Trees cover the sloping top of a very tall mountain that towers over the
+rest of the peaks in the Syric Mountain Range.  The trees are dark evergreens.
+They're a little on the thin side -- not very fully limbed.  The mist on the
+mountain wafts around the trees, shrouding them and half-obscuring them.    
+~
+584 0 3
+D0
+The forest continues a short distance.
+~
+~
+0 -1 58467
+D1
+The forest continues a short distance, ending at a cliff.
+~
+~
+0 -1 58461
+D2
+The forest continues a short distance.
+~
+~
+0 -1 58463
+S
+#58463
+A Quiet Wood~
+   Trees cover the sloping top of a very tall mountain that towers over the
+rest of the peaks in the Syric Mountain Range.  The trees are dark evergreens.
+They're a little on the thin side -- not very fully limbed.  The mist on the
+mountain wafts around the trees, shrouding them and half-obscuring them.  The
+slope of the mountain heads downward to the south, but it is so steep that
+passage is impossible.    
+~
+584 0 3
+D0
+The woods continue a short distance.
+~
+~
+0 -1 58462
+D3
+The woods continue for quite a ways. It seems like someone has blazed
+a trail through the dark trees.
+~
+~
+0 -1 58464
+S
+#58464
+A Quiet Wood~
+   Trees cover the sloping top of a very tall mountain that towers over the
+rest of the peaks in the Syric Mountain Range.  The trees are dark evergreens.
+They're a little on the thin side -- not very fully limbed.  The mist on the
+mountain wafts around the trees, shrouding them and half-obscuring them.    
+~
+584 0 3
+D0
+The woods continue a short distance before they become impassible.
+~
+~
+0 -1 58465
+D1
+The woods continue, ending at a ledge.
+~
+~
+0 -1 58463
+D2
+The woods continue, ending at a ledge.
+~
+~
+0 -1 58466
+S
+#58465
+A Quiet Wood~
+   Trees cover the sloping top of a very tall mountain that towers over the
+rest of the peaks in the Syric Mountain Range.  The trees are dark evergreens.
+They're a little on the thin side -- not very fully limbed.  The mist on the
+mountain wafts around the trees, shrouding them and half-obscuring them.    
+~
+584 0 3
+D2
+The woods continue for a distance.
+~
+~
+0 -1 58464
+D3
+The woods continue, ending at the brightly-painted side of a wagon.
+~
+~
+0 -1 58469
+S
+#58466
+A Quiet Wood~
+   Trees cover the sloping top of a very tall mountain that towers over the
+rest of the peaks in the Syric Mountain Range.  The trees are dark evergreens.
+They're a little on the thin side -- not very fully limbed.  The mist on the
+mountain wafts around the trees, shrouding them and half-obscuring them.  The
+slope of the mountain heads downward to the south, but it's so steep that
+passage is impossible.    
+~
+584 0 3
+D0
+The woods continue for a distance.
+~
+~
+0 -1 58464
+D3
+The forest continues.
+~
+~
+0 -1 58471
+S
+#58467
+A Quiet Wood~
+   Trees cover the sloping top of a very tall mountain that towers over the
+rest of the peaks in the Syric Mountain Range.  The trees are dark evergreens.
+They're a little on the thin side -- not very fully limbed.  The mist on the
+mountain wafts around the trees, shrouding them and half-obscuring them.  The
+slope of the mountain heads downward to the south, but it's so steep that
+passage is impossible.    
+~
+584 0 3
+D2
+The woods continue.
+~
+~
+0 -1 58462
+D3
+The forest continues. Not far away, you see brightly painted wagons.
+~
+~
+0 -1 58468
+S
+#58468
+A Quiet Wood~
+   The scent of burning wood wafts through this dark, mist-shrouded forest.  
+The trees, mostly stark evergreens, stand solid and implacable on the
+mountain's slope.  The scent is stronger to the west, curling like the mist
+does through the branches of the large trees.    
+~
+584 0 3
+D0
+The forest continues.
+~
+~
+0 -1 58501
+D1
+The forest continues.
+~
+~
+0 -1 58467
+D3
+You see brightly painted wagons to the west.
+~
+~
+0 -1 58502
+S
+#58469
+A Quiet Wood~
+   The scent of burning wood wafts through this dark, mist-shrouded forest.  
+Trees, mostly stark evergreens, stand solid and implacable on this mountain's
+slope.  A white mist curls up from the frigid ground, mixing with the burning
+scent.  Now and then a voice raised in laughter or conversation can be heard.
+Passage to the north and west is blocked by some painted wagons of the type
+used by Gypsies for the past few centuries.    
+~
+584 0 3
+D1
+The forest continues.
+~
+~
+0 -1 58465
+D2
+The woods continue.
+~
+~
+0 -1 58470
+S
+#58470
+A Quiet Wood~
+   The scent of burning wood wafts through this dark, mist-shrouded forest.  
+Trees, mostly stark evergreens, stand solid and implacable on this mountain's
+slope.  A white mist curls up from the frigid ground, mixing with the burning
+scent.  Now and then a voice raised in laughter or conversation can be heard,
+far away.    
+~
+584 0 3
+D0
+The woods continue.
+~
+~
+0 -1 58469
+S
+#58471
+A Quiet Wood~
+   Trees cover the sloping top of a very tall mountain that towers over the
+rest of the peaks in the Syric Mountain Range.  The trees are dark evergreens.
+They're a little on the thin side -- not very fully limbed.  The mist on the
+mountain wafts around the trees, shrouding them and half-obscuring them.  The
+slope of the mountain heads downward to the south, but it's so steep that
+passage is impossible.    
+~
+584 0 3
+D1
+The woods continue.
+~
+~
+0 -1 58466
+D3
+The woods continue for quite a distance, you think.
+~
+~
+0 -1 58472
+S
+#58472
+A Quiet Wood~
+   Trees cover the sloping top of a very tall mountain that towers over the
+rest of the peaks in the Syric Mountain Range.  The trees are dark evergreens.
+They're a little on the thin side -- not very fully limbed.  The mist on the
+mountain wafts around the trees, shrouding them and half-obscuring them.  
+Other than the sound of the cold mountain wind whistling thruogh the branches
+of the trees, there are no other sounds to be heard.    
+~
+584 0 3
+D0
+The woods continue, ending at a brightly-painted wagon.
+~
+~
+0 -1 58475
+D1
+The woods continue for a short distance.
+~
+~
+0 -1 58471
+D2
+The woods continue to the south, ending at a ledge.
+~
+~
+0 -1 58473
+D3
+The woods continue a short distance before becoming impassible.
+~
+~
+0 -1 58474
+S
+#58473
+A Quiet Wood~
+   Trees cover the sloping top of a very tall mountain that towers over the
+rest of the peaks in the Syric Mountain Range.  The trees are dark evergreens.
+They're a little on the thin side -- not very fully limbed.  The mist on the
+mountain wafts around the trees, shrouding them and half-obscuring them.  The
+slope of the mountain heads downward to the south, but it's so steep that
+passage is impossible.    
+~
+584 0 3
+D0
+The woods continue as far as you can see through the mists. You see a
+flash of red and yellow somewhere ahead.
+~
+~
+0 -1 58472
+S
+#58474
+A Quiet Wood Beside a Stream~
+   Nearly black tree trunks rise into the obscured skies, while white, swirling
+mists shroud everything in sight.  Other than the faint sound of the wind in
+the tree branches, it is utterly quiet.  A dark grey stream runs to the north,
+though you can't get to it past the stones at its banks.  Beyond it, to the
+north, you see a large encampment of painted wagons.    
+~
+584 0 3
+D1
+The woods continue.
+~
+~
+0 -1 58472
+D2
+The woods continue.
+~
+~
+0 -1 58476
+S
+#58475
+A Quiet Wood~
+   This quiet corner of the woods is wedged up against the edge of a stream.  
+You can hear it bubbling beneath your feet, in fact, under the cold ground.  
+Through the dark evergreen trees, to the north, you can see a large encampment
+of brightly painted wagons, though there is no way to get to it from here.    
+~
+584 0 3
+D2
+The woods continue.
+~
+~
+0 -1 58472
+S
+#58476
+A Quiet Wood~
+   Trees cover the sloping top of a very tall mountain that towers over the
+rest of the peaks in the Syric Mountain Range.  The trees are dark evergreens.
+They're a little on the thin side -- not very fully limbed.  The mist on the
+mountain wafts around the trees, shrouding them and half-obscuring them.  The
+slope of the mountain heads downward to the south, but it's so steep that
+passage is impossible.    
+~
+584 0 3
+D0
+The woods continue.
+~
+~
+0 -1 58474
+D3
+The forest seems to go on, disappearing into the mists.
+~
+~
+0 -1 58477
+S
+#58477
+A Quiet Wood Approaching a Castle~
+   Trees cover the sloping top of a very tall mountain that towers over the
+rest of the peaks in the Syric Mountain Range.  The trees are dark evergreens.
+They're a little on the thin side -- not very fully limbed.  The mist on the
+mountain wafts around the trees, shrouding them and half-obscuring them.  The
+slope of the mountain heads downward to the south, but it's so steep that
+passage is impossible.  To the west, rising into the mists, you see a rough,
+crude castle of some kind.    
+~
+584 0 3
+D0
+The woods continue.
+~
+~
+0 -1 58478
+D1
+The woods continue.
+~
+~
+0 -1 58476
+D3
+The woods continue. Beyond the trees, you see a castle.
+~
+~
+0 -1 58479
+S
+#58478
+A Quiet Wood Beside a Stream~
+   Nearly black tree trunks rise into the obscured skies, while white, swirling
+mists shroud everything in sight.  Other than the faint sound of the wind in
+the tree branches, it is utterly quiet.  A dark grey stream runs to the north,
+though you can't get to it past the stones at its banks.  Beyond it, to the
+north, you see a large encampment of painted wagons.  To the west, you see the
+rail of a long bridge that extends across one of the stream's branches, but you
+can't get to it from here.    
+~
+584 0 3
+D2
+The woods continue a short distance.
+~
+~
+0 -1 58477
+S
+#58479
+Approaching a Bridge Across a Ravine~
+   Nearly black tree trunks rise into the obscured skies, while white, swirling
+mists shroud everything in sight.  Other than the faint sound of the wind in
+the tree branches, it is utterly quiet.  A dark grey stream runs to the north,
+though you can't get to it past the stones at its banks.  Beyond it, to the
+north, you see a large encampment of painted wagons.  To the west rises a
+castle, dark, mildewed, and pitted with age, with dark green vines creeping
+across its tall, merciless face.  To the north you see the beginning of a
+crudely made bridge.    
+~
+584 4 3
+D0
+To the north, you see a vast bridge's beginning.
+~
+~
+0 -1 58480
+D1
+The woods continue.
+~
+~
+0 -1 58477
+S
+#58480
+The Beginning of the Goblin Bridge~
+   A wooden suspension bridge spans a stream that runs to the north.  The
+wine-dark river that disappears into the mist.  In the other direction, the
+river runs into the ground just south of the bridge.  Some slats of the bridge
+are falling off or are missing entirely; the rope rails are half eaten away by
+age; and, most alarming, it sways to and fro gently in the breeze.    
+~
+584 0 2
+D2
+You can leave the bridge and enter a quiet forest to the south.
+~
+~
+0 -1 58479
+D3
+The bridge continues, crossing a stream underneath.
+~
+~
+0 -1 58481
+S
+#58481
+The Goblin Bridge~
+   A wooden suspension bridge spans a stream that runs to the north.  The
+wine-dark river that disappears into the mist.  In the other direction, the
+river runs into the ground just south of the bridge.  Some slats of the bridge
+are falling off or are missing entirely; the rope rails are half eaten away by
+age; and, most alarming, it sways to and fro gently in the breeze.    
+~
+584 0 2
+D1
+The bridge ends to the east.
+~
+~
+0 -1 58480
+D3
+The bridge ends to the west, before a badly-made castle.
+~
+~
+0 -1 58482
+S
+#58482
+The Goblin Bridge~
+   A wooden suspension bridge spans a stream that runs to the north.  The
+wine-dark river that disappears into the mist.  In the other direction, the
+river runs into the ground just south of the bridge.  Some slats of the bridge
+are falling off or are missing entirely; the rope rails are half eaten away by
+age; and, most alarming, it sways to and fro gently in the breeze.  The bridge
+ends here, running to the east.  To the south stands the raised drawbridge of
+the quiet, dark castle.    
+~
+584 0 2
+D1
+The bridge runs for a distance to the east.
+~
+~
+0 -1 58481
+D2
+You see the drawbridge to the dark castle is raised.
+~
+~
+1 -1 58486
+E
+drawbridge~
+In point of fact, it'd be more accurate to say that the drawbridge
+has no choice in the matter of whether or not it's raised. The
+mechanism that raises it, a short, stout wheel-like device, is 
+clearly visible from here; it's just as clearly rusted clean through.
+~
+S
+#58483
+The Enchanted Wood~
+   This forest is dark, quiet, and enshrouded in mist, like the rest of the
+mountaintop's woods..  But something is different..  It seems like every time
+you turn around, you see something flicker in the corner of your eye.  You
+shiver in the cold as you walk.  The woods go on to the west, while, to the
+south, an open culvert leads to unknown destinations.    
+~
+584 0 3
+D2
+You see a culvert to the south.
+~
+~
+0 -1 58485
+D3
+The forest continues.
+~
+~
+0 -1 58521
+S
+#58485
+An Escape Tunnel~
+   This little passageway has slimy walls and a muck-covered floor,
+and its ceiling is far too low. It seems fairly round in shape, with
+curving walls. The tunnel runs toward the north.
+~
+584 264 12
+D0
+The tunnel ends at an enchanted wood.
+~
+~
+0 -1 58483
+D1
+You see a panel.
+~
+elythaz~
+1 -1 58486
+E
+panel~
+It is quite difficult to read the words on the panel, but you
+try to do it anyway.
+~
+E
+words~
+The words read:
+   This panel is enchanted! To open it, you must open a secret
+   door. The name of the secret door is the name of the man who
+   was Cardinal of Templace after the Kaaz were destroyed. Beware,
+   though, of foolhardiness; beyond this panel lie many dangers.
+~
+S
+#58486
+The Home of the Goblin King~
+   This castle is smaller than most, almost a stone fort, really.  It's also
+quite old, you sense.  The stones that compose it are almost all half-rotted by
+time.  Mildew and vines are taking over, as well.  And the smell is just
+awful -- a reek of rotting food and ancient dust. The stones splinter into
+fragments loudly when they are touched or stepped upon, and the whole place
+creaks alarmingly every so often.
+~
+584 8 1
+D0
+You see a bridge to the north, past an open drawbridge.
+~
+~
+1 -1 58482
+D1
+The castle seems to continue.
+~
+~
+0 -1 58487
+D2
+Dark halls seem to glow to the south.
+~
+~
+0 -1 58491
+D3
+You see something unusual.
+~
+elia~
+1 -1 58485
+E
+question~
+The question reads:
+    The name of the door is the name of the Gypsy Prince's bride.
+    --Sirestis
+~
+E
+patch mildew~
+The patch, upon closer examination, frames a question that is inked
+right onto the stones.
+~
+E
+wall~
+There's a peculiar patch of mildew on the wall, in almost a perfect
+circle. Now, isn't that odd?
+~
+E
+panel~
+No, on second examination, you realize there isn't a panel there
+after all. Keep looking.
+~
+E
+something~
+The wall... there's just something strange about it. Oh! There's
+a panel there... you think.
+~
+S
+#58487
+The Home of the Goblin King~
+   This castle is smaller than most, almost a stone fort.  The stones that
+compose it are almost all half-rotted by time.  Mildew and vines are taking
+over, as well.  And the smell is just incredible!  The stone tiles of the floor
+splinter into chunks at a touch, with a loud cracking noise.  Light struggles
+in through the tall, narrow windows, barely illuminating the chambers inside
+the castle.    
+~
+584 8 1
+D2
+You see an aerie of some kind to the south.
+~
+~
+0 -1 58490
+D3
+The castle continues.
+~
+~
+0 -1 58486
+S
+#58488
+The Enchanted Wood~
+   This evergreen forest is composed of numerous thick-trunked, ancient trees
+whose branches filter out almost all the light from above.  There are no sounds
+of animals or birds here; it is utterly quiet.  A swirling white mist rises up
+from the cold ground.    
+~
+584 0 3
+D0
+The woods continue.
+~
+~
+0 -1 58489
+D1
+The woods continue.
+~
+~
+0 -1 58520
+S
+#58489
+The Enchanted Wood~
+   Ancient trees sprout right out of this mountain's gentle south slope.  
+Swirling mists cover the entire mountainside.  The cold ground seems very alive
+underfoot, as if something magical is happening underneath your feet..  The
+forest is almost noiseless; there is no sound of insects, or of birds.  
+Despite this, occasionally a flash of movement can just barely be seen.  To the
+north stands a house mounted on a pair of gigantic chicken legs!    
+~
+584 0 3
+D1
+The woods continue.
+~
+~
+0 -1 58521
+D2
+The woods continue.
+~
+~
+0 -1 58488
+D3
+The woods continue for a short distance.
+~
+~
+0 -1 58493
+S
+#58490
+The Goblin Flier Aerie~
+   You carefully pick your way through rocks and general filth and decay.  
+Really disgusting bits.  Small shelves and bins made of wood almost
+disintegrate at a glance.  There is a wealth of wood, canvas and silk, and pots
+of dried, dark green paint lying around.  The aerie opens out into a cliff that
+affords a magnificent view of the mountains all around.    
+~
+584 8 0
+D0
+The castle continues.
+~
+~
+0 -1 58487
+S
+#58491
+The Throne Room of the Goblin King~
+   It's not much, but they like to call it home.  This room is large, with a
+high ceiling, as is proper for a throne room.  A rotted, dark green carpet that
+was once worked in cunning gold designs leads up to a few decaying steps.  On a
+dais stands a throne made of darkly patina'd copper.  The throne is obviously
+not a human creation, but the strange whorls and engravings and carvings have
+their own appeal.  It's not like a standard throne, but if you were a goblin,
+you'd probably just love it.  To the south, huge, mostly intact windows look
+out over the mountains.    
+~
+584 8 0
+D0
+The castle continues.
+~
+~
+0 -1 58486
+S
+#58492
+Baba Yaga's Home~
+   Something smells disgusting in here!  The witch's home is a one-room shack
+held up by chicken legs that she can tell to move anywhere she likes.  Today
+the witch favors a specifically eastern view of the top of the mountain, so the
+sole window faces east.  Inside, the single room is incredibly messy.  
+Bedclothes and garments are littered everywhere.  A hearth up against the
+southern wall faces a chimney.  Dangling from some hooks in the fireplace is a
+huge cauldron, bubbling merrily.  The only way out is back west.    
+~
+584 128 0
+D3
+An inner door blocks passage to the west.
+~
+door~
+1 58492 58496
+E
+cauldron pot~
+The pot's made of thick black iron. It's either too heavy to lift, or
+it's bolted right into the floor. Inside the pot a very foul-smelling soup
+bubbles. 
+~
+S
+#58493
+The Enchanted Wood~
+   This part of the forest comprises trees so large and so thickly branched
+with pine-smelling evergreen that the light barely even brushes the ground.  A
+thick, swirling mist rises up from the cold ground, obscuring vision slightly.
+To the northeast, you see a house on some kind of stilts.    
+~
+584 0 3
+D1
+The woods continue.
+~
+~
+0 -1 58489
+D3
+The woods continue.
+~
+~
+0 -1 58494
+S
+#58494
+The Enchanted Wood~
+   Silent old trees grace this forest with thick, bushy evergreen branches that
+filter the dim light from the sun and moon, casting weird shadows and
+occasionally even allowing a shaft of light to touch the dark, grassy ground.
+A persistent swirling mist rises up from the cold forest floor, further
+filtering the light.  Though there is no path, it is obviously easier to move
+in some directions than others.    
+~
+584 0 3
+D0
+The woods continue.
+~
+~
+0 -1 58495
+D1
+The woods continue.
+~
+~
+0 -1 58493
+S
+#58495
+The Enchanted Wood~
+   Large, old trees stand against a mountainside here; the slope is very
+gentle, but gets steeper the further to the north one travels.  Wispy trails of
+smoke rise up from the cold ground, mingling with the thick evergreen branches
+of the trees.  To the east a ways, you see a house on some kind of stilts.    
+~
+584 0 3
+D1
+The woods continue through the mists. Not too far away, you can see
+a house on some kind of stilts.
+~
+~
+0 -1 58496
+D2
+The trees thin out at the edge of what seems to be a sheer cliff.
+~
+~
+0 -1 58494
+S
+#58496
+The Entrance to a Witch's House~
+   This house looks like any ordinary house, albeit a very old and decrepit
+one.  Its walls are made of peeling and cracking white plaster over wood, and
+its roof is thatch over reeds.  The house itself rests on a pair of gigantic
+chicken legs!  They're really, truly chicken legs, with feathers, yellow scaled
+skin, long curved claws and all!  Twice as tall as a human man, they just stand
+there supporting the house that's up in the air.  A wooden ramp leads from the
+house's front door to the ground.    
+~
+584 0 3
+D0
+The woods begin, running far to the north.
+~
+~
+0 -1 58497
+D1
+A wooden ramp leads eastward and upward, to another door.
+~
+door
+~
+1 58492 58492
+D3
+The woods extend to the west a short distance.
+~
+~
+0 -1 58495
+E
+chicken feet legs~
+As you watch the chicken legs, one of them lifts into the air
+and begins to idly scratch its mate with those huge, curved
+claws. After a moment, during which time the house wobbles
+alarmingly, the foot settles onto the ground again.
+~
+S
+#58497
+The Enchanted Wood~
+   This evergreen forest is utterly quiet, and little light filters down to the
+ground from the thick branches of the old trees.  In daylight, it's dim, and at
+night, utterly black.  The ground is cold, but a mist seems to rise up from it,
+its tendrils curling gracefully into the air.    
+~
+584 0 3
+D0
+The woods continue.
+~
+~
+0 -1 58500
+D2
+The woods continue.
+~
+~
+0 -1 58496
+D3
+The woods continue.
+~
+~
+0 -1 58498
+S
+#58498
+The Enchanted Wood~
+   This evergreen forest is composed of numerous thick-trunked, ancient trees
+whose branches filter out almost all the light from above.  There are no sounds
+of animals or birds here; it is utterly quiet.  A swirling white mist rises up
+from the cold ground.    
+~
+584 0 3
+D0
+The woods continue.
+~
+~
+0 -1 58499
+D1
+The woods continue.
+~
+~
+0 -1 58497
+S
+#58499
+The Enchanted Wood~
+   A thick evergreen forest stands here, on a mountainside plateau.  Thick,
+bushy branches keep out most of the light, giving the forest a dim, shadowy
+appearance.  A swirling mist rises up from the frigid ground.  Though there is
+no path, it is easier to head in some directions than in others; the west is
+blocked off by foliage.    
+~
+584 16 3
+D0
+The woods continue.
+~
+~
+0 -1 58522
+D1
+The woods continue for a ways, disappearing into the mists.
+~
+~
+0 -1 58500
+D2
+The woods continue for a short distance.
+~
+~
+0 -1 58498
+S
+#58500
+The Enchanted Wood~
+   This is the far edge of a large evergreen forest.  The mountain slopes far
+too steeply to allow such huge old trees to flourish there.  All is quiet here,
+with no noise at all from animals or birds, though a white, swirling mist rises
+up from the frigid ground.    
+~
+584 0 3
+D2
+The wood continues.
+~
+~
+0 -1 58497
+D3
+The wood continues.
+~
+~
+0 -1 58499
+S
+#58501
+A Quiet Wood~
+   Stark, dark-colored trees make up this evergreen forest.  A faint scent of
+fire seems to mingle with the white mist that swirls all around the
+thick-trunked old trees.  It is utterly silent, with no sounds of animals or
+birds.    
+~
+584 0 3
+D2
+The quiet wood continues to the south.
+~
+~
+0 -1 58468
+S
+#58502
+The Entrance to a Gypsy Caravan~
+   How'd you find this place?  It rises out of the mists like a legend out of
+the dawn of history.  Somehow, this encampment of brightly- painted wooden
+wagons seems at once instantly new and as old as time itself.  Wagons with
+wooden steps leading down from their doors form a half-circle around a bonfire
+a ways to the west.  A few of the wagons seem more ornate than others, but
+other than that, they are uniform in appearance.    
+~
+584 4 2
+D1
+A deep, forbidding wood stands to the east, going on for a ways.
+~
+~
+0 -1 58468
+D3
+You see more wagons. Beyond that, a bonfire crackles.
+~
+~
+0 -1 58503
+S
+#58503
+A Gypsy Caravan~
+   Somehow, this encampment of brightly-painted wooden wagons seems at once
+instantly new and as old as time itself.  Wagons with wooden steps leading down
+from their doors form a half-circle around a bonfire a ways to the west.  A few
+of the wagons seem more ornate than others, but other than that, they are
+uniform in appearance.    
+~
+584 0 2
+D0
+You see some more wagons to the north, up against a cliff face.
+~
+~
+0 -1 58505
+D1
+You see the entrance to the caravan to the east. Beyond that, you see 
+the forest.
+~
+~
+0 -1 58502
+D2
+You see more wagons to the south.
+~
+~
+0 -1 58504
+D3
+You see a bonfire to the west. Beyond that, you see water.
+~
+~
+0 -1 58507
+S
+#58504
+A Gypsy Caravan~
+   Somehow, this encampment of brightly-painted wooden wagons seems at once
+instantly new and as old as time itself.  Wagons with wooden steps leading down
+from their doors form a half-circle around a bonfire a ways to the west.  A few
+of the wagons seem more ornate than others, but other than that, they are
+uniform in appearance.    
+~
+584 0 2
+D0
+You see wagons arranged in a tight row that heads far to the north.
+~
+~
+0 -1 58503
+D3
+You see a very ornate wagon, fancier than the rest, to the west.
+~
+~
+0 -1 58508
+S
+#58505
+A Gypsy Caravan~
+   Somehow, this encampment of brightly-painted wooden wagons seems at once
+instantly new and as old as time itself.  Wagons with wooden steps leading down
+from their doors form a half-circle around a bonfire a ways to the west.  A few
+of the wagons seem more ornate than others, but other than that, they are
+uniform in appearance.    
+~
+584 0 2
+D2
+You see some more wagons to the south, arranged in a tight circle.
+~
+~
+0 -1 58503
+S
+#58506
+The Fortune Teller's Wagon~
+   Inside the dark wagon, the air smells of cooked meat and slightly rancid
+oil, and old perfume.  Pictures line every available vertical surface of this
+wagon.  Some of the paintings are ancient, some more recent; some are of
+people, some of faraway lands.  One seems to be familiar.  Silk scarves with
+outrageous fringe cover a trunk, a bed, a bureau, and a circular table on which
+sits a crystal ball.    
+~
+584 8 0
+D2
+You see a bonfire to the south.
+~
+~
+0 -1 58507
+E
+painting~
+The painting, it seems, is of the Altar to Mielikki. How did it
+end up here?
+~
+E
+crystal ball~
+As you look into the ball, you feel yourself growing drowsy.. 
+You sleep, and dream..
+
+    You are young again, and powerful, and so beautiful it makes
+    men's hearts ache to look at you. And tonight you are also
+    afraid. The sight of the Undead Priests in the old witch's
+    crystal ball has made you fear, not for yourself, but for
+    those you love. Not for your brother, though... If the
+    Black Knights are here, then he must be beyond anyone's
+    care but Mielikki's... For your brother you feel only an
+    ache and a lust for revenge. So you've fled the safety of your
+    home, to lure the evil Knights to you, and keep them from
+    the Gypsies who have adopted you so kindly.
+
+    Now, standing in a field in the darkest part of the cold
+    forest, you wait for them. Your sword fairly rings with
+    its hatred of the evil that is coming. You make your stand
+    in the night, knowing that you must destroy every single
+    one of the undead enemies, or they will quickly find the
+    new life you have forged.. and they will kill your husband,
+    and the son you have borne.
+
+The strange hallucination fades, and you come out of your sleep feeling
+vaguely worried and wild-eyed.
+~
+S
+#58507
+A Bonfire~
+   This crackling bonfire, circled by stones and surrounded by low wooden
+benches, burns high with orange and yellow flames.  No one is tending the fire,
+but no one specifically tends it.  Sometimes a blue or a green flame springs
+out of the bonfire.    
+~
+584 0 2
+D0
+A wagon painted purple and hung with silken swags stands before you.
+~
+~
+0 -1 58506
+D1
+You see the caravan itself to the east.
+~
+~
+0 -1 58503
+D2
+You see an ornate wagon to the south. It's painted a delicate gold.
+~
+~
+0 -1 58508
+D3
+You see a pool of water of some kind to the west.
+~
+~
+0 -1 58510
+E
+blue green flame~
+The flames dance and cavort in the bonfire. Green and blue flames
+flicker -- and suddenly, you see them assume the form of a beautiful
+man and woman who dance together in the heart of the bonfire before
+dissipating into the fire again, to await the next chance to join.
+~
+S
+#58508
+A Gypsy Wagon~
+   The inside of this wooden wagon smell of generations of meals cooked, of
+smoke, of liquors of various types -- of humanity in all its glory and dismay.
+The interior is trim and properly decorated with dark silken scarves,
+overstuffed furniture, a wooden sleigh-bed, and many pictures in rosewood
+frames.  It's hard to tell if the inhabitant is male or female, or if there's
+more than one tenant.  Outside this wagon, you can see many other wagons.  A
+few of the wagons seem more ornate than others, but other than that, they are
+uniform in appearance.    
+~
+584 0 2
+D0
+To the north, you see a bonfire. Beyond it, you see another fancy wagon.
+~
+~
+0 -1 58507
+D1
+You can exit the wagon to the east, from an informal doorway.
+~
+~
+0 -1 58504
+D2
+You can exit the wagon to the south, to a pool.
+~
+~
+0 -1 58517
+S
+#58509
+The Gypsy Prince's Wagon~
+   A bright, pretty wagon painted in blue, gold, and white opens to reveal a
+similarly opulent interior.  A four-poster bed is crammed into one end of the
+wagon; in the other, a wooden table.  A deck of cards lies on the table.  
+Paintings fill the room.  Some of them depict people, some places.  One depicts
+a beautiful woman holding an infant wrapped in white cloth.    
+~
+584 8 0
+D0
+A well stands to the north.
+~
+~
+0 -1 58510
+S
+#58510
+An Artesian Well~
+   This perfectly pure water bubbles up from some hidden, unknown source from
+underground.  More clear water flows in from the west, but you can tell that
+the main source of the well's water is from beneath the benevolent earth.  To
+the south and east, you see the gypsy camp, while, to the north and west, you
+are surrounded by clear, cool water.  The mountaintop rises far to the west --
+cold grey rock.    
+~
+584 4 2
+D0
+The well opens up into a spring to the north.
+~
+~
+0 -1 58511
+D1
+You see a bonfire crackling to the east.
+~
+~
+0 -1 58507
+D2
+You see a wagon painted in gold, royal blue, and white to the south.
+~
+~
+0 -1 58509
+D3
+A stream runs to the west. Beyond it, you see a grove of some kind.
+~
+~
+0 -1 58513
+E
+painting~
+The woman in the painting is drop-dead beautiful in the way that
+a very sharp sword is beautiful. She is quite obviously a warrior,
+possibly the strongest of her time, but something about the way she
+holds her infant suggests an uncharacteristic tenderness. She looks
+down at the baby in her arms, smiling shyly at it as if still not
+believing it's hers.
+~
+S
+#58511
+The Headspring~
+   A tall mountain stands to the north and west of here.  From a narrow crack
+in the grey rock of the mountain itself bubbles a spring of perfectly clear,
+pure water.  The gypsies who make their home here have set up some stepping
+stones to the very head of the spring to catch the very freshest water in
+mid-plunge to the pool below.  The water makes a tremendous splash and a lot of
+spray as it hits the pool.    
+~
+584 4 7
+D2
+A well bubbles up to the ground from the south.
+~
+~
+0 -1 58510
+D3
+The stream runs to the west before turning out of sight.
+~
+~
+0 -1 58512
+S
+#58512
+A Stream~
+   This stream is made of perfectly pure water, as pure as is possible out in
+the open.  It's slowly gouging a pathway through the grey rock of the mountain;
+it's fairly obvious it's taken years to cut this deep of a cut, and it'll be
+much deeper in a few more years.  To the east, you see the source of the stream
+-- a headspring.  The stream runs further to the south.    
+~
+584 0 7
+D1
+A headspring rises to the east.
+~
+~
+0 -1 58511
+D2
+The stream continues to the south.
+~
+~
+0 -1 58513
+S
+#58513
+A Stream~
+   This stream is made of perfectly pure water, as pure as is possible out in
+the open.  It's slowly gouging a pathway through the grey rock of the mountain;
+it's fairly obvious it's taken years to cut this deep of a cut, and it'll be
+much deeper in a few more years.  It runs from the north to south.  To the east
+you see it run into an artesian well, while, to the west, it runs around the
+edge of an island set against the side of the mountain.    
+~
+584 0 7
+D0
+The stream continues to the north, where it bends out of sight.
+~
+~
+0 -1 58512
+D1
+An artesian well rises to the east.
+~
+~
+0 -1 58510
+D2
+The stream continues.
+~
+~
+0 -1 58514
+D3
+An miniature island lies westward.
+~
+~
+0 -1 58519
+S
+#58514
+A Stream~
+   This stream is made of perfectly pure water, as pure as is possible out in
+the open.  It's slowly gouging a pathway through the grey rock of the mountain;
+it's fairly obvious it's taken years to cut this deep of a cut, and it'll be
+much deeper in a few more years.  The stream runs from the north to the south.
+To the east, you can see some brightly-colored wagons, but can't reach it from
+here.    
+~
+584 0 7
+D0
+The stream continues to the north a ways.
+~
+~
+0 -1 58513
+D2
+The stream continues before branching into two further on.
+~
+~
+0 -1 58515
+S
+#58515
+A Stream~
+   This stream is made of perfectly pure water, as pure as is possible out in
+the open.  It's slowly gouging a pathway through the grey rock of the mountain.
+The water branches off into tributaries from here that run off to the east and
+west, while the main branch runs here from the north.  To the south, the stream
+runs under a very wide bridge that extends to the west.    
+~
+584 0 7
+D0
+The stream continues quite a ways to the north.
+~
+~
+0 -1 58514
+D1
+The stream continues.
+~
+~
+0 -1 58516
+D3
+The stream continues.
+~
+~
+0 -1 58518
+S
+#58516
+A Stream~
+   This very pure stream runs from the west to the east.  It runs through a
+deep cleft in the side of a very tall mountain, with an enchanted wood to the
+south, a gypsy camp to the north, and mist everywhere.    
+~
+584 0 7
+D1
+The stream continues to the east for a short distance.
+~
+~
+0 -1 58517
+D3
+The stream continues.
+~
+~
+0 -1 58515
+S
+#58517
+A Stream~
+This very pure stream runs from the west to the east. It runs through
+a deep cleft in the side of a very tall mountain, with an enchanted
+wood to the south, a gypsy camp to the north, and mist everywhere.
+The water burrows into the raw granite of the ground to the immediate
+east, where it disappears from sight.
+~
+584 4 7
+D0
+You can leave the stream and enter a wagon to the north.
+~
+~
+0 -1 58508
+D3
+The stream continues.
+~
+~
+0 -1 58516
+S
+#58518
+A Stream~
+   This gently curving stream is made of perfectly pure water that is
+so blue it rivals the sky itself. The bare rock of the mountain
+stands to the north and west, while to the east, the stream runs
+onward, disappearing into the mists of this enchanted land. To the
+south, you see a very large and very old wooden bridge swaying.
+~
+584 0 7
+D1
+~
+~
+0 -1 58515
+S
+#58519
+An Island Grove~
+   A little bit of the mountain protrudes into the river. Time has
+deposited soil here, and now plants and trees make this a lush
+miniature ecosystem, no more than 20 or 30 paces across, but
+it has its appeal for you. Somewhere in the misty trees nearby,
+you see a flash of orange -- a bird of paradise flying past, its
+long tailfeathers flashing like the sun.  
+~
+584 0 7
+D1
+~
+~
+0 -1 58513
+S
+#58520
+The Enchanted Wood~
+   Immense, ancient evergreen trees stand just far apart enough to allow
+easy travel. Light barely filters down to the cold forest floor from the
+trees' branches, but what light does make it down illuminates the eerie
+white mist that curls up from the ground. The forest is utterly silent. 
+To the east, you see the tall walls of a castle or stronghold of some
+kind, though you cannot get to it from here.
+~
+584 0 3
+D0
+The forest continues.
+~
+~
+0 -1 58521
+D3
+The wood continues.
+~
+~
+0 -1 58488
+S
+#58521
+The Enchanted Wood~
+   An ancient forest of evergreen trees stand, utterly silent, just far
+enough apart to allow travel through them. The little light that filters 
+down to the ground illumines the mists rising up from the ground. To the
+immediate east, you can see the tall, rotting walls of a crudely made  
+castle or keep of some kind, though you can't enter it from here. It casts
+a distinct shadow down onto you through the mist.
+~
+584 0 3
+D1
+You see the edge of the woods to the east.
+~
+~
+0 -1 58483
+D2
+The wood continues.
+~
+~
+0 -1 58520
+D3
+The wood continues.
+~
+~
+0 -1 58489
+S
+#58522
+The Enchanted Wood~
+   A forest of large, ancient evergreen trees covers this mountain plateau.
+Their thick pine-smelling branches keep out most of the light, though
+some of it does manage to reach the ground. A white mist curls up from
+the ground, with tendrils wrapping around the trees' lowermost branches.
+The only possible way out of this part of the forest is to the south.
+~
+584 16 12
+D2
+The wood continues far to the south, disappearing into the mists.
+~
+~
+0 -1 58499
+S
+T 49224
+#58523
+A Little Secret Cave~
+   There's nothing majorly fancy about this place. It's dark and dim and not
+intrinsically appealing. The important thing is that YOU found it! You're
+obviously a very, very observant person!
+~
+584 656028 12
+D4
+The only way out of here is a trapdoor in the ceiling.
+~
+trapdoor~
+1 58423 58532
+S
+#58524
+The Border of a Deep Forest~
+   You stand at the very edge of a tall mountain that rises up to touch
+the sky to the north. A forest has grown up on a narrow stretch of fairly
+level ground. The southern face of the mountain is a steep precipice that
+you cannot scale safely. The forest continues to the north for a ways,
+though to the east, branches prevent safe passage.
+~
+584 0 3
+D0
+The forest continues.
+~
+~
+0 -1 58529
+S
+#58525
+The Border of a Deep Forest~
+   You stand at the very edge of a tall mountain that rises up to touch
+the sky to the north. These trees have grown on a narrow stretch of   
+fairly level ground that rings the mountain's peak.
+~
+584 0 3
+D0
+You see a primitive footpath to the north. It runs to the north a short
+distance.
+~
+~
+0 -1 58531
+D1
+The forest edge continues to the east, where it ends at a steep cliff.
+~
+~
+0 -1 58526
+S
+#58526
+A Deep Forest~
+   You stand at the very edge of a tall mountain that rises up to touch
+the sky to the north. These trees have grown on a narrow stretch of
+fairly level ground that rings the mountain's peak.
+~
+584 0 3
+D3
+The forest continues, ending at a snarl of branches not far away.
+~
+~
+0 -1 58525
+S
+#58527
+A Deep Forest's Edge~
+   The mountain air is magnificent here, tickling your nose with half-
+remembered scents of flowers, evergreen trees, and flowers. The forest
+itself is mostly pine and fir, with the occasional maple here and there.
+The air seems to sparkle, and is chilly all year round. The forest falls
+off in a steep cliff to the south, while the mountain forming the center
+of the half-circle of forest rises steeply to the north far away.
+~
+584 0 5
+D0
+The forest continues to the north.
+~
+~
+0 -1 58537
+S
+#58528
+A Deep Forest's Edge~
+   You stand at a steep cliff that falls off toward the south. It is
+impassible from here. The trees grow on a fluid curve of level ground
+encircling the huge mountain that dominates the Syric Mountain Range. Far
+to the south, you see the lush fields of Farmer's Row, while to the west,
+you see the tiny buildings that make up the monasteries that part of the
+world is famous for.
+~
+584 0 5
+D0
+The forest continues.
+~
+~
+0 -1 58538
+D1
+The forest continues.
+~
+~
+0 -1 58529
+S
+#58529
+A Deep Forest~
+   The scent of foliage and resins crowd thickly around you as you
+pass through this thick, dark forest. Emerald green trees keep
+most of the light from passing through to the ground, but aside
+from the freezing wind's noise, the forest is utterly silent.
+~
+584 0 3
+D0
+The forest extends northward.
+~
+~
+0 -1 58539
+D2
+The edge of the forest is visible to the south.
+~
+~
+0 -1 58524
+D3
+The forest's edge extends westward.
+~
+~
+0 -1 58528
+S
+#58530
+A Crude Footpath~
+   This little path runs through the dark, enchanted forest encircling the
+tallest of the Syric Mountains. It continues to the east before curving
+out of sight. All along the dirt path, ancient evergreens stand, with
+their branches overhanging the way. The path extends to the north and  
+east, and ends just to the south, at some kind of trail.
+~
+584 68 10
+D0
+The path continues to the north.
+~
+~
+0 -1 58540
+D1
+The path continues to the east for just a short distance before curving
+out of sight.
+~
+~
+0 -1 58531
+D2
+The path ends at a bare mountain plateau to the south.
+~
+~
+0 -1 58339
+S
+#58531
+A Crude Footpath~
+   This little path runs through the dark, enchanted forest encircling the
+tallest of the Syric Mountains. It runs to the north and west for a short
+distance, snaking out of sight in smooth curves. Evergreen trees crowd
+around the path as if they had will and volition of their own.
+~
+584 0 10
+D0
+The path continues to the north for a short distance.
+~
+~
+0 -1 58541
+D2
+A range of trees stands southward, overlooking a steep cliff.
+~
+~
+0 -1 58525
+D3
+The path continues a short distance before curving to the west. The thick
+trees prevent sight or passage further than that.
+~
+~
+0 -1 58530
+S
+#58532
+A Deep Forest~
+   Pine and fir trees stand very close to each other, allowing only the
+occasional spot of sunshine through to mottle the ground and greenery
+with light. Overall, things appear tranquil, though some might find
+the wind whistling through the trees a little eerie.
+~
+584 0 3
+D1
+You see the forest's border to the east, overlooking a steep cliff.
+~
+~
+0 -1 58533
+D5
+There is a small, barely visible sign of something about...
+~
+moss~
+2 58423 58523
+S
+#58533
+A Deep Forest's Border~
+   The clean mountain air of the Syric Range is frigid and crisp here. The
+forest overlooks a steep cliff that prevents any kind of passage, but
+which looks over the entire Southern Caelian region. The mountain trail
+snakes out of the forest, heading southward. Beyond the lower-lying
+mountains, you see towers far to the south, with the forest embracing
+them. The huge, ancient evergreen trees that make up the forest are just
+far apart enough to allow travel through them to the north and west.
+~
+584 0 5
+D0
+The forest continues.
+~
+~
+0 -1 58543
+D3
+The forest continues.
+~
+~
+0 -1 58532
+S
+#58534
+A Deep Forest's Border~
+   The view from this circular ledge is quite spectacular, for those who
+can stomach heights. The forested mountainside is wild and free, with
+here and there a hawk flying across the high winds seeking prey. The
+trees themselves stand close together, branches intertwining.
+~
+584 0 5
+D1
+The forest continues a short distance to the east.
+~
+~
+0 -1 58535
+S
+#58535
+A Deep Forest's Border~
+   The view from this circular ledge is quite spectacular, for those who
+can stomach heights. The forested mountainside is wild and free, with
+here and there a hawk flying across the high winds seeking prey. The
+trees themselves stand close together, branches intertwining.
+~
+584 0 5
+D0
+The forest continues to the north a short distance, ending at a footpath.
+~
+~
+0 -1 58406
+D1
+The forest continues.
+~
+~
+0 -1 58536
+D3
+The forest's edge continues.
+~
+~
+0 -1 58534
+S
+#58536
+A Deep Forest~
+   Evergreen trees cluster together, their green needle-branches
+intertwining. The forest floor is a chaotic mess of needles, other
+leaves, and low-growing plants and flowers, giving this place a
+murky green scent.
+~
+584 0 3
+D3
+The forest's edge continues.
+~
+~
+0 -1 58535
+S
+#58537
+A Firefly Grove in the Deep Forest~
+   This grotto is a space in the middle of a dozen fir trees growing
+very close together. Water has trickled up in a bubbling fountain from
+the moist earth, making the air hazy and moist. No sunlight can get here
+through the dense trees. In the pine-scented darkness, you can see
+dozens, if not hundreds, of tiny, flickering fireflies in their mating
+dance among the trees.
+~
+584 0 3
+D0
+You see a footpath to the north.
+~
+~
+0 -1 58408
+D1
+The forest continues.
+~
+~
+0 -1 58538
+D2
+The forest continues, ending at a steep cliff not far away.
+~
+~
+0 -1 58527
+S
+#58538
+A Deep Forest~
+   This forest is thick with trees that cluster close together. The air
+is a little dark, and scented heavily with evergreens and crisp, clean
+mountain air. It's quite cold, you notice. The branches of the trees
+knot together so thickly you can only go south or west from here.
+~
+584 0 3
+D2
+The edge of the forest is visible to the south.
+~
+~
+0 -1 58528
+D3
+A beautiful little grove lies westward.
+~
+~
+0 -1 58537
+S
+#58539
+A Deep Forest~
+   This forest is thick with trees that cluster close together. The air
+is a little dark, and scented heavily with evergreens and crisp, clean  
+mountain air. It's quite cold, you notice. The branches of the trees
+knot together so thickly you can only go south from here.
+~
+584 0 3
+D2
+The forest continues to the south.
+~
+~
+0 -1 58529
+S
+#58540
+A Crude Footpath~
+   This simple little dirt path runs to the north and south here.  Grass grows
+in it here and there.  The thick branches of evergreen trees overhang the way
+in places.    
+~
+584 0 10
+D0
+The path continues to the north.
+~
+~
+0 -1 58411
+D2
+The path continues to the south.
+~
+~
+0 -1 58530
+S
+#58541
+A Crude Footpath~
+   This path seems fairly recent, since grass still grows here and there
+in it, though at least whoever made the path cleared away most of the
+branches and debris. Thick evergreen trees blot out any light from above,
+making the trail seem dark and mysterious. The path runs to the north and
+south.
+~
+584 0 10
+D0
+The path continues to the north.
+~
+~
+0 -1 58412
+D2
+The path continues to the south.
+~
+~
+0 -1 58531
+S
+#58542
+A Deep Forest~
+   This forest is thick with trees that cluster close together. The air
+is a little dark, and scented heavily with evergreens and crisp, clean
+mountain air. It's quite cold, you notice. The branches of the trees
+knot together so thickly you can only go north from here.
+~
+584 0 3
+D0
+You see a path to the north.
+~
+~
+0 -1 58413
+S
+#58543
+A Deep Forest~
+   This forest is thick with trees that cluster close together. The air
+is a little dark, and scented heavily with evergreens and crisp, clean
+mountain air. It's quite cold, you notice. The branches of the trees
+knot together thickly, but you can still perceive ways out in all
+directions but west.
+~
+584 0 3
+D0
+You see a path to the north.
+~
+~
+0 -1 58414
+D1
+The forest continues, dark and mysterious.
+~
+~
+0 -1 58400
+D2
+The edge of the forest is visible to the south.
+~
+~
+0 -1 58533
+S
+$~

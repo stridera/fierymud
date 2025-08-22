@@ -1,0 +1,152 @@
+name: Risk
+password: ArGYKPYi0U
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 7
+race: 0
+level: 26
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19176
+birthtime: 1494508551
+timeplayed: 77309
+lastlogintime: 1731977852
+host: 129.222.084.164
+height: 73
+weight: 147
+base_height: 73
+base_weight: 147
+base_size: 2
+natural_size: 2
+alignment: 298
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 2
+lastlevel: 0
+hitpoints: 203/203
+mana: 67/67
+move: 200/200
+damroll: 3
+hitroll: 3
+strength: 81
+intelligence: 92
+wisdom: 96
+dexterity: 93
+constitution: 66
+charisma: 59
+cash: 2 39 107 87
+experience: 3088500
+quit_reason: 1
+saveroom: 3054
+skills:
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+33 1000
+40 1000
+42 1000
+43 1000
+88 1000
+89 1000
+90 1000
+91 1000
+118 1000
+144 1000
+145 1000
+146 1000
+147 1000
+206 1000
+207 1000
+215 1000
+247 1000
+415 50
+416 50
+417 50
+421 104
+423 51
+424 125
+429 50
+438 50
+443 50
+444 50
+451 74
+454 50
+455 50
+457 84
+458 70
+459 51
+460 50
+462 52
+463 183
+464 50
+465 50
+466 50
+0 0
+trophy:
+1 11701 0.500000
+1 11704 0.500000
+1 11703 0.500000
+1 2808 0.500000
+1 2806 1.000000
+1 11710 0.500000
+1 11702 2.000000
+0 0 0
+tells:
+1641674283 @WChinok@W tells you, 'what's your issue@W'@0
+1641674319 @WChinok@W tells you, 'you asked me why you couldn't summon@W'@0
+1641674402 @WChinok@W tells you, 'do you have slots open in the correct spell circle ?@W'@0
+1641674450 @WChinok@W tells you, 'so summon is circle 4 for druids@W'@0
+1641674482 @WChinok@W tells you, 'if you type pray, it will show you what spells you have memorized@W'@0
+1641674512 @WChinok@W tells you, 'the bottom line shows, you have 6 1st slots open, 2 2nd slots open@W'@0
+1641674523 @WChinok@W tells you, 'well now you need to actually PRAY .. @W'@0
+1641836006 @WChinok@W tells you, 'type pray, stuff on the left is mem'ed and ready to cast, stuff on the right, needs to be prayed for@W'@0
+1641898950 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1643824087 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1641838070 Chinok gossips, 'like I said.. how did you kill yourself in your own inner sanctum'
+1677340297 Chinok gossips, 'hey, welcome back'
+1677340362 Chinok gossips, 'lol -- yeah, pretty sure you are connected!'
+1677340441 Chinok gossips, 'all addresses not working ?'
+1677340461 Chinok gossips, 'from a command prompt, can you ping google.com'
+1677340516 Pina gossips, 'vpn?'
+1677340532 Chinok gossips, 'you using some kind of proxy to get on the internet ?'
+1677340641 Chinok gossips, 'what browser ?'
+1677340650 Chinok gossips, 'please tell me it's not internet explorer :)'
+1677340718 Chinok gossips, 'yeah, don't know about that one.. was going to tell you to check the connection tab,'
+$
+aliases:
+cb put gem bag
+cs cast 'cure serious'
+kz kill zebra
+dd drink from barrel
+fb fill barrel fountain
+gp get recall bag
+tr trophy
+db fill barrel fountain
+gg get all corpse
+lg level gain
+rc recite recall
+ss scan
+dff drink from fountain
+ar assist astrid
+kr kill rhino
+assist zaver
+gr get green stocking
+gs get sandwich stocking
+eb eat sandwich
+aa assist astrid
+sc score
+0

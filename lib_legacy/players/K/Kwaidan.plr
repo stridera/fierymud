@@ -1,0 +1,112 @@
+name: Kwaidan
+password: KwL6So5atr
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 12
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20826
+birthtime: 1724194545
+timeplayed: 34803
+lastlogintime: 1725933875
+host: 074.131.039.156
+height: 77
+weight: 212
+base_height: 77
+base_weight: 212
+base_size: 3
+natural_size: 3
+alignment: 364
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 204/180
+mana: 14/14
+move: 200/200
+damroll: 5
+hitroll: 4
+strength: 98
+intelligence: 72
+wisdom: 66
+dexterity: 75
+constitution: 100
+charisma: 52
+cash: 1 369 1524 2069
+bank: 0 1 1 1
+experience: 445500
+quit_reason: 1
+saveroom: 3054
+skills:
+402 160
+404 160
+415 68
+416 110
+419 1000
+421 124
+427 1000
+430 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 89
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3132 1.000000
+1 3131 1.000000
+1 18006 1.000000
+1 18007 5.000000
+1 18000 2.000000
+1 18005 3.000000
+1 18001 3.000000
+1 18002 3.000000
+1 8020 1.000000
+1 8030 2.000000
+1 8022 2.000000
+1 36004 2.000000
+1 36002 38.000000
+1 36003 37.000000
+1 36001 36.000000
+1 8021 1.000000
+1 8011 2.000000
+1 8001 6.000000
+1 8016 3.000000
+1 8000 5.000000
+1 8002 3.000000
+0 0 0
+tells:
+1724547504 @WChoak@W tells you, 'iif you die consent lokar and he will get your resurrected@W'@0
+1724547516 @WChoak@W tells you, 'more useful when you are not in the same room but you get the idea@W'@0
+1724547569 @WChoak@W tells you, 'i keep these 3 logged in most of the time for when people die or get lost ;D @W'@0
+1724547657 @WChoak@W tells you, 'yeah that is another thing. I think the mud should have a free recal system but since it doesn't you have me :D If you ever get lost moonwells can go to most areas and rooms.@W'@0
+1724547769 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1725152051 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725152052 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725152053 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725152053 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1725152099 @WLisa@W tells you, 'Hrm, it doesn't look too worn, I suppose.@W'@0
+$
+gossips:
+1724804389 Discord gossips, 'Daedela: Oh no, it is Japanese.  I haven't seen it!'
+1724804410 Discord gossips, 'Daedela: Interesting, I don't usually see the word Romanized like that'
+1724804430 Discord gossips, 'Daedela: But yeah, it's more common usage is "staircase" haha'
+1724804470 Discord gossips, 'Daedela: Oohhhhh'
+1724807702 Chinok gossips, 'welcome back Kwaidan'
+1725148833 Chinok gossips, 'hi  Kwaidan, welcome back'
+1725148840 Discord gossips, 'Daedela: Hellooooo'
+1725149881 Chinok gossips, 'welcome back Seran'
+1725149885 Seran gossips, 'hey'
+1725155469 Chinok gossips, 'gratz on 12 Kwaidan!'
+$

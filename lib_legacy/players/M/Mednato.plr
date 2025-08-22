@@ -1,0 +1,79 @@
+name: Mednato
+password: Me/cThHvZ.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18873
+birthtime: 1426967972
+timeplayed: 5091
+lastlogintime: 1427130198
+host: 165.166.157.085
+height: 69
+weight: 124
+base_height: 69
+base_weight: 124
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 27/27
+mana: 1/0
+move: 102/102
+damroll: 3
+hitroll: 3
+strength: 68
+intelligence: 85
+wisdom: 100
+dexterity: 64
+constitution: 72
+charisma: 75
+experience: 5500
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 60
+424 52
+438 50
+443 50
+444 50
+451 52
+457 50
+458 50
+459 50
+460 52
+462 50
+463 53
+466 50
+0 0
+trophy:
+1 8015 1.000000
+1 8016 3.000000
+1 8000 1.000000
+1 8001 1.000000
+1 8014 2.000000
+0 0 0
+mem:
+16 1 8
+13 1 8
+0 0 0

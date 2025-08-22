@@ -1,0 +1,73 @@
+name: Zenia
+password: ZeIJWCMv3o
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 1
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20471
+birthtime: 1677957139
+timeplayed: 3084
+lastlogintime: 1681018498
+host: 174.127.246.217
+height: 59
+weight: 125
+base_height: 59
+base_weight: 125
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 25/25
+mana: 1/0
+move: 108/108
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 69
+wisdom: 70
+dexterity: 94
+constitution: 60
+charisma: 86
+cash: 0 4 14 10
+bank: 0 1 1 1
+experience: 5500
+quit_reason: 1
+saveroom: 3054
+skills:
+401 51
+403 51
+408 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 59
+493 50
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+1677958577 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1677957173 Chinok gossips, 'welcome Zenia'
+1677958621 Chinok gossips, 'Gratz Zenia!'
+1677958649 Chinok gossips, 'hehehe sure :)'
+1681018354 Chinok gossips, 'Im heading out.. night all'
+$

@@ -1,0 +1,64 @@
+name: Bofa
+password: BoLo6fYvhN
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19342
+birthtime: 1521490608
+timeplayed: 1493
+lastlogintime: 1521492115
+host: 169.241.065.235
+height: 74
+weight: 205
+base_height: 74
+base_weight: 205
+base_size: 3
+natural_size: 3
+alignment: 1
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -16/25
+mana: 0/0
+move: 138/138
+damroll: 5
+hitroll: 4
+strength: 90
+intelligence: 72
+wisdom: 74
+dexterity: 77
+constitution: 79
+charisma: 73
+experience: 3025
+quit_reason: 10
+saveroom: 3021
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0

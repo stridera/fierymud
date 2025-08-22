@@ -1,0 +1,114 @@
+name: Ahlisse
+password: AhlNnsRgLc
+description
+Ahlisse has an evil twin sister, Ehlissa.
+~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 2
+class: 2
+race: 9
+level: 99
+home: 6015
+lifeforce: 0
+composition: 0
+id: 16216
+birthtime: 1164489128
+timeplayed: 10047253
+lastlogintime: 1570755227
+host: 216.241.197.068
+height: 66
+weight: 121
+base_height: 66
+base_weight: 121
+base_size: 2
+natural_size: 2
+alignment: -717
+playerflags: glxyz
+effectflags: kt 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 58510
+lastlevel: 7
+hitpoints: 879/879
+mana: 100/100
+move: 116/116
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 84
+wisdom: 84
+dexterity: 88
+constitution: 86
+charisma: 84
+cash: 2156 4809 8094 0
+bank: 29 986 63592 68356
+experience: 105805999
+quit_reason: 7
+saveroom: 58510
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+409 1000
+410 600
+411 1000
+412 1000
+415 1000
+416 1000
+420 1000
+421 1000
+438 282
+443 1000
+444 1000
+464 1000
+465 885
+467 50
+476 1000
+478 1000
+0 0
+trophy:
+1 58411 1.000000
+1 58005 1.000000
+1 58006 1.000000
+1 58033 1.000000
+1 58003 1.000000
+1 43003 2.000000
+1 43000 7.000000
+1 43015 0.500000
+1 43018 0.500000
+1 43005 0.500000
+1 43004 3.000000
+1 43001 0.500000
+1 43017 0.500000
+1 39003 1.000000
+1 39009 1.000000
+1 7301 1.000000
+1 7300 8.000000
+1 7302 1.000000
+1 53302 0.535714
+1 53305 1.000000
+1 53306 0.714286
+0 0 0
+tells:
+$
+gossips:
+$
+aliases:
+kh kill humanoid
+bh backstab humanoid
+bp backstab paladin
+cc assist currrie
+volcano buntoi nakkarri karisto
+sl assist slo
+pp assist pal
+mu list mushroom
+ooo group oxter
+ccc group currrie
+ga get all corpse
+df drink fountain
+z scan
+lh look humanoid
+th track humanoid
+0

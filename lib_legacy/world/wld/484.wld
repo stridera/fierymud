@@ -1,0 +1,1856 @@
+#48400
+The Hall of Legends~
+   This room's most immediate feature is the colorful murals which occupy the
+west and south walls.  What is immediately striking about the murals is that
+they are split into sections and seem to tell a story, much like chapters in a
+book.  The story seems to start on the west wall, then continue on the south
+wall.  Other than the murals, this room is empty.  There is an archway to the
+north, and a door to the east.  There is an inscription above the door.    
+~
+484 8 0
+D0
+~
+~
+0 -1 48401
+D1
+You see a door.
+~
+door~
+1 -1 48410
+E
+mural murals~
+   After spending several moments admiring the quality of the work focus shifts
+to discerning its meaning.  The murals along each wall are split into several
+scenes, each scene continuing a common story.  If you wish to examine the
+individual scenes, you must LOOK at mural1, then LOOK at mural2.    
+~
+E
+mural1~
+   The scene on the west wall is dominated by a simple theme: a shadowy, vague
+presence stands unnoticed by other men, admiring a lovely young princess.  
+Beneath the figures in the first scene are names: below the shadowy presence is
+the name Lokari, and below the princess is the name Irinia.    
+~
+E
+mural2 south~
+   The mural on the south wall has many of the same elements as the mural to
+the west, but with a twist: the Princess is now aware that the shadow is
+observing her, and is discomforted by the fact.  In the final scene, Lokari
+asks the Princess to be his consort, but is refused.    
+~
+E
+archway inscription~
+   The temple was raised to honor the gods, and the hall was raised to honor
+the memory of our great Quest.  Mortar and stone may crumble to dust, but blood
+and flesh will endure.  If the ages remember but one thing of our Quest, let it
+be this: our resolve never wavered, for we marched on the side of what was
+right and just.    
+~
+S
+#48401
+The Hall of Legends~
+   Along the west and east walls are the same type of colorful murals examined
+in the previous room.  The murals continue the story that began to the south.
+Examine the west wall first, if you wish to maintain the continuity of the
+story.  Exits from the room are through archways to the north and south.    
+~
+484 8 0
+D0
+~
+~
+0 -1 48402
+D2
+~
+~
+0 -1 48400
+E
+mural murals wall walls~
+After spending several moments admiring the quality of the work focus shifts to
+discerning its meaning.  The murals along each wall are split into several
+scenes, each scene continuing a common story.  If you wish to examine the
+individual scenes, you must LOOK at mural1, then LOOK at mural2.    
+~
+E
+mural2~
+As you turn to the east, the images become dominated by Lokari.  In one scene,
+the god is perched thoughtfully upon a throne that floats in an inky blackness.
+Behind him stars streak across the void.  A silver radiance outlines Lokari's
+head; at first glance, the radiance appears to be a holy aura, but a closer
+inspection shows that the artisan has made the god's head eclipse the moon, so
+that only the very edges of the lunar body show.  It is then you recognize the
+name Lokari- he is the mysterious god of the Moonless Night.    
+~
+E
+mural1~
+Examining the west wall, you see various scenes in which the Princess rules her
+land.  She is pictured as a wise and benevolent ruler.    
+~
+S
+#48402
+The Hall of Legends~
+   The very first thing of note note in this room is the monstrous dragon's
+head fiercely glaring.  The crasftmanship of this artwork shows the mark of a
+master and one cannot help but marvel at the skill of the artisans.  More
+murals can be observed to the north and east.  The northern wall seems to
+continue the story where the chamber to the south left off.  There are archways
+to the west and south.    
+~
+484 8 0
+D2
+~
+~
+0 -1 48401
+D3
+~
+~
+0 -1 48403
+E
+mural murals wall walls~
+After spending several moments admiring the quality of the work focus shifts to
+discerning its meaning.  The murals along each wall are split into several
+scenes, each scene continuing a common story.  If you wish to examine the
+individual scenes, you must LOOK at mural1, then LOOK at mural2.    
+~
+E
+mural2~
+The mural returns to the dragon's rape of the land. In this midst of
+this devastation one man stands forward and tracks the blue devil. The
+man is identified as Severan. There is a heroic battle; Severan slays the
+dragon, but is mauled by the beast as it flails madly about in its
+death throes. Severan is carried to a local temple by his retainers,
+where he is tended to by priests. When Princess Irinia hears of Severan's
+mighty deed, she rushes to the Champion's side, to offer her thanks.
+~
+E
+mural1~
+Along the north wall, Lokari is shown in his godly domain, furious over his
+rejection by the Princess and brooding over how to win her favor.  In one
+chilling scene, Lokari grins madly, as though considering some insidious plan.
+The next scene shows Lokari unleashing a giant blue dragon upon the world.  
+The dragon wreaks havoc upon Irinia's kingdom, ravishing everything in its path.
+The final scene depicts Lokari once again presenting himself to the Princess,
+this time with an offer: marry him and he will cage the dragon; deny him and
+the dragon will scourge the countryside and annihilate her people.    
+~
+S
+#48403
+The Hall of Legends~
+   As with every other chamber in this structure, there are murals along the
+walls, this time to the north and west.  The western murals are interrupted by
+an open window which looks out into the forest.  Perhaps at one time the window
+let in sunshine so that pilgrims could better view the murals; however, the
+window has proved just as effective at letting in the elements, for mud and
+decaying leaves litter the floor.  It may be wise to examine the mural to the
+west, then follow the story as it continues along the northern wall.  There are
+archways to the south and east.    
+~
+484 8 0
+D1
+~
+~
+0 -1 48402
+D2
+~
+~
+0 -1 48404
+E
+inscription~
+The inscription, which is part of the mural, appears to have been burned
+onto the stone wall of the chamber where the Princess was abducted. It
+reads:
+
+Gaze upon those who oppose my will and enjoy their folly.
+
+~
+E
+mural murals~
+After spending several moments admiring the quality of the work focus shifts to
+discerning its meaning.  The murals along each wall are split into several
+scenes, each scene continuing a common story.  If you wish to examine the
+individual scenes, you must LOOK at mural1, then LOOK at mural2.    
+~
+E
+mural2~
+This mural is very different from the others you have seen. The angles
+seem sharper, the colors less vibrant. Perhaps the artisans wished to
+emphasize the shock and loss expressed by the events depicted in this
+particular mural. Curious, you examine the mural in a desire to see how
+the story will unfold. The first scene shows Lokari peering into a
+window, watching the Princess as she and a few female companions huddle
+before a fireplace. Another mural shows Lokari entering the room and making
+his presence known to those inside. With a word and a gesture, he slays
+the terrified handmaidens. The final scene shows the god departing the
+mortal plane, forcing the Princess to accompany him. The lifeless bodies
+of the handmaidens and an inscription burned upon a stone wall in
+Irinia's room are all that remain behind to tell the tale of Irinia's
+abduction.
+~
+E
+mural1~
+The mural reveals that Severan and the Princess spend much time together as his
+wounds heal.  The two fall in love and announce their plans to wed.  The entire
+kingdom celebrates upon hearing the news that their beloved Princess and their
+greatest Champion will be joined.  There is one figure who is not celebrating,
+however.  The shadowy Lokari stands in the background of every scene, anger and
+jealously blazing in his dark eyes.    
+~
+S
+#48404
+The Hall of Legends~
+   For the first time, physical damage to the room can be noticed.  The floor
+of this structure is uneven.  In the center of the chamber, the floor is
+polished smooth, while the corners are somewhat rougher.  Perhaps generations
+of pilgrims have worried the stone away with their boots, smoothing the floor
+out.  The continuin murals draw attention from the floor.  They continue along
+the west and east walls.  It may be wise to examine the west wall first, then
+the east.  There are archways to the north and south.    
+~
+484 8 0
+D0
+~
+~
+0 -1 48403
+D2
+~
+~
+0 -1 48405
+E
+mural murals wall walls~
+After spending several moments admiring the quality of the work focus shifts to
+discerning its meaning.  The murals along each wall are split into several
+scenes, each scene continuing a common story.  If you wish to examine the
+individual scenes, you must LOOK at mural1, then LOOK at mural2.    
+~
+E
+mural2~
+This mural is somewhat hazy.  It depicts the awesome and powerful figures of
+three gods.  These gods seem to be debating.  At their feet a diminutive image
+of Severan is always present, as though in his piousness he has touched their
+hearts.  The gods, consequently, decide to assist Severan, and direct an avatar
+down to earth.  In the final scene, Severan seems encouraged as he listens
+closely to the words of the avatar.    
+~
+E
+mural1~
+This mural is entirely dedicated to displaying the panic, confusion,
+anger and despair which followed the abduction of the Princess. In the
+center of this tumult stands Severan. The Champion travels to a distant
+temple high in the mountains, where he seeks consultation with the gods.
+For seven days and nights he does nothing but fast, meditate, and
+sacrifice to the gods.
+~
+S
+#48405
+The Hall of Legends~
+   The floor of this chamber is muddy and is littered with decaying leaves.  
+There are murals to the west and east, and archways to the north and south.  
+The mural to the west is interrupted by a window that looks out to a forest.  
+It would be wise to examine the murals to the west before turning attention to
+the mural along the east wall.    
+~
+484 8 0
+D0
+~
+~
+0 -1 48404
+D2
+~
+~
+0 -1 48406
+E
+mural murals~
+After spending several moments admiring the quality of the work focus shifts to
+discerning its meaning.  The murals along each wall are split into several
+scenes, each scene continuing a common story.  If you wish to examine the
+individual scenes, you must LOOK at mural1, then LOOK at mural2.    
+~
+E
+mural1~
+Severan returns to his people and shares with them the words of the
+avatar. The people are heartened by the news, and soon a mighty army
+forms. Heralds are dispatched to distant lands, and humanoids, heroes and
+intelligent monsters from across the world gather under Severan's banner.
+Personal allegiances are put aside; racial hatreds forgotten for the
+moment, as the mighty army grows and people begin to believe they can
+rescue the Princess and defeat the god.
+~
+E
+mural2~
+Lokari is not idle as Severan gathers his army.  He assembles his own host and
+prepares the defense of his realm.  In several images you see Princess Irinia
+continuing to defy Lokari; this angers him, but he refuses to release her.    
+~
+S
+#48406
+The Hall of Legends~
+   As you enter this windowless room there is no clear indication how the
+ancients kept this structure illuminated.  No evidence of wall sconces for
+torches can be found, and there is a conspicuous lack of fireplaces.  Perhaps
+the ancients were afraid the smoke from these sources would damage the murals.
+There are murals on the west and east walls.  It may be wise to examine the
+wall to the west first.  There are archways to the north and south.    
+~
+484 8 0
+D0
+~
+~
+0 -1 48405
+D2
+~
+~
+0 -1 48407
+E
+mural murals wall walls~
+After spending several moments admiring the quality of the work focus shifts to
+discerning its meaning.  The murals along each wall are split into several
+scenes, each scene continuing a common story.  If you wish to examine the
+individual scenes, you must LOOK at mural1, then LOOK at mural2.    
+~
+E
+mural1~
+The mural shows Severan's army growing even larger. Under Severan's
+direction, the army constructs a temple at the site of his victory over the
+dragon, incorporating the bones of the dragon into the foundation of the
+temple. You recognize the area depicted in the mural as being the compound
+you are currently exploring.
+~
+E
+mural2~
+In this mural Severan and his army consult a number of oracles. The
+oracles impart some vital information to the Host. Apparently as a result
+of this information, Severan and several other Heroes leave the
+burgeoning army and set off in different directions.
+~
+S
+#48407
+The Hall of Legends~
+   A breeze blows through a window along the west wall.  On the far side of the
+room, across the muddy floor, the mural continues on the south and west walls.
+It may be wise to examine the mural to the west first.  Exits from the room are
+through archways to the north and east.    
+~
+484 8 0
+D0
+~
+~
+0 -1 48406
+D1
+~
+~
+0 -1 48408
+E
+mural murals wall walls~
+After spending several moments admiring the quality of the work focus shifts to
+discerning its meaning.  The murals along each wall are split into several
+scenes, each scene continuing a common story.  If you wish to examine the
+individual scenes, you must LOOK at mural1, then LOOK at mural2.    
+~
+E
+mural1~
+This mural shows Severan completing several Quests by which the gods test his
+worth.  Upon completing his final Quest, the three gods descend to the mortal
+realm and congratulate Severan upon his successes.  Warning Severan that his
+battle with Lokari will be a difficult, the gods give him their blessing.  You
+recognize the god- they are Timun the Sun god, Rhalean goddess of Justice, and
+Azkrael goddess of the Hunt.
+~
+E
+mural2~
+This mural reveals that other Heroes Quested as well, and were just as
+successful as Severan. These heroes return home in triumph, bearing objects
+which they apparently won while Questing.
+~
+S
+#48408
+The Hall of Legends~
+   The floor of this chamber is partially tiled.  The tiling begins to the
+north and ends abruptly in the center of the room.  Perhaps the artisans
+abandoned their attempts to cover the rough stone floor.  The tiles themselves
+are colorful and are decorated with images, but lack the mastery of the murals.
+The murals run along the east and south walls.  It may be wise to examine the
+east wall first.  There are archways to the north and west.    
+~
+484 8 0
+D0
+~
+~
+0 -1 48409
+D3
+~
+~
+0 -1 48407
+E
+mural murals~
+After spending several moments admiring the quality of the work focus shifts to
+discerning its meaning.  The murals along each wall are split into several
+scenes, each scene continuing a common story.  If you wish to examine the
+individual scenes, you must LOOK at mural1, then LOOK at mural2.    
+~
+E
+mural1~
+In this mural, a great Host is seen to assemble before the Temple of the
+Sun. Swords flash brightly as men raise their weapons to salute Severan.
+~
+E
+mural2~
+This murals shows only the Temple of the Sun.  The ground is muddy around the
+east face of the pyramid and appears heavily trodden.  You come to the
+conclusion that Severan has lead his Host to war against Lokari.    
+~
+E
+tile tiles floor~
+The tiles are purely decorative.
+~
+S
+#48409
+The Hall of Legends~
+   The floor of this chamber is completely covered with tiles similar to those
+found to the south.  Some of the tiles have become brittle over the ages and
+care must be taken to step through the room to avoid fracturing them.  Unlike
+the other chambers, this room lacks murals.  Perhaps this chamber was intended
+to document Severan's triumphant return.  Perhaps Severan and his Host failed
+their war against the god.  There is a strange-looking door to the north.  The
+only other exit from the room is through an archway to the south.    
+~
+484 8 0
+D0
+The door's hinges are cleverly made. You suspect it opens only one-way.
+~
+door~
+1 -1 48400
+D2
+~
+~
+0 -1 48408
+E
+tile tiles floor~
+The tiles are purely decorative.
+~
+S
+#48410
+The Courtyard~
+   The close-fitting stones of the courtyard have become fractured over time as
+stunted plants have forced their way through and around the stone.  To the
+east, at the other end of the courtyard, is a massive pyramid.  Stairs along
+the pyramid's western face will provide access to a temple on the top.  
+Directly to the west is an elaborately decorated building.  There is a door to
+the west which will allow entrance into the structure.  The courtyard continues
+to the north, south, and east.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48419
+D1
+~
+~
+0 -1 48415
+D2
+~
+~
+0 -1 48411
+D3
+You see a door.
+~
+door~
+1 -1 48400
+S
+#48411
+Before the Silveroak~
+   Before you rises a fabled Silveroak tree.  The silver leaves of this tree
+reflect your light a hundred fold, flooding the surroundings with a silvery
+radiance so intense it is nearly blinding.  Surely the gods themselves must see
+this beacon and feel awe.  The courtyard was built around the tree, allowing
+the oak plenty of room in which to grow.  It appears that the ancient builders
+of this compound had a great deal of respect for this rare and wondrous tree.
+The courtyard continues to the north, east, and south.  To the west is an
+elaborately decorated building.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48410
+D1
+~
+~
+0 -1 48414
+D2
+~
+~
+0 -1 48412
+E
+silveroak oak silver tree~
+The Silveroak...  Many stories have spawned of this legendary tree, but few
+have had the opportunity to view one.  It is said the Silveroak was the first
+tree planted upon the land by the gods after the world was created.    
+~
+S
+#48412
+The Courtyard~
+   The close-fitting stones of the courtyard have become fractured over time as
+stunted plants have forced their way through and around the stone.  To the
+east, at the other end of the courtyard, rises a massive tiered pyramid.  
+Directly to the west there is a large rectangular building.  The courtyard
+continues to the north, east, and south.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48411
+D1
+~
+~
+0 -1 48413
+D2
+~
+~
+0 -1 48458
+S
+#48413
+The Courtyard~
+   The pyramid directly to the east is formed from unadorned blocks of granite.
+Upon the final level of the tiered pyramid is a small, undecorated temple.  
+The fact that the temple, like the pyramid, is barren of obvious artwork
+reflects the solemnness of either the builders of this structure or the god it
+was dedicated to.  The courtyard continues to the north, west, and south.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48414
+D2
+~
+~
+0 -1 48446
+D3
+~
+~
+0 -1 48412
+S
+#48414
+The Courtyard~
+   A mighty pyramid which looms to the east.  It is composed of three distinct
+levels, each of which is smaller than the preceding one.  The base of the
+pyramid is the broadest and ends several meters above.  Upon the final level is
+perched a temple.  The courtyard continues to the north, west, and south.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48415
+D2
+~
+~
+0 -1 48413
+D3
+~
+~
+0 -1 48411
+S
+#48415
+The Courtyard~
+   Directly to the east, a massive stairway cuts into the pyramid and provides
+easy access to the next level.  The stairway begins at the base of the pyramid
+and proceeds sharply upward.  The staircase leads upward, or the courtyard
+continues to the west, north, or south.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48416
+D2
+~
+~
+0 -1 48414
+D3
+~
+~
+0 -1 48410
+D4
+~
+~
+0 -1 48447
+S
+#48416
+The Courtyard~
+   At the base of the pyramid you spot a mighty block of granite bearing an
+inscription.  Examining the inscription, finds this structure was dedicated to
+Timun, god of the Sun, apparently in an attempt to beseech his aid for some
+purpose.  The courtyard continues to the north, west, and south.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48417
+D2
+~
+~
+0 -1 48415
+D3
+~
+~
+0 -1 48419
+E
+inscription writing runes block granite pyramid~
+The inscription reads:
+
+Timun, great Lord of the Sun, we dedicate this temple to your name, to
+your philosophy, to your honour. We call upon you to help your loyal
+followers in their hour of greatest need.
+
+~
+S
+#48417
+The Courtyard~
+   The pyramid directly to the east is formed from unadorned blocks of granite.
+Upon the final level of the tiered pyramid is a simple, undecorated temple.  
+The fact that the temple, like the pyramid, is barren of obvious artwork
+reflects the solemnness of either the builders of this structure or the god it
+is dedicated to.  The courtyard continues to the north, west, and south.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48427
+D2
+~
+~
+0 -1 48416
+D3
+~
+~
+0 -1 48418
+S
+#48418
+The Courtyard~
+   The close-fitting stones of the courtyard have become fractured over time as
+stunted plants have forced their way through and around the stone.  To the
+east, at the other end of the courtyard, rises a massive tiered pyramid.  
+Directly to the west lies large rectangular building.  The courtyard continues
+to the north, east, and south.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48457
+D1
+~
+~
+0 -1 48417
+D2
+~
+~
+0 -1 48419
+S
+#48419
+The Fountain~
+   A large fountain lies here.  The fountain is dry now, its basin filled with
+mud and leaves.  Along the base you spot an inscription.  A statue stands on a
+platform in the middle of the fountain.  The statue faces to the east, its eyes
+peering up at a temple situated upon the top of the pyramid.  The statue's
+expression and stance express supplication, but a sheathed sword is gripped
+tightly in one hand.  The courtyard continues to the north, east, and south.  
+There is a building directly to the west.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48418
+D1
+~
+~
+0 -1 48416
+D2
+~
+~
+0 -1 48410
+E
+statue~
+Following the statue's eyes it can be seen that he is looking up at a temple
+upon the pyramid.  The statue's dress suggests that he is a mighty warrior, but
+his bearing indicates that he is pious.    
+~
+E
+fountain inscription base~
+An inscription on the fountain reads:
+
+Concept, Compound, Earth, Water and Fire -- Rhalean 1996
+Air and Keep, Plus Many Ideas -- Azkrael 1996
+Hard Work, Clever Coding, and Dedication -- Metamorpho 1992- present.
+Editing for Reimplementation -- Kourrya, Dakhod, Laoris and Cronax 2006
+~
+S
+#48420
+Hall of Nobility~
+   A large mural vies for attention and dominates the room.  It is amazing and
+spans the entire ceiling.  The mural is crowded with images of paladins,
+monsters, and fair maidens.  In the centre of the ceiling is the image of a
+paladin who appears much taller and more powerful than the others.  The warrior
+stands before a rising sun, and his armour reflects the sunlight and shines
+with a golden radiance.  Next to the paladin stands a beautiful young woman
+garbed in a wedding gown, and at his feet is a stone tablet.  The tablet is
+inscribed with writing but at this distance only one line can be seen, the line
+which is larger than the rest.  The phrase reads: 'The Code of the Paladin.  '
+Moving closer to the tablet may provide a better vantage point for reading.  
+There is an archway to the west and a door to the east.    
+~
+484 28 0
+D1
+You see a door.
+~
+door stone~
+1 -1 48436
+D3
+~
+~
+0 -1 48421
+E
+maiden nikita woman~
+The woman is garbed in a wedding gown and has one hand placed protectively upon
+her husband's arm, the paladin.  There is a tiny script beneath her.  It reads:
+Nikita, wife of Timun, great Lord of the Sun.    
+~
+E
+knight paladin~
+There is something unusual about the paladin in the centre of the ceiling.  
+His bearing and stance display absolute strength of sword and conviction.  
+Ancient lore claims that Timun, god of the Sun, is the patron deity of the
+Paladin Guild...  Perhaps this mural was created to honour him.    
+~
+E
+code tablet stone writing inscription~
+The inscription reads:
+
+The Code of the Paladin:
+Know that this is the Code of the Paladin, as told by the great god Timun
+to the First Paladin, Irik.
+The Paladin will defend the weak against the wicked, respect the Gods    
+and do them honour, and willingly sacrifice his life to protect the
+virtues of a maiden.
+~
+S
+#48421
+Oracle of the Sun~
+   The diffuse blue glow of the altar dominates the centre of the room.  The
+walls are of pure white marble, untouched by the light of the altar.  A quick
+glance upwards reveals a marvel of art or magic.  Black as the darkest night,
+its depths are broken only by motes of light that sparkle and dance before your
+eyes.  It is as if the ceiling captures the very essence of stars, reflecting
+the beauty of the night.  Floating just out of reach above the altar is a
+large, golden disk.  It rotates slowly, revealing a rayed sun symbol engraved
+on one side, and an eagle holding a sword in its claws on the other.  As you
+examine the emblem it suddenly a shoots a ray of sunlight against the west
+wall.  The image the disk projects against the wall seems almost solid.  The
+only visible exit from this chamber is to the east.    
+~
+484 152 0
+D1
+~
+~
+0 -1 48420
+D3
+The door is made of light! It is as solid as steel and something tells you
+the door is indestructible.
+~
+sun-door door sun light sunlight~
+2 48421 48422
+E
+ceiling~
+Upon closer inspection specific constellations can be seen on the ceiling far
+above!  It really is a reflection of the stars.  One constellation seems to
+garner more attention than the rest....  The Paladin and his Sword.  Could
+there be a connection?    
+~
+E
+pool liquid~
+The pool seems to swirl and form vague, fleeting images.  You get the
+impression of legends being made, stories being written, but it passes too fast
+to catch.    
+~
+E
+symbol symbols inscription side sides word~
+The symbols seem to reform, rearrange and sometimes reshape themselves.  
+Somehow, the symbols seems to form words in your mind...
+I am the Star-Gazer,
+Worldmaker, Walker of Storms,
+I walked as Tale-Spinner,
+Truthseeker, Bearer of...
+The rest is lost, beyond mortal comprehension. This must belong to a 
+God, only they could be so arrogant. 
+~
+E
+altar alter~
+   The altar is nothing more than a huge rectangular slab of white
+marble, but it radiates light from somewhere within itself. A circular
+pool filled with some sort of liquid is cut into its surface. Inscribed
+on the sides are symbols which looks vaguely familiar.
+~
+E
+sunray ray light sunlight~
+Passing a hand through the light it is surprising to find resistance to
+movement.  The light has the consistency of a thick soup.  The further away
+from the disk, the more solid the light becomes.  Placing a hand into the light
+ray as it nears the west wall the faint outline of your skeleton can be seen!
+  
+~
+E
+disk emblem~
+The disk is made of pure gold and throbs with power. It projects a ray of
+light onto the west wall. The light forms into a shape which resembles a
+door.
+~
+S
+#48422
+The Arch of Bones~
+   Along the west wall of this chamber is a magnificent structure: an archway,
+built from the bones of a monstrous, powerful animal.  A dragon's skull
+projects from the apex of the arch.  This archway must have been built using
+the bones of the blue dragon which Severan defeated in battle.  Attempting to
+peer beyond the archway is futile, as it is unnaturally darkened.  There are no
+indications where it leads.  The surface glimmers as ripples spread across its
+silvery surface.  There is a feeling the archway will not lead to another
+chamber, or to any other Cailian destination, for that matter.  There is no
+other exit from the chamber.    
+~
+484 8 0
+D0
+~
+~
+0 -1 47600
+D3
+The surface of the arch appears liquid and flowing, but solid to the touch,
+preventing passage through the membrane.  It would be unwise to use force, lest
+the bones of the arch come tumbling down.    
+~
+arch~
+3 -1 -1
+S
+#48423
+Hall of Justice~
+   Stone statues line both sides of this hall.  The statues to the east carry
+swords at their waist and possess grim faces and an unyielding stance.  The
+statues to the west are dressed in the robes of a magistrate and cradle a book
+in one arm.  There is a chamber at the south end of this hall.  Exit north is
+possible through a stone door.    
+~
+484 12 0
+D0
+You see a door.
+~
+door stone~
+1 -1 48430
+D2
+~
+~
+0 -1 48424
+S
+#48424
+Oracle of Justice~
+   This chamber is so holy to a god that it has absorbed part of her essence,
+and radiates it as the sun radiates light.  Never before has there been so
+strong a presence of Divinity.  The room is unadorned, lacking even a simple
+altar.  The only exit is to the north.    
+~
+484 152 0
+D0
+~
+~
+0 -1 48423
+S
+#48425
+The Hall of the Hunt~
+   Soft noises echo off of the alabaster-tiled floor.  A long hall leads to
+what is clearly a throne of sorts at the very end of the room.  Tapestries line
+the walls, tall as a tree in a forest.  The ceiling is all glass, with an
+unwordly blue moonlight showing through, reflecting on the floor, until silver
+shafts of light dance along the walls.  This is the Hall of the Hunt, where
+Severan and other mortals begged the mighty Azkrael, Goddess of the Hunt, for
+her aid against the insane Lokari.  Azkrael's touch upon this room is evident.
+This Hall must co-exists in a godly realm, and that the moonlight filtering
+down from the ceiling is the same light that illuminates Azkrael's domain.  
+The Hall continues north through an archway.  There is an exit the pyramid by
+leaving south through a stone door.
+~
+484 28 0
+D0
+~
+~
+0 -1 48426
+D2
+You see a door.
+~
+door stone~
+1 -1 48442
+S
+#48426
+Oracle of the Hunt~
+   The goddess must have listened to the pleas of the mortals, because here is
+her answer: a beautiful chamber, blessed with her obvious presence.  Six
+greyhounds are sprawled along the floor near a wall, lost in immortal sleep.  
+Advancing through the chamber, the wildness of the Hunt infectious.  A feral
+grin forms on your lips without your even being aware of it.  Even the
+greyhounds notice it, waking up and observing the intrusion.  Roses on
+trellises all along the walls bloom, springing to life.  Truly this is a sacred
+and holy place, a fitting altar to the Goddess of the Hunt.  At the end of the
+chamber is an empty throne composed of silver and ivory.  The only exit is to
+the south.    
+~
+484 152 0
+D2
+~
+~
+0 -1 48425
+S
+#48427
+The Courtyard~
+   This is the northern edge of a narrow courtyard which separates two ancient
+structures.  Along the east flank of the courtyard is a tiered pyramid.  The
+pyramid is constructed from massive blocks of unadorned granite.  The building
+west of the courtyard is much more elaborate than the pyramid, with engraved
+columns and friezes running its length.  Directly to the east, you see a grassy
+area that skirts the edge of the temple.  The courtyard continues to the south
+and west.    
+~
+484 0 2
+D1
+~
+~
+0 -1 48428
+D2
+~
+~
+0 -1 48417
+D3
+~
+~
+0 -1 48457
+S
+#48428
+Along a Side of the Pyramid~
+   This area is a grassy, narrow alley that continues in an east-west direction
+and separates the pyramid to the south from the forest to the north.    
+~
+484 0 2
+D1
+~
+~
+0 -1 48429
+D3
+~
+~
+0 -1 48427
+S
+#48429
+Along a Side of the Pyramid~
+   This area is a grassy, narrow alley that continues in an east-west direction
+and separates the pyramid to the south from the forest to the north.    
+~
+484 0 2
+D1
+~
+~
+0 -1 48430
+D3
+~
+~
+0 -1 48428
+S
+#48430
+Along a Side of the Pyramid~
+   Continuing along the grassy path there appears to be an irregularity in the
+shape of the pyramid.  Examining the stone closely, there seems to be a door
+which will provide access to the interior.    
+~
+484 0 2
+D1
+~
+~
+0 -1 48431
+D2
+The door is made of the same stone as the pyramid and projects out from
+the pyramid somewhat.
+~
+door stone~
+1 -1 48423
+D3
+~
+~
+0 -1 48429
+S
+#48431
+Along a Side of the Pyramid~
+   This area is a grassy, narrow alley that continues in an east-west direction
+and separates the pyramid to the south from the forest to the north.    
+~
+484 0 2
+D1
+~
+~
+0 -1 48432
+D3
+~
+~
+0 -1 48430
+S
+#48432
+Along a Side of the Pyramid~
+   This area is a grassy, narrow alley that continues in an east-west direction
+and separates the pyramid to the south from the forest to the north.    
+~
+484 0 2
+D1
+~
+~
+0 -1 48433
+D3
+~
+~
+0 -1 48431
+S
+#48433
+Along a Side of the Pyramid~
+   This is the edge of the pyramid.  The forest presses closely against the
+path here to the east and north, seeking to reclaim land lost to humanity
+generations ago.  The grassy path continues to the west and south.    
+~
+484 0 2
+D2
+~
+~
+0 -1 48434
+D3
+~
+~
+0 -1 48432
+S
+#48434
+Along a Side of the Pyramid~
+   This area is a grassy, narrow alley that continues in an north-south
+direction and separates the pyramid to the west from the forest to the east.  
+~
+484 0 2
+D0
+~
+~
+0 -1 48433
+D2
+~
+~
+0 -1 48435
+S
+#48435
+Along a Side of the Pyramid~
+   This area is a grassy, narrow alley that continues in an north-south
+direction and separates the pyramid to the west from the forest to the east.  
+~
+484 0 2
+D0
+~
+~
+0 -1 48434
+D2
+~
+~
+0 -1 48436
+S
+#48436
+Along a Side of the Pyramid~
+   Continuing along the grassy path there appears to be an irregularity in the
+shape of the pyramid.  Examining the stone closely, there appears to be a door
+which will provide access to the interior.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48435
+D2
+~
+~
+0 -1 48437
+D3
+The door is made of the same stone as the pyramid and projects out from it
+somewhat.
+~
+door stone~
+1 -1 48420
+S
+#48437
+Along a Side of the Pyramid~
+   This area is a grassy, narrow alley that continues in an north-south
+direction and separates the pyramid to the west from the forest to the east.  
+~
+484 0 2
+D0
+~
+~
+0 -1 48436
+D2
+~
+~
+0 -1 48438
+S
+#48438
+Along a Side of the Pyramid~
+   This area is a grassy, narrow alley that continues in an north-south
+direction and separates the pyramid to the west from the forest to the east.  
+~
+484 0 2
+D0
+~
+~
+0 -1 48437
+D2
+~
+~
+0 -1 48439
+S
+#48439
+Along a Side of the Pyramid~
+   This is the edge of the pyramid.  The forest presses closely against the
+path here to the south and east, seeking to reclaim land lost to humanity
+generations ago.  The grassy path continues to the north and west.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48438
+D3
+~
+~
+0 -1 48440
+S
+#48440
+Along a Side of the Pyramid~
+   This area is a grassy, narrow alley that continues in an west-east direction
+and separates the pyramid to the north from the forest to the south.    
+~
+484 0 2
+D1
+~
+~
+0 -1 48439
+D3
+~
+~
+0 -1 48441
+S
+#48441
+Along a Side of the Pyramid~
+   This area is a grassy, narrow alley that continues in an west-east direction
+and separates the pyramid to the north from the forest to the south.    
+~
+484 0 2
+D1
+~
+~
+0 -1 48440
+D3
+~
+~
+0 -1 48442
+S
+#48442
+Along a Side of the Pyramid~
+   Continuing along the grassy path there appears to be an irregularity in the
+shape of the pyramid.  Examining the stone closely, there appears to be a door
+which will provide access to the interior.    
+~
+484 0 2
+D0
+The door is made of the same stone as the pyramid and projects outward
+slightly.
+~
+door stone~
+1 -1 48425
+D1
+~
+~
+0 -1 48441
+D3
+~
+~
+0 -1 48443
+S
+#48443
+Along a Side of the Pyramid~
+   This area is a grassy, narrow alley that continues in an west-east direction
+and separates the pyramid to the north from the forest to the south.    
+~
+484 0 2
+D1
+~
+~
+0 -1 48442
+D3
+~
+~
+0 -1 48445
+S
+#48445
+Along a Side of the Pyramid~
+   This area is a grassy, narrow alley that continues in an west-east direction
+and separates the pyramid to the north from the forest to the south.    
+~
+484 0 2
+D1
+~
+~
+0 -1 48443
+D3
+~
+~
+0 -1 48446
+S
+#48446
+The Courtyard~
+   This is the southern edge of a narrow courtyard which separates two ancient
+structures.  Along the east flank of the courtyard is a tiered pyramid.  The
+pyramid is constructed from massive blocks of unadorned granite.  The building
+west of the courtyard is much more elaborate than the pyramid, with engraved
+columns and friezes running its length.  Directly to the east, there is a
+grassy area that skirts the edge of the temple.  The courtyard continues to the
+north and west.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48413
+D1
+~
+~
+0 -1 48445
+D3
+~
+~
+0 -1 48458
+S
+#48447
+First Level of the Pyramid~
+   The steps of this staircase are treacherous.  Proceed slowly, knowing that a
+fall would be easy and quite possibly fatal.  The edges of the stairs are worn
+at the center, as though generations of pilgrims and priests have worn the
+stone away.  The staricase continues up or down.    
+~
+484 0 2
+D4
+~
+~
+0 -1 48448
+D5
+~
+~
+0 -1 48415
+S
+#48448
+Second Level of the Pyramid~
+   The second level of the pyramid provides an excellent view of the
+countryside.  To the west lies the Hall and the deep green heart of the forest.
+A stiff breeze sweeps the trees forward; for a moment, the trees resemble great
+waves rushing towards the compound, threatening to wash over the courtyard and
+reclaim the land for the forest.  The staircase continues in a vertical
+direction.    
+~
+484 0 2
+D4
+~
+~
+0 -1 48449
+D5
+~
+~
+0 -1 48447
+S
+#48449
+Altar to the Sun God~
+   Upon the final level of the pyramid is a temple.  The temple is barren with
+the exception of an impressive ivory altar which rests beneath a skylight.  
+The center of the altar is inlaid with gold beaten into the form of a sun.  
+The altar has evidently gone unused for a very long time, but is still sacred
+to a god, for the area retains a sense of importance and holiness.    
+~
+484 0 2
+D5
+~
+~
+0 -1 48448
+S
+#48450
+Above an Ancient Forest~
+   An ancient forest, surrounded by hills on all sides, sprawls to the north.
+The rolling hills contain the forest, limiting its boundaries and preventing it
+from expaning.  Here, above the woods, the forest can be seen in its entirety.
+In the middle of the great forest, east of the forest heart, there is a massive
+stone pyramid rising above the trees.  Far below, the hill continues and toward
+the edge of the forest, or the Eldorian Hills can be reached by traveling
+south.    
+~
+484 0 3
+D2
+~
+~
+0 0 55895
+D5
+~
+~
+0 -1 48451
+S
+#48451
+Edge of an Ancient Forest~
+   To the north, a stark line of trees marks the beginning of an ancient
+forest.  The trees grow closely together, but an old path, seldom used these
+days, will provide easy travel through the forest.  At your back rises a
+gentle, rolling hill.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48452
+D4
+~
+~
+0 -1 48450
+S
+#48452
+A Path Through an Ancient Forest~
+   The trail cuts through the woods, passing through dappled sunlight and
+twisting around the trunks of the great forest trees.  A small songbird,
+peering up from a branch high overhead, notices the intrusion and responds with
+the eruption of a sudden chorus.  The bird's song is answered by others of its
+kind, and soon the forest resounds with the melody.  As suddenly as it began,
+the birds cease their song, leaving the forest deathly quite.  The trail
+continues to the north and south.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48453
+D2
+~
+~
+0 -1 48451
+S
+#48453
+A Path Through an Ancient Forest~
+   A thick carpet of decaying leaves blanket the path, forcing travel to
+proceed slowly to prevent a mistep that will lead away from the real path and
+onto a false trail.  The trail continues to the south and west.    
+~
+484 0 3
+D2
+~
+~
+0 -1 48452
+D3
+~
+~
+0 -1 48454
+S
+#48454
+A Path Through an Ancient Forest~
+   Muted sunlight filters through the canopy of branches and leaves overhead,
+leaving much of the forest in shadow.  Occasional shafts of golden sunlight
+streak through the canopy untouched, highlighting certain areas of the forest
+and drawing your attention to the abundant and varied life.  The path continues
+to the west and east.    
+~
+484 0 3
+D1
+~
+~
+0 -1 48453
+D3
+~
+~
+0 -1 48455
+S
+#48455
+A Path Through an Ancient Forest~
+   Muted sunlight filters through the canopy of branches and leaves overhead,
+leaving much of the forest in shadow.  Occasional shafts of golden sunlight
+streak through the canopy untouched, highlighting certain areas of the forest
+and drawing attention to the abundant and varied life.  The path continues to
+the east.  To the north the path ends abruptly at a swift-flowing creek, but a
+stone bridge allows access over the water.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48456
+D1
+~
+~
+0 -1 48454
+S
+#48456
+The Stone Bridge~
+   An ancient bridge spans a deep, swift creek which winds its way through the
+forest here.  The bridge is wide enough for five men to walk abreast and was
+obviously designed to facilitate the transportation of troops- simple farmers
+or villagers would not construct a bridge so wide and sturdy.  The bridge is
+also well-crafted, and examining the stonework it is characteristic of dwarven
+masonry technique.  The bridge continues to the north, or the path can be
+reached to the south.  Directly below is the bank of the creek.  It is possible
+to enter the area underneath the bridge and further explore if desired.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48460
+D2
+~
+~
+0 -1 48455
+D5
+~
+~
+0 -1 48612
+S
+#48457
+The Courtyard~
+   The corner of the courtyard is here, which extends to the south and east.  
+The forest to the north and west press closely to the edge of the courtyard,
+seeking to reclaim land lost to humanity centuries ago.  Glancing at the stones
+under foot, small shoots and young saplings can be seen forcing their way
+around the edge of the stones, creating fractures in the courtyard.  Perhaps in
+a hundred years all traces of the courtyard will be obliterated as the stones
+are supplanted by life
+~
+484 0 2
+D1
+~
+~
+0 -1 48427
+D2
+~
+~
+0 -1 48418
+S
+#48458
+The Courtyard~
+   The corner of the courtyard is here, which extends to the north and east.  
+The forest to the south and west press closely to the edge of the courtyard,
+seeking to reclaim land lost to humanity centuries ago.  Glancing at the stones
+underfoot, small shoots and young saplings can be seen forcing their way around
+the edge of the stones, creating fractures in the courtyard.  Perhaps in a
+hundred years all traces of the courtyard will be obliterated as the stones are
+supplanted by life.  An old trail leading south can be seen cutting into the
+woods.    
+~
+484 0 2
+D0
+~
+~
+0 -1 48412
+D1
+~
+~
+0 -1 48446
+D2
+~
+~
+0 -1 48549
+S
+#48459
+The Stone Tablet~
+There is a clearing in the forest here. In the center of the clearing
+towers an enormous stone tablet. There is writing on the tablet, and
+before you proceed, you MUST look at the tablet.
+
+Congratulations! You have successfully teleported to a room which was
+never connected, because the policies regarding Severan's Doom were
+changed. Aren't YOU special!
+~
+484 0 2
+E
+stone-tablet tablet stone board~
+The tablet is written in an elegant script. It reads:
+
+Severan's Doom was created to present a challenge to the many high level
+characters in the game. It was designed for groups of 5-6 level 90+ PC's.
+If you are a whiner, please proceed no further, for this area is
+definitely not for you: it is dangerous. If you don't like danger, go
+back to killing bunnies.
+
+Severan's Doom was designed to be dangerous, but fair. There *are* rewards
+for exploring the area, aside from the usual gold and xp. These rewards
+(powerful items) were created to offset the high casualty rate. However,
+these items should only be given to those players who demonstrate their
+worth by exploring the area and braving the unknown. Therefore, we have
+instituted the following rules:
+
+1) under no circumstances, do not give other players a map, or verbal
+   directions, to any location within this area.
+
+2) do NOT give equipment from this area away to other people. Do NOT
+   sell these items to other players. I repeat- they *must* get the items
+   themselves!
+
+3) god and immortals will not 'explore' this area while invisible. Unlike
+   other MUDs, Fiery does not allow its gods/immortals to run amok over
+   the MUD and discover the game's secrets the easy way.
+
+4) ignorance of these rules is not an excuse to violate them.
+
+Thank you for respecting these rules. To be honest, a lot of the above
+rules will be hard to enforce... but we feel confident the majority of
+players have the integrity to police themselves. However, if you are
+caught violating the rules, Lokari himself just might summon you to
+Oblivion.
+~
+S
+#48460
+The Stone Bridge~
+   You stand on the middle of the bridge and peer into the distance, tracking
+the creek as it runs from east to west.  Trout and other aquatic creatures can
+be heard jumping in the water directly below.  The path continues along the
+bridge to the north and south.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48461
+D2
+~
+~
+0 -1 48456
+S
+#48461
+The Stone Bridge~
+   This is the northern end of the stone bridge which spans a swift-flowing
+creek.  There is an inscription carved into the bridge.  The creek is a deep
+blue in color, pure and unpolluted by either mud or debris.  There is a forest
+trail to the north, leading away from the bridge.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48462
+D2
+~
+~
+0 -1 48460
+E
+inscription writing bridge stone~
+
+The inscription has been expertly chiseled into the stone. It reads:
+
+Selina, Spirit of the Water, allow us safe passage over your swift
+currents. Let not your raging torrents tear this bridge from its
+foundation, nor wash soldiers from its surface, for we are your humble
+servants, just as we are servants of all the gods.
+
+Severan
+
+~
+S
+#48462
+A Path Through an Ancient Forest~
+   Muted sunlight filters through the canopy of branches and leaves overhead,
+leaving much of the forest in shadow.  Occasional shafts of golden sunlight
+streak through the canopy untouched, highlighting certain areas of the forest
+and drawing attention to the abundant and varied life around.  The path
+continues to the east, and roaring water from a swift-flowing creek can be
+heard to the south.  A stone bridge will allow easy access over the water.    
+~
+484 0 3
+D1
+~
+~
+0 -1 48463
+D2
+~
+~
+0 -1 48461
+S
+#48463
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  The air is
+very heavy here, but lacks an oppressive quality.  It is more of a stillness,
+as though this forest is so ancient it may resist the power of the elements.  
+This seems so natural that it would be surprising to detect even a faint
+stirring of the wind.  The path continues to the west and east.    
+~
+484 0 3
+D1
+~
+~
+0 -1 48464
+D3
+~
+~
+0 -1 48462
+S
+#48464
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  The air is
+very heavy here, but lacks an oppressive quality.  It is more of a stillness,
+as though this forest is so ancient it may resist the power of the elements.  
+This seems so natural that it would be surprising to detect even a faint
+stirring of the wind.  The path continues to the west and east.    
+~
+484 0 3
+D1
+~
+~
+0 -1 48465
+D3
+~
+~
+0 -1 48463
+S
+#48465
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  The air is
+very heavy here, but lacks an oppressive quality.  It is more of a stillness,
+as though this forest is so ancient it may resist the power of the elements.  
+This seems so natural that it would be surprising to detect even a faint
+stirring of stirring of the wind.  The path continues north and west.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48466
+D3
+~
+~
+0 -1 48464
+S
+#48466
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  The air is
+very heavy here, but lacks an oppressive quality.  It is more of a stillness,
+as though this forest is so ancient it may resist the power of the elements.  
+This seems so natural that it would be surprising to detect even a faint
+stirring of the wind.  The path continues to the north and south.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48467
+D2
+~
+~
+0 -1 48465
+S
+#48467
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  The air is
+very heavy here, but lacks an oppressive quality.  It is more of a stillness,
+as though this forest is so ancient it may resist the power of the elements.  
+This seems so natural that it would be surprising to detect even a faint
+stirring of the wind.  The path continues to the west and south.    
+~
+484 0 3
+D2
+~
+~
+0 -1 48466
+D3
+~
+~
+0 -1 48468
+S
+#48468
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  The air is
+very heavy here, but lacks an oppressive quality.  It is more of a stillness,
+as though this forest is so ancient it may resist the power of the elements.  
+This seems so natural that it would be surprising to detect even a faint
+stirring of the wind.  The path continues to the north and south.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48469
+D1
+~
+~
+0 -1 48467
+S
+#48469
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  The forest
+is still, and even the sound of forest animals is muted.  The silence does not
+seem ominous at all, but rather reverent, like the stillness of a holy place.
+The path continues to the north and south.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48543
+D2
+~
+~
+0 -1 48468
+S
+#48543
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  The forest
+is still, and even the sound of forest animals is muted.  The silence does not
+seem ominous at all, but rather reverent, like the stillness of a holy place.
+The path continues to the north and south.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48544
+D2
+~
+~
+0 -1 48469
+S
+#48544
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  The forest
+is still, and even the sound of forest animals is muted.  The silence does not
+seem ominous at all, but rather reverent, like the stillness of a holy place.
+The path continues to the south and east.    
+~
+484 0 3
+D1
+~
+~
+0 -1 48545
+D2
+~
+~
+0 -1 48543
+S
+#48545
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  The forest
+is still, and even the sound of forest animals is muted.  The silence does not
+seem ominous at all, but rather reverent, like the stillness of a holy place.
+The path continues to the west and east.    
+~
+484 0 3
+D1
+~
+~
+0 -1 48546
+D3
+~
+~
+0 -1 48544
+S
+#48546
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  The forest
+is still, and even the sound of forest animals is muted.  The silence does not
+seem ominous at all, but rather reverent, like the stillness of a holy place.
+The path continues to the north and west.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48547
+D3
+~
+~
+0 -1 48545
+S
+#48547
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  A pyramid
+can be seen to the north, towering above the tree line.  The pyramid is 
+tiered, rising incrementally in steps.  The path continues to the north and
+south.
+~
+484 0 3
+D0
+~
+~
+0 -1 48548
+D2
+~
+~
+0 -1 48546
+S
+#48548
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  A pyramid
+can be seen to the north, towering above the tree line.  The pyramid is
+tiered, rising incrementally in steps.  The path continues to the north and
+south.
+~
+484 0 3
+D0
+~
+~
+0 -1 48549
+D2
+~
+~
+0 -1 48547
+S
+#48549
+A Path Through an Ancient Forest~
+   The trail before you cuts through the woods, passing through dappled
+sunlight and twisting around the trunks of the great forest trees.  A pyramid
+can be seen to the north, towering above the tree line.  The pyramid is tiered,
+rising incrementally in steps.  The path continues to the south.  To the north,
+you see the beginning of a courtyard.    
+~
+484 0 3
+D0
+~
+~
+0 -1 48458
+D2
+~
+~
+0 -1 48548
+S
+#48612
+Beneath a Stone Bridge~
+   You are underneath a stone bridge which spans a deep, swift-flowing creek.
+You are on the southern bank of the creek, surrounded by weeds and stunted
+plants.  The area directly under the bridge is rocky, and the ground is scarred
+with scorchmarks from a campfire, and littered with ash and bits of half-burned
+wood.  Examining the area closely, you find a few large, well-chewed bones.  
+~
+484 0 2
+D4
+~
+~
+0 -1 48456
+S
+$~

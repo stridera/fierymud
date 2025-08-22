@@ -1,0 +1,153 @@
+name: Chanse
+password: ChoV.TpcRf
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 21
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18980
+birthtime: 1436110749
+timeplayed: 91980
+lastlogintime: 1437751397
+host: 069.129.066.250
+height: 38
+weight: 174
+base_height: 38
+base_weight: 174
+base_size: 2
+natural_size: 2
+alignment: 975
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 17
+thirst: 20
+lastlevel: 0
+hitpoints: 193/172
+mana: 40/44
+move: 135/140
+damroll: 4
+hitroll: 5
+strength: 86
+intelligence: 94
+wisdom: 94
+dexterity: 86
+constitution: 84
+charisma: 72
+cash: 14 478 2009 224
+bank: 0 900 0 0
+experience: 1751000
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+33 1000
+34 1000
+42 1000
+43 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+206 1000
+207 1000
+415 57
+416 90
+421 66
+423 257
+424 250
+438 180
+443 50
+444 50
+451 179
+457 250
+458 130
+459 60
+460 93
+462 50
+463 250
+466 50
+0 0
+trophy:
+1 20308 0.500000
+1 20318 0.500000
+1 20314 0.500000
+1 20317 1.000000
+1 20310 1.500000
+1 20307 0.500000
+1 20313 1.500000
+1 20311 1.500000
+1 20305 1.000000
+1 20304 4.000000
+1 20306 2.000000
+1 20300 2.500000
+1 20301 2.500000
+1 16108 0.500000
+1 16104 2.000000
+1 16111 0.500000
+1 16100 1.000000
+1 16106 0.500000
+1 16103 2.000000
+1 16107 4.500000
+1 16102 0.500000
+0 0 0
+effects:
+1 8 10 17 0 0 0
+0 0 0 0 0
+mem:
+16 1 1
+1 1 1
+85 1 3
+85 1 3
+16 1 1
+88 1 4
+89 1 3
+85 1 3
+12 1 1
+12 1 2
+88 1 4
+86 1 5
+15 1 6
+86 1 8
+15 1 6
+1 1 1
+12 1 2
+86 1 5
+0 0 0
+aliases:
+cfc cast 'cause critical'
+cv cast 'vigorize light'
+cchs cast 'cure serious' storim
+cff cast 'cause serious'
+chs cast 'cure light' storim
+ch cast 'cure light'
+gac get all corpse
+gc get coins corpse
+lic look in corpse
+df drink fountain
+ass assist storim
+cf cast 'cause light'
+cch cast 'cure serious'
+rg recite green
+cccs cast 'cure critic' storim
+ccc cast 'cure critic'
+0

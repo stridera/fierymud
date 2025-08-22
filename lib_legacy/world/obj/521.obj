@@ -1,0 +1,363 @@
+#52100
+iron-shackles shackles iron~
+a pair of iron shackles~
+A pair of iron shackles rusted from blood lies here.~
+~
+12 1732672 4097 40
+0 0 0 0 0 0 0
+5.00 40 0 0 0 0 0 0
+E
+shackles iron iron-shackles~
+These old iron shackles are very worn down and dirty, but are incredibly thick
+which certainly provides for good protection.  They are very worn down and
+dulled due to use, but carry a strange golden aura around them.    
+~
+A
+5 2
+A
+2 -2
+#52101
+flag pirates-flag pirate-flag old-flag jolly-roger~
+a pirate's flag~
+An old flag of the jolly roger flutters here in the wind.~
+~
+8 577 16385 40
+0 0 0 0 0 0 0
+2.00 90 0 0 0 0 0 0
+E
+pirates-flag pirate-flag old-flag jolly-roger~
+This old dirty flag is nearly shreded, years of beatings from strong winds
+causing the faded skull and crossbones to be barely visible beneath the grime.
+The wooden handle remains somewhat strong, lined with the carving of a long
+snake that coils from end to end.    
+~
+A
+6 2
+#52102
+sword bastard bastard-sword~
+a bastard sword~
+An old sword with a giant, flat blade was left here.~
+~
+5 57700416 32769 75
+0 3 6 3 0 0 0
+4.00 1000 0 0 0 0 0 0
+E
+bastard-sword bastard sword~
+This large bastard sword is almost four feet long, with its deadly sharp blade
+curling up to a perfectly sharp tip.  It's gleaming steel shows it's weight and
+obvious strength over any single handed weapon.    
+~
+A
+19 3
+#52103
+whip leather leather-whip~
+a leather whip~
+A thick leather whip lies here, tightly wrapped.~
+~
+5 1191936 8193 70
+2 2 8 2 0 0 0
+1.00 100 0 0 0 0 0 0
+E
+leather-whip whip leather ~
+This brown whip seems to curl at will, and a magical aura surrounds it, giving
+off a dark feeling of power.  Small chunks of dead skin are stuck all over this
+torturous tool, which has ordered more than it's share of slaves around.    
+~
+A
+5 1
+#52104
+staff ice ice-wand~
+an ice wand~
+A long, blue wand lies in a dark corner.~
+~
+4 12640289 16385 80
+70 3 3 78 0 0 0
+0.30 3000 0 0 0 0 0 0
+E
+ice-staff ice staff~
+This deep blue staff emits an awful chill, and makes everything around it part
+of it's sub-zero temperatures.  It is very long and gives off a magical glow,
+ensuring that it's touch is only matched by its supreme power.    
+~
+#52105
+elemental-ice-bracelet ice bracelet~
+an ice bracelet~
+A circlet of solid ice lies here.~
+~
+9 577 4097 80
+2 0 0 0 0 0 0
+0.10 430 0 0 0 0 0 0
+E
+elemental-ice-bracelet ice bracelet~
+This blue bracelet is completely frozen over and would shatter to pieces if it
+were ever dropped.  There is a small emblem carved into the side of it which
+encircles the thick inner shell of this piece of solid ice.    
+~
+A
+3 2
+A
+4 1
+#52106
+crystal-potion crystal clear~
+a crystal clear potion~
+A crystal clear potion with icy designs lies here.~
+~
+10 0 1 80
+75 172 172 172 0 0 0
+0.08 100 0 0 0 0 0 0
+E
+crystal-potion crystal clear~
+This crystal clear potion appears empty, save for the frosty layer that sits
+all around the glass that holds it.  A few engravings along the side of the
+bottle show pictures of Tira the Ice Queen, who most certainly was the creator
+of this potion.    
+~
+#52107
+green-chest chest~
+a green chest~
+A large green chest lies here.~
+~
+15 0 0 25
+100 5 -1 0 0 0 0
+999999.00 20 0 0 0 0 0 0
+E
+green-chest chest~
+This old chest is laced with green vipers, that coil around it multiple times.
+It is closed and has been latched with a thick iron lock, that certainly shows
+something important is inside this giant chest.    
+~
+#52108
+blue-scroll blue scroll~
+a blue scroll~
+A blue scroll with an icy strap lies here.~
+~
+2 536870976 1 30
+30 35 0 0 0 0 0
+0.10 820 0 0 0 0 0 0
+E
+blue-scroll blue scroll~
+This scroll appears cold to the touch! It illuminates a faint fluorescent blue
+which adds some coldness to it.
+~
+#52109
+blue-book book icy blue tira~
+the spell book of Tira~
+A floating, blue book surrounded by a blue aura is here!~
+~
+8 537976896 16385 30
+0 0 0 0 0 0 0
+3.00 100 0 0 0 0 0 0
+E
+blue-book book icy blue tira~
+This book is blue. It has a leather binding which holds the book intact. It 
+has a blue aura.
+~
+A
+3 1
+A
+4 1
+#52110
+blue-bag blue bag~
+a blue bag~
+A blue bag with frozen straps lies here.~
+~
+15 66 1 40
+50 0 -1 0 0 0 0
+3.00 140 0 0 0 0 0 0
+E
+blue-bag bag blue~
+This appears to be a blue bag. It has many tiny pockets to hold little 
+trinkets and such.
+~
+#52111
+sword glowing bastard sword glowing-bastard-sword~
+a glowing bastard sword~
+A sword with a giant, flat blade was left here.~
+~
+5 57700353 8193 45
+0 1 8 3 0 0 0
+4.30 3000 0 0 0 0 0 0
+E
+glowing-bastard-sword glowing bastard sword~
+This large bastard sword is truly magnificent, the blade itself is quite heavy
+and appears to be made of solid steel.  Although it appears quite heavy, it is
+very agile to the touch, and emits a cool glowing aura.    
+~
+A
+18 2
+A
+19 1
+#52112
+fountain water holy~
+the fountain of the gods~
+A holy fountain gushing pure water of the gods is left here for you.~
+~
+17 0 0 25
+999999 999999 0 0 0 0 0
+1000004.00 20 0 0 0 0 0 0
+E
+fountain water holy~
+This fountain is spurting with life! The angels which guard it have tended it
+well. The water here appears fresh and innocent. It is as clear as the eyes
+of a lover and as pure as the heart.
+~
+#52113
+blue-key blue key~
+blue key~
+A small blue key has been left here.~
+~
+18 4 1 70
+0 0 0 0 0 0 0
+0.13 20 0 0 0 0 0 0
+E
+key blue blue-key~
+This small key is a light blue, and is made completely of ice.  It has a small
+insignia which appears to show a picture of a queen of some sort.    
+~
+#52114
+platinum-helmet platinum helmet~
+a platinum helmet~
+A platinum helmet lies on the stone here.~
+~
+9 12614721 17 95
+8 0 0 0 0 0 0
+5.00 1500 0 0 0 0 0 0
+E
+platimun-helmt platimun helmet~
+This heavy platinum helmet is unique to others in every way.  It reflects light
+in every spot, and glows almost as though a spell was cast upon it.  It is made
+of incredibly hard steel, and does not have a scratch on it.  This rare piece
+of equipment is in about as good condition as you will ever find.    
+~
+A
+1 1
+#52115
+plate breastplate platinum~
+a platinum-coated breastplate~
+A giant plate with platinum coating is here.~
+~
+9 12614721 9 95
+23 0 0 0 0 0 0
+17.10 6000 0 0 0 0 0 0
+E
+platinum-plate platinum plate~
+The sheer weight of this enormous plate of platinum burdens all those who wear
+it.  It has an enormous dragon crafted on it, and looks to be one of the most
+exquisite pieces of armor in this land.  It is much stronger than steel, but is
+also much heavier.  This shiny chunk of metal is almost as large as a shield,
+and provides just as much protection.    
+~
+A
+5 1
+A
+2 1
+A
+14 -10
+#52116
+platinum-boots platinum boots~
+a pair of platinum boots~
+A pair of extremely shiny boots have been dropped here.~
+~
+9 1596481 65 95
+12 0 0 0 0 0 0
+5.50 3000 0 0 0 0 0 0
+E
+boots platinum platinum-boots~
+You hold in your hands a pair of shiny boots that almost weigh as much as you
+do.  They are incredibly thick and the strong metal that they are made of seems
+impenetrable behind its glowing beauty.    
+~
+A
+14 -75
+A
+2 3
+#52117
+platinum-girdle platinum girdle~
+a platinum girdle~
+A heavy girdle made of platinum has been left here.~
+~
+9 12614721 2049 95
+12 0 0 0 0 0 0
+2.50 4000 0 0 0 0 0 0
+E
+girdle platinum platinum-girdle~
+This large girdle is quite heavy, but its beautiful design makes it snug and
+comfortable.  It was crafted out of incredibly strong platinum, and gives off a
+soft glow.  This thick piece of armor could certainly provide for an excellent
+means of defense.    
+~
+A
+1 1
+A
+2 1
+#52118
+broadsword platinum platinum-broadsword sword~
+a platinum broadsword~
+A giant platinum broadsword lies here, covering the floor.~
+~
+5 12614721 32769 60
+1 3 8 3 0 0 0
+4.50 1000 0 0 0 0 0 0
+E
+platinum-broadsword platinum broad sword broadsword~
+This wonderfully crafted sword is much larger than your average broadsword, and
+its amazing platinum blade is as sharp as they come.  The hand is made of a
+soft brown leather and is incredibly sticky, giving the bearer of this two
+handed death machine great leverage.    
+~
+A
+19 3
+#52119
+platinum-shield platinum shield~
+a platinum shield~
+A large shield of solid platinum lies here in the corner.~
+~
+9 12614721 513 57
+18 0 0 0 0 0 0
+15.00 2000 0 0 0 0 0 0
+E
+shield platinum platinum-shield~
+An enormous flash of bright light reflects back towards you as you take a
+closer look at this amazing shield.  It has no wear on it, and is made of solid
+platinum.  It is incredibly heavy, but could withstand a blow from almost every
+type of weapon.    
+~
+#52120
+pendant bloodstone amulet bloodstone-pendant~
+the bloodstone pendant~
+A amulet with a bloodstone pendant lies here.~
+~
+9 12640321 5 45
+2 0 0 0 0 0 0
+0.42 1800 0 0 0 0 0 0
+E
+bloodstone-pendant amulet bloodstone pendant red~
+This pendant appears to be a relic.  On its ruby center, is engraved the words,
+`May we both die in everlasting pain my love.  ' On one edge, is carved a young
+mage female with conviction on her eyes.  On the other, shows a young man, with
+pain echoing in his mind and heart.    
+~
+A
+3 1
+A
+4 1
+#52130
+figure dakhod-action-figure miniature-pirate doll toy seawater~
+a Dakhod action figure~
+A miniature pirate lies in a pool of seawater here.~
+~
+1 0 16385 1
+0 500 500 0 0 0 0
+0.50 22000 0 0 0 0 0 0
+T 52131
+T 52130
+T 52133
+T 52132
+E
+dakhod-action-figure miniature-pirate doll toy seawater~
+This action figure appears to be an exact replica of Dakhod!  With a peg leg
+and a hook for a hand, the attention to detail is stunning.  This action figure
+comes complete with karate chop action when its legs are squeezed, and a
+pullstring on his back.    
+~
+$~

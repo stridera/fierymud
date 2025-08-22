@@ -1,0 +1,255 @@
+name: Aneki
+password: AnwcvTTvvS
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 7
+race: 9
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 14173
+birthtime: 1103813955
+timeplayed: 12362556
+lastlogintime: 1691828303
+host: 097.120.089.234
+height: 68
+weight: 150
+base_height: 68
+base_weight: 150
+base_size: 2
+natural_size: 2
+alignment: 90
+playerflags: lyz
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+lastlevel: 8
+hitpoints: 805/805
+mana: 980/980
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 75
+intelligence: 91
+wisdom: 95
+dexterity: 70
+constitution: 65
+charisma: 70
+cash: 42 360 2088 2268
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+6 1000
+11 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+27 1000
+28 1000
+30 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+51 1000
+63 1000
+70 1000
+71 1000
+73 1000
+74 1000
+88 1000
+89 1000
+90 1000
+91 1000
+99 1000
+118 1000
+144 1000
+145 1000
+146 1000
+147 1000
+148 1000
+149 1000
+150 1000
+151 1000
+152 1000
+153 1000
+154 1000
+155 1000
+156 1000
+206 1000
+207 1000
+215 1000
+241 1000
+243 1000
+245 1000
+247 1000
+263 1000
+415 50
+416 50
+417 158
+421 870
+423 1000
+424 1000
+429 1000
+438 167
+443 50
+444 359
+451 1000
+452 84
+453 366
+454 50
+455 349
+456 64
+457 1000
+458 189
+459 423
+460 1000
+462 83
+463 233
+464 50
+465 50
+466 50
+0 0
+trophy:
+1 18520 1.000000
+1 18551 2.000000
+1 18519 2.000000
+1 18517 2.000000
+1 18518 1.000000
+1 18515 2.000000
+1 18550 1.000000
+1 18501 4.000000
+0 0 0
+tells:
+1621476636 @WDaedela@W tells you, 'is your name snoball?@W'@0
+1621476717 @WChinok@W tells you, 'just a sec, finishing another convo@W'@0
+1621477000 @WChinok@W tells you, 'ok, so I got no idea what your imm name was :)@W'@0
+1621477050 @WChinok@W tells you, 'give me a min.. let me see if your IP is the same, I can search@W'@0
+1621477137 @WChinok@W tells you, 'I can fix that too... *grum* @W'@0
+1621477315 @WChinok@W tells you, 'Dres@W'@0
+1622502815 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1622502816 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1622502816 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1622502816 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+$
+gossips:
+1627347343 Ari gossips, 'seeing old friends, having a grand old time!'
+1627347367 Apoc gossips, 'nice. i went to denver once way back when for a couple weeks. absolutely loved it'
+1627347407 Ari gossips, 'it's fun to be back home for a bit'
+1627347414 Ari gossips, 'but I'm really ready to get back to SF'
+1627348802 Wittawat gossips, 'Hello'
+1627348806 Apoc gossips, 'hi'
+1627348822 Wittawat gossips, 'Howdy?'
+1627349061 Wittawat gossips, 'Congratz Bro'
+1627349072 Apoc gossips, 'thanks!'
+1627349081 Wittawat gossips, '*smile*'
+$
+mem:
+155 1 2
+99 1 2
+99 1 2
+151 1 1
+150 1 1
+154 1 1
+74 1 1
+74 1 1
+149 1 1
+149 1 1
+6 1 1
+6 1 1
+28 0 2
+27 1 2
+43 1 1
+91 1 1
+89 1 1
+89 1 1
+90 1 1
+90 1 1
+90 1 1
+90 1 1
+99 1 1
+27 1 1
+145 1 1
+145 1 1
+18 1 1
+152 1 1
+156 1 1
+155 1 1
+155 1 1
+144 1 1
+144 1 1
+42 0 1
+155 1 1
+20 1 1
+71 0 1
+71 1 1
+153 1 1
+153 1 1
+71 1 2
+71 1 2
+18 1 1
+27 1 1
+13 1 1
+12 1 1
+12 1 1
+27 1 1
+27 1 1
+35 1 1
+35 1 1
+91 1 1
+147 1 1
+70 1 2
+70 1 1
+28 1 2
+28 1 2
+146 1 1
+40 1 2
+40 1 2
+40 1 1
+40 1 2
+63 1 2
+63 1 2
+63 1 2
+42 1 2
+28 1 2
+63 1 2
+43 1 2
+43 1 2
+63 1 2
+28 1 1
+43 1 2
+40 1 2
+149 1 2
+148 1 2
+99 1 2
+33 1 2
+28 1 1
+144 1 2
+145 1 2
+74 1 2
+155 1 2
+43 1 2
+43 1 2
+35 1 2
+27 1 2
+70 1 2
+74 1 2
+99 1 2
+13 1 2
+145 1 2
+40 1 2
+40 1 2
+28 1 1
+0 0 0

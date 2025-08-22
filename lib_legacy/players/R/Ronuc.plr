@@ -1,0 +1,110 @@
+name: Ronuc
+password: RooDuRT2Wm
+prompt: <%hh(%HH) %vv(%VV)> <%aA> <%dc> <%l>%_<%t>:<%o>
+sex: 1
+class: 13
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 16286
+birthtime: 1168113075
+timeplayed: 7702112
+lastlogintime: 1665452824
+host: 174.097.219.143
+height: 63
+weight: 131
+base_height: 63
+base_weight: 131
+base_size: 2
+natural_size: 2
+alignment: 947
+playerflags: glyz
+effectflags: 0 0 0
+prefflags: hnox 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 65
+loadroom: 3054
+lastlevel: 10
+hitpoints: 1192/1193
+mana: 980/980
+move: 142/342
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 63
+wisdom: 65
+dexterity: 93
+constitution: 99
+charisma: 46
+cash: 0 481 2275 2468
+bank: 2673 41381 210593 183937
+experience: 158708999
+pagelength: 35
+clan: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+404 1000
+411 666
+412 1000
+414 1000
+415 1000
+416 628
+420 1000
+421 1000
+422 1000
+430 432
+438 84
+443 1000
+444 828
+446 1000
+448 1000
+449 1000
+463 369
+475 1000
+601 1000
+602 1000
+603 50
+604 50
+605 1000
+606 1000
+608 50
+0 0
+trophy:
+1 16000 1.000000
+1 16001 1.000000
+1 16003 1.000000
+1 51003 1.000000
+1 51001 3.000000
+1 5511 2.000000
+1 5510 11.500000
+1 5509 12.000000
+1 5508 7.500000
+1 5507 7.500000
+1 5506 5.000000
+1 5505 6.000000
+1 5504 6.000000
+1 5503 5.000000
+1 5502 5.000000
+1 5501 4.000000
+1 53313 1.000000
+1 53308 1.000000
+1 53311 8.000000
+1 53307 6.000000
+1 53304 9.000000
+0 0 0
+tells:
+$
+gossips:
+1665452804 Blonk gossips, 'oop, gotta get kids to bed, ill be back'
+1665452813 Blonk gossips, 'nice to meet all of you, nice to be greeted on a new mud'
+$
+effects:
+601 11 60 26 0 0 0
+0 0 0 0 0
+aliases:
+who who -w
+0

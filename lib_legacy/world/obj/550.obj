@@ -1,0 +1,517 @@
+#55001
+club jade-headed-club jade-encrusted-club-solid-granite~
+a jade-headed club~
+A jade-encrusted club of solid granite is hidden among the rocks.~
+~
+5 66 8193 45
+0 3 4 5 0 0 0
+10.00 2000 0 0 0 0 0 0
+E
+club jade-headed-club jade-encrusted-club-solid-granite~
+You look at a large granite club fashioned with many jade gems.  The club has
+many symbols carved into it as though they are a history of some battles.~
+A
+3 3
+A
+27 1
+#55002
+bracelet jade-bracelet large-ring-solid-jade~
+a jade bracelet~
+A large ring of solid jade lies here.~
+~
+8 1 4097 50
+3 0 0 0 0 0 0
+1.00 1700 0 0 0 0 0 0
+E
+bracelet jade-bracelet large-ring-solid-jade~
+This is a large ring carved from a solid piece of jade.  It looks as though it
+is made up of many symbols that resemble squared cerimonial masks.~
+A
+1 1
+A
+27 2
+#55003
+codex xapizan-codex book-ancient-script questobject~
+the Xapizan Codex~
+A book of ancient script lies here on the verge of fading to dust.~
+~
+8 549503049 16385 35
+0 0 0 0 0 0 0
+4.00 3000 0 0 0 0 0 0
+T 5347
+E
+codex xapizan-codex book-ancient-script questobject~
+This ancient script contains the verse to many powerful spells.  It's covered
+in many strange symbols and bound by a large leather strap.  It looks as though
+it may disintegrate in your hands at any moment.~
+A
+1 3
+A
+3 2
+A
+27 1
+X
+16
+#55004
+codex-war tome ancient-book questobject~
+the Codex of War~
+An ancient book lies here on the edge of destruction.~
+~
+8 590360578 16385 35
+0 0 0 0 0 0 0
+4.00 400 0 0 0 0 0 0
+T 5347
+E
+codex-war tome ancient-book questobject~
+You look upon a powerful verse of war and destruction.~
+A
+1 4
+A
+2 -4
+A
+19 1
+H
+400
+X
+994
+#55005
+skull crystal-skull crystalline pure~
+a crystalline skull~
+A skull of pure crystal lies here barely noticeable, almost invisible.~
+~
+1 69 16385 40
+0 2000 2000 0 0 0 0
+3.00 0 0 0 0 0 0 0
+E
+crystalline skull pure crystal crystal-skull~
+You hold the sacred treasured skull of the Technitzitlan Shaman.~
+A
+18 2
+A
+24 -5
+H
+450
+#55006
+fountain tech-fountain granite black~
+a granite fountain~
+A fountain of black granite dominates the plaza.~
+~
+23 0 0 1
+99999 99999 0 0 0 0 0
+20000.00 4000 0 0 0 0 0 0
+E
+fountain tech-fountain granite black~
+The stone of the fountain is adorned with many symbols that seem to tell a
+story of battle and honor.  Four small statues of the Snow Leopard adorn the
+fountain.    ~
+#55007
+club crystalline-club-encrusted-jade-jewels~
+a crystalline club~
+A crystalline club encrusted with jade jewels lies here.~
+~
+5 66 8193 50
+0 3 6 5 0 0 0
+8.00 2000 0 0 0 0 0 0
+E
+club crystalline-club-encrusted-jade-jewels~
+This club is mysteriously transparent and there is a vien of pure blue flowing
+through it.  All about the club are jaden gems of brilliant green.  ~
+A
+18 2
+A
+2 -2
+#55008
+cloak snow-leopard-cloak pelt-pure-white-fur-dark-spots leather hide~
+the Snow Leopard Cloak~
+A pelt of pure white fur and dark spots is piled in a corner.~
+~
+9 64 1025 55
+10 0 0 0 0 0 0
+2.10 5900 0 0 0 0 0 0
+T 5324
+T 5332
+E
+cloak snow-leopard-cloak pelt-pure-white-fur-dark-spots leather hide~
+In your hands is the cloak made from the pelt of a snow leopard, valuable
+beyond anything else to the people of Technitzitlan.  It is said that those who
+wear such a cloak are closer to the great Snow Leopard herself than anyone
+else.~
+A
+1 1
+A
+2 -2
+A
+27 2
+#55009
+pants polar-bear-skin-pants leather~
+some polar bear skin pants~
+A polar bear skin sewn into some pants lies abandoned here.~
+~
+9 536870912 33 45
+6 0 0 0 0 0 0
+7.30 900 0 0 0 0 0 0
+E
+pants polar-bear-skin-pants leather~
+These pants seem well made.  Stitched from polar bear hide, they are warm and
+protective.  The white fur still shines like it were yours.~
+A
+2 1
+#55010
+pelt polar-bear-pelt pure-white-cloak fur leather~
+a polar bear pelt~
+A pure white cloak is hidden in the snow.~
+~
+9 536870912 1025 40
+5 0 0 0 0 0 0
+2.10 1100 0 0 0 0 0 0
+E
+pelt polar-bear-pelt pure-white-cloak fur leather~
+You hold a snow white short cloak.  It's just long and wide enough to cover
+your shoulders and half of your back.  Its fur lining keeps you warm and offers
+some protection.~
+A
+4 1
+A
+19 1
+#55011
+eye jeweled-leopard's-eye jeweled-leopards-eye large-piece-jade-carved cat's-eye cats-eye~
+a jeweled leopard's eye~
+A large piece of jade carved like a cat's eye hangs here on an strand of gold.~
+~
+8 2561 65537 45
+2 0 0 0 0 0 0
+0.25 2400 0 0 0 0 0 0
+E
+eye jeweled-leopard's-eye jeweled-leopards-eye large-piece-jade-carved cat's-eye cats-eye~
+You hold a palm sized, polished dark green jade medallion.  It seems to be warm
+to the touch.  In the green of the medalion are two crystal blue veins forming
+what looks like a cats eye.~
+A
+3 5
+A
+24 -3
+A
+28 100
+A
+27 2
+#55012
+helm leopard-helm helmet-resembling-head-leopard~
+a leopard helm~
+A helmet resembling the head of a leopard lies here.~
+~
+9 51384322 17 40
+5 0 0 0 0 0 0
+5.00 400 0 0 0 0 0 0
+E
+helm leopard-helm helmet-resembling-head-leopard~
+It is a solid white helm, lined in fur with black spots patched onto it.  The
+pattern of the front above the forehead is dyed to resemble they eyes of a cat.~
+A
+19 1
+X
+243
+#55013
+girth jade-girth crystal-green-girth pile~
+a jade girth~
+A crystal green girth lies here folded into a pile.~
+~
+9 66 2049 55
+10 0 0 0 0 0 0
+2.50 5400 0 0 0 0 0 0
+E
+girth jade-girth crystal-green-girth pile~
+This heavy piece of armor seems to be made of pure green crystal.  It glows
+slightly and is warm to the touch.  Just looking at it makes you feel brave.~
+A
+4 1
+A
+27 2
+#55014
+diadem sunstone-diadem sun-stone strange-golden-diadem questobject~
+the Sunstone Diadem~
+A strange golden diadem is gleaming through the dust.~
+~
+1 13549641 17 50
+0 -1 -1 0 0 0 0
+0.25 6000 0 0 0 0 0 0
+E
+diadem sunstone-diadem sun-stone strange-golden-diadem questobject~
+Light seems to flow naturally from this ancient golden medallion.  Symbols of
+what look like stars in the heavens are spread across it, and there is a symbol
+of the sun dominating its center.  ~
+A
+26 2
+A
+18 -4
+A
+27 2
+A
+17 6
+X
+17
+#55015
+ring crystal-ring small-circle-ice~
+a crystal ring~
+A small circle of ice catches your eye.~
+~
+8 64 3 50
+2 0 0 0 0 0 0
+0.02 1200 0 0 0 0 0 0
+E
+ring crystal-ring small-circle-ice~
+It looks as though it's a simple ring carved from ice, although upon closer
+inspection you notice that the small ring is made of tiny carved square
+ceremonial masks.~
+A
+1 2
+A
+5 2
+A
+27 1
+#55016
+staff long-crystal-staff long-staff-clear-crystal~
+a long crystal staff~
+A long staff of clear crystal lies on the ground.~
+~
+5 13549641 8193 50
+0 3 6 6 0 0 0
+10.00 5800 0 0 0 0 0 0
+T 121
+E
+staff long-crystal-staff long-staff-clear-crystal~
+This staff looks like any gnarled wooden staff, except it's pure clear crystal
+with a vein of deep blue running through it.  It must have been created from
+magic.  ~
+A
+18 -1
+A
+19 -1
+A
+27 3
+X
+17
+#55017
+wand crystal-wand wand-crystal~
+a crystal wand~
+A wand of crystal lies here in the snow.~
+~
+3 64 16385 40
+40 2 2 4 0 0 0
+3.00 150 0 0 0 0 0 0
+E
+wand crystal-wand wand-crystal~
+You hold a simple, small crystal stick.  It has a brilliant streak of red
+running through its center.  The red glows slightly.~
+#55018
+dagger fang-shaped-dagger long-fang~
+a fang-shaped dagger~
+A dagger in the shape of a long fang lies abandoned here.~
+~
+5 66 8193 40
+0 3 4 11 0 0 0
+1.20 600 0 0 0 0 0 0
+E
+dagger fang-shaped-dagger long-fang~
+The weapon has a long thin blade that looks as though it could do quite a bit
+of damage if used properly.  The most distinguishing feature is the handel that
+looks to be made from the tooth of a giant carnivore.~
+A
+3 2
+A
+5 2
+#55019
+fang ice-fang clear-fang snake~
+an ice fang~
+What looks like a clear fang of a snake lies here.~
+~
+8 2 262145 45
+3 0 0 0 0 0 0
+0.20 1900 0 0 0 0 0 0
+E
+fang ice-fang clear-fang snake~
+This looks to be a piece of clear crystal constructed from magic to protect it
+owner in an attack.  It looks like the fang of a beast of prey.~
+A
+18 3
+A
+19 2
+A
+13 10
+#55020
+ring granite-ring small-circle-black-stone questobject~
+a granite ring~
+A small circle of black stone catches your eye.~
+~
+8 64 3 45
+2 0 0 0 0 0 0
+0.04 450 0 0 0 0 0 0
+E
+ring granite-ring small-circle-black-stone questobject~
+Made of a dark granite inset with tiny crystals, it has been fashioned into a
+ring and polished until the black stone both catches and absorbs the light.~
+A
+1 -1
+A
+24 -20
+A
+27 1
+#55021
+basalt-key basalt key large black solid stone~
+a basalt key~
+A large black key of solid stone lies here.~
+~
+18 4 1 30
+0 0 0 0 0 0 0
+2.00 20 0 0 0 0 0 0
+E
+basalt-key basalt key large black solid stone~
+It's a key made of the black volcanic stone basalt.~
+#55022
+robe heavy-fur-lined-robe pile-fur-cloth~
+a heavy fur-lined robe~
+A pile of fur and cloth has been abandoned here.~
+~
+9 0 1025 40
+5 0 0 0 0 0 0
+8.00 500 0 0 0 0 0 0
+E
+robe heavy-fur-lined-robe pile-fur-cloth~
+This garmet is white in color much like the region it comes from.  It is
+highlighted with a mysterious silvery sash with many symbols on it.  It looks
+to be very warm.~
+A
+2 -1
+#55023
+golden tear golden-tear stone~
+a golden tear~
+A golden stone in the shape of a tear catches your eye.~
+~
+8 603979860 147457 40
+0 0 0 0 0 0 0
+0.10 1500 0 0 0 0 0 0
+E
+golden-tear tear golden stone~
+This is a small gold nugget that looks as though it were carved from another
+piece, it has rough scrapes on it and you wonder where it came from.  ~
+A
+6 5
+#55024
+skirt chain-polar-fur-skirt small-heavy-pile-fur leather~
+a chain polar fur skirt~
+A small and heavy looking pile of fur lies here.~
+~
+9 51384320 33 45
+8 0 0 0 0 0 0
+11.20 130 0 0 0 0 0 0
+E
+skirt chain-polar-fur-skirt small-heavy-pile-fur leather~
+You look upon a small snow white fur skirt.  The fur lines the inside and
+outside with hundreds of small rings forming ringmail sandwiched between the
+fur linings.  It looks quite warm and protective.~
+X
+1011
+#55025
+pool silvery silver-pool glowing pulsating energy~
+a glowing pool~
+A pool of glowing, silvery energy pulsates here.~
+~
+24 0 0 25
+55127 1 6 0 0 0 0
+999.00 0 -1 0 0 0 0 0
+E
+pool silvery silver-pool glowing pulsating energy~
+The glow from the pool casts a quicksilver haze about the entire shrine.  The
+liquid pulsates with energy and the surface is almost ethereal.    ~
+#55026
+pool silvery silver-pool glowing pulsating energy~
+a glowing pool~
+A pool of glowing, silvery energy pulsates here.~
+~
+24 0 0 25
+55126 1 6 0 0 0 0
+999.00 0 -1 0 0 0 0 0
+E
+pool silvery silver-pool glowing pulsating energy~
+The glow from the pool casts a quicksilver haze about the entire shrine.  The
+liquid pulsates with energy and the surface is almost ethereal.    ~
+#55027
+pool silvery silver-pool glowing pulsating energy~
+a glowing pool~
+A pool of glowing, silvery energy pulsates here.~
+~
+24 0 0 25
+55133 1 6 0 0 0 0
+999.00 0 -1 0 0 0 0 0
+E
+pool silvery silver-pool glowing pulsating energy~
+The glow from the pool casts a quicksilver haze about the entire shrine.  The
+liquid pulsates with energy and the surface is almost ethereal.    ~
+#55028
+pool silvery silver-pool glowing pulsating energy~
+a glowing pool~
+A pool of glowing, silvery energy pulsates here.~
+~
+24 0 0 25
+55112 1 6 0 0 0 0
+999.00 0 -1 0 0 0 0 0
+E
+pool silvery silver-pool glowing pulsating energy~
+The glow from the pool casts a quicksilver haze about the entire shrine.  The
+liquid pulsates with energy and the surface is almost ethereal.    ~
+#55029
+bag tattered tattered-bag ripped torn rune-covered~
+a tattered bag~
+A ripped and torn, rune-covered bag lies here.~
+~
+15 64 1 65
+250 1 -1 0 0 0 0
+0.00 600 0 0 0 0 0 0
+E
+bag tattered tattered-bag ripped torn rune-covered~
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    ~
+#55030
+herbal-sachet indigo silk pouch~
+an herbal sachet~
+A tiny indigo silk pouch rests on the ground.~
+~
+8 0 1 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+herbal-sachet indigo silk pouch~
+Upon closer inspection, you see this small hand-sized pouch has been sewn shut
+on all four sides like a pillow or cushion.  Inside you hear the crunching of
+dried herbs, which from the fragrance you would guess to be bay and thyme.  
+Such pouches like this are called sachets.  They are commonly used in place of
+perfume, or to diffuse the scent of herbs in magical workings.~
+#55032
+Cinnamon-rose-incense brick~
+cinnamon-rose incense~
+A tiny indigo silk pouch rests on the ground.~
+~
+8 0 1 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+Cinnamon-rose-incense brick~
+The sweet, spicy smell of this incense is deep and bold.  It combines cinnamon,
+associated with psychic strength, with rose, which can be used in divinations
+in addition to its traditional place in love magic.  Glistening with flecks of
+gemstone dust, this incense is a potent magical ingredient!~
+#55033
+crystal-ball~
+a crystal ball~
+A crystal ball rests on a small stand here.~
+~
+8 0 16385 0
+0 0 0 0 0 0 0
+3.00 0 0 0 0 0 0 0
+E
+crystal-ball stand~
+This large crystalline orb is the perfect tool for divination magic,
+particularly for scrying.  Cleansed and hand-picked by the Oracle of Justice,
+this crystal ball was chosen exclusively for you!~
+$~

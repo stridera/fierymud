@@ -1,0 +1,87 @@
+name: Ultrosawful
+password: Ul0uMsTBpE
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19307
+birthtime: 1514171171
+timeplayed: 12686
+lastlogintime: 1514265475
+host: 099.100.064.222
+height: 27
+weight: 82
+base_height: 27
+base_weight: 82
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 5
+loadroom: 3001
+lastlevel: 0
+hitpoints: 26/26
+mana: 1/0
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 79
+intelligence: 91
+wisdom: 83
+dexterity: 70
+constitution: 69
+charisma: 73
+cash: 0 200 0 0
+experience: 14659
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 57
+424 51
+438 50
+443 50
+444 60
+447 70
+451 61
+452 50
+453 50
+459 50
+460 50
+462 50
+464 56
+0 0
+trophy:
+1 36002 0.500000
+1 36001 1.000000
+1 36003 1.500000
+1 8020 1.000000
+1 8013 1.000000
+1 8000 1.000000
+1 8015 1.500000
+1 8011 1.000000
+1 8016 1.000000
+1 8001 1.000000
+1 8014 2.000000
+1 8012 0.500000
+1 8010 2.000000
+0 0 0
+mem:
+32 1 8
+100 0 8
+0 0 0

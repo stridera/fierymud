@@ -1,0 +1,114 @@
+name: Pigu
+password: Pi079cHBlf
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 14
+race: 10
+level: 17
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20904
+birthtime: 1736926416
+timeplayed: 133633
+lastlogintime: 1737766905
+host: 064.046.022.013
+height: 87
+weight: 178
+base_height: 87
+base_weight: 178
+base_size: 3
+natural_size: 3
+alignment: 1000
+playerflags: gy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 6
+lastlevel: 0
+hitpoints: 306/272
+mana: 28/28
+move: 219/219
+damroll: 5
+hitroll: 4
+strength: 95
+intelligence: 62
+wisdom: 73
+dexterity: 86
+constitution: 96
+charisma: 55
+bank: 20 1501 3385 2189
+experience: 1179847
+quit_reason: 1
+saveroom: 3054
+skills:
+404 220
+413 108
+415 210
+416 205
+419 1000
+420 144
+421 220
+427 1000
+430 214
+438 50
+443 50
+444 56
+463 69
+464 56
+465 157
+466 50
+467 67
+468 78
+0 0
+trophy:
+1 5420 1.000000
+1 5408 1.000000
+1 5102 1.000000
+1 5404 1.000000
+1 5120 7.000000
+1 5103 5.000000
+1 5104 4.000000
+1 36300 1.000000
+1 50213 1.000000
+1 39008 4.000000
+1 12019 1.000000
+1 12020 1.000000
+1 12009 4.000000
+1 12002 2.000000
+1 12011 3.000000
+1 12007 7.000000
+1 12003 7.000000
+1 36100 4.000000
+1 36102 1.000000
+1 36106 1.000000
+1 36101 4.000000
+0 0 0
+tells:
+1737765524 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1737765707 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1737765716 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1737765717 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1737765983 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1737766007 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1737766009 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1737766010 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1737766010 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1737766078 @WLisa@W tells you, 'Hrm, it doesn't look too worn, I suppose.@W'@0
+1737766131 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+$
+gossips:
+1737766509 Chinok gossips, 'log in peegu please :)'
+1737766598 Chinok gossips, 'it did..'
+1737766624 Chinok gossips, 'but the renmae command still sees the peegu :)'
+1737766633 Dairyu gossips, 'hmmmm'
+1737766644 Chinok gossips, 'like I said, there's some cache.'
+1737766649 Ija gossips, 'can you rename peegu to some thing else?'
+1737766671 Ija gossips, 'that might free up the name?'
+1737766672 Chinok gossips, 'nope, I tried, that's why I told you to log him in, I can only rename logged in chars'
+1737766695 Dairyu gossips, 'cache me outside how bow dat'
+1737766735 Chinok gossips, 'lol ok create peegu, and I'll rename him, that will clear it in mem, then I can rename pigu'
+$

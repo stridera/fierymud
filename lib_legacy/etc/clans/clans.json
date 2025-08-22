@@ -1,0 +1,577 @@
+[
+    {
+        "abbreviation": "@Y>>GoT<<&0",
+        "app_fee": 20,
+        "bank_room": -1,
+        "chest_room": -1,
+        "description": "",
+        "dues": 5,
+        "hall_room": -1,
+        "id": 3,
+        "members": [
+            {
+                "alts": [
+                    "Yuhen",
+                    "Frav",
+                    "Freo",
+                    "Frumly",
+                    "Feln",
+                    "Fylae",
+                    "Felk",
+                    "Foosha",
+                    "Fernley",
+                    "Fahl",
+                    "Fohen",
+                    "Fayris",
+                    "Faegern",
+                    "Figh",
+                    "Vitkus",
+                    "Fernius",
+                    "Fasq",
+                    "Fess",
+                    "Flas",
+                    "Felj",
+                    "Foug"
+                ],
+                "join_time": 1754202881,
+                "name": "Flike",
+                "rank_index": 0
+            },
+            {
+                "alts": [
+                    "Tinawk",
+                    "Gilawk",
+                    "Volawk",
+                    "Zenawk",
+                    "Mosawk",
+                    "Yawk",
+                    "Vawk",
+                    "Bawks",
+                    "Glawk",
+                    "Oawk",
+                    "Mifaly",
+                    "Dawk",
+                    "Lawk",
+                    "Davar",
+                    "Emawk",
+                    "Zawk",
+                    "Traff",
+                    "Teomner",
+                    "Nocer",
+                    "Aawk",
+                    "Mawk",
+                    "Nawk",
+                    "Xawk",
+                    "Gidion",
+                    "Gilgal",
+                    "Pawk",
+                    "Bawk",
+                    "Ogawk",
+                    "Nerl",
+                    "Ija",
+                    "Mosiah",
+                    "Sawk",
+                    "Ramah",
+                    "Melnawk",
+                    "Riawk"
+                ],
+                "join_time": 1429692711,
+                "name": "Offa",
+                "rank_index": 0
+            },
+            {
+                "alts": [
+                    "Ahaz",
+                    "Arius"
+                ],
+                "join_time": 1754202881,
+                "name": "Ashyer",
+                "rank_index": 1
+            },
+            {
+                "alts": [],
+                "join_time": 1754202881,
+                "name": "Graeme",
+                "rank_index": 2
+            },
+            {
+                "alts": [
+                    "Rylai",
+                    "Vertor",
+                    "Vesem",
+                    "Helam",
+                    "Etriny",
+                    "Kardel",
+                    "Abinadi"
+                ],
+                "join_time": 1754202881,
+                "name": "Veruk",
+                "rank_index": 2
+            },
+            {
+                "alts": [
+                    "Coriantumr",
+                    "Pahoran",
+                    "Shorana",
+                    "Nehor",
+                    "Kaedo",
+                    "Pearo"
+                ],
+                "join_time": 1754202881,
+                "name": "Panchi",
+                "rank_index": 2
+            },
+            {
+                "alts": [
+                    "Shamgar",
+                    "Anulo",
+                    "Siah",
+                    "Tium",
+                    "Exco",
+                    "Sarq",
+                    "Vuur"
+                ],
+                "join_time": 1273523749,
+                "name": "Lailie",
+                "rank_index": 2
+            },
+            {
+                "alts": [],
+                "join_time": 1754202881,
+                "name": "Gaidin",
+                "rank_index": 6
+            }
+        ],
+        "min_application_level": 20,
+        "motd": "&5It's purple!&0",
+        "name": "Guardians of Truth&0",
+        "ranks": [
+            {
+                "privileges": "00000000000000000000000000000000001111111111111111111",
+                "title": "&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001111111111111111111",
+                "title": "- @LWrath@B of the @YProfessor@0&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001111111111111111111",
+                "title": "&9&bLord&0 &3of&0 &3&bRa&0di&3&ban&0&3&xce&0&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001111111111111111111",
+                "title": "-&6Guardian&0-&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001111111111111111111",
+                "title": "-&6Protector&0-&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001111111111111111111",
+                "title": "&9&bGoddess of &2&bSn&4&bow&6&bco&5&bnes&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "-&5Seeker&0-&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "-Probation-&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Nawk who's there&0"
+            }
+        ],
+        "storage": {},
+        "treasure": {
+            "copper": 0,
+            "gold": 0,
+            "platinum": 6483,
+            "silver": 0
+        }
+    },
+    {
+        "abbreviation": "@M>>WoF<<&0",
+        "app_fee": 0,
+        "bank_room": 3054,
+        "chest_room": 3054,
+        "description": "",
+        "dues": 0,
+        "hall_room": 3054,
+        "id": 4,
+        "members": [
+            {
+                "alts": [
+                    "Mril",
+                    "Mersh",
+                    "Tors",
+                    "Choak",
+                    "Tensel",
+                    "Fril",
+                    "Col",
+                    "Snal",
+                    "Lokar",
+                    "Catan",
+                    "Porto"
+                ],
+                "join_time": 1661205331,
+                "name": "Zaver",
+                "rank_index": 0
+            },
+            {
+                "alts": [],
+                "join_time": 1754202881,
+                "name": "Janara",
+                "rank_index": 0
+            },
+            {
+                "alts": [],
+                "join_time": 1754202881,
+                "name": "Krytonius",
+                "rank_index": 1
+            },
+            {
+                "alts": [],
+                "join_time": 1754202881,
+                "name": "Wehr",
+                "rank_index": 1
+            },
+            {
+                "alts": [],
+                "join_time": 1377231932,
+                "name": "Nuggz",
+                "rank_index": 1
+            },
+            {
+                "alts": [],
+                "join_time": 1661204902,
+                "name": "Cerworn",
+                "rank_index": 1
+            },
+            {
+                "alts": [],
+                "join_time": 1696252906,
+                "name": "Thorfinn",
+                "rank_index": 2
+            },
+            {
+                "alts": [],
+                "join_time": 1754202881,
+                "name": "Mecke",
+                "rank_index": 2
+            },
+            {
+                "alts": [],
+                "join_time": 1754202881,
+                "name": "Gaidin",
+                "rank_index": 2
+            },
+            {
+                "alts": [],
+                "join_time": 1699047786,
+                "name": "Ulthar",
+                "rank_index": 2
+            },
+            {
+                "alts": [],
+                "join_time": 1754203509,
+                "name": "Samui",
+                "rank_index": 0
+            }
+        ],
+        "min_application_level": 1,
+        "motd": "Nothing.",
+        "name": "Weavers of Fate&0",
+        "ranks": [
+            {
+                "privileges": "11111111111111111111111111111111111111111111111111111",
+                "title": "&5&bWeaver&0 of &2&bBalance&0&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100001110011000100",
+                "title": "@RWeaver&0 of @YChoice&0&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100001000000000000",
+                "title": "&4Weaver&0 of &2Fate&0&0"
+            }
+        ],
+        "storage": {
+            "1106": 2
+        },
+        "treasure": {
+            "copper": 1,
+            "gold": 238001,
+            "platinum": 202900,
+            "silver": 1
+        }
+    },
+    {
+        "abbreviation": "@B>>TCD<<&0",
+        "app_fee": 0,
+        "bank_room": -1,
+        "chest_room": -1,
+        "description": "",
+        "dues": 1,
+        "hall_room": -1,
+        "id": 2,
+        "members": [
+            {
+                "alts": [
+                    "Kreedra"
+                ],
+                "join_time": 1754202881,
+                "name": "Kendris",
+                "rank_index": 0
+            },
+            {
+                "alts": [],
+                "join_time": 1754202881,
+                "name": "Karde",
+                "rank_index": 1
+            },
+            {
+                "alts": [],
+                "join_time": 1754202881,
+                "name": "Zenitul",
+                "rank_index": 2
+            },
+            {
+                "alts": [],
+                "join_time": 1754202881,
+                "name": "Dronar",
+                "rank_index": 3
+            },
+            {
+                "alts": [],
+                "join_time": 1754202881,
+                "name": "Gung",
+                "rank_index": 4
+            }
+        ],
+        "min_application_level": 75,
+        "motd": "",
+        "name": "The Clandestine Degree&0",
+        "ranks": [
+            {
+                "privileges": "00000000000000000000000000000000001111111111111111111",
+                "title": "the @cAscendent @0of @LDusk&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "the @LDeath@Rdealer&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "the @MMysterious @LArbiter&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "the @rPredatory @BEnforcer&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "the @cMain @CBouncer&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Member"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Member"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Member"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "the Adept of Chaos&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "the Adept of Deception&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "the Adept of Repungence&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "the Adept of Carnage&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "the Initiate of the Degree&0"
+            }
+        ],
+        "storage": {},
+        "treasure": {
+            "copper": 1500000,
+            "gold": 25000,
+            "platinum": 0,
+            "silver": 200000
+        }
+    },
+    {
+        "abbreviation": ">>KotF<<&0",
+        "app_fee": 30,
+        "bank_room": -1,
+        "chest_room": -1,
+        "description": "",
+        "dues": 5,
+        "hall_room": -1,
+        "id": 1,
+        "members": [
+            {
+                "alts": [
+                    "Eone"
+                ],
+                "join_time": 1754202881,
+                "name": "Sata",
+                "rank_index": 0
+            },
+            {
+                "alts": [
+                    "Zhan",
+                    "Prer",
+                    "Ailiki",
+                    "Skaraki",
+                    "Sorak",
+                    "Fela",
+                    "Sligh",
+                    "Cnuck",
+                    "Mera",
+                    "Pyrak",
+                    "Suraki",
+                    "Torgak",
+                    "Lani",
+                    "Karon",
+                    "Puka",
+                    "Narak",
+                    "Norel",
+                    "Petch",
+                    "Oakie",
+                    "Korah",
+                    "Tolbrj",
+                    "Runrup",
+                    "Antiak",
+                    "Trajin"
+                ],
+                "join_time": 1754202881,
+                "name": "Elron",
+                "rank_index": 1
+            },
+            {
+                "alts": [
+                    "Pahtbelli",
+                    "Dimmy",
+                    "Prairiegirl"
+                ],
+                "join_time": 1754202881,
+                "name": "Ehlissa",
+                "rank_index": 9
+            },
+            {
+                "alts": [
+                    "Gyde",
+                    "Nodem",
+                    "Gyen",
+                    "Nuto",
+                    "Bleck",
+                    "Otun"
+                ],
+                "join_time": 1754202881,
+                "name": "Dimentio",
+                "rank_index": 10
+            },
+            {
+                "alts": [
+                    "Kacor",
+                    "Lacak",
+                    "Sork",
+                    "Uchaaz",
+                    "Moet",
+                    "Zzig",
+                    "Nuk",
+                    "Darst",
+                    "Bomnor",
+                    "Nuxx",
+                    "Denuk",
+                    "Xedem",
+                    "Tarrk",
+                    "Ronuc",
+                    "Vchaz",
+                    "Zchaz"
+                ],
+                "join_time": 1754202881,
+                "name": "Petree",
+                "rank_index": 10
+            },
+            {
+                "alts": [],
+                "join_time": 1300023460,
+                "name": "Piffaron",
+                "rank_index": 200
+            }
+        ],
+        "min_application_level": 30,
+        "motd": "The days are long\n\n&b<--- NOTICE --->&0\nI hired some dwarven miners to extend KotF's cellar a little bit, but they\ngot a little dig-happy and started digging tunnels to Meta-knows-where.\nThe tunnels are dark, but seem sturdy enough.  I'm not sure where they lead\nthough.  Let me know if we need to hire another crew to close them up again.\n-Laoris",
+        "name": "Keepers of the Future",
+        "ranks": [
+            {
+                "privileges": "00000000000000000000000000000000001111111111111111111",
+                "title": "Keeper of Reality&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Keeper of Hope&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Keeper of Magicks&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Keeper of the Faith&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Keeper of the Still&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Keeper of the Future&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Keeper of the Present&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Keeper of the Past&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Keeper of the Clock&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Keeper of the Goals&0"
+            },
+            {
+                "privileges": "00000000000000000000000000000000001100000000000000000",
+                "title": "Keeper's Keeper&0"
+            }
+        ],
+        "storage": {},
+        "treasure": {
+            "copper": 180000,
+            "gold": 35200,
+            "platinum": 56395,
+            "silver": 150675
+        }
+    }
+]

@@ -1,0 +1,63 @@
+name: Tropo
+password: TrbkY/c0/F
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18204
+birthtime: 1332534691
+timeplayed: 8907
+lastlogintime: 1370003735
+host: 075.071.199.100
+height: 79
+weight: 191
+base_height: 79
+base_weight: 191
+base_size: 3
+natural_size: 3
+alignment: 69
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 10
+lastlevel: 0
+hitpoints: 58/54
+mana: 1/-2
+move: 146/146
+damroll: 5
+hitroll: 4
+strength: 96
+intelligence: 70
+wisdom: 67
+dexterity: 97
+constitution: 83
+charisma: 48
+experience: 54999
+quit_reason: 5
+saveroom: 3034
+skills:
+403 50
+415 50
+416 50
+419 1000
+421 68
+427 1000
+438 85
+443 50
+444 50
+464 66
+465 50
+467 50
+0 0
+trophy:
+1 18002 1.000000
+1 18007 1.000000
+0 0 0

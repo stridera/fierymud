@@ -1,0 +1,66 @@
+name: Nella
+password: NewZYuyEgz
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20459
+birthtime: 1676839934
+timeplayed: 889
+lastlogintime: 1676840916
+host: 176.072.038.115
+height: 74
+weight: 161
+base_height: 74
+base_weight: 161
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 12
+lastlevel: 0
+hitpoints: 28/28
+mana: 1/0
+move: 136/136
+damroll: 5
+hitroll: 4
+strength: 86
+intelligence: 70
+wisdom: 72
+dexterity: 88
+constitution: 76
+charisma: 70
+experience: 1
+quit_reason: 5
+saveroom: 3001
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+493 50
+0 0
+tells:
+$
+gossips:
+$

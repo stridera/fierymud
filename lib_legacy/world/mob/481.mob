@@ -1,0 +1,987 @@
+#48100
+fire-salamander salamander fire lizard liz sal salam~
+a fire salamander~
+A fire salamander is here, prowling through the tunnels.~
+This beast is well suited to the tunnels of this volcano. The fire
+salamander prowls through the tunnels on all four feet, and although it
+does not look very agile, you have no doubt it is capable of
+lightning speed.~
+2099276 33555460 344 E
+33 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 86
+Dex: 80
+Int: 72
+Wis: 76
+Con: 78
+Cha: 66
+AFF2: 256
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#48101
+fiery form sprite fire-sprite~
+a fire sprite~
+A fiery form flows in your direction.~
+This creature shifts shapes rapidly as its fiery form flows in a new
+direction. The only thing constant about the sprite is its eyes, which burn
+emerald green and glare at you with a terrible purpose.~
+6158 1028 -600 E
+35 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+4 4 0 24 19 1 5
+BareHandAttack: 8
+Str: 96
+Dex: 80
+Int: 68
+Wis: 70
+Con: 80
+Cha: 61
+AFF2: 4097
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 3
+Stance: 6
+E
+T 2311
+#48102
+lava-beast lava beast guard~
+the lava beast~
+A lava beast stands proudly before you, guarding his mistress.~
+Unlike many of the other denizens of this volcano, this beast lacks any hint
+of malice or evil in its eyes. Rather, the look it gives you as you
+survey it is one of pure calm. The beast itself seems to be composed of
+molten lava; dark spots form on its frame as the lava cool at regular
+intervals, only to be swallowed by warmer lava which flows over its body
+from deeper within.~
+7434 1060 750 E
+38 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 0 3 17 0 2
+BareHandAttack: 7
+Str: 88
+Dex: 84
+Int: 70
+Wis: 70
+Con: 77
+Cha: 66
+AFF2: 67108864
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 11
+Stance: 6
+E
+#48103
+creeping-shadow shadow creeping shadows creep~
+a creeping shadow~
+The shadows seem to flicker oddly in this room ...~
+You have trouble focusing on this creature, for it seems to be made of
+darkness and flows quickly from place to place. You note with some
+concern that the darkness seems to be stretching out an arm towards you...~
+2248 1311782 -300 E
+33 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+4 4 0 24 19 1 5
+Str: 83
+Dex: 76
+Int: 73
+Wis: 75
+Con: 74
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 330
+Lifeforce: 4
+Composition: 7
+Stance: 6
+E
+#48104
+flame dancing-flame~
+a dancing flame~
+A dancing flame brushes by you.~
+This wisp of flame seems unaware of your presence as it swirls and
+twists along the passageway. Although its fire burns dim, at irregular
+intervals it flares up in a bright light that makes you squint in pain.~
+2120 1028 0 E
+32 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+4 4 0 24 17 0 2
+BareHandAttack: 1
+Str: 90
+Dex: 84
+Int: 64
+Wis: 82
+Con: 82
+Cha: 64
+AFF2: 1
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 3
+Stance: 6
+E
+#48105
+vulcera daughter~
+Vulcera~
+Vulcera is here, admiring her reflection in a small hand-held mirror.~
+Red-haired and bronze-skinned, Vulcera is unlike any woman you have ever
+seen before. But then, her lineage is of unique origin. Her odd physical
+attributes enhance her physical beauty, rather than detract from it. You
+find yourself becoming charmed by her physical beauty and as you tear
+your eyes away from her, you remind yourself of the evil that this
+near-immortal has spawned.~
+2074 1060 -700 E
+60 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 2 20 13 0 2
+Str: 87
+Dex: 74
+Int: 56
+Wis: 72
+Con: 99
+Cha: 63
+AFF2: 8388608
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 48121
+T 48122
+T 48124
+T 48143
+T 307
+T 311
+T 314
+T 55602
+T 1836
+T 55699
+T 308
+#48106
+daemon ash-daemon ashes~
+an ash daemon~
+Ashes from the floor flow together and coalesce into the form of an ash daemon!~
+As you look upon this foul spirit you are overwhelmed by a sense of
+tremendous wrong. Not content with the evil deeds it committed as a mortal,
+it refused to abandon the material plane upon its death. It took up
+sanctuary here, in the forsaken tunnels of the volcano, where it could
+continue to express its evil nature.~
+2103372 1036 -800 E
+34 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+4 4 0 9 19 1 5
+BareHandAttack: 8
+Str: 83
+Dex: 84
+Int: 68
+Wis: 73
+Con: 84
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 1
+Stance: 6
+E
+#48107
+lord ash-lord~
+the ash lord~
+A pillar of ash rises from the floor and coalesces into an ash lord!~
+You repress a wave of nausea as you gaze upon this creature. The ash lord
+is a collage of several different spirits, united to form a single being
+capable of more heinous crimes than any one alone. Although its evil is
+palpable, what truly revolts you is the knowledge that it lives for evil,
+and for no other purpose.~
+101713934 1062 -700 E
+38 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+4 4 0 5 19 1 5
+BareHandAttack: 7
+Str: 91
+Dex: 93
+Int: 59
+Wis: 68
+Con: 85
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 1
+Stance: 6
+E
+T 55696
+#48108
+daemon smoke-daemon~
+a swirling smoke daemon~
+A swirling cloud of smoke comes to rest before you.~
+Hovering before you is a smoky form.  Your first glance dismisses the form as
+nothing to be afraid of, an insubstantial nuisance at the very most.  But if it
+can cause you no harm, why does it advance towards you with such purpose?    ~
+6216 1028 -500 E
+32 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+4 4 0 24 19 1 3
+BareHandAttack: 8
+Str: 88
+Dex: 84
+Int: 72
+Wis: 74
+Con: 78
+Cha: 56
+AFF2: 256
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 2
+Stance: 6
+E
+#48109
+boy pasty-skinned-boy~
+the pasty-skinned boy~
+A pasty-skinned boy nervously twitches here.~
+This small boy has the palest skin you have ever seen.  He must have spent a
+long time away from the light of the sun, inside the caverns of this fiery
+volcano.  Although he is small and awkward, his movements hint at grace and
+speed.  His eyes flicker constantly about the passage, looking for signs of
+danger.    ~
+2188 263168 1000 E
+40 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 1 2 0 0 2
+Str: 89
+Dex: 90
+Int: 63
+Wis: 73
+Con: 85
+Cha: 52
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 48125
+T 48126
+T 48127
+#48110
+beast ash-beast~
+an ash beast~
+A snarling beast made of ash glares at you from the shadows.~
+As you look into the vacant eyes of this beast you realize that it lacks
+intelligence of any kind. You doubt that this ashy frame entombs an evil
+spirit; more likely, the beast was conjured by some dark magic.~
+6216 1028 0 E
+29 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+4 4 0 24 13 0 2
+BareHandAttack: 9
+Str: 88
+Dex: 82
+Int: 73
+Wis: 68
+Con: 72
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 1
+Stance: 6
+E
+#48112
+man jungle-tribe-warrior~
+a Jungle Tribe warrior~
+a Jungle Tribe warrior is startled by your presence.~
+The warrior is a man that has been tempered by the harsh environment of this
+seemingly lush island.  His small frame hides a fierceness that was bred by the
+jungle from which the tribe takes its name, and fueled by desperate battles
+against other island natives and the horrible monsters that issue forth from
+the mouth of the volcano.~
+6220 1024 500 E
+21 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 1 3 0 0 2
+Str: 83
+Dex: 86
+Int: 75
+Wis: 80
+Con: 72
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#48113
+jungle-tribe-warlord chief~
+the warlord~
+The warlord stands proudly before you.~
+The most accomplished warrior of the Jungle Tribe, this man has proven his
+worth over his opponents time and time again.  His naked chest proudly displays
+a dozen battle scars.  His face shows a deep grief, however, and you wonder
+what has caused this noble warrior such pain.~
+6158 1024 600 E
+25 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 1 3 10 0 3
+Str: 92
+Dex: 95
+Int: 66
+Wis: 68
+Con: 72
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 48129
+T 48130
+T 48131
+T 55697
+#48114
+man shaman old-shaman~
+the old Shaman~
+A shaman stands here looking thoughtful.~
+This man is far older than any of the other natives you have seen on this
+island, which is odd considering the number of ways to die in the vicinity.  
+Perhaps there is more to him than meets the eye.    ~
+2190 1060 12 E
+24 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 1 8 0 0 2
+Str: 88
+Dex: 76
+Int: 82
+Wis: 77
+Con: 74
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 48132
+T 48133
+T 48134
+T 48135
+T 48144
+T 48199
+T 55697
+#48115
+warrior bone-tribe-head-hunter~
+a Bone Tribe head-hunter~
+A head-hunter looks at you and sees dinner.~
+This man is nude except for a thin loincloth which he wears about his waist.  
+His skin is decorated with paints of varying shades that allow him to blend
+almost perfectly with the jungle.~
+102766668 787456 -600 E
+21 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 1 3 0 0 2
+Str: 78
+Dex: 78
+Int: 83
+Wis: 70
+Con: 80
+Cha: 64
+AFF2: 0
+AFF3: 256
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#48116
+chief warrior hunter red-skinned head-hunter bone-tribe-chief~
+the red-skinned Bone Tribe chief~
+A red-skinned Bone Tribe head-hunter challenges you to notice him.~
+Like the other head-hunters you have seen, the chief wears nothing but a
+tattered loincloth about his waist.  However, his skin is painted bright red
+rather than in the blending jungle colors of his subordinates.  It is almost as
+if he is challenging you to notice him.~
+2103438 1060 -900 E
+25 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 1 3 10 0 3
+Str: 93
+Dex: 86
+Int: 61
+Wis: 74
+Con: 82
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 48136
+T 55697
+#48117
+ape red carnivorous-ape~
+a carnivorous ape~
+A furry red ape stares at you from behind a bush.~
+Although it carries no weapons, this creature is endowed with a physical
+prowess that is a weapon in itself. You see death in its beady black eyes.~
+2099276 1024 0 E
+23 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 83
+Dex: 81
+Int: 76
+Wis: 66
+Con: 89
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#48118
+dwarf sad dispirited-mountain-tribe-dwarrow~
+a dispirited Mountain Tribe dwarrow~
+A dispirited dwarrow is here, examining the stones of this tunnel.~
+This miserable Mountain Tribe dwarrow, a subrace of dwarf, has suffered
+enormously under the hands of his tormenters.  Cursed with the knowledge of
+stone, he has been forced for untold years to carve passageways through this
+volcano for his master Vulcera.~
+2248 1024 555 E
+20 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 1 24 3 0 2
+BareHandAttack: 5
+Str: 86
+Dex: 82
+Int: 74
+Wis: 74
+Con: 76
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#48119
+woman jungle-tribe-woman~
+a Jungle Tribe woman~
+A young woman is here, nursing a baby.~
+This young Jungle Tribe women looks hardy, capable of bearing the harsh
+environment of this island.  You would not be surprised were you to see her
+pick up a spear to defend her tribe.~
+2318 1024 400 E
+21 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 2 24 0 0 2
+Str: 96
+Dex: 80
+Int: 59
+Wis: 72
+Con: 93
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#48120
+chimera beast~
+the chimera~
+The three heads of a terrible beast swivel towards you.~
+You tremble as you gaze upon this fearsome creature. Surely this beast
+was spawned by dark magic for you cannot imagine nature would fashion
+such a loathsome beast. The chimera has three heads, the body of a lion,
+and the limbs of a goat. Its three heads-- lion, goat and dragon-- glare
+at you balefully.~
+2062 0 -900 E
+41 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 2 0 21 0 6
+BareHandAttack: 4
+Str: 88
+Dex: 76
+Int: 65
+Wis: 87
+Con: 81
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 48102
+T 48110
+T 48137
+T 48138
+T 48139
+T 48140
+T 55697
+T 5314
+#48121
+giant spider tree-spider~
+a giant tree spider~
+A giant spider peers at you from a branch.~
+You can hardly believe the size of this spider! It is as large as a dog
+and seems adapted at prowling along tree branches. As the spider creeps
+towards you, you begin to wonder if a creature this size feeds exclusively
+on flies and insects.~
+2120 1026 0 E
+20 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 86
+Dex: 86
+Int: 66
+Wis: 74
+Con: 82
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#48122
+tree tangle tangle-tree vines~
+a tangle tree~
+A tree with withering vines blocks the path.~
+This tree is draped with numerous vines. As you approach the tree, the
+vines seem to twitch slightly. Perhaps it was only your imagination.~
+2058 4 0 E
+22 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 0 24 12 0 2
+BareHandAttack: 10
+Str: 86
+Dex: 80
+Int: 76
+Wis: 78
+Con: 78
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+#48123
+dwarf fierce-mountain-tribe-dwarrow~
+a fierce Mountain Tribe dwarrow~
+A fierce dwarrow stands here, determined to keep the tunnel a secret.~
+This dirty creature is unlike any dwarf you have ever before seen.  Her
+copper-bronze skin and radiant copper hair, markers of the Mountain Tribe of
+the island, are quite different from other dwarves.  She stands before you
+defiantly, determined not to allow you to extinguish the hope which burns so
+fervently in her eyes.~
+2103310 1060 410 E
+25 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 2 3 3 0 2
+BareHandAttack: 7
+Str: 84
+Dex: 72
+Int: 88
+Wis: 80
+Con: 77
+Cha: 50
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#48124
+dwarf old dwarrow mountain-tribe-wise-woman elderly-wisewoman~
+an elderly wisewoman~
+An elderly dwarrow woman of the Mountain Tribe is here, sitting on a thin blanket.~
+An ancient woman, this matriarch of the Mountain Tribe seems determined to keep
+her clan together.  As you peer into her wise brown eyes you have little doubt
+she will do everything possible to see that her dwarven people are one day
+united in freedom.~
+2058 1064 800 E
+27 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 2 24 3 0 2
+Str: 86
+Dex: 99
+Int: 63
+Wis: 58
+Con: 90
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 48109
+T 48141
+#48125
+kid jungle-tribe-child~
+a wee Jungle Tribe child~
+A Jungle Tribe child stands here, looking sweet and innocent.~
+Awwww what a cute kid. Give her a hug and a kiss.~
+138 0 0 E
+5 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 2 24 0 0 2
+BareHandAttack: 4
+Str: 84
+Dex: 84
+Int: 74
+Wis: 78
+Con: 80
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 56405
+#48126
+doppelganger kid jungle-tribe-child~
+a doppelganger~
+A Jungle Tribe child stands here, looking sweet and innocent.~
+This kid is awfully cute, but... her eyes are cold and flat, and the grin
+she fixes you with seems rather malicious.~
+2186 1068 -100 E
+38 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 2 3 18 0 2
+BareHandAttack: 8
+Str: 86
+Dex: 79
+Int: 79
+Wis: 66
+Con: 77
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 53453
+T 56405
+T 55696
+#48127
+mass stone monster rock-monster~
+the rock monster~
+A shapeless mass of stone shifts slightly as you approach.~
+This mass of stone seems to have no definitive shape, and were it not for
+the fact that is quivers slightly, you would easily dismiss it as nothing
+out of the ordinary.~
+2062 1024 0 E
+40 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 0 24 17 0 2
+BareHandAttack: 6
+Str: 86
+Dex: 80
+Int: 70
+Wis: 74
+Con: 78
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 500
+Lifeforce: 0
+Composition: 9
+Stance: 6
+E
+T 48123
+#48128
+dwarf sad dispirited-mountain-tribe-dwarrow~
+a dispirited Mountain Tribe dwarrow~
+A dispirited Mountain Tribe dwarrow is here, examining the stones of this tunnel.~
+This miserable Mountain Tribe dwarrow, a subrace of dwarf, has suffered
+enormously under the hands of his tormenters.  Cursed with the knowledge of
+stone, he has been forced for untold years to carve passageways through this
+volcano for his master Vulcera.~
+2248 1024 555 E
+20 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 1 24 3 0 2
+BareHandAttack: 7
+Str: 95
+Dex: 83
+Int: 67
+Wis: 66
+Con: 77
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#48129
+statue stone-statue~
+a stone statue~
+A crudely formed statue made of stone stares at you.~
+This statue is about two meters high. His stone body is very rigid but his
+eyes move about freely, searching for intruders...~
+2060 1028 10 E
+32 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 0 24 13 0 2
+BareHandAttack: 6
+Str: 89
+Dex: 89
+Int: 66
+Wis: 68
+Con: 82
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 9
+Stance: 6
+E
+#48131
+warrior hunter head-hunter bone-tribe-head-hunter~
+a Bone Tribe head-hunter~
+A Bone Tribe head-hunter looks at you and sees dinner.~
+This man is nude except for a thin loincloth which he wears about his waist.  
+His skin is decorated with paints of varying shades that allow him to blend
+almost perfectly with the jungle.~
+100669518 787456 -600 E
+21 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 1 3 0 0 2
+Str: 95
+Dex: 79
+Int: 68
+Wis: 77
+Con: 75
+Cha: 58
+AFF2: 0
+AFF3: 256
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#48132
+sprite form fiery fire-sprite~
+a fire sprite~
+A fiery form flows in your direction.~
+This creature shifts shapes rapidly as its fiery form flows in a new
+direction. The only thing constant about the sprite is its eyes, which burn
+emerald green and glare at you with a terrible purpose.~
+6190 1028 -600 E
+35 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+4 4 0 24 17 0 2
+BareHandAttack: 1
+Str: 80
+Dex: 90
+Int: 64
+Wis: 85
+Con: 74
+Cha: 62
+AFF2: 4097
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 3
+Stance: 6
+E
+T 2311
+#48200
+Jemnon lion-heart lionheart small-man~
+Jemnon the Lionheart~
+A small man sitting at a table in the back of the room looks up from his meal.~
+   Jemnon does not look particularly powerful or able.  If he were standing, he
+would probably be just over 5' 4".  Something about the way he sits, scanning
+the room, radiates confidence.  His blue eyes shine with optimism, despite
+several noticable scars peppering his otherwise attractive face.~
+-2147467254 134217728 300 E
+75 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+1 1 1 3 0 0 2
+Str: 88
+Dex: 78
+Int: 71
+Wis: 71
+Con: 76
+Cha: 67
+AFF2: 1
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 48201
+T 48202
+T 48203
+T 48204
+T 48261
+#48250
+McCabe elementalist mage sorcerer pyromancer~
+McCabe the Elementalist~
+McCabe stands tall, muttering some incantation.~
+   Mccabe is tall and thin, with a black, curly, double-beard.  His long robes
+drape over his feet, and trail behind him.  His eyes seem distant, like he is a
+little detatched from reality.~
+939542538 60 0 E
+82 20 0 0d0+0 0d0+0
+0 0 0 0 0 481
+3 3 1 20 0 0 2
+Str: 78
+Dex: 76
+Int: 85
+Wis: 83
+Con: 65
+Cha: 66
+AFF2: 65536
+AFF3: 0
+MOB2: 8
+PERC: 500
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 48252
+T 48254
+T 48253
+T 48256
+T 48258
+T 48299
+T 48263
+T 307
+T 314
+T 308
+T 48249
+T 311
+#48251
+seagull sea-gull unsuspecting frightened~
+a frightened seagull~
+An unsuspecting seagull flies overhead.~
+This poor bird looks frazzled. It's ruffles feathers seem singed and sooty in places.~
+8 0 0 E
+7 0 0 0d0+0 0d0+0
+0 0 0 0 0 481
+4 4 0 24 14 0 1
+BareHandAttack: 4
+Str: 78
+Dex: 75
+Int: 63
+Wis: 69
+Con: 84
+Cha: 85
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

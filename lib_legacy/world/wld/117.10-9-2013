@@ -1,0 +1,3065 @@
+#11701
+The Blue-Fog Trail~
+   What was once a heavily travelled merchant road has now fallen into obvious
+disuse -- wheel ruts and the hoofprints of time have eroded into faint gouges
+and tracks along the packed earth of the trail.  To the north, the city of
+Meilikki can be seen rising up behind its walls and its gates.  To the south,
+however, a wall of fog rolls all the way out of view.  The fog is tinted a
+faint blue color that does not seem in the least natural, and things are
+obviously moving through it.    
+~
+117 0 10
+D0
+You can just barely make out the southern gate.
+~
+~
+0 -1 3071
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 0 11702
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11702
+The Blue-Fog Trail~
+   A once-wide, once well-traveled road has become, over time and disuse,
+little more than a trail leading north to south.  A rolling, eerie blue fog
+rises up all around, from the very ground, making visibility all but
+impossible.  It is possible to see the beginning of a grassland plateau to the
+west, and a black, evil-seeming forest to the east, but neither of these is
+reachable from here.    
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+There appears to be a town somewhere in the distance.
+~
+~
+0 -1 11701
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11703
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11703
+The Blue-Fog Trail~
+   A wide but obviously disused merchant road runs from the north to the south
+from here.  A dense, swirling fog limits visibility immensely.  Small noises
+emanate from all around in the blue-tinged fog, though the sources of those
+noises are not often seen.    
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+Although you can hear it, you can't see a town from here.
+~
+~
+0 -1 11702
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11704
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11704
+The Blue-Fog Trail~
+   A wide dirt road runs north-south here.  Though once the road was widely and
+frequently travelled, it has now just as obviously fallen into disrepair and
+disuse -- there are no recent wheel ruts, and few hoofprints, to mark passage
+of merchants.  Instead, there are pawprints and queer sliding ruts caused by
+something living.  The blue-tinged fog rises up in swirls and tendrils all
+around.    
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11703
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11705
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11705
+The Blue-Fog Trail~
+   A wide dirt road runs from the north to the south in a brackish, swampy kind
+of terrain.  The trail is obviously not often used.  Between the dense fog
+rising up from the very dirt of the road itself, to the lack of recent wheel or
+hoofprints, this trail seems very inaptly named.    
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11704
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11706
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11706
+The Blue-Fog Trail~
+   This wide, dirt road was once frequently used, as its numerous wheel ruts
+and hoofprints attest.  But all of those ruts and prints are from long ago,
+almost completely flattened by time.  There are only a few brave merchants who
+brave this road!  A strange, eerie blue fog rises up from the very road,
+choking off all visibility for more than a few feet in any direction.  Not that
+there's a lot to see here, but even if there were, nobody would be seeing it.
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11705
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11707
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11707
+The Blue-Fog Trail~
+   A wide, dark dirt road runs from north to south in the middle of a dank,
+humid swamp.  Here and there a wheel rut or a hoofprint is visible, but those
+are old and almost erased by time.  The road has no boundaries, no borders, no
+gates.  Its source and destination are not marked anywhere.  A strange blue
+smoky fog swirls around from the very ground, defying vision.  To the east, a
+black, evil forest is vaguely visible, though it cannot be reached from here.
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11706
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11708
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11708
+The Blue-Fog Trail~
+   A dark, disused swampy dirt road runs from the north to the south from here.
+There are no markings of any kind on the road, and it is obvious by the lack of
+recent human, horse, or wheel prints on the ground that nobody uses this trail
+regularly.  A thick swirling fog rises up from the ground, and in the light,
+one could make out its blue tint.  It gets especially strong at the sides of
+the road, to the point of making passage to the east or west impossible.    
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11707
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11709
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11709
+The Blue-Fog Trail~
+   A wide, dark merchant road that's fallen on hard times runs from north to
+south through land that gets danker and darker the further south one travels.
+A sound of water barely penetrates the light blue fog that permeates and swirls
+around this road.  Passage to the east and west is out of the question.    
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11708
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11710
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11710
+A Turn in the Blue-Fog Trail~
+   The merchant road makes a sharp turn here to avoid a particularly
+unpleasant-looking black, leafless tree standing to the east.  The wide dirt
+road, though not frequently travelled, is still quite distinctive, since no
+plants have grown up in its surface yet.  An eerie blue fog swirls all around,
+growing thicker to the east and south to the point that passage is impossible
+in those directions.    
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11709
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11711
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11711
+The Blue-Fog Trail~
+   A wide dirt road, hardly more than a trail, runs east to west here.  To the
+east, barely visible through the creeping blue fog swirling all round, the
+trail makes an abrupt turn.  Loud, running water can be heard to the west.    
+~
+117 0 10
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11710
+D3
+You see a sturdy-looking bridge to the west.
+~
+~
+0 -1 11712
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11712
+The Northern Bridge~
+   A sturdy stone bridge spans a roaring river.  The loudness of the running
+water and the constant spray from it hitting the bridge indicate that the river
+isn't very far down.  In fact, a clear path leading down to it from the side of
+the bridge.  The swirling blue fog rising up from the trail to the east and
+west also seems to arise from the ancient stones of the bridge, as well.    
+~
+117 0 10
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11711
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11713
+D5
+You see the Blue-Fog River roaring by below you.
+~
+~
+0 -1 2813
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11713
+The Blue-Fog Trail~
+   A wide dirt trail runs from east to west.  Though once it may have been very
+frequently travelled, it now seems to have fallen into disrepair and disuse.  
+There is no sign of what may lie beyond the swirling blue mists that rise up
+from the very ground, but loudly running water can be heard to the east.    
+~
+117 0 10
+D1
+You see a sturdy-looking bridge to the east.
+~
+~
+0 -1 11712
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11714
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11714
+The Blue-Fog Trail~
+   This wide dirt road was obviously once well-traveled, but now there are few
+recent footprints or wheel-ruts.  There are no specific boundaries at the
+road's sides -- it just stops at that width.  A curling blue fog rises up from
+the ground, obscuring almost everything in sight.    
+~
+117 0 10
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11713
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11715
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11715
+A Bend in the Blue-Fog Trail~
+   This wide dirt road runs from east to south through a strangely swampy
+region.  The ground is quite damp, and the air is cloying with the humidity of
+the swirling blue fog that seems to come from absolutely nowhere.  There is
+very little traffic through here, as is evidenced by the lack of recent
+footprints and wheel-prints.    
+~
+117 0 10
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11714
+D2
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11716
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11716
+The Blue-Fog Trail~
+   A wide dirt road runs from the north to the south through the dense,
+swirling fog that seems everywhere.  Sunlight can't even reach through this fog
+to the trail's surface, and there is no sign of what kind of terrain stands to
+the east or west.  To the north, barely visible through the fog, the trail
+makes an abrupt turn, but no details are visible from here.    
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11715
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11717
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11717
+The Blue-Fog Trail~
+   A wide dirt road runs from the north to the south through some damp but
+otherwise featureless terrain.  Nothing is visible, in fact, except the road
+itself, and not much of that, since the view is obscured badly by thick,
+swirling blue fog that rises up from the very ground.    
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11716
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11718
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11718
+The Blue-Fog Trail~
+   The only thing visible here at all is a wide dirt road running from north to
+south.  The sky isn't visible, nor whatever lies at the sides of the strange
+trail, because of an eerie, unnatural- seeming light blue fog that rises up
+from the ground, swirling so densely that nothing is truly clear.    
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11717
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11719
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11719
+The Blue-Fog Trail~
+   A wide, largely unused trail runs from north to south through here, through
+damp, almost swampy dirt.  Whatever's at the side of the road is obscured by
+rolling blue fog that obliterates all detail, as are things that are far away.
+The old footprints and wheel ruts from long ago indicate that once this trail
+was widely travelled, but now there is little traffic along it.    
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11718
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11720
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11720
+A Turn in the Blue-Fog Trail~
+   This wide dirt road makes an abrupt turn here, going from north to east.  
+There is little indication of what may lie outside the trail, thanks to an
+eerie blue-glowing fog that rises up from the very ground, swirling densely and
+obscuring all vision.    
+~
+117 0 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11719
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11721
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11721
+The Blue-Fog Trail~
+   A wide dirt road, clearly in disuse and disrepair, runs from east to west
+from here.  The only thing visible at all is the road itself; there are no
+signs at all of what lies on the large trail's sides, or even what kind of
+terrain the trail runs through.  The noise of running water, and a ponderous
+creaking sound, come from the east.    
+~
+117 0 2
+D1
+You see a rickety looking rope bridge to the east.
+~
+~
+0 -1 11722
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11720
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11722
+The Rickety Rope Bridge~
+   A short, very poorly constructed rope bridge spans a narrow crevasse in a
+wide dirt road's way.  Below, a roaring river flashes past, with sprays of
+plumed waves coming up to buffet the thick ropes of the bridge's surface.  A
+thick, swirling fog rises up from the surface of the water and of the bridge,
+but it breaks just enough for a way to the riverside below to be visible.    
+~
+117 0 2
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11723
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11721
+D5
+You see the Blue-Fog River roaring by below you.
+~
+~
+0 -1 2821
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11723
+The Blue-Fog Trail~
+   A wide dirt road runs from east to west through here.  There is little sign
+of what may lie beyond that road, thanks to an all- obscuring light blue fog
+that curls up from the very ground.  The sounds of running water and the
+creaking of something old come from the west.    
+~
+117 0 2
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11724
+D3
+You see a rickety looking rope bridge to the west.
+~
+~
+0 -1 11722
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11724
+The Blue-Fog Trail~
+   A wide, largely unused dirt road runs from east to west through terrain that
+can't be identified.  Very old wheel ruts in the road indicate that at one time
+it was very widely travelled, though now there is little evidence of activity.
+There's no sign at all of what may lie beyond the trail, thanks to an
+all-obscuring light blue fog that swirls all around you.    
+~
+117 0 2
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11725
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11723
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11725
+A Bend in the Blue-Fog Trail~
+   This wide dirt road makes an abrupt turn here, running from south to west.
+There's no way of telling what the trail is making a turn to avoid, nor of even
+what kind of terrain lies outside the road's surface.  There is little sign of
+traffic along the road, indicating that it is not often travelled.  By far the
+strangest thing about this road, however, is the curling blue mists that swirl
+up from the very surface of the road.    
+~
+117 0 2
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11726
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11724
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11726
+The Blue-Fog Trail~
+   A wide dirt road, largely unused and in bad condition, runs from north to
+south through damp, marshy ground.  In some places, an old, crusty footprint or
+wheel rut can be seen, indicating that at one time, this road was frequently
+travelled, but now there is little traffic at all.  A swirling light blue fog,
+dense and humid, rises up from the very ground.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11725
+D1
+~
+~
+0 -1 62500
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11727
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11727
+The Blue-Fog Trail~
+   A wide dirt road runs from north to south from here.  Though at one time it
+was travelled often, as is evidenced by very old wheel-ruts running through it,
+now there is little traffic at all along it.  Indeed, it is hard to tell even
+what kind of terrain runs along the road, thanks to an obscuring blue fog that
+swirls up from the very ground that conceals almost everything about this
+place.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11726
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11728
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11728
+The Blue-Fog Trail~
+   A wide dirt road, disused and in shoddy condition, runs from north to south
+through damp, marshy ground.  It's impossible to tell what kind of terrain lies
+outside the road's boundaries.  In fact, all that's visible is the road itself,
+and not much of that, since a swirling light blue fog rises up, dense and
+obscuring, from the very ground.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11727
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11729
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11729
+The Blue-Fog Trail~
+   This wide dirt road runs from north to south through increasingly swampy
+ground.  The dampness of the area has totally obliterated any signs of previous
+travellers' passage, though it's obvious, from the deserted nature of the road,
+that few use it.  There's no way of telling what kind of terrain lies beyond
+the edges of the road, since a dense, swirling light blue fog rises up from the
+ground, making visibility all but nonexistent.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11728
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11730
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11730
+The Blue-Fog Trail~
+   A wide dirt road runs through damp ground, to the north and south.  There is
+little evidence of traffic along it, though all footprints and wheelruts are
+long obliterated.  The road exists almost as a tunnel through a dense blue fog
+that obscures everything around you.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11729
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11731
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11731
+The Blue-Fog Trail~
+   This wide dirt road runs from the north to the south through very damp
+terrain.  There are no signs of any real traffic here, though the ground, which
+is nearly mud, doesn't seem able to hold prints for very long.  A dense,
+curling blue fog rises up from the ground to obscure almost everything except
+this patch of road.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11730
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11732
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11732
+The Blue-Fog Trail~
+   A swirling blue fog obscures most of this dirt road, which runs north-south
+through very damp ground.  All evidence of previous traffic has been
+obliterated by the swampiness of the road.  An eerie blue fog rises up from the
+ground, curling in tendrils in pretty patterns, and thoroughly obscuring
+whatever lies ahead, or even on the sides, of the road.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11731
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11733
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11733
+The Blue-Fog Trail~
+   The trail runs north-south from here and is covered with fog.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11732
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11734
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11734
+The Blue-Fog Trail~
+   A thick blue miasma of fog rises up in tendrils from the ground, obscuring
+almost everything around here.  The only thing that's visible, in fact, appears
+to be the road itself -- a wide but otherwise nondescript dirt road with no
+demarcating boundaries or special markings anywhere that goes from north to
+south.  The sky is not visible from here, nor whatever terrain lies outside the
+marshy ground of the trail.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11733
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11735
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11735
+A Turn in the Blue-Fog Trail~
+   The wide, marshy road makes an abrupt turn here, heading from north to west,
+though there's no sign, through the light blue fog curling everywhere, of what
+caused the sudden turn, nor even what terrain the road is taking its travelers
+through.  There is little evidence of any recent traffic through here, but, of
+course, the ground is quite damp and muddy.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11734
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11736
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11736
+The Blue-Fog Trail~
+   A wide muddy road runs from east to west here, through an impossibly thick,
+curling blue fog that seems to rise up from the very ground.  There is little
+evidence that anybody's been past here in some time, but, of course, the ground
+is quite marshy, so it's hard to tell.  The road exists as a kind of
+dream-tunnel, with the sky and the land surrounding it being impossible to see.
+The sound of rushing water comes from the west.    
+~
+117 0 2
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11735
+D3
+You see a sturdy-looking bridge to the west.
+~
+~
+0 -1 11737
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11737
+The Southern Bridge~
+   A sturdy grey stone bridge stands atop a roaring river that cuts through the
+wide muddy road running east to west through here.  The thick granite stones
+have begun to erode from time and the passage of such fast-moving water; though
+here and there a rectangular block has grown round-edged and possibly even
+nicked, the bridge as a whole appears quite safe.  A little trail through the
+mud at its edge leads downward to the river's side; however, there is no place
+to stand there without a boat.    
+~
+117 0 2
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11736
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11738
+D5
+You see the Blue-Fog River roaring by below you.
+~
+~
+0 -1 2836
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11738
+The Blue-Fog Trail~
+   A wide, muddy road leads from east to west through incredibly thick, light
+blue fog that swirls everywhere, obscuring visibility badly.  Little can be
+ascertained about the road's origins, source, or destination, or indeed, even
+what terrain it leads through, for the fog cannot be pierced enough to show
+what lies beyond the plain trail's unmarked boundaries.  The sound of rushing
+water comes from the east.    
+~
+117 0 2
+D1
+You see a sturdy-looking bridge to the east.
+~
+~
+0 -1 11737
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11739
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11739
+The Blue-Fog Trail~
+   A wide, muddy road runs from east to west through here.  It doesn't show
+many signs of recent use, though, since the ground is very marshy, footprints
+wouldn't show as readily.  An eerie blue fog rises up from the very ground,
+obscuring almost everything, including the sky and the lands beyond the road.
+  
+~
+117 0 2
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11738
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11740
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11740
+A Bend in the Blue-Fog Trail~
+   This wide, muddy road makes an abrupt turn here, though it's impossible to
+say what caused the abrupt shift -- the unnatural blue fog that curls up from
+the ground makes it impossible to tell what lies beyond the road's unmarked
+dirt boundaries.    
+~
+117 0 2
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11739
+D2
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11741
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11741
+The Blue-Fog Trail~
+   A wide, muddy road runs from the north to the south through land that's
+obscured completely by an eerie blue fog that rises, thick and curling, from
+the very ground.  The road itself is all that's visible here, almost like a
+tunnel.  Its boundaries are unmarked, if they exist at all, but the fog
+prevents breaking them.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11740
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11742
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11742
+The Blue-Fog Trail~
+   A wide, muddy road runs from north to south through an unnatural, thick blue
+fog that curls up from the ground and obscures everything around the trail.  
+There is little evidence of traffic on the road, though, of course, with its
+muddy surface, it'd be hard to tell.  Other than the fog, there's nothing at
+all special about the road.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11741
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11743
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11743
+The Blue-Fog Trail~
+   A thick, muddy trail runs from north to south through a dense, eerie blue
+fog that seems to come from the very ground, and gets thicker the nearer the
+edges of the trail one approaches.  There's no way at all to penetrate the
+invisible boundary of the trail, and no way even to tell what kind of land lies
+beyond it.  The road itself seems not often traveled, with little traffic
+visible along it, and few footprints in its marshy surface.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11742
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11744
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11744
+The Blue-Fog Trail~
+   A wide road, obviously fallen into disuse, runs north to south through
+marshy ground.  There are no indications of where the road's edges are, though
+a dense, eerie blue fog rises up from the ground and grows thicker the further
+away from the center of the road one tries to travel.  It's impossible to
+penetrate the fog and leave the trail -- or even to see what land it's taking
+its travelers through.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11743
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11745
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11745
+A Turn in the Blue-Fog Trail~
+   The wide, muddy road makes an abrupt turn here, heading north and east.  
+There's no indication at all of what caused the shift in direction, since the
+blue fog rising up from the ground is so thick that it's impossible to tell
+what lies beyond the road.  Even the sky is impossible to see, through the
+tendrils of light blue mist.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11744
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11746
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11746
+The Blue-Fog Trail~
+   A wide, marshy road runs from east to west through the extremely thick,
+light blue fog that swirls up from the clammy ground itself.  It is impossible
+to tell what kind of terrain lies beyond the simple, clearly unused merchant
+road.  Waves can be heard to the east.    
+~
+117 0 2
+D1
+You see the western end of the Blue Lake Bridge.
+~
+~
+0 -1 11747
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11745
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11747
+The Western End of the Blue Lake Bridge~
+   You are standing at the western end of the Blue Lake Bridge, a magnificent
+achievement of stoneworking craftmanship and magic combined.  The many
+interlocking granite flagstones of the bridge are slightly worn at the corners,
+but it looks like it's in excellent shape overall.  The bridge extends eastward
+for some ways, across a very wide lake.  An odd light blue fog swirls up from
+its surface, curling in the air, and getting denser to the west, where a wide,
+muddy road begins.  Steps cut into the bridge's edge lead down to the lake.  
+~
+117 0 2
+D1
+You see the Blue Lake Bridge continuing on to the east.
+~
+~
+0 -1 11748
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11746
+D5
+You see the Blue Lake beneath you.
+~
+~
+0 -1 2850
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11748
+The Blue Lake Bridge~
+   You are standing near the center of the Blue Lake Bridge, a magnificent
+achievement of stoneworking craftmanship and magic combined.  The many
+interlocking granite flagstones of the bridge are slightly worn at the corners,
+but it looks like it's in excellent shape overall.  The bridge extends east and
+west a bit, across a very wide, clear lake.  An odd light blue fog swirls up
+from its surface, curling in the air, and getting denser to the west, where a
+wide, muddy road begins.  Steps cut into the bridge's edge lead down to the
+lake.    
+~
+117 0 2
+D1
+You see the Blue Lake Bridge continuing on to the east.
+~
+~
+0 -1 11749
+D3
+You see the western end of the Blue Lake Bridge.
+~
+~
+0 -1 11747
+D5
+You see the Blue Lake beneath you.
+~
+~
+0 -1 2851
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11749
+The Blue Lake Bridge~
+   You are standing near the center of the Blue Lake Bridge, a magnificent
+achievement of stoneworking craftmanship and magic combined.  The many
+interlocking granite flagstones of the bridge are slightly worn at the corners,
+but it looks like it's in excellent shape overall.  The bridge extends east and
+west a bit, across a very wide, clear lake.  An odd light blue fog swirls up
+from its surface, curling in the air, and getting denser to the west, where a
+wide, muddy road begins.  Steps cut into the bridge's edge lead down to the
+lake.    
+~
+117 0 2
+D1
+You see the Blue Lake Bridge continuing on to the east.
+~
+~
+0 -1 11750
+D3
+You see the Blue Lake Bridge continuing on to the west.
+~
+~
+0 -1 11748
+D5
+You see the Blue Lake beneath you.
+~
+~
+0 -1 2852
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11750
+The Center of the Blue Lake Bridge~
+   You are standing in the center of the Blue Lake Bridge, a magnificent
+achievement of stoneworking craftmanship and magic combined.  The many
+interlocking granite flagstones of the bridge are slightly worn at the corners,
+but it looks like it's in excellent shape overall.  The bridge extends east and
+west a bit, across a very wide, clear lake.  An odd light blue fog swirls up
+from its surface, curling in the air, and getting denser to the west, where a
+wide, muddy road begins.  Steps cut into the bridge's edge lead down to the
+lake.    
+~
+117 0 2
+D1
+You see the Blue Lake Bridge continuing on to the east.
+~
+~
+0 -1 11751
+D3
+You see the Blue Lake Bridge continuing on to the west.
+~
+~
+0 -1 11749
+D5
+You see the Blue Lake beneath you.
+~
+~
+0 -1 2853
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11751
+The Blue Lake Bridge~
+   You are standing near the center of the Blue Lake Bridge, a magnificent
+achievement of stoneworking craftmanship and magic combined.  The many
+interlocking granite flagstones of the bridge are slightly worn at the corners,
+but it looks like it's in excellent shape overall.  The bridge extends east and
+west a bit, across a very wide, clear lake.  An odd light blue fog swirls up
+from its surface, curling in the air, and getting denser to the west, where a
+wide, muddy road begins.  Steps cut into the bridge's edge lead down to the
+lake.    
+~
+117 0 2
+D1
+You see the Blue Lake Bridge continuing on to the east.
+~
+~
+0 -1 11752
+D3
+You see the Blue Lake Bridge continuing on to the west.
+~
+~
+0 -1 11750
+D5
+You see the Blue Lake beneath you.
+~
+~
+0 -1 2854
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11752
+The Blue Lake Bridge~
+   You are standing near the center of the Blue Lake Bridge, a magnificent
+achievement of stoneworking craftmanship and magic combined.  The many
+interlocking granite flagstones of the bridge are slightly worn at the corners,
+but it looks like it's in excellent shape overall.  The bridge extends east and
+west a bit, across a very wide, clear lake.  An odd light blue fog swirls up
+from its surface, curling in the air, and getting denser to the west, where a
+wide, muddy road begins.  Steps cut into the bridge's edge lead down to the
+lake.    
+~
+117 0 2
+D1
+You see the eastern end of the Blue Lake Bridge.
+~
+~
+0 -1 11753
+D3
+You see the Blue Lake Bridge continuing on to the west.
+~
+~
+0 -1 11751
+D5
+You see the Blue Lake beneath you.
+~
+~
+0 -1 2855
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11753
+The Eastern End of the Blue Lake Bridge~
+   You are standing at the eastern end of the Blue Lake Bridge, a magnificent
+achievement of stoneworking craftmanship and magic combined.  The many
+interlocking granite flagstones of the bridge are slightly worn at the corners,
+but it looks like it's in excellent shape overall.  The bridge extends west
+quite a ways, across a very wide, clear lake.  An odd light blue fog swirls up
+from its surface, curling in the air, and getting denser to the west, where a
+wide, muddy road begins.  Steps cut into the bridge's edge lead down to the
+lake.    
+~
+117 0 2
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11754
+D3
+You see the Blue Lake Bridge continuing on to the west.
+~
+~
+0 -1 11752
+D5
+You see the Blue Lake beneath you.
+~
+~
+0 -1 2856
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11754
+The Blue-Fog Trail~
+   A wide, muddy road runs from east to west through dense, swirling blue fog
+that appears to rise from the very ground.  Though at one time the road may
+have been well traveled, as indicated by the sheer size of it, there is little
+evidence of recent traffic through it.  The thick, eerie fog makes it
+impossible to tell just what kind of terrain the road traverses, or what may
+lie beyond it.  From the west emanates the gentle sound of waves on a small
+body of water.    
+~
+117 0 2
+D1
+You see the Blue-Fog Trail continuing on to the east.
+~
+~
+0 -1 11755
+D3
+You see the eastern end of the Blue Lake Bridge.
+~
+~
+0 -1 11753
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11755
+A Bend in the Blue-Fog Trail~
+   The wide, muddy road makes an abrupt bend here, from south to west, though
+there is no way of telling the cause for the shift in direction.  Eerie,
+unnatural-seeming blue fog curls up in tendrils from the ground, obscuring
+whatever lies beyond the simple trail's boundaries.  The sky isn't even visible
+through that dense fog.    
+~
+117 0 2
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11756
+D3
+You see the Blue-Fog Trail continuing on to the west.
+~
+~
+0 -1 11754
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11756
+The Blue-Fog Trail~
+   A wide, muddy road runs from north to south through some very marshy ground.
+Though once this road might have been popular, now there is little sign of
+recent activity along it, except some animal prints and some odd sliding ruts
+that aren't from wheels.  An eerie blue fog obscures most details, including
+any view of the land beyond the road.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11755
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11757
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11757
+The Blue-Fog Trail~
+   A wide, muddy road runs north-south through marshy terrain.  It's impossible
+to tell what may lie beyond the road, due to an eerie light blue fog that rolls
+in from the roadsides, getting thicker the further from the road's middle one
+approaches.  There is little sign of recent activity on the road, though, it
+certainly is large enough to be a more established merchant road.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11756
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11758
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11758
+The Blue-Fog Trail~
+   A wide road runs from north to south through here.  Once it may have been
+frequently travelled, though now it's fallen into obvious disuse.  It's
+impossible to tell what kind of land lies beyond the trail's dirt borders,
+thanks to a dense blue fog that seems to rise up out of the muddy ground,
+curling so thickly that little can be seen at all.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11757
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11759
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11759
+The Blue-Fog Trail~
+   A thick blue fog seems to cover this simple, wide dirt road, making it seem
+almost like a tunnel through the light blue.  Nothing is visible beyond the
+road's simple boundaries; in fact, the fog grows denser the close to the edge
+of the road one approaches.  The only place there is any kind of visibility is
+the center of the road, and that's little enough as it is.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11758
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11760
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11760
+The Blue-Fog Trail~
+   A wide dirt road seems robed in rolling blue fog that comes out of nowhere
+to obscure visibility in all directions.  The road, running north-south through
+the fog, doesn't seem remarkable at all, save for its size and the fog that
+drapes it.  Its sides are unmarked, being simply where the marshy ground leaves
+off, but it's impossible to see what may lie beyond those sides.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11759
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11761
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11761
+The Blue-Fog Trail~
+   A largely abandoned muddy road runs north-south through thick, eerie blue
+fog that comes out of nowhere to obscure vision and render unseeable the
+terrain that lies beyond the road's simple borders, so the trail seems almost
+like a tunnel through the pale blue fog.  The footing grows increasingly muddy
+to the south.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11760
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11762
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11762
+The Blue-Fog Trail~
+   A wide, muddy road, once perhaps a merchant trail, now has largely fallen
+into disuse.  There is little to suggest recent traffic here, since the road's
+surface is so muddy that few prints have held up to the rigors of time.  It is
+impossible to tell what kind of terrain the road traverses, thanks to an eerie,
+light-blue fog that curls up from the ground, growing denser the closer to the
+roadside one tries to approach.  The fog makes this trail seem almost like a
+tunnel.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11761
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11763
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11763
+The Blue-Fog Trail~
+   A wide, muddy road runs to the north and south through some very marshy
+ground.  The mud here is almost liquid, and of that rich, brown color that
+bespeaks very fertile ground.  However, there's no sign of what may lie beyond
+the road, thanks to a very dense blue fog that curls up from the clammy, wet
+mud of the road to obscure everything beyond the middle of the trail.  A
+gentle, almost inaudible thrumming noise seems to pervade this part of the
+trail; it seems to grow louder to the south.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11762
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11764
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11764
+The Blue-Fog Trail~
+   A wide, muddy road runs from north to south through swampy terrain.  Muck
+clings to virtually everything here, making it impossible to see footprints.  
+A thick blue fog seems to rise through the mud, further obscuring visibility,
+and it's growing thicker to the south.  Also to the south, a loud thrumming
+noise is audible.    
+~
+117 0 2
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11763
+D2
+You see the Blue-Fog Trail continuing on to the south.
+~
+~
+0 -1 11765
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+#11765
+The Blue-Fog Trail~
+   You are standing at what appears to be the end of a wide, muddy road.  
+Thick mud squelches almost of its own accord, ending with precision right at a
+thick wall of fog to the south.  The wall shimmers and pulses with silvery
+lights, and more fog seems to dance around it, joining with that of the road
+itself.  The road does run to the north, but that's the only way away from for
+the fog also prevents passage to the west.  Loud thrumming noise seems to be
+coming from the wall to the south.  Perhaps waving away the fog will have some
+effect, perhaps not.  There is a small temple to the east which might lead to
+information on the mists south.    
+~
+117 16 10
+D0
+You see the Blue-Fog Trail continuing on to the north.
+~
+~
+0 -1 11764
+D1
+~
+~
+0 -1 11836
+E
+fog blue bluefog~
+It's thick. Unnaturally thick.
+~
+S
+T 11700
+#11766
+An Elevated Slope~
+   The fog is thick here, hiding the true elevation of the path below.  To the
+south the land can be seen to be higher than to the north.  There is thick
+woodlands to the east and west, mostly obscured by the omnipresent fogs.  The
+path continues to the north and the south.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11765
+D2
+~
+~
+0 -1 11767
+S
+#11767
+A Turn in an Elevated Path~
+   The fog is thick here, hiding the true elevation of the path below.  To the
+south the land can be seen to be higher than to the north.  There is thick
+woodlands to the west and to the south, mostly obscured by the omnipresent
+fogs.  The path continues along to the north and east, through less thick fog.
+~
+117 0 10
+D0
+~
+~
+0 -1 11766
+D1
+~
+~
+0 -1 11768
+S
+#11768
+A Turn in an Elevated Path~
+   The fog is thick here, hiding the true elevation of the path below.  To the
+south the land can be seen to be higher than to the north.  There is thick
+woodlands to the east and north, mostly obscured by the omnipresent fogs.  The
+path becomes more muddy and sticky to the south, and is a little more firm to
+the west.    
+~
+117 0 10
+D2
+~
+~
+0 -1 11769
+D3
+~
+~
+0 -1 11767
+S
+#11769
+A Turn in an Elevated Path~
+   The fog is thick here, hiding the true elevation of the path below.  To the
+south the land can be seen to be higher than to the north.  There is thick
+woodlands to the east and north, mostly obscured by the omnipresent fogs.  
+There is a steep climb in the path to the east, where as it declines slightly
+towards the north where the fog is thinner.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11768
+D1
+~
+~
+0 -1 11770
+S
+#11770
+A Steeply Rising Section of the Mist Path~
+   There is a steep rise in the path here.  The mist is heavy, slightly
+clouding the walk to the west, yet it is even more thick above.  There are some
+sickly looking trees, gnarled roots sticking up out of the ground that almost
+seem to move in the mist.  The path continues to the west, or rises steeply
+above.    
+~
+117 0 10
+D3
+~
+~
+0 -1 11769
+D4
+~
+~
+0 -1 11771
+S
+#11771
+A Rising Section of the Mist Path~
+   This section of the Mist Path is very foggy, mist swirling all around at the
+slightest perturbation.  The land slopes up towards a peak high above and
+mostly out of sight due to the clouds and mist.  The ground is hard and trees
+twisted.  The path continues off below and to the east where it rises further.
+~
+117 0 10
+D1
+~
+~
+0 -1 11772
+D5
+~
+~
+0 -4 11770
+S
+#11772
+A Rising Section of the Mist Path~
+   This section of the Mist Path is very foggy, mist swirling all around at the
+slightest perturbation.  The land slopes up towards a peak high above and
+mostly out of sight due to the clouds and mist.  The ground is hard and trees
+twisted.  The path continues off to the south and to the west, where the fog is
+thick and looks like a forbidding wall.    
+~
+117 0 10
+D2
+~
+~
+0 -1 11773
+D3
+~
+~
+0 -1 11771
+S
+#11773
+A Rising Section of the Mist Path~
+   This section of the Mist Path is very foggy, mist swirling all around at the
+slightest perturbation.  The land slopes up towards a peak high above and
+mostly out of sight due to the clouds and mist.  The ground is hard and trees
+twisted.  The path rises quite steeply to the immediate south, and slopes down
+a bit north.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11772
+D2
+~
+~
+0 -1 11774
+S
+#11774
+A Turn in the Mist Path~
+   The path bends here, leading north and west.  There is quite a bit of mud
+for some reason around here, puddling in one or two places.  There are some
+gnarled trees surrounding the path, but otherwise there is little else.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11773
+D3
+~
+~
+0 -1 11775
+E
+puddles puddle mud muddy~
+The mud is thick, gooshing around anything that comes in contact with it.  
+There are several small puddles of it , seemingly footsteps of something large.
+~
+S
+#11775
+A Turn in the Mist Path~
+   Gnarled trees shroud overhead, leaning down from overhead.  Their twisted
+branches occasionally reaching out almost as if they were alive.  The mists to
+the south and west are very heavy, though they are thinner to the north.  
+Above and east continues the mist path, where the mist is thinnest of all.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11774
+D4
+~
+~
+0 -1 11776
+S
+T 11701
+#11776
+A Steep Rise in a Mist Path~
+   This portion of the path is hardly a path at all, it is nearly sheer cliff!
+Below is the hard ground and the tops of some dark trees.  The cliff face
+proceeds above and below, making climbing rather difficult on foot.    
+~
+117 0 10
+D4
+~
+~
+0 -1 11777
+D5
+~
+~
+0 -1 11775
+S
+#11777
+A Very Steep Rise in the Mist Path~
+   This portion of the path is hardly a path at all, it is nearly sheer cliff!
+Far below is the hard ground and the tops of some dark trees.  The cliff face
+proceeds above and below, making climbing rather difficult on foot.  The mist
+here is nearly absent, thick in only a few small patches.  Yet there is enough
+of the mist to make the rock slick and quite dangerous.    
+~
+117 0 10
+D4
+~
+~
+0 -1 11778
+D5
+~
+~
+0 -1 11776
+S
+#11778
+The Top of a Steep Drop in the Mist Path~
+   The mist path drops sharply below, nearly vertically as it descends through
+some tree tops to some more level ground.  The path extends also through some
+light fog to the east.  There is an opening in the trees and shrubbery allowing
+a peek at the large mountain to the south.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11779
+D5
+~
+~
+0 -1 11777
+S
+#11779
+A Bend in the Mist Path~
+   This is yet another turn in the Mist Path.  It continues to lead mostly to
+the south towards the large mountain which can be seen in that direction.  
+There is a break in the tree lines through which the path runs west and south
+of here.    
+~
+117 0 10
+D2
+~
+~
+0 -1 11780
+D3
+~
+~
+0 -1 11778
+S
+#11780
+A Thickly Fogged Section of Path~
+   The fog is so incredibly thick here that no clear definition can be seen on
+anything more than a few inches away.  Vague outlines of trees can be seen, but
+little more than that.  The mist is thick and damp, acting almost as a heavy
+weight.  The dark outline of trees suggests the path runs north and south only.
+~
+117 0 10
+D0
+~
+~
+0 -1 11779
+D2
+~
+~
+0 -1 11781
+S
+#11781
+A Bend in a Foggy Section of the Mist Path~
+   The ground below is soft and muddy, caused by the constant, unwavering damp
+of the fog.  The dark outline of trees suggests that this poor excuse for a
+path continues north and west.  The trees themselves seem to reach in, arching
+narrowly over the pathway.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11780
+D3
+~
+~
+0 -1 11782
+S
+#11782
+A Foggy Section of the Mist Path~
+   The fog here is thick, seeming to absorb nearly every bit of light and sound
+daring enough to filter through the tall trees.  The ground is soft and the
+path is not well defined.  Apparent from the lack of tree shadows to the east
+and west suggest the path runs in those directions.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11781
+D3
+~
+~
+0 -1 11783
+S
+#11783
+A Foggy Section of the Mist Path~
+   The fog here is thick, seeming to absorb nearly every bit of light and sound
+daring enough to filter through the tall trees.  The ground is soft and the
+path is not well defined.  Apparent from the lack of tree shadows to the east
+and west suggest the path runs in those directions.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11782
+D3
+~
+~
+0 -1 11784
+S
+#11784
+A Bend in a Foggy Section of the Mist Path~
+   The fog is thick and unyielding.  Light trickles down from the sky and a
+slight wind sounds to be ruffling the branches of the tall, dominating trees.
+The path through the mist rises very suddenly, allowing passage east and up
+from here.  The muddy path going up is difficult to walk on.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11783
+D4
+~
+~
+0 -1 11785
+S
+#11785
+The Mist Path~
+   The fog is much less thick here compared to just below along the steep slope
+of the path.  The trees are visible stretching south of here, along the muddy
+path.  There is a slight groan as some of the branches around shift and twist
+unnaturally.  The town of Mielikki can be seen in the far distance to the north
+from this vantage point.  The surrounding countryside is large, and even some
+of the largest elements of the land can be seen far north.    
+~
+117 0 10
+D2
+~
+~
+0 -1 11786
+D5
+~
+~
+0 -1 11784
+S
+#11786
+The Mist Path~
+   The mist path is a simple trail running between some trees along the side of
+this heightening mountain.  The slope of the mist path continues to lead upward
+to the peak.  The trees have begun thinning out, becoming more and more scarce.
+The path continues upward to the south, and to lower elevations north.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11785
+D2
+~
+~
+0 -1 11787
+S
+#11787
+A Bend in the Mist Path~
+   The path continues to rise to the west of here and heads down to the north.
+The trees are thinly spaced at this elevation.  Far to the north can be seen
+much of the land, even faint hints of cities north of Mielikki are visible.  
+~
+117 0 10
+D0
+~
+~
+0 -1 11786
+D3
+~
+~
+0 -1 11788
+S
+#11788
+The Mist Path~
+   The Mist Path runs east and west here.  The trail is rather bland and
+uneventful.  Winding from side to side ever so slightly is the most interesting
+feature.  Assist solm the elevation rises, the air becomes more and more thin.
+There is a thick cluster of trees just south of the trail, but even they look
+rather drab.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11787
+D3
+~
+~
+0 -1 11789
+S
+#11789
+A High Section of the Mist Path~
+   This High Section of the path circles a bit to the north and west before
+sweeping off to the east and south.  There is a rather sheer drop off just
+beyond where the path is to the north.  A sharp crag juts from the top of the
+cliff, leaning out over certain peril below.  The path itself if actually
+rather dusty here, occasionally allowing bits of itself to be blown away over
+the cliff edge.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11788
+D2
+~
+~
+0 -1 11790
+S
+#11790
+A High Section of the Mist Path~
+   The Mist Path continues to the north and south of here.  A few bushes line
+the edges of the path, preventing passage east and west.  The path itself is
+rather dry, seeming to resist the mist's attempt to dampen it.  A bizarre
+little purple flower peaks from beneath one of the bushes.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11789
+D2
+~
+~
+0 -1 11791
+E
+purple little flower bizarre~
+This flower is rather small and pointy.  It has large leaves for the size of
+the stem.  Both the leaves and the stem are a dull, purple hew, while the bud
+of an omni-present flower atop the stem is a much more lush purple.    
+~
+S
+#11791
+A Turn in a High Section of the Mist Path~
+   This is yet another turn in the Mist Path, which continues running up to the
+summit of the mountain.  The peak is shrouded from this vantage point in a
+thick fog, which is never quite eaten away by the sun, no matter how brightly
+it shines.  There are some slight tendrils of mist reach out from all around.
+The path continues north and east from here.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11790
+D1
+~
+~
+0 -1 11792
+S
+#11792
+A High Section of the Mist Path~
+   The slope of the Mist Path increases to the east of here, slanting quickly
+down to a turn in the path to the west.  There are some minor weaves in the
+path here, but nothing significant.  Some trees can be seen in a tight clump to
+the north of here, but are not accessible from this vantage point, which is
+nearly two thirds of the way up the trees.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11793
+D3
+~
+~
+0 -1 11791
+S
+#11793
+A Dizzying Height on the Mountain of Mist~
+   The steep rise in the path from the west grows even steeper here, rising
+nearly vertically upward.  The path at this point is not much more than a sheer
+collection of stones worn smooth by the weather.  A mountain goat may even have
+trouble keeping its footing on this kind of surface.    
+~
+117 0 10
+D3
+~
+~
+0 -1 11792
+D4
+~
+~
+0 -1 11794
+S
+#11794
+The Mountain of Mist~
+   From the steepness of the path directly leading downward, the path north is
+remarkably level.  It is almost as if the path stops rising for a brief moment
+before continuing on at a steeper grade to the top.  On this rather flat spot
+there is what appears to be the remains of an old camp, there are remains of a
+firepit and even a cleared off spot perfect for sleeping upon.  All around that
+little clearing the ground is scattered with loose rock and sharp nettles.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11795
+D5
+~
+~
+0 -1 11793
+S
+#11795
+The Mountian of Mist~
+   The path on the Mountain of Mist continues to rise in what now seems to be
+circles to the summit.  The path occasionally zigzags upward to make the going
+a little less steep and more climbing-friendly.  The path descends slightly to
+the south and rises higher to the north.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11796
+D2
+~
+~
+0 -1 11794
+S
+#11796
+A Turn on the Mist Path~
+   The path comes to an abrupt turn, now leading away from here to the east and
+to the south.  It continues to rise to the east and leads back toward the lower
+elevations to the south.  Some vague whisps of smoke can be seen far, far to
+the north, rising from what is likely the city of Mielikki.  Much of the Blue
+Fog Lake can be seen to the north and west of here, as can parts of the river
+flowing south.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11797
+D2
+~
+~
+0 -1 11795
+S
+#11797
+The Mist Path~
+   The path continues east and west of here, rising to the east toward the top
+of the Mountain of Mist.  Not far in either direction are yet more turns in the
+path, west of here leading down to the lower lands and east rising up to the
+heavens.  Many of the rocks of the path poke viciously from the dirt in which
+they are housed and threaten to break through even tough leather boots.  There
+are some specks of sand which are a bit out of place this far from any open
+water.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11798
+D3
+~
+~
+0 -1 11796
+S
+#11798
+A Turn on the Mist Path~
+   The path again takes a turn, this time leading back down the mountain to the
+west and higher up to the north.  The terrain here is rather rugged and broken.
+There is some evidence that a little creek once ran down the path, as it cut
+some small grooves in the dirt until it broke off and flowed away.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11799
+D3
+~
+~
+0 -1 11797
+S
+#11799
+A Path of the Mountain of Mist~
+   There is dense fog clouding the path here, making it nearly impossible to
+see further than a few inches.  There are many creaking sounds about, some
+sounding assist solm though limbs of trees and bushes are scraping against one
+another, but there are also other sounds which are not quite distinguishable.
+Though it can barely be seen, the path runs north and south of here, descending
+to the south and beginning to again rise steeply to the north.    
+~
+117 0 10
+D0
+~
+door~
+1 -1 11800
+D2
+~
+~
+0 -1 11798
+S
+#11800
+A Turn on the Mist Path~
+   The trail continues on here, rising up steeply to the east and declining to
+the south.  A thick, heady fog can be seen to the south, filling an entire
+section of the path and making it impossible to see through.  The rock of the
+trail here is rather thick and rugged, not allowing easy passage.  There are
+some bits of grass and tufts of weeds sticking out from either side of the
+trail.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11801
+D2
+~
+~
+0 -1 11799
+S
+#11801
+A High Section of the Mist Path~
+   This section of the Mist Path runs east and west.  The rise in the elevation
+to the east is rather substantial, much more so than the decline to the west.
+There are some thin whisps of fog and mist floating about, nor really enough to
+impede movement or vision.  For some reason the grasses on either side of the
+worn path are rather tall right around here, and they seem to lean in toward
+the path and there are signs that they have begun to encroach upon the trail
+itself, which has become narrow.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11802
+D3
+~
+~
+0 -1 11800
+S
+#11802
+A High Section of the Mist Path~
+   A single, large, sharp stone juts directly from the center of the path,
+which has been widened by many feet over the years walking around it.  The
+stone is a rich grey, mottled and hard.  The coloring of this stone contrasts
+all of the other stones around, which are mostly a dark color shale.  There
+seems to be a little carving on the side of the stone facing to the lower part
+of the mountain.  There is a dark, reddish smear across some of the darker
+rocks all around.  The path continues to the east and west, rising up toward
+the peak to the east.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11803
+D3
+~
+~
+0 -1 11801
+E
+carving stone stones rocks little side~
+The little carving on the side of the large, sharp stone is an ancient, dead
+text.  Next to the writing is a little carving of what appears to be a giant
+lizard of some indistinguishable form.  The other little rocks about truly look
+to be blood-stained from many years ago, as the weather has nearly washed them
+clean.    
+~
+S
+#11803
+A High Section of the Mist Path~
+   The Mist Path continues along east and west.  At this point all of the trees
+on the lower parts of the mountain are well below.  Some faint tendrils of
+smoke can be seen far to the north of here, reaching toward the heavens.  To
+the south looms the peak of the Mountain of Mist.  Rising toward it is the path
+to the east, otherwise the path west leads down from the mountain.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11804
+D3
+~
+~
+0 -1 11802
+S
+#11804
+A Turn in a High Section of the Mist Path~
+   This is a quite high section of trail, falling off sharply to the north and
+not quite so sharply to the east.  There are some ragged crags sticking up all
+about, most threatening shoes daring enough to tread upon them.  The path leads
+away from this turn to the west back down the trail and south leading further
+up the Mountain of Mist.    
+~
+117 0 10
+D2
+~
+~
+0 -1 11805
+D3
+~
+~
+0 -1 11803
+S
+#11805
+A High Section of the Mist Path~
+   This section of mountain rises only slightly, in stark contrast to the north
+and south of here.  There are some small bits of vegitation struggling to make
+a living in this high, rather barren climate.  The dust of the north-south
+running path threatens to snuff out the little plants entirely.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11804
+D2
+~
+~
+0 -1 11806
+S
+#11806
+A High Section of the Mist Path~
+   As to the north, many little plants are struggling to survive in this harsh,
+cooling climate.  There are some very short strands of grass covering the
+surroundings aside from on the path itself.  Many formerly sharp rocks jut from
+the grass, pretending to be menacing as they once were before erosion melted
+them away over the years.  The path continues north to lower elevations and
+south rising up further.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11805
+D2
+~
+~
+0 -1 11807
+S
+#11807
+A Steeply Rising Section of the Mist Path~
+   Some cute little tendrils of mist whisp back and forth, fleeing abruptly
+from any movement.  The portions of exposed ground reveal a tender little
+blanket of moss growing over much of the surroundings.  The moisture from the
+mist undoubtedly allows the little mosses to flourish.  The Mist Path turns
+north-west here, leading downhill to the north and up toward the summit to the
+west.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11806
+D3
+~
+~
+0 -1 11808
+S
+#11808
+A Steeply Rising Section of the Mist Path~
+   The path rises very sharply above, leading up to higher and higher
+elevations.  The mists are thin here, yet damp and make the mostly smooth
+surfaces of the rocks slippery and more dangerous than usual.  The path leading
+east slopes down the mountain.  There are some rugged hand-holds carved into
+the formerly sharp rocks, allowing for some vertical movements.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11807
+D4
+~
+~
+0 -1 11809
+S
+#11809
+A Steep Section of the Mist Path~
+   This Mist Path practically falls away below, leading downward very steeply
+and then on to lower elevations.  Some bits of grey rock are scattered about,
+almost seeming to be out of place.  These rocks look very much like the mists
+of the area in color and hew, and those further away almost appear to move or
+shudder on occasion.  The path leads down and to the north, through some
+thicker mists.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11810
+D5
+~
+~
+0 -1 11808
+S
+#11810
+A Bend in the Mist Path~
+   The mists are thicker here, compared to both west and south of here.  Range
+of vision is severely limited, yet the faint outline of the path curving west
+and south can scarcely be seen on the earth.  North and east appears to fall
+off down the sides of the mountain.  There is a sound which is very similar to
+the sound of more and more rocks falling from somewhere nearby.    
+~
+117 0 10
+D2
+~
+~
+0 -1 11809
+D3
+~
+~
+0 -1 11811
+S
+#11811
+A Bend in the Mist Path~
+   The mists are strangely mostly absent here.  East of this point the mists
+are heavy and thick, for no apparent reason, yet here there are hardly any
+signs of it.  The path curves broadly for such a steep elevation, leading off
+to the east and south again.  The peak rises high above yet, to the south,
+extending several meters into the air above here.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11810
+D2
+~
+~
+0 -1 11812
+S
+#11812
+A High Section of the Mist Path~
+   The Mist Path rises steadily to the summit to the south, while declining to
+the north.  There are some small pebbles scattered across the path, seeming to
+run in a little zig-zag pattern, very similar to that of a lightning bolt.  
+The pebbles are black, grey, and a variety of brighter more pleasant colors.  
+There is a single large stone standing off to the side of the path, out of the
+way, yet still grabs hold of the eye upon passing it.  There is just something
+rather peculiar about how it is balanced on a narrow section and widens as it
+rises higher.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11811
+D2
+~
+~
+0 -1 11813
+S
+#11813
+A Bend in the Mist Path~
+   This is a slight bend in the Mist Path.  From here, down to the lower parts
+of the mountain can be seen distantly.  There are small chunks of broken rock
+littering about, scaring the landscape.  The path runs to the north and west of
+here, beating through the little tufts of grass which are trying their hardest
+to survive.  Fortunately for the grasses, the occasionally heavy mists provide
+good moisture on which they can thrive.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11812
+D3
+~
+~
+0 -1 11814
+S
+#11814
+A Bend in the Mist Path~
+   The Mist Path takes a sharp turn here, curving from east to south again.  
+It continues to wind up the mountain toward the summit, occasionally rising
+more steeply than in other places.  There is some evidence of vague animal
+markings etched forever into the compacted dirt of the path, undoubtedly set in
+a time long ago when there was more moisture dampening the soil.  Small rocks
+border around the tracks, almost as though they have been here as long as the
+tracks themselves.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11813
+D2
+~
+~
+0 -1 11815
+S
+#11815
+An Extremely High Section of the Mist Path~
+   The height that this path has risen to is incredible.  The relatively flat
+lands can be seen far below, some plowed and tended.  Many of the other lands
+simply stretch wide and far, including into the swamplands far to the north.  
+A deep ravine in the earth can be seen to the east of here, cutting deeply into
+the ground.  The Mist Path continues to run north and south of here, sloping
+toward the lowlands to the north and higher to the south.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11814
+D2
+~
+~
+0 -1 11816
+S
+#11816
+A Turn in the Mist Path~
+   The turns in the path are much more concise and wander about less than they
+do in the lower elevations.  The path declines to the north and runs up toward
+the summit, quite steeply, to the east.  A large building can be seen far to
+the west as nothing more than a small, child-sized toy from this distance.  
+Beyond that building glares the bright yellow reflection of hot sands, as well
+as a mighty stone pyramid rising from them.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11815
+D1
+~
+~
+0 -1 11817
+S
+#11817
+An Extremely High Section of the Mist Path~
+   The Mist Path rises sharply above, leading directly to the top of this great
+mountain.  There is nothing very significant about the immediate surroundings,
+aside from the bit of cliff leading upward.  The path travels downward toward
+the lowlands to the west.  The heights have made the oxygen thin here, causing
+difficulty building a fire -- or for some breathing.  There are some small
+shards of rock which appear to have chipped off of the larger rocks leading up
+the path.    
+~
+117 0 10
+D3
+~
+~
+0 -1 11816
+D4
+~
+~
+0 -1 11818
+S
+#11818
+Near the Top of the Mountain of Mist~
+   This is very near the summit of the Mountain of Mist.  The mountain itself
+barely extends any further into the air above, but plummets to the ground far
+below.  Giant trees on the fringes of the grasslands look like nothing more
+than a small tinder-twig at this height.  Other than looking directly toward
+the mountain peak, distances for miles around can be seen.  The Mist Path runs
+down to lower elevations and east toward the summit.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11819
+D5
+~
+~
+0 -1 11817
+S
+#11819
+Near the Top of the Mountain of Mist~
+   This is just below the very peak of the mountain.  The path which leads far
+from Mielikki to here is very wide considering the lack of space around this
+close to the top.  There are scarcely any signs of vegetation about, let alone
+any trees or heavy foliage.  The path leads back downward to the west and to
+the summit directly south.    
+~
+117 0 10
+D2
+~
+~
+0 -1 11820
+D3
+~
+~
+0 -1 11818
+S
+#11820
+The Peak of the Mountain of Mist~
+   The view from this point is tremendous.  The town of Mielikki can be seen in
+the distance to the north.  Further north and far to the west of that is what
+appears to be Anduin, sprawled over a large mountain side.  Distantly south can
+be seen vast ocean and some hilltops.  All around are fields and little
+speckles of town or village as far as the eye can see.  The mists are
+relatively thin here, fondling your ankles and barely covering the tips of the
+grass and sharp bits of rock sticking up from the mountain top.  The mountain
+slopes down on all sides.    
+~
+117 0 10
+D0
+~
+~
+0 -1 11819
+D5
+~
+~
+0 -1 11821
+S
+#11821
+Near the Peak of the Mountain of Mist~
+   The peak is very near, just up above.  Even below the very top of the
+mountain, things can be seen for miles around.  The path winds about in a few
+little loops, leading away both up and west of here.  The way up is a little
+steep and rocky compared to the west passage through the little grasses.    
+~
+117 0 10
+D3
+~
+~
+0 -1 11822
+D4
+~
+~
+0 -1 11820
+S
+#11822
+Very Near the Peak of the Mountain of Mist~
+   Some small grasses threaten to pop out of the ground along side the path.  
+The path cuts through all foliage leading away east and south from here.  The
+little bits of rock and pebbles are scattered about haphazardly on and around
+the path, making even a tough leather boot have to work hard.  There is little
+evidence of anything other than dirt and grass here.    
+~
+117 0 10
+D1
+~
+~
+0 -1 11821
+D2
+~
+~
+0 -1 11823
+S
+#11823
+A Sudden End of the Mist Path~
+   The Mist Path comes to an abrupt halt here, proceeding no further to the
+south or in any other direction for that matter.  There is a small break in the
+rock face to the west, perhaps large enough to squeeze through.  The rock is a
+sharp tan color, reflecting the bizarre glow from the mist which is heavy all
+around.  The trees border every escape aside from the one to the north and the
+rock wall to the west.    
+~
+117 4 10
+D0
+~
+~
+0 -1 11822
+D3
+~
+~
+0 -1 11824
+E
+rock break hole~
+There is a small hole in the wall, perhaps large enough for a person to squeeze
+through.  The jagged rocks would be painful if they somehow grabbed some skin
+on the way through.  Inside through the hole is a dark cavern.    
+~
+S
+T 11823
+#11824
+The Entrance to the Misty Cave~
+   The cave mouth is rather large compared to the entrance to the east, which
+is quite small.  There is room enough to stand tall without too much of a
+problem.  Oddly the mist seems to come and go, spreading and condensing again.
+~
+117 8 0
+D1
+~
+~
+0 -1 11823
+D3
+~
+~
+0 -1 11825
+S
+T 11802
+#11825
+A Turn in the Misty Cave~
+   This is a small portion of what seems to be a large cave.  There is the
+opening of the entrance to the east distantly and the depths of the cave to the
+south.  The caverns seem to be filled with very much mist, probably an odd
+side-effect of the high humidity around and the vast amounts of mist filling
+the surroundings.  The cave continues east and south of here, the south leading
+into the depths of the cavern itself.  Dispite the apparent small size of the
+cave here, there is sufficient room for even a large being or two to pass with
+ease.    
+~
+117 8 0
+D1
+~
+~
+0 -1 11824
+D2
+~
+~
+0 -1 11826
+S
+T 11802
+#11826
+A Widening Section of the Misty Cave~
+   This portion of the cave appears to be wider than the turn to the north.  
+The walls are a mix of shades, mostly appearing to be tan, but also an orgy of
+other colors.  To the south, the walls appear to widen even more than they have
+here, while the north threatens to squeeze the tunnel down to oblivion.  Here,
+there is room for just about anything to stand nicely upright, even the largest
+of creatures.    
+~
+117 8 0
+D0
+~
+~
+0 -1 11825
+D2
+~
+~
+0 -1 11827
+S
+T 11802
+#11827
+A Very Wide Section of the Misty Cave~
+   This portion of the caverns is very wide, with the ceiling extending far
+above.  There is certainly enough room here for anything to stand or even jump.
+There is a small crack in the cavern top which allows light to filter in during
+the daylight hours.  The mists have clung to the walls of this cave for many
+years, making them moist and likely slippery to the reckless.  The cave extends
+to a slightly narrower portion to the north, and widens further into a vast
+cavern to the east.    
+~
+117 8 0
+D0
+~
+~
+0 -1 11826
+D1
+~
+~
+0 -1 11828
+S
+T 11802
+#11828
+A Mist Filled Cavern~
+   This is a large cavern extending south and east.  There is a small cave
+connected to this section of the cavern to the west.  There are little twisps
+of mist lingering all about, never seeming to completely vacate no matter what
+happens near them.  The humidity is just right for the mists to occasionally
+form and dissipate.  There is insufficient circulation for the moisture in the
+air to go anywhere, leaving a kind of dank and stagnant odor to the air.    
+~
+117 8 0
+D1
+~
+~
+0 -1 11829
+D2
+~
+~
+0 -1 11831
+D3
+~
+~
+0 -1 11827
+S
+T 11802
+#11829
+Inside a Mist Filled Cavern~
+   The cavern is quite high here, but ends abruptly to the east where the solid
+stone wall is.  The north is much the same, ending completely with an
+inpenetrable mirage of colored stone.  To the west and south the cavern carries
+on, vast and roomy.  The mists stretch all about, occasionally forming
+something more dense.    
+~
+117 8 0
+D2
+~
+~
+0 -1 11830
+D3
+~
+~
+0 -1 11828
+S
+T 11802
+#11830
+Inside a Mist Filled Cavern~
+   The mists stand in small towers about this section of the cavern.  Most of
+them run from the ground only halfway up to the ceiling, but others run all the
+way up.  Some of the mists cut along the wall, running as smoothly as silk all
+over them.  The cavern is quite large, extending away north, west and south of
+here.    
+~
+117 8 0
+D0
+~
+~
+0 -1 11829
+D2
+~
+~
+0 -1 11833
+D3
+~
+~
+0 -1 11831
+S
+T 11802
+#11831
+Inside a Mist Filled Cavern~
+   The little bits of mist fill this rooms fairly regularly.  The walls are
+smooth and solid, supporting the ceiling quite well.  The moisture from the
+years has caused some little bits of moss to grow and take hold on the
+otherwise smooth wall.  The cavern is vast, extending north, east and south of
+here.    
+~
+117 8 0
+D0
+~
+~
+0 -1 11828
+D1
+~
+~
+0 -1 11830
+D2
+~
+~
+0 -1 11832
+S
+T 11802
+#11832
+Inside a Mist Filled Cavern~
+   This part of the cavern is as large as the rest, but has far rougher walls
+and floor.  It is as though there has been some destructive activity causing
+the stone to be broken up into pieces.  The cavern continues east and north,
+leading all about thoughout the rest of the interior of the moist cave.    
+~
+117 4194312 0
+D0
+~
+~
+0 -1 11831
+D1
+~
+~
+0 -1 11833
+S
+T 11802
+#11833
+Inside a Mist Filled Cavern~
+   This is a large section of cavern with nothing very notable about it other
+than the large cavern continuing north and west.  There is, however, a small
+cave leading off to the east, away from the main section of the cavern.  There
+are some broken rocks from the wall, almost as if hit by something heavy, which
+are definately out of place considering the smooth, flawlessness of the rest of
+the wall.    
+~
+117 8 0
+D0
+~
+~
+0 -1 11830
+D1
+~
+mistwall~
+0 0 11834
+D3
+~
+~
+0 -1 11832
+S
+T 11802
+#11834
+A Small Alcove~
+   This is the entry way to a small alcove, stretching quite high into the
+mountain.  The dome above is quite roomy and this whole section of alcove
+larger than the preceeding sections of cave.  The majority of the cave is out
+to the west, yet a large passage leads to another section to the south.    
+~
+117 8 0
+D2
+~
+~
+0 -1 11835
+D3
+~
+~
+0 -1 11833
+S
+#11835
+A Huge Treasure Room~
+   It seems hard to believe that a large creature could fit well into this
+enclosed space.  There are many things adorning the walls of this room.  
+Rusted and tarnished bits of armor lay mostly in one small corner, rather
+tucked out of the way.  There are vast amounts of treasures here, ranging from
+small gems fixed in the walls to large pools of now melted and re-solidified
+chunks of gold.  Unfortunately many of these sheets of precious metal are so
+large that they would not even fit out of the cave entrance!  There is a single
+entrance from this cave to the north.    
+~
+117 12 10
+D0
+~
+~
+0 -1 11834
+S
+#11836
+A Small Temple Entrance~
+   This is the entrance to a temple of worship.  The stone pillars that line
+the doorway also surround the entire building, supporting the heavy marble
+roof.  The delicate carving of the building shows that the elements have not
+weathered them at all.  The roof is vaguely like a dome, leading up to a small
+pinnacle at its apex.  At the very top is a round globe, glowing some curious
+shades ranging primarily between blue and purple, but also incorporating some
+greens and pale yellows.  The entrance to the temple is cut through otherwise
+seamless stone to the east, or the trail is back to the west.    
+~
+117 12 0
+D1
+~
+~
+0 -1 11837
+D3
+~
+~
+0 -1 11765
+S
+#11837
+The Center of a Small Temple~
+   This is the center of the small temple.  The ceiling stretches high above
+with intricate little criss-crossed carvings streaming endlessly across it.  
+The walls are a perfect, seamless creation, supporting the heavy ceiling along
+with the outside pillars.  There are small little alcove-like rooms to the
+north, east, and south.  The entrance to the temple is to the west of here,
+leading back from this pristine and peaceful place to the trail beyond.    
+~
+117 24 0
+D0
+~
+~
+0 -1 11838
+D1
+~
+~
+0 -1 11839
+D2
+~
+~
+0 -1 11840
+D3
+~
+~
+0 -1 11836
+S
+#11838
+The North Wing of a Small Temple~
+   This is a small section of the stone temple.  From the looks of the colorful
+carvings on the walls, this section is dedicated to the mists of the world.  
+The cuts in the stone weave a curious tale, winding back and forth in all sorts
+of curious patterns.  The carvings seem to have a dull, grey glow mirroring
+that of a thick fog, which stands out in stark contrast from the perfect white
+of the stone of the temple.  There is one little carving which begs for
+attention and seems to be more prominent than the rest of the wall.    
+~
+117 8 0
+D2
+~
+~
+0 -1 11837
+S
+T 11838
+T 11840
+#11839
+The East Wing of a Small Temple~
+   This is the eastern wing of the small temple.  There are some wave-like
+carvings adorning the walls all around.  A beautiful azure color emanates from
+each of these waves, which appear to actually wash back and forth across the
+wall.  Above the bulk of the waves carved into the stone is a swirling tempest,
+lashing out toward the seas.  The center of the temple lies back toward the
+west.    
+~
+117 8 0
+D3
+~
+~
+0 -1 11837
+S
+#11840
+The South Wing of a Small Temple~
+   This alcove is dedicated to the wind and air.  There is a curious breeze
+swirling about the room, ruffling anything not firmly attached in place.  The
+walls in this section of the temple are remarkably barren compared to the rest
+of the structure.  There is a cloudy sort of glow from the walls.  To the north
+is the center of the temple.    
+~
+117 8 0
+D0
+~
+~
+0 -1 11837
+S
+$~

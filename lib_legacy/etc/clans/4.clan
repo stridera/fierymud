@@ -1,0 +1,31 @@
+number: 4
+name: Weavers of Fate&0
+abbr: @M>>WoF<<&0
+description:
+Weavers of Fate are dedicated to maintaining the balance of the world at large.  They work together regardless of personal belief to bring order to that which is naturally chaotic.  They don't fight for one single cause. They fight for all.~
+motd:
+Nothing.
+~
+dues: 0
+appfee: 0
+applevel: 1
+copper: 1
+silver: 1
+gold: 238001
+platinum: 203200
+title: 1 &5&bWeaver&0 of &2&bBalance&0&0
+privilege: 1 desc motd grant ranks title enroll expel promote demote appfee applev dues withdraw alts chat
+title: 2 @RWeaver&0 of @YChoice&0&0
+privilege: 2 motd enroll expel appfee applev dues alts chat
+title: 3 &4Weaver&0 of &2Fate&0&0
+privilege: 3 dues alts chat
+member: Zaver 1 1661205331 Mril Mersh Tors Choak Tensel Fril Col Snal Lokar Catan Porto
+member: Janara 1 0
+member: Krytonius 2 0
+member: Wehr 2 0
+member: Nuggz 2 1377231932
+member: Cerworn 2 1661204902
+member: Thorfinn 3 1696252906
+member: Mecke 3 0
+member: Gaidin 3 0
+member: Ulthar 3 1699047786

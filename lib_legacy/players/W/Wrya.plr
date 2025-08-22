@@ -1,0 +1,111 @@
+name: Wrya
+password: Wrdz5AHABw
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%df&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17511
+birthtime: 1259909332
+timeplayed: 583287
+lastlogintime: 1351189523
+host: 070.170.088.071
+height: 60
+weight: 134
+base_height: 60
+base_weight: 134
+base_size: 2
+natural_size: 2
+alignment: 121
+playerflags: yz
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 100
+loadroom: 1270
+hunger: 3
+lastlevel: 0
+hitpoints: 1226/1226
+mana: 980/980
+move: 130/130
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 66
+wisdom: 66
+dexterity: 95
+constitution: 91
+charisma: 53
+cash: 1605 15181 1340 5
+bank: 100 0 0 0
+experience: 116386599
+pagelength: 25
+quit_reason: 3
+saveroom: 0
+skills:
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+420 1000
+421 1000
+422 1000
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 945
+463 1000
+464 1000
+465 1000
+466 50
+467 1000
+468 1000
+473 1000
+0 0
+trophy:
+1 48632 0.500000
+0 0 0
+aliases:
+1 give all.gem tyn
+wb wield blade
+rrr rescue syge
+dd douse golem
+11 rescue syge
+2 kill 2.man
+ds drink skin
+rs rem scimitar
+ws wield scimitar
+wd wield dagger
+ec exa corpse
+ggc get all.coins corpse
+gac get all corpse
+, dism
+kmm kill monk
+kr kill red
+kb kill bile
+h hitall
+ss drag kria south
+gs get scimitar
+re retreat e
+rss rem kite
+wss wear kite
+gb get bread bp; eat bread
+mm mount mule
+hh hitall all
+m mount mare
+aa assist pathraw
+rr rescue pathraw
+aaa assist trewous
+kk kill lord
+0

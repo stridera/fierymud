@@ -1,0 +1,135 @@
+2 1 1
+shell 1
+19 1 0
+10 1 0
+55 1 0
+66 255 0
+54 1 2
+actor_level 36
+price 29859
+13 255 6
+satisfied_tree:12046 1
+satisfied_tree:12016 1
+satisfied_tree:12014 1
+satisfied_tree:12018 1
+satisfied_tree:12017 1
+num_trees 5
+18 3 7
+item7 1
+item6 0
+item5 0
+item1 0
+item2 0
+item4 0
+item3 0
+48 255 4
+fire_ring 1
+sash 0
+charles 0
+lashes 0
+65 1 2
+scorpion 1
+lever 1
+57 5 5
+masktask2 0
+masktask3 0
+masktask1 1
+masktask4 0
+attack_counter 0
+17 1 28
+5537_reward 1
+5535_reward 1
+5543_reward 1
+5527_reward 1
+5516_trophies 7
+5525_reward 1
+5515_reward 2
+5533_reward 1
+5531_reward 1
+5529_reward 1
+5542_reward 1
+5521_reward 1
+5541_reward 1
+5557_reward 1
+5523_reward 1
+5555_reward 2
+5539_reward 1
+5517_reward 1
+5519_reward 1
+5506_trophies 23
+5510_trophies 24
+5512_trophies 10
+5514_trophies 10
+5508_trophies 34
+5504_trophies 55
+bl_ally 1
+eg_faction -1
+bl_faction 201
+32775 255 2
+mayor 1
+subclass_name assassin
+56 6 4
+target3 0
+target2 0
+target1 0
+bounty running
+71 2 5
+cloaktask1 1
+cloaktask3 0
+cloaktask4 0
+attack_counter 0
+cloaktask2 0
+64 255 1
+got_cherry 0
+47 1 1
+gem_vnum 0
+58 1 1
+armor_vnum 0
+63 1 1
+step blacksmith
+72 6 4
+target2 necro_fang
+target3 dia_fang
+target1 0
+bounty running
+61 6 2
+target1 0
+hunt running
+70 6 2
+treasure1 0
+hunt running
+59 5 2
+target1 0
+hunt running
+7 3 27
+55647_gems_acquired 3
+55669_gems_acquired 3
+55636_gems_acquired 3
+55625_gems_acquired 3
+55614_gems_acquired 3
+55341_armor_acquired 1
+55333_armor_acquired 1
+55345_armor_acquired 1
+55349_armor_acquired 1
+55337_armor_acquired 1
+55603_gems_acquired 3
+55329_armor_acquired 1
+55353_armor_acquired 1
+55592_gems_acquired 3
+55588_gems_acquired 3
+55301_armor_acquired 1
+55580_gems_acquired 3
+55317_armor_acquired 1
+55584_gems_acquired 3
+55313_armor_acquired 1
+55572_gems_acquired 3
+55321_armor_acquired 1
+55309_armor_acquired 1
+55325_armor_acquired 1
+55305_armor_acquired 1
+55576_gems_acquired 3
+55568_gems_acquired 3
+45 5 3
+rest complete
+loot complete
+fight complete

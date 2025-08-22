@@ -1,0 +1,2119 @@
+#30000
+Perched Sanctum~
+   Stretched cowhides cover the walls, mostly blocking out the light that slips
+in between the wooden slats.  Though magic fills the air, there are few of the
+usual accoutrements: scrolls, powder, and potions.  Instead, a row of identical
+books is carefully contained between bone bookends on the single desk.  A
+staircase leads downward in the center of the room.~
+300 33554460 0
+D5
+~
+~
+0 -1 30120
+S
+#30001
+Town Center~
+   The tramping of innumerable boots have churned this small intersection into
+a muddy, smelly morass.  This is the center of what was once the tiny village
+of Tyllwedd.  Now, its ruins lie smoking all around.  Some buildings have
+survived, however.  To the southeast is a stout stone building that stands firm
+under chips and scars, while partly reconstructed structures lie to the west.
+Muddy roads lead in all directions.    ~
+300 0 1
+D0
+~
+~
+0 -1 30002
+D1
+~
+~
+0 -1 30067
+D2
+~
+~
+0 -1 30019
+D3
+~
+~
+0 -1 30044
+S
+#30002
+Tiny Street~
+   Tiny Street runs alongside the wall of a building to the west.  The street
+is strewn with ashes and broken stones.  An empty lot lies east, and the river
+beyond that.  To the north is a wide open square heaped with rubbish.  The town
+center is south.    ~
+300 0 1
+D0
+~
+~
+0 -1 30003
+D1
+~
+~
+0 -1 30007
+D2
+~
+~
+0 -1 30001
+E
+rubbish~
+The rubbish gives off a thin column of smoke. It is too far away to see much from here.~
+S
+#30003
+Market Square~
+   This is the southwestern corner of Market Square.  A partly-burned heap lies
+in the center of the square, full of scorched poles and fabrics, and smelling
+of decaying garbage.  Smoke rises all around, especially from a burnt-out hulk
+to the west.  A muddy, ground-up street leads south.    ~
+300 0 1
+D0
+~
+~
+0 -1 30004
+D1
+~
+~
+0 -1 30006
+D2
+~
+~
+0 -1 30002
+D3
+~
+~
+0 -1 30010
+E
+pole poles fabric fabrics~
+The long, slender poles and gaily colored fabrics could only have come from the
+outdoor stalls that sellers could rent on a daily basis to hawk their wares.  
+Now they are rent and broken, and piled in a smouldering heap.    ~
+S
+#30004
+Market Square~
+   This is the northwest corner of Market Square.  The stench of rotting fish
+rises from a sticky morass of mud and scaly carcasses that grind underfoot.  
+Shards of pottery are strewn about, some rather large.  Gutted buildings
+surround the square, but the one to the north shows fewer signs of damage, and
+even some repairs.    ~
+300 0 1
+D0
+~
+~
+0 -1 30012
+D1
+~
+~
+0 -1 30005
+D2
+~
+~
+0 -1 30003
+D3
+~
+~
+0 -1 30011
+E
+shard shards pottery pot~
+The pots appear to have been simple and large, with wide mouths.  Their
+presence reinforces the rumor that the Tyllweddians liked their fish extremely
+fresh, so that some sellers would keep them alive in large clay urns in Market
+Square.  Alas, it has all been spoiled.    ~
+S
+#30005
+Market Square~
+   This is the northeast corner of Market Square, and the air is filled with a
+choking sulphurous smoke.  It appears to be billowing out of a broken shop to
+the east.  The building to the north is completely burned away and looks to
+have been transformed into a thoroughfare for orcs inhabiting the northern
+encampment.    ~
+300 0 1
+D0
+~
+~
+0 -1 30045
+D1
+~
+~
+0 -1 30014
+D2
+~
+~
+0 -1 30006
+D3
+~
+~
+0 -1 30004
+S
+T 30001
+#30006
+Market Square~
+   This forlorn corner of Market Square is filled with trash.  The river flows
+by on the east, and a vacant lot is south of here.  A light but annoying breeze
+brings wisps of smoke and sulphur constantly.  Smoking, ruined buildings
+surround the square everwhere but here.    ~
+300 0 1
+D0
+~
+~
+0 -1 30005
+D2
+~
+~
+0 -1 30007
+D3
+~
+~
+0 -1 30003
+S
+#30007
+Vacant Lot~
+   This is a somewhat steeply sloping patch of land in the middle of a ruined
+village.  A river rushes by on the east, its cold waters flowing south toward a
+bridge.  The ground is strewn with broken bricks, bits of trash, and the like.
+The village itself lies mostly to the west, its buildings broken, its peace
+shattered.    ~
+300 0 2
+D0
+~
+~
+0 -1 30006
+D3
+~
+~
+0 -1 30002
+S
+#30008
+The Mermaid's Tail~
+   The smells of tobacco smoke and cheap ale fill the dark air.  A large bronze
+fish, its tail missing, hangs behind the bar.  Apparently this is the favorite
+place for lesser officers of the orc army, for conversations have been known to
+proceed several minutes before a fight breaks out.  A stairwell leads up in the
+back.    ~
+300 33554456 0
+D2
+~
+~
+0 -1 30044
+D4
+~
+~
+0 -1 30009
+S
+T 48200
+#30009
+Inn Reception~
+   This is the reception area for Ogakh's inn, which luckily could be salvaged
+from the ruins of Tyllwedd.  Though it sits atop the noisy bar, it's better
+than a tent among the soldiers.  Several private rooms, small but dry, seem to
+be available.    ~
+300 33554460 0
+D5
+~
+~
+0 -1 30008
+S
+#30010
+Ruined House~
+   A smoking ruin lies here.  This was apparently a small and tidy house before
+the orcs arrived.  Now it is a pile of ashes atop broken and scattered bricks.
+Nothing of value or use remains here.  Another ruin lies to the north, while a
+damaged but repaired structure rises two stories to the south.  A trash-strewn
+street runs by on the east.    ~
+300 0 2
+D0
+~
+~
+0 -1 30011
+D1
+~
+~
+0 -1 30003
+S
+#30011
+Ruined Shop~
+   Ashes and burnt boards lie in a mess.  Several large boards appear to have
+been shelves once, and a pile of scorched and muddy quills would seem to clinch
+the conclusion that this was once a shop of some kind.  Everything of value has
+been stolen or destroyed, including the building itself.  Another destroyed
+building lies to the south, and Market Square is east.    ~
+300 0 2
+D1
+~
+~
+0 -1 30004
+D2
+~
+~
+0 -1 30010
+S
+#30012
+Arandidor's Dingy Companions~
+   The owner of this shop must have some sense of humor, for the name is
+chalked above the door in wide white letters for all to see.  Strange, crablike
+specimens clatter in roofless wooden cages while foul-mouthed parrots curse all
+that pass nearby.  The smell is bad, unlike the open latrines of the nearby
+armies, but still bad.  An exit leads south.    ~
+300 33554460 0
+D2
+~
+~
+0 -1 30004
+S
+#30013
+Arandidor's Back Room~
+You should not be here! This room is for pets only.~
+300 590364 0
+E
+rubble wreckage rubbish trash~
+Burnt and broken planks are shoved into two piles to either side of the path.
+They look to have been carefully whitewashed and well-cared for for many years.
+Many varied pieces of pottery lie underfoot and in the piles of rubbish as
+well.  Closer inspection reveals that a variety of plants have sprouted,
+hinting that this may once have been a grocer's shop.    ~
+S
+#30014
+A Sulphurous Hulk~
+   A small building once stood here by the side of the river, but it received
+the harsh treatment that orc hordes are wont to dispense.  Now, no two bricks
+stand atop one another.  The walls have been hacked into splinters.  Not all of
+the damage appears to have been inflicted by tools, however.  Some singed
+craters near the entrance appear to be the result of fiery explosions.    ~
+300 0 1
+D3
+~
+~
+0 -1 30005
+E
+crater craters~
+They are pretty small, being only a couple of feet across, but the force of the
+explosions that created them must have been substantial.  There is even some
+bloodstaining on nearby bits of wood.  Whatever caused them failed to save the
+building, however.    ~
+E
+smoke sulfur sulphur~
+The smoke seems to be pouring out of a hole hidden under a very large pile
+of rubble. It is yellowish-gray in color, and highly obnoxious in odor.~
+S
+T 30000
+#30015
+Trodden Path~
+   A path runs north-south here through a cleared area.  The ruins of Tyllwedd
+are just to the south.  This is a scrubby area with only a few broken trees.  
+The path continues north toward a large army encampment full of tents and small
+fires.  Far off to the north is a mountain range, shrouded in low clouds.    ~
+300 0 10
+D0
+~
+~
+0 -1 30016
+D2
+~
+~
+0 -1 30045
+S
+#30016
+Trodden Path~
+   An army encampment full of orcs is just north of here.  Their gruff
+bickering creates a dull roar that lies over the land like a cloud of
+discontent.  A well-used footpath leads south toward the ruins of the village
+of Tyllwedd.  A brisk river is some distance to the east, and mountains loom in
+the distant north.    ~
+300 0 10
+D0
+~
+~
+0 -1 30017
+D2
+~
+~
+0 -1 30015
+S
+#30017
+Orc Encampment North~
+   This is the southern edge of a wide army encampment.  The sounds of speech,
+growling, and bickering fill the air.  The smell of orcs is unmistakable, and
+the smoke of their fires lies everywhere.  A medium-sized tent sits off to the
+east, with guards around its entrance.    ~
+300 0 2
+D0
+~
+~
+0 -1 30099
+D1
+~
+~
+0 -1 30018
+D2
+~
+~
+0 -1 30016
+S
+#30018
+Entrance to a Gray Tent~
+   The entrance to a large gray tent is just to the east.  The tent shows signs
+of many repairs, but is in good shape.  It bears no adornments and is not
+particularly well-lit.  However, there is steady traffic in and out.  An army
+encampment of orcs surrounds it to the north and west.    ~
+300 33554564 1
+D1
+~
+~
+0 -1 30066
+D3
+~
+~
+0 -1 30017
+S
+#30019
+Tiny Street~
+   This narrow street runs north-south between a wooden building to the west
+and a squat stone structure to the east.  There is an entrance to the stone
+building, and above it is a skilfully-painted yellowish-brown gem in a silvery
+setting.  The smell of horses drifts in from the west.    ~
+300 0 1
+D0
+~
+~
+0 -1 30001
+D1
+~
+~
+0 -1 30025
+D2
+~
+~
+0 -1 30020
+S
+#30020
+Tiny Street~
+   A once-tidy street runs north-south through the ruined village of Tyllwedd.
+A fenced stableyard is off to the west, filling the air with equine aromas.  A
+dry dusty plot of earth sits to the east, sandwiched between strong stone
+buildings.  The street itself, once paved with irritating cobbles, is now a
+trench of mud and rubbish.  The interlocking arrangement of the cobbles can
+only be seen near its edges.    ~
+300 0 1
+D0
+~
+~
+0 -1 30019
+D1
+~
+~
+0 -1 30027
+D2
+~
+~
+0 -1 30021
+S
+T 30011
+T 3005
+#30021
+Tiny Street~
+   A burned, scarred stone building sits just to the east.  It is scorched and
+pitted, and one wall shows massive cracks, but it still stands.  Its door is
+made of fresh thick oak and looks like a recent installment.  A large wooden
+structure to the west also shows signs of recent repair.  The street is muddy
+and rutted, and covered with trash.    ~
+300 0 1
+D0
+~
+~
+0 -1 30020
+D1
+~
+~
+0 -1 30028
+D2
+~
+~
+0 -1 30022
+D3
+~
+~
+0 -1 30029
+S
+#30022
+A Shattered Gate~
+   Stout oak logs are heaped to one side of the road, just outside the ruined
+village of Tyllwedd.  The village stands smoking to the north.  Most of the
+nearby buildings are intact, though showing signs of recent repair.  Drison
+Road leads south along the side of the river.  A huge tent stands to the west.~
+300 0 1
+D0
+~
+~
+0 -1 30021
+D2
+~
+~
+0 -1 30023
+D3
+~
+~
+0 -1 30121
+S
+#30023
+Drison Road~
+   This muddy churned-up road runs along the side of Drison River to the east.
+The ruins of Tyllwedd are just past a heap of broken logs to the north, the
+remains of the village's south gate.  Far off to the west, the vast encampment
+of the orc army lies on the land like a blanket of locusts.    ~
+300 0 1
+D0
+~
+~
+0 -1 30022
+D2
+~
+~
+0 -1 30024
+S
+#30024
+Intersection~
+   Drison Road continues along the river here, turning east to follow it in its
+twisting bed.  A recent footpath leads west toward the orc army's noisome
+encampment.  Smoke drifts through the air, from cooking fires, forges, and the
+smouldering remains of Tyllwedd.    ~
+300 0 1
+D0
+~
+~
+0 -1 30023
+D1
+~
+~
+0 -1 30047
+D3
+~
+~
+0 -1 30096
+S
+#30025
+Jhanna's Jewelry~
+   The thick walls of this building show no ill effects from the recent
+invasion.  Flashy bits of jewelry and tasteful yet depressing paintings adorn
+the wall, well behind the counter and away from grabby orc hands.  Two
+stairways lead upward: a larger one for customers of the bank above, and a
+smaller one in the opposite corner.    ~
+300 33554460 0
+D3
+~
+~
+0 -1 30019
+D4
+~
+~
+0 -1 30026
+S
+#30026
+Ogakh Bank~
+   The sign above the door was short and to the point, and this is clearly a
+financial institution.  No containers of any kind are visible.  However, a
+well-guarded door leads to a back room.  It appears to be a good and secure
+place for the deposit of excess gold.    ~
+300 33554456 0
+D5
+~
+~
+0 -1 30025
+S
+#30027
+Barren Garden~
+   Smooth slate paving stones once encircled a small marble fountain in this
+tidy garden.  Now, they are torn up and broken, and mostly heaved into the
+river.  The fountain is gone but for its cracked base.  A heap of dried
+vegetation gives off a somewhat pleasant smell.  Perhaps they were flowers.  
+Nothing but weeds grow here now.    ~
+300 0 2
+D3
+~
+~
+0 -1 30020
+S
+#30028
+Gaol~
+   Iron fetters line the walls above crude wooden benches.  They are mostly in
+good repair, for even orcs know the value of incarceration.  The south wall is
+so heavily cracked as to allow in sunlight.  Unfortunately, the three foot
+thick walls would need to suffer far worse to permit escapes.  The front door,
+however, is made of fresh stout oak.~
+300 8 0
+D3
+~
+~
+0 -1 30021
+S
+#30029
+Barracks~
+   This was once the barracks for Tyllwedd.  Some few soldiers must have made a
+stand here, for the brown and black bloodstains of the walls and floor are
+extensive.  It is a wonder the building still stands.  The street is visible to
+the east, and the sounds of combat practice can be heard to the west.    ~
+300 33554572 0
+D1
+~
+~
+0 -1 30021
+D3
+~
+~
+0 -1 30030
+S
+#30030
+Warrior Guild~
+   Orcs and ogres of exceptional intelligence and aptitude spar here in their
+efforts to become elite warriors and officers.  Scarred practice dummies line
+the walls, and a pile of broken weapons sits in the corner.  A few tapestries
+hang on the walls, but they have large portions torn out, or consist of only a
+scrap depicting a few dark shapes.  The exit is east.    ~
+300 36175900 0
+D1
+~
+~
+0 -1 30029
+S
+#30031
+Stable~
+   This is the front room of a large stable whose yard extends some distance to
+the south.  Numerous multicolored mounts of odd species are visible.  Hay
+covers every square foot of floor, absorbing mud and masking the odor of equine
+urine.    ~
+300 33554460 0
+D0
+~
+~
+0 -1 30044
+S
+#30032
+Stableyard~
+You should not be here!~
+300 590356 1
+S
+#30033
+Farmer's Way Bridge~
+   A sturdy wooden bridge crosses the Drison River here.  Its cold waters flow
+south toward the ocean.  The bridge leads west toward the center of Tyllwedd
+and east toward a few large buildings, one of which is broken and smoking.  
+The bridge itself is wide, enough for a cart and a horseman to pass, though
+that would be dangerous now that its rails are broken off.  The bridge appears
+sound, however, having suffered no other visible damage.    ~
+300 0 1
+D1
+~
+~
+0 -1 30034
+D3
+~
+~
+0 -1 30067
+S
+#30034
+Farmer's Way~
+   This narrow road proceeds east away from Drison River toward a few large
+buildings and an intersection.  A short and new-looking building sits to the
+south, while another to the southeast is smouldering.  An even larger building
+far to the east appears to be in good repair.  The heavy foot traffic of
+Tyllwedd seems to have spared this road.    ~
+300 0 1
+D1
+~
+~
+0 -1 30035
+D2
+~
+~
+0 -1 30087
+D3
+~
+~
+0 -1 30033
+S
+#30035
+Farmer's Way~
+   This cart-road curves here leading north and west.  Directly to the south is
+a large building, mostly broken and giving off clouds of smoke.  A side path
+continues east toward a larger mansion.  The road handles heavy traffic, but
+not so much that it is ground into a morass of muck or dust.    ~
+300 0 1
+D0
+~
+~
+0 -1 30115
+D1
+~
+~
+0 -1 30036
+D2
+~
+~
+0 -1 30042
+D3
+~
+~
+0 -1 30034
+S
+#30036
+Driveway~
+   A cart path makes a little loop here in front of a large mansion to the
+east.  The path leads west toward Farmer's Way and a ruined building to the
+southwest, while a side path goes south to a small temple.  The mansion is in
+good repair, though it does have a recently replaced front door, and several of
+its shutters are lying off to one side, the windows now boarded over.    ~
+300 4 1
+D1
+~
+door~
+1 -1 30037
+D2
+~
+~
+0 -1 30110
+D3
+~
+~
+0 -1 30035
+S
+#30037
+Mayor's House~
+   This is the humble home of the mayor of Tyllwedd.  It is at least three
+times as large as the other homes.  Its fine furniture is a bit scratched up
+but still attractive.  The artwork on the walls has suffered worse, being
+defaced and torn.  There appears to be a kitchen to the north and a bedroom to
+the east.    ~
+300 8 0
+D0
+~
+~
+0 -1 30038
+D1
+~
+~
+0 -1 30039
+D3
+~
+door~
+1 -1 30036
+S
+#30038
+Kitchen~
+   A cauldron hangs suspended over a warm hearth in the middle of the room.  
+Rows of spices once stood neatly on shelves, but as any orc knows, food is
+food, and anything edible was quickly consumed.  Shuttered windows show a road
+far off to the north.  A there is an exit to the east, and the dining room is
+south.    ~
+300 8 0
+D1
+~
+door~
+1 -1 30040
+D2
+~
+~
+0 -1 30037
+S
+#30039
+Bedroom~
+   The large bed in the middle of this room has the remains of fine linen
+sheets.  Most of the bedding has been torn or spoiled in some way, for even an
+orc general leaves much to be desired with his manners.  Large shuttered
+windows give a fine view of the countryside, for this building is on a small
+hill.    ~
+300 8 0
+D3
+~
+~
+0 -1 30037
+S
+#30040
+Despoiled Garden~
+   This private garden may have been quite peaceful and beautiful at one time,
+but now it is merely private.  Only the stone benches survive unbroken.  Large
+quantities of dark-glassed bottles are piled against the southern wall, along
+with other garbage that assaults the nose.    ~
+300 0 2
+D0
+~
+~
+0 -1 30041
+D3
+~
+door~
+1 -1 30038
+S
+#30041
+Despoiled Pond~
+   A careful ring of bricks surrounds an artificial pond in which nothing
+grows.  The water is murky and full of glass and trash.  Whatever lived in it
+is long dead and gone.  Ornamental shrubs and trees surround the pond,
+providing privacy.    ~
+300 0 2
+D2
+~
+~
+0 -1 30040
+S
+#30042
+A Fallen Courthouse~
+   The roof of this building lies with the southern wall to the south.  Other
+walls still stand, blackened by fire and lightened by old whitewash.  All
+manner of broken furniture litters the floor here: chairs, desks, lamps, and
+the like.  There is a doorway into the courtroom to the south, and a road runs
+by on the north.    ~
+300 0 2
+D0
+~
+~
+0 -1 30035
+D2
+~
+~
+0 -1 30043
+S
+#30043
+A Fallen Courtroom~
+   Some benches are lying in a jumbled broken mess in the corner.  Their
+destruction appears to be incidental, but the judge's pulpit suffered no random
+attack.  It is nowhere to be seen, unless it has become the pile of chopped
+wood that now rots in the south of the room.  The roof overhead looks unsteady.
+An open doorway leads north.    ~
+300 8 0
+D0
+~
+~
+0 -1 30042
+S
+#30044
+Westroad~
+   A hard-used road leads west out of the heart of the ruined village.  A
+battered but patched wooden building rises two stories high to the north.  The
+broken bronze sculpture over its lintel marks it as the Mermaid's Tail, and a
+raucous din emanates from its wide open door.  The smell of horses drifts in
+from the south, where a sturdy building sits in front of a stableyard.    ~
+300 0 1
+D0
+~
+~
+0 -1 30008
+D1
+~
+~
+0 -1 30001
+D2
+~
+~
+0 -1 30031
+D3
+~
+~
+0 -1 30046
+E
+tail bronze mermaid mermaid's mermaids~
+The tail is rather large, but its wide fan-shape marks it as the tail of a
+fish, not a mermaid.  Local rumors tell that the inn once had an entire bronze
+fish, but it was broken during the invasion.  The enterprising new inkeeper
+made the best of the situation, knowing that orc soldiers are connoissers of
+neither fish nor mermaids.    ~
+S
+#30045
+Path Through a Ruin~
+   A wide footpath runs north-south here through a burnt-out ruin.  Market
+Square of the late village of Tyllwedd is to the south, and an army encampment
+is some distance north.  The building through which the path runs has been
+wrecked and burned, and its rubble rudly pushed aside to make way for the
+soldiers and messengers who now pass through.    ~
+300 0 1
+D0
+~
+~
+0 -1 30015
+D2
+~
+~
+0 -1 30005
+S
+#30046
+Westroad~
+   The remains of Tyllwedd are just east of here.  An inn and a stable are the
+first buildings.  Past the inn, to the northeast, smoking ruins of the former
+village send plumes into the air.  The road also leads west between the orc
+armies, and there is a clearing to the south.    ~
+300 0 1
+D1
+~
+~
+0 -1 30044
+D2
+~
+~
+0 -1 30050
+D3
+~
+~
+0 -1 30052
+S
+#30047
+Drison Road~
+   The road swerves about as it follows some ancient track.  A smoking village
+looms off to the north, and the waters of Drison River flow by a little to the
+east.  The smell of a nearby Ogre encampment is unmistakable.  It mingles with
+the scent of orcs and smoke that drifts in from the west.  A few guards seem to
+have set up a post just a little further down the road toward the river.    ~
+300 0 1
+D1
+~
+~
+0 -1 30048
+D3
+~
+~
+0 -1 30024
+S
+#30048
+Southern Guard Post~
+   A standard rises from the ground, proclaiming to all who would enter that
+this is the city of Ogakh.  A trashy clearing next to the road looks like a
+mini-encampment, no doubt the traces of the motly orcs who drew the bad luck to
+guard this post.  Drison Road passes through on its way to the remains of
+Tyllwedd to the north, and the long journey south to the Drison's mouth begins
+here.    ~
+300 64 1
+D2
+~
+~
+0 -1 30049
+D3
+~
+~
+0 -1 30047
+S
+#30049
+Outskirts~
+   Drison Road crosses the outer edges of Ogakh here.  A guard post sits next
+to the road just north of here, no doubt a show of force for any who would dare
+to approach the orc encampment uninvited.  The smell of the nearby army,
+visible to the west, drifts over the land like a noxious blanket.  The road
+also leads south.  To the east stands a rickety shack of some kind.~
+300 68 10
+D0
+~
+~
+0 -1 30048
+D1
+~
+~
+0 -1 30123
+S
+#30050
+Watering Hole~
+   Horses and other mounts can be heard nickering in the stable to the east.  
+Whether the water here is shared by them or is expressly for the parade of orcs
+that drink it is uncertain, but the stable owner must be compensated for all
+the water he is providing.  Westroad runs by to the north, and the clearing
+extends south a ways.    ~
+300 4 1
+D0
+~
+~
+0 -1 30046
+D2
+~
+~
+0 -1 30051
+S
+#30051
+Meeting Area~
+   A solitary ironwood tree stands in the middle of the clearing.  Somehow, it
+thrives in the chaos that has enveloped the village.  Numerous notes hang from
+it, nailed, stapled, and punched over short twigs.  A stableyard full of large
+beasts of burden is off to the east behind a strong fence.    ~
+300 0 1
+D0
+~
+~
+0 -1 30050
+S
+#30052
+Westroad~
+   The road bears the scars of heavy usage here, running east and west.  The
+smoking ruin of Tyllwedd lies on the banks of the Drison some distance to the
+east.  The vast army of orcs stretches out to the southwest, its cooking fires
+filling the air with smoke.  Another army lies far in the distance to the
+northeast.    ~
+300 0 1
+D1
+~
+~
+0 -1 30046
+D3
+~
+~
+0 -1 30053
+S
+#30053
+Westroad~
+   A massive encampment of orcs, mostly to the southwest, comes to an end here.
+A ruined village smokes far to the east.  The air is full of the sounds of
+arguments and fighting, and a variety of unpleasant smells.  The road is wide
+and muddy.  A thick forest of conifers lies off to the north beyond a field of
+stumps.    ~
+300 0 1
+D1
+~
+~
+0 -1 30052
+D3
+~
+~
+0 -1 30054
+S
+#30054
+Westroad~
+   The orc encampment to the south may be entered here by one of its many
+footpaths.  Like every other road in the area, the path is soggy and wet, and
+strewn with trash.  Westroad itself curves a bit to the north.  It also leads
+east toward the village of Tyllwedd, whose ruins smoke in the distance.    ~
+300 0 1
+D0
+~
+~
+0 -1 30055
+D1
+~
+~
+0 -1 30053
+D2
+~
+~
+0 -1 30068
+S
+#30055
+Westroad~
+   The road curves west and south here as it follows its ancient route to the
+port city of Solta.  A wide encampment sits adjacent to the road on the south,
+full of orc soldiers and their camp followers.  A forest to the north once
+abutted the road, but it is rapidly feeding the cooking fires.  A few large,
+well-kept tents are next to the road just west of here.    ~
+300 0 1
+D2
+~
+~
+0 -1 30054
+D3
+~
+~
+0 -1 30056
+S
+#30056
+Merchants Row~
+   Some tolerant and hard-working merchants have set up shop directly across
+from the orc army.  The presence of particularly large and well-mannered -- but
+still very mean-spirited -- soldiers is impossible to miss.  The tent to the
+north has a drawing of a hand with a shining gem in its palm.    ~
+300 0 1
+D0
+~
+~
+0 -1 30064
+D1
+~
+~
+0 -1 30055
+D3
+~
+~
+0 -1 30057
+S
+#30057
+Merchants Row~
+   Westroad's conversion into a city street is an uneasy one, and the
+merchant's tent to the north, while in good repair, looks as though it could be
+removed overnight.  It has a small shingle hanging from it with a hammer and a
+sack.  The ground underfoot is a muddy mess, but thankfully free of larger
+debris.    ~
+300 0 1
+D0
+~
+~
+0 -1 30063
+D1
+~
+~
+0 -1 30056
+D3
+~
+~
+0 -1 30058
+S
+#30058
+Merchants Row~
+   Westroad meets a path here that leads south into the heart of the orc army's
+encampment.  Directly to the north, an enterprising leather merchant has set up
+a large tent and is attempting to eke out a living among the argumentative
+orcs.  More merchants are directly to the east.  The smell of cooking wafts in
+from the south.~
+300 0 1
+D0
+~
+~
+0 -1 30065
+D1
+~
+~
+0 -1 30057
+D2
+~
+~
+0 -1 30061
+D3
+~
+~
+0 -1 30059
+S
+#30059
+Westroad~
+   The road continues on its meandering course.  The encampment to the south
+still sits directly up against the road and its noise is distracting.  A large
+tent sits to the northeast; it could be entered by going east.  The road is
+muddy and ill-used, and the smells of the orcs permeate the air.    ~
+300 0 1
+D0
+~
+~
+0 -1 30060
+D1
+~
+~
+0 -1 30058
+S
+#30060
+Westroad~
+   A trio of large, well-lit tents sit directly to the east, but their
+entrances are not visible from here.  The road appears to be twisting and
+turning on its own course.  The orc army stretches far off to the south.  It
+appears vast, especially from this perspective.  A forest to the north is
+suffering from the orcs' presence, for a wide band of stumps now borders the
+road.    ~
+300 0 1
+D2
+~
+~
+0 -1 30059
+D3
+~
+~
+0 -1 30118
+S
+#30061
+Orc Encampment South~
+   The tents of the orc army surround the area, but Westroad lies directly
+north.  The smell of cooking food drifts in from the mess area to the south.  
+The ground is trashy and muddy, and it is difficult to move quickly.  Strange
+smells assault the senses.    ~
+300 0 1
+D0
+~
+~
+0 -1 30058
+D2
+~
+~
+0 -1 30062
+S
+#30062
+Mess Area~
+   Several large makeshift stone ovens belch noxious smoke into the sky and
+down toward the ground, which no doubt accounts for the "unique" flavor of the
+food produced here.  Mighty cauldrons bubble atop steaming fires.  The tents of
+the army give this place a wide berth, probably after tiring of the fires
+caused by flying embers.    ~
+300 34078736 1
+D0
+~
+~
+0 -1 30061
+D2
+~
+~
+0 -1 30083
+S
+#30063
+Woddly's Wargoods~
+   Anywhere else, this might be called a general store, for it sells basic
+items needed by travelers everwhere.  But Woddly is a born salesman, and knows
+that soldiers don't take kindly to shiftless adventuring, and don't practice
+general pursuits, oh no -- they're into war and destruction, and need the tools
+to execute that serious task.    ~
+300 34078744 0
+D2
+~
+~
+0 -1 30057
+S
+#30064
+A Quick Spell~
+   This is a spacious tent, but most of the area is off-limits to patrons.  
+Behind a wide but temporary wooden counter hang numerous scrolls.  Pots of
+potions sit around the edge, and a few odd-colored birds perch up near the
+roof.  No doubt the rogues and wizards of the army find this place useful.    ~
+300 34078744 0
+D2
+~
+~
+0 -1 30056
+S
+#30065
+Leather Goods~
+   Sleeves, leggings, caps, and tunics lie about in stacks.  The leather
+quality looks good enough, if the manufacture is a bit lazy.  The smell of
+tannin drifts through the air.  It is not strong, for the market for new armor
+is not brisk.  An exit leads south out of the tent.    ~
+300 34078744 0
+D2
+~
+~
+0 -1 30058
+S
+#30066
+Rogue Central~
+   Odd lighting casts an uneven glow in this quiet tent.  Curious figures lurk
+in the shadows, practicing lethal encounters with unsuspecting dummies.  Some
+dummies have bells, while others have strange pockets.  The center of the test,
+however, is well-lit if you have business to conduct.    ~
+300 36176412 0
+D3
+~
+~
+0 -1 30018
+S
+#30067
+Farmer's Way~
+   This short lane passes north of a stout stone building and leads east, away
+from town center toward a bridge.  The wooden bridge is just large enough for a
+horse-drawn cart.  The smoking ruins of Tyllwedd lie off to the north.  The
+road is muddy and strewn with debris.    ~
+300 0 1
+D1
+~
+~
+0 -1 30033
+D3
+~
+~
+0 -1 30001
+S
+#30068
+Orc Encampment South~
+   A small path leads south into heart of the orc army's south encampment.  
+Among the tents of the soldiers are a few larger tents, one of which sits
+directly to the west.  A signpost has been planted in the earth next to the
+entrance.  The path continues south toward a few larger tents and a mysterious
+black one, and north back to Westroad.    ~
+300 0 1
+D0
+~
+~
+0 -1 30054
+D2
+~
+~
+0 -1 30071
+D3
+~
+~
+0 -1 30069
+E
+signpost sign~
+Upon the signpost is a slab of wood with a charred inscription. An image
+lies below, depicting a nest of serpents. The inscription reads:
+
+        Mokh-ob
+    Krimpphosh-hudh~
+S
+#30069
+Entrance to the Twining Serpents~
+   This appears to be a waiting room of some sort, where injured soldiers bide
+their time until the clerics beyond deign to see to their wounds.  Bloodstains
+dot the floor, the furniture, and the very walls of this tent.  An exit leads
+east, while the inner sanctum is west.    ~
+300 33554444 0
+D1
+~
+~
+0 -1 30068
+D3
+~
+~
+0 -1 30070
+S
+#30070
+Sanctum of the Twining Serpents~
+   Low flickering torches light the room.  They chatter and grumble even in the
+absence of any breeze.  A small portable altar is tied to the rear of the tent.
+Even with the torches, it is rather dark.  The altar can barely be seen.  
+Unlike the waiting room outside, it is clean here, right down to the fresh
+burlap mat waiting for the next patient's drops of blood, if any should fall.~
+300 36175900 0
+D1
+~
+~
+0 -1 30069
+S
+#30071
+Battle Street~
+   This is no street, but signs blaringly proclaim otherwise: this is clearly
+known as "Battle Street".  It seems to be a merchant's ploy, for a shop
+festooned with weapons lies directly to the east.  To the west is a large,
+black tent, with a small covered corridor as an entryway.    ~
+300 0 1
+D0
+~
+~
+0 -1 30068
+D1
+~
+~
+0 -1 30074
+D2
+~
+~
+0 -1 30075
+D3
+~
+~
+0 -1 30072
+S
+#30072
+Entrance to the Black Tent~
+   The reason for this highly controlled entryway is not immediately clear.  
+It leads west into a spacious black tent with low lighting, or back east to a
+path in the orc encampment.  As if the guttering sconces were not enough,
+someone has painted a ball of white fire on each side of the passage.    ~
+300 33554572 0
+D1
+~
+~
+0 -1 30071
+D3
+~
+~
+0 -1 30073
+S
+#30073
+Black Sorcery~
+   Freestanding sconces light the interior of this black tent well enough.  
+Several of them stand in a circle well away from the opaque fabric walls,
+leaving a lighted central area with desks, shelves, and tables.  Chests are
+piled high in the rear; some appear not to have been opened in some time.  The
+smell of odd chemicals drifts about.~
+300 36175900 0
+D1
+~
+~
+0 -1 30072
+S
+#30074
+Ralg's Weapons~
+The ground here is dry but the straw is ground into powdery bits by the
+constant stream of customers both buying and selling.  Weapons of every
+conceivable type and quality (except good) festoon every wall.  Barrels of
+rusty swords and chests of twisted daggers line the walls.  A few choice items
+are mounted just behind the proprietor, out of the reach of grabby orc paws.~
+300 34078744 0
+D3
+~
+~
+0 -1 30071
+S
+#30075
+Battle Street~
+   This little footpath meanders among the tents of soldiers in the orc army's
+southern encampment.  A buckler is crudely stapled over the entrance to a
+medium-sized tent to the east; other shops appear to be north and south of it.
+A very large black tent looms to the northwest.    ~
+300 0 1
+D0
+~
+~
+0 -1 30071
+D1
+~
+~
+0 -1 30076
+D2
+~
+~
+0 -1 30077
+S
+#30076
+Unndush's Shields~
+   The tall canvas walls of this tent rise almost vertically to the sloped
+roof.  A system of wooden frames is propped up on the north and south walls,
+and on them are hung many kinds of shields.  Bucklers, tower shields,
+armguards, and spiked shields are carefully arranged by size and weight.  
+Piles of broken and incomplete shields lie behind a cordon.    ~
+300 34078744 0
+D3
+~
+~
+0 -1 30075
+S
+#30077
+Battle Street Intersection~
+   The street, such as it is, runs north-south here through the orc encampment.
+Another of the many paths leads west past some very large tents to the south.
+One large tent sits directly to the east, and its entrance is festooned with
+bronze decorations.    ~
+300 0 1
+D0
+~
+~
+0 -1 30075
+D1
+~
+~
+0 -1 30078
+D2
+~
+~
+0 -1 30091
+D3
+~
+~
+0 -1 30079
+S
+#30078
+Krigg's Bronzeware~
+   The proprietor of this shop must love bronze greatly - it covers every
+available surface.  Medallions, chains, mirrors, and even weapons and armor are
+hung, nailed, or tied everywhere.  Tarnished baubles inhabit even the dustiest
+corners of this little tent.  Naturally, most of it is for sale.    ~
+300 34078744 0
+D3
+~
+~
+0 -1 30077
+S
+#30079
+Downforge Iron~
+   Here is a path that actually bears some resemblance to a street.  Instead of
+straw, stones litter the ground, and instead of canvas tent walls, boards face
+the walkway (though often singed and burned).  The reason appears to be the
+massive forge off to the southwest, which belches forth smoke, steam, and
+sparks.  The sound of clanking also comes from a small tent-building to the
+south.    ~
+300 0 1
+D1
+~
+~
+0 -1 30077
+D2
+~
+~
+0 -1 30084
+D3
+~
+~
+0 -1 30080
+S
+#30080
+Downforge Forge~
+   The sound of hammering is loud and annoying.  It comes from the large forge
+to the south, where clanking and whooshing sounds emanate along with smoke and
+steam.  Passers-by do not linger at this spot, for it is difficult to speak, or
+indeed to avoid being set afire by the occasional shower of sparks.    ~
+300 0 1
+D1
+~
+~
+0 -1 30079
+D2
+~
+~
+0 -1 30085
+D3
+~
+~
+0 -1 30081
+S
+#30081
+Downforge Steel~
+   An intersection is formed here by an east-west path and another going north.
+Unlike the other paths in this encampment, wooden walls face it, apparently to
+defend against the embers and smoke coming from a loud, clanking forge to the
+southeast.  A small building sits to the south, with the unmistakable
+merchant's shingle advertising armor and weapons in gleaming steel.    ~
+300 0 1
+D0
+~
+~
+0 -1 30082
+D1
+~
+~
+0 -1 30080
+D2
+~
+~
+0 -1 30086
+D3
+~
+~
+0 -1 30090
+S
+#30082
+Orc Encampment South~
+   Tents cluster about, with perhaps three or four sharing a stone-line
+firepit.  A path can be discerned running north south between them.  The smell
+of smoke and quenched iron drifts in from the south along with clanking and
+yelling noises.  The encampment gives the impression of having been here for
+some time, what with the piles of garbage everywhere.    ~
+300 0 1
+D0
+~
+~
+0 -1 30083
+D2
+~
+~
+0 -1 30081
+S
+#30083
+Orc Encampment South~
+   A little path runs north-south through the tents.  One particularly large
+tent lies to the east, with a high central point and made of the blackest
+canvas, but there is no entrance here.  A mildly appetizing odor drifts in from
+the north, appetizing to the very hungry that is.  A large tent to the west
+appears to have many loud, singing orcs in it.    ~
+300 0 1
+D0
+~
+~
+0 -1 30062
+D2
+~
+~
+0 -1 30082
+D3
+~
+~
+0 -1 30089
+S
+#30084
+Grulo's Ironguard~
+   Swords, shields, breastplates and more are on display for sale.  
+Understandably, few of them are hung on the walls of this half-tent,
+half-building.  Some of Grulo's goods give the appearance of heavy use, though
+rust is difficult to find.  Dust and cobwebs are beginning to form on some
+displays.  Still, iron is trustworthy and the shop looks successful.    ~
+300 34078744 0
+D0
+~
+~
+0 -1 30079
+D3
+~
+~
+0 -1 30085
+S
+#30085
+Army Forge~
+   A blaring clatter assaults the ears, along with the roaring of bellows that
+feed intensely hot fires.  Smoke hangs in the heated air, singeing the lungs.
+Steam rises as glowing iron is quenched.  Sparks fly about to burn the shoes of
+the flat-footed.  Two massive hearths issue an endless deep-throated growl as
+unyielding metal is softened in their embrace, to be pounded mercilessly on the
+nearby anvils.    ~
+300 33554440 0
+D0
+~
+~
+0 -1 30080
+D1
+~
+~
+0 -1 30084
+D3
+~
+~
+0 -1 30086
+S
+#30086
+Ghiala's Steelworks~
+   This perfectly-organized shop displays gleaming steel items with regimented
+precision.  Daggers, swords, greaves and breastplates are organized into exact
+designs that speak of perfection and power.  No trace of dust or cobweb is to
+be seen anywhere, and there is even a flap over the door to the dirty forge
+next door.    ~
+300 34078744 0
+D0
+~
+~
+0 -1 30081
+D1
+~
+~
+0 -1 30085
+S
+#30087
+Post Office~
+   The smell of fresh mortar wafts off the stone-and-brick walls of this squat
+building.  The floor looks older, with cracked and scorched stones.  Still, it
+appears to be serviceable for the sending and receiving of mail.  A counter
+separates the rear of the building, to the south, from the customers.    ~
+300 34078744 0
+D0
+~
+~
+0 -1 30034
+S
+#30089
+Biergarten~
+   This tent is wide but not very high, and there isn't much light to see by.
+The only exit appears to be through a flap to the east.  Many stumps, stones,
+and even a few chairs are set up to allow patrons - for this is a bar of some
+kind - to sit and drink.  The smell of the latrine is a bit annoying.    ~
+300 34078744 0
+D1
+~
+~
+0 -1 30083
+S
+T 48200
+#30090
+Orc Encampment South~
+   This is a trail in the orc army encampment, or at least it was.  The trail
+peters out to the west among a cluster of randomly-placed tents.  Some large
+tents lie off to the southeast, belching smoke.  The path leads east among the
+soldiers and their fires.    ~
+300 0 1
+D1
+~
+~
+0 -1 30081
+S
+#30091
+Battle Street~
+   The street passes north-south, leaving the army encampment to the north.  
+Some large tents rise to the west.  Smoke drifts from one of them.  The smells
+and sounds of the encampment assault the senses.  There is little relief to the
+south, however, for an ogre encampment is visible a short distance off.    ~
+300 0 1
+D0
+~
+~
+0 -1 30077
+D2
+~
+~
+0 -1 30092
+S
+#30092
+Battle Street Intersection~
+   This little road runs through what apparently was a planted field not long
+ago.  All of the crops have been plundered, chopped, burned, and crushed by the
+army, however.  Battle Street runs north-south, while a side path continues to
+the east.  There is evidence of wheeled vehicles passing through the area.    ~
+300 0 10
+D0
+~
+~
+0 -1 30091
+D1
+~
+~
+0 -1 30093
+S
+#30093
+Path in a Ruined Field~
+   Ruined crops surround this east-west path.  A rowdy encampment of orcs is
+off to the northwest, and a similarly loud though smaller encampment of ogres
+is to the southwest.  This path leads east through a field.  The field's rows
+have been crushed by countless feet, and its crops ripped out and left to rot.
+There seems to be a hill to the southeast.    ~
+300 0 10
+D1
+~
+~
+0 -1 30094
+D3
+~
+~
+0 -1 30092
+S
+#30094
+Path in a Ruined Field~
+   The ruined village of Tyllwedd is visible far off to the northeast.  Smoke
+rises high in the air.  Surrounding this east-west path is farmland, or what is
+left of it after the ravages of an army.  A strong odor rises from a small hill
+of refuse to the southeast.    ~
+300 0 10
+D1
+~
+~
+0 -1 30095
+D3
+~
+~
+0 -1 30093
+S
+#30095
+Path by a Dump~
+   This is a small east-west path through some farmland.  Directly to the south
+is a rather large pile of refuse.  Its contents are difficult to identify from
+here, but the smell seems, thankfully, to indicate that bodies do not make up
+the bulk of it.  The village of Tyllwedd is some distance to the northeast, and
+a large encampment of some kind is off to the west.    ~
+300 0 10
+D1
+~
+~
+0 -1 30096
+D2
+~
+~
+0 -1 30097
+D3
+~
+~
+0 -1 30094
+S
+#30096
+Path in a Ruined Field~
+   This is an east-west path that passes directly through some kind of crop.  
+Whatever it was is difficult to determine, as it has been systematically looted
+or destroyed.  The path meets a road just to the east which might be used to
+reach the village of Tyllwedd, some distance to the north.  A heap of refuse
+sits stinking to the southwest.    ~
+300 0 10
+D1
+~
+~
+0 -1 30024
+D3
+~
+~
+0 -1 30095
+S
+#30097
+The Dumping Ground~
+   This looks to be the dumping spot for the nearby orc army.  All manner of
+rotting food, unusuble leather, and other rubbish is heaped about in a kind of
+semicircle.  The cries of scavenger birds echo through the air.  A bit of smoke
+is visible far to the north, probably rising from the village of Tyllwedd.    ~
+300 4 2
+D0
+~
+~
+0 -1 30095
+D2
+~
+~
+0 -1 30098
+S
+#30098
+A Refuse Heap~
+   Garbage is heaped up here in a small hill.  The stink is tremendous - almost
+enough to fell a sturdy ox should it be caught unprepared.  Footing is
+treacherous, and sharp objects are mixed in with the trash.  The hill appears
+lower to the north, and beyond that is a path.    ~
+300 0 2
+D0
+~
+~
+0 -1 30097
+S
+#30099
+Orc Encampment North~
+   Small fires surrounded by tents dot the landscape.  A little path passes
+through them here, crossing the ploughed fields of what was once a farmland.  
+The murmuring of the orcs fills the air, a bit more subdued than one would
+normally expect.  Things seem a bit more organized here than in the southern
+encampment.    ~
+300 0 1
+D0
+~
+~
+0 -1 30100
+D2
+~
+~
+0 -1 30017
+S
+#30100
+Orc Encampment North~
+   The path is coming to an end to the north.  It leads south through the tents
+of the orc army toward the smoking ruin of Tyllwedd.  Bits of trash litter the
+ground, though it is far from out of control.  The dead stalks of a grain crop,
+apparently rye, lie flattened under the relentless footsteps of the occupying
+army.    ~
+300 0 1
+D0
+~
+~
+0 -1 30101
+D2
+~
+~
+0 -1 30099
+S
+#30101
+Orc Encampment North~
+   A path leads south from here, and two lighter footpaths lead east and west.
+The tents of a reposing army lie thick on this field, long since stripped of
+its crop.  The western path leads to a pair of tents, one a deep red and the
+other a dark blue.  The eastern path leads to long, low building some distance
+away.    ~
+300 0 1
+D1
+~
+~
+0 -1 30105
+D2
+~
+~
+0 -1 30100
+D3
+~
+~
+0 -1 30102
+S
+#30102
+A Private Yard~
+   The ground here, between the red and blue tents, is very clean and does not
+seem to see much traffic.  A deep red tent sits to the north, its entrance open
+but guarded.  A similar dark blue tent is directly to the west.  Army tents
+surround the area, but at a respectful distance.  A footpath leads east.    ~
+300 33554560 1
+D0
+~
+~
+0 -1 30103
+D1
+~
+~
+0 -1 30101
+D3
+~
+~
+0 -1 30104
+S
+#30103
+Incanta Infernus~
+   The inside of this tent is quite warm...  The several fires on the ground
+and the multitude of lit candles might have something to do with that.  
+Strangely, there is no smoke whatsoever.  Portable shelves hold a collection of
+large leather tomes, scrolls, and reagents.  The exit is south.    ~
+300 36175900 0
+D2
+~
+~
+0 -1 30102
+S
+#30104
+The Cryomancer's Tent~
+   This is obvously the tent of a mighty sorcerer, for the tingling touch of
+magic forces all the hairs on your body to stand up in unison.  The chill of
+the air might have something to do with it as well.  A collection of
+leather-bound and fur-covered books sits on some frail-looking shelves, along
+with a great number of thick glass vials, most of which appear to contain solid
+substances.  The open flap of the tent's exit lies to the east.    ~
+300 36175900 0
+D1
+~
+~
+0 -1 30102
+S
+#30105
+In Among the Tents~
+   This looked like a footpath at first, but now it seems to simply be a
+slightly open area among the many tents of this encampment.  A long building is
+visible off to the east, and a pair of red and blue tents are some distance to
+the west.  Dried, ruined crops crunch underfoot, the last remains of a farmer's
+toil.    ~
+300 0 1
+D1
+~
+~
+0 -1 30106
+D3
+~
+~
+0 -1 30101
+S
+#30106
+Before a Black Stone Temple~
+   A long building made of black stone lies directly to the east.  It is low to
+the ground and has a flat wooden roof.  The mortar between the stones seems not
+to have set completely.  The building stretches north and south a ways, but the
+sole visible entrance is here.  Army tents cluster around it.  It is possible
+to make one's way between the tents to the west.    ~
+300 0 1
+D1
+~
+~
+0 -1 30107
+D3
+~
+~
+0 -1 30105
+S
+#30107
+Temple of the Dark Gods~
+   This is a low building of black stone, seemingly constructed recently for
+the worship of dark gods.  Smouldering sconces sit high in the corners.  Their
+flickering light barely illuminates the room, where worshipers come to wait for
+their high priests.  The exit is west.    ~
+300 33554572 0
+D0
+~
+~
+0 -1 30108
+D2
+~
+~
+0 -1 30109
+D3
+~
+~
+0 -1 30106
+S
+#30108
+Lair of Destruction~
+   The smell of blood permeates the air.  This is a large room, and its walls
+are decorated with cruel implements - not only of torture, but also of raw
+battlefield destruction, of killing with cruelty.  A few large skulls are among
+the decorations, but their species is unfamiliar.    ~
+300 36175900 0
+D2
+~
+~
+0 -1 30107
+S
+#30109
+Pit of Madness~
+   Few recognizable symbols or objects are to be found here.  The consummation
+of the blending of healing and destruction has left its insane product in this
+room, and woe to those who enter unprepared.  An altar like a bath of blood
+sits in the center of the room, its surface uncalm.    ~
+300 36175900 0
+D0
+~
+~
+0 -1 30107
+S
+#30110
+The Temple Path~
+   A gentle footpath leads south to a temple.  There is a road just off to the
+north, leading to a mansion to the northeast.  Another road goes north into the
+distance.  The land is slightly hilly here, and the temple, now only a short
+walk southeast, sits up on rise.    ~
+300 0 10
+D0
+~
+~
+0 -1 30036
+D2
+~
+~
+0 -1 30111
+S
+#30111
+The Temple Yard~
+   This small circular yard sits just in front of a little temple to the east.
+Low, green grass grows all around, and a footpath leads north.  A long ruined
+structure sits to the west.  There seems to be a walled area south of the
+temple, but it is elevated, and somewhat behind the building.  Steps lead up to
+the temple's entrance, to the east.    ~
+300 0 10
+D0
+~
+~
+0 -1 30110
+D1
+A door leads into the temple.~
+door~
+1 -1 30112
+S
+#30112
+Tyllwedd Temple~
+   Although the walls of this temple are largely intact, it has not escaped a
+certain destruction.  All of the furniture is missing.  The walls are covered
+in blasphemous graffiti that speaks of the worst kind of madness and
+destruction.  The floor is spattered with blood and gouged horribly.  Doors
+lead south and west, and a staircase leads up.    ~
+300 33554568 0
+D2
+A cast-iron gate leads into a small graveyard.~
+gate~
+1 -1 30114
+D3
+A door leads out of the temple~
+door~
+1 -1 30111
+D4
+~
+~
+0 -1 30113
+S
+#30113
+Home of the Deathcheater~
+   If a priest once lived here, he would cringe to see it now.  The entire room
+has been painted an extremely dark purple color, and its sturdy furniture is
+covered in orcish writing.  Flickering lanterns provide a sickly light.  A
+staircase leads down to the ground floor.    ~
+300 36175900 0
+D5
+~
+~
+0 -1 30112
+S
+#30114
+A Cemetery~
+   This is a small cemetery, suitable for the needs of a little farming village
+on a gentle river.  Or at least it was, prior to the arrival of a bloodthirsty
+army.  Now, the systematic knocking over of the headstones is the least of this
+place's faults: the stinking and decaying heaps of corpses are rather worse.  
+Why they have been placed here is not immediately clear.    ~
+300 0 2
+D0
+A cast-iron gate leads north, into a small temple.~
+gate~
+1 -1 30112
+S
+#30115
+Farmer's Cartway~
+   A narrow road runs alongside the Drison here, which is flowing by on the
+west.  The road goes north into the fields.  A few buildings of Tyllwedd are
+off to the south, though the bulk of the village is across the river, lying in
+smoking ruins.  A mansion rises to the southeast.    ~
+300 0 1
+D0
+~
+~
+0 -1 30116
+D2
+~
+~
+0 -1 30035
+S
+#30116
+Northern Guard Post~
+   A clearing interrupts a narrow north-south road here.  A pole has been set
+in the ground to one side with the standard of the orc army hanging from it.  
+Bits of trash litter the ground, no doubt dropped carelessly by the small
+contingent of soldiers assigned to watch this little-traveled path.  Tyllwedd,
+or its ruins, are visible across the Drison river to the west.    ~
+300 64 1
+D0
+~
+~
+0 -1 30117
+D2
+~
+~
+0 -1 30115
+S
+#30117
+Farmer's Cartway~
+   The Drison River runs northeast, and this road curves along to follow it.  
+The ruins of Tyllwedd can be seen on the opposite side, some distance to the
+west.  There seems to be a guard post to the south with some sort of standard.
+Mountains rise to the east, while the cartway leads into a wide farmed valley
+to the north.    ~
+300 68 10
+D2
+~
+~
+0 -1 30116
+S
+#30118
+Western Guard Post~
+A post has been set up here to intercept whatever travelers may think to
+approach the orc army.  The standard flies high on a post, proclaiming to all
+that the village of Tyllwedd no longer exists, and that orcs now claim this
+land. The desultory pacing of the guards has worn a clearing in the grass.~
+300 64 1
+D1
+~
+~
+0 -1 30060
+D3
+~
+~
+0 -1 30119
+S
+#30119
+Westroad~
+   The road goes generally northwest and southeast through a former forest.  
+Fresh stumps dot the landscape.  A city of tents, possibly the encampment of an
+army, is spread out on flatter land to the southeast.  Smoke rises from large
+fires far to the east.  A guard post of some kind interrupts the road directly
+to the east.    ~
+300 68 10
+D1
+~
+~
+0 -1 30118
+D3
+~
+~
+0 -1 30250
+S
+#30120
+Spiral Entry~
+   The circular interior of this building is painted a rust-red color.  A
+spiral staircase rises up in the middle.  All around it, odd symbols are
+written.  They appear to be in some sort of sequence, but they are not orcish.
+A wide doorway leads east.~
+300 33554460 0
+D1
+~
+~
+0 -1 30020
+D4
+~
+~
+0 -1 30000
+S
+#30121
+The Entrance to the Berserker Guild~
+   You stand before a massive tent just outside the shattered gate to Tyllwedd.
+The sack of Tyllwedd by monstrous forces are depicted on the outside of the
+tent in a brutally celebratory style.~
+300 0 1
+D1
+~
+~
+0 -1 30022
+D3
+~
+~
+0 -1 30122
+S
+#30122
+The Berserker Guild~
+   The members of the Berserker Guild are headquartered just outside the sacked
+town of Tyllwedd.  Deemed too frenzied and reckless even for the residents of
+Ogakh, the berserker squads are kept just beyond the more settled parts of the
+outpost to minimize the risk their presence poses.~
+300 35652100 0
+D1
+~
+~
+0 -1 30121
+S
+#30123
+Castaway Cartography~
+   It is not clear what the room was before the outcast made it his shop but
+clearly it wasn't a room that held anything with value.  The slatted roof
+doesn't do much to shelter the shop - this is clear from the slew of water
+damaged maps leaning against the wall behind the desk.~
+300 28 1
+D3
+~
+~
+0 -1 30049
+S
+$~

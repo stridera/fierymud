@@ -1,0 +1,126 @@
+name: Gir
+password: GisQqpXvlk
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 9
+race: 31
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19978
+birthtime: 1627674379
+timeplayed: 1120300
+lastlogintime: 1737962294
+host: 052.119.120.201
+height: 36
+weight: 114
+base_height: 36
+base_weight: 114
+base_size: 1
+natural_size: 1
+alignment: -1000
+playerflags: gxyz
+effectflags: k w 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 948/849
+mana: 980/980
+move: 328/328
+damroll: 3
+hitroll: 6
+strength: 81
+intelligence: 84
+wisdom: 69
+dexterity: 85
+constitution: 100
+charisma: 100
+cash: 637 17860 43054 14250
+experience: 105805999
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+404 1000
+405 1000
+408 1000
+410 750
+411 1000
+412 1000
+415 50
+416 50
+418 1000
+420 858
+421 1000
+438 1000
+440 1000
+443 1000
+444 1000
+463 1000
+464 1000
+465 1000
+477 1000
+0 0
+trophy:
+1 48011 0.200000
+1 48012 1.200000
+1 48020 0.200000
+1 48013 0.200000
+1 48009 0.200000
+1 23800 0.200000
+1 23802 0.200000
+1 23803 0.200000
+1 23817 0.800000
+1 23812 1.200000
+1 23810 1.050000
+1 23811 0.200000
+1 23816 0.600000
+1 23818 0.400000
+1 23819 1.000000
+1 23815 0.400000
+1 23813 0.800000
+1 23804 0.200000
+1 23820 0.400000
+1 23814 0.200000
+1 23821 0.800000
+0 0 0
+tells:
+1660376239 @WThe Master of the Revel@W tells you, 'Congratulations again, graduate!@W'@0
+1660376239 @WThe Master of the Revel@W tells you, 'May you climb to ever greater fortune!@W'@0
+1660713923 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1660970732 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1660970734 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1661805696 @WShazz@W tells you, 'Take good care of that.@W'@0
+1682407153 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1682407507 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1687288323 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1689597694 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+$
+gossips:
+1707382128 A gnoll spiritbreaker shouts, 'Kill the slave!'
+1707382132 A kobold scout shouts, 'Nooo!  Save meee!!'
+1707439193 Validaria gossips, 'hiiii'
+1707439201 Chinok gossips, 'howdy!'
+1707440027 Choak gossips, 'Evening!'
+1707467874 Gaz gossips, 'congrats!'
+1707467877 Dilar gossips, 'thx :)'
+1707468673 Gaz gossips, 'uh oh!  You got it okay?'
+1707468706 Dilar gossips, 'I'll be fine thx :)'
+1707468724 Gaz gossips, 'okay :)'
+$
+effects:
+235 2 0 0 8192 0 0
+0 0 0 0 0
+aliases:
+ga get all
+gat get all 2.corpse
+gac get all corpse
+kill backstab $*
+dance emote dances like a monkey!
+0

@@ -1,0 +1,80 @@
+name: Nox
+password: NojQKiukAX
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20175
+birthtime: 1645894866
+timeplayed: 535
+lastlogintime: 1645895404
+host: 207.155.193.224
+height: 69
+weight: 150
+base_height: 69
+base_weight: 150
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 17
+thirst: 22
+lastlevel: 0
+hitpoints: 23/23
+mana: 0/0
+move: 59/108
+damroll: 3
+hitroll: 3
+strength: 77
+intelligence: 93
+wisdom: 99
+dexterity: 70
+constitution: 75
+charisma: 56
+experience: 956
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+451 50
+457 50
+458 50
+459 50
+460 50
+462 50
+463 52
+466 50
+0 0
+trophy:
+1 8023 1.000000
+0 0 0
+tells:
+$
+gossips:
+$
+aliases:
+dff drink from fountain
+0

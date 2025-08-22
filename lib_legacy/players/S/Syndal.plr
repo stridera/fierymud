@@ -1,0 +1,150 @@
+name: Syndal
+password: SylUs2LJeO
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 11
+race: 0
+level: 33
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18937
+birthtime: 1428877970
+timeplayed: 189121
+lastlogintime: 1435346245
+host: 216.146.109.139
+height: 65
+weight: 99
+base_height: 65
+base_weight: 99
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 2
+thirst: 24
+lastlevel: 0
+hitpoints: 225/203
+mana: 108/108
+move: 95/100
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 92
+wisdom: 88
+dexterity: 78
+constitution: 66
+charisma: 73
+cash: 36 1521 1602 0
+experience: 7627086
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+25 1000
+31 1000
+32 1000
+33 1000
+38 1000
+39 1000
+45 1000
+50 1000
+76 1000
+87 1000
+100 1000
+101 1000
+106 1000
+121 1000
+125 1000
+186 1000
+187 1000
+415 210
+416 210
+421 105
+423 380
+424 380
+438 353
+443 113
+444 195
+447 318
+451 329
+452 360
+453 366
+454 373
+458 70
+459 338
+460 106
+461 371
+462 63
+464 235
+0 0
+trophy:
+1 2002 0.500000
+1 16900 1.000000
+1 16905 1.000000
+1 51102 0.333333
+1 51101 5.000000
+1 51100 5.000000
+1 7302 1.333333
+1 7300 3.666666
+1 7301 2.000000
+1 5201 1.500000
+1 5211 7.000000
+1 5200 8.000000
+1 5210 7.000000
+1 5121 1.000000
+1 5122 0.500000
+1 5120 0.500000
+1 5110 0.500000
+1 5100 0.500000
+1 5102 2.500000
+1 5104 2.000000
+1 5101 1.500000
+0 0 0
+effects:
+187 1 11 17 0 0 0
+0 0 0 0 0
+mem:
+5 1 1
+5 1 1
+5 1 1
+8 0 1
+5 1 1
+8 0 1
+8 1 1
+8 1 1
+87 1 1
+45 1 1
+8 1 1
+5 1 1
+106 0 3
+125 1 4
+125 1 4
+187 0 3
+125 1 4
+125 1 4
+121 1 1
+121 1 1
+121 1 1
+121 1 1
+121 1 1
+121 1 1
+121 1 1
+19 1 1
+25 1 6
+0 0 0
+aliases:
+1 ord foll kil salamander
+2 ord foll kil newt
+4 ord foll kil bacek
+3 gs help skeleton
+0

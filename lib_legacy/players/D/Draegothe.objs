@@ -1,0 +1,176 @@
+1
+vnum: 1032
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring wide-bronze-ring
+shortdesc: a bronze ring
+desc: A wide bronze ring lies here.
+type: 9
+weight: 0.08
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: wide-bronze-ring
+&0A cheap little ring, forged from bronze. It lacks any design, resembling a
+simple band of metal.&0
+~
+~~
+vnum: 1018
+location: 5
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: jerkin studded-leather-jerkin
+shortdesc: a studded leather jerkin
+desc: A studded leather jerkin lies here.
+type: 9
+weight: 9.30
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: studded-leather-jerkin
+High quality leather was used to craft this jerkin. Its thick hide has been
+studded with metal knobs, to better deflect attacks. It offers a fair amount
+of protection, with only a bit of extra weight.
+~
+~~
+vnum: 1029
+location: 18
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+100 5
+5 5
+101 12
+32 5
+20 5
+~
+~~
+vnum: 1154
+location: 19
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: quill feather feather-quill pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: feather quill
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)
+~
+~~
+vnum: 1005
+location: 127
+values:
+1
+150
+147
+0
+0
+0
+0
+~
+flags: D 0
+name: torch slender-wooden-torch
+shortdesc: a wooden torch
+desc: A slender wooden torch lies here.
+type: 1
+weight: 2.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: slender-wooden-torch
+&0A simply designed torch, consiting of a burning rag and long slender
+wooden pole. Looks like it could last for eight hours or so.
+~
+~~
+vnum: 1012
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: n 0
+name: dagger thin-dagger thin-blade
+shortdesc: a thin dagger
+desc: A dagger with a thin blade lies here.
+type: 5
+weight: 0.80
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: thin-dagger thin-blade
+A steel bladed dagger, with a plain wooden hilt.  Its blade has been
+forged much more thin than usual, creating a weapon adapt at bypassing heavy
+plate armor.  
+~
+~~

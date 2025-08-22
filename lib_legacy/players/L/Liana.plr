@@ -1,0 +1,105 @@
+name: Liana
+password: LiN0Y95fLc
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 9
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19559
+birthtime: 1584677328
+timeplayed: 11649
+lastlogintime: 1584823723
+host: 066.068.064.064
+height: 63
+weight: 154
+base_height: 63
+base_weight: 154
+base_size: 2
+natural_size: 2
+alignment: 926
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 15
+loadroom: 3054
+hunger: 3
+thirst: 6
+lastlevel: 0
+hitpoints: 41/41
+mana: 1/0
+move: 43/102
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 93
+wisdom: 81
+dexterity: 65
+constitution: 76
+charisma: 63
+cash: 0 33 193 214
+experience: 63506
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 84
+438 50
+443 50
+444 50
+447 72
+451 58
+452 69
+453 62
+459 50
+460 51
+462 50
+464 76
+0 0
+trophy:
+1 3503 5.000000
+1 3507 3.000000
+1 3502 10.000000
+0 0 0
+tells:
+1584818746 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1584818845 @WLisa@W tells you, 'Feel the quality, a superior product.@W'@0
+1584818855 @WLisa@W tells you, 'Hrm, it doesn't look too worn, I suppose.@W'@0
+1584818871 @WLisa@W tells you, 'Feel the quality, a superior product.@W'@0
+1584818879 @WLisa@W tells you, 'Hrm, it doesn't look too worn, I suppose.@W'@0
+1584818903 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1584818907 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1584818909 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1584818911 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1584818912 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+$
+gossips:
+1584821254 Chinok gossips, 'yeah that well area is a little hard for you at level 4'
+1584821271 Chinok gossips, 'I'll bring your corpse to the fountain for you'
+1584821606 Chinok gossips, 'wouldn't have helped much for where you were.. but you do know about wimpy ?'
+1584821661 Chinok gossips, 'wimpy is a setting that makes you automatically flee when your hitpoints get below a set level'
+1584821683 Chinok gossips, 'it's a toggle (type toggle to see the ones available to you)'
+1584821707 Chinok gossips, 'so if you type: toggle wimpy 15 -- when you get to 15 hitpoints, you will flee'
+1584821744 Chinok gossips, 'some other useful stuff in there like pagelength, autosplit, autotreas'
+1584823695 Chinok gossips, 'I can postpone that a bit'
+1584823699 Chinok gossips, 'if you want to keep playing'
+1584823717 Chinok gossips, 'pushed out 20 mins.. '
+$
+mem:
+32 0 8
+5 0 8
+101 1 8
+100 0 8
+0 0 0

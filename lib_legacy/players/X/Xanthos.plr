@@ -1,0 +1,112 @@
+name: Xanthos
+password: Xa4mJ5fKX.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20683
+birthtime: 1699895042
+timeplayed: 38817
+lastlogintime: 1700001552
+host: 098.168.164.224
+height: 81
+weight: 184
+base_height: 81
+base_weight: 184
+base_size: 3
+natural_size: 3
+alignment: 113
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 191/171
+mana: 1/0
+move: 199/206
+damroll: 5
+hitroll: 4
+strength: 94
+intelligence: 82
+wisdom: 82
+dexterity: 82
+constitution: 100
+charisma: 78
+cash: 0 102 320 3
+bank: 0 100 300 0
+experience: 279950
+quit_reason: 1
+saveroom: 3054
+skills:
+402 134
+404 140
+415 50
+416 50
+419 1000
+421 138
+427 1000
+430 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 110
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 61519 2.000000
+1 61526 2.000000
+1 61504 1.000000
+1 61528 2.000000
+1 3064 1.000000
+1 16906 6.000000
+1 16902 9.000000
+1 16907 6.000000
+1 16905 4.000000
+1 16901 3.000000
+1 3133 1.000000
+1 3130 6.000000
+1 3132 2.000000
+1 3131 4.000000
+1 16900 35.000000
+1 16908 6.000000
+1 7053 1.000000
+1 7004 2.000000
+0 0 0
+tells:
+1699987138 @WSomeone@W tells you, 'do you have all your stuff with you now?@W'@0
+1699992515 @WGranite@W tells you, 'I hope it protects you well.@W'@0
+1699993417 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1699993512 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1699993514 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1699999862 @WLisa@W tells you, 'Hrm, it doesn't look too worn, I suppose.@W'@0
+1699999877 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1699999912 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1700000115 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1700001409 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1699987101 Someone gossips, 'Ulthar is in the treasure room'
+1699987133 Someone gossips, 'not all, but a few bits is helpful, when you die :)'
+1699987160 Someone gossips, 'plus, when you are out exploring, there are thieves, and some will rob you blind!'
+1699987181 Someone gossips, 'it sure is!'
+1699987186 Someone gossips, 'oh, that's a whole lot easier'
+1699987226 Someone gossips, 'your corpse is at your guildmaster'
+1699987234 Someone gossips, 'so Ulthar, you are NOT in mystwatch'
+1699987243 Someone gossips, 'not any more, I just made it back home'
+1699987337 Someone gossips, 'okay, I'm outta here'
+1699987344 Someone gossips, 'later Ulthar'
+$
+effects:
+253 3 3 2 0 0 0
+0 0 0 0 0

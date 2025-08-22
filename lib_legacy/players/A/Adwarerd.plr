@@ -1,0 +1,81 @@
+name: Adwarerd
+password: Ad89Q1R75m
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 3
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20050
+birthtime: 1636352090
+timeplayed: 1790
+lastlogintime: 1636353880
+host: 069.009.224.218
+height: 47
+weight: 152
+base_height: 47
+base_weight: 152
+base_size: 2
+natural_size: 2
+alignment: 995
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 7003
+hunger: 16
+thirst: 14
+lastlevel: 0
+hitpoints: 39/37
+mana: 0/0
+move: 47/146
+damroll: 4
+hitroll: 5
+strength: 94
+intelligence: 70
+wisdom: 80
+dexterity: 87
+constitution: 87
+charisma: 70
+experience: 10236
+quit_reason: 7
+saveroom: 7003
+skills:
+402 50
+404 50
+415 50
+416 50
+421 52
+438 50
+443 50
+444 50
+463 50
+464 50
+465 55
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 6909 1.000000
+1 7001 2.000000
+1 7051 1.000000
+1 16900 1.000000
+1 16908 1.000000
+1 8000 1.000000
+1 8001 1.000000
+1 8016 2.000000
+1 8010 1.000000
+1 8011 3.000000
+1 8013 2.000000
+1 8015 1.000000
+0 0 0
+tells:
+1636353228 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+$

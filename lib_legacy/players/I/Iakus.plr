@@ -1,0 +1,91 @@
+name: Iakus
+password: Ia9i6rY908
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 12
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17436
+birthtime: 1248711778
+timeplayed: 25819
+lastlogintime: 1567052081
+host: 174.097.214.075
+height: 86
+weight: 233
+base_height: 86
+base_weight: 233
+base_size: 3
+natural_size: 3
+alignment: 39
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC 0
+privflags: d
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 22
+lastlevel: 0
+hitpoints: 195/171
+mana: 14/14
+move: 174/374
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 58
+wisdom: 62
+dexterity: 91
+constitution: 99
+charisma: 51
+cash: 7 373 2162 2303
+experience: 453299
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 160
+415 50
+416 50
+419 1000
+421 80
+427 1000
+430 52
+438 50
+443 50
+444 68
+463 50
+464 50
+465 98
+466 50
+467 50
+468 51
+0 0
+trophy:
+1 36301 1.000000
+1 36306 0.500000
+1 36300 0.500000
+1 36303 10.500000
+1 51020 0.500000
+1 8023 4.000000
+1 8013 11.000000
+1 8002 9.000000
+1 8001 12.000000
+1 8021 6.000000
+1 8020 6.000000
+1 8010 10.000000
+1 8014 11.000000
+1 8015 8.000000
+1 8000 16.000000
+1 8012 10.000000
+1 8016 14.000000
+1 8022 12.000000
+1 8011 10.000000
+1 5408 1.000000
+1 61526 2.000000
+0 0 0
+aliases:
+b kick
+0

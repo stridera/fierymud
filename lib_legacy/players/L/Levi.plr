@@ -1,0 +1,77 @@
+name: Levi
+password: LeFGgNRXp5
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18818
+birthtime: 1425067276
+timeplayed: 282677
+lastlogintime: 1585719054
+host: 034.228.095.236
+height: 70
+weight: 164
+base_height: 70
+base_weight: 164
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 141/141
+mana: 1/0
+move: 118/118
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 66
+wisdom: 73
+dexterity: 83
+constitution: 87
+charisma: 69
+bank: 0 4 0 0
+experience: 309990
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 150
+415 68
+416 50
+421 150
+430 68
+438 50
+443 50
+444 74
+463 56
+464 50
+465 150
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18007 2.000000
+1 18005 1.000000
+1 3064 1.000000
+1 16902 1.000000
+1 16900 1.000000
+1 16906 1.000000
+1 3061 1.000000
+1 3066 3.000000
+1 3062 3.000000
+0 0 0
+tells:
+$
+gossips:
+$

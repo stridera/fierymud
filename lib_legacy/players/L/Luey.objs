@@ -1,0 +1,489 @@
+1
+vnum: 23
+location: 0
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: D
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3232
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring iron iron-ring
+shortdesc: an iron ring
+desc: An iron ring has been left here.
+type: 9
+weight: 0.02
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+extradesc: ring iron
+It is a quite heavy human-sized ring made from solid iron.  It lacks
+decorations of any kind.
+~
+~~
+vnum: 18003
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 1025
+location: 6
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cap leather
+shortdesc: &3a small leather cap&0
+desc: &3A small leather cap lies on the ground here.&0
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+~~
+vnum: 1019
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: leggings leather
+shortdesc: &3a pair of leather leggings&0
+desc: &3A pair of leather leggings lies on the ground here.&0
+type: 9
+weight: 7.30
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+~~
+vnum: 1027
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandals leather leather-sandals
+shortdesc: &0&3a pair of leather sandals&0
+desc: &0&3A pair of leather sandals lie here.&0
+type: 9
+weight: 1.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+~~
+vnum: 1022
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: sleeves leather
+shortdesc: &3a pair of leather sleeves&0
+desc: &3A pair of leather sleeves lies on the ground here.&0
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+~~
+vnum: 58816
+location: 11
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: shield small wooden small-wooden-shield
+shortdesc: a small wooden Academy shield
+desc: A small wooden shield lies here.
+type: 9
+weight: 1.00
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+extradesc: small wooden academy shield
+This shield isn't much bigger than your hand, and it's in pretty bad
+shape, with nicks and dents covering its wooden surface. The insignia
+of the Ice Warriors adorns its front -- a polar bear gripping a green-
+and-gold banner in its mouth.
+~
+~~
+vnum: 46404
+location: 12
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak winged pile feathers winged-cloak
+shortdesc: the winged cloak
+desc: A pile of feathers lies at your feet.
+type: 9
+weight: 2.00
+cost: 1000
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 1025
+applies:
+2 2
+~
+extradesc: cloak winged feathers pile
+     This warm, large garment is tailored entirely from feathers.  Upon closer
+examination, the cloak looks to be made up of a long cape and two wings
+attached to the sides into which you could slip your arms.  Though somewhat
+restrictive of your movement, the wings give you a feeling of freedom, almost
+as if you could take to the skies and soar amongst the birds themselves.
+~
+~~
+vnum: 32402
+location: 16
+values:
+0
+2
+4
+11
+0
+0
+0
+~
+flags: n
+name: dagger slender ornate
+shortdesc: a slender, ornate dagger
+desc: &0A slender dagger lies here.&0
+type: 5
+weight: 0.60
+cost: 1200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+applies:
+2 2
+~
+extradesc: slender ornate dagger
+The blade of this slender dagger is about a half foot long and razor
+sharp on both edges. It looks like it was made of a particularly bright
+alloy of steel and silver, with not a nick marring its surface. The
+hilt is hardwood set with gold chain, its pommel carved into an eagle's
+head.
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 19
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: rations ration iron food
+shortdesc: some iron rations
+desc: Some iron rations have been set here.
+type: 19
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: iron rations
+These lightweight rations aren't the best-tasting, but they are the traveler's
+best food for long trips -- they never spoil, and fill the stomach for many
+hours.  There is dried meat of unknown origin here, mixed with nuts.  The whole
+mess is glued together into a bar by means of some waxy, fatty substance.    
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3031
+location: 127
+values:
+0
+250
+250
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 55567
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.69
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

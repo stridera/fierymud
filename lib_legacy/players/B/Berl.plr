@@ -1,0 +1,124 @@
+name: Berl
+password: BecsPEUkTt
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 2
+race: 0
+level: 27
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18206
+birthtime: 1332725174
+timeplayed: 65005
+lastlogintime: 1383421582
+host: 076.105.244.228
+height: 60
+weight: 120
+base_height: 60
+base_weight: 120
+base_size: 2
+natural_size: 2
+alignment: -278
+playerflags: gy
+effectflags: 0 0 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 1
+lastlevel: 0
+hitpoints: 279/279
+mana: 72/72
+move: 132/132
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 56
+wisdom: 72
+dexterity: 93
+constitution: 92
+charisma: 56
+cash: 0 0 601 4
+experience: 3613132
+quit_reason: 1
+saveroom: 3054
+skills:
+401 261
+403 50
+405 50
+408 50
+409 50
+411 256
+415 50
+416 50
+421 109
+438 50
+443 50
+444 50
+464 108
+465 50
+467 50
+478 50
+0 0
+trophy:
+1 8015 0.500000
+1 8022 0.500000
+1 18514 1.000000
+1 18509 0.500000
+1 18508 1.500000
+1 18506 1.000000
+1 18503 0.500000
+1 18513 1.000000
+1 18552 0.500000
+1 18515 0.500000
+1 18551 2.500000
+1 18550 1.500000
+1 18519 2.500000
+1 18518 2.500000
+1 18501 1.500000
+1 18520 2.500000
+1 18502 0.500000
+1 18500 0.500000
+1 18517 3.000000
+1 18507 7.500000
+1 18510 0.500000
+0 0 0
+aliases:
+bs backstab slave
+bz backstab zombie
+al assist lanlot
+bb backstab beetle
+ba backstab ant
+bg backstab grasshopper
+bl backstab ladybug
+bf backstab fly
+bc backstab cricket
+bba backstab ant
+br backstab roach
+as assist smoog
+bh backstab hedge
+gsq give skull quatermaster
+bv backstab vine
+dff drink from fountain
+eb eat bread
+gac get all corpse
+fsff fill skin from fountain
+ka kill ant
+kg kill grasshopper
+kl kill lady
+kc kill cricket
+dfs drink from skin
+kd kill deer
+kf kill fox
+kh kill hedge
+kr kill rabbit
+kb kill brownie
+ec examine corpse
+km kill mage
+kp kill priest
+ks kill seether
+bd backstab derr
+bm backstab monk
+0

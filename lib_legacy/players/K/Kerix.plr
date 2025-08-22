@@ -1,0 +1,126 @@
+name: Kerix
+password: KeVClAfl2k
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 18
+race: 10
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 16639
+birthtime: 1186886065
+timeplayed: 10558776
+lastlogintime: 1732500516
+host: 066.199.058.082
+height: 73
+weight: 188
+base_height: 73
+base_weight: 188
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: glxy
+effectflags: t 0 0
+prefflags: hnouzC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 13
+hitpoints: 1062/864
+mana: 100/100
+move: 176/176
+damroll: 5
+hitroll: 4
+strength: 90
+intelligence: 88
+wisdom: 70
+dexterity: 92
+constitution: 100
+charisma: 70
+cash: 51 18028 79622 38
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+410 1000
+411 1000
+412 1000
+415 1000
+416 1000
+419 1000
+420 1000
+421 1000
+427 1000
+438 1000
+443 1000
+444 1000
+463 50
+464 1000
+465 1000
+475 1000
+476 1000
+477 1000
+478 1000
+491 50
+492 179
+493 50
+0 0
+trophy:
+1 61522 1.000000
+1 61505 1.000000
+1 61507 1.000000
+1 61506 1.000000
+1 8023 4.000000
+1 8021 6.000000
+1 8013 12.000000
+1 8022 9.000000
+1 8012 12.000000
+1 8001 19.000000
+1 8020 11.000000
+1 8016 15.000000
+1 8010 13.000000
+1 8015 8.000000
+1 8030 3.000000
+1 8011 12.000000
+1 8000 18.000000
+1 8014 10.000000
+1 8002 19.000000
+1 59013 1.000000
+1 59010 1.000000
+0 0 0
+tells:
+1673228564 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673228564 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673229453 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673229455 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673229633 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1673229639 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1673229673 @WAriana Shelti@W tells you, 'It is a pleasure doing business with you.@W'@0
+1677211499 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1677213066 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1678509847 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1673211588 Kresselack gossips, 'dang been so long to do this quest to get xapizo out i forgot how to'
+1673227943 Athmaur gossips, 'grats'
+1673228033 Sdrab gossips, 'thanks, you were about to catch me, had to get it done'
+1673228061 Lycen gossips, 'ive had abit of practice >.<'
+1677211707 Chinok gossips, 'gratz on 12'
+1677211714 Hyudin gossips, 'tks!'
+1677212708 Chinok gossips, 'gratz on 8 Prini!'
+1677212720 Chinok gossips, 'I'm off to bed tho... so night all!'
+1677212729 Prini gossips, 'tks!'
+1717469431 Chinok gossips, 'which dang bracelet ?'
+$
+aliases:
+aqua rec aqua
+cn corner
+lc l in corpse
+gc g all.coins from corpse
+ii as shikata
+0

@@ -1,0 +1,24 @@
+{
+  "game": {
+    "log_directory": "logs",
+    "mud_name": "Modern FieryMUD",
+    "player_directory": "lib/players",
+    "world_directory": "lib/world"
+  },
+  "network": {
+    "bind_address": "0.0.0.0",
+    "connection_timeout_seconds": 300,
+    "max_connections": 200,
+    "port": 4000
+  },
+  "performance": {
+    "enable_monitoring": true,
+    "max_command_queue_size": 10000,
+    "target_tps": 10
+  },
+  "persistence": {
+    "auto_save_interval_seconds": 300,
+    "backup_interval_seconds": 3600,
+    "max_backups": 24
+  }
+}

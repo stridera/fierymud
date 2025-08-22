@@ -1,0 +1,122 @@
+name: Frage
+password: FrSx6wZBSq
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 0
+level: 18
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20505
+birthtime: 1683043005
+timeplayed: 105160
+lastlogintime: 1721928134
+host: 075.167.014.153
+height: 69
+weight: 160
+base_height: 69
+base_weight: 160
+base_size: 2
+natural_size: 2
+alignment: 139
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 8
+lastlevel: 0
+hitpoints: 79/79
+mana: 32/32
+move: 154/154
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 94
+wisdom: 85
+dexterity: 73
+constitution: 67
+charisma: 61
+cash: 5 155 204 396
+bank: 35 1400 3500 500
+experience: 1399434
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+31 1000
+32 1000
+37 1000
+39 1000
+99 1000
+100 1000
+101 1000
+186 1000
+246 1000
+415 50
+416 50
+423 50
+424 230
+438 72
+443 50
+444 50
+447 110
+451 86
+452 226
+453 222
+454 204
+456 57
+459 50
+460 50
+462 129
+464 230
+0 0
+trophy:
+1 16905 1.000000
+0 0 0
+tells:
+1684442997 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1684445902 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1684445902 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1684445902 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1684475492 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1684504198 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1684563324 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1684594729 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1685229166 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1685597405 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1689357395 Dreven gossips, 'well, it seems a nice little gargoyle may have what you need.'
+1689357637 Dreven gossips, 'gargoyles normally hang around old castles and such, if i recall correctly'
+1689691164 Meina gossips, 'hi dreven'
+1689691182 Dreven gossips, 'hello Meina'
+1696959585 Thorfinn gossips, 'thanks! :)'
+1696959598 Thorfinn gossips, 'ill go for 68, if I cam'
+1707402288 Chinok gossips, 'hi Frage!'
+1719084966 Porath gossips, 'is there a way to counter gas from nostrils?'
+1719085149 Discord gossips, 'Daedela: There's no way to negate breath weapons, but you can mitigate them some with elemental ward'
+1719085449 Lokar gossips, 'good crew today!'
+$
+aliases:
+ec examine corpse
+ggg get coins corpse
+bb cas burning
+ag assist gyor
+rr recite recall
+df drink fountain
+mmm memorize magic missile
+ga get all corpse
+mm cast 'magic missile'
+jj assist jaxe
+dd assist dreven
+gg assist gyor
+cc cas chill
+ss cas 'shocking'
+0

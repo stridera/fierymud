@@ -1,0 +1,35 @@
+32823 255 2
+target 20311
+subclass_name berserker
+17 1 11
+5518_reward 1
+5547_reward 1
+5556_reward 1
+5515_trophies 1
+5509_trophies 1
+eg_ally 1
+5507_trophies 7
+5503_trophies 3
+5505_trophies 5
+eg_faction 23
+bl_faction -1
+22 1 5
+actor_level 10
+price 1616
+skill_level 60
+word2 aid
+skill_name first
+7 1 13
+55589_gems_acquired 2
+55593_gems_acquired 3
+55585_gems_acquired 3
+55569_gems_acquired 3
+55573_gems_acquired 3
+55304_armor_acquired 1
+55577_gems_acquired 3
+55581_gems_acquired 3
+55300_armor_acquired 1
+55312_armor_acquired 1
+55320_armor_acquired 1
+55316_armor_acquired 1
+55324_armor_acquired 1

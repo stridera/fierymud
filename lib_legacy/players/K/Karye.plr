@@ -1,0 +1,229 @@
+name: Karye
+password: SalqpUQIX.
+currenttitle: Synt'ii
+description
+As your gazes meet, you see what appear to be red sparks flickering deep in his eyes...
+Your skin begins to tingle.
+~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 5
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 13442
+birthtime: 1082584266
+timeplayed: 3414616
+lastlogintime: 1531470515
+host: 067.001.254.172
+height: 66
+weight: 146
+base_height: 66
+base_weight: 146
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: lyz
+effectflags: cn 0 0
+prefflags: hnouC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 13
+hitpoints: -15/1072
+mana: 100/100
+move: 124/124
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 56
+wisdom: 71
+dexterity: 92
+constitution: 87
+charisma: 64
+bank: 1088 42519 189067 206973
+experience: 102872002
+title: Synt'ii
+quit_reason: 10
+saveroom: 11824
+cooldowns:
+8 9000/9000
+-1 0
+skills:
+4 1000
+12 1000
+13 1000
+14 1000
+17 1000
+27 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+92 1000
+96 1000
+99 1000
+131 1000
+132 1000
+188 1000
+402 1000
+404 1000
+407 347
+411 1000
+412 1000
+415 1000
+416 1000
+417 665
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 825
+431 1000
+434 1000
+438 119
+441 1000
+443 1000
+444 1000
+445 1000
+450 150
+451 1000
+452 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+463 1000
+464 1000
+465 1000
+466 71
+468 1000
+473 295
+0 0
+mem:
+27 0 1
+27 0 1
+27 0 1
+27 0 1
+27 0 1
+27 0 1
+27 0 1
+132 0 1
+132 0 1
+96 0 1
+96 0 1
+96 0 1
+96 0 1
+96 0 1
+14 0 1
+14 0 1
+4 0 1
+4 0 1
+4 0 1
+4 0 1
+4 0 1
+4 0 1
+4 0 1
+4 0 1
+33 0 1
+33 0 1
+33 0 1
+33 0 1
+13 0 1
+12 0 1
+12 0 1
+12 0 1
+12 0 1
+12 0 1
+12 0 1
+12 0 1
+12 0 1
+12 0 1
+92 0 1
+92 0 1
+131 0 1
+131 0 1
+33 0 1
+99 0 1
+99 0 1
+99 0 1
+99 0 1
+99 0 1
+99 0 1
+99 0 1
+99 0 1
+99 0 1
+46 0 1
+46 0 1
+46 0 1
+46 0 1
+46 0 1
+17 0 1
+17 0 1
+132 0 1
+132 0 1
+132 0 1
+132 0 1
+132 0 1
+132 0 1
+17 0 1
+17 0 1
+17 0 1
+17 0 1
+17 0 1
+17 0 1
+17 0 1
+17 0 1
+0 0 0
+aliases:
+e east;south;get all.corpse;north;west
+4 disarm;get all
+qq q vial
+33 rem scimitar
+3 get scimiar;wield scimitar
+,, get identify saddle
+mm drink skin
+333 disarm whip;get whip
+ppp exit
+11 rem amorphous
+1 wear amorphous
+kk cast 'dark presence'
+p scan
+lk c 'soulshield'
+ml mount horse
+kl c 'demonskin'
+re re;pray;med
+ll hitall
+po get all.gem all.corpse
+k kick s
+b bash k
+op cast 'unh'
+st stand;look
+ew get all all.corpse
+wa wake;st;l
+wq get all.coins all.corpse;exa corpse;l
+pp cast harm
+mmm eat food
+.. c 'disp mag'
+ax light splinter
+ss retreat s
+nn retr n
+ww retr w
+ee retre e
+2 get axe;wield axe
+22 rem axe
+as exa saddle
+bb get blue saddle;rec blue
+gg get green saddle;rec green
+hhh get invisibility saddle;q invisibility
+dr drink pool
+5 wield sword
+55 rem sword
+0

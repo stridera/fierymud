@@ -1,0 +1,126 @@
+name: Reldas
+password: ReuVvD7iLW
+prompt: <%h(%H) %v(%V)> <%e>
+autoinvis: 0
+sex: 1
+class: 0
+race: 30
+level: 18
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20712
+birthtime: 1703182459
+timeplayed: 399118
+lastlogintime: 1735087741
+host: 104.228.087.146
+height: 73
+weight: 247
+base_height: 73
+base_weight: 247
+base_size: 2
+natural_size: 2
+alignment: 781
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ahnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 127/127
+mana: 32/32
+move: 166/166
+damroll: 3
+hitroll: 3
+strength: 68
+intelligence: 99
+wisdom: 92
+dexterity: 69
+constitution: 84
+charisma: 56
+cash: 10 140 463 210
+experience: 1537120
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+31 1000
+32 1000
+37 1000
+39 1000
+99 1000
+100 1000
+101 1000
+186 1000
+202 1000
+246 1000
+415 50
+416 50
+423 180
+424 230
+438 50
+443 50
+444 50
+447 150
+451 230
+452 230
+453 190
+454 190
+456 50
+459 192
+460 190
+462 190
+464 230
+489 220
+0 0
+trophy:
+1 18508 0.333333
+1 18506 0.666667
+1 18517 0.333333
+1 18505 0.333333
+1 18512 0.666667
+1 18509 0.500000
+1 18507 5.000000
+1 55702 1.333333
+1 55701 1.000000
+1 55216 1.333333
+1 55700 0.750000
+1 2002 0.250000
+1 2001 0.250000
+1 2005 0.500000
+1 2003 1.250000
+1 2004 1.000000
+1 41012 0.250000
+1 41006 1.000000
+1 41021 0.250000
+1 41015 0.250000
+1 41014 0.250000
+0 0 0
+tells:
+1703448220 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1703460677 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1703461062 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1703461098 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1703626545 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1703627136 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1703720725 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1704829197 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1704832570 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1704832602 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1734574030 Sadler gossips, 'lo all'
+1734576370 Sadler gossips, 'oops'
+1734576391 Sadler gossips, 'can I get a reminder on how resurrect works?'
+1734576442 Chinok gossips, 'revives you, puts all your eq in your inventory, cuts your xp loss in about half'
+1734576465 Azie gossips, 'I mean I can remember do I have to be in the same room as corpse?'
+1734576475 Chinok gossips, 'yes, you need to be in the same room'
+1734576476 Azie gossips, 'can't remember'
+1734576482 Azie gossips, 'and HI CHIN!'
+1734576494 Chinok gossips, 'hi Azie'
+1735087737 Chinok gossips, 'you do have to ask'
+$

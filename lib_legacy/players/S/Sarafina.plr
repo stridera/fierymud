@@ -1,0 +1,116 @@
+name: Sarafina
+password: SaNCEKVW73
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 2
+race: 6
+level: 25
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19456
+birthtime: 1563170142
+timeplayed: 62143
+lastlogintime: 1619242012
+host: 066.199.058.082
+height: 47
+weight: 183
+base_height: 47
+base_weight: 183
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: k w 0
+prefflags: hnouC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 10
+thirst: 22
+lastlevel: 0
+hitpoints: 119/267
+mana: 62/62
+move: 158/162
+damroll: 4
+hitroll: 5
+strength: 93
+intelligence: 53
+wisdom: 75
+dexterity: 100
+constitution: 97
+charisma: 51
+cash: 25 1835 7139 2864
+experience: 2836870
+quit_reason: 1
+saveroom: 3054
+skills:
+401 300
+403 194
+405 76
+408 300
+409 105
+411 300
+415 50
+416 50
+421 282
+438 50
+443 50
+444 111
+464 300
+465 50
+467 50
+478 55
+0 0
+trophy:
+1 58002 2.000000
+1 2002 1.000000
+1 12021 1.000000
+1 12022 1.000000
+1 12019 1.000000
+1 12011 1.000000
+1 12020 2.000000
+1 12005 1.000000
+1 12003 2.000000
+1 12010 1.000000
+1 12006 1.000000
+1 12014 1.000000
+1 12007 2.000000
+1 12004 3.000000
+1 3508 1.000000
+1 3500 6.000000
+1 3501 3.000000
+1 3503 3.000000
+1 3502 2.000000
+1 41008 2.000000
+1 41011 1.000000
+0 0 0
+tells:
+1618274816 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1618274816 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1618274816 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1618274816 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1618274817 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1618274817 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1618274817 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1618363857 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1618364129 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1619241346 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1618760708 Fernley gossips, 'yeah, the ability to blind is not as powerful as what the other rogues can do'
+1618760780 Frumly gossips, 'its kinda close to as powerful as a thief: useful for the trickier stuff, not as much for leveling'
+1618760781 Chinok gossips, 'can be extremely helpful tho'
+1618760802 Frumly gossips, 'yeah, i'm glad it was added'
+1618760822 Frumly gossips, 'i never even bothered trying rogue until it was'
+1618760832 Frumly gossips, 'see ya'
+1619241301 Fayris gossips, 'hi witta'
+1619241305 Wittawat gossips, 'Hiya'
+1619241312 Davar gossips, 'hi witta'
+1619241373 Wittawat gossips, 'Hi'
+$
+aliases:
+gc get all.coins from corpse
+lc l in corpse
+0

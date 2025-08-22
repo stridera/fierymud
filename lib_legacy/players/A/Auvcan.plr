@@ -1,0 +1,166 @@
+name: Auvcan
+password: AuO0zK9OPu
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 21
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19755
+birthtime: 1604891892
+timeplayed: 254251
+lastlogintime: 1737962122
+host: 052.119.120.201
+height: 70
+weight: 115
+base_height: 70
+base_weight: 115
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: hnoxCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 529/529
+mana: 980/980
+move: 362/362
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 92
+wisdom: 93
+dexterity: 82
+constitution: 78
+charisma: 68
+cash: 11043 4285 24869 25018
+experience: 126967199
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+8 1000
+19 1000
+20 1000
+29 1000
+30 1000
+31 1000
+37 1000
+38 1000
+39 1000
+51 1000
+52 1000
+57 1000
+62 1000
+67 1000
+68 1000
+76 1000
+77 1000
+78 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+106 1000
+107 1000
+108 1000
+111 1000
+112 1000
+113 1000
+171 1000
+172 1000
+173 1000
+174 1000
+175 1000
+176 1000
+177 1000
+178 1000
+179 1000
+180 1000
+181 1000
+182 1000
+183 1000
+228 1000
+263 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+447 1000
+451 1000
+452 1000
+454 1000
+456 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 1000
+0 0
+trophy:
+1 52017 0.250000
+1 52013 0.400000
+1 52012 0.200000
+1 52006 0.200000
+1 52005 0.400000
+1 52015 0.200000
+1 52010 0.200000
+1 52009 1.000000
+1 7004 0.200000
+1 53507 0.250000
+1 53503 0.800000
+1 53502 0.400000
+1 53412 0.600000
+1 53413 0.200000
+1 4009 0.200000
+1 58401 0.200000
+1 58415 0.200000
+1 58414 0.200000
+1 58412 0.200000
+1 58407 0.200000
+1 58411 0.200000
+0 0 0
+tells:
+1608421911 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1608421993 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1608423073 @WMuleard@W tells you, 'Welcome to my store.@W'@0
+1608423074 @WMuleard@W tells you, 'You can call me Mule.@W'@0
+1608423168 @WThe blacksmith@W tells you, 'Hello traveler, I was wondering if you had seen a dwarven boy heading this way?@W'@0
+1608423168 @WThe blacksmith@W tells you, 'My supplies are late, they should have been here a day ago.@W'@0
+1608423168 @WThe blacksmith@W tells you, 'Doren is never late, I wish i could go looking for him.@W'@0
+1608423168 @WThe blacksmith@W tells you, 'I fear something has happened to him, will you go find him?@W'@0
+1658983194 @WLord Dargo@W tells you, 'To show my gratitude, take this.@W'@0
+1667181034 @WLord Dargo@W tells you, 'To show my gratitude, take this.@W'@0
+$
+gossips:
+1706670546 Fril gossips, 'na I don't have a potty mouth'
+1706670823 Chinok gossips, 'I'm off to sleep in about 10 mins.. so speak soon if anyone needs anything'
+1706670860 Ekon gossips, 'gratz'
+1706671168 Voltel gossips, 'oh thanks'
+1706671270 Ekon gossips, 'ty'
+1706671278 Chinok gossips, 'night all'
+1706671281 Ekon gossips, 'night!'
+1706673418 Ekon gossips, 'night all!'
+1706679900 Voltel gossips, 'Congrats!'
+1706679907 Karoth gossips, 'ty :)'
+$
+aliases:
+cis c 'ice shards'
+cdm c 'dispel magic' $*
+gat get all 2.corpse
+gac get all corpse
+ga get all
+cs c 'stone' tavsan
+0

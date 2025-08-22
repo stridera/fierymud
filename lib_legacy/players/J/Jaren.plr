@@ -1,0 +1,111 @@
+name: Jaren
+password: Jas6b2ZLxw
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20620
+birthtime: 1694608943
+timeplayed: 19926
+lastlogintime: 1694628878
+host: 035.002.002.066
+height: 61
+weight: 137
+base_height: 61
+base_weight: 137
+base_size: 2
+natural_size: 2
+alignment: 739
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 15
+loadroom: 3054
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 6/50
+mana: 1/0
+move: 99/118
+damroll: 3
+hitroll: 3
+strength: 68
+intelligence: 92
+wisdom: 90
+dexterity: 67
+constitution: 72
+charisma: 73
+cash: 0 131 906 646
+bank: 10 4 0 0
+experience: 241630
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+39 1000
+100 1000
+101 1000
+415 59
+416 73
+423 140
+424 140
+438 81
+443 50
+444 62
+447 72
+451 62
+452 132
+453 140
+454 50
+459 51
+460 65
+462 56
+464 66
+0 0
+tells:
+1694627844 @WJaco@W tells you, 'did you get that cherry?@W'@0
+1694627880 @WJaco@W tells you, 'okay let me know if you want me to help you get unstuck.@W'@0
+1694627939 @WJaco@W tells you, 'any time :D@W'@0
+1694628060 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694628163 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1694628166 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1694628170 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1694628170 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1694628170 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1694628170 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+$
+gossips:
+1694621910 Thorfinn gossips, 'grats!'
+1694623211 Thorfinn gossips, 'man im one tier 7 gem away from the armor'
+1694623237 Lokar gossips, 'which gem?'
+1694623270 Thorfinn gossips, 'malachite, crushed ruby, citrine, crushed diamond, crushed sapphire'
+1694625133 Chinok gossips, 'are you ticklish ?'
+1694625316 Chinok gossips, 'those draklings get harder :)'
+1694625373 Chinok gossips, 'yeah, for Wug, the last of the draklings, you'll need even a few more after that'
+1694625712 Choak gossips, 'any time!'
+1694627037 Chinok gossips, 'gratz on 9! -- 10 is a big one, you get a reward for level 10 :)'
+1694628360 Jaco gossips, 'if you douse next to water it will succeed first try'
+$
+mem:
+5 0 4
+5 0 1
+5 0 4
+5 0 4
+5 0 4
+5 0 4
+0 0 0
+aliases:
+2 cast 'magic missile' dragon
+1 cast 'burning hands' dragon
+0

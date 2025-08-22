@@ -1,0 +1,105 @@
+name: Chryn
+password: ChNS30ZsaY
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18622
+birthtime: 1388379807
+timeplayed: 945988
+lastlogintime: 1429912899
+host: 104.172.225.109
+height: 75
+weight: 231
+base_height: 75
+base_weight: 231
+base_size: 3
+natural_size: 3
+alignment: 1000
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 1405/1207
+mana: 980/980
+move: 125/166
+damroll: 5
+hitroll: 4
+strength: 92
+intelligence: 82
+wisdom: 84
+dexterity: 86
+constitution: 95
+charisma: 68
+cash: 89 393 2273 1711
+bank: 2200 1000 100 0
+experience: 116386599
+quit_reason: 1
+saveroom: 3054
+skills:
+402 772
+404 643
+407 1000
+411 1000
+412 1000
+415 900
+416 78
+419 1000
+420 1000
+421 1000
+422 1000
+427 1000
+430 572
+431 60
+434 1000
+438 422
+441 669
+443 50
+444 780
+463 692
+464 965
+465 1000
+466 1000
+467 50
+468 529
+473 55
+0 0
+trophy:
+1 11809 0.166667
+1 11701 0.366667
+1 2806 0.333333
+1 11704 0.500000
+1 2804 0.333333
+1 2809 0.666667
+1 11750 0.533333
+1 11710 0.333333
+1 11702 0.666667
+1 2808 1.166667
+1 2805 2.000000
+1 2807 1.000000
+1 2802 2.233333
+1 2801 5.699999
+1 2803 1.366667
+1 11703 0.700000
+1 18005 0.250000
+1 3143 0.250000
+1 18007 0.250000
+1 18002 0.250000
+1 51102 0.250000
+0 0 0
+effects:
+52 1 11 0 4194304 0 0
+0 0 0 0 0
+aliases:
+tt assist fuale
+0

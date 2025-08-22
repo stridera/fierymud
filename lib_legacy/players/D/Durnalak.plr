@@ -1,0 +1,136 @@
+name: Durnalak
+password: DukiCf9iAp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 9
+race: 6
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20695
+birthtime: 1700712241
+timeplayed: 409523
+lastlogintime: 1737879158
+host: 052.119.120.201
+height: 50
+weight: 183
+base_height: 50
+base_weight: 183
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxyz
+effectflags: k w q
+prefflags: hnoxCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1343/1145
+mana: 980/980
+move: 345/345
+damroll: 4
+hitroll: 5
+strength: 93
+intelligence: 69
+wisdom: 64
+dexterity: 94
+constitution: 100
+charisma: 47
+cash: 2132 6370 22882 7427
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 824
+404 836
+405 820
+408 852
+410 750
+411 1000
+412 1000
+415 50
+416 50
+418 820
+420 860
+421 865
+438 88
+440 1000
+443 820
+444 844
+463 50
+464 1000
+465 530
+477 820
+0 0
+trophy:
+1 47029 0.200000
+1 47028 0.600000
+1 47018 1.200000
+1 47012 0.200000
+1 8023 0.200000
+1 53506 0.400000
+1 53507 0.200000
+1 53505 0.200000
+1 53504 0.200000
+1 53502 0.800000
+1 53500 0.600000
+1 53508 1.000000
+1 53501 0.800000
+1 53503 0.800000
+1 58413 0.200000
+1 58417 0.200000
+1 58414 0.200000
+1 58418 0.200000
+1 58405 0.800000
+1 58403 0.800000
+1 58408 1.300000
+0 0 0
+tells:
+1737107469 @WShazz@W tells you, 'Take good care of that.@W'@0
+1737117259 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1737182319 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737185550 @WShazz@W tells you, 'Take good care of that.@W'@0
+1737627448 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737627449 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737675604 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1737677147 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737681804 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1737708730 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1737878736 Urog gossips, 'haha oops'
+1737878759 Pawk gossips, '*singing loudly* it's the game that never ends... it goes on and on again...........'
+1737878910 Urog gossips, 'bwahahaha!'
+1737878912 Peegu gossips, 'congrats in finishing the game!'
+1737878971 Urog gossips, 'thank you hehe'
+1737879119 Pawk gossips, 'l'
+1737879122 Pawk gossips, 'mutter'
+1737879144 Urog gossips, 'alright, with that, good night'
+1737879152 Zawk gossips, 'night'
+1737879153 Peegu gossips, 'night'
+$
+effects:
+551 0 296 13 0 0 0
+551 0 9 17 0 0 0
+551 0 -11 24 0 0 0
+551 0 -12 23 0 0 0
+551 0 -12 22 0 0 0
+551 0 -10 21 0 0 0
+551 0 -14 20 0 0 0
+551 0 4 19 0 0 0
+551 0 4 18 0 0 0
+131 8 0 0 0 0 16384
+131 8 2 19 0 0 0
+131 8 -12 24 0 0 0
+195 8 0 0 536870912 0 0
+0 0 0 0 0
+aliases:
+ga get all
+gac get all corpse
+gat get all 2.corpse
+kill backstab $*
+0

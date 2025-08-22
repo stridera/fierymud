@@ -1,0 +1,268 @@
+#1
+puff dragon evil red~
+&7an &1evil red dragon &7named &1Puff&0~
+&0&1Puff &0is here, ready to take you to your room and tuck you in.&0
+~
+Here stands the infamous dragon who lives near the sea.  She rises high above
+human height, her sinewy neck and legs glittering red.  An awful sense of
+evilness flows from her great body, unlike the legends of Puff told by bards
+across Caelia. 
+~
+536870938 1064 -1000 E
+99 0 0 0d0+0 30d100+-39
+0 0 0 0
+3 3 2 24 15 0 6
+BareHandAttack: 9
+Str: 30
+Dex: 30
+Int: 60
+Wis: 78
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 1201
+#45
+warhorse steady-warhorse large-warhorse horse~
+a steady warhorse~
+A large warhorse stands here, pawing at the ground.
+~
+You cast your gaze upon a very LARGE and loyal beast of burden.
+~
+268697610 0 0 E
+10 0 0 0d0+0 0d0+0
+0 0 0 0
+3 3 1 3 14 0 3
+BareHandAttack: 7
+Str: 81
+Dex: 90
+Int: 62
+Wis: 83
+Con: 68
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#46
+nightmare sleek-nightmare large-black-horse~
+a sleek nightmare~
+A large black horse glares around himself.
+~
+Black-coated, with a black mane and tail, this horse is both large and
+beautifully muscled, a truly magnificent specimen of mare.  Her eyes almost
+gleam red in the light, and she seems somewhat high-strung.
+~
+268697610 0 0 E
+5 0 0 0d0+0 0d0+0
+0 0 0 0
+3 3 2 24 14 0 3
+BareHandAttack: 7
+Str: 90
+Dex: 80
+Int: 64
+Wis: 81
+Con: 76
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#47
+mare grey-dappled-mare horse~
+a grey-dappled mare~
+A grey-dappled mare tosses her dark mane and whinnies.
+~
+This graceful grey mare is dappled in spots of lighter grey and
+white, the spots growing larger and more distinct the further one
+gets toward her flanks. Her legs darken toward the hooves, and her
+nose, mane, and tail are also very dark grey.
+~
+268697610 0 0 E
+5 0 0 0d0+0 0d0+0
+0 0 0 0
+3 3 2 24 14 0 3
+BareHandAttack: 9
+Str: 83
+Dex: 82
+Int: 87
+Wis: 67
+Con: 80
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#48
+gelding bay-gelding horse~
+a bay gelding~
+A bay gelding paws the ground with his hoof.
+~
+This lean, muscular horse is male, with a bright bay coat unmarred
+by scars. His mane and tail are darker, and his feet sport two white
+socks on the front legs. His hooves are shiny black. His large, gentle
+brown eyes reveal intelligence, and a certain amount of playfulness.
+~
+268697610 0 0 E
+5 0 0 0d0+0 0d0+0
+0 0 0 0
+3 3 1 24 14 0 3
+BareHandAttack: 9
+Str: 85
+Dex: 82
+Int: 67
+Wis: 84
+Con: 71
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#49
+rouncy sinewy-rouncy heavy-warhorse horse~
+a sinewy rouncy~
+A heavy warhorse waits here, muscles rippling beneath its skin.
+~
+Not particularly spectacular, this horse is nevertheless well-muscled and seems
+quite calm.  A short tabard sits across the back of his neck, perhaps a sign of
+his owner.  His dark-colored mane is cropped short, poking through the tabard.
+His fur is relatively free from blemishes, except around minor scarring
+scattered across his body.
+~
+268697610 0 300 E
+5 20 0 0d0+0 0d0+0
+0 0 0 0
+3 3 0 3 14 0 3
+Str: 92
+Dex: 84
+Int: 68
+Wis: 75
+Con: 75
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#50
+destrier thoroughbred-destrier hefty-stoic-destrier horse~
+a thoroughbred destrier~
+A hefty, stoic destrier stands here, eyeing you warily.
+~
+Though of average height, this horse has powerful hindquarters and a
+well-arched neck.  Unlike other horses trained as the finest of warhorses, this
+one is a mare, but seems to lack no mettle for it.  Her pitch-black eyes and
+mane contrast sharply with her solid gray coat, and she looks around herself
+warily for danger.
+~
+268697610 0 -300 E
+5 0 0 0d0+0 1d1+0
+0 0 0 0
+3 3 2 3 14 0 3
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#51
+courser magnificent-courser brilliant-white-horse~
+a magnificent courser~
+A brilliant white horse with gelid eyes waits patiently for his master.
+~
+Calmly pawing the ground, this magnificent warhorse moves gracefully with
+strength and power.  Muscles line its body from its hindquarters to the crest
+of its neck, their surface scarred in some places by previous battles.  The
+courser is double bridled with draw reins, giving his rider precise control
+over his actions.
+~
+268697610 0 750 E
+5 0 0 0d0+0 1d1+0
+0 0 0 0
+3 3 1 4 14 0 3
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#52
+shadowmare proud-shadowmare mare fearsome-black-horse~
+a proud shadowmare~
+A fearsome black horse with fiery red eyes looks around haughtily.
+~
+Sleek yet tall, this horse is as large as most draft horses, yet is built lean
+and sinewy.  Its pitch black coat has no shine and seems to absorb more light
+than natural.  Along with its short shadowy mane, this horse would be nearly
+unseen in darkness but for its piercing red eyes that burn with a haughty
+demonic light.
+~
+268697610 0 -300 E
+5 0 0 0d0+0 1d1+0
+0 0 0 0
+3 3 2 5 14 0 3
+Str: 30
+Dex: 70
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

@@ -1,0 +1,113 @@
+name: Foug
+password: FoLs2IywmC
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 8
+level: 8
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19881
+birthtime: 1615868058
+timeplayed: 27065
+lastlogintime: 1621393525
+host: 069.162.244.194
+height: 60
+weight: 133
+base_height: 60
+base_weight: 133
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 114/114
+mana: 1/0
+move: 132/132
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 64
+wisdom: 64
+dexterity: 86
+constitution: 93
+charisma: 58
+cash: 0 125 565 632
+experience: 211163
+pagelength: 50
+clan: 3
+quit_reason: 3
+saveroom: 0
+skills:
+402 110
+404 119
+415 50
+416 50
+421 115
+438 117
+443 50
+444 71
+463 54
+464 50
+465 67
+466 130
+467 50
+468 50
+0 0
+trophy:
+1 8604 1.000000
+1 8606 1.500000
+1 8605 1.500000
+1 36004 0.500000
+1 17201 1.000000
+1 17203 1.000000
+1 17202 1.000000
+1 17205 1.500000
+1 17204 3.500000
+1 3509 0.500000
+1 3506 0.500000
+1 3508 1.000000
+1 4312 0.500000
+1 55217 1.000000
+1 55213 1.000000
+1 55216 1.000000
+1 55219 1.000000
+1 55211 2.500000
+1 55218 0.500000
+1 55224 1.000000
+1 55214 4.000000
+0 0 0
+tells:
+1615874808 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1616041409 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1616041428 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1616043492 @WBigby@W tells you, 'You can only hold 12.@W'@0
+1616043492 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1621390220 Tithlo gossips, 'jeez, someone left a big pile of fudge right in the road! wheres the little bags? ewww its still warm'
+1621390238 Tatabutataka gossips, 'oh, the 30th'
+1621390280 Tatabutataka gossips, 'i cant wait to be out of the city'
+1621390313 Tatabutataka gossips, 'aside from this last year ive really loved it here, but the crimes getting really bad in my area and im just sorta sufficating'
+1621390325 Chinok gossips, 'No, I can't order take-out (actually there are a couple places that do come out here, but most dont)'
+1621390333 Chinok gossips, 'but yeah, I'nm NOT a city boy'
+1621390338 Tatabutataka gossips, 'people are so rude, and no one helps their neighbors, '
+1621390348 Tatabutataka gossips, 'yeah i love citys, i just dont want to live in one any more'
+1621390377 Chinok gossips, 'I got 1 acre, but I'm actually looking for about 10'
+1621390455 Chinok gossips, 'lol friend just pointed out -- masks, and gas shortages, this sounds like the premise of mad max'
+$
+aliases:
+` kill smuggler
+2 kill vine
+1 ass felj
+3 kill maggot
+all get all all.corpse
+id recite identify $*
+0

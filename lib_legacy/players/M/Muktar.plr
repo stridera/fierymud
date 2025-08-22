@@ -1,0 +1,138 @@
+name: Muktar
+password: Mu1MunF5uJ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 11
+race: 8
+level: 92
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18193
+birthtime: 1331877607
+timeplayed: 531041
+lastlogintime: 1713048046
+host: 097.120.082.157
+height: 64
+weight: 168
+base_height: 64
+base_weight: 168
+base_size: 2
+natural_size: 2
+alignment: -741
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 477/477
+mana: 846/846
+move: 122/122
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 92
+wisdom: 86
+dexterity: 76
+constitution: 86
+charisma: 56
+cash: 1184 7210 38857 5583
+experience: 109182568
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+21 1000
+25 1000
+29 1000
+31 1000
+32 1000
+33 1000
+38 1000
+39 1000
+45 1000
+50 1000
+52 1000
+62 1000
+67 1000
+68 1000
+76 1000
+87 1000
+100 1000
+101 1000
+106 1000
+121 1000
+125 1000
+186 1000
+187 1000
+188 1000
+211 1000
+212 1000
+213 1000
+222 1000
+223 1000
+224 1000
+226 1000
+415 50
+416 50
+421 248
+423 893
+424 970
+438 546
+443 50
+444 365
+447 212
+451 932
+452 104
+453 604
+454 420
+458 168
+459 701
+460 71
+461 970
+462 412
+464 78
+0 0
+trophy:
+1 16905 1.000000
+1 53311 1.666667
+1 53304 1.666667
+1 53302 1.333333
+1 53313 0.666667
+1 53305 4.833333
+1 53306 3.000000
+1 53314 4.166667
+1 53315 11.333331
+1 53312 5.166667
+1 53303 2.000000
+1 10051 1.000000
+1 18520 0.500000
+1 18515 0.500000
+1 18519 0.500000
+1 18501 1.000000
+1 18551 1.000000
+1 18550 0.500000
+1 18508 1.500000
+1 18514 1.000000
+1 18506 1.000000
+0 0 0
+tells:
+$
+gossips:
+1589664740 Chinok gossips, 'but newly imm'ed'
+1589664752 Chinok gossips, 'what right about a year now or so ?'
+1589664769 Strider gossips, 'Probably'
+1589664792 Strider gossips, 'I was offered an imm place back before the crash, but I didn't take it'
+1589664813 Chinok gossips, 'strider, also, notice your gossips don't catch shape-changed mobs :) '
+1589664814 Strider gossips, 'yeah.. before Feyd took over'
+1589664827 Strider gossips, 'Yeah, I'm noticing that'
+1589664843 Strider gossips, 'When I wrote it, I didn't think of multiple word names'
+1589664865 Chinok gossips, 'not sure what you're using Aneki, but we've build some integration (we being strider) with the client mudlet'
+1589664915 Strider gossips, 'I believe gmud has gmcp functionality so you can add your own stuff. :)'
+$

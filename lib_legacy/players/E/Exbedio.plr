@@ -1,0 +1,79 @@
+name: Exbedio
+password: ExeNxerZsL
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20835
+birthtime: 1725911184
+timeplayed: 7050
+lastlogintime: 1725918309
+host: 068.072.014.199
+height: 63
+weight: 152
+base_height: 63
+base_weight: 152
+base_size: 2
+natural_size: 2
+alignment: -1
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 44/44
+mana: 1/0
+move: 50/138
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 72
+wisdom: 76
+dexterity: 100
+constitution: 87
+charisma: 48
+cash: 0 4 15 8
+bank: 0 1 1 1
+experience: 11179
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 52
+438 50
+443 50
+444 50
+463 50
+464 50
+465 53
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8030 1.000000
+1 8000 1.000000
+1 8016 2.000000
+1 8023 1.000000
+0 0 0
+tells:
+1725911394 @WLber@W tells you, 'hello@W'@0
+1725911507 @WLber@W tells you, 'shut up@W'@0
+1725912061 @WLber@W tells you, 'idk@W'@0
+1725914800 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1725912749 Chinok gossips, 'welcome Exbedio -- yell if you need any help or advice'
+1725914674 Discord gossips, 'Chinok: Gratz on level 2 Liber and Exbedio!'
+1725915510 Chinok gossips, 'think it was in the 'academy' but before level 5, best to stay west of town, in the bug fields'
+$

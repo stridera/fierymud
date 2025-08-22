@@ -1,0 +1,99 @@
+name: Feaznor
+password: Fe0vaCnsrT
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18944
+birthtime: 1429576835
+timeplayed: 12438
+lastlogintime: 1430703204
+host: 050.150.107.092
+height: 37
+weight: 50
+base_height: 37
+base_weight: 50
+base_size: 1
+natural_size: 1
+alignment: 964
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 16
+thirst: 6
+lastlevel: 0
+hitpoints: 47/47
+mana: 1/-1
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 72
+intelligence: 99
+wisdom: 91
+dexterity: 70
+constitution: 67
+charisma: 68
+cash: 0 35 280 143
+experience: 101678
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 103
+438 50
+443 70
+444 50
+447 60
+451 63
+452 85
+453 90
+459 50
+460 50
+462 50
+464 72
+0 0
+trophy:
+1 3066 1.000000
+1 18004 1.000000
+1 18003 1.000000
+1 18000 1.500000
+1 18002 1.000000
+1 18006 1.500000
+1 18005 2.000000
+1 18001 2.500000
+1 18007 3.000000
+1 3500 0.500000
+1 17202 0.500000
+1 36300 1.000000
+1 36303 1.000000
+1 36305 2.000000
+1 17204 4.500000
+1 8803 0.500000
+1 8802 0.500000
+1 8806 0.500000
+1 8804 0.500000
+1 8801 0.500000
+1 8809 0.500000
+0 0 0
+mem:
+32 1 7
+32 1 7
+32 1 7
+32 1 7
+32 1 7
+0 0 0

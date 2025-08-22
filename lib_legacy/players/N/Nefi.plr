@@ -1,0 +1,70 @@
+name: Nefi
+password: NekZZ1vF5z
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 3
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19484
+birthtime: 1569716643
+timeplayed: 7475
+lastlogintime: 1569724218
+host: 068.096.209.182
+height: 46
+weight: 181
+base_height: 46
+base_weight: 181
+base_size: 2
+natural_size: 2
+alignment: 952
+playerflags: y
+effectflags: k 0 q
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 53/47
+mana: 1/0
+move: 168/168
+damroll: 4
+hitroll: 5
+strength: 84
+intelligence: 68
+wisdom: 72
+dexterity: 91
+constitution: 100
+charisma: 52
+cash: 0 8 52 56
+experience: 20529
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+421 63
+438 50
+443 50
+444 57
+464 53
+465 50
+467 50
+0 0
+trophy:
+1 8002 0.666667
+1 8013 0.500000
+1 8000 0.333333
+1 8015 0.833333
+1 8001 0.333333
+1 8016 1.000000
+1 8329 0.333333
+0 0 0
+aliases:
+2 assist fet
+1 assist lefi
+0

@@ -1,0 +1,108 @@
+name: Fanta
+password: FaxCthE2ky
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18352
+birthtime: 1349030458
+timeplayed: 56247
+lastlogintime: 1349596114
+host: 075.052.090.255
+height: 70
+weight: 107
+base_height: 70
+base_weight: 107
+base_size: 2
+natural_size: 2
+alignment: 939
+playerflags: y
+effectflags: k 0 0
+prefflags: bhnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 1
+hunger: 14
+thirst: 14
+lastlevel: 0
+hitpoints: 73/73
+mana: 1/-2
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 87
+intelligence: 98
+wisdom: 81
+dexterity: 77
+constitution: 70
+charisma: 52
+cash: 0 155 352 25
+experience: 322465
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+39 1000
+100 1000
+101 1000
+415 50
+416 50
+423 150
+424 147
+438 50
+443 50
+444 50
+447 70
+451 72
+452 129
+453 146
+454 58
+459 51
+460 61
+462 50
+464 50
+0 0
+trophy:
+1 8604 0.500000
+1 16111 0.500000
+1 16103 0.500000
+1 16108 0.250000
+1 16106 0.750000
+1 16101 0.500000
+1 16102 1.250000
+1 16107 1.750000
+1 16100 1.500000
+1 8806 0.250000
+1 8800 0.250000
+1 8801 0.250000
+1 8804 0.500000
+1 8809 0.250000
+1 8805 0.750000
+1 8807 0.250000
+1 8808 0.750000
+1 2005 1.500000
+1 2001 0.500000
+1 2003 1.750000
+1 2004 1.750000
+0 0 0
+mem:
+5 1 4
+5 1 4
+5 1 4
+5 1 4
+5 1 4
+5 1 4
+5 1 4
+8 1 8
+8 1 8
+0 0 0

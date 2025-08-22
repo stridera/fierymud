@@ -1,0 +1,60 @@
+name: Goar
+password: GoyW3mGijj
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19166
+birthtime: 1493393092
+timeplayed: 35
+lastlogintime: 1493393129
+host: 173.186.244.227
+height: 75
+weight: 257
+base_height: 75
+base_weight: 257
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 27/25
+mana: 0/0
+move: 147/154
+damroll: 5
+hitroll: 4
+strength: 93
+intelligence: 64
+wisdom: 77
+dexterity: 97
+constitution: 88
+charisma: 42
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+403 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0

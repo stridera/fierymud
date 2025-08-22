@@ -1,0 +1,128 @@
+name: Statua
+password: StT6ns6yrA
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 9
+level: 16
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18342
+birthtime: 1347843875
+timeplayed: 108151
+lastlogintime: 1597523302
+host: 067.183.244.046
+height: 70
+weight: 114
+base_height: 70
+base_weight: 114
+base_size: 2
+natural_size: 2
+alignment: 541
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 2016
+lastlevel: 0
+hitpoints: 133/133
+mana: 25/24
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 80
+intelligence: 91
+wisdom: 95
+dexterity: 73
+constitution: 62
+charisma: 67
+cash: 5 44 202 233
+experience: 856000
+quit_reason: 7
+saveroom: 2016
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 50
+416 50
+423 210
+424 210
+438 110
+443 120
+444 50
+451 144
+457 210
+458 112
+459 204
+460 127
+462 122
+463 166
+466 50
+0 0
+trophy:
+1 18507 0.500000
+1 16107 0.500000
+1 18510 1.000000
+1 55701 0.500000
+1 55702 1.000000
+1 55216 1.000000
+1 2001 1.000000
+1 2003 7.500000
+1 2004 4.000000
+1 2005 4.000000
+1 1602 1.500000
+1 1601 1.000000
+1 55003 0.333333
+1 8032 0.285714
+1 8031 0.285714
+1 8034 0.452381
+1 8033 0.452381
+1 36004 0.428571
+0 0 0
+tells:
+$
+gossips:
+$
+mem:
+1 1 1
+206 1 1
+84 1 1
+84 1 1
+16 1 1
+84 1 1
+84 1 1
+88 1 5
+3 1 5
+85 1 5
+88 1 5
+85 1 5
+88 1 5
+0 0 0
+aliases:
+12 c 'cause light'
+1 get all corpse
+14 search
+13 who -where
+8 scan
+7 drink from waterskin
+5 look self
+2 inventory
+4 who
+11 c 'cure serious' Thyon
+3 assist Thyon
+0

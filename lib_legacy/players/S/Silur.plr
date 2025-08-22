@@ -1,0 +1,108 @@
+name: Silur
+password: SiosmO/ImJ
+prompt: %-[%n]%_[%w]%_%-%-[Bank]%_[%W]%_[%h/%Hhp][%v/%Vmv][%a]%_[Tank][%t][Opponent][%o]%_%E%_
+autoinvis: 0
+sex: 1
+class: 0
+race: 1
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20867
+birthtime: 1731899176
+timeplayed: 30147
+lastlogintime: 1732747286
+host: 071.051.173.206
+height: 70
+weight: 93
+base_height: 70
+base_weight: 93
+base_size: 2
+natural_size: 2
+alignment: 975
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 31/31
+mana: 1/0
+move: 130/132
+damroll: 3
+hitroll: 3
+strength: 64
+intelligence: 92
+wisdom: 82
+dexterity: 78
+constitution: 95
+charisma: 64
+experience: 56867
+quit_reason: 1
+saveroom: 3054
+spellcasts:
+1 12
+0 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 53
+424 73
+438 50
+443 50
+444 50
+447 60
+451 53
+452 51
+453 52
+459 50
+460 70
+462 50
+464 64
+465 50
+0 0
+trophy:
+1 8020 0.500000
+1 8010 1.000000
+1 8012 0.500000
+1 8000 1.000000
+1 8022 0.500000
+1 8001 2.000000
+1 8023 1.500000
+1 8016 1.000000
+1 8011 1.000000
+1 8002 1.000000
+1 8013 1.000000
+1 8015 1.500000
+0 0 0
+tells:
+1731902071 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1731902212 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1731902614 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1732651661 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1732654455 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1732654467 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1732675954 @WA half-elven maid@W tells you, 'If you want to rent a room, please go upstairs to the Reception Area.@W'@0
+$
+gossips:
+1732662524 Thort gossips, 'congrats!! almost there'
+1732670805 Derrgon gossips, 'hey hey'
+1732675291 Popy gossips, 'Uhmm. What happens to items that are dropped in water that don't have FLOAT ?'
+1732675861 Discord gossips, 'Daedela: They SINK'
+1732675870 Discord gossips, 'Daedela: And go bye-bye forever'
+1732675875 Popy gossips, 'oh gods no'
+1732675896 Discord gossips, 'Daedela: Ummm, yes?'
+1732675903 Popy gossips, 'lol'
+1732675926 Discord gossips, 'Daedela: What did you lose?'
+1732675940 Popy gossips, 'I uh. dropped my pumpkin candy container. nothing of importance was lost in it. just the container itself. I put it down to see if I could pick heavy up.'
+$
+aliases:
+where who -w
+0

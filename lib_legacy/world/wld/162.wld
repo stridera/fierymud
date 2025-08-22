@@ -1,0 +1,1489 @@
+#16200
+Outside the Pyramid~
+   You are standing just outside the mighty pyramid of Imanhotep.  To the
+north, you can make out the tomb's entrance, covered with the sands of time.  
+~
+162 4 0
+D0
+~
+~
+0 -1 16201
+D2
+~
+~
+0 -1 16104
+S
+#16201
+Tomb Entrance~
+   You step into the tomb of the great pharoah of old, Imanhotep.  As you peer
+into the stifling darkness of the passageway, you can hear the shuffling of
+feet in the distance.  Someone has come here before you, but who?    
+~
+162 8 0
+D0
+~
+~
+0 -1 16203
+D2
+A large stone blocks your exit back into the outside world.
+~
+block stone~
+1 -1 16200
+S
+#16202
+A Dead End~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  You walk on until you reach a dead end.  This passage leads
+nowhere!  This was a design of the original builders to trap trespassers who
+dare break into a pharoah's tomb.  You wonder what other devices await you
+here.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16204
+S
+#16203
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16206
+D2
+~
+None~
+0 -1 16201
+S
+#16204
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the south.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16205
+D2
+~
+~
+0 -1 16202
+S
+#16205
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16206
+D3
+~
+~
+0 -1 16204
+S
+#16206
+Passageway Junction~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway splits into
+a junction, with passages leading east and west.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16207
+D2
+~
+None~
+0 -1 16203
+D3
+~
+~
+0 -1 16205
+S
+#16207
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16208
+D3
+~
+~
+0 -1 16206
+S
+#16208
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D0
+There is a movable panel here! There is a passageway behind it.
+~
+door secret panel~
+1 -1 16210
+D1
+~
+~
+0 -1 16209
+D3
+~
+~
+0 -1 16207
+S
+#16209
+Small Chamber~
+   As you enter this chamber, a stone block falls behind you, sealing you in
+here.  This must be another one of the ancients' traps.  You notice that there
+are stairs leading down and a rope ladder leading up.    
+~
+162 8 0
+D4
+~
+~
+0 -1 16230
+D5
+~
+~
+0 -1 16277
+S
+#16210
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16214
+D2
+You see the outline of the secret panel here.
+~
+door panel~
+1 -1 16208
+S
+#16211
+Dead End~
+   You have come to a dead end in the passage.  The only exit you can see is a
+small narrow staircase leading upwards.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16212
+D4
+~
+~
+0 -1 16221
+S
+#16212
+Bend In The Passage~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the west.    
+~
+162 8 0
+D0
+~
+None~
+0 -1 16216
+D3
+~
+~
+0 -1 16211
+S
+#16213
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the north.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16219
+D1
+~
+~
+0 -1 16214
+S
+#16214
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the west.    
+~
+162 8 0
+D1
+You notice that there is a secret panel here.
+~
+door panel~
+1 -1 16215
+D2
+~
+~
+0 -1 16210
+D3
+~
+~
+0 -1 16213
+S
+#16215
+Treasure Room~
+   You have stumbled upon one of the many treasure rooms in this pyramid.  
+Large jars and chests are stacked up all over, and the walls are painted with
+murals on the life and deeds of the pharoah.  Skeletons also litter the ground.
+You realise that these must be the workers who built this place.  Looks like
+the builders don't want witnesses.    
+~
+162 8 0
+D3
+~
+panel door~
+1 -1 16214
+S
+#16216
+Passageway~
+   As you enter this chamber, a stone block falls behind you, sealing you in
+here.  This must be another one of the ancients' traps.  The only way you can
+go is south now.    
+~
+162 8 0
+D2
+~
+~
+0 -1 16212
+S
+#16217
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16218
+D3
+~
+~
+0 -1 16216
+S
+#16218
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16219
+D3
+~
+~
+0 -1 16217
+S
+#16219
+Bend In The Passage~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the west.    
+~
+162 8 0
+D0
+There is a secret panel here.
+~
+panel door secret~
+1 -1 16220
+D2
+~
+~
+0 -1 16213
+D3
+~
+~
+0 -1 16218
+S
+#16220
+Treasure Room~
+   You have stumbled upon one of the many treasure rooms in this pyramid.  
+Large jars and chests are stacked up all over, and the walls are painted with
+murals on the life and deeds of the pharoah.  Skeletons also litter the ground.
+You realise that these must be the workers who built this place.  Looks like
+the builders don't want witnesses.  A staircase leads downwards into the
+depths.    
+~
+162 8 0
+D2
+There is a secret panel here.
+~
+panel door secret~
+1 -1 16219
+D5
+~
+~
+0 -1 16242
+S
+#16221
+Stair Landing~
+   You have come to the top of the stairs and you find another series of
+winding passages.  You notice that the texture of the walls has changed a bit.
+Your fingers feel more soapy when you run them against the walls.  The
+passageway continues to the east.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16222
+D5
+~
+~
+0 -1 16211
+S
+#16222
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16223
+D3
+~
+~
+0 -1 16221
+S
+#16223
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the south.    
+~
+162 8 0
+D1
+You find another panel hiding a passageway here.
+~
+panel door~
+1 -1 16224
+D2
+~
+~
+0 -1 16226
+D3
+~
+~
+0 -1 16222
+S
+#16224
+Small Chamber~
+   As you enter this chamber, a stone block falls behind you, sealing you in
+here.  This must be another one of the ancients' traps.  The only way to go is
+south.    
+~
+162 8 0
+D2
+~
+~
+0 -1 16227
+S
+#16225
+Treasure Room~
+   You have stumbled upon one of the many treasure rooms in this pyramid.  
+Large jars and chests are stacked up all over, and the walls are painted with
+murals on the life and deeds of the pharoah.  Skeletons also litter the ground.
+You realise that these must be the workers who built this place.  Looks like
+the builders don't want witnesses.  A staircase leads upwards into the
+darkness.    
+~
+162 8 0
+D1
+A stone panel blocks your way.
+~
+panel door~
+1 -1 16226
+D4
+~
+~
+0 -1 16232
+S
+#16226
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16223
+D2
+~
+~
+0 -1 16228
+D3
+There is a hidden panel here.
+~
+panel door~
+1 -1 16225
+S
+#16227
+Small Chamber~
+   As you enter this chamber, a stone block falls behind you, sealing you in
+here.  This must be another one of the ancients' traps.  The only way to go is
+south.    
+~
+162 8 0
+D2
+~
+~
+0 -1 16229
+S
+#16228
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the east.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16226
+D1
+~
+~
+0 -1 16229
+S
+#16229
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16230
+D2
+There is a secret panel here.
+~
+panel door~
+1 -1 16231
+D3
+~
+~
+0 -1 16228
+S
+#16230
+Stair Landing~
+   You have come to the top of the stairs and you find another series of
+winding passages.  You notice that the texture of the walls has changed a bit.
+You fingers feel more soapy when you run your it against the walls.  The
+passageway continues to the west.    
+~
+162 8 0
+D3
+~
+~
+0 -1 16229
+D5
+~
+~
+0 -1 16209
+S
+#16231
+Treasure Room~
+   You have stumbled upon one of the many treasure rooms in this pyramid.  
+Large jars and chests are stacked up all over, and the walls are painted with
+murals on the life and deeds of the pharoah.    
+~
+162 8 0
+D0
+A stone panel blocks your way.
+~
+panel door~
+1 -1 16229
+S
+#16232
+Stair Landing~
+   You have come to the top of the stairs and you find another series of
+winding passages.  You notice that the texture of the walls has changed a bit.
+You fingers feel more soapy when you run your it against the walls.  The
+passageway continues to the east.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16233
+D5
+~
+~
+0 -1 16225
+S
+#16233
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16234
+D2
+There is a secret panel here.
+~
+panel door secret~
+1 -1 16236
+D3
+~
+~
+0 -1 16232
+S
+#16234
+A Dead End~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  You walk on until you reach a dead end.  This passage leads
+nowhere!  You wonder what was the purpose of all these dead end.  Maybe they
+hide some more rooms.    
+~
+162 8 0
+D1
+~
+door~
+1 -1 16235
+D3
+~
+~
+0 -1 16233
+S
+#16235
+Secret Chamber~
+   You have entered a room littered with bones, human bones.  You realise that
+this is the chamber where they buried most of the workers alive.  You notice a
+lot of scratch marks on the walls, they must have tried to dig their way out.
+When you turn around, you find that the panel has closed behind you.    
+~
+162 8 0
+D3
+~
+door~
+1 -1 16234
+S
+#16236
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  A stone block falls behind
+you, leaving you only one option, to go south.    
+~
+162 8 0
+D2
+~
+~
+0 -1 16237
+S
+#16237
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the east.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16236
+D1
+~
+~
+0 -1 16238
+S
+#16238
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the south.    
+~
+162 8 0
+D2
+~
+~
+0 -1 16239
+D3
+~
+~
+0 -1 16237
+S
+#16239
+Stair Landing~
+   You have come to the top of the stairs and you find another series of
+winding passages.  You notice that the texture of the walls has changed a bit.
+You fingers feel more soapy when you run your it against the walls.  The
+passageway continues to the north.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16238
+D5
+~
+~
+0 -1 16242
+S
+#16240
+A Dead End~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  You walk on until you reach a dead end.  This passage leads
+nowhere!  You wonder what was the purpose of all these dead end.  Maybe they
+hide some more rooms.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16241
+S
+#16241
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the west.    
+~
+162 8 0
+D2
+~
+None~
+0 -1 16245
+D3
+~
+~
+0 -1 16240
+S
+#16242
+Stair Landing~
+   You walk deeper into the depth of the pyramid, and the air gets cooler as
+you go forward.  There is a more earthy smell here, though the walls are still
+made of limestone.  You finally come to the bottom of the staircase and find
+another maze.  Will this never end??    
+~
+162 8 0
+D2
+~
+~
+0 -1 16246
+D4
+~
+~
+0 -1 16239
+S
+#16243
+A Dead End~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  You walk on until you reach a dead end.  This passage leads
+nowhere!  You wonder what was the purpose of all these dead ends.  Maybe they
+hide some more rooms.    
+~
+162 8 0
+D2
+~
+~
+0 -1 16248
+S
+#16244
+A Dead End~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  You walk on until you reach a dead end.  This passage leads
+nowhere!  You wonder what was the purpose of all these dead ends.  Maybe they
+hide some more rooms.    
+~
+162 8 0
+D1
+Thin cracks in the wall reveal a hidden panel.
+~
+door secret panel~
+1 0 16246
+D2
+~
+~
+0 -1 16250
+S
+#16245
+Passageway~
+   You find that the passageway has closed behind you.  You can only go forward
+now.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16241
+D2
+~
+door~
+1 0 16252
+S
+#16246
+Passageway Junction~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passage branches off at
+this point, one passage going south and another going east.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16242
+D1
+~
+~
+0 -1 16247
+D2
+~
+~
+0 -1 16254
+S
+#16247
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16248
+D3
+~
+~
+0 -1 16246
+S
+#16248
+Passageway Junction~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passage branches off at
+this point, one passage going south and another going north.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16243
+D2
+~
+~
+0 -1 16255
+D3
+~
+~
+0 -1 16247
+S
+#16249
+A Dead End~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  You walk on until you reach a dead end.  This passage leads
+nowhere!  You wonder what was the purpose of all these dead ends.  Maybe they
+hide some more rooms.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16250
+S
+#16250
+An Intersection~
+   You have come to an intersection going in four directions.  You wonder which
+one you should take as they all look the same to you.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16244
+D1
+~
+~
+0 -1 16251
+D2
+~
+~
+0 -1 16256
+D3
+~
+~
+0 -1 16249
+S
+#16251
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  A stone block falls behind
+you, leaving you only one option, to go west.    
+~
+162 8 0
+D3
+Nothing.
+~
+None~
+0 -1 16250
+S
+#16252
+Passageway Junction~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway splits into
+a junction, with passages leading north and south.    
+~
+162 8 0
+D0
+~
+door~
+1 0 16245
+D1
+~
+~
+0 -1 16253
+D2
+~
+~
+0 -1 16257
+D3
+There is a secret panel here.
+~
+panel door~
+1 -1 16251
+S
+#16253
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16254
+D3
+~
+~
+0 -1 16252
+S
+#16254
+Bend In The Passage~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the west.    
+~
+162 8 0
+D0
+~
+None~
+0 -1 16246
+D3
+~
+~
+0 -1 16253
+S
+#16255
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16248
+D2
+~
+~
+0 -1 16258
+S
+#16256
+A Dead End~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  You walk on until you reach a dead end.  This passage leads
+nowhere!  You wonder what was the purpose of all these dead ends.  Maybe they
+hide some more rooms.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16250
+S
+#16257
+Passageway~
+   You find that the passageway has closed behind you.  You can only go forward
+now.    
+~
+162 8 0
+D2
+~
+~
+0 -1 16260
+S
+#16258
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16255
+D2
+~
+~
+0 -1 16263
+S
+#16259
+Mural Chamber~
+   You have entered a chamber which is totally painted with murals of the dead
+pharoah.  You realise there us something different about this room as there
+seems to be more emphasis on the afterlife when you study the hieroglyphics.  
+Perhaps this is the true burial chamber of Imanhotep VI.  A passageways leads
+downwards into the depths.    
+~
+162 8 0
+D1
+A brightly painted panel blocks your way.
+~
+panel door~
+1 -1 16260
+D5
+~
+~
+0 -1 16280
+S
+#16260
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16257
+D2
+~
+~
+0 -1 16264
+D3
+Behind the murals painted on this wall you find a hairline crack. There is a
+panel here.
+~
+panel door~
+1 -1 16259
+S
+#16261
+Small Chamber~
+   You find yourself trapped in a small chamber when the doors closed behind
+you.  There is no escape from here.    
+~
+162 8 0
+D2
+You think you might be able to pry the panel open.
+~
+panel door secret~
+1 0 16265
+S
+#16262
+A Dead End~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  You walk on until you reach a dead end.  This passage leads
+nowhere!  You wonder what was the purpose of all these dead ends.  Maybe they
+hide some more rooms.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16263
+D3
+A stone panel blocks your way.
+~
+panel door~
+1 -1 16261
+S
+#16263
+Passageway Junction~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passage branches off at
+this point, one passage going south and another going west.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16258
+D2
+~
+~
+0 -1 16266
+D3
+~
+~
+0 -1 16262
+S
+#16264
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16260
+D2
+~
+~
+0 -1 16268
+S
+#16265
+A Dead End~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  You walk on until you reach a dead end.  This passage leads
+nowhere!  You wonder what was the purpose of all these dead ends.  Maybe they
+hide some more rooms.    
+~
+162 8 0
+D0
+A stone panel blocks your way north.
+~
+panel door~
+1 -1 16261
+D2
+~
+~
+0 -1 16270
+S
+#16266
+Door Chamber~
+   You have entered a round room with doors all around it.  Every direction
+looks the same to you and you feel disoriented.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16266
+D1
+~
+~
+0 -1 16281
+D2
+~
+~
+0 -1 16266
+D3
+~
+~
+0 -1 16266
+S
+#16267
+Treasure Room~
+   You have stumbled upon one of the many treasure rooms in this pyramid.  
+Large jars and chests are stacked up all over, and the walls are painted with
+murals on the life and deeds of the pharoah.    
+~
+162 8 0
+D2
+~
+~
+0 -1 16271
+S
+#16268
+Passageway Junction~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway splits into
+a junction, with passages leading east, north and south.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16264
+D1
+~
+~
+0 -1 16269
+D2
+~
+~
+0 -1 16274
+S
+#16269
+A Dead End~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  You walk on until you reach a dead end.  This passage leads
+nowhere!  This was a design of the original builders to trap trespassers who
+dare break into a pharoah's tomb.  You wonder what other devices await you
+here.    
+~
+162 8 0
+D1
+There is a stone panel here.
+~
+panel door~
+1 -1 16270
+D3
+~
+~
+0 -1 16268
+S
+#16270
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16265
+D2
+~
+~
+0 -1 16275
+D3
+There is a stone panel here.
+~
+panel door~
+1 -1 16269
+S
+#16271
+A Dead End~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  You walk on until you reach a dead end.  This passage leads
+nowhere!  You wonder what was the purpose of all these dead ends.  Maybe they
+hide some more rooms.    
+~
+162 8 0
+D0
+~
+~
+0 0 16267
+D1
+~
+~
+0 -1 16272
+E
+walls wall~
+This wall seems to be covered with more hyroglyphics than the others. It
+shows Neris and Imanhotep in the royal hall with a group of sorcerers.
+The head sorcerer speaks something aloud which seems to cause Neris
+great pleasure....
+~
+S
+T 16201
+#16272
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16273
+D3
+~
+~
+0 -1 16271
+S
+#16273
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16274
+D3
+~
+~
+0 -1 16272
+S
+#16274
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the west.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16268
+D3
+~
+~
+0 -1 16273
+S
+#16275
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.  The passageway bends
+towards the east and north.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16270
+D1
+~
+~
+0 -1 16276
+S
+#16276
+Passageway~
+   The walls of the passageway are made of extremely large and heavy blocks of
+limestone.  As you walk deeper into the pyramid, your footsteps echo down the
+passageway, giving an eerie feeling to this place.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16277
+D3
+~
+~
+0 -1 16275
+S
+#16277
+Stairs Landing~
+   You find yourself at a stairs landing.  There is a passageway going towards
+the west from here.    
+~
+162 8 0
+D3
+~
+~
+0 -1 16276
+D4
+~
+~
+0 -1 16209
+S
+#16278
+Burial Chamber~
+   You are in the burial chamber of the great Imanhotep VI, 98th in the line of
+Hoth, descendent of the Sun God.  The walls are painted with the pictures of
+Imanhotep and his lovely wife Neris.  It is said that Neris commited suicide in
+order to join her husband in death.  A small tunnel leads to the west.    
+~
+162 8 0
+D1
+A large door blocks your way eastwards.
+~
+door large~
+1 16215 16279
+D3
+~
+door large~
+0 -1 16210
+E
+wall walls~
+On the walls around the undead you notice pictograms of
+their life and times.  The great advancements made by
+Imanhotep in the building of cities and monuments is
+stunning. The common people are depicted as being lower
+life forms not worthy of life itself.  Imanhotep 
+was a cruel ruler and had no concern for his people.
+Neris is then introduced into the story and she changes
+Imanhoteps treatment of his people.  The next series of
+hyroglyphs are unreadable but it seems Neris possessed a
+very powerful magical ruby scarab on a short staff.
+The scarab was a gift from a group of sorcerers who had
+heard of her kindness. The last set of writing shows a
+grand hall with the King and Queen, the group of sorcerers
+making the presentation, many members of the royal court
+line the walls watching in approval, there is also a
+royal scribe writing into a large book.
+~
+E
+west~
+There seems to be a hole in the wall that you can just
+squeeze into.
+~
+S
+T 6207
+#16279
+Great Door~
+   You come to the end of the passageway and see a large door blocking your way
+westwards.  Bones of decapitated humans litter the ground.  It seems that there
+were others before you who came this way and had come to an abrupt end in their
+journey.    
+~
+162 8 0
+D1
+~
+~
+0 -1 16280
+D3
+The door is made of stone and is brightly painted with the image of Imanhotep.
+Yonder lies the burial chamber of this great pharoah.
+~
+door large~
+2 16215 16278
+D4
+~
+trapdoor~
+1 -1 16208
+S
+#16280
+Burial Passageway~
+   There is a lingering smell of incense and spice here, and an aura of power
+can be felt.  It is like great magic was once performed here and traces still
+remain.  The passageway continues west.
+~
+162 8 0
+D3
+~
+~
+0 -1 16279
+D4
+~
+~
+0 -1 16259
+S
+#16281
+Door Chamber~
+   You have entered a round room with doors all around it.  Every direction
+looks the same to you and you feel disoriented.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16281
+D1
+~
+~
+0 -1 16281
+D2
+~
+~
+0 -1 16282
+D3
+~
+~
+0 -1 16281
+S
+#16282
+Door Chamber~
+   You have entered a round room with doors all around it.  Every direction
+looks the same to you and you feel disoriented.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16281
+D1
+~
+~
+0 -1 16282
+D2
+~
+~
+0 -1 16282
+D3
+~
+~
+0 -1 16283
+S
+#16283
+Door Chamber~
+   You have entered a round room with doors all around it.  Every direction
+looks the same to you and you feel disoriented.    
+~
+162 8 0
+D0
+~
+~
+0 -1 16266
+D1
+~
+~
+0 -1 16283
+D2
+~
+~
+0 -1 16283
+D3
+~
+~
+0 -1 16277
+S
+$~

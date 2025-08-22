@@ -1,0 +1,87 @@
+name: Sugu
+password: SuDnwHgxf8
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20742
+birthtime: 1707694469
+timeplayed: 9541
+lastlogintime: 1707704139
+host: 098.043.254.092
+height: 76
+weight: 138
+base_height: 76
+base_weight: 138
+base_size: 2
+natural_size: 2
+alignment: -3
+playerflags: gy
+effectflags: 0 0 0
+prefflags: ghnoC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 69/65
+mana: 0/0
+move: 148/148
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 78
+wisdom: 42
+dexterity: 84
+constitution: 90
+charisma: 94
+cash: 0 0 8 132
+experience: 51181
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 80
+415 50
+416 50
+421 60
+438 50
+443 50
+444 55
+463 50
+464 50
+465 55
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8011 0.333333
+1 8013 1.333333
+1 8020 1.666667
+1 8022 0.666667
+1 8010 2.666667
+1 8000 2.666667
+1 8015 1.333333
+1 8002 2.000000
+1 8014 1.000000
+1 8021 1.000000
+1 8023 0.333333
+1 8016 1.333333
+1 8030 1.000000
+1 8012 1.666667
+1 8001 3.000000
+0 0 0
+tells:
+1707699262 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1707694627 Daedela gossips, 'WAHOOO!!!!'
+1707702779 Chinok gossips, 'gratz on 3 Sugu'
+1707702807 Daedela gossips, 'oh hey Chinok!'
+1707703067 Xumecan gossips, 'boooooo'
+$

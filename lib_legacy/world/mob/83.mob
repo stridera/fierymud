@@ -1,0 +1,884 @@
+#8300
+guard guardian frakati muscular~
+a muscular guard~
+A muscular Frakati guard stands here, eyeing you down.~
+Standing here with his head held high, this man has great pride in his tribe.
+He is well equipped and is ready to fight on command.  He is not the violent
+type but is willing to do anything to save his fellow Frakati.    ~
+33560858 0 1000 E
+15 0 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 1 3 9 0 2
+BareHandAttack: 7
+Str: 88
+Dex: 88
+Int: 71
+Wis: 72
+Con: 30
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8301
+guard guardian frakati muscular chief frakatichief~
+the chief guard~
+The Chief Frakati guard stands here, quietly waiting.~
+This tall guard is the chief among the other guards, shown by his large sword
+and bulging muscles.  His eyes are focused on you as you glance over at him,
+and he is ready to strike at any time.    ~
+33560842 0 1000 E
+16 20 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 1 3 0 0 2
+Str: 88
+Dex: 79
+Int: 77
+Wis: 78
+Con: 30
+Cha: 51
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8302
+frakati-hunter trapper young man~
+a Frakati hunter~
+A young man stoops low here, looking as if he hasn't eaten in days.~
+You can barely make out this man's face behind all the camouflage.  He leans
+here against a tree, with a large spear in his hand.  He has been hunting for
+quite some time and has mastered this difficult art.    ~
+8 0 1000 E
+11 0 2 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 1 3 13 0 2
+Str: 96
+Dex: 90
+Int: 64
+Wis: 69
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8303
+figure frakati-scout man~
+a Frakati scout~
+A figure in the shade of the canopy attempts to hide behind a tree here!~
+   As he mistakenly makes eye contact with you he jumps behind a tree.  Afraid
+that you are one of the feared orcs that have been known to travel these woods.
+He is very young and has probably not travelled these woods often.    ~
+8 0 500 E
+11 0 0 0d0+0 3d0+0
+0 0 0 0 0 83
+3 3 1 6 13 0 2
+Str: 82
+Dex: 88
+Int: 80
+Wis: 78
+Con: 30
+Cha: 72
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8304
+frakati-warrior brave combatant man~
+a Frakati warrior~
+A large, rough-skinned combatant towers here, eyes focused on you.~
+He slowly scans the area, eager to test his newly learned skills.  A wide back
+and giant shoulders easily make this warrior a great wrestler.    ~
+8 0 1000 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 1 3 13 0 2
+Str: 97
+Dex: 76
+Int: 80
+Wis: 70
+Con: 30
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8305
+tired frakati-farmer worker man~
+a Frakati farmer~
+A tired Frakati farmer works the land here.~
+This small man has been working on this farm for quite some time.  He stands
+here with his hoe in his hand, getting the soil ready for a hopeful new year.~
+10 0 1000 E
+11 0 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 1 24 1 0 2
+Str: 91
+Dex: 86
+Int: 66
+Wis: 67
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8306
+dog small~
+a small dog~
+A small dog lays here behind a young oak tree~
+This small dog hides here in the shade, waiting for someone to play with.  The
+excited look on his face shows that he hasn't seen any outsiders for quite some
+time.    ~
+10 0 1000 E
+10 20 0 0d0+0 0d0+0
+0 0 0 0 0 83
+1 3 0 24 14 0 1
+Str: 83
+Dex: 80
+Int: 83
+Wis: 84
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 5
+E
+#8307
+frakati-chef fat~
+the Frakati chef~
+The fat Frakati chef stands here, dishing out plates of pork.~
+This short Frakati citizen has a huge smile on his face at all times.  He has
+been the Frakati chef for quite a long time, much to the delite of the warriors
+of the reservation.  Judging by his large gut, he eats as much food as he gives
+out.    ~
+10 0 1000 E
+14 20 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 1 3 13 0 2
+Str: 82
+Dex: 80
+Int: 73
+Wis: 68
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 8302
+T 18522
+#8308
+frakati-commoner common-frakati-woman~
+a Frakati commoner~
+A common Frakati woman scurries about here, completely ignoring you.~
+Her eyes hit yours as you stare down the short Frakati commoner.  She quickly
+looks away and attempts to complete the tasks that need to be finished before
+sunset.    ~
+8 0 1000 E
+11 0 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 2 24 13 0 2
+Str: 87
+Dex: 87
+Int: 64
+Wis: 76
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8309
+huge powerful frakati-guard warrior frakatiguard~
+a huge Frakati guard~
+A powerful Frakati warrior stands here, guarding the coffin.~
+Standing over seven feet tall, he is not only the tallest, but the most built
+Frakati you've seen in this Reservation.  He is equipped with a dark green axe,
+and thick bodyarmor.  He stands here defiantly watching over the corpse of
+Injoni Rif.    ~
+33573146 16777224 1000 E
+24 18 0 0d0+0 0d0+2
+0 0 0 0 0 83
+3 3 1 3 1 0 2
+BareHandAttack: 7
+Str: 84
+Dex: 80
+Int: 77
+Wis: 72
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 8303
+#8310
+old frakati-weaponsmith weapon-smith~
+the Frakati weaponsmith~
+The old Frakati weaponsmith stands here, behind his work table.~
+This large old man has scars all over his arms and hands.  He had spent quite a
+bit of his earlier years fighting off orcs and hunting dinner for the village.
+He stands here ready to assist any Frakati who needs their weapons adjusted.  ~
+6170 0 1000 E
+17 0 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 1 3 1 0 2
+Str: 90
+Dex: 88
+Int: 58
+Wis: 84
+Con: 30
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8311
+frakati-magus woman sorcerer~
+a Frakati magus~
+A lonesome woman floats here, casting rubbish into the air.~
+This sneaky sorcerer stands here trying to stay as concealed as possible.  The
+dark cloak which covers her body radiates magic as it glows a deep black color.~
+8 0 1000 E
+11 0 0 0d0+0 0d0+0
+0 0 0 0 0 83
+4 3 2 0 1 0 2
+Str: 82
+Dex: 68
+Int: 79
+Wis: 90
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8312
+frakati-commoner common-frakati-man~
+a Frakati commoner~
+A common Frakati man goes about his daily business.~
+A set of old cotton clothes identifies this man as an average hard-working
+frakati.  He walks peacefully through the area trying to keep up on his daily
+work.    ~
+8 0 1000 E
+11 20 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 1 24 13 0 2
+Str: 84
+Dex: 80
+Int: 76
+Wis: 78
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8313
+frakati-armorsmith armor-smith short woman~
+the Frakati armorsmith~
+The short Frakati armorsmith is hard at work here.~
+The small Frakati woman that runs this shop has mastered the art of armor
+creation.  She has been working on the steel and wooden breastplates for quite
+some time, and has saved quite a few Frakati's lives during her lifetime.    ~
+10 0 1000 E
+17 10 0 0d0+0 0d0+8
+0 0 0 0 0 83
+3 3 2 24 1 0 2
+Str: 88
+Dex: 80
+Int: 68
+Wis: 74
+Con: 78
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8314
+frakati-medicine-man strange~
+the Frakati medicine man~
+The strange medicine man is organizing his herbs here.~
+The dirty old man that works behind a small counter here looks and acts like
+he's lost his mind.  He runs back and forth from the herb cabinet unlocking and
+then relocking it everytime he needs something from inside.    ~
+10 0 1000 E
+17 20 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 1 1 17 0 2
+Str: 84
+Dex: 82
+Int: 74
+Wis: 77
+Con: 83
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8315
+rix sorcerer owner~
+Rix the sorcerer~
+Rix, the owner of this magic shop, floats here in the shadows.~
+You barely catch of glimpse of this dark man as the small candle in the corner
+of the room casts a weak ray of light on him.  He is hard at work here creating
+and casting all sorts of spells.    ~
+10 0 0 E
+17 20 0 0d0+0 0d0+0
+0 0 0 0 0 83
+4 3 1 0 1 0 2
+Str: 79
+Dex: 70
+Int: 76
+Wis: 88
+Con: 68
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8316
+old frakati-leader~
+the Frakati leader~
+The old Frakati leader stands here, lurched over his large table.~
+   This kin to the great Injoni Rif has certainly received many of his physical
+traits.  Being well over six feet tall, he towers over all the other guards and
+fellow villagers.  Serving his ancestors well, this old warrior has built and
+preserved as much of the reservation as he could.  With scars all over his
+body, he has certainly spent his time on the battlefield, but now rules his
+land from this secret hall.    ~
+33560602 0 1000 E
+25 18 0 0d0+0 0d0+2
+0 0 0 0 0 83
+3 3 1 3 1 0 2
+Str: 90
+Dex: 72
+Int: 79
+Wis: 69
+Con: 85
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 8301
+T 55697
+T 6054
+#8317
+musclar-frakati-warrior large~
+a muscular Frakati warrior~
+A large Frakati warrior stands here, watching your every move.~
+This rough looking Frakati has been trained by the best of soldiers to take
+care of and defend the village.  All the Frakati warriors have been trained, or
+have watched the Frakati Leader in action, and have all learned his skills and
+tactics of fighting.  Although unequipped, this warrior is sure to give any
+challanger a fight for his life.    ~
+33560858 0 1000 E
+20 18 2 0d0+0 0d0+2
+0 0 0 0 0 83
+3 3 1 3 1 0 2
+Str: 98
+Dex: 76
+Int: 69
+Wis: 83
+Con: 75
+Cha: 50
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55696
+#8318
+young-frakati-warrior strong man~
+a young Frakati warrior~
+A strong warrior stands here, watching the area thoroughly.~
+This young yet strong warrior stands a mere five feet tall, but surely can take
+care of any evil travellers who could have made their way into the villiage.  
+He is unequipped, but his stern look ensures that he is quite the deadly
+warrior.    ~
+34609420 0 1000 E
+19 18 0 0d0+0 0d0+2
+0 0 0 0 0 83
+3 3 1 3 1 0 2
+Str: 99
+Dex: 85
+Int: 69
+Wis: 74
+Con: 76
+Cha: 50
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8319
+tall frakati-warrior~
+a Frakati warrior~
+A tall Frakati warrior stands here, eyeing the area down.~
+This well-built frakati soldier has been scouting the area for quite some time.
+His eyes scour the area in search of any evil trespasser who made it past the
+guards surround the village.    ~
+33560856 0 1000 E
+17 19 0 0d0+0 0d0+1
+0 0 0 0 0 83
+3 3 1 24 17 0 2
+Str: 92
+Dex: 92
+Int: 70
+Wis: 70
+Con: 84
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8320
+frakati-woman young~
+a Frakati woman~
+A young Frakati woman stands here, quietly yawning.~
+Stretched out on her small bed, she lies here dreaming of venturing out of the
+reservation and into a world of open land filled with lakes and rivers
+everywhere.~
+138 0 1000 E
+13 0 0 0d0+0 0d0+0
+0 0 0 0 0 83
+0 3 2 24 1 0 2
+Str: 80
+Dex: 83
+Int: 66
+Wis: 78
+Con: 88
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 4
+E
+#8321
+tired frakati-warrior~
+a Frakati warrior~
+A tired Frakati warrior stands here, watching the area.~
+This young warrior has not yet been in a real battle, but has trained for it
+over and over again.  He stands here tall and wide, ready to help all those in
+the village from any evil outsider .~
+33560858 0 1000 E
+18 0 0 0d0+0 0d0+0
+0 0 0 0 0 83
+0 3 1 3 1 0 2
+Str: 98
+Dex: 99
+Int: 51
+Wis: 67
+Con: 82
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 32
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 4
+E
+#8322
+tired frakati-hunter~
+a Frakati hunter~
+A tired Frakati hunter stands here, slowly eyeing you down.~
+This skilled hunter is completely camouflaged from head to toe.  His face has
+been painted with an array of brown, greens, and blacks to disguise him with
+the surrounding forest.    ~
+6426 0 0 E
+17 1 0 0d0+0 0d0+1
+0 0 0 0 0 83
+0 3 1 24 1 0 2
+Str: 86
+Dex: 79
+Int: 66
+Wis: 83
+Con: 79
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 4
+E
+#8323
+old frakati-villager-man~
+an old Frakati villager~
+An old man stands here, painting a large plank.~
+This old man has incredibly white hair.  His tired look suggests that he has
+been hard at working keeping his old reservation as hidden as possible.  His
+own smell of age along with the strong paint he works with makes this area
+quite stinky.    ~
+6154 0 1000 E
+10 20 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 1 24 17 0 2
+Str: 86
+Dex: 86
+Int: 82
+Wis: 72
+Con: 89
+Cha: 36
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8324
+old frakati-villager-woman~
+an old Frakati villager~
+An old woman stands here, peacefully painting on the table.~
+This old woman has served her time as a laborer for the reservation which she
+spent her whole life in.  She peacefully works on the planks here, painting
+slowly, trying to relax and void out the world.    ~
+6154 0 1000 E
+10 20 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 2 24 17 0 2
+Str: 94
+Dex: 86
+Int: 68
+Wis: 70
+Con: 78
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8325
+old-frakati-woman~
+an old Frakati woman~
+An old woman sits here, knitting up a small outfit.~
+Thick wrinkles cover the old face of this tired woman.  She sits here calmly
+around the wooden table getting as much of the villages clothing needs done as
+her little hands allow her.    ~
+6154 0 1000 E
+10 20 0 0d0+0 0d0+0
+0 0 0 0 0 83
+1 3 2 24 17 0 2
+Str: 89
+Dex: 87
+Int: 58
+Wis: 78
+Con: 85
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8326
+old-frakati-man~
+an old Frakati man~
+An old man sits peacefully, resting his tired hands.~
+Deep brown eyes and a soft smile gives this old man a peaceful look.  He was
+once a brutal frakati warrior, but now spends his time with the other older
+frakati getting the villages outfits and supplies made.  He sits around the
+small trying to save up some energy to start his work again.    ~
+6154 0 1000 E
+10 20 0 0d0+0 0d0+0
+0 0 0 0 0 83
+1 3 1 24 17 0 2
+Str: 81
+Dex: 72
+Int: 78
+Wis: 75
+Con: 83
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8327
+josen-researcher young frakati man~
+Josen the researcher~
+A young man stands here, behind a thick stack of papers.~
+Two large eyes dart from paper to paper as this young researcher tries to find
+the right map.  Being one of the most overworked people in the reservation, he
+hides his stress under a set of large bifocals.  Along with the help of his
+partner, the Frakatis chances of venturing into neighboring land has been
+greatly increased thanks too their hard work.    ~
+6154 0 1000 E
+13 20 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 1 24 17 0 2
+Str: 96
+Dex: 76
+Int: 76
+Wis: 73
+Con: 78
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8328
+coren-researcher short frakati man~
+Coren the researcher~
+A short man stands here looking at a small map.~
+This short man has been looking through this jumble of papers for quite some
+time.  He himself has ventured outside the reservation only once, and has felt
+the danger of the neighboring land.  He knows how important it is for the
+frakati to find a nearby village, but also wants to keep the reservation as
+safe and hidden as possible .~
+6154 0 1000 E
+13 20 0 0d0+0 0d0+0
+0 0 0 0 0 83
+3 3 1 24 17 0 2
+Str: 93
+Dex: 78
+Int: 65
+Wis: 77
+Con: 78
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8329
+large-monkey hairy brown~
+a large monkey~
+A hairy monkey is here, searching for food.~
+This large monkey is quite old, and seems to know this land very well.  He is
+completely brown with a large white belly, which seems to be as full as it can
+get.  He peacefully stands here looking for a bite to eat.    ~
+8 0 1000 E
+10 1 6 0d0+0 0d0+1
+0 0 0 0 0 83
+3 3 0 3 14 0 1
+BareHandAttack: 7
+Str: 87
+Dex: 92
+Int: 71
+Wis: 56
+Con: 83
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8330
+beautiful-parrot red blue small~
+a beautiful parrot~
+A small parrot rests here on the branches of a birch tree.~
+This amazing animal's feathers are full of reds and blues which make it stand
+out in this thick forest.  His eyes remain quite alert, ready to take off at
+any unexpected movement around him.    ~
+8 1048576 1000 E
+9 0 0 0d0+0 0d0+0
+0 0 0 0 0 83
+4 4 0 24 14 0 1
+BareHandAttack: 8
+Str: 78
+Dex: 81
+Int: 76
+Wis: 71
+Con: 77
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8331
+green-snake camouflaged~
+a green snake~
+A camouflaged snake hides here, trying to find dinner.~
+This young tree snake has slowly evolved over the years into a sneaky green and
+brown ground and tree dweller.  It lays here, gaining warmth from the sun's
+rays which have made there way through the canopy here.    ~
+8 262144 0 E
+8 1 0 0d0+0 0d0+1
+0 0 0 0 0 83
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 82
+Dex: 83
+Int: 66
+Wis: 77
+Con: 76
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#8332
+large-guard enormous~
+a large guard~
+An enormous guard stands here, blocking the entrance to the north.~
+This extremely large guard stands here in an alert stance, blocking the
+sleeping quarters to the north.  He is unquipped but his very large hands and
+arms, and his huge frame make him out to be a most deadly opponent.    ~
+33556762 0 1000 E
+28 2 0 0d0+0 0d0+2
+0 0 0 0 0 83
+3 3 1 3 1 0 2
+BareHandAttack: 6
+Str: 82
+Dex: 85
+Int: 69
+Wis: 88
+Con: 68
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55696
+$

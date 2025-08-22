@@ -1,0 +1,91 @@
+name: Sakin
+password: Saa.0VwohM
+prompt: %-[%n]%_[%w]%_%-%-[Bank]%_[%W]%_[%h/%Hhp][%v/%Vmv][%a]%_[Tank][%t][Opponent][%o]%_%E%_
+autoinvis: 0
+sex: 2
+class: 1
+race: 1
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20868
+birthtime: 1731899666
+timeplayed: 58182
+lastlogintime: 1732839315
+host: 071.051.173.206
+height: 59
+weight: 91
+base_height: 59
+base_weight: 91
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 6/51
+mana: 1/0
+move: 127/140
+damroll: 3
+hitroll: 3
+strength: 66
+intelligence: 86
+wisdom: 88
+dexterity: 70
+constitution: 90
+charisma: 66
+experience: 101414
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+32 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 120
+438 50
+443 50
+444 50
+451 52
+452 50
+457 120
+458 51
+459 50
+460 50
+462 50
+463 61
+465 50
+466 50
+0 0
+tells:
+1732651410 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1732651425 @WBigby@W tells you, 'No cash, no delivery.@W'@0
+1732744897 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1732748226 Aruku gossips, 'he wants 16 plat to train track. do you know how much training that gives me? like how mych the skill bar will go up?'
+1732748332 Derrgon gossips, 'grats!!!'
+1732749122 Kasin gossips, 'can u still thrown away wepon in fight?'
+1732749135 Kasin gossips, 'i remember hving to curse itesm for that reason'
+1732749146 Kasin gossips, 'having to curse items'
+1732749350 Discord gossips, 'glorious_gull_07269: That went away'
+1732749355 Discord gossips, 'glorious_gull_07269: No need to curse items'
+1732751014 Discord gossips, 'Daedela: Paying the trainer brings your skill to the max for your current level'
+1732751055 Discord gossips, 'Daedela: Don't wait too long to do it though, because the cost goes up exponentially the greater the difference between your current level and your current skill'
+1732751069 Derrgon gossips, 'thats helpful daedela, ty! bbl'
+1732753016 Thort gossips, 'Sakin/Kasin you better be at or beyond lvl 10 when I get back'
+$

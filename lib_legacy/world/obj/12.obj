@@ -1,0 +1,715 @@
+#1201
+sign questing~
+a questing sign~
+A sign that says, '&2&bQuesting Hints - Read Me!&0' hangs on the wall.~
+The sign has a message:
+
+  Be sure to advise the player about the &3QUEST&0 toggle if your
+  quest involves killing creatures and collecting them on the trophy!~
+16 0 0 0
+0 0 0 0 0 0 0
+1.10 0 0 0 0 0 0 0
+#1202
+pool fire~
+&1a small pool of fire&0~
+&1A small pool of fire burst forth from the ground here.&0~
+~
+23 3 0 0
+999 999 7 0 0 0 0
+99999.00 0 0 0 0 0 0 0
+#1205
+belt godly godlyness &1NEVER_LET_A_MORTAL_KEEP&0~
+Belt of GODLYNESS!~
+A divine leather belt floats above the ground.~
+~
+9 1610612807 2049 1
+100 0 0 0 0 0 0
+0.00 0 0 4194432 0 0 67108864 0
+E
+godlyness~
+   This is the belt of deity's and is only ment for mortals to do testing for
+the gods it SHOULD NEVER BE LEFT WITH A MORTAL ANY LONGER THEN NEEDED!  It will
+make it easyer for mortals to gather weapon damage testing.~
+#1207
+hole portable-hole large-black-hole~
+a portable hole~
+A large black hole lies here folded upon itself.~
+~
+15 536870912 1048577 0
+100000 1 0 0 90 0 0
+15.00 0 0 0 0 0 0 0
+#1211
+vambraces gruz fancy-vambraces~
+the vambraces of Gruz~
+Some fancy vambraces lie here unclaimed.~
+~
+9 0 257 90
+10 0 0 0 0 0 0
+1.20 0 0 16777344 0 0 0 0
+A
+18 1
+A
+19 1
+#1212
+pickle~
+a tasty dill pickle~
+A nice green briney dill bekons you to take it.~
+~
+5 536870912 8193 100
+0 3 2 12 0 0 0
+0.00 0 0 0 0 0 0 0
+#1214
+shirt~
+&4&b'AC/DC' &2T-Shirt&0~
+Some dirty shirt was left here.~
+~
+9 0 9 100
+0 0 0 0 0 0 0
+0.20 0 0 0 0 0 0 0
+#1215
+tv set~
+&b&9A &0&2Junky &b&9TV Set&0~
+&b&9A &0&2junky &b&9TV-Set of old model sits right in front of couch.&0~
+As you peer into the TV Set you see some crapy video in there.~
+12 0 0 100
+0 0 0 0 0 0 0
+18.00 0 0 0 0 0 0 0
+#1216
+couch~
+&2A Torn Green Couch&0~
+&b&9A torn &2green &9couch sits in the middle of the room.&0~
+~
+0 0 0 100
+0 0 0 0 0 0 0
+24.00 0 0 0 0 0 0 0
+#1218
+candy chocolate food~
+a piece of chocolate candy~
+A pice of candy lies here.~
+~
+19 0 1 0
+0 0 0 0 0 0 0
+0.05 0 0 0 0 0 0 0
+#1219
+candy hard food~
+a piece of sweet hard candy~
+A piece of sweet hard candy lies here.~
+~
+19 0 1 0
+0 0 0 0 0 0 0
+0.05 0 0 0 0 0 0 0
+#1220
+pumpkin bag container~
+a &1&bpumpkin&0 &6&bca&3n&5dy&0 container~
+A small orange pumpkin lies here.~
+~
+15 0 16401 0
+1500 0 0 0 0 0 0
+1.05 0 0 0 0 0 0 0
+#1223
+paintbrush brush artist's~
+the artist's paintbrush~
+A paintbrush rests near the wall.~
+This seems to be the artist of the mural's paintbrush.  The bristles have long
+since dried and hardened, but a faint remnant of color is stil visible.  There
+appear to be words written on the brush's thick wooden handle.~
+12 65600 16385 100
+0 0 0 0 0 0 0
+0.25 0 0 67108864 0 0 0 0
+E
+undefined~
+Nothing.~
+A
+6 10
+#1224
+token scavenger~
+an anduin checkpoint token~
+A token that says "proof of anduin checkpoint" lies here.~
+~
+8 0 1 0
+0 0 0 0 0 0 0
+0.03 0 0 0 0 0 0 0
+#1225
+thing shiny~
+a shiny thing~
+A shiny thing sticks out from a shiny necklace. ~
+~
+3 603979795 16389 1
+99 15 15 208 0 0 0
+0.10 0 0 67108864 0 0 0 0
+A
+17 6
+A
+19 2
+#1226
+shirt campaign election~
+a &4&bBush/Cheney &1Four &7More &1Years&7 shirt&0~
+A medium colorful shirt lies here.~
+~
+9 268435456 9 0
+0 0 0 0 0 0 0
+1.20 0 0 0 0 0 0 0
+E
+shirt campaign election~
+A brighy colorful shirt with the words
+&4&bBush/Cheney &1For &7Four &1More&7 Years!&0~
+A
+3 -10
+A
+4 -10
+A
+6 -10
+A
+1 -10
+A
+5 -10
+A
+2 -10
+#1227
+shirt campaign election~
+a &4&bNo More Bush! &1Kerry &7and &1Edwards &7shirt&0~
+A colorful shirt lies here.~
+~
+9 268435456 128 2
+0 0 0 0 0 0 0
+1.20 111 22 0 0 0 0 0
+E
+shirt campaign election~
+a colorful shirt with the words
+&4&bNo More Bush! &1Kerry &7and &1Edwards &7shirt&0
+written on it~
+A
+2 -10
+A
+3 -10
+A
+4 -10
+A
+5 -10
+A
+6 -10
+#1229
+rainbow triangle pin badge~
+a rainbow triangle pin~
+A very special pin reflects the colors of the rainbow proudly bearing the words 'Celebrate Diversity'~
+Nothing.~
+9 603979776 524289 50
+8 0 0 0 0 0 0
+0.09 0 0 184 0 0 0 0
+E
+rainbow triangle pin badge~
+This small metal pin is a symbol of pride and strength.  The triangle points
+down, with the words 'Celebrate Diversity' written across it.  Glazed over the
+simple backing are six bands of color, starting with red at the top, then
+orange, yellow, green, blue and ending with a violet band.    ~
+A
+18 2
+A
+19 2
+A
+1 3
+A
+4 3
+#1233
+staff obsidian obsidian-staff~
+an obsidian staff lined with veins of red~
+An obsidiannn staff lined with veins of red lies here.~
+~
+4 67174464 16385 100
+100 20 20 167 0 0 0
+3.40 0 0 0 0 0 0 0
+E
+staff obsidian~
+Made of perfectly smooth, shiny obsidian, this six-foot staff is lined with
+veins of red that glow with inner light and warmth and is searing to the touch.~
+#1239
+dagger vengeance~
+&9&bA wicked black dagger named &0&1'&0&1&bVengeance&0&1'&0~
+&9&bA wicked looking dagger with 'Vengeance' carved into the blade, lies here.&0~
+~
+5 64 8193 100
+4 4 6 11 0 0 0
+1.10 0 0 0 0 0 0 0
+#1240
+longsword sword noisy talking~
+a &5TALKING&0 steel longsword~
+A steel-bladed longsword lies here screaming about the injustice.~
+~
+5 56651779 8193 1
+1 8 4 3 0 0 0
+3.00 0 0 0 0 0 0 0
+T 1240
+X
+1008
+#1241
+cloak moonlight~
+a cloak of moonlight~
+A beam of moonlight hits the ground here.~
+Nothing.~
+9 603981377 1025 102
+40 0 0 0 0 0 0
+1.45 0 0 17825796 0 0 0 0
+E
+cloak moonlight~
+This is Iolar's magical cloak that was a gift from the goddess of the hunt.  
+It's powers are only known to Iolar and the goddess herself.    ~
+A
+25 2
+#1244
+morning dew drops~
+morning dew drops~
+&4&bThe morning dew drops hang from the leaves. &0~
+Nothing.~
+23 0 33 1
+9999 9999 15 0 0 0 0
+3.00 0 0 0 0 0 0 0
+E
+pants fur wolf~
+These pants are made of grey wolf fur.  The are sized to fit a giant, and they
+must have come from a huge wolf.~
+#1245
+card red valentine's valentines day v-day-card~
+a Valentine's Day card~
+A red card is sitting here.~
+~
+12 0 1 1
+0 0 0 0 0 0 0
+0.04 0 0 0 0 0 0 0
+E
+card red valentine's valentines day v-day-card~
+A sweet card of red and pink with a little painted heart on it looks very nice
+as it sits here, waiting to be opened.  The inside has the text "Happy
+Valentine's Day from all of us at Fiery!  Love, the Imms" and below it is a
+short poem.    ~
+E
+poem riddle~
+A special Valentine's game for you
+To see if your heart is pure and true
+Two items you'll need to finish the game
+Two different ones, mind, not two of the same
+The first is a pink rose of friendship and love
+The next is a box with sweet treats from above
+The rose can be found on ones who love true
+A young Queen whose domain is really quite new
+A man who loves one of royalty's blood
+And a mother of pink on all fours with her brood
+And do not forget the one who loves roses
+And all other plants be they ravens or posies
+The poem continues on part2.~
+E
+part2~
+For the box you will have to go farther afield
+For one is on someone who holds a pink shield
+The next two wear rings of eternal devotion
+Though one is a Bride's and the other one broken
+The last box is on a bird full of desire
+His heart is too hot to touch; it's all fire
+Once you have both you will know what to do
+This riddle can only be finished with two
+From what's in the box you should bring them to me
+And perhaps a return of the prisoner you'll see~
+#1246
+box heart-shaped heart crimson beautiful valentine-quest-item~
+a heart-shaped box~
+A crimson heart-shaped box rests here, concealing certain treats within.~
+~
+15 0 16385 1
+60 15 1247 0 0 0 0
+0.20 2 0 0 0 0 0 0
+E
+box heart-shaped heart crimson beautiful valentine-quest-item~
+A beautiful crimson velvet, the exterior of the box is finely decorated with
+silver inlay around the edges.  The box itself has a heart shape, with a cover
+that looks as if it could be flipped up.  A small hole on the box's top at the
+point of the heart looks as though it might hold the secret to removing the
+cover.  A large silver rune rests prominently in the center of cover.    ~
+E
+rune~
+The silver rune is printed on the velvet in an unfamiliar script, but in very
+small letters below it the word "Love" is written in common.    ~
+#1247
+pink rose beautiful pristine~
+a pink rose~
+A pristine, beautiful pink rose sits here.~
+~
+21 0 16385 1
+0 0 0 0 0 0 0
+0.25 0 0 0 0 0 0 0
+E
+pink rose beautiful pristine~
+   A beautiful pink rose which has barely begun to bloom is here, giving the
+room a sweet scent.  It has thorns, but they are spaced far enough apart that
+it would not be uncomfortable to hold.  The bottom is sharpened and could
+probably be dipped in ink.    ~
+#1248
+strawberry chocolate chocolate-covered covered delicious delicious-looking candy food~
+a chocolate-covered strawberry~
+A delicious-looking piece of candy is sitting here.~
+~
+19 0 1 1
+6 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+strawberry chocolate chocolate-covered covered delicious candy~
+A plump, fresh, red strawberry has been dipped into chocolate, looking
+absolutely tantalizing.  It smells slightly fruity and very sweet, inducing the
+salivary glands to work their hardest.    ~
+#1249
+chocolate small valentine's valentines truffle food~
+a Valentine's truffle~
+A small piece of chocolate is sitting here.~
+~
+19 0 1 1
+6 0 0 0 0 0 0
+0.15 0 0 0 0 0 0 0
+E
+chocolate small valentine's valentines truffle food~
+A hard chocolate shell over a creamy chocolate center, this piece of candy was
+surely crafted by the gods.  How else could it be so divine?    ~
+#1250
+atlas ages book~
+the Atlas of the Ages~
+An enormous leather bound book lies here.~
+~
+15 604045376 16385 100
+60 1 -1 0 0 0 0
+2.75 2000 0 0 0 0 0 0
+E
+atlas book ages~
+The book is enormous, but it's soft leather binding has protected it well
+throughout the years.  As old as the realms themselves this book has been
+passed down to one who would best further it's cause.  Adventurers from all
+over have contributed to the Atlas of the Ages for generations upon
+generations, lending their knowledge of the world to fill its pages.    ~
+#1260
+pious ascetic blade might holy light floating~
+Ascetic Blade of Pious Might~
+A Holy blade gleams in the light, floating above ground level.~
+~
+5 1073810625 8193 90
+2 10 6 3 0 0 0
+4.00 40500 0 16777216 0 0 0 0
+E
+pious ascetic blade might holy light floating~
+This blade gleams with a holy light unbeknown to most mortals.  The power of
+this weapon is unsurpassed by any artifacts crafted by mortal hands and in fact
+is fortified by the might of the Holy Deities.  Fear is struck into the wicked
+and unworthy of the realm; hearts and impure souls tremble at the sight of this
+weapon of the Holy Gods.    ~
+A
+19 4
+A
+26 10
+A
+1 4
+#1261
+bikini chainmail mail PAZKRAEL glittering~
+a glittering chainmail bikini~
+A chainmail bikini is carefully set here.~
+~
+9 0 9 101
+100 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+A
+6 20
+#1266
+leather shadow eyepatch eye patch~
+the Shadow Eyepatch~
+An eyepatch made of leather has been left on the ground.~
+Made for the right eye, this eyepatch is woven from strands of
+a lightly colored leather.  The back feels comfortable against
+a closed eyelid, and the front is inscribed with a strange symbol.~
+8 0 65537 1
+0 0 0 0 0 0 0
+0.25 0 0 134479932 0 0 0 0
+E
+shadow eye eyepatch patch~
+An eyepatch made of fine leather, it fits over the right eye.  It
+is very comfortable and soft, probably soothing to one who
+has lost an eye violently.  A strange symbol appears on the front.~
+E
+symbol~
+An eye with three eyebrows and a tear is dyed on with blue and
+purple dye.~
+#1267
+muffin love~
+&b&4Ocul's &0&b&5Love Muffin&0~
+&b&4Ocul's love muffin swarms about, better pick it up!&0~
+~
+5 268435460 8193 0
+50 50 20 5 0 0 0
+0.25 0 0 0 0 0 0 0
+A
+1 30
+A
+2 30
+A
+18 20
+A
+19 20
+#1268
+teardrop purple-teardrop holy-symbol-purple-metal~
+a purple teardrop~
+A holy symbol of purple metal lies here, abandoned.~
+~
+9 1 524289 75
+10 0 0 0 0 0 0
+0.02 1000000 0 128 0 0 0 0
+T 18888
+E
+teardrop purple-teardrop holy-symbol-purple-metal~
+This pin is formed of a strange purple metal, shaped into a flat teardrop
+emblazoned with an equilateral triangle, one point facing downwards, surrounded
+on each side by spheres.  It glows with a holy power, proclaiming itself as a
+gift of the Goddess Kourrya to her most favored servants.  It would make an
+excellent identifying marker on a cloak.~
+A
+18 2
+A
+6 2
+A
+19 3
+#1269
+brooch silver-brooch silver-flame~
+a silver brooch~
+A small silver flame glows here.~
+Nothing.~
+9 1 524289 75
+10 0 0 0 0 0 0
+0.45 1000000 0 128 0 0 0 0
+T 18888
+E
+brooch silver-brooch silver-flame~
+A shiny silver brooch, shaped in that of a small flame.  It has a sharp pin
+that lets it fasten nicely to a jacket lapel or collar.~
+A
+18 2
+A
+6 2
+A
+19 3
+#1270
+dagger silver flame silver-flame~
+a silver flame dagger~
+A glimmering flame of silver hovers above the ground here.~
+&h~
+5 1073741888 8193 85
+4 4 4 3 0 0 0
+1.50 0 0 51388448 0 0 0 0
+A
+19 2
+#1271
+newbie shield newbie-shield new player dull~
+an unsuspecting newbie~
+A shiny new player stand here, with a dull voided look.~
+~
+9 0 513 100
+0 0 0 0 0 0 0
+75.00 0 0 0 0 0 0 0
+E
+newbie, shield, newbie-shield, new, player, dull~
+A young looking chap with sandy hair and cheap, worthless armours.  A true
+greenhorn you'd gather, and not very socialable as he just stands there in a
+rigid posture with a dull, voided expression about his face.~
+A
+9 100
+#1272
+&0&4a Small Fountain&0~
+a small fountain~
+&0A &0&4small fountain&0 spouts out of the &0&9&bwall&0 here.~
+~
+23 0 0 100
+100 50 14 0 0 0 0
+999.00 0 0 0 0 0 0 0
+#1273
+bread stale food~
+a small roll of old bread~
+&0Some &0&3stale bread&0 is lying here.~
+~
+19 0 1 100
+1 0 0 0 0 0 0
+0.60 0 0 0 0 0 0 0
+#1274
+cheese slice molding moldy food~
+a slice of molding cheese~
+Some moldy cheese lies here.~
+~
+19 0 1 100
+1 0 0 0 0 0 0
+0.30 0 0 0 0 0 0 0
+#1275
+pillow giant-red-blood-cell-pillow round-fluffy-large-red-pillow laoris-pillow~
+a giant red blood cell pillow~
+Round and fluffy, a large red pillow rests here invitingly.~
+~
+5 603979856 557057 75
+0 5 1 10 0 0 0
+2.50 0 0 128 0 0 0 0
+T 1275
+E
+giant-red-blood-cell-pillow round-fluffy-large-red-pillow laoris-pillow~
+This large flattened pillow has a velvety crimson fuzz surface, making it very
+cute and huggable.  There is a large dimple in the center of each side of the
+round pillow.  On one side, a cute pair of white wooden eyes is sewn into the
+pillow just above the dimple, giving the pillow an adorable smiling face.  It
+just beckons you to hug its soft cute plush!    ~
+A
+14 50
+A
+30 6
+#1277
+canteen~
+a canteen~
+A canteen lies here.~
+~
+23 0 1 100
+1000 1000 0 0 0 0 0
+999.00 10000 0 0 0 0 0 0
+#1278
+8ball eightball~
+a magic 8ball~
+Someone left a magic 8ball on the ground.  It's silently predicting your future.~
+~
+12 3 16385 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+T 1270
+#1279
+dark robe Mayhem~
+the dark robe of Mayhem~
+A dark robe has been left here.~
+Nothing.~
+9 3 9 100
+0 0 0 0 0 0 0
+2.20 0 0 0 0 0 0 0
+E
+dark robe Mayhem~
+The dark robe you now study seems to mirror your curiosity.  Portions of the
+fabric sway, even when there seems an absence of any wind.  Metallic blue runes
+ward the cuffs and hood of this magical garment.  The most dominant is a symbol
+on the very top of its hood:
+                                  [M]~
+#1280
+A large round table with maps and papers all over it~
+a large round table with maps and papers all over it~
+A large round table with maps and papers all over it is here.~
+~
+15 536870913 1 101
+999999 15 51 0 0 0 0
+99999.00 0 0 0 0 0 0 0
+#1281
+bolt lightning~
+a lightning bolt~
+A huge lightning bolt is coming at you!~
+~
+5 603979987 8193 100
+100 100 20 12 0 0 0
+1.23 2147483647 0 0 0 0 0 0
+A
+14 1000
+#1283
+robe dark hooded~
+a dark hooded robe~
+A dark hooded robe lies here in a heap. ~
+~
+9 0 9 1
+10 0 0 0 0 0 0
+1.40 0 0 0 0 0 0 0
+A
+1 1
+A
+2 -2
+#1286
+iou arlian~
+an Arlian IOU~
+An Arlian IOU lies on the ground here.~
+~
+8 0 1 0
+0 0 0 0 0 0 0
+0.03 0 0 0 0 0 0 0
+#1289
+cloak hooded sith~
+&9&bthe h&1&boode&0&1d cloak o&1&bf the&9&b Sith&0~
+&9&bOne of the Sith Lord's cloaks lies on the ground here.&0~
+~
+15 0 1025 102
+999999 0 -1 0 0 0 0
+2.10 0 0 0 0 0 0 0
+A
+14 1000
+#1291
+green yellow squash food~
+a green and yellow squash~
+A green and yellow squash lies here on the ground.~
+~
+19 0 16385 0
+10 0 0 0 0 0 0
+1.25 0 0 0 0 0 0 0
+#1292
+indian scrumptious corn ear food~
+a scrumptious ear of indian corn~
+A long scrumptious ear of indian corn is here lying on the ground.~
+~
+19 0 16385 0
+5 0 0 0 0 0 0
+1.25 0 0 0 0 0 0 0
+#1293
+orange yellow squash food~
+an orange and yellow squash~
+An orange and yellow squash lies on the ground here.~
+~
+19 0 16385 0
+9 0 0 0 0 0 0
+1.25 0 0 0 0 0 0 0
+#1294
+orange green squash food~
+an orange and green squash~
+An orange and green squash lies on the ground here.~
+~
+19 0 16385 0
+0 0 0 0 0 0 0
+1.25 0 0 0 0 0 0 0
+#1295
+ring snow ice~
+a &7&bring&0 of &6&bice&0~
+A translucent &7&bring&0 of &6&bice&0 with runes floats just above the ground.~
+~
+8 1715157523 3 100
+0 0 0 0 0 0 0
+0.10 0 0 50339840 0 0 0 0
+E
+runes~
+the name &6&bSnobol&0 is carefully etched in the &6&bice&0~
+A
+1 -1
+A
+17 10
+A
+18 1
+A
+19 1
+A
+24 -10
+X
+992
+#1296
+token scavenger~
+an ickle checkpoint token~
+A token that says "proof of ickle checkpoint" lies here.~
+~
+8 0 1 0
+0 0 0 0 0 0 0
+0.05 0 0 0 0 0 0 0
+#1298
+leak stream fountain~
+Tanle's stream~
+&4&bA leak in from above provides fresh water to drink. &0~
+~
+23 536870977 0 100
+1222 1000 0 0 0 0 0
+9999.00 0 0 0 0 0 0 0
+E
+leak stream fountain~
+   A small leak from above streams in, flowing to the floor below, ending in a
+small fountain before draining out.  The water looks fresh and revitalizing.  ~
+$~

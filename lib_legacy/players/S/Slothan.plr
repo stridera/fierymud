@@ -1,0 +1,71 @@
+name: Slothan
+password: SlkKj.wEVm
+prompt: ,
+autoinvis: 0
+sex: 2
+class: 3
+race: 32
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20602
+birthtime: 1693145769
+timeplayed: 912
+lastlogintime: 1693146693
+host: 174.091.153.136
+height: 10
+weight: 6
+base_height: 10
+base_weight: 6
+base_size: 0
+natural_size: 0
+alignment: 998
+playerflags: xy
+effectflags: u 0 0
+prefflags: ghxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 20
+thirst: 14
+lastlevel: 0
+hitpoints: 36/36
+mana: 0/0
+move: 96/106
+damroll: 0
+hitroll: 6
+strength: 99
+intelligence: 65
+wisdom: 69
+dexterity: 79
+constitution: 87
+charisma: 64
+experience: 6050
+quit_reason: 5
+saveroom: 8025
+skills:
+402 52
+404 53
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+1693146541 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1693146583 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+$

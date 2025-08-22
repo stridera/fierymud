@@ -1,167 +1,158 @@
 /***************************************************************************
- *   File: main.cpp                                       Part of FieryMUD *
- *  Usage: Main entry point for FieryMUD                                   *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.        *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
- *  of the Johns Hopkins University                                        *
- *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ *   File: src/main.cpp                             Part of FieryMUD *
+ *  Usage: Modern FieryMUD server main entry point                        *
  ***************************************************************************/
 
-#include "comm.hpp"
-#include "conf.hpp"
-#include "constants.hpp"
-#include "db.hpp"
-#include "defines.hpp"
-#include "logging.hpp"
-#include "version.hpp"
+#include "modern/server/modern_mud_server.hpp"
+#include "modern/core/logging.hpp"
 
 #include <cxxopts.hpp>
-#include <fmt/format.h>
-#include <cstdlib>
-#include <cstring>
-#include <unistd.h>
+#include <iostream>
+#include <memory>
+#include <csignal>
+#include <chrono>
+#include <thread>
+#include <atomic>
+#include <filesystem>
 
-// External variables from comm.cpp
-extern ush_int port;
-extern int scheck;
-extern int should_restrict;
-extern int restrict_reason;
-extern int no_specials;
-extern int environment;
+// Global server instance for signal handling
+std::unique_ptr<ModernMUDServer> g_server;
 
-// Default values from conf.hpp
-extern const char *DFLT_DIR;
-extern const char *DFLT_ENV;
-extern int DFLT_PORT;
+void signal_handler(int signal) {
+    switch (signal) {
+        case SIGINT:
+        case SIGTERM:
+            std::cout << "\nReceived shutdown signal, stopping server...\n";
+            if (g_server) {
+                g_server->stop();
+            }
+            break;
+        case SIGHUP:
+            std::cout << "Received SIGHUP, reloading configuration...\n";
+            if (g_server) {
+                auto result = g_server->reload_config();
+                if (!result) {
+                    std::cerr << "Failed to reload config: " << result.error().message << "\n";
+                }
+            }
+            break;
+        default:
+            break;
+    }
+}
 
-// Function declarations from other modules
-void init_flagvectors();
-void init_races();
-void init_classes();
-void init_objtypes();
-void init_exp_table();
-void boot_world();
-void init_game(int port);
-void destroy_db();
-
-int main(int argc, char **argv) {
+int main(int argc, char* argv[]) {
     try {
-        cxxopts::Options options("fierymud", "FieryMUD - A Multi-User Dungeon Server");
+        std::cout << "Starting Modern FieryMUD Server...\n";
+        
+        // Parse command line options
+        cxxopts::Options options("fierymud", "Modern FieryMUD Server v3.0");
         
         options.add_options()
-            ("d,directory", "Data directory", cxxopts::value<std::string>()->default_value(DFLT_DIR))
-            ("e,environment", "Environment (test, dev, prod)", cxxopts::value<std::string>()->default_value(DFLT_ENV))
-            ("p,port", "Port number", cxxopts::value<int>()->default_value(std::to_string(DFLT_PORT)))
-            ("c,check", "Syntax check mode")
-            ("q,quick", "Quick boot mode")
-            ("r,restrict", "Restrict game - no new players")
-            ("s,suppress", "Suppress special routines")
             ("h,help", "Show help message")
-            ("v,version", "Show version information");
-        
-        // Parse positional argument for port
-        options.parse_positional({"port"});
-        options.positional_help("[port]");
-        
+            ("c,config", "Configuration file path", cxxopts::value<std::string>()->default_value("config/prod.json"))
+            ("p,port", "Port number to listen on", cxxopts::value<std::string>()->default_value("4001"))
+            ("d,daemon", "Run as daemon")
+            ("t,test", "Test configuration and exit")
+            ("v,version", "Show version information")
+        ;
+
         auto result = options.parse(argc, argv);
-        
+
+        // Handle help option
         if (result.count("help")) {
-            fmt::print("{}\n", options.help());
+            std::cout << options.help() << std::endl;
+            std::cout << "\nExamples:\n";
+            std::cout << "  fierymud                         # Run with default config\n";
+            std::cout << "  fierymud -c my_config.json       # Use custom config\n";
+            std::cout << "  fierymud -p 4000                 # Override port\n";
             return 0;
         }
-        
+
+        // Handle version option
         if (result.count("version")) {
-            fmt::print("FieryMUD Git Hash: {}\n", get_git_hash());
+            std::cout << "Modern FieryMUD Server v3.0\n";
+            std::cout << "Built with C++23 and modern libraries\n";
+            std::cout << "Copyright (C) 1998-2025 Fiery Consortium\n";
+            return 0;
+        }
+
+        // Extract configuration
+        ServerConfig config;
+        config.port = std::stoi(result["port"].as<std::string>());
+        
+        std::string config_file = result["config"].as<std::string>();
+        
+        // Load configuration file if it exists
+        if (std::filesystem::exists(config_file)) {
+            auto load_result = ServerConfig::load_from_file(config_file);
+            if (!load_result) {
+                std::cerr << "Failed to load configuration: " << load_result.error().message << "\n";
+                return 1;
+            }
+            config = load_result.value();
+            
+            // Override port if specified on command line
+            if (result.count("port")) {
+                config.port = std::stoi(result["port"].as<std::string>());
+            }
+        } else {
+            std::cout << "Configuration file not found: " << config_file << "\n";
+            std::cout << "Using default configuration with port " << config.port << "\n";
+        }
+        
+        // Test mode
+        if (result.count("test")) {
+            std::cout << "Testing configuration...\n";
+            auto validate_result = config.validate();
+            if (!validate_result) {
+                std::cerr << "Configuration validation failed: " << validate_result.error().message << "\n";
+                return 1;
+            }
+            std::cout << "Configuration is valid.\n";
             return 0;
         }
         
-        // Extract values
-        std::string dir = result["directory"].as<std::string>();
-        std::string env = result["environment"].as<std::string>();
-        port = result["port"].as<int>();
+        // Setup signal handlers
+        std::signal(SIGINT, signal_handler);
+        std::signal(SIGTERM, signal_handler);
+        std::signal(SIGHUP, signal_handler);
+        std::signal(SIGPIPE, SIG_IGN); // Ignore SIGPIPE (broken connections)
         
+        // Create and initialize server
+        g_server = std::make_unique<ModernMUDServer>(config);
         
-        // Handle flags
-        scheck = result.count("check") ? 1 : 0;
-        should_restrict = result.count("restrict") ? 1 : 0;
-        no_specials = result.count("suppress") ? 1 : 0;
-        
-        if (should_restrict) {
-            restrict_reason = 1; // RESTRICT_ARGUMENT
-        }
-        
-        // Validate port
-        if (port <= 1024) {
-            fprintf(stderr, "Error: Port number must be greater than 1024.\n");
+        auto init_result = g_server->initialize();
+        if (!init_result) {
+            std::cerr << "Server initialization failed: " << init_result.error().message << "\n";
             return 1;
         }
         
-        // Change to data directory
-        if (chdir(dir.c_str()) < 0) {
-            perror("Fatal error changing to data directory");
-            return 1;
-        }
-        log("Using {} as data directory.", dir);
-        
-        // Set environment
-        if (env == "test") {
-            environment = ENV_TEST;
-            log("Running in test mode.");
-        } else if (env == "dev") {
-            environment = ENV_DEV;
-            log("Running in dev mode.");
-        } else if (env == "prod") {
-            environment = ENV_PROD;
-            log("Running in production mode.");
-        } else {
-            log("Unknown environment '{}'; valid choices are 'test', 'dev', and 'prod'.", env);
+        // Start the server
+        auto start_result = g_server->start();
+        if (!start_result) {
+            std::cerr << "Server start failed: " << start_result.error().message << "\n";
             return 1;
         }
         
-        // Log mode information
-        if (scheck) {
-            log("Syntax check mode enabled.");
-        }
-        if (result.count("quick")) {
-            log("Quick boot mode.");
-        }
-        if (should_restrict) {
-            log("Restricting game -- no new players allowed.");
-        }
-        if (no_specials) {
-            log("Suppressing assignment of special routines.");
+        std::cout << "Server running on port " << config.port << ". Press Ctrl+C to stop.\n";
+        
+        // Main server loop - wait for shutdown
+        while (g_server->is_running()) {
+            std::this_thread::sleep_for(std::chrono::seconds(1));
         }
         
-        // Initialize game constants
-        log("Initializing runtime game constants.");
-        init_flagvectors();
-        init_races();
-        init_classes();
-        init_objtypes();
-        init_exp_table();
-        
-        // Start the game or check syntax
-        if (scheck) {
-            boot_world();
-        } else {
-            log("Running game on port {}.", port);
-            init_game(port);
-        }
-        
-        // Cleanup
-        log("Clearing game world.");
-        destroy_db();
-        
+        std::cout << "Server shutdown completed.\n";
         return 0;
         
-    } catch (const cxxopts::exceptions::exception& e) {
-        fmt::print(stderr, "Error parsing options: {}\n", e.what());
+    } catch (const cxxopts::exceptions::exception &e) {
+        std::cerr << "Command line error: " << e.what() << std::endl;
         return 1;
     } catch (const std::exception& e) {
-        fmt::print(stderr, "Error: {}\n", e.what());
+        std::cerr << "Fatal error: " << e.what() << "\n";
+        return 1;
+    } catch (...) {
+        std::cerr << "Unknown fatal error occurred\n";
         return 1;
     }
 }

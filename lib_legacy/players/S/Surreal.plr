@@ -1,0 +1,92 @@
+name: Surreal
+password: SuSRGFreMu
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 9
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19635
+birthtime: 1592022007
+timeplayed: 8648
+lastlogintime: 1592183870
+host: 064.251.141.170
+height: 69
+weight: 130
+base_height: 69
+base_weight: 130
+base_size: 2
+natural_size: 2
+alignment: 994
+playerflags: gxy
+effectflags: k 0 0
+prefflags: abfghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 87/82
+mana: 1/0
+move: 128/136
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 53
+wisdom: 67
+dexterity: 100
+constitution: 100
+charisma: 46
+experience: 60500
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 90
+415 50
+416 50
+421 57
+438 50
+443 50
+444 50
+463 50
+464 50
+465 58
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8020 2.500000
+1 8022 1.500000
+1 8030 0.500000
+1 8010 2.500000
+1 8021 2.500000
+1 8015 6.500000
+1 8011 2.500000
+1 8014 5.000000
+1 8013 6.500000
+1 8023 4.500000
+1 8012 5.000000
+1 8002 5.500000
+1 8001 5.500000
+1 8000 7.000000
+1 8016 5.000000
+0 0 0
+tells:
+$
+gossips:
+1592026134 Aawk gossips, 'nice'
+1592179391 Jaenelle gossips, 'Lol am I stupid or is there some specialthing I need to do to get into rogue guild?'
+1592179416 Davar gossips, 'no its hidden behind a curtain'
+1592179437 Jaenelle gossips, 'You don't enter from the jewelry shop?'
+1592179451 Davar gossips, 'you do you have to search '
+1592179465 Davar gossips, 'you can just search or you can search curtain'
+1592179469 Jaenelle gossips, 'ahhh'
+1592179481 Jaenelle gossips, 'thanks'
+1592179483 Davar gossips, 'np'
+1592182749 Davar gossips, 'geting the hang of sorcs?'
+$

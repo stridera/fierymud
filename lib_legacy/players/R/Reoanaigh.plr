@@ -1,0 +1,132 @@
+name: Reoanaigh
+password: Regg1VgduF
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 27
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20192
+birthtime: 1646949869
+timeplayed: 71900
+lastlogintime: 1689256060
+host: 076.184.241.147
+height: 78
+weight: 294
+base_height: 78
+base_weight: 294
+base_size: 2
+natural_size: 2
+alignment: 21
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 10
+loadroom: 3054
+thirst: 1
+lastlevel: 0
+hitpoints: 81/81
+mana: 16/16
+move: 114/114
+damroll: 3
+hitroll: 3
+strength: 83
+intelligence: 93
+wisdom: 82
+dexterity: 81
+constitution: 74
+charisma: 57
+cash: 0 28 250 282
+experience: 646375
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+39 1000
+100 1000
+101 1000
+203 1000
+415 50
+416 50
+423 164
+424 113
+438 70
+443 50
+444 57
+447 82
+451 70
+452 50
+453 98
+454 50
+459 56
+460 50
+462 51
+464 99
+487 97
+0 0
+trophy:
+1 1605 0.750000
+1 1601 3.750000
+1 1602 1.250000
+1 8012 0.750000
+1 8011 1.250000
+1 8002 1.500000
+1 8013 1.250000
+1 8014 0.750000
+1 8022 1.000000
+1 8001 0.500000
+1 13611 0.250000
+1 13615 0.250000
+1 13610 0.250000
+1 13602 0.750000
+1 13601 0.750000
+1 8016 1.750000
+1 8000 0.750000
+1 8023 0.750000
+1 8021 0.750000
+1 8020 0.500000
+1 8602 0.500000
+0 0 0
+tells:
+1647888413 @WCitrin@W tells you, 'oh missed the gems part@W'@0
+1661453516 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1688793793 @WDaedela@W tells you, 'hahaha okay I had a hunch but wasn't sure@W'@0
+1688793967 @WDaedela@W tells you, 'good I'm so glad!  I just took another pass at it to make it work better@W'@0
+1688793985 @WDaedela@W tells you, 'I'm so sad Minty didn't get to log in!@W'@0
+1688794063 @WDaedela@W tells you, 'you can also just say "skip" on every step and jump straight to level 2 haha.  not like it's easier than killing 5 bugs though haha@W'@0
+$
+gossips:
+1688795141 Niran gossips, 'Hi!'
+1688795153 Daedela gossips, 'new to Fiery?'
+1688795214 Daedela gossips, 'I'm the head of the official Fiery Welcome Crew so let me know if there's anything I can do to help!'
+1688795223 Niran gossips, 'Heard. I appreciate that.'
+1688795694 Daedela gossips, 'yes, totally fair'
+1688795702 Daedela gossips, 'thank you so much for sharing thag'
+1688795790 Gorath gossips, 'struggling with syntax'
+1688797092 Narin gossips, 'Okay. I think i'm good now.'
+1688797199 Aigeadach gossips, 'welcome back Narin :)'
+1688797204 Narin gossips, 'Thanks.'
+$
+mem:
+5 1 3
+5 1 3
+5 1 3
+5 1 3
+5 1 3
+5 1 3
+5 1 3
+39 1 7
+39 1 7
+39 1 7
+19 1 7
+39 1 6
+0 0 0

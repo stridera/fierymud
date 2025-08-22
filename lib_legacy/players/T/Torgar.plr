@@ -1,0 +1,68 @@
+name: Torgar
+password: ToNLCc5Qba
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18197
+birthtime: 1332043215
+timeplayed: 26972
+lastlogintime: 1332518377
+host: 216.249.119.003
+height: 71
+weight: 170
+base_height: 71
+base_weight: 170
+base_size: 3
+natural_size: 3
+alignment: 6
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 8
+lastlevel: 0
+hitpoints: 73/73
+mana: 1/0
+move: 134/134
+damroll: 5
+hitroll: 4
+strength: 97
+intelligence: 71
+wisdom: 68
+dexterity: 85
+constitution: 77
+charisma: 65
+cash: 29 7 8 1
+bank: 70 0 0 0
+experience: 83439
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 105
+415 50
+416 50
+419 1000
+421 83
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 68
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8330 1.000000
+0 0 0

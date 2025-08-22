@@ -1,0 +1,2057 @@
+1
+vnum: 16032
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring shadow-ring small-circlet-dark-metal
+shortdesc: a shadow ring
+desc: A small circlet of dark metal lies here.
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+5 -5
+6 2
+3 3
+27 2
+~
+extradesc: ring shadow-ring small-circlet-dark-metal
+This is a simple little ring, it is black with flecks of grey shimmering in and
+out of being.  For the most part, the ring does not exist in any coporeal form,
+but tends to wander back and forth to its ethereal state.    ~
+~~
+vnum: 58014
+location: 5
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: mo 0
+name: cuirass armor cuirass-bamboo-strips bamboo-armor
+shortdesc: a cuirass made of bamboo strips
+desc: You see a cuirass made, amazingly, of bamboo strips.
+type: 9
+weight: 10.00
+cost: 1200
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+19 1
+5 5
+~
+extradesc: cuirass armor cuirass-bamboo-strips bamboo-armor
+This armor is so light that you wonder that it could be at all effective!  
+Made from strips of bamboo cleverly lashed together with wire, it covers from
+the throat to the knees.  It looks like it ties in the back.~
+~~
+vnum: 48415
+location: 16
+values:
+0
+5
+5
+6
+0
+0
+0
+~
+flags: gikmoprstwxyz 0
+name: staff silveroak-staff silver-oak limb-silveroak-tree
+shortdesc: a Silveroak Staff
+desc: A staff made from the limb of a Silveroak tree lies here.
+type: 5
+weight: 7.40
+cost: 2000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+13 30
+27 3
+~
+extradesc: silveroak-staff silver-oak staff-limb-silveroak-tree
+This staff was made from the limb of a Silveroak tree. Perhaps the Druid
+who originally owned this powerful staff received it as a gift from the
+tree, for it is inconceivable that anyone would harm a Silveroak by
+cutting off a limb. The staff retains the tree's bark and shimmers brightly
+in the light.~
+~~
+vnum: 48918
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: opwx 0
+name: symbol holy-moon-symbol-lokari silver-crescent-moon-charm
+shortdesc: the Holy Moon Symbol of Lokari
+desc: A silver crescent moon charm shines on the ground.
+type: 8
+weight: 0.70
+cost: 0
+timer: 0
+level: 95
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+26 10
+3 5
+13 50
+27 3
+~
+extradesc: symbol holy-moon-symbol-lokari silver-crescent-moon-charm
+This little silver charm is the God of the Moonless Night's gift to his
+clerics, to keep them safe and identify them as Lokari's to anyone who might
+inquire as to their status.  It's just a silver crescent-moon shape.~
+~~
+vnum: 12550
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: monocle lens
+shortdesc: a monocle
+desc: A single lens lies on the ground, scratched up. 
+type: 8
+weight: 0.07
+cost: 250
+timer: 1010
+level: 40
+effects: dx 0 0
+wear: 65537
+hiddenness: 0
+applies:
+4 2
+28 150
+27 2
+~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: mask-imanhotep golden-burial-mask
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 8
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+1 2
+4 2
+27 2
+~
+extradesc: mask-imanhotep golden-burial-mask
+The mask is made of solid gold and is encrusted with jewels.  It has an aura of
+power around it.~
+~~
+vnum: 3298
+location: 25
+values:
+0
+0
+-1
+0
+0
+0
+0
+~
+flags: abegiqAD 0
+name: rose single-long-stemmed-black-rose flower
+shortdesc: a &9&bblack&0 rose
+desc: A single long-stemmed &b&9black&0 rose lies here in memory of Pergus.  Farewell friend.
+adesc:
+Nothing.~
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 540673
+hiddenness: 0
+triggers:
+3298
+~
+~~
+vnum: 2327
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lightstone light-stone elven-lightstone elf
+shortdesc: an elven lightstone
+desc: An elven lightstone glares brightly here.
+type: 1
+weight: 0.30
+cost: 3000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+24 -3
+27 1
+~
+extradesc: lightstone light-stone elven-lightstone elf
+Made of glittery opaque white stone dotted with flecks of gold, this stone can
+be made to glow with a mere thought.~
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: quill feather-quill long-white-feather pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill feather-quill long-white-feather pen
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)~
+triggers:
+51990
+~
+~~
+vnum: 43010
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: jmouwyz 0
+name: shield-darkness shadow
+shortdesc: the Shield of Darkness
+desc: A shadow in the corner of your vision takes the form of a shield.
+type: 9
+weight: 2.00
+cost: 600
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+18 3
+27 2
+~
+extradesc: shield-darkness shadow
+The shield appears to be made of a bundling of dark matter. It is very
+clear that it would take a lot to shatter its absorbant surface.~
+~~
+vnum: 1620
+location: 127
+values:
+5
+106
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion blue
+shortdesc: a sky-blue potion
+desc: A sky-blue potion lies unused here.
+type: 10
+weight: 0.30
+cost: 100
+timer: 10
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion blue sky
+This potion sparkles with the color of the sky.~
+~~
+vnum: 1621
+location: 127
+values:
+5
+8
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion blue
+shortdesc: a sky-blue potion
+desc: A sky-blue potion lies unused here.
+type: 10
+weight: 0.30
+cost: 100
+timer: 10
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion blue sky
+This potion sparkles with the color of the sky.~
+~~
+vnum: 1622
+location: 127
+values:
+5
+88
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion blue
+shortdesc: a sky-blue potion
+desc: A sky-blue potion lies unused here.
+type: 10
+weight: 0.30
+cost: 100
+timer: 10
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion blue sky
+This potion sparkles with the color of the sky.~
+~~
+vnum: 58406
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: mo 0
+name: tambourine gypsy-tambourine tam
+shortdesc: a gypsy tambourine
+desc: A gypsy tambourine plays itself sadly here.
+type: 8
+weight: 0.50
+cost: 1000
+timer: 0
+level: 70
+effects: d 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -15
+27 3
+~
+extradesc: tambourine gypsy-tambourine tam
+This tambourine is made of two wooden discs pegged together.  Through the gaps
+in between them, someone has thrust pairs of small brass circles.  The
+slightest movement makes the circles jingle together, producing a wild,
+mysterious cacophony.~
+~~
+vnum: 41117
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: agnopru 0
+name: shield singing-shield translucent-wave-bowl-shaped-energy
+shortdesc: the Singing Shield
+desc: A translucent wave of bowl-shaped energy floats here.
+type: 9
+weight: 5.00
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+19 1
+27 1
+~
+extradesc: shield singing-shield translucent-wave-bowl-shaped-energy
+A shimmering wave of translucent energy has been shaped into a concave bowl of
+protection.  Faint swirls of gray, blue, and green wash through it in pulses
+like waves past an ocean shore.~
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: quill feather-quill long-white-feather pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill feather-quill long-white-feather pen
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)~
+triggers:
+51990
+~
+~~
+vnum: 49029
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: bgkmnouvwyz 0
+name: sword rune-sword strange-signs questobject
+shortdesc: a rune sword
+desc: A sword with strange signs on its blade is the focus of your attention.
+type: 5
+weight: 3.50
+cost: 6000
+timer: 0
+level: 45
+effects: d 0 0
+wear: 8193
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: sword rune-sword strange-signs questobject
+The runes on its blade give this sword its magical power.~
+~~
+vnum: 49045
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abg 0
+name: sapling small-oak-sapling tree
+shortdesc: a small oak sapling
+desc: A small oak sapling grows here.
+type: 12
+weight: 18.00
+cost: 0
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sapling
+The sapling glows slightly and its leaves rustle constantly. The roots almost
+seem to be twitching while you watch.~
+~~
+vnum: 1009
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: raft heavy-wooden-raft
+shortdesc: &0&3a heavy wooden raft&0
+desc: &0&3A heavy wooden raft sits here.&0
+type: 22
+weight: 40.00
+cost: 120
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: heavy-wooden-raft
+A simple raft, consisting of several wooden logs bound together with thick
+rope. It seems large enough to support one individual.~
+~~
+vnum: 53405
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: whisky whiskey bottle round-bottle
+shortdesc: a round bottle
+desc: A bottle of whiskey looks rather inviting.
+type: 17
+weight: 0.20
+cost: 70
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: whiskey-bottle round-bottle
+This bottle of whiskey is crudely made of a colored glass.  Nothing
+on the bottle identifies its maker or who distilled the whiskey. You
+become intrigued by this little mystery.  Then again it is only a
+bottle of whiskey...~
+~~
+vnum: 48901
+location: 127
+values:
+99
+3
+3
+54
+0
+0
+0
+~
+flags: agopwx 0
+name: staff rogue's-staff rogues-staff gem-encrusted-staff
+shortdesc: the Rogue's Staff
+desc: A gem-encrusted staff lies on the ground here.
+type: 4
+weight: 5.00
+cost: 20000
+timer: 0
+level: 95
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 -100
+2 -10
+~
+extradesc: staff rogue's-staff rogues-staff gem-encrusted-staff
+The bronze staff in your hands is huge-- it's almost too large to hold
+effectively.  It pulses with power, its gemstone decorations lit as if from
+some inner radiance.  A crystal on its tip sparkles with light.  Your hands
+tingle at contact with it.  You wonder what it does.~
+~~
+vnum: 12534
+location: 127
+values:
+0
+3
+4
+11
+0
+0
+0
+~
+flags: jmnprstuvyz 0
+name: dagger spiral-bladed-dagger thin-spiralling-blade
+shortdesc: a spiral-bladed dagger
+desc: A dagger with a thin, spiralling blade rests here.
+type: 5
+weight: 1.10
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: dagger spiral-bladed-dagger thin-spiralling-blade
+This is a simple dagger, except for the blade.  The dagger's blade spirals
+toward the tip, creating two full revolutions.  A skilled hand could do awful
+things with this blade.    ~
+~~
+vnum: 3112
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: whistle tiny-bird-whistle wooden-bird-whistle toy
+shortdesc: a bird whistle
+desc: A tiny bird lies on its side here.
+type: 12
+weight: 0.30
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: tiny-bird-whistle wooden-bird-whistle
+Shaped like a tiny bluejay, this whistle is carved from a single block of wood.
+It is hollowed out inside, and a tiny flap in the beak vibrates when the
+whistle is blown, making a twittering whistle.    ~
+triggers:
+3112
+~
+~~
+vnum: 1006
+location: 127
+values:
+30
+30
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: waterskin well-crafted-leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: well-crafted-leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.  &0~
+~~
+vnum: 3057
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 23823
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aAD 0
+name: wings dragon-wings heap-silver-scales
+shortdesc: a pair of dragon wings
+desc: A heap of silver scales lies here.
+type: 8
+weight: 21.00
+cost: 10000
+timer: 0
+level: 85
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+19 2
+14 20
+13 20
+~
+extradesc: wings dragon-wings heap-silver-scales
+A quicksilver mess of barely-defined scales and membranes resolves itself into
+a pair of wings upon closer inspection.  They seem to magically resize
+themselves if worn, becoming closer to the size of the wearer as though to fit
+them personally.  Once worn, they attach themselves seamlessly to the wearer's
+back and look like an extra set of limbs that could probably be used for their
+original purpose: flight.  Their value seems beyond reckoning.~
+~~
+vnum: 59016
+location: 127
+values:
+0
+2
+4
+3
+0
+0
+0
+~
+flags: kmnuy 0
+name: longsword gleaming-longsword long-sword
+shortdesc: a gleaming longsword
+desc: A gleaming longsword has fallen out of use and is lying on the ground.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+18 1
+5 1
+~
+extradesc: longsword gleaming-longsword long-sword
+The longsword has seen its time in battle, for the metal is nicked, dented and
+has some minor spots of rust.  Although the metal is worn and abused, it has
+been kept very well polished and gleams in the light.  You can see a dried,
+black substance splattered on the grey cloth of the hilt, and the pommel is
+scratched and broken.~
+~~
+vnum: 58016
+location: 127
+values:
+0
+1
+7
+14
+0
+0
+0
+~
+flags: mnou 0
+name: naginata long-beribboned-spear ribbons ribboned
+shortdesc: a naginata
+desc: A long, beribboned spear stands against a wall.
+type: 5
+weight: 4.00
+cost: 400
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 32769
+hiddenness: 0
+applies:
+2 3
+~
+extradesc: naginata long-beribboned-spear ribbons ribboned
+The naginata (for that is what you heard this long spearlike scythe was once
+called) is sharp-bladed and looks pretty nasty, but for all its ungainly size,
+you can feel how quick a weapon it is.~
+~~
+vnum: 16305
+location: 127
+values:
+0
+2
+5
+6
+0
+0
+0
+~
+flags: gow 0
+name: druidstaff golden-druidstaff druid-staff gold-plated-staff questobject
+shortdesc: the Golden Druidstaff
+desc: A gold plated staff is stuck in the ground.
+type: 5
+weight: 2.00
+cost: 2000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+4 3
+3 3
+27 2
+~
+extradesc: golden-druidstaff druid-staff gold-plated-staff questobject
+The staff is made of wood, but there is an odd golden sheen to its surface.  A
+tingling sensation moves up your arm as you touch its surface.~
+~~
+vnum: 55017
+location: 127
+values:
+40
+2
+2
+4
+0
+0
+0
+~
+flags: g 0
+name: wand crystal-wand wand-crystal
+shortdesc: a crystal wand
+desc: A wand of crystal lies here in the snow.
+type: 3
+weight: 3.00
+cost: 150
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand crystal-wand wand-crystal
+You hold a simple, small crystal stick.  It has a brilliant streak of red
+running through its center.  The red glows slightly.~
+~~
+vnum: 55358
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves corroded-gloves armor
+shortdesc: corroded gloves
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gloves corroded-gloves armor
+These gloves are corroded beyond use.~
+~~
+vnum: 55640
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: moonstone gem plain-moonstone plain-moon-stone
+shortdesc: a moonstone
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 5000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55010
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: owyz 0
+name: pelt polar-bear-pelt pure-white-cloak fur leather
+shortdesc: a polar bear pelt
+desc: A pure white cloak is hidden in the snow.
+type: 9
+weight: 2.10
+cost: 1100
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+4 1
+19 1
+~
+extradesc: pelt polar-bear-pelt pure-white-cloak fur leather
+You hold a snow white short cloak.  It's just long and wide enough to cover
+your shoulders and half of your back.  Its fur lining keeps you warm and offers
+some protection.~
+~~
+vnum: 55022
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: o 0
+name: robe heavy-fur-lined-robe pile-fur-cloth
+shortdesc: a heavy fur-lined robe
+desc: A pile of fur and cloth has been abandoned here.
+type: 9
+weight: 8.00
+cost: 500
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+2 -1
+~
+extradesc: robe heavy-fur-lined-robe pile-fur-cloth
+This garmet is white in color much like the region it comes from.  It is
+highlighted with a mysterious silvery sash with many symbols on it.  It looks
+to be very warm.~
+~~
+vnum: 55016
+location: 127
+values:
+0
+2
+5
+6
+0
+0
+0
+~
+flags: agoprt 0
+name: staff long-crystal-staff long-staff-clear-crystal
+shortdesc: a long crystal staff
+desc: A long staff of clear crystal lies on the ground.
+type: 5
+weight: 10.00
+cost: 5800
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+18 -1
+19 -1
+27 3
+~
+extradesc: staff long-crystal-staff long-staff-clear-crystal
+This staff looks like any gnarled wooden staff, except it's pure clear crystal
+with a vein of deep blue running through it.  It must have been created from
+magic.  ~
+triggers:
+121
+~
+~~
+vnum: 10012
+location: 127
+values:
+10
+29
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vial potion clear invisibility invisibility-vial
+shortdesc: a clear vial of invisibility
+desc: A clear vial is lying on the ground here.
+type: 10
+weight: 0.30
+cost: 600
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 10013
+location: 127
+values:
+40
+2
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll teleport small small-teleport-scroll
+shortdesc: a small scroll of teleport
+desc: A small scroll has been dropped here.
+type: 2
+weight: 0.20
+cost: 1501
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag~
+~~
+vnum: 16009
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmvyz a
+name: stormshield storm-shield large-black-shield
+shortdesc: the Stormshield
+desc: A large black shield is almost hidden by debris.
+type: 9
+weight: 2.20
+cost: 5000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+1 1
+18 2
+27 2
+~
+extradesc: stormshield storm-shield large-black-shield
+This is the legendary Stormshield, once used by the Lords of Mystwatch.  
+Resembling a large heater shield, there is a heraldic design emblazoned upon
+it.  It is said that this shield was forged by the Gods themselves in the
+beginning of the world.~
+extradesc: design heraldic herald
+   An argent hawk outstretched, upon an azure field. ~
+triggers:
+5324
+5332
+~
+~~
+vnum: 11705
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: splinter ruby-splinter
+shortdesc: a ruby splinter
+desc: Someone has dropped a ruby splinter here.
+type: 1
+weight: 0.01
+cost: 480
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 10
+14 -20
+27 2
+~
+extradesc: splinter ruby-splinter
+If it weren't for its bright red color, this precious splinter would go
+unnoticed because of its tiny size.  However, as soon as it is picked up it
+begins to emit a magical light.  It has clearly been enchanted.~
+~~
+vnum: -1
+location: 127
+values:
+0
+6
+4
+11
+0
+0
+0
+~
+flags: bejlnuA 0
+name: shank jet-black-shank curiously-shaped-jet-black-knife dagger
+shortdesc: a jet black shank
+desc: A curiously shaped jet black knife lies here, almost unnoticed.
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+2 3
+19 2
+~
+extradesc: shank jet-black-shank curiously-shaped-jet-black-knife dagger
+This knife looks as though it were never meant to be.  The blade and handle are
+made of obviously separate pieces, and you can see nothing binding them
+together, yet they stay together.  The black dagger reflects no light, and
+seems to want to be concealed.  From the looks of the blade, chipped as it is,
+this knife has seen many victims blood.  This knife looks as though it were
+never meant to be.  The blade and handle are made of obviously separate pieces,
+and you can see nothing binding them together, yet they stay together.  The
+black dagger reflects no light, and seems to want to be concealed.  From the
+looks of the blade, chipped as it is, this knife has seen many victims' blood.~
+~~
+vnum: 58005
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace striking-jade-necklace
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 8
+weight: 0.60
+cost: 4500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 2
+~
+extradesc: necklace striking-jade-necklace
+The necklace is made of several very large, flawless panels of jade.  You run
+your fingers over the smooth stone and can feel supernatural power contained
+inside this rare piece of art.~
+~~
+vnum: 58005
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gop 0
+name: necklace striking-jade-necklace
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 8
+weight: 0.60
+cost: 4500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 2
+~
+extradesc: necklace striking-jade-necklace
+The necklace is made of several very large, flawless panels of jade.  You run
+your fingers over the smooth stone and can feel supernatural power contained
+inside this rare piece of art.~
+~~
+vnum: 20
+location: 127
+values:
+256
+132
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~

@@ -1,0 +1,103 @@
+name: Jelos
+password: JemjL9Onia
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
+poofin: Jelos appears behind you. 
+sex: 1
+class: 13
+race: 0
+level: 103
+home: 3033
+lifeforce: 0
+composition: 0
+id: 9251
+birthtime: 1013581259
+timeplayed: 27480688
+lastlogintime: 1660520784
+host: 024.006.027.201
+height: 73
+weight: 140
+base_height: 73
+base_weight: 140
+base_size: 3
+natural_size: 3
+alignment: -92
+playerflags: y
+effectflags: 0 0 0
+prefflags: himrsvABCD 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3033
+lastlevel: 14
+hitpoints: 1240/1240
+mana: 100/100
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 100
+wisdom: 64
+dexterity: 100
+constitution: 71
+charisma: 60
+cash: 29653 6554 768 1367
+bank: 4096 3 476 7
+experience: 300000004
+logview: 50
+wiztitle: &0  Slacker   &0
+quit_reason: 10
+saveroom: 1200
+trophy:
+1 8012 1.000000
+1 8002 1.000000
+1 3509 2.000000
+1 3500 1.000000
+1 3506 2.000000
+1 3508 1.000000
+1 58406 0.200000
+1 58402 0.166667
+1 58403 0.333333
+1 58420 0.200000
+1 58408 0.766667
+1 58404 0.166667
+1 58419 0.200000
+1 58415 0.166667
+1 58410 0.166667
+1 58417 0.333333
+1 58414 0.166667
+1 3050 1.000000
+1 11798 1.000000
+1 3060 1.000000
+1 3061 2.000000
+0 0 0
+tells:
+1606513348 @WGolanth@W tells you, 'as would everyone@W'@0
+1606513409 @WGolanth@W tells you, 'haha no@W'@0
+1606513416 @WGolanth@W tells you, 'what a nightmare@W'@0
+1606513463 @WGolanth@W tells you, 'hurray!!!@W'@0
+1606513477 @WGolanth@W tells you, 'did you catch the COVIDs?@W'@0
+1606513497 @WGolanth@W tells you, 'ughhhh@W'@0
+1606513537 @WGolanth@W tells you, 'yuck@W'@0
+1606513544 @WGolanth@W tells you, 'same.  We've been inside all year@W'@0
+1606513635 @WGolanth@W tells you, 'it's true!@W'@0
+1606513649 @WGolanth@W tells you, 'ask Faerylyn, he's a for-real doctor@W'@0
+$
+gossips:
+1660517733 Zaver gossips, 'who is that?'
+1660517736 Zaver gossips, 'your character?'
+1660517773 Venath gossips, 'minion. he's a BAMF demon...I'm not actually sure he can be killed tbh....'
+1660517798 Zaver gossips, 'where is he?'
+1660517814 Venath gossips, 'my home room....I had to purge him though cuz he spams my screen'
+1660517856 Fril gossips, '4 of them!'
+1660519915 Tors gossips, 'Hey Gornak'
+1660519930 Gornak gossips, 'evening'
+1660520391 Discord gossips, 'felessan: Hello there!'
+1660520477 Gornak gossips, 'this is kell'
+$
+aliases:
+k kick
+foo $1 say $1
+ti ptell izka $*
+loser say That's because you're a Canadian.  Loser.
+giggle chuckle
+0

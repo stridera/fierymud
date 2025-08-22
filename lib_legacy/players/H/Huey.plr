@@ -1,0 +1,98 @@
+name: Huey
+password: HuDhmUln5W
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19438
+birthtime: 1557260450
+timeplayed: 13192
+lastlogintime: 1559952360
+host: 216.241.197.068
+height: 70
+weight: 123
+base_height: 70
+base_weight: 123
+base_size: 2
+natural_size: 2
+alignment: 7
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 10
+lastlevel: 0
+hitpoints: 45/45
+mana: 1/-1
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 79
+intelligence: 96
+wisdom: 93
+dexterity: 71
+constitution: 64
+charisma: 58
+cash: 0 1006 16 35
+experience: 54999
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 90
+424 82
+438 50
+443 50
+444 50
+451 51
+457 67
+458 62
+459 50
+460 50
+462 50
+463 69
+466 50
+0 0
+trophy:
+1 3062 0.250000
+1 17205 0.250000
+1 17204 1.750000
+1 3503 0.250000
+1 3508 2.000000
+1 3501 0.500000
+1 55232 0.250000
+1 55237 0.250000
+1 55231 0.250000
+1 55239 0.500000
+1 55235 0.750000
+1 55233 0.250000
+1 55234 0.500000
+1 55222 2.500000
+1 55229 4.250000
+1 55240 3.250000
+1 55241 0.750000
+1 58802 0.250000
+1 58807 0.250000
+1 58808 0.250000
+1 58809 0.500000
+0 0 0
+mem:
+1 1 7
+16 1 7
+16 1 7
+0 0 0

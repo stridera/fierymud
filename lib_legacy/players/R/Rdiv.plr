@@ -1,0 +1,87 @@
+name: Rdiv
+password: Rd3mrDhygm
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18176
+birthtime: 1331512473
+timeplayed: 20270
+lastlogintime: 1383629555
+host: 184.043.032.048
+height: 73
+weight: 194
+base_height: 73
+base_weight: 194
+base_size: 3
+natural_size: 3
+alignment: -158
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+lastlevel: 0
+hitpoints: 527/73
+mana: 940/0
+move: 166/166
+damroll: 5
+hitroll: 4
+strength: 92
+intelligence: 64
+wisdom: 79
+dexterity: 96
+constitution: 95
+charisma: 41
+cash: 0 39 270 232
+experience: 240570
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 103
+415 50
+416 50
+419 1000
+421 84
+427 1000
+438 70
+443 50
+444 50
+463 50
+464 50
+465 65
+466 50
+467 50
+468 67
+0 0
+trophy:
+1 12005 0.666667
+1 12003 1.333333
+1 12012 0.333333
+1 12009 2.666667
+1 12008 2.500000
+1 12002 1.333333
+1 12023 2.666667
+1 12001 3.333333
+1 12004 0.333333
+1 12007 1.333333
+1 12025 1.000000
+1 12014 2.666667
+1 12011 0.666667
+1 12015 0.333333
+1 12016 0.333333
+1 36002 2.500000
+1 36001 2.500000
+1 36003 1.000000
+1 8014 0.500000
+1 8023 0.500000
+1 8021 0.500000
+0 0 0

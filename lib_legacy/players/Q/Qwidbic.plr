@@ -1,0 +1,143 @@
+name: Qwidbic
+password: QwClu8tOxP
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 7
+race: 0
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19639
+birthtime: 1592080409
+timeplayed: 180159
+lastlogintime: 1598390290
+host: 073.239.035.026
+height: 76
+weight: 130
+base_height: 76
+base_weight: 130
+base_size: 2
+natural_size: 2
+alignment: 351
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+loadroom: 3054
+thirst: 6
+lastlevel: 0
+hitpoints: 101/106
+mana: 16/16
+move: 22/100
+damroll: 3
+hitroll: 3
+strength: 81
+intelligence: 87
+wisdom: 96
+dexterity: 64
+constitution: 68
+charisma: 75
+cash: 2 379 1757 1578
+experience: 534229
+quit_reason: 1
+saveroom: 3054
+skills:
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+89 1000
+90 1000
+144 1000
+145 1000
+206 1000
+415 50
+416 50
+417 50
+423 50
+424 180
+429 50
+438 50
+443 50
+444 50
+451 78
+457 175
+458 180
+459 63
+460 50
+462 60
+463 125
+466 50
+0 0
+trophy:
+1 8034 0.333333
+1 8014 0.333333
+1 8012 1.000000
+1 8015 1.000000
+1 8002 0.666667
+1 8023 2.333333
+1 8022 1.333333
+1 8013 1.000000
+1 8001 2.333333
+1 8010 3.666666
+1 8016 2.333333
+1 8011 1.333333
+1 8020 2.000000
+1 8021 0.666667
+1 8033 0.333333
+1 8030 1.000000
+1 8000 1.666667
+1 8031 0.333333
+1 36002 0.500000
+1 36004 1.000000
+1 36003 0.500000
+0 0 0
+tells:
+1595532040 @WMeina@W tells you, 'with the guardians/warriors standing outside teh front door.@W'@0
+1595532043 @WMeina@W tells you, 'yay@W'@0
+1595532049 @WMeina@W tells you, 'you have to basically battle all the way up@W'@0
+1595532155 @WMeina@W tells you, 'you gots to get to the gargoyle and get the heart@W'@0
+1595532186 @WMeina@W tells you, 'and i'm not totally sure but you might have to get the kill shot. you at least have to hit the thing. and i probably shouldn't be grouped with you@W'@0
+1595532189 @WMeina@W tells you, 'but lets try this@W'@0
+1596497924 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1596497926 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1596497927 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1596826386 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1598386173 Griffette gossips, 'drakling didn't spawn'
+1598386184 Griffette gossips, 'can you reset large seether for us pretty please?'
+1598386219 Griffette gossips, 'i'm not grouped with them and they are both under 20'
+1598386226 Griffette gossips, 'and killed LARGE seether, and... no message.'
+1598387351 Griffette gossips, 'hiya Minty!'
+1598387352 Minty gossips, 'Hello!'
+1598387361 Strider gossips, 'Hello :)'
+1598387854 Griffette gossips, 'darnit wug where are you'
+1598389981 Griffette gossips, 'WE LIVED!'
+1598389984 Griffette gossips, 'HOORAY!'
+$
+effects:
+144 0 9 17 0 0 0
+18 4 0 0 4 0 0
+20 4 0 0 16 0 0
+0 0 0 0 0
+mem:
+16 1 7
+16 1 7
+16 1 7
+18 0 7
+144 0 3
+90 1 7
+144 1 3
+144 1 3
+89 1 3
+89 1 3
+89 1 3
+20 0 3
+0 0 0

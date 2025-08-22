@@ -1,0 +1,111 @@
+name: Hili
+password: HiNyc1gfLC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 9
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18359
+birthtime: 1349496271
+timeplayed: 29071
+lastlogintime: 1349596111
+host: 096.052.041.169
+height: 69
+weight: 105
+base_height: 69
+base_weight: 105
+base_size: 2
+natural_size: 2
+alignment: 939
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 9
+thirst: 14
+lastlevel: 0
+hitpoints: 79/79
+mana: 1/-2
+move: 60/100
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 88
+wisdom: 96
+dexterity: 72
+constitution: 72
+charisma: 58
+cash: 0 59 267 5
+experience: 227872
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+206 1000
+415 50
+416 50
+423 140
+424 126
+438 50
+443 50
+444 50
+451 62
+457 92
+458 66
+459 56
+460 50
+462 58
+463 140
+466 50
+0 0
+trophy:
+1 8604 0.500000
+1 16111 0.500000
+1 16103 0.500000
+1 16108 0.250000
+1 16106 0.750000
+1 16101 0.500000
+1 16102 1.250000
+1 16107 1.750000
+1 16100 1.500000
+1 8806 0.250000
+1 8800 0.250000
+1 8801 0.250000
+1 8804 0.500000
+1 8809 0.250000
+1 8805 0.750000
+1 8807 0.250000
+1 8808 0.750000
+1 2005 1.500000
+1 2001 0.500000
+1 2003 1.750000
+1 2004 1.750000
+0 0 0
+mem:
+1 1 4
+16 1 4
+1 1 4
+1 1 4
+16 1 4
+16 1 4
+88 1 8
+16 1 4
+0 0 0

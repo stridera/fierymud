@@ -1,0 +1,198 @@
+name: Lya
+password: LycVSC9t8V
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 5
+race: 0
+level: 39
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18225
+birthtime: 1334971094
+timeplayed: 287169
+lastlogintime: 1373082083
+host: 070.170.088.071
+height: 63
+weight: 123
+base_height: 63
+base_weight: 123
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: cn 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 7
+lastlevel: 0
+hitpoints: 464/464
+mana: 152/152
+move: 123/130
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 64
+wisdom: 82
+dexterity: 85
+constitution: 91
+charisma: 56
+cash: 109 1531 49 62
+experience: 9563942
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+8 9000/9000
+-1 0
+skills:
+12 1000
+13 1000
+17 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+131 1000
+132 1000
+402 440
+404 440
+407 440
+411 440
+415 440
+416 440
+417 50
+420 440
+421 440
+423 440
+424 440
+430 440
+434 440
+438 440
+443 440
+444 440
+450 50
+451 440
+457 440
+458 281
+459 440
+460 440
+461 65
+463 314
+464 440
+465 440
+466 50
+468 440
+0 0
+trophy:
+1 51102 0.250000
+1 51101 0.833333
+1 51100 0.750000
+1 7302 0.250000
+1 7301 1.000000
+1 7300 1.250000
+1 7004 0.250000
+1 7053 0.250000
+1 5223 0.500000
+1 5221 0.500000
+1 5222 0.750000
+1 5220 1.500000
+1 5510 0.500000
+1 5509 1.000000
+1 5508 0.500000
+1 5507 1.000000
+1 5506 1.000000
+1 5505 0.500000
+1 5504 0.750000
+1 5503 0.500000
+1 5502 2.000000
+0 0 0
+effects:
+131 12 -6 24 0 0 0
+131 12 0 0 0 0 32768
+132 6 11 17 0 256 0
+0 0 0 0 0
+mem:
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+132 1 1
+132 1 1
+84 1 1
+131 1 1
+131 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+17 1 2
+131 1 1
+17 1 2
+17 1 2
+17 1 2
+17 1 2
+17 1 2
+46 1 4
+46 1 4
+132 1 1
+132 1 1
+46 1 4
+46 1 4
+46 1 4
+46 1 6
+0 0 0
+aliases:
+f1 follow ayex; group all; guard ayex
+ccf cast 'create f'
+kh kill hedge
+kl kill mage
+km kill man
+kmm kill monk
+kg kill guard
+kf kill footman
+af assist flyp
+az assist azix
+aa assist ayex
+gf get food bp; eat food
+ds drink skin
+, dism
+fs fill skin fountain
+ec exa corpse
+gac get all corpse
+ra rescue ayex
+rz rescue azix
+rf rescue flyp
+a1 cast 'demonsk'
+a2 cast 'dark pre'
+00 cast 'cause l' $1
+k, kill mercenary
+ks kill soldier
+kr kill rogue
+kc kill cleric
+a22 cast 'dark pre' $1
+kk kill skeleton
+a11 cast 'demonsk' $1
+m mount horse
+1 get shortsword bp; wield shortsword
+2 get bastard bp; wield bastard
+11 rem shortsword; put shortsword bp
+22 rem bastard; put bastard bp
+33 rem shiv; put shiv bp
+4 get mace bp; wield mace
+44 rem mace; put mace bp
+77 rem shield; put shield bp
+0c ast '
+0 cast 'cause l'
+9 cast 'dispel g'
+99 cast 'disp g' $1
+7 get shield bp; wear shield
+3 get shiv bp; wield shiv
+0

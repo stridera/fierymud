@@ -1,0 +1,88 @@
+name: Jotun
+password: Jo5HPjNyUT
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20918
+birthtime: 1737867087
+timeplayed: 2675
+lastlogintime: 1738874596
+host: 064.046.022.013
+height: 31
+weight: 88
+base_height: 31
+base_weight: 88
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 9
+lastlevel: 0
+hitpoints: 24/24
+mana: 1/0
+move: 106/106
+damroll: 2
+hitroll: 4
+strength: 49
+intelligence: 100
+wisdom: 92
+dexterity: 81
+constitution: 54
+charisma: 84
+cash: 0 5 19 13
+bank: 0 1 1 1
+experience: 7670
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 51
+424 61
+438 50
+443 50
+444 50
+447 68
+451 51
+452 52
+453 51
+459 50
+460 55
+462 50
+464 50
+0 0
+trophy:
+1 36001 1.000000
+1 51900 1.000000
+0 0 0
+tells:
+1738008937 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1737867115 Chinok gossips, 'are you new to fiery?'
+1737867150 Chinok gossips, ''a little' ? :)'
+1737867188 Chinok gossips, 'so you only had 10 ** chars ? :)'
+1737867247 Chinok gossips, 'well I'm here a bit longer.. feel free to yell if you have any questions'
+1737867430 Chinok gossips, 'will throw out a couple tips..'
+1737867457 Chinok gossips, 'the in-game help file is searchable on web @@ https://www.fierymud.org/help'
+1737867470 Chinok gossips, 'don't forget to check your trophy list'
+1737867496 Chinok gossips, 'and stick west of town til level 5 :)'
+1737951940 Dairyu gossips, 'Jotun!'
+1738008966 Thort gossips, 'Congrats! First of many, I hope!'
+$

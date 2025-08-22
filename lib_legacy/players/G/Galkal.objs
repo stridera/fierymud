@@ -1,0 +1,1504 @@
+1
+vnum: 13647
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: ring ring-green-leaves tiny-branches
+shortdesc: a ring of green leaves
+desc: A ring made of tiny branches and leaves lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.03
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+4 2
+~
+extradesc: ring-green-leaves tiny-branches
+The ring is made of tiny, slender branches, still living, their equally tiny
+green leaves forming a wreath.~
+~~
+vnum: 13647
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: ring ring-green-leaves tiny-branches
+shortdesc: a ring of green leaves
+desc: A ring made of tiny branches and leaves lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.03
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+4 2
+~
+extradesc: ring-green-leaves tiny-branches
+The ring is made of tiny, slender branches, still living, their equally tiny
+green leaves forming a wreath.~
+~~
+vnum: 59026
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: adornment-light shimmering-glint small-chain
+shortdesc: an adornment of light
+desc: A shimmering glint of light shines from a small chain on the ground.
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 524293
+hiddenness: 0
+applies:
+4 1
+2 -1
+6 1
+27 1
+~
+extradesc: adornment-light shimmering-glint small-chain
+A small ball of light glows from an unknown source, but somehow still remains
+attached to a shining platinum chain.  It looks like a common necklace, except
+for the small glint of light that emits tiny beams that illuminate the palm of
+your hand.  Occasionally the light grows brighter for an instant, then fades
+back to normal.~
+~~
+vnum: 59026
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: adornment-light shimmering-glint small-chain
+shortdesc: an adornment of light
+desc: A shimmering glint of light shines from a small chain on the ground.
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 524293
+hiddenness: 0
+applies:
+4 1
+2 -1
+6 1
+27 1
+~
+extradesc: adornment-light shimmering-glint small-chain
+A small ball of light glows from an unknown source, but somehow still remains
+attached to a shining platinum chain.  It looks like a common necklace, except
+for the small glint of light that emits tiny beams that illuminate the palm of
+your hand.  Occasionally the light grows brighter for an instant, then fades
+back to normal.~
+~~
+vnum: 18503
+location: 5
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: adgklmopstuwxyzD befgh
+name: vestment holy-vestment white-vestment
+shortdesc: the Holy Vestment
+desc: A white vestment is here.
+type: 9
+weight: 2.70
+cost: 500
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+4 1
+27 1
+~
+extradesc: vestment holy-vestment white-vestment
+The vestment is made of the finest white silk you have ever seen.  There is a
+symbol of the Brotherhood of St.  George on the left breast, but the vestment
+has gold trimmings on the sleeves.~
+~~
+vnum: 55433
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: adghmopqrstuvwxyz abefghj
+name: helm believer's-helm believers-helm divine-helm
+shortdesc: &5Believer's Helm&0
+desc: Resting on the ground is a divine helm.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+4 1
+13 7
+14 10
+27 2
+~
+extradesc: helm believer's-helm believers-helm divine-helm
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.~
+~~
+vnum: 55394
+location: 7
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: greaves acolyte-greaves magical-thin-metal-greaves magic
+shortdesc: acolyte greaves
+desc: A slightly magical set of thin metal greaves lies here.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+1 1
+13 7
+27 1
+~
+extradesc: greaves acolyte-greaves magical-thin-metal-greaves magic
+Newly forged, these magical metal greaves were made to reflect your acceptance
+to your god.  Treated well, they will carry you through your beginning trials
+and on to greater wisdom.~
+~~
+vnum: 55437
+location: 8
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: adghmopqrstuvwxyz abefghj
+name: boots believer's-boots believers-boots divine-boots
+shortdesc: &5Believer's Boots&0
+desc: Resting on the ground is a pair of divine boots.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+1 2
+13 15
+14 15
+27 2
+~
+extradesc: boots believer's-boots believers-boots divine-boots
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.~
+~~
+vnum: 55439
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: adghmopqrstuvwxyz abefghj
+name: gauntlets believer's-gauntlets believers-gauntlets divine-gauntlets
+shortdesc: &5Believer's Gauntlets&0
+desc: Resting on the ground is a divine pair of gauntlets.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+3 1
+1 2
+27 2
+~
+extradesc: gauntlets believer's-gauntlets believers-gauntlets divine-gauntlets
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.~
+~~
+vnum: 12018
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dkoprswxyz ae
+name: sleeves sorrow sleeves-sorrow woven bark
+shortdesc: the sleeves of sorrow
+desc: A pair of bark sleeves with woven designs is propped against a tree.
+type: 9
+weight: 3.80
+cost: 900
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+4 2
+6 2
+27 1
+~
+extradesc: sleeves sorrow sleeves-sorrow woven bark
+These sleeves are woven with several kinds of bark: tough bark for protection
+against blows, sinewy for strength, and dense burr-like material to slow
+punctures.  On top of each forearm is the symbol of the Rhell tree: a large
+round flower with milky-white petals.  In addition, a single droplet of fluid
+is just falling from the tip of the lowest petal on each flower.    ~
+~~
+vnum: 10308
+location: 12
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: agD 0
+name: cloak tundra-cloak pile snowy-white-cloth
+shortdesc: a tundra cloak
+desc: A pile of snowy white cloth has been carelessly dropped here.
+type: 9
+weight: 8.00
+cost: 5000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+13 5
+14 10
+4 3
+~
+extradesc: cloak tundra-cloak pile snowy-white-cloth
+This finely woven cloak is made of pure white satin with cotton embroidery
+marking out an abstract bird symbol on the back which, though it is also in
+white, shows up in string light due to the difference in luster between the two
+fabrics.  Long ties at the neck can be used to fasten the cloak against the
+chill winds of the north.  It looks like it would also make great camoflauge in
+the snow.~
+~~
+vnum: 17204
+location: 13
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cord golden-cord
+shortdesc: the golden cord
+desc: A golden cord lies on the ground.
+type: 9
+weight: 0.50
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+3 1
+18 -1
+27 1
+~
+extradesc: cord golden-cord
+You look upon a length of cord made of finely spun gold threads.  It seems to
+emanate a strange aura.~
+~~
+vnum: 59022
+location: 14
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agk 0
+name: bracelet bracelet-consecrated-spirit small-bracelet-stone-gold-beads
+shortdesc: the bracelet of the consecrated spirit
+desc: A small bracelet made of stone and gold beads is lying on the ground.
+type: 9
+weight: 0.30
+cost: 1300
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+24 -4
+13 5
+14 5
+27 1
+~
+extradesc: bracelet bracelet-consecrated-spirit small-bracelet-stone-gold-beads
+The bracelet is formed from small beads of gold and grayish colored stones.  
+It is very old and shows the marks from years of use.  The stone beads are
+cracked and worn down on the edges and a few of them have chipped apart.  The
+gold beads are starting to tarnish and fade, almost matching the dull luster of
+the stone, from prolonged contact with the sweat from the skin.~
+~~
+vnum: 55438
+location: 15
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: adghmopqrstuvwxyz abefghj
+name: bracer believer's-bracer believers-bracer divine bracer
+shortdesc: &5Believer's Bracer&0
+desc: Resting on the ground is a small divine bracer.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+5 2
+13 20
+27 2
+~
+extradesc: divine believer belivers bracer believers-bracer
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.~
+~~
+vnum: 343
+location: 16
+values:
+0
+3
+5
+5
+0
+0
+0
+~
+flags: dmoprstuvwx abefgh
+name: mace radiant-mace mace-radiating-divine-magnificence
+shortdesc: a radiant mace
+desc: A mace radiating divine magnificence shines here.
+type: 5
+weight: 4.00
+cost: 1000
+timer: 0
+level: 30
+effects: 0 0 o
+wear: 8193
+hiddenness: 0
+applies:
+13 20
+27 1
+~
+extradesc: mace radiant-mace mace-radiating-divine-magnificence
+This fine steel mace is blessed by the leaders of the Cleric Guild for war
+against spirits that linger after death.  It is wreathed by glowing symbols
+which radiate off the mace's surface, projecting from prayers inscribed around
+its circumference.~
+triggers:
+317
+319
+305
+~
+~~
+vnum: 18505
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bdgkmopstwxyD befgh
+name: book-discipline great tome questobject
+shortdesc: the Book of Discipline
+desc: A great tome is before you.
+type: 8
+weight: 1.30
+cost: 80
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 1
+3 1
+6 1
+27 1
+~
+extradesc: book-discipline great tome questobject
+Before you is the great Book of Discipline.  Written in it are the teachings of
+the great St.  George, to whom this monastery is dedicated to.  It is said that
+great wisdom is held by the tome.~
+triggers:
+5342
+~
+~~
+vnum: 41009
+location: 21
+values:
+0
+400
+400
+0
+0
+0
+0
+~
+flags: ag 0
+name: eye jewelled-eye fist-sized-gem multiple-facets
+shortdesc: a jewelled eye
+desc: A fist-sized gem with multiple facets is embedded here.
+type: 1
+weight: 0.50
+cost: 140
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 81921
+hiddenness: 0
+applies:
+4 2
+28 8
+~
+extradesc: jewelled-eye fist-sized-gem multiple-facets
+This is no natural gem!  It's the eye of a Hiver Queen, detached from its
+socket.  The many eye facets that once gazed upon the world with ambitious lust
+still gleam faintly in death.~
+~~
+vnum: 17809
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mask-self-knowledge clear-mask
+shortdesc: the mask of self-knowledge
+desc: A clear mask is lying on the ground.
+type: 8
+weight: 0.50
+cost: 150
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+3 2
+6 2
+27 1
+~
+extradesc: mask-self-knowledge clear-mask
+The mask shimmers slightly as you hold it up and you see yourself reflected.  
+There seems to be a subtle difference between what you see and how you remember
+yourself to appear to others.  Perhaps this is the real you.~
+~~
+vnum: 5401
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring tiny-silver-earring small-silver-stud
+shortdesc: a tiny silver earring
+desc: A small silver stud lies here.
+type: 8
+weight: 0.01
+cost: 10
+timer: 10
+level: 5
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+27 1
+13 3
+~
+extradesc: tiny-silver-earring small-silver-stud
+This simple silver stud is a perfect a lustrous accessory.~
+~~
+vnum: 5401
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring tiny-silver-earring small-silver-stud
+shortdesc: a tiny silver earring
+desc: A small silver stud lies here.
+type: 8
+weight: 0.01
+cost: 10
+timer: 10
+level: 5
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+27 1
+13 3
+~
+extradesc: tiny-silver-earring small-silver-stud
+This simple silver stud is a perfect a lustrous accessory.~
+~~
+vnum: 5516
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: symbol eldoria-reward small-white-symbol holy-symbol-3rd-eldorian-guard third questobject
+shortdesc: a holy symbol of the 3rd Eldorian Guard
+desc: A small white symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 30
+14 25
+26 10
+27 1
+~
+extradesc: holy symbol eldoria-trophy small white 3rd-eldorian-guard-symbol
+A mild feeling of benevolence radiates from this white medal.~
+~~
+vnum: 17309
+location: 26
+values:
+15
+3
+3
+249
+0
+0
+0
+~
+flags: 0 0
+name: bell brass-hand-bell
+shortdesc: a hand bell
+desc: A brass hand bell stands upon a stone altar.
+adesc:
+A resonant note rings from the hand bell.~
+type: 30
+weight: 0.03
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+24 -3
+27 1
+~
+extradesc: bell brass-hand-bell
+Solid and sturdy, this bell is made to provide musical accents in religious
+ritual.  Its single, clear, low tone makes perfect accompaniment to other
+instruments, chants, or has a powerful effect all on its own.~
+triggers:
+327
+~
+~~
+vnum: 2327
+location: 27
+values:
+0
+300
+300
+0
+0
+0
+0
+~
+flags: DE c
+name: lightstone light-stone elven-lightstone elf
+shortdesc: an elven lightstone
+desc: An elven lightstone glares brightly here.
+type: 1
+weight: 0.30
+cost: 3000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+24 -3
+27 1
+~
+extradesc: lightstone light-stone elven-lightstone elf
+Made of glittery opaque white stone dotted with flecks of gold, this stone can
+be made to glow with a mere thought.~
+~~
+vnum: 6053
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: contract
+shortdesc: a contract for the Frakati Leader
+desc: A contract for someone's head has been accidentally left out!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+6055
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3060
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: raft
+shortdesc: a raft
+desc: A raft has been left here.
+type: 22
+weight: 75.00
+cost: 400
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: raft
+The raft looks very primitive, but appears to be safe enough to use.~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 58816
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: myzD afgh
+name: shield small-wooden-academy-shield small-wooden-shield
+shortdesc: a small wooden Academy shield
+desc: A small wooden shield lies here.
+type: 9
+weight: 1.00
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: shield small-wooden-academy-shield small-wooden-shield
+This shield isn't much bigger than your hand, and it's in pretty bad shape,
+with nicks and dents covering its wooden surface.  The insignia of the Ice
+Warriors adorns its front -- a polar bear gripping a green- and-gold banner in
+its mouth.~
+~~
+vnum: 55392
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: vambraces acolyte-vambraces magical-thin-metal-vambraces magic
+shortdesc: acolyte vambraces
+desc: A slightly magical set of thin metal vambraces lies here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 1
+13 7
+27 1
+~
+extradesc: vambraces acolyte-vambraces magical-thin-metal-vambraces magic
+Newly forged, these magical metal vambraces were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.~
+~~
+vnum: 8806
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hat wide-brimmed-straw-hat
+shortdesc: a wide-brimmed straw hat
+desc: A wide-brimmed straw hat lies here.
+type: 9
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: wide-brimmed-straw-hat
+Made from many long, slender pieces of straw all braided together, this hat has
+a wide brim and a generally rounded crown.  It is just a little floppy, but
+does an excellent job of keeping the sun out of one's eyes.~
+~~
+vnum: 8803
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: tunic red-linen-tunic
+shortdesc: a red linen tunic
+desc: A red linen tunic lies draped here.
+type: 9
+weight: 1.00
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: red-linen-tunic
+The tunic is made from rough linen and dyed a medium shade of red.  
+Long-sleeved, it is cut full for ease of wear, and its lower hem reaches the
+knees.~
+~~
+vnum: 36020
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: chain bone-chain length
+shortdesc: a bone chain
+desc: A length of chain lies here.
+type: 8
+weight: 0.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: bone-chain length
+About thirty small bone rings are roughly connected together to form a piece of
+decoration.  It looks as though it may offer you a little protection though.~
+~~
+vnum: 58814
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: boots nice-warm-winter-boots
+shortdesc: a nice warm pair of winter boots
+desc: A nice pair of warm boots rest here.
+type: 9
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: boots nice-warm-winter-boots
+These warm boots are made of thick leather with the fur side facing inward.  A
+thong ties each one shut at the top, keeping warmth inside.~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 5201
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: adgoprstwx ae
+name: ring glittering-ruby-ring questobject
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 8
+3 2
+4 2
+5 2
+27 3
+~
+extradesc: ring glittering-ruby-ring questobject
+The ring has been formed of some mysterious reddish metal, the likes of which
+you are unfamiliar with.  A glittering ruby has been set in the ring.~
+~~
+vnum: 11705
+location: 127
+values:
+0
+2500
+2500
+0
+0
+0
+0
+~
+flags: agD 0
+name: splinter ruby-splinter
+shortdesc: a ruby splinter
+desc: Someone has dropped a ruby splinter here.
+type: 1
+weight: 0.01
+cost: 480
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 10
+14 -20
+27 2
+~
+extradesc: splinter ruby-splinter
+If it weren't for its bright red color, this precious splinter would go
+unnoticed because of its tiny size.  However, as soon as it is picked up it
+begins to emit a magical light.  It has clearly been enchanted.~
+~~
+vnum: 11705
+location: 127
+values:
+0
+2500
+2500
+0
+0
+0
+0
+~
+flags: agD 0
+name: splinter ruby-splinter
+shortdesc: a ruby splinter
+desc: Someone has dropped a ruby splinter here.
+type: 1
+weight: 0.01
+cost: 480
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 10
+14 -20
+27 2
+~
+extradesc: splinter ruby-splinter
+If it weren't for its bright red color, this precious splinter would go
+unnoticed because of its tiny size.  However, as soon as it is picked up it
+begins to emit a magical light.  It has clearly been enchanted.~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 50211
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracelet flimsy-looking-fat-brass-bracelet fat-tarnished-brass-bracelet
+shortdesc: a fat, tarnished brass bracelet
+desc: A flimsy-looking, fat brass bracelet lies here.
+type: 8
+weight: 1.30
+cost: 500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 5
+2 1
+~
+extradesc: bracelet flimsy-looking-fat-brass-bracelet fat-tarnished-brass-bracelet
+This gaudy accoutrement is fairly fat, but light.  It's also rather tarnished.
+  ~
+~~
+vnum: 55353
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tunic crushed-leather-tunic armor
+shortdesc: a crushed leather tunic
+desc: A pile of crushed leather armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tunic crushed-leather-tunic armor
+This tunic is crushed beyond use.~
+~~

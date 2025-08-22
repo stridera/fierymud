@@ -1,0 +1,1064 @@
+#47700
+An Ice Cavern~
+   This small cavern appears to have been painstakingly carved out of the ice.
+The walls are rough hewn and bear the chisel marks of its makers.  Dominating
+the center of the cavern is a huge obelisk made of ice.  It nearly touches the
+ceiling some 20 feet overhead.  An eerie light radiates from the center of the
+obelisk bathing the room in a soft bluish-white light.  At the far end of the
+cavern a small set of steps lead to a raised ledge.  At the center of the
+ledge, a small spring sends pure, ice-cold water into a small pool.  Directly
+in front of the spring, carved into the wall of this icy cavern you see a huge
+arctic rose.  The only exit is north.    
+~
+477 28 12
+D0
+~
+~
+0 -1 47746
+E
+rose arctic~
+The arctic rose, some five feet tall, has been carved into the walls
+of the cavern and the indentations filled with an ice of a deeper,
+purer blue.  The effect is simple but striking.  A sense of peace
+and holiness floods through your body as you gaze at the rose.  You
+recognize the arctic rose as the symbol of Haddixx, the arctic god.
+~
+E
+obelisk huge~
+This giant obelisk has been carved out of a single piece of pure
+ice. It is perfectly carved, not a single chisel mark or blemish
+mars its surface.  A soft bluish-white light radiates from deep
+within the obelisk.
+~
+E
+spring pool water pure small~
+Pure ice-cold water flows from a small spring directly under the
+arctic rose.  It flows into a small pool in the center of the
+ledge. A small circular wall about two feet high, formed from
+bricks made of ice, contains the small pool. You consider drinking
+from the pool, but realize that this water is sacred to a powerful
+diety and you are not about to pollute it with your dirty lips.
+~
+S
+#47701
+The Iceberg~
+   The environment here is harsh and cold.  A frigid arctic air literally saps
+the heat from your body.  Great clouds of fog form in the air whenever you
+exhale, and steam rises from your exposed flesh.  Fortunately there is no wind,
+else you would surely perish from hypothermia.  As you dance about in an
+attempt to warm up, you see you are upon the northern edge of an iceberg.  To
+the north, west and east, the iceberg falls steeply and merges with ocean
+water.  The iceberg itself continues to the south.    
+~
+477 8 2
+D2
+~
+~
+0 -1 47702
+S
+#47702
+The Iceberg~
+   Involuntary shivers send you into spasms as you travel this landscape.  You
+huddle into your clothing for warmth but the cloth does little to prevent a
+chill from seeping into your bones.  You may continue along the iceberg in any
+direction.    
+~
+477 0 2
+D0
+~
+~
+0 -1 47701
+D1
+~
+~
+0 -1 47703
+D2
+~
+~
+0 -1 47705
+D3
+~
+~
+0 -1 47706
+S
+#47703
+The Iceberg~
+   The ice of this berg is slipperly and cold.  Your boots do little to protect
+you from the cold and you can actually feel a chill creeping up your feet and
+spreading throughout your body.  You find yourself longing for a thick wool
+blanket and a bottle of whiskey.  The iceberg continues to the west, east and
+south, and drops off sharply into the ocean to the north.    
+~
+477 0 2
+D1
+~
+~
+0 -1 47711
+D2
+~
+~
+0 -1 47708
+D3
+~
+~
+0 -1 47702
+S
+#47704
+The Iceberg~
+   This is the western edge of the iceberg.  Further to the west and south, the
+ice slopes down abruptly and merges with the ocean.  The ice is slippery here
+and you keep a fair distance from the edge of the iceberg in order to prevent a
+plunge into the frigid water.  The iceberg continues to the north and east.  
+~
+477 0 2
+D0
+~
+~
+0 -1 47706
+D1
+~
+~
+0 -1 47705
+S
+#47705
+The Iceberg~
+   The intense cold continues and the frigid winds blast the landscape
+flattening everything in sight.  The brief glimpses of sunlight far above do
+little to warm the air, and it would be dangerous to be exposed to these
+conditions for any length of time.  Passage is possbile along the iceberg in
+any direction.    
+~
+477 0 2
+D0
+~
+~
+0 -1 47702
+D1
+~
+~
+0 -1 47708
+D2
+~
+~
+0 -1 47707
+D3
+~
+~
+0 -1 47704
+S
+#47706
+The Iceberg~
+   The iceberg is impossible to traverse to the west or north from this point.
+The ice falls sharply in those direction, merging with the deathly cold water.
+Glancing into the western horizon, there are several other icebergs in the
+vicinity, though none as large as the one you are exploring.  Some of the
+icebergs have an odd bluish tint.  The iceberg continue to the south and east.
+~
+477 0 2
+D1
+~
+~
+0 -1 47702
+D2
+~
+~
+0 -1 47704
+S
+#47707
+The Iceberg~
+   A light snow drifts slowly from the sky here.  The snow is dry and the
+flakes are as large as a thumbnail.  The iceberg continues to the north, east,
+and south.  To the west, the ice drops away and merges with the ocean far, far
+below.    
+~
+477 0 2
+D0
+~
+~
+0 -1 47705
+D1
+~
+~
+0 -1 47709
+D2
+~
+~
+0 -1 47713
+S
+#47708
+A Crack in the Ice~
+   The surface of the iceberg is marred here by a narrow crack not more than
+two meters long.  Peering into the crack, you see it continues straight down
+for some distance.  The crack is large enough for to squeeze through and it can
+be explored, by leaving down.  It is also possible to continue to the north,
+south, west and east.    
+~
+477 0 2
+D0
+~
+~
+0 -1 47703
+D1
+~
+~
+0 -1 47710
+D2
+~
+~
+0 -1 47709
+D3
+~
+~
+0 -1 47705
+D5
+~
+~
+0 -1 47715
+S
+#47709
+The Iceberg~
+   A light snow drifts slowly from the sky here.  The snow is dry and the
+flakes are as large as a thumbnail.  The iceberg continues to the north, east,
+and south.  To the east, the ice drops away and merges with the ocean far, far
+below.    
+~
+477 0 2
+D0
+~
+~
+0 -1 47708
+D2
+~
+~
+0 -1 47714
+D3
+~
+~
+0 -1 47707
+S
+#47710
+The Iceberg~
+   The ice falls away to the south and meets with deathly cold water.  The sea,
+for as far as can be seen, seems to resemble the flat, gray clouds overhead.  
+The ocean seems as lifeless as the sky it mirrors.  Color is absent on this
+plane, consisting strictly of shades of white and gray.  The iceberg continues
+along to the north, west, and east.    
+~
+477 0 2
+D0
+~
+~
+0 -1 47711
+D1
+~
+~
+0 -1 47712
+D3
+~
+~
+0 -1 47708
+S
+#47711
+The Iceberg~
+   The air is so frigid even your clothing has become frozen and stiff.  You
+may continue along the iceberg to the west and south.  To the east and north
+the ice falls away and merges with the ocean.    
+~
+477 0 2
+D2
+~
+~
+0 -1 47710
+D3
+~
+~
+0 -1 47703
+S
+#47712
+The Iceberg~
+   To the north and east, the ice falls steeply into the dead gray sea.  A
+large landmass covered with ice and snow lies on the eastern horizon.  Almost
+directly to the east, there appears to be a natural bay leading into the
+landmass.  The iceberg continues to the west and slopes down to the south.    
+~
+477 0 2
+D2
+~
+~
+0 -1 47718
+D3
+~
+~
+0 -1 47710
+S
+#47713
+The Iceberg~
+   A light snow drifts down from the sky here.  Glancing toward the sky, you
+see that the clouds are traveling from south to north and you are at the
+northern edge of the stormfront.  The flat gray clouds promise even more
+miserable conditions in the future.  You may continue to the north and east.  
+~
+477 0 2
+D0
+~
+~
+0 -1 47707
+D1
+~
+~
+0 -1 47714
+S
+#47714
+The Iceberg~
+   A light snow falls here from flat gray clouds overhead.  You are at the
+southern end of the iceberg.  Glancing into the southern horizon, you see that
+the snow is falling heavily in that direction.  The snow acts as a veil which
+hides whatever, if anything, lies in that direction.  You may continue to the
+north and west.    
+~
+477 0 2
+D0
+~
+~
+0 -1 47709
+D3
+~
+~
+0 -1 47713
+S
+#47715
+A Blue Tunnel~
+   You are just a few meters beneath the surface of the iceberg.  The crack in
+the ice above lets in very little light.  For some reason, the light changes
+color and takes on a bluish tint as it travels through the ice.  This is the
+first hint of color you have seen in this world.  The tunnel continues to slope
+down, or it is possible to follow it up and return to the surface.    
+~
+477 4 9
+D4
+~
+~
+0 -1 47708
+D5
+~
+~
+0 -1 47716
+S
+#47716
+A Blue Tunnel~
+   A little light filters into this section of the tunnel from above.  The
+light is dim but is a very pleasant shade of blue.  The tunnel continues up
+through the ice at this point, and also breaks off to the east.    
+~
+477 0 12
+D1
+~
+~
+0 -1 47717
+D4
+~
+~
+0 -1 47715
+S
+#47717
+The Ice Lord's Cavern~
+   Dim blue light with no apparent source illuminates this chamber and gives it
+an eerie feel.  This cavern was carved out of ice by clumsy hands or rough
+tools.  There is a tunnel in the western wall of this cavern.    
+~
+477 8 12
+D3
+~
+~
+0 -1 47716
+S
+T 48631
+#47718
+The Iceberg~
+   The path slopes down toward the sea.  The ice is brittle where it meets the
+ocean, as the slightly warmer water erodes the edges of the iceberg.  The path
+around the iceberg slopes upward to the north, or it is possible to float out
+to sea by traveling south.    
+~
+477 0 2
+D0
+~
+~
+0 -1 47712
+D2
+~
+~
+0 -1 47719
+S
+#47719
+On the Ocean~
+   To the north an iceberg rises from the sea.  The ice slopes down to meet the
+sea here, and you may leave the water and travel along the ice if you wish.  
+Small chunks of floating ice block your travel to the immediate west and east,
+but you may continue along the ocean to the south.    
+~
+477 4 7
+D0
+~
+~
+0 -1 47718
+D2
+~
+~
+0 -1 47720
+S
+#47720
+On the Ocean~
+   The water is flat and gray and moves with long, slow swells.  A fall into
+the freezing sea, in this environment, could be fatal.  What is the draw that
+lures explorers to this ocean?  Passage to the immediate west is blocked by
+small chunks of floating ice, the path to the north, east, and south is clear.
+~
+477 0 7
+D0
+~
+~
+0 -1 47719
+D1
+~
+~
+0 -1 47721
+D2
+~
+~
+0 -1 47727
+S
+#47721
+On the Ocean~
+   It strikes you that the landscape is a featureless representation of the
+color gray.  The sky and the sea are both the same dull gray color, and the
+dismal monotony is broken only by the occasional iceberg floating in the
+distance.  Passage to the immediate north and south is blocked by small chunks
+of floating ice, but you may continue to the east and west.    
+~
+477 0 7
+D1
+~
+~
+0 -1 47722
+D3
+~
+~
+0 -1 47720
+S
+#47722
+On the Ocean~
+   The sharp tang of the ocean air is quite satisfying.  This world may be
+monotonous and dreary, but the scent of the sea is refreshing and invigorating.
+Passage to the south and east is blocked by small chunks of floating ice, but
+you may continue to the north and west.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47723
+D3
+~
+~
+0 -1 47721
+S
+#47723
+On the Ocean~
+   Glancing to the east, there is a large landmass composed entirely of ice and
+snow.  Much of the landmass is inaccessible, because the ice forms sheer cliffs
+where it meets the sea.  There is what appears to be a bay a little to the
+northeast.  Perhaps it will allow exploration of the landmass from there.  
+Passage to the immediate west is blocked by small chunks of floating ice, but
+you may continue to the north, east, and south.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47747
+D1
+~
+~
+0 -1 47724
+D2
+~
+~
+0 -1 47722
+S
+#47724
+On the Ocean~
+   A landmass rises from the sea to the east.  Sheer cliffs of ice prevent you
+from landing upon the icemass but you spot a bay almost directly east.  
+Passage to the immediate south and east is blocked by small chunks of floating
+ice, but you may continue west or north.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47725
+D3
+~
+~
+0 -1 47723
+S
+#47725
+On the Ocean~
+   A land made of ice and snow rises from the sea to the east.  Passage to the
+immediate north and west is blocked by small chunks of floating ice, but you
+may continue to the east or south.    
+~
+477 0 7
+D1
+~
+~
+0 -1 47726
+D2
+~
+~
+0 -1 47724
+S
+#47726
+Entrance to the Bay~
+   To the east, the ocean spills into a protected bay.  Cliffs of ice and snow
+rise to the north and south, guarding the entrance to the bay.  You may
+continue west toward the ocean, or east into the bay.    
+~
+477 0 7
+D1
+~
+~
+0 -1 47737
+D3
+~
+~
+0 -1 47725
+S
+#47727
+On the Ocean~
+   A light snow begins to fall from the flat gray clouds overhead.  You huddle
+within your clothing and curse the gods.  The freezing temperatures make this
+realm difficult, but the snow makes the situation completely unbearable.  
+Passage to the west and east is blocked by small chunks of floating ice, but
+you may continue to the north and south.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47720
+D2
+~
+~
+0 -1 47728
+S
+#47728
+On the Ocean~
+   Snow falls heavily from the sky.  The snow stacks on your clothing and
+begins to cover your body.  Passage to the immediate south and east is blocked
+by small chunks of floating ice, but you may continue to the west and north.  
+~
+477 0 7
+D0
+~
+~
+0 -1 47727
+D3
+~
+~
+0 -1 47729
+S
+#47729
+On the Ocean~
+   The snow is falling heavily.  The horizon is a complete wall of white.  The
+whiteness seems to be denser to the southwest, but from this distance it is
+difficult to determine whether the denseness is caused by snowfall or fog.  
+Passage to the immediate north and south is blocked by small chunks of floating
+ice, but you may continue to the west and east.    
+~
+477 0 7
+D1
+~
+~
+0 -1 47728
+D3
+~
+~
+0 -1 47730
+S
+#47730
+On the Ocean~
+   As you traverse this area, you notice that you are along the northern edge
+of a tremendous fog bank.  The snowfall is lighter here and from here it would
+appear that the entire southern horizon is shrouded in fog.  It may be possible
+to explore this fog, or return to the east.  Passage to the immediate north and
+west is blocked by small chunks of floating ice.    
+~
+477 0 7
+D1
+~
+~
+0 -1 47729
+D2
+~
+~
+0 -1 47731
+S
+#47731
+The Fringe of the Fog~
+   To the south lies a vast fog bank.  It is quite impossible to determine what
+who or what might live within it.  A sense of dread bears down at the thought
+of becoming lost in the fog, but a warm breeze blows from the south and you
+welcome the opportunity to be finally able to escape the freezing temperature.
+Passage to the immediate west and east is blocked by small chunks of floating
+ice, but you may continue to the north or south.    
+~
+477 4 7
+D0
+~
+~
+0 -1 47730
+D2
+~
+~
+0 -1 47732
+S
+#47732
+In the Fog Bank~
+   The fog is heavy here, limiting visibility to just a few meters.  The air is
+quite moist and feels very heavy, but the air is so warm and that is an
+improvement from the intense cold of the realm.  The gray fog surrounds on all
+sides and may confuses your sense of direction.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47731
+D1
+~
+~
+0 -1 47733
+D2
+~
+~
+0 -1 47733
+D3
+~
+~
+0 -1 47735
+S
+#47733
+In the Fog Bank~
+   The fog is heavy here, limiting visibility to just a few meters.  The air is
+quite moist and feels very heavy, but the air is so warm and that is an
+improvement from the intense cold of the realm.  The gray fog surrounds on all
+sides and may confuses your sense of direction.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47734
+D1
+~
+~
+0 -1 47732
+D2
+~
+~
+0 -1 47732
+D3
+~
+~
+0 -1 47735
+S
+#47734
+In the Fog Bank~
+   The fog is heavy here, limiting visibility to just a few meters.  The air is
+quite moist and feels very heavy, but the air is so warm and that is an
+improvement from the intense cold of the realm.  The gray fog surrounds on all
+sides and may confuses your sense of direction.  The fog seems to be denser to
+the south.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47735
+D1
+~
+~
+0 -1 47733
+D2
+~
+~
+0 -1 47736
+D3
+~
+~
+0 -1 47731
+S
+#47735
+In the Fog Bank~
+   The fog lifts a bit here, extending your visibility.  Although you can see
+several dozen meters in every direction, you find no landmarks to provide you
+with orientation.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47731
+D1
+~
+~
+0 -1 47734
+D2
+~
+~
+0 -1 47733
+D3
+~
+~
+0 -1 47732
+S
+#47736
+Gateway to a Fiery Realm~
+   The fog is dense here, so dense it limits visibility to under a meter.  It
+seems possible to be lost in this fog forever, were it not for a faint hissing
+sound which acts as a point of reference.  Effectively blinded by the fog, you
+sail toward the sound, hoping to find a way to escape this fog bank.  The
+hissing grows louder and louder as you near it, till it becomes a roar.  The
+air is very warm here, and reaching down into the water you find the water is
+also very warm.  The fog parts suddenly, and you discover the source of both
+the roar and the heat.  Rising in front of you is a small island.  Water along
+the outskirts of the newly birthed island bubbles and froths as lava pours from
+the land and into the sea.  Great clouds of fog result from the union,
+explaining why the mist is so dense here.  The lava makes the island unsafe to
+travel, but there is a Gateway standing without support on the northern edge of
+the land.  It seems possible to enter the Gateway by traveling north.    
+~
+477 4 4
+D0
+The Gateway is fashioned from a silvery metal that has an almost liquid
+appearance. Gingerly, you reach out and touch the metal. The metal,
+strangely enough, yields to your touch, as though it has the consistency
+of butter; but when you remove your finger, the metal flows and rebounds
+to its original state. You have no doubt this metal, despite its apparent
+softness, is virtually indestructible.
+~
+Gateway~
+2 48401 47800
+D1
+~
+~
+0 -1 47734
+D2
+~
+~
+0 -1 47734
+D3
+~
+~
+0 -1 47734
+S
+#47737
+The Bay~
+   Entering the bay, the magnificance of the natural beauty is stunning.  
+Forget about the freezing cold and admire the sheer cliffs which rise further
+to the north, south and east.  Even in this harsh environment, the Earth
+Goddess can work beauty into the landscape.  From this point, travel can proceed
+in any direction.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47739
+D1
+~
+~
+0 -1 47738
+D2
+~
+~
+0 -1 47741
+D3
+~
+~
+0 -1 47726
+S
+#47738
+The Bay~
+   In the distance, to the north, there is a flicker of movement that draws
+your attention in that direction.  A layer of ice peels from a cliff and falls
+with a thunderous crash into the sea!  It is possible continue along the bay to
+the north, west or south.  To the east, there is a staircase which has been
+carved into the ice.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47740
+D1
+~
+~
+0 -1 47743
+D2
+~
+~
+0 -1 47742
+D3
+~
+~
+0 -1 47737
+S
+#47739
+The Bay~
+   Sailing through the still water, the cliffs to your immediate north and west
+are awe inspiring.  The cliffs are made entirely of ice and rise vertically for
+several hundred meters.  It is possible to continue to the east and south.    
+~
+477 0 7
+D1
+~
+~
+0 -1 47740
+D2
+~
+~
+0 -1 47737
+S
+#47740
+The Bay~
+   You sail along the edge of the northern and eastern cliffs, wary of the ice
+which may fall at any time and without warning.  This part of the bay is
+littered with numerous chunks of floating ice.  It is possible to continue
+exploring to the south and west.    
+~
+477 0 7
+D2
+~
+~
+0 -1 47738
+D3
+~
+~
+0 -1 47739
+S
+#47741
+The Bay~
+   Sailing carefully along the edge of the ice cliffs, the ice above seems is
+unstable and may slide down into the sea at any time.  The bay continues to the
+north and east.  Passage west and south is blocked by the cliffs.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47737
+D1
+~
+~
+0 -1 47742
+S
+#47742
+The Bay~
+   Sheer cliffs made of ice block passage to the south and east.  The cliffs
+rise for several hundred meters and are unscalable.  The bay continues to the
+north and west.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47738
+D3
+~
+~
+0 -1 47741
+S
+#47743
+Steps of Ice~
+   The ice falls into the sea here, but not as steeply as the other cliffs you
+have observed.  As you scan the cliff to your east for the easiest route, your
+spot a narrow stairway which has been cut into the cliff's face.  The stairway
+has unusual steps: they are wide, and the steps are twice as far away from each
+other as they should be.  It is as if these steps have been cut for or by a
+giant.  The stairs continue up, and the bay lies to the west.    
+~
+477 4 5
+D3
+~
+~
+0 -1 47738
+D4
+~
+~
+0 -1 47744
+S
+#47744
+Steps of Ice~
+   The steps up the cliff are long and trecherous.  The only way to effectively
+traverse them is to assume a very long and awkward stride which causes fatigue
+to set in easily.  The steps continue in a vertical direction.    
+~
+477 0 5
+D4
+~
+~
+0 -1 47745
+D5
+~
+~
+0 -1 47743
+S
+#47745
+The Ice Cave~
+   The steps lead to a cave midway up the cliff and proceed no further.  What
+an amazing discovery!  The cave is stocked with furniture and tools.  On this
+primitive plane of ice, evidence of intelligent life is surely the last thing
+expected.  The furniture and even the tools are made of pure, clear ice.  The
+cave continues to the east.  It is also possible to continue down along the ice
+steps.    
+~
+477 8 12
+D1
+~
+~
+0 -1 47746
+D5
+~
+~
+0 -1 47744
+S
+#47746
+Gateway to a Realm of Earth~
+   Slick ice covers the floor and walls of this chamber.  The ice is thin and
+clear, and you can see rocky ground behind it.  This is the first evidence of
+solid land you have seen since landing on this plane.  The ice seems especially
+thin on the ground, and peering through the ice you see a Gateway beneath your
+feet.  You scrape the ice away and see you may easily travel through the
+Gateway if you wish.  You may also continue to the west and south.    
+~
+477 12 12
+D2
+~
+~
+0 -1 47700
+D3
+~
+~
+0 -1 47745
+D5
+The Gateway is fashioned from a silvery metal that has an almost liquid
+appearance. Gingerly, you reach out and touch the metal.  The metal, strangely
+enough, yields to your touch, as though it has the consistency of butter; but
+when you remove your finger, the metal flows and rebounds to its original
+state. You have no doubt this metal, despite its apparent softness, is
+virtually indestructible.    
+~
+Gateway~
+2 48401 47600
+S
+#47747
+On the Ocean~
+   Irregular waves disturb the otherwise clam surface of the ocean here.  The
+waves travel from north to south.  To the east, you see a large landmass made
+of ice and snow.  You may continue along the ocean to the north and south, but
+passage to the immediate west and east is blocked by small chunks of floating
+ice.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47748
+D2
+~
+~
+0 -1 47723
+S
+#47748
+On the Ocean~
+   The water is turbulant here, as though stirred up from beneath.  The choppy
+water radiates out in all directions, creating low waves which disturb the calm
+surface of the sea.  You may continue along the ocean to the north and south,
+but passage to the immediate west and east is blocked by small chunks of
+floating ice.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47749
+D2
+~
+~
+0 -1 47747
+S
+#47749
+On the Ocean~
+   Slow waves originating from the south disturb the calm surface of the sea
+here.  Glancing to the northwest, you see a watersprout dancing along the sea's
+surface.  You may continue to the west and south, but passage to the immediate
+north and east is blocked by small chunks of floating ice.    
+~
+477 0 7
+D2
+~
+~
+0 -1 47748
+D3
+~
+~
+0 -1 47750
+S
+T 48636
+#47750
+On the Ocean~
+   To the north, a watersprout skips across the ocean's surface.  You are some
+distance from it but may get a closer look by moving north.  You may also
+continue along the ocean to the east, but passage to the immediate west and
+south is blocked by small chunks of floating ice.    
+~
+477 0 7
+D0
+~
+~
+0 -1 47751
+D1
+~
+~
+0 -1 47749
+S
+#47751
+Gateway to a Realm of Air~
+   A funnel made of water dances upon the ocean here.  It moves across the
+ocean eratically, sometimes actually flying several meters in the air as it
+skips from spot to spot.  You are hesitant to approach the sprout, fearful of
+being sucked up within it and drowned.  However, as though sensing your
+presence, the sprout rushes toward you and then, quite suddenly, becomes still.
+Water parts from the surface of the sprout like a curtain, revealing a Gateway
+some distance above your head.    
+~
+477 4 7
+D2
+~
+~
+0 -1 47750
+D4
+The Gateway is fashioned from a silvery metal that has an almost liquid
+appearance. Gingerly, you reach out and touch the metal. The metal,
+strangely enough, yields to your touch, as though it has the consistency
+of butter; but when you remove your finger, the metal flows and rebounds
+to its original state. You have no doubt this metal, despite its apparent
+softness, is virtually indestructible.
+~
+Gateway~
+2 48401 48801
+S
+$~

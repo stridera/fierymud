@@ -1,0 +1,1608 @@
+1
+vnum: 36014
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring tiny-copper-ring thin-circle
+shortdesc: a tiny copper ring
+desc: A thin circle of copper resembles a coin.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+24 -1
+~
+extradesc: tiny-copper-ring thin-circle
+A thin copper wire bears the symbol of the Kaaz clan.~
+~~
+vnum: 36104
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: ring coral-ring barely-visible-circle smooth-coral
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lies on the ground.
+type: 8
+weight: 0.30
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+3 2
+24 -5
+~
+extradesc: coral-ring barely-visible-circle smooth-coral
+The coral ring seems totally flawless.  It is made of the finest coral you have
+ever seen, and fades from a light pink on one side to white on the other.  It
+is smoothed completely and coated with a clear substance so that it is not the
+least bit abrasive.~
+~~
+vnum: 36100
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace bat-tooth-necklace sharp teeth
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+extradesc: bat-tooth-necklace sharp teeth
+When examined closely, it is easy to see the necklace was constructed hastily
+with clumsy hands.  The teeth vary in shape and size making you wonder if more
+than bat teeth were used.  Even with all of its flaws, you can tell the
+necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace bat-tooth-necklace sharp teeth
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+extradesc: bat-tooth-necklace sharp teeth
+When examined closely, it is easy to see the necklace was constructed hastily
+with clumsy hands.  The teeth vary in shape and size making you wonder if more
+than bat teeth were used.  Even with all of its flaws, you can tell the
+necklace held some significance to the owner.~
+~~
+vnum: 18510
+location: 5
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: robe yellow-scholarly-robe scholar
+shortdesc: a yellow scholarly robe
+desc: The yellow robe of a scholar lies here.
+type: 9
+weight: 2.80
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+3 3
+~
+extradesc: robe yellow-scholarly-robe scholar
+This robe is in high quality, and quite fashionable.  There are small golden
+tassles hanging from the lining, making it seem very unique.~
+~~
+vnum: 8707
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cap fur-badger-cap badger-pelt-sewn-cap
+shortdesc: a fur badger cap
+desc: A badger pelt sewn into a cap lays here.
+type: 9
+weight: 0.20
+cost: 14
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+5 1
+14 10
+~
+~~
+vnum: 55401
+location: 7
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: pants apprentice-pants cloth-pants magical-power magic
+shortdesc: some apprentice pants
+desc: A pair of cloth pants emitting a slight magical power have been left here.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 2
+13 7
+~
+extradesc: pants apprentice-pants cloth-pants magical-power magic
+Newly sewn, these magical cloth pants were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 55402
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: sandals apprentice-sandals magical-reed-sandals magic
+shortdesc: apprentice sandals
+desc: A pair of slightly magical reed sandals wiggles slightly.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 10
+13 5
+~
+extradesc: sandals apprentice-sandals magical-reed-sandals magic
+Newly sewn, these magical cloth sandals were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 55404
+location: 9
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: gloves apprentice-gloves magical-power magic
+shortdesc: apprentice gloves
+desc: A pair of leather gloves hums slightly with magical power.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+14 10
+13 5
+~
+extradesc: gloves apprentice-gloves magical-power magic
+Newly sewn, these magical cloth gloves were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 55399
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: sleeves apprentice-sleeves cloth-sleeves magical-power magic
+shortdesc: apprentice sleeves
+desc: A set of cloth sleeves emitting slight magical power have been left here.
+type: 9
+weight: 1.90
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 2
+13 7
+~
+extradesc: sleeves apprentice-sleeves cloth-sleeves magical-power magic
+Newly sewn, these magical cloth sleeves were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!~
+~~
+vnum: 17208
+location: 12
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dgnoprstuwx aeij
+name: robe magician's-robe magicians-robe velvet-robe heap
+shortdesc: a magician's robe
+desc: A velvet robe lies in a crumpled heap here.
+type: 9
+weight: 1.00
+cost: 150
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+3 1
+13 -3
+~
+extradesc: robe magician's-robe magicians-robe velvet-robe heap
+This robe is made of very high quality velvet and is decorated with various
+symbols of arcane importance.~
+~~
+vnum: 12008
+location: 13
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: baldric emblazoned-baldric large-ornamented-belt leather
+shortdesc: an emblazoned baldric
+desc: A large, ornamented belt lies coiled here.
+type: 9
+weight: 1.25
+cost: 225
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: emblazoned-baldric large-ornamented-belt leather
+This large, wide belt goes around the waist, up over the shoulders, to support
+a sword's sheath.  A lion rampant adorns the front of it, where it goes across
+the stomach.  The baldric seems very old; its owner hasn't taken good care of
+it -- the leather is cracked in places.~
+~~
+vnum: 55403
+location: 14
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: bracelet apprentice-bracelet small-cloth-bracelet pattern
+shortdesc: an apprentice bracelet
+desc: A small cloth bracelet pattern lies nearby.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+6 2
+13 5
+~
+extradesc: apprentice-bracelet small-cloth-bracelet-pattern
+Newly sewn, this magical cloth bracelet was made just for you.  Proof of your
+beginning training, it will protect you as you adventure!~
+~~
+vnum: 20306
+location: 15
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracelet snake-fang-bracelet small fangs
+shortdesc: a snake fang bracelet
+desc: A small bracelet made of snake fangs lies on the ground here.
+type: 8
+weight: 0.70
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+19 1
+18 1
+1 1
+~
+extradesc: snake-fang-bracelet small fangs
+This bracelet is made out of a very durable weaved grass that has several
+spaced out snake fangs weaved into it.  The fangs are about an inch in length
+and give the bracelet a menacing look.  The grass is a dull green color and it
+is weaved tightly so it looks almost like it is one piece of grass.~
+~~
+vnum: 417
+location: 16
+values:
+0
+4
+4
+11
+0
+0
+0
+~
+flags: bg 0
+name: dagger flame-shaped-dagger small-flame-shaped-silver-dagger
+shortdesc: a flame-shaped dagger
+desc: A small flame-shaped silver dagger glints in the lighting.
+type: 5
+weight: 0.50
+cost: 200000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 2
+~
+~~
+vnum: 20302
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: feather vulture-feather ugly-brown-feather pen quill
+shortdesc: a vulture feather
+desc: An ugly brown feather lies here floating with the wind.
+type: 21
+weight: 0.04
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+4 1
+14 15
+~
+extradesc: feather vulture-feather ugly-brown-feather pen quill
+This is the feather of a large vulture.  The feather itself is quite ugly and
+dull.  It is a plain brown color and the feather is ruffled everywhere making
+it look messy.~
+~~
+vnum: 4312
+location: 22
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: makeup stage-makeup-kit make-up-kit
+shortdesc: stage makeup
+desc: Someone left their makeup kit behind.
+adesc:
+Nothing.~
+type: 9
+weight: 0.08
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+6 2
+~
+extradesc: stage-makeup-kit make-up-kit
+This kit has everything an actor needs; base, blush, eyeliner, lipstick,
+highlights and shadows and even a stubble sponge.  Cheap and simple, but it
+covers all of an actor's base needs.    ~
+~~
+vnum: 1607
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gA 0
+name: fang viper-fang pointy
+shortdesc: a viper fang
+desc: A pointy viper fang rests here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.40
+cost: 1000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+13 3
+~
+extradesc: viper-fang pointy
+About 2 inches long, and razor-sharp, this fang looks like it could pierce
+steel.  Or be worn as an earring...~
+~~
+vnum: 20301
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+shortdesc: a lion fang
+desc: A gleaming lion's tooth lies in the dust here.
+type: 8
+weight: 0.80
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+1 1
+~
+extradesc: fang lion-fang gleaming-lion's-tooth lion-fang gleaming-lions-tooth
+This is the sharp canine of a lion.  Its tip is razor sharp and it shines a
+beautiful ivory color.  This fang is a very rare and valuable treasure.~
+~~
+vnum: 8031
+location: 25
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: scale blue-drakling-scale small-blue-scale
+shortdesc: a &4&bblue&0 drakling scale
+desc: A small blue scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 5
+~
+~~
+vnum: 20300
+location: 26
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+14 20
+~
+extradesc: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+32 5
+5 5
+20 5
+100 5
+19 18
+8 7
+37 9
+31 12
+~
+triggers:
+51949
+~
+~~
+vnum: 16905
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom furry-black-mushroom food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom furry-black-mushroom food
+The mushroom looks disgusting, but it has a surprisingly nice aroma.  It seems
+to say, come on, take a nibble ....~
+~~
+vnum: 2001
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 23756
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: salt spice herb shaker food
+shortdesc: a shaker of salt
+desc: An ornamental salt shaker sits here.
+type: 19
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: salt shaker spice
+Salt is one of the oldest and simplest spices known to man.  In some ancient
+lands, soldiers were paid in salt.  It is used to preserve meat and usually
+makes you very thirsty if you eat too much of it.  It can be distilled from the
+ocean or mined from the mountains.  Some kinds of salt can be found in deserts,
+just sitting around.  It is the most common spice.    ~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map mielikki map-of-mielikki
+                  Mielikki, the forest town, by Kara-Sithri
+  
+                                                             &3***POINTS OF INTEREST***&0
+          &3#&0              &6&b2&0                                 |&6&b1&0: Temple to Mielikki
+          &9&b|              |&0                                 |&6&b2&0: Altar to Mielikki
+          &9&bSB&0         &B&1&b3&0 - &6&b1&0   &1???&0        &517&0 - &9&bNC&0            |&B&1&b3&0: Cleric Guild
+          &9&b|              |    |              |&0             |&B&1&b4&0: Warrior Guild
+      &521&0  &9&bSB        TC - TC - TC             NC -&0 &518&0       |&B&1&b5&0: Rogue Guild
+      &9&b|   |         |    |    |              |&0             |&B&1&b6&0: Sorcerer Guild
+      &2&b7&0 &9&b- SB -&0 &38&0    &9&bTC -&0 &C&4&b*&0 &9&b-  TC&0   &515&0 - &B&1&b4&0    &9&bNC -&0 &519&0       |&2&b7&0: Forest Inn
+          &9&b|         |    |    |    |         |&0             |&38&0: Post Office
+ &3#&0 &9&b- SQ - WM - WM - TC - TC - TC - EM - EM - CS - EM -&0 &3#&0   |&59&0: Drako's Bronze Shop
+     &9&b|          |   |         |              |&0             |&510&0: Garm's Shield Emporium
+ &59&0 &9&b- SR -&0 &510&0    &513&0  &514&0 &9&b-&0 &B&1&b5&0    &9&bDA - DA - DA   SC&0            |&511&0: Shauna's Hosue of Iron
+     &9&b|          |                  |    |    |&0             |&512&0: Beowyn's Steel
+&511&0 &9&b- SR -&0 &512&0    &B&1&b6&0        &3&b21&0        &516&0  &9&bdump  SC -&0 &520&0       |&513&0: Bigby's House of Magic
+     &9&b|                   |                   |&0             |&514&0: Fine Jewelry
+    &9&bNCP - NC - NC - NC - NC - NC - NC - NC - NCS&0           |&515&0: Santiago's Weapons
+          &9&b|              &0&1#&0&9&b         |&0                       |&516&0: Sloshed Squirrel Tavern
+     &9&bRP - RP - RP   TH - TH - TH   WW&0                      |&517&0: Helena's Bakery
+     &9&b|    |    |    |    |    |    |&0                       |&518&0: Aaron's General Store
+     &9&bRP -&0 &C&4&b*&0  &9&b- RP   TH - TH - TH   WW -&0 &1???&0                |&519&0: Lisa's House of Leather
+     &9&b|    |    |                   |&0                       |&520&0: Freddy's Toy Shop
+     &9&bRP - RP - RP                  WW&0                      |&521&0: Cartographer's Room
+          &9&b|                        |&0                       |&3&b22&0: Bank
+         &9&bGrey&0                      &3#&0                       |&C&4&b*&0: Fountain
+        &9&bCastle&0                                             |&3#&0: City Gates     
+                                                                 |&1???&0: New Adventures! 
+ 
+                                                               &9&b***ROADS***&0
+                                                           |SB: Sleepy Blvd.
+                                                           |SQ: Smelter's Sq.
+                                                           |WM: West main St.
+                                                           |TC: Town Center
+                                                           |EM: East Main St.
+                                                           |CS: Commerce Sq.
+                                                           |NC: N. Commerce Ave.
+                                                           |SC: S. Commerce Ave.
+                                                           |DA: Dark Alley
+                                                           |SR: Smelter's Row
+                                                           |NCP: New Castle Plaza
+                                                           |NC: New castle Rd.
+                                                           |NCS: New Castle Sq.
+                                                           |WW: Windy Way
+                                                           |RP: Royal Plaza
+                                                           |TH: Town Hall~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+~
+~~
+vnum: 36302
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: book-log log book black log-book
+shortdesc: the smuggler's log book
+desc: A black log book lies on a small table.
+type: 12
+weight: 1.10
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: log book black
+The log book records the activities of the smugglers over the past few weeks:
+
+14 days ago: Smuggled 3 crates of glazed donuts to Helena.
+12 days ago: Helena needs 3 crates of jelly donuts and 2 crates of glazed
+             donuts.
+10 days ago: Smuggled 3 crates of jelly donuts and 2 crates of glazed donuts.
+ 9 days ago: Guard convention in Mielikki.  Helena needs 12 crates of
+             glazed donuts.
+ 7 days ago: Smuggled 10 crates of glazed donuts.
+ 2 days ago: Helena wants 2 crates of glazed donuts and 5 crates of jelly
+             donuts.
+
+Wow! You never realized there was such a market in smuggled donuts!~
+~~
+vnum: 1803
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe bark-canoe
+shortdesc: a bark canoe
+desc: A bark canoe has been abandoned here.
+type: 22
+weight: 20.00
+cost: 1
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: canoe bark-canoe
+   &0It looks very heavy, but quite sturdy.  &0~
+~~
+vnum: 16906
+location: 127
+values:
+15
+1
+3
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion murky-green-potion
+shortdesc: a green potion
+desc: A murky green potion is here.
+type: 10
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion murky-green-potion
+The liquid has an odd astringent odour which reminds you of castor oil from
+your youth.~
+~~
+vnum: 16906
+location: 127
+values:
+15
+1
+3
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion murky-green-potion
+shortdesc: a green potion
+desc: A murky green potion is here.
+type: 10
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion murky-green-potion
+The liquid has an odd astringent odour which reminds you of castor oil from
+your youth.~
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: backpack heavy-backpack back-pack leather
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+extradesc: backpack heavy-backpack back-pack leather
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.~
+~~
+vnum: 5509
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: token eldoria-trophy small-black-token 3rd-black-legion-token third questobject
+shortdesc: a token of the 3rd Black Legion
+desc: A small black token lies nearby.
+type: 13
+weight: 1.00
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy small 3rd-black-legion-token
+It's a small token emblazoned with the crest of the 3rd Black Legion.~
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 5503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skull eldoria-trophy 3rd-black-legion-skull third questobject
+shortdesc: a skull of the 3rd Black Legion
+desc: A black skull lies here.
+type: 13
+weight: 2.20
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-skull third questobject
+Still warm to the touch, it's a skull of the demonic minions of the 3rd Black
+Legion that has invaded Eldoria.~
+~~
+vnum: 55398
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dnoprstuvwx abeij
+name: turban apprentice-turban magical-cloth-turban magic
+shortdesc: an apprentice turban
+desc: A slightly magical cloth turban lies here.
+type: 9
+weight: 0.85
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+3 2
+13 4
+~
+extradesc: turban apprentice-turban magical-cloth-turban magic
+Newly sewn, this magical cloth turban was made just for you.  Proof of your
+beginning training, it will protect you as you adventure!~
+~~
+vnum: 13611
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: feather bright-red-feather pen quill
+shortdesc: a &1red&0 feather
+desc: A bright red feather lies in the dust.
+type: 21
+weight: 0.03
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 1
+4 -1
+~
+extradesc: feather bright-red-feather pen quill
+It's a long wingfeather from the bright birds that live around Morgan Hill.  
+It looks ideal for scribing spells into a spellbook.~
+~~
+vnum: 58001
+location: -1
+values:
+0
+2
+5
+3
+0
+0
+0
+~
+flags: gmnuvyz acfghij
+name: katana long-foreign-blade graceful-curve
+shortdesc: a katana
+desc: A long foreign blade with a graceful curve has been shamefully abandoned here.
+type: 5
+weight: 6.00
+cost: 3000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+1 3
+~
+extradesc: katana long-foreign-blade graceful-curve
+It is a long, single-bladed sword that has a slightly curved blade and a short,
+octagonal crossguard.  The blade has a wavy, rippled coloration along its
+insanely sharp edge.  Its hilt is enamelled black wood wrapped with black silk
+cord.~
+~~
+vnum: 55764
+location: -1
+values:
+0
+1
+9
+11
+0
+0
+0
+~
+flags: 0 0
+name: dagger small-green-dagger
+shortdesc: a small green dagger
+desc: A small green dagger lies here.
+type: 5
+weight: 0.75
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 5505
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring eldoria-trophy 3rd-black-legion-ring black-ring third questobject
+shortdesc: a ring of the 3rd Black Legion
+desc: A black ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 0
+level: 8
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: eldoria-trophy 3rd-black-legion-ring
+It's a ring made of dark metal set with the insignia of the 3rd Black Legion
+that has invaded Eldoria.~
+~~
+vnum: 17302
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gjlmuyz aefghi
+name: helmet black-horned-helmet black-helmet
+shortdesc: a black horned helmet
+desc: A black, horned helmet lies on the ground.
+type: 9
+weight: 5.10
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+1 -1
+~
+extradesc: black-horned-helmet black-helmet
+The helmet is jet black, as if it is the very essense of chaos. It seems to
+absorb all the light that falls on it. There are vicious horns which gives it
+a sinister appearance.~
+~~
+vnum: 58008
+location: -1
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: adgjlnoprstuwxD eij
+name: book wizard's-book wizards-book glowing-book golden-pages questobject
+shortdesc: the wizard's book
+desc: A glowing book with golden pages lies open here.
+type: 26
+weight: 1.00
+cost: 6000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+19 3
+~
+extradesc: book wizard's-book wizards-book glowing-book golden-pages questobject
+The book almost hums with power.  You approach it reverently, ready to see the
+face of some god in its pages, but then...  Then...  You feel its sheer evil
+nature and realize this is not a text to praise a god, but entrap one!~
+~~
+vnum: 61519
+location: -1
+values:
+5
+3
+3
+206
+0
+0
+0
+~
+flags: 0 0
+name: masterwork-violin masterwork-fiddle grig-violin
+shortdesc: a violin
+desc: A masterwork violin lays half hidden in the leaves.
+adesc:
+A sonorous refrain weeps from the violin.~
+type: 30
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+6 2
+~
+extradesc: masterwork-violin masterwork-fiddle grig-violin
+Crafted from dark, rich willow, the appearance of this violin alone is a work
+of art.  The rich, sonorous tones it is capable of creating seem to emanate
+from another universe entirely, one hidden deep under the surface of the waking
+world.~
+~~
+vnum: 55350
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: pants burned-pants armor
+shortdesc: burned pants
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: pants burned-pants armor
+These pants are burned beyond use.~
+~~
+vnum: 55334
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots burned-boots armor
+shortdesc: burned boots
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: boots burned-boots armor
+These boots are burned beyond use.~
+~~
+vnum: 1804
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: loincloth leather-loincloth loin-cloth
+shortdesc: a leather loincloth
+desc: A loincloth made of leather lies here.
+type: 9
+weight: 1.00
+cost: 10
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+extradesc: leather-loincloth loin-cloth
+The loincloth is simply constructed of some sort of thin leather.  It covers
+the body's most interesting parts, with flaps hanging down the front and back.~
+~~
+vnum: 1004
+location: 127
+values:
+1
+240
+157
+0
+0
+0
+0
+~
+flags: q 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern.  It holds about fifteen hours worth of fuel.~
+~~

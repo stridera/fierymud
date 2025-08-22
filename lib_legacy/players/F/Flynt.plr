@@ -1,0 +1,160 @@
+name: Flynt
+password: FlFmgyE32U
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 20
+race: 32
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20866
+birthtime: 1731898971
+timeplayed: 2229698
+lastlogintime: 1738963082
+host: 070.181.012.071
+height: 10
+weight: 6
+base_height: 10
+base_weight: 6
+base_size: 0
+natural_size: 0
+alignment: 690
+playerflags: gxyz
+effectflags: u 0 0
+prefflags: ghnosxCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 100
+loadroom: 3054
+lastlevel: 0
+hitpoints: 344/344
+mana: 980/980
+move: 300/300
+damroll: 0
+hitroll: 6
+strength: 67
+intelligence: 96
+wisdom: 96
+dexterity: 82
+constitution: 84
+charisma: 62
+cash: 926 2841 12022 1603
+bank: 1848 6935 29413 25116
+experience: 126967199
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+19 1000
+20 1000
+26 1000
+29 1000
+31 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+65 1000
+67 1000
+68 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+107 1000
+108 1000
+112 1000
+113 1000
+157 1000
+158 1000
+159 1000
+160 1000
+161 1000
+162 1000
+163 1000
+164 1000
+165 1000
+166 1000
+167 1000
+168 1000
+169 1000
+170 1000
+200 1000
+220 1000
+228 1000
+415 50
+416 50
+421 743
+423 102
+424 1000
+438 120
+443 50
+444 56
+447 880
+451 1000
+452 1000
+453 1000
+455 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 54
+0 0
+trophy:
+1 11812 0.250000
+1 2808 0.250000
+1 11704 0.250000
+1 11702 0.250000
+1 51015 0.750000
+1 51019 0.750000
+1 51018 0.500000
+1 51017 0.750000
+1 51012 0.250000
+1 47014 0.250000
+1 47001 0.250000
+1 8002 1.000000
+1 51024 1.000000
+1 51014 0.250000
+1 51013 0.500000
+1 51021 1.250000
+1 51001 3.250000
+1 49014 0.250000
+1 49003 0.250000
+1 49013 0.250000
+1 49008 0.250000
+0 0 0
+tells:
+1738857210 @WAnexis@W tells you, 'I need to get a sorc on my team sooner than later :P haste and stone skin are so nice@W'@0
+1738857753 @WAnexis@W tells you, 'ah!@W'@0
+1738857802 @WAnexis@W tells you, 'lol alright! later you should help me unalive Julk for that armor :P@W'@0
+1738880127 @WChoak@W tells you, 'I cannot send a moonwell to you where you are@W'@0
+1738880147 @WChoak@W tells you, 'I cannot send a moonwell to you where you are@W'@0
+1738943461 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738943492 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1738943522 @WShazz@W tells you, 'Take good care of that.@W'@0
+1738944447 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
+1738946265 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1738959266 Chinok gossips, 'there's cheese pie, and 'some cheese' , and even 'a molding cheese' -- which does not load in-game'
+1738959291 Anexis gossips, 'I'm lookin for 'some cheese''
+1738959311 Anexis gossips, 'i have some cheese in my inventory, but I feel like I could use some more cheese'
+1738959470 Thort gossips, 'you can never have too much cheese'
+1738959520 Thort gossips, 'FROG means For Remembrance Of Gouda'
+1738962259 Chinok gossips, 'hahahah Risa was killed by Risa'
+1738962278 Risa gossips, 'omg.. i was like.. how?'
+1738962293 Teomner gossips, 'holy/unholy word?'
+1738962300 Risa gossips, 'now I see.. wrong alias was used'
+1738962310 Risa gossips, 'aaaand deleted'
+1738963073 Thort gossips, 'cya fiery! off to the mountains!'
+1738963077 Anexis gossips, 'enjoy!'
+$

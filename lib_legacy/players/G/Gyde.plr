@@ -1,0 +1,188 @@
+name: Gyde
+password: GyM4RNh7UE
+prompt: &2&b%ph <&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 4
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17093
+birthtime: 1221894927
+timeplayed: 2220583
+lastlogintime: 1429667031
+host: 098.231.133.187
+height: 73
+weight: 170
+base_height: 73
+base_weight: 170
+base_size: 2
+natural_size: 2
+alignment: 950
+playerflags: gxyz
+effectflags: cm 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1159/1060
+mana: 980/980
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 56
+wisdom: 63
+dexterity: 89
+constitution: 100
+charisma: 54
+cash: 0 1102 1518 0
+bank: 1520 18963 15027 831
+experience: 104634113
+clan: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+21 1000
+22 1000
+28 1000
+34 1000
+43 1000
+88 1000
+92 1000
+97 1000
+99 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+417 50
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 1000
+431 1000
+434 1000
+438 513
+441 1000
+443 233
+444 339
+450 50
+451 1000
+452 1000
+457 1000
+458 1000
+459 1000
+460 556
+461 1000
+462 50
+463 1000
+464 1000
+465 1000
+466 958
+468 50
+473 1000
+0 0
+mem:
+1 1 2
+1 1 2
+3 1 2
+3 1 2
+43 1 2
+43 1 2
+99 1 2
+99 1 2
+28 1 2
+28 1 2
+28 1 2
+28 1 2
+28 1 2
+28 1 2
+3 1 2
+97 1 2
+97 1 2
+97 1 2
+97 1 2
+97 1 2
+97 1 2
+1 1 2
+99 1 2
+3 1 2
+1 1 2
+99 1 2
+28 1 2
+3 1 2
+1 1 2
+99 1 2
+92 1 2
+12 1 2
+12 1 2
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+0 0 0
+aliases:
+0 rescue dimentio;rescue nodem;rescue gyen;rescue medon;rescue bleck
+templace w;w;n;n;w;w;n;n;w;w;n;n;w;w;n;n;n;w;w;w;n;n;n;e;e;n;e;e;s;e;n;n;w;n;w;n;w;n;w;;w;w;n;w;s;w;w;n;n;n;n;n;e;e;n;e;e;e;e;s;e;e;e;n;n;n;w;w;n;w;w;w;w;w;w;w;w;w;ww;w
+stone rem shield;rem all.javelin;rem all.rahmat;rem all.limb;wear all.stone
+mace rem shield;rem all.javelin;rem all.rahmat;rem all.stone;wear all.limb
+blade rem shield;rem all.javelin;rem limb;rem all.stone;wear all.rahmat
+javelin rem shield;rem all.rahmat;rem all.stone;rem limb;wear all.javelin
+r rest;pray
+iden get identify case;recite identify $1
+lair n;w;u;w;s;s;s;e;u;n;w;s;s;e;u;n;w;w;s;s;w;u
+wall s;w;w;w;n;n;n;n;n;n;n;e;e;n;n;n;n;w;n;n;n;e;e;n;n;e;e;n;e;s;e;n;n;n;e;n;n;n;n;w;n;n;n;n;e;e;e;e;n;n;n;n;w;w;s;e;s;s;w;w;n;n;n;n;n;n
+gy u;e;d;e;s;e;e;n;d;n;n;e;e;e;e;s;s;w;s;s;s;e;d
+waste s;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;n;n;n;w;w;w;w;w;w;w;w;w;w;n;n;w;n;u;w;w;n;u;e;n;w;n;n;n;n;w;w;s;w;n;n
+barrow s;s;s;s;s;s;s;s;s;s;w;s;w;w;s;s;s;w;w;w;s;w;w;s;w;s;w;s;e;s;e;s;e;e;e;s;e;s;e;e;s;e;e;e;e;s;e;e;n;e;u;n;e;e;e;e;s;e;e;n;n;e;e
+jetty s;e;e;e;e;e;e;e;e;s;s;s;s;s;e;s;s;s;e;s;s;w;w;w;w;s;s;s;s;s;s;e;s;e;s;w;s;e;e;n;e;s;s;w;s;s;e;s;w;d;w;s;w
+fly rem insanity;rem tabard;wear stormcloak;st;fly;rem gaze;wear monocle
+ac rem insanity;rem storm;wear tabard;rem monocle;wear gaze
+ppp consent $1;fol $1
+fountain w;w;n;n;n;n;n;n;n;w;n;n;n;e;e;s;buy green;n;e;e;n;dri fountain;dri fountain;fill barrel fountain
+disarm disarm;get all;wear mace
+333 cas 'heal' $1
+kkk ca 'ho'
+hoo say buntoi nakkarri karisto
+6 kill crow;kill sparrow;kill fox;kill brownie;kill deer;kill rabbit;kill hedgehog
+7 kill beetle;kill green;kill ant;kill lady;kill fire;kill cockroach;kill cricket;kill spider
+ccc l i corpse
+gcc get coins all.corpse
+who who -w
+; l n;l s;l e;l w;l u;l d
+a hitall
+st st;fly
+haa say floor phrase is eingang bitte
+f hitall all
+hee say floor phrase is open sesame
+b bash
+well s;s;s;s;s;s;s;s;e;e;e;e;e;e;e;e;s;s;e;e;e;s;s;s;s;s;s;e;s;s;s;e;s;s;s;w;s;s;e;e;e;e;s;e;e;s;s;s;s;e;n;e;n;e;s;s;w;s;s;s;u;s;d;e;e;s;s;w;s;s;e;s;s;w;s;s;s;w;s;s;s;s;op gate;s;s;s;s
+shield rem all.javelin;rem all.rahmat;rem all.stone;rem limb;wear shield;wear javelin
+hii say darkness hear my call unto you
+tr rem javelin;rem rahmat;wear iron
+p rescue meodn
+eldoria s;w;w;w;n;n;n;n;n;n;n;e;e;n;n;n;n;w;n;n;n;w;s;w;n;n;n;n;n;n;n;n;n;e;e;e;n;n;w;n;w;n;n;n;w;w;w;w;s;w;w;w;s;s;s;s;w;w;s
+gac get all corpse
+bbb fle;n;n;n;w
+aaa e;s;kil mysa
+0

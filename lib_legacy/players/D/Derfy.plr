@@ -1,0 +1,109 @@
+name: Derfy
+password: DekSdzw3bH
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 26
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20756
+birthtime: 1708611375
+timeplayed: 4322
+lastlogintime: 1708644912
+host: 075.233.243.134
+height: 73
+weight: 298
+base_height: 73
+base_weight: 298
+base_size: 2
+natural_size: 2
+alignment: 54
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 60/57
+mana: 1/0
+move: 152/152
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 71
+wisdom: 75
+dexterity: 82
+constitution: 94
+charisma: 42
+cash: 0 0 89 199
+bank: 0 30 105 0
+experience: 35929
+quit_reason: 3
+saveroom: 0
+skills:
+201 1000
+402 54
+404 80
+415 50
+416 50
+421 61
+438 50
+443 50
+444 54
+453 50
+463 50
+464 50
+465 59
+466 50
+467 50
+468 50
+486 54
+0 0
+trophy:
+1 3501 1.000000
+1 3500 2.000000
+1 8030 1.000000
+1 8012 1.000000
+1 8016 1.000000
+1 8020 1.000000
+1 8014 1.000000
+1 8000 1.000000
+1 8015 3.000000
+1 8013 2.000000
+1 8001 2.000000
+1 8011 3.000000
+1 36002 4.000000
+1 8002 2.000000
+1 3065 1.000000
+1 16905 1.000000
+1 16903 2.000000
+1 16901 1.000000
+1 16902 3.000000
+1 16906 2.000000
+1 16900 7.000000
+0 0 0
+tells:
+1708612329 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1708630912 @WSantiago@W tells you, 'No credit here, come back when you have some cash.@W'@0
+1708630925 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1708630975 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1708630986 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1708631843 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1708632425 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1708631151 Chinok gossips, '25, guard and dual wield :)'
+1708631194 Discord gossips, 'Daedela: Truth be told, two handed weapons often do more damage'
+1708631238 Discord gossips, 'Daedela: There's no speed rating in Fiery'
+1708631270 Chinok gossips, 'nope.'
+1708631285 Discord gossips, 'Daedela: The tradeoff is you only get the bonuses of one item, not two, and you're forgoing the defense of a shield for more damage'
+1708631311 Chinok gossips, 'add dual wield, double attack, haste, blur, and you're getting 6-8 hits a round.'
+1708631539 Chinok gossips, 'depends on the weapon, if it's a 2 handed hammer, it's not slashing'
+1708631617 Discord gossips, 'Daedela: 1 and 2 hander each have different proficiency'
+1708631677 Discord gossips, 'Daedela: I will say unlike kick or bash, those weapon proficiencies are helpful but they're not critical'
+1708644855 Chinok gossips, 'welcome back Derfy'
+$

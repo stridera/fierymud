@@ -1,0 +1,2436 @@
+1
+vnum: 3232
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g d
+name: ring iron-ring
+shortdesc: an iron ring
+desc: An iron ring has been left here.
+type: 9
+weight: 0.02
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: iron-ring
+It is a quite heavy human-sized ring made from solid iron.  It lacks
+decorations of any kind.~
+~~
+vnum: 62513
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 nopqrst
+name: ring wolf-tooth-ring carved fang-enormous-wolf
+shortdesc: a wolf-tooth ring
+desc: A ring carved from the fang of an enormous wolf is here in the dirt.
+type: 8
+weight: 0.50
+cost: 80000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+2 3
+5 3
+19 1
+14 20
+~
+~~
+vnum: 17806
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: claw bear's-claw sharp-claw bears-claw bear-claw
+shortdesc: a bear's claw
+desc: A sharp claw lies on the ground.
+type: 8
+weight: 0.50
+cost: 500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16389
+hiddenness: 0
+applies:
+1 3
+5 3
+~
+extradesc: claw bear's-claw sharp-claw bears-claw bear-claw
+The bear's claw is yellowed with age.  There are also very strange etchings on
+its' surface.~
+~~
+vnum: 17806
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: claw bear's-claw sharp-claw bears-claw bear-claw
+shortdesc: a bear's claw
+desc: A sharp claw lies on the ground.
+type: 8
+weight: 0.50
+cost: 500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16389
+hiddenness: 0
+applies:
+1 3
+5 3
+~
+extradesc: claw bear's-claw sharp-claw bears-claw bear-claw
+The bear's claw is yellowed with age.  There are also very strange etchings on
+its' surface.~
+~~
+vnum: 12537
+location: 5
+values:
+17
+0
+0
+0
+0
+0
+0
+~
+flags: kmouyz abefghij
+name: scalemail fine-scalemail scale-mail
+shortdesc: a set of fine scalemail
+desc: A set of fine scalemail lies in a rigid heap. 
+type: 9
+weight: 20.00
+cost: 10000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: scalemail fine-scalemail scale-mail
+If the scales on this set of scalemail look familiar, perhaps it is because a
+master crafstman painstakingly craft each one to resemble one of the scales of
+the great black dragon, Sagece.  The scales must have been gathered during a
+successful (meaning only several deaths to the party) assault upon her.  Or
+perhaps the beauty of the piece of armor just provides motivation for creative
+daydreaming.~
+~~
+vnum: 55012
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: bmuyz abefgh
+name: helm leopard-helm helmet-resembling-head-leopard
+shortdesc: a leopard helm
+desc: A helmet resembling the head of a leopard lies here.
+type: 9
+weight: 5.00
+cost: 400
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: helm leopard-helm helmet-resembling-head-leopard
+It is a solid white helm, lined in fur with black spots patched onto it.  The
+pattern of the front above the forehead is dyed to resemble they eyes of a cat.~
+~~
+vnum: 55009
+location: 7
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: pants polar-bear-skin-pants leather
+shortdesc: some polar bear skin pants
+desc: A polar bear skin sewn into some pants lies abandoned here.
+type: 9
+weight: 7.30
+cost: 900
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 1
+~
+extradesc: pants polar-bear-skin-pants leather
+These pants seem well made.  Stitched from polar bear hide, they are warm and
+protective.  The white fur still shines like it were yours.~
+~~
+vnum: 55563
+location: 8
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnpqrstuvyz abfghij
+name: boots-assassin black-studded-leather-boots
+shortdesc: &9&bBoots of the Assassin&0
+desc: A pair of black studded-leather boots hides here from those who seek to find them.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 41
+effects: p 0 0
+wear: 65
+hiddenness: 0
+applies:
+18 3
+19 1
+14 30
+~
+extradesc: boots-assassin black-studded-leather-boots
+These boots are made from hardened leather, dyed black and covered with steel
+studs.  Eerily not a creak or a whisper comes from these boots, which makes them
+perfect for sneaking while armored.  In addition, they are very light, which
+keeps them from impeding movement.  A pair of boots like this would be a
+perfect gift for anyone who valued stealth and quickness.~
+~~
+vnum: 46206
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: myz fgh
+name: gloves fur-trimmed-hide-gloves
+shortdesc: fur trimmed hide gloves
+desc: A pair of hide gloves has been dropped on the ground.
+type: 9
+weight: 1.70
+cost: 500
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+5 2
+3 -2
+~
+extradesc: gloves fur-trimmed-hide-gloves
+These gloves are assembled from numerous patches of leather stitched together
+with thick sinews.  Fur scraps trim the gloves for a bit of comfort.~
+~~
+vnum: 55406
+location: 10
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dmnprstuvyz afghij
+name: sleeves footpad-sleeves foot-pag leather-sleeves magic-power
+shortdesc: footpad sleeves
+desc: Some leather sleeves of slight magic power lie nearby.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+18 2
+13 7
+~
+extradesc: sleeves footpad-sleeves foot-pag leather-sleeves magic-power
+Newly jointed together, these magical leather sleeves were made especially for
+you.  Treat them right and they will help you as you set out on your journey.~
+~~
+vnum: 16308
+location: 12
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: cloak wolf-fur-cloak heap
+shortdesc: a wolf fur cloak
+desc: A cloak of wolf fur lies in a heap.
+type: 9
+weight: 5.00
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+5 3
+2 1
+~
+extradesc: wolf-fur-cloak heap
+The fur cloak is not very comfortable to wear but if it can protect you from
+the cold, well, you just aren't complaining.~
+~~
+vnum: 5530
+location: 13
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: belt eldoria-reward 3rd-eldorian-guard-belt third
+shortdesc: a belt of the 3rd Eldorian Guard
+desc: A small belt lies here.
+type: 9
+weight: 0.96
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+1 2
+~
+~~
+vnum: 58015
+location: 14
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: kl 0
+name: bracelet goddess-bracelet piece-pearl questobject
+shortdesc: the goddess' bracelet
+desc: A bracelet made of one piece of pearl has been dropped here.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+26 4
+1 6
+~
+extradesc: bracelet goddess-bracelet piece-pearl questobject
+It is a fine bracelet that looks like it was carved from one large pearl, with
+a twisting whorled design inlaid with gold.  It fits over the wrist, sliding on
+without a clasp or hinge.  It glows with the lustrous inner light that only the
+finest pearls have.~
+~~
+vnum: 55487
+location: 15
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnpqrstuvyz abfghij
+name: bracer-unseen shadowy-bracer
+shortdesc: &3Bracer of the Unseen&0
+desc: A shadowy bracer has been hidden in the darkness here.
+type: 9
+weight: 0.74
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 20
+3 2
+~
+extradesc: bracer-unseen shadowy-bracer
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.~
+~~
+vnum: 11706
+location: 16
+values:
+0
+3
+5
+11
+0
+0
+0
+~
+flags: g 0
+name: dagger misty-blue-dagger
+shortdesc: a misty blue dagger
+desc: A misty blue dagger has been dropped here.
+type: 5
+weight: 1.10
+cost: 590
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+18 1
+~
+extradesc: dagger misty-blue-dagger
+The dagger is made of a misty blue metal that seems to pulsate slightly.  The
+dagger's blade changes shape slowly as it grows new teeth to replace older
+teeth as they fade away.~
+~~
+vnum: 12527
+location: 17
+values:
+0
+3
+6
+3
+0
+0
+0
+~
+flags: gmnuvyz acfghij
+name: sword dancing-sword steel-sword cloth-wrapped-handle
+shortdesc: a dancing sword
+desc: A steel sword with a cloth wrapped handle lies here. 
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: sword dancing-sword steel-sword cloth-wrapped-handle
+The sword isn't very fancy - it is made of a dull metal, and strips of cloth
+are wrapped about the handle.  Occaisonally, the sword seems to twitch; it must
+be a trick of the light.~
+~~
+vnum: 351
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: dmnoprstuvxyzAD abefghij
+name: mask mask-shadows shadowy-mask
+shortdesc: a mask of shadows
+desc: Someone has stashed a shadowy mask here.
+type: 9
+weight: 0.50
+cost: 2000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+18 1
+19 1
+~
+triggers:
+322
+6058
+~
+~~
+vnum: 17805
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tooth finely-polished-cougar's-tooth carnivore's-tooth earring finely-polished-cougars-tooth carnivores-tooth earring
+shortdesc: a finely-polished cougar's tooth
+desc: A carnivore's tooth lies half hidden on the ground.
+type: 8
+weight: 0.10
+cost: 1000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+2 3
+14 5
+~
+extradesc: tooth finely-polished-cougar's-tooth carnivore's-tooth earring finely-polished-cougars-tooth carnivores-tooth earring
+The tooth looks like some sort of earring, as small runes are carved on its
+yellowed ivory surface.~
+~~
+vnum: 17805
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tooth finely-polished-cougar's-tooth carnivore's-tooth earring finely-polished-cougars-tooth carnivores-tooth earring
+shortdesc: a finely-polished cougar's tooth
+desc: A carnivore's tooth lies half hidden on the ground.
+type: 8
+weight: 0.10
+cost: 1000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+2 3
+14 5
+~
+extradesc: tooth finely-polished-cougar's-tooth carnivore's-tooth earring finely-polished-cougars-tooth carnivores-tooth earring
+The tooth looks like some sort of earring, as small runes are carved on its
+yellowed ivory surface.~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 59040
+location: 26
+values:
+40
+5
+5
+40
+0
+0
+0
+~
+flags: 0 0
+name: trumpet long-trumpet polished-trumpet
+shortdesc: a long trumpet
+desc: A polished trumpet stands proudly here.
+adesc:
+The fanfare is glorious!~
+type: 30
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+17 1
+6 2
+5 4
+1 4
+~
+extradesc: trumpet long-trumpet polished-trumpet
+This kind of trumpet is traditionally used for heraldry to announce the coming
+of knights or kings.  While well cared for, it bears clear signs of regular
+use.  If it could speak, what stories of nobility and honor would it tell?~
+triggers:
+327
+~
+~~
+vnum: 2327
+location: 27
+values:
+0
+300
+300
+0
+0
+0
+0
+~
+flags: DE c
+name: lightstone light-stone elven-lightstone elf
+shortdesc: an elven lightstone
+desc: An elven lightstone glares brightly here.
+type: 1
+weight: 0.30
+cost: 3000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+24 -3
+~
+extradesc: lightstone light-stone elven-lightstone elf
+Made of glittery opaque white stone dotted with flecks of gold, this stone can
+be made to glow with a mere thought.~
+~~
+vnum: 55483
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnpqrstuvyz abfghij
+name: sleeves-unseen shadowy-sleeves
+shortdesc: &3Sleeves of the Unseen&0
+desc: Shadowy sleeves hide in the darkness here.
+type: 9
+weight: 6.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+6 4
+13 15
+~
+extradesc: sleeves-unseen shadowy-sleeves
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.~
+~~
+vnum: 5520
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz fgh
+name: torque eldoria-reward small-torque 3rd-eldorian-guard-torque discarded iron third
+shortdesc: a torque of the 3rd Eldorian Guard
+desc: A small torque lies discarded nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+extradesc: eldoria-reward small-torque 3rd-eldorian-guard-torque discarded iron third
+It's a torque made of twisted metal.  It looks fairly protective.~
+~~
+vnum: 55340
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: helm crushed-helm armor
+shortdesc: a crushed helm
+desc: A pile of crushed armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: helm crushed-helm armor
+This helm is crushed beyond use.~
+~~
+vnum: 7302
+location: 127
+values:
+50
+260
+250
+0
+0
+0
+0
+~
+flags: bg 0
+name: potion murky murky-potion swamp-potion
+shortdesc: a murky potion
+desc: A murky potion has been dropped here.
+type: 10
+weight: 0.30
+cost: 800
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55409
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dmnprstuvyz afghij
+name: boots footpad-leather-boots foot-pad magical-leather-boots magic
+shortdesc: footpad leather boots
+desc: A pair of slightly magical leather boots gather dust in the corner.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 10
+13 4
+~
+extradesc: boots footpad-leather-boots foot-pad magical-leather-boots magic
+Newly jointed together, these magical leather boots were made especially for you.
+Treat them right and they will help you as you set out on your journey.~
+~~
+vnum: 12538
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gj 0
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 8
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    ~
+~~
+vnum: 55405
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dmnprstuvyz afghij
+name: cap footpad-cap foot-pad leather-cap magic-power
+shortdesc: a footpad cap
+desc: A leather cap of slight magic power lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+3 2
+13 5
+~
+extradesc: cap footpad-cap foot-pad leather-cap magic-power
+Newly jointed together, this magical leather cap was made especially for you.  
+Treat it right and it will help you as you set out on your journey.~
+~~
+vnum: 58601
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: spyglass spy-glass cylindrical object
+shortdesc: a spyglass
+desc: A cylindrical object rolls out of reach.
+type: 8
+weight: 0.75
+cost: 2000
+timer: 0
+level: 10
+effects: x 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 5
+~
+extradesc: spyglass spy-glass cylindrical object
+This object is made up of many cylinders in progressive sizes that collapse to
+make a little object the size of a drinking cup, and expands to form a long,
+narrowing tube with glass at either end.  When you look through it, you can see
+things close up, or so the legends go.~
+~~
+vnum: 3084
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: notice
+shortdesc: a notice for a faerie dragon
+desc: A contract for someone's head has been accidentally left out!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+3085
+~
+~~
+vnum: 55342
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cap burned-cap armor
+shortdesc: a burned cap
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: cap burned-cap armor
+This cap is burned beyond use.~
+~~
+vnum: 5303
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: assignment
+shortdesc: an assignment for a monstrous canopy spider
+desc: A contract for someone's head has been accidentally left out!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+5315
+~
+~~
+vnum: 55337
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer crushed-leather-bracer armor
+shortdesc: a crushed leather bracer
+desc: A pile of crushed leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracer crushed-leather-bracer armor
+This bracer is crushed beyond use.~
+~~
+vnum: 55482
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnpqrstuvyz abfghij
+name: hood-unseen shadowy-hood
+shortdesc: &3Hood of the Unseen&0
+desc: A shadowy hood has been hidden in the darkness here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+18 2
+3 2
+~
+extradesc: hood-unseen shadowy-hood
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+~
+~~
+vnum: 17802
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe
+shortdesc: a canoe
+desc: A canoe lies abandoned here.
+type: 22
+weight: 25.00
+cost: 700
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55348
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves crushed-greaves armor
+shortdesc: crushed greaves
+desc: A pile of crushed armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: greaves crushed-greaves armor
+These greaves are crushed beyond use.~
+~~
+vnum: 55343
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban burned-turban armor
+shortdesc: a burned turban
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: turban burned-turban armor
+This turban is burned beyond use.~
+~~
+vnum: 55353
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tunic crushed-leather-tunic armor
+shortdesc: a crushed leather tunic
+desc: A pile of crushed leather armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tunic crushed-leather-tunic armor
+This tunic is crushed beyond use.~
+~~
+vnum: 20300
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+14 20
+~
+extradesc: horn large-ivory-colored-rhino's-horn large-ivory-colored-rhinos-horn
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.~
+~~
+vnum: 55352
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: plate crushed-plate armor
+shortdesc: a crushed plate
+desc: A pile of crushed armor lies here unusable.
+type: 8
+weight: 9.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: plate crushed-plate armor
+This plate is crushed beyond use.~
+~~
+vnum: 12509
+location: 127
+values:
+70
+1
+1
+66
+0
+0
+0
+~
+flags: 0 0
+name: fist crystal
+shortdesc: a yellow, fist shaped crystal
+desc: A yellow-tinged, fist-shaped crystal lies here, its purpose forgotten.
+adesc:
+The fist pulses with energy, and soars through the air.~
+type: 3
+weight: 0.75
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fist crystal 
+The crystal is a sickly yellow, and has been carved into a clenched fist, with
+part of the forearm intact.    ~
+~~
+vnum: 12520
+location: 127
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook silver-trimmed-leather-spellbook spell-book
+shortdesc: a silver-trimmed leather spellbook
+desc: A silver-trimmed leather spellbook lies open, face down.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 4
+1 -2
+~
+extradesc: spellbook silver leather book
+The leather is pale grey, very supple, and thin.  The silver trim is painted on
+in long, quick strokes.  No symbols or drawings adorn the spine or cover; only
+faint wrinkles criscross the leather.~
+~~
+vnum: 6053
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: contract
+shortdesc: a contract for the Frakati Leader
+desc: A contract for someone's head has been accidentally left out!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+6055
+~
+~~
+vnum: 55344
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces crushed-vambraces armor
+shortdesc: crushed vambraces
+desc: A pile of crushed armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vambraces crushed-vambraces armor
+This helm is crushed beyond use.~
+~~
+vnum: 48128
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: bh 0
+name: head severed-goat's-head severed-goats-head chimera-head severed-head-goat
+shortdesc: a severed goat's head
+desc: The severed head of a goat sticks its tongue out, a final tidings to the world.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+5 3
+6 -4
+~
+extradesc: head severed-goat's-head severed-goats-head chimera-head severed-head-goat
+Grotesque and ugly, the severed goat's head oozes blood from its neck just
+below the jawbone.  Its whitish hair is stained and matted, clumping and
+sticking in knots.  A limp pinkish tongue droops out of its mouth between rows
+of vicious-looking teeth, forming a puddle of horrid-smelling drool beneath it.~
+~~
+vnum: 55344
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces crushed-vambraces armor
+shortdesc: crushed vambraces
+desc: A pile of crushed armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vambraces crushed-vambraces armor
+This helm is crushed beyond use.~
+~~
+vnum: 12509
+location: 127
+values:
+70
+1
+1
+66
+0
+0
+0
+~
+flags: 0 0
+name: fist crystal
+shortdesc: a yellow, fist shaped crystal
+desc: A yellow-tinged, fist-shaped crystal lies here, its purpose forgotten.
+adesc:
+The fist pulses with energy, and soars through the air.~
+type: 3
+weight: 0.75
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fist crystal 
+The crystal is a sickly yellow, and has been carved into a clenched fist, with
+part of the forearm intact.    ~
+~~
+vnum: 30010
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 55325
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tunic flimsy-leather-tunic armor
+shortdesc: a flimsy leather tunic
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tunic flimsy-leather-tunic armor
+This tunic flimsy beyond use.  Perhaps the Rogue guild master will know what to
+do with it.~
+~~
+vnum: 55325
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tunic flimsy-leather-tunic armor
+shortdesc: a flimsy leather tunic
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tunic flimsy-leather-tunic armor
+This tunic flimsy beyond use.  Perhaps the Rogue guild master will know what to
+do with it.~
+~~
+vnum: 3056
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 48129
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: bh 0
+name: head severed-lions-head chimera-head severed-lion's-head fearsome-expression-wrath face severed-lion's-head
+shortdesc: a severed lion's head
+desc: A fearsome expression of wrath is locked on the face of a severed lion's head.
+type: 9
+weight: 9.00
+cost: 0
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+1 5
+6 -4
+2 -4
+~
+extradesc: head severed-lions-head chimera-head severed-lion's-head fearsome-expression-wrath face severed-lion's-head
+Once golden-haired with a beautiful, rich brown mane, this lion's head is now
+severed from its body, clotted blood matting the edges of its hair.  A terrible
+expression of wrath and anguish is locked onto its face, hinting at its
+agonizing downfall.  Much of the insides of the head have long fallen out,
+leaving a hideously gross interior large enough to fit another head in.    ~
+~~
+vnum: 35004
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: earring crow-feather-earring black-feather
+shortdesc: a crow-feather earring
+desc: A black feather rests on the ground.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: earring crow-feather-earring black-feather
+A jet black feather is attatched by leather to a small silver hoop.  The hoop
+itself is tiny, and the feather seems to hang down from it.~
+~~
+vnum: 18004
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: green-linen-robe crumpled-heap
+shortdesc: a &2green linen&0 robe
+desc: A green robe lies in a crumpled heap here.
+type: 9
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+3 3
+18 -1
+~
+extradesc: green-linen-robe crumpled-heap
+The robe is made of a fine satin-like material.  You get a strange tingling
+feeling as you run your finger along its seams.~
+~~
+vnum: 20306
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracelet snake-fang-bracelet small fangs
+shortdesc: a snake fang bracelet
+desc: A small bracelet made of snake fangs lies on the ground here.
+type: 8
+weight: 0.70
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+19 1
+18 1
+1 1
+~
+extradesc: snake-fang-bracelet small fangs
+This bracelet is made out of a very durable weaved grass that has several
+spaced out snake fangs weaved into it.  The fangs are about an inch in length
+and give the bracelet a menacing look.  The grass is a dull green color and it
+is weaved tightly so it looks almost like it is one piece of grass.~
+~~
+vnum: 55488
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnpqrstuvyz abfghij
+name: gloves-unseen shadowy-gloves
+shortdesc: &3Gloves of the Unseen&0
+desc: A set of shadowy gloves hides in the darkness here.
+type: 9
+weight: 1.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+19 1
+4 5
+~
+extradesc: gloves-unseen shadowy-gloves
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.~
+~~
+vnum: 62513
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 nopqrst
+name: ring wolf-tooth-ring carved fang-enormous-wolf
+shortdesc: a wolf-tooth ring
+desc: A ring carved from the fang of an enormous wolf is here in the dirt.
+type: 8
+weight: 0.50
+cost: 80000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+2 3
+5 3
+19 1
+14 20
+~
+~~
+vnum: 55408
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dmnprstuvyz afghij
+name: leggings footpad-leather-leggings foot-pad pile-leather-leggings small-magical-power magic
+shortdesc: footpad leather leggings
+desc: A pile of leather leggings with a small magical power lie here.
+type: 9
+weight: 7.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+1 2
+13 7
+~
+extradesc: leggings footpad-leather-leggings foot-pad pile-leather-leggings small-magical-power magic
+Newly jointed together, these magical leather leggings were made especially for
+you.  Treat them right and they will help you as you set out on your journey.~
+~~
+vnum: 55486
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnpqrstuvyz abfghij
+name: boots-unseen shadowy-boots
+shortdesc: &3Boots of the Unseen&0
+desc: A pair of shadowy boots hides in the darkness here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+2 3
+1 2
+14 15
+~
+extradesc: boots-unseen shadowy-boots
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.~
+~~
+vnum: 3031
+location: 127
+values:
+1
+250
+47
+0
+0
+0
+0
+~
+flags: 0 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.~
+~~
+vnum: 55679
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amber gem perfect-amber
+shortdesc: a perfect amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 6000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55638
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hematite gem plain-hematite
+shortdesc: a hematite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 5000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55638
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hematite gem plain-hematite
+shortdesc: a hematite
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 5000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 58005
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace striking-jade-necklace
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 8
+weight: 0.60
+cost: 4500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 2
+~
+extradesc: necklace striking-jade-necklace
+The necklace is made of several very large, flawless panels of jade.  You run
+your fingers over the smooth stone and can feel supernatural power contained
+inside this rare piece of art.~
+~~
+vnum: 12500
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: gk 0
+name: amulet aegis-amulet shield-shaped-amulet protection
+shortdesc: an Aegis amulet
+desc: A shield shaped amulet here seems to have failed to protect its previous user.
+type: 8
+weight: 0.30
+cost: 3000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+extradesc: amulet aegis-amulet shield-shaped-amulet protection
+A polished silver and gold checkered shield is attached to a fine silver chain.
+The amulet is about the size of an eyeball, and shimmer faintly in the light.~
+~~
+vnum: 55342
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cap burned-cap armor
+shortdesc: a burned cap
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: cap burned-cap armor
+This cap is burned beyond use.~
+~~
+vnum: 55347
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves burned-sleeves armor
+shortdesc: burned sleeves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves burned-sleeves armor
+These sleeves are burned beyond use.~
+~~
+vnum: 55610
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: opal gem uncut-opal
+shortdesc: an uncut opal
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 58008
+location: 127
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: adgjlnoprstuwxD eij
+name: book wizard's-book wizards-book glowing-book golden-pages questobject
+shortdesc: the wizard's book
+desc: A glowing book with golden pages lies open here.
+type: 26
+weight: 1.00
+cost: 6000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+19 3
+~
+extradesc: book wizard's-book wizards-book glowing-book golden-pages questobject
+The book almost hums with power.  You approach it reverently, ready to see the
+face of some god in its pages, but then...  Then...  You feel its sheer evil
+nature and realize this is not a text to praise a god, but entrap one!~
+~~
+vnum: 55410
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dmnprstuvyz afghij
+name: bracer footpad-bracer foot-pad small-leather-bracer magical-powers slight
+shortdesc: a footpad bracer
+desc: A small leather bracer with slightly magical powers lies here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+6 2
+18 1
+13 3
+~
+extradesc: footpad-bracer foot-pad small-leather-bracer slightly-magical-powers
+Newly jointed together, this magical leather bracer was made especially for you.
+Treat it right and it will help you as you set out on your journey.~
+~~
+vnum: 55653
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: onyx gem plain-onyx
+shortdesc: an onyx
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55653
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: onyx gem plain-onyx
+shortdesc: an onyx
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55722
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: amethyst gem enchanted-amethyst
+shortdesc: an enchanted amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 17000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55485
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnpqrstuvyz abfghij
+name: leggings-unseen shadowy-leggings
+shortdesc: &3Leggings of the Unseen&0
+desc: Shadowy leggings hide in the darkness here.
+type: 9
+weight: 8.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+19 1
+5 2
+~
+extradesc: leggings-unseen shadowy-leggings
+Supple, yet resistant black leather has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.~
+~~
+vnum: 55653
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: onyx gem plain-onyx
+shortdesc: an onyx
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55653
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: onyx gem plain-onyx
+shortdesc: an onyx
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55653
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: onyx gem plain-onyx
+shortdesc: an onyx
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55622
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lapis-lazuli gem flawed-lapis-lazuli
+shortdesc: a flawed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55600
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lapis-lazuli gem uncut-lapis-lazuli
+shortdesc: an uncut lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~

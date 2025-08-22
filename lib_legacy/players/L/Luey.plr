@@ -1,0 +1,81 @@
+name: Luey
+password: LuKQKdg6E.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19440
+birthtime: 1557260939
+timeplayed: 14659
+lastlogintime: 1557760131
+host: 216.241.197.068
+height: 41
+weight: 141
+base_height: 41
+base_weight: 141
+base_size: 1
+natural_size: 1
+alignment: 938
+playerflags: y
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 22
+lastlevel: 0
+hitpoints: 59/59
+mana: 1/0
+move: 82/104
+damroll: 3
+hitroll: 6
+strength: 86
+intelligence: 76
+wisdom: 84
+dexterity: 94
+constitution: 82
+charisma: 58
+cash: 0 980 24 12
+experience: 54999
+quit_reason: 1
+saveroom: 3054
+skills:
+403 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+464 61
+465 50
+467 50
+0 0
+trophy:
+1 3062 0.250000
+1 17205 0.250000
+1 17204 1.750000
+1 3503 0.250000
+1 3508 2.000000
+1 3501 0.500000
+1 55232 0.250000
+1 55237 0.250000
+1 55231 0.250000
+1 55239 0.500000
+1 55235 0.750000
+1 55233 0.250000
+1 55234 0.500000
+1 55222 2.500000
+1 55229 4.250000
+1 55240 3.250000
+1 55241 0.750000
+1 58802 0.250000
+1 58807 0.250000
+1 58808 0.250000
+1 58809 0.500000
+0 0 0

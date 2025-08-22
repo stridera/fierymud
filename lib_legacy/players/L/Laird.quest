@@ -1,0 +1,64 @@
+19 255 1
+choice 2
+10 4 0
+17 1 32
+5538_reward 1
+5552_reward 1
+5536_reward 1
+5528_reward 1
+5532_reward 1
+5551_reward 1
+5534_reward 1
+5550_reward 1
+5554_reward 1
+5526_reward 1
+5549_reward 1
+5548_reward 1
+5546_reward 1
+5547_reward 1
+5558_reward 1
+5556_reward 1
+5530_reward 1
+5516_reward 1
+5524_reward 1
+5522_reward 1
+5520_reward 1
+5518_reward 1
+5507_trophies 30
+5513_trophies 10
+5515_trophies 4
+5505_trophies 7
+5511_trophies 13
+5509_trophies 12
+5503_trophies 25
+eg_ally 1
+eg_faction 176
+bl_faction 0
+7 3 25
+55698_gems_acquired 3
+55720_gems_acquired 3
+55376_armor_acquired 1
+55372_armor_acquired 1
+55709_gems_acquired 3
+55368_armor_acquired 1
+55687_gems_acquired 3
+55676_gems_acquired 3
+55356_armor_acquired 1
+55360_armor_acquired 1
+55364_armor_acquired 1
+55344_armor_acquired 1
+55593_gems_acquired 3
+55577_gems_acquired 3
+55308_armor_acquired 1
+55324_armor_acquired 1
+55320_armor_acquired 1
+55585_gems_acquired 3
+55581_gems_acquired 3
+55316_armor_acquired 1
+55312_armor_acquired 1
+55573_gems_acquired 3
+55569_gems_acquired 3
+55300_armor_acquired 1
+55304_armor_acquired 1
+32797 255 1
+subclass_name paladin

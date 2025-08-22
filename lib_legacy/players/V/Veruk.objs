@@ -1,0 +1,1554 @@
+1
+vnum: 48004
+location: 0
+values:
+1
+4000
+3807
+0
+0
+0
+0
+~
+flags: ag 0
+name: rod dominion long black dom
+shortdesc: the Rod of Dominion
+desc: A long rod, fashioned from black metal, lies here.
+type: 1
+weight: 2.00
+cost: 1900
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+18 3
+~
+extradesc: rod-of-dominion rod dominion dom domin
+The rod is composed of a strange black metal that is surprisingly light. 
+It is decorated with an assortment of silvery figures, among them a wolf, 
+and eagle, and a falcon.
+~
+~~
+vnum: 58018
+location: 1
+values:
+31
+3
+3
+53
+0
+0
+0
+~
+flags: kl 0
+name: goddess-ring goddess ring pearl pearl-ring
+shortdesc: the goddess' pearl ring
+desc: An exquisite pearl ring has somehow been lost here.
+type: 4
+weight: 0.10
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16387
+applies:
+24 -4
+4 2
+18 5
+~
+extradesc: pearl goddess ring
+   The main body of this exquisite ring is made of bright silver
+that seems to glow aquamarine-blue with an inner light. The pearl
+that adorns it is stunning and larger than usual, with deep blue
+sapphires running otter-swift around the main center of attention.
+The ring is neither wide nor narrow, making it wearable by either
+men or women.
+~
+~~
+vnum: 58018
+location: 2
+values:
+31
+3
+3
+53
+0
+0
+0
+~
+flags: kl 0
+name: goddess-ring goddess ring pearl pearl-ring
+shortdesc: the goddess' pearl ring
+desc: An exquisite pearl ring has somehow been lost here.
+type: 4
+weight: 0.10
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16387
+applies:
+24 -4
+4 2
+18 5
+~
+extradesc: pearl goddess ring
+   The main body of this exquisite ring is made of bright silver
+that seems to glow aquamarine-blue with an inner light. The pearl
+that adorns it is stunning and larger than usual, with deep blue
+sapphires running otter-swift around the main center of attention.
+The ring is neither wide nor narrow, making it wearable by either
+men or women.
+~
+~~
+vnum: 23787
+location: 3
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: locket locket-forgotten tiny-silver-locket chain-knot questobject
+shortdesc: the Locket of the Forgotten
+desc: A tiny silver locket lies here, its chain in a knot.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+13 50
+~
+extradesc: locket-forgotten tiny-silver-locket chain-knot
+Cast from the finest dwarven silver, this locket is beautifully carved and
+decorated by wonderfully complex patterns and runes.  A tiny clasp on one side
+locks the hinge on one side of the locket, enclosing the memories of those who
+have passed on and become forgotten.  An aura of mourning and remoteness
+surrounds the locket, flowing from the tiny portrait painted within-the face is
+neither male nor female, neither old nor young.  Expressionless, the face
+nevertheless seems to be lonely, crying for remembrance.    
+~
+~~
+vnum: 23787
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: locket locket-forgotten tiny-silver-locket chain-knot questobject
+shortdesc: the Locket of the Forgotten
+desc: A tiny silver locket lies here, its chain in a knot.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+13 50
+~
+extradesc: locket-forgotten tiny-silver-locket chain-knot
+Cast from the finest dwarven silver, this locket is beautifully carved and
+decorated by wonderfully complex patterns and runes.  A tiny clasp on one side
+locks the hinge on one side of the locket, enclosing the memories of those who
+have passed on and become forgotten.  An aura of mourning and remoteness
+surrounds the locket, flowing from the tiny portrait painted within-the face is
+neither male nor female, neither old nor young.  Expressionless, the face
+nevertheless seems to be lonely, crying for remembrance.    
+~
+~~
+vnum: 48907
+location: 5
+values:
+30
+0
+0
+0
+0
+0
+0
+~
+flags: mnoprsvwxyzD 0
+name: vest cailaran-vest green-vest
+shortdesc: the Cailaran Vest
+desc: A green vest lies folded here.
+type: 9
+weight: 8.00
+cost: 20000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 9
+applies:
+19 2
+~
+extradesc: cailaran-vest green-vest
+This is the Cailaran Vest, which you've heard of in stories, seen in 
+tapestries and paintings, even idly imagined seeking (and finding). It's 
+a long green vest, belted around the waist with a bronze clasp, and 
+flowing to the calves. The grass-green silk is lightly embroidered in 
+golden thread in a criss-cross pattern. The double-breasted collar is 
+embroidered as well, in golden four-pointed stars. It'd look perfect with 
+a silk blouse and breeches.
+~
+triggers:
+18887
+~
+~~
+vnum: 514
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: mohawk green bright bright-green-mohawk
+shortdesc: a bright green mohawk
+desc: The scalp of a Gaar'lix demon lies here.
+type: 9
+weight: 1.00
+cost: 10000
+timer: 0
+level: 75
+effects: dfu 0 0
+wear: 17
+applies:
+18 3
+19 3
+~
+~~
+vnum: 55520
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrsuvwxyz 0
+name: glowing fish-scale chain leggings protector
+shortdesc: &2&bChain Leggings of the Protector&0
+desc: Glowing fish-scale leggings rest on a rock here.
+type: 9
+weight: 8.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+applies:
+3 3
+2 2
+13 25
+~
+extradesc: glowing fish-scale chain leggings protector
+These leggings are not so much chain as they are tightly bound fish scales,
+pulled together to make very flexible, but very strong armor.  Softly glowing
+and humming a nearly inaudible tune, these leggings bring to mind stories of
+the sea and of the merfolk that inhabit its depths.  Perhaps there is more to
+these seeming fish scales than meets the eye...
+~
+~~
+vnum: 23799
+location: 8
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gqAD 0
+name: black leather drow intricate breathtaking boots
+shortdesc: black leather drow boots
+desc: Breathtakingly intricate black leather boots rest here.
+type: 11
+weight: 1.75
+cost: 0
+timer: 0
+level: 65
+effects: y 0 0
+wear: 65
+applies:
+18 2
+19 2
+14 40
+17 2
+~
+extradesc: black leather drow boots
+This grand pair of customized drow boots appears to have just been completed
+after many hours and days of labor.  The flawless leather straps glisten with
+every bit of light that crosses its surface.  The extra cushioning and soft
+padding along the sole ensure that these boots are not only comfortable, but
+very protective.    
+~
+~~
+vnum: 48905
+location: 9
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: nprsuvwy 0
+name: gloves devious-gloves pair-red-gloves
+shortdesc: the Devious Gloves
+desc: A pair of red gloves lies folded on the ground here.
+type: 9
+weight: 0.60
+cost: 0
+timer: 0
+level: 95
+effects: 0 0 0
+wear: 129
+applies:
+19 3
+~
+extradesc: devious-gloves pair-red-gloves
+Just looking at these gloves makes your hands itch with excitement.
+They're made of a leather even thinner than kid leather in a dashing red 
+colour. They flare almost to the elbow. You can tell that even wearing 
+these exquisite gloves, you would still retain your ability to feel 
+whatever you touch.
+~
+triggers:
+18887
+~
+~~
+vnum: 48426
+location: 10
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: gmuvyzAD 0
+name: bracers bracers-loong embellished-sapphire-bracers chinese-dragon-bracers
+shortdesc: the Bracers of Loong
+desc: Highly embellished sapphire bracers lie here sparkling.
+type: 9
+weight: 8.23
+cost: 13490
+timer: 0
+level: 90
+effects: y 0 0
+wear: 257
+applies:
+19 1
+18 2
+~
+extradesc: bracers-loong embellished-sapphire-bracers chinese-dragon-bracers
+Sparkling with some mysterious light, these bracers are indeed a work of art to
+behold.  Twin snake-like dragons are carved into the sapphire making up each
+bracer.  Each serpent has four claws and manes resembling bolts of lightning.
+A semicircular white diamond has been placed in each dragon's mouth, looking
+somewhat like a twisted crescent.  A tiny black dot appears slightly off-center
+in each diamond.  Beneath the sapphire exterior, layers of strong steel stand
+between the gemstone and the softer padding beneath.  There must be some sort
+of magical protection upon these bracers though, for such beautiful sapphire
+would never stand up against physical attack.
+~
+~~
+vnum: 566
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: iD 0
+name: shawl sea-silk-shawl shiny-greenish-pile-fabric
+shortdesc: a sea-silk shawl
+desc: A shiny greenish pile of fabric lies here.
+type: 11
+weight: 0.50
+cost: 0
+timer: 0
+level: 90
+effects: g 0 0
+wear: 1025
+applies:
+24 -10
+19 4
+28 100
+~
+extradesc: sea-silk-shawl shiny-greenish-pile-fabric
+It's a simple rectangular piece of expensive greenish sea-silk.  The shawl
+offers no real protection from the elements or from physical attacks, but it
+seems to be blessed by the sea's spirit.
+~
+~~
+vnum: 58432
+location: 13
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmnou 0
+name: girth storm-giants-girth giant blue-steel-girth lightning
+shortdesc: the Storm Giant's Girth
+desc: A blue steel girth flashes with its own lightning.
+type: 9
+weight: 3.00
+cost: 2500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+extradesc: girth storm-giants-girth giant blue-steel-girth lightning
+You can see that this girth must be not only magical, but intrinsically
+strong, for though it is very old, there are no dents, dings, or scratches
+in its shockingly blue surface. It reflects a fierce strike of lightning
+as you look at it. But no lightning flashed right then in the sky....
+~
+~~
+vnum: 58434
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou 0
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 55522
+location: 15
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrsuvwxyz 0
+name: iridescent bracer protector
+shortdesc: &2&bBracer of the Protector&0
+desc: An iridescent bracer shines up from a small pool of water.
+type: 9
+weight: 0.91
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+applies:
+2 2
+19 2
+~
+extradesc: iridescent bracer protector
+Made from a single large shell that must be grown for years, a bracer like this
+is given to rangers who have demonstrated their dedication to protecting the
+wilderness.  An abalone shell such as the one this is made from would be worth
+a fortune on the market, but that value pales in comparison to the magical
+enchantments it could contain.
+~
+~~
+vnum: 48804
+location: 16
+values:
+0
+3
+6
+5
+0
+0
+0
+~
+flags: gmnouvwyzABD 0
+name: baton lightweight-baton slender-metallic-rod
+shortdesc: a lightweight baton
+desc: Condensation forms on a slender metallic rod lying here.
+type: 5
+weight: 2.40
+cost: 34902
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+extradesc: lightweight-baton slender-metallic-rod
+The baton feels extremely cool to the touch, as if its brushed metal
+surface is pulling all the heat from its surroundings.  It feels
+hollow and perfectly balanced, yet the metal seems to be somewhat
+stronger than anything this light should be.
+~
+~~
+vnum: 48804
+location: 17
+values:
+0
+3
+6
+5
+0
+0
+0
+~
+flags: gmnouvwyzABD 0
+name: baton lightweight-baton slender-metallic-rod
+shortdesc: a lightweight baton
+desc: Condensation forms on a slender metallic rod lying here.
+type: 5
+weight: 2.40
+cost: 34902
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+extradesc: lightweight-baton slender-metallic-rod
+The baton feels extremely cool to the touch, as if its brushed metal
+surface is pulling all the heat from its surroundings.  It feels
+hollow and perfectly balanced, yet the metal seems to be somewhat
+stronger than anything this light should be.
+~
+~~
+vnum: 502
+location: 21
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: gaze night
+shortdesc: &9&bthe Night Gaze&0
+desc: &9&bA dark path of matierial is floating just above the ground here.&0
+type: 9
+weight: 0.50
+cost: 4000
+timer: 0
+level: 30
+effects: k 0 0
+wear: 65537
+applies:
+19 2
+18 1
+28 30
+~
+~~
+vnum: 506
+location: 22
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: abegiD 0
+name: mask betrayal
+shortdesc: the Mask of Betrayal
+desc: A dark almost invisible mask lies here sending twisted beams of light all over the room.
+type: 9
+weight: 0.50
+cost: 5000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+applies:
+5 2
+19 2
+~
+extradesc: mask betrayal
+This mask is one of the most unusual objects you have ever seen.  This mask is
+made of an almost invisible black material that emits a dark glow of twisted
+light through out the room.  This material is very flexable and when worn
+conforms to your face and is quite hard to get off.  It is also quite durable
+and could easily withstand a blow from any weapon.    
+~
+~~
+vnum: 903
+location: 23
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: fang-earring fang earring ice ice-fang snake
+shortdesc: an ice fang
+desc: What looks like a clear fang of a snake lies here.
+type: 9
+weight: 0.20
+cost: 1900
+timer: 0
+level: 43
+effects: 0 0 0
+wear: 262145
+applies:
+18 3
+19 2
+13 10
+~
+extradesc: fang-earring fang earring ice ice-fang snake
+This looks to be a piece of clear crystal constructed from magic to protect it
+owner in an attack.  It looks like the fang of a beast of prey.  
+~
+~~
+vnum: 903
+location: 24
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: fang-earring fang earring ice ice-fang snake
+shortdesc: an ice fang
+desc: What looks like a clear fang of a snake lies here.
+type: 9
+weight: 0.20
+cost: 1900
+timer: 0
+level: 43
+effects: 0 0 0
+wear: 262145
+applies:
+18 3
+19 2
+13 10
+~
+extradesc: fang-earring fang earring ice ice-fang snake
+This looks to be a piece of clear crystal constructed from magic to protect it
+owner in an attack.  It looks like the fang of a beast of prey.  
+~
+~~
+vnum: 420
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aeA 0
+name: badge herlequin
+shortdesc: a badge of the herlequin
+desc: A red and black badge pulsates in the dust.
+type: 11
+weight: 0.25
+cost: 0
+timer: 0
+level: 1
+effects: f 0 0
+wear: 540673
+applies:
+19 4
+18 3
+26 10
+13 150
+6 -4
+~
+extradesc: badge herlequin
+Pulsing with what appears to be a heart beat, this badge
+is the reminence of the demons known as the herlequin.
+The power it emites adds to the person wearing it,
+strengthening them with it's unholy power.
+~
+~~
+vnum: 48104
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: head shrivelled severed-head
+shortdesc: a shrivelled, severed head
+desc: The shrivelled head of a jungle savage lies here.
+type: 12
+weight: 8.00
+cost: 50
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1064961
+applies:
+3 1
+17 5
+~
+extradesc: shrivelled head severed
+This grotesque trophy makes you want to puke. Why would you ever want to
+look at such a thing??
+~
+~~
+vnum: 55523
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrsuvwxyz 0
+name: small woven links chain gauntlets protector
+shortdesc: &2&bChain Gauntlets of the Protector&0
+desc: Gauntlets of small woven links hang from a tree here.
+type: 9
+weight: 1.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+1 2
+~
+extradesc: small woven links chain gauntlets protector
+Alternating links of wood and metal mesh together in these gauntlets, the mark
+of a true ranger.  The dichotomy of nature and civilization represents the
+position of the ranger in the world - one who acts as both a protector and
+champion of nature, while interpreting those causes so that others might
+understand them.
+~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: May 26 2010
+  To: Veruk
+From: Laoris
+
+Veruk,
+
+Necromancers around level 40 include Erith, Lisor, Natael, Nuxx, @0and Nyy.
+Any of those sound familiar?
+
+-Lao
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jul 22 2009
+  To: Veruk
+From: Laoris
+
+Hey Veruk,
+
+Your character's name is Valden.  You're free to start playin@0g him whenever.
+You need to reach level 20 by Saturday night though.  Shouldn't be too hard!
+Good luck!
+
+-Lao
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Jul 21 2009
+  To: Veruk
+From: Laoris
+
+Hey Veruk,
+
+For the swim challenge, you can just make a character (or two@0, if you want).  
+Mudmail me the name(s) and so I can turn autolevel on for them.  That's all you
+have to do!
+
+-Lao
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3058
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 23760
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: saffron vial small herb yellow spice food
+shortdesc: a small vial of saffron
+desc: A small vial of a yellow spice lies forgotten in the dust.
+type: 19
+weight: 1.00
+cost: 20000
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+extradesc: saffron vial small herb yellow spice food
+Two tiny, golden yellow stalks are suspended in oil inside this vial.  Saffron
+is known as the most expensive, hard-to-get spice in the world.  Each saffron
+plant, which takes two years to mature, only produces two stalks that can be
+used as a spice.  It is a powerful spell component for earth elemental spells,
+and it is also a very delicious spice.  Take good care of it.    
+~
+~~
+vnum: 23760
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: saffron vial small herb yellow spice food
+shortdesc: a small vial of saffron
+desc: A small vial of a yellow spice lies forgotten in the dust.
+type: 19
+weight: 1.00
+cost: 20000
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+extradesc: saffron vial small herb yellow spice food
+Two tiny, golden yellow stalks are suspended in oil inside this vial.  Saffron
+is known as the most expensive, hard-to-get spice in the world.  Each saffron
+plant, which takes two years to mature, only produces two stalks that can be
+used as a spice.  It is a powerful spell component for earth elemental spells,
+and it is also a very delicious spice.  Take good care of it.    
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+~~
+vnum: 6382
+location: 127
+values:
+25
+208
+91
+29
+0
+0
+0
+~
+flags: aD 0
+name: vial violet-vial-viscous-fluid vial-vengeance
+shortdesc: a vial of vengeance
+desc: A violet vial of viscous fluid is visible here.
+type: 10
+weight: 0.30
+cost: 0
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+extradesc: vial violet-vial-viscous-fluid vial-vengeance
+Vivid violet light wafts from the vial like a veil of vibrant velvet,
+evoking thoughts of vertigo and vengeance.  Visions of vaniloquence
+vanish as the vial vaticinates a revelation of a venator vigorously
+vitiating a once vivacious victim.
+~
+~~
+vnum: 20
+location: 127
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: E 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: E 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+18 8
+32 5
+16 8
+8 6
+144 14
+88 4
+37 7
+15 11
+44 12
+75 9
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+30 10
+69 13
+214 1
+~
+~~
+vnum: 58415
+location: 127
+values:
+90
+3
+3
+38
+0
+0
+0
+~
+flags: a 0
+name: enchiridion book leatherbound ench
+shortdesc: the Enchiridion
+desc: A large leatherbound book glows golden.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+applies:
+24 -5
+~
+extradesc: book enchiridion ench
+The glowing pages glow with power, telling a story older than time
+itself -- that of gods and mortals, struggles with beasts greater
+than any the world has ever known, true love and blackest hatred,
+friendship and betrayal.. all couched in the language of ancient
+times to form a manual of behavior for magicians in the aftermath
+of a war the likes of which may never be seen again... Though the
+majority of the ancient book's thick pages seem torn out or damaged,
+enough of it remains for you to see that it must be very valuable.
+The cover looks like a good place to start learning about this book.
+~
+extradesc: cover
+The cover of the book reads:
+
+                      THE ENCHIRIDION:
+
+                       BEING A MANUAL 
+             FOR THE RECOVERY OF MAGISH VITALITY
+
+You open the book, and see page1.
+~
+extradesc: page1
+Hear the words of one who speaks across time: the Gypsy Seeress
+Mressnerah:
+
+      My dear Hrathis,
+
+      Long ago, my master told these things to me, and now 
+      that I am old, I wish to pass them down to you. When
+      you have come into your full power, you will understand
+      why I demanded certain things of you.
+
+      Long ago, magicians walked this world with impunity. 
+      There was nothing we could not do. I remember those days
+      very well indeed. The Cardinal of Templace himself was
+      amazed at our bravery, for we could face the Riftwar
+      beasts alone, with only our magicks to protect us.
+
+The book continues on page2.
+~
+extradesc: page2
+The second page continues:
+
+      But the wizard-dragon Sagece, that foul beast from the
+      Demon Planes, despised our kind and put her entire energies
+      to work to destroy our control over the human worlds.
+
+      This she did, all too well. I was old even when I felt the
+      shockwave of whatever spell she cast that was to spell our
+      doom. I looked down at my body and saw the rejuvenation I
+      had depended on for beauty disappear, the strength I'd 
+      always felt dissipate like fog before the morning light.
+      From then on, I was helpless physically; only when I had
+      the protection of much stronger folk could I work my most
+      devastating magicks.
+
+      But behold, Hrathis. There is way to reverse this evil
+      enchantment.
+
+The page ends. The next page is page3.
+~
+extradesc: page3
+This page seems very washed out. In fact, it's almost impossible to
+make out any details of what was once printed here. All you can see is
+what appears to be a blueprint of some kind of large machine. The small
+caption near the bottom of the page reads "NAU I S". That is all you
+can tell for sure.
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 1099
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: book ansi-color-book-fiery-yay
+shortdesc: the ansi color book of fiery yay
+desc: A book describing ansi color lies here unattended.
+adesc:
+&0&7 & 1    - &0&1Red&0          & 1 & b - &0&1&bBright Red&0
+
+&0&7 & 2    - &0&2Green&0        & 2 & b - &0&2&bBright Green&0
+
+&0&7 & 3    - &0&3Brown&0        & 1 & b - &0&3&bYellow&0
+
+&0&7 & 4    - &0&4Blue&0         & 4 & b - &0&4&bBright Blue&0
+
+&0&7 & 5    - &0&5Purple&0       & 5 & b - &0&5&bBright Purple&0
+
+&0&7 & 6    - &0&6Teal&0         & 6 & b - &0&6&bBright Teal&0
+
+&0&7 & 7    - &0&7White&0        & 7 & b - &0&7&bBright White&0
+
+&0&7 & 8    - &0&8Unkown&0       & 8 & b - &0&8&bBright Unkown&0
+
+&0&7 & 9    - &0&9Black&0        & 9 & b - &0&9&bBright Black&0
+
+&0&7 remember to put & 0 at the end of each line to clear the ansi strings
+~
+type: 16
+weight: 0.50
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+extradesc: book
+ 1    - &1Red&0          1 b - &1&bBright Red&0
+&0&7 & 2    - &0&2Green&0        & 2 & b - &0&2&bBright Green&0
+.&73    - &3Brown&0        3 b - &3&bYellow&0
+&0&7 & 4    - &0&4Blue&0         & 4 & b - &0&4&bBright Blue&0
+&0&7 & 5    - &0&5Purple&0       & 5 & b - &0&5&bBright Purple&0
+&0&7 & 6    - &0&6Teal&0         & 6 & b - &0&6&bBright Teal&0
+&0&7 & 7    - &0&7White&0        & 7 & b - &0&7&bBright White&0
+&0&7 & 8    - &0&8Unknown&0      & 8 & b - &0&8&bBright Unknown&0
+&0&7 & 9    - &0&9Black&0        & 9 & b - &0&9&bBright Black&0
+
+ Remember to put &&0 at the end of each line to clear the ANSI strings!
+~
+~~
+vnum: 1406
+location: -1
+values:
+1
+0
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: eyes truth glasses eye_glasses truth_glasses GUILD_ITEM GoT_ITEM
+shortdesc: the Eyes of Truth
+desc: A plain pair of glasses rest here, forgotten by someone.
+type: 1
+weight: 0.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 65537
+applies:
+19 1
+~
+extradesc: eyes truth glasses
+This is just a plain pair of glasses until worn.  Once placed over the eyes,
+they begin to glow with a golden light and transform into a thin line of energy
+that hums for a moment and then seemingly vanishes except for a small glyph
+representing "Truth" that can be seen deep in the pupils of the wearer.    
+~
+~~
+vnum: 55517
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrsuvwxyz 0
+name: qua-jit carapace helm protector
+shortdesc: &2&bHelm of the Protector&0
+desc: A qua-jit carapace hollowed out for a helm squats on the ground, empty.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+applies:
+5 3
+2 1
+~
+extradesc: qua-jit carapace helm protector
+The stony but lightweight carapace of the qua-jit makes for excellent
+equipment, as is evident from this helm.  Enchanted with magic that enhances
+the wearer's natural visual acuity, a helm like this is often worn by rangers
+who have advanced to the highest skills.
+~
+~~
+vnum: 58418
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wings pair-translucent-faerie-wings
+shortdesc: a pair of translucent faerie wings
+desc: A pair of translucent faerie wings scintillate.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+applies:
+3 2
+24 -10
+~
+extradesc: wings translucent pair faerie
+These wings look so real! A metallic golden frame supports two
+somewhat large wings made of some kind of silk that stretches to
+the point of being almost transparent. Some kind of sparkly things
+are woven into the silk, making the wings shimmer as they move.
+~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Mar 07 2012
+  To: Veruk
+From: Yuhen
+
+To all Mortals,
+Thursday night, at 8pm MST, a triathlon will begin, and en@0d on sunday night. read about it on the board.
+-Yuhen and Ramah
+~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 405
+location: 127
+values:
+99
+20
+20
+28
+0
+0
+0
+~
+flags: dehq 0
+name: ring pride extremely valuable deity tanle's
+shortdesc: Tanle's ring of Pride
+desc: An extremely valuable ring of a Deity lies here.
+type: 4
+weight: -5.00
+cost: 34975
+timer: 0
+level: 50
+effects: ce 0 0
+wear: 3
+applies:
+13 100
+17 6
+26 40
+~
+extradesc: ring pride extremely valuable deity tanle's
+This is the ring of a God, granted to one who has shown great courage and
+fortitude in retrieving items of certain value.  The Lord Tanle has, however
+reserved the right to call on the wearer of this ring if and when it suits his
+purpose, or may repossess the ring at any time.  The ring is a slender platinum
+band of rare, uncalculatable value with a small, pink, white, blue, green, and
+purple stone laid in the top.    
+~
+~~

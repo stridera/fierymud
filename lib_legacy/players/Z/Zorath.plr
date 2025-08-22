@@ -1,0 +1,173 @@
+name: Zorath
+password: ZoRhwkVrwZ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 19
+race: 34
+level: 32
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20875
+birthtime: 1732852533
+timeplayed: 432672
+lastlogintime: 1737341306
+host: 076.111.030.099
+height: 65
+weight: 106
+base_height: 65
+base_weight: 106
+base_size: 2
+natural_size: 2
+alignment: -994
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 70
+loadroom: 3054
+lastlevel: 0
+hitpoints: 269/269
+mana: 102/102
+move: 232/232
+damroll: 3
+hitroll: 3
+strength: 75
+intelligence: 68
+wisdom: 76
+dexterity: 78
+constitution: 98
+charisma: 71
+cash: 502 2082 8443 9288
+experience: 6840729
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+8 1000
+15 1000
+16 1000
+18 1000
+19 1000
+20 1000
+21 1000
+31 1000
+32 1000
+33 1000
+35 1000
+37 1000
+39 1000
+41 1000
+43 1000
+83 1000
+84 1000
+85 1000
+86 1000
+88 1000
+89 1000
+90 1000
+91 1000
+100 1000
+103 1000
+114 1000
+186 1000
+197 1000
+219 1000
+228 1000
+241 1000
+243 1000
+246 1000
+401 370
+403 210
+405 181
+408 75
+409 330
+415 180
+416 50
+421 143
+423 330
+424 370
+438 54
+443 64
+444 50
+447 330
+451 370
+452 273
+453 233
+454 340
+456 54
+457 311
+459 298
+460 250
+462 250
+463 76
+464 360
+465 354
+490 238
+551 50
+552 50
+556 50
+0 0
+trophy:
+1 50207 0.333333
+1 50203 0.333333
+1 50209 0.250000
+1 50213 1.333333
+1 50205 2.166667
+1 50211 0.833333
+1 50206 0.500000
+1 12003 0.833333
+1 16106 0.500000
+1 16103 1.000000
+1 16105 0.500000
+1 16110 1.000000
+1 12015 0.500000
+1 16109 0.500000
+1 2002 0.500000
+1 59012 0.250000
+1 59013 0.333333
+1 32404 0.250000
+1 59027 0.250000
+1 59020 0.583333
+1 59035 0.333333
+0 0 0
+tells:
+1735531321 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735531322 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735531325 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735531326 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735532759 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735532760 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735532760 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735532761 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735532762 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1735532762 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1737340723 Iorath gossips, 'grats'
+1737340733 Chinok gossips, 'gratz on 8!'
+1737340743 Iorath gossips, 'grats on Bills'
+1737340760 Chinok gossips, 'hahah thanks!'
+1737340782 Chinok gossips, 'my teams are the Bengals and Bills..'
+1737341103 Iorath gossips, 'why those 2'
+1737341117 Chinok gossips, 'cause those are the ones I like'
+1737341124 Iorath gossips, 'from either places?'
+1737341134 Chinok gossips, 'neither actually'
+1737341151 Chinok gossips, 'close to one, and friends in the other place'
+$
+aliases:
+sor perform 'song of rest' $*
+mp cast 'minor paralysis' $*
+rh cast 'reveal hidden'
+bs backstab $*
+db drink water
+ibb innate blinding beauty
+df drink fountain
+where who -w
+g get all corpse
+tt trophy
+x experience
+0

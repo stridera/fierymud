@@ -1,0 +1,184 @@
+name: Herix
+password: HegmoMiKZE
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 22
+race: 0
+level: 59
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20159
+birthtime: 1645300732
+timeplayed: 147139
+lastlogintime: 1738373977
+host: 066.199.058.082
+height: 73
+weight: 127
+base_height: 73
+base_weight: 127
+base_size: 2
+natural_size: 2
+alignment: -699
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnouxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 51102
+thirst: 22
+lastlevel: 0
+hitpoints: 255/255
+mana: 348/348
+move: 156/156
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 92
+wisdom: 95
+dexterity: 63
+constitution: 73
+charisma: 59
+cash: 401 4391 15189 2410
+experience: 32531311
+quit_reason: 7
+saveroom: 51102
+cooldowns:
+10 16050/18000
+-1 0
+spellcasts:
+2 40
+2 50
+1 35
+1 35
+1 35
+4 80
+1 35
+4 80
+2 50
+4 80
+2 50
+1 35
+4 80
+2 50
+3 65
+0 0
+skills:
+4 1000
+8 1000
+10 1000
+19 1000
+20 1000
+29 1000
+31 1000
+32 1000
+38 1000
+41 1000
+50 1000
+62 1000
+67 1000
+74 1000
+99 1000
+112 1000
+114 1000
+136 1000
+158 1000
+192 1000
+193 1000
+194 1000
+196 1000
+197 1000
+216 1000
+217 1000
+218 1000
+219 1000
+243 1000
+264 1000
+401 50
+403 50
+415 50
+416 50
+421 196
+423 640
+424 640
+438 109
+443 50
+444 196
+447 174
+451 306
+452 590
+454 544
+458 50
+459 344
+460 475
+461 616
+462 79
+464 121
+478 50
+0 0
+trophy:
+1 51100 1.000000
+1 52007 2.500000
+1 53311 1.000000
+1 53307 1.000000
+1 53304 1.000000
+1 53302 2.000000
+1 53313 0.500000
+1 53306 2.500000
+1 53305 2.500000
+1 53303 1.500000
+1 18513 1.000000
+1 18503 1.000000
+1 18500 1.000000
+1 18510 1.000000
+1 13333 1.000000
+1 53314 1.500000
+1 53315 4.500000
+1 53312 3.500000
+1 51101 4.000000
+1 55005 1.000000
+1 55012 1.000000
+0 0 0
+tells:
+1720387967 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1720387969 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1731302998 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1731303002 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732423671 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732423673 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732424263 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732424267 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732424269 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738372289 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1732947833 Piffaron gossips, 'grassed herix!'
+1732947835 Kresselack gossips, 'pain in da ass right'
+1732947841 Porath gossips, 'now map it ^_^'
+1732947844 Xumecan gossips, 'Many congratulations to both of you haha'
+1732947853 Someone gossips, 'haha'
+1738373300 Chinok gossips, 'gratz on 8 Vintqu, getting close to seeing those stats!'
+1738373335 Vintqu gossips, 'the farmer doesnt know what seven dust is.  he has to many bugs'
+1738373361 Chinok gossips, 'did you try giving him some ?'
+1738373379 Chinok gossips, 'ah, I just checked the book, 7 dust is illegal in fiery.'
+1738373412 Vintqu gossips, 'only if you get caught'
+$
+effects:
+29 11 40 17 2 0 0
+19 0 10 28 8 0 0
+158 4 0 0 0 1 0
+0 0 0 0 0
+aliases:
+nightm c 'nightmare'
+blind c 'blind'
+jj as illusion
+ct c 'chill touch'
+mm c 'magic miss'
+gc g all.coins from all.corpse
+lc l in corpse
+phan c 'phantasm'
+mesm c 'mesmerize'
+disc c 'discorporate'
+ii as illusion
+0

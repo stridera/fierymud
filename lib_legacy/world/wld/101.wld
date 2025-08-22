@@ -1,0 +1,150 @@
+#10100
+Above the Icy Waterfall~
+   You are standing just above the Icy Waterfall.  It looks like you could
+probably make it down safely with the aid of flying or floating magics.  
+Otherwise, you're about to take a fall of your own..  The icy waterfall is
+below you.  The icy waters continue on to the north.    
+~
+101 0 9
+D0
+You see icy waters.
+~
+~
+0 -1 10101
+D5
+~
+~
+0 -1 53517
+S
+#10101
+Icy Waters~
+   You stand here in VERY cold water.  The wind is blowing you back and forth.
+  
+~
+101 0 11
+D0
+You see icy waters.
+~
+~
+0 -1 10102
+D2
+You see an Icy Waterfall!
+~
+~
+0 -1 10100
+S
+#10102
+Icy Waters~
+   You stand here in VERY cold water.  The wind is blowing you back and forth.
+  
+~
+101 0 11
+D0
+You see icy waters.
+~
+~
+0 -1 10103
+D2
+You see icy waters.
+~
+~
+0 -1 10101
+S
+#10103
+Icy Waters~
+   You stand here in VERY cold water.  The wind is blowing you back and forth.
+  
+~
+101 0 11
+D2
+You see icy waters.
+~
+~
+0 -1 10102
+D3
+You see icy waters.
+~
+~
+0 -1 10104
+S
+#10104
+Icy Waters~
+   You stand here in VERY cold water.  The wind is blowing you back and forth.
+  
+~
+101 0 11
+D1
+You see icy waters.
+~
+~
+0 -1 10103
+D3
+You see icy waters.
+~
+~
+0 -1 10105
+S
+#10105
+Icy Waters~
+   You stand here in VERY cold water.  The wind is blowing you back and forth.
+  
+~
+101 0 11
+D1
+You see icy waters.
+~
+~
+0 -1 10104
+D3
+You see icy waters.
+~
+~
+0 -1 10106
+S
+#10106
+Icy Waters~
+   You stand here in VERY cold water.  The wind is blowing you back and forth.
+  
+~
+101 0 11
+D2
+You see icy waters.
+~
+~
+0 -1 10107
+S
+#10107
+Icy Waters~
+   You stand here in VERY cold water.  The wind is blowing you back and forth.
+  
+~
+101 0 11
+D0
+You see icy waters.
+~
+~
+0 -1 10106
+D1
+You see icy waters.
+~
+~
+0 -1 10105
+D2
+You see icy waters.
+~
+~
+0 -1 10108
+S
+#10108
+Icy Waters~
+   You stand here in VERY cold water.  The wind is blowing you back and forth.
+  
+~
+101 0 11
+D0
+You see icy waters.
+~
+~
+0 -1 10107
+S
+$~

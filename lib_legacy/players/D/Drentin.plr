@@ -1,0 +1,156 @@
+name: Drentin
+password: DrhmOuowr4
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20598
+birthtime: 1692944607
+timeplayed: 54424
+lastlogintime: 1726717727
+host: 070.040.080.239
+height: 44
+weight: 199
+base_height: 44
+base_weight: 199
+base_size: 2
+natural_size: 2
+alignment: 908
+playerflags: gxy
+effectflags: k w q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8803
+lastlevel: 0
+hitpoints: 86/77
+mana: 1/0
+move: 174/174
+damroll: 4
+hitroll: 5
+strength: 72
+intelligence: 79
+wisdom: 92
+dexterity: 76
+constitution: 83
+charisma: 64
+cash: 0 38 343 570
+bank: 0 25 18 14
+experience: 232315
+quit_reason: 7
+saveroom: 8803
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+16 1000
+18 1000
+20 1000
+21 1000
+84 1000
+85 1000
+87 1000
+88 1000
+89 1000
+131 1000
+206 1000
+415 50
+416 50
+423 50
+424 103
+438 50
+443 50
+444 50
+451 61
+457 72
+458 68
+459 60
+460 50
+462 50
+463 137
+466 50
+0 0
+trophy:
+1 8807 1.000000
+1 8809 1.000000
+1 8804 3.000000
+1 8020 1.000000
+1 8022 3.000000
+1 8014 2.000000
+1 8012 2.000000
+1 8002 3.000000
+1 8011 3.000000
+1 3061 4.000000
+1 36001 5.000000
+1 36003 7.000000
+1 36002 7.000000
+1 8021 2.000000
+1 8001 3.000000
+1 8000 7.000000
+1 8016 6.000000
+1 8010 6.000000
+1 16900 2.000000
+1 16908 3.000000
+1 3062 3.000000
+0 0 0
+tells:
+1695066794 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1695066919 @WFreddy@W tells you, 'I'm only interested in toys!@W'@0
+1695066930 @WFreddy@W tells you, 'I'm only interested in toys!@W'@0
+1695066952 @WFreddy@W tells you, 'I'm only interested in toys!@W'@0
+1695066959 @WFreddy@W tells you, 'I'm only interested in toys!@W'@0
+1695067594 @WShauna@W tells you, 'I don't trade in such items.@W'@0
+1695068490 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1695068502 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1701055812 @WDaedela@W tells you, 'aaawww, thank you!@W'@0
+1701055821 @WDaedela@W tells you, 'I'm so glad you're here <3@W'@0
+$
+gossips:
+1702508427 Chinok gossips, 'thye who-- it'll tell you who ( or score)'
+1702508755 Chinok gossips, 'if you need any other help or advice, give a yell'
+1726716696 Discord gossips, 'Daedela: Hello there!'
+1726716741 Discord gossips, 'Daedela: Welcome back!'
+1726716766 Discord gossips, 'Daedela: You are very welcome'
+1726716770 Discord gossips, 'Daedela: Glad to see you again!'
+1726716821 Discord gossips, 'Daedela: How have you been?'
+1726716831 Discord gossips, 'Daedela: Hehe you weren't Drazlin back in the old days were you?'
+1726716908 Discord gossips, 'Daedela: I'm doing pretty well.  Just finished the first two episodes of Agatha All Along'
+1726717061 Discord gossips, 'Daedela: It's the new Marvel TV show'
+$
+effects:
+3 8 -2 24 0 0 0
+3 8 0 0 0 0 16384
+0 0 0 0 0
+aliases:
+ma kill mage
+see kill seether
+kp kill priest
+bg kill bug
+bu kill butterfly
+kj kill janitor
+cl cast 'cure light'
+le cast 'lesser end'
+kl kill ladybug
+co kill cockroach
+ka kill ant
+gc get all from corpse
+ec examine corpse
+kf kill firefly
+ca cast armor drentin
+kb kill beetle
+ks kill spider
+kc kill cricket
+kg kill grasshopper
+fl kill fly
+ccal cast 'cause light'
+cu kill cur
+ki kill iguana
+kr kill rat
+gr kill gremlin
+0

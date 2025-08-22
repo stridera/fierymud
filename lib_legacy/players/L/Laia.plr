@@ -1,0 +1,97 @@
+name: Laia
+password: La8J8oYbvG
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 3
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19532
+birthtime: 1581963397
+timeplayed: 3371
+lastlogintime: 1581966773
+host: 174.099.016.162
+height: 47
+weight: 189
+base_height: 47
+base_weight: 189
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 61/55
+mana: 0/0
+move: 82/156
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 76
+wisdom: 78
+dexterity: 97
+constitution: 93
+charisma: 62
+cash: 0 8 61 51
+experience: 19819
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 52
+438 50
+443 50
+444 50
+463 50
+464 50
+465 54
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36002 3.000000
+1 36001 2.500000
+1 36003 3.500000
+1 8021 0.500000
+1 8022 0.500000
+1 8011 1.000000
+1 8023 0.500000
+1 8012 1.500000
+1 8013 2.500000
+1 8020 0.500000
+1 8015 1.000000
+1 8002 0.500000
+1 8010 2.000000
+1 8014 1.500000
+1 8000 2.000000
+1 8001 1.500000
+0 0 0
+tells:
+1581964750 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1581965195 Thanius gossips, 'Lol, okay.'
+1581965349 Mejna gossips, 'i've been doing a deep exploration of every single zone, trying to finish all quests and kill all the things as I go, so I'm pretty familiar with everything up to...'
+1581965368 Mejna gossips, 'Syric Mtn Trail.'
+1581965443 Thanius gossips, 'Wow, that's pretty cool.'
+1581965458 Thanius gossips, 'You're like a walking Wiki, heh.'
+1581965571 Mejna gossips, 'I try :D'
+1581965589 Someone gossips, 'she's in the top 10 mortals on game knowledge.. '
+1581965607 Thanius gossips, 'Wow.'
+1581965613 Someone gossips, 'and 8 of those top 10 don't play much (or at all) any more'
+1581965614 Mejna gossips, '*blush*'
+$
+aliases:
+gac get all corpse
+0

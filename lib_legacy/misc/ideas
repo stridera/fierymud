@@ -1,0 +1,63 @@
+Chinok   (Oct 16 2022) [ 1270] testing 123
+Mersh    (Oct 18 2022) [ 3054] an option sent to the equipment command that reveals slots you are not using something like 'eq all' or 'eq show'
+Choak    (Oct 25 2022) [ 3054] a spell that summons from any location not just the current one.
+Laird    (Nov 02 2022) [48901] monk skill some kind of specal attack that blocks an attack and deals the same attack damage back at the target (think steping inside of an attack and armbar throw from inside they're guard)
+Choak    (Nov 30 2022) [ 3054] when someone types group it would be cool if next to their name it also indicated if they were in the same room as the person typing group
+Mand     (Dec 14 2022) [55077] might be good to add a link to the mudverse ranking vote page on login. I saw it on another mud I tried today.
+Mersh    (Dec 16 2022) [ 3054] an affects command that lists any spells cast on you but also any extras you have from items and whatnot.
+Mersh    (Dec 17 2022) [48902] a leaderboard that keeps track of the most dmg output of each character that resets on reset. Might be cool to have one for the week/day/hour but once per reset would be sweet too!
+Unoma    (Jan 07 2023) [61501] autoassist toggle
+Mersh    (Jan 28 2023) [11729] an autogold would be sweet to only get money
+Xorath   (Feb 04 2023) [48223] Let a Magic Type put a limited amount of markers anywhere in the world that they've been so that they can teleport back to that location in the future.
+Strider  (Mar 20 2023) [ 1270] add a handfuk emote
+Valiciousx (May 09 2023) [ 8198] add info about the bloody red cross to help death
+Mejna    (Jun 27 2023) [ 7029] bandage could require a wrap or physical bandage, but should work even when mob/player is NOT incapacitated
+Mejna    (Jun 27 2023) [ 3054] ability to name sacks so you can organize your inventory
+Mejna    (Jun 28 2023) [ 4500] add a boat to southern continent for newer players. you buy the ticket in town and it directs you to the harbor where you can take a raft across the ocean and land on beach head port.  similar cost to a scroll of recall maybe
+Mejna    (Jul 06 2023) [12310] if guard fails, you should still attack the thing that is attacking the person you are guarding
+Eadhar   (Jul 08 2023) [ 8095] autoassist as a toggled skill, similar to autoloot
+Meina    (Jul 08 2023) [48147] high level version of dispel magic to allow you to target a specific effect. would have chance of fail to remove anything and/or wrong thing. Quest only.
+Gizelle  (Jul 10 2023) [ 3054] red feather is +1 dex, -1 wis, but description says ideal for scribing. Maybe it should be the other way around.
+Gizelle  (Jul 10 2023) [ 3054] Add a help entry for encumbrance
+Mejna    (Jul 11 2023) [ 8668] include damage type in ident info for weapons for those of us who can't tell a longsword from a skean-dhu
+Gizelle  (Jul 11 2023) [ 8668] dark cloak description indicates it is good in a magic fight, but has not effect or stats that reflect that. maybe shuffle it to have -save or something
+Gizelle  (Jul 11 2023) [ 8668] Most cloaks are 'about' but black cloak is 'body'. Just wanted to make sure that was known and ok! :)
+Gizelle  (Jul 11 2023) [ 8668] spell to alphabetize the contents of a container so that instead of in order of when put in container, the items inside are sorted alphabetically
+Meina    (Jul 13 2023) [ 1825] wild boar in forest of shadow should drop boar meat
+Aewynawk (Aug 09 2023) [ 8063] a cooldown bar for innate skills to the side of the list 
+Pawk     (Sep 03 2023) [ 3054] evil ranger and monk like classes
+Pawk     (Sep 03 2023) [ 3054] skill/spell for anti-pal that draws out hp from a corpse 
+Aewynawk (Sep 03 2023) [ 8050] beastkin races 6 one for each stat bearkin could be str wolf could be con fox int... all would have the same innate and basic settings like dragonborn but with a buff to thier race stat
+Thorfinn (Sep 04 2023) [12000] Timeout on loginpage is a little aggressively short. I think it could stand to be doue
+Thorfinn (Sep 04 2023) [12000] Timeout on loginpage is a little aggressively short. I think it could stand to be doubled**
+Thorfinn (Sep 04 2023) [ 6299] when converting gems at the gemcrafter they should not accept the selected gem type as a trade to avoid infinite loops.
+Thorfinn (Sep 04 2023) [ 3084] way to examine items on merchant lists
+Thorfinn (Sep 12 2023) [ 3025] a return function that lets you return equipment to vendors for purchase price, flag only lasts a few hours ingame
+Thorfinn (Sep 20 2023) [16156] when using the hide command there could show a result depending on your concealment: well hidden, hidden, a ghost, obvious
+Thorfinn (Sep 22 2023) [ 3152] have trainers give coin amounts in their simplist forms, ie. 2 plat 3 gold 9 copper instead of 1 plat 13 gold... because we can just pay 24 gold and be done with it anyway, it just makes the math a little easier
+Thorfinn (Sep 26 2023) [23724] backstab function on targets that are not standing or otherwise stunned
+Thorfinn (Sep 29 2023) [12544] blind durations could be reduced a bit, the weight of being unable to see or interact with anything makes it almost as debilitating as being forced to sit, but it lasts like 5-10 minutes. In everquest by comparison blind effects on spells only last for two ticks at the lower levels and like twenty ticks at the highest level
+Kra      (Oct 01 2023) [ 5594] it would be sweet if the tokens/inisigias etc for the 3rd eldorian guard and 3rd black legion responded to something like trash or something to make giving all of those types of items to someone else. I keep giving the shiv away but I don't mean to just the wands or whatever
+Thorfinn (Oct 01 2023) [50237] brilliant sabre drops from pirate captain seems a bit low level, level 15.
+Mila     (Oct 08 2023) [51040] nordus children carry around 1 platinum, which is more than the other normal mobs. coin drops in general are super high. fiery economy is fucked. LOL
+Thorfinn (Oct 15 2023) [ 3052] make curse scrolls not respond to "blue" makes it hard to get blue recall scrolls
+Thorfinn (Oct 16 2023) [ 3054] different classes get different kick caps, monk could be highest. Kick skill could decrease the cooldown of kicks. Kicking at just below the backstab reset for mercs would be amazing, and it would help monks scale better for endgame
+Alwan    (Oct 17 2023) [ 3503] the hp gain color for good is red seems like it should be not red?
+Zaver    (Oct 25 2023) [11701] More of a request :D Can we get the smite dmg type added to help composition? I think there are other missing as well.
+Abbil    (Nov 21 2023) [ 3151] could the trainers "tell" stuff like I like you, I'll teach you blah for this money etc in a tell rather than in a say?
+Moylen   (Nov 21 2023) [ 3153] could the "pray" or "memo" also come with a SUM of the time until I've recovered all things? The old pray/memo IIRC used to.
+Moylen   (Nov 21 2023) [ 3153] could also pray/memo come with how many I've got total, so I don't have to do sums in my head? Circle 1: 5/8 or similra.
+Abbil    (Nov 22 2023) [58641] restore should also restore all spell slots
+Abbil    (Nov 23 2023) [ 3152] looting money from PLAYER'S CORPSES shouldn't auto-split them...
+Zallah   (Jan 30 2024) [49071] give bards the ability to see inventory like theifs since they get the same steal skill.
+Rogzel   (Mar 30 2024) [18030] when concealed, one should be able to 'consider' without losing concealment.  
+Rogzel   (Mar 31 2024) [ 3044] allow bags to be colored so it is easier to remember types of items stored in them.
+Jod      (May 18 2024) [ 3005] the player should see in their prompt that they are mounted
+Zaver    (May 21 2024) [ 3054] remove need to unlock a door before opening if you have the key required for that door
+Ija      (Jun 14 2024) [ 3054] skill idea for anti or other magical tank might work better as a spell but deal AOE damage once your UNNAMED SKILL/SPELL breaks from incomeing damage i'm pictureing something like haveing a magic barrer shatter as its destroyed.
+Ija      (Jun 14 2024) [ 3054] would be cool it it redused incoming damage a bit as well as sending a wall of damage at your foes
+Unoliph  (Jan 19 2025) [ 5520] some sort of marker for the skills list for as skilled for level as you can be
+Unoliph  (Jan 19 2025) [ 5547] an alchemist shop that will mix ingredence for batches of potions... made to be a type of repeatable mini quest. it would need to be done carefuly to keep it ballenced
+Unoliph  (Jan 21 2025) [59060] new items that are slight improvemnts to forever items like jewel of the heart that people never replace so that they are not worn as often by highlevel AFK causeing problems for subclass or outfiting lobies
+Unoliph  (Jan 22 2025) [ 5252] a redwood staff seems out of place its underpowered for its location and would need releveling if it got buffed
+Davar    (Feb 05 2025) [ 3054] golden sceptre could use buffing maybe just make it a belt item or restore its light/hover slot

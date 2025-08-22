@@ -1,0 +1,116 @@
+name: Clovis
+password: Cl9Ey2rtHc
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%rr&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 14
+race: 10
+level: 11
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20371
+birthtime: 1667091572
+timeplayed: 9545
+lastlogintime: 1667108902
+host: 066.199.058.082
+height: 81
+weight: 256
+base_height: 81
+base_weight: 256
+base_size: 3
+natural_size: 3
+alignment: -31
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnouC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 7
+thirst: 18
+lastlevel: 0
+hitpoints: 164/142
+mana: 1/12
+move: 157/176
+damroll: 5
+hitroll: 4
+strength: 92
+intelligence: 64
+wisdom: 66
+dexterity: 97
+constitution: 100
+charisma: 46
+cash: 0 94 385 5
+experience: 355850
+quit_reason: 1
+saveroom: 3054
+skills:
+404 150
+413 51
+415 50
+416 50
+419 1000
+421 92
+427 1000
+430 50
+438 50
+443 50
+444 54
+463 50
+464 50
+465 100
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 17204 5.000000
+1 3508 2.000000
+1 3503 1.000000
+1 8023 5.000000
+1 8013 3.000000
+1 8020 1.000000
+1 8021 1.000000
+1 8012 4.000000
+1 8010 5.000000
+1 8022 2.000000
+1 8016 2.000000
+1 8015 3.000000
+1 8329 2.000000
+1 8330 1.000000
+1 8030 2.000000
+1 8014 3.000000
+1 8011 5.000000
+1 8000 3.000000
+1 8001 5.000000
+1 8002 4.000000
+1 2005 2.000000
+0 0 0
+tells:
+1667097076 @WMara the Baker@W tells you, 'Thank you for the good deal. I shall remember it.@W'@0
+1667097077 @WMara the Baker@W tells you, 'Thank you for the good deal. I shall remember it.@W'@0
+1667100951 @WMersh@W tells you, 'you looking for the questmaster?@W'@0
+1667101002 @WMersh@W tells you, 'did you complete the quest?@W'@0
+1667101079 @WMersh@W tells you, 'nope@W'@0
+1667101222 @WMersh@W tells you, ':D I think the subclass thing is brokenreply np@W'@0
+1667102076 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1667102077 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1667102077 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1667108866 @WGranite@W tells you, 'I hope it protects you well.@W'@0
+$
+gossips:
+1667101435 Mersh gossips, 'I don't remember what I had but it didn't seem bad either.'
+1667101472 Mersh gossips, 'I couldh ave sworn I took notes on that'
+1667101479 Mersh gossips, '*shrug* '
+1667101523 Mersh gossips, 'have you purchased a pet recently? Like since the last reset?'
+1667101536 Mersh gossips, 'you should :D They are awesome now!'
+1667101541 Mersh gossips, 'at least ridable ones'
+1667102820 Mersh gossips, 'yeah! Until you don't want to fight something anymore :D'
+1667102847 Mersh gossips, 'but for areas lower you can burn through killing stuf SOOO fst'
+1667102850 Mersh gossips, 'fast'
+1667102870 Mersh gossips, 'yeah for sure'
+$
+aliases:
+lc l in corpse
+0

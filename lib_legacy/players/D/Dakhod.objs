@@ -1,0 +1,855 @@
+1
+vnum: 23889
+location: 5
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: outfit spiffy dashing red pirate red-outfit dakhod-outfit
+shortdesc: a &1dashing red pirate outfit&0
+desc: A spiffy pirate outfit is here. Grab it quick!
+type: 9
+weight: 4.00
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: outfit spiffy dashing red pirate red-outfit dakhod-outfit
+A full pirate suit done in varying shades of red, it was definately tailor-made
+for Dakhod.  From its red leather leggings to its striped red-and-white baggy
+shirt to the dark red, bloodstained bandana that can be worn under a captain's
+hat, this outfit is sure to strike terror into the hearts of mortals.    ~
+~~
+vnum: 23895
+location: 6
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hat brown tattered tricorn three-cornered three cornered pirate dakhod-hat
+shortdesc: a &3brown tattered tricorn&0 pirate hat
+desc: A three-cornered hat is lying here.
+type: 9
+weight: 1.10
+cost: 0
+timer: 0
+level: 100
+effects: n 0 0
+wear: 17
+hiddenness: 0
+extradesc: hat brown tattered tricorn three-cornered three cornered pirate dakhod-hat
+A well-worn and tattered pirate hat, this nifty three-cornered hat sweeps up at
+the front and has a faintly embroidered skull and crossbones on it.  Made of a
+soft brown felt, this hat would be protective in both sun and rain, not to
+mention in salty sea spray.  It has a fringe of brown feathers that are mostly
+worn away, and inside the front brim is the faded name "Dakhod" written in
+black ink.    ~
+~~
+vnum: 23898
+location: 7
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peg leg peg-leg pirate dakhod-pegleg
+shortdesc: a &3wooden peg leg&0
+desc: A wooden peg leg rests here.
+type: 9
+weight: 4.00
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+extradesc: peg leg peg-leg pirate dakhod-pegleg
+A stump of oak is fashioned into a replacement limb.  Weathered by much use,
+the bottom is scratched and rounded as if it has scrambled upon a pirate deck
+for many years.  Despite many scars of this nature, it seems very well made and
+looks like it would support the weight of even a portly pirate.    ~
+~~
+vnum: 23896
+location: 8
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: slipper silver buckled pirate silver-buckled dakhod-slipper
+shortdesc: a &7&bsilver buckled slipper&0
+desc: A silver buckled slipper lies here.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+extradesc: slipper silver buckled pirate silver-buckled dakhod-slipper
+A pair of soft, velvety slippers with silver buckles is here, waiting for their
+owner.  The left one is cleverly modified to fit a round peg leg while still
+looking identical to the right slipper unless one peeks closely.  The look
+quite flashy and are surely the envy or pirates everywhere.  Embroidered in the
+inner heel of the right slipper is the name "Dakhod".    ~
+~~
+vnum: 23897
+location: 9
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hook hand silver hook-hand gleaming pirate dakhod-hook
+shortdesc: a &7&bsilver hook&0 for a hand
+desc: A silver hook gleams here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+extradesc: hook hand silver hook-hand gleaming pirate dakhod-hook
+Gleaming brightly as though recently polished with oil, the hook looks at once
+sharp and deadly, yet it holds a beauty of form unlike anything else could.  
+Made of the finest silver, it would surely take a pirate's hoard to commission
+something like this.  Engraved on the metal cuff is the name "Dakhod".    ~
+~~
+vnum: 23890
+location: 13
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sash red pirate red-sash dakhod-sash
+shortdesc: a &1blood red pirate sash&0
+desc: A red pirate sash lies here.
+type: 9
+weight: 0.70
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+extradesc: sash red pirate red-sash dakhod-sash
+A long bolt of red silk is twisted into a very neat looking sash that would be
+perfect for holding a cutlass and belting in a loose shirt.  At the ends of the
+sash are black embroidered Jolly Roger symbols, and one end has a little white
+tag with the name "Dakhod" written on it in black ink.    ~
+~~
+vnum: 23893
+location: 16
+values:
+5
+20
+20
+3
+0
+0
+0
+~
+flags: 0 0
+name: cutlass silver pirate boarding pirate-cutlass dakhod-cutlass
+shortdesc: a &7&bsilver boarding cutlass&0
+desc: A cutlass is lying here.
+type: 5
+weight: 4.00
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1056769
+hiddenness: 0
+extradesc: cutlass silver pirate boarding pirate-cutlass dakhod-cutlass
+Curving gracefully from hilt to tip, this cutlass is a work of art.  Its
+flaring guard is inlaid with silver skulls so that the poor soul at the
+receiving end can see his macabre demise before meeting his fate.  Razor-sharp
+and very dangerous-looking, it would probably cut through a normal pirate sash
+if its owner were not careful.  The hilt is set with a large black diamond, and
+looking closely into the depths of the gem you can see the blurry shape of
+letters, forming the word "Dakhod".    ~
+~~
+vnum: 23893
+location: 17
+values:
+5
+20
+20
+3
+0
+0
+0
+~
+flags: 0 0
+name: cutlass silver pirate boarding pirate-cutlass dakhod-cutlass
+shortdesc: a &7&bsilver boarding cutlass&0
+desc: A cutlass is lying here.
+type: 5
+weight: 4.00
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1056769
+hiddenness: 0
+extradesc: cutlass silver pirate boarding pirate-cutlass dakhod-cutlass
+Curving gracefully from hilt to tip, this cutlass is a work of art.  Its
+flaring guard is inlaid with silver skulls so that the poor soul at the
+receiving end can see his macabre demise before meeting his fate.  Razor-sharp
+and very dangerous-looking, it would probably cut through a normal pirate sash
+if its owner were not careful.  The hilt is set with a large black diamond, and
+looking closely into the depths of the gem you can see the blurry shape of
+letters, forming the word "Dakhod".    ~
+~~
+vnum: 23899
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: black eyepatch pirate dakhod-eyepatch
+shortdesc: a &9&bblack eyepatch&0
+desc: A black eyepatch is lying here.
+type: 8
+weight: 0.05
+cost: 0
+timer: 0
+level: 100
+effects: c 0 0
+wear: 65537
+hiddenness: 0
+extradesc: black eyepatch pirate dakhod-eyepatch
+A thin string of braided silk is the tie for this fashionable eyepatch.  It
+looks like it would fit perfectly over an eye socket, whether to conceal a
+missing orb or to act as a disguise.  A single silver thread is sewn into the
+inner side of the patch, in the shape of the name "Dakhod".    ~
+~~
+vnum: 23888
+location: 22
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mask phantom ethereal floating pirate phantom-mask dakhod-mask
+shortdesc: a &7&bphantom skull mask&0
+desc: An ethereal shape is floating here.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 100
+effects: x 0 0
+wear: 131073
+hiddenness: 0
+extradesc: mask phantom ethereal floating pirate phantom-mask dakhod-mask
+A shimmering, ethereal mask, or perhaps just a trick of the light, it obscures
+living features and replaces them with a ghostly skull.  A pallid green glow
+emanates from the mask, making delicate stomachs queasy and striking terror
+into the hearts of the weak.  Looking at it from the back side, you can barely
+make out the word "Dakhod" in translucent letters.    ~
+~~
+vnum: 23894
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring golden hoop hoop-earring pirate dakhod-earring
+shortdesc: a &3&bgolden hoop&0 earring
+desc: A golden hoop lies here in the dust.
+type: 8
+weight: 0.01
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+extradesc: earring golden hoop hoop-earring pirate dakhod-earring
+A thin golden hoop, this earring would look perfect on a pirate.  Slender and
+yet strong, masculine and yet flamboyant, the earring would look simply dashing
+on the right person.  It shines even in dim light as though it was polished
+recently.  In script so small it can hardly be seen, the name "Dakhod" is
+inscribed near the hilt.    ~
+~~
+vnum: 3298
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: eqAD 0
+name: rose single-long-stemmed-black-rose flower
+shortdesc: a &9&bblack&0 rose
+desc: A single long-stemmed &b&9black&0 rose lies here in memory of Pergus.  Farewell friend.
+adesc:
+Nothing.~
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 540673
+hiddenness: 0
+triggers:
+3298
+~
+~~
+vnum: 23892
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pistol pirate flintlock pirate-pistol dakhod-pistol
+shortdesc: a &9&bflintlock pirate pistol&0
+desc: A pistol lies here.
+type: 6
+weight: 3.00
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1073153
+hiddenness: 0
+extradesc: pistol pirate flintlock pirate-pistol dakhod-pistol
+This pistol is rougly the size of a child's arm, with a solid silver handle to
+grip it by inlaid with skulls and fitting your grip quite comfortably.  The
+flintlock itself is clean and looks like it would fire quickly.  The long steel
+barrel is slightly stained black from the powder used to fire it.  Such a
+weapon would be extremely dangerous if used improperly.  Engraved on one end of
+the barrel is the name "Dakhod".    ~
+~~
+vnum: 23891
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bullets bullet silver pirate dakhod-bullets
+shortdesc: a &7&bsilver bullet&0
+desc: A silver bullet lies here.
+type: 7
+weight: 0.03
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: bullets bullet silver pirate dakhod-bullets
+A silvery bullet lies here, inscribed with the pirate symbol of
+skull-and-crossbones.  The faint smell of sulphur wafts up from it as a
+testament to the black powder inside its shell.  Being made of silver, it
+should be especially powerful against lycanthropes.  A tiny "D" is engraved on
+the flat end.    ~
+~~
+vnum: 52110
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: bg 0
+name: blue-bag blue bag
+shortdesc: a blue bag
+desc: A blue bag with frozen straps lies here.
+type: 15
+weight: 3.00
+cost: 140
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: blue-bag bag blue
+This appears to be a blue bag. It has many tiny pockets to hold little 
+trinkets and such.~
+~~
+vnum: 1098
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: strip color-quick-reference-strip
+shortdesc: a Color Quick-Reference Strip
+desc: A Color Quick-Reference Strip lies here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: color-quick-reference-strip
+&1&&1 &b&&1&&b &0&2&&2 &b&&2&&b &0&3&&3 &b&&3&&b &0&4&&4 &b&&4&&b &0&5&&5 &b&&5&&b &0&6&&6 &b&&6&&b &0&7&&7 &b&&7&&b &0&8&&8 &b&&8&&b &0&9&&9 &b&&9&&b&0
+@r@@r @R@@R   @g@@g @G@@G   @y@@y @Y@@Y   @b@@b @B@@B   @m@@m @M@@M   @c@@c @C@@C   @w@@w @W@@W              @L@@L@0~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Nov 21 2019
+  To: Dakhod
+From: Laoris
+
+*poke*
+
+Hey Dakhod, nice to see you :) Hope you're doing well.  It's been@0 a long time,
+but Chinok said I can hang out so I'll try to show up more.  Cheers!
+
+-Lao~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3122
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll chinok-doll chinok-rag-doll little-hooded-figure
+shortdesc: a Chinok rag doll
+desc: A little hooded figure is slumped here like a rag doll.
+type: 0
+weight: 1.70
+cost: 50000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: chinok-doll chinok-rag-doll little-hooded-figure
+The little doll is sewn together from scraps of cloth.  Facial features are
+stitched carefully on the head, depicting a mischievous smile.  Something about
+the doll just makes you want to pat it on the head!  A hooded cloak made of
+brown felt fits the doll nicely, covering the seams where the arms are
+attached.  Each arm has an odd little sword sewn on--the hilts are metallic,
+but the blades are a strange glowing material.  The swords' glow slowly
+alternates between subtle brightening and dimming, casting varying shadows on
+the doll's face which seem to make its eyes come alive.~
+triggers:
+3125
+~
+~~
+vnum: 23806
+location: 127
+values:
+1
+4
+4
+11
+0
+0
+0
+~
+flags: gnprsuD 0
+name: icicle sharp-icicle
+shortdesc: an icicle
+desc: A sharp icicle lies here.
+type: 5
+weight: 0.60
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+27 2
+~
+extradesc: icicle sharp-icicle
+A sharp icicle seems to be magically preserved, for it does not melt even when
+taken to warm climates.  Thin string wrapped around the thick base acts as a
+grip, indicating that it could be used as a weapon.  Whether or not it would be
+a very effective weapon, however, is yet to be seen.~
+triggers:
+23804
+~
+~~
+vnum: 52130
+location: 127
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: figure dakhod-action-figure miniature-pirate doll toy seawater
+shortdesc: a Dakhod action figure
+desc: A miniature pirate lies in a pool of seawater here.
+type: 1
+weight: 0.50
+cost: 22000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: dakhod-action-figure miniature-pirate doll toy seawater
+This action figure appears to be an exact replica of Dakhod!  With a peg leg
+and a hook for a hand, the attention to detail is stunning.  This action figure
+comes complete with karate chop action when its legs are squeezed, and a
+pullstring on his back.    ~
+triggers:
+52131
+52130
+52133
+52132
+~
+~~
+vnum: 1278
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ab 0
+name: 8ball eightball
+shortdesc: a magic 8ball
+desc: Someone left a magic 8ball on the ground.  It's silently predicting your future.
+type: 12
+weight: 0.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+triggers:
+1270
+~
+~~
+vnum: 8606
+location: 127
+values:
+0
+1
+5
+11
+0
+0
+0
+~
+flags: nuv 0
+name: stick pointy-stick sharpened-stick
+shortdesc: a pointy stick
+desc: A sharpened stick is stuck into the ground here.
+type: 5
+weight: 3.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: pointy-stick sharpened-stick
+A very simply weapon, very easy to use.  If properly handled it could be a
+formidible weapon.~
+~~
+vnum: 8606
+location: 127
+values:
+0
+1
+5
+11
+0
+0
+0
+~
+flags: nuv 0
+name: stick pointy-stick sharpened-stick
+shortdesc: a pointy stick
+desc: A sharpened stick is stuck into the ground here.
+type: 5
+weight: 3.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: pointy-stick sharpened-stick
+A very simply weapon, very easy to use.  If properly handled it could be a
+formidible weapon.~
+~~
+vnum: 8606
+location: 127
+values:
+0
+1
+5
+11
+0
+0
+0
+~
+flags: nuv 0
+name: stick pointy-stick sharpened-stick
+shortdesc: a pointy stick
+desc: A sharpened stick is stuck into the ground here.
+type: 5
+weight: 3.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: pointy-stick sharpened-stick
+A very simply weapon, very easy to use.  If properly handled it could be a
+formidible weapon.~
+~~
+vnum: 8606
+location: 127
+values:
+0
+1
+5
+11
+0
+0
+0
+~
+flags: nuv 0
+name: stick pointy-stick sharpened-stick
+shortdesc: a pointy stick
+desc: A sharpened stick is stuck into the ground here.
+type: 5
+weight: 3.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: pointy-stick sharpened-stick
+A very simply weapon, very easy to use.  If properly handled it could be a
+formidible weapon.~
+~~
+vnum: 8606
+location: 127
+values:
+0
+1
+5
+11
+0
+0
+0
+~
+flags: nuv 0
+name: stick pointy-stick sharpened-stick
+shortdesc: a pointy stick
+desc: A sharpened stick is stuck into the ground here.
+type: 5
+weight: 3.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: pointy-stick sharpened-stick
+A very simply weapon, very easy to use.  If properly handled it could be a
+formidible weapon.~
+~~
+vnum: 8606
+location: 127
+values:
+0
+1
+5
+11
+0
+0
+0
+~
+flags: nuv 0
+name: stick pointy-stick sharpened-stick
+shortdesc: a pointy stick
+desc: A sharpened stick is stuck into the ground here.
+type: 5
+weight: 3.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: pointy-stick sharpened-stick
+A very simply weapon, very easy to use.  If properly handled it could be a
+formidible weapon.~
+~~
+vnum: 8606
+location: 127
+values:
+0
+1
+5
+11
+0
+0
+0
+~
+flags: nuv 0
+name: stick pointy-stick sharpened-stick
+shortdesc: a pointy stick
+desc: A sharpened stick is stuck into the ground here.
+type: 5
+weight: 3.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: pointy-stick sharpened-stick
+A very simply weapon, very easy to use.  If properly handled it could be a
+formidible weapon.~
+~~

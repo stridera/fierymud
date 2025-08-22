@@ -1,0 +1,356 @@
+#58801
+cloak tattered-wolf-fur-cloak tattered-pile-fur~
+a tattered wolf fur cloak~
+You see a tattered pile of fur here.~
+~
+9 536870912 1025 5
+3 0 0 0 0 0 0
+5.00 75 0 0 0 0 0 0
+E
+cloak tattered-wolf-fur-cloak tattered-pile-fur~
+The cloak is heavy and looks very warm, except for some ripped spots. The 
+holes might have come from some sharp object, and though it's been 
+carefully cleaned, probably by some freezing soldier, you can see the 
+remains of bloodstains around the holes' edges. You consider wearing it 
+yourself, since it still looks somewhat servicable.~
+A
+5 1
+#58802
+tapestry briant's-tapestry briants-tapestry brilliantly-colored-woven-tapestry~
+Briant's tapestry~
+A brilliantly-colored woven tapestry rests here, rolled up and obviously 
+forgotten.~
+~
+9 536870912 16385 1
+2 0 0 0 0 0 0
+3.00 0 0 0 0 0 0 0
+E
+tapestry briant's-tapestry briants-tapestry brilliantly-colored-woven-tapestry~
+As you look at the tapestry, your spirit rises from the sublime colors and
+expert weaving of the piece, then falls, as you notice how ragged its edges
+are, and how obviously neglected it is.  There's no way it can be repaired, you
+see.  That's too bad.  If it were in better shape, it'd be worthy of a lord's
+castle.  You might even want to put it in yours, if you ever get one.~
+A
+4 1
+A
+18 -1
+#58803
+rainbarrel fountain tin barrel~
+a beat-up tin rainbarrel~
+A huge, beat-up tin rainbarrel stands near the fire.~
+~
+23 0 0 1
+9999 9999 0 0 0 0 0
+9999.00 0 0 0 0 0 0 0
+E
+rainbarrel fountain~
+It's a lot bigger than a normal barrel. It seems to have the sole 
+function of collecting snow and melting it for drinking. The fire nearby 
+seems to facilitate the melting. It's made of cheap, thrown-together tin. 
+You have no idea how it even holds liquid. There's an inscription on its 
+side.~
+E
+inscription side~
+It reads: "Copyright Sirestis Engineering, courtesy of Artemis, 1996".~
+#58804
+snowshoes snow-shoes long-wooden-snowshoes~
+a pair of snowshoes~
+A pair of long wooden snowshoes rest on the ground here.~
+~
+9 0 65 1
+2 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+snowshoes snow-shoes long-wooden-snowshoes~
+The long wooden oval frames support your feet on interlaced thongs, and strap
+on by way of leather buckles.  They don't look very impressive, but they sure
+do look effective in helping you traverse the killingly cold snow of the arctic
+fields -- and they might protect you a little bit too.~
+A
+14 15
+#58805
+mace broken-dragon's-fist-mace broken-dragons-fist-mace~
+a broken dragon's fist mace~
+A broken dragon's fist mace lies here awaiting repair.~
+~
+5 50335808 8193 1
+0 2 3 5 0 0 0
+1.40 1 0 0 0 0 0 0
+E
+mace broken-dragon's-fist-mace broken-dragons-fist-mace~
+You've heard stories about this weapon, barely whispered stories told by
+warriors who were lucky to escape alive from the Dragon Cult, located far from
+here.  It's made of something that looks like steel, but is much lighter, lucky
+for you!  The end of the mace is shaped like a dragon's slightly clenched
+clawed forefoot.  But it's fallen on hard times--its handle is broken, and its
+surface chipped slightly, affecting its heft and balance.  It's still quite
+usable, though no experienced warrior would be interested in wielding it, since
+its power is greatly reduced because of its condition.  But a junior trainee
+would be thrilled to have this once-impressive weapon.~
+A
+5 1
+X
+224
+#58806
+journal closed-book closed book~
+a journal~
+A closed book lies on the ground here.~
+~
+12 536870912 1 1
+0 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+book journal diary captain captains~
+The book is leatherbound, and masterfully made, with thick paper pages. 
+Written there, in flowing, well-trained script, you read:
+
+   Day 22, Month of the Winter Wolf
+   My men go out today to battle the Frost Elves across the mountains. I do 
+   not know how to prepare my troops. Yesterday, Lady Rill sent her Amazons 
+   to assist me in Queen Serazais' mad quest, but I do not know if even 
+   they will make much difference in this fight. We are outnumbered. That 
+   obscene little man Serazais sent me, that outlander necromancer, last 
+   night cast a spell he said would protect us, but I don't believe it'll 
+   work. Ah!-- I hear the war-trumpets. Pray to whatever gods you pray to 
+   that at least some of us will return alive, my dearest Thraja.
+
+This is the last entry in the book. You see no further entries in the 
+beautifully crafted journal. ~
+#58807
+dagger practice-dagger blade knife~
+a practice dagger~
+A practice blade leans against a wall.~
+~
+5 0 8193 1
+0 1 4 11 0 0 0
+0.75 60 0 0 0 0 0 0
+E
+practice-dagger blade~
+This blade has obviously seen better times.  Its edge has dozens of little
+nicks and imperfections in it.  The handle is wrapped in cheap strips of
+leather; numerous sweat stains cover it.~
+A
+26 1
+#58808
+shovel large-snow-shovel~
+a snow shovel~
+A large snow shovel stands against a wall.~
+~
+5 0 8193 1
+0 1 5 7 0 0 0
+2.20 100 0 0 0 0 0 0
+E
+shovel large-snow-shovel~
+This snow shovel has a long wooden handle and a shallow, wide scoop, making it
+ideal for clearing the ground of snow.  In a pinch, one could also use this
+piece of groundskeeping equipment as a weapon -- that scoop would really hurt
+if you bashed someone over the head with it!~
+A
+13 5
+#58809
+candle~
+a candle~
+A candle rolls on the ground.~
+~
+1 0 16385 1
+0 200 200 0 0 0 0
+0.20 0 0 0 0 0 0 0
+E
+candle~
+This candle is made of uncolored wax, with a cotton wick. Very standard.~
+#58810
+shirt beige-wool-shirt pile~
+a beige wool shirt~
+A folded pile of beige wool lies here.~
+~
+9 0 9 1
+1 0 0 0 0 0 0
+1.10 20 0 0 0 0 0 0
+E
+beige-wool-shirt folded-pile~
+This homespun wool shirt has been dyed a rich shade of beige, almost the color
+of camel hide.~
+A
+13 3
+#58811
+wrap dark-brown-wrap~
+a dark brown wrap~
+A dark brown wrap's hung on a peg.~
+~
+9 0 1025 1
+2 0 0 0 0 0 0
+2.50 40 0 0 0 0 0 0
+E
+dark-brown-wrap~
+You see a dark brown expanse of homespun woolen cloth.  Simple in its cut and
+design, this garment would keep the worst of the weather off you.~
+A
+26 3
+#58812
+ring insignia-ring-academy small~
+an insignia ring from the Academy~
+A small ring with an insignia on it lies here.~
+~
+8 0 3 1
+1 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+insignia-ring-academy small~
+You see some trainee's class ring.  Made of simple silver, it's decorated with
+the Ice Warrior insignia: a polar bear with a green-and-blue banner in its
+mouth.~
+A
+3 1
+#58813
+mitts-mesh mesh-mitts delicate-lace-mesh-mitts~
+some mitts made of mesh~
+Delicate lace mesh mitts are getting dirty on the ground.~
+~
+9 536870912 129 1
+1 0 0 0 0 0 0
+0.50 1 0 0 0 0 0 0
+E
+mitts-mesh mesh-mitts delicate-lace-mesh-mitts~
+Obviously made with agility in mind, these mitts are a compromise between the
+need to cover one's hands and the need to still be able to use one's sense of
+touch.  The lace mesh seems hand-knitted.~
+A
+13 3
+#58814
+boots nice-warm-winter-boots~
+a nice warm pair of winter boots~
+A nice pair of warm boots rest here.~
+~
+9 0 65 1
+2 0 0 0 0 0 0
+2.00 10 0 0 0 0 0 0
+E
+boots nice-warm-winter-boots~
+These warm boots are made of thick leather with the fur side facing inward.  A
+thong ties each one shut at the top, keeping warmth inside.~
+A
+5 1
+#58816
+shield small-wooden-academy-shield small-wooden-shield~
+a small wooden Academy shield~
+A small wooden shield lies here.~
+~
+9 587206656 513 1
+1 0 0 0 0 0 0
+1.00 1 0 0 0 0 0 0
+E
+shield small-wooden-academy-shield small-wooden-shield~
+This shield isn't much bigger than your hand, and it's in pretty bad shape,
+with nicks and dents covering its wooden surface.  The insignia of the Ice
+Warriors adorns its front -- a polar bear gripping a green- and-gold banner in
+its mouth.~
+A
+5 1
+X
+225
+#58817
+tuque knitted-tuque warm-looking-knitted-cap~
+a knitted tuque~
+A warm-looking knitted cap lies here.~
+~
+9 536870912 17 1
+1 0 0 0 0 0 0
+0.50 1 0 0 0 0 0 0
+E
+tuque knitted-tuque warm-looking-knitted-cap~
+You behold a simple knitted tuque that resembles a very large and wide sock.  
+It's made of undyed wool.~
+A
+13 3
+#58818
+armbands fur-armbands arm-bands~
+some fur armbands~
+Some fur armbands lie here getting dirty.~
+~
+9 536870912 257 1
+1 0 0 0 0 0 0
+0.60 0 0 0 0 0 0 0
+E
+fur-armbands arm-bands~
+You see some white fur armbands that would tie onto your upper arms by means of
+leather thongs.~
+A
+1 1
+#58819
+pants dark-grey-wool-pants warm-looking~
+a pair of dark grey wool pants~
+A pair of warm-looking wool pants lies here.~
+~
+9 536870912 33 1
+1 0 0 0 0 0 0
+1.20 0 0 0 0 0 0 0
+E
+dark-grey-wool-pants warm-looking~
+You see a simple pair of homespun woolen pants.  The garment's been dyed a dark
+grey color.  They seem very utilitarian.~
+A
+13 3
+#58820
+pouch belt-pouch leather-beltpouch leather-belt-pouch~
+a belt pouch~
+A leather belt pouch lies here on the ground.~
+~
+15 0 1048577 1
+12 5 -1 0 0 0 0
+0.50 40 0 0 0 0 0 0
+E
+pouch belt-pouch leather-beltpouch leather-belt-pouch~
+This leather belt has a cloth pouch attached to it.  The belt's buckle is
+engraved with the insignia of the Ice Warrior Academy near Ickle -- a polar
+bear gripping a green-and-gold banner in its mouth.~
+A
+17 1
+#58821
+ring eyebrow-ring eye-brow-ring little~
+an eyebrow ring~
+A little eyebrow ring has been ripped out of someone's face!~
+~
+8 0 65537 1
+0 0 0 0 0 0 0
+0.01 250 0 0 0 0 0 0
+A
+1 1
+#58822
+bottle short-bottle short-squat-glass-bottle~
+a short bottle~
+A short, squat glass bottle sits here.~
+~
+17 0 1 1
+30 30 39 0 0 0 0
+0.50 81 0 0 0 0 0 0
+E
+short-bottle short-squat-glass-bottle~
+It's a short, round bottle blown from sturdy glass.  A small paper label pasted
+on one side reads BOAKA.~
+#58848
+womens-key womens key women's cross circle~
+the Women's Key~
+A key carved into a cross topped by a circle lies here.~
+~
+18 4 16385 1
+1 0 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+womens key women~
+The key is carved with the universal symbol for woman: A cross, topped 
+with a circle. You wonder why on earth someone would carve a key like 
+this.~
+#58865
+amethyst-key purple-key purple amethyst key~
+an amethyst key~
+A key made of purple amethyst lies here.~
+~
+18 4 16385 1
+1 0 0 0 0 0 0
+0.02 0 0 0 0 0 0 0
+E
+amethyst key puple~
+This key is, amazingly, carved from a solid piece of crystal clear 
+amethyst stone. It must open an equally opulent door.~
+$~

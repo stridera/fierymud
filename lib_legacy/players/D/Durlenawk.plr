@@ -1,0 +1,193 @@
+name: Durlenawk
+password: DuGRjhvRH.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b><&0&2%aA&2&b><&0%e&2&b><&0%dy&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 21
+race: 1
+level: 50
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20589
+birthtime: 1691594640
+timeplayed: 696827
+lastlogintime: 1738974155
+host: 208.093.179.007
+height: 70
+weight: 135
+base_height: 70
+base_weight: 135
+base_size: 2
+natural_size: 2
+alignment: 959
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 242/242
+mana: 250/250
+move: 274/274
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 92
+wisdom: 92
+dexterity: 84
+constitution: 97
+charisma: 62
+cash: 391 4979 17953 3966
+experience: 21098400
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+8 1000
+19 1000
+20 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+51 1000
+52 1000
+62 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+106 1000
+107 1000
+171 1000
+172 1000
+173 1000
+174 1000
+175 1000
+182 1000
+183 1000
+228 1000
+263 1000
+415 50
+416 50
+421 531
+423 540
+424 540
+438 50
+443 50
+444 479
+447 460
+451 540
+452 461
+454 540
+456 262
+458 540
+459 535
+460 506
+462 502
+464 429
+465 56
+0 0
+trophy:
+1 8023 1.500000
+1 8022 1.500000
+1 8010 3.000000
+1 8012 3.500000
+1 8014 3.500000
+1 8013 5.500000
+1 8030 1.000000
+1 8001 4.000000
+1 8021 1.000000
+1 8011 3.500000
+1 8000 3.500000
+1 8016 3.500000
+1 8002 3.500000
+1 8020 3.000000
+1 8015 2.500000
+1 11750 0.500000
+1 11701 1.000000
+1 11809 0.500000
+1 11710 0.500000
+1 2808 2.000000
+1 11704 0.500000
+0 0 0
+tells:
+1693814329 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1693814998 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694065813 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1694244968 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694247445 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694302955 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1694387972 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738668792 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738669282 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738974134 @WDavar@W tells you, 'one gem please@W'@0
+$
+gossips:
+1738589362 Chinok gossips, 'think hole in the ground'
+1738589366 Xawk gossips, 'barrow'
+1738589372 Chinok gossips, 'bingo'
+1738589391 Chinok gossips, 'it is a tomb, but just not a typical one'
+1738589454 Xawk gossips, 'maybe change the clue to burial site vs tomb'
+1738589489 Xawk gossips, 'so it doesn't make everyone goto pyramid first :)'
+1738589514 Xawk gossips, 'but that assumes people goggle what a barrow is :p'
+1738589540 Xawk gossips, 'mostly got it because you sayed hole in the ground and i was looking for higher level areas'
+1738589646 Chinok gossips, 'yeah, I'll mention to Daed.. see if he agrees,'
+1738589674 Xawk gossips, 'i'm just bitter but an ancient tomb and the enchanted closet have been rough clues'
+$
+aliases:
+gemsneed diamond and aquamarine
+minvis c 'm invis'
+door c 'd door' $*
+armor c 'ice armor'
+globe c 'maj globe' $*
+goto c 'reloca' $*
+wind c 'freezing wind'
+x ex
+dis c 'dispel mag' $*
+tele c 'tele'
+3 c 'haste' fernley
+2 c 'stone' fernley
+1 ass fernley
+chain c 'chain light'
+free c 'freeze' $*
+storm c 'i storm'
+haste c 'haste' $*
+cold c 'coldshield'
+cone c 'c o c' $*
+bolt c 'li bo' $*
+shock c 'shock' $*
+make c 'mi cr' $*
+gac g all all.corpse
+mag c 'ice dart' $*
+pra mem $*
+id recite identify $*
+stone c 'stone' $*
+invis c 'invis' $*
+ball c 'iceball' $*
+gax g all.coins all.corpse
+flood c 'flood'
+met c 'flood'
+nova c 'ice shard'
+shard c 'i shard'
+tel c 'tel'
+aliastel c 'tel'
+harn innate harness
+y ass aewynawk
+pray mem $*
+blast c 'w b' $*
+chill c 'chill t' $*
+combatdone skull ring badge token insignia wand
+constacking 11hp per level think i can do better
+0

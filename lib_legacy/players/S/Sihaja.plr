@@ -1,0 +1,88 @@
+name: Sihaja
+password: Siizu0/T6L
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19574
+birthtime: 1586716594
+timeplayed: 5831
+lastlogintime: 1586723373
+host: 031.000.081.117
+height: 70
+weight: 101
+base_height: 70
+base_weight: 101
+base_size: 2
+natural_size: 2
+alignment: 6
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 22/22
+mana: 1/0
+move: 122/122
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 67
+wisdom: 66
+dexterity: 97
+constitution: 86
+charisma: 62
+experience: 5499
+quit_reason: 3
+saveroom: 0
+skills:
+403 53
+415 50
+416 50
+421 60
+438 50
+443 50
+444 50
+464 54
+465 50
+467 50
+0 0
+trophy:
+1 8022 1.000000
+1 8023 1.000000
+1 8001 11.000000
+1 8002 1.000000
+1 8014 6.000000
+1 8020 2.000000
+1 8011 7.000000
+1 8016 6.000000
+1 8013 5.000000
+1 8021 6.000000
+1 8000 9.000000
+1 8015 4.000000
+1 8010 5.000000
+1 3062 3.000000
+1 3066 3.000000
+0 0 0
+tells:
+1586717342 @WAaron@W tells you, 'It's not in stock right now, but I will try and get one for you!@W'@0
+1586717356 @WAaron@W tells you, 'Hmm, you appear to be a little short of cash for this item.@W'@0
+1586717361 @WAaron@W tells you, 'What do you want to buy?@W'@0
+1586717366 @WAaron@W tells you, 'Hmm, you appear to be a little short of cash for this item.@W'@0
+1586717446 @WHelena@W tells you, 'I would love to give you this for free but I have rent to pay.@W'@0
+1586717449 @WHelena@W tells you, 'What do you want to buy?@W'@0
+$
+gossips:
+$
+aliases:
+ddd drink fountain
+hh hide
+k kill $*
+0

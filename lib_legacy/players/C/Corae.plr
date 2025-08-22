@@ -1,0 +1,63 @@
+name: Corae
+password: CoJtEnxHC2
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18761
+birthtime: 1411294537
+timeplayed: 6470
+lastlogintime: 1523638133
+host: 178.165.128.224
+height: 69
+weight: 107
+base_height: 69
+base_weight: 107
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8050
+lastlevel: 0
+hitpoints: 36/34
+mana: 1/0
+move: 138/138
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 60
+wisdom: 71
+dexterity: 98
+constitution: 97
+charisma: 43
+experience: 5500
+quit_reason: 7
+saveroom: 8050
+skills:
+403 50
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+464 51
+465 50
+467 50
+0 0
+trophy:
+1 8014 1.000000
+1 8013 1.000000
+1 8016 1.000000
+1 8011 2.000000
+1 8000 1.000000
+0 0 0

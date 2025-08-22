@@ -1,0 +1,91 @@
+name: Ruhl
+password: Ru9oq.AbYc
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 10
+race: 3
+level: 18
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18145
+birthtime: 1331260926
+timeplayed: 67060
+lastlogintime: 1383629512
+host: 184.043.032.048
+height: 41
+weight: 186
+base_height: 41
+base_weight: 186
+base_size: 2
+natural_size: 2
+alignment: 345
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 35
+loadroom: 3054
+thirst: 24
+lastlevel: 0
+hitpoints: 230/194
+mana: 32/32
+move: 152/152
+damroll: 4
+hitroll: 5
+strength: 93
+intelligence: 66
+wisdom: 62
+dexterity: 100
+constitution: 91
+charisma: 53
+cash: 0 29 200 237
+bank: 9 482 1767 1389
+experience: 1205473
+quit_reason: 1
+saveroom: 3054
+skills:
+401 230
+402 50
+404 57
+411 227
+415 50
+416 50
+421 180
+428 50
+434 62
+438 63
+443 50
+444 100
+463 50
+464 229
+465 66
+466 50
+467 50
+468 55
+0 0
+trophy:
+1 36002 7.000000
+1 36003 5.000000
+1 36001 8.000000
+1 61500 1.000000
+1 17204 5.000000
+1 3506 1.000000
+1 3509 3.000000
+1 3507 2.000000
+1 3500 6.000000
+1 3508 4.000000
+1 3501 5.000000
+1 8001 1.000000
+1 8022 1.000000
+1 8023 2.000000
+1 8021 2.000000
+1 8013 1.000000
+1 8010 2.000000
+1 8016 2.000000
+1 8020 5.000000
+1 8015 5.000000
+1 8000 4.000000
+0 0 0

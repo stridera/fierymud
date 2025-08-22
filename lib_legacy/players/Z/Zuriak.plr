@@ -1,0 +1,165 @@
+name: Zuriak
+password: ZuxvZdd/J1
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 21
+race: 2
+level: 41
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20847
+birthtime: 1729576523
+timeplayed: 1745991
+lastlogintime: 1733264366
+host: 166.194.157.017
+height: 26
+weight: 84
+base_height: 26
+base_weight: 84
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: abhnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 3054
+lastlevel: 0
+hitpoints: 224/224
+mana: 168/168
+move: 249/249
+damroll: 2
+hitroll: 4
+strength: 80
+intelligence: 100
+wisdom: 91
+dexterity: 78
+constitution: 94
+charisma: 72
+cash: 5 33 235 281
+bank: 476 3940 13048 10591
+experience: 12681182
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+8 1000
+19 1000
+20 1000
+29 1000
+30 1000
+31 1000
+37 1000
+38 1000
+39 1000
+51 1000
+52 1000
+62 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+106 1000
+107 1000
+171 1000
+172 1000
+173 1000
+174 1000
+182 1000
+183 1000
+228 1000
+263 1000
+415 50
+416 50
+421 442
+423 51
+424 460
+438 50
+443 50
+444 50
+447 170
+451 460
+452 144
+454 460
+456 452
+458 308
+459 460
+460 128
+462 456
+464 264
+0 0
+trophy:
+1 8002 1.000000
+1 11702 0.400000
+1 11704 0.200000
+1 11701 0.400000
+1 11710 1.000000
+1 11703 0.400000
+1 2808 1.800000
+1 2806 3.200001
+1 7051 0.200000
+1 5506 2.050000
+1 5507 7.599998
+1 5511 2.800000
+1 5508 7.049998
+1 5509 11.449994
+1 5510 15.399990
+1 41101 0.200000
+1 41109 0.200000
+1 41116 0.400000
+1 41107 0.200000
+1 41118 0.200000
+1 41108 0.400000
+0 0 0
+tells:
+1732727247 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732747041 @WElspeth the Jeweler@W tells you, 'Sorry, I don't stock that item.@W'@0
+1732747054 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732861766 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732928518 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732942778 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732942920 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732952001 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1733002491 @WA half-elven maid@W tells you, 'If you want to rent a room, please go upstairs to the Reception Area.@W'@0
+1733120465 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1733120671 Derrgon gossips, 'question: freezing wind - it says enemies of the caster...is that all mobs in the room or just the ones im currently fighting?'
+1733120683 Suraya gossips, 'I don't remember'
+1733120692 Suraya gossips, 'probably everything in the room'
+1733120759 Derrgon gossips, 'ok, i got ice storm coming up next and that seems to be the same, just wondering if it will make me aggro whole room. guess i have to try it.'
+1733120799 Suraya gossips, 'that one I know will aggro the whole room'
+1733120812 Derrgon gossips, 'ok, haha'
+1733121053 Derrgon gossips, 'grats again'
+1733121058 Suraya gossips, 'Thank you'
+1733125125 Someone gossips, 'Welcome Morrissey'
+1733183321 Discord gossips, 'Thort: Jranor and company.... You're SO SO close'
+1733183451 Discord gossips, 'Daedela: Yep!'
+1733183607 Discord gossips, 'Thort: Hnngghhh'
+$
+effects:
+232 16 3 3 0 0 0
+0 0 0 0 0
+aliases:
+invis cast 'invis' $*
+id cast 'identify' $*
+loc cast 'locate object' $*
+enh cast 'enhance' $*
+cl gtell cl
+bh cast 'burning hands' $*
+cn cast 'concealment'
+dm cast 'detect magic'
+mm cast 'magic missile' $*
+mc cast 'minor creation' $*
+ri recite identify $*
+0

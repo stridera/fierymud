@@ -1,0 +1,2004 @@
+1
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx 0
+name: ring glittering-ruby-ring questobject
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 8
+3 2
+4 2
+5 2
+27 3
+~
+extradesc: ring glittering-ruby-ring questobject
+The ring has been formed of some mysterious reddish metal, the likes of which
+you are unfamiliar with.  A glittering ruby has been set in the ring.~
+~~
+vnum: 1500
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: deqAD 0
+name: ring soul gem valuable soul-gem wof-clan-item
+shortdesc: a &5Soul Gem&0
+desc: A valuable ring has been lost here! Pick it up quick!
+type: 8
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: ring soul gem valuable soul-gem wof-clan-item
+   A large purple gem is set on a polished silver band.  There appears to be a
+small storm raging inside of the gem, and you become slightly transfixed by it.
+A feeling of protectiveness washes over you, and you feel that losing this ring
+would be the end of your life.    ~
+~~
+vnum: 32406
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: scarf colorful-scarf silk
+shortdesc: &0a &0&3&bco&0&1l&0&4or&0&2fu&0&6&bl&0 scarf
+desc: &0A &0&3&bco&0&1l&0&4or&0&2fu&0&6&bl&0 scarf lies here.
+type: 9
+weight: 0.80
+cost: 340
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+5 2
+6 1
+~
+extradesc: colorful-scarf silk
+&0This simple scarf is made from a nearly transparent silk.  Streaks of color
+run along its length, creating a ghostly rainbow.  Its quality is very good,
+crafted by a master and probably worth a great deal.  &0~
+~~
+vnum: 1038
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scarf light-green-scarf
+shortdesc: &0a &0&2&blight green&0 scarf
+desc: &0A &0&2&blight green&0 scarf lies here.
+type: 9
+weight: 0.40
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+extradesc: light-green-scarf
+This scarf is crafted from a flowing light green material.  It is very light,
+though offers only minimal protection from physical attacks.~
+~~
+vnum: 1040
+location: 5
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: gkmnopqrsvwxyzA 0
+name: breastplate-gaia breast-plate odd
+shortdesc: &0&3a breastplate of &0&2Ga&0&2&bi&0&2a&0
+desc: &0&3An odd breastplate lies here.&0
+type: 9
+weight: 0.00
+cost: 0
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+24 -5
+27 3
+~
+extradesc: breastplate-gaia breast-plate odd
+&0This odd looking breastplate appears to be crafted from a piece of solid
+wood, chiseled and sanded with a powerful magic to perfection.  Glowing vines
+weave themselves around the wooden breastplate, adding their steel-like
+endurance to its powerful frame.  &0~
+triggers:
+1000
+~
+~~
+vnum: 55524
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz 0
+name: helm-glade wooden-helm
+shortdesc: &3&bHelm of the Glade&0
+desc: A wooden helm lies here tangled in vines.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+4 2
+13 30
+28 40
+27 3
+~
+extradesc: helm-glade wooden-helm
+Unwilling to be dislodged, the vines have actually grown into and through the
+wood of this helm.  The helm itself appears to have been formed naturally, with
+very little if any human alteration.  Powerful natural magic emanates from this
+helm, indicating that it is more than what it seems.~
+~~
+vnum: 55527
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyz 0
+name: pants leather-pants-glade furry-goat-hide-pants
+shortdesc: &3&bLeather Pants of the Glade&0
+desc: Furry goat-hide pants flap from a nearby tree.
+type: 9
+weight: 7.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 2
+1 2
+28 25
+27 3
+~
+extradesc: pants leather-pants-glade furry-goat-hide-pants
+These are no ordinary goat-hide pants!  Strange, residual fae magic lingers on
+them, indicating that powerful magic resided in the creature these were taken
+from.  Sewn with great care, leggings like these are quite special indeed.~
+~~
+vnum: 55528
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz 0
+name: boots-glade pressed-birch-leaf-leather-boots
+shortdesc: &3&bBoots of the Glade&0
+desc: A pair of pressed birch leaf and leather boots rests next to a dying fire.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+27 3
+1 2
+14 25
+~
+extradesc: boots-glade pressed-birch-leaf-leather-boots
+Several layers of pressed birch leaves have been sewn on to tanned hide to
+create these boots.  These boots still seem to be in sturdy condition, ready to
+handle any climate or condition, even though they have seen years of use.  Odd
+that the leaves still seem to be fresh, as if picked from a tree and stitched
+on this morning.~
+~~
+vnum: 55530
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz 0
+name: gloves-glade glowing-mass-silver-spider-webbing silverspider
+shortdesc: &3&bGloves of the Glade&0
+desc: A glowing mass of silver spider webbing floats on the wind.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+1 3
+3 2
+13 20
+27 3
+~
+extradesc: gloves-glade glowing-mass-silver-spider-webbing silverspider
+Crafted from the incredibly rare silk of the silver spider, webbing such as
+this is nearly indestructible, in addition to being able to hold the most
+powerful enchantments.  These gloves are both beautiful and blithe, as soft as
+the light that glimmers off them and as soft as the wind.~
+~~
+vnum: 55525
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqrstvwxyz 0
+name: sleeves-glade hollowed-oak-tubes
+shortdesc: &3&bSleeves of the Glade&0
+desc: Hollowed out oak tubes lie here, hidden under vines and leaves.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+13 20
+18 1
+5 3
+6 3
+27 3
+~
+extradesc: sleeves-glade hollowed-oak-tubes
+Made from the holy oak, a symbol of strength and stability, these tubes are
+enhanced to act as natural armor.  Each sleeves is made of two smaller tubes,
+wrapped in leafy vines that act as threads and cords.  Not exactly a fashion
+statement, there is a raw natural beauty to these sleeves.~
+~~
+vnum: 954
+location: 11
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tree small-green-tree
+shortdesc: &2a small green tree&0
+desc: &2A small green tree sits here digging into the ground.&0
+type: 9
+weight: 10.00
+cost: 2250
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+2 2
+5 2
+~
+extradesc: small-green-tree
+This is a small green tree grown in the shape of a shield.  It has several
+branches coming out of the sides acting as perfect spikes on the sides of the
+shield.  There is a heavy knot in the center almost as though the tree were
+designed to actually act as a shield.  It is a strong wood, firm and hard and
+ready to deflect most any blow landed upon it.  There are even some small
+leaves hanging off of the branches which neatly conceal a small hole in the
+wood.    ~
+~~
+vnum: 58418
+location: 12
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: E 0
+name: wings translucent-faerie-wings questobject
+shortdesc: a pair of translucent faerie wings
+desc: A pair of translucent faerie wings scintillate.
+type: 8
+weight: 0.01
+cost: 3000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+3 2
+24 -10
+27 3
+~
+extradesc: wings translucent-faerie-wings questobject
+These wings look so real!  A metallic golden frame supports two somewhat large
+wings made of some kind of silk that stretches to the point of being almost
+transparent.  Some kind of sparkly things are woven into the silk, making the
+wings shimmer as they move.~
+~~
+vnum: 4305
+location: 13
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skirt fire-goddess's-skirt large-belt shiny ribbons cloth fire-goddesss-skirt questobject
+shortdesc: the &1F&b&3i&b&1r&0&1e G&b&3o&b&1dd&0&b&3e&0&1ss&b&1's&0 skirt
+desc: A large belt hung with shiny ribbons and cloth lies here in a heap.
+type: 9
+weight: 2.00
+cost: 10000
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+6 2
+13 3
+~
+extradesc: skirt fire-goddess's-skirt large-belt shiny ribbons cloth fire-goddesss-skirt questobject
+This mass of ribbons is actually a very pretty full-length skirt that looks
+like a large blossom of fire.  Reds, golds, yellows and oranges make up this
+impromptu sash, which while not very graceful, is very pretty.~
+~~
+vnum: 55529
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz 0
+name: bracer-glade single-small-lotus-blossom flower
+shortdesc: &3&bBracer of the Glade&0
+desc: A single small lotus blossom sits on top of a twisted stem here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 30
+18 1
+27 3
+~
+extradesc: bracer-glade single-small-lotus-blossom flower
+The stem of this lotus actually goes nowhere, ending in a simple knot.  
+However, it could easily be wrapped around the wrist, creating a beautiful and
+exotic bracer.  The lotus is the ultimate representation of the ability of
+nature to produce beauty and perfection from the darkest of places.  Such an
+ever-growing blossom as this is created only for very powerful druids.~
+~~
+vnum: 55529
+location: 15
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: ghmnopqrstvwxyz 0
+name: bracer-glade single-small-lotus-blossom flower
+shortdesc: &3&bBracer of the Glade&0
+desc: A single small lotus blossom sits on top of a twisted stem here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 30
+18 1
+27 3
+~
+extradesc: bracer-glade single-small-lotus-blossom flower
+The stem of this lotus actually goes nowhere, ending in a simple knot.  
+However, it could easily be wrapped around the wrist, creating a beautiful and
+exotic bracer.  The lotus is the ultimate representation of the ability of
+nature to produce beauty and perfection from the darkest of places.  Such an
+ever-growing blossom as this is created only for very powerful druids.~
+~~
+vnum: 574
+location: 16
+values:
+1
+6
+6
+11
+0
+0
+0
+~
+flags: dq 0
+name: claw hilted-dark-green-claw small-curving-dark-green-claw
+shortdesc: a hilted &2dark green&0 claw
+desc: A small curving dark green claw lies here on the ground.
+type: 5
+weight: 4.00
+cost: 19050
+timer: 0
+level: 85
+effects: p 0 0
+wear: 8193
+hiddenness: 0
+applies:
+2 2
+5 -2
+19 2
+~
+extradesc: claw hilted-dark-green-claw small-curving-dark-green-claw
+This is a six inch dark green claw, seeming from an ancient reptile or perhaps
+gigantic bird which extends to an extremely sharp point.  The claw has been
+skillfully mounted upon a hilt by a true dagger-master, creating a potentially
+deadly weapon.  The dagger sides themselves appear to be pitted with age and
+exposure, but the blade and tip are completely sharp and lethal.    ~
+~~
+vnum: 48036
+location: 21
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: gaze fiery-gaze glowing-red-eyes
+shortdesc: &3&ba&0 &1&bfiery&0 &3&bgaze&0
+desc: Glowing red eyes rest here.
+type: 8
+weight: 0.60
+cost: 8010
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+18 1
+28 175
+~
+extradesc: gaze fiery-gaze glowing-red-eyes
+They're a pair of magical red eyes that strike fear into the hearts of those
+who oppose their owner.~
+~~
+vnum: 547
+location: 22
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: iBD 0
+name: veil transparent-silk-veil light-stretch-transparent-silk
+shortdesc: &1&ba transparent silk veil&0
+desc: A light stretch of transparent silk rests lightly on the ground here.
+type: 8
+weight: 0.00
+cost: 0
+timer: 0
+level: 50
+effects: e w 0
+wear: 131073
+hiddenness: 0
+applies:
+20 -5
+23 -5
+24 -5
+28 50
+~
+~~
+vnum: 50215
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: amnprstwy 0
+name: hoop crimson-tinged-electrum-hoop three-inch-silvery-gold-hoop earring
+shortdesc: a &1crimson&0-tinged &3&belectrum&0 hoop
+desc: A three-inch, silvery-gold hoop lies in the dirt.
+type: 8
+weight: 0.03
+cost: 3000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+18 2
+5 1
+~
+extradesc: hoop crimson-tinged-electrum-hoop three-inch-silvery-gold-hoop earring
+About three inches in diameter, this flashy earring will surely attract
+attention.  It is silvery-yellow, but seems to glow with a subtle red color.~
+triggers:
+5324
+5332
+~
+~~
+vnum: 50215
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: amnprstwy 0
+name: hoop crimson-tinged-electrum-hoop three-inch-silvery-gold-hoop earring
+shortdesc: a &1crimson&0-tinged &3&belectrum&0 hoop
+desc: A three-inch, silvery-gold hoop lies in the dirt.
+type: 8
+weight: 0.03
+cost: 3000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+18 2
+5 1
+~
+extradesc: hoop crimson-tinged-electrum-hoop three-inch-silvery-gold-hoop earring
+About three inches in diameter, this flashy earring will surely attract
+attention.  It is silvery-yellow, but seems to glow with a subtle red color.~
+triggers:
+5324
+5332
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 596
+location: 26
+values:
+500
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: basket cornucopia corn thanksgiving
+shortdesc: a &3cornucopia&0
+desc: A &3cornucopia&0 lies here on the ground, full beyond belief.
+type: 15
+weight: 1.20
+cost: 100
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+~~
+vnum: 42
+location: 27
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: abgiDE 0
+name: small-dragon red-dragon dragon red
+shortdesc: a &1small &bred &0&1dragon&0
+desc: A small red dragon flits through the air.  It glows with a soft internal light.
+type: 1
+weight: 0.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 2097153
+hiddenness: 0
+~~
+vnum: 23803
+location: 127
+values:
+0
+3
+3
+3
+0
+0
+0
+~
+flags: h 0
+name: talons steel-hard-talons hawk's-talons hawks-talons
+shortdesc: a pair of steel-hard talons
+desc: A hawk's talons lie discarded here.
+type: 5
+weight: 0.80
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: talons steel-hard-talons hawk's-talons hawks-talons
+Extremely sharp, this pair of claws is less brittle than the talons of a lesser
+beast would be.  Designed by nature to be the bane of small animals, the talons
+could probably be used as a weapon, though their usefulness would be
+questionable.~
+~~
+vnum: 55029
+location: 127
+values:
+250
+1
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: 0.00
+cost: 600
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    ~
+~~
+vnum: 53323
+location: -1
+values:
+1
+0
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 1
+weight: 4.50
+cost: 800
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 2
+18 1
+~
+extradesc: white egg white-egg dragon
+As you look at the large white dragon's egg, you seem to remember something you
+heard long ago.  Something about how a dragon's egg had special powers.  Now
+what was that.    ~
+~~
+vnum: 55371
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban worn-turban armor
+shortdesc: worn turban
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 5
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: turban worn-turban armor
+This turban is worn beyond use.~
+~~
+vnum: 55371
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban worn-turban armor
+shortdesc: worn turban
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 5
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: turban worn-turban armor
+This turban is worn beyond use.~
+~~
+vnum: 55371
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban worn-turban armor
+shortdesc: worn turban
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 5
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: turban worn-turban armor
+This turban is worn beyond use.~
+~~
+vnum: 55375
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves worn-sleeves armor
+shortdesc: worn sleeves
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves worn-sleeves armor
+These sleeves are worn beyond use.~
+~~
+vnum: 55370
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cap corroded-cap armor
+shortdesc: a corroded cap
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: cap corroded-cap armor
+This cap is corroded beyond use.~
+~~
+vnum: 55374
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces corroded-vambraces armor
+shortdesc: corroded vambraces
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vambraces corroded-vambraces armor
+These vambraces are corroded beyond use.~
+~~
+vnum: 55382
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: jerkin corroded-jerkin armor
+shortdesc: a corroded jerkin
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jerkin corroded-jerkin armor
+This tunic is corroded beyond use.~
+~~
+vnum: 55374
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces corroded-vambraces armor
+shortdesc: corroded vambraces
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vambraces corroded-vambraces armor
+These vambraces are corroded beyond use.~
+~~
+vnum: 55374
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces corroded-vambraces armor
+shortdesc: corroded vambraces
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vambraces corroded-vambraces armor
+These vambraces are corroded beyond use.~
+~~
+vnum: 55374
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces corroded-vambraces armor
+shortdesc: corroded vambraces
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vambraces corroded-vambraces armor
+These vambraces are corroded beyond use.~
+~~
+vnum: 55376
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: greaves tarnished-greaves armor
+shortdesc: tarnished greaves
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: greaves tarnished-greaves armor
+These greaves are tarnished beyond use.~
+~~
+vnum: 55372
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vambraces tarnished-vambraces armor
+These vambraces are tarnished beyond use.~
+~~
+vnum: 55372
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vambraces tarnished-vambraces armor
+These vambraces are tarnished beyond use.~
+~~
+vnum: 55357
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gloves creased-leather-gloves armor
+shortdesc: creased leather gloves
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 0.86
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gloves creased-leather-gloves armor
+These gloves are creased beyond use.~
+~~
+vnum: 55377
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings creased-leather-leggings armor
+shortdesc: creased leather leggings
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: leggings creased-leather-leggings armor
+These leggings are creased beyond use.~
+~~
+vnum: 55373
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves creased-leather-sleeves armor
+shortdesc: creased leather sleeves
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves creased-leather-sleeves armor
+These sleeves are creased beyond use.~
+~~
+vnum: 55369
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: hood creased-leather-hood armor
+shortdesc: a creased leather hood
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 1.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: hood creased-leather-hood armor
+This hood is creased beyond use.~
+~~
+vnum: 55372
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vambraces tarnished-vambraces armor
+These vambraces are tarnished beyond use.~
+~~
+vnum: 55372
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vambraces tarnished-vambraces armor
+shortdesc: tarnished vambraces
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 4.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vambraces tarnished-vambraces armor
+These vambraces are tarnished beyond use.~
+~~
+vnum: 55325
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tunic flimsy-leather-tunic armor
+shortdesc: a flimsy leather tunic
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tunic flimsy-leather-tunic armor
+This tunic flimsy beyond use.  Perhaps the Rogue guild master will know what to
+do with it.~
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 2335
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: mnoprsvwxyz 0
+name: cloak-gaia cloak-green-brown
+shortdesc: &3a cloak of &2Ga&bi&0&2a&0
+desc: A cloak of &2green&0 and &3brown&0 is sitting in a pile here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+13 20
+4 2
+26 14
+28 75
+27 2
+~
+extradesc: cloak-gaia cloak-green-brown
+Made of delicate branches and leaves, this cloak looks ready to crumble at any
+moment, yet provides a magical benifit to its wearer due to the powers of
+nature tht made it.  Though someone wearing this cloak might be mistaken for a
+bush, they are used as a symbol of status and a mark of favor among many groups
+of druids.    ~
+~~
+vnum: 3298
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: eqAD 0
+name: rose single-long-stemmed-black-rose flower
+shortdesc: a &9&bblack&0 rose
+desc: A single long-stemmed &b&9black&0 rose lies here in memory of Pergus.  Farewell friend.
+adesc:
+Nothing.~
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 540673
+hiddenness: 0
+triggers:
+3298
+~
+~~
+vnum: 8034
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 55378
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: pants corroded-pants armor
+shortdesc: corroded pants
+desc: A pile of corroded armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: pants corroded-pants armor
+These pants are corroded beyond use.~
+~~
+vnum: 55308
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer rusted-plate-bracer armor
+shortdesc: a rusted plate bracer
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracer rusted-plate-bracer armor
+This bracer is rusted beyond use.  Perhaps the Cleric or Warrior guild master
+will know what to do with it.~
+~~
+vnum: 55308
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer rusted-plate-bracer armor
+shortdesc: a rusted plate bracer
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracer rusted-plate-bracer armor
+This bracer is rusted beyond use.  Perhaps the Cleric or Warrior guild master
+will know what to do with it.~
+~~
+vnum: 51011
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: shawl tattered-shawl piece-tattered-cloth
+shortdesc: a tattered shawl
+desc: A piece of tattered cloth lies discarded on the ground.
+type: 9
+weight: 1.30
+cost: 25
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+9 20
+3 1
+~
+extradesc: shawl tattered-shawl piece-tattered-cloth
+You see an old tattered piece of cloth.  It's very beaten up and has been
+through many generations of owners.  You can feel it's age as you bring it near
+you.  Something about this cloth makes you feel just a little bit more
+knowledgeable.  You briefly wonder who first wove this old shawl.~
+~~
+vnum: 51011
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: shawl tattered-shawl piece-tattered-cloth
+shortdesc: a tattered shawl
+desc: A piece of tattered cloth lies discarded on the ground.
+type: 9
+weight: 1.30
+cost: 25
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+9 20
+3 1
+~
+extradesc: shawl tattered-shawl piece-tattered-cloth
+You see an old tattered piece of cloth.  It's very beaten up and has been
+through many generations of owners.  You can feel it's age as you bring it near
+you.  Something about this cloth makes you feel just a little bit more
+knowledgeable.  You briefly wonder who first wove this old shawl.~
+~~
+vnum: 51011
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: shawl tattered-shawl piece-tattered-cloth
+shortdesc: a tattered shawl
+desc: A piece of tattered cloth lies discarded on the ground.
+type: 9
+weight: 1.30
+cost: 25
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+9 20
+3 1
+~
+extradesc: shawl tattered-shawl piece-tattered-cloth
+You see an old tattered piece of cloth.  It's very beaten up and has been
+through many generations of owners.  You can feel it's age as you bring it near
+you.  Something about this cloth makes you feel just a little bit more
+knowledgeable.  You briefly wonder who first wove this old shawl.~
+~~
+vnum: 51011
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: shawl tattered-shawl piece-tattered-cloth
+shortdesc: a tattered shawl
+desc: A piece of tattered cloth lies discarded on the ground.
+type: 9
+weight: 1.30
+cost: 25
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+9 20
+3 1
+~
+extradesc: shawl tattered-shawl piece-tattered-cloth
+You see an old tattered piece of cloth.  It's very beaten up and has been
+through many generations of owners.  You can feel it's age as you bring it near
+you.  Something about this cloth makes you feel just a little bit more
+knowledgeable.  You briefly wonder who first wove this old shawl.~
+~~
+vnum: 55381
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: tunic creased-leather-tunic armor
+shortdesc: a creased leather tunic
+desc: A pile of creased leather armor lies here unusable.
+type: 8
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tunic creased-leather-tunic armor
+This tunic is creased beyond use.~
+~~
+vnum: 55309
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer flimsy-leather-bracer armor
+shortdesc: a flimsy leather bracer
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracer flimsy-leather-bracer armor
+This bracer is flimsy beyond use.  Perhaps the Rogue guild master will know
+what to do with it.~
+~~
+vnum: 55305
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: boots flimsy-leather-boots armor
+shortdesc: flimsy leather boots
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 1.80
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: boots flimsy-leather-boots armor
+These boots are flimsy beyond use.  Perhaps the Rogue guild master will know
+what to do with them.~
+~~
+vnum: 55340
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: helm crushed-helm armor
+shortdesc: a crushed helm
+desc: A pile of crushed armor lies here unusable.
+type: 8
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: helm crushed-helm armor
+This helm is crushed beyond use.~
+~~
+vnum: 55347
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves burned-sleeves armor
+shortdesc: burned sleeves
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves burned-sleeves armor
+These sleeves are burned beyond use.~
+~~
+vnum: 55351
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: leggings burned-leggings armor
+shortdesc: burned leggings
+desc: A pile of burned armor lies here unusable.
+type: 8
+weight: 2.40
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: leggings burned-leggings armor
+These leggings are burned beyond use.~
+~~
+vnum: 55356
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gauntlets tarnished-gauntlets armor
+shortdesc: tarnished gauntlets
+desc: A pile of tarnished armor lies here unusable.
+type: 8
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gauntlets tarnished-gauntlets armor
+These gauntlets are tarnished beyond use.~
+~~

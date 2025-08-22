@@ -1,0 +1,2883 @@
+1
+vnum: 16103
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: ring dull-sandstone-ring sand-stone
+shortdesc: a sandstone ring
+desc: A dull sandstone ring lies in the dirt.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+18 1
+1 3
+5 2
+~
+extradesc: sandstone-ring dull sand-stone
+The stone of the ring is a dull brown in colour.  However, you sense an aura of
+power around it.  ~
+triggers:
+5324
+5332
+~
+~~
+vnum: 58018
+location: 2
+values:
+35
+3
+3
+28
+0
+0
+0
+~
+flags: kl 0
+name: ring goddess-pearl-ring exquisite-pearl-ring questobject
+shortdesc: the goddess' pearl ring
+desc: An exquisite pearl ring has somehow been lost here.
+type: 4
+weight: 0.10
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16387
+hiddenness: 0
+applies:
+24 -4
+4 2
+18 4
+27 1
+~
+extradesc: ring goddess-pearl-ring exquisite-pearl-ring questobject
+The main body of this exquisite ring is made of bright silver that seems to
+glow aquamarine-blue with an inner light.  The pearl that adorns it is stunning
+and larger than usual, with deep blue sapphires running otter-swift around the
+main center of attention.  The ring is neither wide nor narrow, making it
+wearable by either men or women.~
+~~
+vnum: 59026
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: adornment-light shimmering-glint small-chain
+shortdesc: an adornment of light
+desc: A shimmering glint of light shines from a small chain on the ground.
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 524293
+hiddenness: 0
+applies:
+4 1
+2 -1
+6 1
+27 1
+~
+extradesc: adornment-light shimmering-glint small-chain
+A small ball of light glows from an unknown source, but somehow still remains
+attached to a shining platinum chain.  It looks like a common necklace, except
+for the small glint of light that emits tiny beams that illuminate the palm of
+your hand.  Occasionally the light grows brighter for an instant, then fades
+back to normal.~
+~~
+vnum: 59026
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: adornment-light shimmering-glint small-chain
+shortdesc: an adornment of light
+desc: A shimmering glint of light shines from a small chain on the ground.
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 524293
+hiddenness: 0
+applies:
+4 1
+2 -1
+6 1
+27 1
+~
+extradesc: adornment-light shimmering-glint small-chain
+A small ball of light glows from an unknown source, but somehow still remains
+attached to a shining platinum chain.  It looks like a common necklace, except
+for the small glint of light that emits tiny beams that illuminate the palm of
+your hand.  Occasionally the light grows brighter for an instant, then fades
+back to normal.~
+~~
+vnum: 55783
+location: 5
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: dmnopqrstuvwxyz aefghij
+name: tunic-minstrel colorful-tunic
+shortdesc: &3Tunic of the Minstrel&0
+desc: A colorful tunic hangs on the back of a chair.
+type: 9
+weight: 0.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 2
+13 11
+27 2
+~
+extradesc: tunic-minstrel colorful-tunic
+This tunic is made of fine linen backed by simple cotton.  It is dyed sumptuous
+colors and embroidered with intricate patterns.  The shoulders are secured with
+small gold clasps and the waist is gathered with a fine sash.  The tunic moves
+and flows perfectly, accentuating every movement of the body.~
+~~
+vnum: 6223
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: circlet circlet-green-leaves-trailing-ivy circlet-leaves
+shortdesc: a circlet of green leaves and trailing ivy
+desc: A circlet of leaves lies here, tossed aside.
+type: 8
+weight: 0.52
+cost: 150
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+6 1
+4 1
+26 5
+27 1
+~
+extradesc: circlet circlet-green-leaves-trailing-ivy circlet-leaves
+These vines of ivy are entwined with complimentary leaves and woven into 
+a loose circle to make a beautiful garland.  It just fits on the crown of the 
+head.  The long trailing ivy, holy in many Druidic traditions, creates a regal, 
+statuesque silhouette.~
+~~
+vnum: 55784
+location: 7
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dmnopqrstuvwxyz aefghij
+name: leggings-minstrel brightly-colored-leggings
+shortdesc: &3Leggings of the Minstrel&0
+desc: Brightly colored leggings have been laid out for a new owner.
+type: 9
+weight: 0.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+18 2
+14 15
+27 2
+~
+extradesc: leggings-minstrel brightly-colored-leggings
+Bright color catches the eye while a harlequin pattern fascinates it.  These
+leggings are snug-fitting, ideal for movement by allowing a full range of
+motion.  They provide coverage of the whole lower body, wrapping at the waist
+and stretching down to the ankle, tucking into a boot or shoe.~
+~~
+vnum: 55785
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dmnopqrstuvwxyz aefghij
+name: boots-minstrel vibrantly-colored-boots
+shortdesc: &3Boots of the Minstrel&0
+desc: A pair of vibrantly colored boots stand in the corner.
+type: 9
+weight: 0.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+2 2
+14 20
+27 2
+~
+extradesc: boots-minstrel vibrantly-colored-boots
+These boots are fashioned from high quality leather, sturdy enough to provide
+protection but soft enough to be comfortable to wear for long periods of time.
+The soles are the thick soles of traveling shoes, the kind befitting a
+wandering troubadour.  Making use of vibrant dyes however, the craftsman has
+created a piece of gear that wonderfully combines function with aesthetic for
+some flare on the go.~
+~~
+vnum: 55787
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dmnopqrstuvwxyz aefghij
+name: gloves-minstrel brightly-colored-gloves
+shortdesc: &3Gloves of the Minstrel&0
+desc: A pair of brightly colored gloves have fallen on the ground.
+type: 9
+weight: 0.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+24 -5
+13 8
+27 2
+~
+extradesc: gloves-minstrel brightly-colored-gloves
+These are quite fancy for traveling gloves!  They're made of cotton twill so
+they hold the vivid colors easily, but they don't keep out the cold very well
+They do provide a modicum of protection, but mostly they just look nice.~
+~~
+vnum: 55782
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dmnopqrstuvwxyz aefghij
+name: sleeves-minstrel colorful-sleeves
+shortdesc: &3Sleeves of the Minstrel&0
+desc: A pair of colorful sleeves lay crumpled up on the floor.
+type: 9
+weight: 0.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+1 2
+13 10
+27 2
+~
+extradesc: sleeves-minstrel colorful-sleeves
+These simple cloth sleeves are dyed in brilliant hues and embroidered with
+eye-catching motifs.  They stand out strongly in a crowd, no doubt making their
+wearer the center of attention.~
+~~
+vnum: 383
+location: 12
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dmnprstuvwxyz afghij
+name: cloak swashbuckler-cloak fancy-pirate-cloak
+shortdesc: a swashbuckler cloak
+desc: A fancy pirate cloak swings in the breeze.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+18 1
+27 1
+~
+triggers:
+325
+5329
+~
+~~
+vnum: 18556
+location: 13
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: belt brown-rope-belt long-tied-piece-rope thick
+shortdesc: a brown rope belt
+desc: A long, tied piece of rope lies on the ground here.
+adesc:
+Nothing.~
+type: 9
+weight: 0.32
+cost: 45
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+2 2
+4 3
+13 10
+27 1
+~
+extradesc: brown-rope-belt long-tied-piece-rope thick
+This belt made from rope is very plain and simlistic.  Just the kind of thing a
+monk would wear.~
+~~
+vnum: 58015
+location: 14
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: kl 0
+name: bracelet goddess-bracelet piece-pearl questobject
+shortdesc: the goddess' bracelet
+desc: A bracelet made of one piece of pearl has been dropped here.
+type: 8
+weight: 0.20
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+26 4
+1 6
+27 1
+~
+extradesc: bracelet goddess-bracelet piece-pearl questobject
+It is a fine bracelet that looks like it was carved from one large pearl, with
+a twisting whorled design inlaid with gold.  It fits over the wrist, sliding on
+without a clasp or hinge.  It glows with the lustrous inner light that only the
+finest pearls have.~
+~~
+vnum: 55786
+location: 15
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: dmnopqrstuvwxyz aefghij
+name: bracelet-minstrel brightly-colored-bracelet
+shortdesc: &3Bracelet of the Minstrel&0
+desc: A brightly colored bracelet rests on a table here.
+type: 9
+weight: 0.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+6 2
+14 5
+27 2
+~
+extradesc: bracelet-minstrel brightly-colored-bracelet
+Semi-precious stone beads of many types strung along multiple parallel strings
+make for a beautiful, if not terribly fancy, bracelet.  With the large variety
+of colors, one might call this a "statement piece" rather than a simple
+accessory.~
+~~
+vnum: 5104
+location: 16
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: g 0
+name: dagger stone-dagger
+shortdesc: a stone dagger
+desc: A stone dagger has been abandoned here.
+type: 5
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+~
+triggers:
+5118
+~
+~~
+vnum: 59040
+location: 18
+values:
+40
+5
+5
+40
+0
+0
+0
+~
+flags: 0 0
+name: trumpet long-trumpet polished-trumpet
+shortdesc: a long trumpet
+desc: A polished trumpet stands proudly here.
+adesc:
+The fanfare is glorious!~
+type: 30
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+17 1
+6 2
+5 4
+1 4
+27 1
+~
+extradesc: trumpet long-trumpet polished-trumpet
+This kind of trumpet is traditionally used for heraldry to announce the coming
+of knights or kings.  While well cared for, it bears clear signs of regular
+use.  If it could speak, what stories of nobility and honor would it tell?~
+triggers:
+327
+~
+~~
+vnum: 18511
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: spectacles small-spectacles little-spectacles
+shortdesc: small spectacles
+desc: A pair of little spectacles rests here.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+3 2
+28 30
+27 1
+~
+extradesc: spectacles small-spectacles little-spectacles
+These spectacles are small and likely used for reading.  They have an odd and
+unique hexagonal frame around the glass portions, but look strong and
+well-used.~
+~~
+vnum: 46210
+location: 22
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: faceplate faceplate-ogakh-army face-plate-ogakh-army military-symbol
+shortdesc: a faceplate of the Ogakh Army
+desc: A faceplate bearing the military symbol of the Ogakh Army waits to be donned.
+type: 9
+weight: 2.00
+cost: 2500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+1 1
+~
+extradesc: faceplate faceplate-ogakh-army face-plate-ogakh-army military-symbol
+Faceplates like this were issued in the early days of the campaign to sack
+Tyllwedd and establish a base of operations for orcish campaigns in South
+Caelia.  They became keepsakes for the soldiers who fought in that campaign
+after Ogakh was established as a permanent settlement and most of the Army
+conscripted to town guard duty.~
+~~
+vnum: 46211
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring kobold-gold-earring ear-ring fool's-gold pyrite fools-gold
+shortdesc: a kobold gold earring
+desc: A small gold nugget earring has been thoughtlessly abandoned.
+type: 8
+weight: 0.00
+cost: 2500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+2 2
+3 2
+27 1
+~
+extradesc: earring kobold-gold-earring ear-ring fool's-gold pyrite fools-gold
+Upon closer inspection, you realize this isn't gold at all, just pyrite, also
+known as "fool's gold" or "kobold gold.  " Even though it's not work much,
+pyrite still makes lovely jewelry.  This tiny nugget is mounted to a small
+post, making it a large statement piece for a kobold or a a tiny spec for an
+ogre or barbarian.~
+~~
+vnum: 46211
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring kobold-gold-earring ear-ring fool's-gold pyrite fools-gold
+shortdesc: a kobold gold earring
+desc: A small gold nugget earring has been thoughtlessly abandoned.
+type: 8
+weight: 0.00
+cost: 2500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+2 2
+3 2
+27 1
+~
+extradesc: earring kobold-gold-earring ear-ring fool's-gold pyrite fools-gold
+Upon closer inspection, you realize this isn't gold at all, just pyrite, also
+known as "fool's gold" or "kobold gold.  " Even though it's not work much,
+pyrite still makes lovely jewelry.  This tiny nugget is mounted to a small
+post, making it a large statement piece for a kobold or a a tiny spec for an
+ogre or barbarian.~
+~~
+vnum: 5516
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: symbol eldoria-reward small-white-symbol holy-symbol-3rd-eldorian-guard third questobject
+shortdesc: a holy symbol of the 3rd Eldorian Guard
+desc: A small white symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 30
+14 25
+26 10
+27 1
+~
+extradesc: holy symbol eldoria-trophy small white 3rd-eldorian-guard-symbol
+A mild feeling of benevolence radiates from this white medal.~
+~~
+vnum: 59040
+location: 26
+values:
+40
+5
+5
+40
+0
+0
+0
+~
+flags: 0 0
+name: trumpet long-trumpet polished-trumpet
+shortdesc: a long trumpet
+desc: A polished trumpet stands proudly here.
+adesc:
+The fanfare is glorious!~
+type: 30
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+17 1
+6 2
+5 4
+1 4
+27 1
+~
+extradesc: trumpet long-trumpet polished-trumpet
+This kind of trumpet is traditionally used for heraldry to announce the coming
+of knights or kings.  While well cared for, it bears clear signs of regular
+use.  If it could speak, what stories of nobility and honor would it tell?~
+triggers:
+327
+~
+~~
+vnum: 12338
+location: 27
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gDE 0
+name: spark-reverie flickering-colorful-spark earring
+shortdesc: a spark of the Reverie
+desc: A flickering colorful spark floats by you laughing.
+type: 8
+weight: 0.01
+cost: 56129
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 2883585
+hiddenness: 0
+applies:
+4 1
+27 1
+24 -5
+~
+extradesc: spark-reverie flickering-colorful-spark earring
+Looking directly at this strange wispy spark, you develop a distinct sense of
+vertigo as waves of color start to creep into your field of vision.  Averting
+your eyes, a mix of ecstatic excitement and serene comfort washes over you as
+you begin to hear far away laughter and music.~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 55212
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: coracle small-bowl-shaped-watercraft boat
+shortdesc: a coracle
+desc: A small bowl-shaped watercraft is sitting here.
+type: 22
+weight: 15.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: coracle small-bowl-shaped-watercraft boat
+This small watercraft is oval-shaped, with a single small bench in the middle.
+It is constructed of a round frame of branches over which the skins of buffalo
+have been stretched.  It looks like it's limited to a single human-sized
+occupant.  The bottom is stained much darker than the rest, apparently due to
+the body of water in which it has spent much time: Black Lake.    ~
+~~
+vnum: 16102
+location: 127
+values:
+200
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: saddle leather-saddle
+shortdesc: a leather saddle
+desc: A leather saddle lies abandoned here.
+type: 15
+weight: 8.00
+cost: 100
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 2
+~
+extradesc: leather-saddle
+This saddle is made of very high quality leather.  It looks like it was made to
+last.  ~
+~~
+vnum: 23756
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: salt spice herb shaker food
+shortdesc: a shaker of salt
+desc: An ornamental salt shaker sits here.
+type: 19
+weight: 0.10
+cost: 5
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: salt shaker spice
+Salt is one of the oldest and simplest spices known to man.  In some ancient
+lands, soldiers were paid in salt.  It is used to preserve meat and usually
+makes you very thirsty if you eat too much of it.  It can be distilled from the
+ocean or mined from the mountains.  Some kinds of salt can be found in deserts,
+just sitting around.  It is the most common spice.    ~
+~~
+vnum: 23756
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: salt spice herb shaker food
+shortdesc: a shaker of salt
+desc: An ornamental salt shaker sits here.
+type: 19
+weight: 0.10
+cost: 5
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: salt shaker spice
+Salt is one of the oldest and simplest spices known to man.  In some ancient
+lands, soldiers were paid in salt.  It is used to preserve meat and usually
+makes you very thirsty if you eat too much of it.  It can be distilled from the
+ocean or mined from the mountains.  Some kinds of salt can be found in deserts,
+just sitting around.  It is the most common spice.    ~
+~~
+vnum: 23756
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: salt spice herb shaker food
+shortdesc: a shaker of salt
+desc: An ornamental salt shaker sits here.
+type: 19
+weight: 0.10
+cost: 5
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: salt shaker spice
+Salt is one of the oldest and simplest spices known to man.  In some ancient
+lands, soldiers were paid in salt.  It is used to preserve meat and usually
+makes you very thirsty if you eat too much of it.  It can be distilled from the
+ocean or mined from the mountains.  Some kinds of salt can be found in deserts,
+just sitting around.  It is the most common spice.    ~
+~~
+vnum: 23756
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: salt spice herb shaker food
+shortdesc: a shaker of salt
+desc: An ornamental salt shaker sits here.
+type: 19
+weight: 0.10
+cost: 5
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: salt shaker spice
+Salt is one of the oldest and simplest spices known to man.  In some ancient
+lands, soldiers were paid in salt.  It is used to preserve meat and usually
+makes you very thirsty if you eat too much of it.  It can be distilled from the
+ocean or mined from the mountains.  Some kinds of salt can be found in deserts,
+just sitting around.  It is the most common spice.    ~
+~~
+vnum: 23758
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: basil leaves herb spice stack food
+shortdesc: a stack of basil leaves
+desc: A small stack of basil leaves lies here.
+type: 19
+weight: 0.10
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: basil leaves herb spice stack food
+Basil is a sweet, mintlike herb that can be ground into a fine spice.  It has
+no known magical properties, but it goes really well with tomatoes in sauces
+and other dishes.  The larger leaves can also be added to soup for a weaker
+flavor.    ~
+~~
+vnum: 23758
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: basil leaves herb spice stack food
+shortdesc: a stack of basil leaves
+desc: A small stack of basil leaves lies here.
+type: 19
+weight: 0.10
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: basil leaves herb spice stack food
+Basil is a sweet, mintlike herb that can be ground into a fine spice.  It has
+no known magical properties, but it goes really well with tomatoes in sauces
+and other dishes.  The larger leaves can also be added to soup for a weaker
+flavor.    ~
+~~
+vnum: 23758
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: basil leaves herb spice stack food
+shortdesc: a stack of basil leaves
+desc: A small stack of basil leaves lies here.
+type: 19
+weight: 0.10
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: basil leaves herb spice stack food
+Basil is a sweet, mintlike herb that can be ground into a fine spice.  It has
+no known magical properties, but it goes really well with tomatoes in sauces
+and other dishes.  The larger leaves can also be added to soup for a weaker
+flavor.    ~
+~~
+vnum: 23758
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: basil leaves herb spice stack food
+shortdesc: a stack of basil leaves
+desc: A small stack of basil leaves lies here.
+type: 19
+weight: 0.10
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: basil leaves herb spice stack food
+Basil is a sweet, mintlike herb that can be ground into a fine spice.  It has
+no known magical properties, but it goes really well with tomatoes in sauces
+and other dishes.  The larger leaves can also be added to soup for a weaker
+flavor.    ~
+~~
+vnum: 23758
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: basil leaves herb spice stack food
+shortdesc: a stack of basil leaves
+desc: A small stack of basil leaves lies here.
+type: 19
+weight: 0.10
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: basil leaves herb spice stack food
+Basil is a sweet, mintlike herb that can be ground into a fine spice.  It has
+no known magical properties, but it goes really well with tomatoes in sauces
+and other dishes.  The larger leaves can also be added to soup for a weaker
+flavor.    ~
+~~
+vnum: 19
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rations ration iron food
+shortdesc: some iron rations
+desc: Some iron rations have been set here.
+type: 19
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: iron rations
+These lightweight rations aren't the best-tasting, but they are the traveler's
+best food for long trips -- they never spoil, and fill the stomach for many
+hours.  There is dried meat of unknown origin here, mixed with nuts.  The whole
+mess is glued together into a bar by means of some waxy, fatty substance.    ~
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 18511
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: spectacles small-spectacles little-spectacles
+shortdesc: small spectacles
+desc: A pair of little spectacles rests here.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+3 2
+28 30
+27 1
+~
+extradesc: spectacles small-spectacles little-spectacles
+These spectacles are small and likely used for reading.  They have an odd and
+unique hexagonal frame around the glass portions, but look strong and
+well-used.~
+~~
+vnum: 3041
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: shield bark-mielikki-guard-shield large-section-wood metal bands
+shortdesc: a bark Mielikki Guard Shield
+desc: A large section of wood lined with metal bands lies here.
+type: 9
+weight: 10.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+13 5
+18 1
+27 1
+~
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 4318
+location: -1
+values:
+0
+300
+300
+0
+0
+0
+0
+~
+flags: 0 0
+name: fire-goddess-torch fire-goddesss-torch unusual prop
+shortdesc: the &1F&b&3i&b&1r&0&1e G&b&3o&b&1dd&0&b&3e&0&1ss&b&1's&0 torch
+desc: A very unusual prop torch glows softly in the shadows.
+adesc:
+Nothing.~
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fire-goddess-torch fire-goddesss-torch unusual prop
+This beautifully crafted torch glows with magical properties.  This is
+obviously more than a simple stage prop.    ~
+triggers:
+4342
+~
+~~
+vnum: 4319
+location: -1
+values:
+0
+2
+5
+3
+0
+0
+0
+~
+flags: aDE 0
+name: ring fire-ring glittering-metal-ring wreathed flames
+shortdesc: a &1f&b&3i&b&1r&0&1e&0 ring
+desc: Hovering in the air is a glittering metal ring, wreathed in flames.
+adesc:
+Nothing.~
+type: 5
+weight: 1.00
+cost: 1000
+timer: 0
+level: 10
+effects: 0 0 u
+wear: 8193
+hiddenness: 0
+applies:
+1 1
+2 1
+6 2
+19 1
+4 -2
+~
+extradesc: fire-ring glittering-metal-ring wreathed flames
+A reward for completing a single, perfect act, this weapon is as deadly as it
+is entrancing.  The flames around the ring leap and swirl, dancing in an almost
+hypnotic pattern.  Though the ring gives off light and heat, it isn't hot
+enough to burn your hand when you touch it.  The flames wrap around your fist,
+joining you with the ring in one perfect flame.~
+triggers:
+5324
+5332
+~
+~~
+vnum: 12327
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vines lush-flowering-vines
+shortdesc: some flowering &2vines&0
+desc: Lush flowering vines grow on a nearby trellis.
+type: 9
+weight: 4.00
+cost: 3857
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+4 2
+5 1
+27 1
+~
+extradesc: vines lush-flowering-vines
+These long strands of flowering vines have been wound together in two tubular
+shapes.  With enough connective vine between them, they fit perfectly over the
+shoulder and dangle down just past arm length.  The beautiful blossoms trail
+with each movement.~
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 4393
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring glowing-ring-health
+shortdesc: a glowing ring of health
+desc: One of the legendary rings of health has been misplaced here.
+type: 8
+weight: 0.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+5 75
+~
+~~
+vnum: 62513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 nopqrst
+name: ring wolf-tooth-ring carved fang-enormous-wolf
+shortdesc: a wolf-tooth ring
+desc: A ring carved from the fang of an enormous wolf is here in the dirt.
+type: 8
+weight: 0.50
+cost: 80000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+2 3
+5 3
+19 1
+14 20
+~
+~~
+vnum: 62513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 nopqrst
+name: ring wolf-tooth-ring carved fang-enormous-wolf
+shortdesc: a wolf-tooth ring
+desc: A ring carved from the fang of an enormous wolf is here in the dirt.
+type: 8
+weight: 0.50
+cost: 80000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+2 3
+5 3
+19 1
+14 20
+~
+~~
+vnum: 16107
+location: -1
+values:
+25
+3
+3
+23
+0
+0
+0
+~
+flags: 0 0
+name: djembe weather-worn-drum desert-drum
+shortdesc: a desert drum
+desc: A weather-worn drum rests in the sand.
+adesc:
+An earthy rhythm beats from the desert drum.~
+type: 30
+weight: 1.50
+cost: 0
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+17 2
+5 3
+27 1
+~
+extradesc: djembe weather-worn-drum desert-drum
+This drum is fashioned from a single log of hardwood, carved into an
+upside-down vase shape.  A patch of animal skin is stretched tight across the
+wider end and lashed down with rope, forming a powerfully resonant drum head.~
+triggers:
+327
+~
+~~
+vnum: 12327
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: vines lush-flowering-vines
+shortdesc: some flowering &2vines&0
+desc: Lush flowering vines grow on a nearby trellis.
+type: 9
+weight: 4.00
+cost: 3857
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+4 2
+5 1
+27 1
+~
+extradesc: vines lush-flowering-vines
+These long strands of flowering vines have been wound together in two tubular
+shapes.  With enough connective vine between them, they fit perfectly over the
+shoulder and dangle down just past arm length.  The beautiful blossoms trail
+with each movement.~
+~~
+vnum: 12328
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: vines intricately-woven-vines small-trailing-vines
+shortdesc: intricately woven &2vines&0
+desc: Small trailing vines grow from a tree here.
+type: 9
+weight: 0.40
+cost: 2461
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+4 2
+5 1
+27 1
+~
+extradesc: vines intricately-woven-vines small-trailing-vines
+This mesh of interwoven tiny vines grows naturally through some unknown magic.
+It shifts to conform to the hand and is flexible but durable.  Little colorful
+flowers bloom in sporadic places almost like intentional decoration.~
+~~
+vnum: 12326
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: bracelet woven-leaf-bracelet small-circle-green-leaves
+shortdesc: a woven &2leaf&0 bracelet
+desc: A small circle of green leaves sits on a stand.
+type: 8
+weight: 0.03
+cost: 1000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+4 1
+5 1
+27 1
+~
+extradesc: bracelet woven-leaf-bracelet small-circle-green-leaves
+Many lush tree leaves have been woven together into a wrist-sized circle.  
+Somehow the leaves seem fresh and green as the day they were cut.~
+~~
+vnum: 58017
+location: -1
+values:
+30
+5
+5
+89
+0
+0
+0
+~
+flags: D 0
+name: biwa wooden-lute
+shortdesc: a biwa
+desc: A wooden lute stands against one wall.
+adesc:
+The plucked arrangement is strange and complex.~
+type: 30
+weight: 2.00
+cost: 1200
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 3
+6 3
+27 1
+~
+extradesc: biwa wooden-lute
+The lute is seven-stringed, with a larger belly than you might expect of
+such a light-sounding instrument. It is undecorated.~
+triggers:
+58007
+~
+~~
+vnum: 12331
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dgopwxD e
+name: cord silvery-cord coil-silver-cord
+shortdesc: a silvery cord
+desc: A coil of silver cord lays here in the dust.
+type: 9
+weight: 0.01
+cost: 18374
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+4 3
+27 2
+14 15
+6 2
+~
+extradesc: coil silver silvery cord silvery-cord
+This simple silvery cord is far more than meets the eye.  Such cords represent
+the connection between body and soul in astral travel.  It also tethers mortals
+to the physical world when traveling through the fey realms in the Reverie.  
+Made more of magic than material, such a cord is a rare and valuable treasure.~
+~~
+vnum: 62513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 nopqrst
+name: ring wolf-tooth-ring carved fang-enormous-wolf
+shortdesc: a wolf-tooth ring
+desc: A ring carved from the fang of an enormous wolf is here in the dirt.
+type: 8
+weight: 0.50
+cost: 80000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+2 3
+5 3
+19 1
+14 20
+~
+~~
+vnum: 62513
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring wolf-tooth-ring carved fang-enormous-wolf
+shortdesc: a wolf-tooth ring
+desc: A ring carved from the fang of an enormous wolf is here in the dirt.
+type: 8
+weight: 0.50
+cost: 80000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+2 3
+5 3
+19 1
+14 20
+~
+~~
+vnum: 12336
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pendant necklace gleaming-starstone-pendant gleaming-indigo-gem leather-cord
+shortdesc: a gleaming starstone pendant
+desc: A gleaming indigo gem on a leather cord lays amongst the rocks.
+type: 8
+weight: 0.30
+cost: 4899
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+27 1
+3 1
+24 -5
+13 5
+~
+extradesc: pendant necklace gleaming-starstone-pendant gleaming-indigo-gem leather-cord
+From a leather cord dangles a dark blue starstone pendant.  Hundreds of
+thousands of tiny mineral deposits within it reflect and refract light like
+stars twinkling in the dark, giving it its name.  Though starstone itself is
+not inherently magical, a pendant like this almost certainly is!~
+~~
+vnum: 12336
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: pendant necklace gleaming-starstone-pendant gleaming-indigo-gem leather-cord
+shortdesc: a gleaming starstone pendant
+desc: A gleaming indigo gem on a leather cord lays amongst the rocks.
+type: 8
+weight: 0.30
+cost: 4899
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+27 1
+3 1
+24 -5
+13 5
+~
+extradesc: pendant necklace gleaming-starstone-pendant gleaming-indigo-gem leather-cord
+From a leather cord dangles a dark blue starstone pendant.  Hundreds of
+thousands of tiny mineral deposits within it reflect and refract light like
+stars twinkling in the dark, giving it its name.  Though starstone itself is
+not inherently magical, a pendant like this almost certainly is!~
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 460
+location: 127
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: stick small-stick light
+shortdesc: a small stick
+desc: A small stick lies here.
+type: 1
+weight: 0.40
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: stick small-stick light
+The small stick does not look interesting at all.  But just as you are going to
+throw it away, you notice some small letters.~
+extradesc: letters letter
+It reads 'Hold me'.~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+5 4
+84 4
+16 6
+20 4
+32 4
+100 4
+41 4
+89 4
+85 4
+8 5
+88 4
+18 6
+19 13
+21 9
+39 4
+90 4
+86 4
+15 10
+~
+triggers:
+51949
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+114 4
+186 4
+31 8
+197 6
+43 4
+37 6
+91 4
+246 14
+219 13
+103 9
+83 14
+33 4
+35 4
+241 4
+~
+triggers:
+51949
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+243 13
+2 8
+228 8
+~
+triggers:
+51949
+~
+~~
+vnum: 12023
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: feather kestrel-feather pen quill
+shortdesc: a kestrel feather
+desc: A kestrel feather sits on the ground.
+type: 21
+weight: 0.10
+cost: 10
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 1
+~
+extradesc: feather kestrel-feather pen quill
+Black on the top and white spotted with brown on the bottom, this handsome
+kestrel feather must have come from a large member of its species.  It's one of
+the wing feathers and would probably make a fine quill to scribe in a spellbook
+with.~
+~~
+vnum: 5313
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: order
+shortdesc: an order for a crimson-tinged electrum hoop
+desc: An search order for a treasure hunt lays here.
+type: 12
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+5327
+~
+~~
+vnum: 3083
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: notice
+shortdesc: a notice for the young blue dragon
+desc: A contract for someone's head has been accidentally left out!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+3085
+~
+~~
+vnum: 5323
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mission
+shortdesc: a mission to complete the Three-Falls Canyon vision quest
+desc: A mission to complete the Three-Falls Canyon vision quest lays here.
+type: 12
+weight: 0.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+5339
+~
+~~
+vnum: 6053
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: contract
+shortdesc: a contract for the Frakati Leader
+desc: A contract for someone's head has been accidentally left out!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+triggers:
+6055
+~
+~~
+vnum: 55314
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban decayed-turban armor
+shortdesc: a decayed turban
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: turban decayed-turban armor
+This turban is decayed beyond use.  Perhaps the Sorcerer guild master will know
+what to do with it.~
+~~
+vnum: 46204
+location: 127
+values:
+0
+3
+3
+11
+0
+0
+0
+~
+flags: j 0
+name: dagger demon-dagger jet-black-dagger
+shortdesc: a demon dagger
+desc: A jet black dagger hides in the dark.
+type: 5
+weight: 0.50
+cost: 500
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+4 -2
+6 -2
+1 2
+19 1
+27 1
+~
+extradesc: dagger demon-dagger jet-black-dagger
+Where many tools dedicated to demonic forces are heavily detailed with runes
+and symbols indicating their dark purpose and their masters, this dagger has
+none of those traditional trappings.  A dagger made of blackened steel, sharp
+yet unrefined, produced for one purpose only: to shed blood in the name of
+Demon Lords.  On it is a single eye, a symbol of Yeenoghu, the Beast of
+Butchery, so he may watch every kill up close.~
+~~
+vnum: 46201
+location: 127
+values:
+0
+5
+5
+14
+0
+0
+0
+~
+flags: mnuvyz abfghij
+name: polearm pole-arm raveging-polearm raveging pole-arm
+shortdesc: a raveging polearm
+desc: An enormous polearm leans against a stone.
+type: 5
+weight: 12.00
+cost: 500
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 32769
+hiddenness: 0
+applies:
+5 2
+~
+extradesc: polearm pole-arm raveging-polearm raveging pole-arm
+This long weapon is somewhere between a lance and an axe.  It has a single
+straight blade with a sharpened edge, much like an axe, but with a long curving
+tip like a lance.  Attached to a simple metal haft, the weapon is heavy and
+brutal.~
+~~
+vnum: 46206
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: myz fgh
+name: gloves fur-trimmed-hide-gloves
+shortdesc: fur trimmed hide gloves
+desc: A pair of hide gloves has been dropped on the ground.
+type: 9
+weight: 1.70
+cost: 500
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+5 2
+3 -2
+~
+extradesc: gloves fur-trimmed-hide-gloves
+These gloves are assembled from numerous patches of leather stitched together
+with thick sinews.  Fur scraps trim the gloves for a bit of comfort.~
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 46205
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: myz fgh
+name: bracers fur-trimmed-hide-bracers layers hides
+shortdesc: fur trimmed hide bracers
+desc: A set of bracers made from layers of hides hangs here drying.
+type: 9
+weight: 3.70
+cost: 500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+5 2
+3 -2
+~
+extradesc: bracers fur-trimmed-hide-bracers layers hides
+These bracers are assembled from numerous strips of leather pressed together
+and joined with haphazard rivets.  Scraps of fur from various creatures are
+pressed between the layers, creating a sort of wild marbling look.  They secure
+in place with long leather straps.~
+~~
+vnum: 46208
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: myz fgh
+name: pants fur-trimmed-hide-pants tanned-hide-pants
+shortdesc: fur trimmed hide pants
+desc: A pair of tanned hide pants lays discarded in the dirt.
+type: 9
+weight: 7.30
+cost: 500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+5 2
+3 -2
+~
+extradesc: pants fur-trimmed-hide-pants tanned-hide-pants
+These bracers are assembled from numerous strips of leather pressed together
+and joined with haphazard rivets.  Scraps of fur from various creatures are
+pressed between the layers, creating a sort of wild marbling look.  The edges
+are unfinished but the outer seams have patches of fur from a variety of
+animals stitched into them.~
+~~

@@ -1,0 +1,69 @@
+name: Rauric
+password: Ra8ZU9Zzr6
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 29
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20372
+birthtime: 1667507921
+timeplayed: 20
+lastlogintime: 1667507941
+host: 071.163.130.050
+height: 75
+weight: 231
+base_height: 75
+base_weight: 231
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: xy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 25/25
+mana: 0/0
+move: 128/128
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 60
+wisdom: 72
+dexterity: 85
+constitution: 83
+charisma: 59
+experience: 1
+quit_reason: 5
+saveroom: 3001
+skills:
+205 1000
+402 50
+404 50
+415 50
+416 50
+421 50
+435 52
+438 50
+443 50
+444 50
+456 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+$

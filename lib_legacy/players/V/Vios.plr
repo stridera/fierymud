@@ -1,0 +1,349 @@
+name: Vios
+password: ViCf.oE5R1
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18800
+birthtime: 1424510370
+timeplayed: 2144891
+lastlogintime: 1643038442
+host: 184.022.059.139
+height: 61
+weight: 141
+base_height: 61
+base_weight: 141
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 12
+thirst: 24
+lastlevel: 0
+hitpoints: 525/525
+mana: 980/980
+move: 85/108
+damroll: 3
+hitroll: 3
+strength: 78
+intelligence: 96
+wisdom: 82
+dexterity: 71
+constitution: 76
+charisma: 65
+cash: 66 643 3235 3482
+bank: 1494 28043 95625 76173
+experience: 126967199
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+8 1000
+10 1000
+19 1000
+20 1000
+26 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+66 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+106 1000
+107 1000
+108 1000
+109 1000
+110 1000
+111 1000
+112 1000
+113 1000
+184 1000
+185 1000
+186 1000
+228 1000
+415 390
+416 179
+421 1000
+423 1000
+424 1000
+438 50
+443 50
+444 213
+447 1000
+451 1000
+452 1000
+453 1000
+454 1000
+455 50
+456 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 1000
+0 0
+trophy:
+1 16007 0.666666
+1 2807 0.333333
+1 2805 0.333333
+1 2801 0.666667
+1 16008 0.999999
+1 16010 0.999999
+1 16019 0.999999
+1 16018 0.999999
+1 16017 0.999999
+1 16016 0.999999
+1 16015 0.999999
+1 16006 8.333334
+1 16005 6.333334
+1 16001 7.000001
+1 16004 4.666667
+1 16002 2.333333
+1 16003 1.666667
+1 16000 12.333330
+1 58005 0.333333
+1 58006 0.333333
+1 58030 0.333333
+0 0 0
+tells:
+1642000032 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642000848 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642179512 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642310000 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642325142 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642343385 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1643035928 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1643036121 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1643036288 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1643036483 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+$
+gossips:
+1643035702 Eslander gossips, 'who should we kill :D'
+1643035735 Wittawat gossips, 'Chinok, what do u find in the last month back up file?'
+1643036427 Eslander gossips, 'congratz!'
+1643036436 Wittawat gossips, 'Congratz:P'
+1643036445 Eslander gossips, 'congratz!'
+1643036445 Morris gossips, 'Thank you'
+1643036452 Eslander gossips, 'love leveling with armor :D'
+1643036462 Morris gossips, 'me too :)'
+1643037911 Astrid gossips, 'Thank you'
+1643038397 The Knight Templar shouts, 'Hark all and listen, Warra has fended off a great evil for our fair town!'
+$
+effects:
+1 1 15 17 0 0 0
+0 0 0 0 0
+mem:
+5 1 2
+32 1 2
+32 1 2
+39 1 2
+19 1 2
+8 1 2
+20 1 2
+100 1 2
+5 1 2
+8 1 2
+8 1 2
+8 1 2
+99 1 2
+31 1 2
+30 1 2
+37 1 2
+31 1 2
+8 1 2
+76 1 2
+76 1 2
+76 1 2
+66 1 2
+37 1 2
+66 1 2
+66 1 2
+66 1 2
+66 1 2
+101 1 2
+29 1 2
+66 1 2
+57 1 2
+110 1 2
+111 1 2
+111 1 2
+30 1 2
+108 1 2
+108 1 2
+108 1 2
+112 1 2
+113 1 2
+105 1 2
+106 1 2
+30 1 2
+30 1 2
+112 1 2
+112 1 2
+113 1 2
+185 1 2
+184 1 2
+76 1 2
+37 1 2
+19 1 2
+112 1 2
+185 1 2
+185 1 2
+184 1 2
+111 1 2
+66 1 2
+52 1 2
+76 1 2
+30 1 2
+100 1 2
+26 1 2
+26 1 2
+26 1 2
+66 1 2
+112 1 2
+5 1 2
+8 1 2
+186 1 2
+186 1 2
+76 1 2
+30 1 2
+52 1 2
+26 1 2
+26 1 2
+66 1 2
+111 1 2
+20 1 2
+8 1 2
+37 1 2
+37 1 2
+30 1 2
+30 1 2
+76 1 2
+76 1 2
+62 1 2
+52 1 2
+52 1 2
+0 0 0
+aliases:
+lp exa package
+gcj giv all.cursed jumlong
+lsc exa sack
+gpj giv all.perfect jumlong
+bbsk cast 'bigbys' skeleton
+mgj cast 'major globe' jumlong
+detinj cast 'detect inv' jumlong
+gro giv all.radiant warra
+gkc g all.key corpse
+cir5 scribe color;scribe cone;scribe dimension;scribe farsee;scribe invis;scribe sleep
+cir4 scribe coldshield;scribe fireshield;scribe infravision;scribe levitate;scribe lightning;scribe minor globe; scribe minor para;scribe ray;scribe teleport
+cir123 scribe burning;scribe concealment; ;scribe detect magic;scribe magic missile;scribe minor creation; scribe chill touch;scribe detect invis;scribe strength; scribe dispel magic;scribe identify;scribe locate object;scribe shocking grasp
+gha giv all.handful almera
+invw cast 'invis' witta
+detmw cast 'detect magic' witta
+qq cast 'bigbys' mist
+pwb p all.worn backpack
+mg cast 'major globe' vios
+mga cast 'major globe' almera
+cshd cast 'coldshield'
+detmo cast 'detect m' warra
+xx recite blue
+mgw cast 'major globe' witta
+mgo cast 'major globe' warra
+harness cast 'harness'
+dsp dri spring;dri spring;dri spring;dri spring;dri spring
+haa cast 'haste' almera
+inva cast 'invis' almera
+invo cast 'invis' warra
+inv cast 'invis'
+ice cast 'ice storm'
+fireball cast 'fireball'
+bigbys cast 'bigbys'
+hao cast 'haste' warra
+ww giv legion quartermaster
+dak dro all.key
+str cast 'strength' vios
+conceal cast 'concealment' vios
+folw follow wittawat;consent wittawat
+detm cast 'detect m'
+lbp exa backpack
+fs fill skin fountain
+zz recite green
+l2c exa 2.corpse
+df dri fountain
+ds dri skin
+gac g all corpse
+lc exa corpse
+lb exa bag
+lsd exa saddle
+pib p all.identify backpack
+gib g identify backpack
+.. ass warra
+pbs p all.bread saddle
+shock cast 'shocking grasp'
+bolt cast 'lightning bolt'
+sta stand;fly
+sto cast 'stone' warra
+color cast 'clolor'
+cone cast 'cone of cold'
+chain cast 'chain'
+. ass witta
+minv cast 'mass invis'
+stw cast 'stone' witta
+fshd cast 'fireshield'
+gbb g 2 bread saddle
+ration cast 'minor creat' ration
+leg exa egg
+pub p all.uncut egg
+pfb p all.flawed egg
+bb cast 'bigbys c' 
+detma cast 'detect magic' almera
+stonea cast 'stone' almera
+stone cast 'stone' vios
+gea giv all.enchanted almera
+cir6 scribe fireball;scribe fly;scribe haste;scribe ice storm;scribe stone;scribe bigbys;scribe chain;scribe harness;scribe major globe;scribe mass;scribe relocate;scribe enlarge;scribe reduce
+inn w;n;buy green;n;w;n;w;u;say ok
+gdw giv all.dust wittawat
+gso giv all.shard warra
+gak g all.key
+chill cast 'chill'
+gcw giv all.crushed wittawat
+stonew cast 'stone' wittawat
+fball cast 'fireball'
+sit sit;memo
+pbb p all.bread back
+eb g bread back;eat bread
+mm mount mule; stand;fly
+stj cast 'stone' jumlong
+flyj cast 'fly' jumlong
+bbs cast 'big' streak
+lcod exa cod
+stwt c 'stone' wittawat
+warp rem amulet;wear star;rem star;wear amulet
+0

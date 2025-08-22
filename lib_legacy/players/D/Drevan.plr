@@ -1,0 +1,75 @@
+name: Drevan
+password: DrdJrahp49
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20844
+birthtime: 1728185367
+timeplayed: 1769
+lastlogintime: 1728187195
+host: 099.074.127.058
+height: 69
+weight: 114
+base_height: 69
+base_weight: 114
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 17
+thirst: 10
+lastlevel: 0
+hitpoints: 27/27
+mana: 0/0
+move: 122/122
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 67
+wisdom: 89
+dexterity: 64
+constitution: 89
+charisma: 75
+cash: 0 0 17 11
+experience: 2813
+quit_reason: 1
+saveroom: 3054
+skills:
+402 52
+404 51
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18007 1.000000
+1 3066 1.000000
+1 51900 1.000000
+0 0 0
+tells:
+1728187189 @WA half-elven maid@W tells you, 'If you want to rent a room, please go upstairs to the Reception Area.@W'@0
+$
+gossips:
+1728185478 Chinok gossips, 'welcome!'
+1728185491 Discord gossips, 'Daedela: Hello!'
+$

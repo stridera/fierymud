@@ -1,0 +1,67 @@
+name: Soalris
+password: So6QtPaWdV
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20167
+birthtime: 1645469953
+timeplayed: 446
+lastlogintime: 1645470400
+host: 104.050.128.066
+height: 43
+weight: 175
+base_height: 43
+base_weight: 175
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 11
+lastlevel: 0
+hitpoints: 26/25
+mana: 0/0
+move: 138/138
+damroll: 4
+hitroll: 5
+strength: 93
+intelligence: 69
+wisdom: 70
+dexterity: 85
+constitution: 83
+charisma: 65
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+1645470075 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1645470100 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+$

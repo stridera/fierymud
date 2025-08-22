@@ -1,0 +1,195 @@
+name: Detor
+password: DeSHMglE0F
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 44
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17801
+birthtime: 1292674867
+timeplayed: 1336640
+lastlogintime: 1462382262
+host: 087.176.250.202
+height: 48
+weight: 192
+base_height: 48
+base_weight: 192
+base_size: 2
+natural_size: 2
+alignment: 537
+playerflags: gxy
+effectflags: k 0 q
+prefflags: ahnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 35
+loadroom: 3054
+hunger: 6
+thirst: 22
+lastlevel: 0
+hitpoints: 349/349
+mana: 193/193
+move: 126/132
+damroll: 4
+hitroll: 5
+strength: 82
+intelligence: 98
+wisdom: 100
+dexterity: 80
+constitution: 79
+charisma: 64
+cash: 2 40 532 567
+bank: 1515 112 0 0
+experience: 13145665
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+27 1000
+28 1000
+33 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+70 1000
+73 1000
+74 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+95 1000
+96 1000
+97 1000
+206 1000
+207 1000
+415 410
+416 410
+421 490
+423 490
+424 490
+438 344
+443 400
+444 457
+451 463
+453 490
+455 374
+457 490
+458 490
+459 490
+460 490
+461 490
+462 490
+463 490
+466 50
+0 0
+trophy:
+1 7051 1.000000
+0 0 0
+effects:
+44 23 0 0 32 0 0
+0 0 0 0 0
+mem:
+1 1 1
+20 0 1
+42 0 1
+40 1 1
+16 1 1
+16 1 1
+4 1 1
+88 1 1
+88 1 1
+88 1 1
+18 0 1
+88 1 1
+88 1 1
+28 1 2
+44 0 1
+3 1 1
+92 1 2
+95 1 1
+95 1 1
+95 1 1
+33 1 1
+97 1 5
+97 1 5
+97 1 5
+97 1 5
+27 1 2
+27 1 2
+27 1 2
+27 1 2
+15 1 1
+12 1 1
+206 0 1
+15 1 1
+15 1 1
+15 1 1
+12 1 1
+0 0 0
+aliases:
+cs cast 'soulshield'
+t cast 'cure serious' ithildieth
+ds drink skin
+mmm cast 'cure critic'
+aaa cast 'cure critic' Vorok
+c cast 'cure light' Malician
+f cast 'cure light' katrin
+gc get all all.corpse
+clw cast 'cause light' $1
+plw rest; med; pray 'cause light'
+ca cast armor
+pa rest; med; pray 'armor'
+cf cast create food
+pf rest; med; pray 'create food'
+rep rest; med; pray
+plh rest; med; pray 'cure light'
+a cast 'cure light' Vorok
+m cast 'cure light'
+clh cast 'cure light' $1
+csw cast 'cause serious' $1
+psh rest; med; pray 'cure serious'
+csh cast 'cure serious' $1
+aa cast 'cure serious' Vorok
+mm cast 'cure serious'
+pvl rest; med; pray 'vigorize light'
+cvl cast 'vigorize light' $1
+pbl rest; med; pray 'bless'
+cbl cast 'bless' $1
+l cast 'cure light' leaknom
+ll cast 'cure serious' Leaknom
+lll cast 'cure critic' Leaknom
+psw rest
+home cast 'word of recal'
+css cast summon shadow;cast harm shadow;cast harm shadow;cast harm shadow;cast harm shadow
+bc cast 'detect alignment';cast 'detect magic';cast 'lesser endurance';cast 'sense life'
+csk cast summon skeletal;cast harm skeletal;cast harm skeletal;cast harm skeletal;cast harm skeletal
+ba cast 'armor';cast bless;cast 'soulshield';cast 'sense life';forget cure critic;rest;med;pray 'protection from evil'
+0

@@ -1,0 +1,161 @@
+name: Cylure
+password: CyeA/vkpK.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 5
+race: 0
+level: 52
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19406
+birthtime: 1544927008
+timeplayed: 655098
+lastlogintime: 1551757476
+host: 066.169.085.039
+height: 60
+weight: 177
+base_height: 60
+base_weight: 177
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: cn 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 12
+thirst: 12
+lastlevel: 0
+hitpoints: 603/603
+mana: 270/270
+move: 130/130
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 56
+wisdom: 68
+dexterity: 93
+constitution: 91
+charisma: 59
+cash: 123 2534 9876 973
+bank: 6 940 1500 0
+experience: 20225458
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+9 2510/3000
+-1 0
+skills:
+4 1000
+12 1000
+13 1000
+14 1000
+17 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+99 1000
+131 1000
+132 1000
+402 540
+404 570
+407 570
+411 570
+415 86
+416 560
+417 50
+420 570
+421 570
+422 570
+423 570
+424 570
+430 344
+431 60
+434 463
+438 139
+443 66
+444 314
+445 557
+450 50
+451 570
+452 59
+457 513
+458 255
+459 560
+460 570
+461 50
+463 52
+464 50
+465 570
+466 50
+468 495
+0 0
+trophy:
+2 18230 0.500000
+1 2804 0.500000
+1 2802 0.500000
+1 2801 2.000000
+1 11701 4.500000
+1 2808 1.000000
+1 11702 3.000000
+1 11710 2.000000
+1 11750 2.000000
+1 11703 0.500000
+1 55216 1.000000
+0 0 0
+mem:
+131 1 1
+131 1 1
+131 1 1
+132 1 1
+132 1 1
+132 1 1
+12 1 1
+12 1 1
+12 1 1
+13 1 1
+13 1 1
+13 1 1
+17 1 1
+132 1 1
+17 1 1
+17 1 1
+17 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+33 1 1
+86 1 1
+86 1 1
+86 1 1
+86 1 1
+86 1 1
+14 1 2
+4 1 2
+4 1 2
+4 1 1
+99 1 4
+99 1 4
+99 1 4
+4 1 2
+4 1 4
+99 1 4
+17 1 1
+17 1 1
+0 0 0
+aliases:
+zz assist runs
+ff assist rens
+aa assist mouvar
+rm resc mouvar
+0

@@ -1,0 +1,160 @@
+name: Orrun
+password: Orh1woNPXO
+currenttitle: Pelor
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 4
+race: 8
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20656
+birthtime: 1698190154
+timeplayed: 594541
+lastlogintime: 1737962705
+host: 052.119.120.201
+height: 80
+weight: 208
+base_height: 80
+base_weight: 208
+base_size: 3
+natural_size: 3
+alignment: 911
+playerflags: gxyz
+effectflags: cm 0 0
+prefflags: hnoxC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+aggression: 1600
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1632/1434
+mana: 980/980
+move: 309/316
+damroll: 5
+hitroll: 4
+strength: 91
+intelligence: 60
+wisdom: 92
+dexterity: 78
+constitution: 100
+charisma: 82
+cash: 934 2016 5641 5083
+experience: 121676898
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+21 1000
+22 1000
+28 1000
+34 1000
+43 1000
+88 1000
+92 1000
+97 1000
+99 1000
+241 1000
+402 1000
+404 833
+407 1000
+411 858
+412 1000
+415 50
+416 50
+417 370
+420 1000
+421 1000
+422 1000
+423 398
+424 1000
+430 868
+431 640
+434 1000
+438 472
+441 1000
+443 370
+444 550
+450 50
+451 1000
+452 922
+457 920
+458 634
+459 783
+460 370
+461 985
+462 50
+463 374
+464 843
+465 751
+466 430
+467 627
+468 1000
+473 1000
+0 0
+trophy:
+1 47028 1.000000
+1 47018 2.666667
+1 47032 0.333333
+1 47031 0.333333
+1 47012 0.333333
+1 47010 0.333333
+1 47006 0.333333
+1 47030 0.333333
+1 47033 2.000000
+1 47016 0.333333
+1 47011 0.333333
+1 47004 0.333333
+1 47009 1.000000
+1 47023 0.666667
+1 47022 1.333333
+1 47005 1.666667
+1 47007 1.666667
+1 47024 0.666667
+1 47020 2.000000
+1 47025 0.666667
+1 47026 0.666667
+0 0 0
+tells:
+1732867676 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732876263 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1732936836 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732940243 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732954247 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1732954257 @WJulk@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1732956875 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732956898 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732956898 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1733136184 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1733120547 Derrgon gossips, 'awesome to see'
+1733120671 Derrgon gossips, 'question: freezing wind - it says enemies of the caster...is that all mobs in the room or just the ones im currently fighting?'
+1733120683 Suraya gossips, 'I don't remember'
+1733120692 Suraya gossips, 'probably everything in the room'
+1733120759 Derrgon gossips, 'ok, i got ice storm coming up next and that seems to be the same, just wondering if it will make me aggro whole room. guess i have to try it.'
+1733120799 Suraya gossips, 'that one I know will aggro the whole room'
+1733120812 Derrgon gossips, 'ok, haha'
+1733121053 Derrgon gossips, 'grats again'
+1733121058 Suraya gossips, 'Thank you'
+1733125125 Someone gossips, 'Welcome Morrissey'
+1733301041 The Lord of the Realm shouts, 'It has been long since I have taken this form! Beware--this time I will be the victorious one!'
+$
+effects:
+144 0 18 17 0 0 0
+0 0 0 0 0
+aliases:
+bash bash $*
+re rescue $*
+gat get all 2.corpse
+ga get all
+gac get all corpse
+0

@@ -1,0 +1,77 @@
+name: Cyros
+password: CyXePAToum
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 28
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18467
+birthtime: 1363388206
+timeplayed: 310042
+lastlogintime: 1378266019
+host: 064.134.050.153
+height: 63
+weight: 151
+base_height: 63
+base_weight: 151
+base_size: 2
+natural_size: 2
+alignment: 954
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 367/367
+mana: 78/78
+move: 130/130
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 61
+wisdom: 67
+dexterity: 86
+constitution: 91
+charisma: 67
+cash: 32 1322 2254 883
+bank: 21 1000 7303 1
+experience: 4432244
+quit_reason: 1
+saveroom: 3054
+skills:
+402 330
+404 330
+407 330
+411 330
+415 247
+416 330
+421 330
+430 94
+431 330
+434 330
+438 107
+443 50
+444 330
+463 330
+464 330
+465 330
+466 330
+467 50
+468 330
+0 0
+trophy:
+1 17209 2.000000
+1 17208 3.000000
+1 3132 0.500000
+1 17204 9.500000
+1 36003 1.000000
+1 4101 1.000000
+1 3505 1.000000
+1 8031 1.000000
+0 0 0

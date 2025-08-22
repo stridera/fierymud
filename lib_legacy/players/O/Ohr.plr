@@ -1,0 +1,103 @@
+name: Ohr
+password: OhzbPqxYtV
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20713
+birthtime: 1703372668
+timeplayed: 3676
+lastlogintime: 1703387190
+host: 099.107.091.063
+height: 64
+weight: 179
+base_height: 64
+base_weight: 179
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8057
+lastlevel: 0
+hitpoints: 41/41
+mana: 1/0
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 64
+intelligence: 79
+wisdom: 94
+dexterity: 79
+constitution: 88
+charisma: 63
+cash: 0 4 17 157
+bank: 0 1 1 1
+experience: 23635
+quit_reason: 7
+saveroom: 8057
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 80
+424 80
+438 50
+443 50
+444 50
+451 50
+457 78
+458 55
+459 60
+460 50
+462 55
+463 57
+466 50
+0 0
+trophy:
+1 8002 1.000000
+1 8021 3.000000
+1 8015 3.000000
+1 8001 4.000000
+1 8016 2.000000
+1 8013 4.000000
+1 8011 2.000000
+1 8000 5.000000
+1 8023 1.000000
+1 8012 4.000000
+1 8022 3.000000
+1 8010 4.000000
+1 51900 1.000000
+0 0 0
+tells:
+$
+gossips:
+1703374459 Discord gossips, 'venath.2005: HAHA, what's the pot at?'
+1703374471 Chinok gossips, 'just a cool, 650 mil'
+1703374844 Chinok gossips, 'just gotta get this off my chest, it's the night before the night before Christmas !'
+1703374860 Alissandra gossips, 'congrats!'
+1703374882 Chinok gossips, 'Gratz on 3 Ohr!'
+1703374916 Discord gossips, 'venath.2005: We need a Jack skeleton character LOL'
+1703375312 Chinok gossips, 'Ohr, we just made some changes to the magic casting system, so wondering what you think of it?'
+1703375380 Chinok gossips, 'yep, overall thoughts.. would be good to hear what someone new things.'
+1703375525 Chinok gossips, 'good to hear! :)'
+1703375556 Chinok gossips, 'you noticed the * at the end of the line, when you type skills? -- that means it's max skill for your level'
+$
+effects:
+1 4 10 17 0 0 0
+206 1 23 13 0 0 0
+0 0 0 0 0

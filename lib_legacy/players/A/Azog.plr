@@ -1,0 +1,81 @@
+name: Azog
+password: AzPKg6XO16
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 28
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20686
+birthtime: 1700146564
+timeplayed: 1095
+lastlogintime: 1700149295
+host: 098.250.016.155
+height: 79
+weight: 237
+base_height: 79
+base_weight: 237
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 33/31
+mana: 1/0
+move: 156/156
+damroll: 3
+hitroll: 3
+strength: 79
+intelligence: 77
+wisdom: 92
+dexterity: 64
+constitution: 97
+charisma: 55
+experience: 7360
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+451 50
+457 50
+458 50
+459 50
+460 50
+462 50
+463 51
+466 50
+488 78
+0 0
+trophy:
+1 8002 1.000000
+1 8016 2.000000
+1 8001 1.000000
+1 8015 2.000000
+1 8013 1.000000
+1 8000 1.000000
+0 0 0
+tells:
+$
+gossips:
+$

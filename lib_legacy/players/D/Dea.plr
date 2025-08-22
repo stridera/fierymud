@@ -1,0 +1,99 @@
+name: Dea
+password: De.yqYd5s1
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 9
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19722
+birthtime: 1601857974
+timeplayed: 8026
+lastlogintime: 1602107476
+host: 099.012.073.073
+height: 60
+weight: 112
+base_height: 60
+base_weight: 112
+base_size: 2
+natural_size: 2
+alignment: 970
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 53/53
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 68
+wisdom: 78
+dexterity: 84
+constitution: 72
+charisma: 71
+cash: 0 10 55 6
+experience: 18150
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 60
+438 50
+443 50
+444 50
+463 50
+464 50
+465 55
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 12015 1.000000
+1 12016 2.000000
+1 3501 1.000000
+1 3503 5.000000
+1 3507 1.000000
+1 3502 2.000000
+1 3500 1.000000
+1 8015 2.000000
+1 8020 2.000000
+1 8022 1.000000
+1 8012 1.000000
+1 8010 2.000000
+0 0 0
+tells:
+1602106042 @WChinok@W tells you, 'type anything... @W'@0
+1602106058 @WChinok@W tells you, 'score, inv, eq, -- literally anything@W'@0
+1602106660 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1602106666 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1602106750 @WChinok@W tells you, 'what do you want to do ?@W'@0
+1602106754 @WChinok@W tells you, 'there is nothing specific@W'@0
+1602106819 @WChinok@W tells you, 'lots@W'@0
+1602106834 @WChinok@W tells you, 'it specifically says, ask your questmaster.....@W'@0
+1602106840 @WChinok@W tells you, 'did you ask him ?@W'@0
+1602106859 @WChinok@W tells you, 'the guy in the room that you said level gain to@W'@0
+$
+gossips:
+1602106607 Drath gossips, 'so he fool the world into believing he is God'
+1602106684 Dairyu gossips, 'hello hello!'
+1602106689 Chinok gossips, 'welcome back '
+1602106815 Drath gossips, 'so Gods righteous judgement can be poured out during the tribulation'
+1602106859 Dairyu gossips, 'say what'
+1602106950 Drath gossips, 'we were talking but republicans and democrats working together to seize power and what the ultimate goal is'
+1602106965 Drath gossips, 'we were talking about republicans and democrats working together to seize power and what the ultimate goal is'
+1602106995 Dairyu gossips, 'ah! gotcha'
+1602107220 Drath gossips, 'particularly the huge power grabs by democrats followed by smaller power grabs by republicans to make you feel better about it  '
+1602107376 Drath gossips, 'not to mention the coin shortage the covid virus vaccine being married to nanotechnology so they track people without cellphones'
+$

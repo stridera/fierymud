@@ -1,0 +1,416 @@
+#5100
+vaporighu fat bloated pulsating humanoid~
+the vaporighu~
+A fat, bloated, pulsating humanoid stands here.~
+Fat and grotesque, this creature is both disgusting and horrifying to
+behold. It has a bloated, vaguely humanoid, body of varying colours,
+mostly sick pinks and purples. Pulsating arteries lie just below the
+surface of its skin, constantly moving about. Its wet, slimy body
+hair reeks of death and decay.~
+72 4 -1000 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 0 3 13 0 2
+BareHandAttack: 4
+Str: 30
+Dex: 92
+Int: 73
+Wis: 65
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#5101
+turgoloth short wide rocky humanoid~
+the turgoloth~
+A wide, short, rocky looking humanoid is standing here.~
+You see a stout looking humanoid creature, made almost purely of rock.
+Wide and short, the sheer bulk of this creature makes it look extremely
+dangerous. Despite its size, it appears very quick and mobile.~
+72 4 -1000 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 0 3 13 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 83
+Int: 67
+Wis: 86
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#5102
+mezzoloth humanoid insect-man insect man~
+the mezzoloth~
+A humanoid insect-man stands here, towering above you.~
+You see a 7 foot tall humanoid insect covered in great chitinous plates.
+It has long, lanky arms and legs, a wide, armoured skull, and long, sharp
+claws that look like they could easily cut you to ribbons.~
+67108936 4 -1000 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 0 3 13 0 2
+BareHandAttack: 8
+Str: 30
+Dex: 76
+Int: 69
+Wis: 79
+Con: 30
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#5103
+bodak pearly grey humanoid~
+the bodak~
+A humanoid with pearly grey skin stands here.~
+You see a humanoid with grey, pearly skin. It has a hairless, muscular
+body of no apparent gender. Its eyes are empty and milky-white, deeply
+set into its long, distorted features. In its visage, you can see the
+tortured soul of some hapless mortal who ventured into a place too
+deadly for the adventurer. Be careful, or its fate could be yours!~
+100663372 4 -1000 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 0 3 13 0 2
+Str: 30
+Dex: 81
+Int: 80
+Wis: 79
+Con: 30
+Cha: 52
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55694
+#5104
+yagnoloth scaly red humanoid~
+the yagnoloth~
+A scaly red humanoid with one large arm stands here.~
+You see a horrible creature with two unequal sized arms, one man-sized and
+the other giant-sized. It is a large humanoid creature with scaly red skin
+and bulky muscles. Its facial features are both hateful and alien.~
+67108936 4 -1000 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 0 3 13 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 93
+Int: 58
+Wis: 71
+Con: 30
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#5110
+slug stone~
+the stone slug~
+A massive grey slug is crawling around here.~
+Huge and slimy, this is not the ideal housepet.~
+204 0 -300 E
+10 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 0 3 14 0 3
+BareHandAttack: 9
+Str: 30
+Dex: 82
+Int: 64
+Wis: 69
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#5111
+worm borer large grey borer-worm~
+the borer worm~
+A large grey worm is slithering along here.~
+Chewing away at the surrounding rock, you now know how these tunnels
+were probably constructed. The borer worm looks like it could cut through
+you as easily as it cuts through rock.~
+204 0 -350 E
+10 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 0 3 14 0 3
+BareHandAttack: 9
+Str: 30
+Dex: 84
+Int: 73
+Wis: 73
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#5112
+spider stone-spider grey monstrous~
+the stone spider~
+A monstrous grey spider is running around here.~
+Monstrously huge, this hairy grey spider give you a severely disconcerting case of the willies.~
+67109068 294976 -300 E
+10 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 0 24 14 0 4
+Str: 30
+Dex: 78
+Int: 70
+Wis: 72
+Con: 30
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#5113
+shadow shadowy figure~
+the shadow~
+A shadowy figure flits about here.~
+Barely visible, the shadow flits about the room, keeping a close eye
+on you. You better keep a close eye on it too!~
+200 1310724 -750 E
+10 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+4 4 0 18 17 0 2
+Str: 30
+Dex: 84
+Int: 72
+Wis: 77
+Con: 30
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 7
+Stance: 6
+E
+#5120
+priest stone man grey gray~
+the stone priest~
+A man stands here, garbed all in grey.~
+A tall, strong-looking man stands here. He is garbed all in grey,
+the colour of the stone gods he worships so proudly.~
+100665416 4 -1000 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 1 1 0 0 2
+Str: 30
+Dex: 83
+Int: 68
+Wis: 77
+Con: 30
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#5121
+golem stone rock creature~
+the stone golem~
+A creature made of pure rock stands guard here.~
+This creature could never be mistaken for a human being. Its rough, rocky
+features are obviously artificial and the emptyness in its eyes is chilling.
+The golem has no emotions and will feel no remorse when it kills you.~
+10 4 -1000 E
+16 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 0 3 13 0 2
+Str: 30
+Dex: 78
+Int: 73
+Wis: 77
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 9
+Stance: 6
+E
+T 55694
+#5122
+highpriest high priest statue grey gray stone~
+the high stone priest~
+A living statue of solid grey stone stands here.~
+He would almost look human, if it weren't for the fact that he was made
+of solid stone. The high stone priest emanates the purest of evil.~
+100665418 4 -1000 E
+17 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 1 1 13 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55695
+#5125
+statue stone stone-statue sorcerer~
+a giant stone statue~
+A giant stone statue of a sorcerer towers above you.~
+This statue is huge and towers nearly to the top of the cavern.  It is in the
+form of a sorcerer in a battle pose, casting lightning from one hand and
+brandishing a stone dagger in the other.  It is wearing a light battle robe and
+has an amulet dangling on its chest.~
+16394 0 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 1 24 17 0 4
+Str: 30
+Dex: 86
+Int: 56
+Wis: 75
+Con: 30
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 9
+Stance: 6
+E
+T 5102
+#5130
+arre matu monk peaceful consent Questmaster~
+Arre Matu~
+Arre Matu stands here, calmly looking peaceful and content.~
+Arre Matu is a hero of old.  She has a peaceful look on her face, and appears
+graceful and agile of body.  There is no real way to be certain of her age, yet
+she is strikingly beautiful and appears young and vibrant.  The slender smile
+that parts her lips probably never leaves Arre, as her entire nature seems
+relaxed.    ~
+18458 16789512 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 2 13 0 0 2
+BareHandAttack: 13
+Str: 96
+Dex: 90
+Int: 60
+Wis: 66
+Con: 75
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 5112
+T 5111
+T 5110
+T 5109
+T 5108
+T 5107
+T 5106
+T 5105
+T 5117
+T 5104
+#5131
+slender priest monk passive monk_quest_priest~
+a slender priest~
+A slender priest stands here passively chanting.~
+This priest is slimly built, and muscular and lean in body.  His arms are long
+and well toned, while his legs are thick and powerful.  He wears a robe that
+seems to actually be part of his body.  The hood is pulled up, covering his
+head which appears to have almost white hair.    ~
+26 8 0 E
+14 0 0 0d0+0 0d0+0
+0 0 0 0 0 51
+3 3 1 13 0 0 2
+BareHandAttack: 13
+Str: 90
+Dex: 71
+Int: 75
+Wis: 70
+Con: 79
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 5115
+$

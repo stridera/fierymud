@@ -1,0 +1,94 @@
+name: Eklon
+password: Ek8sR.qwOj
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 42
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18465
+birthtime: 1363360526
+timeplayed: 314782
+lastlogintime: 1524132012
+host: 178.165.130.128
+height: 40
+weight: 184
+base_height: 40
+base_weight: 184
+base_size: 2
+natural_size: 2
+alignment: 321
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8050
+thirst: 18
+lastlevel: 0
+hitpoints: 630/546
+mana: 176/176
+move: 122/162
+damroll: 4
+hitroll: 5
+strength: 94
+intelligence: 82
+wisdom: 84
+dexterity: 92
+constitution: 97
+charisma: 66
+cash: 176 2344 7545 6054
+experience: 12870867
+pagelength: 40
+quit_reason: 7
+saveroom: 8050
+skills:
+402 280
+404 470
+407 330
+411 470
+412 460
+415 280
+416 250
+420 142
+421 424
+422 80
+430 276
+431 250
+434 50
+438 75
+443 50
+444 284
+463 388
+464 268
+465 460
+466 250
+467 250
+468 280
+0 0
+trophy:
+1 8022 12.000000
+1 8021 11.000000
+1 8023 17.000000
+1 8010 24.000000
+1 8014 28.000000
+1 8020 10.000000
+1 8001 17.000000
+1 8011 34.000000
+1 8016 33.000000
+1 8015 34.000000
+1 8013 21.000000
+1 8012 34.000000
+1 8000 27.000000
+1 8002 24.000000
+1 17204 3.000000
+1 3508 2.000000
+1 12007 1.000000
+1 12024 1.000000
+1 12001 1.000000
+1 12023 1.000000
+1 12015 1.000000
+0 0 0

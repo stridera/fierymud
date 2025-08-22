@@ -1,0 +1,117 @@
+name: Trinok
+password: TrzHPuD6NZ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 28
+level: 12
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20362
+birthtime: 1665461885
+timeplayed: 177544
+lastlogintime: 1665888593
+host: 207.138.195.049
+height: 74
+weight: 282
+base_height: 74
+base_weight: 282
+base_size: 2
+natural_size: 2
+alignment: 435
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+loadroom: 3054
+lastlevel: 0
+hitpoints: 165/153
+mana: 14/14
+move: 148/148
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 57
+wisdom: 69
+dexterity: 90
+constitution: 95
+charisma: 57
+cash: 8 190 747 584
+experience: 540355
+quit_reason: 3
+saveroom: 0
+skills:
+204 1000
+402 100
+404 118
+415 50
+416 50
+421 108
+430 52
+438 68
+443 50
+444 50
+455 50
+463 57
+464 56
+465 73
+466 50
+467 61
+468 50
+488 97
+0 0
+trophy:
+1 55700 0.200000
+1 17301 0.200000
+1 17302 0.200000
+1 17308 1.250000
+1 17305 0.400000
+1 17307 1.800000
+1 17300 0.900000
+1 55702 0.166667
+1 55216 0.983333
+1 2001 0.166667
+1 18520 0.200000
+1 23731 0.200000
+1 5451 2.000000
+1 5443 0.733333
+1 5414 2.100000
+1 5421 0.600000
+1 5420 0.800000
+1 5408 1.800000
+1 5404 0.400000
+1 12014 0.400000
+1 12025 0.200000
+0 0 0
+tells:
+1665636948 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1665672007 @WLisa@W tells you, 'Feel the quality, a superior product.@W'@0
+1665672015 @WLisa@W tells you, 'Hrm, it doesn't look too worn, I suppose.@W'@0
+1665716807 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1665716808 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1665716808 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1665810221 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1665811022 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1665878202 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1665882340 @WFril@W tells you, 'comming@W'@0
+$
+gossips:
+1665888536 Slink gossips, 'you suck at life'
+1665888540 Chinok gossips, 'I've not seen a single bit of constructive feedback'
+1665888547 Slink gossips, 'then you are retarded'
+1665888552 Slink gossips, 'like deeedeeedee retarded'
+1665888554 Chinok gossips, 'omg, you need to get out of your moms basement.. rofl'
+1665888558 Slink gossips, 'good luck, bitch'
+1665888569 Blonk gossips, 'im retired at 40'
+1665888571 Blonk gossips, 'hah'
+1665888572 Blonk gossips, 'moms basement'
+1665888590 Chinok gossips, 'jesus, I've not banned anyone in so long, gotta look up the comand'
+$
+aliases:
+breathe breathe acid
+g group
+0

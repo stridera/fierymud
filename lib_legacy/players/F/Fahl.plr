@@ -1,0 +1,120 @@
+name: Fahl
+password: FaUVkLiR4.
+prompt: &0&6Tank&0: &4&b%t &7&b/ &0&6Opp&0: &4&b%o  &0<&7%dc&0>%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+sex: 1
+class: 13
+race: 9
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 15474
+birthtime: 1138207567
+timeplayed: 9977661
+lastlogintime: 1618556889
+host: 199.167.089.021
+height: 62
+weight: 147
+base_height: 62
+base_weight: 147
+base_size: 2
+natural_size: 2
+alignment: -884
+playerflags: glxyz
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 100
+loadroom: 3054
+lastlevel: 10
+hitpoints: 1069/1069
+mana: 980/980
+move: 128/128
+damroll: 3
+hitroll: 3
+strength: 99
+intelligence: 52
+wisdom: 68
+dexterity: 100
+constitution: 95
+charisma: 47
+cash: 473 2942 9790 7144
+experience: 158708999
+pagelength: 50
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+404 991
+411 649
+412 1000
+414 1000
+415 512
+416 593
+420 1000
+421 1000
+422 1000
+430 1000
+438 159
+443 1000
+444 1000
+446 1000
+448 1000
+449 1000
+463 602
+475 298
+601 1000
+602 1000
+603 50
+604 50
+605 1000
+606 50
+608 50
+0 0
+trophy:
+1 11702 2.000000
+1 11701 1.000000
+1 11750 1.000000
+1 58415 0.333333
+1 58410 0.666667
+1 58414 0.250000
+1 58409 0.250000
+1 58404 0.833333
+0 0 0
+tells:
+1615188735 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1592545571 Zawk shouts, 'or spam spells'
+1592545578 Mejna gossips, 'so he can't damage you???'
+1592545675 Mejna gossips, 'ok, the mud thing has me cracking up'
+1614532878 Emawk gossips, 'hi'
+1614532890 Fylae gossips, 'hi Zaranci'
+1614754274 Kiash gossips, 'nice!'
+1614754282 Flike gossips, 'looks like i'm solo now'
+1614754290 Kiash gossips, 'heh'
+1615188498 Daedela gossips, 'your skill description won't increase from "awful" to "bad" until around level 11'
+1615188501 Daedela gossips, 'don't worry, it IS going up!'
+$
+aliases:
+1 ass fylae
+2 ass figh
+` kil water
+4 ass vios
+3 ass wittawat
+c chant shadow
+p chant peace
+sp spring $*
+df drink fountain
+id recite identify $*
+all get all all.corpse
+coin get all.coins all.corpse
+gem get all.gem all.corpse
+baggem put all.gem bag
+ba bash $*
+dis disen
+co corner
+0 drink water
+y ass fernius
+0

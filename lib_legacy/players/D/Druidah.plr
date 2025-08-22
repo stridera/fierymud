@@ -1,0 +1,74 @@
+name: Druidah
+password: DrcPicBaIv
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18994
+birthtime: 1439525636
+timeplayed: 1235
+lastlogintime: 1439526924
+host: 088.132.125.241
+height: 70
+weight: 211
+base_height: 70
+base_weight: 211
+base_size: 3
+natural_size: 3
+alignment: 3
+playerflags: y
+effectflags: 0 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 8
+thirst: 16
+lastlevel: 0
+hitpoints: 29/29
+mana: 0/0
+move: 105/128
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 62
+wisdom: 77
+dexterity: 78
+constitution: 73
+charisma: 70
+experience: 5705
+quit_reason: 5
+saveroom: 3041
+skills:
+402 50
+404 56
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8604 1.000000
+1 8605 1.000000
+1 3064 1.000000
+1 18007 2.000000
+1 3066 1.000000
+0 0 0
+aliases:
+lc look in corpse
+0

@@ -1,0 +1,66 @@
+#18600
+spider hairy black~
+a hairy black spider~
+A hairy black spider hangs from his web above.
+~
+This small hairy black spider seems to be missing one of its legs!  For being
+small the spider has some discernible scratches and markings upon its thorax.
+The rich abundance of tiny black hairs make the spider appear larger than its
+body truly is, though looks can be deceiving.    
+~
+4206 16777216 -250 E
+16 0 0 0d0+0 0d0+0
+0 0 0 186
+4 4 0 24 14 0 2
+BareHandAttack: 4
+Str: 68
+Dex: 84
+Int: 64
+Wis: 66
+Con: 84
+Cha: 87
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#18699
+emissary eldorian~
+the Eldorian Emissary~
+The Eldorian Emissary sits behind a desk eyeing you.
+~
+   A regal looking elf sent to this place as punishment for ineptitude on the
+battlefield.  He seems content with his station though and completely bored
+with dealing with the likes of you.
+~
+10 1024 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 186
+3 3 1 15 1 0 2
+Str: 92
+Dex: 68
+Int: 79
+Wis: 83
+Con: 66
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 4105
+T 4106
+T 4107
+T 4108
+T 4109
+T 4117
+$

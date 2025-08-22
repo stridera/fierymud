@@ -1,0 +1,132 @@
+#2001
+boar wild wild-boar pig~
+a wild boar~
+A fierce-looking boar snuffles around the road looking for food.~
+Like most boars, this creature is four-footed and rather large, with
+a dark, bristly coat of hair and large tusks.~
+10 1024 0 E
+7 20 0 0d0+0 0d0+0
+0 0 0 20
+3 3 1 24 14 0 2
+BareHandAttack: 9
+Str: 91
+Dex: 82
+Int: 62
+Wis: 83
+Con: 30
+Cha: 46
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2002
+boar wild wild-boar two headed huge~
+a great two-headed boar~
+A huge two-headed boar breathes heavily in the darkness.~
+Even by standards of wild boars, this creature is enormous. Its
+four cloven hooves stamp at the ground, and its dark, bristly
+body heaves with each breath it takes. Unlike most wild boars,
+this particular animal has two heads, both of which are fierce,
+tusked, and angry-looking.~
+78 1024 -150 E
+10 20 0 0d0+0 0d0+0
+0 0 0 20
+3 3 1 24 14 0 3
+BareHandAttack: 9
+Str: 88
+Dex: 82
+Int: 71
+Wis: 73
+Con: 30
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55695
+#2003
+iguana reptile~
+a small iguana~
+An iguana eyes you cautiously.~
+You see a green iguana, regarding you cautiously.~
+72 0 0 E
+5 20 0 0d0+0 0d0+0
+0 0 0 20
+3 3 1 24 14 0 1
+Str: 86
+Dex: 86
+Int: 66
+Wis: 78
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2004
+pilgrim traveling~
+a traveling pilgrim~
+A pilgrim travels the road.~
+This fairly young human male has dark hair and eyes, and an intent
+expression as he walks toward his destination.~
+268435528 0 450 E
+10 20 0 0d0+0 0d0+0
+0 0 0 20
+3 3 1 1 0 0 2
+Str: 77
+Dex: 75
+Int: 90
+Wis: 84
+Con: 72
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#2005
+dog black wild~
+a wild dog~
+A black dog hunts for food.~
+This large dog is pure black, except for a white star on its chest and
+streaks down its paws. It is shaped a bit like a mastiff, but it acts
+much more like a wolf.~
+270534728 0 0 E
+7 0 0 0d0+0 0d0+0
+0 0 0 20
+3 3 0 24 14 0 1
+Str: 91
+Dex: 76
+Int: 76
+Wis: 68
+Con: 75
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

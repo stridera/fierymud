@@ -1,0 +1,74 @@
+name: Messiaen
+password: MeiS5/Z1nU
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19507
+birthtime: 1578161585
+timeplayed: 3930
+lastlogintime: 1578165778
+host: 172.089.041.212
+height: 70
+weight: 134
+base_height: 70
+base_weight: 134
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 19/19
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 75
+intelligence: 100
+wisdom: 97
+dexterity: 68
+constitution: 66
+charisma: 57
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+447 50
+451 50
+452 50
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+tells:
+1578162868 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1578162228 Chinok gossips, 'welcome'
+1578162268 Chinok gossips, 'give a yell if you have any questions or need any help'
+1578163428 Someone gossips, 'give a yell if you have any questions or need any help'
+$

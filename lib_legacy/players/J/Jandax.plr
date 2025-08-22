@@ -1,0 +1,96 @@
+name: Jandax
+password: JafyROedmd
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19349
+birthtime: 1523667944
+timeplayed: 12184
+lastlogintime: 1525744864
+host: 216.068.169.125
+height: 70
+weight: 212
+base_height: 70
+base_weight: 212
+base_size: 3
+natural_size: 3
+alignment: 124
+playerflags: gnxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3547
+hunger: 19
+thirst: 18
+lastlevel: 0
+hitpoints: 61/122
+mana: 1/0
+move: 176/176
+damroll: 5
+hitroll: 4
+strength: 95
+intelligence: 60
+wisdom: 68
+dexterity: 84
+constitution: 100
+charisma: 58
+cash: 0 88 479 246
+experience: 222470
+quit_reason: 7
+saveroom: 3547
+cooldowns:
+10 1550/18000
+-1 0
+skills:
+402 52
+404 135
+415 51
+416 50
+419 1000
+421 108
+427 1000
+438 50
+443 50
+444 61
+463 50
+464 50
+465 77
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 17204 4.000000
+1 18004 1.000000
+1 18005 2.000000
+1 18001 1.000000
+1 18007 2.000000
+1 36001 1.000000
+1 36003 3.000000
+1 36002 3.000000
+1 8022 1.000000
+1 8016 2.000000
+1 8023 1.000000
+1 8010 1.000000
+1 8014 1.000000
+1 8001 1.000000
+1 8015 2.000000
+1 8012 1.000000
+1 8013 2.000000
+1 16107 1.000000
+1 2005 1.000000
+1 2004 1.000000
+1 41013 2.000000
+0 0 0
+aliases:
+gac get all corpse
+lc look in corpse
+gc get coins corpse
+0

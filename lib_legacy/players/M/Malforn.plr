@@ -1,0 +1,84 @@
+name: Malforn
+password: MaV5jlGCpU
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19109
+birthtime: 1478712493
+timeplayed: 23101
+lastlogintime: 1479320210
+host: 091.140.235.158
+height: 45
+weight: 197
+base_height: 45
+base_weight: 197
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 109/102
+mana: 1/0
+move: 148/148
+damroll: 4
+hitroll: 5
+strength: 96
+intelligence: 70
+wisdom: 64
+dexterity: 92
+constitution: 89
+charisma: 53
+cash: 0 129 600 525
+experience: 154747
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 80
+415 50
+416 50
+421 91
+438 50
+443 50
+444 50
+463 50
+464 51
+465 98
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 17204 22.000000
+1 16907 3.000000
+1 16900 44.000000
+1 16902 13.000000
+1 16906 10.000000
+1 16901 3.000000
+1 16905 5.000000
+1 8021 1.000000
+1 8002 2.000000
+1 3066 1.000000
+1 18002 3.000000
+1 18001 3.000000
+1 8000 4.000000
+1 8016 2.000000
+1 8022 5.000000
+1 8030 1.000000
+1 8013 4.000000
+1 8001 9.000000
+1 8023 3.000000
+1 8020 2.000000
+1 8011 7.000000
+0 0 0

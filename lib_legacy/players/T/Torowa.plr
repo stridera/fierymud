@@ -1,0 +1,237 @@
+name: Torowa
+password: ToM1HpVcFg
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 6
+race: 9
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19761
+birthtime: 1604900591
+timeplayed: 124088
+lastlogintime: 1614764666
+host: 052.119.120.201
+height: 66
+weight: 149
+base_height: 66
+base_weight: 149
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gwxyz
+effectflags: kx 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1039/1039
+mana: 980/980
+move: 112/112
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 84
+wisdom: 58
+dexterity: 94
+constitution: 83
+charisma: 100
+cash: 1845 1062 6982 4101
+experience: 121676898
+quit_reason: 1
+saveroom: 3054
+skills:
+8 1000
+15 1000
+16 1000
+18 1000
+30 1000
+32 1000
+37 1000
+44 1000
+69 1000
+88 1000
+144 1000
+214 1000
+402 1000
+404 313
+407 1000
+410 1000
+411 694
+412 1000
+415 50
+416 50
+417 1000
+420 229
+421 192
+422 240
+423 755
+424 1000
+430 1000
+438 1000
+443 1000
+444 1000
+447 1000
+451 585
+452 52
+454 1000
+456 67
+457 1000
+458 1000
+459 1000
+462 53
+463 198
+464 82
+465 938
+466 67
+467 50
+468 50
+0 0
+trophy:
+1 48017 0.250000
+1 48018 0.250000
+1 48016 1.000000
+1 48015 0.200000
+1 48014 0.200000
+1 48009 0.250000
+1 48001 1.250000
+1 48002 0.250000
+1 48805 0.166667
+1 48801 0.166667
+1 48812 0.166667
+1 48803 0.333333
+1 48813 0.333333
+1 48807 0.166667
+1 48802 0.666667
+1 48810 0.500000
+1 48804 0.166667
+1 48809 0.533333
+1 48504 0.166667
+1 48501 0.500000
+1 48502 0.166667
+0 0 0
+tells:
+1605612546 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1605612549 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1605612553 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1605612562 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
+1606789834 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1606789837 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1606789838 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1608872119 @WRuin Wormheart@W tells you, 'So, the merchant has gotten himself in quite a bit of trouble.@W'@0
+1608872120 @WRuin Wormheart@W tells you, 'I know what he must do, but he won't like it.@W'@0
+1608872121 @WRuin Wormheart@W tells you, 'Quickly, take this to him! Perhaps the Darkness still finds him... amusing.@W'@0
+$
+gossips:
+1609368836 Daedela gossips, 'of course'
+1609368840 Daedela gossips, 'that's amazing!'
+1609368918 Daedela gossips, 'do we currently store history of revisions and such?'
+1609369006 Chinok gossips, 'yes, but that's via nightly backups, if there are multiple changes made during the day, unless the person doing the updates manually creates a backup, NO'
+1609369018 Daedela gossips, 'got it'
+1609373746 Chinok gossips, 'building the backup 'system' now -- when that's done there will be buttons to sync DEV to PROD, or PROD to DEV, or restore from one of the backups'
+1609848968 Chinok gossips, 'you still here ?'
+1609904483 Chinok gossips, 'gettting close to being too tired to do anything else for the night.. but should be able to finish most tomorrow'
+1609904824 Chinok gossips, 'lol when I was ... well younger than 45, I could code all night'
+1609904934 Chinok gossips, 'god knows I've written code at 3am, -- looked at it the next day, and thought what the hell was wrong with me'
+$
+mem:
+18 1 1
+18 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+144 1 1
+144 1 1
+144 1 1
+144 1 1
+144 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+37 1 1
+37 1 1
+37 1 1
+37 1 1
+37 1 1
+37 1 1
+37 1 1
+37 1 1
+37 1 1
+37 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+44 1 1
+44 1 1
+44 1 1
+44 1 1
+44 1 1
+44 1 1
+44 1 1
+44 1 1
+44 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+214 1 1
+214 1 1
+214 1 1
+214 1 1
+214 1 1
+214 1 1
+214 1 1
+69 1 1
+69 1 1
+69 1 1
+69 1 1
+69 1 1
+144 1 1
+144 1 1
+144 1 1
+144 1 1
+144 1 1
+0 0 0
+aliases:
+bash bash $* ; st
+ga get all
+gac get all corpse
+gat get all 2.corpse
+re rescue $*
+0

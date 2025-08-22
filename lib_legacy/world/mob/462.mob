@@ -1,0 +1,842 @@
+#46200
+crazed-gnoll-hunter~
+a gnoll hunter~
+A crazed gnoll hunter stalks the land.~
+This creature looks like some kind of human-hyena hybrid.  It walks on two legs
+which end in wide cat paws, and has two large clawed hands.  It stands over 7
+feet tall, with lean musculature and yellowish mottled fur which is caked with
+dried blood and filth.  It is impossible to visually discern its gender or age.
+Its eyes bulge out and its fanged mouth hangs slightly open, a horrid cackle
+escaping from its throat from time to time.~
+104 0 -1000 E
+13 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 3 13 0 3
+BareHandAttack: 4
+Str: 84
+Dex: 92
+Int: 58
+Wis: 78
+Con: 70
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#46201
+elite-gnoll-tracker~
+a gnoll tracker~
+An elite gnoll tracker pursues its prey.~
+Crouched low to the ground and constantly sniffing around, this gnoll seems to
+be tracking something.  At least as large as the other hunters of this pack, it
+must be doing more than just scavenging.  Perhaps this is an elite scout of
+some kind.~
+2097258 0 -1000 E
+13 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 9 13 0 3
+BareHandAttack: 4
+Str: 72
+Dex: 68
+Int: 79
+Wis: 85
+Con: 84
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46232
+T 46237
+#46202
+wild-eyed-gnoll-berserker~
+a gnoll berserker~
+A wild-eyed gnoll berserker rampages through here.~
+While this gnoll bears the same humanoid hyena visage of its packmates, its
+body is a hulking mass of muscle and terror.  It foams at the mouth and its
+enormous eyes are wide and unfocused, darting every which way in search of
+something to rip apart.~
+104 0 -1000 E
+16 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 14 13 0 3
+BareHandAttack: 4
+Str: 97
+Dex: 88
+Int: 69
+Wis: 66
+Con: 73
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#46203
+scrawny-gnoll-scavenger~
+a gnoll scavenger~
+A scrawny gnoll scavenger scrounges for food.~
+This gnoll is smaller than the others, almost gaunt by comparison.  It moves
+just as quickly as the bigger gnoll, but with an erratic rhythm led by its
+nose, sniffing out something in the air.~
+104 0 -1000 E
+12 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 24 13 0 3
+BareHandAttack: 4
+Str: 70
+Dex: 82
+Int: 60
+Wis: 64
+Con: 92
+Cha: 96
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#46204
+massive-gnoll-chieftain~
+the gnoll chieftain~
+The massive gnoll chieftain looms in his den.~
+This gnoll is much larger than the others of his pack.  He stands over 8 feet
+tall and is significantly more muscular than the average pack hunter.  He has a
+reddish-gray crest-like mane running down his neck.  It stands on end with
+excitement at the sight of fresh prey!~
+106 0 -1000 E
+25 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 1 14 13 0 3
+BareHandAttack: 4
+Str: 91
+Dex: 84
+Int: 72
+Wis: 71
+Con: 81
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46204
+T 55697
+#46205
+chieftain's-brood-mate prized chieftains-brood-mate~
+a chieftain's brood mate~
+One of the chieftain's most prized mates guards her sire's den.~
+More vicious, more ferocious, more deadly than most gnolls, this gnoll has been
+selected by the chieftain as one of his favorite mates.  She is physically
+indistinguishable from the other warriors in the pack otherwise.~
+104 0 -1000 E
+21 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 2 3 13 0 2
+BareHandAttack: 4
+Str: 87
+Dex: 78
+Int: 70
+Wis: 90
+Con: 72
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55696
+#46206
+demonically-touched-gnoll-cultist fang-yeenoghu~
+a Fang of Yeenoghu~
+A demonically-touched gnoll cultist dances in a rabid frenzy!~
+These kinds of beasts are known as Fangs of Yeenoghu, gnolls imbued with
+demonic energy by the Demon Lord Yeenoghu, the progenitor god of the gnolls.  
+They have been blessed with arcane secrets and talents other gnolls are
+incapable of possessing.  Fangs of Yeenoghu are charged with carrying out
+slaughter and sacrifice to their Demon Lord, particularly the feeding of
+captives to hyenas.~
+42 0 -1000 E
+21 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 8 13 0 3
+BareHandAttack: 4
+Str: 78
+Dex: 70
+Int: 80
+Wis: 90
+Con: 69
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46218
+T 55697
+T 5346
+#46207
+demonically-touched-gnoll-cultist fang-yeenoghu~
+a Fang of Yeenoghu~
+A demonically-touched gnoll cultist dances in a rabid frenzy!~
+These kinds of beasts are known as Fangs of Yeenoghu, gnolls imbued with
+demonic energy by the Demon Lord Yeenoghu, the progenitor god of the gnolls.  
+They have been blessed with arcane secrets and talents other gnolls are
+incapable of possessing.  Fangs of Yeenoghu are charged with carrying out
+slaughter and sacrifice to their Demon Lord, particularly the feeding of
+captives to hyenas.~
+42 0 -1000 E
+21 17 0 0d0+0 0d1+0
+0 0 0 0 0 462
+3 0 0 11 13 0 3
+BareHandAttack: 4
+Str: 68
+Dex: 71
+Int: 98
+Wis: 74
+Con: 76
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46218
+T 55697
+T 5346
+#46208
+demonically-touched-gnoll-cultist fang-yeenoghu~
+a Fang of Yeenoghu~
+A demonically-touched gnoll cultist dances in a rabid frenzy!~
+These kinds of beasts are known as Fangs of Yeenoghu, gnolls imbued with
+demonic energy by the Demon Lord Yeenoghu, the progenitor god of the gnolls.  
+They have been blessed with arcane secrets and talents other gnolls are
+incapable of possessing.  Fangs of Yeenoghu are charged with carrying out
+slaughter and sacrifice to their Demon Lord, particularly the feeding of
+captives to hyenas.~
+42 0 -1000 E
+21 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 16 13 0 3
+BareHandAttack: 4
+Str: 86
+Dex: 69
+Int: 79
+Wis: 90
+Con: 63
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46218
+T 55697
+T 5346
+#46209
+gnoll-beastmaster beast-master adept trainer~
+a gnoll beastmaster~
+A gnoll adept at training animals guards the area.~
+Not all gnolls are completely incapable of interacting with other beings, as
+this one demonstrates.  As a beastmaster, this gnoll is responsible for
+handling all the wild animals the pack keeps, including the wild hyenas it
+calls family.  Like most things gnolls do, its animal handling techniques are
+abusive and violent, but effective.~
+104 0 -1000 E
+17 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 6 13 0 3
+BareHandAttack: 4
+Str: 89
+Dex: 79
+Int: 72
+Wis: 72
+Con: 84
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46231
+T 55696
+#46210
+gnoll-slavemaster gnoll-spiritbreaker gnoll-spirit-breaker gnoll-slave-master~
+a gnoll spiritbreaker~
+A gnoll slavemaster patrols the area.~
+Special gnolls are given the responsibility of handling the pack's slaves and
+prisoners.  They're called "spiritbreakers" because their primary job is doing
+just that - breaking the spirit of anyone who would dare to stand up to their
+captors.  These monsters will use any method to keep their prey in line, though
+their favorite is ripping apart and devouring other victims as a demonstration
+of their dominance.~
+104 0 -1000 E
+18 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 14 13 0 3
+BareHandAttack: 4
+Str: 88
+Dex: 96
+Int: 70
+Wis: 65
+Con: 84
+Cha: 50
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55696
+#46211
+witherling skeletal-gnoll-monstrosity skeleton monster~
+a witherling~
+A skeletal gnoll monstrosity shambles by.~
+A pile of animated skeletal remains of a gnoll has been animated by one of the
+pack diabolists.  This undead abomination is no less quick or agile than its
+living packmates and its skeletal claws and teeth just as sharp.  As a Lord of
+the Undead and Death, the gnoll god Yeenoghu particularly likes these servants,
+as they're able to spread death and ruin without consuming the resources of the
+pack.~
+104 0 -1000 E
+11 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 24 13 0 3
+BareHandAttack: 8
+Str: 64
+Dex: 77
+Int: 64
+Wis: 70
+Con: 79
+Cha: 98
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 10
+Stance: 6
+E
+#46212
+hulking-troll-guard~
+a troll guard~
+A hulking troll guards the cave mouth.~
+A troll from the surrounding pine barren appears to have made this place its
+home.  It is fat and slow, stuffed full of whatever creatures come in and out
+of Nukreth Spire.  Its warty skin is wrinkled, blistered, and covered with
+wounds and scabs.  Clearly, this monster is no stranger to a fight.~
+106 1024 -1000 E
+14 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 3 4 1 3
+BareHandAttack: 7
+Str: 87
+Dex: 78
+Int: 67
+Wis: 82
+Con: 84
+Cha: 56
+AFF2: 4194304
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#46213
+wild-hyena rabid-hyena~
+a rabid hyena~
+A wild hyena runs about, drooling profusely.~
+This beast has a shaggy coat of gray and brown fur, which is mangy and matted.
+It foams at the mouth and reacts with wild aggression toward anything other
+than its gnollish packmates.~
+106 0 0 E
+10 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 24 14 0 2
+BareHandAttack: 4
+Str: 76
+Dex: 78
+Int: 64
+Wis: 72
+Con: 80
+Cha: 82
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#46214
+feral-boar wildly-aggressive-boar~
+a feral boar~
+A wildly aggressive boar ruts through the area.~
+This large and aggressive boar has long, sharp, deadly tusks.  Its fur is
+usually dark, bristly, and thick, and it has a mane of longer hair along its
+spine.  It is very aggressive and territorial, and looks like it could take
+apart an unsuspecting passerby.~
+104 0 0 E
+10 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 24 14 0 2
+BareHandAttack: 10
+Str: 71
+Dex: 72
+Int: 56
+Wis: 76
+Con: 83
+Cha: 95
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#46215
+dire-hyena massive-hyena~
+a dire hyena~
+A massive hyena the size of a horse scours the land.~
+A dire hyena is like a regular hyena, only larger, more powerful, and wildly
+more aggressive version of a real animal.  It is impossibly huge, nearly as
+large as a small horse, and vastly more muscular in build.  More fearsome and
+aggressive appearance, with larger teeth and claws, a thicker mane and fur, and
+even horns growing out of its head and face, this creature is the stuff of
+nightmares!~
+106 0 0 E
+11 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 24 14 0 3
+BareHandAttack: 4
+Str: 74
+Dex: 75
+Int: 72
+Wis: 69
+Con: 75
+Cha: 87
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#46216
+dirty-goblin-slave goblin-pack-slave~
+a goblin pack slave~
+A dirty goblin slave hauls around a sack of body parts.~
+This little goblin is hideously scarred, missing an eye and several digits.  
+They have been worked beyond the limits of their body, which hunches as they
+drag the sack around.  The typical unearned ferocity which goblins display is
+completely beaten out of this poor creature.~
+72 0 -250 E
+9 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 3 24 18 1 1
+Str: 85
+Dex: 70
+Int: 69
+Wis: 68
+Con: 79
+Cha: 80
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#46217
+human-slave human-pack-slave~
+a human pack slave~
+A human slave toils away clearing bones.~
+This poor person has been reduced to nothing.  A few filth-covered rags are all
+that keep them warm in this dank and vile place.  Whatever hope they had of
+escaping has met its end in the all-devour jaws of the gnolls.~
+72 0 0 E
+9 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 3 24 0 0 2
+Str: 71
+Dex: 80
+Int: 60
+Wis: 67
+Con: 92
+Cha: 83
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#46218
+kobold-slave kobold-pack-slave~
+a kobold pack slave~
+A kobold slave scurries around, desperately trying to stay alive.~
+This little creature looks like a flightless dragon or a tiny lizardman,
+complete with long face, scaly skin, and sharp claws and teeth.  Smaller,
+weaker, and stupider than the other captives here, it is trying desperately to
+prove itself worthy of living to avoid becoming a midnight snack too soon.~
+72 0 -250 E
+9 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 24 18 1 1
+Str: 64
+Dex: 76
+Int: 62
+Wis: 67
+Con: 87
+Cha: 99
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#46219
+orc-slave orc-pack-slave~
+an orc pack slave~
+An orc slave moves big chunks of debris.~
+Muscular and resilient, this orc is an ideal slave to do the physical work
+gnolls so detest.  This orc has survived much, as the scars and bruises across
+their body would suggest, but they seem to have been completely broken by the
+gnolls' brutal treatment.  The unyielding fire so common in an orc's eyes has
+been completely extinguished.~
+72 0 -500 E
+9 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 3 24 8 1 1
+Str: 73
+Dex: 80
+Int: 66
+Wis: 64
+Con: 79
+Cha: 90
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#46220
+soltan-peasant valiantly-defiant-young-human-woman soltan-captive~
+a Soltan peasant~
+A valiantly defiant young human woman rises up against her gnoll captors.~
+This poor woman has been reduced to nothing.  A few filth-covered rags are all
+that keep her warm in this dank and vile place.  But renewed hope gleams in her
+eye and she speaks with an inspiring voice!~
+10 0 500 E
+15 20 0 0d0+200 0d0+0
+0 0 0 0 0 462
+3 3 2 3 0 0 2
+Str: 72
+Dex: 84
+Int: 65
+Wis: 68
+Con: 78
+Cha: 84
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46206
+T 46207
+T 46213
+T 46229
+T 46230
+T 46235
+#46221
+defiant-little-kobold kobold-captive kobold-scout~
+a kobold scout~
+A defiant little kobold rises up against the gnolls.~
+This little creature looks like a flightless dragon or a tiny lizardman,
+complete with long face, scaly skin, and sharp claws and teeth.  Smaller,
+weaker, and stupider than the other captives here, she has been lucky to
+survive so long but she seems determined to live another day!~
+10 0 -250 E
+16 20 0 0d0+200 0d0+0
+0 0 0 0 0 462
+3 3 0 18 18 1 1
+Str: 78
+Dex: 68
+Int: 56
+Wis: 63
+Con: 95
+Cha: 94
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46205
+T 46206
+T 46207
+T 46214
+T 46225
+T 46229
+T 46230
+#46222
+ogakh-veteran ferociously-defiant-orc captive~
+an Ogakh veteran~
+A ferociously defiant orc rises up against the gnolls.~
+It looks unfinished.  Muscular and resilient, this orc is an ideal slave to do
+the physical work gnolls so detest.  This orc has survived much, as the scars
+and bruises across his body would suggest.  An unyielding fire burns hot and
+fiercely in his eyes!~
+10 0 -500 E
+15 20 0 0d0+200 0d0+0
+0 0 0 0 0 462
+3 3 3 3 8 1 1
+Str: 83
+Dex: 77
+Int: 70
+Wis: 66
+Con: 74
+Cha: 82
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46205
+T 46206
+T 46207
+T 46215
+T 46226
+T 46229
+T 46230
+#46223
+goblin-thief defiantly-mischievous-goblin captive~
+a goblin thief~
+A defiantly mischievous goblin rises up against the gnolls.~
+This little goblin is hideously scarred, missing an eye and several digits.  
+He has been worked beyond the limits of his body, but renewed hope is giving
+him life!  His mischievous nature might yet see him out of captivity.~
+10 0 -250 E
+16 20 0 0d0+200 0d0+0
+0 0 0 0 0 462
+3 3 3 2 18 1 1
+Str: 70
+Dex: 81
+Int: 62
+Wis: 72
+Con: 78
+Cha: 92
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46205
+T 46206
+T 46207
+T 46230
+T 46216
+T 46227
+#46224
+gnoll-slavemaster gnoll-spiritbreaker gnoll-spirit-breaker gnoll-slave-master~
+a gnoll spiritbreaker~
+A gnoll slavemaster is trying to stop the uprising!~
+Special gnolls are given the responsibility of handling the pack's slaves and
+prisoners.  They're called "spiritbreakers" because their primary job is doing
+just that - breaking the spirit of anyone who would dare to stand up to their
+captors.  These monsters will use any method to keep their prey in line, though
+their favorite is ripping apart and devouring other victims as a demonstration
+of their dominance.~
+106 0 -1000 E
+18 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 14 13 0 3
+BareHandAttack: 4
+Str: 88
+Dex: 96
+Int: 70
+Wis: 65
+Con: 84
+Cha: 50
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46224
+T 46208
+T 55696
+#46225
+limping-slave man husband~
+a limping slave~
+A sacrificial slave limps by trying to escape.~
+This poor man has seen more horror than any being should ever be forced to
+witness.  He is ragged and severely injured, but his haunted eyes tell the
+trauma he has endured goes far beyond the physical world.~
+10 0 0 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 1 24 0 0 2
+Str: 74
+Dex: 84
+Int: 59
+Wis: 77
+Con: 76
+Cha: 84
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46219
+T 46229
+T 46220
+#46226
+gnoll-beastmaster beast-master adept trainer~
+a gnoll beastmaster~
+A gnoll beastmaster has arrived to investigate a sound.~
+Not all gnolls are completely incapable of interacting with other beings, as
+this one demonstrates.  As a beastmaster, this gnoll is responsible for
+handling all the wild animals the pack keeps, including the wild hyenas it
+calls family.  Like most things gnolls do, its animal handling techniques are
+abusive and violent, but effective.~
+104 0 -1000 E
+17 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 6 13 0 3
+BareHandAttack: 4
+Str: 89
+Dex: 79
+Int: 72
+Wis: 72
+Con: 84
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55573
+T 46222
+#46227
+dire-hyena massive-hyena~
+a dire hyena~
+A massive hyena sniffs out an intruder.~
+A dire hyena is like a regular hyena, only larger, more powerful, and wildly
+more aggressive version of a real animal.  It is impossibly huge, nearly as
+large as a small horse, and vastly more muscular in build.  More fearsome and
+aggressive appearance, with larger teeth and claws, a thicker mane and fur, and
+even horns growing out of its head and face, this creature is the stuff of
+nightmares!~
+106 0 0 E
+11 20 0 0d0+0 0d0+0
+0 0 0 0 0 462
+3 3 0 24 14 0 3
+BareHandAttack: 4
+Str: 74
+Dex: 75
+Int: 72
+Wis: 69
+Con: 75
+Cha: 87
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 46222
+$

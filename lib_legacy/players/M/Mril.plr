@@ -1,0 +1,208 @@
+name: Mril
+password: MrGUdDuhQx
+description
+If you need a resurrection 'consent lokar'. If the corpse is already here tell me 'res'.~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 26
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20212
+birthtime: 1648145027
+timeplayed: 11935817
+lastlogintime: 1735785402
+host: 136.038.231.125
+height: 76
+weight: 261
+base_height: 76
+base_weight: 261
+base_size: 2
+natural_size: 2
+alignment: 146
+playerflags: yz
+effectflags: k 0 0
+prefflags: hjnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 887/788
+mana: 980/980
+move: 319/319
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 90
+wisdom: 92
+dexterity: 84
+constitution: 93
+charisma: 62
+cash: 526 3226 18957 24282
+experience: 105805999
+clan: 4
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+27 1000
+28 1000
+33 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+47 1000
+48 1000
+49 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+74 1000
+81 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+95 1000
+96 1000
+97 1000
+99 1000
+131 1000
+201 1000
+206 1000
+207 1000
+208 1000
+209 1000
+210 1000
+235 1000
+241 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+451 1000
+452 1000
+453 1000
+455 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+463 1000
+466 1000
+486 1000
+0 0
+trophy:
+1 58403 0.125000
+1 58413 0.125000
+1 58410 0.250000
+1 58415 0.125000
+1 58419 0.250000
+1 58404 0.500000
+1 58409 0.250000
+1 53506 0.222222
+1 53505 0.111111
+1 53504 0.222222
+1 53507 0.253968
+1 53502 0.555556
+1 53503 0.916667
+1 53501 0.944444
+1 53500 0.847222
+1 53508 1.305556
+1 53403 0.500000
+1 53408 0.500000
+1 53404 0.500000
+1 53410 0.583333
+1 53416 0.583333
+0 0 0
+tells:
+1695667653 @WThorfinn@W tells you, 'that gear you gave me ks awesome@W'@0
+1695667653 @WDaedela@W tells you, 'oh good an actual new berserker!@W'@0
+1695667696 @WThorfinn@W tells you, 'and the badge from this legion quest was pretty good, i like the +10 heal@W'@0
+1695667719 @WThorfinn@W tells you, 'do you know where the black and silver +10 hp ring drops?@W'@0
+1695667734 @WThorfinn@W tells you, 'its +10 regen@W'@0
+1695782699 @WSnil@W tells you, 'fheal@W'@0
+1695782701 @WSnil@W tells you, 'heal@W'@0
+1696647876 @WThorfinn@W tells you, 'fheal@W'@0
+1697152765 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1698516604 @WTeshi@W tells you, 'res@W'@0
+$
+gossips:
+1735784992 Gargath gossips, 'oh my!'
+1735784996 Mersh gossips, 'well at inn'
+1735785019 Gargath gossips, 'oh we're not ready for that yet haha'
+1735785022 Mersh gossips, ':D'
+1735785036 Thort gossips, 'you wanna hit the tower?'
+1735785040 Mersh gossips, 'He was here when I got on :D'
+1735785042 Urog gossips, 'yes please!'
+1735785057 Urog gossips, 'We have to kill something deep in the tower'
+1735785070 Urog gossips, 'Mystwatch is after that'
+1735785391 Mersh gossips, 'you guys go without me for now. I will try to get back on'
+$
+aliases:
+recall cast 'group recal'
+dp cast 'dark presence' $*
+blind cast 'blindness' $*
+sil cast 'silence' $*
+of order followers $*
+dalign cast 'detect alignment' $*
+garmor cast 'group armor'
+gvit cast 'greater vitality' $*
+gheal cast 'group heal'
+rmp rest;meditate;pray
+ul unlock $*;open $*
+summon cast 'summon' $*
+bf breathe fire
+wor cast 'word of recall'
+bless cast 'bless' $*
+armor cast 'armor' $*
+df drink fountain
+ec examine corpse
+heal cast 'heal' $*
+holy cast 'holy word'
+gcc get all.coins all.corpse
+fheal cast 'full heal' $*
+fharm cast 'full harm' $*
+uholy cast 'unholy word'
+dmagic cast 'detect magic' $*
+fs cast 'flamestrike' $*
+rc cast 'remove curse' $*
+dheal cast 'dragons health' $*
+res cast 'resurrect' $*
+who who -w
+id get identify sack;recite identify $*
+0

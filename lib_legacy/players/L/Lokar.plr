@@ -1,0 +1,198 @@
+name: Lokar
+password: LovVlncdpE
+description
+If you need a resurrection just 'consent lokar' if you did and it isn't working or you have multiple corpses consent yourself 'consent me' then reconsent lokar.~
+prompt: &2&b<&0&2%aA&2&b><&0%l&2&b>%_&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 11
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20102
+birthtime: 1641840751
+timeplayed: 37478848
+lastlogintime: 1739090939
+host: 136.038.231.125
+height: 69
+weight: 112
+base_height: 69
+base_weight: 112
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: yz
+effectflags: 0 0 0
+prefflags: hnosxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 534/534
+mana: 980/980
+move: 250/250
+damroll: 3
+hitroll: 3
+strength: 72
+intelligence: 83
+wisdom: 84
+dexterity: 64
+constitution: 69
+charisma: 94
+experience: 137547799
+clan: 4
+quit_reason: 10
+saveroom: 3054
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+21 1000
+25 1000
+29 1000
+31 1000
+32 1000
+33 1000
+38 1000
+39 1000
+45 1000
+50 1000
+52 1000
+62 1000
+67 1000
+68 1000
+76 1000
+87 1000
+100 1000
+101 1000
+106 1000
+121 1000
+125 1000
+186 1000
+187 1000
+188 1000
+189 1000
+211 1000
+212 1000
+213 1000
+222 1000
+223 1000
+224 1000
+226 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+447 1000
+451 1000
+452 1000
+453 1000
+454 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+464 1000
+0 0
+trophy:
+1 8016 1.000000
+1 8001 1.000000
+1 16204 1.000000
+1 16111 1.000000
+1 16107 1.000000
+1 18509 1.000000
+1 18501 2.000000
+1 18515 1.000000
+1 18550 2.000000
+1 18551 2.000000
+1 18519 2.000000
+1 18503 1.000000
+1 18507 7.000000
+1 18517 1.000000
+1 18510 3.000000
+1 41113 1.000000
+1 11750 1.000000
+1 36001 1.000000
+1 36002 1.000000
+1 8020 8.000000
+1 8014 11.000000
+0 0 0
+tells:
+1720639766 @WCalimar@W tells you, 'yea, wearing it@W'@0
+1720639771 @WCalimar@W tells you, 'hehe@W'@0
+1720639791 @WCalimar@W tells you, 'so need 4 resets to complete the quest for everyone@W'@0
+1720639832 @WCalimar@W tells you, 'haha!@W'@0
+1720639853 @WCalimar@W tells you, 'god knows, maybe that's why my char name was banned 20+ years ago@W'@0
+1736898033 @WThort@W tells you, 'hello@W'@0
+1738054889 @WZawk@W tells you, 'shift@W'@0
+1738712981 @WDavar@W tells you, 'Offa requested i send a well Incoming@W'@0
+1738858373 @WDavar@W tells you, 'Gilgal requested i send a well Incoming@W'@0
+1738858976 @WDavar@W tells you, 'Offa requested i send a well Incoming@W'@0
+$
+gossips:
+1739070796 Nawk gossips, 'if your not diein your not tryin :)'
+1739072807 Discord gossips, 'venath.2005: Brutha Kress'
+1739072811 Kresselack gossips, 'sup'
+1739072826 Chinok gossips, 'hey Kress'
+1739073397 Chinok gossips, 'gratz on 79!'
+1739073404 Anexis gossips, 'thank'
+1739077172 Anexis gossips, 'night fiery!'
+1739090004 Rhodotheus gossips, 'Hello'
+1739090010 Rahem gossips, 'hey'
+1739090129 Rhodotheus gossips, 'How's it going?'
+1739090264 Knak gossips, 'Congrats!'
+1739090267 Selean gossips, 'thanks'
+$
+aliases:
+ed cast 'energy drain' $*
+summon cast 'shift corpse' $*
+stone cast 'stone skin' $*
+rmm rest;meditate;memorize
+dd cast 'dimension door' $*
+frac cast 'fracture'
+tobft e;e;e;s;s;s;e;e;e;e;e;e;e;s;s;s;s;s;s
+gac get all corpse
+st stand;fly
+dpoison cast 'detect poison' $*
+locate cast 'locate object' $*
+dmagic cast 'detect magic' $*
+dinvis cast 'detect invisibility' $*
+cs cast 'coldshield' me
+bone cast 'bone armor' me
+str cast 'strength' $*
+burn cast 'burning hands' $1
+ul unlock $*;open $*
+invis cast 'invisibility' $*
+pyre cast 'pyre' $*
+chill cast 'chill touch' $*
+mm cast 'magic missile' $*
+df drink fountain
+create cast 'minor creation' $*
+haste cast 'haste' $*
+k kil $*
+of order followers $*
+im cast 'iron maiden' $*
+edr cast 'energy drain' $*
+coc cast 'cone of cold' $*
+gcc get all.coins all.corpse
+ok order followers kil $*
+id cast 'identify' $1
+decay cast 'decay' $*
+ec examine corpse
+anim cast 'preserve' $*;cast 'animate dead' $*
+spine cast 'spinechiller' $*
+ac cast 'preserve' corpse;cast 'animate' corpse
+soul cast 'soul tap' $*
+bd cast 'bone draw' $*
+degen cast 'degeneration' $*
+who who -w
+wh who -w
+0

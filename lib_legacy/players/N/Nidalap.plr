@@ -1,0 +1,89 @@
+name: Nidalap
+password: NibAFAlY2g
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 6
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19457
+birthtime: 1563298996
+timeplayed: 140072
+lastlogintime: 1735087504
+host: 104.228.087.146
+height: 46
+weight: 199
+base_height: 46
+base_weight: 199
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: k w 0
+prefflags: ahnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 172/172
+mana: 16/16
+move: 130/130
+damroll: 4
+hitroll: 5
+strength: 91
+intelligence: 67
+wisdom: 82
+dexterity: 83
+constitution: 78
+charisma: 62
+cash: 0 315 1673 1510
+experience: 556709
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 170
+415 50
+416 50
+421 180
+430 134
+438 55
+443 50
+444 50
+463 50
+464 50
+465 178
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 16107 2.500000
+1 3505 0.500000
+1 61509 0.500000
+1 61508 0.500000
+1 61510 1.000000
+1 61512 1.000000
+1 61519 0.500000
+1 61526 1.000000
+1 61504 0.500000
+1 61502 1.000000
+1 61501 1.000000
+1 61525 2.500000
+1 61500 2.000000
+1 61503 1.500000
+1 17204 3.500000
+1 17202 0.500000
+1 36300 1.000000
+1 36303 3.500000
+1 36305 2.500000
+1 8610 1.000000
+1 8609 0.500000
+0 0 0
+tells:
+$
+gossips:
+$

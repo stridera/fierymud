@@ -1,0 +1,1919 @@
+#16100
+The Pass~
+   You are walking in a pass running from east to west through a great mountain
+range.  You notice that the air seems to be drier and hotter as you head
+towards the west.  Vegetation becomes more sparse as you go along.    
+~
+161 64 5
+D1
+~
+~
+0 -1 2019
+D3
+~
+~
+0 -1 16124
+S
+#16101
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+A dusty path extends to the west of here, leading off away from the hot sands
+of the desert.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16101
+D1
+~
+~
+0 -1 16102
+D2
+~
+~
+0 -1 16107
+D3
+~
+~
+0 0 20358
+S
+#16102
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16102
+D1
+~
+~
+0 -1 16103
+D2
+~
+~
+0 -1 16108
+D3
+~
+~
+0 -1 16101
+S
+#16103
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16103
+D1
+~
+~
+0 -1 16104
+D2
+~
+~
+0 -1 16109
+D3
+~
+~
+0 -1 16102
+S
+#16104
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes to the south, east, and
+west of you.  However, you can make out a structure in the distance to the
+north.  With the sand blowing in your eyes, you can't quite make it out from
+here, however, but it certainly looks large!    
+~
+161 64 4
+D0
+You see a large structure, a pyramid perhaps?
+~
+~
+0 -1 16200
+D1
+~
+~
+0 -1 16105
+D2
+~
+~
+0 -1 16110
+D3
+~
+~
+0 -1 16103
+S
+#16105
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16105
+D1
+~
+~
+0 -1 16106
+D2
+~
+~
+0 -1 16111
+D3
+~
+~
+0 -1 16104
+S
+#16106
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the west, and a great mountain range
+blocks passage to the east.  The mountains runs to the north and south of here.
+This range blocks rain from falling here, and it is also impossible to scale.
+~
+161 0 4
+D2
+~
+~
+0 -1 16112
+D3
+~
+~
+0 -1 16105
+S
+#16107
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16101
+D1
+~
+~
+0 -1 16108
+D2
+~
+~
+0 -1 16113
+D3
+~
+~
+0 -1 16107
+S
+#16108
+Old Man's Hut~
+   A solitary hut stands in this great inhospitable desert.  It looks well kept
+though it is sparsely furnished.  Its small size indicates only one occupant
+lives here.  You wonder what would make a person choose to live in total
+isolation like this.    
+~
+161 12 0
+D0
+~
+~
+0 -1 16102
+D1
+~
+~
+0 -1 16109
+D2
+~
+~
+0 -1 16114
+D3
+~
+~
+0 -1 16107
+S
+#16109
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16103
+D1
+~
+~
+0 -1 16110
+D2
+~
+~
+0 -1 16115
+D3
+~
+~
+0 -1 16108
+S
+#16110
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16104
+D1
+~
+~
+0 -1 16111
+D2
+~
+~
+0 -1 16116
+D3
+~
+~
+0 -1 16109
+S
+#16111
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16105
+D1
+~
+~
+0 -1 16112
+D2
+~
+~
+0 -1 16117
+D3
+~
+~
+0 -1 16110
+S
+#16112
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the west, and a great mountain range
+blocks passage to the east.  The mountains runs to the north and south of here.
+This range blocks rain from falling here, and it is also impossible to scale.
+~
+161 0 4
+D0
+~
+~
+0 -1 16106
+D2
+~
+~
+0 -1 16118
+D3
+~
+~
+0 -1 16111
+S
+#16113
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16107
+D1
+~
+~
+0 -1 16114
+D2
+~
+~
+0 -1 16119
+D3
+~
+~
+0 -1 16113
+S
+#16114
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16108
+D1
+~
+~
+0 -1 16115
+D2
+~
+~
+0 -1 16120
+D3
+~
+~
+0 -1 16113
+S
+#16115
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16109
+D1
+~
+~
+0 -1 16116
+D2
+~
+~
+0 -1 16121
+D3
+~
+~
+0 -1 16114
+S
+#16116
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16110
+D1
+~
+~
+0 -1 16117
+D2
+~
+~
+0 -1 16122
+D3
+~
+~
+0 -1 16115
+S
+#16117
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16111
+D1
+~
+~
+0 -1 16118
+D2
+~
+~
+0 -1 16123
+D3
+~
+~
+0 -1 16116
+S
+#16118
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the west, and a great mountain range
+blocks passage to the east.  The mountains runs to the north and south of here.
+This range blocks rain from falling here, and it is also impossible to scale.
+~
+161 0 4
+D0
+~
+~
+0 -1 16112
+D2
+~
+~
+0 -1 16124
+D3
+~
+~
+0 -1 16117
+S
+#16119
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16113
+D1
+~
+~
+0 -1 16120
+D2
+~
+~
+0 -1 16125
+D3
+~
+~
+0 -1 16119
+S
+#16120
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16114
+D1
+~
+~
+0 -1 16121
+D2
+~
+~
+0 -1 16126
+D3
+~
+~
+0 -1 16119
+S
+#16121
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16115
+D1
+~
+~
+0 -1 16122
+D2
+~
+~
+0 -1 16127
+D3
+~
+~
+0 -1 16120
+S
+#16122
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the west, and a great mountain range
+blocks passage to the east.  The mountains runs to the north and south of here.
+This range blocks rain from falling here, and it is also impossible to scale.
+~
+161 0 4
+D0
+~
+~
+0 -1 16116
+D1
+~
+~
+0 -1 16123
+D2
+~
+~
+0 -1 16128
+D3
+~
+~
+0 -1 16121
+S
+#16123
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16117
+D1
+~
+~
+0 -1 16124
+D2
+~
+~
+0 -1 16129
+D3
+~
+~
+0 -1 16122
+S
+#16124
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the west and to the east, a pass can be
+seen leading through the barrier range.  Some greenery can be seen growing in
+the pass.  It must lead to a more pleasant place than this.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16118
+D1
+~
+~
+0 -1 16100
+D2
+~
+~
+0 -1 16130
+D3
+~
+~
+0 -1 16123
+S
+#16125
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16119
+D1
+~
+~
+0 -1 16126
+D2
+~
+~
+0 -1 16131
+D3
+~
+~
+0 -1 16125
+S
+#16126
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16120
+D1
+~
+~
+0 -1 16127
+D2
+~
+~
+0 -1 16132
+D3
+~
+~
+0 -1 16125
+S
+#16127
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16121
+D1
+~
+~
+0 -1 16128
+D2
+~
+~
+0 -1 16133
+D3
+~
+~
+0 -1 16126
+S
+#16128
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the west, and a great mountain range
+blocks passage to the east.  The mountains runs to the north and south of here.
+This range blocks rain from falling here, and it is also impossible to scale.
+~
+161 0 4
+D0
+~
+~
+0 -1 16122
+D1
+~
+~
+0 -1 16129
+D2
+~
+~
+0 -1 16134
+D3
+~
+~
+0 -1 16127
+S
+#16129
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16123
+D1
+~
+~
+0 -1 16130
+D2
+~
+~
+0 -1 16135
+D3
+~
+~
+0 -1 16128
+S
+#16130
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the west, and a great mountain range
+blocks passage to the east.  The mountains runs to the north and south of here.
+This range blocks rain from falling here, and it is also impossible to scale.
+~
+161 0 4
+D0
+~
+~
+0 -1 16124
+D2
+~
+~
+0 -1 16136
+D3
+~
+~
+0 -1 16129
+S
+#16131
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16125
+D1
+~
+~
+0 -1 16132
+D2
+~
+~
+0 -1 16137
+D3
+~
+~
+0 -1 16131
+S
+#16132
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16126
+D1
+~
+~
+0 -1 16133
+D2
+~
+~
+0 -1 16138
+D3
+~
+~
+0 -1 16131
+S
+#16133
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16127
+D1
+~
+~
+0 -1 16134
+D2
+~
+~
+0 -1 16139
+D3
+~
+~
+0 -1 16132
+S
+#16134
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the west, and a great mountain range
+blocks passage to the east.  The mountains runs to the north and south of here.
+This range blocks rain from falling here, and it is also impossible to scale.
+~
+161 0 4
+D0
+~
+~
+0 -1 16128
+D1
+~
+~
+0 -1 16135
+D2
+~
+~
+0 -1 16140
+D3
+~
+~
+0 -1 16133
+S
+#16135
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16129
+D1
+~
+~
+0 -1 16136
+D2
+~
+~
+0 -1 16141
+D3
+~
+~
+0 -1 16134
+S
+#16136
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the west, and a great mountain range
+blocks passage to the east.  The mountains runs to the north and south of here.
+This range blocks rain from falling here, and it is also impossible to scale.
+~
+161 0 4
+D0
+~
+~
+0 -1 16130
+D2
+~
+~
+0 -1 16142
+D3
+~
+~
+0 -1 16135
+S
+#16137
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16131
+D1
+~
+~
+0 -1 16138
+D2
+~
+~
+0 -1 16143
+D3
+~
+~
+0 -1 16137
+S
+#16138
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16132
+D1
+~
+~
+0 -1 16139
+D2
+~
+~
+0 -1 16144
+D3
+~
+~
+0 -1 16137
+S
+#16139
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16133
+D1
+~
+~
+0 -1 16140
+D2
+~
+~
+0 -1 16145
+D3
+~
+~
+0 -1 16138
+S
+#16140
+Oasis~
+   Palm trees grow on the outskirts of this little oasis, providing shade to
+the weary travellers who roam this desert.  Traders seem to have set up shop
+here to cater to the needs of those who have come here to rest between their
+journey.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16134
+D1
+~
+~
+0 -1 16141
+D2
+~
+~
+0 -1 16146
+D3
+~
+~
+0 -1 16139
+S
+#16141
+Oasis~
+   Palm trees grow on the outskirts of this little oasis, providing shade to
+the weary travellers who roam this desert.  Traders seem to have set up shop
+here to cater to the needs of those who have come here to rest between their
+journey.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16135
+D1
+~
+~
+0 -1 16142
+D2
+~
+~
+0 -1 16147
+D3
+~
+~
+0 -1 16140
+S
+#16142
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the west, and a great mountain range
+blocks passage to the east.  The mountains runs to the north and south of here.
+This range blocks rain from falling here, and it is also impossible to scale.
+~
+161 0 4
+D0
+~
+~
+0 -1 16136
+D2
+~
+~
+0 -1 16148
+D3
+~
+~
+0 -1 16141
+S
+#16143
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16137
+D1
+~
+~
+0 -1 16144
+D2
+~
+~
+0 -1 16149
+D3
+~
+~
+0 -1 16143
+S
+#16144
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16138
+D1
+~
+~
+0 -1 16145
+D2
+~
+~
+0 -1 16150
+D3
+~
+~
+0 -1 16143
+S
+#16145
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16139
+D1
+~
+~
+0 -1 16146
+D2
+~
+~
+0 -1 16151
+D3
+~
+~
+0 -1 16144
+S
+#16146
+Oasis~
+   Palm trees grow on the outskirts of this little oasis, providing shade to
+the weary travellers who roam this desert.  Traders seem to have set up shop
+here to cater to the needs of those who have come here to rest between their
+journey.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16140
+D1
+~
+~
+0 -1 16147
+D2
+~
+~
+0 -1 16152
+D3
+~
+~
+0 -1 16145
+S
+#16147
+Oasis~
+   Palm trees grow on the outskirts of this little oasis, providing shade to
+the weary travellers who roam this desert.  Traders seem to have set up shop
+here to cater to the needs of those who have come here to rest between their
+journey.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16141
+D1
+~
+~
+0 -1 16148
+D2
+~
+~
+0 -1 16153
+D3
+~
+~
+0 -1 16146
+S
+#16148
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the west, and a great mountain range
+blocks passage to the east.  The mountains runs to the north and south of here.
+This range blocks rain from falling here, and it is also impossible to scale.
+~
+161 0 4
+D0
+~
+~
+0 -1 16142
+D2
+~
+~
+0 -1 16154
+D3
+~
+~
+0 -1 16147
+S
+#16149
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16143
+D1
+~
+~
+0 -1 16150
+D2
+~
+~
+0 -1 16155
+D3
+~
+~
+0 -1 16149
+S
+#16150
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16144
+D1
+~
+~
+0 -1 16151
+D2
+~
+~
+0 -1 16156
+D3
+~
+~
+0 -1 16149
+S
+#16151
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16145
+D1
+~
+~
+0 -1 16152
+D2
+~
+~
+0 -1 16157
+D3
+~
+~
+0 -1 16150
+S
+#16152
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16146
+D1
+~
+~
+0 -1 16153
+D2
+~
+~
+0 -1 16158
+D3
+~
+~
+0 -1 16151
+S
+#16153
+The Great Gothra Desert~
+   You look around you, and all you see are sand dunes.  Every direction looks
+the same to you, it seems like an endless expanse of sand.  This place looks
+devoid of all life.  You hope that you have enough water to survive this place.
+~
+161 0 4
+D0
+~
+~
+0 -1 16147
+D1
+~
+~
+0 -1 16154
+D2
+~
+~
+0 -1 16159
+D3
+~
+~
+0 -1 16152
+S
+#16154
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The mountain range can be seen to extend still to the south and north.
+However, there is a well worn path leading eastwards to a mesa which dominates
+this landscape.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16148
+D1
+~
+~
+0 -1 16180
+D2
+~
+~
+0 -1 16160
+D3
+~
+~
+0 -1 16153
+S
+#16155
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the north, and a great mountain range
+blocks passage to the south.  This range blocks rain from falling here, and it
+is also impossible to scale.  But just at the base of the mountain range, you
+see a cave entrance.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16149
+D1
+~
+~
+0 -1 16156
+D2
+You get a feeling that great evil was once at work here.
+~
+~
+0 -1 16161
+S
+#16156
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the north, and a great mountain range
+blocks passage to the south.  This range blocks rain from falling here, and it
+is also impossible to scale.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16150
+D1
+~
+~
+0 -1 16157
+D3
+~
+~
+0 -1 16155
+S
+#16157
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the north, and there is a great mountain
+range to the south.  A small, barely passable path winds its way through the
+mountain here.  This range blocks rain from falling here, but there may be a
+way to cross it further down the path.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16151
+D1
+~
+~
+0 -1 16158
+D3
+~
+~
+0 -1 16156
+S
+#16158
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the north, and a great mountain range
+blocks passage to the south.  This range blocks rain from falling here, and it
+is also impossible to scale.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16152
+D1
+~
+~
+0 -1 16159
+D3
+~
+~
+0 -1 16157
+S
+#16159
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the north, and a great mountain range
+blocks passage to the south.  This range blocks rain from falling here, and it
+is also impossible to scale.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16153
+D1
+~
+~
+0 -1 16160
+D3
+~
+~
+0 -1 16158
+S
+#16160
+The Great Gothra Desert~
+   The ground is strewn with large, black rocks which are too hot to touch or
+hold.  The sandy desert can be seen to the west, and a great mountain range
+blocks passage to the east and south.  This range blocks rain from falling
+here, and it is also impossible to scale.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16154
+D3
+~
+~
+0 -1 16159
+S
+#16161
+Cavern Entrance~
+   The cavern leads southwards and downwards into the heart of the mountain.  
+Black, smooth rock makes up the walls of this place, as if it was melted
+through by some great heat.  The sheer blackness of your surroundings gives the
+impression that the walls are swallowing up the light given off by your light.
+~
+161 8 12
+D0
+~
+~
+0 -1 16155
+D2
+~
+~
+0 -1 16162
+S
+#16162
+Cavern Entrance~
+   The cavern leads southwards and downwards into the heart of the mountain.  
+Black, smooth rock makes up the walls of this place, as if it was melted
+through by some great heat.  The sheer blackness of your surroundings gives the
+impression that the walls are swallowing up the light given off by your light.
+~
+161 8 12
+D0
+~
+~
+0 -1 16161
+D2
+~
+~
+0 -1 16163
+S
+#16163
+Cavern Entrance~
+   The cavern leads southwards and downwards into the heart of the mountain.  
+Black, smooth rock makes up the walls of this place, as if it was melted
+through by some great heat.  The sheer blackness of your surroundings gives the
+impression that the walls are swallowing up the light given off by your light.
+~
+161 8 12
+D0
+~
+~
+0 -1 16162
+D2
+~
+~
+0 -1 16164
+S
+#16164
+Black Chamber~
+   The passageway opens up to a great, round chamber with walls blacker than
+night.  A massive stone door blocks your passage to the south.  You realise
+that this place was a specially built prison for someone or something.    
+~
+161 8 12
+D0
+~
+~
+0 -1 16163
+D2
+The stone door is set into bedrock, making it difficult if not impossible to
+pry out. The sheer weight of it is also beyond all of you. To its right, you
+notice a small hole which looks like it would fit a small lever of some sort.
+~
+door stone massive~
+2 16104 16166
+S
+#16165
+The Dark Chamber~
+   You find yourself in a high vaulted chamber.  Its sheer size makes it
+impossible for you to see its' ceiling.  There seem to be some sort of brittle
+substance underfoot, but you are unable to make out what it is.    
+~
+161 520 12
+D1
+~
+~
+0 -1 16166
+D2
+~
+~
+0 -1 16168
+S
+#16166
+The Dark Chamber~
+   You find yourself in a high vaulted chamber.  Its sheer size makes it
+impossible for you to see its' ceiling.  There seem to be some sort of brittle
+substance underfoot, but you are unable to make out what it is.    
+~
+161 520 12
+D0
+The door is massive, and it looks like only a god may be able to move it.
+~
+door stone massive~
+2 16104 16164
+D1
+~
+~
+0 -1 16167
+D2
+~
+~
+0 -1 16169
+D3
+~
+~
+0 -1 16165
+S
+#16167
+The Dark Chamber~
+   You find yourself in a high vaulted chamber.  Its sheer size makes it
+impossible for you to see its' ceiling.  There seem to be some sort of brittle
+substance underfoot, but you are unable to make out what it is.    
+~
+161 520 12
+D2
+~
+~
+0 -1 16170
+D3
+~
+~
+0 -1 16166
+S
+#16168
+The Dark Chamber~
+   You find yourself in a high vaulted chamber.  Its sheer size makes it
+impossible for you to see its' ceiling.  There seem to be some sort of brittle
+substance underfoot, but you are unable to make out what it is.    
+~
+161 520 12
+D0
+~
+~
+0 -1 16165
+D1
+~
+~
+0 -1 16169
+D2
+~
+~
+0 -1 16171
+S
+#16169
+The Dark Chamber~
+   You find yourself in a high vaulted chamber.  Its sheer size makes it
+impossible for you to see its' ceiling.  There seem to be some sort of brittle
+substance underfoot, but you are unable to make out what it is.    
+~
+161 520 12
+D0
+~
+~
+0 -1 16166
+D1
+~
+~
+0 -1 16170
+D2
+~
+~
+0 -1 16172
+D3
+~
+~
+0 -1 16168
+S
+#16170
+The Dark Chamber~
+   You find yourself in a high vaulted chamber.  Its sheer size makes it
+impossible for you to see its' ceiling.  There seem to be some sort of brittle
+substance underfoot, but you are unable to make out what it is.    
+~
+161 520 12
+D0
+~
+~
+0 -1 16167
+D2
+~
+~
+0 -1 16173
+D3
+~
+~
+0 -1 16169
+S
+#16171
+The Dark Chamber~
+   You find yourself in a high vaulted chamber.  Its sheer size makes it
+impossible for you to see its' ceiling.  There seem to be some sort of brittle
+substance underfoot, but you are unable to make out what it is.    
+~
+161 520 12
+D0
+~
+~
+0 -1 16168
+D1
+~
+~
+0 -1 16172
+S
+#16172
+The Dark Chamber~
+   You find yourself in a high vaulted chamber.  Its sheer size makes it
+impossible for you to see its' ceiling.  There seem to be some sort of brittle
+substance underfoot, but you are unable to make out what it is.    
+~
+161 520 12
+D0
+~
+~
+0 -1 16169
+D1
+~
+~
+0 -1 16173
+D2
+~
+~
+0 -1 16174
+D3
+~
+~
+0 -1 16171
+S
+#16173
+The Dark Chamber~
+   You find yourself in a high vaulted chamber.  Its sheer size makes it
+impossible for you to see its ceiling.  There seems to be some sort of brittle
+substance underfoot, but you are unable to make out what it is.
+~
+161 520 12
+D0
+~
+~
+0 -1 16170
+D3
+~
+~
+0 -1 16172
+S
+#16174
+The Lair~
+   You have stumbled upon the lair of the Great Scorpion!  Skeletal remains of
+creatures litter the ground.  This must be what the desert people had
+imprisoned in this foul place.    
+~
+161 520 12
+D0
+~
+~
+0 -1 16172
+S
+#16175
+Mesa Edge~
+   You stand near the edge of this great mesa and gaze upon the vast expanse of
+desert.  You cannot believe that the desert is so huge.  You notice that quite
+close to the west there is a patch of greenery.  But that could be a mirage.  
+~
+161 0 4
+D1
+~
+~
+0 -1 16176
+D2
+~
+~
+0 -1 16178
+S
+#16176
+Mesa Edge~
+   You stand near the edge of this great mesa and gaze upon the vast expanse of
+desert.  You cannot believe that the desert is so huge.  You notice that quite
+close to the west there is a patch of greenery.  But that could be a mirage.  
+~
+161 0 4
+D2
+~
+~
+0 -1 16179
+D3
+~
+~
+0 -1 16175
+S
+#16177
+Mesa Edge~
+   You stand near the edge of this great mesa and gaze upon the vast expanse of
+desert.  You cannot believe that the desert is so huge.  You notice that quite
+close to the west there is a patch of greenery.  But that could be a mirage.  
+~
+161 0 4
+D1
+~
+~
+0 -1 16178
+D2
+~
+~
+0 -1 16181
+S
+#16178
+Mesa Top~
+   The top of the mesa has been worn totally flat by the harsh winds that blows
+in this barren land.  The hard rock makes plant life difficult if not
+impossible.  But you notice that there are signs of life to the south.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16175
+D1
+~
+~
+0 -1 16179
+D2
+~
+~
+0 -1 16182
+D3
+~
+~
+0 -1 16177
+S
+#16179
+Mesa Top~
+   The top of the mesa has been worn almost totally flat by the harsh winds
+that blow through this barren land.  The hard rock surfaces make plant life
+difficult, if not impossible, to cultivate here.  There are some signs of life
+to the south, an encampment perhaps?    
+~
+161 0 4
+D0
+~
+~
+0 -1 16176
+D2
+~
+~
+0 -1 16183
+D3
+~
+~
+0 -1 16178
+S
+#16180
+Worn Path~
+   The path you now tread on is very well worn, as if many people used this way
+frequently.  The trail leads eastwards and upwards, and it looks like it may
+lead to the top of this mesa.    
+~
+161 0 4
+D1
+~
+~
+0 -1 16181
+D3
+~
+~
+0 -1 16154
+S
+#16181
+The Mesa~
+   You find yourself standing on the top of this great mesa.  To the east, you
+notice signs of human habitation.  Perhaps there is a village of nomads here.
+~
+161 0 4
+D0
+~
+~
+0 -1 16177
+D1
+~
+~
+0 -1 16182
+D2
+~
+~
+0 -1 16184
+D3
+~
+~
+0 -1 16180
+S
+#16182
+Bandit Camp~
+   You have stumbled on the bandits' camp!  Their tents are pitched all over
+the mesa and the fire-pits are still warm.  You hope that no one is home now
+or you will be in real big trouble.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16178
+D1
+~
+~
+0 -1 16183
+D2
+~
+~
+0 -1 16185
+D3
+~
+~
+0 -1 16181
+S
+#16183
+Bandit Camp~
+   You have stumbled on the bandits' camp!  Their tents are pitched all over
+the mesa and the fire-pits are still warm.  You hope that no one is home at now
+or you will be in real big trouble.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16179
+D2
+~
+~
+0 -1 16186
+D3
+~
+~
+0 -1 16182
+S
+#16184
+Mesa Edge~
+   You stand near the edge of this great mesa and gaze upon the vast expanse of
+desert.  You cannot believe that the desert is so huge.  You notice that quite
+close to the west there is a patch of greenery.  But that could be a mirage.  
+~
+161 0 4
+D0
+~
+~
+0 -1 16181
+D1
+~
+~
+0 -1 16185
+S
+#16185
+Bandit Camp~
+   You have stumbled on the bandits' camp!  Their tents are pitched all over
+the mesa and the fire-pits are still warm.  You hope that no one is home at now
+or you will be in real big trouble.  A cool breeze blows to the south, where a
+narrow trail leads up into the tall mountains.    
+~
+161 64 4
+D0
+~
+~
+0 -1 16182
+D1
+~
+~
+0 -1 16186
+D2
+~
+~
+0 -1 16381
+D3
+~
+~
+0 -1 16184
+S
+#16186
+Bandit Camp~
+   You have stumbled on the bandits' camp!  Their tents are pitched all over
+the mesa and the fire-pits are still warm.  You hope that no one is home at now
+or you will be in real big trouble.    
+~
+161 0 4
+D0
+~
+~
+0 -1 16183
+D3
+~
+~
+0 -1 16185
+S
+$~

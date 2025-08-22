@@ -1,0 +1,67 @@
+name: Larthian
+password: Laym0.pB7O
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 1
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20365
+birthtime: 1665983143
+timeplayed: 15
+lastlogintime: 1665983159
+host: 073.081.030.232
+height: 67
+weight: 143
+base_height: 67
+base_weight: 143
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 17
+thirst: 10
+lastlevel: 0
+hitpoints: 26/26
+mana: 0/0
+move: 108/108
+damroll: 3
+hitroll: 3
+strength: 93
+intelligence: 71
+wisdom: 76
+dexterity: 82
+constitution: 85
+charisma: 58
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 75
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1665983149 Luba gossips, 'hi'
+$

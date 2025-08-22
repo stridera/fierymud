@@ -1,0 +1,90 @@
+name: Neurrone
+password: NeyilJjHNo
+prompt: &0%hhp %vmv>&0 
+autoinvis: 0
+sex: 1
+class: 0
+race: 33
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20489
+birthtime: 1680968631
+timeplayed: 2414
+lastlogintime: 1680971056
+host: 202.166.038.099
+height: 9
+weight: 8
+base_height: 9
+base_weight: 8
+base_size: 0
+natural_size: 0
+alignment: 998
+playerflags: xy
+effectflags: u 0 0
+prefflags: ghxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 15
+thirst: 18
+lastlevel: 0
+hitpoints: 20/20
+mana: 0/0
+move: 100/103
+damroll: 0
+hitroll: 6
+strength: 72
+intelligence: 98
+wisdom: 100
+dexterity: 64
+constitution: 64
+charisma: 65
+experience: 1861
+quit_reason: 5
+saveroom: 3039
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 59
+424 52
+438 50
+443 50
+444 50
+447 54
+451 50
+452 52
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 51900 2.000000
+0 0 0
+tells:
+1680969952 @WDaedela@W tells you, 'the newbie school is a little long, but you get a free level for doing it@W'@0
+1680970001 @WDaedela@W tells you, 'just the "search" command.  Otherwise no, you should definitely skip it@W'@0
+1680970016 @WDaedela@W tells you, 'just check "help search" and you'll be fine@W'@0
+1680970170 @WDaedela@W tells you, 'type "hold quill" and spell it fully@W'@0
+1680970200 @WDaedela@W tells you, 'we changed over item targeting after I built the tutorial.  We didn't used to accept partial spelling in targets@W'@0
+1680970215 @WDaedela@W tells you, 'so write the commands exactly as they appear in green@W'@0
+1680970447 @WThe Combat Clerk@W tells you, 'Your trainer is to the south.@W'@0
+$
+gossips:
+1680968650 Daedela gossips, 'hello there'
+1680968652 Paver gossips, 'Welcome Neurrone'
+1680970248 Daedela gossips, 'good morning'
+1680970308 Paver gossips, 'Morning'
+1680970316 Chinok gossips, 'morning all'
+$
+mem:
+32 0 8
+0 0 0

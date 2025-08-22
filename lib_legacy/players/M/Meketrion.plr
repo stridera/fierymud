@@ -1,0 +1,121 @@
+name: Meketrion
+password: MeNJVzLF5p
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20811
+birthtime: 1721011791
+timeplayed: 35565
+lastlogintime: 1721504605
+host: 186.189.076.067
+height: 64
+weight: 136
+base_height: 64
+base_weight: 136
+base_size: 2
+natural_size: 2
+alignment: 59
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 25
+loadroom: 3054
+lastlevel: 0
+hitpoints: 164/154
+mana: 1/0
+move: 176/176
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 64
+wisdom: 69
+dexterity: 80
+constitution: 97
+charisma: 52
+cash: 0 41 150 269
+bank: 100 1015 10135 4939
+experience: 282942
+quit_reason: 3
+saveroom: 0
+skills:
+402 52
+404 126
+415 50
+416 50
+421 143
+430 50
+438 50
+443 50
+444 56
+463 51
+464 50
+465 69
+466 50
+467 50
+468 79
+0 0
+trophy:
+1 8032 1.000000
+1 8030 1.000000
+1 8031 1.000000
+1 8002 1.000000
+1 8021 2.000000
+1 8023 2.000000
+1 8022 2.000000
+1 8014 1.000000
+1 8016 4.000000
+1 8015 3.000000
+1 8013 2.000000
+1 8011 2.000000
+1 8001 6.000000
+1 8010 3.000000
+1 8000 4.000000
+1 8012 3.000000
+1 8020 3.000000
+1 12009 1.000000
+1 12002 1.000000
+1 12007 2.000000
+1 12004 2.000000
+0 0 0
+tells:
+1721180269 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1721180340 @WHelena@W tells you, 'I only sell bread and donuts, all home made.@W'@0
+1721180346 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1721180350 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1721180351 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1721180352 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1721180353 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1721180403 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1721270351 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1721270404 @WBeowyn@W tells you, 'Interesting piece! Thank you for parting with it.@W'@0
+$
+gossips:
+1721081874 Discord gossips, 'Daedela: Type /fm reload'
+1721081884 Chinok gossips, 'what he said --- no / tho'
+1721082112 Chinok gossips, 'fmreload should reset to default..  (gui wise..)  the other odd thing that can happen, the map get stuck ... resize the window on the right side.'
+1721082158 Chinok gossips, 'yeah, fm reload should make them come back'
+1721082188 Chinok gossips, 'also there is a chat button at the top, that should bring the map back.'
+1721082213 Chinok gossips, 'what do you get back if you type fm reload ?'
+1721082245 Chinok gossips, 'ok, try resizing the stuf on the right side.. I think it's a bug that we already have set to be rixed'
+1721082324 Chinok gossips, 'I think it's there, just all the way against the right 'wall''
+1721082379 Chinok gossips, 'fm reload usually works, but if it don't .. reinstall is the way.'
+1721166779 Aerelm gossips, '"Evening."'
+$
+aliases:
+1 kill ant
+2 kill spider
+3 kill large
+4 kill bug
+6 kill cock
+7 kill cricket
+5 kill small
+8 kill beetle
+0

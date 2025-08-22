@@ -1,0 +1,125 @@
+name: Utaboshi
+password: Ut9gviDMN8
+currenttitle: BraveBlade
+prompt: &1&b%h&0&1hp &2&b%v&0&2mv&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 51
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19471
+birthtime: 1566616296
+timeplayed: 1113154
+lastlogintime: 1707813441
+host: 076.106.001.033
+height: 39
+weight: 178
+base_height: 39
+base_weight: 178
+base_size: 2
+natural_size: 2
+alignment: 953
+playerflags: y
+effectflags: k w q
+prefflags: fghnouxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 667/616
+mana: 260/260
+move: 144/144
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 82
+wisdom: 82
+dexterity: 99
+constitution: 86
+charisma: 60
+cash: 49 921 3892 3131
+bank: 35 698 1723 391
+experience: 20361338
+pagelength: 50
+quit_reason: 3
+saveroom: 0
+skills:
+402 202
+404 395
+407 1000
+411 1000
+412 410
+415 145
+416 50
+420 470
+421 481
+422 131
+430 222
+431 50
+434 1000
+438 50
+441 294
+443 50
+444 164
+463 51
+464 71
+465 458
+466 82
+467 50
+468 50
+0 0
+trophy:
+1 18510 0.500000
+1 5403 1.000000
+1 5404 1.000000
+0 0 0
+tells:
+1592116678 @WMeina@W tells you, 'maybe mroe@W'@0
+1592117388 @WMejna@W tells you, 'OH@W'@0
+1592117414 @WMejna@W tells you, 'i WAS drunk one night and we tried blue fog and it was too scary and we came into rhell and thats all i remember.@W'@0
+1592117422 @WMejna@W tells you, 'how could i finish a quest?!@W'@0
+1592119150 @WMeina@W tells you, 'oh lord.@W'@0
+1592119157 @WMeina@W tells you, 'much better@W'@0
+1592119160 @WMeina@W tells you, 'thanks!!@W'@0
+1674380851 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1674380852 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1707808113 @WDaedela@W tells you, 'any luck?@W'@0
+$
+gossips:
+1699474810 Discord gossips, 'Strider: Ignore the next line   &_&RBOOM!'
+1699474893 Mersh gossips, 'kkk'
+1699474929 Choak gossips, 'Hello Utaboshi'
+1707808189 Daedela gossips, 'congrats!'
+1707808194 Dilar gossips, 'thanks :)'
+1707810150 Karoth gossips, 'thanks :)  I got him before but for some reason he didn't have it on him, maybe had already been looted :)'
+1707810990 Karoth gossips, 'gratz :)'
+1707811028 Xumecan gossips, 'thanks!'
+1707811921 Karoth gossips, 'gratz :)'
+1707811925 Melandru gossips, 'thank you!'
+$
+aliases:
+af ass fernley
+am ass mejna
+tac take all all.corpse
+who wh -w
+uo unlock $1;open $1
+bash bash $1; stand
+fc follow $1;consent $1
+wa wake;stand
+wake wake;stand
+from_split_skull n;n;w;s;s;w;w;w;s;w;w;w;w;s;s;s;e;s;s;s;s;w;w;s;s;
+gac get all corpse
+; gt $*
+do gt do: $*;$*
+bbp take bread backpack; eat bread
+to_split_skull n;n;e;e;n;n;n;n;w;n;n;n;e;e;e;e;n;e;e;e;n;n;e;s;
+wai who -wr self
+kk kill skulking
+ko kill ogre
+eat_alias take 2 bread all.backpack;eat bread;eat bread
+drink_alias drink barrel
+bp get $* all.backpack
+0

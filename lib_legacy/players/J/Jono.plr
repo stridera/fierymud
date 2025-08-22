@@ -1,0 +1,89 @@
+name: Jono
+password: JoX0CyKumz
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19308
+birthtime: 1514221876
+timeplayed: 3683
+lastlogintime: 1733253717
+host: 118.101.048.184
+height: 27
+weight: 66
+base_height: 27
+base_weight: 66
+base_size: 1
+natural_size: 1
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 29/29
+mana: 1/-2
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 84
+intelligence: 99
+wisdom: 86
+dexterity: 78
+constitution: 62
+charisma: 54
+cash: 0 2 19 17
+experience: 25406
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 77
+424 69
+438 50
+443 50
+444 50
+447 60
+451 52
+452 63
+453 50
+459 50
+460 51
+462 50
+464 55
+0 0
+trophy:
+1 7002 0.500000
+1 8606 2.000000
+1 36003 0.500000
+1 36002 2.000000
+1 36001 4.500000
+1 8016 0.500000
+1 8013 0.500000
+1 8001 0.500000
+1 8012 1.000000
+1 8011 0.500000
+1 8002 1.500000
+1 8014 0.500000
+1 8010 0.500000
+1 8000 2.000000
+1 3066 2.000000
+1 3062 4.000000
+0 0 0
+tells:
+$
+gossips:
+$

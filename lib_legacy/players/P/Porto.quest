@@ -1,0 +1,98 @@
+47 1 1
+gem_vnum 0
+29 0 18
+bad3 0
+bad1 0
+invoke 0
+summon 0
+prayer 0
+reliquary 0
+bad4 0
+bad2 0
+west 0
+south 0
+east 0
+north 0
+item5 0
+item4 0
+item3 0
+41110 0
+item2 0
+item1 0
+21 1 0
+15 255 0
+4 255 0
+10 255 0
+14 1 0
+16 1 0
+2 255 0
+23 1 0
+6 255 11
+got_spice:23759 1
+got_spice:23750 1
+got_spice:23754 1
+got_spice:12552 1
+got_spice:23758 1
+got_spice:23753 1
+got_spice:23755 1
+got_spice:23757 1
+got_spice:23760 1
+got_spice:23752 1
+num_spices 10
+19 255 1
+choice 2
+32771 255 1
+subclass_name monk
+7 3 30
+55334_armor_acquired 1
+55663_gems_acquired 3
+55740_gems_acquired 3
+55374_armor_acquired 1
+55382_armor_acquired 1
+55370_armor_acquired 1
+55378_armor_acquired 1
+55729_gems_acquired 3
+55366_armor_acquired 1
+55362_armor_acquired 1
+55354_armor_acquired 1
+55685_gems_acquired 3
+55338_armor_acquired 1
+55619_gems_acquired 3
+55608_gems_acquired 3
+55707_gems_acquired 3
+55358_armor_acquired 1
+55630_gems_acquired 3
+55342_armor_acquired 1
+55330_armor_acquired 1
+55674_gems_acquired 3
+55718_gems_acquired 3
+55350_armor_acquired 1
+55696_gems_acquired 3
+55641_gems_acquired 3
+55346_armor_acquired 1
+55652_gems_acquired 3
+55597_gems_acquired 3
+55577_gems_acquired 3
+55308_armor_acquired 1
+17 1 21
+5514_trophies 2
+5504_trophies 3
+5506_trophies 4
+5512_trophies 5
+5510_trophies 9
+5508_trophies 15
+bl_ally 1
+5524_reward 1
+5522_reward 1
+5558_reward 1
+5518_reward 1
+5556_reward 1
+5515_trophies 8
+5513_trophies 9
+5511_trophies 8
+5507_trophies 9
+5503_trophies 6
+5509_trophies 10
+5505_trophies 8
+eg_faction 47
+bl_faction -55

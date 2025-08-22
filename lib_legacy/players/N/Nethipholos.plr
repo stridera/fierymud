@@ -1,0 +1,109 @@
+name: Nethipholos
+password: NejWDoH28B
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19597
+birthtime: 1589042532
+timeplayed: 20948
+lastlogintime: 1595614930
+host: 206.080.024.250
+height: 75
+weight: 103
+base_height: 75
+base_weight: 103
+base_size: 2
+natural_size: 2
+alignment: 952
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 41/41
+mana: 1/0
+move: 108/108
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 94
+wisdom: 81
+dexterity: 64
+constitution: 80
+charisma: 60
+experience: 81256
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 100
+424 98
+438 50
+443 50
+444 50
+447 60
+451 54
+452 79
+453 64
+459 53
+460 58
+462 50
+464 67
+0 0
+trophy:
+1 8613 2.000000
+1 8614 1.000000
+1 36002 2.000000
+1 36001 2.000000
+1 8606 3.000000
+1 8604 6.000000
+1 8605 12.000000
+1 8011 1.000000
+1 8015 1.000000
+1 8012 1.000000
+0 0 0
+tells:
+1589143024 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1589143040 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1589143043 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1589143045 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1589143046 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1589143048 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1589146918 @WAkiko@W tells you, 'Oh dear@W'@0
+1589146954 @WAkiko@W tells you, 'Necro?@W'@0
+1589146985 @WAkiko@W tells you, 'Mmm that's the truth. Now would be the time to relevel though - 5's not too bad.@W'@0
+1589147032 @WAkiko@W tells you, 'For sure@W'@0
+$
+gossips:
+1589139117 Chinok gossips, 'necro has their own'
+1589139301 Chinok gossips, 'gratz!!'
+1589142655 Chinok gossips, 'uh oh!'
+1589142763 Chinok gossips, 'nope'
+1589142769 Chinok gossips, 'there is one on the website..'
+1589142793 Chinok gossips, 'but the rest of the 'mapping' is supposed to be players exploring :)'
+1589142810 Chinok gossips, 'but sorry, gotta head out to say hi to my mother n law'
+1589142814 Chinok gossips, 'for town, yes'
+1589142828 Chinok gossips, 'you get one when you're born'
+1589142857 Chinok gossips, 'thanks, I do like it.. gota run tho!!'
+$
+mem:
+32 0 6
+32 0 6
+32 0 6
+32 1 6
+32 1 6
+0 0 0

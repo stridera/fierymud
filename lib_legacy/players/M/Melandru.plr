@@ -1,0 +1,181 @@
+name: Melandru
+password: MeFQIJmb11
+currenttitle: the Bog Witch
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 7
+race: 4
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20744
+birthtime: 1707699139
+timeplayed: 552276
+lastlogintime: 1737962538
+host: 052.119.120.201
+height: 77
+weight: 182
+base_height: 77
+base_weight: 182
+base_size: 3
+natural_size: 3
+alignment: 229
+playerflags: gxyz
+effectflags: k w 0
+prefflags: hnoxCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1145/1046
+mana: 980/980
+move: 337/337
+damroll: 5
+hitroll: 4
+strength: 75
+intelligence: 93
+wisdom: 96
+dexterity: 76
+constitution: 82
+charisma: 97
+cash: 750 1466 7222 6927
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+6 1000
+11 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+27 1000
+28 1000
+30 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+51 1000
+63 1000
+70 1000
+71 1000
+73 1000
+74 1000
+88 1000
+89 1000
+90 1000
+91 1000
+99 1000
+118 1000
+144 1000
+145 1000
+146 1000
+147 1000
+148 1000
+149 1000
+150 1000
+151 1000
+152 1000
+153 1000
+154 1000
+155 1000
+156 1000
+206 1000
+207 1000
+215 1000
+241 1000
+243 1000
+245 1000
+247 1000
+263 1000
+415 50
+416 50
+417 370
+419 1000
+421 700
+423 395
+424 1000
+427 1000
+429 370
+438 462
+443 370
+444 522
+451 1000
+452 910
+453 348
+454 605
+455 961
+456 513
+457 1000
+458 1000
+459 638
+460 952
+462 373
+463 946
+464 741
+465 370
+466 483
+0 0
+trophy:
+1 37000 0.200000
+1 37004 0.200000
+1 37002 0.800000
+1 37008 0.400000
+1 37007 0.250000
+1 37001 3.200001
+1 37009 0.200000
+1 11798 0.200000
+1 11797 0.400000
+1 11799 0.800000
+1 11811 0.800000
+1 47029 0.500000
+1 47028 1.000000
+1 47018 2.666667
+1 47032 0.333333
+1 47031 0.333333
+1 47012 0.333333
+1 47010 0.333333
+1 47006 0.333333
+1 47030 0.333333
+1 47033 2.000000
+0 0 0
+tells:
+1732874022 @WShazz@W tells you, 'Take good care of that.@W'@0
+1732875989 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1732935280 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732939884 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1732951816 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1733045200 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1733048513 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1733116035 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1733384507 @WShazz@W tells you, 'Take good care of that.@W'@0
+1733385053 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+$
+gossips:
+1733120527 Orrun gossips, 'Getting close!'
+1733120547 Derrgon gossips, 'awesome to see'
+1733120671 Derrgon gossips, 'question: freezing wind - it says enemies of the caster...is that all mobs in the room or just the ones im currently fighting?'
+1733120683 Suraya gossips, 'I don't remember'
+1733120692 Suraya gossips, 'probably everything in the room'
+1733120759 Derrgon gossips, 'ok, i got ice storm coming up next and that seems to be the same, just wondering if it will make me aggro whole room. guess i have to try it.'
+1733120799 Suraya gossips, 'that one I know will aggro the whole room'
+1733120812 Derrgon gossips, 'ok, haha'
+1733121053 Derrgon gossips, 'grats again'
+1733121058 Suraya gossips, 'Thank you'
+1733125125 Someone gossips, 'Welcome Morrissey'
+1733301041 The Lord of the Realm shouts, 'It has been long since I have taken this form! Beware--this time I will be the victorious one!'
+$
+effects:
+118 5 0 0 0 512 0
+108 2 0 0 0 32768 0
+34 8 0 0 4096 0 0
+0 0 0 0 0

@@ -1,0 +1,81 @@
+name: Sherle
+password: ShM6z6dJNY
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20178
+birthtime: 1645998317
+timeplayed: 8588
+lastlogintime: 1646937469
+host: 067.174.070.078
+height: 71
+weight: 170
+base_height: 71
+base_weight: 170
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 25/25
+mana: 1/0
+move: 107/120
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 74
+wisdom: 84
+dexterity: 80
+constitution: 84
+charisma: 64
+experience: 3035
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8014 1.000000
+1 8023 0.500000
+1 8013 0.500000
+1 8015 0.500000
+0 0 0
+tells:
+1645998552 @WMurl@W tells you, 'test@W'@0
+$
+gossips:
+1646937019 Meina gossips, 'yay!'
+1646937021 Murl gossips, 'oh cool'
+1646937044 Murl gossips, 'hmm ill try some random names i might have used and see'
+1646937083 Swenct gossips, 'oh found one1'
+1646937089 Meina gossips, 'cool!!'
+1646937096 Chinok gossips, 'we considered adding it to this version, as just a 'field you can add' -- but it would be too easy to abuse..'
+1646937128 Flenct gossips, 'hahah yes my brain works!'
+1646937136 Meina gossips, 'nice! :)'
+1646937163 Meina gossips, 'afk a sec - gotta get ready for a home inspection. we are trying to get rid of our mortgage insurance.'
+1646937175 Chinok gossips, 'nice'
+$

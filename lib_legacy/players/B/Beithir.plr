@@ -1,0 +1,113 @@
+name: Beithir
+password: Bez4FjXMmE
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 29
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20190
+birthtime: 1646944244
+timeplayed: 77072
+lastlogintime: 1689256361
+host: 076.184.241.147
+height: 75
+weight: 203
+base_height: 75
+base_weight: 203
+base_size: 2
+natural_size: 2
+alignment: 17
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 10
+loadroom: 3054
+lastlevel: 0
+hitpoints: 186/173
+mana: 16/16
+move: 142/142
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 70
+wisdom: 65
+dexterity: 84
+constitution: 92
+charisma: 56
+cash: 0 17 220 183
+experience: 589139
+quit_reason: 1
+saveroom: 3054
+skills:
+205 1000
+402 180
+404 180
+415 106
+416 50
+421 127
+430 160
+435 95
+438 100
+443 50
+444 78
+456 50
+463 50
+464 50
+465 115
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 1605 0.750000
+1 1601 3.750000
+1 1602 1.250000
+1 8012 0.750000
+1 8011 1.250000
+1 8002 1.500000
+1 8013 1.250000
+1 8014 0.750000
+1 8022 1.000000
+1 8001 0.500000
+1 13611 0.250000
+1 13615 0.250000
+1 13610 0.250000
+1 13602 0.750000
+1 13601 0.750000
+1 8016 1.750000
+1 8000 0.750000
+1 8023 0.750000
+1 8021 0.750000
+1 8020 0.500000
+1 8602 0.500000
+0 0 0
+tells:
+1647037060 @WStrider@W tells you, 'that swords a little op, but it's fun :)@W'@0
+1647889281 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1661451085 @WStrider@W tells you, 'all the characters from your host:  Kuvira, Mimbelag, Mejna, Minty, Meina, Beithir, Reoanaigh, Fieryshield, Fireshield, Gizelle, Griffette, and Gennaire@W'@0
+1661451123 @WStrider@W tells you, ':)@W'@0
+1661454700 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1661454976 @WZaver@W tells you, 'if you need a ride back home just 'tell choak well' and he will send you a moonwell@W'@0
+1661456604 @WZaver@W tells you, 'which imm are you? @W'@0
+1661456694 @WZaver@W tells you, 'ah I see. Nice! @W'@0
+1661456746 @WZaver@W tells you, 'ahah well good luck!@W'@0
+1661456760 @WZaver@W tells you, 'yeah if it means more responsiblity id not level past 69 too :D@W'@0
+$
+gossips:
+1688795141 Niran gossips, 'Hi!'
+1688795153 Daedela gossips, 'new to Fiery?'
+1688795214 Daedela gossips, 'I'm the head of the official Fiery Welcome Crew so let me know if there's anything I can do to help!'
+1688795223 Niran gossips, 'Heard. I appreciate that.'
+1688795694 Daedela gossips, 'yes, totally fair'
+1688795702 Daedela gossips, 'thank you so much for sharing thag'
+1688795790 Gorath gossips, 'struggling with syntax'
+1688797092 Narin gossips, 'Okay. I think i'm good now.'
+1688797199 Aigeadach gossips, 'welcome back Narin :)'
+1688797204 Narin gossips, 'Thanks.'
+$

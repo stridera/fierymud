@@ -1,0 +1,234 @@
+name: Aia
+password: Ai2n76ozh8
+prompt: &0&5Pe1: %d1 &0&5Pe2: %d2 &0&5Pe3: %d3%_&0&5Pe4: %d4 &0&5Pe5: %d5 &0&5Pe6: %d6%_&0&5Pe7: %d7 &0&5&0&5Bea: %dt &0&5Asc: %da%_&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>&2&b<&0&2%iH&2&b><&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 19
+race: 34
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20343
+birthtime: 1662863463
+timeplayed: 727014
+lastlogintime: 1720632076
+host: 136.038.104.232
+height: 67
+weight: 96
+base_height: 67
+base_weight: 96
+base_size: 2
+natural_size: 2
+alignment: -903
+playerflags: yz
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 859/859
+mana: 980/980
+move: 230/230
+damroll: 3
+hitroll: 3
+strength: 70
+intelligence: 70
+wisdom: 68
+dexterity: 84
+constitution: 93
+charisma: 78
+cash: 4 1025 1356 343
+experience: 126967199
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+8 1000
+10 1000
+15 1000
+16 1000
+17 1000
+18 1000
+19 1000
+20 1000
+21 1000
+24 1000
+29 1000
+31 1000
+32 1000
+33 1000
+35 1000
+37 1000
+39 1000
+41 1000
+43 1000
+62 1000
+68 1000
+83 1000
+84 1000
+85 1000
+86 1000
+88 1000
+89 1000
+90 1000
+91 1000
+94 1000
+99 1000
+100 1000
+103 1000
+112 1000
+114 1000
+136 1000
+142 1000
+152 1000
+184 1000
+185 1000
+186 1000
+190 1000
+191 1000
+195 1000
+197 1000
+219 1000
+228 1000
+240 1000
+241 1000
+242 1000
+243 1000
+246 1000
+267 1000
+401 1000
+403 1000
+405 1000
+408 1000
+409 1000
+410 500
+411 1000
+412 1000
+415 1000
+416 1000
+420 1000
+421 236
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+447 50
+451 1000
+452 1000
+453 500
+454 500
+456 500
+457 750
+459 1000
+460 1000
+462 1000
+463 50
+464 1000
+465 50
+490 1000
+551 50
+552 50
+554 1000
+556 50
+557 50
+558 50
+559 50
+560 50
+0 0
+trophy:
+1 52002 0.333333
+1 52007 0.333333
+1 61506 0.250000
+1 61505 0.250000
+1 8608 0.250000
+1 11811 0.850000
+1 11798 0.200000
+1 11797 0.400000
+1 11799 0.800000
+1 52016 0.272727
+1 52015 0.090909
+1 52006 0.090909
+1 52018 0.090909
+1 52000 0.090909
+1 18510 1.000000
+1 4353 1.000000
+1 16207 0.500000
+1 12522 0.500000
+1 48914 0.500000
+1 4345 1.000000
+1 16205 0.500000
+0 0 0
+tells:
+1698867240 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1698867240 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1698867240 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1698867241 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1698867241 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1698867298 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1698867298 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1698867298 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1698867299 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1698867299 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+$
+gossips:
+1698177187 Mersh gossips, 'templace is a good place to die'
+1698177197 Ulthar gossips, ':)'
+1698177254 Discord gossips, 'venath.2005: Hehehee, oh man, nobody tried to kill Mysa last reset. There were 4 Maya's in there. Woulda been entertaining.'
+1698177263 Mersh gossips, 'hahahahah'
+1698177271 Discord gossips, 'venath.2005: Mysas*'
+1698177273 Ulthar gossips, 'okay, templace got me'
+1698177279 Mersh gossips, 'hahah nice towering rock demon is a good one to die to'
+1698177281 Discord gossips, 'venath.2005: Hahahahahaahaha'
+1698177287 Ulthar gossips, 'not sure I can get my corpse though'
+1698177297 Mersh gossips, 'haha no you cannot :D but I can help you'
+1698177305 Ulthar gossips, 'thanks'
+$
+effects:
+551 5 296 13 0 0 0
+551 5 9 17 0 0 0
+551 5 -12 24 0 0 0
+551 5 -14 23 0 0 0
+551 5 -12 22 0 0 0
+551 5 -12 21 0 0 0
+551 5 -14 20 0 0 0
+551 5 4 19 0 0 0
+551 5 4 18 0 0 0
+195 6 0 0 536870912 0 0
+39 8 7 5 0 0 0
+0 0 0 0 0
+aliases:
+fa first aid
+ia perform 'heroic journey'
+rc get curse sack;recite curse $*
+cod cast 'cloud of daggers'
+insan cast 'insanity' $*
+df drink fountain
+remp cast 'remove paralysis' $*
+heal cast 'heal' $*
+ter perform 'terror' $*
+ec examine corpse
+gcc get all.coins all.corpse
+ul unlock $*;open $*
+pi perform 'inspiration' $*
+char innate ascen
+hj perform 'heroic journey'
+fs perform 'freedom song' $*
+web cast 'web' $*
+mm cast 'magic missile' $*
+shock cast 'shocking grasp' $*
+cs cast 'color spray'
+who who -w
+blind innate 'blinding beauty'
+tear perform 'ballad of tears'
+tears perform 'ballad of tears'
+burn cast 'burning hands' $*
+locate cast 'locate object' $*
+id get identify sack;recite identify $*
+famil perform 'hearthsong'
+sil cast 'silence' $*
+enhance cast 'enhance ability'$*
+0

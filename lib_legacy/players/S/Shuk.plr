@@ -1,0 +1,110 @@
+name: Shuk
+password: ShD8TkUDEo
+prompt: %n%-&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b> <&0%e&2&b>%_<&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 9
+race: 0
+level: 34
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18664
+birthtime: 1394891948
+timeplayed: 164806
+lastlogintime: 1614116747
+host: 076.188.049.199
+height: 75
+weight: 139
+base_height: 75
+base_weight: 139
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 336/336
+mana: 115/115
+move: 134/134
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 72
+wisdom: 90
+dexterity: 100
+constitution: 94
+charisma: 72
+cash: 39 1818 2483 7
+experience: 6632578
+quit_reason: 1
+saveroom: 3054
+skills:
+401 390
+403 390
+405 281
+408 390
+410 276
+411 348
+415 50
+416 50
+418 50
+420 253
+421 272
+438 50
+440 390
+443 50
+444 114
+464 314
+465 50
+0 0
+trophy:
+1 8022 1.000000
+1 8000 1.000000
+1 8002 1.000000
+1 3066 1.000000
+1 3061 1.000000
+1 16906 1.000000
+1 16901 1.000000
+1 16900 1.000000
+1 16905 1.000000
+1 16908 1.000000
+1 3501 1.000000
+1 3507 1.000000
+1 3500 1.000000
+1 3502 1.000000
+1 17204 1.000000
+1 3509 1.000000
+1 3508 1.000000
+1 3506 1.000000
+1 36003 1.000000
+1 8033 1.000000
+1 8032 1.000000
+0 0 0
+tells:
+$
+gossips:
+$
+aliases:
+tc throatcut $1
+as gtell bro do you even assist?
+k kill $1
+ew enter well
+well tell samun moonwell
+id get identify saddle;rec identify $1
+lib look in saddle
+cc search curtain;open curtain;e;d;level gain;u;w;n
+df drink fountain
+ds drink skin
+` get all from all.corpse
+lic look in corpse
+who who -w
+bs backstab $1
+pp pick wall;lock wall
+0

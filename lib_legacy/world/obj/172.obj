@@ -1,0 +1,256 @@
+#17200
+staff magicians-staff magician's-staff knobbed-staff~
+magician's staff~
+A knobbed staff rests against the wall here.~
+~
+5 14606408 8193 5
+0 1 6 6 0 0 0
+1.50 200 0 0 0 0 0 0
+E
+staff magicians-staff magician's-staff knobbed-staff~
+This staff is made of a very fine and expensive wood.  It has a prominent knob
+on one end.~
+A
+24 -1
+A
+27 1
+X
+785
+#17201
+sword glowing-sword faint-light~
+a glowing sword~
+A glowing sword casts a faint light as it rests on the ground.~
+~
+5 53489729 8193 1
+0 1 8 3 0 0 0
+1.75 200 0 0 0 0 0 0
+E
+sword glowing-sword faint-light~
+You realise that this is a normal longsword which has been enchanted.  It seems
+to be somewhat easier to wield.~
+A
+18 1
+X
+997
+#17202
+amulet amulet-magus silver-amulet~
+the Amulet of the Magus~
+A silver amulet lies on the ground here.~
+~
+8 14606408 5 5
+2 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+amulet amulet-magus silver-amulet~
+This amulet is made of pure silver and is decorated by various magical symbols.
+You sense some power in this artifact.~
+A
+24 -2
+A
+27 1
+X
+785
+#17203
+wand sorcerer ebony~
+the sorcerer's wand~
+An ebony wand is left here.~
+~
+3 1761344 16385 5
+10 7 7 32 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+wand sorcerer ebony~
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.~
+X
+784
+#17204
+cord golden-cord~
+the golden cord~
+A golden cord lies on the ground.~
+~
+9 64 2049 5
+2 0 0 0 0 0 0
+0.50 20 0 0 0 0 0 0
+E
+cord golden-cord~
+You look upon a length of cord made of finely spun gold threads.  It seems to
+emanate a strange aura.~
+A
+3 1
+A
+18 -1
+A
+27 1
+#17205
+cord red-cord~
+a red cord~
+A blood red cord lies on the ground.~
+~
+9 192 2049 5
+-3 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+cord red-cord~
+This cord is made of fine red threads which feels slightly sticky. ~
+A
+3 -3
+A
+4 -3
+A
+27 -1
+#17206
+flask bubbling~
+a bubbling flask~
+A bubbling flask is left at the side of the room.~
+~
+10 0 1 5
+15 16 0 0 0 0 0
+1.00 15 0 0 0 0 0 0
+E
+flask bubbling~
+The liquid in the flask has a sweet and pleasant aroma. It smells somewhat
+delicious.~
+#17207
+key green~
+a green key~
+A green key has been left here.~
+~
+18 4 1 1
+1 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+#17208
+robe magician's-robe magicians-robe velvet-robe heap~
+a magician's robe~
+A velvet robe lies in a crumpled heap here.~
+~
+9 14606408 1025 5
+4 0 0 0 0 0 0
+1.00 150 0 0 0 0 0 0
+E
+robe magician's-robe magicians-robe velvet-robe heap~
+This robe is made of very high quality velvet and is decorated with various
+symbols of arcane importance.~
+A
+3 1
+A
+13 -3
+A
+27 1
+X
+785
+#17209
+dagger bronze bronze-dagger~
+a bronze dagger~
+A dagger of bronze lies upon the ground.~
+~
+5 0 8193 7
+0 1 6 11 0 0 0
+0.75 1322 0 0 0 0 0 0
+E
+dagger bronze~
+The dagger is made of finely crafted bronze and its hilt is of ivory. Arcane
+tracings are carved upon the hilt of this weapon.~
+A
+2 2
+#17210
+scroll yellowed~
+a yellowed scroll~
+A scroll lies here.~
+~
+2 536870976 16385 5
+15 18 20 14 0 0 0
+1.00 20 0 0 0 0 0 0
+E
+scroll yellowed~
+This scroll seems to be very old. The parchment has already been yellowed
+with age.~
+#17211
+key orange~
+an orange key~
+An orange key has been left here.~
+~
+18 4 1 1
+2 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+#17212
+jewel-heart dusty-little-jewel questobject~
+the jewel of the heart~
+A dusty little jewel lies here.~
+~
+8 1 5 5
+0 0 0 0 0 0 0
+0.20 1782 0 0 0 0 0 0
+T 16307
+E
+jewel-heart dusty-little-jewel questobject~
+This beautiful little jewel is shaped oddly, and appears to be very valuable to someone at least.~
+A
+13 20
+#17213
+scroll rough graphed roughly-graphed~
+a roughly-graphed scroll~
+A crude scroll with heavy graph lines lies here rolled up.~
+~
+2 536870912 1 1
+1 31 0 0 0 0 0
+1.00 200 0 0 0 0 0 0
+E
+scroll rough graphed roughly-graphed~
+This appears to be the work of an apprentice, for crude lines are drawn roughly
+all across its surface.  The somewhat faint silvery lines have a discernable
+metallic gleam.  Most of the lines are drawn in one of two orthogonal
+directions, parallel to one or the other of the mostly rectangular edges of the
+document.  Four other lines drawn at acute angles create a diamond in the
+middle, albeit somewhat distorted.~
+#17214
+choker diamond-onyx-studded-choker wide-platinum-choker diamonds onyxes questobject~
+a &7&bdiamond&0-and-&9&bonyx&0-studded &7&bc&9hoke&7r&0~
+A wide platinum choker studded with &7&bdiamonds&0 and &9&bonyxes&0 lies here.~
+~
+8 0 5 10
+0 0 0 0 0 0 0
+0.50 10 0 0 0 0 0 0
+E
+choker diamond-onyx-studded-choker wide-platinum-choker diamonds onyxes questobject~
+This choker is made of the finest platinum links, like light chainmail.
+Somewhat larger links around its upper and lower edges have mounts in which
+large diamonds have been affixed.  They are clear and beautiful, and each one
+is the size of a pea.  Between these rings, the bulk of the choker's surface is
+entirely covered in small black onyxes.  They are polished to a brilliant
+shine.~
+A
+6 10
+#17215
+vial vial-disturbance small-glass-vial dark-gray-gas questobject~
+a vial of disturbance~
+A small glass vial lies here, filled with dark gray gas.~
+~
+12 268435460 1 10
+0 0 0 0 0 0 0
+1.00 100 0 0 0 0 0 0
+T 17206
+E
+vial vial-disturbance small-glass-vial dark-gray-gas questobject~
+This is a tiny glass vial, stoppered at the top with a glob of blackened wax.
+Dark gray gases swirl slowly inside.  Due to the hardness of the wax, it would
+appear to be impossible to open the vial without destroying it.  It does appear
+somewhat fragile.~
+#17216
+tear gemstone-tear gem-stone tiny-green-gemstone-teardrop tourmaline tear-drop~
+a gemstone tear~
+A tiny green gemstone teardrop dangles from a string.~
+~
+8 0 65537 1
+0 0 0 0 0 0 0
+0.01 500 0 0 0 0 0 0
+E
+tear gemstone-tear gem-stone tiny-green-gemstone-teardrop tourmaline tear-drop~
+Made from clear green tourmaline, this tear-shaped adornment is designed to
+nest just outside the corner of the eye.  It's cut into a multifaceted
+teardrop, a little green twinkle of sadness and strength.~
+A
+5 1
+A
+28 10
+$~

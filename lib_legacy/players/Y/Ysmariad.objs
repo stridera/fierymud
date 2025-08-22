@@ -1,0 +1,381 @@
+1
+vnum: 1005
+location: 0
+values:
+1
+150
+76
+0
+0
+0
+0
+~
+flags: D
+name: torch slender-wooden-torch
+shortdesc: a wooden torch
+desc: A slender wooden torch lies here.
+type: 1
+weight: 2.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: slender-wooden-torch
+&0A simply designed torch, consiting of a burning rag and long slender
+wooden pole. Looks like it could last for eight hours or so.
+~
+~~
+vnum: 589
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: eD
+name: wreath christmas-wreath large-green-wreath
+shortdesc: a Christmas wreath
+desc: A large green wreath is propped up here.
+type: 8
+weight: 4.00
+cost: 12345
+timer: 5000
+level: 1
+effects: 0 j 0
+wear: 5
+applies:
+28 25
+~
+extradesc: christmas-wreath large-green-wreath
+Constructed from a large bough of an evergreen tree, twisted back upon
+itself into a large circle, this wreath smells with the wonderous winter
+scent of Christmas.  Various pine cones and berries are tied into the
+wreath, and a large red bow on one side adds a vibrant splash of color
+to the decoration.  The hole in the center is fairly wide, probably
+large enough to fit over your head...
+~
+~~
+vnum: 18003
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 1025
+location: 6
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cap leather
+shortdesc: &3a small leather cap&0
+desc: &3A small leather cap lies on the ground here.&0
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+~~
+vnum: 38
+location: 7
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: leggings black linen
+shortdesc: black linen leggings
+desc: Some black linen leggings lie here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: black linen leggings
+They are finely tailored of regular coarse linen and dyed black.
+With their close-fitting form, they certainly cut a nice figure
+beneath a robe.
+~
+~~
+vnum: 1027
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandals leather leather-sandals
+shortdesc: &0&3a pair of leather sandals&0
+desc: &0&3A pair of leather sandals lie here.&0
+type: 9
+weight: 1.60
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+~~
+vnum: 3020
+location: 16
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: 0
+name: dagger steel steel-dagger
+shortdesc: a steel dagger
+desc: A steel dagger lies on the ground, sheathed.
+type: 5
+weight: 0.50
+cost: 45
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 2005
+location: 18
+values:
+1
+1
+5
+5
+0
+0
+0
+~
+flags: 0
+name: staff walking walking-staff
+shortdesc: a walking-staff
+desc: A staff rests here.
+type: 5
+weight: 2.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+applies:
+14 30
+~
+extradesc: staff walking
+This plain wooden staff is imbued with a peaceful feeling, making
+it useless in combat. But it does help one walk rather nicely.
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+240
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 17.65
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: quill feather feather-quill pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: feather quill
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+32 5
+100 5
+5 5
+~
+~~
+vnum: 18003
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~

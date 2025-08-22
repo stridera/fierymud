@@ -1,0 +1,32 @@
+32775 255 1
+subclass_name thief
+17 1 9
+5513_trophies 8
+5515_trophies 4
+5509_trophies 11
+5511_trophies 5
+5505_trophies 11
+5507_trophies 15
+5503_trophies 19
+eg_faction 105
+bl_faction -1
+21 1 5
+actor_level 9
+price 200
+skill_level 120
+word2 lock
+skill_name bandage
+7 1 13
+55321_armor_acquired 1
+55325_armor_acquired 1
+55588_gems_acquired 2
+55305_armor_acquired 1
+55313_armor_acquired 1
+55309_armor_acquired 1
+55317_armor_acquired 1
+55580_gems_acquired 3
+55576_gems_acquired 3
+55584_gems_acquired 3
+55568_gems_acquired 3
+55572_gems_acquired 3
+55301_armor_acquired 1

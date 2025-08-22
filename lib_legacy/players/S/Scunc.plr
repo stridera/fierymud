@@ -1,0 +1,85 @@
+name: Scunc
+password: YoQy4MOPMw
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 3
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18086
+birthtime: 1323136672
+timeplayed: 16547
+lastlogintime: 1337039353
+host: 068.048.032.139
+height: 43
+weight: 185
+base_height: 43
+base_weight: 185
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 102
+loadroom: 3054
+lastlevel: 0
+hitpoints: 70/62
+mana: 1/0
+move: 156/156
+damroll: 4
+hitroll: 5
+strength: 94
+intelligence: 69
+wisdom: 75
+dexterity: 85
+constitution: 93
+charisma: 48
+cash: 0 4 57 50
+experience: 56780
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 90
+415 50
+416 50
+421 58
+438 50
+443 50
+444 50
+463 50
+464 50
+465 58
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18003 1.000000
+1 18000 0.500000
+1 18005 0.500000
+1 18007 1.500000
+1 18001 0.500000
+1 16909 0.500000
+1 16903 0.500000
+1 36001 2.000000
+1 36003 3.000000
+1 36002 4.500000
+1 8010 0.500000
+1 8012 0.500000
+1 8016 0.500000
+1 8023 0.500000
+1 8000 0.500000
+1 8011 0.500000
+1 8014 1.000000
+1 8013 1.500000
+1 16907 4.000000
+1 16902 3.000000
+1 16906 3.500000
+0 0 0

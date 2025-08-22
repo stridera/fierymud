@@ -1,0 +1,3025 @@
+#2801
+The Blue River (Next to the Town Wall)~
+   Thick city walls stand to the north, and a circular grating is
+set near their base. Dark water flows from the grating to join an
+underground river flowing around the city walls to the south. The
+water is an eerie blue color, and almost glows, while light blue
+fog floats all around, obscuring the view to the east and west.
+~
+28 0 7
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2802
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2802
+The Blue River~
+   An eerie, dark river flows through here, from north to east,
+making a sinuous curve. A strange fog seems to envelope the
+river, making it seem like it runs through a tunnel of light
+blue mist. The sides of the river are obscured from view.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2801
+D1
+You see the Blue River continuing on to the east.
+~
+~
+0 -1 2803
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2803
+The Blue River~
+   A narrow but very deep river runs from south to west here,
+through a light blue mist that swirls everywhere. The waters
+are almost black. No light of any kind penetrates the fog,
+so the area is quite dim, and whatever lies beyond the river's  
+banks is obscured by the fog. The river widens to the west.
+~
+28 0 7
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2804
+D3
+You see the Blue River continuing on to the west.
+~
+~
+0 -1 2802
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2804
+The Blue River~
+   A dark river flows from north to south, growing increasingly
+turbulent to the south. The waters are such a dark blue that
+the bottom of them cannot be seen. A strange fog swirls up
+from nowhere to obscure the river's banks.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2803
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2805
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2805
+The Blue River~
+   A dark river flows from north to east through territory that
+is completely obscured by a strange, swirling light blue mist.
+The fog makes the river feel like it's running through a tunnel,
+such is the density of its cover. The river widens very slightly
+to the east, and grows more turbulent.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2804
+D1
+You see the Blue River continuing on to the east.
+~
+~
+0 -1 2806
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2806
+The Blue River~
+   A medium-width river runs from west to south here, making a
+complicated, sinuous turn through dark terrain. Vague shadows
+at the river's edges are all that exists of the land beyond
+the water. The source of the veiling is the dense, swirling
+fog, light blue in color, that rises from the very water.
+~
+28 0 7
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2807
+D3
+You see the Blue River continuing on to the west.
+~
+~
+0 -1 2805
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2807
+The Blue River~
+   A medium-width river flows from north to south here, through
+very thick blue fog that swirls in eddies around the water's
+surface. The mist obscures the river's banks completely.
+Small wavelets lap southward here and there.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2806
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2808
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2808
+The Blue River~
+   A medium-width river flows from north to south here, through
+very thick blue fog that swirls in eddies around the water's
+surface. The mist obscures the river's banks completely.
+Small wavelets lap southward here and there.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2807
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2809
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2809
+The Blue River~
+   A medium-width river flows from north to south here, through
+very thick blue fog that swirls in eddies around the water's
+surface. The mist obscures the river's banks completely.
+Small wavelets lap southward here and there.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2808
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2810
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2810
+The Blue River~
+   This widening river flows from north to east, making a
+slight turn. The reason for the turn is not knowable,   
+since a dense, light blue fog completely obscures the
+riverbanks. The river almost feels like it's in the
+middle of a tunnel, and light doesn't penetrate those
+mists very well.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2809
+D1
+You see the Blue River continuing on to the east.
+~
+~
+0 -1 2811
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2811
+The Blue River~
+   A medium-width river flows from west to south, its dark waters
+slightly turbulent. A strange, eerie light blue mist curls up
+from the water's surface, twisting into the sky. The fog almost
+makes the river appear to be flowing through a tunnel, for no
+light reaches its surface.
+~
+28 0 7
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2812
+D3
+You see the Blue River continuing on to the west.
+~
+~
+0 -1 2810
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2812
+The Blue River~
+   A medium-width river flows from north to south, its waters dark
+blue and slightly turbulent. A strange, light blue fog, dense and
+utterly obscuring, rises from all around, making the river seem
+like it's running through a large tunnel. Just to the south, where
+the river seems more turbulent, a bridge can barely be made out
+crossing the water.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2811
+D2
+You see the Blue River flowing beneath the Northern Bridge.
+~
+~
+0 -1 2813
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2813
+The Blue River (Under the Northern Bridge)~
+   A medium-width river flows from north to south below a sturdy
+bridge. The water is murky and turbulent, flowing swiftly enough
+to cause tiny white-capped wavelets as it rushes beneath the
+bridge. A dirt walkway, narrow and a bit muddy, leads upward.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2812
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2814
+D4
+You see the Blue-Fog Trail's sturdy Northern Bridge.
+~
+~
+0 -1 11712
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2814
+The Blue River~
+   A medium-width river flows through very foggy terrain, straight
+as an arrow, from north to south. The curling mist completely
+obscures whatever lies on the riverbanks to the east and west.
+The water itself is a very dark shade of blue, and its bottom
+cannot be seen. Little white-capped wavelets slow down the
+further south one progresses; to the north, a wooden bridge
+is visible.
+~
+28 0 7
+D0
+You see the Blue River flowing beneath the Northern Bridge.
+~
+~
+0 -1 2813
+D1
+You see the Blue River continuing on to the east.
+~
+~
+0 -1 2815
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2815
+The Blue River~
+   A medium-width river twists and turns to the west and south
+through an eerie light blue fog that curls up from the dark
+blue water and completely obscures whatever lies at the river's
+banks. The mist so thickly veils the river that visibility is
+limited to just what is around you.
+~
+28 0 7
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2816
+D3
+You see the Blue River continuing on to the west.
+~
+~
+0 -1 2814
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2816
+The Blue River~
+   A medium-width river flows from north to south through a
+thick blue fog that veils everything except what's right
+in front of you. The river almost feels like it's flowing  
+through a tunnel, so dense is the mist curling up from
+the dark blue water.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2815
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2817
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2817
+The Blue River~
+   A dark blue river flows north to west here, gently
+pulsing along its bed. An eerie light blue mist,
+dense and swirling, curls up from the water, obscuring
+everything nearby and making the river seem like it's
+running through a tunnel.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2816
+D3
+You see the Blue River continuing on to the west.
+~
+~
+0 -1 2818
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2818
+The Blue River~
+   This medium-width river turns from east to south, making a sinuous
+curve. The water is a dark blue, and a lighter blue mist rises up
+from it, curling and packing so densely that it obscures everything.
+It's not possible to see what kind of land the river rushes through,
+or even what lies on its banks.
+~
+28 0 7
+D1
+You see the Blue River continuing on to the east.
+~
+~
+0 -1 2817
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2819
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2819
+The Blue River~
+   This medium-width river turns from north to west, making a sinuous
+curve. The water is a dark blue, and a lighter blue mist rises up
+from it, curling and packing so densely that it obscures everything.
+It's not possible to see what kind of land the river rushes through,
+or even what lies on its banks.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2818
+D3
+You see the Blue River continuing on to the west.
+~
+~
+0 -1 2820
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2820
+The Blue River~
+   A medium-width river flows from east to south here, toward a
+rope bridge that sways not far away. The river's water is quite
+a dark shade of blue, with a lighter-colored blue mist rising
+up from it. The tendrils of fog completely obscure the banks
+of the river, the sky, and almost all other details of the
+terrain around here.
+~
+28 0 7
+D1
+You see the Blue River continuing on to the east.
+~
+~
+0 -1 2819
+D2
+You see the Blue River flowing beneath a rickety rope bridge.
+~
+~
+0 -1 2821
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2821
+The Blue River (Under the Rickety Rope Bridge)~
+   A medium-width river runs from north to south here, running 
+beneath a rickety-looking rope bridge that sways dangerously
+overhead. The banks of the river are completely obscured by
+a dense, light-blue fog that rises up from the dark water,
+though it is possible to see a muddy path leading upward
+to the side of the bridge.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2820
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2822
+D4
+~
+~
+0 -1 11722
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2822
+The Blue River~
+   A medium-width river flows from north to south, its dark waters
+moving at a healthy clip. A strange, light-colored mist rises
+up from the water, curling into blue tendrils that totally
+obscure the sky, the sides of the river, and any other details
+about the terrain. Just north of here, a rope bridge can be
+seen swaying a small distance above the river.
+~
+28 0 7
+D0
+You see the Blue River flowing beneath a rickety rope bridge.
+~
+~
+0 -1 2821
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2823
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2823
+The Blue River~
+   A medium-width river flows from north to west, its dark waters
+moving at a healthy clip. A strange, light-colored mist rises
+up from the water, curling into blue tendrils that totally
+obscure the sky, the sides of the river, and any other details
+about the terrain.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2822
+D3
+You see the Blue River continuing on to the west.
+~
+~
+0 -1 2824
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2824
+The Blue River~
+   A medium-width river flows from east to south, its dark waters
+moving at a healthy clip. A strange, light-colored mist rises
+up from the water, curling into blue tendrils that totally   
+obscure the sky, the sides of the river, and any other details
+about the terrain.
+~
+28 0 7
+D1
+You see the Blue River continuing on to the east.
+~
+~
+0 -1 2823
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2825
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2825
+The Blue River~
+   A medium-width river flows from north to south, its dark waters
+moving at a healthy clip. A strange, light-colored mist rises
+up from the water, curling into blue tendrils that totally
+obscure the sky, the sides of the river, and any other details
+about the terrain.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2824
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2826
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2826
+The Blue River~
+   A medium-width river flows from north to west, its dark waters
+moving at a healthy clip. A strange, light-colored mist rises
+up from the water, curling into blue tendrils that totally
+obscure the sky, the sides of the river, and any other details
+about the terrain.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2825
+D3
+You see the Blue River continuing on to the west.
+~
+~
+0 -1 2827
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2827
+The Blue River~
+   A medium-width river flows from east to south, its dark waters
+moving at a healthy clip. A strange, light-colored mist rises  
+up from the water, curling into blue tendrils that totally   
+obscure the sky, the sides of the river, and any other details
+about the terrain.
+~
+28 0 7
+D1
+You see the Blue River continuing on to the east.
+~
+~
+0 -1 2826
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2828
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2828
+The Blue River~
+   A medium-width river flows from north to south, its dark waters
+moving at a healthy clip. A strange, light-colored mist rises
+up from the water, curling into blue tendrils that totally
+obscure the sky, the sides of the river, and any other details
+about the terrain.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2827
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2829
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2829
+The Blue River~
+   A medium-width river flows from north to east, its dark waters
+moving at a healthy clip. A strange, light-colored mist rises
+up from the water, curling into blue tendrils that totally
+obscure the sky, the sides of the river, and any other details
+about the terrain.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2828
+D1
+You see the Blue River continuing on to the east.
+~
+~
+0 -1 2830
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2830
+The Blue River~
+   A gradually widening river flows from west to south, moving quickly
+and making numerous twisting curves through terrain that is completely
+obscured by a strange blue mist that seems to curl up from the dark
+water itself to make traveling the river seem almost like going through
+a tunnel of light-colored stone.
+~
+28 0 7
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2831
+D3
+You see the Blue River continuing on to the west.
+~
+~
+0 -1 2829
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2831
+The Blue River~
+   A gradually widening river flows from north to east, moving quickly
+and making numerous twisting curves through terrain that is completely
+obscured by a strange blue mist that seems to curl up from the dark
+water itself to make traveling the river seem almost like going through
+a tunnel of light-colored stone.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2830
+D1
+You see the Blue River continuing on to the east.
+~
+~
+0 -1 2832
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2832
+The Blue River~
+   A gradually widening river flows from west to south, moving quickly
+and making numerous twisting curves through terrain that is completely
+obscured by a strange blue mist that seems to curl up from the dark
+water itself to make traveling the river seem almost like going through
+a tunnel of light-colored stone.
+~
+28 0 7
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2833
+D3
+You see the Blue River continuing on to the west.
+~
+~
+0 -1 2831
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2833
+The Blue River~
+   A gradually widening river flows from north to east, moving quickly
+and making numerous twisting curves through terrain that is completely 
+obscured by a strange blue mist that seems to curl up from the dark
+water itself to make traveling the river seem almost like going through
+a tunnel of light-colored stone.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2832
+D1
+You see the Blue River continuing on to the east.
+~
+~
+0 -1 2834
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2834
+The Blue River~
+   A gradually widening river flows from west to south, moving quickly
+and making numerous twisting curves through terrain that is completely
+obscured by a strange blue mist that seems to curl up from the dark
+water itself to make traveling the river seem almost like going through
+a tunnel of light-colored stone.
+~
+28 0 7
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2835
+D3
+You see the Blue River continuing on to the west.
+~
+~
+0 -1 2833
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2835
+The Blue River~
+   A wide, dark blue river flows from north to south, the current
+moving at a healthy clip. A strange light-colored blue mist rises
+from the surface of the water, curling into tendrils that grow
+denser the further up one goes, until the river seems to be
+traveling through a tunnel. The fog makes whatever light lies
+overhead seem dim and muted. Just to the south, though, barely
+visible thrugh the fog, you see what appears to be a stone bridge.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2834
+D2
+You see the Blue River flowing beneath the Southern Bridge.
+~
+~
+0 -1 2836
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2836
+The Blue River (Under the Southern Bridge)~
+   A wide river flows from north to south, beneath a wide stone bridge.
+The water is dark blue and though it is free of debris, the darkness
+of it makes it quite opaque. A strange, light-colored fog rises up
+from the water, curling in blue tendrils up to the sky. The bridge
+above looks sturdy, with moss growing on its pitted, dank stones.
+A muddy trail, barely visible through the fog, leads upward to
+the top of the bridge.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2835
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2837
+D4
+You see the Blue-Fog Trail's sturdy Southern Bridge.
+~
+~
+0 -1 11737
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2837
+The Blue River~
+   A wide river flows at a steady, managable pace, north to east,
+through a strange light blue fog that obscures everything on
+the banks of the river. The water is clear, but a very dark
+blue in color, so it is impossible to tell how deep it is.
+Just to the north, a bridge is just barely visible spanning
+the river.
+~
+28 0 7
+D0
+You see the Blue River flowing beneath the Southern Bridge.
+~
+~
+0 -1 2836
+D1
+You see the Blue River continuing on to the east.
+~
+~
+0 -1 2838
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2838
+The Blue River~
+   This wide river moves swiftly to the south through a dense,
+obscuring blue fog. The roaring of the water sounds quite
+loud to the south, though little can be seen through the
+mists that enshroud the river.
+~
+28 0 7
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2839
+D3
+You see the Blue River continuing on to the west.
+~
+~
+0 -1 2837
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2839
+The Blue River~
+   This wide river moves swiftly to the south through a dense,
+obscuring blue fog. The roaring of the water sounds quite
+loud to the south, though little can be seen through the
+mists that enshroud the river.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2838
+D2
+You see the Blue River flowing into the Blue Lake.
+~
+~
+0 -1 2840
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2840
+The Blue Lake~
+   A wide river to the north empties into this wide lake. The dark
+blue waters ripple peacefully, but they are so dark that it is
+impossible to tell how deep they are. A strange curling blue
+mist swirls up from the water, getting more and more dense to
+the north.
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2839
+D1
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2842
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2845
+D3
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2841
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2841
+The Blue Lake~
+   This is the northern shore of a very large, dark blue lake whose
+waters are so dark that it is impossible to tell how deep they are.
+Whatever lies beyond the lake is shrouded in the dense mists that
+get thicker and thicker the closer to shore they get, to the south
+and east. A river empties into the lake just east of here, barely
+visible through the fog.
+~
+28 0 7
+D1
+You see the Blue River flowing into the Blue Lake.
+~
+~
+0 -1 2840
+D2
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2844
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2842
+The Blue Lake~
+   This is the northern shore of a very large lake whose rippling, dark
+waters are so deep that it is impossible to say how deep they are. The
+opposite shore of the lake is lost to view, but the northern shore isn't
+far away. Whatever lies beyond the greyish sand is obscured by a rolling
+blue fog, tendrils of which curl up from the lake's surface, as well.
+A river is barely visible west of here.
+~
+28 0 7
+D2
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2846
+D3
+You see the Blue River flowing into the Blue Lake.
+~
+~
+0 -1 2840
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2843
+The Blue Lake~
+   This is the very northwestern edge of a very large lake -- or so it
+seems. The blue fog that curls up from the waters obscures the view 
+effectively. The shore, as well, is completely obscured by the strange
+mist, barely revealing its presence.
+~
+28 0 7
+D1
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2844
+D2
+You see the western shore of the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2850
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2844
+The Blue Lake~
+   The black waters of the lake seem more shallow here, but it is difficult
+to tell where one is for all the obscuring mist that curls up from the 
+surface of the lake.
+~
+28 0 7
+D0
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2841
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2845
+D2
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2851
+D3
+You see the northwest corner of the Blue Lake.
+~
+~
+0 -1 2843
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2845
+The Blue Lake~
+   You are floating on the Blue Lake near the northern shore.  You can move
+closer to the northern shore by heading west, north, or east from here.  You
+can also move out on to the lake by heading south.    
+~
+28 0 7
+D0
+You see the Blue River flowing into the Blue Lake.
+~
+~
+0 -1 2840
+D1
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2846
+D2
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2852
+D3
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2844
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2846
+The Blue Lake~
+   You are floating near the northern shore of the Blue Lake here.  You can
+continue along the northern shore to the north and east, or you can move out on
+to the lake to the south and west.    
+~
+28 0 7
+D0
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2842
+D1
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2847
+D2
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2853
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2845
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2847
+The Blue Lake~
+   You are floating along the northern shore of the Blue Lake here.  The
+northern shore continues on to the east and west, or you can move out on to the
+lake to the south.    
+~
+28 0 7
+D1
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2848
+D2
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2854
+D3
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2846
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2848
+The Blue Lake~
+   You are floating along the northern shore of the Blue Lake.  The northern
+shore continues on from here to the east and west, or you can move further out
+on to the lake to the south.    
+~
+28 0 7
+D1
+You see the northeast corner of the Blue Lake.
+~
+~
+0 -1 2849
+D2
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2855
+D3
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2847
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2849
+The Blue Lake~
+   You are floating in the northeastern corner of the Blue Lake.  From here,
+you can move along the eastern shore to the south, or along the northern shore
+to the west.    
+~
+28 0 7
+D2
+You see the eastern shore of the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2856
+D3
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2848
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2850
+The Blue Lake (Under the Blue Lake Bridge)~
+   You are floating along the western shore of the Blue Lake here.  The western
+shore continues on to the north and south, or you can head out on to the lake
+to the east of here.  Above you is the western end of the Blue Lake Bridge.  
+~
+28 0 7
+D0
+You see the northwest corner of the Blue Lake.
+~
+~
+0 -1 2843
+D1
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2851
+D2
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2858
+D4
+You see the Blue Lake Bridge above you.
+~
+~
+0 -1 11747
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2851
+The Blue Lake (Under the Blue Lake Bridge)~
+   You are floating near the western shore of the Blue Lake here.  You can move
+closer to the shore to the west, parallel the shore to the north, or move
+further out on the lake to the east and south.  Above you is the Blue Lake
+Bridge.    
+~
+28 0 7
+D0
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2844
+D1
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2852
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2859
+D3
+You see the western shore of the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2850
+D4
+You see the Blue Lake Bridge above you.
+~
+~
+0 -1 11748
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2852
+The Blue Lake (Under the Blue Lake Bridge)~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.  Above you is the Blue Lake
+Bridge.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2845
+D1
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2853
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2860
+D3
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2851
+D4
+You see the Blue Lake Bridge above you.
+~
+~
+0 -1 11749
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2853
+The Blue Lake (Under the Blue Lake Bridge)~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.  Above you is the Blue Lake
+Bridge.    
+~
+28 0 7
+D0
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2846
+D1
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2854
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2861
+D3
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2852
+D4
+You see the Blue Lake Bridge above you.
+~
+~
+0 -1 11750
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2854
+The Blue Lake (Under the Blue Lake Bridge)~
+   You are floating near the northern shore of the Blue Lake here.  The
+northern shore is just north of this spot, or you could just parallel the shore
+to the east.  You could also move further out on to the lake to the south or
+west.  Above you is the Blue Lake Bridge.    
+~
+28 0 7
+D0
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2847
+D1
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2855
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2862
+D3
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2853
+D4
+You see the Blue Lake Bridge above you.
+~
+~
+0 -1 11751
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2855
+The Blue Lake (Under the Blue Lake Bridge)~
+   You are floating on the Blue Lake near the northeastern corner of the lake.
+The northern shore is just north of here and the eastern shore is just a bit
+east.  You can also move further out on to the lake to the south and west of
+here.  Above you is the Blue Lake Bridge.    
+~
+28 0 7
+D0
+You see the northern shore of the Blue Lake.
+~
+~
+0 -1 2848
+D1
+You see the eastern shore of the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2856
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2863
+D3
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2854
+D4
+You see the Blue Lake Bridge above you.
+~
+~
+0 -1 11752
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2856
+The Blue Lake (Under the Blue Lake Bridge)~
+   You are floating on the eastern shore of the Blue Lake.  The eastern shore
+continues on to the north and south, or you can move further out on to the lake
+to the west.  Above you is the eastern end of the Blue Lake Bridge.    
+~
+28 0 7
+D0
+You see the northeast corner of the Blue Lake.
+~
+~
+0 -1 2849
+D2
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2864
+D3
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2855
+D4
+You see the Blue Lake Bridge above you.
+~
+~
+0 -1 11753
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2857
+The Blue Lake~
+   You are floating along the western shore of the Blue Lake here.  The western
+shore continues on to the east and south of this spot.    
+~
+28 0 7
+D1
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2858
+D2
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2865
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2858
+The Blue Lake~
+   You are floating near the western shore of the Blue Lake.  You can continue
+along the western shore to the north and west of here, or you can move out on
+to the lake to the south and east.    
+~
+28 0 7
+D0
+You see the western shore of the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2850
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2859
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2866
+D3
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2857
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2859
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2851
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2860
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2867
+D3
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2858
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2860
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2852
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2861
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2868
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2859
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2861
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2853
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2862
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2869
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2860
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2862
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2854
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2863
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2870
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2861
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2863
+The Blue Lake~
+   You are floating on the Blue Lake near the eastern shore.  You can approach
+the eastern shore by heading east, or parallel the shore by heading north or
+south.  You can also move out on to the lake from here by heading west.    
+~
+28 0 7
+D0
+You see the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2855
+D1
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2864
+D2
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2871
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2862
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2864
+The Blue Lake~
+   You are floating along the eastern shore of the Blue Lake here.  The eastern
+shore continues on to the north and south, or you could move further out on to
+the lake to the west.    
+~
+28 0 7
+D0
+You see the eastern shore of the Blue Lake beneath the Blue Lake Bridge.
+~
+~
+0 -1 2856
+D2
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2872
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2863
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2865
+The Blue Lake~
+   You are floating on the western shore of the Blue Lake.  The western shore
+continues on to the north and south of here, or you could head further out on
+to the lake to the east.    
+~
+28 0 7
+D0
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2857
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2866
+D2
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2873
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2866
+The Blue Lake~
+   You are floating near the western shore of the Blue Lake here.  You can move
+closer to the shore by heading west, or parallel the shore by heading north or
+south.  You can also head out on to the lake by moving on to the east.    
+~
+28 0 7
+D0
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2858
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2867
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2874
+D3
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2865
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2867
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2859
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2868
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2875
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2866
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2868
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2860
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2869
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2876
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2867
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2869
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2861
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2870
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2877
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2868
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2870
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2862
+D1
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2871
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2878
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2869
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2871
+The Blue Lake~
+   You are floating near the eastern shore of the Blue Lake here.  You can
+continue along the eastern shore to the south and east or move further out on
+the lake to the north and west.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2863
+D1
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2872
+D2
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2879
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2870
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2872
+The Blue Lake~
+   You are floating along the eastern shore of the Blue Lake.  You can continue
+along the eastern shore to the north and west.    
+~
+28 0 7
+D0
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2864
+D3
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2871
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2873
+The Blue Lake~
+   You are floating along the western shore of the Blue Lake.  You can continue
+along the western shore to the north and south or you can move out on to the
+lake to the east.    
+~
+28 0 7
+D0
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2865
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2874
+D2
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2880
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2874
+The Blue Lake~
+   You are floating near the western shore of the Blue Lake here.  You can move
+closer to the shore by heading west, or parallel the shore by heading north or
+south.  You can also head out on to the lake by moving on to the east.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2866
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2875
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2881
+D3
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2873
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2875
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2867
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2876
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2882
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2874
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2876
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2868
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2877
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2883
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2875
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2877
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2869
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2878
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2884
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2876
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2878
+The Blue Lake~
+   You are floating near the eastern shore of the Blue Lake.  You can move
+closer to the shore to the east, or you can parallel the shore to the south.  
+You can also move further out on to the Blue Lake by heading north or west from
+here.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2870
+D1
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2879
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2885
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2877
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2879
+The Blue Lake~
+   You are floating along the eastern shore of the Blue Lake.  You can continue
+near the eastern shore to the north and south or move out on to the lake itself
+to the west.    
+~
+28 0 7
+D0
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2871
+D2
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2886
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2878
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2880
+The Blue Lake~
+   You are floating along the western shore of the Blue Lake here.  The western
+shore continues on to the north and east of this spot.    
+~
+28 0 7
+D0
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2873
+D1
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2881
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2881
+The Blue Lake~
+   You are floating near the western shore of the Blue Lake.  You can continue
+along the western shore to the west and south of here, or you can head out on
+to the lake to the east and north.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2874
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2882
+D2
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2887
+D3
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2880
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2882
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2875
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2883
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2888
+D3
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2881
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2883
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2876
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2884
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2889
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2882
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2884
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2877
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2885
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2890
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2883
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2885
+The Blue Lake~
+   You are floating near the eastern shore of the Blue Lake.  You can move
+closer to the shore to the east or parallel the shore to the north.  You could
+also move further out on to the lake to the west or south of here.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2878
+D1
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2886
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2891
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2884
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2886
+The Blue Lake~
+   You are floating along the eastern shore of the Blue Lake here.  You can
+continue along the eastern shore to the north and south or move out on to the
+lake to the west.    
+~
+28 0 7
+D0
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2879
+D2
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2892
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2885
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2887
+The Blue Lake~
+   You are floating along the western shore of the Blue Lake here.  The western
+shore continues on to the north and south, or you can move out on to the lake
+to the east.    
+~
+28 0 7
+D0
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2881
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2888
+D2
+You see the southwest corner of the Blue Lake.
+~
+~
+0 -1 2894
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2888
+The Blue Lake~
+   You are floating near the southwestern corner of the Blue Lake.  You can
+approach the western and southern shores easily from here, or you can move
+further out on the lake by heading north or east.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2882
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2889
+D2
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2895
+D3
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2887
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2889
+The Blue Lake~
+   You are floating near the southern shore of the Blue Lake.  You can move
+closer to the shore to the south, or parallel the shore to the west.  You can
+also move further out on the lake to the north and east.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2883
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2890
+D2
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2896
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2888
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2890
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2884
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2891
+D2
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2897
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2889
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2891
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2885
+D1
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2892
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2898
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2890
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2892
+The Blue Lake~
+   You are floating near the eastern shore of the Blue Lake.  You can continue
+along the eastern shore to the north and east or you can move further out on
+the lake to the south and west.    
+~
+28 0 7
+D0
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2886
+D1
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2893
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2899
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2891
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2893
+The Blue Lake~
+   You are floating along the eastern shore of the Blue Lake here.  The eastern
+shore continues on to the south and west of here.    
+~
+28 0 7
+D2
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2900
+D3
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2892
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2894
+The Blue Lake~
+   You are floating in the southwestern corner of the Blue Lake.  You can move
+along the southern shore to the east, or along the western shore to the north
+of here.    
+~
+28 0 7
+D0
+You see the western shore of the Blue Lake.
+~
+~
+0 -1 2887
+D1
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2895
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2895
+The Blue Lake~
+   You are floating along the southern shore of the Blue Lake here.  The
+southern shore continues on to the east and west, or you can move out on to the
+lake to the north.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2888
+D1
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2896
+D3
+You see the southwest corner of the Blue Lake.
+~
+~
+0 -1 2894
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2896
+The Blue Lake~
+   You are floating along the southern shore of the Blue Lake.  You can
+continue along the southern shore to the east and west of this spot, or you can
+move further out on the lake to the north.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2889
+D1
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2897
+D3
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2895
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2897
+The Blue Lake~
+   You are floating near the southern shore of the Blue Lake.  From here, you
+can continue along the southern shore to the south and west, or move out on to
+the lake to the north and east.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2890
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2898
+D2
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2901
+D3
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2896
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2898
+The Blue Lake~
+   You are floating somewhere out on the Blue Lake.  From here it is very
+difficult to tell exactly what part of the lake you are on.  The lake stretches
+on in every direction with no shores visible.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2891
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2899
+D2
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2902
+D3
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2897
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2899
+The Blue Lake~
+   You are floating near the eastern shore of the Blue Lake here.  You can
+approach the eastern shore by heading east, or parallel the shore to the south.
+You can also move further out on the lake to the north or west of this spot.  
+
+~
+28 0 7
+D0
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2892
+D1
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2900
+D2
+You see the Blue Lake.
+~
+~
+0 -1 2903
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2898
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2900
+The Blue Lake~
+   You are floating along the eastern shore of the Blue Lake.  You can continue
+along the eastern shore to the north and south or you can move out towards the
+center of the lake to the west.    
+~
+28 0 7
+D0
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2893
+D2
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2904
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2899
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2901
+The Blue Lake~
+   You are floating along the southern shore of the Blue Lake.  The southern
+shore continues on to the north and east of here.    
+~
+28 0 7
+D0
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2897
+D1
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2902
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2902
+The Blue Lake~
+   You are floating near the southern shore of the Blue Lake.  You can continue
+along the southern shore to the south and west of here, or you can head out on
+to the lake to the north and east.  You can see where the lake drains into the
+Blue River just south of here.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2898
+D1
+You see the Blue Lake.
+~
+~
+0 -1 2903
+D2
+You see the Blue Lake where it drains into the Blue River.
+~
+~
+0 -1 2905
+D3
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2901
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2903
+The Blue Lake~
+   You are floating near the southeastern corner of the Blue Lake.  From here,
+you can move closer to the eastern shore to the east or approach the southern
+shore to the south.  You can also move further out on the lake by heading north
+or west from here.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2899
+D1
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2904
+D2
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2906
+D3
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2902
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2904
+The Blue Lake~
+   You are floating along the eastern shore of the Blue Lake.  You can continue
+along the eastern shore to the north and south or you can head out on to the
+lake to the west.    
+~
+28 0 7
+D0
+You see the eastern shore of the Blue Lake.
+~
+~
+0 -1 2900
+D2
+You see the southeast corner of the Blue Lake.
+~
+~
+0 -1 2907
+D3
+You see the Blue Lake.
+~
+~
+0 -1 2903
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2905
+The Blue Lake~
+   You are floating on the Blue Lake where it drains into the Blue River
+immediately south of here.  You can follow the southern shore of the Blue Lake
+to the east, head towards the center of the Blue Lake to the north, or float
+down the Blue River to the south.    
+~
+28 0 7
+D0
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2902
+D1
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2906
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2908
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2906
+The Blue Lake~
+   You are floating along the southern shore of the Blue Lake.  You can follow
+the southern shore to the east and west or you can move towards the center of
+the lake to the north.    
+~
+28 0 7
+D0
+You see the Blue Lake.
+~
+~
+0 -1 2903
+D1
+You see the southeast corner of the Blue Lake.
+~
+~
+0 -1 2907
+D3
+You see the Blue Lake where it drains into the Blue River.
+~
+~
+0 -1 2905
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2907
+The Blue Lake~
+   You are floating in the southeastern corner of the Blue Lake.  You can
+follow the eastern shore to the north or the southern shore to the west of
+here.    
+~
+28 0 7
+D0
+You see the eastern shore of the BLue Lake.
+~
+~
+0 -1 2904
+D3
+You see the southern shore of the Blue Lake.
+~
+~
+0 -1 2906
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2908
+The Blue River~
+   You are floating on the Blue River immediately south of the Blue Lake.  You
+can move on to the Blue Lake to the north, or you can continue on down the Blue
+River to the south.    
+~
+28 0 7
+D0
+You see the Blue River flowing from the Blue Lake.
+~
+~
+0 -1 2905
+D2
+You see the Blue River continuing on to the south.
+~
+~
+0 -1 2909
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+#2909
+The Blue River~
+   You are floating on the Blue River just south of the Blue Lake.  You can
+head towards the Blue Lake to the north from here, but you cannot continue down
+the Blue River to the south.  Some kind of magical wall blocks progress to the
+south.  Perhaps it is some kind of defense by the mighty seaport of Specula?  
+~
+28 0 7
+D0
+You see the Blue River continuing on to the north.
+~
+~
+0 -1 2908
+E
+fog blue bluefog~
+Its thick. Unnaturally thick. You realize it must be magical!
+~
+S
+$~

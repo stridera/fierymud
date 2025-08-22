@@ -1,0 +1,53 @@
+name: Azkrael
+password: AzVOydPxjg
+currenttitle: of the Noisy Hunt
+prompt: >
+poofin: Azkrael wanders in.
+poofout: Azkrael wanders off.
+sex: 2
+class: 19
+race: 1
+level: 100
+home: 1299
+lifeforce: 0
+composition: 0
+id: 185
+birthtime: 923079805
+timeplayed: 1348025
+lastlogintime: 1040992682
+host: 069.169.163.206
+height: 69
+weight: 147
+base_height: 69
+base_weight: 147
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gly
+effectflags: k 0 0
+prefflags: bhimnorsv 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+invislevel: 100
+loadroom: 58709
+badpasswords: 3
+lastlevel: 11
+hitpoints: 906/906
+mana: 100/100
+move: 298/298
+damroll: 2
+hitroll: 3
+strength: 100
+intelligence: 66
+wisdom: 84
+dexterity: 92
+constitution: 73
+charisma: 25
+cash: 29 2 7 20002
+experience: 300000008
+wiztitle: &0SoulForget&0
+quit_reason: 0
+saveroom: 0
+aliases:
+ts tell svedaja $*
+0

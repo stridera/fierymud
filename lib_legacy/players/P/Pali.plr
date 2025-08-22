@@ -1,0 +1,270 @@
+name: Pali
+password: PaxgUqffV1
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 21
+race: 0
+level: 99
+home: 3046
+lifeforce: 0
+composition: 0
+id: 2708
+birthtime: 942351208
+timeplayed: 12209349
+lastlogintime: 1380388684
+host: 072.239.105.179
+height: 68
+weight: 136
+base_height: 68
+base_weight: 136
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: glxyz
+effectflags: 0 0 0
+prefflags: hnosuCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 40
+loadroom: 3054
+lastlevel: 5
+hitpoints: 533/533
+mana: 100/100
+move: 92/92
+damroll: 3
+hitroll: 3
+strength: 83
+intelligence: 92
+wisdom: 89
+dexterity: 74
+constitution: 65
+charisma: 66
+cash: 0 77 413 366
+bank: 280 7420 51392 84644
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+8 1000
+19 1000
+20 1000
+29 1000
+30 1000
+31 1000
+37 1000
+38 1000
+39 1000
+51 1000
+52 1000
+57 1000
+62 1000
+67 1000
+68 1000
+76 1000
+77 1000
+78 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+106 1000
+107 1000
+108 1000
+111 1000
+112 1000
+113 1000
+171 1000
+172 1000
+173 1000
+174 1000
+175 1000
+176 1000
+177 1000
+178 1000
+179 1000
+180 1000
+181 1000
+182 1000
+183 1000
+191 200
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+447 1000
+451 1000
+452 1000
+454 1000
+456 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 1000
+0 0
+trophy:
+1 5104 2.000000
+1 5103 13.000000
+1 5102 6.000000
+1 53007 3.000000
+1 53023 4.000000
+1 5221 1.000000
+1 5223 2.000000
+1 5222 1.000000
+1 5220 3.000000
+1 5403 1.000000
+1 5404 4.000000
+1 5408 2.000000
+1 58401 0.500000
+1 58407 0.500000
+1 49041 6.000000
+1 49038 3.500000
+1 49035 2.000000
+1 49006 3.000000
+1 49034 2.000000
+1 49036 3.000000
+1 49040 3.000000
+0 0 0
+mem:
+100 0 1
+171 1 1
+171 1 1
+171 1 1
+171 1 1
+100 0 1
+100 0 1
+100 0 1
+100 0 1
+171 1 1
+19 0 1
+8 1 1
+8 1 1
+8 1 1
+8 1 1
+8 1 1
+39 1 1
+101 1 1
+101 1 1
+19 1 1
+172 1 1
+37 1 1
+37 1 1
+37 1 1
+99 1 1
+31 1 1
+37 1 1
+37 1 1
+31 1 1
+99 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+102 1 1
+106 1 1
+30 1 1
+30 1 1
+30 1 1
+76 0 1
+76 1 1
+76 1 1
+76 1 1
+76 1 1
+29 1 2
+62 1 1
+76 1 1
+29 1 1
+76 1 1
+52 1 1
+52 1 1
+52 1 1
+68 1 1
+77 1 1
+77 1 1
+77 1 1
+77 1 1
+52 1 1
+175 1 1
+175 1 1
+175 1 1
+175 1 1
+175 1 1
+175 1 1
+175 1 2
+175 1 2
+175 1 2
+111 1 2
+57 1 1
+111 1 2
+111 1 2
+108 1 1
+57 1 2
+111 1 1
+108 1 1
+177 1 1
+177 1 1
+177 1 1
+177 1 1
+177 1 1
+177 1 1
+113 0 1
+181 1 1
+181 1 1
+180 1 1
+180 1 1
+181 1 1
+180 1 1
+178 1 1
+178 1 1
+178 1 1
+178 1 1
+178 1 1
+78 1 1
+78 1 1
+78 1 1
+78 1 1
+183 1 1
+0 0 0
+aliases:
+bow curtsey
+eb eat ration
+db drink waterskin
+flood cast 'flood' $*
+cmc cast 'minor creation' $*
+shards cast 'ice shards' $*
+dism cast 'dispel magic' $1
+vaporform cast 'vaporform' self
+waterform cast 'waterform' self
+tele cast 'teleport' self
+locate cast 'locate object' $1
+cdd cast 'dim door' $1
+chain cast 'chain lightning' $*
+masinvis cast 'mass invisibility' $*
+icearmor cast 'ice armor' self
+coldshield cast 'coldshield' self
+st stand
+gr get ration
+invis cast 'invisibility' $*
+haste cast 'haste' $*
+cone cast 'cone of cold' $*
+str cast 'strength' $*
+cdi cast 'detect invis' $*
+bolt cast 'lightning bolt' $*
+csg cast 'shocking grasp' $*
+cct cast 'chill touch' $*
+globe cast 'major globe' $*
+frz cast 'freeze' $*
+darts cast 'ice darts' $*
+ball cast 'iceball' $*
+cfly cast 'fly' $*
+css cast 'stone skin' $*
+relocate cast 'relocate' $1
+0

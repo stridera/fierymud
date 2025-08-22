@@ -1,0 +1,72 @@
+name: Xyian
+password: XyNTWSzZ2Y
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18710
+birthtime: 1405556725
+timeplayed: 1503
+lastlogintime: 1405558233
+host: 184.008.131.118
+height: 61
+weight: 121
+base_height: 61
+base_weight: 121
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 3
+lastlevel: 0
+hitpoints: 36/36
+mana: 0/0
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 74
+wisdom: 78
+dexterity: 92
+constitution: 88
+charisma: 72
+experience: 13372
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 62
+415 50
+416 50
+421 55
+438 50
+443 50
+444 50
+463 50
+464 50
+465 56
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8016 1.000000
+1 8022 1.000000
+1 8010 1.000000
+1 8020 2.000000
+1 8014 1.000000
+1 8023 1.000000
+1 8012 1.000000
+1 8002 2.000000
+1 8001 5.000000
+0 0 0

@@ -1,0 +1,2230 @@
+#30001
+innkeeper hovish man human~
+Hovish~
+A thin-faced man awaits your business.~
+This thin, ageless man looks back at you with a steady gaze.  He seems to know
+no fear, and has little expression, but a slight spark of amusement or mirth
+does seem to brighten his eye.  His movements appear smooth and regulated, and
+he checks his guests in and out efficiently.    ~
+24586 8 0 E
+90 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 13 0 0 2
+Str: 80
+Dex: 81
+Int: 73
+Wis: 72
+Con: 86
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 1000
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30002
+slevvirik banker drow elf~
+Slevvirik~
+A dark-skinned elf peers at you from behind the counter.~
+The normally ostentatious garb of a banker is forgone here, perhaps a good idea
+in the presence of so many soldiers.  But a closer look shows that Slevvirik's
+clothing is anything but cheap, made of soft grey silk and expertly tailored.
+How he maintains such a wardrobe in these parts is a mystery.  But drow are
+ever difficult to predict.    ~
+24586 0 -400 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 2 5 1 2
+Str: 88
+Dex: 84
+Int: 74
+Wis: 67
+Con: 83
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+T 10316
+#30003
+dugrik orc cook~
+Dugrik~
+Dugrik stands here, ready make unauthorized sales to line his own pocket.~
+Is it an orc, or did one of the giant cooking cauldrons move?  Dugrik is huge
+and covered with soot, so the mistake is understandable.  He glumly feeds
+hordes of soldiers all day long, so the sight of a paying customer -- even
+though selling the food is strictly prohibited -- is the highlight of his day.~
+157770 0 -400 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 3
+Str: 92
+Dex: 84
+Int: 66
+Wis: 72
+Con: 84
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+T 18522
+#30004
+woddly gnome~
+Woddly~
+Woddly stands here ready to make you a special deal.~
+What's a gnome doing in the middle of an orc army?  Making money, of course!  
+Woddly has a keen nose for business, and it had better be good for something,
+taking up so much space on his face as it does.  Woddly is short and
+bright-eyed and loves selling cheap goods.    ~
+26698 0 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 13 2 0 1
+Str: 94
+Dex: 71
+Int: 78
+Wis: 67
+Con: 74
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30005
+dorndle gnome~
+Dorndle~
+Dorndle sits here scribing something with his ink-stained fingers.~
+There is something unsettling about such a serious gnome.  His nose hooks down
+cruelly, and his black robes bypass comical to give him a truly dark aura.  
+His attitude, however, is all business.    ~
+134227994 40 -450 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+1 1 1 0 2 0 1
+Str: 79
+Dex: 77
+Int: 76
+Wis: 83
+Con: 80
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30006
+arandidor man~
+Arandidor~
+Arandidor stands here making sure his creatures don't eat each other.~
+Arandidor is a dark-skinned human with a curly beard.  He seems jovial at times
+and dour at others, which is no wonder considering the motly collection of
+animals he manages.  His white robes are clean and he looks ready to sell you a
+loyal companion.    ~
+24586 0 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 0 0 2
+Str: 84
+Dex: 87
+Int: 68
+Wis: 82
+Con: 72
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30007
+myrzistan human man~
+Myrzistan~
+A jovial man with a turban and a moustache observes you idly.~
+It is odd for anyone to be cheerful in these parts, much less a human.  But
+Myrzistan appears to be quite happy.  He has medium-tan skin and a dark brown
+moustache, and wears white robes and a turban.  He smells slightly of farm
+animals, no doubt because that is what he's about to sell you.    ~
+24586 0 -200 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 0 0 2
+Str: 88
+Dex: 81
+Int: 64
+Wis: 78
+Con: 75
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30008
+skosh orc barkeep barkeeper~
+Skosh~
+Skosh leans forward against the bar, staring at you.~
+He's quite large and fat, and obviously no warrior, but he knows a good war
+when he sees one.  Skosh is a born entrepreneur who can set up shop anywhere
+with anything, and doesn't need anyone's help.  He runs this tavern with a
+chaotic hand, a hand that pulls in profit under the worst conditions.    ~
+24586 0 -500 E
+90 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 99
+Dex: 76
+Int: 57
+Wis: 71
+Con: 86
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30009
+jhanna dark elf drow~
+Jhanna~
+An ageless elf with dark skin and white hair looks at you coldly.~
+Drow and orcs don't often mix, but few things please dark elves more than
+extracting a profit from their more vulgar cousins.  Jhanna looks to have done
+well in this chaotic place, for her shop is undisturbed and her bearing regal.
+Her white hair and unwrinkled skin make estimating her age impossible.    ~
+24586 0 -450 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 2 16 5 1 2
+Str: 76
+Dex: 71
+Int: 73
+Wis: 86
+Con: 74
+Cha: 75
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+T 3180
+#30010
+ralg orc~
+Ralg~
+A somewhat small and shifty-eyed orc prepares to sell you a weapon.~
+As orcs go, this one is a bit small, no taller than five feet.  He seems to be
+looking to one side, then the other.  Ralg has a downtrodden appearance and a
+hunch in his spine.  He also has quite a variety of weapons to sell.    ~
+268460042 0 -400 E
+95 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 93
+Dex: 79
+Int: 67
+Wis: 72
+Con: 74
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30011
+orc unndush~
+Unndush~
+Unndush stands here glaring at you, arms folded.~
+This fairly large orc has quite a bulk and shows the scars of many battles.  
+Whether they were battles with enemy soldiers or angry customers is not clear.
+At any rate, Unndush has plenty of shields and is ready to sell them.    ~
+24586 0 0 E
+95 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 24 8 1 2
+Str: 91
+Dex: 75
+Int: 77
+Wis: 61
+Con: 69
+Cha: 78
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30012
+argesh orc~
+Argesh~
+An orc looks up from his sewing needle to see what you want.~
+Argesh is limber and strong.  His characteristically dark orc skin is stained
+here and there, especially on his hands.  His nimble fingers pierce orc hide
+with a large needle as he fabricates another item for sale.    ~
+268460042 0 -400 E
+95 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 89
+Dex: 84
+Int: 66
+Wis: 71
+Con: 75
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30013
+grulo orc~
+Grulo~
+Grulo sullenly sits in his shop waiting for you to buy something.~
+Grulo's right arm hangs useless, and a small scar is clearly visible on his
+shoulder.  His left arm is quite formidable, however.  He uses it to sling
+great weapons about like toothpics as he shows off his wares to prospective
+buyers.  The gutteral orc-speak that issues from his mouth might have an
+undertone of regret.    ~
+268460042 0 -400 E
+95 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 90
+Dex: 80
+Int: 66
+Wis: 78
+Con: 78
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30014
+krigg orc~
+Krigg~
+Krigg proudly shows off his polished armor.~
+Krigg is rightly proud of his gleaming bronze goods.  Cheaper than steel and
+stronger than iron, they are a good compromise that allows armies to be
+outfitted with much less fuel and work than steel.  Still, for adventurers, it
+is only a step on the way to better things.  Krigg keeps the shop sparkling and
+the goods flowing.    ~
+268460042 0 -400 E
+95 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 91
+Dex: 74
+Int: 71
+Wis: 78
+Con: 77
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30015
+ghiala orc orcess~
+Ghiala~
+A huge and powerful orcess peers down at you.~
+Ghiala is rather large for an orc.  Polished steel gleams all over: her armor,
+bracers, and even her necklace look like curved mirrors.  She moves like a
+dangerous warrior, and sells like a shrewd merchant.    ~
+268460042 0 -400 E
+95 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 2 3 8 1 2
+Str: 98
+Dex: 75
+Int: 68
+Wis: 85
+Con: 70
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30016
+gagar mage sorcerer orc guildmaster~
+Gagar~
+Gagar, the master sorcerer, stands in the shadows.~
+There must be an orc somewhere beneath those bushy eyebrows.  Gagar is small
+but has an aura of power that even orcs must feel, giving him a wide berth as
+they do.  His flashy robes make him a comical sight.    ~
+805333002 0 -500 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 0 8 1 1
+Str: 72
+Dex: 90
+Int: 78
+Wis: 90
+Con: 66
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55710
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 55706
+T 3155
+T 3159
+#30017
+tinilas rogue elf half half-elf master guildmaster~
+Tinilas~
+Tinilas stands nearby, looking at you casually.~
+Tinilas seems somewhat out of place at first, his half-elven ears poking out of
+his ruffled dirty-blonde hair.  There is a ruthlessness in his eyes, however.
+Even the most boistrous of orcs keep their distance or speak to him with some
+deference.  An air of danger clings to him.    ~
+536897546 0 -450 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 9 9 0 2
+Str: 77
+Dex: 68
+Int: 83
+Wis: 95
+Con: 69
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55733
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 55706
+T 3155
+T 3159
+#30018
+rorgdush cleric master orc guildmaster~
+Rorgdush~
+A bald-headed orc in simple robes waits by the altar.~
+It is rare indeed for an orc to aspire to acts of healing, but Rorgdush is one
+who has.  His simple robe is unstained by the usual blood of sacrifices that
+clerical orcs ritually perform.  Nevertheless he shows little love for the
+living, reserving his awe for the gods above, and healing only when it is in
+his interest.    ~
+805333002 0 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 1 8 1 2
+Str: 80
+Dex: 62
+Int: 75
+Wis: 97
+Con: 76
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55715
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 55706
+T 3155
+T 3159
+#30019
+grort orc warrior master guildmaster~
+Grort~
+Grort stops sparring for a moment to scowl at you.~
+This orc has a temper to match any other.  Even your minor intrustion seems to
+have started his face reddening with anger!  Nobody messes with Grort unless
+they're good and ready to learn combat -- the hard way if necessary!    ~
+805330954 0 -450 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 88
+Dex: 76
+Int: 70
+Wis: 82
+Con: 77
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55722
+T 55706
+T 3155
+T 3159
+#30020
+crab ash ash-crab~
+an ash crab~
+A dark gray crab the size of a dinner plate sits here sullenly.~
+This usually motionless crab sports a pair of vicious-looking pincers.  It is
+as large as a plate and a dark gray color, mottled as if composed of ashes.  
+Its eyes move little and it is impossible to tell whether it is looking at
+anything, or whether it is even alive, until its characteristically quick jerky
+movements show that its pincers still present danger.    ~
+8 0 0 E
+2 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 0 3 14 0 1
+BareHandAttack: 10
+Str: 88
+Dex: 78
+Int: 72
+Wis: 72
+Con: 78
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30021
+kea parrot bird~
+a kea~
+A sharp-beaked parrot peers up at you inquisitively.~
+This stout little bird prefers to stand rather than fly, and hops about.  It
+has greenish plumage that appears to be brown when turned to the light.  Its
+curved beak looks fairly sharp and cruel, as do its black claws.  All in all,
+the kea looks interesting but somewhat dangerous.    ~
+8 0 0 E
+4 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 0 3 14 0 1
+BareHandAttack: 10
+Str: 84
+Dex: 89
+Int: 71
+Wis: 78
+Con: 68
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30022
+caracal cat lynx~
+a caracal~
+A medium-sized lynx with tawny fur stands calmly nearby.~
+The graceful walk of this solitary predator is a beautiful thing to behold.  
+Its tan coat and black-tipped ears would hide it well in a desert environment.
+The caracal is much smaller than a lion, but quite a bit larger than an
+ordinary house cat.    ~
+8 0 0 E
+7 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 0 3 14 0 2
+BareHandAttack: 8
+Str: 94
+Dex: 81
+Int: 65
+Wis: 67
+Con: 71
+Cha: 75
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30023
+nag tired horse mare~
+a tired nag~
+A tired-looking old nag stands here quietly.~
+A horse such as this would normally be put to pasture or slaughtered, but
+Myrzistan knows no such kindness.  He can make money from this beast, so he
+will.  The old mare's spine and ribs are clearly visible below her mangy skin.
+She won't go far.    ~
+262154 0 0 E
+1 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 2 3 14 0 2
+BareHandAttack: 4
+Str: 93
+Dex: 82
+Int: 72
+Wis: 69
+Con: 78
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30024
+camel mean temper ill tempered~
+an ill-tempered camel~
+A gaunt, mean-looking camel glares about.~
+This is an old beast.  It must have come far and worked hard, but its work is
+not yet done.  Its mangy hide is stretched thin over bony ribs, and its
+once-tawny fur is now patchy.  It looks meaner than ever.    ~
+262152 0 0 E
+3 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 0 3 14 0 3
+BareHandAttack: 4
+Str: 86
+Dex: 84
+Int: 74
+Wis: 73
+Con: 68
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30025
+ox cow steer cattle gaunt~
+a gaunt ox~
+A skeletal old ox teeters on its thin legs.~
+The indentation of the harness is still visible on the neck of this working
+steer, but it would be foolhardy to hook a cart to this staggering beast.  It
+has barely the strength to carry a single passenger now.  It totters on
+stick-like legs and its white coat is stretched over its skeleton like the skin
+of a kayak.    ~
+262152 0 0 E
+6 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 14 0 2
+BareHandAttack: 9
+Str: 86
+Dex: 84
+Int: 70
+Wis: 70
+Con: 77
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30026
+horse plough~
+a plough horse~
+A strong plough horse stands here munching on straw.~
+This beast is in fairly good shape, and must have been taken recently from a
+farm, for a farm beast it is.  It is unused to the bridle, and its neck is worn
+from years pulling a plough.  It has a dark brown coat.    ~
+262152 0 0 E
+9 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 14 0 3
+Str: 86
+Dex: 91
+Int: 68
+Wis: 70
+Con: 82
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30027
+anklecrusher lizard reptile crusher~
+an anklecrusher~
+A long, low-slung reptile with fierce teeth looks off into space.~
+This clearly predatory creature has been tamed or domesticated somehow...  One
+would hope!  Its long sharp teeth and pointed snout clearly mark it as a
+predator.  Anklecrushers are known for hiding in the dry sands of central Umulg
+and biting the feet and ankles of passers-by...  Then following them for days
+as their strength gives out, making them easy prey.  This specimen looks to be
+a mount of some sort, however.~
+262152 0 0 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 0 3 14 0 3
+BareHandAttack: 9
+Str: 98
+Dex: 86
+Int: 64
+Wis: 73
+Con: 70
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30028
+asp snake~
+an asp~
+A small black and gray snake sits here coiled and motionless.~
+This small reptile seems very bold for such a diminutive creature.  It has gray
+scales with odd black spots, and the widened jaw of a viper.  Perhaps it is
+more dangerous than it appears.    ~
+8 0 0 E
+9 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 0 3 14 0 1
+BareHandAttack: 1
+Str: 85
+Dex: 82
+Int: 68
+Wis: 78
+Con: 70
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30030
+orc patroller guard~
+an orc patroller~
+A glum-looking orc patroller slogs through the streets.~
+A step above your average soldier, this warrior keeps the peace when
+tempestuous soldiers get out of line.  However, he is nearly as likely to start
+trouble as to resolve it.  His superior fighting skills usually mean that he'll
+get his way, right or wrong.    ~
+270534728 0 -400 E
+60 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 84
+Dex: 82
+Int: 72
+Wis: 72
+Con: 79
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30031
+warlock orc glowering mage~
+a glowering warlock~
+A glowering warlock keeps a careful watch over the area.~
+This orcish spellcaster is dressed entirely in brown, understated leather.  
+The usual flamboyance of orc magi is suppressed, for he is in the service of
+the army to provide security... generally from his own forces, who bore
+easily. He smells of smoke and singed flesh.~
+2099272 0 -500 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 4 1 0 8 1 2
+Str: 79
+Dex: 72
+Int: 86
+Wis: 88
+Con: 72
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30032
+captain orc guard~
+the guard captain~
+The captain of the guard surveys the area for trouble.~
+This must be the largest orc ever, approaching seven feet in height and covered
+with muscle.  He looks like he never gets out of the way for anyone.  Trouble
+seems to melt away at his approach, at least the trouble he isn't starting.~
+1050696 0 -650 E
+90 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 5 8 1 3
+Str: 82
+Dex: 85
+Int: 68
+Wis: 77
+Con: 76
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30033
+ogre enforcer guard~
+an ogre enforcer~
+A giant ogrish enforcer strides heavily through the crowd.~
+When the ordinary orc guards need muscle, they call on these behemoths.  What
+they lack in smarts they make up for in raw bulk.  The sight of orc soldiers
+flying through the air is a sure sign that the enforcers are having fun.    ~
+2099272 0 -390 E
+80 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 7 1 3
+Str: 92
+Dex: 79
+Int: 66
+Wis: 70
+Con: 74
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30034
+elite guard orc~
+the elite guard~
+A member of the elite guard strides through the throng.~
+The best of the best orc warriors become members of the elite guard.  This one
+has the typical haughty look of self-assuredness that they wear.  Unlike the
+lesser guards, their troublemaking is rarely overt.  That doesn't mean they
+don't appreciate a little chaos, however.  The bunched muscles and tense look
+of this fellow give him an air of danger that few soldiers care to test.    ~
+1050696 0 -450 E
+70 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 86
+Dex: 82
+Int: 70
+Wis: 77
+Con: 78
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30035
+orc gate guard~
+an orcish gate guard~
+An orcish gate guard gazes dully at the passing traffic.~
+All guards must be able to fight well, but this one has a slovenly appearance.
+The requirement for gate guard duty is the ability to go long stretches without
+becoming bored, and in orcs, that means either exceptional intelligence or
+amazing stupidity.  Guess which one this is.    ~
+268453962 0 -355 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 87
+Dex: 83
+Int: 71
+Wis: 68
+Con: 80
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30036
+orc gate guard~
+an orcish gate guard~
+An orcish gate guard gazes dully at the passing traffic.~
+All guards must be able to fight well, but this one has a slovenly appearance.
+The requirement for gate guard duty is the ability to go long stretches without
+becoming bored, and in orcs, that means either exceptional intelligence or
+amazing stupidity.  Guess which one this is.    ~
+268453962 0 -355 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 76
+Dex: 92
+Int: 77
+Wis: 76
+Con: 77
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30037
+orc gate guard~
+an orcish gate guard~
+An orcish gate guard gazes dully at the passing traffic.~
+All guards must be able to fight well, but this one has a slovenly appearance.
+The requirement for gate guard duty is the ability to go long stretches without
+becoming bored, and in orcs, that means either exceptional intelligence or
+amazing stupidity.  Guess which one this is.    ~
+268453962 0 -355 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 81
+Dex: 80
+Int: 76
+Wis: 73
+Con: 68
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30039
+guard ogre massive~
+a massive ogre guard~
+A massive ogre stands guard.~
+Of all the ogres in the area, this one surely looks the most dangerous.  It
+stands a full half head over the rest, and is bulky to match.  Immense muscles
+bulge all over its shoulders, chest, and arms.  It is also scarred, but it
+appears never to have suffered serious injury.  Its most casual movement
+embodies the deadly grace of a skilled combat veteran.    ~
+18506 0 -400 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 7 1 3
+Str: 83
+Dex: 81
+Int: 67
+Wis: 68
+Con: 84
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30040
+guard quiet hooded orc~
+a quiet hooded guard~
+A quiet hooded orc guards the entrance.~
+This orc looks very ordinary, almost strangely so.  Unlike the orc soldiers who
+tromp about with patched armor and fetishes, this one is dressed entirely in
+plain clothing with no decorations whatsoever.  Stranger still, no weapon is in
+sight.    ~
+18506 0 -400 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 83
+Dex: 79
+Int: 78
+Wis: 75
+Con: 70
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30041
+guard orc~
+a black-clad guard~
+A black-clad guard watches over the tent.~
+This guard looks dangerous and calm.  He returns your stare with a gaze of
+quiet confidence.  This is strange behavior for an orc, for whom peace is
+practically unknown.  Still, his demeanor is backed up by a warrior's grace and
+an obviously well-muscled body.    ~
+18506 0 -400 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 88
+Dex: 84
+Int: 68
+Wis: 72
+Con: 82
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30042
+ogre quiet guard~
+a quiet ogre~
+A single ogre stands quietly next to the entrance.~
+Clad in a simple robe, this ogre stands alone to guard the way into the tent.
+Though he appears normal, all who enter the tent seem to be giving him a wide
+berth...  But they are unable to avoid his gaze.  This is odd behavior for an
+ogre.    ~
+134473802 54535336 -400 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 7 1 4
+Str: 86
+Dex: 85
+Int: 64
+Wis: 75
+Con: 81
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30043
+man postmaster postman~
+the postmaster~
+The postmaster waits to see what you want.~
+This man looks a little nervous to be living among so many orcs.  He must be
+glad to be at least a bit separated from them, with his business on the
+opposite side of the river from the army's main encampment.  He looks
+middle-aged and patient.    ~
+268492874 0 0 E
+25 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 0 0 2
+Str: 74
+Dex: 77
+Int: 69
+Wis: 73
+Con: 90
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30044
+kekund bartender orc~
+Kekund~
+Kekund stands guard over his precious alcohol.~
+He's a mighty fat orc with a lot of leather on him.  Kekund looks like the kind
+of guy who just hangs out around wars for the fun of it...  Or perhaps the
+profit.  He smells of beer and is pretty jovial for an orc.~
+268460042 0 -400 E
+96 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 24 8 1 2
+Str: 86
+Dex: 84
+Int: 72
+Wis: 72
+Con: 76
+Cha: 72
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#30045
+soldier orc drunk drunken~
+a drunken soldier~
+A drunken soldier staggers along.~
+Boredom has reduced this soldier to drinking - or is that his normal state?  
+This red-faced orc has had plenty to drink and can barely keep his feet.  The
+smell of belches hangs about him.  His armor is stained and broken.    ~
+200 0 -400 E
+30 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 88
+Dex: 85
+Int: 77
+Wis: 69
+Con: 78
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30046
+guard armored crimson crimson-armored orc guardisn~
+a crimson-armored guard~
+A crimson-armored guard stands watch.~
+This poised and ready guard stands calmly by the entrance to the red tent, clad
+in gleaming armor of crimson that makes him visible from afar.  He looks calmly
+at passersby and fidgets little.  He carries himself with confidence.    ~
+18506 0 -500 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 97
+Dex: 83
+Int: 64
+Wis: 68
+Con: 79
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30047
+sorcerer blue robed blue-robed mage orc~
+a blue-robed sorcerer~
+A blue-robed sorcerer stands by the entrance the the tent.~
+This cool-looking orc appears to be controlling access to the deep blue tent.
+He's a little fidgety, but still projects an aura of confidence.  No one seems
+to be giving him any backtalk, either.  He is a bit thin, but otherwise fairly
+normal-looking for an orc.    ~
+18506 0 -550 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 0 21 8 1 1
+Str: 83
+Dex: 74
+Int: 83
+Wis: 88
+Con: 73
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30048
+knight dark warrior orc~
+a dark knight~
+A dark knight in ashen armor stands guard.~
+Little can be seen of this guardian but the dark-gray color of his ashen armor,
+and the calm poise with which he carries himself.  He says nothing while
+allowing some and preventing others from entering the room to the north.  Evil
+surrounds him, but in this place he does not stand out because of it.    ~
+18506 0 -800 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 5 8 1 2
+Str: 89
+Dex: 82
+Int: 73
+Wis: 78
+Con: 75
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30049
+priest fiery fiery-eyed orc~
+a fiery-eyed priest~
+A fiery-eyed priest glowers at all who come near.~
+No light of heaven burns in the eyes of this devout cleric, nor could it be
+expected to in this unholy place.  Pure evil streams from him, his unrelenting
+glare withering all upon whom it falls.  What greater power could this
+black-souled orc be guarding?    ~
+18506 0 -1000 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 16 8 1 2
+Str: 75
+Dex: 78
+Int: 78
+Wis: 88
+Con: 84
+Cha: 51
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30050
+mercenary human bedraggled man~
+a bedraggled mercenary~
+A bedraggled mercenary slumps against a wall.~
+On closer inspection, this hired soldier reveals himself to be a human!  He
+must be in dire straits indeed to have signed on with an orc army.  He looks
+inscrutable and defensive, and not a little dirty.  He appears to be waiting
+for time to pass.    ~
+268437708 0 -300 E
+30 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 0 0 2
+Str: 82
+Dex: 74
+Int: 75
+Wis: 70
+Con: 82
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30051
+refugee small ragged halfling~
+a small ragged refugee~
+A small, ragged refugee looks blankly at passers-by.~
+This little halfling looks a bit shocked and insensitive.  Perhaps recent
+horrors have driven it to hopelessness.  Its pale blue eyes stare ahead,
+avoiding eye contact and searching everywhere.  He looks pale and emaciated,
+and his clothing is ragged.  He has no shoes, and his feet have open sores on
+them.    ~
+268435660 0 400 E
+5 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 11 0 1
+Str: 88
+Dex: 83
+Int: 62
+Wis: 76
+Con: 88
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30052
+refugee halfling woman thin~
+a thin little refugee~
+A tiny little refugee crouches near the wall looking for scraps.~
+On closer inspection, a halfling woman is hidden under the dust and rags worn
+by this sad little creature.  Her right arm hangs useless as she clings to a
+wall for support.  She glares at the ground beneath her with some anger, eyes
+flitting to and fro, perhaps searching for morsels of food.    ~
+268435676 0 400 E
+5 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 2 1 11 0 1
+Str: 80
+Dex: 72
+Int: 82
+Wis: 92
+Con: 72
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30053
+slave lanky human man~
+a lanky slave~
+A lanky slave stands vigilantly nearby.~
+One of the few humans in the area, this slave looks deferential yet not
+frightened.  Perhaps he has learned that showing fear is not a good strategy
+among the orcs.  He is thin but not starving.  He has the look of one with a
+little responsibility, but not much hope.~
+268435656 0 0 E
+10 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 0 0 2
+Str: 85
+Dex: 84
+Int: 72
+Wis: 67
+Con: 72
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30054
+child hobbling halfling boy~
+a hobbling child~
+A small child in rags hobbles by.~
+Apparently another refugee, this little halfling must be very bold or stupid to
+remain in the area.  His left leg is missing below the knee.  He shows great
+agility in maneuvering about with his crutch, however.  He is thin but does not
+appear to be sick or starving.    ~
+268435660 0 400 E
+3 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 18 11 0 1
+BareHandAttack: 13
+Str: 90
+Dex: 90
+Int: 78
+Wis: 68
+Con: 84
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 56405
+#30055
+seagull bird~
+a seagull~
+A seagull picks at the garbage.~
+The rats of the sea are never far from the trash heaps of civilization, if they
+are within a reasonable distance of the ocean.  This gray and white bird is
+somewhat large and sports an elongated yellow beak with a red spot.    ~
+268435656 0 0 E
+2 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 0 3 14 0 1
+BareHandAttack: 10
+Str: 80
+Dex: 83
+Int: 70
+Wis: 72
+Con: 74
+Cha: 75
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30056
+jackal~
+a jackal~
+A wily jackal stands nearby sniffing the air.~
+Looking like a small dog, though cleverer, this scavenger is taking advantage
+of the sloppy habits that armies always have.  It looks well-fed and alert, and
+keeps effectively to the shadows as it picks through the trash.    ~
+268435528 0 0 E
+5 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 0 3 14 0 2
+BareHandAttack: 4
+Str: 84
+Dex: 79
+Int: 66
+Wis: 70
+Con: 84
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30057
+knight undead~
+an undead knight~
+An undead knight watches over the stairs.~
+Long since deceased, this unholy warrior still labors.  He stands beside the
+stairs with the patience of a stone, as if unwilling to let any pass for
+eternity.  Though his life has ceased, his powers are great, perhaps enhanced
+by the foul magicks that raised him from his timely grave.    ~
+18506 0 -1000 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 0 3 0 0 2
+Str: 82
+Dex: 90
+Int: 64
+Wis: 80
+Con: 75
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+#30058
+pyromancer master-pyromancer orc mage sorcerer guildmaster~
+the master pyromancer~
+The master pyromancer stands ready to test your resolve.~
+Clad in blood-red leather, this bushy-eyebrowed orc is a fearful sight.  His
+red eyes seem to burn holes right through you.  Though he is a practitioner of
+fire, no scars or blemishes mark his tanned skin.    ~
+536889354 0 -900 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 20 8 1 2
+Str: 81
+Dex: 76
+Int: 78
+Wis: 80
+Con: 77
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55711
+T 6204
+T 6206
+T 6214
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 55706
+T 3155
+T 3159
+#30059
+cryomancer orc mage sorcerer master guildmaster~
+the master cryomancer~
+The Master of Ice looks coolly in your direction.~
+Deep blue robes make this olivine orc difficult to spot in the low light of the
+tent.  His gaze still pierces those who would disturb him, however.  He seems
+ready to share the wisdom of cold and death to those who would approach him
+with the proper respect.    ~
+536889354 0 -900 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 21 8 1 2
+Str: 76
+Dex: 68
+Int: 90
+Wis: 92
+Con: 66
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55711
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 55706
+T 3155
+T 3159
+#30060
+knight dread-knight orc guildmaster~
+the dread knight~
+A dread knight dressed entirely in black notes your arrival.~
+Though not currently dressed for combat, the aura of evil surrounding this
+warrior makes his profession unmistakable.  He is an anti-paladin, a warrior of
+the dark.  From his demeanor, it would seem that he is here to train others in
+his profession, and so undermine the forces of good that stand arrayed against
+this army.    ~
+536889354 0 -1000 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 5 8 1 2
+Str: 82
+Dex: 76
+Int: 67
+Wis: 64
+Con: 91
+Cha: 73
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55725
+T 106
+T 107
+T 108
+T 109
+T 110
+T 112
+T 111
+T 6201
+T 6204
+T 55706
+T 3155
+T 3159
+#30061
+diabolist diabolical cleric priest orc guildmaster~
+the diabolist~
+A fallen cleric awaits the arrival of the unpious, that he may train them.~
+Simple black robes are all that this foul orc needs, for few creatures could
+approach to do him physical harm.  His communion with the fell spirits of the
+underworld ensure that.  To look upon his eyes is to invite madness.  But those
+who ally with him will be assured of the best training, for he seeks to spread
+his unholy ways across all the world.    ~
+536889354 0 -1000 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 16 8 1 2
+Str: 84
+Dex: 70
+Int: 74
+Wis: 95
+Con: 63
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55718
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 55706
+T 3155
+T 3159
+#30062
+queen undead orc orcess schkerra guildmaster~
+Schkerra~
+Schkerra, queen of the undead, shrieks in laughter at your arrival.~
+Some touch of madness must lie upon this orcess, for all that she sees and
+hears fills her with outbursts of mirth.  And all around her are the signs of
+death and decay.  She is dressed in the skins of light humanoids and her
+numerous braids are filled with knucklebones.  She stares grinning, perhaps to
+impart the power of life over death to you, her gentle visitor.~
+536889354 0 -1000 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 2 11 8 1 2
+Str: 74
+Dex: 78
+Int: 83
+Wis: 93
+Con: 65
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55713
+T 6201
+T 6202
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6204
+T 6215
+T 55706
+T 3155
+T 3159
+#30065
+troll adventurer wary~
+a trollish adventurer~
+A wary adventurer with warty greenish skin watches the street.~
+This watchful troll is over six feet tall and has greenish-brown skin.  He has
+a rounded head with glaring black eyes and lower teeth that jut out of his
+mouth.  His dusty leather clothing looks well-used.    ~
+268437708 0 -400 E
+15 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 18 4 1 3
+BareHandAttack: 9
+Str: 85
+Dex: 93
+Int: 70
+Wis: 69
+Con: 84
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30066
+mayor man human~
+the former mayor~
+The former mayor stands here looking despondent.~
+This man, the former mayor of Tyllwedd, stands here beaten.  He looks a bit
+scuffed and bruised.  Oddly, he still wears a brown suit of some kind that must
+have been quite the fashion when he held office.  Now it is dirty and torn.  A
+subservient look enters his eyes whenever an orc passes near.    ~
+268435660 0 400 E
+5 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 0 0 2
+Str: 74
+Dex: 83
+Int: 72
+Wis: 56
+Con: 89
+Cha: 80
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30067
+orc general angrugg~
+General Angrugg~
+A large loud orc in general's insignia feeds his face.~
+Angrugg has a contented look as long as he isn't bothered.  He's a very large,
+muscular, and scarred orc.  His uniform is remarkably clean and mended, by orc
+standards.  His yellow eyes have begun to darken with age, and some gray hairs
+hide in his moustache, but he appears to have many years of pillaging ahead of
+him.    ~
+16458 128 -900 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 3
+Str: 77
+Dex: 73
+Int: 79
+Wis: 79
+Con: 81
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30007
+T 30009
+T 30010
+#30068
+khapser colonel orc~
+Colonel Khapser~
+A colonel of the orc army lounges against the wall.~
+Khapser is rather tall and lanky for an orc.  His long moustaches hang down
+well past his chin, and his nose points downward like a divining rod.  His
+thinning hair hangs down his back in braids.  Khapser always seems to be
+scowling at something.    ~
+18504 16777216 -800 E
+80 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 90
+Dex: 84
+Int: 58
+Wis: 76
+Con: 79
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30008
+#30069
+udz orc lieutenant~
+Lieutenant Udz~
+A muscular orc wearing the mark of a lieutanant is standing here.~
+The black bushy eyebrows of this large orc make him look perpetually angry.  
+Add to that his considerable bulk and his habit of getting in people's faces,
+and you have somebody who commands respect but little friendship.  Udz doesn't
+smell particularly good, either.    ~
+2097224 0 -600 E
+65 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 3
+Str: 82
+Dex: 78
+Int: 77
+Wis: 89
+Con: 69
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30008
+#30070
+higg orc lieutenant~
+Lieutenant Higg~
+A tough-looking yet simpering orc with lieutenant's insignia waits nearby.~
+Lieutenant Higg has a look of servitude in one eye and one of oppression in the
+other.  His moustache points to each side directly in the horizontal.  He
+appears to be a powerful warrior, but one with a developing pot belly.  His
+uniform may be the sharpest of any orc in the area.~
+2252 0 -650 E
+65 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 93
+Dex: 83
+Int: 75
+Wis: 68
+Con: 77
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30008
+#30071
+janitor halfling~
+a puny janitor~
+A small halfling wanders about grabbing trash.~
+This morose fellow wanders about, picking up trash.  He is gaunt and has a
+particular stare that chills you.  His clothing is dirty and his feet look a
+bit diseased, but he continues on his endless mission.  Bruises stand out on
+his arms.~
+268435660 0 355 E
+6 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 11 0 1
+Str: 86
+Dex: 94
+Int: 63
+Wis: 66
+Con: 87
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30072
+janitor man human~
+a skinny janitor~
+A skinny janitor scans the area for trash.~
+This poorly-fed human stands here on the lookout for stray garbage.  His eyes
+shift about, watching not just for trash but for bored orcs who would like
+nothing better than to smack someone around who dares not fight back.  He looks
+rather agile, and though he has some scars, there is little evidence of recent
+bruising.~
+268435660 0 0 E
+9 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 9 0 0 2
+Str: 77
+Dex: 81
+Int: 86
+Wis: 95
+Con: 58
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30073
+troll slave runt runty~
+a runty troll~
+A runty troll slave stands near a kettle, stirring.~
+The legendary troll stamina has been put to work in this slave. He wears a
+dirty white smock that seems to identify him as part of the mess crew.
+He has a glum look and a glare in his eye, and no doubt would not stand
+for enslavement if not for his size.~
+268435470 0 0 E
+8 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 4 1 1
+Str: 76
+Dex: 79
+Int: 73
+Wis: 80
+Con: 79
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30078
+esh illusionist orc guildmaster~
+Esh~
+A plump, bored orc sits nearby with a snack.~
+Esh looks bored, perhaps a little superior, dressed in his tanned brown
+leathers with matching cap.  His perfect moustash bobs up and down as he
+munches on jerky.  There is no particular evidence of illusory talent showing,
+but then again, what need is there for it?~
+-1610612726 0 -1000 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+1 1 1 22 8 1 2
+Str: 71
+Dex: 81
+Int: 80
+Wis: 85
+Con: 77
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55705
+T 55711
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 55706
+T 3155
+T 3159
+#30079
+guard sullen bored orc~
+a sullen guard~
+A sullen guard leans against the wall near the staircase.~
+This guard, though dressed in fairly nice leathers, looks unhappy.  He also
+looks quite dangerous.  He appears to be guarding the staircase.~
+18442 0 -1000 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 3 8 1 2
+Str: 93
+Dex: 81
+Int: 58
+Wis: 79
+Con: 86
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#30080
+Mercenary Guard Elite~
+the Mercenary Guard~
+This Mercenary is Jhanna's hired muscle.~
+This Mercenary is Jhanna's hired muscle.  He's ready to handle anything that might go
+sideways here.~
+26634 33554440 0 E
+80 0 0 0d0+20242 30d10+22
+0 0 0 0 0 300
+3 3 0 10 10 0 3
+Str: 82
+Dex: 86
+Int: 75
+Wis: 65
+Con: 86
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 499
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30020
+#30081
+khargol vicious guildmaster master~
+Khargol~
+Khargol the vicious guildmaster rules the Berserker Guild from here.~
+Dredged up from some forsaken swamp and unleashed on the unsuspecting
+inhabitants of South Caelia, Khargol is more savage and vicious than any other
+troll on the continent.  His warty green skin is covered in scars that even his
+trollish regenerative abilities cannot fully heal, reminders of brutal battles
+other creatures could never have survived.  Murdering and frenzing his way up
+the ranks, he has established himself guildmaster of the ravaging Berserker
+Guild of Ogakh.~
+-2013208566 1064 -1000 E
+0 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 14 4 1 3
+Str: 99
+Dex: 75
+Int: 66
+Wis: 78
+Con: 80
+Cha: 55
+AFF2: 4194304
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55736
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55705
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#30082
+wild-troll-berserker-guard~
+a troll berserker guard~
+A wild troll berserker guard stands before the tent.~
+This troll is a giant beast of a creature, primed to slay at a moment's notice.
+Years of experience and countless ravaging battles have earned him a place of
+honor guarding the Berserker Guild.  It is his duty to keep out any who might
+accidentally enter the guildhall - for their own safety.~
+-2147426294 1064 -750 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 300
+3 3 1 14 4 1 3
+Str: 89
+Dex: 80
+Int: 70
+Wis: 75
+Con: 84
+Cha: 54
+AFF2: 4194304
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

@@ -1,0 +1,527 @@
+1
+vnum: 18003
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: orchid wild-orchid flower
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+hiddenness: 0
+applies:
+18 1
+~
+extradesc: orchid wild-orchid flower
+The scent of the orchid somehow gives you a clearer head.  You feel you can
+take on the world now.~
+~~
+vnum: 1140
+location: 5
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dmotuwxyz abefghij
+name: breastplate steel-breastplate breast-plate
+shortdesc: a steel breastplate
+desc: A steel breast plate shines up at you from the ground.
+type: 9
+weight: 16.00
+cost: 9000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: steel-breastplate breast-plate
+A shiny disc of polished steel makes the main part of this piece of armor.  
+Tooled across its edges with a scrolling design, everything about it, from the
+subtle decorations to the fine straps, makes it look expensive and highly
+effective.  There are only a few little dents in its surface to mar its
+mirror-like perfection.~
+~~
+vnum: 1122
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dmotuwxyz abefghij
+name: helm small-iron-helm
+shortdesc: an iron helm
+desc: A small iron helm has been dropped right in the way.
+type: 9
+weight: 4.00
+cost: 2250
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+extradesc: iron-helm small
+This simple little iron helm is made almost completely without ornamentation,
+aside from very simple tooling along its edge.  Leather straps hold it onto its
+wearer's head.  It's also quite heavy and probably very hot!~
+~~
+vnum: 1126
+location: 7
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dmotuwxyz abefghij
+name: leggings iron-banded-leggings
+shortdesc: iron-banded leggings
+desc: A set of iron leggings lies here unattended.
+type: 9
+weight: 15.50
+cost: 2600
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+extradesc: iron-banded-leggings
+These heavy plates of iron are designed to strap around their wearer's legs,
+forming strong and durable protection.  The knees feature cleverly worked
+joints, though apart from this, they're quite plain, just thick black iron.~
+~~
+vnum: 1125
+location: 8
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dmotuwxyz abefghij
+name: boots iron-banded-boots
+shortdesc: iron-banded boots
+desc: Some iron-banded boots have been left here.
+type: 9
+weight: 4.90
+cost: 350
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+extradesc: iron-banded-boots 
+This is one heavy pair of boots!  Black iron strips are bolted to a pair of
+black leather boots, making them immensely protective as well as cumbersome.  
+They are unornamented, though they do bear some light dents, testimony to their
+usefulness.~
+~~
+vnum: 1123
+location: 9
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dmotuwxyz abefghij
+name: gauntlets jointed-iron-gauntlets
+shortdesc: jointed iron gauntlets
+desc: A pair of iron gauntlets rests on the ground.
+type: 9
+weight: 2.70
+cost: 1100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+extradesc: jointed-iron-gauntlets
+These black iron gauntlets are designed to strap onto their wearer's hands.  
+Mostly, they protect the back of the hand.  Light tooling is worked across
+their edges.~
+~~
+vnum: 1124
+location: 10
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dmotuwxyz abefghij
+name: sleeves iron-banded-sleeves
+shortdesc: iron-banded sleeves
+desc: A set of iron sleeves lies on the ground.
+type: 9
+weight: 11.00
+cost: 1200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+extradesc: iron-banded-sleeves
+These heavy black cylinders of iron are designed to strap around their wearer's
+forearms.  They bear light dents, testifying to their effectiveness, but other
+than that, are unmarked.~
+~~
+vnum: 1152
+location: 11
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: muyz afgh
+name: shield large-steel-shield
+shortdesc: a large steel shield
+desc: A large steel shield has been left here.
+type: 9
+weight: 4.50
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+extradesc: shield large-steel-shield
+Beaten steel makes up the main part of this door-shaped shield.  Large enough
+to protect most of its user's body, it is only lightly decorated along its
+edges with simple tooling.  Three leather straps along its back provide a
+secure grip.~
+~~
+vnum: 1127
+location: 13
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: dmotuwxyz abefghij
+name: girth iron-banded-girth small-iron-girth
+shortdesc: an iron-banded girth
+desc: A small iron girth lies at your feet.
+type: 9
+weight: 2.10
+cost: 2100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+extradesc: iron-banded-girth small-iron-girth
+This wide belt is made up of lots of slim, long pieces of heavy, cold black
+iron banded together with wire.  It clasps at the front with a simple iron
+buckle.  Other than the buckle's tooling, it is not decorated.~
+~~
+vnum: 17201
+location: 16
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnuvyz acfghij
+name: sword glowing-sword faint-light
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+18 1
+~
+extradesc: sword glowing-sword faint-light
+You realise that this is a normal longsword which has been enchanted.  It seems
+to be somewhat easier to wield.~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 55570
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55300
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: gauntlets rusted-gauntlets armor
+shortdesc: rusted gauntlets
+desc: A pile of rusted armor lies here unusable.
+type: 8
+weight: 1.29
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: gauntlets rusted-gauntlets armor
+These gauntlets are rusted beyond use.  Perhaps the Cleric or Warrior guild
+master will know what to do with them.~
+~~
+vnum: 55589
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-shard
+shortdesc: a peridot shard
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55309
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bracer flimsy-leather-bracer armor
+shortdesc: a flimsy leather bracer
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bracer flimsy-leather-bracer armor
+This bracer is flimsy beyond use.  Perhaps the Rogue guild master will know
+what to do with it.~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    ~
+~~

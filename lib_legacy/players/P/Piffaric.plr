@@ -1,0 +1,129 @@
+name: Piffaric
+password: Pi1JaLKT/Y
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 20
+race: 9
+level: 93
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17845
+birthtime: 1297448641
+timeplayed: 1130444
+lastlogintime: 1735087301
+host: 104.228.087.146
+height: 69
+weight: 104
+base_height: 69
+base_weight: 104
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxyz
+effectflags: k 0 0
+prefflags: ahnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 100
+loadroom: 10053
+hunger: 18
+thirst: 12
+lastlevel: 0
+hitpoints: 487/487
+mana: 980/864
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 81
+intelligence: 94
+wisdom: 94
+dexterity: 71
+constitution: 56
+charisma: 67
+cash: 178 2243 2908 57
+bank: 102 0 0 0
+experience: 102202830
+quit_reason: 1
+saveroom: 10053
+skills:
+2 1000
+5 1000
+19 1000
+20 1000
+26 1000
+29 1000
+31 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+67 1000
+68 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+107 1000
+108 1000
+112 1000
+113 1000
+157 1000
+158 1000
+159 1000
+160 1000
+161 1000
+162 1000
+163 1000
+164 1000
+165 1000
+166 1000
+168 1000
+169 1000
+170 1000
+200 1000
+220 1000
+228 1000
+415 50
+416 50
+421 1000
+423 1000
+424 1000
+438 251
+443 50
+444 90
+447 606
+451 1000
+452 446
+453 1000
+455 143
+458 1000
+459 1000
+460 731
+462 1000
+464 80
+0 0
+tells:
+1733978791 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1703810172 Catan gossips, 'the *oraths and the piffor*s'
+1703810226 Daedela gossips, 'it's why I keep all my gems on like two characters haha'
+1703810262 Piffaroz gossips, 'daaaamn I'm tempted to share some of this eq lol, gypsy crown, dragon skin, etc.'
+1703810277 Piffaroz gossips, 'unless those suck now lol'
+1703810307 Chinok gossips, 'no, they don't but even tho level restrctions have been loosened, -- your level 10's still can't hold those :)'
+1703810327 Sadler gossips, 'oh for sure lol'
+1733976913 Thort gossips, 'you don't even really need to to be honest. We'll get the levels back so quickly'
+1733979338 Piffaron gossips, 'I lost roz'
+1733979349 Piffaron gossips, 'mis chan'
+1735087277 Discord gossips, 'venath.2005: Or maybe it was the naughty list for being too nice.....'
+$
+effects:
+57 12 0 0 1048576 0 0
+0 0 0 0 0

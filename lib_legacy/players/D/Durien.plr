@@ -1,0 +1,75 @@
+name: Durien
+password: DuqHqR4YoY
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18713
+birthtime: 1405980508
+timeplayed: 1163
+lastlogintime: 1405981673
+host: 162.194.228.037
+height: 86
+weight: 219
+base_height: 86
+base_weight: 219
+base_size: 3
+natural_size: 3
+alignment: 29
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 8
+lastlevel: 0
+hitpoints: 12/49
+mana: 0/0
+move: 20/142
+damroll: 5
+hitroll: 4
+strength: 94
+intelligence: 71
+wisdom: 73
+dexterity: 87
+constitution: 81
+charisma: 60
+experience: 21582
+quit_reason: 5
+saveroom: 41005
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 51
+427 1000
+438 80
+443 50
+444 50
+463 50
+464 50
+465 52
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8001 2.000000
+1 36003 4.000000
+1 36002 6.000000
+1 36001 7.000000
+1 8015 1.000000
+1 8011 1.000000
+1 8010 1.000000
+1 8020 1.000000
+1 8022 1.000000
+1 8016 2.000000
+0 0 0

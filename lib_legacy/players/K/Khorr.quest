@@ -1,0 +1,51 @@
+23 1 5
+actor_level 55
+price 0
+skill_level 0
+word2 generic
+skill_name sphere
+17 1 25
+5538_reward 1
+5554_reward 1
+5550_reward 1
+5511_trophies 1
+5536_reward 1
+5532_reward 1
+5534_reward 1
+5528_reward 1
+5518_reward 1
+5556_reward 2
+5530_reward 2
+5516_reward 1
+5524_reward 2
+5522_reward 1
+5546_reward 1
+5513_trophies 2
+5558_reward 4
+5520_reward 1
+5547_reward 1
+5509_trophies 13
+5507_trophies 39
+5505_trophies 29
+5503_trophies 77
+eg_faction 200
+bl_faction 0
+32797 255 1
+subclass_name priest
+7 2 16
+55340_armor_acquired 1
+55612_gems_acquired 3
+55332_armor_acquired 1
+55590_gems_acquired 3
+55320_armor_acquired 1
+55601_gems_acquired 3
+55328_armor_acquired 1
+55324_armor_acquired 1
+55574_gems_acquired 3
+55308_armor_acquired 1
+55570_gems_acquired 3
+55304_armor_acquired 1
+55578_gems_acquired 3
+55312_armor_acquired 1
+55566_gems_acquired 3
+55300_armor_acquired 1

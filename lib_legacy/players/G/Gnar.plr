@@ -1,0 +1,113 @@
+name: Gnar
+password: GnFD9tQLcV
+prompt: %n%-&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b> <&0%e&2&b>%_<&0%l&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 10
+race: 10
+level: 42
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18746
+birthtime: 1410466469
+timeplayed: 49771
+lastlogintime: 1487885090
+host: 067.140.081.023
+height: 87
+weight: 236
+base_height: 87
+base_weight: 236
+base_size: 3
+natural_size: 3
+alignment: 945
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 10
+thirst: 12
+lastlevel: 0
+hitpoints: 537/453
+mana: 176/176
+move: 174/174
+damroll: 5
+hitroll: 4
+strength: 94
+intelligence: 56
+wisdom: 68
+dexterity: 96
+constitution: 99
+charisma: 55
+cash: 149 1588 7071 6
+experience: 11438262
+quit_reason: 1
+saveroom: 3054
+skills:
+401 85
+402 50
+403 108
+404 88
+410 50
+411 139
+415 50
+416 50
+419 1000
+420 50
+421 79
+427 1000
+428 50
+430 50
+431 50
+434 50
+438 50
+443 50
+444 63
+463 50
+464 73
+465 80
+466 50
+467 59
+468 50
+473 50
+0 0
+trophy:
+1 18007 1.000000
+1 3062 1.000000
+1 36002 1.000000
+1 36003 1.000000
+1 36001 1.000000
+1 8002 1.000000
+1 8021 1.000000
+1 8001 1.000000
+1 8013 1.000000
+1 8030 1.000000
+1 8022 1.000000
+1 8016 1.000000
+1 8000 1.000000
+1 8010 1.000000
+1 8012 1.000000
+1 8015 1.000000
+1 8011 1.000000
+1 8014 0.500000
+1 53006 7.000000
+1 53024 1.000000
+1 53021 0.500000
+0 0 0
+aliases:
+lib look in backpack
+df drink fountain
+alais alias
+gg put all.gem saddle
+ds drink skin
+` get all from all.corpse
+k kill $1
+lvl search curtain;open curtain;e;d;level gain;u;w
+well tell samun moonwell
+ew enter well
+lic look in corpse
+b rem sword;rem sword;wie fork;b $1;rem fork;wie sword;wie sword
+who who -w
+0

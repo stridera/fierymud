@@ -1,0 +1,71 @@
+66 1 0
+22 1 4
+actor_level 35
+price 56889
+skill_level 50
+skill_name rescue
+63 1 1
+step totem
+48 1 0
+55 1 0
+17 1 9
+5552_reward 1
+5511_trophies 1
+5509_trophies 25
+5503_trophies 77
+5507_trophies 35
+5505_trophies 36
+eg_ally 1
+eg_faction 200
+bl_faction 0
+65 1 2
+scorpion 1
+lever 1
+32823 255 2
+target 16105
+subclass_name berserker
+10 1 0
+62 1 0
+61 5 2
+target1 0
+hunt 0
+72 5 2
+target1 0
+bounty 0
+70 1 1
+hunt running
+59 4 2
+target1 young_blue_dragon
+hunt dead
+47 1 1
+gem_vnum 0
+58 1 1
+armor_vnum 0
+7 2 22
+55631_gems_acquired 3
+55342_armor_acquired 1
+55619_gems_acquired 3
+55338_armor_acquired 1
+55607_gems_acquired 3
+55334_armor_acquired 1
+55595_gems_acquired 3
+55330_armor_acquired 1
+55589_gems_acquired 3
+55320_armor_acquired 1
+55585_gems_acquired 3
+55316_armor_acquired 1
+55593_gems_acquired 3
+55324_armor_acquired 1
+55581_gems_acquired 3
+55312_armor_acquired 1
+55573_gems_acquired 3
+55304_armor_acquired 1
+55577_gems_acquired 3
+55308_armor_acquired 1
+55569_gems_acquired 3
+55300_armor_acquired 1
+45 255 4
+money complete
+rest complete
+loot complete
+fight complete

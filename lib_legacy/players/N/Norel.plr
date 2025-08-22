@@ -1,0 +1,104 @@
+name: Norel
+password: NobE0du1LE
+prompt: &2%hh(%HH) %vv(%VV) %ih %_<%t><>:<>%o
+sex: 2
+class: 2
+race: 11
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 13959
+birthtime: 1098323720
+timeplayed: 10190181
+lastlogintime: 1370804109
+host: 184.042.029.132
+height: 38
+weight: 152
+base_height: 38
+base_weight: 152
+base_size: 1
+natural_size: 1
+alignment: 705
+playerflags: glxyz
+effectflags: fkt 0 0
+prefflags: hnouxzCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 8
+hitpoints: 861/861
+mana: 100/100
+move: 124/124
+damroll: 3
+hitroll: 6
+strength: 91
+intelligence: 80
+wisdom: 65
+dexterity: 92
+constitution: 97
+charisma: 38
+cash: 0 44 559 602
+bank: 1263 12433 78563 86052
+experience: 105805999
+clan: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+409 1000
+410 600
+411 1000
+412 1000
+415 1000
+416 1000
+420 1000
+421 1000
+438 50
+443 1000
+444 304
+464 1000
+465 50
+467 50
+476 1000
+478 1000
+0 0
+trophy:
+1 16310 1.000000
+1 20307 1.000000
+1 20311 1.000000
+1 20305 2.000000
+1 5502 1.000000
+1 2003 2.000000
+1 2005 1.000000
+1 18507 1.000000
+1 18509 1.000000
+1 18510 1.000000
+1 36002 1.000000
+1 36003 1.000000
+1 36001 1.000000
+1 8021 1.000000
+1 23721 1.000000
+1 4313 2.000000
+1 4301 1.000000
+1 4307 1.000000
+1 4353 2.000000
+1 4303 2.000000
+1 4306 1.000000
+0 0 0
+aliases:
+bhum b humanoid
+bs b skeleton
+brep b reptilian
+er eat ration
+eb eat bread
+db drink skin
+sco steal coins $1
+id identify $*
+gaac g all all.corpse
+gac get all corpse
+gaa get all all.corpse
+0

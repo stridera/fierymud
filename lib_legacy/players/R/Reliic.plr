@@ -1,0 +1,104 @@
+name: Reliic
+password: RewKrf.ZC0
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 11
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20115
+birthtime: 1642474655
+timeplayed: 5161
+lastlogintime: 1642479816
+host: 024.066.021.152
+height: 42
+weight: 114
+base_height: 42
+base_weight: 114
+base_size: 1
+natural_size: 1
+alignment: 995
+playerflags: y
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+thirst: 6
+lastlevel: 0
+hitpoints: 41/41
+mana: 0/0
+move: 100/100
+damroll: 3
+hitroll: 6
+strength: 89
+intelligence: 96
+wisdom: 93
+dexterity: 63
+constitution: 70
+charisma: 56
+experience: 33986
+quit_reason: 3
+saveroom: 0
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 90
+424 66
+438 50
+443 50
+444 50
+451 51
+457 59
+458 54
+459 50
+460 51
+462 50
+463 57
+466 50
+0 0
+trophy:
+1 7051 1.000000
+1 8002 2.000000
+1 8021 3.000000
+1 8030 1.000000
+1 8014 1.000000
+1 8013 1.000000
+1 8023 2.000000
+1 8001 3.000000
+1 8011 4.000000
+1 8000 7.000000
+1 8016 5.000000
+1 8012 5.000000
+1 8020 4.000000
+0 0 0
+tells:
+$
+gossips:
+1642475018 Lokar gossips, 'Welcome Reliic'
+1642475169 Lokar gossips, 'if you need any help let us know'
+1642475233 Lokar gossips, 'you have to repray'
+1642475245 Someone gossips, 'np'
+1642475277 Someone gossips, 'comming'
+1642476314 Torel gossips, 'congratz!'
+$
+mem:
+1 1 7
+16 1 7
+84 1 7
+12 1 7
+0 0 0
+aliases:
+harm c 'cause light' $*
+armor c 'armor'
+0

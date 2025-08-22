@@ -1,0 +1,141 @@
+name: Lerik
+password: LeVDWPgZKZ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 11
+race: 8
+level: 24
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19160
+birthtime: 1492400935
+timeplayed: 99926
+lastlogintime: 1713696665
+host: 066.199.058.082
+height: 60
+weight: 118
+base_height: 60
+base_weight: 118
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnouxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 25
+loadroom: 3054
+thirst: 22
+lastlevel: 0
+hitpoints: 138/138
+mana: 57/57
+move: 93/102
+damroll: 3
+hitroll: 3
+strength: 79
+intelligence: 96
+wisdom: 76
+dexterity: 72
+constitution: 69
+charisma: 75
+cash: 46 1621 5737 3065
+experience: 3357725
+quit_reason: 1
+saveroom: 3054
+spellcasts:
+3 12
+0 0
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+33 1000
+39 1000
+45 1000
+87 1000
+100 1000
+101 1000
+121 1000
+415 50
+416 50
+421 83
+423 290
+424 290
+438 50
+443 50
+444 144
+447 80
+451 60
+452 287
+453 50
+454 290
+459 75
+460 76
+461 286
+462 50
+464 178
+0 0
+trophy:
+1 18517 1.000000
+1 18550 1.000000
+1 18501 1.000000
+1 18551 1.000000
+1 18502 0.500000
+1 18513 0.833333
+1 18500 0.333333
+1 18507 2.500000
+1 18510 0.500000
+1 8021 0.500000
+1 8010 0.500000
+1 8000 0.500000
+1 18552 1.000000
+1 18509 0.500000
+1 18519 3.000000
+1 18518 1.000000
+1 18520 2.500000
+1 18515 1.500000
+1 18512 2.000000
+1 2004 1.000000
+1 8034 0.500000
+0 0 0
+tells:
+1619226409 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1619228761 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1650168348 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1650168348 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1650168348 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1662171799 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1662171799 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1662171799 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1662171799 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1673751042 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1673752656 Chinok gossips, 'out the south exit from town'
+1673752678 Isiac gossips, 'meet at fountain in 1 min'
+1673752679 Hackwriter gossips, 'i though just gremlin area south'
+1673752680 Chinok gossips, 'commonly called (BFT) Blue Fog Trail'
+1673752689 Hackwriter gossips, 'ok'
+1673752769 Chinok gossips, 'gratz Pyran!!'
+1673752787 Gorath gossips, 'can i tag along ^_^'
+1673752815 Isiac gossips, 'if you want to gorath'
+1673753358 Chinok gossips, 'everyone doing OK ?'
+1673753367 Serik gossips, 'so far so good'
+$
+aliases:
+bb t serik b
+dc c 'decay'
+gc g all.coins from corpse
+lc l in corpse
+jj as serik
+ct c 'chill'
+ani c 'animate' corpse
+ask as skeleton
+az as zombie
+mm c 'mag'
+0

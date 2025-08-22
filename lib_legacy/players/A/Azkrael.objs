@@ -1,0 +1,274 @@
+1
+vnum: 49014
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ik
+name: crown flowers circle
+shortdesc: a crown of flowers
+desc: There is a circle of flowers on the ground.
+type: 8
+weight: 3
+cost: 600
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 17
+applies:
+5 3
+2 3
+~
+extradesc: crown flowers circle
+You smell the sweet perfume of these flowers. They have not withered -
+this crown must have belonged to a very special person!~
+~~
+vnum: 1027
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandals leather leather-sandals
+shortdesc: &0&3a pair of leather sandals&0
+desc: &0&3A pair of leather sandals lie here.&0
+type: 9
+weight: 2
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+~~
+vnum: 17204
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: cord golden
+shortdesc: the golden cord
+desc: A golden cord lies on the ground.
+type: 9
+weight: 2
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+applies:
+3 1
+13 -1
+~
+extradesc: cord golden
+You look upon a length of cord made of finely spun gold threads. It seems to
+emanate a strange aura.
+~
+~~
+vnum: 48005
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: gjnru
+name: dress indigo silk
+shortdesc: an indigo silk dress
+desc: A beautiful dress has been left here.
+type: 9
+weight: 4
+cost: 1400
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 9
+applies:
+24 -5
+~
+extradesc: witchs-dress witch dress beautiful-dress
+Made of a very fine, smooth material, it is elegant enough to satisfy any 
+noblewoman. You imagine it would look very sexy on you.
+~
+~~
+vnum: 236
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sword shining shining-sword
+shortdesc: a finely crafted engraved sword
+desc: A finely crafted engraved sword leans against a wall.
+type: 5
+weight: 4
+cost: 0
+timer: 0
+level: 99
+effects: 0 0 0
+wear: 8193
+applies:
+6 50
+~
+~~
+vnum: 1298
+location: 127
+values:
+0
+5
+10
+3
+0
+0
+0
+~
+flags: nuvwyz
+name: leak stream fountain
+shortdesc: Tanle's stream
+desc: &4&bA leak in from above provides fresh water to drink. &0
+type: 23
+weight: 1
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 0
+extradesc: leak stream fountain
+   A small leak from above streams in, flowing to the floor below, ending in a
+small fountain before draining out.  The water looks fresh and revitalizing.  
+~
+~~
+vnum: 1098
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: strip color-quick-reference-strip
+shortdesc: a Color Quick-Reference Strip
+desc: A Color Quick-Reference Strip lays here!
+type: 12
+weight: 0
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+extradesc: color-quick-reference-strip
+&0&11  &0&1&b1b  &0&22  &0&2&b2b  &0&33  &0&3&b3b  &0&44  &0&4&b4b  &0&55  &0&5&b5b  &0&66  &0&6&b6b  &0&77  &0&7&b7b  &0&88  &0&8&b8b  &0&99  &0&9&b9b&0
+~
+~~
+vnum: 597
+location: 127
+values:
+0
+0
+250
+0
+0
+0
+0
+~
+flags: a
+name: eyes burning-demon-eyes unique-ish
+shortdesc: &1Burning Demon Eyes&0
+desc: Some burning demon eyes lie here, on fire.
+type: 1
+weight: 2
+cost: 30000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 65537
+applies:
+18 2
+14 20
+~
+extradesc: burning-demon-eyes
+A pair of demonic-looking eyes, dark-rimmed and loathesome, burn here
+with a flame that is not borne of wood. No heat rises from the fire that
+engulfs the orbs, and they are not held onto the face by any kind of
+strings or supports, instead hovering before the eyes and infecting
+all the wearer sees with a flaming malevolence.
+~
+~~
+vnum: 8807
+location: 127
+values:
+0
+1
+7
+14
+0
+0
+0
+~
+flags: mnouyz
+name: pitchfork fork
+shortdesc: a pitchfork
+desc: A pitchfork is set out of the way.
+type: 5
+weight: 5
+cost: 40
+timer: 0
+level: 4
+effects: 0 0 0
+wear: 8193
+~~
+vnum: 8807
+location: 127
+values:
+0
+1
+7
+14
+0
+0
+0
+~
+flags: mnouyz
+name: pitchfork fork
+shortdesc: a pitchfork
+desc: A pitchfork is set out of the way.
+type: 5
+weight: 5
+cost: 40
+timer: 0
+level: 4
+effects: 0 0 0
+wear: 8193
+~~

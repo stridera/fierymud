@@ -1,0 +1,197 @@
+name: Mand
+password: MaBbZpyy7m
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 21
+race: 9
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19081
+birthtime: 1465852849
+timeplayed: 3838564
+lastlogintime: 1720632132
+host: 136.038.104.232
+height: 64
+weight: 103
+base_height: 64
+base_weight: 103
+base_size: 2
+natural_size: 2
+alignment: -255
+playerflags: yz
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+lastlevel: 0
+hitpoints: 512/512
+mana: 980/980
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 75
+intelligence: 100
+wisdom: 88
+dexterity: 71
+constitution: 66
+charisma: 58
+experience: 126967199
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+8 1000
+19 1000
+20 1000
+29 1000
+30 1000
+31 1000
+37 1000
+38 1000
+39 1000
+51 1000
+52 1000
+57 1000
+62 1000
+67 1000
+68 1000
+76 1000
+77 1000
+78 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+106 1000
+107 1000
+108 1000
+111 1000
+112 1000
+113 1000
+171 1000
+172 1000
+173 1000
+174 1000
+175 1000
+176 1000
+177 1000
+178 1000
+180 1000
+181 1000
+182 1000
+183 1000
+228 1000
+263 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 61
+447 1000
+451 1000
+452 1000
+454 1000
+456 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 286
+0 0
+trophy:
+1 61506 0.250000
+1 61505 0.250000
+1 8608 0.250000
+1 11811 0.500000
+1 11810 0.250000
+1 11802 0.250000
+1 11710 0.250000
+1 58404 0.500000
+1 11701 0.500000
+1 13612 3.000000
+1 13625 1.000000
+1 2807 1.000000
+1 48631 0.250000
+1 48636 0.500000
+1 12501 2.000000
+1 12502 1.000000
+1 12509 1.000000
+1 18517 1.000000
+1 18510 1.000000
+1 18507 1.000000
+1 13617 0.500000
+0 0 0
+tells:
+1672876180 @WChoak@W tells you, 'hi@W'@0
+1672876191 @WChoak@W tells you, 'hi@W'@0
+1672881736 @WChinok@W tells you, 'was going to ask where the dang script for bard is.. @W'@0
+1672881742 @WChinok@W tells you, 'but it's in morgan hill, right@W'@0
+1672881770 @WChinok@W tells you, 'go for it@W'@0
+1672921934 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1672929467 @WChoak@W tells you, 'hi@W'@0
+1672935962 @WChoak@W tells you, 'hi@W'@0
+1672935991 @WChoak@W tells you, 'hi@W'@0
+1672961967 @WZaver@W tells you, 'hi@W'@0
+1674531555 @WChinok@W tells you, 'help Enthilza out .. if you're going to be around, I gotta go clean the oven :(@W'@0
+$
+gossips:
+1674531231 Enthilza gossips, 'oh, it was yesterday, things are no longer there'
+1674531266 Chinok gossips, 'give me a sec, will load up a few things for you'
+1674531816 Gorath gossips, 'a tree branch makes a lunge for your head?'
+1674532115 Isiac gossips, 'nice'
+1674532752 Enthilza gossips, 'Thank you!'
+1688622993 Mersh gossips, 'you ready?'
+1691594762 Durlenawk gossips, 'default to colorless display?'
+1691594778 Durlenawk gossips, 'is it in toggles?'
+1691594886 Xius gossips, 'welcome Durlenawk'
+1691594943 Durlenawk gossips, 'do new chars not get color?'
+1691595153 Durlenawk gossips, 'ah command .. color complete'
+$
+aliases:
+rc get curse sack;recite curse $*
+flood cast 'flood'
+teleport cast 'teleport'
+dinvis cast 'detect invisi' $*
+rmm rest;meditate;mem
+relo cast 'relocate' $*
+create cast 'minor creation' $*
+locate cast 'locate object' $*
+tele cast 'teleport'
+cworld cast world
+dd cast 'dimension door' $1
+rent vis;rent
+detect cast 'detect invisibility' $1
+cfly cast fly $1
+ec examine corpse
+invis cast 'invisibility' $1
+stone cast 'stone skin' $1
+dagger cast 'ice dagger' $1
+df drink fountain
+r rest
+ice cast 'iceball' $1
+dmagic cast 'detect magic' $1
+strength cast strength $1
+bolt cast 'lightning bolt' $1
+shock cast 'shocking grasp' $1
+ia cast 'mass invisibility'
+storm cast 'ice storm'
+haste cast 'haste' $*
+wall cast 'wall of ice' $*
+ul unlock $*;open $*
+id get identify sack;recite identify $*
+shard cast 'ice shards'
+rain cast 'rain'
+of order followers $*
+wf cast 'waterform'
+globe cast 'major globe' $*
+0

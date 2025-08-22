@@ -1,0 +1,198 @@
+69 1 2
+elf 1
+shake 1
+16 2 6
+find_key 1
+given_blood 1
+given_earring 1
+blood_time 13945669
+find_blood 2
+given_light 1
+26 255 7
+48917 1
+51073 1
+step7 3
+step6 58657
+step5 53219
+step4 8561
+step3 4318
+27 255 4
+air 1
+fire 2
+earth 1
+bar_num 6226
+18 2 7
+item7 0
+item6 1
+item5 0
+item1 1
+item2 1
+item3 1
+item4 1
+29 255 19
+bad5 0
+bad4 0
+bad3 0
+bad2 0
+bad1 0
+invoke 0
+summon 0
+prayer 0
+reliquary 0
+north 0
+west 0
+south 0
+east 0
+item5 0
+item1 0
+item3 0
+goblet 18512
+item2 0
+item4 0
+14 255 8
+final_item 53461
+ward_count 5
+ward_53453 2
+ward_53456 2
+ward_53455 2
+ward_53454 2
+ward_53457 2
+room 12553
+8 255 1
+greet 1
+2 1 1
+shell 1
+4 7 1
+oak 1
+55 1 0
+19 255 1
+choice 2
+65 1 2
+scorpion 1
+lever 1
+10 255 0
+66 255 0
+17 1 30
+5535_reward 1
+5545_reward 3
+5527_reward 1
+5537_reward 1
+5531_reward 1
+5506_trophies 4
+5533_reward 1
+5543_reward 1
+5529_reward 1
+5515_reward 2
+5525_reward 1
+5542_reward 1
+5523_reward 1
+5541_reward 1
+5521_reward 1
+5539_reward 1
+5519_reward 1
+5540_reward 1
+5517_reward 1
+5557_reward 1
+5555_reward 1
+5514_trophies 19
+5516_trophies 5
+5508_trophies 26
+5510_trophies 26
+5504_trophies 13
+5512_trophies 10
+bl_ally 1
+eg_faction 0
+bl_faction 200
+13 255 6
+satisfied_tree:12046 1
+satisfied_tree:12016 1
+satisfied_tree:12017 1
+satisfied_tree:12018 1
+satisfied_tree:12014 1
+num_trees 5
+48 7 4
+fire_ring 1
+sash 1
+charles 1
+lashes 0
+47 1 1
+gem_vnum 0
+51 5 7
+wandtask5 0
+wandtask4 0
+wandtask3 0
+wandtask1 0
+attack_counter 163
+wandtask2 0
+greet 0
+50 3 8
+wandtask1 1
+task5 0
+task4 0
+task3 0
+task1 0
+attack_counter 200
+task2 0
+greet 0
+64 255 1
+got_cherry 0
+59 255 2
+target1 0
+hunt 0
+56 255 4
+target3 0
+target2 0
+target1 0
+bounty 0
+61 255 2
+target1 0
+hunt 0
+70 6 2
+treasure1 0
+hunt running
+7 3 42
+55359_armor_acquired 1
+55363_armor_acquired 1
+55379_armor_acquired 1
+55375_armor_acquired 1
+55383_armor_acquired 1
+55371_armor_acquired 1
+55367_armor_acquired 1
+55679_gems_acquired 3
+55690_gems_acquired 3
+55701_gems_acquired 3
+55712_gems_acquired 3
+55745_gems_acquired 3
+55723_gems_acquired 3
+55734_gems_acquired 3
+55347_armor_acquired 1
+55335_armor_acquired 1
+55351_armor_acquired 1
+55343_armor_acquired 1
+55338_armor_acquired 1
+55355_armor_acquired 1
+55668_gems_acquired 3
+55657_gems_acquired 3
+55646_gems_acquired 3
+55635_gems_acquired 3
+55624_gems_acquired 3
+55613_gems_acquired 3
+55602_gems_acquired 3
+55331_armor_acquired 1
+55575_gems_acquired 3
+55579_gems_acquired 3
+55583_gems_acquired 3
+55587_gems_acquired 3
+55591_gems_acquired 3
+55571_gems_acquired 3
+55567_gems_acquired 3
+55302_armor_acquired 1
+55326_armor_acquired 1
+55322_armor_acquired 1
+55306_armor_acquired 1
+55314_armor_acquired 1
+55310_armor_acquired 1
+55318_armor_acquired 1
+32772 255 2
+part black
+subclass_name pyromancer

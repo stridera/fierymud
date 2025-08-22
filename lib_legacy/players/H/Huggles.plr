@@ -1,0 +1,77 @@
+name: Huggles
+password: HuE8sGK9K5
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18217
+birthtime: 1334250998
+timeplayed: 653
+lastlogintime: 1334251654
+host: 075.164.203.044
+height: 85
+weight: 207
+base_height: 85
+base_weight: 207
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 15
+thirst: 6
+lastlevel: 0
+hitpoints: 45/41
+mana: 0/0
+move: 136/160
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 58
+wisdom: 59
+dexterity: 94
+constitution: 92
+charisma: 65
+experience: 6989
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8021 1.000000
+1 8022 1.000000
+1 8012 1.000000
+1 8000 1.000000
+1 8023 1.000000
+1 8011 1.000000
+1 8014 2.000000
+0 0 0
+aliases:
+tc take all corpse
+ag assist gipper
+0

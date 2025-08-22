@@ -1,0 +1,81 @@
+name: Shazar
+password: ShaX32QhaM
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20125
+birthtime: 1642910509
+timeplayed: 2746
+lastlogintime: 1642914793
+host: 074.132.076.055
+height: 62
+weight: 168
+base_height: 62
+base_weight: 168
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: xy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8050
+thirst: 2
+lastlevel: 0
+hitpoints: 42/42
+mana: 1/0
+move: 80/110
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 54
+wisdom: 80
+dexterity: 94
+constitution: 81
+charisma: 56
+cash: 0 1 4 5
+experience: 11800
+quit_reason: 7
+saveroom: 8050
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36001 2.500000
+1 36002 3.000000
+1 36003 4.500000
+0 0 0
+tells:
+$
+gossips:
+1642913217 Chinok gossips, 'highly suggest you check out that search command in Kaaz'
+1642913280 Roric gossips, 'is there a command to see areas sorted by level?'
+1642913311 Chinok gossips, 'help area ?'
+1642913334 Roric gossips, 'exactly thanks!'
+1642913357 Chinok gossips, 'also should be noted, EVERY area has a help entry -- giving some highlights about the area'
+1642913942 Pashku gossips, 'congrats Shazar!'
+1642914286 Roric gossips, 'no deathtrap help file, no deathtraps?'
+1642914321 Chinok gossips, 'lol nope, there are a FEW places that have something nearing a death-trap'
+1642914333 Chinok gossips, 'but no actual just bam you are dead'
+1642914385 Roric gossips, 'nice, i appreciate both sides of that fence and am happy to not have them where i tread'
+$

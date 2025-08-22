@@ -1,0 +1,31 @@
+#73
+the Northern Swamps~
+7499 47 2 100 0 0
+M 0 7475 1 7447 	(a mysteriously cloaked man)
+M 0 7300 50 7302 	(a neo-lizard man)
+M 0 7300 50 7320 	(a neo-lizard man)
+M 0 7300 50 7359 	(a neo-lizard man)
+M 0 7300 50 7363 	(a neo-lizard man)
+M 0 7300 50 7370 	(a neo-lizard man)
+M 0 7300 50 7396 	(a neo-lizard man)
+M 0 7300 50 7403 	(a neo-lizard man)
+M 0 7300 50 7421 	(a neo-lizard man)
+M 0 7300 50 7438 	(a neo-lizard man)
+M 0 7300 50 7455 	(a neo-lizard man)
+M 0 7301 25 7305 	(the Northern Crusher Bile)
+M 0 7301 25 7342 	(the Northern Crusher Bile)
+M 0 7301 25 7358 	(the Northern Crusher Bile)
+M 0 7301 25 7401 	(the Northern Crusher Bile)
+M 0 7301 25 7431 	(the Northern Crusher Bile)
+M 0 7302 10 7330 	(the Bile Rot)
+M 0 7302 10 7337 	(the Bile Rot)
+M 0 7302 10 7379 	(the Bile Rot)
+M 0 7302 10 7419 	(the Bile Rot)
+M 0 7302 10 7455 	(the Bile Rot)
+M 0 7310 1 7399 	(the crazy hermit)
+E 1 18004 999 5 	(a green linen robe)
+E 1 7301 1 8 	(the Swamp Boots)
+E 1 7300 1 16 	(the Swamp Blade)
+G 1 7302 1 -1 	(a murky potion)
+S
+$

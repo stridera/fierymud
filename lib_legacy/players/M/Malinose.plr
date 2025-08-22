@@ -1,0 +1,115 @@
+name: Malinose
+password: MaIGe5J7qi
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 15
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19984
+birthtime: 1628039263
+timeplayed: 139235
+lastlogintime: 1645896888
+host: 066.255.216.196
+height: 85
+weight: 216
+base_height: 85
+base_weight: 216
+base_size: 3
+natural_size: 3
+alignment: 654
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 6
+thirst: 12
+lastlevel: 0
+hitpoints: 207/192
+mana: 22/22
+move: 104/144
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 68
+wisdom: 76
+dexterity: 90
+constitution: 82
+charisma: 68
+cash: 0 158 1577 433
+bank: 0 300 0 0
+experience: 907361
+quit_reason: 1
+saveroom: 3054
+skills:
+402 60
+404 200
+407 50
+415 50
+416 50
+419 1000
+421 200
+427 1000
+430 112
+438 81
+443 50
+444 50
+463 50
+464 53
+465 200
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36303 1.000000
+1 36300 4.000000
+1 36305 2.500000
+1 4104 0.500000
+1 4102 2.500000
+1 4101 1.000000
+1 16111 0.500000
+1 16102 1.500000
+1 16103 1.000000
+1 16107 3.500000
+1 39008 0.500000
+1 12005 0.500000
+1 12011 0.500000
+1 12016 0.500000
+1 12007 0.500000
+1 5404 2.000000
+1 5403 2.000000
+1 5479 2.000000
+1 36104 4.000000
+1 36105 2.500000
+1 36101 9.000000
+0 0 0
+tells:
+1635007422 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1635007422 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1635007423 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1635007423 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1635007423 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1635007423 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1635007423 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1635007423 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1635008749 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1635008751 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+$
+gossips:
+1645894589 Vasel gossips, 'i'm the tank for my group, so i just made sure i had good con and dex'
+1645894608 Astrid gossips, 'ok just looking at making a new one'
+1645894619 Vasel gossips, 'planning on a subclass?'
+1645894631 Astrid gossips, 'no'
+1645894641 Astrid gossips, 'starting a new char'
+1645894667 Vasel gossips, 'is malinard yours?'
+1645894684 Astrid gossips, 'nope'
+1645894707 Malinard gossips, 'malinose malinard are mine'
+1645894747 Vasel gossips, 'good morning :)'
+1645894759 Astrid gossips, 'yep'
+$

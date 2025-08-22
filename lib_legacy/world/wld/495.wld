@@ -1,0 +1,1567 @@
+#49500
+Night Laced Inn~
+   A faint call of sleep beckons forth, as whispers and chants of horrid dark
+words call to weak souls.  The peaceful solitude of darkness guides gently
+toward the wayward path into the inn.  The floors are a smooth blackened stone
+and the ceiling glides along in oddly twisting planks of wood.  The only exit
+from the entombed room is upwards or simply embrace the whispers and dream with
+the darkness.
+~
+495 524444 1
+D4
+~
+~
+0 -1 49501
+S
+#49501
+A Shaded Path~
+   Wind roars overhead as it passes through the bleak and lifeless air.  Light
+is pulled from its domain into a vast plane of nothingness, as it has no place
+here.  Whispers protrude out of the black sands below.  A few simple buildings
+stand near within sight: one far west, and at least two in the east.  The
+outline of a door or gate is apparent towards the north.  Shards of rock and
+blackened ice litter the ground, mostly broken up into small chunks.  To find
+the chosen path, one must venture forth, one way.    
+~
+495 0 0
+D0
+~
+gate~
+1 -1 49515
+D1
+~
+~
+0 -1 49518
+D3
+~
+~
+0 -1 49502
+D5
+~
+~
+0 -1 49500
+S
+#49502
+A Shaded Path~
+   Darkness coats the unclean as well as the pure.  Little is to be seen, save
+the glowing mist still glistening from the wisp.  Chants and whispers tear
+through the darkened winds, riddling weak minds with taints of madness.  Imprints
+in the sands tread eastward then disappear out of sight.  A grey lining
+caresses a doorway to the south, illuminating enough just to see solid stone
+forming the entrance.
+~
+495 0 0
+D1
+~
+~
+0 -1 49501
+D2
+~
+~
+0 -1 49504
+D3
+~
+~
+0 -1 49503
+S
+#49503
+A Shaded Path~
+   Without light the lifeless sands are withheld from rebirth and damned from
+renewal.  Faint footprints move northward pressed into the ground perhaps by
+sheer weight.  As the wind thrust by it brings about voices flowing from the
+north, alas the words undefined.  The fragments of street run east to west,
+with a branch lain northward.  Alas the darkness ensures an absence of view.  
+~
+495 0 0
+D0
+~
+~
+0 -1 49505
+D1
+~
+~
+0 -1 49502
+D3
+~
+~
+0 -1 49563
+S
+#49504
+Shades Weaponry~
+   Dark and gloomy this place seems inhospitable to be a shop for fine weapons.
+The room is lain in a harsh black wood and its walls decorated in blood-stained
+shields and weapons.  Centered in the shop is a tall wooden counter adorned
+with bones as trim, yielding a tall cloaked man standing behind it.  The
+element of wind brushes lightly through the room, just enough to disturb the
+metal for a scrape or two that echoes violently through the otherwise silent
+halls.
+~
+495 524444 0
+D0
+~
+~
+0 -1 49502
+E
+shield swords~
+   Beautifully crafted these masses of blades and thick shields appear to
+finely forged, yet it does not look that even one of them hasn't seen battle.
+  
+~
+E
+counter knobs engravings~
+   This is a fine table indeed, wonderfully crafted from a strange wood.  It
+appears to have been made from one piece of wood, as there isn't one nail or
+separate piece noticeable.    
+~
+S
+#49505
+The Northern Shade~
+   Blatant and clear, the simple purity of light is damned before it even
+reaches the scorched grounds.  The stench within the air is enough for an easy
+stomach to lose itself, smelling of decaying flesh and spoiled blood.  The spoils
+of war and thirst for darkness are open as the sea is for the tide.  The
+streets are littered with a vile presence of dark lust and deepened rage.  
+Faint yet sharp words bleed from voices sounding from afar north.  Footprints
+lead in stride but without definition to identify.  As the wind brushes the
+sands, stones are revealed slightly north.  Planted within the sand it may
+reveal a pathway.    
+~
+495 0 0
+D0
+~
+~
+0 -1 49506
+D2
+~
+~
+0 -1 49503
+E
+footprints prints tracks~
+   About three inches in width and nine in length, the prints are rather large
+but the winds have worn away their define.  But whatever the creature, it seems
+to be large because of their depth into the stale sands.    
+~
+S
+#49506
+Outside The Temple~
+   The shadow of night is dwarfed in the light of the massive blackened
+structure standing sentinel.  The stone of this temple is darker than the rogue
+shadows that plague the light.  Standing at least sixty feet in height, it
+molests the land with its presence.  Leaving a blistering sore within the heart
+upon laying sight on it.  It stands very firmly within the thrusting winds,
+giving thought to be deep within the earth.  The stone road becomes more
+obvious now, lying like a still snake stretching towards the temple door.  The
+footprints are of more define here, moving through the temple entrance.  The
+South and Down hold the only exits.
+~
+495 0 0
+D2
+~
+~
+0 -1 49505
+D5
+~
+~
+0 -1 49507
+S
+T 49500
+#49507
+Temple of Tresyn~
+   The stale air carries with it a vile darkness that's felt upon the good of
+heart and embraced by an evil one.  The entrance way leads nearly straight
+down, dropping at least fifty feet through this long stairway.  Beautifully
+haunting stonework has been crafted into the walls.  The light seems drawn into
+the dark stone, making the depictions and writing difficult to see.  Soft
+whisper and harsh chants fill the air, billowing upwards from below.  The only
+exit appears up or proceed forward in the darkness.
+~
+495 12 0
+D4
+~
+~
+0 -1 49506
+D5
+~
+~
+0 -1 49508
+S
+#49508
+Temple of Tresyn~
+   Echoes, bursting through the hall, shatter the silence of any peaceful mind.
+The purity of the darkness is soaked into this chamber, as it glazes all around
+in its rebirth.  A feeling of a sinister presence surrounds the blackened
+corridors.  A tender glow seeps from the north, drifting with the dark tides of
+air.  Upwards stretches a lighter sight of the stairway.
+~
+495 8 0
+D0
+~
+~
+0 -1 49509
+D4
+~
+~
+0 -1 49507
+S
+#49509
+Temple of Tresyn~
+   In sight are four halls, giving choice to any path.  A gray mist flows along
+the stone floors, creeping from the east.  The vile presence of evil and hatred
+rasps through the temple, leaving a taste of filth within the air.  A dark mist
+prevents any description of sight beyond the dim light confined within this
+hall.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49512
+D1
+~
+~
+0 -1 49513
+D2
+~
+~
+0 -1 49508
+D3
+~
+~
+0 -1 49510
+S
+#49510
+Temple of Tresyn~
+   A tentative scratching noise reaches upwards from below.  This room is
+crafted from darkened stone, well pieced together with heavy stone blocks and
+slabs.  A not so elegant door of metal bars lies downward, along with a subtle
+glow.  The grey mist has vacated view, leaving the stone floor to be seen.  
+Exit to the east is the only other way out.    
+~
+495 8 0
+D1
+~
+~
+0 -1 49509
+D5
+~
+gate gateway door iron~
+1 -1 49511
+S
+#49511
+The Cell~
+   The corrupt stillness of life echoes throughout the chamber.  The walls are
+lined with shelves filled with books.  A fireplace lies along the northern wall
+resting peacefully.  Standing just a few feet in front of a grate is a small
+table, littered with a few parchments and an old dried ink quill.  With the
+gate, this room feels more like a cell than a room, either meant to keep others
+out or keep what is inside within.  Upwards through the gate is the only
+visible exit.    
+~
+495 262152 0
+D4
+~
+gate~
+1 -1 49510
+E
+table~
+   The table is beautifully crafted out of a very dark wood and uniquely
+engraved with mythical demons, slaying life before them.  Sitting atop are a
+few parchments mostly ruined by the damp air and an old fragile ink quill.  
+Only one of the papers seems remotely salvageable.    
+~
+E
+fireplace fire place grate~
+   The fireplace is fairly large.  It seems deep within the wall and at least
+three feet tall.  A small iron grate rest in the center, made for the wood to
+rest upon.    
+~
+E
+paper parchment~
+   Unto my liege I submit my soul, as my brothers and sisters.  The fools have
+thrust me in this cell and believe I shall stay quaintly.  Foolish they are,
+and thine souls will be swallowed for such an act.  Borgan my lord hear my cry!
+Engourge upon the souls of the holy and innocent.  Feast so that we shall sweep
+the lands and bring the new world into order.  Toturn namei furch behmeo
+truepki nehas!  Nehas!  Nehas!    
+~
+S
+#49512
+Temple of Tresyn~
+   The hall ceases here among the earth and broken pieces of wood scattered in
+the corner.  A drip of water falls, crashing to the floor, along with many
+brothers and sisters in company and forth coming.  The room is shallow, truly
+uninviting for those who seek more warming comforts.  There looks to be a
+broken bed among the rubble of wood with blood-soaked seats.  Quite apparent is
+that the previous owner shall not be returning.  The temple hall continues south.    
+~
+495 8 0
+D2
+~
+~
+0 -1 49509
+S
+#49513
+Temple of Tresyn~
+   A tribute to the dark powers appears to be all this temple's presence is for.
+A statue in the far northwest corner of the room grins suggestively as if it
+had evil plots of its own to play.  Marvelous sparks of light shimmer as they
+fall from the ceiling, much like rain trickles in the heart of the woods, and as
+wondrous as a phoenix catching ablaze in it's terrifying wrath.  Grim and
+daunting a rabid stench of decay fills the air, its source goes unannounced
+for now.  The statue grins merrily as if it has a word of direction to give to
+the darkest of souls.  West appears the only way out.
+~
+495 8 0
+D3
+~
+~
+0 -1 49509
+E
+statue grins~
+   With the head of grinning dog, body of a wolf, and wings of a dragon the
+statue simply invokes imagination and dread as a beast even as small as this
+statue seems it does not want to be friends.  The eyes seem to be encrusted
+with large rubies, that glow vibrantly in this dark.  The statue has a small
+inscription on its left paw: I am child of Borgan!    
+~
+S
+T 49503
+#49514
+Necromancer Guild~
+   A dark room invaded by roaming spirits describes the obvious.  A magickal
+black flame somehow emits light; enough to comfortably displace the shadow to
+view the room.  A displeased looking man sits comfortably on a black stone
+chair behind the fire.  A golden shimmer of lights sparkles and fades in the
+light; draped by the spirits thrashing back and forth looking for elsewhere
+they may venture.  The room appears quite bare other than a simple staff the
+old man grasp tightly in his left hand.    
+~
+495 8 0
+D5
+~
+~
+0 -1 49513
+E
+flame black~
+   A wondrous feat has been accomplished, it must be so to create such a wonder
+of magick The flame is as dark as the heart of Tresyn and yet stems light
+through the shadows of the room.  Not removing, just displacing seemingly
+showing the flame does not wish to harm any dark.    
+~
+E
+staff~
+   Not much of it can be see other than it appears very tall, maybe six feet in
+length.  With a strange carving at the top it looks to be a head of a grinning
+dog.  Either stained very deeply and for some time ere crafted from a black
+wood.    
+~
+S
+#49515
+Temple of Borgan~
+   A hauntingly peaceful feeling seeps through the lifeless walls in this room.
+The temple walls must stand at least twenty feet high and span upwards into the
+darkness.  Two stone gargoyles are resting silently upon ledges protruding from
+each wall, peering down upon all who enter here.  Glyphs dedicated to the deity
+Borgan decorate the inner walls of this unholy ground.  The gateway to the
+south gives way to a shaded path.  Towards the sky is the altar of Borgan.
+~
+495 12 0
+D2
+~
+gate~
+1 -1 49501
+D4
+~
+~
+0 -1 49516
+E
+glyph glyphs~
+   The symbol seems strange and unknown, perhaps followers wrote them when
+dedicating the temple to Borgan.    
+
+          |
+         * *
+        *{ }*
+       -Regno-
+        *{ }*
+         * *
+          |
+~
+S
+#49516
+Altar of Borgan~
+   The awing tower spears upwards towards the unreachable heavens.  The tainted
+walls are coated black in color though its reeks of the unbearable stench of
+blood.  A tremendous haunting statue lies along the northern wall standing
+behind the blood-blackened marble altar.  The room centers the statue and alter
+as the heart of the room.  Sound does not exist in this room, encaging troubled
+minds with all the horrors that occured here and that would have fallen upon
+deaf ears.  To the south lies the stairs leading to the temple entrance.
+~
+495 65580 0
+D5
+~
+~
+0 -1 49515
+S
+#49517
+Corridor of Glass~
+   A beacon streaks from the north, vaguely calling a kind heart to indulge
+itself in its warmth.  Alas the room seems to encrust that heart with a more
+darkened matter.  The narrow walkway of black sand gives birth to a calm river
+of glass.  The sight grips the mind, encasing the thought and view of the
+water-like flowing glass leading forth into the horrid nights sky.  To the
+north leads the corridor, the south brings the Shaded Path.
+~
+495 8 0
+D0
+~
+~
+0 -1 49537
+D2
+~
+gate~
+1 -1 49519
+S
+#49518
+A Shaded Path~
+   The street is vague in form, revealing nothing but hardened sand and pieces
+of ice.  Wind swiftly flies from the north bringing with it a haunting
+emptiness.  The darkness seems lighter here, merely giving shades and shadows
+as opposed to hardened night.  The pathway continues east and west holding
+little viewable eastward.  A brick wall constructed out of the black ice sand
+stands silently northward, as well as the south.    
+~
+495 0 0
+D1
+~
+~
+0 -1 49519
+D3
+~
+~
+0 -1 49501
+E
+wall brick bricks~
+   Well pieced and done fairly crafted, this wall stands about ten feet tall.
+Constructed out of whole bricks of black sand it seems very strong to withstand
+these winds.    
+~
+S
+#49519
+A Shaded Path~
+   The light in the lamp above flickers and fades, as it dims in and out of
+existence.  The winds scream as they race along the tops of the buildings.  To
+the north a dim glow beckons as the shadows plague the crude path.  The shaded
+pathway travels east and west, running out of sight from here.    
+~
+495 0 0
+D0
+~
+gate~
+1 -1 49517
+D1
+~
+~
+0 -1 49520
+D3
+~
+~
+0 -1 49518
+E
+lamp light~
+   Appearing to be made from a tarnished brass the light is held upwards by a
+tall pole.  The pole stands around seven feet and seems to be crafted from a
+black wood.  The light from the lamp dims and glows brighter, perhaps from the
+passing winds.    
+~
+S
+#49520
+A Shaded Path~
+   The world around fades into oblivion, as the land seems to wait for the sun
+to arise, unknowing of the future.  Thin and narrow the path seems to end
+curiously at this blind, cold, black, stone wall to the east.  The south pleads
+another view in a form of a shop or guild.  The small shudder of lights fades
+in and out of sight to the west.    
+~
+495 0 0
+D1
+~
+~
+1 -1 49523
+D2
+~
+~
+0 -1 49521
+D3
+~
+~
+0 -1 49519
+S
+#49521
+Driceme'y' Magicks~
+   Tiny fragments of light sparkle and fade among the air; burning as bright as
+a flaming star in the naked night sky.  A wicked shift of reality departs as a
+simple motion depicts the lines between the walls when the light moves just
+right.  The room is littered with images of binding and sacred magick symbols
+upon the walls.  A dark wooden desk stands towards the south, barely covering
+any of the background.  A flight of stairs disappears moving upwards.    
+~
+495 524444 0
+D0
+~
+~
+0 -1 49520
+D4
+~
+~
+0 -1 49522
+S
+#49522
+Sorcerer's Guild~
+   This small room reeks with the essence of magic mixed with a touch of grey
+light.  A restless feeling combs through the air giving the hint that both the
+pure of heart and evil may exist here.  A pillar to the right of the stairs,
+assist in bracing the ceiling.  A grey rug lays in the middle of the quaint
+room, allowing those whom have made the embrace with magick, study and learn
+here in comfort.  The walls appear to be a painted in a harsh black dust that
+does nothing good for ones health.  The only exit appears downward into the
+shop-keeper's store.    
+~
+495 524444 0
+D5
+~
+~
+0 -1 49521
+S
+#49523
+A Hidden Cove~
+   The stillness in the air will lay even the most brave a seed of fear in
+heart.  Air rushes through out this room and from the east, leaving a bitter
+feeling that the stone or ground itself is alive.  The cavern is dry, not damp,
+and yet the few wooden supports appear to be rotting.  The cove continues to
+the east, appearing to mold more into a hallway.  The shaded path is to the
+west.    
+~
+495 12 0
+D1
+~
+~
+0 -1 49524
+D3
+~
+~
+0 -1 49520
+S
+#49524
+Aula Pre Umbra~
+   This hall is completely crafted from the black stone, and so perfectly it
+appears there is not even a single dividing line nor scratch that threatens
+imperfection.  The floor ripples slightly with each step as if walking on
+water.  A vague form of a door lies south while the hall flows north into the
+darkness.    
+~
+495 262152 0
+D0
+~
+~
+0 -1 49526
+D2
+~
+door~
+1 -1 49525
+D3
+~
+~
+0 -1 49523
+S
+#49525
+Guild of Thieves~
+   Resembling a barrack inside a power temple, this room is decorated with
+statues of twisted blades and tapestries depicting battles of darkness and
+light, much like a room torn from a beautifully spoken book. A cloaked man
+sits kindly behind a blackened flame that engorges the room with light but
+saves shadow.
+~
+495 524440 0
+D0
+~
+door~
+1 -1 49524
+E
+statues statue blades tapestries~
+   Wondrously crafted statues, the head of a dog and body of wolf grin
+sinisterly in the dimly lit room.  The tapestries are a vivid red and trimmed
+in gold with pictures of large figures of dark knights slaying mercilessly
+their foes before them.  Small statuettes of wicked swords stand on both sides
+of the room, though not real blades you can feel the sting deeply as if you
+could be next to receive it's dreadful pierce.    
+~
+S
+#49526
+Aula Pre Umbra~
+   The void continues from the south; stretching forth as the enclosed walls
+engorge in size with every step.  The room sends an uneasy shallowness that
+can engulf the heart and open the mind for an unsettling view for what may lie
+within.  The walls and ceiling are as smooth as silk, exposing not even a
+single flaw.  Within its own perfection it appears not even the greatest of
+craftsman could have constructed such a beauteous horror.  The sounds of
+echoing footsteps are quickly devoured by the unseen, leaving silence in its
+wake.  The corridor moves downward into the deeper darkness.  The south beholds
+the previous hall.
+~
+495 40 0
+D2
+~
+~
+0 -1 49524
+D5
+~
+~
+0 -1 49527
+S
+#49527
+Obviam Abyssus~
+   The hall screams downward into the mind-piercing darkness.  The steps are
+smooth as glass and without flaw.  Light flees back to the hall, trying to
+escape the terrifying grasp of the night that exists further down the stairway.
+The Corridor is nearly straight down, exposing a painful thought if one were to
+fall.  The hall of shadows moves upwards and south.  This flight of stairs
+journeys downward into the abyss.    
+~
+495 8 0
+D4
+~
+~
+0 -1 49526
+D5
+~
+~
+0 -1 49528
+S
+#49528
+Obviam Abyssus~
+   Life seems to have been nonexistent here in eons.  Even the stairway appears
+untouched or freshly crafted because it holds no form of age.  Just a feeling
+that stirs inside that this place has been in existence since time itself. 
+The air around appears pure, though if taken in, bears striking resemblance to
+poison as it fills the body and leaves it with a feeling that it stows away life
+with it. The stairs continue to steep further down and up.  
+~
+495 8 0
+D4
+~
+~
+0 -1 49527
+D5
+~
+~
+0 -1 49529
+S
+T 49501
+#49529
+Obviam Abyssus~
+   The air jolts slightly as movement strides through the darkened abyss.  
+Echoes of flowing water shatter the silence throughout the cavern.  The night
+steeps all within, leaving nothing un-consumed.  The strife downward perhaps is
+not without loss.  Light appears at the break of the stairway edge following
+northward.  The only pathways are north and up.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49530
+D4
+~
+~
+0 -1 49528
+S
+#49530
+Moenia Consisto Deceptio~
+   A faint light pierces the darkness as it enters the room from the north.  
+The sounds of water splashing and flowing run like a mad man into the chamber
+walls looking for an escape.  The floor ripples with each step and flows
+endlessly into the unknown.  Crisp yet warm air descends slowly from the north
+but unable to keep its warmth long enough even to touch darkness of night.  
+The path continues north and south.  The west holds a shallow exit in the
+stone.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49531
+D2
+~
+~
+0 -1 49529
+D3
+~
+~
+0 -1 49532
+S
+#49531
+Fas Judicium~
+   A fog of indecision erupts from this large vast room.  To the right a
+tremendously enchanting waterfall erupts with cool sparkling water.  A crystal
+sphere rest at the bottom of the waterfall displaying images of children
+running and laughing while playing games.  To the left several iron spikes are
+thrust through the harsh stone holding bodies of decaying corpses.  Several
+blades line an altar obviously devoted to darkness, evil, and chaos.  Resting
+below the altar lies a similar sphere to the one in the east of the room,
+holding view of villages burning and people screaming for their lives.  In the
+middle stands a pendulum with a obsidian crystal swaying back and forth.  The
+choice to move west or east is in its own fate here.    
+~
+495 8 0
+D1
+~
+~
+0 -1 3002
+D2
+~
+~
+0 -1 49530
+D3
+~
+~
+0 -1 3002
+E
+waterfall~
+   A lush forest flows around the waterfall, giving a peaceful feeling.  The
+entire right side of the room is filled with beautiful green plant life, even
+spawning some small woodland creatures to run through the miniature forest.  
+
+~
+E
+alter~
+   The alter emits an essence of pain through its ebony apparence.  Swords
+dangle along the outline of the alter.  Two torches one on each side, rest in
+holder birthing black flames.  Mind-numbing fear and power seem to thrush
+towards the eyes of the beholder.    
+~
+S
+T 49502
+#49532
+A Small Stairwell~
+   A small room indeed, would be daring to say a small dwarf could find this
+tolerable.  The room is standing out of the same stone the eastern halls are
+crafted of.  Dark and damp, a sound of water can be heard faintly, possible
+from the west ere the east even.  A quaint stairway leads upwards with merely a
+view of charred wood and ash.  The only other exit would be east.    
+~
+495 8 0
+D1
+~
+~
+0 -1 49530
+D4
+~
+~
+0 -1 49511
+S
+#49533
+Lair of Night~
+   The vile essence of chaos and the dark splendors of the realm of evil
+linger; penetrating the souls in its presence.  This is the beginning of the
+end for this hall, as it reaches forth into the unknown depths that lay ahead.
+The corridor is crafted from the same blackened stone as seen before in its
+preceding halls.  A simple arrow shaped window stands upon the western wall
+giving a wondrous view of the harsh mysterious realm of the black ice desert.
+Chants in an unheard language flow from the north raping the life of its
+innocence with its caress.  The only exit appears to be north, further down the
+hall.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49534
+D5
+~
+~
+0 -1 49531
+E
+arror window~
+   The window is about two feet tall and a foot wide.  Looking outwards beyond
+the boundries of the stone walls unveils the magnificence and beauty of chaos
+and desctruction.  Holding within the view is the black ice desert, showing an
+old decrepit tree standing tall and the sharp razor winds ripping up any life
+of good heart that stands within its path.    
+~
+S
+#49534
+Lair of Night~
+   The vagrant passageway drifts through time itself, steeping further into
+the unknown chaos of this realm.  Standing vigilant, this ancient cavern bids
+welcome to those who wouldst serve the darkness.  The stone floor is firm and
+stead-still, yet the hall seems to breathe as if it were alive.  An archway to
+the north brings a horrendous beauty with its elegant craftsmanship.  The hall
+ventures both north and back a ways southward.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49535
+D2
+~
+~
+0 -1 49533
+S
+#49535
+Lair of Night~
+   The hall finally ends here, though giving birth unto a stairway
+climbing upwards into even darker catacombs.  This appears to be an entrance to
+a huge tower.  The stairs are massive, sloping downwards at least sixty feet.
+Much space reaches around the stairs giving an army room to stand within these
+walls.  The supports are huge, climbing all the way to the ceiling, which
+turns into a cone-shaped roof.  The only exits are upwards on the stairs or
+back to the south.    
+~
+495 8 0
+D2
+~
+~
+0 -1 49534
+D4
+~
+~
+0 -1 49536
+S
+#49536
+Sedes Consisto Creperum~
+   Reality is distilled within the confines of these boundaries.  There appear
+to be no walls, just an unfathomed abyss of darkness and flares of light that
+have soared astray.  A throne crafted of solid shade stands motionless along
+the northern corner, seemingly floating in this endless clarity of nothingness.
+This void seems to be a tear in the realm of light, bringing only darkness
+through the bleeding rift.  The only visible escape appears down.    
+~
+495 8 0
+D5
+~
+~
+0 -1 49535
+E
+throne shade~
+   Holding its place in the corner without motion, the ebony throne stands
+sentry.  As if crafted from pure unadulterated darkness, the pure light seems
+to burn within its wicked presence.  The throne towers at least eight feet and
+arms as long as a half of a giant.  The appearance boast only the strongest of
+dark powers may rest there.    
+~
+S
+#49537
+Corridor of Glass~
+   The silken night drapes over the moonlit sky, cloaking the sphere from sight.
+The glass covering the floor glistens from what little light reaches beyond the
+control of darkness.  The walls bear scars of an inferno, signs of the power
+that scorched the path around them and set this land ablaze.  A frighteningly
+warm light calls from atop a huge tower to the north, appearing even out of a
+bird's reach for the end of it cannot be seen.  The glass corridor sails
+downward into the shallow darkness and back south towards the gate.    
+~
+495 8 0
+D2
+~
+~
+0 -1 49517
+D5
+~
+~
+0 -1 49538
+S
+#49538
+Corridor of Glass~
+   Silence has found a way to make itself precious, as echoes rip through the
+stale air now bestowing a new recognition of horrors that may lurk in the recesses
+of the darkness.  A light from above peeks downward calling those who wouldst
+succumb to its soft warmth.  The darkest of night appears to reside here, as it
+feels so thick one risk shattering it by movement.  The glass runs up and
+north, spilling further into the corridor.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49539
+D4
+~
+~
+0 -1 49537
+S
+#49539
+Corridor of Glass~
+   Life fades in the mere presence of these darkened hallowed quarters;  
+leaving the stinging existence of pain and hurt to replace the feelings not
+needed here.  Souls have no use here, much like the lifeless glass below.
+This wide hall opens up into a much larger crevice in the ground.  The earth
+must have been taken out by hand, magic, or both to reveal at least part of an
+underground city.  To the west another large hall presents itself.  The
+corridor of glass pours further north.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49540
+D2
+~
+~
+0 -1 49538
+D3
+~
+~
+0 -1 49541
+S
+#49540
+Corridor of Glass~
+   The eerie echoes are growing ever louder in their numbers.  The ceiling of
+this massive cavity which holds this hall is not within sight, just the
+haunting presence that the walls are becoming crushingly closer with each
+breath.  Reflections no longer can pierce the thick dust lain upon on the glass
+floor.  The air here feels tainted, pricking the flesh and soothing the pain
+all in the same breath.  The glass ceases at the edge of the room, appearing
+like a raging river frozen solid in its path.  The corridor runs south towards
+the entrance.  To the north begins Tresyn's Way.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49544
+D2
+~
+~
+0 -1 49539
+S
+#49541
+Corridor of Eminence~
+   Murals paint the walls along with shards of shadow and flickering light from
+the east. Built partially into the wall, large columns embrace the tremendous
+weight from above as they stand sentinel.  A dusty and mangled floor still bears
+enough life to emit a sparkle of shine, as if trying to grasp a breath of air.
+The depth of work and craftsmanship still reflects from this tattered hall.
+The corridor continues west and leaves east.
+~
+495 8 0
+D1
+~
+~
+0 -1 49539
+D3
+~
+~
+0 -1 49542
+E
+murals mural~
+   The murals appear very old and worn through to the bare stone in some parts.
+Pictured on this mural is a battle between black demons and an army of knights
+and paladins.  The outcome doesn appear clear and the mural stems out of sight
+to the west along the ceiling and walls.    
+~
+E
+floor~
+   This floor without doubt has been trampled and destroyed in many parts;  
+yet still not without brilliance a few marks still glisten in the scarce rays
+of light.  The floor appears to be made out of gold, or at least an extremely
+convincing substitute.    
+~
+S
+#49542
+Corridor of Eminence~
+   The curved ceiling bows deeply here, pointing downward from its tragic deep
+crack in the stone.  The mural still is not without details though battered in
+its own time.  The hall arches north in a curved form, giving it an appearance
+of more integrity and importance.  A broken cart along the northern wall has
+toppled, surrounded by many broken pieces of fine pottery that it once must
+have carried.  A huge slab of stone rest in the middle of the hall, though it
+appears to contain something at this distance.  The corridor continues north
+and east.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49543
+D1
+~
+~
+0 -1 49541
+E
+mural murals~
+   The battle between the demons and the holy order of knights and paladins
+still rages on, although it would seem that the holy army is winning this
+peculiar battle.  The mural carries northward from here, and moves also to the
+south.    
+~
+E
+cart pottery~
+   Pottery litters the ground around this old wooden cart.  Odd it would seem
+that it was left here still holding goods that anyone may steal.  This cart has
+a small marking upon the right side.  The symbol is that of an arrow and coin,
+giving suggestion that this was a merchants cart.    
+~
+E
+slab stone~
+   This piece of stone is huge, for it must weigh at least two warhorses.  The
+bottom of the stone is a marble, color and in look, though as it progresses in
+thickness upwards it becomes a glass-like clear.  There is at least part of a
+skeleton sealed inside, no flesh only bone.  The skull and upper torso are
+viewable, alas the stone grows too clouded to see more.  The skeleton appears
+human or at least human-like.    
+~
+S
+#49543
+Corridor of Eminence~
+   Rubble is strewn all over the once beautiful hall.  The mural comes to a
+closing with the halls end.  A large hole is all that remains of the eastern
+wall, giving further evidence that not only commerce, but life came to a abrupt
+end.  The floor has been torn open leaving a darkened chasm below, leading into
+oblivion.  An entry way stands in the west wall holding a sign above.  The hall
+seems to end here.  Tresyn's Way lies north.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49548
+D2
+~
+~
+0 -1 49542
+D3
+~
+~
+0 -1 49562
+E
+mural murals~
+   The battle appears amazingly long with these two powers.  A little further
+downward reveals a pair of huge eyes glaring over the battle field as the brave
+knights battle the demons up their fiery entrance to this plane.  As the knights
+move forward, a giant arm waves once across the sky.  The holy army burst into
+flames where they stand, writhing in terrifying agony.  The last painting reveals
+only those brilliantly dark onyx eyes glaring over the now burning white flag of
+the knights.
+~
+E
+floor chasm~
+   An unwavering gash has ripped through this golden floor like an elven sword
+through goblin steel.  The gash appears incredibly deep that the bottom is not
+even visible in the light.  A light breeze emerges from the deep void.
+~
+E
+sign~
+   The wooden sign dangles only by one of its two chains holding it up.  It
+appears to grant view of nothing more than a shield and gauntlet.    
+~
+S
+#49544
+Tresyn's Way~
+   The smooth surface of the glass corridor has ceased just steps away from
+this old tattered brick and wooden floor.  Torched sand still remains and it
+begins and ends only as quickly as magick dispelled.  Though the glass seems to
+run out over the sand as it comes to a halt.  Stale air flows like a river
+over the ancient floor as if it was never before disturbed.  Tresyn's Way runs
+east to west.  The Corridor of Glass lies to the near south.    
+~
+495 8 0
+D1
+~
+~
+0 -1 49545
+D2
+~
+~
+0 -1 49540
+D3
+~
+~
+0 -1 49547
+S
+#49545
+Tresyn's Way~
+   Old and tattered, this road has withstood the test of time, sealed within the
+confines of this dark chamber.  An old street lamp still holds steadfast, but
+with the price of a lean against the southern wall of the street.  A grey mist
+hovers motionless to the east just above the wooden floor.  A wall stands
+firmly to the south, enclosing the street.  The path continues west and a new
+path begins east.    
+~
+495 8 0
+D1
+~
+~
+0 -1 49546
+D3
+~
+~
+0 -1 49544
+S
+#49546
+Aula Per Angelus~
+   The southern wall has ended, birthing a new path to the south.  A grey mist
+faintly cloaks the nicely-edged floor.  Waves of warmth ride in slowly from
+the south.  Howling in the halls, a sound shatters the eerie silence plaguing
+the sane.  The deep blackness of light does not permit much view of the south,
+the way of Aula Per Angelus.  Tresyn's Way rests to the west of here.    
+~
+495 8 0
+D2
+~
+~
+0 -1 49561
+D3
+~
+~
+0 -1 49545
+S
+#49547
+Tresyn's Way~
+   A solid breeze enters from the west bidding only a vain promise of holy
+life.  A sparkle is visible within the western rooms, leaving a flare of hope
+for this desolate place.  The old stone floor is outlined by engraved planks of
+wood stemming westward and venturing east.  A brick wall holds fortitude along
+the south while the north appears to be nothing more than a hollow drop into a
+depthless horror of sharp spikes and sword-edged rocks.  The only exits appear
+east and west along Tresyn's Way.    
+~
+495 8 0
+D1
+~
+~
+0 -1 49544
+D3
+~
+~
+0 -1 49548
+E
+floor engraving stone planks~
+   Words stream down both sides of the planks.  The first form-able sentence on
+the left side begins: "I am with thee.  " The phrase is repeated as far as the
+eye can see.  On the right side the words begin with " Thou art alone.  " and
+do not appear to end either within sight.    
+~
+S
+#49548
+Tresyn's Way~
+   A subtle yet forceful wind gathers its strength as it blows by, whistling
+through the vacant halls.  Elegant craftsmanship is still apparent in the
+perfectly cut stone floors that venture westward.  Echoes of whispers move
+swiftly, haunting these walls, yet without even a word that can be discerned.
+A sparkle of light still dances in the west, beckoning life to view it. A path
+reaches south giving view of barely passable rubble.  Tresyn's Way runs east
+and west from here and the corridor appears south. 
+~
+495 8 0
+D1
+~
+~
+0 -1 49547
+D2
+~
+~
+0 -1 49543
+D3
+~
+~
+0 -1 49549
+S
+#49549
+Tresyn's Way~
+   The fragment of light has indeed spawned, now becoming brighter and more
+enticing.  This path is obviously old and tired, yet the stone itself appear to
+have never seen a day of wear.  Pieces of bone litter the hall and appears in
+more abundance westward.  A disturbing silence has begun to wreak suddenly, all
+that was has ceased.  The stone wall has begun again here to the south.  
+Tresyn's Way stretches east to west and it seems those are the only exits.    
+~
+495 8 0
+D1
+~
+~
+0 -1 49548
+D3
+~
+~
+0 -1 49550
+S
+#49550
+Tresyn's Way~
+   The wondrous stone floor boldly stops here, leaving only to the imagination
+to were it once stretched further into the dark reaches of the cavern.  The
+light that has been so dazzling softly leads farther south, ever coming more queer
+as the strides continue.  More pieces of bone gather here ere simply becoming
+shards and fragments.  The south opens up allowing entry onto a path.  
+Tresyn's Way retreats to the east.    
+~
+495 8 0
+D1
+~
+~
+0 -1 49549
+D2
+~
+~
+0 -1 49551
+S
+#49551
+Aula Per Levo~
+   A bleak crack of sound ruptures the silence that encased this corridor,
+melting away as fast as it echoed with horrifying precision.  A grey mist
+floods the path here as well as southward, blocking any sight of what is below.  
+A twinkle of light spreads in the distance, fading as quickly as it flares.  A
+large stone wall seals entry to the east, as for the west only impassible rocks
+lay hewn as if placed from being thrown by a giant among giants.  A blight
+appears south ere a wonderful gleam within the darkness.  Aula Per Levo runs
+north to south.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49550
+D2
+~
+~
+0 -1 49552
+S
+#49552
+Aula Per Levo~
+   A wonderful essence of life is flushed forth within the confines of this
+scorched hall.  Fog begins to lift towards the heavens growing ever thicker
+while conveying a sense of loneliness and indescribable rage.  The eastern wall
+glows ever so brightly even through the grey fog that thrust itself to block
+all view.  The Aula Per Levo stretches north and south, no other exits appear
+to be visible.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49551
+D2
+~
+~
+0 -1 49553
+S
+#49553
+Aula Per Levo~
+   A draft of cold stale air flows in and out of the hall, giving the sensation
+of a breath from behind.  The fog has thinned from the floor so a view is
+possible while it permits.  A stringent taste of oil permits itself to enthrall
+on ones senses with a glimpse of darkness.  Shadows can be traced in the
+distance to the east, bidding way upon Aula Per Ignem.  The north brings
+flickers of dancing light and the path of Aula Per Levo.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49552
+D1
+~
+~
+0 -1 49554
+E
+floor~
+   Remnants of marble floor are left, some even still intact, though, very
+sparse and it's shine has diminished to a deep grey haze of tragedy.  Rather
+large drops of dried blood are tainting the floor, which is mostly broken rock
+now.  It appears the drops may suggest leads from north and east, neither is
+discernible for now.    
+~
+S
+#49554
+Aula Per Ignem~
+   The dimness brings its own conciseness, invading light and gently coaxing it
+to die in its arms.  A simple blade of grass pierces the ground below it,
+reaching for a breath of life before it shall dwindle and die as all life
+seemingly has done here.  The ceiling is very tall, and not within sight,
+though the slightest movement brings a screeching echo that shatters silence
+and reflects the very depths of these walls.  The hallway of Aula Per Ignem
+ventures from west to east.    
+~
+495 8 0
+D1
+~
+~
+0 -1 49555
+D3
+~
+~
+0 -1 49553
+E
+blade grass simple~
+   A young plant it is, very premature with it's pale green color.  It reaches
+for any light near it, thirsting for any life it may grasp to sustain it.  It
+is indeed a wonder how life could grow in this cavern, life and light seems to
+not have existed here in centuries.    
+~
+S
+#49555
+Aula Per Ignem~
+   The bordering walls here are streaked with blackened flame.  The stench of
+cooked flesh bellows through this wicked place.  As if out of a dream, a blue
+light glistens out of the eastern darkness.  A large rock blocks the path to
+the east, fallen from above it may have ere been hurled by a powerful force.
+Aula Per Ignem continues west to east, no other exits appear obvious.
+~
+495 8 0
+D1
+~
+~
+0 -1 49556
+D3
+~
+~
+0 -1 49554
+E
+wall walls~
+   These stone walls are quite tall and appear to stretch far into the unseen.
+When touched the burnt flakes fall away like ash blows in the wind.  With such
+a huge hall covered in flame, it would take a tremendous power to achieve such
+disaster.    
+~
+E
+light blue darkness eastern~
+   The light appears to shimmer and dim but never fade as it rises brightly
+again.  It does not liken to be any flame of torch.  Perhaps magic or a simple
+illusion could explain it, cautiously of course.    
+~
+E
+rock large~
+   This large stone must weigh a small family of overweight dwarves.  It
+doesn't reach very high, only a few feet tall, four at the most.  It is
+however, quite wide.  Nearly blocking the path so if it were not low.    
+~
+S
+#49556
+Aula Per Ignem~
+   This weary way continues its vacant march forward into the abysmal ere
+perhaps delightful, though the last considered unlikely.  Shadows quickly race
+one another along the scorched walls.  It seems there are still movements of
+them even without light their way. A feeling of elegant pain attempts to pierce
+any sane mind, as the gentle breeze of soot and oil pres on, retreating from the
+east. Aula Per Ignem runs east and west, no other exits yet visible. 
+~
+495 8 0
+D1
+~
+~
+0 -1 49557
+D3
+~
+~
+0 0 49555
+S
+#49557
+Aula Per Ignem~
+   Atrocity is ever growing within the confines of this torrid hall, never
+ending or perhaps never beginning.  A waste of elegance that once was and put
+forth is barely visible, only shards of remnants remain.  A small skeleton has
+found itself a final resting place among the rubble, a wooden handle is all that
+can be seen of what went through this persons skull.  Ash litters the corridor,
+making quite the pile upon the middle of the floor.  Still Aula Per Ignem runs
+east to west.    
+~
+495 8 0
+D1
+~
+~
+0 -1 49558
+D3
+~
+~
+0 -1 49556
+E
+skeleton handle~
+   It is apparent upon closer view that this is a body of a child, human from
+the looks, maybe twelve or so.  The bones don't appear to be burnt but are
+still blanketed in ash from over the passing time.  It appears the cause of
+death is from a small dirk that has been buried deeply into the skull.    
+~
+E
+ash~
+A deep black ash covers all that can be seen from here.  There isn't much
+left except the remnants of what was a skeleton. The ash could be from cloth or
+maybe paper, nevertheless it is clear there was a great reign of fire indeed.
+~
+S
+#49558
+Aula Per Ignem~
+   A shimmer of light still flares to the east, fueled by something unknown.  
+This wing of the hall has felt the blast of raging flame in the past, its
+evidence becomes ever more clear when taking notice of the torched walls.  A
+crude well rests just left of center of the hall.  The horrid smell of oil
+permeates the air, leaving it nearly unbreathable.  A small murder of mice has
+left nothing but a family of corpses along the northern wall.  Aula Per Ignem
+ceases here and flees west.  Aula Per Angelus lies east.    
+~
+495 8 0
+D1
+~
+~
+0 -1 49559
+D3
+~
+~
+0 -1 49557
+E
+well crude~
+One step up from the being merely a hole, a makeshift well stands firmly in the
+earth.  Large cobblestones have been placed less than a foot in length above
+the well, not firmly mind you.  With just a peek towards the murky hole the
+stench is nearly over-powering with the smell of oil.  A bubble makes its way
+up from the ooze occasionally.  Whether this well was meant for oil or not, not
+even a drop of water can be seen.    
+~
+E
+murder mice family corpses~
+   It looks to be at least eight animal skeletons has been left here.  They
+may have starved without any apparent source of food or water, perhaps they
+met their fate in the same flame that had painted these halls black.
+~
+S
+#49559
+Aula Per Angelus~
+   A subtle cloak of darkness lingers here, sealing full light even by full
+flame of torch.  Much of the marble flooring is no more than rubble.  A musky
+smoke fills this section of hall: thick, black, and full of soot.  An odd blue
+light trickles downward on the eastern wall, caressing the stone as it runs
+like a river pouring gracefully over a waterfall.  Darkness and fire are the
+only two things that can be proven to exist here.  Aula Per Angelus lies just
+north while Aula Per Ignem reaches merely west of here.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49560
+D3
+~
+~
+0 -1 49558
+E
+blue light fire~
+The heat that surrounds the liquid fire is immense.  With but a close look it is
+hard to conceive but this indeed is fire; a magnificent blue flame that flows so
+much as running water does.  To add to the queerness of it all, the flame never
+touches the floor, just seemingly disappears or perhaps dissipates.
+~
+S
+#49560
+Aula Per Angelus~
+   A thick cloud of heat wretches forth from the south.  The western wall
+continues until out of sight, thick and strong it would seem though it's days
+of glory and beauty have long passed.  A tremendously large imprint has smashed
+the floor into rubble, leaving only a few marble tiles intact.  A rush of air
+pushes forth, the likes of a wind among the mountain tops, that no force can
+withhold.  A sparkle of blue light lingers and dissipates in the southern
+darkness.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49561
+D2
+~
+~
+0 -1 49559
+E
+imprint rubble~
+   It's rough in detail, but the imprint appears to be a giant claw or
+footprint.  It would take something of tremendous weight or force to
+reduce this once beautiful marble floor into but a waste.
+~
+E
+blue light darkness southern~
+   The light flickers in and out of existence without truly dying.  The light
+may come from flame or magic, but doesn't look to liken to a camp fire or
+torch light.    
+~
+S
+#49561
+Aula Per Angelus~
+   An absence of faith is ever enduring in this unholy burrow.  A rush of heat
+flanks in from the south, warming the air and instantly chilling it for just a
+brief, indescribable moment of time.  A firmly built shadow stands sentinel
+painted on the western wall.  Without sound or movement, just a wicked grin
+gleaming on its face.  Aula Per Angelus runs north to south, no other exits
+appear for now.    
+~
+495 8 0
+D0
+~
+~
+0 -1 49546
+D2
+~
+~
+0 -1 49560
+E
+shadow grin sentinel western wall~
+   Standing at least six feet in height and a broad center, this reflection of
+darkness is anything but comforting.  Oddly no matter where the light shifts to,
+the shadow never flickers or bolts.  It does however appear to be human in
+shape at least, with a troublesome grin on it's head.    
+~
+S
+#49562
+Traek's Armor Shop~
+   Still standing against its foe of time, the room boasts a twelve foot high
+ceiling and a floor that spans almost as large as a giants palm.  Pieces of
+armor stand gleaming behind large panes of glass along the walls.  The floor is
+composed of huge smooth marble blocks, spanning up to and beyond the elegant
+wooden desk in the middle of the glass casings.  A figure stands behind the
+desk, cloaked in the shadows.  The only exit is east to the Corridor of
+Eminence.    
+~
+495 34078872 1
+D1
+~
+~
+0 -1 49543
+S
+#49563
+A Shaded Path~
+   The air flows roughly in from the west, carrying a rotting stench upon its
+shoulders.  The absence of light makes it difficult to see out of this town.  
+The sounds of rolling thunder and crashes of lightning make themselves clear in
+the distant western hills.  The sandy floor is quite treacherous with the
+shards of black ice that glisten like buffed glass.  The shaded Path goes
+eastward and the west gate is nearby.    
+~
+495 0 0
+D1
+~
+~
+0 -1 49503
+D3
+~
+~
+0 -1 49564
+S
+#49564
+West Gate of Treysn~
+   The howling of the winds soars over head, just running from the unseen,
+seeking refuge.  Scattered lightning strikes brighten the black sky for brief
+seconds, until it dims, darker than the sky was before.  This gate seems to lie
+unguarded, save two stone posts, where it seems pikes and swords lay staged and
+awaiting enemies once before.  The Shaded Path reaches directly east.  The untold
+dark horrors of the night wait to the west.    
+~
+495 4 0
+D1
+~
+~
+0 -1 49563
+D3
+~
+~
+0 -1 49244
+S
+$~

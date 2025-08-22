@@ -1,0 +1,99 @@
+name: Murl
+password: MuVROPaCnJ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 26
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20177
+birthtime: 1645990304
+timeplayed: 13978
+lastlogintime: 1646937469
+host: 067.174.070.078
+height: 76
+weight: 266
+base_height: 76
+base_weight: 266
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 41/41
+mana: 1/0
+move: 113/126
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 64
+wisdom: 68
+dexterity: 78
+constitution: 82
+charisma: 74
+cash: 0 9 6 8
+experience: 9077
+quit_reason: 1
+saveroom: 3054
+skills:
+201 1000
+402 50
+404 58
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+453 50
+463 50
+464 51
+465 50
+466 50
+467 50
+468 50
+486 70
+0 0
+trophy:
+1 8014 1.000000
+1 8023 0.500000
+1 8013 0.500000
+1 8015 0.500000
+1 8016 1.000000
+1 8020 1.000000
+1 8001 2.000000
+1 8011 2.000000
+1 8010 1.000000
+0 0 0
+tells:
+1645997802 @WChinok@W tells you, 'I've done that too.. with a vm inside ubuntu (typically virtual box)@W'@0
+1645997809 @WChinok@W tells you, 'that's pretty odd.. @W'@0
+1645997833 @WChinok@W tells you, 'never seen anything like that one!@W'@0
+1645997891 @WChinok@W tells you, 'ok, try this... http://forums.zuggsoft.com/index.php?page=4&action=viewall@W'@0
+1645997909 @WChinok@W tells you, 'orthis -- www.imdb.com@W'@0
+1645998009 @WChinok@W tells you, 'that's the free zmud, yes@W'@0
+1645998098 @WChinok@W tells you, 'yeah, we've actually been playing with some discord integrations.. not quite got it ready for prime time yet@W'@0
+1645998155 @WChinok@W tells you, 'yep.. would be  a discord channel integrated in the game@W'@0
+1645999184 @WSherle@W tells you, 'hi@W'@0
+1645999236 @WSherle@W tells you, 'hi@W'@0
+$
+gossips:
+1646936989 Meina gossips, 'no, but that is a great idea'
+1646937014 Chinok gossips, 'we're doing that in the next version... you will log in with an email address, then pick which char you want to log in'
+1646937019 Meina gossips, 'yay!'
+1646937083 Swenct gossips, 'oh found one1'
+1646937089 Meina gossips, 'cool!!'
+1646937096 Chinok gossips, 'we considered adding it to this version, as just a 'field you can add' -- but it would be too easy to abuse..'
+1646937128 Flenct gossips, 'hahah yes my brain works!'
+1646937136 Meina gossips, 'nice! :)'
+1646937163 Meina gossips, 'afk a sec - gotta get ready for a home inspection. we are trying to get rid of our mortgage insurance.'
+1646937175 Chinok gossips, 'nice'
+$

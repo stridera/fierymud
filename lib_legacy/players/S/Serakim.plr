@@ -1,0 +1,111 @@
+name: Serakim
+password: SetyHFrJWN
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 0
+level: 12
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20623
+birthtime: 1694794314
+timeplayed: 42411
+lastlogintime: 1695977419
+host: 076.185.210.021
+height: 64
+weight: 143
+base_height: 64
+base_weight: 143
+base_size: 2
+natural_size: 2
+alignment: 102
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 1634
+lastlevel: 0
+hitpoints: 176/164
+mana: 14/14
+move: 174/174
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 69
+wisdom: 44
+dexterity: 82
+constitution: 92
+charisma: 74
+cash: 25 136 483 461
+bank: 64 0 0 0
+experience: 467185
+quit_reason: 7
+saveroom: 1634
+skills:
+402 50
+404 50
+415 50
+416 50
+421 150
+430 50
+438 129
+443 50
+444 55
+463 50
+464 99
+465 56
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 1604 1.000000
+1 1603 2.000000
+1 1605 5.000000
+1 17202 1.000000
+1 17204 7.000000
+1 8612 5.000000
+1 7003 1.000000
+1 4102 7.000000
+1 4101 10.000000
+1 7053 3.000000
+1 7004 7.000000
+1 7050 1.000000
+1 7052 1.000000
+1 7051 1.000000
+1 3066 1.000000
+1 8604 1.000000
+1 8608 1.000000
+1 8614 1.000000
+1 8607 2.000000
+1 8613 3.000000
+1 8603 12.000000
+0 0 0
+tells:
+1695070111 @WDaedela@W tells you, 'congrats!@W'@0
+1695087210 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1695132928 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1695139280 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1695139399 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1695139974 @WBeowyn@W tells you, 'You might want to consider a cheaper item..@W'@0
+1695139991 @WBeowyn@W tells you, 'I am sure it will save your life many times, come again!@W'@0
+1695140035 @WBeowyn@W tells you, 'I only buy the finest steel armour.@W'@0
+1695140038 @WShauna@W tells you, 'Hmph, what a rip off.@W'@0
+1695141731 @WSnil@W tells you, 'it is outside of the kingdom on the path toward it :D@W'@0
+$
+gossips:
+1695180084 Chinok gossips, 'ep, it's not'
+1695180089 Chinok gossips, 'err yep'
+1695180093 Chinok gossips, 'ok, got early calls tomorrow, night all!'
+1695180272 Thorfinn gossips, 'night guys! Im off for the night lol'
+1695975971 Discord gossips, 'Daedela: Heyo!'
+1695975977 Discord gossips, 'Daedela: How's it going?'
+1695975999 Discord gossips, 'Daedela: Niiiiice!  I was wondering where you were!'
+1695976080 Daedela gossips, 'oh Lokar...'
+1695976124 Daedela gossips, 'you should be able to find it now!'
+1695976135 Daedela gossips, 'it's not particularly hidden.  Just had some load limit problems'
+1695976146 Daedela gossips, 'it's in the rocky outback!'
+$

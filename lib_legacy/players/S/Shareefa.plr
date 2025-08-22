@@ -1,0 +1,67 @@
+name: Shareefa
+password: Sh9stDepH6
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19817
+birthtime: 1610281304
+timeplayed: 147
+lastlogintime: 1610281452
+host: 174.105.246.220
+height: 41
+weight: 180
+base_height: 41
+base_weight: 180
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 15
+thirst: 6
+lastlevel: 0
+hitpoints: 32/30
+mana: 0/0
+move: 152/152
+damroll: 4
+hitroll: 5
+strength: 97
+intelligence: 63
+wisdom: 66
+dexterity: 85
+constitution: 91
+charisma: 66
+experience: 1
+pagelength: 50
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+$

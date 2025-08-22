@@ -1,0 +1,109 @@
+name: Wavum
+password: WahlqYS8E7
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>&0%_%x<%t&0>:<%o&0>
+sex: 1
+class: 21
+race: 9
+level: 1
+home: 3046
+lifeforce: 0
+composition: 0
+id: 15993
+birthtime: 1155497499
+timeplayed: 23946651
+lastlogintime: 1645240817
+host: 162.233.153.155
+height: 70
+weight: 140
+base_height: 70
+base_weight: 140
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: clyz
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 105
+loadroom: 3046
+hunger: 16
+thirst: 8
+lastlevel: 3
+hitpoints: 73/73
+mana: 100/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 100
+wisdom: 92
+dexterity: 82
+constitution: 66
+charisma: 60
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+20 1000
+51 1000
+100 1000
+108 1000
+113 720
+171 1000
+179 1000
+181 1000
+415 1000
+416 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+447 737
+451 1000
+454 1000
+459 751
+460 352
+462 121
+464 1000
+0 0
+tells:
+1572701925 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1572702254 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574218458 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574218459 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574218459 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574218459 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574218830 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642344228 @WLokar@W tells you, 'I haven't done the cryo specifc ones but I have major globe and relocate done@W'@0
+1642344359 @WLokar@W tells you, 'I meant other cryo specifc ones@W'@0
+1645240690 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1645240646 Tors gossips, 'luck you!'
+1645240653 Luba gossips, 'well thats not normal'
+1645240666 Morris gossips, 'Drum Rool Please'
+1645240673 Chinok gossips, 'ok, heard about enough of the same complaint for multiple days'
+1645240680 Chinok gossips, 'you've had it explained'
+1645240685 Chinok gossips, 'multiple time'
+1645240697 Daedela gossips, 'alright, you don't have ot put up with it'
+1645240706 Chinok gossips, 'any more? '
+1645240721 Daedela gossips, 'also, really unacceptable language there'
+1645240769 Daedela gossips, 'enjoy releveling'
+$
+mem:
+20 0 2
+0 0 0
+aliases:
+lic look in corpse
+df drink fountain
+gcc get all.coins corpse
+gccc get all.coins 2.corpse
+- enter well
+gs group self
+who who -where
+gc get all.coins
+ac assist currrie
+f gsay flee
+0

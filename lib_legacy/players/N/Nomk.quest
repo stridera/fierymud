@@ -1,0 +1,53 @@
+2 255 0
+19 2 1
+choice 3
+17 1 21
+5551_reward 1
+5532_reward 1
+5530_reward 2
+5526_reward 2
+5536_reward 1
+5516_reward 3
+5548_reward 1
+5522_reward 2
+5546_reward 2
+5520_reward 1
+5518_reward 1
+5558_reward 1
+5503_trophies 25
+5507_trophies 24
+5505_trophies 15
+5515_trophies 2
+5511_trophies 17
+5509_trophies 20
+5513_trophies 15
+eg_faction 196
+bl_faction 0
+32771 5 1
+subclass_name monk
+7 3 25
+55334_armor_acquired 1
+55330_armor_acquired 1
+55350_armor_acquired 1
+55630_gems_acquired 3
+55663_gems_acquired 3
+55652_gems_acquired 3
+55597_gems_acquired 3
+55608_gems_acquired 3
+55641_gems_acquired 3
+55354_armor_acquired 1
+55342_armor_acquired 1
+55346_armor_acquired 1
+55619_gems_acquired 3
+55338_armor_acquired 1
+55312_armor_acquired 1
+55585_gems_acquired 3
+55581_gems_acquired 3
+55589_gems_acquired 3
+55577_gems_acquired 3
+55324_armor_acquired 1
+55320_armor_acquired 1
+55304_armor_acquired 1
+55573_gems_acquired 3
+55569_gems_acquired 3
+55300_armor_acquired 1

@@ -1,0 +1,171 @@
+name: Therik
+password: ThAE20T5ss
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 0
+race: 9
+level: 99
+home: 3046
+lifeforce: 0
+composition: 0
+id: 16600
+birthtime: 1185283371
+timeplayed: 10395332
+lastlogintime: 1739089896
+host: 066.199.058.082
+height: 72
+weight: 139
+base_height: 72
+base_weight: 139
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxyz
+effectflags: k 0 0
+prefflags: hnouC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 3
+hitpoints: 505/505
+mana: 100/100
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 81
+intelligence: 92
+wisdom: 97
+dexterity: 71
+constitution: 68
+charisma: 57
+cash: 30 8730 38916 6
+experience: 126967199
+quit_reason: 1
+saveroom: 3054
+spellcasts:
+11 170
+0 0
+skills:
+2 1000
+5 1000
+8 1000
+10 1000
+19 1000
+20 1000
+26 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+66 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+104 1000
+105 1000
+106 1000
+107 1000
+108 720
+109 1000
+110 1000
+111 1000
+112 1000
+113 1000
+184 1000
+185 1000
+186 1000
+228 1000
+246 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+447 1000
+451 1000
+452 1000
+453 1000
+454 1000
+455 1000
+456 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 1000
+0 0
+trophy:
+1 4308 4.000000
+1 51100 2.000000
+1 8002 1.000000
+1 18504 1.000000
+1 8000 2.000000
+1 18509 1.000000
+1 18507 1.000000
+1 18500 1.000000
+1 18510 2.000000
+1 58601 1.000000
+1 58602 3.000000
+1 58609 2.000000
+1 12514 1.000000
+1 53413 0.500000
+1 2339 1.000000
+1 8012 1.000000
+1 53312 1.000000
+1 17204 5.000000
+1 3503 1.000000
+1 3502 1.000000
+1 3500 2.000000
+0 0 0
+tells:
+1645376718 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1645376720 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1668273662 @WThe old cartographer@W tells you, 'Thanks for the deal.@W'@0
+1668370670 @WMand@W tells you, 'do you know where the west monolith in sc is?@W'@0
+1668370693 @WMand@W tells you, 'no worries@W'@0
+1699823327 @WPorath@W tells you, 'hmmm...know it?@W'@0
+1717275623 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1717275624 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1717275624 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1717213290 Discord gossips, 'Daedela: There's no real "starting" it'
+1717458890 Choak gossips, 'Hey all.'
+1717458902 Choak gossips, 'you killing something interesting corana?'
+1717458905 Choak gossips, 'need a group?'
+1717458906 Corana gossips, 'hey the time elemental lord didnt repop'
+1718231730 Kresselack gossips, 'sup'
+1718231745 Chinok gossips, 'looong day at work'
+1718231840 Discord gossips, 'Daedela: Hey you!'
+1735415161 Discord gossips, 'Daedela: Heyo!'
+1735415164 Vistk gossips, 'sup'
+$
+aliases:
+disn c 'disintegrate
+big c 'bigby'
+sto c 'stone'
+jj c 'sto' kresselack
+mm c 'mag'
+gc g all.coins from corpse
+lc l in corpse
+tp c 'tele'
+food c 'min c' ration
+kk c 'sto' kravax
+0

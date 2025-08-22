@@ -1,0 +1,112 @@
+48 7 4
+fire_ring 1
+sash 0
+charles 0
+lashes 0
+65 1 2
+scorpion 1
+lever 1
+2 8 2
+shell 1
+chimera dead
+29 2 10
+south 1
+east 0
+west 1
+item5 0
+item3 0
+goblet 18512
+item2 0
+item4 0
+item1 1
+hexpo 0
+55 1 2
+path4 1
+treasure 0
+62 2 5
+trophytask3 55591
+trophytask2 0
+trophytask4 0
+trophytask1 1
+attack_counter 0
+64 255 1
+got_cherry 0
+61 6 2
+target1 0
+hunt running
+59 4 2
+target1 0
+hunt running
+70 3 2
+treasure1 0
+hunt running
+19 1 0
+22 1 0
+23 1 0
+13 2 6
+satisfied_tree:12046 1
+satisfied_tree:12016 1
+satisfied_tree:12014 1
+satisfied_tree:12017 1
+satisfied_tree:12018 1
+num_trees 5
+17 1 25
+5556_reward 2
+5558_reward 2
+5520_reward 2
+5546_reward 2
+5548_reward 2
+5524_reward 2
+5549_reward 2
+5526_reward 2
+5516_reward 2
+5530_reward 2
+5550_reward 2
+5534_reward 2
+5532_reward 2
+5515_trophies 1
+5513_trophies 3
+5522_reward 3
+5547_reward 3
+5518_reward 3
+5511_trophies 6
+5505_trophies 15
+5507_trophies 25
+5503_trophies 42
+5509_trophies 12
+eg_faction 166
+bl_faction 0
+32798 255 1
+subclass_name ranger
+7 3 31
+55677_gems_acquired 1
+55688_gems_acquired 2
+55721_gems_acquired 1
+55341_armor_acquired 1
+55633_gems_acquired 3
+55337_armor_acquired 1
+55644_gems_acquired 3
+55622_gems_acquired 3
+55329_armor_acquired 1
+55349_armor_acquired 1
+55655_gems_acquired 3
+55666_gems_acquired 3
+55324_armor_acquired 1
+55589_gems_acquired 3
+55320_armor_acquired 1
+55333_armor_acquired 1
+55345_armor_acquired 1
+55600_gems_acquired 3
+55611_gems_acquired 3
+55353_armor_acquired 1
+55573_gems_acquired 3
+55593_gems_acquired 3
+55312_armor_acquired 1
+55308_armor_acquired 1
+55316_armor_acquired 1
+55577_gems_acquired 3
+55585_gems_acquired 3
+55300_armor_acquired 1
+55304_armor_acquired 1
+55581_gems_acquired 3
+55569_gems_acquired 3

@@ -1,0 +1,118 @@
+name: Athmaur
+password: At3PNdIMIa
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 13
+race: 9
+level: 70
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20408
+birthtime: 1673147639
+timeplayed: 468525
+lastlogintime: 1676836401
+host: 073.187.036.249
+height: 72
+weight: 167
+base_height: 72
+base_weight: 167
+base_size: 2
+natural_size: 2
+alignment: -202
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 769/769
+mana: 476/490
+move: 271/273
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 66
+wisdom: 72
+dexterity: 99
+constitution: 82
+charisma: 64
+cash: 145 727 7170 6641
+bank: 162 2300 9000 7600
+experience: 54454852
+quit_reason: 1
+saveroom: 3054
+skills:
+404 741
+411 410
+412 750
+414 128
+415 342
+416 447
+420 655
+421 647
+422 672
+430 204
+438 50
+443 50
+444 50
+446 729
+448 1000
+449 1000
+463 158
+601 50
+602 50
+604 50
+605 50
+606 50
+608 50
+0 0
+trophy:
+1 12012 0.250000
+1 12002 0.500000
+1 12008 0.750000
+1 12009 0.250000
+1 12011 0.250000
+1 12007 0.250000
+1 12016 0.250000
+1 12015 0.250000
+1 3506 0.250000
+1 61515 0.250000
+1 61514 0.250000
+1 61510 0.250000
+1 61508 0.500000
+1 61512 0.500000
+1 17203 0.250000
+1 17202 0.250000
+1 17204 1.250000
+1 3503 0.500000
+1 3501 0.750000
+1 3507 0.750000
+1 3502 0.500000
+0 0 0
+tells:
+1675304253 @WKilaxi the Trickster@W tells you, 'What are you gonna pay with, a smile?@W'@0
+1675542349 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1675542375 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1675562303 @WEnthilza@W tells you, 'leaving now@W'@0
+1675562318 @WEnthilza@W tells you, 'but tks for the invite@W'@0
+1675654412 @WAlkio@W tells you, 'hey im trying to do corpse retrieval and am having problems paying for it do you know the command also if i may ask who is lokar@W'@0
+1676081416 @WChinok@W tells you, 'yeah, but I'm not the only one  that can do it :)@W'@0
+1676081457 @WChinok@W tells you, 'np.. your dex is way too low, probably only gonna get 10 mv @W'@0
+1676081472 @WChinok@W tells you, 'lol had you going !@W'@0
+1676081513 @WChinok@W tells you, 'that look OK ?@W'@0
+$
+gossips:
+1676747934 Discord gossips, 'Daedela: Most of those dragons are INSANE'
+1676747959 Isiac gossips, 'this one in the ice caves was weeeak'
+1676747985 Mersh gossips, 'are you dragon hunting?'
+1676747997 Isiac gossips, 'naa, just exploring ice cult'
+1676748028 Chinok gossips, 'fair warning, -- If you make Tri-Aspx angry, she will chase you down'
+1676748088 Mersh gossips, 'as well as those to protect her.'
+1676834906 Teric gossips, 'gratz'
+1676835124 Isiac gossips, 'ty'
+1676835654 Keric gossips, 'gratz'
+1676835657 Isiac gossips, 'ty'
+$

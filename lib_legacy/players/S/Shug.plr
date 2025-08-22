@@ -1,0 +1,78 @@
+name: Shug
+password: ShSZHy11I6
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20236
+birthtime: 1650293940
+timeplayed: 1428
+lastlogintime: 1650548755
+host: 185.145.244.186
+height: 62
+weight: 134
+base_height: 62
+base_weight: 134
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 15
+lastlevel: 0
+hitpoints: 21/21
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 72
+intelligence: 87
+wisdom: 100
+dexterity: 70
+constitution: 60
+charisma: 75
+experience: 1
+quit_reason: 5
+saveroom: 3002
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+451 50
+457 50
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+tells:
+$
+gossips:
+1650293978 Chinok gossips, 'welcome Shug'
+1650293995 Chinok gossips, 'just yell if you need any help or advice.'
+1650548129 Chinok gossips, 'welcome Shug'
+1650548142 Chinok gossips, 'yell if you have any questions'
+1650548160 Chinok gossips, 'best place to get started leveling for a young cleric is west of town, in the bug fields.'
+$

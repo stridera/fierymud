@@ -1,0 +1,98 @@
+name: Joril
+password: JoF8/n7Ni2
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 12
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18675
+birthtime: 1396080123
+timeplayed: 20078
+lastlogintime: 1647991597
+host: 076.185.186.135
+height: 74
+weight: 148
+base_height: 74
+base_weight: 148
+base_size: 2
+natural_size: 2
+alignment: -11
+playerflags: gy
+effectflags: 0 0 0
+prefflags: hnouC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 3
+hunger: 12
+thirst: 20
+lastlevel: 0
+hitpoints: 161/137
+mana: 12/12
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 66
+wisdom: 63
+dexterity: 97
+constitution: 100
+charisma: 46
+cash: 0 163 875 330
+experience: 451134
+quit_reason: 1
+saveroom: 3054
+skills:
+401 170
+403 140
+405 50
+408 73
+415 50
+416 50
+421 170
+438 60
+443 50
+444 82
+463 50
+464 168
+465 50
+472 50
+0 0
+trophy:
+1 6906 2.000000
+1 6912 2.000000
+1 6903 1.000000
+1 6902 3.000000
+1 6901 1.000000
+1 6904 2.000000
+1 7051 1.000000
+1 7052 1.000000
+1 2004 1.000000
+1 2001 2.000000
+1 2002 2.000000
+1 3500 1.000000
+1 36001 1.000000
+1 36003 3.000000
+1 36002 2.000000
+1 8022 1.000000
+1 8012 4.000000
+1 8020 2.000000
+1 8016 2.000000
+1 8001 6.000000
+1 8002 3.000000
+0 0 0
+tells:
+$
+gossips:
+1647908433 Zaver gossips, 'hey Joril'
+1647991450 Zaver gossips, 'Hey Joril'
+1647991481 Chinok gossips, 'hey Joril'
+$
+aliases:
+lc l in corpse
+gc g all.coins from corpse
+0

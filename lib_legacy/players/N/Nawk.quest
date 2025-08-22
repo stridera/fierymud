@@ -1,0 +1,69 @@
+72 255 4
+target2 necro_fang
+target3 dia_fang
+target1 0
+bounty 0
+15 1 0
+6 255 11
+got_spice:49022 1
+got_spice:23757 1
+got_spice:23759 1
+got_spice:23750 1
+got_spice:23760 1
+got_spice:23754 1
+got_spice:23758 1
+got_spice:23752 1
+got_spice:23755 1
+got_spice:12552 1
+num_spices 10
+17 1 13
+5529_reward 1
+5519_reward 2
+5517_reward 1
+5557_reward 1
+5516_trophies 4
+5508_trophies 30
+5504_trophies 19
+5506_trophies 14
+5514_trophies 3
+5512_trophies 4
+5510_trophies 15
+eg_faction 0
+bl_faction 124
+32775 255 1
+subclass_name thief
+7 3 34
+55746_gems_acquired 3
+55702_gems_acquired 3
+55691_gems_acquired 3
+55361_armor_acquired 1
+55365_armor_acquired 1
+55377_armor_acquired 1
+55735_gems_acquired 3
+55713_gems_acquired 3
+55369_armor_acquired 1
+55724_gems_acquired 3
+55680_gems_acquired 3
+55357_armor_acquired 1
+55381_armor_acquired 1
+55373_armor_acquired 1
+55658_gems_acquired 3
+55349_armor_acquired 1
+55329_armor_acquired 1
+55603_gems_acquired 3
+55647_gems_acquired 3
+55345_armor_acquired 1
+55584_gems_acquired 3
+55317_armor_acquired 1
+55592_gems_acquired 3
+55588_gems_acquired 3
+55321_armor_acquired 1
+55325_armor_acquired 1
+55576_gems_acquired 3
+55580_gems_acquired 3
+55313_armor_acquired 1
+55305_armor_acquired 1
+55572_gems_acquired 3
+55301_armor_acquired 1
+55309_armor_acquired 1
+55568_gems_acquired 3

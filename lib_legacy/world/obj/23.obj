@@ -1,0 +1,668 @@
+#2300
+truthstone truth-stone pale-blue-stone smooth etched runes questobject~
+a truthstone~
+A pale blue stone lies here, its smooth surface etched with runes.~
+~
+18 4 16385 30
+0 0 0 0 0 0 0
+10.00 0 0 0 0 0 0 0
+E
+truthstone truth-stone pale-blue-stone smooth etched runes questobject~
+This oblong stone is about a foot and a half long.  It is smooth to the touch,
+with no obvious edge.  The surface is colored a sparkling range of cyans, from
+light to dark.  Rings of deep purple runes run around it in two different sets.
+It is rumored that when used properly, the truthstone can reveal hidden
+knowledge to the user.~
+#2301
+chest oak oak-chest~
+an oak chest~
+An oak chest sits upon a raised dais.~
+Nothing.~
+15 0 0 1
+100 15 2302 0 0 0 0
+30.00 0 0 0 0 0 0 0
+E
+chest oak~
+The chest is about six feet across, crafted from a silvery metal.  Swirling
+designs cover the whole surface, creating a random pattern so complex that it
+is easy to be lost within it.  A platinum plaque is attatched to the chest's
+cover.  Several words are written on the plaque in a mystical language that all
+can understand:
+
+   Within this box is an object of great power.  Its might can reveal the
+untold knowledge of all time.  It can instill purpose to those who are lost,
+and meaning to those who are without.  However, remember this:  The truth is
+subjective.~
+#2302
+key bronze-key little small~
+a little bronze key~
+A small bronze key lies here.~
+~
+18 4 1 25
+0 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+key~
+&0Strange ruins line this ancient silver key, their cryptic meaning lost
+thousands of years ago.  A sort of religious symbol has been etched upon its
+surface, though from what deity it is uncertain.  &0~
+#2303
+cocoon large white old sticky large-white-cocoon~
+a large white cocoon~
+An old cocoon, large and sticky, lies here.~
+~
+15 4 1 1
+1 0 -1 0 0 0 0
+20.00 0 0 0 0 0 0 0
+E
+cocoon large white old stick~
+&0This cocoon is about five and a half feet tall, just large enough to contain
+a humanoid.  Deep within the white webbing, the shriveled form of a human can
+be seen.  Its eyes are sunken deep within its withered gray face.~
+#2304
+book unholy black-leatherbound-book bound~
+a black leatherbound book~
+A black book, bound in leather, rests here.~
+~
+12 536870912 0 1
+0 0 0 0 0 0 0
+1.50 0 0 0 0 0 0 0
+E
+book unholy black-leatherbound-book~
+The open page of the book reads:
+   Those who follow the fallen gods are blessed with hellish powers beyond
+comprehension.  Darkness and chaos will one day sweep across the realms, and
+those few who are truly devoted to the unholy gods will be raised as lords over
+the land.  Devotion must be proved, however.  Only someone mighty enough to
+claim the ancient truthstone and present it unto the leader of chaos may be
+given the dark powers of hell.  These diabolists will be rewarded for their
+unquenchable devotion by the dark gods themselves!~
+#2305
+water well wide-stone-well~
+a wide stone well~
+A wide stone well rests in the center of the dirt clearing.~
+~
+23 0 0 1
+999 999 0 0 0 0 0
+100000.00 0 0 0 0 0 0 0
+E
+water wide-stone-well~
+Buried deeply in the ground, the stone well taps one of the cool underground
+rivers burrowing through the Wailing Mountains.  Although a faint metallic
+taste taints the water, it is drinkable and residents of the borderhold seem to
+have become accustomed to its flavor.    ~
+#2306
+parchment rolled rolled-up~
+a rolled parchment~
+A rolled-up parchment lies here, neatly bound with red silk ribbon.~
+~
+8 536870912 1 1
+0 0 0 0 0 0 0
+0.50 0 0 0 0 0 0 0
+E
+rolled parchment~
+&0This neatly rolled parchment looks quite new, perhaps two weeks old at
+the most.  Its crisp white paper is nicely kept, as is the swirling blue
+text that has been scrawled along its surface:
+
+Do not worry, Lord Gundbard.  The key is safe with me.  I apologize for
+abandoning my post, but rumors were abound of trouble near Fangron
+Forest.  My oath bound me to protect the innocent, so I must leave
+immediately to offer my aid.  I should be back within a week's time.
+
+Sir Gloris Whiteblade,
+Holy Templar~
+H
+200
+#2307
+broadsword broad-sword alabaster-pommelled-broadsword alabaster-pommel~
+an alabaster-pommelled broadsword~
+A broadsword with an alabaster pommel lies here.~
+~
+5 57700352 32769 35
+2 4 11 3 0 0 0
+2.20 1000 0 0 0 0 0 0
+E
+broadsword broad-sword alabaster-pommelled-broadsword alabaster-pommel~
+This large weapon is a two-handed sword with a very long blade made of steel
+with very little in the way of sharp edges, since it's meant for brute hacking.
+The hilt is made of bronze, with bronze crossguards and little ornamentation
+or decoration.  The pommel is weighted perfectly with a smooth white alabaster
+stone, opaque and milky-white.  There is no sign of what the stone signifies.~
+A
+6 3
+X
+1011
+#2308
+meat deer dried chunk well-wrapped peice deer-meat food~
+a chunk of dried deer meat~
+A well-wrapped piece of meat sits here.~
+~
+19 0 1 1
+10 0 0 0 0 0 0
+0.75 18 0 0 0 0 0 0
+E
+meat deer dried chunk well-wrapped peice deer-meat food~
+It's a large piece of salty, hard-as-a-rock preserved meat.~
+#2309
+rope coil soco-rope~
+a coil of rope~
+A coil of rope lies here.~
+~
+25 0 16385 1
+0 0 0 0 0 0 0
+5.00 20 0 0 0 0 0 0
+E
+rope coil~
+It is a plain coil of hemp rope, about 50' long.~
+#2310
+canoe deer-hide~
+a deer-hide canoe~
+A deer-hide canoe lies here.~
+~
+22 536870912 16385 1
+0 0 0 0 0 0 0
+25.00 100 0 0 0 0 0 0
+E
+canoe deer-hide~
+It is a simple one-man canoe made of pale deerhide, tanned and
+scraped clean of fur. The stitching is quite waterproof.~
+#2311
+lantern brass brass-lantern~
+a brass lantern~
+A brass lantern sits here.~
+~
+1 0 16385 1
+0 300 300 0 0 0 0
+1.25 30 0 0 0 0 0 0
+E
+lantern brass brass-lantern~
+Made of beaten brass, this hooded lantern features a handle for
+easy carrying.~
+#2312
+skin waterskin water simple soco-waterskin~
+a plain waterskin~
+A simple waterskin sits here.~
+~
+17 0 1064961 1
+128 128 0 0 0 0 0
+1.00 30 0 0 0 0 0 0
+E
+skin waterskin water simple soco-waterskin~
+It's made of leather, and looks vaguely like a pouch, with a spout
+for drinking from.~
+#2313
+pack traveling-pack leather~
+a leather traveling pack~
+A leather traveling pack sits here.~
+Nothing.~
+15 536870912 17409 20
+85 1 -1 0 0 0 0
+2.50 200 0 0 0 0 0 0
+E
+pack traveling-pack leather~
+Looking quite a bit larger than the average belt pouch, this traveling pack
+has straps so that it can be worn like a backpack as well as handles to that it
+can be held.  Made of fine tanned leather, it looks quite sturdy and should
+alst a long time in the hands of a careful owner.    ~
+#2314
+wristguard wrist-guard studded-leather-wristguard leather-bracer iron~
+a studded leather wristguard~
+A leather bracer studded with iron lies here.~
+~
+9 51384320 4097 30
+3 0 0 0 0 0 0
+0.74 200 0 0 0 0 0 0
+E
+wristguard wrist-guard studded-leather-wristguard leather-bracer iron~
+It covers the forearm from just past the elbow to just short of the wrist, in
+dark leather studded all over with iron armoring-studs.  It straps on along the
+underside of the wrist.~
+X
+224
+#2315
+shield silver-bossed-shield yellow-shield-bossed-silver~
+a silver-bossed shield~
+A yellow shield bossed in silver lies here.~
+~
+9 51384320 513 30
+10 0 0 0 0 0 0
+1.90 900 0 0 0 0 0 0
+E
+shield silver-bossed-shield yellow-shield-bossed-silver~
+The shield is round, with good, sturdy handles on its back for gripping it and
+keeping it close to the body for defense.  It is made of steel overlaid on
+wood, and the steel is bossed in silver, and shined to a high sheen.  The
+design of a lion is etched into the center of the shield, a quick but detailed
+job.    ~
+A
+24 -4
+A
+23 -2
+X
+225
+#2316
+vest-fine-ringmail ring-mail~
+a vest of fine ringmail~
+A vest of fine ringmail lies here.~
+~
+9 51400704 9 30
+13 0 0 0 0 0 0
+4.50 2000 0 0 0 0 0 0
+E
+ringmail fine vest mail fine-ringmail-vest~
+High quality manufacture has produced this vest of fine ringmail.  The rings
+look to be made of wrought iron, so they won't rust easily.  The rings are sewn
+onto a base armor of thick leather.    ~
+X
+995
+#2317
+key wooden green leaves green-wooden-key~
+a green wooden key~
+&0&3A wooden key covered with leaves, lies here.&0~
+~
+18 536870916 16385 25
+0 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+key wooden green leaves green-wooden-key~
+It is a simple key made of wood dyed green and carved with a design of oak
+leaves.    ~
+#2318
+key wooden red red-wooden-key leaves~
+a red wooden key~
+&0&3A wooden key covered with leaves lies here.&0~
+~
+18 536870916 16385 25
+0 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+key wooden red red-wooden-key~
+It's a simple key made of wood dyed red and carved with designs of maple
+leaves.    ~
+#2319
+key yellow wooden leaves yellow-wooden-key~
+a yellow wooden key~
+&0&3A wooden key covered with leaves lies here.&0~
+~
+18 536870916 16385 25
+0 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+key yellow wooden leaves yellow-wooden-key~
+It's a simple wooden key dyed yellow and carved with designs of yew leaves.  ~
+#2320
+pendant aquamarine-pendant pendant-silver-chain blue stone~
+an aquamarine pendant~
+A pendant on a silver chain lies here.~
+~
+8 64 5 30
+0 0 0 0 0 0 0
+0.20 1300 0 0 0 0 0 0
+E
+pendant aquamarine-pendant pendant-silver-chain blue stone~
+This pale, clear blue stone is set in silver, on a thin filigree silver chain.
+It sparkles in any light.~
+A
+6 2
+A
+13 7
+A
+27 1
+#2321
+monolith stone south-monolith~
+a stone monolith~
+A stone monolith stands under some massive oak trees.~
+~
+0 0 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+monolith stone~
+This ancient stone monolith appears to have stood here for centuries,
+withstanding the years of weathering and other adverse conditions. A
+blanket of bright green vines wind their way up its length, prospering
+from the nearby druidic magic. Several passages are visible on the
+monolith:
+ 
+ 
+The monoliths of the south were built in the Whitewood Forest, far south
+of the Wailing Mountains. These proud stones were construced by the first
+followers of nature, the father druids. When first erected, they were a
+testimony to the druidic faith, standing unharmed even throughout the
+barbarian wars.~
+#2322
+monolith stone north-monolith~
+a stone monolith~
+Deep within some bushes, a tall stone monolith is visible.~
+~
+0 0 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+monolith stone~
+This ancient stone monolith appears to have stood here for centuries,
+withstanding the years of weathering and other adverse conditions. A
+blanket of bright green vines wind their way up its length, prospering
+from the nearby druidic magic. Several passages are visible on the
+monolith:
+ 
+ 
+The monoliths of the north were built near the Wailing Mountains,
+providing the druids with a means of guarding those nearby lands from
+corruption. Its builders soon grew wary of this existance and wished
+to travel on to the next. In haste, they bargained with a clan of dryads.
+They were given the stones, in return for their endless vigil over them.~
+#2323
+monolith stone east-monolith~
+a stone monolith~
+A stone monolith juts up from the ground, towering over many smaller trees.~
+~
+0 0 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+stone monolith~
+This ancient stone monolith appears to have stood here for centuries,
+withstanding the years of weathering and other adverse conditions. A
+blanket of bright green vines wind their way up its length, prospering
+from the nearby druidic magic. Several passages are visible on the
+monolith:
+ 
+ 
+The ancient monoliths of the east were built south of a great, icy lake.
+Father Ghelin and Me'neil were proud of these standing stones, erected
+with as much care as the previous four. Guarding the strange energies there,
+they are watched always by an member of the order, and provide the earth
+mother's children with a means of communication.~
+#2324
+slab stone ancient-stone-slab~
+an ancient stone slab~
+A slab of stone sits upon two squat pillars.~
+~
+0 0 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+slab stone ancient-stone-slab~
+This slab of stone must weigh several tons, being at least ten feet square
+and half a foot thick. It rests heavily upon two squat pillars, which stand
+about two feet from the grassy floor. Ancient text has been chisled into the
+slab's surface, written for all eternity in stone.
+ 
+The ancient children of the earth mother labored hard, creating a network of
+mystical standing stones, columns, and monoliths to better commune with
+nature. These powerful stones mark mystical spots of serenity, places where
+a follower of nature can speak with the earth mother and those spirits who
+follow her guidance. For this reason, an initiate of the faith must visit the
+four greatest of these creations, with there being in existance one each
+to the north, east, south, and west. At each, the phrase of devotion must
+be spoken, by one true of heart and mighty enough to pierce the veil of
+nature: 'I pray for a blessing from mother earth, creator of life and bringer
+of death'.
+ 
+Once all these blessing are collected and presented before the high druid, the
+young devotee will be richly rewarded.~
+#2325
+unfinished object~
+an unfinished object~
+An unfinished object is lying here.~
+~
+0 0 1 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+#2327
+lightstone light-stone elven-lightstone elf~
+an elven lightstone~
+An elven lightstone glares brightly here.~
+~
+1 1610612736 2113537 30
+0 300 300 0 0 0 0
+0.30 3000 0 0 0 0 0 0
+E
+lightstone light-stone elven-lightstone elf~
+Made of glittery opaque white stone dotted with flecks of gold, this stone can
+be made to glow with a mere thought.~
+A
+24 -3
+A
+27 1
+X
+4
+#2328
+monolith stone west-monolith~
+a stone monolith~
+A stone monolith is here, covered with clinging vines.~
+~
+0 0 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+monolith stone~
+This ancient stone monolith appears to have stood here for centuries,
+withstanding the years of weathering and other adverse conditions. A
+blanket of bright green vines wind their way up its length, prospering
+from the nearby druidic magic. Several passages are visible on the
+monolith:
+ 
+The monoliths of the west were built near the Mountains of Pain, within
+their foothills. The very first collection of standing stones, they were
+guarded by the druid council for thousands of years. Over time, an
+alliance with the sprites were formed for mutual protection. Devious
+as they are however, they soon drove out the few remaining druids and
+claimed the stones for themselves.~
+#2329
+wreath-bay-leaves leaf~
+a wreath of bay leaves~
+A wreath of bay leaves lies here.~
+~
+9 0 17 30
+1 0 0 0 0 0 0
+0.75 40 0 0 0 0 0 0
+E
+wreath-bay-leaves leaf~
+Made of fresh-smelling bay leaves, this wreath's branches twine around
+themselves.~
+A
+13 10
+#2330
+blessing-east mystical-sphere-translucent-energy ball questobject~
+the blessing of the east~
+&0&7&bA mystical sphere of translucent energy floats here.&0~
+Nothing.~
+8 1610612736 16385 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+blessing-east mystical-sphere-translucent-energy ball shining questobject~
+&7&bA shining ball of translucent energy, the blessing of the east is a sign of
+devotion to the powers of nature and can only be properly used by a druid who
+stands at the stone slab in the Vale of Anlun.  &0~
+#2331
+blessing-south mystical-sphere-translucent-energy ball shining questobject~
+the blessing of the south~
+&0&7&bA mystical sphere of translucent energy floats here.&0~
+~
+8 1610612736 16385 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+blessing-south mystical-sphere-translucent-energy ball shining questobject~
+&7&bA shining ball of translucent energy, the blessing of the east is a sign of
+devotion to the powers of nature and can only be properly used by a druid who
+stands at the stone slab in the Vale of Anlun.  &0~
+#2332
+blessing-north mystical-sphere-translucent-energy ball shining questobject~
+the blessing of the north~
+&2A mystical sphere of translucent energy floats here.&0~
+~
+8 1610612736 16385 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+blessing-north mystical-sphere-translucent-energy ball shining questobject~
+&2 A shining ball of translucent energy, the blessing of the east is a sign of
+devotion to the powers of nature and can only be properly used by a druid who
+stands at the stone slab in the Vale of Anlun.  &0~
+#2333
+blessing-west mystical-sphere-translucent-energy ball shining questobject~
+the blessing of the west~
+&2A mystical sphere of translucent energy floats here.&0~
+~
+8 1610612736 16385 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+blessing-west mystical-sphere-translucent-energy ball shining questobject~
+&2A shining ball of translucent energy, the blessing of the east is a sign of
+devotion to the powers of nature and can only be properly used by a druid who
+stands at the stone slab in the Vale of Anlun.  &0~
+#2334
+trident smoldering-trident long-pitchfork~
+a smoldering trident~
+A long pitchfork burns the ground where it lies.~
+~
+5 134216265 32769 35
+3 3 11 14 0 0 0
+2.50 0 0 0 0 0 0 1048576
+T 310
+E
+trident smoldering-trident long-pitchfork~
+Cast from a charred, blackened metallic substance, the trident is painfully hot
+to the touch, yet leaves no burns on skin.  It stands as tall as an average
+human, the three prongs on one end running about a quarter of its length.  At
+the tip of each prong, a wicked looking arrow looks sharp enough to rend stone.~
+A
+1 1
+A
+27 2
+X
+499
+#2335
+cloak-gaia cloak-green-brown~
+&3a cloak of &2Ga&bi&0&2a&0~
+A cloak of &2green&0 and &3brown&0 is sitting in a pile here.~
+~
+9 333901832 1025 30
+1 0 0 0 0 0 0
+3.00 0 0 0 0 0 0 0
+E
+cloak-gaia cloak-green-brown~
+Made of delicate branches and leaves, this cloak looks ready to crumble at any
+moment, yet provides a magical benifit to its wearer due to the powers of
+nature tht made it.  Though someone wearing this cloak might be mistaken for a
+bush, they are used as a symbol of status and a mark of favor among many groups
+of druids.    ~
+A
+13 20
+A
+4 2
+A
+26 14
+A
+28 75
+A
+27 2
+X
+1011
+#2336
+key iron-skeleton-key slender-iron-stick teeth~
+an iron skeleton key~
+A slender iron stick with teeth sits in the dust.~
+~
+18 4 16385 0
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+iron-skeleton-key slender-iron-stick teeth~
+It appears to be an old iron skeleton key, slightly rusted and worn on the
+teeth.  The word Toldar has been printed in tiny lettering along the shaft of
+the key.    ~
+#2337
+brimstone sulfur pile-stinky-yellow-powder questobject~
+some brimstone~
+A pile of stinky yellow powder has been gathered here.~
+~
+8 4 1 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+brimstone sulfur pile-stinky-yellow-powder questobject~
+This fine powder reeks like rotten eggs!  Also called sulfur in some cultures,
+brimstone is closely associated with demons, the hells, fire, and divine
+retribution.  However, brimstone is also a critical ingredient in many
+alchemical formulas and is a powerful agent for change.~
+#2338
+flesh pound-flesh lump bloody-raw-meat questobject~
+a pound of flesh~
+Someone has left a carved up lump of bloody raw meat here.~
+Nothing.~
+8 4 1 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+pound-flesh lump bloody-raw-meat questobject~
+This gruesome gob of meat is fresh and dripping with blood.  It seems to be a
+single one-pound chunk taken from a larger creature.  From the color, it
+doesn't seem to be from a common farm or game animal.  Maybe a pig?  Or...?~
+#2339
+trident hellfire-trident flaming-pitchfork pitch-fork~
+a Hellfire trident~
+A flaming pitchfork stands impaled in the ground.~
+~
+5 134216265 8193 65
+0 2 12 14 0 0 0
+2.50 0 0 0 0 0 0 1048576
+T 310
+E
+trident smoldering-trident long-pitchfork~
+Cast from a charred, blackened metallic substance, the trident is painfully hot
+to the touch, yet leaves no burns on skin.  It stands as tall as an average
+human, the three prongs on one end running about a quarter of its length.  At
+the tip of each prong, a wicked looking arrow looks sharp enough to rend stone.~
+A
+1 3
+A
+27 2
+A
+4 3
+X
+499
+#2340
+trident trident-garl'lixxil trident-garllixxil garllixxil-trident demonic-trident~
+the Trident of Garl'lixxil~
+A demonic trident wreathed in unholy flames scalds the air.~
+~
+5 134216265 8193 90
+0 7 5 14 0 0 0
+2.50 0 0 0 0 0 0 1048576
+T 310
+E
+trident smoldering-trident long-pitchfork~
+Cast from a charred, blackened metallic substance, the trident is painfully hot
+to the touch, yet leaves no burns on skin.  It stands as tall as an average
+human, the three prongs on one end running about a quarter of its length.  At
+the tip of each prong, a wicked looking arrow looks sharp enough to rend stone.~
+A
+1 5
+A
+27 3
+A
+4 5
+X
+499
+#2408
+seal holy~
+a holy seal~
+A holy seal has been etched into the floor.~
+~
+12 0 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+holy seal~
+&0A carefully etched seal covers most of this stone floor. Its circular
+pattern depicts several different symbols of many of the divine gods.
+Gold ink has been ground into the etchings, giving it a slight glittering
+effect.~
+$~

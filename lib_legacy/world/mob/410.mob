@@ -1,0 +1,617 @@
+#41001
+hive-worker busy-worker busy worker hiver~
+the busy worker~
+A Worker is here, cleaning up.~
+The six foot long insectoid concentrates on the task at hand. She's far too
+busy to take much note of YOU. As she finishes this assignment, she drops 
+to six of her eight legs, leaving two free for performing any little job 
+she may come across on her way to the next. The colors on her body shimmer 
+like a wave as she moves away.~
+2124 1024 0 E
+5 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 2 3 14 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41002
+hive-nurse protective nurse nurse-maid nanny hiver~
+the protective Nurse~
+The Nurse gives you a cold glare as she moves to stand protectively in front
+of her small charges.~
+Every aspect of the Nurse seems to have been designed for motherly care. She
+gives off a soothing, lemony scent. All of her legs and both antennae have 
+long, sweeping projections that resemble feathers. She reaches out to 
+stroke and quiet her small charges with her four foremost legs, maintaining
+her balance with the other four, seeming the very picture of maternal 
+love. Your blood runs cold as she whirls about, noticing your presence... 
+and you remember the other side of being motherly.... the PROTECTIVE side...~
+2120 1024 0 E
+6 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 2 3 14 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 88
+Int: 69
+Wis: 66
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41003
+hive-warrior insectoid warrior hiver~
+the Warrior~
+A Warrior poised firmly on eight legs is standing here.~
+Looking down at you from an angle is some strange insectoid. A rainbow of
+colors sparkles across its body and a pleasing, lemony odor comes from its
+thick shell. The mandibles clack at you menacingly as it steps forward.
+Four legs make menacing gestures as it takes a solid stance on its remaining
+four and defensively curls both antennae back. Its compound eyes seem to
+look in all directions, making it impossible to tell what it's actually 
+focusing on.~
+102766664 1024 -100 E
+8 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 0 3 14 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41004
+prismatic-warrior prismatic warrior shining aloof hiver~
+a shining Prismatic Warrior~
+An aloof Prismatic Warrior watches you through faceted eyes.~
+The light breaks across this mighty warrior in a shattered cloud
+of rainbows. The overall effect makes it difficult to focus on its
+exact location. You hear a chittering sound as it clacks its mandibles
+in indecision. You find yourself vaguely hoping it's not deciding that
+it's hungry. At over 8 feet tall, it probably wouldn't find you much of
+a meal...~
+2122 1056 -250 E
+10 0 0 0d0+0 0d0+0
+0 0 0 410
+3 3 1 3 14 0 3
+BareHandAttack: 10
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+T 55694
+#41005
+hive-attendant attendant faithful hiver queen-attendant~
+a faithful Attendant~
+A faithful Attendant is here, looking after the needs of her Queen.~
+The Attendant nervously scuttles about the room. Several workers hurry to make
+way for the distinguished servant as she rushes on her latest errand. Her two
+free hands anxiously groom loose bits of dirt from her segmented body as her
+antennae search the air for any hint she should change her task.~
+6158 1024 500 E
+8 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 2 3 14 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 86
+Int: 72
+Wis: 77
+Con: 30
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41006
+prismatic-attendant prismatic attendant~
+a sparkling Prismatic Attendant~
+A Prismatic Attendant stands here waiting for her Queen's next command.~
+The Attendant's crystal-clear chitin shell sparkles with her graceful
+movements. All the other Hivers look clumsy when you compare them to
+her refined actions. One round foot taps the floor in impatience as she
+waits for the workers to carry out her orders. ~
+6158 1060 1000 E
+9 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 2 3 14 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 78
+Int: 72
+Wis: 72
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41007
+blue-drone drone blue male~
+the Blue Drone~
+A Blue Drone is here, doing things you'd rather not watch.~
+Nearing 10 feet long, this monstrous male is one of the largest Hivers
+you've seen. Surely, only the Queen could ever match his size. His peacock
+blue chitin darkens to violet at the shoulders. He must be young -- his
+wings have barely popped from their cases. They are still drying.~
+6154 1049632 -1000 E
+9 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 1 3 14 0 3
+BareHandAttack: 10
+Str: 30
+Dex: 86
+Int: 72
+Wis: 80
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41008
+red-queen queen young red~
+the Red Queen~
+A young, Red Queen stands here by her contoured couch.~
+While larger than the other Hivers you've seen, it's obvious that the
+Red Queen is very young. Her chitinous shell appears soft and wet. She
+looks at you with a curious tilt of her head and slowly stretches an
+antenna toward you in inquiry. Her two compound eyes glitter at you with
+a soft glow as they track your movements while her two simple eyes scan
+across you, taking in all the details that make you, YOU.~
+6154 1060 1000 E
+8 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 2 3 14 0 3
+BareHandAttack: 10
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+T 55694
+#41009
+yellow-queen yellow queen~
+the Yellow Queen~
+The Yellow Queen stands here, supervising the placement of gems.~
+A brilliant Yellow Queen scurries around the chamber, directing the workers
+assigned to finish construction of her quarters. She's as fussy and flighty
+as any teenager preparing for her first date. Even as you watch, she stops
+her mad dash just long enough to clean a piece of dirt from her thorax and
+fluff her antennae. She moves so quickly that it looks like six of her legs
+never touch the ground.~
+6154 1060 500 E
+9 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 2 3 14 0 3
+BareHandAttack: 10
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+T 55694
+#41010
+green-queen green queen~
+the Green Queen~
+The Green Queen stands here, tapping the floor nervously.~
+The forest-green Hiver queen glances around nervously. She seems very
+agitated as though worried about something. Indeed, even as you watch,
+she shivers and several loose flakes of chitin fall from her body to the
+floor. Her wing cases are stiff and look ready to explode. She must be
+nearing maturity.~
+6282 1060 -250 E
+9 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 2 3 14 0 3
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+T 55694
+#41011
+blue-queen blue queen~
+the Blue Queen~
+The Blue Queen is here, preparing for her mating flight.~
+Sweeping color changes wash over the queen's body as she flexes her
+wings outward. Reaching up towards the roof of the chamber, she extends
+a claw and widens her private passage. She pauses just once to run her
+antennae over the body of the waiting Blue Drone. ~
+6154 1049636 -750 E
+10 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 2 3 14 0 3
+BareHandAttack: 10
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+T 55694
+#41012
+hive-mother mother bloated~
+the bloated Hive Mother~
+The monstrous Hive Mother is here, lost in dreams of power.~
+The hulking mass of the great Hive Mother's body throbs with the pulse of
+the Hive, keeping all its working parts focused and coordinated with her
+will. She seems unaware of your presence and stares off into space...
+dreaming? Perhaps she sleeps... at rest while her bloated body continues
+to produce eggs and the next generation of Hivers...~
+6154 1060 -1000 E
+12 20 0 0d0+20 2d0+0
+0 0 0 410
+3 3 2 3 14 0 4
+BareHandAttack: 10
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+T 55695
+#41013
+hive-warrior insectoid warrior hiver~
+the Warrior~
+A Warrior poised firmly on eight legs is standing here.~
+Looking down at you from an angle is some strange insectoid. A rainbow of
+colors sparkles across its body and a pleasing, lemony odor comes from its
+thick shell. The mandibles clack at you menacingly as it steps forward.
+Four legs make menacing gestures as it takes a solid stance on its remaining
+four and defensively curls both antennae back. Its compound eyes seem to
+look in all directions, making it impossible to tell what it's actually 
+focusing on.~
+102766664 1024 -100 E
+8 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 0 3 14 0 3
+BareHandAttack: 10
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41014
+prismatic-warrior prismatic warrior shining aloof hiver~
+a shining Prismatic Warrior~
+An aloof Prismatic Warrior watches you through faceted eyes.~
+The light breaks across this mighty warrior in a shattered cloud
+of rainbows. The overall effect makes it difficult to focus on its
+exact location. You hear a chittering sound as it clacks its mandibles
+in indecision. You find yourself vaguely hoping it's not deciding that
+it's hungry. At over 8 feet tall, it probably wouldn't find you much of
+a meal...~
+100665418 1056 -250 E
+10 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 1 3 14 0 3
+BareHandAttack: 10
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41015
+prismatic-warrior prismatic warrior shining aloof hiver~
+a shining Prismatic Warrior~
+An aloof Prismatic Warrior watches you through faceted eyes.~
+The light breaks across this mighty warrior in a shattered cloud
+of rainbows. The overall effect makes it difficult to focus on its
+exact location. You hear a chittering sound as it clacks its mandibles
+in indecision. You find yourself vaguely hoping it's not deciding that
+it's hungry. At over 8 feet tall, it probably wouldn't find you much of
+a meal...~
+100665418 1056 -250 E
+10 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 1 3 14 0 3
+BareHandAttack: 10
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41016
+prismatic-warrior prismatic warrior royal guard~
+a Prismatic Royal Guard~
+A Prismatic Royal Guard studies you closely through faceted eyes.~
+The light breaks across this mighty warrior in a shattered cloud of rainbows.
+The overall effect makes it difficult to focus on its exact location.  You
+hear a chittering sound as it clacks its mandibles in indecision.  It stands
+intently, watching every movement within line of sight.  You find yourself
+vaguely hoping you're not doing anything wrong in its presence, as it would
+probably obliterate you into tiny pieces.~
+6234 1056 -250 E
+10 0 0 0d0+0 0d0+1
+0 0 0 410
+3 3 1 3 14 0 2
+BareHandAttack: 10
+Str: 92
+Dex: 92
+Int: 64
+Wis: 74
+Con: 69
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41017
+prismatic-warrior prismatic warrior royal guard~
+a Prismatic Royal Guard~
+A Prismatic Royal Guard studies you closely through faceted eyes.~
+The light breaks across this mighty warrior in a shattered cloud of rainbows.
+The overall effect makes it difficult to focus on its exact location.  You
+hear a chittering sound as it clacks its mandibles in indecision.  It stands
+intently, watching every movement within line of sight.  You find yourself
+vaguely hoping you're not doing anything wrong in its presence, as it would
+probably obliterate you into tiny pieces.~
+6234 1056 -250 E
+10 0 0 0d0+0 0d0+1
+0 0 0 410
+3 3 1 3 14 0 2
+BareHandAttack: 10
+Str: 95
+Dex: 87
+Int: 64
+Wis: 66
+Con: 79
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41018
+prismatic-warrior prismatic warrior royal guard~
+a Prismatic Royal Guard~
+A Prismatic Royal Guard studies you closely through faceted eyes.~
+The light breaks across this mighty warrior in a shattered cloud of rainbows.
+The overall effect makes it difficult to focus on its exact location.  You
+hear a chittering sound as it clacks its mandibles in indecision.  It stands
+intently, watching every movement within line of sight.  You find yourself
+vaguely hoping you're not doing anything wrong in its presence, as it would
+probably obliterate you into tiny pieces.~
+6234 1056 -250 E
+10 0 0 0d0+0 0d0+1
+0 0 0 410
+3 3 1 3 14 0 2
+BareHandAttack: 10
+Str: 93
+Dex: 86
+Int: 72
+Wis: 67
+Con: 79
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41019
+prismatic-warrior prismatic warrior royal guard~
+a Prismatic Royal Guard~
+A Prismatic Royal Guard studies you closely through faceted eyes.~
+The light breaks across this mighty warrior in a shattered cloud of rainbows.
+The overall effect makes it difficult to focus on its exact location.  You
+hear a chittering sound as it clacks its mandibles in indecision.  It stands
+intently, watching every movement within line of sight.  You find yourself
+vaguely hoping you're not doing anything wrong in its presence, as it would
+probably obliterate you into tiny pieces.~
+6234 1056 -250 E
+10 0 0 0d0+0 0d0+1
+0 0 0 410
+3 3 1 3 14 0 3
+BareHandAttack: 10
+Str: 88
+Dex: 89
+Int: 68
+Wis: 75
+Con: 72
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#41021
+prismatic-attendant prismatic attendant~
+a sparkling Prismatic Attendant~
+A Prismatic Attendant stands here waiting for her Queen's next command.~
+The Attendant's crystal-clear chitin shell sparkles with her graceful
+movements. All the other Hivers look clumsy when you compare them to
+her refined actions. One round foot taps the floor in impatience as she
+waits for the workers to carry out her orders.~
+6158 1060 0 E
+9 20 0 0d0+0 0d0+0
+0 0 0 410
+3 3 2 24 14 0 2
+BareHandAttack: 10
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+$

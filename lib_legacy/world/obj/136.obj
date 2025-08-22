@@ -1,0 +1,261 @@
+#13601
+necklace tarnished-silver-necklace old-looking-silver-necklace~
+a tarnished silver necklace~
+An old looking silver necklace has been left here.~
+~
+8 0 5 1
+0 0 0 0 0 0 0
+0.25 20 0 0 0 0 0 0
+E
+tarnished-silver-necklace old-looking-silver-necklace~
+This ancient-looking necklace is ornate, with a long, boxy silver chain set at
+the edges of a large, triangular chestpiece shaped like a rearing dragon.  
+Dramatic, but dented, and very much in need of polishing.~
+A
+6 3
+#13603
+unfinished object~
+an unfinished object~
+An unfinished object is lying here.~
+~
+0 0 1 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+X
+4
+#13604
+cane short-wooden-cane~
+a wooden cane~
+A short wooden cane was left here on the ground.~
+~
+12 536870912 16385 1
+0 0 0 0 0 0 0
+2.00 20 0 0 0 0 0 0
+E
+short-wooden-cane~
+It is a wooden cane, just long enough to hold onto its bulbous end and use to
+aid in walking.  It's slightly dinged up from time and the elements, but it
+maintains its usefulness.~
+A
+14 20
+#13606
+shield tribal-shield emblem orc clan~
+a tribal shield~
+A shield with the tribal emblem of an orc clan lies on the floor.~
+~
+9 50335744 513 5
+3 0 0 0 0 0 0
+2.50 20 0 0 0 0 0 0
+E
+tribal-shield emblem orc clan~
+This hardened leather shield is stretched taut over a framework of wood, with
+straps in the back for one's arm.  The front is tooled and painted to look like
+a mouthful of gnashing teeth.~
+A
+18 1
+A
+1 2
+X
+225
+#13607
+hat tall-pointed-black-gold-hat black-gold-wizard's-hat fabric black-gold-wizards-hat~
+a black-and-gold wizard's hat~
+A tall, pointed, black-and-gold hat rests here.~
+~
+9 551477256 17 5
+2 0 0 0 0 0 0
+0.75 20 0 0 0 0 0 0
+E
+hat tall-pointed-black-gold-hat black-gold-wizard's-hat fabric black-gold-wizards-hat~
+This tall, pointed, conical hat is made of black wool, stiffened until it
+stands straight up.  It is appliqued all over with bright golden stars.  The
+brim is round and not very wide.~
+A
+3 1
+A
+24 -5
+A
+27 1
+X
+785
+#13608
+leggings orc-hide-leggings~
+orc-hide leggings~
+Some orc-hide leggings lie here.~
+~
+9 0 33 5
+3 0 0 0 0 0 0
+7.30 20 0 0 0 0 0 0
+E
+orc-hide-leggings~
+Made of thin, supple leather, these leggings cover from waist to ankle, tying
+at the waist.~
+#13609
+sleeves orc-hide-sleeves~
+orc-hide sleeves~
+Some orc-hide sleeves lie here.~
+~
+9 0 257 5
+3 0 0 0 0 0 0
+5.70 20 0 0 0 0 0 0
+E
+orc-hide-sleeves~
+Made of supple, thin, brownish leather, these mottled sleeves cover from a
+vest's shoulderpieces to the wrists, lacing there for snugness.~
+#13610
+stream~
+a stream~
+A stream flows by the bank here.~
+Nothing.~
+23 0 0 1
+999 999 0 0 0 0 0
+1004.00 20 0 0 0 0 0 0
+E
+stream~
+A small, swift-moving stream flows between its banks here.  A path leads right
+up to the bank, and it is obvious that many people consider it a drinking hole.~
+#13611
+feather bright-red-feather pen quill~
+a &1red&0 feather~
+A bright red feather lies in the dust.~
+~
+21 536870912 16385 1
+0 0 0 0 0 0 0
+0.03 100 0 0 0 0 0 0
+E
+feather bright-red-feather pen quill~
+It's a long wingfeather from the bright birds that live around Morgan Hill.  
+It looks ideal for scribing spells into a spellbook.~
+A
+2 1
+A
+4 -1
+#13612
+vest-scaled-bones vest-bone-plates~
+a vest of scaled bones~
+A vest of bone plates, arranged like fish scales, lies here.~
+Nothing.~
+9 54546432 9 1
+4 0 0 0 0 0 0
+9.00 20 0 0 0 0 0 0
+E
+vest-scaled-bones vest-bone-plates~
+The bones used to make this vest are somewhat flat, and wide.  They are
+arranged like fish-scales and pinned by bronze to a leather vest.  The vest
+covers from shoulders to hips, and can be removed or put on with ease.~
+X
+243
+#13613
+campfire~
+a flickering campfire~
+A campfire flickers here.~
+Nothing.~
+1 0 0 1
+0 -1 -1 0 0 0 0
+50.00 20 0 0 0 0 0 0
+E
+campfire flickering~
+This fire has died down slightly, to flickering, orange-red
+coals that sometimes pop. A circle of small stones surrounds
+the fire, with room for sitting down around its outside.~
+#13614
+bracelet onyx-bracelet shiny-onyx-silver-bracelet~
+an onyx bracelet~
+A shiny onyx and silver bracelet lies here.~
+Nothing.~
+8 64 4097 1
+0 0 0 0 0 0 0
+0.40 20 0 0 0 0 0 0
+E
+onyx-bracelet shiny-onyx-silver-bracelet~
+This silver bracelet is heavy and solid, with a clasp that unhinges to get it
+on and off the wrist.  It is chased all 'round in onyx, a thick black shiny
+stream of it, so that only the very edges of the silver backing are visible at
+its top and bottom edges, encircling it.~
+A
+18 2
+#13623
+skin dirty-leather-skin dirty-leather-sack~
+a dirty leather skin~
+A dirty leather sack sits here, leaking a tangy liquid.~
+~
+17 0 1 1
+32 32 40 0 0 0 0
+1.00 40 0 0 0 0 0 0
+E
+dirty-leather-skin dirty-leather-sack~
+The leather skin is stained from the spills of many liquors, and emits a strong
+odor that stings the nostrils.~
+#13647
+ring ring-green-leaves tiny-branches~
+a ring of green leaves~
+A ring made of tiny branches and leaves lies here.~
+Nothing.~
+8 536870912 3 1
+0 0 0 0 0 0 0
+0.03 40 0 0 0 0 0 0
+E
+ring-green-leaves tiny-branches~
+The ring is made of tiny, slender branches, still living, their equally tiny
+green leaves forming a wreath.~
+A
+4 2
+#13660
+chest large oak oak-chest~
+a large chest~
+An oak chest rests here, its cover dusty.~
+This chest has been here for a long time and is very dusty.~
+15 0 0 1
+50 15 13699 0 0 0 0
+75.00 20 0 0 0 0 0 0
+#13661
+ring silver-amethyst-ring shiny-silver-ring leaf-shaped-amethysts~
+a silver and amethyst ring~
+A shiny silver ring is set about with leaf-shaped amethysts.~
+Nothing.~
+8 66 3 60
+2 0 0 0 0 0 0
+0.02 20 0 0 0 0 0 0
+E
+ring silver-amethyst-ring shiny-silver-ring leaf-shaped-amethysts~
+This shiny silver ring is slender enough for a woman to wear, but not
+excessively feminine in shape.  It is set all around with amethyst cabuchons,
+unfaceted and round-faced, set into silver edgings that are raised slightly to
+show off the purple jewels.~
+A
+3 2
+A
+2 2
+A
+5 3
+A
+24 -5
+A
+27 3
+#13662
+earring peridot-earring~
+a peridot earring~
+A peridot earring lies here.~
+Nothing.~
+8 64 262145 10
+1 0 0 0 0 0 0
+0.01 20 0 0 0 0 0 0
+E
+peridot-earring~
+Made with a steel backing, this drop earring has a peridot pendant.
+The pale green stone is faceted to catch the light.~
+A
+13 5
+A
+3 1
+A
+27 1
+#13699
+key bronze bronze-key~
+a bronze key~
+A bronze key rests here.~
+Nothing.~
+18 4 16385 0
+0 0 0 0 0 0 0
+0.20 0 0 0 0 0 0 0
+$~

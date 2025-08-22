@@ -1,0 +1,171 @@
+name: Derl
+password: DePiP6dpq6
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 34
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18332
+birthtime: 1345883353
+timeplayed: 60942
+lastlogintime: 1383285973
+host: 098.230.026.143
+height: 74
+weight: 161
+base_height: 74
+base_weight: 161
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 255/255
+mana: 115/115
+move: 108/108
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 96
+wisdom: 96
+dexterity: 72
+constitution: 76
+charisma: 66
+cash: 142 3338 7 7
+experience: 6528275
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+27 1000
+28 1000
+33 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+70 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+95 1000
+206 1000
+207 1000
+415 50
+416 50
+421 86
+423 229
+424 79
+438 50
+443 50
+444 50
+451 105
+453 50
+455 50
+457 69
+458 54
+459 52
+460 52
+461 50
+462 50
+463 54
+466 50
+0 0
+trophy:
+1 5420 0.500000
+1 5408 0.500000
+1 8034 0.333333
+1 8033 0.500000
+1 8032 0.500000
+1 8031 0.500000
+1 5204 1.000000
+1 5212 2.000000
+1 5203 2.500000
+1 5202 3.500000
+1 5210 4.500000
+1 5200 3.000000
+1 5211 4.500000
+1 5121 1.000000
+1 5122 0.500000
+1 5120 2.000000
+1 5101 0.500000
+1 5100 2.000000
+1 5103 1.500000
+1 5111 2.000000
+1 5110 2.000000
+0 0 0
+mem:
+16 1 1
+16 1 1
+16 1 1
+1 0 1
+16 1 1
+88 1 2
+88 1 2
+88 1 2
+88 1 2
+13 1 1
+13 1 1
+88 1 2
+15 0 1
+15 0 1
+15 0 1
+15 1 1
+15 1 1
+88 1 1
+22 1 5
+22 1 5
+22 1 5
+4 1 5
+4 1 5
+14 1 1
+22 1 5
+3 0 1
+28 0 7
+28 0 7
+0 0 0
+aliases:
+dfw drink from well
+fsfw fill skin from well
+ccs cast 'cure serious'
+fsff fill skin from fountain
+eb eat bread
+gac get all corpse
+dff drink from fountain
+dfs drink from skin
+ccl cast 'cure light'
+ca cast 'armor'
+lg level gain
+ccc cast 'cure critic' lanelot
+cccl cast 'cure critic' lanelot
+0

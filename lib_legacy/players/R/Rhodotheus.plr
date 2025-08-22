@@ -1,0 +1,126 @@
+name: Rhodotheus
+password: Rh46GfuY9w
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 35
+level: 31
+home: 3001
+lifeforce: 0
+composition: 12
+id: 20910
+birthtime: 1737197204
+timeplayed: 79942
+lastlogintime: 1739091149
+host: 052.119.120.201
+height: 162
+weight: 827
+base_height: 80
+base_weight: 236
+base_size: 2
+natural_size: 3
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoxC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+aggression: 300
+loadroom: 3054
+thirst: 10
+lastlevel: 0
+hitpoints: 462/490
+mana: 96/96
+move: 175/189
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 60
+wisdom: 64
+dexterity: 92
+constitution: 100
+charisma: 64
+cash: 93 787 1294 290
+experience: 5658896
+quit_reason: 10
+saveroom: 46239
+skills:
+402 340
+404 352
+407 360
+411 340
+415 50
+416 50
+419 1000
+420 120
+421 358
+427 1000
+430 360
+431 340
+434 360
+438 340
+443 340
+444 340
+463 340
+464 340
+465 340
+466 340
+467 340
+468 284
+0 0
+trophy:
+1 46205 0.250000
+1 46214 1.000000
+1 46206 0.250000
+1 46207 0.250000
+1 46208 0.250000
+1 46202 1.250000
+1 46209 0.500000
+1 46215 0.500000
+1 46210 0.500000
+1 46211 2.500000
+1 46212 0.500000
+1 46200 2.000000
+1 46203 1.500000
+1 46213 1.500000
+1 4500 0.250000
+1 8711 0.750000
+1 8713 5.250000
+1 2304 0.250000
+1 2301 0.500000
+1 59010 0.250000
+1 59020 0.500000
+0 0 0
+tells:
+1738666320 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738744478 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738744484 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738744799 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738747827 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738747833 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1738919894 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738920358 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738924616 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739090110 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+$
+gossips:
+1738319571 Pawk gossips, 'you too well done'
+1738319576 Lathyrus gossips, 'thank you!'
+1738567210 Knak gossips, 'Congrats!'
+1738567220 Peegu gossips, 'thanks'
+1738745521 An old man shouts, 'Woo Hoo!'
+1738916803 Lathyrus gossips, 'Hello!'
+1739089578 Doren shouts, 'Help!  Help!'
+1739090010 Rahem gossips, 'hey'
+1739090264 Knak gossips, 'Congrats!'
+1739090267 Selean gossips, 'thanks'
+$
+effects:
+3 4 0 0 0 0 16384
+3 4 -5 24 0 0 0
+34 9 0 0 4096 0 0
+0 0 0 0 0
+aliases:
+bash bash $* ;
+0

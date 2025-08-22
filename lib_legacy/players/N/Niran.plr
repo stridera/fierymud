@@ -1,0 +1,93 @@
+name: Niran
+password: NiSOVNXF2j
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 11
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20561
+birthtime: 1688789773
+timeplayed: 3167
+lastlogintime: 1692503314
+host: 050.231.120.146
+height: 36
+weight: 153
+base_height: 36
+base_weight: 153
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: ghnoxC e
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8097
+lastlevel: 0
+hitpoints: 40/40
+mana: 1/0
+move: 128/128
+damroll: 3
+hitroll: 6
+strength: 74
+intelligence: 69
+wisdom: 74
+dexterity: 98
+constitution: 94
+charisma: 58
+cash: 0 3 21 61
+experience: 18149
+quit_reason: 7
+saveroom: 8097
+skills:
+402 54
+404 70
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36003 1.000000
+1 36002 2.000000
+1 8013 0.500000
+1 8023 1.500000
+1 8012 1.000000
+1 8020 0.500000
+1 8016 0.500000
+1 8000 3.500000
+1 8015 0.500000
+1 8014 2.000000
+1 8001 1.500000
+1 8021 3.000000
+1 8011 2.000000
+1 8002 1.500000
+0 0 0
+tells:
+1688795714 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1688795752 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1688795015 Daedela gossips, 'you may want a rogue-type (dare I suggest a baaaaard?) but that sounds like a GREAT set'
+1688795036 Eadhar gossips, 'i have a baby rogue nymph and a baby rogue faerie!'
+1688795082 Daedela gossips, 'YESSSSSSS.  I made my Nymph children to be bards'
+1688795115 Eadhar gossips, 'Hello Niran :)'
+1688795135 Daedela gossips, 'hello Niran!'
+1688795153 Daedela gossips, 'new to Fiery?'
+1688795214 Daedela gossips, 'I'm the head of the official Fiery Welcome Crew so let me know if there's anything I can do to help!'
+1688795694 Daedela gossips, 'yes, totally fair'
+1688795702 Daedela gossips, 'thank you so much for sharing thag'
+1688795790 Gorath gossips, 'struggling with syntax'
+$

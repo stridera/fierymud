@@ -1,0 +1,117 @@
+name: Flas
+password: FlaC1QzPlH
+currenttitle: (flike's swimmer)
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 39
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18152
+birthtime: 1331261344
+timeplayed: 167398
+lastlogintime: 1590391860
+host: 209.033.238.123
+height: 38
+weight: 96
+base_height: 38
+base_weight: 96
+base_size: 1
+natural_size: 1
+alignment: 801
+playerflags: gxy
+effectflags: fk 0 0
+prefflags: hnoCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 410/410
+mana: 152/152
+move: 122/122
+damroll: 3
+hitroll: 6
+strength: 94
+intelligence: 74
+wisdom: 74
+dexterity: 97
+constitution: 96
+charisma: 70
+cash: 113 1483 13239 13368
+experience: 9802938
+pagelength: 50
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+401 440
+403 135
+405 97
+408 430
+410 422
+411 440
+415 52
+416 281
+421 172
+438 183
+443 57
+444 134
+464 440
+465 68
+467 134
+472 440
+478 420
+0 0
+trophy:
+1 12011 0.333333
+1 12004 0.333333
+1 12005 0.333333
+1 12017 0.333333
+1 12006 0.333333
+1 50211 0.333333
+1 50207 0.333333
+1 50206 0.333333
+1 50212 0.333333
+1 50202 1.000000
+1 50203 0.333333
+1 50200 0.333333
+1 50205 3.333333
+1 50218 0.333333
+1 50219 0.666667
+1 50213 1.666667
+1 50215 1.000000
+1 50214 1.333333
+1 50217 0.666667
+1 59028 0.500000
+1 59023 0.200000
+0 0 0
+tells:
+$
+gossips:
+1570379677 Fayris gossips, 'thanks :) *blush*'
+1570596226 Meina gossips, 'hiya Flas!'
+1570596229 Nauis gossips, 'Hi Flas'
+1570596354 Gizelle gossips, 'you guys can swap flas for me. im nodding away'
+1570596364 Gizelle gossips, 'almost got my mage killed cuzi  didnt ralize she was hit'
+1570596733 Nauis gossips, 'nighty night'
+1570596742 Meina gossips, 'Night sister!!!'
+1570596785 Meina gossips, 'gratz Hikari!'
+1570770002 Fayris gossips, 'hi someone'
+1570770028 Strider gossips, 'yo'
+$
+aliases:
+` ass zombie
+2 ass utaboshi
+1 ass fayris
+3 ass mawk
+h hide
+id recite identify $*
+all get all all.corpse
+0 drink water
+df drink fountain
+k gou $*
+8 ' reward
+0

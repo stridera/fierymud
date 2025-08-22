@@ -1,0 +1,148 @@
+name: Mila
+password: MiOy030XZM
+prompt: &1&b%n&0%-&5&b%x&0%-%l%_<&2%hh&0(&2&b%HH&0)%-&2%vv&0(&2&b%VV&0)>&1V&0&1&bam&0&1p&0:%-%dl<%o>%_
+autoinvis: 0
+sex: 2
+class: 5
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18571
+birthtime: 1377195770
+timeplayed: 157229
+lastlogintime: 1737503745
+host: 156.146.194.021
+height: 60
+weight: 135
+base_height: 60
+base_weight: 135
+base_size: 2
+natural_size: 2
+alignment: -999
+playerflags: gxyz
+effectflags: cn 0 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1249/1051
+mana: 980/980
+move: 124/124
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 100
+wisdom: 100
+dexterity: 100
+constitution: 100
+charisma: 100
+cash: 621 604 3987 4366
+experience: 116755513
+quit_reason: 1
+saveroom: 3054
+skills:
+4 1000
+12 1000
+13 1000
+14 1000
+17 1000
+27 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+92 1000
+96 1000
+99 1000
+131 1000
+132 1000
+188 1000
+235 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+417 1000
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 1000
+445 1000
+450 1000
+451 1000
+452 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 50
+468 1000
+473 1000
+0 0
+trophy:
+1 51010 0.333333
+1 51012 0.500000
+1 51009 0.833333
+1 51020 2.000000
+1 51005 1.500000
+1 51011 1.000000
+1 51006 0.833333
+1 51002 3.000000
+1 51000 2.000000
+1 51004 2.500000
+1 51001 4.000000
+1 51008 2.500000
+1 51003 7.000000
+0 0 0
+tells:
+1661210633 @WThe Academy Recruiter@W tells you, 'Hello there!@W'@0
+1661210633 @WThe Academy Recruiter@W tells you, 'Are you here for new player training?@W'@0
+$
+gossips:
+1737500578 Chinok gossips, 'what you wear to the arena is totally up to you!'
+1737503486 Discord gossips, 'Daedela: My pronouns are he/him/hole'
+1737503503 Discord gossips, 'venath.2005: LMFAO'
+1737503504 Yote gossips, 'allllllrighty then'
+1737503596 Discord gossips, 'venath.2005: You should make that your title LMFAO'
+1737503596 Thort gossips, 'lol that's hilarious'
+1737503637 Venath gossips, 'did we get that jewel of the heart?'
+1737503648 Yote gossips, 'yes!'
+1737503654 Venath gossips, 'yay'
+1737503697 Venath gossips, 'logging off'
+$
+aliases:
+mi gsay ceara, mass invisibility please!
+gh gsay elana, group heal please!
+ass gsay assist $1;assist $1
+bash get pink tattered;rem blade;wear pink;bash $1;rem pink;wear blade;put pink tattered
+wh wh -w
+gstone gsay Ask Ceara for stoneskin!
+study gsay Casters need to re-up!
+nc gsay New command, $1 $2 $3
+back gsay Jalor, backstab now!
+moneypenny gsay All your coins are belong to me!
+track gsay Jalor, track $1
+bs gsay Jalor, backstab $1 now!
+nt gsay $1 is the new target!
+vamp layhands $1
+0

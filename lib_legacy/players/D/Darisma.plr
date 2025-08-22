@@ -1,0 +1,74 @@
+name: Darisma
+password: DaFozZdAnF
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20347
+birthtime: 1663227891
+timeplayed: 546
+lastlogintime: 1663228438
+host: 080.220.205.120
+height: 37
+weight: 158
+base_height: 37
+base_weight: 158
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: xy
+effectflags: fk 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 28/28
+mana: 0/0
+move: 106/106
+damroll: 3
+hitroll: 6
+strength: 94
+intelligence: 61
+wisdom: 70
+dexterity: 100
+constitution: 83
+charisma: 59
+experience: 1
+quit_reason: 5
+saveroom: 51902
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+0 0
+tells:
+1663228406 @WThe Combat Clerk@W tells you, 'If your Hit Points reach -10, you die.@W'@0
+1663228406 @WThe Combat Clerk@W tells you, 'Experience, hit and movement points, stats, saves, blah blah blah.@W'@0
+1663228418 @WThe Combat Clerk@W tells you, 'Yep, just like that.@W'@0
+1663228418 @WThe Combat Clerk@W tells you, 'That great big bar at the bottom is your experience bar.@W'@0
+1663228418 @WThe Combat Clerk@W tells you, 'That will fill as you kill stuff.@W'@0
+1663228418 @WThe Combat Clerk@W tells you, 'When it reaches full, you'll be ready to level! @W'@0
+1663228427 @WThe Combat Clerk@W tells you, 'Hmmmm...@W'@0
+1663228429 @WThe Combat Clerk@W tells you, 'I see you're a stealthy type.@W'@0
+1663228429 @WThe Combat Clerk@W tells you, 'You'll do best in lessons with Doctor Mischief.@W'@0
+1663228429 @WThe Combat Clerk@W tells you, 'Proceed down to her classroom.@W'@0
+$
+gossips:
+$

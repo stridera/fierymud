@@ -1,0 +1,70 @@
+name: Bigllama
+password: BiVFdIdXaX
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20392
+birthtime: 1671136904
+timeplayed: 73
+lastlogintime: 1671136978
+host: 024.242.176.106
+height: 69
+weight: 175
+base_height: 69
+base_weight: 175
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -15/29
+mana: 0/0
+move: 153/154
+damroll: 5
+hitroll: 4
+strength: 97
+intelligence: 72
+wisdom: 80
+dexterity: 96
+constitution: 88
+charisma: 50
+experience: 1
+quit_reason: 10
+saveroom: 3001
+skills:
+402 50
+404 51
+415 50
+416 50
+419 1000
+421 51
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1671136948 Chinok gossips, 'welcome Bigllama'
+1671136960 Kra gossips, 'hate those littlellamas :D'
+$

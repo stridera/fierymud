@@ -1,0 +1,82 @@
+name: Snobol
+password: SnTE1HYic1
+currenttitle: is perma-quarter here the other 3/4 will always be AFW/AFK
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0>
+autoinvis: 100
+sex: 0
+class: 4
+race: 15
+level: 101
+home: 3054
+lifeforce: 0
+composition: 0
+id: 14965
+birthtime: 1122431910
+timeplayed: 5021240
+lastlogintime: 1486352443
+host: 170.250.031.122
+height: 1152
+weight: 27815
+base_height: 67
+base_weight: 104
+base_size: 2
+natural_size: 6
+alignment: 739
+playerflags: glxy
+effectflags: cm 0 0
+prefflags: ahmnorvABCF 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 105
+invislevel: 100
+loadroom: 3054
+lastlevel: 6
+hitpoints: 31643/31540
+mana: 1060/1060
+move: 8000/8000
+damroll: 7
+hitroll: 3
+strength: 100
+intelligence: 100
+wisdom: 100
+dexterity: 100
+constitution: 100
+charisma: 100
+cash: 3688 1689 3939 12754
+experience: 300000004
+logview: 20
+wiztitle: FUBAR&0
+quit_reason: 1
+saveroom: 3054
+trophy:
+1 52011 1.000000
+1 53023 4.000000
+1 8014 1.000000
+1 23708 1.000000
+1 23710 1.000000
+1 23712 1.000000
+1 23702 3.000000
+1 23704 3.000000
+1 23731 3.000000
+1 23733 1.000000
+1 23732 4.000000
+1 5451 2.000000
+1 5414 2.000000
+1 8000 2.000000
+1 8020 1.000000
+1 8016 1.000000
+1 8012 1.000000
+1 8001 1.000000
+1 8010 3.000000
+1 8030 1.000000
+1 8022 1.000000
+0 0 0
+aliases:
+flanic emote flanics and attempts to pee!
+users users -i
+who who -w
+0
+grants:
+rrestore Laoris 104
+advance Chinok 105
+~

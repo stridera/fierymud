@@ -1,0 +1,320 @@
+#16100
+camel~
+the camel~
+A cranky-looking camel is standing here.~
+A camel is standing here chewing cud. It doesn't seem to like you
+looking at him.~
+262216 0 0 E
+6 0 0 0d0+0 0d0+0
+0 0 0 0 0 161
+3 3 0 24 14 0 2
+BareHandAttack: 4
+Str: 88
+Dex: 82
+Int: 64
+Wis: 73
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#16101
+trader~
+a trader~
+A trader stands here, selling his wares.~
+This trader is dressed in rich, brightly coloured garments.
+He looks like he lives a very luxurious life.~
+2124 0 0 E
+12 0 0 0d0+0 0d0+0
+0 0 0 0 0 161
+3 3 1 24 0 0 2
+Str: 92
+Dex: 82
+Int: 70
+Wis: 77
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#16102
+nomad~
+the nomad~
+A desert nomad stands here, looking at you silently.~
+He looks like he has been through hell. You cannot see his face as it is
+covered by a piece of cloth. A nasty looking scimitar hangs by his belt.~
+1050696 0 0 E
+10 0 0 0d0+0 0d0+0
+0 0 0 0 0 161
+3 3 1 24 0 0 2
+Str: 92
+Dex: 78
+Int: 63
+Wis: 77
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#16103
+snake brown~
+a snake~
+A brown snake slithers on the ground here.~
+The snake is brown in colour, and blends perfectly with the sand.  It looks
+quite vicious.    ~
+100663368 262144 0 E
+5 0 0 0d0+0 0d0+0
+0 0 0 0 0 161
+3 3 0 24 14 0 1
+BareHandAttack: 4
+Str: 90
+Dex: 95
+Int: 60
+Wis: 72
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#16104
+lizard horned~
+a lizard~
+A horned lizard sits on a rock here.~
+The lizard is a rather small creature, but it has an impressive array of teeth.~
+72 0 0 E
+3 0 0 0d0+0 0d0+0
+0 0 0 0 0 161
+1 1 0 24 14 0 1
+BareHandAttack: 4
+Str: 88
+Dex: 80
+Int: 62
+Wis: 66
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#16105
+scorpion giant giant-scorpion~
+the giant scorpion~
+A giant scorpion waits among a pile of bones.~
+This scorpion is ruddy-colored, with an unearthly appearance. She is
+quite large, twice as tall as a human or perhaps more, with a barbed
+tail that twitches constantly.~
+2119786 0 -700 E
+15 0 0 0d0+0 0d0+0
+0 0 0 0 0 161
+3 3 2 24 14 0 3
+BareHandAttack: 1
+Str: 84
+Dex: 80
+Int: 76
+Wis: 76
+Con: 30
+Cha: 72
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+T 36415
+T 55695
+T 5314
+T 16106
+#16106
+devil cloud dust sand twister~
+a sand devil~
+A dust cloud is spinning here.~
+You notice that there is a creature in the middle of the twister. It seems to
+be spinning rather rapidly. This must be the famous sand-devils of this desert.~
+100663368 0 -100 E
+9 0 0 0d0+0 0d0+0
+0 0 0 0 0 161
+4 4 0 24 17 0 2
+BareHandAttack: 12
+Str: 90
+Dex: 85
+Int: 66
+Wis: 76
+Con: 30
+Cha: 52
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 2
+Stance: 6
+E
+#16107
+bandit masked~
+a bandit~
+A masked bandit threatens you with his scimitar.~
+The bandit looks very mean and he looks like he means business.~
+100669516 0 -600 E
+11 0 0 0d0+0 0d0+0
+0 0 0 0 0 161
+3 3 1 3 0 0 2
+Str: 90
+Dex: 81
+Int: 72
+Wis: 71
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#16108
+horse desert~
+a horse~
+A desert horse stands here, ready to ride at a moment's notice.~
+A dusty horse stands proudly here. You realise that this is a rather
+fine equine specimen in spite of the hard desert conditions.~
+264264 0 0 E
+3 0 0 0d0+0 0d0+0
+0 0 0 0 0 161
+3 3 0 24 14 0 2
+BareHandAttack: 9
+Str: 91
+Dex: 85
+Int: 67
+Wis: 78
+Con: 30
+Cha: 49
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#16109
+man old-man~
+an old man~
+An old man sits on a rock, muttering to himself.~
+You notice from the old mans' stance that once he was a mighty warrior,
+perhaps even a chieftain. He keeps muttering to himself about a giant
+scorpion he had personally imprisoned in a cave.~
+2058 0 100 E
+14 0 0 0d0+0 0d0+0
+0 0 0 0 0 161
+1 1 1 0 0 0 2
+Str: 89
+Dex: 70
+Int: 70
+Wis: 91
+Con: 30
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 16101
+T 16102
+T 16103
+T 16104
+T 16105
+#16110
+scorpion baby small~
+a baby scorpion~
+A small scorpion scurries among the rocks here.~
+The scorpion is rather large for its age, as it measures about 6 inches
+long. If this is a baby, you wonder how large the mother is.~
+100667464 0 -200 E
+7 0 0 0d0+0 0d0+0
+0 0 0 0 0 161
+3 3 0 24 14 0 0
+BareHandAttack: 1
+Str: 88
+Dex: 90
+Int: 78
+Wis: 75
+Con: 30
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#16111
+chief leader bandit bandit-chief~
+the bandit chief~
+A stern bandit chief glares at you.~
+The chief is a very large and muscular man. He has a golden scimitar at his
+side and he looks very competent at swordplay. This is a man to fear.~
+101718088 0 -800 E
+13 0 0 0d0+0 0d0+0
+0 0 0 0 0 161
+3 3 1 3 0 0 2
+Str: 92
+Dex: 90
+Int: 66
+Wis: 70
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55694
+$

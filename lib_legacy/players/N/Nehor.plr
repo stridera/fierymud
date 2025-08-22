@@ -1,0 +1,98 @@
+name: Nehor
+password: NerNTazsaQ
+description
+You see a few special things about him.~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 2
+race: 11
+level: 74
+home: 3038
+lifeforce: 0
+composition: 0
+id: 15247
+birthtime: 1131419743
+timeplayed: 597298
+lastlogintime: 1704511981
+host: 136.036.067.132
+height: 37
+weight: 95
+base_height: 37
+base_weight: 95
+base_size: 1
+natural_size: 1
+alignment: -1000
+playerflags: glxy
+effectflags: fkt 0 0
+prefflags: hnozC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 104
+loadroom: 3054
+lastlevel: 8
+hitpoints: 665/665
+mana: 547/547
+move: 124/124
+damroll: 3
+hitroll: 6
+strength: 96
+intelligence: 58
+wisdom: 54
+dexterity: 100
+constitution: 98
+charisma: 62
+experience: 48215506
+pagelength: 35
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+191 200
+401 783
+403 733
+405 158
+408 730
+409 678
+410 600
+411 784
+415 356
+416 640
+420 504
+421 495
+431 50
+438 50
+443 50
+444 70
+463 50
+464 781
+465 50
+472 50
+476 736
+478 176
+494 50
+0 0
+trophy:
+1 51100 5.000000
+1 53400 0.500000
+1 2809 0.500000
+1 11809 1.000000
+1 11702 1.000000
+1 2808 1.000000
+1 2807 1.000000
+1 2806 1.000000
+0 0 0
+tells:
+$
+gossips:
+$
+aliases:
+id identify $*
+az assist zombie
+dis disarm pirate scimitar
+av assist vitkus
+ggc get all.gem all.corpse
+gcc get all.coins all.corpse
+dff drink fountain
+af assist fahl
+ap assist pahoran
+0

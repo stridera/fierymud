@@ -1,0 +1,99 @@
+name: Hemelous
+password: HelTDvkJ5Y
+prompt: &1%h&7/&1&b%H&0 &3%v&7/&b&3%V&0 %e %o
+autoinvis: 0
+sex: 1
+class: 0
+race: 29
+level: 7
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20812
+birthtime: 1721161464
+timeplayed: 40532
+lastlogintime: 1721761498
+host: 104.178.007.237
+height: 77
+weight: 234
+base_height: 77
+base_weight: 234
+base_size: 2
+natural_size: 2
+alignment: 147
+playerflags: y
+effectflags: k 0 0
+prefflags: abghnoC abce
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 1
+lastlevel: 0
+hitpoints: 56/49
+mana: 1/0
+move: 152/152
+damroll: 3
+hitroll: 3
+strength: 50
+intelligence: 96
+wisdom: 95
+dexterity: 49
+constitution: 89
+charisma: 84
+experience: 166446
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+205 1000
+415 50
+416 50
+423 51
+424 130
+435 59
+438 50
+443 50
+444 88
+447 114
+451 68
+452 130
+453 80
+456 50
+459 50
+460 89
+462 52
+464 117
+0 0
+tells:
+1721758604 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1721758604 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1721758605 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1721758605 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1721758605 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1721758606 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
+1721758610 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1721759512 @WZaver@W tells you, 'tell choak well@W'@0
+1721759530 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1721759581 @WZaver@W tells you, 'any time and a moonwell you can enter will come to your@W'@0
+$
+gossips:
+1721166779 Aerelm gossips, '"Evening."'
+1721166822 Meketrion gossips, 'Salve'
+1721325754 Someone gossips, 'gratz on 34 Calimar!'
+1721325758 Someone gossips, 'thx'
+1721337561 Choak gossips, 'Don't for get to vote for us https://www.mudverse.com/vote/536'
+1721753433 Chinok gossips, 'Hemelous , you doing ok? rock well is probably a bit over your level'
+1721756775 Calimar gossips, 'don't go south once you enter, carry lots of recalls, 4cp each, can't be beat'
+1721756822 Calimar gossips, 'the magic shop in Mielikki has green recalls 4cp, I load up'
+1721756842 Calimar gossips, 'takes you to Mielikki altar'
+1721759471 Discord gossips, 'Zaver: Choak can help with a moonwell'
+$
+aliases:
+bh cast 'burning hands' $1
+mm cast 'magic missile' $1
+mc cast 'minor creation' $1
+0

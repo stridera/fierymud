@@ -1,0 +1,77 @@
+name: Fonny
+password: FoLs2IywmC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 2
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19251
+birthtime: 1506548335
+timeplayed: 5009
+lastlogintime: 1506553492
+host: 169.241.065.187
+height: 27
+weight: 77
+base_height: 27
+base_weight: 77
+base_size: 1
+natural_size: 1
+alignment: 908
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 20/20
+mana: 1/0
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 87
+intelligence: 96
+wisdom: 89
+dexterity: 75
+constitution: 69
+charisma: 47
+experience: 3012
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 58
+424 60
+438 50
+443 50
+444 50
+447 60
+451 60
+452 50
+453 57
+459 50
+460 50
+462 50
+464 50
+0 0
+trophy:
+1 8329 0.535714
+1 8331 0.250000
+1 8330 0.375000
+0 0 0
+mem:
+5 1 9
+0 0 0
+aliases:
+b c 'burning hands' $*
+0

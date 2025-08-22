@@ -1,0 +1,132 @@
+name: Gronar
+password: GrKHgFRACk
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 10
+race: 4
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 16507
+birthtime: 1179606386
+timeplayed: 7629522
+lastlogintime: 1644109986
+host: 162.233.153.155
+height: 48
+weight: 187
+base_height: 48
+base_weight: 187
+base_size: 3
+natural_size: 3
+alignment: -999
+playerflags: gxyz
+effectflags: k w 0
+prefflags: hno 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 8
+hitpoints: 1339/1141
+mana: 980/980
+move: 166/166
+damroll: 5
+hitroll: 4
+strength: 98
+intelligence: 76
+wisdom: 74
+dexterity: 96
+constitution: 99
+charisma: 66
+cash: 517 10210 57611 17007
+bank: 1600 0 0 0
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+402 1000
+403 1000
+404 1000
+410 850
+411 1000
+412 1000
+415 1000
+416 1000
+419 1000
+420 700
+421 700
+422 1000
+427 1000
+428 150
+430 1000
+431 1000
+434 1000
+438 1000
+443 1000
+444 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 1000
+468 1000
+473 1000
+474 1000
+0 0
+trophy:
+1 11809 1.000000
+1 11710 1.000000
+1 3075 0.083333
+1 3052 0.226191
+1 3051 0.529304
+1 3050 0.369048
+1 3059 0.428572
+1 3060 0.535714
+1 3068 0.464286
+1 3055 0.440476
+0 0 0
+tells:
+1573429493 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1573429494 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574227477 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1574227483 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574227547 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574227552 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641096512 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641096516 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644109936 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644109937 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1573321098 Someone gossips, 'no the list of areas you should go enjoy, instead of sitting in town and killing shop-keepers'
+1573321127 Someone gossips, 'as far as bind, I can't find that it ever worked, or was implemented'
+1573429827 Voruulr gossips, 'thankssss a million'
+1625955035 Daedela gossips, 'haha no'
+1625955078 Zegna gossips, 'Google Glass wearing people wear called that be some in SF -area for being douchebags whilst wearing them'
+1625955092 Zegna gossips, 'circa 2014/15'
+1625955114 Zegna gossips, 'I had/have a pair of those, and remembered reading about it at the time '
+1625955155 Daedela gossips, 'ooohhh yeah I do rememberr that'
+1625955179 Daedela gossips, 'man, I haven't seen one of those in years!'
+1637774358 Eslander gossips, 'mostly'
+$
+aliases:
+gcc get all.coins corpse
+gccc get all.coins 2.corpse
+df drink fountain
+- enter well
+who who -where
+gc get all.coins
+gs group self
+lic look in corpse
+f gsay f
+gg guard gorukai
+x bash water
+2 wear wedding
+zz bash mist
+z back mist
+1 get wedding
+a back blue
+bb bash water
+b back water
+0

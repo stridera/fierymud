@@ -1,0 +1,215 @@
+name: Warra
+password: WaCXUuegh5
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18547
+birthtime: 1374214588
+timeplayed: 2279781
+lastlogintime: 1643038444
+host: 184.022.059.139
+height: 70
+weight: 211
+base_height: 70
+base_weight: 211
+base_size: 3
+natural_size: 3
+alignment: 1000
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: hnotxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 12
+thirst: 24
+lastlevel: 0
+hitpoints: 1324/1225
+mana: 980/980
+move: 129/150
+damroll: 5
+hitroll: 4
+strength: 99
+intelligence: 70
+wisdom: 70
+dexterity: 87
+constitution: 86
+charisma: 51
+cash: 113 1148 5681 6244
+bank: 1340 37151 86494 53776
+experience: 116386599
+quit_reason: 1
+saveroom: 3054
+skills:
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 52
+416 50
+419 1000
+420 1000
+421 1000
+422 1000
+427 1000
+430 1000
+431 1000
+434 1000
+438 57
+441 1000
+443 50
+444 394
+463 1000
+464 1000
+465 1000
+466 1000
+467 1000
+468 1000
+473 183
+0 0
+trophy:
+1 2807 0.333333
+1 2805 0.333333
+1 2801 0.666667
+1 7053 2.000000
+1 16011 3.000000
+1 16009 30.000000
+1 16008 0.999999
+1 16010 0.999999
+1 16019 0.999999
+1 16018 0.999999
+1 16017 0.999999
+1 16016 0.999999
+1 16015 0.999999
+1 16007 3.666666
+1 16006 8.333334
+1 16005 6.333334
+1 16001 17.999998
+1 16004 6.666667
+1 16002 7.333334
+1 16003 2.666667
+1 16000 17.333328
+0 0 0
+tells:
+1641634757 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1641636991 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641719514 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641832156 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641912335 @WZaver@W tells you, 'Do you have 1 handful of emeralds?@W'@0
+1642000851 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642179507 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642310004 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1642325137 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1643036487 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+$
+gossips:
+1640972377 Chinok shouts, 'yeah, it's just well hidden'
+1640972441 Chinok shouts, 'you aren't too far from the envoy'
+1641143095 The Knight Templar shouts, 'Hark all and listen, Warra has fended off a great evil for our fair town!'
+1641567037 Zaver shouts, 'all the way north'
+1641567187 Zaver shouts, 'all the way down'
+1641567530 Zaver shouts, 'all the way up'
+1642000255 An old man shouts, 'Woo Hoo!'
+1642326698 The Knight Templar shouts, 'Hark all and listen, Warra has fended off a great evil for our fair town!'
+1642827151 The Knight Templar shouts, 'Hark all and listen, Warra has fended off a great evil for our fair town!'
+1643038397 The Knight Templar shouts, 'Hark all and listen, Warra has fended off a great evil for our fair town!'
+$
+effects:
+209 3 404 13 0 0 0
+108 5 0 0 0 32768 0
+1 1 15 17 0 0 0
+3 2 2 18 0 0 0
+3 2 -12 24 0 0 0
+3 2 0 0 0 0 16384
+0 0 0 0 0
+aliases:
+mm mount mule;sta;fly
+getring get band; wear band
+gpj giv all.perfect jumlong
+/w rescue witta
+lsc exa sack
+gak get all.key
+/k rescue kilop
+/j rescue jumlong
+///// rescue jumlong
+gba giv 2 bread almera
+gea giv all.enchanted almera
+psb p all.shard egg
+prb p all.radiant egg
+leg exa egg
+qqqq rescue croidin
+qqq rescue wrinny
+look l n;l e;l w;l s;l u;l d
+gboar search wheel;op wheel;n;search straw;op straw;n ;search wall;say ok
+warp rem alicorn;wear star;rem star;wear alicorn
+//// rescue almera
+folv follow vios;consent vios;guard vios
+;; hitall all
+/// rescue vios
+gpw giv all.perfect witta
+; hitall
+grw giv all.radiant wittawat
+dsp dri spring; dri spring; dri spring; dri spring; dri spring; dri spring; dri spring
+folw fol wittawat; guard wittawat; consent wittawat
+gsw giv all.shard wittawat
+.. ass witta
+gib g identify backpack
+gkc get all.key corpse
+pib p all.identify backpack
+gdw giv all.dust wittawat
+lbp exa backpack
+gbw giv 2 bread wittawat
+df dri fountain
+' kick
+] bash
+/ rescue wittawat
+lc exa corpse
+gac g all corpse
+lb exa bag
+l2c exa 2.corpse
+gcw giv all.crushed wittawat
+zz recite green
+pbb p all.bread backpack
+ga2c g all 2.corpse
+qaz giv legion eldorian
+wsx giv legion quartermaster
+dak dro all.key
+lsd exa saddle
+. ass wittawat
+guw giv all.uncut wittawat
+gew giv all.enchanted wittawat
+lsk exa sack
+ghw giv all.handful witta
+// rescue witta
+gfw giv all.flawed witta
+sta sta; fly
+... ass vios
+pbs p all.bread saddle
+l3c exa 3.corpse
+l4c exa 4.corpse
+xx recite blue
+ds drink skin
+fs fill skin fountain
+gbb g 2 bread saddle
+gfv giv all.flawed vios
+guv giv all.uncut vios
+gha giv all.handful almera
+gbv giv 2 bread vios
+qq give totem general
+l2b exa 2.bag
+inn s;w;s;w;w;w;w;s;buy green;n;w;n;w;u;say ok
+ww rem dagger; rem dagger; wear starsword
+ss rem starsword; wear dagger; wear dagger
+eb g bread back;eat bread
+/a rescue almera
+gcj giv all.cursed jumlong
+/v rescue vios
+lcod exa cod
+0

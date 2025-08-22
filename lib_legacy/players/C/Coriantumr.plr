@@ -1,0 +1,180 @@
+name: Coriantumr
+password: CovcKDtY0C
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b><&0&2%aA&2&b> <&0&2%ds&2&b>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 7
+race: 9
+level: 99
+home: 10006
+lifeforce: 0
+composition: 0
+id: 13782
+birthtime: 1094330971
+timeplayed: 1716505
+lastlogintime: 1704511904
+host: 136.036.067.132
+height: 61
+weight: 129
+base_height: 61
+base_weight: 129
+base_size: 2
+natural_size: 2
+alignment: -111
+playerflags: glxy
+effectflags: k 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 80
+freezelevel: 104
+loadroom: 3054
+lastlevel: 5
+hitpoints: 782/782
+mana: 980/980
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 76
+intelligence: 92
+wisdom: 92
+dexterity: 76
+constitution: 73
+charisma: 74
+cash: 61 514 2482 7
+experience: 102802602
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+6 1000
+11 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+27 1000
+28 1000
+30 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+51 1000
+70 1000
+71 800
+73 1000
+74 1000
+88 1000
+89 1000
+90 1000
+91 1000
+99 1000
+118 1000
+144 1000
+145 1000
+146 1000
+147 1000
+148 1000
+149 1000
+150 1000
+151 1000
+152 1000
+153 1000
+154 1000
+155 1000
+156 1000
+206 1000
+207 1000
+215 1000
+241 1000
+243 1000
+245 1000
+247 1000
+263 1000
+415 597
+416 591
+417 163
+421 960
+423 850
+424 1000
+429 1000
+438 91
+443 50
+444 102
+451 763
+452 107
+453 215
+454 50
+455 71
+456 118
+457 1000
+458 116
+459 162
+460 951
+462 630
+463 319
+464 50
+465 50
+466 50
+0 0
+trophy:
+1 3143 1.000000
+1 53306 1.000000
+1 53305 2.500000
+1 53313 0.500000
+1 53312 3.000000
+1 12009 1.000000
+1 12004 1.000000
+1 12014 1.000000
+1 12001 1.000000
+1 12011 1.000000
+1 12015 1.000000
+1 12016 1.000000
+1 16905 1.000000
+1 53303 3.000000
+1 2808 0.500000
+1 2806 0.500000
+1 2807 0.500000
+1 11809 1.000000
+1 11750 0.500000
+1 16900 0.500000
+1 16908 0.500000
+0 0 0
+tells:
+$
+gossips:
+1650249615 Strider gossips, 'ask her?'
+1650249643 Tarnoth gossips, 'thank you'
+1650249695 Strider gossips, 'figure it out?'
+1650249702 Tarnoth gossips, 'yes'
+1650249707 Tarnoth gossips, 'I think I need to get a head of someone but how can I tell which thing it is that I need to kill for the anti-paladin quest?'
+$
+aliases:
+mem pray
+rec cast 'word of recall'
+vc c 'vigorize critic' $*
+dff drink fountain
+gcc get coins all.corpse
+ggc get gem
+well c 'moonwell' $*
+vs c 'vigorize serious' $*
+ge c 'greater endurance' $*
+he c 'heal' $*
+lava nnedddsssesessseeennnnneeeeennnnnww
+blava eessssswwwwwssssswwwnnnwnwnnnuuuwss
+id recite identify $*
+gac get all all.corpse
+invig c 'invigorate'
+sum cast 'summon' $*
+ana shapechange reptile anaconda
+cheet shapechange mammal cheetah
+clo cast 'cloak of gaia' self
+cl cast 'continual light' $*
+1 c 'heal' fahl
+0

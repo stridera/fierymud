@@ -1,0 +1,162 @@
+name: Ferrant
+password: FeDOvvMXRr
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 20
+race: 9
+level: 44
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18964
+birthtime: 1431969525
+timeplayed: 135657
+lastlogintime: 1434554295
+host: 012.027.032.198
+height: 76
+weight: 167
+base_height: 76
+base_weight: 167
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 53037
+lastlevel: 0
+hitpoints: 258/258
+mana: 191/191
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 74
+intelligence: 100
+wisdom: 81
+dexterity: 89
+constitution: 69
+charisma: 45
+cash: 37 180 3 6
+bank: 8 320 1181 1126
+experience: 13087150
+quit_reason: 3
+saveroom: 0
+skills:
+2 1000
+5 1000
+19 1000
+20 1000
+26 1000
+29 1000
+31 1000
+38 1000
+39 1000
+50 1000
+52 1000
+62 1000
+67 1000
+68 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+107 1000
+157 1000
+158 1000
+159 1000
+160 1000
+161 1000
+162 1000
+163 1000
+200 1000
+220 1000
+415 52
+416 50
+421 135
+423 490
+424 298
+438 50
+443 50
+444 50
+447 136
+451 86
+452 50
+453 100
+455 54
+458 103
+459 111
+460 95
+462 56
+464 75
+0 0
+trophy:
+1 51101 1.166667
+1 51100 2.083333
+1 7301 0.500000
+1 7300 0.750000
+1 53004 1.000000
+1 53006 0.500000
+1 53023 2.000000
+0 0 0
+mem:
+29 1 2
+29 1 2
+29 1 2
+19 1 1
+162 1 2
+162 1 2
+162 1 2
+26 1 1
+26 1 1
+161 1 1
+103 1 1
+103 1 1
+102 1 1
+220 1 1
+220 1 1
+220 1 1
+220 1 1
+220 1 1
+220 1 1
+157 1 1
+157 1 1
+157 1 1
+157 1 1
+157 1 1
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+100 1 1
+52 0 5
+39 1 1
+52 1 5
+52 1 5
+0 0 0
+aliases:
+str cast 'strength' $1
+ss cast 'stone skin' $1
+pf cast 'positive field'
+ar assist ragar
+fd cast 'fire darts'
+pe cast 'phosphoric'
+bla cast 'flame blade'
+fb cast 'fireball'
+1 get all.coins
+mm cast 'magic missile'
+ge get all all.corpse
+cr cast 'minor creation' $1
+gg get all all.corpse
+bh cast 'burning hands' $1
+3 get all.coins all.corpse
+cc cast 'concealment'
+inv cast 'invis' $1
+0

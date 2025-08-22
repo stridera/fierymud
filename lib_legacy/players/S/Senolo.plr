@@ -1,0 +1,146 @@
+name: Senolo
+password: SeEO2ZWds5
+prompt: <%hH %vV>%_<&0%o&0>%di
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 17
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20503
+birthtime: 1682272001
+timeplayed: 72800
+lastlogintime: 1683431210
+host: 184.081.198.017
+height: 34
+weight: 81
+base_height: 34
+base_weight: 81
+base_size: 1
+natural_size: 1
+alignment: 972
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC ae
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 3
+loadroom: 3054
+hunger: 7
+lastlevel: 0
+hitpoints: 65/65
+mana: 28/28
+move: 138/140
+damroll: 2
+hitroll: 4
+strength: 87
+intelligence: 95
+wisdom: 100
+dexterity: 66
+constitution: 56
+charisma: 57
+cash: 30 2064 769 2620
+bank: 40 423 1016 676
+experience: 1226788
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 1860/18000
+-1 0
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+31 1000
+32 1000
+37 1000
+39 1000
+99 1000
+100 1000
+101 1000
+186 1000
+246 1000
+415 220
+416 53
+423 220
+424 220
+438 210
+443 220
+444 196
+447 82
+451 54
+452 220
+453 214
+454 220
+456 50
+459 106
+460 50
+462 90
+464 211
+0 0
+trophy:
+1 1682 1.000000
+1 1604 7.000000
+1 1605 10.000000
+1 1602 3.000000
+1 1601 1.000000
+1 2004 3.000000
+1 2001 1.000000
+1 2005 2.000000
+1 2003 5.000000
+1 8020 4.000000
+1 8014 6.000000
+1 8022 5.000000
+1 8001 5.000000
+1 8030 1.000000
+1 8002 9.000000
+1 8013 5.000000
+1 8000 5.000000
+1 8015 5.000000
+1 8021 5.000000
+1 8023 5.000000
+1 8010 7.000000
+0 0 0
+tells:
+1682800728 @WPaver@W tells you, 'oh dif one, thanks!@W'@0
+1682801526 @WPaver@W tells you, 'do you know where a coiled rope ladder is?@W'@0
+1682801831 @WLokar@W tells you, 'consent me@W'@0
+1682801835 @WLokar@W tells you, 'ill res you@W'@0
+1682802507 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1682802507 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1682880828 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1682884153 @WLokar@W tells you, 'I did a locate on 'corpse' and your name showed up it is gone now though.@W'@0
+1682884180 @WLokar@W tells you, 'have you heard of the coiled rope ladder?@W'@0
+1683431194 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1683429357 Kalravion gossips, 'Appreciate it!'
+1683429455 Chinok gossips, 'the other help bit I can give is--- http://www.fierymud.org/help -- is the in-game help file, search-able on-line'
+1683429485 Kalravion gossips, 'Been searching the heck out of some help files.'
+1683429517 Chinok gossips, 'the in-game syntax can be a bit tricky.. the on-line one is a lot easier'
+1683429565 Chinok gossips, 'for example -- help skill_warrior shows your skills available'
+1683429578 Chinok gossips, 'but online, you can just do skills warrior'
+1683429599 Kalravion gossips, 'Ah, that could be very handy if I don't know exactly the syntax for what I'm searching for'
+1683429610 Chinok gossips, 'yup, :)'
+1683430111 Tors gossips, 'gratz!'
+1683430115 Kalravion gossips, 'Thank you!'
+$
+mem:
+5 1 1
+5 1 1
+8 1 4
+8 1 4
+8 1 4
+8 1 4
+8 1 4
+8 1 4
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+246 1 7
+0 0 0

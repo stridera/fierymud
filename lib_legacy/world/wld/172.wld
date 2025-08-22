@@ -1,0 +1,1362 @@
+#17200
+Citadel Entrance~
+   You stand upon a gravel path just outside the door of the Great Tower of
+Testing.  It is here that all new magicians are tested upon their ability as
+masters of their arts.  The tower looms above you in all its majestic
+splendour.  Octarine light occasionally crackles at the apex of the building.
+The tower's portal rises to the west, and paths lead north and south.~
+172 0 1
+D0
+~
+~
+0 -1 61500
+D2
+You see the end of the Northern Field path.~
+~
+0 -1 3548
+D3
+The portal before you is carved in the shape of a dragon's head. Red 'eyes'
+look back at you, making you feel very naked and vunerable.~
+portal door~
+1 17207 17208
+D4
+~
+~
+0 -1 17292
+S
+#17201
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the
+south.    ~
+172 8 0
+D1
+~
+~
+0 -1 17202
+D2
+~
+~
+0 -1 17205
+S
+#17202
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17203
+D3
+~
+~
+0 -1 17201
+S
+#17203
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17204
+D3
+~
+~
+0 -1 17202
+S
+#17204
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D3
+~
+~
+0 -1 17203
+S
+#17205
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the
+east.    ~
+172 8 0
+D0
+~
+~
+0 -1 17201
+D1
+~
+~
+0 -1 17206
+S
+#17206
+Closed Room~
+   You find yourself trapped!  The only way out is down...    ~
+172 12 0
+D5
+~
+~
+0 -1 17290
+S
+#17207
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D2
+~
+~
+0 -1 17211
+S
+#17208
+Portal Room~
+   You find yourself in a square room with with entrances all around you.  An
+aura permeates this room, making you feel rather disoriented, as if there is
+something lacking in this place.  In front of you there are glowing words.  At
+your back is the way out.    ~
+172 136 0
+D0
+~
+~
+0 -1 17204
+D1
+You see the portal leading out of the tower. For the unready, there is still
+time to back out and go home.~
+portal door~
+1 17207 17200
+D2
+~
+~
+0 -1 17212
+D3
+~
+~
+0 -1 17207
+E
+word words sign glowing~
+In red glowing letters, the sign reads :
+        The sinister leads the way~
+S
+#17209
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the
+south.    ~
+172 8 0
+D1
+~
+~
+0 -1 17210
+D2
+~
+~
+0 -1 17213
+S
+#17210
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the
+west.    ~
+172 8 0
+D2
+~
+~
+0 -1 17214
+D3
+~
+~
+0 -1 17209
+S
+#17211
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  There is a glowing circle of light
+on the floor here.  It looks like a transport ward.    ~
+172 8 0
+D0
+~
+~
+0 -1 17207
+D5
+You are unable to see within the depths of the circle as it does not seem to
+be any sort of normal exit.~
+~
+0 -1 17236
+S
+#17212
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D2
+~
+~
+0 -1 17216
+S
+#17213
+Stairs Landing~
+   You stand upon the landing of a spiral staircase leading up.  It is here
+that your true test actually begins.    ~
+172 8 0
+D0
+~
+~
+0 -1 17209
+D4
+The staircase looks very flimsy, as if it would collapse at any moment. But
+you realise that you have to take that chance if you want to pass this small
+test.~
+~
+0 -1 17229
+S
+#17214
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D0
+~
+~
+0 -1 17210
+S
+#17215
+Arched Portal~
+   You find yourself at the end of the passageway, with a large arched portal
+to the west.  There are words carved above the portal.
+~
+172 8 0
+D1
+~
+~
+0 -1 17216
+D3
+Above the portal, you see the words:
+       Enter and Begin~
+~
+0 -1 17214
+E
+words word portal~
+The words say:
+       Enter and Begin.~
+S
+#17216
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the
+west.    ~
+172 8 0
+D0
+~
+~
+0 -1 17212
+D3
+~
+~
+0 -1 17215
+S
+#17217
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.  The passageway bends toward the east
+and south.    ~
+172 8 0
+D1
+~
+~
+0 -1 17218
+D2
+~
+~
+0 -1 17221
+S
+#17218
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.  There is an oak door to the south.~
+172 8 0
+D1
+~
+~
+0 -1 17219
+D2
+A sign above the door says:
+       Caveat: Non Egress~
+door oak~
+1 -1 17222
+D3
+~
+~
+0 -1 17217
+S
+#17219
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17220
+D3
+~
+~
+0 -1 17218
+S
+#17220
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.  The passageway bends toward the west
+and south.    ~
+172 8 0
+D2
+~
+~
+0 -1 17224
+D3
+~
+~
+0 -1 17219
+S
+#17221
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.    ~
+172 8 0
+D0
+~
+~
+0 -1 17217
+D2
+~
+~
+0 -1 17225
+S
+#17222
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17223
+S
+#17223
+Closed Room~
+   You find yourself trapped!  The only way out is down...    ~
+172 12 0
+D5
+~
+~
+0 -1 17290
+S
+#17224
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.    ~
+172 8 0
+D0
+~
+~
+0 -1 17220
+D2
+~
+~
+0 -1 17228
+S
+#17225
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.    ~
+172 8 0
+D0
+~
+~
+0 -1 17221
+D2
+~
+~
+0 -1 17229
+S
+#17226
+Stairs Landing~
+   You stand upon the landing of a spiral staircase leading up.  There seem to
+be more of this tower for you to explore.    ~
+172 8 0
+D1
+~
+~
+0 -1 17227
+D4
+~
+~
+0 -1 17250
+S
+#17227
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.    ~
+172 8 0
+D3
+~
+~
+0 -1 17226
+S
+#17228
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.    ~
+172 8 0
+D0
+~
+~
+0 -1 17224
+D2
+~
+~
+0 -1 17232
+S
+#17229
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.  The passageway bends toward the east
+and north.  There are glowing words before you.    ~
+172 8 0
+D0
+~
+~
+0 -1 17225
+D1
+~
+~
+0 -1 17230
+E
+words word glowing~
+Yellow words state:
+       Right ways go astray~
+S
+#17230
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17231
+D3
+~
+~
+0 -1 17229
+S
+#17231
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.  There is an oak door to the north.~
+172 8 0
+D0
+A sign above the door says:
+       Post factum nullum consilium~
+door oak~
+1 -1 17227
+D1
+~
+~
+0 -1 17232
+D3
+~
+~
+0 -1 17230
+S
+#17232
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realize that
+this place was probably built with magic.  The passageway bends toward the west
+and north.    ~
+172 8 0
+D0
+~
+~
+0 -1 17228
+D3
+~
+~
+0 -1 17231
+S
+#17233
+Stairs Landing~
+   You stand upon the landing of a spiral staircase leading up.  Your escape
+route is before you.  You hear a voice whisper: You were lucky this time.  
+Next time heed warnings and look for that which is not there.    ~
+172 8 0
+D2
+~
+~
+0 -1 17237
+D4
+~
+~
+0 -1 17200
+S
+#17234
+Dark Corridor~
+   You find yourself in a passageway unlike those in the upper level.  The
+walls of this passage are jet black, and they seem to absorb light.  You see
+exits to your south and east.    ~
+172 8 0
+D1
+~
+~
+0 -1 17235
+D2
+~
+~
+0 -1 17238
+S
+#17235
+Dark Corridor~
+   You find yourself in a passageway unlike those in the upper levels.  The
+walls of this passage are jet black, and they seem to absorb light.  You can
+continue on to the west or return to the east from here.    ~
+172 8 0
+D1
+~
+~
+0 -1 17236
+D3
+~
+~
+0 -1 17234
+S
+#17236
+Dark Corridor~
+   You find yourself in a passageway unlike those in the upper levels.  The
+walls of this passage are jet black, and they seem to absorb light.  You can
+only see one exit to your west.    ~
+172 8 0
+D3
+~
+~
+0 -1 17235
+S
+#17237
+Passageway~
+   You find yourself in a lighted passageway again.  It leads toward the north.
+  ~
+172 8 0
+D0
+~
+~
+0 -1 17233
+S
+#17238
+Black Room~
+   You find yourself in a jet black room.  Before you in silver letters are
+some words.  There are passages to the east and west.    ~
+172 8 0
+D0
+~
+~
+0 -1 17234
+D1
+~
+~
+0 -1 17239
+D3
+~
+~
+0 -1 17237
+E
+words word glowing silver~
+The silver words read:
+       Escape is denied to those who heed signs now.~
+S
+#17239
+Dark Corridor~
+   You find yourself in a passageway unlike those in the upper level.  The
+walls of this passage are jet black, and they seem to absorb light.  You can
+only see one exit to your east.    ~
+172 8 0
+D1
+~
+~
+0 -1 17240
+S
+#17240
+Closed Room~
+   You find yourself trapped!  The only way out is down...    ~
+172 12 0
+D5
+~
+~
+0 -1 17290
+S
+#17241
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the east
+and south.    ~
+172 8 0
+D1
+~
+~
+0 -1 17242
+D2
+~
+~
+0 -1 17245
+S
+#17242
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17243
+D3
+~
+~
+0 -1 17241
+S
+#17243
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17244
+D3
+~
+~
+0 -1 17242
+S
+#17244
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the west
+and south.    ~
+172 8 0
+D2
+~
+~
+0 -1 17248
+D3
+~
+~
+0 -1 17243
+S
+#17245
+Arched Portal~
+   You find yourself at the end of the passsageway, with a large arched portal
+to the south.  There are words carved above the portal.  A heavy steel door is
+to the east.    ~
+172 8 0
+D0
+~
+~
+0 -1 17241
+D1
+The door is sturdily made, but it does not seem to be locked.~
+door steel~
+1 -1 17246
+D2
+The words say:
+       Advance at your own risk.~
+~
+0 -1 17249
+E
+words word portal~
+The words say:
+       Advance at your own risk.~
+S
+#17246
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17247
+D3
+The door is made of heavy duty steel but it seems to be unlocked.~
+door steel~
+1 -1 17245
+S
+#17247
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the west
+and south.    ~
+172 8 0
+D2
+~
+~
+0 -1 17251
+D3
+~
+~
+0 -1 17246
+S
+#17248
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D0
+~
+~
+0 -1 17244
+D2
+~
+~
+0 -1 17252
+S
+#17249
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D2
+~
+~
+0 -1 17253
+S
+#17250
+Arched Portal~
+   You find yourself at the end of the passsageway, with a large arched portal
+to the south.  There are words carved above the portal.    ~
+172 8 0
+D2
+Carved above the portal are the words:
+        Go forth and succeed~
+~
+0 -1 17254
+E
+words word portal~
+The words say:
+        Go forth and succeed~
+S
+#17251
+Stairs Landing~
+   You stand upon the landing of a spiral staircase leading up.  This staircase
+seems to be made of marble and looks very strong.  However you are still unable
+to discern what is above you.    ~
+172 8 0
+D0
+~
+~
+0 -1 17247
+D4
+~
+~
+0 -1 17267
+S
+#17252
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D0
+~
+~
+0 -1 17248
+D2
+~
+~
+0 -1 17256
+S
+#17253
+Closed Room~
+   You find yourself trapped!  The only way out is down...    ~
+172 12 0
+D5
+~
+~
+0 -1 17290
+S
+#17254
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  There are glowing words in front of
+you.    ~
+172 8 0
+D1
+~
+~
+0 -1 17255
+E
+words word glowing~
+Glowing blue words enigmatically states:
+        Beware how far you go, one step may be too much.~
+S
+#17255
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17256
+D3
+~
+~
+0 -1 17254
+S
+#17256
+Arched Portal~
+   You find yourself at the end of the passsageway, with a large arched portal
+to the north.  There are words carved above the portal.    ~
+172 8 0
+D0
+The words above the door reads:
+        Forward to your destiny~
+~
+0 -1 17252
+D3
+~
+~
+0 -1 17255
+E
+words word portal~
+The words say:
+        Forward to your destiny~
+S
+#17257
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the east
+and south.    ~
+172 8 0
+D1
+~
+~
+0 -1 17258
+D2
+~
+~
+0 -1 17261
+S
+#17258
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D3
+~
+~
+0 -1 17257
+S
+#17259
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17260
+D3
+~
+~
+0 -1 17258
+E
+words word~
+Small words say:
+       To keep going west is a trap. I hope you have the sense to
+look for words which aren't there.
+                                                   Timun~
+S
+#17260
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the west
+and south.    ~
+172 8 0
+D2
+~
+~
+0 -1 17264
+D3
+~
+~
+0 -1 17259
+S
+#17261
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D0
+~
+~
+0 -1 17257
+D2
+~
+~
+0 -1 17265
+S
+#17262
+Closed Room~
+   You find yourself trapped!  The only way out is down...    ~
+172 12 0
+D5
+~
+~
+0 -1 17290
+S
+#17263
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17264
+D3
+~
+~
+0 -1 17262
+E
+words word~
+Small words says:
+       To keep going west is a trap. I hope you have the sense to
+look for words which aren't there.
+                                                   Timun~
+S
+#17264
+T-Junction~
+   You have come to a T-juction in the passageways.  The passage branches off
+to the north, west and south.    ~
+172 8 0
+D0
+~
+~
+0 -1 17260
+D2
+~
+door oak~
+0 -1 17268
+D3
+~
+~
+0 -1 17263
+S
+#17265
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D2
+~
+~
+0 -1 17269
+S
+#17266
+Stairs Landing~
+   You stand upon the landing of a spiral staircase leading up.  This staircase
+seems to be made of marble and looks very strong.  However you are still unable
+to discern what is above you.    ~
+172 8 0
+D4
+~
+~
+0 -1 17273
+S
+#17267
+Arched Portal~
+   You find yourself at the end of the passsageway, with a large arched portal
+to the east.  There are words carved above the portal.    ~
+172 8 0
+D1
+The words read:
+        Are you ready?~
+~
+0 -1 17268
+E
+words word portal~
+The words say:
+        Are you ready?~
+S
+#17268
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  There is an oak door to the south.
+  ~
+172 8 0
+D0
+~
+~
+0 -1 17264
+D2
+A forbidding wooden door is before you.~
+door oak~
+1 -1 17272
+E
+words word glowing~
+Orange words state:
+        Look before you leap~
+S
+#17269
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D0
+~
+~
+0 -1 17265
+D2
+~
+~
+0 -1 17282
+S
+#17270
+Arched Portal~
+   You find yourself at the end of the passsageway, with a large arched portal
+to the north.  There are words carved above the portal.    ~
+172 8 0
+D0
+The words above the portal state:
+        Go forward, for your goal is near.~
+~
+0 -1 17266
+D1
+~
+~
+0 -1 17271
+E
+words word portal~
+The words say:
+        Go forward, for your goal is near.~
+S
+#17271
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17272
+D3
+~
+~
+0 -1 17270
+S
+#17272
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  There is an oak door to the north.
+  ~
+172 8 0
+D0
+A forbidding wooden door is before you.~
+door oak~
+1 -1 17268
+D3
+~
+~
+0 -1 17271
+S
+#17273
+Ivory Room~
+   You find yourself transported to an ivory white room, with exits to the east
+and south.  Before you are the great glowing letters you have become familiar
+with.    ~
+172 8 0
+D1
+~
+~
+0 -1 17274
+D2
+~
+~
+0 -1 17276
+E
+words word glowing~
+This time, in blazing white letters, the words are:
+        Only the guardian stands in your way.~
+S
+#17274
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D1
+~
+~
+0 -1 17275
+S
+#17275
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the west
+and south.    ~
+172 8 0
+D2
+~
+~
+0 -1 17278
+D3
+~
+~
+0 -1 17274
+S
+#17276
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D2
+~
+~
+0 -1 17279
+S
+#17277
+Master's Room~
+   You have arrived in the room of the Grand Master of the Citadel of Testing.
+There is a pentagram on the floor in the centre of this room.  The walls
+however are bare of any furnishing.  This seems to be nothing more than a
+glorified duelling room, except magic is used instead of weapons.    ~
+172 8 0
+D2
+A great door of mahogany lies that way. It has mystical runes carved upon its
+surface.~
+door mahogany~
+2 17211 17280
+D5
+The pentagram is actually a transport ward embedded in the floor of this
+room. It would probably provide a way out for the successful student.~
+~
+0 -1 17200
+E
+pentagram floor~
+As you study the pentagram, you realise that it possesses runes for a
+transport ward.~
+S
+T 6207
+#17278
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.    ~
+172 8 0
+D0
+~
+~
+0 -1 17275
+D2
+~
+~
+0 -1 17281
+S
+#17279
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the east
+and north.    ~
+172 8 0
+D0
+~
+~
+0 -1 17276
+D1
+~
+~
+0 -1 17280
+S
+#17280
+Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  There is an mahogany door to the
+north.    ~
+172 8 0
+D0
+A solid door of mahogany lies this way. It looks very sturdy, and has
+several magical runes carved in its surface.~
+door mahogany~
+2 17211 17277
+D1
+~
+~
+0 -1 17281
+D3
+~
+~
+0 -1 17279
+S
+#17281
+Bend In The Passageway~
+   You find yourself in a non-descript passageway.  Although there are no
+windows or any visible form of illumination, you are able to see here.  The
+walls are made of a black material which seems to sparkle.  You realise that
+this place was probably built with magic.  The passageway bends toward the west
+and north.    ~
+172 8 0
+D0
+~
+~
+0 -1 17278
+D3
+~
+~
+0 -1 17280
+S
+#17282
+Closed Room~
+   You find yourself trapped!  The only way out is down...    ~
+172 12 0
+D5
+~
+~
+0 -1 17290
+S
+#17290
+Slippery Tubes~
+   You are in some slippery tubes.  The only exit is down...    ~
+172 12 9
+D5
+~
+~
+0 -1 17291
+S
+#17291
+High Above the Citadel Entrance~
+   You are floating high up in the air above the Citadel Entrance.    ~
+172 12 9
+D5
+~
+~
+0 -1 17292
+S
+#17292
+Above the Citadel Entrance~
+   You are floating up in the air above the Citadel Entrance.    ~
+172 12 9
+D4
+~
+~
+0 -1 17291
+D5
+~
+~
+0 -1 17200
+S
+$~

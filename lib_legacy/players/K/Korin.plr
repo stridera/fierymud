@@ -1,0 +1,101 @@
+name: Korin
+password: Ko.PICTsYn
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19543
+birthtime: 1582499282
+timeplayed: 3513
+lastlogintime: 1582502798
+host: 050.029.204.157
+height: 71
+weight: 111
+base_height: 71
+base_weight: 111
+base_size: 2
+natural_size: 2
+alignment: 999
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 31/31
+mana: 0/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 70
+intelligence: 100
+wisdom: 79
+dexterity: 70
+constitution: 71
+charisma: 66
+experience: 19800
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 50
+424 78
+438 50
+443 50
+444 50
+447 60
+451 51
+452 61
+453 57
+459 50
+460 52
+462 50
+464 51
+0 0
+trophy:
+1 8020 1.000000
+1 8022 1.000000
+1 8011 2.000000
+1 8015 1.000000
+1 8013 2.000000
+1 8012 2.000000
+1 18005 2.000000
+1 18001 3.000000
+1 7051 1.000000
+1 7001 1.000000
+1 6909 2.000000
+1 18007 4.000000
+0 0 0
+tells:
+1582499959 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1582502052 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1582500076 Chinok gossips, 'just grab it'
+1582500110 Chinok gossips, 'to scribe, you will need to be in your guild'
+1582500376 Chinok gossips, 'Sorc's have 'minor create' spell to create some items...'
+1582500391 Chinok gossips, 'but I suspect you're talking about something different'
+1582500416 Chinok gossips, 'nope'
+1582500444 Chinok gossips, 'do tell tho..'
+1582500543 Chinok gossips, 'ahhh skills being in weapons, or armor for example'
+1582500596 Chinok gossips, 'ah.. yeah, we don't have anything like that'
+1582501435 Chinok gossips, 'assume you found the bug fields to the west of town ?'
+1582501472 Chinok gossips, 'ah, that's going to be a bit hard at level 2 :)'
+$
+mem:
+32 1 8
+5 1 8
+100 1 8
+0 0 0

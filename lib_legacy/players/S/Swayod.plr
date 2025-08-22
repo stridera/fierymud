@@ -1,0 +1,112 @@
+name: Swayod
+password: SwC343.UR/
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19707
+birthtime: 1600661022
+timeplayed: 22270
+lastlogintime: 1724433390
+host: 174.179.016.210
+height: 77
+weight: 235
+base_height: 77
+base_weight: 235
+base_size: 3
+natural_size: 3
+alignment: 86
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 12
+thirst: 2
+lastlevel: 0
+hitpoints: 94/84
+mana: 1/0
+move: 176/176
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 57
+wisdom: 64
+dexterity: 92
+constitution: 100
+charisma: 48
+cash: 0 0 4 8
+experience: 62058
+quit_reason: 1
+saveroom: 3054
+skills:
+402 52
+404 90
+415 50
+416 50
+419 1000
+421 62
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 70
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36305 0.750000
+1 12002 0.500000
+1 12009 0.500000
+1 12020 0.250000
+1 12012 0.750000
+1 12003 0.500000
+1 12024 0.500000
+1 12004 0.750000
+1 12023 0.750000
+1 12025 0.500000
+1 12011 1.500000
+1 12001 0.250000
+1 12014 0.500000
+1 12007 3.000000
+1 12016 0.250000
+1 12015 0.250000
+1 3503 0.250000
+1 3501 0.250000
+1 3507 0.250000
+1 18007 0.666667
+1 55216 1.000000
+0 0 0
+tells:
+1600720338 @WGlaim@W tells you, 'sway  get bread bag@W'@0
+1600720339 @WGlaim@W tells you, 'sway  get bread bag@W'@0
+1600720341 @WGlaim@W tells you, 'sway  eat bread@W'@0
+1600720383 @WGlaim@W tells you, 'sway  eat bread@W'@0
+1600720383 @WGlaim@W tells you, 'sway  eat bread@W'@0
+1600720388 @WGlaim@W tells you, 'sway  drink skin@W'@0
+1600720520 @WGlaim@W tells you, 'sway  sleep@W'@0
+1600720622 @WGlaim@W tells you, 'sway  wake@W'@0
+1600720624 @WGlaim@W tells you, 'sway  stand@W'@0
+1600720669 @WGlaim@W tells you, 'sway  rent@W'@0
+$
+gossips:
+1620695351 Chinok gossips, 'na, that's last update..'
+1620695364 Chinok gossips, 'lol I could have told you, if you hadn't logged in.. just a sec, there is another way'
+1620695368 Davar gossips, '10 with arms like those easy 20'
+1620695433 Chinok gossips, 'september 21.. '
+1620695439 Chinok gossips, '2020'
+1620695450 Chinok gossips, 'was last login.. '
+1620695473 Chinok gossips, 'you likely have another.. '
+1620695478 Chinok gossips, 'if I was a betting man'
+1620695506 Chinok gossips, 'swayne'
+1620695567 Chinok gossips, 'goss is he a sultan ?'
+$

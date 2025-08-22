@@ -1,0 +1,222 @@
+name: Kardel
+password: Ka1SQmrM77
+currenttitle: Tymnira
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 1
+race: 3
+level: 73
+home: 3003
+lifeforce: 0
+composition: 0
+id: 16202
+birthtime: 1163724314
+timeplayed: 6931281
+lastlogintime: 1411630636
+host: 050.206.102.120
+height: 39
+weight: 195
+base_height: 39
+base_weight: 195
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gly
+effectflags: k 0 q
+prefflags: hnozC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+badpasswords: 3
+lastlevel: 5
+hitpoints: 586/586
+mana: 532/532
+move: 106/106
+damroll: 4
+hitroll: 5
+strength: 83
+intelligence: 92
+wisdom: 94
+dexterity: 72
+constitution: 64
+charisma: 55
+cash: 369 3110 12965 12218
+experience: 46946181
+pagelength: 50
+clan: 3
+title: Tymnira
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+27 1000
+28 1000
+33 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+74 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+95 1000
+96 1000
+97 1000
+99 1000
+191 200
+206 1000
+207 1000
+208 1000
+209 1000
+415 50
+416 50
+421 314
+423 780
+424 780
+438 50
+443 50
+444 53
+451 75
+452 780
+453 50
+455 50
+457 650
+458 52
+459 610
+460 144
+461 64
+462 57
+463 58
+466 60
+0 0
+trophy:
+1 48632 0.250000
+1 48407 0.450000
+1 48409 1.083333
+1 48408 0.450000
+1 48402 0.950000
+1 53009 0.250000
+1 53019 1.500000
+1 53021 0.750000
+1 53017 0.500000
+1 53024 0.250000
+1 53004 1.500000
+1 53005 0.500000
+1 53000 0.250000
+1 53007 4.050000
+1 53002 1.700000
+1 51012 1.500000
+1 51005 1.000000
+1 43002 1.500000
+1 43010 1.000000
+1 43003 1.500000
+1 43011 1.500000
+0 0 0
+tells:
+$
+gossips:
+$
+mem:
+12 1 2
+12 1 2
+12 1 2
+1 1 2
+1 1 2
+1 1 2
+1 1 2
+3 1 2
+3 1 2
+3 1 2
+3 1 2
+3 1 2
+3 1 2
+3 1 2
+42 1 1
+42 1 2
+42 1 2
+42 1 2
+42 1 2
+42 1 2
+42 1 2
+209 1 2
+209 1 2
+209 1 2
+209 1 2
+209 1 2
+53 1 1
+53 1 1
+53 1 1
+53 1 1
+53 1 1
+53 1 1
+97 1 2
+97 1 2
+97 1 2
+97 1 2
+97 1 2
+97 1 2
+40 1 1
+40 1 1
+40 1 1
+40 1 1
+40 1 1
+40 1 1
+40 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+70 1 1
+70 1 1
+70 1 1
+70 1 1
+70 1 1
+70 1 1
+0 0 0
+aliases:
+3 full teomner
+2 full vertor
+1 full ija
+word c 'word of recall' $*
+vig c 'vigorize critic' $*
+heal c 'heal' $*
+coins get all.coins all.corpse
+holy c 'holy word' $*
+full c 'full heal' $*
+endur c 'greater endurance' $*
+vit c 'vitality' $*
+gem get all.gem all.corpse
+armor c 'armor' $*
+gv c 'greater vitality' $*
+0

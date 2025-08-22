@@ -1,0 +1,190 @@
+name: Zenawk
+password: ZeW7SSBA9k
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>&0<%a><%e><%l>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 16
+race: 2
+level: 19
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19880
+birthtime: 1615862277
+timeplayed: 132960
+lastlogintime: 1693279457
+host: 208.093.179.078
+height: 34
+weight: 59
+base_height: 34
+base_weight: 59
+base_size: 1
+natural_size: 1
+alignment: -481
+playerflags: gxy
+effectflags: ck 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 5566
+lastlevel: 0
+hitpoints: 153/153
+mana: 36/36
+move: 122/122
+damroll: 2
+hitroll: 4
+strength: 79
+intelligence: 81
+wisdom: 91
+dexterity: 81
+constitution: 91
+charisma: 45
+cash: 1 907 1038 294
+experience: 1440821
+clan: 3
+quit_reason: 7
+saveroom: 5566
+skills:
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+33 1000
+43 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+131 1000
+132 1000
+133 1000
+134 1000
+206 1000
+207 1000
+235 1000
+415 190
+416 77
+423 240
+424 236
+438 50
+443 50
+444 159
+451 122
+452 50
+453 50
+457 234
+458 69
+459 56
+462 59
+463 106
+466 213
+0 0
+trophy:
+1 18514 1.000000
+1 18517 1.500000
+1 18500 0.500000
+1 18507 8.000000
+1 18510 0.500000
+1 5514 2.500000
+1 5513 6.000000
+1 5522 0.500000
+1 8705 0.500000
+1 8704 2.000000
+1 8702 1.500000
+1 8703 1.500000
+1 8706 1.000000
+1 8701 2.000000
+1 8711 6.000000
+1 17306 0.500000
+1 17303 0.500000
+0 0 0
+tells:
+1618911288 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1618912018 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1618974283 @WDavar@W tells you, 'Zenawk requested i send a well Incoming@W'@0
+1618976626 @WThe blacksmith@W tells you, 'Hello traveler, I was wondering if you had seen a dwarven boy heading this way?@W'@0
+1618976626 @WThe blacksmith@W tells you, 'My supplies are late, they should have been here a day ago.@W'@0
+1618976626 @WThe blacksmith@W tells you, 'Doren is never late, I wish i could go looking for him.@W'@0
+1618976626 @WThe blacksmith@W tells you, 'I fear something has happened to him, will you go find him?@W'@0
+1618977581 @WMuleard@W tells you, 'Welcome to my store.@W'@0
+1618977582 @WMuleard@W tells you, 'You can call me Mule.@W'@0
+1618977588 @WMuleard@W tells you, 'Thanks for the deal.@W'@0
+$
+gossips:
+1618974643 Volawk gossips, 'i think the dwarf miners are the best alingment per kill for some reason'
+1618974654 Volawk gossips, 'channels are hard'
+1618974676 Someone gossips, 'i think i'll go there next to fix alignment'
+1618974677 Chinok gossips, 'incredibly so'
+1618974686 Someone gossips, 'better exp too'
+1618976017 Someone gossips, 'yup, fixed my alignment in 2 casts'
+1618977443 Chinok gossips, 'night all '
+1618977453 Fayris gossips, 'night'
+1619143689 Chinok gossips, 'davar, I confirmed, dragons health is good to go'
+1619148056 Fayris gossips, 'hi yall'
+$
+mem:
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+18 1 4
+16 1 1
+85 1 4
+16 1 1
+85 1 4
+88 1 3
+88 1 3
+131 1 3
+132 1 1
+15 1 6
+15 1 6
+0 0 0
+aliases:
+armor c 'armor' $*
+curel c 'cure l' $*
+vit c 'gre endur' $*
+harm c 'f harm' $*
+sick c 'disease' $*
+gh c 'g heal'
+unh c 'unh'
+disp c 'disp mag' $*
+2 c 'heal' valaina
+heal c 'heal' $*
+dis c 'dis goo' $*
+word c 'word o r'
+yy ass tstark
+hell c 'hell b' $*
+id recite identify $*
+harms c 'caus l' $*
+dr drag corpse $*
+dark c 'dark p' $*
+pain c 'les en' $*
+demon c 'demons' $*
+cure c 'cure l' $*
+gac g all all.corpse
+cures c 'cure s' $*
+yyy ass skeleton
+curec c 'cure c' $*
+cc c 'caus c' $*
+8 curec nawk
+0 c ' cure c' prunkhaft
+9 c  ' cure c'  nakita
+3 c 'cure c ' lanelot
+summon c 'summon' $*
+mem pray $*
+1 heal harnv
+blind c 'blind' $*
+pois c 'poison' $*
+sty c 'sty e' $*
+fh c 'fu heal' $*
+ursa golden druidstaff
+res c 'resurrect' $*
+met c 'hellfire'
+y ass volawk
+o order fol $*
+0

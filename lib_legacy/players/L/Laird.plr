@@ -1,0 +1,234 @@
+name: Laird
+password: LaKeMN5x0Y
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b><&0&2%aA&2&b> <&0%e&2&b><&0%dl&2&b>%_&0<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 4
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20165
+birthtime: 1645397814
+timeplayed: 1419625
+lastlogintime: 1667364431
+host: 208.093.179.103
+height: 67
+weight: 168
+base_height: 67
+base_weight: 168
+base_size: 2
+natural_size: 2
+alignment: 928
+playerflags: gxyz
+effectflags: cm 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1254/1056
+mana: 980/980
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 72
+wisdom: 82
+dexterity: 96
+constitution: 100
+charisma: 64
+cash: 829 2000 8749 3862
+experience: 121676898
+pagelength: 44
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+21 1000
+22 1000
+28 1000
+34 1000
+43 1000
+88 1000
+92 1000
+97 1000
+99 1000
+241 1000
+402 864
+404 833
+407 1000
+411 643
+412 1000
+415 830
+416 872
+417 830
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 190
+431 854
+434 920
+438 403
+441 377
+443 50
+444 934
+450 50
+451 1000
+452 977
+457 921
+458 1000
+459 999
+460 1000
+461 1000
+462 1000
+463 237
+464 580
+465 562
+466 1000
+467 50
+468 1000
+473 52
+0 0
+trophy:
+1 48908 0.500000
+1 48906 0.500000
+1 48810 0.500000
+1 48507 0.333333
+1 48633 0.333333
+1 48406 0.333333
+0 0 0
+tells:
+1665463388 @WLanik@W tells you, 'resc me@W'@0
+1665647485 @WLyft@W tells you, 'Lempi requested i send a well Incoming@W'@0
+1665648213 @WLyft@W tells you, 'Lyno requested i send a well Incoming@W'@0
+1665648483 @WLyft@W tells you, 'Lanik requested i send a well Incoming@W'@0
+1665649457 @WLyft@W tells you, 'Lufa requested i send a well Incoming@W'@0
+1665650615 @WLyft@W tells you, 'Lanik requested i send a well Incoming@W'@0
+1665651120 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1665651129 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1665651136 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1667360262 @WLyft@W tells you, 'Lefa requested i send a well Incoming@W'@0
+$
+gossips:
+1666411693 Mersh gossips, 'sorry :D'
+1666471330 Chinok gossips, 'hey Mersh'
+1666471335 Mersh gossips, 'hey!'
+1666471595 Mersh gossips, 'Oh Azkrael can't make a well for the lowbies without marking his name'
+1666472491 Discord gossips, 'felessan: Her, and yes haha'
+1666472642 Mersh gossips, ':D Sorry Azkrael!'
+1666472732 Mersh gossips, 'you said DO map frakati... but it is hidden behind a door? Would this be a map found in the bushes :D'
+1666472733 Discord gossips, 'felessan: Fun fact, she used to be Artemis on v1, which is why she's Goddess of the Hunt.'
+1666472750 Mersh gossips, 'Ooo Nice!'
+1666472800 Discord gossips, 'felessan: I say yes do the Reservation because there are literal outsider explorers there.  Make a note like "the entrance is exceptionally well hidden" or something'
+1666472888 Mersh gossips, 'Sweet, thanks!'
+1667361308 Choak gossips, 'if you need a quick corpse return and res without reconnecting guys you can just consent lokar and he and Mril will take care it'
+$
+mem:
+3 0 1
+3 0 1
+16 1 1
+16 1 1
+16 1 1
+1 0 1
+1 1 1
+12 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+34 1 1
+22 1 1
+3 1 1
+3 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+21 1 1
+13 1 1
+14 1 1
+99 1 1
+43 1 1
+99 1 1
+99 1 1
+99 1 1
+92 0 1
+92 1 1
+28 0 1
+28 1 1
+28 1 1
+28 1 1
+28 1 1
+1 1 1
+1 1 1
+97 1 1
+97 1 1
+28 1 1
+97 1 1
+241 1 1
+97 1 1
+97 1 1
+97 1 1
+34 1 1
+34 1 1
+28 1 1
+21 1 1
+21 1 1
+21 1 1
+21 1 1
+21 1 1
+21 1 1
+21 1 1
+21 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+0 0 0
+aliases:
+h hitall $*
+disp c 'disp mag' $*
+curel c 'cure l' $*
+gac g all all.corpse
+hol c 'holy'
+vig c 'vig c' $*
+heal c 'heal' $*
+gag g all.gem all.corpse
+blind c 'blind' $*
+evil c 'dis evil' $*
+undead c 'de und' $*
+armor c 'armor' $*
+r rest
+vit c 'd h' $*
+dis c 'dis mag' $*
+bless c 'bless' $*
+gax g all.coins all.corpse
+id recite identify $*
+x g all.coins
+curec c 'cure c' $*
+yy ass loap
+yyy ass lempi
+yyyy ass lyft
+combat-need a robe of the 3rd Eldorian Guard for some aquamarine dust
+o order f $*
+2 resc lyno
+y ass lyno
+cures c 'cure s' $*
+3 resc lyft
+4 resc lanik
+0

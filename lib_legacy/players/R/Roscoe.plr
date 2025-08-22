@@ -1,0 +1,117 @@
+name: Roscoe
+password: Roav.fbyfa
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 26
+level: 8
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20204
+birthtime: 1647468430
+timeplayed: 21237
+lastlogintime: 1647892783
+host: 081.019.010.020
+height: 80
+weight: 283
+base_height: 80
+base_weight: 283
+base_size: 2
+natural_size: 2
+alignment: 271
+playerflags: gy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 122/114
+mana: 1/0
+move: 142/142
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 70
+wisdom: 70
+dexterity: 82
+constitution: 92
+charisma: 60
+cash: 0 119 581 301
+experience: 181260
+quit_reason: 3
+saveroom: 0
+cooldowns:
+10 5800/18000
+-1 0
+skills:
+201 1000
+402 130
+404 130
+415 50
+416 50
+421 130
+438 50
+443 50
+444 68
+453 50
+463 57
+464 50
+465 95
+466 50
+467 50
+468 50
+486 81
+0 0
+trophy:
+1 16905 2.000000
+1 16900 5.000000
+1 16901 2.000000
+1 3506 1.000000
+1 2001 1.000000
+1 2005 1.000000
+1 2003 3.000000
+1 8030 1.000000
+1 5403 1.000000
+1 5404 6.000000
+1 17204 20.000000
+1 3508 3.000000
+1 3062 1.000000
+1 3061 1.000000
+1 16902 6.000000
+1 8022 1.000000
+1 3501 1.000000
+1 3502 2.000000
+1 12007 2.000000
+1 12016 1.000000
+1 3509 5.000000
+0 0 0
+tells:
+1647551380 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1647551380 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1647551381 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1647551381 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1647551385 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1647552149 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1647552149 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1647552149 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1647552149 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1647552150 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+$
+gossips:
+1647541644 Chinok gossips, 'copses will decay in about 5 mins, if they are empty, quite a bit longer if they aren't'
+1647542244 Vash gossips, 'gratz beldin'
+1647542263 Beldin gossips, 'Thanks ... it's all coming back'
+1647551369 Chinok gossips, 'hey Mr Coltrane'
+1647551391 Chinok gossips, 'dukes of hazard.. Roscoe P Coltrane :)'
+1647551435 Chinok gossips, 'rofl I remember totally useless facts from the 80's and 90's -- ask me what I did yesterday, and I'll draw a blank'
+1647551465 Chinok gossips, 'I helped you today too, as I recall :)'
+1647551473 Chinok gossips, 'with a recall :)'
+1647891519 Meina gossips, 'hello Roscoe!'
+1647892610 Laird gossips, 'meina were out numbered but as long as you can takeout fril i think i can kill the other 3 dragons'
+$
+aliases:
+ga g all corpse
+0

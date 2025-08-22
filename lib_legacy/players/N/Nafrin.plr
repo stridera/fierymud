@@ -1,0 +1,86 @@
+name: Nafrin
+password: NaDGZthSG7
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19451
+birthtime: 1562451945
+timeplayed: 1611
+lastlogintime: 1562658275
+host: 104.172.225.109
+height: 40
+weight: 175
+base_height: 40
+base_weight: 175
+base_size: 2
+natural_size: 2
+alignment: 982
+playerflags: gxy
+effectflags: k 0 q
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 18
+thirst: 24
+lastlevel: 0
+hitpoints: 74/66
+mana: 1/0
+move: 146/156
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 80
+wisdom: 84
+dexterity: 86
+constitution: 94
+charisma: 56
+cash: 0 2 37 6
+bank: 0 1 50 0
+experience: 36300
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 13710/18000
+-1 0
+skills:
+402 50
+404 63
+415 50
+416 50
+421 53
+438 50
+443 50
+444 60
+463 50
+464 50
+465 56
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3507 1.000000
+1 3500 1.000000
+1 3502 3.000000
+1 3503 1.000000
+1 3501 4.000000
+1 16901 1.000000
+1 16902 1.000000
+1 16906 2.000000
+1 16905 1.000000
+1 16900 3.000000
+1 16908 2.000000
+1 18005 1.000000
+1 18007 1.000000
+1 18000 1.000000
+1 18004 1.000000
+1 36003 1.000000
+1 36001 1.000000
+0 0 0

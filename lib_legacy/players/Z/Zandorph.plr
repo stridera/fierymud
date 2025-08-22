@@ -1,0 +1,66 @@
+name: Zandorph
+password: ZaRgiYKt/v
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 9
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19072
+birthtime: 1464497509
+timeplayed: 49073
+lastlogintime: 1464904251
+host: 204.209.044.014
+height: 72
+weight: 192
+base_height: 72
+base_weight: 192
+base_size: 3
+natural_size: 3
+alignment: 61
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 2019
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 123/123
+mana: 1/0
+move: 74/122
+damroll: 5
+hitroll: 4
+strength: 98
+intelligence: 76
+wisdom: 70
+dexterity: 85
+constitution: 70
+charisma: 66
+cash: 0 10 32 34
+bank: 20 38 200 0
+experience: 263042
+quit_reason: 7
+saveroom: 2019
+skills:
+402 52
+404 50
+415 87
+416 50
+419 1000
+421 148
+427 1000
+438 50
+443 50
+444 50
+463 71
+464 50
+465 88
+466 50
+467 50
+468 50
+0 0

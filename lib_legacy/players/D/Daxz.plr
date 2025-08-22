@@ -1,0 +1,66 @@
+name: Daxz
+password: Da7E0ldyst
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20447
+birthtime: 1676011092
+timeplayed: 22
+lastlogintime: 1676011120
+host: 047.037.138.102
+height: 71
+weight: 167
+base_height: 71
+base_weight: 167
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 11
+lastlevel: 0
+hitpoints: 27/26
+mana: 0/0
+move: 144/144
+damroll: 5
+hitroll: 4
+strength: 84
+intelligence: 66
+wisdom: 70
+dexterity: 100
+constitution: 80
+charisma: 67
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+493 50
+0 0
+tells:
+$
+gossips:
+$

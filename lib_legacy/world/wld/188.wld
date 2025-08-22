@@ -1,0 +1,394 @@
+#18800
+Antechamber of the Degree~
+   Once the stone-laden entrance to the cathedral of a great order, many of the
+religious artifacts and decorations have been removed from the antechamber,
+leaving only the magnificent limestone architecture behind.  Graceful stone
+arches line the north and south walls, curving upwards to the vaulted circular
+ceiling above.  Between each arch a different vestige is displayed, the most
+noticeable of which is a large painting hanging on the south wall.  Small
+windows in the ceiling allow the perfect amount of light in, brightening the
+gleaming white limestone.  The floor is tiled in glossy white marble, with no
+other decoration besides the shadows cast from the windows above.    
+~
+188 34668696 0
+D1
+Previously a simple arched doorway to the world beyond the cathedral, a
+powerful spell of sending has been imbued on the doorway, creating a swirling
+deep blue vortex at the center of the portal.  It seems stable...  And probably
+safe.    
+~
+portal~
+0 -1 3009
+D3
+~
+~
+0 0 18801
+E
+painting~
+Framed in magnificent silver, the painting depicts a small grouping of
+dark-cloaked people, In the center, a slender half-elf woman in pale blue robes
+sits on a black chair, smirking slightly beneath tresses of silvery hair.  To
+the right, a gnarly gnome dressed in black robes scowls at the painter, his
+beady black eyes frowning impudently.  On the left, a dashing warrior in shiny
+armor grins mischievously, resting his right arm casually on a black greatsword
+on his belt.  On either side of the painting stand lithe, fairly nondescript
+men in loose, navy garb.  They both smile disarmingly, belying their true
+vocation.  There is a small inscription at the bottom of the frame.    
+~
+E
+inscription frame~
+The inscription reads:&b
+            Dronar, Karde, Kendris, Zenitul, Arreeleo
+                     The Clandestine Degree&0
+~
+E
+shadows floor~
+Clouds passing over the cathedral cause the shadows to periodically shift, but
+at times of equilibrium, the shadows coalesce to the shape of a rearing fox.  
+
+~
+S
+#18801
+Vaulted Rotunda~
+   This atrium's most distinguishing characteristic is its high vaulted
+ceilings with numerous pointed arches that reach upward from elaborate stone
+pillars lining the semicircular walls.  Apparently constructed of sturdy
+limestone, the ceiling puts tremendous weight on its supporting posts,
+indicated by the great lines of blue steel reinforcing the walls.  The
+beautiful stone walls wrap around in an arc that opens up to a huge arch
+leading to the sanctuary to the west.  In the east, a smaller arch leads to the
+cathedral antechamber, above which a beautiful, tall stained glass window is
+emplaced.  Unlike typical stained glass windows, this one has primarily muted
+colors, many of which are blues and grays.  Similar but smaller stained glass
+windows appear periodically around the upper circumference of the rotunda walls
+where they meet the vaulted ceiling.  To the north and south, smaller arched
+doorways open to twin narthexes.  Barely noticeable in the center of the
+checkered marble floor is the vague shape of a fox, made up of a slightly
+darker, bluish marble.    
+~
+188 34668556 0
+D0
+~
+~
+0 0 18804
+D1
+~
+~
+0 0 18800
+D2
+~
+~
+0 0 18806
+D3
+~
+~
+0 0 18808
+E
+walls wall~
+The wall encompasses the entire circular room, wide stone columns rising every
+few armwidths from the floor to meet pointed arches leading up to the center of
+the domed ceiling above.  Light lines of blue steel are inserted between
+columns, tastefully adding to the walls' solid blocks of stone.  Atop each
+column rests a small gargoyle, peering down upon the rotunda with piercing
+stone eyes.    
+~
+E
+stained-glass window~
+About four times a man's height, the window reaches high above in a somewhat
+rounded arch.  Its colored glass is almost exclusively blue and gray, depicting
+the image of a blue fox against a murky grayish background.  The fox is rearing
+up on its hind legs, reaching up viciously towards an amethyst-hued raptor
+flittering above it.  In the bird's mouth, a small golden olive leaf is clasped
+tightly, hanging just out of the fox's reach.    
+~
+S
+#18802
+Chamber of Vigilance~
+   Two columns of polished wooden pews sit in rows facing the northern end of
+the chamber, an aisle in the center leading up to the pulpit at the front of
+the room.  Behind the pulpit, a large frosted window sports partially closed
+violet curtains, obscuring the view of outdoors, obfuscating the view of
+outside.  Nevertheless, a large bronze telescope with an undoubtedly horrid
+view stands on a tripod before the window, pointed at its murky pane.  The
+violet shade of the curtains is repeated around the room, purple and silver
+wallpaper coating the walls and violet streaks of amethyst running through the
+white marble in the floor.  Large limestone shelves are carved hewn in the
+walls and lined with numerous books, giving this chamber the impression of a
+lecture chapel.    
+~
+188 34668568 0
+D2
+Two large wooden doors are emplaced in the southern wall.  Small silver
+handles, fixed about chest high, stand out on each door.    
+~
+doors~
+1 0 18804
+E
+telescope scope~
+   Although the telescope is pointed at the opaque window before it, looking
+through the viewfinder reveals a startlingly clear view of the Village of
+Mielikki, as if one were looking down upon it.  It might even be possible to
+observe individual rooms from this perspective.    
+~
+S
+T 18802
+#18803
+Quiet Seclusion~
+   Beautiful maple shelves lined with all manner of books line every wall in
+the room, broken only by a large frosted window in the south wall.  The window
+is decorated by rich cobalt drapery, matching the lighter steel blue of the
+painted ceiling.  Rising from the lavish carpeted floor to the ceiling twice a
+man's height above, the shelves hold hundreds of different books, apprarently
+organized by seniority.  Arranged in a semi-circle in the center of the room,
+four comfortable looking easy chairs rest interspersed with burnished wooden
+side-tables.  Beautiful ivory oil-burning lamps rest upon each table, casting a
+soft light upon the chairs around them and making for a very pleasing study
+atmosphere.  To the south, the tall wooden doors lead back to the echoing
+marble narthex outside.    
+~
+188 34668584 0
+D0
+Standing twice as high as an average man, the tall wooden doors seem gargantuan
+compared to the small silver handles at each's center.  A silvery blue metal is
+inlaid in a rectangle in each door.    
+~
+doors~
+1 0 18806
+E
+walls shelves books~
+The shelves wrap around the room's walls, literally covered in books from all
+eras of time.  Starting just to the east of the doors, the oldest books rest in
+magical stasis, looking as though they might crumble under the slightest touch.
+The books continue around the room ending just west of the doors, where the
+newest books of the realm are collected.  A tall metal ladder is mounted on a
+rail at the top of the shelves, able to slide completely around the room,
+providing easy access to even the highest books.    
+~
+S
+#18804
+Marble Narthex~
+   Large slabs of grayish white marble line the walls of the room, streaks of
+blue running periodically through its cloudy surface.  The polished marble
+complements the limestone around it, the shades of gray and blue crossing each
+other in an intricate geological dance.  Above, the semicylindrical arch of the
+limestone ceiling radiates peacefulness, its dark blue inlaid lapis glinting
+playfully in the light.  Large, frosted glass windows line the east wall, their
+translucent glass obstructing the view of the cathedral exterior.  A large,
+open arched doorway peers into the rotunda to the south, and twin sets of tall
+wooden doors rest in the north and west walls.
+~
+188 33619976 0
+D0
+The large wooden double doors stand twice the height of a man, dwarfing the
+small silver handles on each door.  Each door is decorated by a silvery blue
+metal inlaid in a rectangle around the center.    
+~
+doors~
+1 0 18802
+D2
+~
+~
+0 0 18801
+D3
+The large wooden double doors stand twice the height of a man, dwarfing the
+small silver handles on each door.  Each door is decorated by polished lapis
+lazuli inlaid in a rectangle around the center.    
+~
+doors~
+1 0 18805
+S
+#18805
+Chamber of Sending~
+   Decoration in this chamber is sparse, the white painted walls creating a
+very sterile atmosphere in the room.  An indigo trim runs along the upper edge
+of the walls, broken periodically by candle-holders.  In the center of the
+room, a huge oak table rests ponderously, with various papers and artifacts
+resting on it.  Circling the room in a large bent arc, a band of tall,
+ring-shaped portals stand silently, their matte indigo surfaces absorbing
+nearly all the light that hit them.  A pair of tall wooden doors lies in the
+east wall's white face, rising twice the height of a man.    
+~
+188 0 0
+D0
+This tall ring-shaped portal encircles the hazy image of a bluish town square,
+it's visage shrouded in flurries of snow.    
+~
+portal~
+0 -1 10016
+D1
+The wooden doors stand tall, swinging easily on well-oiled black hinges.  
+Small silver handles, fixed about chest high, stand out on each door.    
+~
+doors~
+1 0 18804
+D2
+The south ring contains the dusty image of a busy city center nestled in high
+mountains.  Numerous short and stout humanoids can be seen walking the streets.
+~
+portal~
+0 -1 6119
+D3
+The interior of this portal is almost completely dark.  Deep in the murky
+blackness, scattered lightning can be seen, illuminating a quiet stone gate.
+~
+portal~
+0 -1 49564
+E
+papers~
+Nothing.
+~
+E
+table~
+The heavy oak table is circular, with a single, wide support beneath it.  In
+the center of the table, the image of a rearing fox is etched lightly in the
+wood.  Various papers and trinkets are strewn across the table, many bearing a
+seal similar to the imprint on the table.  A small collection of indigo-colored
+papers has silver writing on them.    
+~
+S
+#18806
+Marble Narthex~
+   The walls of the room are lined with large slabs of grayish white marble
+with streaks of blue running periodically through its cloudy surface.  The
+marble's shades of gray and blue complement the limestone around it, meeting in
+an intricate geological dance.  Peacefulness radiates from the semicylindrical
+arch of the limestone ceiling above, its dark blue inlaid lapis glinting
+peacefully in the light.  Along the east wall, frosted glass windows allow
+light into the room, but obstruct the view of the cathedral exterior.  A large
+open arched doorway peers into the rotunda to the north, and twin sets of tall
+wooden doors rest in the south and west walls.    
+~
+188 33619976 0
+D0
+~
+~
+0 0 18801
+D2
+The large wooden doors stand twice the height of a man, dwarfing the small
+silver handles on each door.  Each one is decorated by a silvery blue metal
+inlaid in a rectangle around the center.    
+~
+doors~
+1 0 18803
+D3
+The large wooden double doors stand twice the height of a man, dwarfing the
+small silver handles on each door.  Each one is decorated by polished lapis
+lazuli inlaid in a rectangle around the center.    
+~
+doors~
+1 0 18807
+S
+#18807
+Supplies Repository~
+   A dry, musky odor permeates the air, rising from the light layer of dust
+covering nearly everything.  The room is marginally lit; having no windows,
+there are only lamps hanging periodically from the ceiling to provide light.  
+Two large wooden doors lie in the east wall, rising high above a human's
+height.  Facing the doors, a large desk rests near the entrance, standing
+between it and the supplies filling the room.  Four aisles of sturdy wooden
+shelves are lined up behind the desk, well-stocked with all manner of necessity
+as well as frivolity.  The room's walls and ceiling are a fairly drab stone
+gray, looking as if they might have once been decorated.  Carpeting from before
+remains, a thick incarnadine plush, hinting of the stockroom's onetime
+resplendent history.    
+~
+188 0 0
+D1
+The wooden doors rise quite a bit above a man's height, chest-high tarnished
+silver handles fixed in the centers.  Black metal hinges attach each door to
+the frame around the doors.    
+~
+doors~
+1 0 18806
+S
+#18808
+Degree Assembly~
+   Huge vaulted ceilings soar high above the gray marble floor, creating a vast
+echoing expanse, once a wealthy religious order's sanctum.  Remnants of their
+theology remain in beautiful carvings and inscriptions in limestone walls and
+pillars.  The graceful vaulted white limestone ceiling is decorated by
+thousands of tiny embedded ultramarine-hued lapis, creating a glinting inverted
+starfield.  Soft glowing lamps are fixed atop each pillar, casting their light
+upon the polished surfaces of the marble floors and throwing dark shadows
+behind the rows of pillars.  Lightly stained in the gray marble, the dark blue
+image of a rearing fox is drawn where the pews of the sanctuary once sat.  
+Outside the rows of pillars, some of the limestone pews remain, facing inwards
+to the hall like audience seating.  Huge glazed stained glass windows line the
+outer walls behind the pews, many of them dark blue or gray, allowing in little
+light and giving the hall a rather somber mood.  At the east end of the hall, a
+huge arch opens the hall to the rotunda and the remainder of the cathedral.  
+From that end, the altar can cleary be seen on the other end, a low marble dais
+with several blue throne-like seatings.    
+~
+188 0 0
+D1
+~
+~
+0 0 18801
+S
+#18809
+Shadowy Hallway~
+You are in an unfinished room.
+~
+188 0 0
+D0
+~
+~
+0 0 18810
+D1
+~
+door~
+1 0 18808
+D2
+~
+~
+0 0 18811
+D5
+~
+trapdoor~
+1 -1 18812
+S
+#18810
+A Cluttered Living Space~
+You are in an unfinished room.
+~
+188 0 0
+D2
+~
+~
+0 0 18809
+S
+#18811
+Orderly Bedchambers~
+You are in an unfinished room.
+~
+188 0 0
+D0
+~
+~
+0 0 18809
+S
+#18812
+Concealed Undercroft~
+You are in an unfinished room.
+~
+188 0 0
+D4
+~
+~
+0 0 18809
+S
+#18896
+The FieryTag Command Center~
+   Strange boxes of light line the back wall of the room, images flashing
+across their faces.  Many of the images seem to act like crystal balls, seeming
+to follow people, all of whom are wielding long bat-shaped sticks.  The
+opposite side of the room has huge bay windows, somehow overlooking the whole
+of Caelia.  Every nook and cranny can be seen from the windows' view, all
+appearing to be the same distance away.  Voices are emitted from a tiny black
+box hanging from the ceiling, excitedly describing the images in the boxes in
+the back of the room.    
+~
+188 33619992 0
+S
+$~

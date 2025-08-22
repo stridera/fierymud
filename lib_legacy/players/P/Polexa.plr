@@ -1,0 +1,62 @@
+name: Polexa
+password: PoYh0ZQW3X
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19079
+birthtime: 1465566983
+timeplayed: 323
+lastlogintime: 1465567326
+host: 198.146.060.218
+height: 39
+weight: 185
+base_height: 39
+base_weight: 185
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: xy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 19
+thirst: 14
+lastlevel: 0
+hitpoints: 26/25
+mana: 0/0
+move: 141/146
+damroll: 4
+hitroll: 5
+strength: 93
+intelligence: 79
+wisdom: 74
+dexterity: 82
+constitution: 87
+charisma: 55
+experience: 1
+quit_reason: 5
+saveroom: 3005
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0

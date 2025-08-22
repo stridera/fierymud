@@ -1,0 +1,118 @@
+name: Loif
+password: Lo/S6pbpUj
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 10
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19631
+birthtime: 1591780473
+timeplayed: 27804
+lastlogintime: 1665646479
+host: 208.093.179.103
+height: 79
+weight: 155
+base_height: 79
+base_weight: 155
+base_size: 3
+natural_size: 3
+alignment: 71
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 59000
+lastlevel: 0
+hitpoints: 166/146
+mana: 1/0
+move: 168/168
+damroll: 5
+hitroll: 4
+strength: 98
+intelligence: 82
+wisdom: 84
+dexterity: 89
+constitution: 96
+charisma: 42
+cash: 2 44 195 176
+experience: 279950
+quit_reason: 7
+saveroom: 59000
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 69
+427 1000
+430 50
+438 50
+443 50
+444 55
+463 50
+464 50
+465 91
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 23700 4.000000
+1 23715 1.000000
+1 23718 0.500000
+1 23716 0.500000
+1 23709 1.000000
+1 23737 0.500000
+1 23705 0.500000
+1 23706 1.000000
+1 23707 2.500000
+1 8022 3.500000
+1 8021 1.500000
+1 3143 0.500000
+1 17204 1.500000
+1 2002 1.700000
+1 2001 2.200000
+1 8032 0.200000
+1 8030 0.400000
+1 8020 2.800000
+1 8023 2.100000
+1 8013 6.700000
+1 8001 7.500000
+0 0 0
+tells:
+1614963333 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1614963339 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1614963340 @WBigby@W tells you, 'You can only hold 6.@W'@0
+1614963340 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1614963344 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1644432763 @WChoak@W tells you, 'if you need a ride back to town just tell me 'well' and I will send you a moonwell you can enter and be back at the inn.@W'@0
+1644435283 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1644436954 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1662634600 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1665558710 @WLyft@W tells you, 'Lefa requested i send a well Incoming@W'@0
+$
+gossips:
+1644476883 Loap gossips, 'hi'
+1644476928 Malore gossips, 'heyo.  How's your evening?'
+1647979518 Zaver gossips, 'hey Chinok'
+1662635041 Luba gossips, 'hi chinok'
+1662635052 Chinok gossips, 'morning'
+1665639335 Daedela gossips, 'oh bodyslam?  Compared to bash it's not very helpful.  It's mostly there to use in a pinch'
+1665639401 Someone gossips, '*crys harder* it's still one of my fav race skills and your all wrong :('
+1665639597 Lempi gossips, 'hedgehogs are good for gem hunting '
+1665639660 Daedela gossips, 'they sure are!'
+1665639661 Daedela gossips, 'the meercat royal family is as well'
+$
+aliases:
+y ass loap
+id recite identify $*
+of order follow $*
+o order follow $*
+gac g all all.corpse
+0

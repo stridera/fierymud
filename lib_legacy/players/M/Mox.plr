@@ -1,0 +1,71 @@
+name: Mox
+password: MouA.Ty.dZ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19443
+birthtime: 1558474693
+timeplayed: 330
+lastlogintime: 1559086983
+host: 071.201.188.013
+height: 45
+weight: 188
+base_height: 45
+base_weight: 188
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 21
+thirst: 18
+lastlevel: 0
+hitpoints: 42/40
+mana: 1/0
+move: 142/142
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 58
+wisdom: 60
+dexterity: 92
+constitution: 85
+charisma: 62
+experience: 6050
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 52
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+463 50
+464 50
+465 53
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8000 1.000000
+1 8002 1.000000
+1 8012 1.000000
+1 8023 1.000000
+1 8014 1.000000
+1 8011 1.000000
+1 8020 1.000000
+0 0 0

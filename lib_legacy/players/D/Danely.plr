@@ -1,0 +1,120 @@
+name: Danely
+password: Damfxj3axx
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 10
+race: 0
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20163
+birthtime: 1645337448
+timeplayed: 99108
+lastlogintime: 1646887167
+host: 069.162.244.194
+height: 67
+weight: 100
+base_height: 67
+base_weight: 100
+base_size: 2
+natural_size: 2
+alignment: -520
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 5572
+lastlevel: 0
+hitpoints: 147/147
+mana: 16/16
+move: 132/132
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 67
+wisdom: 72
+dexterity: 91
+constitution: 92
+charisma: 64
+cash: 2 193 939 855
+experience: 548073
+pagelength: 40
+quit_reason: 3
+saveroom: 0
+cooldowns:
+10 1200/18000
+-1 0
+skills:
+401 180
+402 50
+404 50
+415 50
+416 50
+421 139
+434 50
+438 50
+443 50
+444 72
+463 50
+464 139
+465 50
+466 50
+467 112
+468 50
+0 0
+trophy:
+1 5522 0.250000
+1 5516 0.666667
+1 5515 2.083333
+1 5514 2.333333
+1 5513 2.833333
+1 4101 0.333333
+1 61519 0.500000
+1 61526 0.500000
+1 61528 0.750000
+1 61503 1.000000
+1 61500 1.000000
+1 61525 1.000000
+1 17204 2.500000
+1 2004 0.250000
+1 2003 1.000000
+1 2005 0.750000
+1 55700 0.250000
+1 55701 0.250000
+1 55216 2.500000
+1 2002 0.250000
+1 2001 0.500000
+0 0 0
+tells:
+1645498625 @WLyno@W tells you, 'wheres your gnome slave driver@W'@0
+1645683115 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1645774527 @WLufa@W tells you, 'lol@W'@0
+1645774559 @WLufa@W tells you, 'also daed got your email i don't think he took it well@W'@0
+1645774622 @WLufa@W tells you, 'nigh@W'@0
+1645937523 @WTors@W tells you, 'do you have any notes on Dargen tans lair and the questions asked there?@W'@0
+$
+gossips:
+1646884098 Vasel gossips, 'invis is 2 circles earlier than the other sorcs, detect is 4 circles later'
+1646884133 Someone gossips, 'yeah unfortunate at level 40 you can get an item that is perma detect invis'
+1646884223 Someone gossips, 'gratz!'
+1646884261 Mash gossips, 'That armor quest XP is nice'
+1646884291 Someone gossips, 'heck ya!'
+1646884292 Someone gossips, 'need any gems?'
+1646884362 Mash gossips, 'I'm trying to sort through all my stuff currently, thanks for the offer'
+1646885476 Zaver gossips, 'night all'
+1646885480 Vasel gossips, 'night'
+1646885500 Holk gossips, 'later zaver'
+$
+effects:
+132 0 10 17 0 256 0
+0 0 0 0 0
+aliases:
+1 ass vasel
+all get all all.corpse
+2 ass ketten
+3 ass stenip
+h hide
+0

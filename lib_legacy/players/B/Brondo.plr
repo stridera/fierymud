@@ -1,0 +1,84 @@
+name: Brondo
+password: Br3fe.Xmfp
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20638
+birthtime: 1696887008
+timeplayed: 1798
+lastlogintime: 1703221742
+host: 096.046.029.029
+height: 79
+weight: 240
+base_height: 79
+base_weight: 240
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: xy
+effectflags: 0 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 1
+lastlevel: 0
+hitpoints: 30/28
+mana: 1/0
+move: 179/179
+damroll: 5
+hitroll: 4
+strength: 96
+intelligence: 60
+wisdom: 72
+dexterity: 89
+constitution: 100
+charisma: 50
+experience: 6049
+quit_reason: 5
+saveroom: 8025
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 51
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18000 1.000000
+1 18002 1.000000
+1 18005 1.000000
+1 18007 1.000000
+1 3064 1.000000
+0 0 0
+tells:
+$
+gossips:
+1696887897 Discord gossips, 'Daedela: It could be poisoned anything - water, tea, coffee, milk, beer, etc.  We don't have a "liquid poison" liquid type haha'
+1696887904 Snal gossips, 'ah'
+1696887907 Discord gossips, 'Daedela: Oh God, the Court Jester!'
+1696887915 Discord gossips, 'venath.2005: You would know that quote LOL'
+1696887917 Discord gossips, 'Daedela: Generally yes, don't give poison to quest masters'
+1696887930 Discord gossips, 'Daedela: Court Jester is one of my husband's favorite movies'
+1696887938 Discord gossips, 'venath.2005: We can poison questmasters? That would be awesome...'
+1696887963 Discord gossips, 'venath.2005: Yeah I'm a Court Jester fan. Watched it a lot as a kid. Your husband and I need to have a movie night LOL'
+1696888260 Discord gossips, 'venath.2005: Gratz Snal'
+1696888263 Snal gossips, 'ty!'
+$

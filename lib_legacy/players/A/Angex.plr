@@ -1,0 +1,95 @@
+name: Angex
+password: An7PwiZ6zC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 2
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19273
+birthtime: 1510890774
+timeplayed: 7296
+lastlogintime: 1737303438
+host: 067.167.192.166
+height: 38
+weight: 53
+base_height: 38
+base_weight: 53
+base_size: 1
+natural_size: 1
+alignment: 917
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 2
+lastlevel: 0
+hitpoints: 39/39
+mana: 1/-2
+move: 100/100
+damroll: 2
+hitroll: 4
+strength: 80
+intelligence: 92
+wisdom: 95
+dexterity: 62
+constitution: 65
+charisma: 68
+cash: 0 23 208 212
+experience: 59025
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 90
+424 90
+438 50
+443 50
+444 50
+447 58
+451 50
+452 55
+453 90
+459 54
+460 50
+462 50
+464 51
+0 0
+trophy:
+1 8010 1.000000
+1 8800 1.000000
+1 8803 2.000000
+1 8802 1.000000
+1 8809 1.000000
+1 8804 2.000000
+1 8801 2.000000
+1 8808 1.000000
+1 3507 1.000000
+1 3500 1.000000
+1 3502 2.000000
+1 16908 1.000000
+1 16900 2.000000
+1 3501 1.000000
+1 3508 2.000000
+1 3503 1.000000
+1 36002 4.000000
+1 36003 2.000000
+1 36001 4.000000
+1 18001 1.000000
+1 18002 1.000000
+0 0 0
+tells:
+$
+gossips:
+$

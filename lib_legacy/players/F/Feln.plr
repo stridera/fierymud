@@ -1,0 +1,158 @@
+name: Feln
+password: FeNVFogMQr
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 2
+class: 6
+race: 9
+level: 34
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17030
+birthtime: 1216574775
+timeplayed: 188954
+lastlogintime: 1615014236
+host: 199.167.089.027
+height: 70
+weight: 129
+base_height: 70
+base_weight: 129
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: kx 0 0
+prefflags: hnoCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 408/408
+mana: 115/115
+move: 130/130
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 62
+wisdom: 72
+dexterity: 89
+constitution: 96
+charisma: 58
+cash: 95 566 2604 2838
+experience: 7305949
+pagelength: 30
+clan: 3
+quit_reason: 1
+saveroom: 3054
+skills:
+8 1000
+16 1000
+18 1000
+32 1000
+37 1000
+88 1000
+144 1000
+402 260
+404 350
+410 127
+411 340
+415 53
+416 89
+417 56
+420 112
+421 370
+423 360
+424 365
+430 98
+438 50
+443 50
+444 166
+447 66
+451 360
+452 106
+454 289
+456 50
+457 355
+458 125
+462 55
+463 50
+464 182
+465 334
+466 50
+467 50
+468 52
+0 0
+trophy:
+1 5223 0.500000
+1 5220 6.500000
+1 5222 5.000000
+1 5221 5.500000
+1 5213 7.500000
+1 5202 8.000000
+1 5212 6.500000
+1 5203 4.000000
+1 5204 8.000000
+1 5200 5.000000
+1 5201 5.000000
+1 5210 8.000000
+1 5211 8.000000
+1 5120 0.500000
+1 5104 0.500000
+1 5102 0.500000
+1 5103 1.000000
+1 5483 0.500000
+1 5484 0.500000
+1 5404 0.500000
+1 51100 4.800000
+0 0 0
+tells:
+1571549795 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+$
+mem:
+18 1 1
+32 1 1
+32 1 1
+32 1 2
+32 1 2
+32 1 2
+32 1 2
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+16 1 1
+144 0 1
+144 1 2
+8 0 2
+8 0 2
+8 1 2
+8 1 2
+16 1 2
+88 1 4
+88 1 4
+88 1 5
+88 1 5
+88 1 5
+88 1 4
+0 0 0
+aliases:
+4 ass aawk
+3 ass glawk
+ba bash $*
+bark c 'barksk' $*
+mm c 'magic mis' $*
+ch c 'chill' $*
+cl c 'cure light' $*
+all get all all.corpse
+df drink fountain
+id recite identify $*
+cs c 'cure ser' $*
+0 drink water
+` ass skeleton
+2 ass skeleton
+1 ass vitkus
+0

@@ -1,0 +1,60 @@
+name: Chel
+password: ChnsJ2hR3O
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18184
+birthtime: 1331516371
+timeplayed: 10167
+lastlogintime: 1331526550
+host: 071.059.244.050
+height: 62
+weight: 127
+base_height: 62
+base_weight: 127
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 834/-54
+mana: 940/0
+move: 116/116
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 65
+wisdom: 77
+dexterity: 99
+constitution: 81
+charisma: 57
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+403 1000
+415 50
+416 50
+421 53
+438 50
+443 50
+444 50
+464 53
+465 50
+467 50
+0 0
+trophy:
+1 16107 1.000000
+1 16110 1.000000
+0 0 0

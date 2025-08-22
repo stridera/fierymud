@@ -1,0 +1,98 @@
+name: Kaldor
+password: KaUIAAA8HJ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 17
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18190
+birthtime: 1331677793
+timeplayed: 41426
+lastlogintime: 1342616396
+host: 108.125.028.017
+height: 43
+weight: 177
+base_height: 43
+base_weight: 177
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnouC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 9
+thirst: 22
+lastlevel: 0
+hitpoints: 255/221
+mana: 28/28
+move: 162/162
+damroll: 4
+hitroll: 5
+strength: 93
+intelligence: 60
+wisdom: 83
+dexterity: 86
+constitution: 97
+charisma: 46
+cash: 10 714 738 38
+experience: 1148995
+quit_reason: 1
+saveroom: 3054
+skills:
+402 94
+404 220
+407 50
+415 53
+416 58
+421 218
+430 52
+438 50
+443 50
+444 114
+463 75
+464 56
+465 99
+466 135
+467 50
+468 94
+0 0
+trophy:
+1 4102 2.000000
+1 4101 1.000000
+1 8011 1.000000
+1 8010 1.000000
+1 8016 1.000000
+1 8020 2.000000
+1 8022 2.000000
+1 8014 3.000000
+1 8012 1.000000
+1 8002 4.000000
+1 8013 4.000000
+1 8001 3.000000
+1 8015 3.000000
+1 2002 1.000000
+1 5501 2.000000
+1 5110 1.000000
+1 5113 1.000000
+1 5101 1.000000
+1 5103 3.000000
+1 5104 2.000000
+1 5102 3.000000
+0 0 0
+effects:
+72 3 1 1 0 0 0
+0 0 0 0 0
+aliases:
+lc l in corpse
+gc g all.coins from corpse
+ga g all from corpse
+gg get gem from corpse
+b bash
+0

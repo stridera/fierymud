@@ -1,0 +1,111 @@
+name: Philo
+password: PhsWXAgAtI
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 1
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20682
+birthtime: 1699843103
+timeplayed: 16889
+lastlogintime: 1699890059
+host: 098.168.164.224
+height: 69
+weight: 145
+base_height: 69
+base_weight: 145
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 31/31
+mana: 1/0
+move: 113/127
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 94
+wisdom: 98
+dexterity: 86
+constitution: 88
+charisma: 64
+cash: 0 5 32 276
+experience: 66891
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 96
+424 92
+438 50
+443 50
+444 50
+447 58
+451 51
+452 91
+453 50
+459 50
+460 50
+462 50
+464 50
+465 69
+0 0
+trophy:
+1 1601 8.000000
+1 1605 1.000000
+1 8020 3.000000
+1 8012 2.000000
+1 8010 8.000000
+1 8013 8.000000
+1 8015 4.000000
+1 8022 5.000000
+1 8016 4.000000
+1 8002 8.000000
+1 8001 8.000000
+1 8023 3.000000
+1 8021 5.000000
+1 8014 7.000000
+1 8000 8.000000
+1 8011 7.000000
+1 51900 1.000000
+0 0 0
+tells:
+1699851160 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1699857377 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1699857399 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1699857409 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1699857411 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1699860359 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1699847683 Discord gossips, 'Daedela: Hello!'
+1699847767 Someone gossips, 'grats'
+1699847775 Ekon gossips, 'ty'
+1699848317 Someone gossips, 'Hello Vistk'
+1699848322 Vistk gossips, 'sup'
+1699848325 Someone gossips, 'not much'
+1699848396 Alwan gossips, 'word to the wise Spectral Guards have detect invis'
+1699860065 Discord gossips, 'Daedela: Congrats!'
+1699860124 Discord gossips, 'Daedela: If you boost your Con, you may gain a little more HP at level, yes'
+1699860426 Discord gossips, 'Daedela: It's on the northwest side of Mielikki'
+$
+mem:
+32 1 6
+32 1 6
+0 0 0

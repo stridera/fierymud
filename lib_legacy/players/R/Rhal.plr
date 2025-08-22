@@ -1,0 +1,62 @@
+name: Rhal
+password: RhJqxpBQVS
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19089
+birthtime: 1467233867
+timeplayed: 599
+lastlogintime: 1467234491
+host: 066.222.029.061
+height: 45
+weight: 183
+base_height: 45
+base_weight: 183
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: xy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 22
+thirst: 20
+lastlevel: 0
+hitpoints: 29/27
+mana: 0/0
+move: 154/154
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 60
+wisdom: 75
+dexterity: 77
+constitution: 92
+charisma: 59
+experience: 1
+quit_reason: 5
+saveroom: 3007
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0

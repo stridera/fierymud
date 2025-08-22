@@ -1,0 +1,90 @@
+name: Etemiel
+password: EtjV/Sm0CK
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 1
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19625
+birthtime: 1591463876
+timeplayed: 730
+lastlogintime: 1591464606
+host: 050.083.062.172
+height: 60
+weight: 120
+base_height: 60
+base_weight: 120
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8099
+hunger: 14
+thirst: 4
+lastlevel: 0
+hitpoints: 21/21
+mana: 0/0
+move: 90/100
+damroll: 3
+hitroll: 3
+strength: 78
+intelligence: 90
+wisdom: 95
+dexterity: 77
+constitution: 66
+charisma: 57
+experience: 1
+quit_reason: 7
+saveroom: 8099
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 51
+438 50
+443 50
+444 50
+451 50
+457 50
+458 51
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+tells:
+$
+gossips:
+1591464019 Gizelle gossips, 'pro-tip: you won't find him in Mielikki.'
+1591464024 Trinigwarn gossips, 'doh!'
+1591464029 Gennaire gossips, 'I almost went merc.'
+1591464036 Gennaire gossips, 'decided I should play a stock rogue to ** first.'
+1591464043 Trinigwarn gossips, 'good to know so I wont be humping the walls forever in town'
+1591464077 Gennaire gossips, 'there is a bigger city to discover, with more inhabitants, and therefore more opportunity for sell-swords, thieves and the like.'
+1591464160 Chinok gossips, 'Etemiel west of town are bug fields.. that's a good place to get started for your first few levels'
+1591464180 Chinok gossips, 'you're born with some basic equipment, which should be good enough for now, just 'wear all' '
+1591464273 Trinigwarn gossips, 'off to play with kids... catch you all soon (and thanks for the help!)'
+1591464284 Fayris gossips, 'see you later'
+$
+effects:
+1 7 10 17 0 0 0
+0 0 0 0 0
+mem:
+1 0 9
+0 0 0

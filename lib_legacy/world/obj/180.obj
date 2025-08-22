@@ -1,0 +1,90 @@
+#18000
+scissors large gardening-scissors~
+a pair of scissors~
+A large pair of gardening scissors lies among the bushes.~
+~
+5 0 8193 1
+0 1 4 11 0 0 0
+3.00 100 0 0 0 0 0 0
+E
+scissors large gardening-scissors~
+The scissors is rather large and sharp, highly suitable to trim hedges.  In the
+hands of a skilled user, it could really cut life down to size.~
+A
+3 1
+#18001
+rose red-rose flower~
+a red rose~
+A red rose is growing here.~
+~
+8 0 16389 1
+0 0 0 0 0 0 0
+0.15 5 0 0 0 0 0 0
+E
+red-rose flower~
+The rose's scent fills your nostrils.  You get a feeling of euphoria just by
+touching the flower.~
+A
+13 5
+#18002
+large-shovel~
+a shovel~
+A large shovel is stuck in the ground.~
+~
+5 0 8193 1
+0 1 5 7 0 0 0
+5.00 10 0 0 0 0 0 0
+E
+large-shovel~
+The shovel is large and unwieldy.  It would probably be difficult to use this
+properly if you aren't strong enough.~
+A
+18 1
+#18003
+orchid wild-orchid flower~
+an orchid~
+A wild orchid grows among the bushes.~
+~
+8 0 16389 1
+0 0 0 0 0 0 0
+0.07 5 0 0 0 0 0 0
+E
+orchid wild-orchid flower~
+The scent of the orchid somehow gives you a clearer head.  You feel you can
+take on the world now.~
+A
+18 1
+#18004
+green-linen-robe crumpled-heap~
+a &2green linen&0 robe~
+A green robe lies in a crumpled heap here.~
+~
+9 64 9 1
+2 0 0 0 0 0 0
+3.00 50 0 0 0 0 0 0
+E
+green-linen-robe crumpled-heap~
+The robe is made of a fine satin-like material.  You get a strange tingling
+feeling as you run your finger along its seams.~
+A
+3 2
+A
+18 -1
+A
+27 1
+#18005
+rose white-rose flower~
+a &7&bwhite rose&0~
+Someone left a white rose here.~
+~
+8 0 16385 1
+0 0 0 0 0 0 0
+0.15 180 0 0 0 0 0 0
+E
+white-rose flower~
+A pure white flower tips the stalk, its fragrance subtle and sweet.  It brings
+to mind thoughts of romance, and lovely ladies.  Its softness reminds you of
+its fragility, and the need for it to be protected.~
+A
+6 1
+$~

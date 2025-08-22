@@ -1,0 +1,78 @@
+name: Serignuad
+password: Sei54Y2Y/2
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20406
+birthtime: 1672919772
+timeplayed: 2600
+lastlogintime: 1673501312
+host: 067.244.135.172
+height: 69
+weight: 181
+base_height: 69
+base_weight: 181
+base_size: 3
+natural_size: 3
+alignment: -1
+playerflags: xy
+effectflags: 0 0 0
+prefflags: bghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 42/40
+mana: 1/0
+move: 146/146
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 58
+wisdom: 65
+dexterity: 95
+constitution: 83
+charisma: 61
+experience: 6050
+quit_reason: 5
+saveroom: 3022
+skills:
+402 52
+404 59
+415 50
+416 50
+419 1000
+421 54
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 52
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1673470827 Chinok gossips, 'welcome Serignuad'
+1673470846 Chinok gossips, 'yell if you have any questions, or need any advice'
+1673470930 Hackwriter gossips, 'aw i was hopping for a supersuit and a really big raygun when i killed the earthworm.  i guess his name is not jim'
+1673470980 Chinok gossips, 'sometiemes you have to resize the window.. and it will fix it.  Mudlet should have a fix coming soon for the issue'
+1673471085 Hackwriter gossips, 'large number of different mobs in brushlands'
+1673471182 Hackwriter gossips, 'i have obtained many seeds'
+1673471234 Chinok gossips, 'Serignuad you're getting into an area that might be prety dangerous at level 1'
+1673471250 Chinok gossips, 'best place for lev 1's -- is west of town, in farmlands'
+1673471262 Chinok gossips, 'if you need a ride back to town, just let me know'
+1673471290 Chinok gossips, 'ok.'
+$

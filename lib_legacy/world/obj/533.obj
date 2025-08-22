@@ -1,0 +1,473 @@
+#53300
+jade-key jade key~
+the jade key~
+A small key made of jade lies here.~
+~
+18 4 1 45
+0 0 0 0 0 0 0
+0.25 20 0 0 0 0 0 0
+E
+key jade jade-key~
+This key is carved of strong, valueable green jade.~
+#53301
+large-ice-key ice key~
+the ice key~
+A large key made entirely of ice lies on the ground.~
+~
+18 4 1 45
+0 0 0 0 0 0 0
+0.15 20 0 0 0 0 0 0
+E
+ice large~
+This key appears to made of some sort of magically strengthened ice that 
+doesn't melt.~
+#53302
+translucent-key translucent key~
+the translucent key~
+A key made of a translucent material lies on the ground.~
+~
+18 4 1 45
+0 0 0 0 0 0 0
+0.10 20 0 0 0 0 0 0
+E
+key translucent translucent-key~
+It is possible to see completely through this key, though it is not made from
+plastic or ice or glass.  It could be magical.    ~
+#53303
+dragon-key white dragon key~
+the white dragon key~
+A key with the head shaped like a white dragon is here.~
+~
+18 4 1 45
+0 0 0 0 0 0 0
+0.20 20 0 0 0 0 0 0
+E
+key white dragon dragon-key~
+This large key is shaped like a dragon, its eye glowing red.    ~
+#53304
+white-metal-key white key~
+the white key~
+A large key made of a strange white metal lies here.~
+~
+18 4 1 45
+0 0 0 0 0 0 0
+0.15 20 0 0 0 0 0 0
+E
+white-metal-key white key~
+This is a flimsey bit of metal, shaped like a key to something.    ~
+#53305
+mace dragon's-fist-mace dragons-fist-mace mace-carved-dragon's-fist dragon-fist-mace~
+a dragon's fist mace~
+A mace carved to look like a dragon's fist lies here.~
+~
+5 50335808 8193 60
+0 4 4 5 0 0 0
+7.00 2000 0 0 0 0 0 0
+E
+mace dragon's-fist-mace dragons-fist-mace mace-carved-dragon's-fist dragon-fist-mace~
+This mace is made of shiny metal similar to steel only much lighter.  The
+head of the mace is ornately carved to look like a curled dragon's claw.
+The detail and workmanship are outstanding.~
+A
+18 3
+A
+19 3
+A
+27 2
+X
+224
+#53306
+staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw~
+a dragon's claw staff~
+An oaken staff with the head of dragon's claw rests here.~
+~
+4 13550152 16385 57
+60 5 5 23 0 0 0
+7.00 1900 0 0 0 0 0 0
+E
+staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw~
+This thin wooden staff is made of deep rich oak.  A cap made of silver protects
+the base of the stick.  At its head is a small dragon's claw that clutches a
+sapphire stone made of the richest blue you have ever seen.  An aura of power
+surrounds the staff.~
+A
+4 2
+A
+27 2
+X
+17
+#53307
+robes white-dragon-robes white-robe-red-dragon's-claw dragons-claw questobject~
+the white dragon robes~
+A white robe with a red dragon's claw lies crumpled here.~
+~
+9 13550144 9 55
+14 0 0 0 0 0 0
+2.70 2100 0 0 0 0 0 0
+E
+robes white-dragon-robes white-robe-red-dragon's-claw dragons-claw questobject~
+This white robe has the image of a red bleeding dragon's claw positioned over
+the left breast.  This is the symbol of the cult of Tri-Aszp.~
+A
+4 2
+A
+2 -1
+A
+27 3
+X
+19
+#53308
+dagger ice-dagger hardened-ice knife~
+an ice dagger~
+A dagger made of hardened ice lies forgotten on the floor.~
+~
+5 64 8193 50
+0 4 4 11 0 0 0
+2.10 500 0 0 0 0 0 2097152
+E
+dagger ice-dagger hardened-ice knife~
+This dagger is made of a magically hardened ice that is called ice-steel
+because it takes on the strength of steel.  Besides being composed entirely of
+ice it is a fairly unremarkable dagger.~
+A
+18 2
+A
+27 3
+X
+32
+#53309
+breastplate ice-steel-breastplate breast-plate magical-hardened-ice~
+an ice-steel breastplate~
+A breastplate made of magical, hardened ice rests here.~
+~
+9 64507976 9 55
+20 0 0 0 0 0 0
+16.00 1400 0 0 0 0 0 0
+E
+breastplate ice-steel-breastplate breast-plate magical-hardened-ice~
+This breastplate is made of a magically hardened ice called ice-steel because
+it takes on the strength of steel.  It is as light as ice and has hard as
+steel.  Embossed on the surface of the breastplate in a strange red ice is the
+symbol of the cult of Tri-Aszp: a bleeding dragon's claw.~
+A
+21 -3
+X
+1049587
+#53310
+leggings ice-steel-leggings magical-hardened-ice~
+the ice-steel leggings~
+A set of leggings made of magical, hardened ice lies here.~
+~
+9 56119368 33 55
+10 0 0 0 0 0 0
+12.00 900 0 0 0 0 0 0
+E
+leggings ice-steel-leggings magical-hardened-ice~
+These leggings are made of a magically hardened ice called ice-steel.  
+Ice-steel is as hard as steel and weights as much as ice.  On the thigh of each
+leg is an image embossed in a strange red ice.  The image is the symbol of the
+cult of Tri-Aszp: a bleeding dragon's claw~
+A
+18 1
+A
+2 2
+A
+3 2
+X
+1049587
+#53311
+white-egg egg white dragon~
+a white dragon egg~
+A large white dragon's egg lies in the snow.~
+~
+3 0 16385 60
+50 1 1 42 0 0 0
+5.50 1300 0 0 0 0 0 0
+E
+white-egg egg white dragon~
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+A
+14 50
+A
+17 1
+A
+27 2
+#53312
+axe giant-axe huge-gleaming-axe~
+a giant axe~
+A huge gleaming axe rests on the ground.~
+~
+5 22048832 32769 55
+0 9 9 3 0 0 0
+16.00 500 0 0 0 0 0 0
+E
+axe giant-axe huge-gleaming-axe~
+This giant axe is taller than a man, only someone with great strength could
+have any hope of wielding it.~
+X
+1010
+#53313
+club yeti's-club yetis-club giant-club bone dragon~
+a yeti's club~
+A giant club made from the bone of a dragon lies here.~
+~
+5 64 8193 60
+0 1 20 5 0 0 0
+12.00 150 0 0 0 0 0 0
+E
+club yeti's-club yetis-club giant-club bone dragon~
+This is a typical bone club used by yeti's of the arctic region.  It is
+fashioned from a large dragon's bone and is highly decorated with strange
+carvings.~
+A
+5 3
+#53314
+heart ice-heart gleaming-heart pure-ice~
+an ice heart~
+A gleaming heart made of pure ice lies here.~
+Nothing.~
+8 64 16385 60
+0 0 0 0 0 0 0
+0.67 2500 0 0 0 0 0 0
+E
+heart ice-heart gleaming-heart pure-ice~
+This heart is made of gleaming ice and contains the essence that helped tie the
+elemental to this plane.  It is rumored to bestow great powers to anyone who
+wear it around their neck on a chain made of gold.  However such rumors are not
+always true...~
+A
+19 2
+X
+32
+#53315
+shield dragon's-cult-shield dragons-cult-shield dragon-cult-shield image-dragon's-claw~
+a dragon's cult shield~
+A shield with the image of a dragon's claw lies here.~
+~
+9 51384320 513 70
+18 0 0 0 0 0 0
+8.00 2250 0 0 0 0 0 0
+E
+shield dragon's-cult-shield dragons-cult-shield dragon-cult-shield image-dragon's-claw~
+This white heater-shaped shield bears the symbol of the cult of Tri-Aszp on its
+front: a bleeding dragon's claw.  You notice that it is extremely well
+balanced.~
+A
+5 2
+A
+2 2
+X
+225
+#53316
+helm bone-helm jaw dragon~
+a bone helm~
+A helm made out of the jaw of a dragon rests here.~
+~
+9 50335808 17 50
+7 0 0 0 0 0 0
+4.00 90 0 0 0 0 0 0
+E
+helm bone-helm jaw dragon~
+This helm is constructed out of the jaw of dragon.  A metal skull cap is
+attached to the jaw to protect the top of the head while the jaw protects the
+side and back of the head.~
+A
+14 10
+X
+1011
+#53317
+amulet dragon's-eye-amulet dragons-eye-amulet silver-amulet-embedded-dragons-eye~
+a dragon's eye amulet~
+A silver amulet embedded with a dragon's eye lies here.~
+~
+8 576 5 53
+2 0 0 0 0 0 0
+1.50 1100 0 0 0 0 0 0
+E
+amulet dragon's-eye-amulet dragons-eye-amulet silver-amulet-embedded-dragons-eye~
+This amulet is made of pure silver and in its center is embedded the huge eye
+of a dragon.  A gold chain allows it it be worn around the neck.~
+A
+3 2
+A
+2 -1
+A
+28 100
+A
+27 3
+#53318
+gown high-priestess-gown flowing-white-gown silk~
+the high-priestess' gown~
+A flowing white gown made of silk lies forgotten here.~
+~
+9 536870913 9 55
+12 0 0 0 0 0 0
+1.30 800 0 0 0 0 0 0
+E
+gown high-priestess-gown flowing-white-gown silk~
+This gown is the ceremonial clothing traditionally worn by the high- priestess
+of the cult of Tri-Aszp.~
+A
+3 2
+A
+4 5
+A
+27 3
+#53319
+fountain slender crystal~
+Crystal Fountain~
+Ice cold water flows from a slender crystal fountain.~
+~
+23 0 0 25
+999999999 999999999 0 0 0 0 0
+1000000000.00 20 0 0 0 0 0 0
+T 2806
+E
+fountain slender crystal~
+The fountain is essentially a low circular wall that contains a small 
+pool of ice-cold water.  In the center of the pool - rising out of it -
+is a small dragon, its head raised toward the sky.  Water gently flows
+out of its open mouth.  Considering the temperature in this cavern you are
+amazed that the water has not frozen.  A plaque affixed to the base of the
+fountain reads, "Water Bringeth Life."~
+#53320
+white-egg egg white dragon~
+a white dragon egg~
+A large white dragon's egg lies in the snow.~
+~
+12 4 1 45
+0 0 0 0 0 0 0
+3.00 750 0 0 0 0 0 0
+T 53300
+E
+white-egg egg white dragon~
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+#53321
+signpost sign ice encrusted ice-encrusted~
+a signpost~
+An ice-encrusted signpost is staked into the ground here.~
+~
+13 16 0 1
+0 0 0 0 0 0 0
+99999.00 20 0 0 0 0 0 0
+E
+sign signpost ice encrusted ice-encrusted~
+This sign is jammed into the hard ground and looks to be frozen.
+It reads:
+
+   Lowly traveler, many a strong man and woman have taken to
+   exploring these tunnels, and few have returned as they entered.
+   The tunnel to the south leads to the ruthless horde known as the
+   Dragon Cult.  The tunnels west lead to a large section of land known
+   local people as Frost Valley.
+
+   From those who have lost loved ones, we wish you a safe journey,
+   and hope that you are able to avenge the deaths of those who have
+   traveled before you.~
+#53322
+case box~
+a case~
+A box is fitted into the wall of ice.~
+~
+15 0 0 25
+500 15 53304 0 0 0 0
+99999.00 20 0 0 0 0 0 0
+E
+case box~
+This case is held closed by a small lock.  There seems to be ice covering some
+of the joints, making it difficult to open.    ~
+E
+box fitted container~
+The box is made of extremely hard wood that has been weathered.  It looks much
+like a case which might be carried, except is now fixed into the wall,
+hopelessly stuck in the grip of the ice.  Inspecting the case closely reveals a
+small lock in the side of it.  There is a strange shimmer coming from the
+inside which definately comes from something else being present, but it would
+take a dragon's eye to see for certain while the case is closed.    ~
+H
+700
+#53323
+white-egg egg white dragon~
+a white dragon egg~
+A large white dragon's egg lies in the snow.~
+~
+1 0 16385 45
+0 -1 -1 0 0 0 0
+4.50 800 0 0 0 0 0 0
+E
+white egg white-egg dragon~
+As you look at the large white dragon's egg, you seem to remember something you
+heard long ago.  Something about how a dragon's egg had special powers.  Now
+what was that.    ~
+A
+2 2
+A
+18 1
+#53324
+cover shield-cover sleeve~
+a shield cover~
+The cover of a shield lies here.~
+~
+15 536870944 1 50
+40 15 53317 0 0 0 0
+1.80 170 0 0 0 0 0 0
+E
+cover sleeve cloth~
+This cover is holding a wonderful object, albeit hard to get at through the
+hard casing it is in.    ~
+H
+600
+#53325
+scale perfect-white-dragon-scale~
+a white dragon scale~
+A perfect white dragon scale lies here.~
+~
+9 0 540673 60
+10 0 0 0 0 0 0
+2.00 10000 1000 0 0 0 0 0
+E
+scale perfect-white-dragon-scale~
+About as large as a human's palm, this pure white scale comes from the tender
+shoulder area of a white dragon.  It is a beautiful scale, shining brightly in
+the light and feeling slightly cool to the touch.  Dragons are very magical
+creatures, so the scale would probably be valuable to a researching sorcerer or
+anyone else interested in unlocking the power of a dragon's skin.~
+A
+13 30
+A
+18 2
+A
+27 2
+#53326
+spell-living-ice notes~
+the spell of living ice~
+Paper covered in icy blue notes has been tacked down nearby.~
+~
+8 0 1 0
+0 0 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+notes spell-living-ice~
+Written across this finely milled sheet of paper in icy blue runes is an
+incantation to create a block of living ice.  The spell captures and focuses
+the animating energies of ice elementals into a section of the elemental's
+body.~
+#53327
+block-living-ice large~
+a block of living ice~
+A large block of ice has been left here.~
+~
+8 4 1 0
+0 0 0 0 0 0 0
+10.00 0 0 0 0 0 0 0
+E
+block-living-ice large~
+You see a perfectly square block of ice.  White veins and cracks criss cross
+through the block, giving it a marbled appearance.  It seems to absorb all heat
+and remain perfectly frozen no matter the temperature around it.  You could
+swear it squirms when you reach out to touch it!~
+$~

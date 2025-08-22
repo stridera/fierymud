@@ -1,0 +1,559 @@
+1
+vnum: 18001
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 18001
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 1100
+location: 5
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: jacket soft leather soft-leather-jacket
+shortdesc: a soft leather jacket
+desc: A soft leather jacket lies neatly folded on the ground.
+type: 9
+weight: 7.50
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: jacket soft leather
+Butter-soft light tan leather makes a jacket that buttons down the front
+with pretty bronze buttons. It has short capsleeves and a dapper collar,
+but other than that, it's quite plain.
+~
+~~
+vnum: 1103
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: cap leather leather-cap
+shortdesc: a leather cap
+desc: A leather cap lies right in the way.
+type: 9
+weight: 2.50
+cost: 150
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+extradesc: leather cap
+This is a dapper, smart-looking black leather cap, very fashionable. A
+very small bill sticks out from its front.
+~
+~~
+vnum: 1113
+location: 7
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: leggings bronze bronze-leggings
+shortdesc: bronze leggings
+desc: A pair of bronze leggings lies neatly arranged, out of the way.
+type: 9
+weight: 14.00
+cost: 1350
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: bronze leggings
+These large pieces of metal are designed to be strapped around their
+wearer's legs. They're made of good, heavy bronze, and don't have that
+many dents.
+~
+~~
+vnum: 1102
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: gloves leather leather-gloves
+shortdesc: leather gloves
+desc: A pair of leather gloves lies neatly folded out of the way.
+type: 9
+weight: 1.30
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+extradesc: gloves leather
+Beige leather makes up these soft gloves. They're made to fit just about
+anybody's hands.
+~
+~~
+vnum: 1105
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: sleeves leather leather-sleeves
+shortdesc: thick leather sleeves
+desc: A pair of leather sleeves lies curled up together on the ground.
+type: 9
+weight: 5.90
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+extradesc: sleeves leather
+Cylinders of leather form a pair of sleeves, designed to hook onto a vest
+of whatever type you please. They're made of tan leather, and are
+completely unornamented.
+~
+~~
+vnum: 1151
+location: 11
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: shield iron sturdy sturdy-iron-shield
+shortdesc: a sturdy iron shield
+desc: A small, but sturdy, iron shield has been left here.
+type: 9
+weight: 4.50
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+extradesc: sturdy iron shield
+A small disc of heavy black iron makes up this shield. Though it's heavy, 
+its size makes it easier to use. Leather straps provide handholds against
+the back of the undecorated piece of metal.
+~
+~~
+vnum: 3022
+location: 16
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnouvwyz
+name: sword long long-sword longsword
+shortdesc: a longsword
+desc: A longsword has been left here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 3.00
+cost: 240
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: sword long
+The sword is about three and a half feet in length, and the blade is
+very sharp. It's plain and undecorated, allowing its steel to speak for 
+itself.
+~
+~~
+vnum: 18001
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 3025
+location: 127
+values:
+0
+2
+4
+7
+0
+0
+0
+~
+flags: m
+name: flail large
+shortdesc: a flail
+desc: A large flail is here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 5.00
+cost: 625
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 -1
+~
+extradesc: flail large
+The flail is a nice, easy to use weapon, for people who weren't trained
+in the art of sword fighting.
+~
+~~
+vnum: 55317
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: sleeves leather flimsy
+shortdesc: flimsy leather sleeves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55310
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracelet decayed
+shortdesc: a decayed bracelet
+desc: A pile of decayed armor lies here unusable.
+type: 8
+weight: 0.21
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 18003
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 1106
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: boots leather leather-boots
+shortdesc: sturdy leather boots
+desc: A pair of leather boots stands off to the side.
+type: 9
+weight: 2.80
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: leather boots
+These work boots are made of dark brown leather. They go about calf-high,
+and though they're unornamented, the leather is finely worked and tooled
+along its edges. They have no cuffs, and a very low heel -- quite suitable
+for anybody wanting some basic protection.
+~
+~~
+vnum: 3031
+location: 127
+values:
+1
+250
+100
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 3108
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food
+shortdesc: a turkey sandwich
+desc: A fresh rye bread sandwich sits here, leaking sauces.
+type: 19
+weight: 0.70
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: fresh-rye-bread-sandwich turkey-sandwich meat sauce
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+~~
+vnum: 55309
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: bracer leather flimsy
+shortdesc: a flimsy leather bracer
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 0.64
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 20
+location: 127
+values:
+256
+248
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.17
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~

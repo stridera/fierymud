@@ -1,0 +1,7216 @@
+1
+vnum: 23
+location: 0
+values:
+0
+150
+0
+0
+0
+0
+0
+~
+flags: D
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 16907
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring diamond
+shortdesc: a diamond ring
+desc: A sparkling diamond ring catches your eye.
+type: 8
+weight: 0.20
+cost: 320
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 3
+applies:
+6 3
+~
+extradesc: ring diamond
+The diamond sparkles with a merry light, as if it were alive.
+You can't help but admire the skill of the jeweler.
+~
+~~
+vnum: 18003
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 18003
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: orchid
+shortdesc: an orchid
+desc: A wild orchid grows among the bushes.
+type: 8
+weight: 0.07
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+18 1
+~
+extradesc: orchid
+   The scent of the orchid somehow gives you a clearer head. You feel you can
+take on the world now.
+~
+~~
+vnum: 1140
+location: 5
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: breastplate breast plate steel breast steel-breast-plate
+shortdesc: a steel breast plate
+desc: A steel breast plate shines up at you from the ground.
+type: 9
+weight: 16.00
+cost: 9000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: steel breast plate
+A shiny disc of polished steel makes the main part of this piece of armor.
+Tooled across its edges with a scrolling design, everything about it, from
+the subtle decorations to the fine straps, makes it look expensive and
+highly effective. There are only a few little dents in its surface to mar
+its mirror-like perfection.
+~
+~~
+vnum: 1122
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: helm small-iron-helm
+shortdesc: an iron helm
+desc: A small iron helm has been dropped right in the way.
+type: 9
+weight: 5.00
+cost: 2250
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+extradesc: iron helm
+This simple little iron helm is made almost completely without
+ornamentation, aside from very simple tooling along its edge. 
+Leather straps hold it onto its wearer's head. It's also quite
+heavy and probably very hot!
+~
+~~
+vnum: 1126
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: leggings iron-banded-leggings set-iron-leggings
+shortdesc: iron-banded leggings
+desc: A set of iron leggings lies here unattended.
+type: 9
+weight: 15.50
+cost: 2600
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: iron leggings
+These heavy plates of iron are designed to strap around their wearer's
+legs, forming strong and durable protection. The knees feature cleverly
+worked joints, though apart from this, they're quite plain, just thick
+black iron.
+~
+~~
+vnum: 55388
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz
+name: boots trainee
+shortdesc: trainee boots
+desc: A pair of slightly magical plate boots lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 65
+applies:
+3 1
+13 5
+~
+extradesc: trainee boots
+Newly forged, these magical metal boots were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 55390
+location: 9
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnouvwxyz
+name: gauntlets trainee
+shortdesc: trainee gauntlets
+desc: A pair of slightly magical gauntlets lies here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 129
+applies:
+14 5
+13 4
+~
+extradesc: trainee gauntlets
+Newly forged, these magical metal gauntlets were made just for you.  They are a
+good little piece of equipment that will help you as you begin your adventures.
+~
+~~
+vnum: 1120
+location: 10
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: bracers pair-iron-bracers
+shortdesc: iron bracers
+desc: A pair of iron bracers lie here, beginning to rust.
+type: 9
+weight: 1.50
+cost: 900
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+extradesc: iron bracers
+These bracers, made of cold black iron, are quite heavy. They're designed
+to strap onto the forearms of their wearer by way of leather straps.
+There are only a few little dents in their surface, which is tooled along
+its edges.
+~
+~~
+vnum: 1152
+location: 11
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: shield large metal large-metal-shield
+shortdesc: a large metal shield
+desc: A large metal shield has been left here.
+type: 9
+weight: 4.50
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 513
+extradesc: large metal shield
+Beaten steel makes up the main part of this door-shaped shield. Large
+enough to protect most of its user's body, it is only lightly decorated
+along its edges with simple tooling. Three leather straps along its back
+provide a secure grip.
+~
+~~
+vnum: 1127
+location: 13
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: motu
+name: girth iron-banded-girth small-iron-girth
+shortdesc: an iron-banded girth
+desc: A small iron girth lies at your feet.
+type: 9
+weight: 2.10
+cost: 2100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+extradesc: iron girth
+This wide belt is made up of lots of slim, long pieces of heavy, cold
+black iron banded together with wire. It clasps at the front with a simple
+iron buckle. Other than the buckle's tooling, it is not decorated.
+~
+~~
+vnum: 17201
+location: 16
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: sword glowing
+shortdesc: a glowing sword
+desc: A glowing sword casts a faint light as it rests on the ground.
+type: 5
+weight: 1.75
+cost: 200
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+applies:
+18 1
+~
+extradesc: sword glowing
+You realise that this is a normal longsword which has been enchanted. It seems
+to be somewhat easier to wield.
+~
+~~
+vnum: 8033
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: green drakling scale
+shortdesc: a green drakling scale
+desc: A small green scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 10
+18 1
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 1008
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ration simple-iron-ration food
+shortdesc: an iron ration
+desc: A simple iron ration lies here.
+type: 19
+weight: 0.75
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: simple-iron-ration food
+A simple meal of stale bread, cheese, and salted meat stored within a
+package made of iron. Thus the food is protcted from water, and other
+predators.
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 1620
+location: -1
+values:
+5
+106
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potion blue
+shortdesc: a sky-blue potion
+desc: A sky-blue potion lies unused here.
+type: 10
+weight: 0.30
+cost: 100
+timer: 10
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: potion blue sky
+This potion sparkles with the color of the sky.
+~
+~~
+vnum: 1621
+location: -1
+values:
+5
+8
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potion blue
+shortdesc: a sky-blue potion
+desc: A sky-blue potion lies unused here.
+type: 10
+weight: 0.30
+cost: 100
+timer: 10
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: potion blue sky
+This potion sparkles with the color of the sky.
+~
+~~
+vnum: 1622
+location: -1
+values:
+5
+88
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potion blue
+shortdesc: a sky-blue potion
+desc: A sky-blue potion lies unused here.
+type: 10
+weight: 0.30
+cost: 100
+timer: 10
+level: 3
+effects: 0 0 0
+wear: 1
+extradesc: potion blue sky
+This potion sparkles with the color of the sky.
+~
+~~
+vnum: 3090
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 1019
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: leggings leather
+shortdesc: &3a pair of leather leggings&0
+desc: &3A pair of leather leggings lies on the ground here.&0
+type: 9
+weight: 7.30
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55576
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tourmaline gem crushed crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55584
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: sapphire gem crushed crushed-sapphire
+shortdesc: a crushed sapphire
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55575
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: chrysoberyl gem crushed crushed-chrysoberyl
+shortdesc: a crushed chrysoberyl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55571
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnet gem crushed crushed-garnet
+shortdesc: a crushed garnet
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 18001
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 18001
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 18001
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: red-rose rose red
+shortdesc: a red rose
+desc: A red rose is growing here.
+type: 8
+weight: 0.15
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16389
+applies:
+13 5
+~
+extradesc: rose red
+   The roses' scent fills your nostrils. You get a feeling of euphoria just
+by touching the flower. 
+~
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55566
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amber gem crushed crushed-amber
+shortdesc: a crushed amber
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55567
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem crushed crushed-lapis-lazuli
+shortdesc: a crushed lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55572
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55568
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: turquoise gem crushed crushed-turquoise
+shortdesc: a crushed turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+~~
+vnum: 16900
+location: 127
+values:
+15
+16
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potion brown
+shortdesc: a brown potion
+desc: A brown potion lies in the dust.
+type: 10
+weight: 1.00
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: potion brown
+A viscous brown liquid sloshed in the vial as you hold it up to the light.
+It smells rather awful and looks disgusting so its probably good for you.
+~
+~~
+vnum: 3014
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 3014
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: eclaire eclair chocolate delicious food
+shortdesc: a delicious chocolate eclaire
+desc: A delicious chocolate eclaire has been left here. It looks scrumptious!
+type: 19
+weight: 0.16
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: eclaire eclair chocolate
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+~~
+vnum: 16900
+location: 127
+values:
+15
+16
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potion brown
+shortdesc: a brown potion
+desc: A brown potion lies in the dust.
+type: 10
+weight: 1.00
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: potion brown
+A viscous brown liquid sloshed in the vial as you hold it up to the light.
+It smells rather awful and looks disgusting so its probably good for you.
+~
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: 127
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 18501
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 18501
+location: 127
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bread fresh loaf food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: bread fresh
+   The bread is well baked, and its tantalising aroma makes your mouth water.
+This loaf is a gourmet's delight.
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+200
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 15.04
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55570
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55570
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem crushed crushed-aquamarine
+shortdesc: a crushed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~

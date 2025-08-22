@@ -1,0 +1,775 @@
+#51000
+man commoner common-man~
+a common man~
+A common man walks up and down the street, staring blankly at nothing.~
+As you look at the common man you notice that he is just staring into space.
+He's not really looking at anything, just looking up really.  He looks as
+though he doesn't have a care in the world.  You try to get his attention
+but your efforts are futile, this man has obviously lost his senses.~
+2124 0 350 E
+34 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 24 0 0 2
+Str: 86
+Dex: 76
+Int: 78
+Wis: 68
+Con: 30
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#51001
+statue liquid-statue~
+a Liquid Statue~
+A statue, seemingly made out of liquid, is guarding this spot.~
+You look at this statue, and wonder what magic could have made this 
+wonderful spectacle.  Its solid looking body is very deceptive as its 
+movements are quick and precise.  A conflict with it might not be a good 
+idea.~
+6174 1024 -350 E
+32 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 0 24 17 0 2
+BareHandAttack: 12
+Str: 83
+Dex: 77
+Int: 85
+Wis: 75
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 4
+Stance: 6
+E
+T 2805
+#51002
+woman commoner common-woman~
+a common woman~
+A woman is here screaming her lungs out.~
+You see a woman who is screaming!  Her scream is very piercing, and is starting
+to hurt your ears.  You try to get her to stop but the incessant need to
+scream is controlling every fiber of her being.  What could have been so
+horrible to make someone scream so?~
+2124 0 500 E
+35 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 2 24 0 0 2
+Str: 88
+Dex: 81
+Int: 69
+Wis: 75
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#51003
+child commoner common-child~
+a common child~
+A common child is here, staring at you with both of its heads!~
+There is a small child here, staring at you with it's two heads!  You take a 
+look at this abomination of nature and wonder how such a creature could come
+to be.  The child glares at you, as though you were its next meal!~
+204 0 750 E
+31 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 0 24 0 0 2
+Str: 85
+Dex: 97
+Int: 64
+Wis: 54
+Con: 30
+Cha: 74
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 56405
+#51004
+man traveler vagrant old~
+a vagrant traveler~
+An old man wanders around town mumbling to himself.~
+This old man looks as though he has been to many far away lands. You notice 
+that he carries interesting but essentially worthless trinkets about his 
+person. The man now wanders around Nordus, just talking to himself about 
+nothing in particular.~
+2252 0 0 E
+36 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 2 0 0 2
+Str: 86
+Dex: 72
+Int: 74
+Wis: 74
+Con: 30
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#51005
+bloody mass organ pile guts parts body~
+Bloody~
+Bloody, a living pile of guts and body parts, guards his home.~
+Bloody, who once was a powerful warrior in town, is now reduced to a pile of
+intestines, kidneys, bones and other human organs and body parts.  What kind
+of horrific thing could do this to someone?  Bloody does not look as though
+he is going anywhere, and he is guarding his home from any intruders.~
+2099470 12 650 E
+39 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 3 0 0 2
+BareHandAttack: 7
+Str: 79
+Dex: 75
+Int: 74
+Wis: 81
+Con: 30
+Cha: 76
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+T 55696
+#51006
+krandor armorer man~
+Krandor~
+Krandor the armorer stands here staring into nothingness.~
+Krandor looks to be a powerful man.  His large size and muscular build makes
+you think twice about opposing him.  Right now though, he is just standing here
+looking into space, at absolutely nothing.  What has happened to him?~
+2099214 4 500 E
+41 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 3 0 0 2
+Str: 80
+Dex: 76
+Int: 80
+Wis: 72
+Con: 30
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55698
+#51007
+chef cook crazy-chef small man~
+the crazy chef~
+A small man stands here, laughing at nothing at all.~
+You look at this short man who holds a very large meat hook.
+This man just stands here laughing and laughing.  You wonder
+what is causing this immense laughing fit.  Your attempts to get his
+attention all fail and he continues to laugh aloud.  What an insane 
+little man!~
+2062 4 100 E
+43 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 24 3 0 2
+Str: 74
+Dex: 74
+Int: 77
+Wis: 87
+Con: 30
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 18522
+T 55698
+#51008
+putrid slimy beast creature~
+a small putrid beast~
+A small slimy skinned beast is here drooling profusely.~
+A small disgusting looking beast is here drooling all over the floor.  This
+creature looks as though it has been here for a while, as the puddle of saliva
+beneath it is pretty large.  It stares at you as though you are its next meal.
+Horrid thoughts of this beast encroach into your mind, and you feel compelled
+to leave this place immediately.~
+2103310 4 -500 E
+45 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 0 24 14 0 1
+BareHandAttack: 9
+Str: 92
+Dex: 77
+Int: 74
+Wis: 71
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#51009
+man fintazz weaponer fintazz middle aged~
+Fintazz the Weaponer~
+A middle-aged man is here, trying to fend off some imaginary enemies.~
+You look at the man and see that he doesn't exactly have all the necessary
+ingredients to bake a cake with.  He is trying to fend off some imaginary
+enemies, and in the process he is taking everything with him.   He looks to
+be very scared of something, almost as though he really can see a threat.
+The man spots you and you get the feeling that you could be in trouble...~
+2099214 12 -1000 E
+47 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 3 0 0 2
+Str: 77
+Dex: 71
+Int: 80
+Wis: 65
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55698
+#51010
+rana theroxa ranatheroxa man lord handsome~
+Rana Theroxa~
+Rana Theroxa, Lord of Nordus, is here banging his head against the wall.~
+You look at the Lord of Nordus and think to yourself, this man, who now bangs
+his head against the wall, once ruled this land?  What has happened to this
+once great man?  Rana Theroxa is a tall handsome man, with bulging muscles,
+a healthy build and a full head of auburn hair.  As you step closer, he stops
+and turns his attention towards you!  His face turns red with rage, and he
+peers deep into your soul, making you cringe in fear, this is a massive man!~
+2099214 1084 500 E
+50 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 3 0 0 2
+BareHandAttack: 13
+Str: 100
+Dex: 84
+Int: 56
+Wis: 69
+Con: 30
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51016
+T 51017
+T 51018
+T 51019
+T 55698
+#51011
+aranahir old man mage old-man~
+Aranahir~
+An old mage stands here, unaffected by the madness.~
+You look at this old mage and see nothing but bone.  This man is very scrawny
+and skimpy.  He looks as though a weak gust of wind could knock him over.  
+Aranahir seems to be unaffected by what is going on around you, as he is 
+walking around his shop doing miscellaneous tasks.  Overall he looks to be
+pretty normal.. You try and get his attention but he is much too busy to pay
+attention to you.  As you walk near him, he turns toward you, and you find
+that you have been mistaken!  Aranahir has no FACE!  Where his face should be
+there is nothing.  Just a void that his hood was doing well to hide.  You can
+hear strange and evil incarnations coming from the void and you realize that
+trouble is on the way, as he speaks some jargon and points at you.~
+2574 8 -500 E
+48 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 0 0 0 2
+Str: 82
+Dex: 71
+Int: 74
+Wis: 80
+Con: 30
+Cha: 79
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 1
+Composition: 0
+Stance: 6
+E
+T 55698
+#51012
+survivor crazed-survivor man~
+the Crazed Survivor~
+A crazed survivor hides here, paranoid and waiting to attack.~
+You can see that this man has been unaffected by the magic around you.
+He seems to be sane, yet extremely paranoid.  Being the only unaffected
+person by the magic that has landed like a blanket over this Village, he
+is noticeably worked up and looks as though he may attack you at any moment.~
+2062 2 -750 E
+47 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 24 0 0 2
+Str: 100
+Dex: 94
+Int: 68
+Wis: 56
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 470
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51021
+T 51022
+T 51023
+#51013
+shadow darkness magical-shadow~
+a Magical Shadow~
+You can sense a darkness moving around the room here.~
+As you look at the darkness, you notice that it is alive.  When you look 
+closer, the shadow tried to stop moving to fool you, but your keen senses
+show you the truth.  The shadow seems to be keeping its distance from you,
+almost as if it's scared of you.~
+2099272 262150 -450 E
+37 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 0 24 17 0 2
+Str: 74
+Dex: 75
+Int: 90
+Wis: 90
+Con: 30
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 7
+Stance: 6
+E
+#51014
+luchiaans powerful mage great grand~
+Luchiaans~
+Luchiaans works busily on his new formula for unlimited powers!~
+Luchiaans is dressed in a red robe that has a glowing hue.  He is of average
+build, and really doesn't look to be too much of a challenge.  Luchiaans knows
+of your presence in the room, but he ignores you, as if you are a fly on the
+wall.  BOOM!  You see a large explosion, and then a million little bugs fly
+around the room, and then disappear in mid air.  Maybe he is a little bit more
+than what he looks to be.  This whole town, after all, is in shambles, and you
+get the feeling that Luchiaans is the source.~
+2062 46 -1000 E
+55 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 0 0 0 2
+Str: 80
+Dex: 68
+Int: 80
+Wis: 89
+Con: 30
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51003
+T 51005
+T 51011
+T 51025
+T 55699
+#51015
+putrid slimy beast creature~
+a small putrid beast~
+A small slimy skinned beast is here drooling profusely.~
+A small disgusting looking beast is here drooling all over the floor.  This
+creature looks as though it has been here for a while, as the puddle of saliva
+beneath it is pretty large.  It starts at you as though you are its next meal.
+Horrid thoughts of this beast encroach into your mind, and you feel compelled
+to leave this place immediately.~
+2103310 6 -500 E
+45 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 0 24 14 0 1
+BareHandAttack: 9
+Str: 92
+Dex: 86
+Int: 70
+Wis: 76
+Con: 30
+Cha: 52
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#51016
+man commoner common-man~
+a common man~
+A common man walks up and down the street, looking at nothing in particular.~
+As you look at the common man you notice that he is just staring into space.
+He's not really looking at anything, just looking up really.  He looks as
+though he doesn't have a care in the world.  You try and get his attention
+but your efforts are futile, this man has obviously lost his senses.~
+2124 4 350 E
+35 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 24 0 0 2
+Str: 93
+Dex: 79
+Int: 60
+Wis: 82
+Con: 30
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#51017
+woman commoner common-woman~
+a common woman~
+A woman is here screaming her lungs out.~
+You see a woman who is screaming!  Her scream is very piercing, and is starting
+to hurt your ears.  You try and get her to stop but the incessant need to 
+scream is controlling every fiber of her being.  What could have been so 
+horrible to make someone scream so?~
+2124 0 500 E
+36 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 2 24 0 0 2
+Str: 81
+Dex: 77
+Int: 86
+Wis: 66
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#51018
+child common-child~
+a common child~
+A common child is here, staring at you with both of its heads!~
+There is a small child here, staring at you with its two heads!  You take a
+look at this abomination of nature and wonder how such a creature could come
+to be.  The child glares at you, as though you were its next meal!~
+204 0 750 E
+32 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 0 24 0 0 2
+Str: 84
+Dex: 86
+Int: 84
+Wis: 78
+Con: 30
+Cha: 72
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 56405
+#51019
+statue liquid liquid-statue~
+a Liquid Statue~
+A statue, seemingly made out of liquid is guarding this spot.~
+You look at this statue, and wonder what magic could have made this wonderful
+spectacle.  Its solid looking body is very deceptive as its movements are
+quick and precise.  A conflict with it might not be a good idea.~
+6158 0 -350 E
+33 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 0 24 17 0 2
+BareHandAttack: 12
+Str: 98
+Dex: 82
+Int: 60
+Wis: 73
+Con: 30
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 4
+Stance: 6
+E
+T 2805
+#51020
+man commoner common-man~
+a common man~
+A common man sits here at the bar, staring at his drink.~
+As you look at the common man you notice that he is just staring into space.
+He's not really looking at anything, just looking up really.  He looks as
+though he doesn't have a care in the world.  You try and get his attention
+but your efforts are futile, this man has obviously lost his senses.~
+2062 4 350 E
+35 20 0 0d0+0 0d0+0
+0 0 0 510
+1 1 1 24 0 0 2
+Str: 86
+Dex: 86
+Int: 74
+Wis: 74
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#51021
+statue liquid-statue~
+a Liquid Statue~
+A statue, seemingly made out of liquid, is guarding this spot.~
+You look at this statue, and wonder what magic could have made this 
+wonderful spectacle.  Its solid looking body is very deceptive as its 
+movements are quick and precise.  A conflict with it might not be a good 
+idea.~
+6158 0 -350 E
+32 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 0 24 17 0 2
+BareHandAttack: 12
+Str: 89
+Dex: 78
+Int: 72
+Wis: 66
+Con: 30
+Cha: 64
+AFF2: 67108864
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 4
+Stance: 6
+E
+T 2805
+#51022
+shadow darkness magical-shadow~
+a Magical Shadow~
+You can sense a darkness moving around the room here.~
+As you look at the darkness, you notice that it is alive.  When you look 
+closer, the shadow tried to stop moving to fool you, but your keen senses
+show you the truth.  The shadow seems to be keeping its distance from you,
+almost as if it's scared of you.~
+2120 262150 -450 E
+37 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 0 24 17 0 2
+BareHandAttack: 12
+Str: 77
+Dex: 78
+Int: 99
+Wis: 93
+Con: 30
+Cha: 50
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 7
+Stance: 6
+E
+#51023
+child common-child~
+a common child~
+A common child is here, staring at you with both of its heads!~
+There is a small child here, staring at you with it's two heads!  You take a 
+look at this abomination of nature and wonder how such a creature could come
+to be.  The child glares at you, as though you were its next meal!~
+206 0 750 E
+31 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 0 24 0 0 2
+Str: 81
+Dex: 96
+Int: 70
+Wis: 66
+Con: 30
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51026
+T 51027
+T 56405
+#51024
+demon astral astral-demon~
+an Astral Demon~
+A large demon is here phasing in and out of reality.~
+As you look at the demon you notice that it lacks a state of being.
+It looks as though it has been ripped from its reality and is trying to
+get back.  The demon slowly phases in and out of this and another reality.
+It looks as though it will do anything to get back...Anything.~
+57388 83886080 -1000 E
+30 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 24 19 1 5
+BareHandAttack: 12
+Str: 79
+Dex: 72
+Int: 80
+Wis: 87
+Con: 30
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 4
+Composition: 0
+Stance: 6
+E
+#51025
+priest spirit guardian~
+the guardian~
+A spirit priest stands before you.~
+This priest was honoured by being made the guardian of the book of healing and
+he does not intend to let anyone make a fool of him.    ~
+256026 1048616 0 E
+45 20 0 0d0+0 0d0+0
+0 0 0 510
+3 3 1 1 0 0 2
+Str: 75
+Dex: 84
+Int: 90
+Wis: 85
+Con: 64
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#51026
+phoenix bird~
+the phoenix~
+A beautiful multicoloured bird hovers here watching you.~
+   All the colours of the rainbow shimmer across the plumage of this fantastic
+creature, filling the room with reflections.  The bird seems aware of your
+purpose here and is watching you closely as it hovers.    ~
+256026 60 0 E
+30 20 -5 0d0+0 0d0+0
+0 0 0 510
+4 4 1 24 14 0 1
+BareHandAttack: 4
+Str: 73
+Dex: 78
+Int: 77
+Wis: 74
+Con: 82
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51013
+$

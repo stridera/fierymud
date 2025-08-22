@@ -1,0 +1,86 @@
+name: Fyrschild
+password: FywatYD4Lf
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19331
+birthtime: 1518935625
+timeplayed: 2991
+lastlogintime: 1520061936
+host: 096.022.150.089
+height: 74
+weight: 216
+base_height: 74
+base_weight: 216
+base_size: 3
+natural_size: 3
+alignment: 8
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 106/94
+mana: 1/0
+move: 172/172
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 57
+wisdom: 59
+dexterity: 98
+constitution: 98
+charisma: 50
+cash: 3 91 400 408
+experience: 90750
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 51
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18512 1.000000
+1 18517 1.000000
+1 18511 1.500000
+1 18507 2.000000
+1 18509 0.500000
+1 18510 0.500000
+1 13605 0.500000
+1 13606 0.500000
+1 13616 0.500000
+1 13615 1.500000
+1 13604 2.500000
+1 13611 1.500000
+1 13602 2.000000
+1 13601 2.000000
+1 13603 1.000000
+1 13610 2.000000
+1 11750 0.500000
+1 18004 1.000000
+1 18003 1.500000
+1 18006 0.500000
+1 18000 2.500000
+0 0 0

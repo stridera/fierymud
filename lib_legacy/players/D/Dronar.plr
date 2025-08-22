@@ -1,0 +1,90 @@
+name: Dronar
+password: DrsBFJRf9k
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 8
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18507
+birthtime: 1368301962
+timeplayed: 12934
+lastlogintime: 1396642557
+host: 108.233.084.083
+height: 73
+weight: 101
+base_height: 73
+base_weight: 101
+base_size: 2
+natural_size: 2
+alignment: 951
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 5
+thirst: 14
+lastlevel: 0
+hitpoints: 112/112
+mana: 1/0
+move: 97/124
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 58
+wisdom: 70
+dexterity: 92
+constitution: 92
+charisma: 56
+cash: 0 83 710 148
+experience: 169400
+quit_reason: 1
+saveroom: 3054
+skills:
+402 112
+404 120
+415 50
+416 50
+421 120
+438 50
+443 50
+444 50
+463 50
+464 50
+465 92
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 17204 1.000000
+1 61508 1.000000
+1 3505 2.000000
+1 3506 2.000000
+1 3508 4.000000
+1 61519 1.000000
+1 61526 1.000000
+1 61504 1.000000
+1 61500 2.000000
+1 61501 1.000000
+1 61525 1.000000
+1 3500 2.000000
+1 3509 4.000000
+1 8001 1.000000
+1 36003 2.000000
+1 36002 5.000000
+1 36001 6.000000
+1 8000 1.000000
+1 8002 2.000000
+1 1602 3.000000
+1 1601 4.000000
+0 0 0
+aliases:
+gc get all corpse
+ka kill apprentice
+0

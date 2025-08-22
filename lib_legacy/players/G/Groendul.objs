@@ -1,0 +1,2035 @@
+1
+vnum: 4003
+location: 0
+values:
+1
+0
+-1
+0
+0
+0
+0
+~
+flags: agjnpqrtuvzD
+name: chaos orb sphere ball
+shortdesc: a &1Chaos&b&0 orb
+desc: A sphere of pure shade glistens in the light.
+adesc:
+The orb glows deeply within, then burst into blackened flames!
+~
+type: 1
+weight: 2.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+applies:
+2 2
+4 -2
+9 5
+~
+extradesc: orb sphere chaos ball
+A sphere of pure unlaced darkness.  The casing around it appears to be clear,
+letting the the view inside be known.  Black clouds seem to be moving within
+the orb, lighting threads around violently.  It is its own world of chaos.    
+~
+~~
+vnum: 49011
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: goprt
+name: ring jade stone precious jade-ring
+shortdesc: a jade ring
+desc: A ring of precious stone lies at your feet.
+type: 8
+weight: 0.02
+cost: 5000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+24 -10
+2 2
+~
+extradesc: jade ring
+It's a jade ring that once must have adorned the hand of a very special
+woman.~
+triggers:
+16347
+~
+~~
+vnum: 20032
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ab
+name: ring emerald brilliant
+shortdesc: a brilliant emerald ring
+desc: A small green colored ring is shining brilliantly on the ground here.
+type: 11
+weight: 0.02
+cost: 1300
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 2
+4 1
+3 1
+~
+extradesc: ring emerald
+This ring is made of solid gold with a large emerald set in the middle.  The
+jem is so bright it almost blinds you to look at it.  The dark monks could
+never afford a ring like this, they must have swiped it from a local jewelry
+store.  As you look inside the ring you see a small inscription that probably
+tells you who owned it.    
+~
+extradesc: inscription
+   PROPERTY OF: Elspeth the Jeweler
+~
+~~
+vnum: 23708
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agopuwx
+name: pendant necklace shining
+shortdesc: a shining pendant
+desc: A shining necklace lies in the dirt.
+type: 1
+weight: 1.00
+cost: 1000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 5
+applies:
+3 2
+17 1
+5 1
+~
+extradesc: shining pendant necklace
+It looks as if someone caught a ball of pure light and set it on a fine chain.
+The form of the ball is constantly changing as it sparkles in different
+directions.    
+~
+~~
+vnum: 58005
+location: 4
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gop
+name: necklace jade striking
+shortdesc: a striking jade necklace
+desc: A striking jade necklace has been left here.
+type: 9
+weight: 0.60
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+~
+extradesc: striking jade necklace
+The necklace is made of several very large, flawless panels of jade. You
+run your fingers over the smooth stone and can feel supernatural power
+contained inside this rare piece of art.~
+~~
+vnum: 20008
+location: 5
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: outfit black thief's
+shortdesc: a black thief's outfit
+desc: A outfit made of black cloth had been disguarded here.
+type: 9
+weight: 1.30
+cost: 2000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 9
+applies:
+19 1
+13 5
+~
+extradesc: outfit black
+This outfit is very simply made.  It looks like a bed sheet with holes cut for
+arms to go into.  The material it is made of is jet black and would be very
+hard to spot in darkness.    
+~
+~~
+vnum: 55552
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: ghnopqrstuvwxyz
+name: magic skullcap seer
+shortdesc: &3&bSkullcap of the Seer&0
+desc: A powerful magic skullcap lies on the ground, waiting for its owner to return.
+type: 9
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+applies:
+1 3
+2 3
+~
+extradesc: magic skullcap seer
+Being in the presence of something like this is enough to know that deep arcane
+powers have been placed in this skullcap.  Made from simple cloth and studded
+with small aquamarines, it is not only very beautiful, it is capable of
+handling some of the most powerful enchantments.  This one is dedicated to
+seeing and clarity of vision.
+~
+~~
+vnum: 16316
+location: 7
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: philabeg leggings cloth kilt
+shortdesc: a philabeg
+desc: A pile of cloth lies in heap.
+type: 9
+weight: 1.00
+cost: 100
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 33
+applies:
+2 1
+4 -1
+~
+extradesc: philabeg cloth leggings
+   The pile of cloth seems to bear the markings of one of the highlander clans
+residing in the area. This could be one of their philabegs or kilts they use
+to identify their loyalties.
+~
+~~
+vnum: 5204
+location: 8
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gj
+name: boots red red-boots shiny
+shortdesc: shiny red boots
+desc: There are a pair of red boots on the ground here.
+type: 9
+weight: 4.00
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 65
+applies:
+14 25
+~
+extradesc: boots red red-boots
+The red boots are made of an odd material you're not familiar with.
+Nevertheless, they hold a high shine and look to be both warm and
+very comfortable.
+~
+~~
+vnum: 55404
+location: 9
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: noprstuvwx
+name: gloves apprentice
+shortdesc: apprentice gloves
+desc: A pair of leather gloves hums slightly with magical power.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 129
+applies:
+14 10
+13 2
+~
+extradesc: apprentice gloves
+Newly sewn, these magical cloth gloves were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!
+~
+~~
+vnum: 55399
+location: 10
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: noprstuvwx
+name: sleeves apprentice
+shortdesc: apprentice sleeves
+desc: A set of cloth sleeves emitting slight magical power have been left here.
+type: 9
+weight: 1.90
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 257
+applies:
+2 1
+13 3
+~
+extradesc: apprentice sleeves
+Newly sewn, these magical cloth sleeves were made just for you.  Proof of your
+beginning training, they will protect you as you adventure!
+~
+~~
+vnum: 2313
+location: 12
+values:
+85
+1
+-1
+0
+0
+0
+0
+~
+flags: D
+name: pack travelling-pack leather
+shortdesc: a leather traveling pack
+desc: A leather traveling pack sits here.
+adesc:
+Nothing.
+~
+type: 15
+weight: 2.50
+cost: 200
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 17409
+extradesc: pack travelling-pack leather
+Looking quite a bit larger than the average belt pouch, this travelling pack
+has straps so that it can be worn like a backpack as well as handles to that it
+can be held.  Made of fine tanned leather, it looks quite sturdy and should
+alst a long time in the hands of a careful owner.    
+~
+~~
+vnum: 20032
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ab
+name: ring emerald brilliant
+shortdesc: a brilliant emerald ring
+desc: A small green colored ring is shining brilliantly on the ground here.
+type: 11
+weight: 0.02
+cost: 1300
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 2
+4 1
+3 1
+~
+extradesc: ring emerald
+This ring is made of solid gold with a large emerald set in the middle.  The
+jem is so bright it almost blinds you to look at it.  The dark monks could
+never afford a ring like this, they must have swiped it from a local jewelry
+store.  As you look inside the ring you see a small inscription that probably
+tells you who owned it.    
+~
+extradesc: inscription
+   PROPERTY OF: Elspeth the Jeweler
+~
+~~
+vnum: 16032
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring shadow small circlet dark metal
+shortdesc: a shadow ring
+desc: A small circlet of dark metal lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 14
+effects: 0 0 0
+wear: 3
+applies:
+5 -5
+6 3
+3 6
+~
+extradesc: ring shadow small circlet dark metal
+This is a simple little ring, it is black with flecks of grey shimmering in and
+out of being.  For the most part, the ring does not exist in any coporeal form,
+but tends to wander back and forth to its ethereal state.    
+~
+~~
+vnum: 16032
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring shadow small circlet dark metal
+shortdesc: a shadow ring
+desc: A small circlet of dark metal lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 14
+effects: 0 0 0
+wear: 3
+applies:
+5 -5
+6 3
+3 6
+~
+extradesc: ring shadow small circlet dark metal
+This is a simple little ring, it is black with flecks of grey shimmering in and
+out of being.  For the most part, the ring does not exist in any coporeal form,
+but tends to wander back and forth to its ethereal state.    
+~
+~~
+vnum: 16032
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring shadow small circlet dark metal
+shortdesc: a shadow ring
+desc: A small circlet of dark metal lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 14
+effects: 0 0 0
+wear: 3
+applies:
+5 -5
+6 3
+3 6
+~
+extradesc: ring shadow small circlet dark metal
+This is a simple little ring, it is black with flecks of grey shimmering in and
+out of being.  For the most part, the ring does not exist in any coporeal form,
+but tends to wander back and forth to its ethereal state.    
+~
+~~
+vnum: 16032
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring shadow small circlet dark metal
+shortdesc: a shadow ring
+desc: A small circlet of dark metal lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 14
+effects: 0 0 0
+wear: 3
+applies:
+5 -5
+6 3
+3 6
+~
+extradesc: ring shadow small circlet dark metal
+This is a simple little ring, it is black with flecks of grey shimmering in and
+out of being.  For the most part, the ring does not exist in any coporeal form,
+but tends to wander back and forth to its ethereal state.    
+~
+~~
+vnum: 23805
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: greyish stone ring hematite hematite-ring
+shortdesc: a hematite ring
+desc: A greyish stone ring shines brightly here.
+type: 11
+weight: 0.02
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+13 10
+1 3
+5 -3
+~
+extradesc: greyish stone ring hematite hematite-ring
+Though it looks like metal, this ring is actually made out of the lustrous
+stone hematite.  It is slightly more brittle than a metal ring and very cool to
+the touch.  It looks like it would fit a slender finger better than a thick one
+- it would be a shame to have such a nice ring shatter.    
+~
+~~
+vnum: 12538
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 11
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    
+~
+~~
+vnum: 36104
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag
+name: coral ring coral-ring
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lays on the ground.
+type: 9
+weight: 0.30
+cost: 200
+timer: 0
+level: 13
+effects: 0 0 0
+wear: 3
+applies:
+3 1
+24 -5
+~
+extradesc: coral ring coral-ring
+The coral ring seems totally flawless. It is made of the finest coral
+you have ever seen, and fades from a light pink on one side to white
+on the other. It is smoothed completely and coated with a clear substance
+so that it is not the least bit abrasive.~
+~~
+vnum: 36104
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag
+name: coral ring coral-ring
+shortdesc: a coral ring
+desc: A barely visible circle of smooth coral lays on the ground.
+type: 9
+weight: 0.30
+cost: 200
+timer: 0
+level: 13
+effects: 0 0 0
+wear: 3
+applies:
+3 1
+24 -5
+~
+extradesc: coral ring coral-ring
+The coral ring seems totally flawless. It is made of the finest coral
+you have ever seen, and fades from a light pink on one side to white
+on the other. It is smoothed completely and coated with a clear substance
+so that it is not the least bit abrasive.~
+~~
+vnum: 17204
+location: 13
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: cord golden
+shortdesc: the golden cord
+desc: A golden cord lies on the ground.
+type: 9
+weight: 0.50
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+applies:
+3 1
+13 -1
+~
+extradesc: cord golden
+You look upon a length of cord made of finely spun gold threads. It seems to
+emanate a strange aura.
+~
+~~
+vnum: 55002
+location: 14
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: jade-bracelet bracelet jade ring solid
+shortdesc: a jade bracelet
+desc: A large ring of solid jade lies here.
+type: 9
+weight: 1.00
+cost: 1700
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 4097
+applies:
+1 1
+13 -10
+~
+extradesc: jade-bracelet bracelet jade ring solid
+This is a large ring carved from a solid piece of jade.  It looks as though it
+is made up of many symbols that resemble squared cerimonial masks.  
+~
+~~
+vnum: 41106
+location: 15
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: an
+name: phantasmal bracelet phantasmal-bracelet vaporous circle vaporous-circle light circle-of-light
+shortdesc: a vaporous phantasmal bracelet
+desc: A vaporous circle of light is floating here.
+type: 12
+weight: 0.10
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 20481
+applies:
+4 1
+~
+extradesc: phantasmal-bracelet phantasmal bracelet vaporous circle vaporous-circle light circle-of-light
+A vaporous circle of white mist hangs in the air, held together by some
+invisible force. No visible boundaries define it for your eyes. It is
+quite simply.. THERE... contained...
+~
+~~
+vnum: 5104
+location: 16
+values:
+0
+1
+3
+11
+0
+0
+0
+~
+flags: ghnu
+name: dagger stone stone-dagger
+shortdesc: a stone dagger
+desc: A stone dagger has been abandoned here.
+type: 5
+weight: 2.00
+cost: 80
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+applies:
+19 1
+~
+~~
+vnum: 51006
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag
+name: eyes balls ice-eyes
+shortdesc: a pair of Ice Eyes
+desc: Two balls of ice lie here, casting a magical glow of light all around.
+type: 1
+weight: 1.03
+cost: 500
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 65537
+applies:
+18 2
+14 20
+~
+extradesc: ice eyes magical pair two
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.
+~
+~~
+vnum: 17809
+location: 22
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: mask knowledge mask-self-knowledge
+shortdesc: the mask of self-knowledge
+desc: A clear mask is lying on the ground.
+type: 11
+weight: 0.50
+cost: 150
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 131073
+applies:
+3 2
+6 2
+~
+extradesc: mask
+The mask shimmers slightly as you hold it up and you see yourself
+reflected. There seems to be a subtle difference between what you
+see and how you remember yourself to appear to others. Perhaps this
+is the real you.
+~
+~~
+vnum: 498
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: brooch fiery a
+shortdesc: &3a&0 &1&bfiery&0 &3brooch&0
+desc: &1&bA small metal brooch surrounded by fire is floating just above the ground here.&0
+type: 11
+weight: 0.21
+cost: 1700
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 524289
+applies:
+17 3
+19 2
+~
+extradesc: brooch fiery
+This brooch is made of a mysterious white metal.  The very strange thing about
+it is that it is on fire but it is not consumed or melted.  The dark monks must
+have taken it from a powerful pyromancer at one time and have stored it ever
+since.    
+~
+~~
+vnum: 49019
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bfgprt
+name: bracelet quicksilver
+shortdesc: a quicksilver bracelet
+desc: There's a quicksilver bracelet on the ground, continually changing its shape.
+type: 8
+weight: 1.20
+cost: 6000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 4097
+applies:
+26 3
+24 -3
+~
+extradesc: bracelet quicksilver
+Continually changing its shape, it gives the impression of being alive!~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 1154
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: quill feather feather-quill pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: feather quill
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)
+~
+~~
+vnum: 12520
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: spellbook silver leather book
+shortdesc: a silver-trimmed leather spellbook
+desc: A silver-trimmed leather spellbook lies open, face down.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+applies:
+3 4
+1 -2
+~
+extradesc: spellbook silver leather book
+The leather is pale grey, very supple, and thin.  The silver trim is painted on
+in long, quick strokes.  No symbols or drawings adorn the spine or cover; only
+faint wrinkles criscross the leather.
+~
+~~
+vnum: 55631
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem enchanted enchanted-amethyst
+shortdesc: an enchanted amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55631
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem enchanted enchanted-amethyst
+shortdesc: an enchanted amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 55631
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: amethyst gem enchanted enchanted-amethyst
+shortdesc: an enchanted amethyst
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 51019
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: book codes slender-volume
+shortdesc: a book about codes
+desc: A slender volume entitled 'Ciphers and Magic for the Novice' lies here.
+type: 12
+weight: 0.50
+cost: 200
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 1
+extradesc: book codes slender-volume
+Some of the pages seem to be marked, in particular page16 and page37
+which talk about future directions for more powerful spellcasters and
+how to encode a simple cipher respectively.
+
+The preface briefly states how essential it is for a spellcaster to
+protect his spells against accidental or deliberate theft, by encoding
+them.
+~
+extradesc: page16
+A passage has been circled on this page, it reads:
+    ...so in order to ensure that the magic user has a copious supply of
+willing subjects for his experiments, he must first ingratiate himself with
+his chosen town by generous acts. An intelligent mage will try and get
+himself accepted into the council, and perhaps even move for a law which can
+be used to aid him. This could state that all mad people be locked up, or
+all criminals be killed. We all know how easy it is to turn a mind to madness
+and the mage may then take these subjects 'under his protection' and
+experiment on them without worry, as the populace soon forget what has
+happened to them...
+
+There is also a note in the margin which seems to be a calculation of some
+sort and a reference to page23.
+~
+extradesc: page23
+Ack, its a recipe for unlimited power, but it involves several unsavoury
+ingredients including human organs. A passage has been circled on this page
+too, and it reads:
+    ...obviously in order to get this many human hearts is impossible
+which is why this spell still remains theoretical, although if one were
+to perfect some sort of cloning technique, coupled with a spell for creation
+of a human, then it might be possible to create a human with many vestigial
+organs which would presumably still be valid for the recipe...
+
+Your skin crawls as you continue to read, anyone who really thought this
+sort of stuff would work would have to be mad right?
+~
+extradesc: page37
+There are some simple ciphers on the page here, and some notes in the margin
+which look like the would have continued onto page 38, only that page has
+been torn out of the book! You read the notes anyway and puzzle over the
+missing data:
+    ...and as has been known through history the simplest cipher is a
+substitution whereby one letter is substituted for another (for example
+the next letter in the alphabet) and the message is rewritten. The decoder
+knows that the letters are shifted by a certain number of positions and
+can easily decode the message. This is known as a monoalphabetic cipher. A
+more complex 'polyalphabetic' cipher such as the Vigenere cipher may also
+be used. The illustration on the next page shows this in action, but basically
+the implementation is as follows:
+     1) the keyword is chosen and repeatedly written below the phrase to be encoded
+     2) the combination of keyword letter and phrase letter are used to index  the Vigenere tableau
+     3) the indexed letters form the encoded phrase
+And the decryption works in reverse, going down the column indexed by the
+keyword letter to the encoded letter, and determining which letter heads that
+row. Obviously a keyword of all 'a' would not encrypt at all.
+The page ends here!
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+52 8
+57 7
+68 8
+29 7
+112 9
+19 8
+66 10
+107 9
+186 2
+100 2
+62 6
+2 5
+~
+~~
+vnum: 53311
+location: 127
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+14 50
+17 1
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...
+~
+~~
+vnum: 2327
+location: 127
+values:
+0
+0
+3
+0
+0
+0
+0
+~
+flags: 0
+name: lightstone elf elven elven-lightstone light stone
+shortdesc: an elven lightstone
+desc: An elven lightstone glares brightly here.
+type: 1
+weight: 0.30
+cost: 3000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+applies:
+24 -3
+~
+extradesc: lightstone elf elven elven-lightstone light stone
+Made of glittery opaque white stone dotted with flecks of gold,
+this stone can be made to glow with a mere thought.
+~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+52 6
+57 5
+68 6
+29 5
+112 7
+19 6
+66 8
+107 7
+186 2
+100 2
+62 5
+2 4
+111 8
+185 9
+99 4
+~
+~~
+vnum: 5108
+location: 127
+values:
+20
+6
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water jug stone stone-jug
+shortdesc: a stone jug
+desc: A stone jug is lying on the floor here.
+type: 17
+weight: 2.39
+cost: 25
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: jug stone stone-jug
+It's a alrge, heavy jug made of grey stone.  Sloshing sounds inside indicate
+some kind of liquid.
+~
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 3058
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 30010
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gq
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: 0
+name: scroll blue remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: 0
+name: scroll blue remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: 0
+name: scroll blue remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 30010
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gq
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 30010
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gq
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 30010
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gq
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3057
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 17210
+location: -1
+values:
+15
+18
+20
+14
+0
+0
+0
+~
+flags: g
+name: scroll yellowed
+shortdesc: a yellowed scroll
+desc: A scroll lies here.
+type: 2
+weight: 1.00
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+extradesc: scroll yellowed
+This scroll seems to be very old. The parchment has already been yellowed
+with age.
+~
+~~
+vnum: 6207
+location: -1
+values:
+30
+75
+0
+0
+0
+0
+0
+~
+flags: 0
+name: scroll runes runed
+shortdesc: a runed scroll
+desc: A runed scroll lies here, rolled up.
+type: 2
+weight: 0.23
+cost: 1200
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+extradesc: scroll runed
+It is written with many languages and scripts, but each one tugs at the
+reader with almost insistent familiarity....
+~
+~~
+vnum: 3056
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 3056
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 5108
+location: 127
+values:
+20
+4
+0
+0
+0
+0
+0
+~
+flags: 0
+name: water jug stone stone-jug
+shortdesc: a stone jug
+desc: A stone jug is lying on the floor here.
+type: 17
+weight: 2.26
+cost: 25
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: jug stone stone-jug
+It's a alrge, heavy jug made of grey stone.  Sloshing sounds inside indicate
+some kind of liquid.
+~
+~~

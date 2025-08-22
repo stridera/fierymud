@@ -1,0 +1,1587 @@
+1
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0
+wear: 1064961
+~~
+vnum: 19
+location: 127
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: rations ration iron food
+shortdesc: some iron rations
+desc: Some iron rations have been set here.
+type: 19
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0
+wear: 16385
+extradesc: iron rations
+These lightweight rations aren't the best-tasting, but they are the traveler's
+best food for long trips -- they never spoil, and fill the stomach for many
+hours.  There is dried meat of unknown origin here, mixed with nuts.  The whole
+mess is glued together into a bar by means of some waxy, fatty substance.    
+~
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 18.69
+cost: 10
+timer: 0
+level: 1
+effects: 0 0
+wear: 16385
+~~
+vnum: 23
+location: 127
+values:
+0
+150
+150
+0
+0
+0
+0
+~
+flags: D
+name: torch wooden
+shortdesc: a wooden torch
+desc: &3A wooden torch lies on the ground here.&0
+type: 1
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0
+wear: 16385
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0
+wear: 1
+extradesc: map mielikki map-of-mielikki
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+~~
+vnum: 1019
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: leggings leather
+shortdesc: &3a pair of leather leggings&0
+desc: &3A pair of leather leggings lies on the ground here.&0
+type: 9
+weight: 7.30
+cost: 1
+timer: 0
+level: 1
+effects: 0 0
+wear: 33
+~~
+vnum: 1022
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: myz
+name: sleeves leather
+shortdesc: &3a pair of leather sleeves&0
+desc: &3A pair of leather sleeves lies on the ground here.&0
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 1
+effects: 0 0
+wear: 257
+~~
+vnum: 1014
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mnouwyz
+name: helmet steel
+shortdesc: a steel-studded helmet
+desc: A steel-studded helmet lies on the ground.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0
+wear: 17
+~~
+vnum: 1026
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mouwyz
+name: boots steel steel-toed-boots
+shortdesc: steel-toed boots
+desc: &7A pair of steel boots lies on the ground here.&0
+type: 9
+weight: 5.10
+cost: 10
+timer: 0
+level: 1
+effects: 0 0
+wear: 65
+~~
+vnum: 3022
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnovwyz
+name: longsword sword steel
+shortdesc: a steel longsword
+desc: A steel-bladed longsword lies on the ground, sheathed.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0
+wear: 8193
+extradesc: longsword sword long steel
+It is a plain steel longsword, with a fairly sharp blade and a
+leather-wrapped hilt. Short bronze crossguards keep the hand a
+little safe.
+~
+~~
+vnum: 2001
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: meat boar boar-meat food
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0
+wear: 1
+extradesc: meat boar raw
+It's raw meat.
+~
+~~
+vnum: 58804
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mowyzE
+name: snowshoes snowshoe shoes snow
+shortdesc: a pair of snowshoes
+desc: A pair of long wooden snowshoes rest on the ground here.
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0
+wear: 65
+applies:
+14 15
+~
+extradesc: snowshoes snowshoe shoes snow
+The long wooden oval frames support your feet on interlaced thongs, and 
+strap on by way of leather buckles. They don't look very impressive, but 
+they sure do look effective in helping you traverse the killingly cold 
+snow of the arctic fields -- and they might protect you a little bit too. 
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0
+wear: 1064961
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0
+wear: 16385
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+~~
+vnum: 32401
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: brooch emerald-brooch
+shortdesc: an &2emerald &0brooch
+desc: An emerald brooch lies here, glinting.
+type: 11
+weight: 0.40
+cost: 3000
+timer: 0
+level: 20
+effects: 0 0
+wear: 540673
+applies:
+14 25
+3 2
+~
+extradesc: brooch emerald
+This brooch is large, with an inch-long emerald set in a gold cabuchon
+setting. Its pin is very secure.
+~
+~~
+vnum: 32401
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: brooch emerald-brooch
+shortdesc: an &2emerald &0brooch
+desc: An emerald brooch lies here, glinting.
+type: 11
+weight: 0.40
+cost: 3000
+timer: 0
+level: 20
+effects: 0 0
+wear: 540673
+applies:
+14 25
+3 2
+~
+extradesc: brooch emerald
+This brooch is large, with an inch-long emerald set in a gold cabuchon
+setting. Its pin is very secure.
+~
+~~
+vnum: 55720
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnets gem handful handful-garnets garnet
+shortdesc: a handful of garnets
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 17000
+timer: 0
+level: 0
+effects: 0 0
+wear: 1
+~~
+vnum: 55720
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnets gem handful handful-garnets garnet
+shortdesc: a handful of garnets
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 17000
+timer: 0
+level: 0
+effects: 0 0
+wear: 1
+~~
+vnum: 55720
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: garnets gem handful handful-garnets garnet
+shortdesc: a handful of garnets
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 17000
+timer: 0
+level: 0
+effects: 0 0
+wear: 1
+~~
+vnum: 55676
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem plain plain-jade
+shortdesc: a jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 6000
+timer: 0
+level: 0
+effects: 0 0
+wear: 1
+~~
+vnum: 55676
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem plain plain-jade
+shortdesc: a jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 6000
+timer: 0
+level: 0
+effects: 0 0
+wear: 1
+~~
+vnum: 55676
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: jade gem plain plain-jade
+shortdesc: a jade
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 6000
+timer: 0
+level: 0
+effects: 0 0
+wear: 1
+~~
+vnum: 55731
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: opal gem perfect perfect-opal
+shortdesc: a perfect opal
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 30000
+timer: 0
+level: 0
+effects: 0 0
+wear: 1
+~~
+vnum: 55698
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem plain plain-citrine
+shortdesc: a citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 8000
+timer: 0
+level: 0
+effects: 0 0
+wear: 1
+~~
+vnum: 55698
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: citrine gem plain plain-citrine
+shortdesc: a citrine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 8000
+timer: 0
+level: 0
+effects: 0 0
+wear: 1
+~~
+vnum: 55705
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: aquamarine gem cursed cursed-aquamarine
+shortdesc: a cursed aquamarine
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 16000
+timer: 0
+level: 0
+effects: 0 0
+wear: 1
+~~
+vnum: 55639
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: lapis-lazuli gem enchanted enchanted-lapis-lazuli
+shortdesc: an enchanted lapis-lazuli
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 5000
+timer: 0
+level: 0
+effects: 0 0
+wear: 1
+~~
+vnum: 55497
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqstuvwxyz
+name: brilliant platinum vambraces templar
+shortdesc: &4&bVambraces of the Templar&0
+desc: Brilliant platinum vambraces belonging to a powerful paladin are on display here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0
+wear: 257
+applies:
+1 2
+4 2
+~
+extradesc: brilliant platinum vambraces templar
+A single long oval attached to a circular elbow pad makes up each vambrace.  
+On the surface of each vambrace is a pictograph detailing a significant moment
+in the owner's life, refining the templar's connection to their deity.  Hound
+archon hide, given freely, allows the wearer to fasten these plates in place.
+~
+~~
+vnum: 55501
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqstuvwxyz
+name: platinum bracer templar
+shortdesc: &4&bBracer of the Templar&0
+desc: A platinum bracer etched with a holy warrior's symbol rests on the ground.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0
+wear: 4097
+applies:
+13 20
+1 2
+~
+extradesc: platinum bracer templar
+Large enough to cover from the wrist to beyond the elbow, this large bracer is
+both stylish and effective.  It covers almost the entire girth of an arm, with
+the small exposed section being mostly protected by hinges and buckles to hold
+the bracer securely in place.  The holy symbol of the original owner's order is
+shown in detailed relief on the face of the bracer.  The original owner's name
+is also etched on the inside.
+~
+~~
+vnum: 55501
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqstuvwxyz
+name: platinum bracer templar
+shortdesc: &4&bBracer of the Templar&0
+desc: A platinum bracer etched with a holy warrior's symbol rests on the ground.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0
+wear: 4097
+applies:
+13 20
+1 2
+~
+extradesc: platinum bracer templar
+Large enough to cover from the wrist to beyond the elbow, this large bracer is
+both stylish and effective.  It covers almost the entire girth of an arm, with
+the small exposed section being mostly protected by hinges and buckles to hold
+the bracer securely in place.  The holy symbol of the original owner's order is
+shown in detailed relief on the face of the bracer.  The original owner's name
+is also etched on the inside.
+~
+~~
+vnum: 55498
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqstuvwxyz
+name: shining platinum chestplate templar templars
+shortdesc: &4&bChestplate of the Templar&0
+desc: A templar's shining platinum chestplate has been proudly laid out here.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0
+wear: 9
+applies:
+18 4
+~
+extradesc: shining platinum chestplate templar templars
+Pounded out of solid platinum, a chestplate like this is given to the most
+prominent heroes of good.  The plate itself bears the original honored one's
+holy symbol, as well as three triangular diamonds to represent the body, mind
+and soul.  Great divine favor flows through this plate, protecting the wearer
+to an enhanced degree.
+~
+~~
+vnum: 55500
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqstuvwxyz
+name: winged platinum boots templar
+shortdesc: &4&bBoots of the Templar&0
+desc: Winged platinum boots wait for the great paladin who left them behind.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0
+wear: 65
+applies:
+3 4
+2 3
+~
+extradesc: winged platinum boots templar
+Small metal angelic wings extend from the heels of each boot, much like the
+classic symbol of an ancient deity.  The boots themselves are made of platinum
+plates, locked together reaching to the knees.  Each boot is surprisingly
+flexible due to the numerous joints.
+~
+~~
+vnum: 55424
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqstuvwxyz
+name: graceful bracer order
+shortdesc: &4Bracer of Order&0
+desc: A graceful bracer is precisely laid out.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0
+wear: 4097
+applies:
+5 2
+1 2
+~
+extradesc: graceful bracer order
+Newly forged and still pristine, this bracer is a symbol of honor and
+integrity.  Very simple silver etchings grace the surface of the bracer, making
+the paladin who wears it glimmer slightly in the light.
+~
+~~
+vnum: 55420
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqstuvwxyz
+name: graceful order vambraces
+shortdesc: &4Vambraces of Order&0
+desc: Graceful vambraces have been precisely laid out.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0
+wear: 257
+applies:
+13 10
+3 2
+~
+extradesc: graceful order vambraces
+Newly forged and still pristine, these vambraces are a symbol of honor and
+integrity.  Very simple silver etchings grace the surface of the vambraces,
+making the paladin who wears them glimmer slightly in the light.
+~
+~~
+vnum: 55421
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqstuvwxyz
+name: graceful order plate
+shortdesc: &4Plate of Order&0
+desc: A graceful plate has been precisely laid out.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0
+wear: 9
+applies:
+3 4
+13 6
+~
+extradesc: graceful order plate
+Newly forged and still pristine, this plate is a symbol of honor and integrity.
+Very simple silver etchings grace the surface of the plate, making the paladin
+who wears it glimmer slightly in the light.
+~
+~~
+vnum: 55425
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqstuvwxyz
+name: graceful gauntlets order
+shortdesc: &4Gauntlets of Order&0
+desc: Some graceful gauntlets are precisely laid out.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0
+wear: 129
+applies:
+1 3
+2 1
+~
+extradesc: graceful gauntlets order
+Newly forged and still pristine, these gauntlets are a symbol of honor and
+integrity.  Very simple silver etchings grace the surface of the gauntlets,
+making the paladin who wears them glimmer slightly in the light.
+~
+~~
+vnum: 55419
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqstuvwxyz
+name: graceful helm order helm-of-order
+shortdesc: &4Helm of Order&0
+desc: A graceful helm is precisely laid out.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0
+wear: 17
+applies:
+13 8
+4 4
+~
+extradesc: graceful helm order helm-of-order
+Newly forged and still pristine, this helm is a symbol of honor and integrity.
+Very simple silver etchings grace the surface of the helm, making the paladin
+who wears it glimmer slightly in the light.
+~
+~~
+vnum: 55422
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: agmnopqstuvwxyz
+name: graceful order greaves
+shortdesc: &4Greaves of Order&0
+desc: A set of graceful legplates has been precisely laid out.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 21
+effects: 0 0
+wear: 33
+applies:
+2 2
+1 4
+~
+extradesc: graceful order greaves
+Newly forged and still pristine, these greaves are a symbol of honor and
+integrity.  Very simple silver etchings grace the surface of the greaves,
+making the paladin who wears them glimmer slightly in the light.
+~
+~~
+vnum: 49014
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ik
+name: crown flowers circle
+shortdesc: a crown of flowers
+desc: There is a circle of flowers on the ground.
+type: 8
+weight: 0.60
+cost: 600
+timer: 0
+level: 45
+effects: 0 0
+wear: 17
+applies:
+5 3
+2 3
+~
+extradesc: crown flowers circle
+You smell the sweet perfume of these flowers. They have not withered -
+this crown must have belonged to a very special person!~
+~~
+vnum: 55494
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: gmnoqrstuvwxyz
+name: steel bracer champion
+shortdesc: &6&bBracer of the Champion&0
+desc: A heavy steel bracer has been tossed into the dust here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0
+wear: 4097
+applies:
+5 2
+2 3
+~
+extradesc: steel bracer champion
+Flat and relatively simple, but obviously well kept and of superb construction,
+a bracer like this is usually a reward for a warrior far advanced in their
+training.  After being forged by the dwarves from the highest quality steel, a
+tribal or familial marking is etched onto the outside of the bracer, while the
+original bearer's name is inscribed on the inside.
+~
+~~
+vnum: 55493
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnoqrstuvwxyz
+name: mighty boots champion
+shortdesc: &6&bBoots of the Champion&0
+desc: Mighty boots clearly belonging to a champion fighter are standing here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0
+wear: 65
+applies:
+2 2
+5 3
+~
+extradesc: might boots champion
+These jointed scalemail boots provide excellent protection in combat and are
+enchanted to actually reduce the encumbrance experienced with most other metal
+boots.  Made from extremely well tempered dwarven steel, these boots will serve
+a champion all their days without fail.
+~
+~~
+vnum: 16303
+location: 127
+values:
+75
+15
+0
+0
+0
+0
+0
+~
+flags: 0
+name: potion green mistletoe brew
+shortdesc: the mistletoe brew
+desc: A light green potion lies among the grasses.
+type: 10
+weight: 0.75
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0
+wear: 1
+extradesc: potion green mistletoe brew
+   You look at the messy green gunk in the crystal potion. You wonder who 
+would want to keep something like this.
+~
+~~
+vnum: 20306
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: bracelet snake fang
+shortdesc: a snake fang bracelet
+desc: A small bracelet made of snake fangs lies on the ground here.
+type: 9
+weight: 0.70
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0
+wear: 4097
+applies:
+19 1
+18 1
+1 1
+~
+extradesc: bracelet snake fang
+This bracelet is made out of a very durable weaved grass that has several
+spaced out snake fangs weaved into it.  The fangs are about an inch in length
+and give the bracelet a menacing look.  The grass is a dull green color and it
+is weaved tightly so it looks almost like it is one piece of grass.    
+~
+~~
+vnum: 5519
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: j
+name: torque 3bl_item
+shortdesc: torque of the 3rd Black Legion
+desc: A black torque lies nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 8
+effects: 0 0
+wear: 5
+~~
+vnum: 20300
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horn rhino
+shortdesc: a rhino's horn
+desc: A large ivory colored rhino's horn lies in the dust here.
+type: 8
+weight: 3.50
+cost: 0
+timer: 0
+level: 15
+effects: 0 0
+wear: 1048577
+applies:
+14 20
+17 2
+~
+extradesc: horn large ivory rhino
+This is the horn of a large rhino.  It is approximately a foot in length and is
+a shiny ivory color.  Whatever rhino had this horn on him had to be a very
+large and powerful rhino.    
+~
+~~
+vnum: 16106
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: agmnouvwyz
+name: scimitar golden golden-scimitar
+shortdesc: a golden scimitar
+desc: A gleaming golden scimitar lies upon a large rock.
+type: 5
+weight: 2.00
+cost: 1000
+timer: 0
+level: 10
+effects: 0 0
+wear: 8193
+applies:
+19 2
+~
+extradesc: scimitar golden
+This weapon seems to be made of pure gold.  It is however extremely light and
+has a very good balance.  
+~
+~~
+vnum: 4007
+location: 127
+values:
+2
+3
+7
+3
+0
+0
+0
+~
+flags: gjlmnpqrtuvz
+name: blade blade-chaos dark-sword
+shortdesc: a blade of &1Chaos&0
+desc: A dark sword lies here encased in black flames.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0
+wear: 8193
+applies:
+9 10
+2 1
+19 2
+5 -2
+~
+extradesc: dark sword blade chaos flames
+Created from only the purest of dark magick, the blade is light and seemingly
+quite strong.  Blackened flames erupt from all around the blade, surrounding it
+in serenity and chaos.    
+~
+~~
+vnum: 48003
+location: 127
+values:
+0
+2
+8
+3
+0
+0
+0
+~
+flags: agklmuvwyz
+name: sword blade indigo indigo-blade
+shortdesc: an indigo blade
+desc: An ancient blade has been left here.
+type: 5
+weight: 12.00
+cost: 3700
+timer: 0
+level: 70
+effects: 0 0
+wear: 8193
+applies:
+19 3
+~
+extradesc: indigo-blade indigo blade
+One glance at this weapon is enough to tell you that it has been 
+powerfully enchanted. Black runes run the length of the sword, and a 
+dull white flame surrounds the blade. The blade itself has an odd purple 
+hue.
+~
+~~
+vnum: 48003
+location: 127
+values:
+0
+2
+8
+3
+0
+0
+0
+~
+flags: agklmuvwyz
+name: sword blade indigo indigo-blade
+shortdesc: an indigo blade
+desc: An ancient blade has been left here.
+type: 5
+weight: 12.00
+cost: 3700
+timer: 0
+level: 70
+effects: 0 0
+wear: 8193
+applies:
+19 3
+~
+extradesc: indigo-blade indigo blade
+One glance at this weapon is enough to tell you that it has been 
+powerfully enchanted. Black runes run the length of the sword, and a 
+dull white flame surrounds the blade. The blade itself has an odd purple 
+hue.
+~
+~~
+vnum: 1606
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0
+wear: 1
+~~
+vnum: 5201
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx
+name: ring ruby glittering glittering-ruby-ring
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 9
+weight: 0.02
+cost: 0
+timer: 0
+level: 33
+effects: 0 0
+wear: 3
+applies:
+3 3
+4 3
+13 5
+~
+extradesc: ring ruby glittering glittering-ruby-ring
+The ring has been formed of some mysterious reddish metal, the likes
+of which you are unfamiliar with. A glittering ruby has been set in
+the ring.~
+~~
+vnum: 5506
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: ring 3bl_trophy
+shortdesc: a ring of the 3rd Eldorian Guard
+desc: A white ring lies nearby.
+type: 13
+weight: 0.02
+cost: 0
+timer: 3
+level: 8
+effects: 0 0
+wear: 1
+~~
+vnum: 12538
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 11
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0
+wear: 3
+applies:
+26 8
+13 25
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    
+~
+~~
+vnum: 55489
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: gmnoqrstuvwxyz
+name: helm champion
+shortdesc: &6&bHelm of the Champion&0
+desc: A helm belonging to a mighty warrior has been drop here in the dirt.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: d 0
+wear: 17
+applies:
+1 1
+4 4
+~
+extradesc: helm champion
+Forged from the finest dwarven steel and strongly enchanted, this helm
+increases not only an already mighty warrior's strength, but also his mental
+faculties.  Bold in line and form, but clean and somewhat complex in overall
+appearance, this helm is a reminder that to be a champion means having a quick
+and strong brain to match an already mighty form.
+~
+~~
+vnum: 4007
+location: 127
+values:
+2
+3
+7
+3
+0
+0
+0
+~
+flags: gjlmnpqrtuvz
+name: blade blade-chaos dark-sword
+shortdesc: a blade of &1Chaos&0
+desc: A dark sword lies here encased in black flames.
+type: 5
+weight: 5.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0
+wear: 8193
+applies:
+9 10
+2 1
+19 2
+5 -2
+~
+extradesc: dark sword blade chaos flames
+Created from only the purest of dark magick, the blade is light and seemingly
+quite strong.  Blackened flames erupt from all around the blade, surrounding it
+in serenity and chaos.    
+~
+~~

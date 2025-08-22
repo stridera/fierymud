@@ -1,0 +1,169 @@
+name: Perin
+password: PeN/btDP59
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 19
+race: 9
+level: 18
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19932
+birthtime: 1622662907
+timeplayed: 78074
+lastlogintime: 1698959102
+host: 035.002.244.110
+height: 75
+weight: 126
+base_height: 75
+base_weight: 126
+base_size: 2
+natural_size: 2
+alignment: 994
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 147/147
+mana: 32/32
+move: 156/156
+damroll: 3
+hitroll: 3
+strength: 77
+intelligence: 70
+wisdom: 69
+dexterity: 94
+constitution: 92
+charisma: 55
+cash: 89 372 577 1
+bank: 12 65 0 0
+experience: 1555274
+quit_reason: 3
+saveroom: 0
+skills:
+5 1000
+8 1000
+15 1000
+16 1000
+18 1000
+19 1000
+20 1000
+21 1000
+31 1000
+32 1000
+37 1000
+39 1000
+41 1000
+43 1000
+84 1000
+85 1000
+86 1000
+88 1000
+89 1000
+90 1000
+91 1000
+100 1000
+114 1000
+186 1000
+197 1000
+246 1000
+401 212
+403 217
+405 183
+408 220
+409 50
+415 50
+416 180
+423 230
+424 221
+438 76
+443 50
+444 186
+447 84
+451 59
+452 127
+453 50
+454 102
+456 50
+457 54
+459 50
+460 50
+462 90
+463 50
+464 197
+465 180
+490 54
+551 50
+552 50
+0 0
+trophy:
+1 18514 2.000000
+1 5510 1.250000
+1 5509 1.000000
+1 5508 0.750000
+1 5507 1.250000
+1 5506 1.000000
+1 5505 1.000000
+1 5504 1.000000
+1 5503 1.000000
+1 5502 1.500000
+1 5501 1.000000
+1 41012 1.000000
+1 41006 4.000000
+1 41021 1.000000
+1 41004 2.000000
+1 41015 1.000000
+1 41014 1.000000
+1 41002 1.000000
+1 41009 1.000000
+1 41011 1.000000
+1 41007 1.000000
+0 0 0
+tells:
+1695985470 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1695985470 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1695985471 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1695985471 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1695985471 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1695987136 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1696434098 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1696434104 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1696434106 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1696434558 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1698183797 Choak gossips, 'haha I don't think you can get out of it'
+1698183802 Ulthar gossips, 'oh'
+1698183809 Choak gossips, 'just a sec'
+1698185498 Ulthar gossips, 'argh, the circle seems to have reset. I'll have to start over.'
+1698185824 Ulthar gossips, 'okay, I found krisenna...now what?'
+1698185844 Ulthar gossips, 'yes, bow at him'
+1698185948 Holk gossips, 'gratz Ulthar'
+1698185969 Ulthar gossips, 'thanks, finished the quest :)'
+1698186134 Ulthar gossips, 'got a third tier armor helm out of the deal too :)'
+1698958903 Someone gossips, 'what was I supposed to get for the recipe quest?'
+$
+mem:
+19 1 4
+8 1 4
+8 1 4
+32 1 1
+16 1 1
+8 1 4
+8 1 4
+32 1 1
+32 1 1
+32 1 1
+32 1 1
+16 1 1
+8 1 4
+31 1 7
+31 1 7
+0 0 0
+aliases:
+1 back buck
+0

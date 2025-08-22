@@ -1,0 +1,71 @@
+name: Yunghomie
+password: YuPukO5dSu
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 15
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19068
+birthtime: 1464203689
+timeplayed: 139656
+lastlogintime: 1464904249
+host: 204.209.044.014
+height: 81
+weight: 254
+base_height: 81
+base_weight: 254
+base_size: 3
+natural_size: 3
+alignment: 139
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 2019
+hunger: 14
+thirst: 4
+lastlevel: 0
+hitpoints: 200/200
+mana: 19/22
+move: 33/124
+damroll: 5
+hitroll: 4
+strength: 96
+intelligence: 65
+wisdom: 79
+dexterity: 98
+constitution: 71
+charisma: 58
+cash: 0 36 69 76
+bank: 62 478 1553 500
+experience: 846782
+quit_reason: 7
+saveroom: 2019
+skills:
+402 116
+404 60
+407 50
+415 146
+416 50
+419 1000
+421 200
+427 1000
+430 76
+438 100
+443 50
+444 50
+463 145
+464 51
+465 200
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 2004 2.000000
+0 0 0

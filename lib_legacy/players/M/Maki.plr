@@ -1,0 +1,113 @@
+name: Maki
+password: MaQVVjldgh
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 13
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 2224
+birthtime: 937175613
+timeplayed: 17761236
+lastlogintime: 1365128156
+host: 173.230.129.180
+height: 69
+weight: 150
+base_height: 69
+base_weight: 150
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: glyz
+effectflags: 0 0 0
+prefflags: hnouCD ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 10053
+badpasswords: 1
+lastlevel: 14
+hitpoints: 1097/1097
+mana: 100/100
+move: 118/118
+damroll: 3
+hitroll: 3
+strength: 93
+intelligence: 68
+wisdom: 81
+dexterity: 87
+constitution: 82
+charisma: 54
+cash: 8 44 322 343
+bank: 1380 16784 92171 109882
+experience: 158708999
+quit_reason: 1
+saveroom: 10053
+skills:
+404 1000
+411 1000
+412 1000
+414 1000
+415 1000
+416 1000
+420 1000
+421 1000
+422 1000
+430 1000
+438 1000
+443 1000
+444 1000
+446 1000
+448 1000
+449 1000
+463 1000
+475 309
+601 1000
+602 1000
+603 1000
+604 1000
+605 1000
+606 1000
+608 1000
+0 0
+trophy:
+1 53313 1.000000
+1 53302 4.000000
+1 53305 1.000000
+1 53306 3.000000
+1 53314 5.000000
+1 55017 1.000000
+1 55018 4.000000
+1 55014 7.000000
+1 53303 3.000000
+1 53312 10.000000
+1 53007 4.000000
+1 53023 4.000000
+1 53005 1.000000
+1 7301 8.000000
+1 7302 4.000000
+1 7300 17.000000
+1 16001 2.000000
+1 5223 3.000000
+1 5220 25.000000
+1 5222 36.000000
+1 5221 24.000000
+0 0 0
+tells:
+$
+gossips:
+$
+effects:
+601 1 60 26 0 0 0
+0 0 0 0 0
+aliases:
+symphony chant 'ivory symphony'
+krep kill reptilian
+kk kick
+regen chant 'regen'
+glory chant 'battle hymn'
+gbb get bread bag
+eb eat bread
+db drink skin
+0

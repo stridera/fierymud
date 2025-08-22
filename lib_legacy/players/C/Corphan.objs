@@ -1,0 +1,1352 @@
+1
+vnum: 1032
+location: 1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: ring wide-bronze-ring
+shortdesc: a bronze ring
+desc: A wide bronze ring lies here.
+type: 9
+weight: 0.08
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: ring wide-bronze-ring
+&0A cheap little ring, forged from bronze.  It lacks any design, resembling a
+simple band of metal.  &0~
+~~
+vnum: 1032
+location: 2
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: ring wide-bronze-ring
+shortdesc: a bronze ring
+desc: A wide bronze ring lies here.
+type: 9
+weight: 0.08
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+extradesc: ring wide-bronze-ring
+&0A cheap little ring, forged from bronze.  It lacks any design, resembling a
+simple band of metal.  &0~
+~~
+vnum: 36008
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: amulet blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+shortdesc: a blue amulet of Kaaz knowledge
+desc: A small blue medallion on a necklace lies here.
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 2
+~
+extradesc: blue-amulet-kaaz-knowledge small-blue-medallion-necklace
+A shard of deep blue crystal encased in a leather binding.  It is slightly more
+powerful than it seems.~
+~~
+vnum: 36020
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: chain bone-chain length
+shortdesc: a bone chain
+desc: A length of chain lies here.
+type: 8
+weight: 0.80
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: bone-chain length
+About thirty small bone rings are roughly connected together to form a piece of
+decoration.  It looks as though it may offer you a little protection though.~
+~~
+vnum: 7000
+location: 5
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: vest bright-red-woolen-vest bright-red-vest wool
+shortdesc: a bright red woolen vest
+desc: A bright red vest lies tossed here.
+type: 9
+weight: 3.00
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: bright-red-woolen-vest bright-red-vest wool
+It's a bright red vest made of densely woven wool, quilted for protection
+against the elements.  It has little cap sleeves and bright brass buttons to
+close it down the front.~
+~~
+vnum: 36009
+location: 6
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: turban jeweled-grey-turban small-turban fabric
+shortdesc: a jeweled grey turban
+desc: A small turban lies here almost hidden from sight.
+type: 9
+weight: 2.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+3 1
+~
+extradesc: jeweled-grey-turban small-turban fabric
+A weave of grey cloth set to protect your head.  The turban is tied together by
+a deep blue jewel surrounded by gold set in its center.~
+~~
+vnum: 8609
+location: 7
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pants coyote-skin-pants leather
+shortdesc: coyote skin pants
+desc: A pair of coyote skin pants is here looking stylish.
+type: 9
+weight: 7.30
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: coyote-skin-pants leather
+Stylish and functional too.  These pants will insulate the heat as well as the
+cold.  Now you have more of a reason to live!~
+~~
+vnum: 8607
+location: 8
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: boots gila-boots rough-scaley-boots leather
+shortdesc: gila boots
+desc: A pair of rough, scaley boots sits on the ground.
+type: 9
+weight: 2.60
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 10
+~
+extradesc: gila-boots rough-scaley-boots
+The creatures that fashioned these boots let nothing go to waste.  These orange
+and yellow boots are very comfortable, you could walk all day in them.  The
+thick skin and durable construction, would also offer you a fair degree of
+protection in battle.~
+~~
+vnum: 1022
+location: 10
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: sleeves quilted-canvas-sleeves cloth hide glowing pile
+shortdesc: some quilted canvas sleeves
+desc: A pile of cloth and hide lies here glowing.
+type: 9
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+extradesc: quilted-canvas-sleeves cloth hide glowing pile
+These sleeves are remarkably light and offer a sense of protection unseen.  
+There is hide padding on the elbows to provide a little extra protection.~
+~~
+vnum: 1615
+location: 12
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: labcoat white-labcoat lab-coat cloth
+shortdesc: a white labcoat
+desc: A white labcoat lies unused.
+adesc:
+<not set>~
+type: 9
+weight: 3.00
+cost: 100
+timer: 10
+level: 1
+effects: 0 0 0
+wear: 1033
+hiddenness: 0
+applies:
+3 2
+~
+extradesc: white-labcoat lab-coat cloth
+Made of soft cotton, this coat is stained from various unknown chemicals.  Two
+buttons on the left side appear freshly sewn on, as if unused.~
+~~
+vnum: 8604
+location: 13
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: belt snakeskin-belt snake-skin
+shortdesc: a snakeskin belt
+desc: Some snakeskin sits here in a tight coil.
+type: 9
+weight: 0.95
+cost: 300
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+2 1
+~
+extradesc: snakeskin-belt snake-skin
+This belt is made from the skin of a feared indigenous species of snake
+renowned for the accuracy and damage of their strikes.~
+~~
+vnum: 36015
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracelet thin-copper-bracelet small
+shortdesc: a thin copper bracelet
+desc: A small bracelet of copper lies here collecting dust.
+type: 9
+weight: 0.07
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+24 -1
+~
+extradesc: thin-copper-bracelet small
+A band of copper is covered with runes depicting a tale of the magical battle
+of the Rift Wars...~
+~~
+vnum: 1617
+location: 15
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wristband wristband-nordus wrist-band city-logo
+shortdesc: the wristband of Nordus
+desc: A wristband, stamped with a city logo, lies here.
+type: 8
+weight: 0.80
+cost: 200
+timer: 20
+level: 5
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+4 1
+3 1
+~
+extradesc: wristband-nordus wrist-band city-logo
+This wristband is metal, but somehow slightly stretchy, almost elastic.  Its
+finely grained metal is stamped with the outline of a city; it appears to be
+Nordus.~
+~~
+vnum: 55757
+location: 16
+values:
+0
+2
+2
+11
+0
+0
+0
+~
+flags: 0 0
+name: dagger small-red-dagger
+shortdesc: a small red dagger
+desc: A small red dagger lies here.
+type: 5
+weight: 0.75
+cost: 0
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 1036
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: mask simple-wooden-mask
+shortdesc: a simple wooden mask
+desc: A simple wooden mask lies here.
+type: 9
+weight: 0.65
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+6 -1
+~
+extradesc: simple-wooden-mask
+&0This small mask is crafted of a dark wood, and is designed to slip easily
+over the face.  It has very littlte detail, save for a small etched mouth and
+two slits for eyes.  Quite uncomfortable, and not very stylish.~
+~~
+vnum: 8611
+location: 23
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tooth snake-tooth small-tooth earring
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 8
+weight: 0.01
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: snake-tooth small-tooth earring
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.~
+~~
+vnum: 8611
+location: 24
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tooth snake-tooth small-tooth earring
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 8
+weight: 0.01
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: snake-tooth small-tooth earring
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.~
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: backpack heavy-backpack back-pack leather
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+extradesc: backpack heavy-backpack back-pack leather
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.~
+~~
+vnum: 55570
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: garnet gem garnet-dust
+shortdesc: some garnet dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55573
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peridot gem peridot-dust
+shortdesc: some peridot dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 605
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: map map-mielikki-topiary-map tattered-map-mielikki-topiary
+shortdesc: a map of the Mielikki Topiary
+desc: A tattered map of the Mielikki Topiary sits here.
+type: 12
+weight: 0.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map map-mielikki-topiary-map tattered-map-mielikki-topiary
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  &2&bMielikki's Topiary&0  &3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0
+KEY: \ / = up/down      &5+&0 = the main gate
+ 
+                                    &2o-o-o-o-o&0     &3&b***POINTS OF INTEREST***&0
+                                    &2|   |   |&0      |&7&bX&0: a large gazebo
+                                    &2o-o-o-o-o
+                                    |   |   |
+                                    o-o-o-o-o
+                                    |   |   |
+                                    o-o-o-o-o
+                                        |
+                                        &7&bX&0
+                                        &2|
+                                    o-o-o-o-o
+                                    |   |   |
+                                    o-o-o-o-o
+                                    |   |   |
+                                    o-o-o-o-o
+                                    |   |   |
+                                    o-o-o-o-o&0
+                                        &5+&0
+                                        &3o
+                                        |
+                                        o
+                                        |
+                                        o
+                                        |
+                                        v&0
+ 
+                                       &6to
+                                     Town of
+                                     Mielikki&0
+ 
+&3-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-&0~
+~~
+vnum: 55580
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tourmaline gem crushed-tourmaline
+shortdesc: a crushed tourmaline
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 1622
+location: 127
+values:
+5
+88
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion blue
+shortdesc: a sky-blue potion
+desc: A sky-blue potion lies unused here.
+type: 10
+weight: 0.30
+cost: 100
+timer: 10
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion blue sky
+This potion sparkles with the color of the sky.~
+~~
+vnum: 1006
+location: 127
+values:
+300
+296
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: waterskin well-crafted-leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: well-crafted-leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.  &0~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+~
+~~
+vnum: 1004
+location: 127
+values:
+1
+240
+142
+0
+0
+0
+0
+~
+flags: q 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern.  It holds about fifteen hours worth of fuel.~
+~~
+vnum: 3090
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map mielikki map-of-mielikki
+                  Mielikki, the forest town, by Kara-Sithri
+  
+                                                             &3***POINTS OF INTEREST***&0
+          &3#&0              &6&b2&0                                 |&6&b1&0: Temple to Mielikki
+          &9&b|              |&0                                 |&6&b2&0: Altar to Mielikki
+          &9&bSB&0         &B&1&b3&0 - &6&b1&0   &1???&0        &517&0 - &9&bNC&0            |&B&1&b3&0: Cleric Guild
+          &9&b|              |    |              |&0             |&B&1&b4&0: Warrior Guild
+      &521&0  &9&bSB        TC - TC - TC             NC -&0 &518&0       |&B&1&b5&0: Rogue Guild
+      &9&b|   |         |    |    |              |&0             |&B&1&b6&0: Sorcerer Guild
+      &2&b7&0 &9&b- SB -&0 &38&0    &9&bTC -&0 &C&4&b*&0 &9&b-  TC&0   &515&0 - &B&1&b4&0    &9&bNC -&0 &519&0       |&2&b7&0: Forest Inn
+          &9&b|         |    |    |    |         |&0             |&38&0: Post Office
+ &3#&0 &9&b- SQ - WM - WM - TC - TC - TC - EM - EM - CS - EM -&0 &3#&0   |&59&0: Drako's Bronze Shop
+     &9&b|          |   |         |              |&0             |&510&0: Garm's Shield Emporium
+ &59&0 &9&b- SR -&0 &510&0    &513&0  &514&0 &9&b-&0 &B&1&b5&0    &9&bDA - DA - DA   SC&0            |&511&0: Shauna's Hosue of Iron
+     &9&b|          |                  |    |    |&0             |&512&0: Beowyn's Steel
+&511&0 &9&b- SR -&0 &512&0    &B&1&b6&0        &3&b21&0        &516&0  &9&bdump  SC -&0 &520&0       |&513&0: Bigby's House of Magic
+     &9&b|                   |                   |&0             |&514&0: Fine Jewelry
+    &9&bNCP - NC - NC - NC - NC - NC - NC - NC - NCS&0           |&515&0: Santiago's Weapons
+          &9&b|              &0&1#&0&9&b         |&0                       |&516&0: Sloshed Squirrel Tavern
+     &9&bRP - RP - RP   TH - TH - TH   WW&0                      |&517&0: Helena's Bakery
+     &9&b|    |    |    |    |    |    |&0                       |&518&0: Aaron's General Store
+     &9&bRP -&0 &C&4&b*&0  &9&b- RP   TH - TH - TH   WW -&0 &1???&0                |&519&0: Lisa's House of Leather
+     &9&b|    |    |                   |&0                       |&520&0: Freddy's Toy Shop
+     &9&bRP - RP - RP                  WW&0                      |&521&0: Cartographer's Room
+          &9&b|                        |&0                       |&3&b22&0: Bank
+         &9&bGrey&0                      &3#&0                       |&C&4&b*&0: Fountain
+        &9&bCastle&0                                             |&3#&0: City Gates     
+                                                                 |&1???&0: New Adventures! 
+ 
+                                                               &9&b***ROADS***&0
+                                                           |SB: Sleepy Blvd.
+                                                           |SQ: Smelter's Sq.
+                                                           |WM: West main St.
+                                                           |TC: Town Center
+                                                           |EM: East Main St.
+                                                           |CS: Commerce Sq.
+                                                           |NC: N. Commerce Ave.
+                                                           |SC: S. Commerce Ave.
+                                                           |DA: Dark Alley
+                                                           |SR: Smelter's Row
+                                                           |NCP: New Castle Plaza
+                                                           |NC: New castle Rd.
+                                                           |NCS: New Castle Sq.
+                                                           |WW: Windy Way
+                                                           |RP: Royal Plaza
+                                                           |TH: Town Hall~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild~
+~~
+vnum: 1034
+location: 127
+values:
+48
+48
+2
+0
+0
+0
+0
+~
+flags: q 0
+name: wine bottle glass-bottle
+shortdesc: a glass bottle
+desc: A glass bottle sits here.
+type: 17
+weight: 1.50
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: white bottle glass-bottle
+&0A slender bottle of clear glass. It is labeled as wine. A rather cheap and
+sour tasting vintage.~
+~~
+vnum: 1029
+location: 127
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.~
+spells:
+5 5
+32 5
+100 5
+101 13
+20 5
+~
+triggers:
+51949
+~
+~~
+vnum: 1030
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: quill white-feather-quill pen
+shortdesc: a white feather quill
+desc: A white feather quill lies here.
+type: 21
+weight: 0.05
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill white-feather-quill pen
+&0A slender quill made from a white feather.  Its point is used to dunk in ink
+and write with.    ~
+~~
+vnum: 1004
+location: 127
+values:
+1
+240
+163
+0
+0
+0
+0
+~
+flags: q 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern.  It holds about fifteen hours worth of fuel.~
+~~
+vnum: 1004
+location: 127
+values:
+1
+240
+223
+0
+0
+0
+0
+~
+flags: q 0
+name: lantern heavy-brass-lantern
+shortdesc: &0&3a lantern&0
+desc: &0&3A heavy brass lantern sits here.&0
+type: 1
+weight: 4.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: heavy-brass-lantern
+&)A very plain brass lantern.  It holds about fifteen hours worth of fuel.~
+~~
+vnum: 8801
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: shoes black-leather-shoes
+shortdesc: black leather shoes
+desc: A pair of black leather shoes rests here.
+type: 9
+weight: 2.00
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 15
+~
+extradesc: black-leather-shoes
+Suitable for wear by men or women, these shoes are made from thin black
+top-grain leather, with a strap around their tops to hold them closed.  They
+fit the feet very well.~
+~~
+vnum: 3077
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ribbon green-hair-ribbon simple-green-ribbon cloth
+shortdesc: a &2green&0 hair-ribbon
+desc: A simple green ribbon lies tangled on the ground.
+type: 9
+weight: 0.10
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+6 1
+~
+extradesc: green-hair-ribbon simple
+The simple green ribbon is haphazardly cut into a small strip of linen.  It
+serves its purpose well, however, and may even be quite attractive fixed up in
+a young lady's hair.~
+~~
+vnum: 3075
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: dress apple-green-linen-dress bright-green-linen-dress
+shortdesc: an apple-green linen dress
+desc: A bright green linen dress lies here.
+type: 9
+weight: 3.00
+cost: 45
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+extradesc: dress apple-green-linen-dress bright-green-linen-dress
+Constructed of quality linen from a loom, the dress is designed to fit a
+medium-sized woman of average build.  A rich blend of common broom and whin
+bark have been used to dye the dress a bright green, emitting the soft musky
+odor of nature.~
+~~
+vnum: 8814
+location: 127
+values:
+256
+256
+10
+0
+0
+0
+0
+~
+flags: D 0
+name: milk bucket wooden
+shortdesc: a wooden bucket
+desc: A wooden bucket with a handle sits on the floor.
+type: 17
+weight: 4.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bucket wooden
+This is a stained old bucket made of wood.  It is rather stout and has a handle
+oneach side.  It appears to have been used quite a lot, yet it doesn't leak.~
+~~
+vnum: 8807
+location: 127
+values:
+0
+2
+5
+14
+0
+0
+0
+~
+flags: mnyz afghij
+name: pitchfork pitch-fork
+shortdesc: a pitchfork
+desc: A pitchfork is set out of the way.
+type: 5
+weight: 1.40
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 32769
+hiddenness: 0
+~~
+vnum: 30207
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: boots lightweight-brown-boots light-weight stained-leather-boots
+shortdesc: lightweight brown boots
+desc: A pair of stained leather boots stands off to one side.
+type: 9
+weight: 2.00
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: boots lightweight-brown-boots light-weight stained-leather-boots
+These boots are made of lightweight brown leather.  Reinforcement around the
+toe and heel provides some protection, but they are better at enhancing agility
+than stopping sword-blows.~
+~~
+vnum: 8805
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pants blue-woolen-pants wool
+shortdesc: blue woolen pants
+desc: A pair of blue woolen pants lies here.
+type: 9
+weight: 1.00
+cost: 25
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+extradesc: blue-woolen-pants
+The pants are made of coarsely woven wool, and are dyed medium-blue.  They
+fasten down the left side with bronze buttons.  Cut very full for ease of
+movement, they look very warm and sturdy.~
+~~
+vnum: 8806
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hat wide-brimmed-straw-hat
+shortdesc: a wide-brimmed straw hat
+desc: A wide-brimmed straw hat lies here.
+type: 9
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+5 1
+~
+extradesc: wide-brimmed-straw-hat
+Made from many long, slender pieces of straw all braided together, this hat has
+a wide brim and a generally rounded crown.  It is just a little floppy, but
+does an excellent job of keeping the sun out of one's eyes.~
+~~
+vnum: 58810
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: shirt beige-wool-shirt pile
+shortdesc: a beige wool shirt
+desc: A folded pile of beige wool lies here.
+type: 9
+weight: 1.10
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+13 3
+~
+extradesc: beige-wool-shirt folded-pile
+This homespun wool shirt has been dyed a rich shade of beige, almost the color
+of camel hide.~
+~~

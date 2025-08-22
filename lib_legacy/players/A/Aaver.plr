@@ -1,0 +1,168 @@
+name: Aaver
+password: AaTLLbX2F8
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 5
+race: 8
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20078
+birthtime: 1640324230
+timeplayed: 385444
+lastlogintime: 1720632065
+host: 136.038.104.232
+height: 61
+weight: 105
+base_height: 61
+base_weight: 105
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: yz
+effectflags: cn 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1163/1064
+mana: 980/980
+move: 283/283
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 63
+wisdom: 62
+dexterity: 90
+constitution: 95
+charisma: 57
+experience: 121676898
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+4 1000
+12 1000
+13 1000
+14 1000
+17 1000
+27 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+92 1000
+96 1000
+99 1000
+131 1000
+132 1000
+188 1000
+235 1000
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 1000
+416 1000
+417 1000
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 1000
+431 1000
+434 1000
+438 1000
+441 1000
+443 1000
+444 1000
+445 1000
+450 50
+451 1000
+452 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 50
+468 1000
+473 1000
+0 0
+trophy:
+1 36300 1.000000
+1 12016 1.000000
+1 11703 1.000000
+1 11702 1.000000
+1 11704 0.500000
+1 2808 1.000000
+1 11710 0.500000
+1 2806 1.500000
+1 11750 1.500000
+1 53311 2.500000
+1 53301 0.500000
+1 53304 2.500000
+1 53313 0.500000
+1 53302 2.000000
+1 53314 4.000000
+1 53315 12.000000
+1 53305 5.000000
+1 53306 3.000000
+1 53303 1.500000
+1 53312 5.000000
+1 49026 2.000000
+0 0 0
+tells:
+1651455425 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1668803481 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1668803481 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1668803481 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1668803481 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1668803481 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1668803481 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1668803482 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1668803482 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1668803482 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1672791277 Mand gossips, 'They do I think but not super often.'
+1672791285 Mand gossips, 'I think Kaaz drops more often than bugs'
+1672791290 Hackwriter gossips, 'armor quest says i need one'
+1672791315 Discord gossips, 'felessan: Rusted greaves won't come from either zone.  You'll need to go pretty far afield for those'
+1672791320 Chinok gossips, 'gems and useful bits will drop mainly by the 'bosses' '
+1672791329 Hackwriter gossips, 'oh'
+1672791338 Chinok gossips, 'remember -- these armor quests are meant to be 20 level quests... not something you're gong to do in an hour'
+1672791338 Hackwriter gossips, 'so should i move one from the bugs'
+1672791349 Hackwriter gossips, 'it said max level 20'
+1672791351 Chinok gossips, 'stick to bugs til at least level 5'
+$
+aliases:
+ha hitall all
+spice get $* egg;give $* Vilekka;put $* egg
+harm cast 'harm' $*
+id get identify sack;recite identify $*
+df drink fountain
+curse cast 'curse' $*
+sm summon mount
+ds cast 'demonskin' $*
+ec examine corpse
+dp cast 'dark presence' $*
+of order followers $*
+ul unlock $*;open $*
+unholy cast 'unholy word'
+rmp rest;meditate;pray
+holy cast 'unholy word'
+soul cast 'soulshield'
+who who -w
+0

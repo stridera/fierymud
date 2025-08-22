@@ -1,0 +1,169 @@
+name: Galkal
+password: GakJEhgZUA
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 15
+race: 3
+level: 48
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20733
+birthtime: 1706028460
+timeplayed: 542565
+lastlogintime: 1716381907
+host: 082.212.042.129
+height: 46
+weight: 195
+base_height: 46
+base_weight: 195
+base_size: 2
+natural_size: 2
+alignment: 999
+playerflags: gxy
+effectflags: ck w q
+prefflags: hnoxC ae
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 20
+loadroom: 3054
+lastlevel: 0
+hitpoints: 530/434
+mana: 230/230
+move: 312/312
+damroll: 4
+hitroll: 5
+strength: 71
+intelligence: 70
+wisdom: 91
+dexterity: 85
+constitution: 92
+charisma: 55
+cash: 7 90 424 435
+bank: 530 4557 16852 9158
+experience: 16202040
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+28 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+70 1000
+74 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+115 1000
+116 1000
+117 1000
+118 1000
+119 1000
+120 1000
+142 1000
+206 1000
+207 1000
+241 1000
+415 50
+416 50
+421 524
+423 526
+424 530
+438 148
+443 50
+444 57
+451 523
+452 57
+455 50
+457 530
+458 530
+459 530
+460 417
+461 50
+462 510
+463 530
+466 50
+0 0
+trophy:
+1 11710 2.800000
+1 2808 3.800000
+1 11702 2.400000
+1 11701 3.200000
+1 11703 2.000000
+1 50209 0.400000
+1 50218 0.200000
+1 50211 0.400000
+1 50207 0.400000
+1 50206 0.400000
+1 50202 0.600000
+1 50205 0.600000
+1 50213 0.600000
+1 16106 0.200000
+1 2802 0.600000
+1 11805 0.800000
+1 11804 0.200000
+1 2806 0.400000
+1 11809 2.200000
+1 11704 3.000000
+1 2803 0.600000
+0 0 0
+tells:
+1712393722 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712468175 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712468177 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712757810 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712758365 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712759172 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712759174 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712759741 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1712759745 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1713270992 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1716295472 Chinok gossips, 'I spend a week in northern Ontario Canada every year for that.. no signal to anything'
+1716295480 Karoth gossips, 'that sounds awesome'
+1716297440 Chinok gossips, 'gratz on 48!'
+1716297507 Karoth gossips, 'thx :)'
+1716297880 Chinok gossips, 'gratz on 43!'
+1716297888 Lindor gossips, 'ty :)'
+1716378580 Chinok gossips, 'morning Karoth'
+1716378603 Karoth gossips, 'heya how's ti going'
+1716379182 Chinok gossips, 'well -- I'm up anyway.. there's that'
+1716379218 Karoth gossips, 'better than the alternative!'
+$
+effects:
+115 20 0 0 0 1 0
+231 17 3 4 0 0 0
+20 7 0 0 16 0 0
+34 11 0 0 4096 0 0
+70 0 118 13 0 0 0
+1 8 12 17 0 0 0
+117 6 25 13 0 0 0
+117 6 -8 24 0 0 0
+92 5 0 0 0 64 0
+0 0 0 0 0

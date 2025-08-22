@@ -1,0 +1,82 @@
+66 255 0
+63 1 1
+step totem
+51 4 7
+wandtask5 0
+wandtask4 0
+wandtask3 0
+wandtask2 0
+wandtask1 1
+attack_counter 150
+greet 0
+23 1 0
+65 1 2
+scorpion 1
+lever 1
+48 255 4
+fire_ring 1
+sash 0
+charles 1
+lashes 0
+32799 255 1
+subclass_name cryomancer
+61 5 2
+target1 0
+hunt 0
+72 4 2
+target1 0
+bounty running
+64 255 1
+got_cherry 0
+59 5 2
+target1 0
+hunt 0
+70 5 2
+treasure1 0
+hunt 0
+17 1 26
+5528_reward 1
+5546_reward 1
+5532_reward 1
+5534_reward 1
+5516_reward 1
+5552_reward 1
+5548_reward 1
+5538_reward 1
+5550_reward 1
+5554_reward 1
+5520_reward 2
+5558_reward 1
+5524_reward 1
+5518_reward 1
+5522_reward 1
+5536_reward 1
+5507_trophies 14
+5511_trophies 11
+5515_trophies 6
+5503_trophies 23
+5513_trophies 13
+5505_trophies 23
+5509_trophies 37
+eg_ally 1
+eg_faction 200
+bl_faction 0
+7 2 18
+55602_gems_acquired 3
+55339_armor_acquired 1
+55613_gems_acquired 3
+55587_gems_acquired 3
+55335_armor_acquired 1
+55331_armor_acquired 1
+55583_gems_acquired 3
+55579_gems_acquired 3
+55318_armor_acquired 1
+55575_gems_acquired 3
+55567_gems_acquired 3
+55322_armor_acquired 1
+55314_armor_acquired 1
+55302_armor_acquired 1
+55310_armor_acquired 1
+55326_armor_acquired 1
+55571_gems_acquired 3
+55306_armor_acquired 1

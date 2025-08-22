@@ -1,0 +1,240 @@
+name: Gerhalt
+password: Ge.dz8sGdM
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 16
+race: 0
+level: 82
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17636
+birthtime: 1271966501
+timeplayed: 1158068
+lastlogintime: 1682800958
+host: 073.187.036.249
+height: 71
+weight: 125
+base_height: 71
+base_weight: 125
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: c 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 635/635
+mana: 672/672
+move: 256/256
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 89
+wisdom: 93
+dexterity: 62
+constitution: 65
+charisma: 64
+cash: 217 2418 10856 11712
+bank: 604 9750 22900 14000
+experience: 62464653
+quit_reason: 1
+saveroom: 3054
+skills:
+4 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+28 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+48 1000
+51 1000
+53 1000
+54 1000
+70 1000
+73 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+94 1000
+96 1000
+99 1000
+118 1000
+122 1000
+131 1000
+132 1000
+133 1000
+134 1000
+135 1000
+136 1000
+137 1000
+139 1000
+140 1000
+141 1000
+142 1000
+206 1000
+207 1000
+235 1000
+241 1000
+415 454
+416 810
+421 861
+423 855
+424 870
+438 210
+443 50
+444 50
+451 863
+452 57
+453 715
+455 63
+457 867
+458 302
+459 560
+460 125
+461 71
+462 54
+463 870
+466 50
+0 0
+trophy:
+1 3505 1.000000
+1 61503 0.500000
+1 17203 0.500000
+1 17204 2.500000
+1 3508 0.500000
+1 3509 0.500000
+1 3506 0.500000
+1 3500 0.500000
+1 11809 0.500000
+1 11701 0.500000
+1 11710 0.500000
+1 2809 0.583333
+1 11704 0.750000
+1 53311 0.933333
+1 53304 0.800000
+1 53306 0.200000
+1 53312 0.600000
+1 53305 0.400000
+1 2807 0.750000
+1 2805 1.083333
+1 2802 0.500000
+0 0 0
+tells:
+1677041983 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1677041983 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1677041983 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1677041984 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1677041984 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1677041984 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1677041984 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1677041984 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1677041985 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1677041985 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1677892097 Hackwriter gossips, 'well i guess at least he will die at guildaster'
+1677892103 Hackwriter gossips, 'rofl'
+1677892113 Hackwriter gossips, 'hey thanks'
+1677892694 Chinok gossips, 'gratz on 80!'
+1677893033 Hackwriter gossips, 'gratz'
+1677893189 Hackwriter gossips, 'gratz'
+1677893908 Someone gossips, 'i see on items there is a weight reduction category.  are they items that reduce the weight of their contents?'
+1677893931 Daedela gossips, 'not readily available, no'
+1682799548 Isiac gossips, 'Wave Senolo'
+1682800887 Isiac gossips, 'gz'
+1682800896 Prini gossips, 'tks!'
+$
+mem:
+16 1 2
+88 1 2
+88 1 2
+84 1 2
+88 1 2
+88 1 2
+16 1 1
+16 1 1
+137 1 1
+131 1 2
+15 1 1
+15 1 1
+15 1 1
+132 1 2
+35 1 1
+28 1 2
+14 1 1
+28 1 2
+91 1 2
+91 1 1
+91 1 1
+28 1 2
+139 1 2
+139 1 2
+139 1 2
+43 1 2
+94 1 1
+139 1 2
+142 1 1
+15 1 1
+14 1 1
+53 1 2
+53 1 2
+140 1 2
+53 1 2
+136 1 1
+92 1 2
+99 1 2
+53 1 1
+99 1 2
+96 1 1
+42 1 1
+96 1 1
+96 1 1
+131 1 2
+131 1 2
+132 1 1
+132 1 1
+35 1 1
+141 1 2
+141 1 1
+48 1 2
+48 1 2
+48 1 2
+48 1 2
+70 1 2
+70 1 2
+141 1 1
+132 1 2
+54 1 5
+54 1 5
+54 1 5
+54 1 5
+54 1 5
+54 1 5
+28 1 2
+131 1 2
+0 0 0
+aliases:
+dpresme c 'dark p'
+deme c demon
+0

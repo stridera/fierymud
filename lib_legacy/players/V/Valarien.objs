@@ -1,0 +1,2007 @@
+1
+vnum: 51073
+location: 0
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: agi 0
+name: sun light bright miniature-sun
+shortdesc: a Miniature Sun
+desc: A ball of bright light is enclosed in an orb of glass.
+type: 1
+weight: 5.00
+cost: 600
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+26 2
+18 2
+~
+extradesc: small sun minature glowing orb glass ball
+This small ball of light is giving off an immense amount of light.
+It is enclosed in some type of a glass orb that seems to keep the outside
+of the ball cool to the touch and manageable.  The inside glows like a small
+sun, radiating bright light in all directions.  If you have this item,
+luck, determination and the Gods are with you.
+~
+~~
+vnum: 48127
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: f 0
+name: ring ivory ivory-ring wedding wedding-band band
+shortdesc: an ivory wedding band
+desc: An ivory wedding band has been tossed here by a spiteful person.
+type: 11
+weight: 0.02
+cost: 3000
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 3
+applies:
+3 -2
+4 -2
+19 2
+~
+triggers:
+48111
+~
+~~
+vnum: 48127
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: f 0
+name: ring ivory ivory-ring wedding wedding-band band
+shortdesc: an ivory wedding band
+desc: An ivory wedding band has been tossed here by a spiteful person.
+type: 11
+weight: 0.02
+cost: 3000
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 3
+applies:
+3 -2
+4 -2
+19 2
+~
+triggers:
+48111
+~
+~~
+vnum: 58429
+location: 3
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: f 0
+name: pendant alicorn-pendant alicorn horn tip spiral chain
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 9
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant alicorn horn tip spiral chain
+This pendant is made of the very tip of a spiral horn. It's been drilled
+so a primitive chain can support it. The horn glows with power.
+~
+~~
+vnum: 58429
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: f 0
+name: pendant alicorn-pendant alicorn horn tip spiral chain
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 9
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant alicorn horn tip spiral chain
+This pendant is made of the very tip of a spiral horn. It's been drilled
+so a primitive chain can support it. The horn glows with power.
+~
+~~
+vnum: 55498
+location: 5
+values:
+38
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqstuvwxyz 0
+name: shining platinum chestplate templar templars
+shortdesc: &4&bChestplate of the Templar&0
+desc: A templar's shining platinum chestplate has been proudly laid out here.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 41
+effects: m 0 0
+wear: 9
+extradesc: shining platinum chestplate templar templars
+Pounded out of solid platinum, a chestplate like this is given to the most
+prominent heroes of good.  The plate itself bears the original honored one's
+holy symbol, as well as three triangular diamonds to represent the body, mind
+and soul.  Great divine favor flows through this plate, protecting the wearer
+to an enhanced degree.
+~
+~~
+vnum: 482
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: E 0
+name: horns demon krisenna krisenna's
+shortdesc: Krisenna's horns
+desc: The horns of a demon lie here, a trophy of the slaying of the demon. 
+type: 9
+weight: 10.00
+cost: 12000
+timer: 0
+level: 50
+effects: y 0 0
+wear: 17
+applies:
+19 4
+18 2
+14 20
+~
+~~
+vnum: 438
+location: 7
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: gkmsvwzAD 0
+name: chain mail elven singer krethrin's
+shortdesc: Krethrin's Singer
+desc: A glimmering set of fine chainmail hovers just off the ground.
+adesc:
+Composed of tiny metal links interwoven to form a tight knit but lightweight
+skirt of armor, the mail is padded with a thin layer of leather to prevent
+chaffing.  With some of the links tapered at the end of the skirt, the mail
+produces a light whisper-like musical tone with excessive movement such as
+combat.    
+~
+type: 9
+weight: 9.10
+cost: 100
+timer: 0
+level: 85
+effects: 0 0 0
+wear: 33
+applies:
+6 3
+2 3
+~
+extradesc: chain mail elven singer krethrin's
+Composed of tiny metal links interwoven to form a tight knit but lightweight
+skirt of armor, the mail is padded with a thin layer of leather to prevent
+chaffing.  With some of the links tapered at the end of the skirt, the mail
+produces a light whisper-like musical tone with excessive movement such as
+combat.    
+~
+~~
+vnum: 55500
+location: 8
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqstuvwxyz 0
+name: winged platinum boots templar
+shortdesc: &4&bBoots of the Templar&0
+desc: Winged platinum boots wait for the great paladin who left them behind.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+applies:
+19 2
+4 4
+26 5
+~
+extradesc: winged platinum boots templar
+Small metal angelic wings extend from the heels of each boot, much like the
+classic symbol of an ancient deity.  The boots themselves are made of platinum
+plates, locked together reaching to the knees.  Each boot is surprisingly
+flexible due to the numerous joints.
+~
+~~
+vnum: 55502
+location: 9
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqstuvwxyz 0
+name: platinum gauntlets templar
+shortdesc: &4&bGauntlets of the Templar&0
+desc: Heavily enchanted platinum gauntlets appear to have misplaced here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+applies:
+18 2
+2 2
+~
+extradesc: platinum gauntlets templar
+Platinum plates fit together to form these secure but mobile gauntlets.  Each
+gauntlet is etched with numerous angelic and celestial runes, filling them with
+powerful holy magic.  Almost completely smooth in finish, the gauntlets almost
+appear to be fashioned from the hide of the legendary couatl.
+~
+~~
+vnum: 55497
+location: 10
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqstuvwxyz 0
+name: brilliant platinum vambraces templar
+shortdesc: &4&bVambraces of the Templar&0
+desc: Brilliant platinum vambraces belonging to a powerful paladin are on display here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+applies:
+19 1
+13 40
+1 2
+4 2
+~
+extradesc: brilliant platinum vambraces templar
+A single long oval attached to a circular elbow pad makes up each vambrace.  
+On the surface of each vambrace is a pictograph detailing a significant moment
+in the owner's life, refining the templar's connection to their deity.  Hound
+archon hide, given freely, allows the wearer to fasten these plates in place.
+~
+~~
+vnum: 48801
+location: 12
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gopwxD 0
+name: stormcloak storm-cloak glittering-cloak
+shortdesc: the Stormcloak
+desc: Someone has dropped a glittering cloak here.
+type: 9
+weight: 4.00
+cost: 12000
+timer: 0
+level: 90
+effects: u 0 0
+wear: 1025
+extradesc: stormcloak storm-cloak glittering-cloak
+You behold the legendary Stormcloak, once worn by the mighty       
+Stormlord, Holder of Tempests, himself. The dark indigo cloth the 
+cloak is made of scintillates, giving the impression of thousands of 
+tiny indigo-colored gems woven right into its brocade surface. It's quite
+heavy, with a handspan-wide collar held together by a bronze clasp,
+beautifully worked into the shape of a horned demon whose raised fists
+make the clasp circular in form. The ankle-length cloak is lined in black
+silk and edged in crimson. Your blood stirs inside you as you look at it,
+touch it. 
+~
+triggers:
+18887
+~
+~~
+vnum: 58432
+location: 13
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmnou 0
+name: girth storm-giants-girth giant blue-steel-girth lightning
+shortdesc: the Storm Giant's Girth
+desc: A blue steel girth flashes with its own lightning.
+type: 9
+weight: 3.00
+cost: 2500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+extradesc: girth storm-giants-girth giant blue-steel-girth lightning
+You can see that this girth must be not only magical, but intrinsically
+strong, for though it is very old, there are no dents, dings, or scratches
+in its shockingly blue surface. It reflects a fierce strike of lightning
+as you look at it. But no lightning flashed right then in the sky....
+~
+~~
+vnum: 55501
+location: 14
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqstuvwxyz 0
+name: platinum bracer templar
+shortdesc: &4&bBracer of the Templar&0
+desc: A platinum bracer etched with a holy warrior's symbol rests on the ground.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+applies:
+18 1
+1 2
+13 20
+~
+extradesc: platinum bracer templar
+Large enough to cover from the wrist to beyond the elbow, this large bracer is
+both stylish and effective.  It covers almost the entire girth of an arm, with
+the small exposed section being mostly protected by hinges and buckles to hold
+the bracer securely in place.  The holy symbol of the original owner's order is
+shown in detailed relief on the face of the bracer.  The original owner's name
+is also etched on the inside.
+~
+~~
+vnum: 55501
+location: 15
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqstuvwxyz 0
+name: platinum bracer templar
+shortdesc: &4&bBracer of the Templar&0
+desc: A platinum bracer etched with a holy warrior's symbol rests on the ground.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+applies:
+18 1
+1 2
+13 20
+~
+extradesc: platinum bracer templar
+Large enough to cover from the wrist to beyond the elbow, this large bracer is
+both stylish and effective.  It covers almost the entire girth of an arm, with
+the small exposed section being mostly protected by hinges and buckles to hold
+the bracer securely in place.  The holy symbol of the original owner's order is
+shown in detailed relief on the face of the bracer.  The original owner's name
+is also etched on the inside.
+~
+~~
+vnum: 48804
+location: 16
+values:
+0
+3
+6
+5
+0
+0
+0
+~
+flags: gmnouvwyzABD 0
+name: baton lightweight-baton slender-metallic-rod
+shortdesc: a lightweight baton
+desc: Condensation forms on a slender metallic rod lying here.
+type: 5
+weight: 2.40
+cost: 34902
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+extradesc: lightweight-baton slender-metallic-rod
+The baton feels extremely cool to the touch, as if its brushed metal
+surface is pulling all the heat from its surroundings.  It feels
+hollow and perfectly balanced, yet the metal seems to be somewhat
+stronger than anything this light should be.
+~
+~~
+vnum: 48418
+location: 17
+values:
+0
+7
+4
+14
+0
+0
+0
+~
+flags: kmnouwyz 0
+name: javelin broad-bladed-javelin javelin-broad-brass-head
+shortdesc: a broad-bladed javelin
+desc: A javelin with a broad brass head lies here.
+type: 5
+weight: 15.00
+cost: 1000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+extradesc: broad-bladed-javelin javelin-broad-brass-head
+The javelin is made of brass and at first glance appears to be an inferior
+weapon. However, a close inspection of the weapon reveals that the metal
+has been enchanted or somehow enhanced, for the balance and strength of
+the javelin is superior to any other you have seen.
+~
+~~
+vnum: 51006
+location: 21
+values:
+0
+1800
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: eyes balls ice-eyes
+shortdesc: a pair of Ice Eyes
+desc: Two balls of ice lie here, casting a magical glow of light all around.
+type: 1
+weight: 1.03
+cost: 500
+timer: 0
+level: 52
+effects: 0 0 0
+wear: 65537
+applies:
+18 2
+14 20
+~
+extradesc: ice eyes magical pair two
+As you look closer at the pair of eyes, you notice that they glow from the
+inside out.  Although they are made out of ice, they are not melting or
+exceedingly cold to the touch.  If you held them, they could probably be used
+as a light source.
+~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: af 0
+name: mask imanhotep golden
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 9
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+applies:
+1 2
+4 2
+~
+extradesc: mask
+The mask is made of solid gold and is encrusted with jewels. It has an aura
+of power around it.~
+~~
+vnum: 498
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: brooch fiery a
+shortdesc: &3a&0 &1&bfiery&0 &3brooch&0
+desc: &1&bA small metal brooch surrounded by fire is floating just above the ground here.&0
+type: 11
+weight: 0.21
+cost: 1700
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 524289
+applies:
+17 3
+19 2
+~
+extradesc: brooch fiery
+This brooch is made of a mysterious white metal.  The very strange thing about
+it is that it is on fire but it is not consumed or melted.  The dark monks must
+have taken it from a powerful pyromancer at one time and have stored it ever
+since.    
+~
+~~
+vnum: 53420
+location: 26
+values:
+0
+2
+6
+3
+0
+0
+0
+~
+flags: gmnuvyz 0
+name: blade thin-elven-blade
+shortdesc: an elven blade
+desc: A thin elven blade has been left here.
+type: 5
+weight: 2.10
+cost: 745
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 1056769
+applies:
+18 2
+2 1
+~
+extradesc: thin-elven-blade
+This blade looks quite similar to a regular longsword, but is much thinner and
+the metal seems much stronger.  It is extremely light, and a few test swings
+prove it to be a fine, expertly crafted weapon.    
+~
+~~
+vnum: 48418
+location: 127
+values:
+0
+7
+4
+14
+0
+0
+0
+~
+flags: kmnouwyz 0
+name: javelin broad-bladed-javelin javelin-broad-brass-head
+shortdesc: a broad-bladed javelin
+desc: A javelin with a broad brass head lies here.
+type: 5
+weight: 15.00
+cost: 1000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+extradesc: broad-bladed-javelin javelin-broad-brass-head
+The javelin is made of brass and at first glance appears to be an inferior
+weapon. However, a close inspection of the weapon reveals that the metal
+has been enchanted or somehow enhanced, for the balance and strength of
+the javelin is superior to any other you have seen.
+~
+~~
+vnum: 23799
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: fgqAD 0
+name: black leather drow intricate breathtaking boots
+shortdesc: black leather drow boots
+desc: Breathtakingly intricate black leather boots rest here.
+type: 11
+weight: 1.75
+cost: 0
+timer: 0
+level: 65
+effects: y 0 0
+wear: 65
+applies:
+18 2
+19 2
+14 40
+17 2
+~
+extradesc: black leather drow boots
+This grand pair of customized drow boots appears to have just been completed
+after many hours and days of labor.  The flawless leather straps glisten with
+every bit of light that crosses its surface.  The extra cushioning and soft
+padding along the sole ensure that these boots are not only comfortable, but
+very protective.    
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+~~
+vnum: 48403
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: bmotuvwyz 0
+name: shield shield-valor shield-painted-images-heorism-valor
+shortdesc: the Shield of Valor
+desc: A shield painted with images of heroism and valor lies here.
+type: 9
+weight: 7.00
+cost: 2000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 513
+applies:
+1 5
+24 -5
+~
+extradesc: shield-valor shield-painted-images-heorism-valor
+The shield has many dents in it but seems quite sturdy. The surface of the
+shield is painted with images of heroism and valor. It original owner was
+surely a mighty warrior who held these values in high esteem.
+~
+triggers:
+18887
+~
+~~
+vnum: 58430
+location: 127
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tights purple purple-tights snug-fitting pair rolled ball discarded
+shortdesc: a pair of snug-fitting purple tights
+desc: A pair of tights has been rolled into a ball and discarded.
+type: 9
+weight: 0.50
+cost: 750
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: tights purple purple-tights snug-fitting pair rolled ball discarded
+These tights look like they'd be a perfect fit! A tie-waist secures
+them at the waist, and the thick woolen material goes from there all the
+way down to your feet. They look quite old, and seem to glow with some
+kind of magical power. Perhaps they're enchanted!
+~
+~~
+vnum: 16201
+location: 127
+values:
+0
+3000
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: sceptre rod kings golden
+shortdesc: a golden sceptre
+desc: A golden sceptre glitters in the light.
+type: 1
+weight: 1.20
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+applies:
+17 3
+~
+extradesc: sceptre rod kings
+The sceptre is made of pure gold, and is encrusted in jewels. Intricate carvingsdepicting wings snakes decorate this majestic rod.~
+~~
+vnum: 55484
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpqrstuvyz 0
+name: shadowy tunic unseen
+shortdesc: &3Tunic of the Unseen&0
+desc: A shadowy tunic has been hidden in the darkness here.
+type: 9
+weight: 9.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 9
+applies:
+18 3
+3 2
+~
+extradesc: shadowy tunic unseen
+Fine, tightly knitted chainmail has been enchanted to forge a dark, shadowy
+armor designed to obscure the wearer from sight.  Usually clothing like this is
+given to students of the shadows by their mentors as a show of their growing
+abilities.
+~
+~~
+vnum: 3020
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: nu 0
+name: dagger
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: dagger
+The dagger's blade is razor sharp.
+~
+~~
+vnum: 3020
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: nu 0
+name: dagger
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: dagger
+The dagger's blade is razor sharp.
+~
+~~
+vnum: 3020
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: nu 0
+name: dagger
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: dagger
+The dagger's blade is razor sharp.
+~
+~~
+vnum: 3020
+location: 127
+values:
+0
+1
+4
+11
+0
+0
+0
+~
+flags: nu 0
+name: dagger
+shortdesc: a dagger
+desc: A dagger with a long thin blade is here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 0.50
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: dagger
+The dagger's blade is razor sharp.
+~
+~~
+vnum: 58434
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou 0
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 58420
+location: 127
+values:
+0
+2
+8
+3
+0
+0
+0
+~
+flags: gmnouvwyz 0
+name: blade forgotten-kings long-heavy-sword jewelled-pommel
+shortdesc: the Blade of the Forgotten Kings
+desc: A long, heavy sword with a jewelled pommel rests here.
+type: 5
+weight: 2.50
+cost: 6000
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 8193
+applies:
+4 2
+19 3
+~
+extradesc: blade forgotten-kings long-heavy-sword jewelled-pommel
+This sword's easily the length of your entire arm, and the blade itself
+is thick and wide, with a blood groove deeply etched into its center.
+It's clearly incredibly old. You just can't find this kind of workmanship
+these days.
+~
+~~
+vnum: 58407
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: letter ancient-letter folded
+shortdesc: an ancient letter
+desc: An ancient letter is folded up on the ground.
+type: 12
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: letter ancient-letter folded
+It is written in ink that has gone brown with age on parchment that
+is nearly yellow. The edges crumble as you read; you take special
+care not to destroy this missive from the past. But it reads only:
+
+      My beloved Arturio, please believe that I act only to protect
+      you and Frederick. Remember the chants and spells I taught
+      you and the rest of our family, and remember that yours is
+      a rich heritage. Should you ever need the help of the Goddess
+      Mielikki, you need only ask.
+
+The letter has been folded and refolded many, many times.
+~
+~~
+vnum: 58408
+location: 127
+values:
+5
+5
+-1
+0
+0
+0
+0
+~
+flags: a 0
+name: locket golden-locket golden filigree gold chain
+shortdesc: a golden locket on a filigree chain
+desc: A gold locket on a filigree chain lies here.
+type: 15
+weight: 0.10
+cost: 1200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+6 5
+~
+extradesc: golden locket chain filigree gold
+You've never seen such exquisite goldworking. This locket, on its
+whisper-thin golden link necklace, seems very old. The hinges on
+it are coming a bit loose, but it's still pretty tightly closed.
+~
+~~
+vnum: 58409
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: portrait miniature-painting hand-painted-miniature-portrait
+shortdesc: a hand-painted miniature portrait
+desc: A hand-painted portrait the size of your palm lies here.
+type: 8
+weight: 0.40
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: portrait miniature-painting hand-painted-miniature-portrait
+The woman in this painting is amazingly beautiful, but in the same
+way that a deadly sword is beautiful. She's exactly like a sword --
+whipcord-lithe, slender, well-muscled, and seems as if she is about
+to strike. Her eyes seem incredibly intelligent and perceptive. The
+portrait is no bigger than the palm of your hand, making the artistry
+of the representation seem all the more amazing. 
+   The woman in the painting is looking right out at the viewer. As
+you watch, her full, lush lips move, and you hear words: "My little
+Frederick, remember that I am always watching over you." You hear no
+more.
+~
+~~
+vnum: 58426
+location: 127
+values:
+90
+61
+18
+39
+0
+0
+0
+~
+flags: DE 0
+name: elixir little-vial-faerie-elixir cunning-little-vial-clear-liquid
+shortdesc: a little vial of faerie elixir
+desc: A cunning little vial of clear liquid floats past.
+type: 10
+weight: 0.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+extradesc: little-vial-faerie-elixir cunning-little-vial-clear-liquid
+This little glass bottle looks so delicate you swear you could destroy
+it with a gentle breath of air. Its stopper is made of some kind of 
+filigree that somehow still keeps the liquid in the vial from spilling
+out. The liquid itself is clear and seems to bubble and sway all by
+itself inside the bottle.
+~
+~~
+vnum: 519
+location: 127
+values:
+0
+10
+10
+5
+0
+0
+0
+~
+flags: mnouvwyz 0
+name: great-maul war-hammer Calken
+shortdesc: a Great Maul
+desc: A war hammer has fallen to the ground here, leaving a deep impression on impact.
+type: 5
+weight: 11.00
+cost: 23657
+timer: 0
+level: 58
+effects: 0 0 0
+wear: 32769
+applies:
+18 3
+1 3
+5 3
+~
+~~
+vnum: 3033
+location: 127
+values:
+20
+1
+1
+3
+0
+0
+0
+~
+flags: 0 0
+name: cane mayor short mayors-cane questobject
+shortdesc: the mayor's cane
+desc: A short cane is resting here in the way.
+type: 3
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: cane mayor short mayors-cane questobject
+The mayor's cane is simply a short piece of wood to help him with walking in
+his old age.  It is probably worthless otherwise.    
+~
+triggers:
+6019
+~
+variables:
+gotcain 1
+~
+~~
+vnum: 62576
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: imnpqrsuvyz 0
+name: kusari-katabira chain-jacket
+shortdesc: kusari katabira
+desc: A light chain jacket rests here, nearly folded.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 9
+applies:
+2 10
+1 4
+19 3
+18 2
+~
+~~
+vnum: 16303
+location: 127
+values:
+75
+15
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion green mistletoe brew
+shortdesc: the mistletoe brew
+desc: A light green potion lies among the grasses.
+type: 10
+weight: 0.75
+cost: 2000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+extradesc: potion green mistletoe brew
+   You look at the messy green gunk in the crystal potion. You wonder who 
+would want to keep something like this.
+~
+~~
+vnum: 11702
+location: 127
+values:
+12
+22
+16
+43
+0
+0
+0
+~
+flags: g 0
+name: potion white bright
+shortdesc: a bright white potion
+desc: A bright white potion is lying on the ground here.
+type: 10
+weight: 0.50
+cost: 1500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: bright white potion
+It is a bright, almost glowing white potion. The liquid in the glass
+vial is milky and opaque, and smells faintly of herbs.
+~
+~~
+vnum: 11702
+location: 127
+values:
+12
+22
+16
+43
+0
+0
+0
+~
+flags: g 0
+name: potion white bright
+shortdesc: a bright white potion
+desc: A bright white potion is lying on the ground here.
+type: 10
+weight: 0.50
+cost: 1500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+extradesc: bright white potion
+It is a bright, almost glowing white potion. The liquid in the glass
+vial is milky and opaque, and smells faintly of herbs.
+~
+~~
+vnum: 3053
+location: 127
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll blue remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 49065
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: agiD 0
+name: pearl pear rare
+shortdesc: a rare pear shaped pearl
+desc: A small pear shaped pearl lies forgotten here.
+type: 8
+weight: 0.01
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+26 5
+13 10
+14 10
+~
+extradesc: pearl pear rare
+This pearl is like no other you have seen before.  Instead of being a circular
+shape like most pearls are this pearl is in the shape of a pear.  It is also
+quite a bit larger than most pearls too.    
+~
+~~
+vnum: 55363
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: slippers worn
+shortdesc: worn slippers
+desc: A pile of worn cloth armor lies here unusable.
+type: 8
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 1
+~~
+vnum: 52022
+location: 127
+values:
+40
+0
+0
+0
+0
+0
+0
+~
+flags: abgmo 0
+name: skin armor dragon-skin dragon-armor
+shortdesc: a dragon skin
+desc: A set of scaled dragon armor lies here, apparently forgotten by the gods.
+type: 9
+weight: 19.00
+cost: 14000
+timer: 0
+level: 78
+effects: 0 0 0
+wear: 9
+applies:
+1 -5
+5 -5
+~
+extradesc: skin armor dragon-skin dragon-armor
+Of all things, dragon skin is incredibly rare.  The scales are hard and a dark
+black color.  Each scale is the size of a man's kneecap, connected
+mysteriously beneath.    
+~
+~~
+vnum: 3053
+location: 127
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll blue remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~
+vnum: 58433
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: mnou 0
+name: bracers warder warders-bracers large pair
+shortdesc: the Warder's Bracers
+desc: A large pair of bracers lies here.
+type: 9
+weight: 1.50
+cost: 3500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 257
+applies:
+19 2
+~
+extradesc: bracers warder warders-bracers large pair
+You can tell that only royalty could have afforded to make these.
+Made of some dark-green metal alloy, these bracers, made to fit
+and buckle around a very large arm, are worked in a cunning
+scrolling design. They're obviously very old, as well; the metal
+feels worn in places, as though decades of contact with the same
+arms have altered their shape slightly.
+~
+~~
+vnum: 55366
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: wristband corroded
+shortdesc: a corroded wristband
+desc: A pile of corroded armor lies here unusable.
+type: 11
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 2049
+~~
+vnum: 58430
+location: 127
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tights purple purple-tights snug-fitting pair rolled ball discarded
+shortdesc: a pair of snug-fitting purple tights
+desc: A pair of tights has been rolled into a ball and discarded.
+type: 9
+weight: 0.50
+cost: 750
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: tights purple purple-tights snug-fitting pair rolled ball discarded
+These tights look like they'd be a perfect fit! A tie-waist secures
+them at the waist, and the thick woolen material goes from there all the
+way down to your feet. They look quite old, and seem to glow with some
+kind of magical power. Perhaps they're enchanted!
+~
+~~
+vnum: 58426
+location: 127
+values:
+90
+61
+18
+39
+0
+0
+0
+~
+flags: DE 0
+name: elixir little-vial-faerie-elixir cunning-little-vial-clear-liquid
+shortdesc: a little vial of faerie elixir
+desc: A cunning little vial of clear liquid floats past.
+type: 10
+weight: 0.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+extradesc: little-vial-faerie-elixir cunning-little-vial-clear-liquid
+This little glass bottle looks so delicate you swear you could destroy
+it with a gentle breath of air. Its stopper is made of some kind of 
+filigree that somehow still keeps the liquid in the vial from spilling
+out. The liquid itself is clear and seems to bubble and sway all by
+itself inside the bottle.
+~
+~~
+vnum: 58420
+location: 127
+values:
+0
+2
+8
+3
+0
+0
+0
+~
+flags: gmnouvwyz 0
+name: blade forgotten-kings long-heavy-sword jewelled-pommel
+shortdesc: the Blade of the Forgotten Kings
+desc: A long, heavy sword with a jewelled pommel rests here.
+type: 5
+weight: 2.50
+cost: 6000
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 8193
+applies:
+4 2
+19 3
+~
+extradesc: blade forgotten-kings long-heavy-sword jewelled-pommel
+This sword's easily the length of your entire arm, and the blade itself
+is thick and wide, with a blood groove deeply etched into its center.
+It's clearly incredibly old. You just can't find this kind of workmanship
+these days.
+~
+~~
+vnum: 62576
+location: 127
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: imnpqrsuvyz 0
+name: kusari-katabira chain-jacket
+shortdesc: kusari katabira
+desc: A light chain jacket rests here, nearly folded.
+type: 9
+weight: 5.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 9
+applies:
+2 10
+1 4
+19 3
+18 2
+~
+~~
+vnum: 58414
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: crown golden gypsy-crown gypsy
+shortdesc: the Gypsy Crown
+desc: A golden crown inlaid with emeralds rolls around here.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 17
+applies:
+5 8
+~
+extradesc: crown gypsy
+This crown seems pretty heavy. It's made of thick gold, and probably
+incredibly expensive. The gold is shaped into the traditional peaks of 
+crowns. A green emerald, marquise-cut, is set into each peak, and several 
+of them in various cuts adorn the very front of the crown's tallest peak,
+which would be centered over the wearer's forehead.
+~
+~~
+vnum: 58408
+location: 127
+values:
+5
+5
+-1
+0
+0
+0
+0
+~
+flags: a 0
+name: locket golden-locket golden filigree gold chain
+shortdesc: a golden locket on a filigree chain
+desc: A gold locket on a filigree chain lies here.
+type: 15
+weight: 0.10
+cost: 1200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+6 5
+~
+extradesc: golden locket chain filigree gold
+You've never seen such exquisite goldworking. This locket, on its
+whisper-thin golden link necklace, seems very old. The hinges on
+it are coming a bit loose, but it's still pretty tightly closed.
+~
+~~
+vnum: 58409
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: portrait miniature-painting hand-painted-miniature-portrait
+shortdesc: a hand-painted miniature portrait
+desc: A hand-painted portrait the size of your palm lies here.
+type: 8
+weight: 0.40
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: portrait miniature-painting hand-painted-miniature-portrait
+The woman in this painting is amazingly beautiful, but in the same
+way that a deadly sword is beautiful. She's exactly like a sword --
+whipcord-lithe, slender, well-muscled, and seems as if she is about
+to strike. Her eyes seem incredibly intelligent and perceptive. The
+portrait is no bigger than the palm of your hand, making the artistry
+of the representation seem all the more amazing. 
+   The woman in the painting is looking right out at the viewer. As
+you watch, her full, lush lips move, and you hear words: "My little
+Frederick, remember that I am always watching over you." You hear no
+more.
+~
+~~
+vnum: 58433
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: mnou 0
+name: bracers warder warders-bracers large pair
+shortdesc: the Warder's Bracers
+desc: A large pair of bracers lies here.
+type: 9
+weight: 1.50
+cost: 3500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 257
+applies:
+19 2
+~
+extradesc: bracers warder warders-bracers large pair
+You can tell that only royalty could have afforded to make these.
+Made of some dark-green metal alloy, these bracers, made to fit
+and buckle around a very large arm, are worked in a cunning
+scrolling design. They're obviously very old, as well; the metal
+feels worn in places, as though decades of contact with the same
+arms have altered their shape slightly.
+~
+~~
+vnum: 519
+location: 127
+values:
+0
+10
+10
+5
+0
+0
+0
+~
+flags: mnouvwyz 0
+name: great-maul war-hammer Calken
+shortdesc: a Great Maul
+desc: A war hammer has fallen to the ground here, leaving a deep impression on impact.
+type: 5
+weight: 11.00
+cost: 23657
+timer: 0
+level: 58
+effects: 0 0 0
+wear: 32769
+applies:
+18 3
+1 3
+5 3
+~
+~~
+vnum: 519
+location: 127
+values:
+0
+10
+10
+5
+0
+0
+0
+~
+flags: mnouvwyz 0
+name: great-maul war-hammer Calken
+shortdesc: a Great Maul
+desc: A war hammer has fallen to the ground here, leaving a deep impression on impact.
+type: 5
+weight: 11.00
+cost: 23657
+timer: 0
+level: 58
+effects: 0 0 0
+wear: 32769
+applies:
+18 3
+1 3
+5 3
+~
+~~
+vnum: 55496
+location: 127
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: gmnopqstuvwxyz 0
+name: templar helm
+shortdesc: &4&bHelm of the Templar&0
+desc: The helm of a holy knight shines in the sunlight here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+applies:
+19 3
+6 5
+~
+extradesc: helm templar
+Beautiful detailed wings sweep off the side and to the back of this helmet, as
+if carried on a current of air.  Pressed into the top of this platinum helm is
+the holy symbol of the paladin for which this helm was made, strengthening the
+already powerful bond between the paladin and the powers of honor and justice.
+~
+~~
+vnum: 58420
+location: 127
+values:
+0
+2
+8
+3
+0
+0
+0
+~
+flags: gmnouvwyz 0
+name: blade forgotten-kings long-heavy-sword jewelled-pommel
+shortdesc: the Blade of the Forgotten Kings
+desc: A long, heavy sword with a jewelled pommel rests here.
+type: 5
+weight: 2.50
+cost: 6000
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 8193
+applies:
+4 2
+19 3
+~
+extradesc: blade forgotten-kings long-heavy-sword jewelled-pommel
+This sword's easily the length of your entire arm, and the blade itself
+is thick and wide, with a blood groove deeply etched into its center.
+It's clearly incredibly old. You just can't find this kind of workmanship
+these days.
+~
+~~
+vnum: 52017
+location: 127
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: abgmouvwyz 0
+name: shield dragon dragon-shield
+shortdesc: a dragon shield
+desc: A shield made of dragon skin and tempered with dragon fire is here.
+type: 9
+weight: 5.00
+cost: 9000
+timer: 0
+level: 80
+effects: f 0 0
+wear: 513
+applies:
+19 3
+~
+extradesc: shield dragon dragon-shield
+This shield is huge.  There are large, black dragon claws curving out from the
+top and bottom towards the outside.  There is a grey symbol surrounded by the
+coal color of the shield.    
+~
+~~
+vnum: 55617
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: turquoise gem plain plain-turquoise
+shortdesc: a turquoise
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 4000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~

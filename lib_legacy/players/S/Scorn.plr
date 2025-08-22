@@ -1,0 +1,71 @@
+name: Scorn
+password: Scm1LyxKLL
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20385
+birthtime: 1670451559
+timeplayed: 1891
+lastlogintime: 1670453450
+host: 073.200.101.225
+height: 67
+weight: 165
+base_height: 67
+base_weight: 165
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 29/29
+mana: 0/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 66
+wisdom: 76
+dexterity: 88
+constitution: 71
+charisma: 64
+experience: 1861
+quit_reason: 3
+saveroom: 0
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8015 1.000000
+1 8013 1.000000
+0 0 0
+tells:
+1670451749 @WDaedela@W tells you, 'checking out the socials?@W'@0
+$
+gossips:
+1670451581 Daedela gossips, 'hello there Scorn, welcome'
+1670451588 Catan gossips, 'hey Scorn!'
+$

@@ -1,0 +1,130 @@
+name: Mifaly
+password: Mi5Lb.Oo7d
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <%dl>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 5
+race: 0
+level: 19
+home: 3022
+lifeforce: 0
+composition: 0
+id: 16422
+birthtime: 1174323415
+timeplayed: 222017
+lastlogintime: 1738707735
+host: 208.093.179.007
+height: 64
+weight: 161
+base_height: 64
+base_weight: 161
+base_size: 2
+natural_size: 2
+alignment: -379
+playerflags: glxy
+effectflags: cn 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 56401
+lastlevel: 11
+hitpoints: 284/246
+mana: 100/36
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 60
+wisdom: 67
+dexterity: 84
+constitution: 100
+charisma: 58
+cash: 26 448 557 569
+experience: 1524722
+clan: 3
+quit_reason: 7
+saveroom: 56401
+skills:
+12 1000
+13 1000
+84 1000
+85 1000
+131 1000
+132 1000
+235 1000
+402 76
+404 230
+407 230
+415 79
+416 230
+417 150
+421 230
+423 215
+424 166
+430 158
+434 167
+438 50
+443 50
+444 217
+450 150
+451 203
+457 163
+458 152
+459 151
+460 150
+463 50
+464 50
+465 231
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36004 1.000000
+1 5502 2.333333
+1 5501 1.500000
+1 18508 0.500000
+1 18551 1.000000
+1 18500 0.500000
+1 18509 0.500000
+1 18517 1.000000
+1 18507 8.500000
+1 18510 1.000000
+1 61503 0.500000
+1 61525 1.000000
+1 61509 0.500000
+1 3502 2.000000
+1 3503 2.000000
+1 47 0.500000
+1 13616 0.500000
+1 13602 1.000000
+1 13603 0.500000
+1 13601 1.000000
+1 13610 0.500000
+0 0 0
+tells:
+1617107129 @WDavar@W tells you, 'one gem please@W'@0
+$
+gossips:
+1616333368 Strider gossips, 'Night all'
+1616333372 Strider gossips, 'er morning'
+1616333374 Strider gossips, 'whatever'
+1616333375 Vawk gossips, 'night strider'
+1617649992 Chinok gossips, 'hi..'
+1618431728 Meina gossips, 'Greetings Mifaly!'
+1618431732 Chinok gossips, 'crapple'
+1618461620 Fayris gossips, 'hi miffy'
+1738348459 Flynt gossips, 'Thanks for bringing it back up though. Just noticed Flynt was holding on to the silver trimmed. Probably a whole bunch of better options to hold.'
+$
+aliases:
+harm c 'cause l'$*
+gac g all all.corpse
+coin g all.coins all.corpse
+1 quaf blue
+gem g all.gem all.corpse
+id recite identify $*
+yy ass laneelot
+y ass valaina
+2 resc rinoa
+dark c 'dark p' $*
+demon c 'demonskin' $*
+0

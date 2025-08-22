@@ -1,0 +1,67 @@
+name: Zeco
+password: ZeUx2YVo1W
+description
+Nothing.
+~
+prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20596
+birthtime: 1692557859
+timeplayed: 1650
+lastlogintime: 1693066429
+host: 075.088.135.125
+height: 72
+weight: 133
+base_height: 72
+base_weight: 133
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 26/26
+mana: 1/0
+move: 129/129
+damroll: 3
+hitroll: 3
+strength: 72
+intelligence: 87
+wisdom: 66
+dexterity: 94
+constitution: 83
+charisma: 61
+experience: 1
+quit_reason: 5
+saveroom: 3001
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+$

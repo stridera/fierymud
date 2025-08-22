@@ -1,0 +1,1852 @@
+1
+vnum: 16006
+location: 0
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag 0
+name: orb-winds crystal-orb globe wind questobject
+shortdesc: the Orb of Winds
+desc: A crystal orb floats around you.
+type: 1
+weight: 0.50
+cost: 1000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+18 2
+20 -2
+~
+extradesc: orb-winds crystal-orb globe wind questobject
+The orb is totally weightless and possesses a very bright glow.  Gazing into
+its crystalline depths, there seems to be insubstantial forms floating within
+it.  Before you can decide what lies within, you are forced to look away, lest
+its light blinds you.~
+~~
+vnum: 12538
+location: 1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu 0
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 8
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+26 8
+13 25
+27 2
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    ~
+~~
+vnum: 12538
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gjnpu 0
+name: ring stolen life black runes
+shortdesc: the ring of stolen life
+desc: A black ring with golden runes engraved about it is caked in dirt. 
+type: 8
+weight: 0.02
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+26 8
+13 25
+27 2
+~
+extradesc: ring stolen life black runes
+The ring is made of a ring of black stone, with miniature gold runes inscribed
+about the outside.  The ring itself smells like burning flesh, but throbs with
+magical energy.    ~
+~~
+vnum: 58429
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pendant alicorn-pendant tip-spiral-horn-chain necklace
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 8
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant tip-spiral-horn-chain necklace
+This pendant is made of the very tip of a spiral horn.  It's been drilled so a
+primitive chain can support it.  The horn glows with power.~
+~~
+vnum: 58417
+location: 12
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: fD 0
+name: cloak swan-princess-cloak-feathers cloak-white-feathers-shimmers questobject
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+18 2
+2 5
+27 2
+~
+extradesc: cloak swan-princess-cloak-feathers cloak-white-feathers-shimmers questobject
+This beautiful cloak is made of some kind of silky white fabric sewn all over
+with the most amazing white feathers.  Each full, white feather has a single
+dark blue dot near its tip, giving the cloak a kind of shimmery nature as it
+turns from white to dappled.  The cloak fits closely about its wearer's body,
+with a white leather clasp holding it closed at the throat and at the waist.~
+~~
+vnum: 5529
+location: 13
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: j 0
+name: belt eldoria-reward 3rd-black-legion-belt third
+shortdesc: a belt of the 3rd Black Legion
+desc: A belt lies discaded here.
+type: 9
+weight: 0.96
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+1 2
+~
+~~
+vnum: 2023
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr 0
+name: bracelet-boar-images boar-bracelet boars questobject
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 8
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+18 2
+19 1
+~
+extradesc: bracelet-boar-images boar-bracelet boars questobject
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it.  You're now quite sure how, or even what exact material the bracelet is
+made of, though you suspect some kind of magically treated boar skin.~
+~~
+vnum: 2023
+location: 15
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: gmnpr 0
+name: bracelet-boar-images boar-bracelet boars questobject
+shortdesc: a bracelet with boar images on it
+desc: A bracelet with images of boars on it lies here.
+type: 8
+weight: 0.25
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+18 2
+19 1
+~
+extradesc: bracelet-boar-images boar-bracelet boars questobject
+Examining the bracelet closer, you see images of fierce boars somehow printed
+on it.  You're now quite sure how, or even what exact material the bracelet is
+made of, though you suspect some kind of magically treated boar skin.~
+~~
+vnum: 8506
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring jet-earring ear-ring tiny-black-earring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 8
+weight: 0.02
+cost: 250
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+19 1
+18 1
+27 1
+~
+extradesc: earring jet-earring ear-ring tiny-black-earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.~
+~~
+vnum: 8033
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale green-drakling-scale small-green-scale
+shortdesc: a &2green&0 drakling scale
+desc: A small green scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+~~
+vnum: 1001
+location: 26
+values:
+60
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sack rough-cloth cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+extradesc: sack rough-cloth cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.~
+~~
+vnum: 6104
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: gauntlets fine-dwarven-steel-gauntlets fine-steel-gauntlets dwarf
+shortdesc: fine dwarven steel gauntlets
+desc: Some fine steel gauntlets lie here.
+type: 9
+weight: 2.70
+cost: 1500
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+extradesc: gauntlets fine-dwarven-steel-gauntlets fine-steel-gauntlets dwarf
+Finely articulated, these gauntlets cover the forearm to the back of the
+hand. Each joint is beautifully crafted, each one three parts. They are
+obviously dwarven-made, being embossed and shiny.~
+~~
+vnum: 12503
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: jmnrstuvyz 0
+name: gloves bladed-gloves long-sharp-blades
+shortdesc: a pair of bladed gloves
+desc: A pair of gloves with long, sharp blades lies here. 
+type: 9
+weight: 2.00
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+19 2
+~
+extradesc: gloves blades bladed
+The gloves each feature 3 long blades originating from the top of the hand.  
+When wielding a weapon or making a fist, the long blades extend past the hand,
+making it more difficult to block a blow without taking damage.  The blades
+seem to be connected to a large metal plate sandwiched between two layers of
+leather.  A wide strap allows one to tighten the whole apparatus to the hand for
+stability.    ~
+~~
+vnum: 1620
+location: -1
+values:
+5
+106
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion blue
+shortdesc: a sky-blue potion
+desc: A sky-blue potion lies unused here.
+type: 10
+weight: 0.30
+cost: 100
+timer: 10
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion blue sky
+This potion sparkles with the color of the sky.~
+~~
+vnum: 12526
+location: -1
+values:
+80
+3
+3
+25
+0
+0
+0
+~
+flags: gnopqrstuwxA 0
+name: gem ruby fist
+shortdesc: a fist-sized ruby
+desc: A red gem lies here, dull but clear. 
+type: 3
+weight: 1.50
+cost: 50000
+timer: 0
+level: 33
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: gem ruby fist
+The ruby is approximately the size of a fist, and has so many facets that from
+a distance, it almost looks spherical.  Yellow flickers of light occaisonally
+eminate from within the stone.    ~
+triggers:
+12517
+~
+~~
+vnum: 8504
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: head bloody-head berack questobject
+shortdesc: a bloody head
+desc: The head of Berack is lying here.
+type: 8
+weight: 8.00
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: head bloody-head berack questobject
+This is the head of a very old man. A crazed expression is still on his 
+wrinkled, toothless face. This head is very animated even in death.
+How strange.~
+triggers:
+8507
+~
+~~
+vnum: 37016
+location: -1
+values:
+0
+4
+5
+11
+0
+0
+0
+~
+flags: jlnuv 0
+name: dagger large-black-dagger
+shortdesc: a black dagger
+desc: A large black dagger lies here.
+adesc:
+Nothing.~
+type: 5
+weight: 1.70
+cost: 0
+timer: 0
+level: 60
+effects: ny 0 0
+wear: 8193
+hiddenness: 0
+applies:
+18 3
+~
+extradesc: dagger black dagger-black
+Large and made of a blackened metal, this dagger looks like it was made for the
+hands of something larger than human.  Its leather grip is bloodstained but
+comfortable, and it looks like it has been replaced more than once.  Its pommel
+is a crystal of the colorful, rare mineral thawkinixa.    ~
+~~
+vnum: 18556
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: i 0
+name: belt brown-rope-belt long-tied-piece-rope thick
+shortdesc: a brown rope belt
+desc: A long, tied piece of rope lies on the ground here.
+adesc:
+Nothing.~
+type: 9
+weight: 0.32
+cost: 45
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+2 2
+4 3
+13 10
+27 1
+~
+extradesc: brown-rope-belt long-tied-piece-rope thick
+This belt made from rope is very plain and simlistic.  Just the kind of thing a
+monk would wear.~
+~~
+vnum: 1006
+location: 127
+values:
+30
+22
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: waterskin well-crafted-leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: well-crafted-leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.  &0~
+~~
+vnum: 52003
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: goprt 0
+name: gloves black-gloves fabric
+shortdesc: a pair of black gloves
+desc: A pair of black gloves lies here.
+type: 9
+weight: 0.75
+cost: 500
+timer: 0
+level: 75
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+4 2
+3 3
+27 3
+~
+extradesc: gloves black-gloves fabric
+These gloves are jet black, nearly dark as the night sky with no moon.  There
+are even small twinkles like the stars.~
+~~
+vnum: 43021
+location: 127
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: gnoprt 0
+name: orb-catastrophe gleaming-orb
+shortdesc: the Orb of Catastrophe
+desc: A gleaming orb floats a few feet off of the ground here.
+type: 1
+weight: 5.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+1 3
+3 2
+27 3
+~
+extradesc: orb-catastrophe gleaming-orb
+The orb slowly spins on a random axis, even when held.  Looking deep within its
+depths, you can almost swear that you see its fluid core swirling about a
+solitary figure.~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag~
+~~
+vnum: 904
+location: 127
+values:
+3
+5
+5
+11
+0
+0
+0
+~
+flags: ghjlmnprstuvz 0
+name: dagger legendary-dagger-shadows fragment-darkness
+shortdesc: a legendary dagger of &9&bshadows&0
+desc: A fragment of darkness lies ill placed here.
+type: 5
+weight: 0.30
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+2 2
+9 8
+5 1
+19 2
+~
+extradesc: dagger-shadows fragment-darkness
+Darker than any night sky, this blade appears to be crafted from a solid piece
+of darkness.  Not a gleam nor sparkle, the blade seems to swallow light rather
+than repeal it.~
+~~
+vnum: 904
+location: 127
+values:
+3
+5
+5
+11
+0
+0
+0
+~
+flags: ghjlmnprstuvz 0
+name: dagger legendary-dagger-shadows fragment-darkness
+shortdesc: a legendary dagger of &9&bshadows&0
+desc: A fragment of darkness lies ill placed here.
+type: 5
+weight: 0.30
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+2 2
+9 8
+5 1
+19 2
+~
+extradesc: dagger-shadows fragment-darkness
+Darker than any night sky, this blade appears to be crafted from a solid piece
+of darkness.  Not a gleam nor sparkle, the blade seems to swallow light rather
+than repeal it.~
+~~
+vnum: 12539
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: morstuvwxyz 0
+name: hammer small-rock-hammer
+shortdesc: a small rock hammer
+desc: A hammer designed to chip away at rock lies here. 
+type: 5
+weight: 4.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+~~
+vnum: 47005
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: mtu 0
+name: bracers shadow-bracers
+shortdesc: the Shadow Bracers
+desc: A pair of black bracers lie against the wall.
+type: 9
+weight: 5.50
+cost: 1000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+1 1
+18 3
+27 2
+~
+extradesc: bracers shadow-bracers
+You peer into the bracers, and you can only see the silhouette of them in the
+midday sun.  All light is shadowed out by them, and you can see how they could
+be quite useful on your arms.~
+~~
+vnum: 41115
+location: 127
+values:
+50
+44
+89
+43
+0
+0
+0
+~
+flags: g 0
+name: potion-of-sacrifice potion seawater bottle
+shortdesc: the potion of sacrifice
+desc: A bottle of seawater lies here, sloshing about.
+type: 10
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion-of-sacrifice potion seawater bottle
+A deep blue potion sloshes about inside the thin glass bottle with
+a life of its own. Miniature waves strike the sides the swing back 
+the other way as if they seek a way out.~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: an 0
+name: phantasmal bracelet phantasmal-bracelet vaporous circle vaporous-circle light circle-of-light
+shortdesc: a vaporous phantasmal bracelet
+desc: A vaporous circle of light is floating here.
+type: 12
+weight: 0.00
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+4 1
+~
+extradesc: phantasmal-bracelet phantasmal bracelet vaporous circle vaporous-circle light circle-of-light
+A vaporous circle of white mist hangs in the air, held together by some
+invisible force. No visible boundaries define it for your eyes. It is
+quite simply.. THERE... contained...~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: an 0
+name: phantasmal bracelet phantasmal-bracelet vaporous circle vaporous-circle light circle-of-light
+shortdesc: a vaporous phantasmal bracelet
+desc: A vaporous circle of light is floating here.
+type: 12
+weight: 0.00
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+4 1
+~
+extradesc: phantasmal-bracelet phantasmal bracelet vaporous circle vaporous-circle light circle-of-light
+A vaporous circle of white mist hangs in the air, held together by some
+invisible force. No visible boundaries define it for your eyes. It is
+quite simply.. THERE... contained...~
+~~
+vnum: 58417
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: fD 0
+name: cloak swan-princess-cloak-feathers cloak-white-feathers-shimmers questobject
+shortdesc: the Swan Princess' Cloak of Feathers
+desc: A cloak of white feathers shimmers in the light.
+type: 9
+weight: 2.00
+cost: 4000
+timer: 0
+level: 70
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+18 2
+2 5
+27 2
+~
+extradesc: cloak swan-princess-cloak-feathers cloak-white-feathers-shimmers questobject
+This beautiful cloak is made of some kind of silky white fabric sewn all over
+with the most amazing white feathers.  Each full, white feather has a single
+dark blue dot near its tip, giving the cloak a kind of shimmery nature as it
+turns from white to dappled.  The cloak fits closely about its wearer's body,
+with a white leather clasp holding it closed at the throat and at the waist.~
+~~
+vnum: 37016
+location: 127
+values:
+0
+4
+5
+11
+0
+0
+0
+~
+flags: jlnuv 0
+name: dagger large-black-dagger
+shortdesc: a black dagger
+desc: A large black dagger lies here.
+adesc:
+Nothing.~
+type: 5
+weight: 1.70
+cost: 0
+timer: 0
+level: 60
+effects: ny 0 0
+wear: 8193
+hiddenness: 0
+applies:
+18 3
+~
+extradesc: dagger black dagger-black
+Large and made of a blackened metal, this dagger looks like it was made for the
+hands of something larger than human.  Its leather grip is bloodstained but
+comfortable, and it looks like it has been replaced more than once.  Its pommel
+is a crystal of the colorful, rare mineral thawkinixa.    ~
+~~
+vnum: 11706
+location: 127
+values:
+0
+3
+4
+11
+0
+0
+0
+~
+flags: gknu 0
+name: dagger misty-blue-dagger
+shortdesc: a misty blue dagger
+desc: A misty blue dagger has been dropped here.
+type: 5
+weight: 1.10
+cost: 590
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+19 1
+18 1
+27 3
+~
+extradesc: dagger misty-blue-dagger
+The dagger is made of a misty blue metal that seems to pulsate slightly.  The
+dagger's blade changes shape slowly as it grows new teeth to replace older
+teeth as they fade away.~
+~~
+vnum: 41111
+location: 127
+values:
+4
+4
+8
+1
+0
+0
+0
+~
+flags: 0 0
+name: local-speciality goblet hemlock-goblet goblet-engraved-hemlock-leaves engraved-goblet questobject
+shortdesc: a goblet engraved with hemlock leaves
+desc: An engraved goblet looks ready to tip over.
+type: 17
+weight: 0.15
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: goblet hemlock-goblet goblet-engraved-hemlock-leaves engraved-goblet questobject
+The pewter goblet has been engraved with a repeating pattern of interlocked
+hemlock leaves, giving its surface a bumpy texture.~
+triggers:
+12316
+~
+~~
+vnum: 41112
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ribbon brightly-colored-ribbon
+shortdesc: a brightly colored ribbon
+desc: A brightly colored ribbon has fallen off someone's clothes here.
+type: 8
+weight: 0.08
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 20501
+hiddenness: 0
+applies:
+14 15
+~
+extradesc: ribbon brightly-colored-ribbon
+The bright twist of red and green ribbon looks very festive.~
+~~
+vnum: 41113
+location: 127
+values:
+0
+2
+3
+5
+0
+0
+0
+~
+flags: 0 0
+name: large-metal-ladle
+shortdesc: a large metal ladle
+desc: A large metal ladle lies here, lost without its pot.
+type: 5
+weight: 2.10
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+extradesc: large-metal-ladle
+The large ladle has been well-used.  Its handle is worn smooth and shiny.  Its
+bowl looks like it could fill more than one cup with each scoop.~
+~~
+vnum: 41116
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: mt 0
+name: circlet sweet-scented-rowan-circlet fresh-white-flowers small-circlet-rowan twigs flower
+shortdesc: a sweet-scented rowan circlet
+desc: Fresh white flowers adorn a small circlet of rowan twigs.
+type: 8
+weight: 0.75
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+2 1
+24 -5
+27 1
+~
+extradesc: circlet sweet-scented-rowan-circlet fresh-white-flowers small-circlet-rowan twigs
+The stems of tiny white flowers have been painstakingly woven into a basic net
+of rowan twigs to create this lovely circlet.~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: anE 0
+name: phantasmal bracelet phantasmal-bracelet vaporous circle vaporous-circle light circle-of-light
+shortdesc: a vaporous phantasmal bracelet
+desc: A vaporous circle of light is floating here.
+type: 12
+weight: 0.00
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 20481
+hiddenness: 0
+applies:
+4 1
+~
+extradesc: phantasmal-bracelet phantasmal bracelet vaporous circle vaporous-circle light circle-of-light
+A vaporous circle of white mist hangs in the air, held together by some
+invisible force. No visible boundaries define it for your eyes. It is
+quite simply.. THERE... contained...~
+~~
+vnum: 20
+location: 127
+values:
+25
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 8032
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale black-drakling-scale small-black-scale
+shortdesc: a &9&bblack&0 drakling scale
+desc: A small black scale lies here.
+type: 9
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 10
+~
+~~
+vnum: 55013
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: bg 0
+name: girth jade-girth crystal-green-girth pile
+shortdesc: a jade girth
+desc: A crystal green girth lies here folded into a pile.
+type: 9
+weight: 2.50
+cost: 5400
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+4 1
+27 2
+~
+extradesc: girth jade-girth crystal-green-girth pile
+This heavy piece of armor seems to be made of pure green crystal.  It glows
+slightly and is warm to the touch.  Just looking at it makes you feel brave.~
+~~
+vnum: 55008
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gl 0
+name: cloak snow-leopard-cloak pelt-pure-white-fur-dark-spots leather hide
+shortdesc: the Snow Leopard Cloak
+desc: A pelt of pure white fur and dark spots is piled in a corner.
+type: 9
+weight: 2.10
+cost: 5900
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+1 1
+2 -2
+27 2
+~
+extradesc: cloak snow-leopard-cloak pelt-pure-white-fur-dark-spots leather hide
+In your hands is the cloak made from the pelt of a snow leopard, valuable
+beyond anything else to the people of Technitzitlan.  It is said that those who
+wear such a cloak are closer to the great Snow Leopard herself than anyone
+else.~
+triggers:
+5324
+5332
+~
+~~
+vnum: 43021
+location: 127
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: gnoprt 0
+name: orb-catastrophe gleaming-orb
+shortdesc: the Orb of Catastrophe
+desc: A gleaming orb floats a few feet off of the ground here.
+type: 1
+weight: 5.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+1 3
+3 2
+27 3
+~
+extradesc: orb-catastrophe gleaming-orb
+The orb slowly spins on a random axis, even when held.  Looking deep within its
+depths, you can almost swear that you see its fluid core swirling about a
+solitary figure.~
+~~
+vnum: 17805
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: o 0
+name: tooth finely-polished-cougar's-tooth carnivore's-tooth earring finely-polished-cougars-tooth carnivores-tooth earring
+shortdesc: a finely-polished cougar's tooth
+desc: A carnivore's tooth lies half hidden on the ground.
+type: 8
+weight: 0.10
+cost: 1000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+2 3
+14 5
+~
+extradesc: tooth finely-polished-cougar's-tooth carnivore's-tooth earring finely-polished-cougars-tooth carnivores-tooth earring
+The tooth looks like some sort of earring, as small runes are carved on its
+yellowed ivory surface.~
+~~
+vnum: 62501
+location: 127
+values:
+0
+2
+5
+2
+0
+0
+0
+~
+flags: 0 0
+name: vine long-vine whip belt rope
+shortdesc: a long vine
+desc: A long vine is lying here.
+type: 5
+weight: 1.00
+cost: 0
+timer: 0
+level: 35
+effects: s 0 0
+wear: 14337
+hiddenness: 0
+applies:
+18 2
+~
+~~
+vnum: 62509
+location: 127
+values:
+0
+4
+9
+5
+0
+0
+0
+~
+flags: ikowD 0
+name: staff redeeming-staff thin-smooth-staff
+shortdesc: &2the Redeeming Staff&0
+desc: A thin, smooth staff stands erect from the ground, unsupported.
+type: 5
+weight: 6.00
+cost: 600000
+timer: 0
+level: 45
+effects: fm 0 0
+wear: 49153
+hiddenness: 0
+applies:
+13 50
+14 75
+26 20
+27 3
+17 4
+~
+~~
+vnum: 8704
+location: 127
+values:
+0
+2
+3
+3
+0
+0
+0
+~
+flags: mnouvwyz 0
+name: axe wood-splitting-axe woodmen's woodmens
+shortdesc: a wood-splitting axe
+desc: A woodmen's axe is resting here.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+18 1
+26 6
+~
+~~
+vnum: 8705
+location: 127
+values:
+15
+16
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: potion small-healing-potion small-clay-healing-potion magic
+shortdesc: a small healing potion
+desc: A small clay healing potion has been dropped here.
+adesc:
+Nothing.~
+type: 10
+weight: 0.14
+cost: 53
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: potion small-healing-potion small-clay-healing-potion magic
+This small clay seems anti-climatic for a healing potion though quite
+suitable for a bandage.  It's doubtful that anything inside could save your
+life. Though it seems the only real way to find out what magic is contained in
+side would be to quaff it.~
+~~
+vnum: 8701
+location: 127
+values:
+0
+4
+2
+7
+0
+0
+0
+~
+flags: 0 0
+name: hammer forging-hammer black-smith forge smithing questobject
+shortdesc: a forging hammer
+desc: A forging hammer is lying here.
+type: 5
+weight: 14.80
+cost: 270
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1056769
+hiddenness: 0
+triggers:
+59047
+~
+~~
+vnum: 52009
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: agmnpryz 0
+name: cloak elven-cloak semi-transparent-cloak elf questobject
+shortdesc: an elven cloak
+desc: A semi-transparent cloak has been forsaken here.
+type: 9
+weight: 1.90
+cost: 5000
+timer: 0
+level: 80
+effects: p 0 0
+wear: 1025
+hiddenness: 0
+extradesc: cloak elven elven-cloak
+This cloak is long, likely to drape to the ground on nearly anyone.  It is a
+deep shade of green, with some light frills of purple on the edges.    ~
+~~
+vnum: 41101
+location: 127
+values:
+0
+1
+6
+3
+0
+0
+0
+~
+flags: g 0
+name: well-worn-garden-spade gardening-tool
+shortdesc: a well-worn garden spade
+desc: A worn gardening tool is lying here.
+type: 5
+weight: 5.00
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+13 5
+~
+extradesc: well-worn-garden-spade gardening-tool
+Bits of dirt still cling to the sharpened end of the spade.  The worn handle is
+held together by a bit of twine.  Looking more closely, you can see where the
+handle was cracked some time ago.  Old, but still useful for digging.~
+~~
+vnum: 62513
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring wolf-tooth-ring carved fang-enormous-wolf
+shortdesc: a wolf-tooth ring
+desc: A ring carved from the fang of an enormous wolf is here in the dirt.
+type: 8
+weight: 0.50
+cost: 80000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+2 3
+5 3
+19 1
+14 20
+~
+~~
+vnum: 3050
+location: 127
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 41109
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: mt 0
+name: torc shining-golden-torc shining-gold-torc
+shortdesc: a shining golden torc
+desc: A shining gold torc has been forgotten here.
+type: 8
+weight: 2.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+3 2
+26 2
+27 1
+~
+extradesc: torc shining-golden-torc shining-gold-torc
+The brilliantly polished gold neckpiece has been inlaid with a repeating
+pattern of rowan leaves overlapping hemlock.  It is incredibly heavy.~
+~~
+vnum: 8515
+location: 127
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: hood executioner's-hood executioners-hood thick-black-leather-hood
+shortdesc: an executioner's hood
+desc: A thick black leather hood rests here.
+type: 9
+weight: 1.60
+cost: 180
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+18 1
+19 2
+~
+extradesc: hood executioner's-hood executioners-hood thick-black-leather-hood
+This hood is made of black leather, and covers the head all the way to the
+shoulders, like a mantle.  The only part of the face that shows, through a pair
+of large holes, are the eyes.~
+~~
+vnum: 47005
+location: 127
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: mtu 0
+name: bracers shadow-bracers
+shortdesc: the Shadow Bracers
+desc: A pair of black bracers lie against the wall.
+type: 9
+weight: 5.50
+cost: 1000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+1 1
+18 3
+27 2
+~
+extradesc: bracers shadow-bracers
+You peer into the bracers, and you can only see the silhouette of them in the
+midday sun.  All light is shadowed out by them, and you can see how they could
+be quite useful on your arms.~
+~~
+vnum: -1
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: outfit black thief's
+shortdesc: a black thief's outfit
+desc: A outfit made of black cloth had been disguarded here.
+type: 9
+weight: 1.30
+cost: 2000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+19 1
+13 5
+~
+extradesc: outfit black
+This outfit is very simply made.  It looks like a bed sheet with holes cut for
+arms to go into.  The material it is made of is jet black and would be very
+hard to spot in darkness.    ~
+~~
+vnum: 16006
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: orb-winds crystal-orb globe wind questobject
+shortdesc: the Orb of Winds
+desc: A crystal orb floats around you.
+type: 1
+weight: 0.50
+cost: 1000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+18 2
+20 -2
+~
+extradesc: orb-winds crystal-orb globe wind questobject
+The orb is totally weightless and possesses a very bright glow.  Gazing into
+its crystalline depths, there seems to be insubstantial forms floating within
+it.  Before you can decide what lies within, you are forced to look away, lest
+its light blinds you.~
+~~
+vnum: 1006
+location: 127
+values:
+300
+300
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: waterskin well-crafted-leather-waterskin water-skin
+shortdesc: a leather waterskin
+desc: A well-crafted leather waterskin lies here.
+type: 17
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: well-crafted-leather-waterskin water-skin
+&0&3A simple leather waterskin of high quality.  &0~
+~~
+vnum: 58434
+location: 127
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnuvyz bfghij
+name: fetter slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+19 2
+~
+extradesc: fetter slave-fetter steel
+This very old shackle's made of steel.  There are numerous little dents in its
+surface, but it still seems supernaturally strong.  It fastens with a steel
+clip.~
+~~
+vnum: 47002
+location: 127
+values:
+0
+2
+5
+3
+0
+0
+0
+~
+flags: akmnyz acfghij
+name: blade bright-white-blade
+shortdesc: a bright white blade
+desc: You see a bright blade lying here on the ground.
+type: 5
+weight: 4.00
+cost: 1200
+timer: 0
+level: 30
+effects: 0 0 z
+wear: 8193
+hiddenness: 0
+applies:
+18 1
+27 1
+~
+extradesc: blade bright-white-blade
+This blade shines with a bright light whenever it is in the presence of 
+something or someone good.  It is used by the Undead Lord to protect his
+mausoleum and afterlife.  Being so white it is difficult to perceive exactly
+where the edges are, so I'd be careful with it.~
+~~

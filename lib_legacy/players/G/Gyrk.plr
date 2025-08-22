@@ -1,0 +1,88 @@
+name: Gyrk
+password: GyhCiMD0L7
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 10
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18727
+birthtime: 1407632816
+timeplayed: 13929
+lastlogintime: 1409504980
+host: 068.123.232.011
+height: 82
+weight: 243
+base_height: 82
+base_weight: 243
+base_size: 3
+natural_size: 3
+alignment: 17
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 18
+lastlevel: 0
+hitpoints: 149/129
+mana: 1/0
+move: 165/166
+damroll: 5
+hitroll: 4
+strength: 94
+intelligence: 82
+wisdom: 84
+dexterity: 92
+constitution: 95
+charisma: 76
+cash: 0 129 567 477
+experience: 341710
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 137
+415 109
+416 50
+419 1000
+421 110
+427 1000
+430 50
+438 57
+443 50
+444 65
+463 50
+464 50
+465 109
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 2005 0.500000
+1 16102 0.500000
+1 16111 0.500000
+1 16107 2.000000
+1 16100 0.500000
+1 2002 0.500000
+1 2001 0.500000
+1 18502 0.500000
+1 18505 0.500000
+1 18512 1.000000
+1 18511 1.500000
+1 18503 0.500000
+1 18507 5.500000
+1 18510 0.500000
+1 3102 0.500000
+1 5408 3.000000
+1 5403 1.000000
+1 5404 2.000000
+1 17204 3.000000
+1 3506 4.000000
+1 3503 1.000000
+0 0 0

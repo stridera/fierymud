@@ -1,0 +1,84 @@
+name: Xalquara
+password: XahgqHCJOt
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18348
+birthtime: 1348681990
+timeplayed: 32796
+lastlogintime: 1360347661
+host: 217.226.081.250
+height: 60
+weight: 145
+base_height: 60
+base_weight: 145
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 26/26
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 82
+intelligence: 97
+wisdom: 82
+dexterity: 68
+constitution: 67
+charisma: 70
+experience: 6599
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 70
+424 65
+438 50
+443 50
+444 50
+447 60
+451 70
+452 54
+453 50
+459 50
+460 56
+462 50
+464 59
+0 0
+trophy:
+1 8014 1.000000
+1 8020 1.000000
+1 8015 2.000000
+1 8013 3.000000
+1 8002 3.000000
+1 8000 2.000000
+1 8012 1.000000
+1 8001 6.000000
+1 8023 2.000000
+1 8016 5.000000
+1 8010 4.000000
+1 8021 2.000000
+0 0 0
+mem:
+32 1 8
+32 1 8
+0 0 0

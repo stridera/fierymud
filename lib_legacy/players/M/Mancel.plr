@@ -1,0 +1,218 @@
+name: Mancel
+password: Ma/qLj6wU0
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 9
+level: 79
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17188
+birthtime: 1230221587
+timeplayed: 416567
+lastlogintime: 1606013353
+host: 066.231.203.052
+height: 66
+weight: 152
+base_height: 66
+base_weight: 152
+base_size: 2
+natural_size: 2
+alignment: 209
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 50
+loadroom: 10053
+lastlevel: 0
+hitpoints: 187/438
+mana: 624/624
+move: 79/100
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 100
+wisdom: 86
+dexterity: 70
+constitution: 70
+charisma: 58
+cash: 11 174 658 353
+bank: 0 550 0 0
+experience: 68168682
+quit_reason: 1
+saveroom: 10053
+skills:
+2 1000
+5 1000
+8 1000
+10 1000
+19 1000
+20 1000
+26 1000
+29 1000
+30 1000
+31 1000
+32 1000
+37 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+66 1000
+67 1000
+68 1000
+76 1000
+77 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+106 1000
+107 1000
+109 1000
+110 1000
+111 1000
+112 1000
+186 1000
+228 1000
+415 492
+416 504
+421 500
+423 840
+424 840
+438 65
+443 50
+444 81
+447 732
+451 840
+452 840
+453 755
+454 670
+455 50
+456 792
+458 840
+459 840
+460 678
+462 840
+464 81
+0 0
+trophy:
+1 58003 1.000000
+1 58029 1.000000
+1 58008 1.000000
+1 58019 1.000000
+1 39008 0.333333
+1 36101 0.333333
+1 5213 1.333333
+1 61508 1.000000
+1 61512 1.000000
+1 61506 1.000000
+1 61523 1.000000
+1 61509 1.000000
+1 17201 2.000000
+1 17205 3.000000
+1 17202 3.000000
+1 17203 5.000000
+1 17204 7.000000
+1 3500 2.000000
+1 3508 3.000000
+1 18006 1.000000
+1 18001 1.000000
+0 0 0
+tells:
+1606008317 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1606008317 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1606008318 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1606008318 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1606008318 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1606008318 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1606008318 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1606008318 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1606008323 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1606008323 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1606012639 Chinok gossips, 'death ????'
+1606012641 Someone gossips, 'I got it!'
+1606012652 Someone gossips, 'forgot I picked up the phoenix key, all is well :)'
+1606012675 Someone gossips, 'I've only littered once in your MUD recently'
+1606012681 Someone gossips, 'and I'm keeping it to one today ;)'
+1606012724 Chinok gossips, 'fyi -- he's talking about a joke I've been holding the last few days ...'
+1606012738 Chinok gossips, 'of players littering my mud wth their corpses'
+1606013249 Mancell gossips, 'grats'
+1606013252 Gruul gossips, 'ROAR!'
+1606013259 Gruul gossips, 'thanks - and I'm off. have a good one all!'
+$
+effects:
+19 5 10 28 8 0 0
+0 0 0 0 0
+mem:
+109 0 1
+109 1 1
+112 1 1
+110 0 1
+110 1 1
+111 1 1
+111 1 1
+66 1 2
+66 1 2
+66 1 2
+66 1 2
+66 1 2
+66 1 2
+62 1 2
+29 1 2
+29 1 2
+38 1 2
+67 1 2
+100 1 2
+100 1 2
+101 1 2
+20 1 2
+19 1 1
+19 1 1
+19 1 1
+19 1 2
+39 1 1
+39 1 2
+39 1 2
+99 1 2
+99 1 2
+31 1 2
+186 0 1
+186 0 1
+186 0 1
+186 1 1
+105 1 2
+105 1 2
+106 1 2
+106 1 2
+107 1 1
+107 1 2
+107 1 2
+29 1 2
+109 1 1
+112 1 1
+109 1 2
+101 1 2
+68 1 2
+52 1 2
+52 1 2
+57 1 1
+57 1 1
+52 1 1
+111 1 1
+111 1 1
+32 1 1
+32 1 1
+32 1 1
+0 0 0

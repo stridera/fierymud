@@ -1,0 +1,224 @@
+name: Jerl
+password: Jej0sBcJ71
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 16
+race: 0
+level: 60
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17807
+birthtime: 1293511919
+timeplayed: 270992
+lastlogintime: 1384019878
+host: 098.230.026.143
+height: 71
+weight: 167
+base_height: 71
+base_weight: 167
+base_size: 2
+natural_size: 2
+alignment: -995
+playerflags: gxy
+effectflags: c 0 0
+prefflags: ghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 473/473
+mana: 360/360
+move: 107/110
+damroll: 3
+hitroll: 3
+strength: 76
+intelligence: 93
+wisdom: 95
+dexterity: 69
+constitution: 77
+charisma: 54
+cash: 0 5431 830 732
+experience: 28959294
+quit_reason: 1
+saveroom: 3054
+skills:
+4 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+23 1000
+28 1000
+33 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+46 1000
+51 1000
+53 1000
+70 1000
+73 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+94 1000
+99 1000
+118 1000
+122 1000
+131 1000
+132 1000
+133 1000
+134 1000
+135 1000
+136 1000
+137 1000
+139 1000
+140 1000
+142 1000
+206 1000
+207 1000
+415 50
+416 50
+421 450
+423 650
+424 650
+438 128
+443 50
+444 50
+451 372
+452 50
+453 52
+455 50
+457 598
+458 176
+459 211
+460 50
+461 50
+462 51
+463 164
+466 50
+0 0
+trophy:
+1 47027 1.000000
+1 47005 0.833333
+1 47014 0.500000
+1 47004 0.500000
+1 47021 1.333333
+1 47009 1.000000
+1 47026 0.833333
+1 47007 0.833333
+1 47022 1.000000
+1 47008 5.166667
+1 47013 5.833334
+1 47017 0.666666
+1 47001 0.666666
+1 47003 7.000001
+1 47002 20.000000
+1 55216 0.500000
+1 16207 0.333333
+1 16204 2.000000
+1 16202 1.000000
+1 16106 0.333333
+1 16108 0.333333
+0 0 0
+mem:
+15 1 1
+88 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+46 1 1
+46 1 1
+132 1 1
+132 1 1
+132 1 1
+46 1 1
+137 1 1
+137 1 1
+137 1 1
+28 1 1
+28 1 1
+28 1 1
+139 1 1
+139 1 1
+139 1 1
+139 1 1
+139 1 1
+139 1 1
+53 1 2
+15 1 1
+131 1 1
+131 1 1
+131 1 1
+53 1 2
+131 1 1
+131 1 1
+131 1 1
+53 1 1
+53 1 2
+53 1 2
+20 1 1
+20 1 1
+20 1 1
+20 1 1
+53 1 2
+99 1 5
+122 1 5
+70 1 1
+70 1 1
+99 1 4
+122 1 4
+70 1 2
+0 0 0
+aliases:
+cgel cast 'greater endurance' lanelot
+chl cast 'heal' lanelot
+cfhl cast 'full heal' lanelot
+al assist lanlot
+cdl cast 'demonskin' lanelot
+cdpl cast 'dark presence' lanelot
+cfh cast 'full heal'
+cccg cast 'cure critic' gerl
+cfhg cast 'full heal' gerl
+chh cast 'heal' herl
+bg backstab guard
+cd cast 'demonskin'
+fsff fill skin from fountain
+dff drink from fountain
+gac get all corpse
+ccl cast 'cure light'
+ca cast 'armor'
+dfs drink from skin
+af assist ferl
+ccs cast 'cure serious'
+eb eat bread
+ccc cast 'cure critic'
+cccl cast 'cure critic' lanelot
+ccco cast 'cure critic' offa
+cda cast 'demonic aspect'
+ak assist kerl
+ccck cast 'cure critic' kerl
+cfhn cast 'full heal' nerl
+chn cast 'heal' nerl
+chj cast 'heal' jerl
+cfhk cast 'full heal' kerl
+ch cast 'heal'
+chk cast 'heal' kerl
+cfhf cast 'full heal' foosha
+khf cast 'heal' foosha
+dcn drag corpse north
+0

@@ -1,0 +1,846 @@
+#49000
+sickle shining gold-handled-sickle~
+a gold-handled sickle~
+A gold-handled sickle lies here, shining.~
+~
+5 130307146 8193 50
+0 4 4 3 0 0 0
+3.50 7000 0 0 0 0 0 0
+E
+sickle shining gold-handled-sickle~
+It is a small sickle made of shining gold.  Inscribed into the blade are the
+holy symbols of the druidic order, and the shape of the whole sickle is of
+course reminiscent of the crescent moon.  The golden sickle can be used as a
+weapon in a pinch, but its primary function is as a ritual instrument for the
+harvesting of mistletoe and other plants for ceremonial use.~
+A
+2 -2
+A
+6 2
+A
+4 2
+A
+27 2
+X
+243
+#49001
+skin piece-griffin-skin piece-thick-scarred-leather questobject~
+a piece of griffin-skin~
+A piece of thick, scarred leather lies on the floor.~
+~
+9 587209217 9 30
+14 0 0 0 0 0 0
+8.00 300 0 0 0 0 0 0
+E
+skin piece-griffin-skin piece-thick-scarred-leather questobject~
+It is very hard and has an irregular form, just big enough to use as a
+breastplate.~
+X
+224
+#49002
+flower delicate-crystal-flower dandelion~
+a delicate crystal flower~
+A delicate crystal flower grows here.~
+~
+8 0 16385 45
+0 0 0 0 0 0 0
+0.85 3000 0 0 0 0 0 0
+E
+flower delicate-crystal-flower dandelion~
+It's a crystalized dandelion.~
+A
+2 2
+A
+13 15
+A
+27 2
+#49003
+shield round-shield leather-straps~
+a round shield~
+A round shield with leather straps lies on the ground.~
+~
+9 50335744 513 45
+12 0 0 0 0 0 0
+3.00 700 0 0 0 0 0 0
+E
+shield round-shield leather-straps~
+This wooden shield has leather straps for easy holding.~
+A
+24 -2
+X
+225
+#49004
+backpack leather black leather-backpack pack~
+a leather backpack~
+A backpack of tough black leather has lost its owner.~
+~
+15 0 1025 30
+100 1 -1 0 0 0 0
+6.00 50 0 0 0 0 0 0
+E
+backpack leather~
+A vast amount of stuff can fit into this sturdy backpack.~
+A
+17 4
+#49005
+whisky watersack leather-watersack sack~
+a leather watersack~
+A leather sack lies here in a puddle of water.~
+~
+17 0 1 1
+32 32 5 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+watersack sack leather~
+A copper nozzle has been fitted to this leather watersack. It has a band of
+leather attached to it to make it easier to carry.~
+#49006
+necklace key key-necklace~
+a small key on a necklace~
+A small key on a necklace was lost here.~
+~
+18 84 5 45
+0 0 0 0 0 0 0
+0.20 0 0 0 0 0 0 0
+E
+key necklace~
+It's a rather small key that will probably open a rather small door.~
+A
+5 1
+A
+13 50
+#49007
+nail bent brass~
+a bent brass nail~
+Someone has dropped a bent brass nail here.~
+~
+5 0 1 45
+0 2 5 11 0 0 0
+0.03 0 0 0 0 0 0 0
+E
+nail bent brass~
+It looks like it was bent on purpose, perhaps to pry open a lock.~
+#49008
+key rusty iron~
+a rusty iron key~
+An iron key lies rusting here.~
+~
+18 4 16385 45
+0 0 0 0 0 0 0
+0.15 0 0 0 0 0 0 0
+E
+key rusty iron~
+It seems to be very old. Though rusted, it is not dirty and has been well
+cared for.~
+#49009
+powder sneezing handful~
+a handful of sneezing powder~
+A handful of sneezing powder has been dropped on the ground here.~
+~
+18 4 1 40
+0 0 0 0 0 0 0
+0.45 0 0 0 0 0 0 0
+E
+handful sneezing powder~
+You could make an elephant sneeze just by showing him this!~
+#49010
+utensil dentist~
+a dentist utensil~
+A shiny dentist utensil lies in the dust.~
+~
+18 4 1 40
+0 0 0 0 0 0 0
+0.30 0 0 0 0 0 0 0
+E
+utensil dentist~
+It's a tiny hook like the one the dentaldruid uses to make you say
+'AAAAAAaargh!'.~
+#49011
+ring jade-ring ring-precious-stone~
+a jade ring~
+A ring of precious stone lies at your feet.~
+~
+8 64 3 50
+1 0 0 0 0 0 0
+0.02 5000 0 0 0 0 0 0
+T 16347
+E
+jade ring~
+It's a jade ring that once must have adorned the hand of a very special
+woman.~
+A
+24 -10
+A
+2 2
+A
+27 1
+#49012
+hook grappling-iron iron-hook~
+a grappling iron~
+An iron hook sticks in the ground.~
+~
+5 51386880 8193 50
+0 4 4 6 0 0 0
+7.00 500 0 0 0 0 0 0
+E
+hook iron grappling~
+It lies heavily in your hand.  Imagine smashing someone's head with this!~
+A
+2 2
+X
+224
+#49013
+scimitar two-handed-scimitar sabre giant~
+a two-handed scimitar~
+A sabre made for a giant has been planted in the floor.~
+~
+5 57700480 32769 45
+0 6 11 3 0 0 0
+6.00 5000 0 0 0 0 0 0
+E
+scimitar two-handed-scimitar sabre giant~
+This is the two-handed scimitar of legend.  You appraisingly let its
+razor-sharp blade sweep through the air.  It was made by the best arms smith
+from the hardest steel.  It has only one purpose : to kill.~
+A
+2 -5
+X
+1011
+#49014
+crown-flowers circle-flowers flower~
+a crown of flowers~
+There is a circle of flowers on the ground.~
+~
+8 1024 17 45
+2 0 0 0 0 0 0
+0.60 600 0 0 0 0 0 0
+E
+crown-flowers circle-flowers flower~
+You smell the sweet perfume of these flowers.  They have not withered - this
+crown must have belonged to a very special person!~
+A
+5 3
+A
+2 3
+A
+6 2
+A
+27 2
+#49015
+gown white-silk-gown delicate-gown~
+a white silk gown~
+A delicate gown lies beneath your feet.~
+~
+9 603979841 9 45
+8 0 0 0 0 0 0
+2.00 8000 0 0 0 0 0 0
+E
+gown silken delicate~
+The thin fabric of this silken robe offers better protection against the
+natural elements than it does against prying eyes... However, a pleasant
+warmth flows through you when you touch it.~
+A
+27 3
+#49016
+earring crystal-earring crystal-midget questobject~
+a crystal earring~
+A crystal midget stands here, his little cap radiating a clear white light.~
+~
+1 64 262145 45
+0 5000 5000 0 0 0 0
+0.80 420 0 0 0 0 0 0
+E
+earring crystal-earring crystal-midget questobject~
+The crystal powers hold this little midget in their iron grasp!  The midget
+wiggles his little legs, but he cannot run away!~
+A
+5 3
+A
+1 3
+A
+23 -4
+A
+24 -5
+A
+27 1
+A
+17 1
+#49017
+shoes feathered-shoes shoes-wings~
+a pair of feathered shoes~
+A pair of shoes with wings flutter around here!~
+~
+9 1610612738 65 50
+6 0 0 0 0 0 0
+3.00 0 0 0 0 0 0 0
+E
+shoes feathered-shoes shoes-wings~
+These starry blue shoes seem to be alive!  They have wings attached to them and
+make little loopings when they know you're looking at them.~
+A
+14 35
+A
+27 1
+#49018
+skirt reinforced-leather-skirt black-leather-skirt-reinforced-chain-armor~
+a reinforced leather skirt~
+A black leather skirt reinforced with chain armor lies on the floor.~
+~
+9 51385346 33 45
+8 0 0 0 0 0 0
+8.60 5000 0 0 0 0 0 0
+E
+skirt reinforced-leather-skirt black-leather-skirt-reinforced-chain-armor~
+Hundreds of small iron rings have been attached to this black leather skirt.  
+A shark could break its teeth on it!~
+A
+1 3
+X
+1011
+#49019
+bracelet quicksilver-bracelet continually-changing-shape quick-silver~
+a quicksilver bracelet~
+There's a quicksilver bracelet on the ground, continually changing its shape.~
+~
+8 98 4097 60
+4 0 0 0 0 0 0
+1.20 6000 0 8 0 0 4194304 0
+E
+bracelet quicksilver-bracelet continually-changing-shape quick-silver~
+Continually changing its shape, it gives the impression of being alive!~
+A
+26 10
+A
+24 -10
+A
+2 5
+A
+14 10
+A
+27 3
+#49020
+gloves sturdy-leather-gloves heavy-duty-leather-gloves~
+sturdy leather gloves~
+A pair of heavy-duty leather gloves has dropped out of someone's back pocket.~
+~
+9 50335744 129 40
+8 0 0 0 0 0 0
+1.50 250 0 0 0 0 0 0
+E
+gloves sturdy leather heavy-duty~
+These are meant for heavy-duty work!~
+X
+224
+#49021
+post whipping-post~
+a whipping post~
+A whipping post draws your attention.~
+~
+3 592 16385 40
+40 3 3 10 0 0 0
+20.00 900 0 512 0 0 0 0
+E
+post whipping-post~
+It's a rather small wooden beam with an iron ring at its end, meant to chain
+people to.~
+A
+5 -1
+A
+1 -1
+#49022
+herb foul smelling acrid food~
+a foul-smelling herb~
+An herb with an acrid smell grows here.~
+~
+19 0 1 1
+8 0 0 0 0 0 0
+0.10 100 0 0 0 0 0 0
+E
+herb foul smelling acrid food~
+The only thing differentiating it from the other herbs is that it smells
+absolutely foul.~
+#49023
+mushroom full-grown blue food~
+a blue mushroom~
+A full-grown mushroom stands in the shade.~
+~
+19 1 1 1
+5 0 0 1 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+mushroom full-grown blue food~
+It's blue and looks quite inedible.~
+#49024
+mussel food~
+a mussel~
+A mussel has chosen this place for a home.~
+~
+19 536870912 1 1
+5 0 0 0 0 0 0
+0.04 10 0 0 0 0 0 0
+E
+mussel food~
+Yummy! A raw, living mussel... what a delicacy!~
+#49025
+tail griffin-tail golden-brown-tail~
+a griffin tail~
+The golden-brown tail of a griffin lies here seperated from its owner.~
+~
+9 0 1048577 40
+2 0 0 0 0 0 0
+1.25 500 0 0 0 0 0 0
+E
+tail griffin-tail golden-brown-tail~
+It's long and rather strong, too.  Maybe you could use it as a belt...~
+A
+3 1
+A
+13 5
+A
+27 1
+#49026
+pants baggy-green-pants fabric~
+baggy green pants~
+A pair of baggy green pants have left their owner in the nude.~
+~
+9 536870912 33 45
+6 0 0 0 0 0 0
+3.00 200 0 0 0 0 0 0
+E
+pants baggy-green-pants fabric~
+It's an outmoded model that will make you the laughingstock of the town!~
+A
+4 1
+A
+27 1
+#49027
+amulet crystal-amulet necklace~
+a crystal amulet~
+A crystal amulet has scorched the ground!~
+~
+8 550428744 5 40
+1 0 0 0 0 0 0
+0.13 5000 0 0 0 0 0 0
+E
+amulet crystal~
+It causes a light burn wound when you touch it for too long.~
+A
+4 2
+A
+27 1
+X
+785
+#49028
+axe flintstone-axe flint-stone-axe piece~
+a flintstone axe~
+You nearly trip over a piece of flintstone.~
+~
+5 50343936 8193 50
+0 4 4 3 0 0 0
+8.00 100 0 0 0 0 0 0
+E
+axe flintstone~
+It's a primitive axe, made with primitive tools by someone rather primitive.~
+X
+993
+#49029
+sword rune-sword strange-signs questobject~
+a rune sword~
+A sword with strange signs on its blade is the focus of your attention.~
+~
+5 52442178 8193 45
+0 1 8 3 0 0 0
+3.50 6000 0 8 0 0 0 0
+E
+sword rune-sword strange-signs questobject~
+The runes on its blade give this sword its magical power.~
+A
+27 3
+X
+997
+#49030
+staff oakwood oak-wood oakwood-staff~
+an oakwood staff~
+An oakwood staff lies here abandoned.~
+~
+5 536870976 8193 40
+0 3 5 6 0 0 0
+4.00 600 0 0 0 0 0 0
+E
+staff oakwood oak-wood oakwood-staff~
+A typical druid's staff, it has multiple uses.  It can be wielded as a weapon
+or just used as a walking cane, and comes in handy...  Always!~
+A
+13 15
+#49031
+cloak griffin-skin head-griffin~
+a griffin-skin cloak~
+The head of a griffin lies on the ground.~
+~
+9 2560 1025 40
+5 0 0 0 0 0 0
+5.00 700 0 0 0 0 0 0
+E
+cloak griffin-skin head-griffin~
+This cloak made from the head of a griffin completely covers the face of the
+person that wears it.  It is obviously used in some dark ritual.~
+A
+2 5
+#49032
+misthorn mist-horn~
+a misthorn~
+There's a horn lying in front of you.~
+~
+3 2 16385 45
+20 1 1 14 0 0 0
+1.10 2000 0 0 0 0 0 0
+E
+misthorn mist-horn~
+Once used by a man with powerful lungs, it will never again make a sound.  A
+big rock is firmly stuck inside.~
+#49033
+sheath wooden-sheath~
+a wooden sheath~
+There's a wooden sheath on the floor.~
+~
+9 536870912 1048577 45
+3 0 0 0 0 0 0
+0.50 150 0 0 0 0 0 0
+E
+sheath wooden-sheath~
+It is meant to contain a sword, but it looks like you could use it armor
+yourself a bit more, too.~
+A
+20 -1
+A
+24 -1
+#49034
+bottle nostrum~
+a bottle of nostrum~
+A bottle lies on the ground.~
+~
+10 64 1 45
+55 15 0 0 0 0 0
+0.30 8000 0 0 0 0 0 0
+E
+bottle nostrum~
+This is a very small bottle, made of dark green glass. It's ice-cold to the
+touch.~
+#49035
+scroll fly paper scrap~
+a scroll of fly~
+A scrap of paper blows in the wind.~
+~
+2 536870912 1 15
+30 57 0 0 0 0 0
+0.03 2000 0 0 0 0 0 0
+E
+scroll fly paper scrap~
+It has rune letters written upon it.~
+#49036
+lever~
+a lever~
+There's a lever here.~
+~
+18 4 1 40
+0 0 0 0 0 0 0
+1.94 0 0 0 0 0 0 0
+E
+lever~
+It's a rather large lever made of hard wood.~
+#49037
+branch oak small-oak-branch~
+a small oak branch~
+A small branch from an oak tree lies here.~
+~
+12 536870913 16385 45
+0 0 0 0 0 0 0
+0.75 0 0 0 0 0 0 0
+E
+branch oak~
+   This is no ordinary branch, it feels warm to the touch and you can only
+surmise that it has come from one of the druid's fabled holy oaks.    ~
+#49038
+book red~
+a large red book~
+A large red book lies here looking interesting.~
+~
+12 536870916 1 40
+0 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+book red~
+The cover says 'A basic history of Griffin Island'
+The chapter headings are:
+chapter1 : The griffin cult
+chapter2 : Earle
+chapter3 : The future~
+E
+chapter1~
+This chapter is entitled 'The Cult of the Griffin' and it reads:
+
+From time immemorable griffins have lived on this island, and also those who revere
+them as powerful, supernatural creatures. The cult believe that Dagon is the god of
+the griffins and chooses one griffin captain to lead the other griffins during
+their time on the island.  The strength of the griffins is dependant on their
+captain, if he dies then the power and influence of the griffins wanes until a
+new captain is appointed by Dagon.  The cult also believe that if they can
+summon Dagon to appear in mortal form, as the ultimate griffin captain he will
+bring ultimate power to the griffins and hence their worshippers.  The cult
+worship in a chapel which contains an altar that Dagon has invested with the
+power to generate new griffins.  In olden times the chamber containing the
+altar was linked via a large crystal to the surface where it drew power from
+the sun.~
+E
+chapter2~
+Earle
+
+As long as there have been griffins on this island there have also been
+druids, and as long as there have been druids, there has been Earle, the
+eldest druid.
+Earle defeated the last griffin captain who was named Arkranos and at the
+same time broke the megalith which was the conduit for the power required
+by the altar. He never actually destroyed the altar though, and so the
+griffins continue to thrive and there is now a rumour that a new
+captain has been appointed.
+There is a rumour that when Earle started to fight Arkranos he realised that
+he would need assistance to completely remove the threat of griffins from
+the island because the holy oak there had been contaminated with the evil.
+Stories tell of a weapon that was fashioned to kill Dagon and that the
+unthinkable occurred when a cutting was taken from a holy oak to help restore
+balance on the isle.
+The items were sent but never received.~
+E
+chapter3~
+The future
+
+The seer has prophesied that the cult will finally discover the means to
+allow Dagon to appear in mortal form, and that at this point they shall
+understand his true nature and be destroyed.~
+#49039
+pamphlet black~
+a small black pamphlet~
+A thin black book lies on the floor here.~
+~
+12 4 1 50
+0 0 0 0 0 0 0
+0.60 0 0 0 0 0 0 0
+E
+pamphlet black~
+It seems to be a diary of some sort, although there are no dates written
+in it. Someone has written down thoughts as they occurred, mainly on the
+true essence of the griffins and their god Dagon.
+On the back page there seem to be some quotes from other books with a
+final line:~
+#49040
+monument badly-cracked-crystalline-structure~
+the crystalline structure~
+A badly cracked crystalline monument stands upright here.~
+~
+12 0 0 1
+0 0 0 0 0 0 0
+9000.00 0 0 0 0 0 0 0
+T 97
+E
+monument badly-cracked-crystalline-structure~
+Reaching up to the heavens, this huge crystal must have been created by a
+highly skilled artisan.  It's purose is hard to discern, and wild thoughts and
+rumors fill your head as your mind fills with images of ancient druids and
+battles, and the mythical beasts of lore.~
+#49041
+ladder rope-ladder~
+a coiled rope ladder~
+A coiled rope ladder shifts slightly on the floor.~
+~
+12 66 1 40
+0 0 0 0 0 0 0
+8.00 0 0 0 0 0 0 0
+T 5324
+T 5332
+#49042
+clear-glass-bottle bottle whiskey clear glass~
+a clear glass bottle~
+A clear bottle of some amber liquid is standing here.~
+~
+17 0 1 1
+16 16 5 0 0 0 0
+0.40 25 0 0 0 0 0 0
+#49043
+altar granite griffin-altar~
+an intricately carved granite altar~
+An intricately carved granite altar stands here.~
+~
+15 67 0 1
+1000 0 -1 0 0 0 0
+1000.00 0 0 0 0 0 0 0
+E
+altar granite griffin-altar~
+   The altar is decorated with intricate designs that depict human-like beings
+with high foreheads, and griffins that breathe fire.  The surface of the altar
+contains several grooves and holes which seem to contain mainly large feathers.
+  ~
+#49044
+broken altar griffin-altar~
+a broken altar~
+Two halves of a granite altar stand here.~
+~
+15 0 0 1
+1000 0 -1 0 0 0 0
+1000.00 0 0 0 0 0 0 0
+E
+broken altar~
+The intricate granite altar lies in two jagged pieces with a small oak sapling
+growing in the rubble.    ~
+#49045
+sapling small-oak-sapling tree~
+a small oak sapling~
+A small oak sapling grows here.~
+~
+12 67 1 45
+0 0 0 0 0 0 0
+18.00 0 0 0 0 0 0 0
+E
+sapling~
+The sapling glows slightly and its leaves rustle constantly. The roots almost
+seem to be twitching while you watch.~
+#49054
+crate~
+a wooden crate~
+There is a wooden crate in the corner of the room.~
+~
+15 536870912 0 1
+30 1 0 0 0 0 0
+30.00 0 0 0 0 0 0 0
+#49058
+pool water energy~
+a small pool of water~
+A small pool of water lies at the bottom of the well.~
+~
+24 1 0 25
+49186 0 0 0 0 0 0
+9999999.00 0 -1 0 0 0 0 0
+E
+pool water~
+Although this pool only seems shallow, you realise that you can't actually see
+the bottom of the well through it.  Very strange.    ~
+#49059
+dark patch tear~
+a tear in the plane~
+A dark patch seems to indicate a small tear in the demonic plane.~
+~
+24 0 0 25
+49024 0 0 0 0 0 0
+0.00 0 -1 0 0 0 0 0
+E
+dark patch tear fabric~
+Perhaps this is how Dagon escaped this realm?~
+H
+600
+#49061
+helmet carefully-crafted-wooden-helmet beautiful-wooden-helmet~
+a carefully crafted wooden helmet~
+A beautiful wooden helmet lies here gleaming slightly.~
+~
+9 536870915 17 50
+7 0 0 0 0 0 0
+4.00 200 0 0 0 0 0 0
+E
+helmet carefully-crafted-wooden-helmet beautiful-wooden-helmet~
+Crafted from the finest wood, this helmet is both sturdy and comfortable.  It
+sits softer on the head than a metal helm, and provides extra insulation
+against the elements.  Intricate green artwork decorates its outer surface,
+depicting leaves and trees.~
+A
+19 2
+A
+24 -3
+A
+13 10
+A
+27 2
+#49062
+mask-deception completely-smooth-black-mask shimmering~
+the mask of deception~
+A completely smooth black mask lies on the floor, shimmering slightly.~
+~
+8 603980291 131073 65
+0 0 0 0 0 0 0
+1.25 0 0 0 0 0 0 0
+E
+mask-deception completely-smooth-black-mask shimmering~
+The mask is smooth to the touch, yet no highlights are visible on its surface.
+Its color is that of the deepest black.  Expressionless ovals allow its wearer
+to see, and small openings assist with breathing, but no other feature is
+visible.  Indeed, it appears to float in front of its wearer's face with no
+means of support.~
+A
+25 1
+A
+2 5
+A
+1 5
+A
+27 2
+#49063
+necklace-woven-leaves~
+a necklace made of woven leaves~
+A necklace made of woven leaves lies forgotten here.~
+~
+8 536870929 5 55
+2 0 0 0 0 0 0
+0.75 4300 0 0 0 0 0 0
+E
+necklace-woven-leaves~
+This necklace was very intricately made.  It is made of several small green
+leaves woven together to form a very pretty necklace.~
+A
+13 20
+A
+23 -5
+A
+24 -5
+A
+27 2
+H
+700
+#49064
+clam giant-dead-clam~
+a dead giant clam~
+A large dead clam floats in the water here.~
+~
+15 536870928 0 1
+80 5 0 0 0 0 0
+400.00 0 0 0 0 0 0 0
+H
+1000
+#49065
+pearl rare-pear-shaped-pearl small-pear-shaped-pearl~
+a rare pear-shaped pearl~
+A small pear shaped pearl lies forgotten here.~
+~
+8 536870977 16385 60
+0 0 0 0 0 0 0
+0.01 50000 0 0 0 0 0 0
+E
+pearl rare-pear-shaped-pearl small-pear-shaped-pearl~
+This pearl is like no other you have seen before.  Instead of being a circular
+shape like most pearls are this pearl is in the shape of a pear.  It is also
+quite a bit larger than most pearls too.~
+A
+26 5
+A
+13 20
+A
+14 20
+A
+27 2
+#49066
+mirror-lettered-scroll mirror scroll crisp mirrored~
+a mirror-lettered scroll~
+A crisp little scroll with mirrored lettering has rolled into a corner.~
+~
+2 536870912 1 0
+50 112 0 0 0 0 0
+0.03 0 0 0 0 0 0 0
+T 5347
+$~

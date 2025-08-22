@@ -1,0 +1,62 @@
+name: Kratax
+password: Kr8shR.WOg
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18316
+birthtime: 1342616441
+timeplayed: 16
+lastlogintime: 1342616459
+host: 108.125.028.017
+height: 41
+weight: 198
+base_height: 41
+base_weight: 198
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 27/25
+mana: 0/0
+move: 160/168
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 67
+wisdom: 74
+dexterity: 78
+constitution: 100
+charisma: 45
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0

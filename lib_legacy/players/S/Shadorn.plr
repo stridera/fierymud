@@ -1,0 +1,70 @@
+name: Shadorn
+password: Sh5xfu9tV4
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19540
+birthtime: 1582298440
+timeplayed: 922
+lastlogintime: 1582299364
+host: 174.223.133.076
+height: 76
+weight: 123
+base_height: 76
+base_weight: 123
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoBC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 12
+lastlevel: 0
+hitpoints: 25/25
+mana: 0/0
+move: 92/102
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 74
+wisdom: 66
+dexterity: 97
+constitution: 76
+charisma: 63
+experience: 1
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+1582298992 Chinok gossips, 'welcome Shadorn'
+1582298999 Chinok gossips, 'yell if you have any questions'
+1582299095 Chinok gossips, 'innate is tho'
+1582299352 Chinok gossips, 'also -- the help in-game help file is searchable via https://www.fierymud.org/help'
+$

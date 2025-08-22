@@ -1,0 +1,117 @@
+name: Rahem
+password: RaSWPT22Ew
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 4
+level: 13
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19455
+birthtime: 1563170023
+timeplayed: 18583
+lastlogintime: 1739090636
+host: 066.199.058.082
+height: 87
+weight: 139
+base_height: 87
+base_weight: 139
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: gxy
+effectflags: k w 0
+prefflags: hnouC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 14
+lastlevel: 0
+hitpoints: 185/146
+mana: 16/16
+move: 148/187
+damroll: 5
+hitroll: 4
+strength: 92
+intelligence: 57
+wisdom: 79
+dexterity: 85
+constitution: 100
+charisma: 53
+cash: 1 207 409 3
+experience: 563939
+quit_reason: 1
+saveroom: 3054
+skills:
+401 180
+403 177
+405 50
+408 150
+415 50
+416 50
+419 1000
+421 180
+427 1000
+438 50
+443 50
+444 60
+463 50
+464 109
+465 61
+491 62
+493 116
+0 0
+trophy:
+1 36100 3.000000
+1 18006 1.000000
+1 18007 1.000000
+1 3508 2.000000
+1 17203 1.000000
+1 17204 5.000000
+1 61514 1.000000
+1 61508 2.000000
+1 61509 1.000000
+1 61512 2.000000
+1 61507 1.000000
+1 61528 2.000000
+1 61500 1.000000
+1 3501 3.000000
+1 3502 1.000000
+1 3500 1.000000
+1 3503 2.000000
+1 2003 1.000000
+1 2004 1.000000
+1 2005 3.000000
+1 8015 1.000000
+0 0 0
+tells:
+1675736205 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1675736205 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1675822353 @WJulk@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
+1716855177 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732449412 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1732449416 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739089996 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739090031 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1739090361 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739090362 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1675821085 Xorath gossips, 'heyas'
+1675821112 Mersh gossips, 'gratz1'
+1675821113 Chinok gossips, 'hey xorath'
+1675821122 Chinok gossips, 'and gratz Denolo'
+1675821127 Xorath gossips, 'heyas'
+1716855154 Chinok gossips, 'hi Rahem'
+1739090004 Rhodotheus gossips, 'Hello'
+1739090129 Rhodotheus gossips, 'How's it going?'
+1739090264 Knak gossips, 'Congrats!'
+1739090267 Selean gossips, 'thanks'
+$
+aliases:
+lc l in corpse
+gc get all.coins from corpse
+jj b giant
+0

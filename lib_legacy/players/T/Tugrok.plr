@@ -1,0 +1,111 @@
+name: Tugrok
+password: TuJlFD25pV
+currenttitle: the Dinosaur Punter
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 3
+race: 4
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 16155
+birthtime: 1161991669
+timeplayed: 10990535
+lastlogintime: 1460857429
+host: 190.162.002.134
+height: 83
+weight: 221
+base_height: 83
+base_weight: 221
+base_size: 3
+natural_size: 3
+alignment: -1000
+playerflags: glxyz
+effectflags: k w 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 13
+hitpoints: 1421/1223
+mana: 980/980
+move: 164/164
+damroll: 5
+hitroll: 4
+strength: 98
+intelligence: 56
+wisdom: 66
+dexterity: 100
+constitution: 94
+charisma: 46
+cash: 659 766 4059 4579
+experience: 116386599
+quit_reason: 1
+saveroom: 3054
+skills:
+402 1000
+404 1000
+407 1000
+411 1000
+412 1000
+415 194
+416 1000
+419 1000
+420 700
+421 700
+422 1000
+427 1000
+430 567
+431 336
+434 1000
+438 598
+441 1000
+443 78
+444 485
+463 1000
+464 1000
+465 940
+466 50
+467 50
+468 1000
+473 477
+0 0
+trophy:
+1 11809 2.000000
+1 11701 4.000000
+1 2803 0.500000
+1 2807 0.500000
+1 2801 0.500000
+1 11750 5.000000
+1 11710 2.500000
+1 11702 3.000000
+1 2806 2.500000
+1 2808 2.000000
+1 58414 0.333333
+1 58404 1.333333
+1 58417 0.333333
+1 58410 0.666667
+1 58415 0.333333
+1 58409 1.000000
+1 58304 0.333333
+0 0 0
+aliases:
+3 rescue flaite
+2 rescue mecke
+sec g ring corpse;wear ring
+gac g all all.corpse
+li l i corpse
+1 rescue thora
+5 rescue dimentio
+4 rescue gyen
+gcc g all.coins all.corpse
+ret rescue thera
+gr group
+stone say stone
+0 look
+dr drink water
+wh who -w
+sec1 g ring;wear ring
+fh say fh;say stone
+0

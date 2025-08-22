@@ -1,0 +1,976 @@
+#6200
+guard well-armored human~
+a well-armored human guard~
+A well-armored human guard stands here.~
+This sturdy human male is taller than average, with broad shoulders and
+a perpetual laconic look as he surveys the people walking past. He has
+on an assortment of the best armors available, and his sword is finely
+polished and sharpened.~
+59418 0 0 E
+90 0 -4 0d0+0 5d5+25
+0 0 0 0 0 62
+3 3 1 3 0 0 2
+Str: 83
+Dex: 86
+Int: 68
+Wis: 75
+Con: 72
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6201
+guard red cryomancer~
+a red-surcoated guard~
+A red-surcoated guard stands near the northern archway.~
+Little can be seen of him under his extensive armor, but he stands at
+rigid attention right near the northern archway of this tower. He doesn't
+seem at all inclined to chat.~
+57370 0 0 E
+99 0 0 0d0+0 5d5+0
+0 0 0 0 0 62
+3 3 1 3 0 0 2
+Str: 93
+Dex: 83
+Int: 76
+Wis: 73
+Con: 70
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6202
+guard blue~
+a blue-surcoated guard~
+A blue-surcoated guard stands near the southern archway.~
+Little can be seen of him under his extensive armor. He stands at attention
+near the southern archway of the tower, and seems disinclined to spend time
+in idle conversation.~
+57370 0 0 E
+99 0 0 0d0+0 5d5+0
+0 0 0 0 0 62
+3 3 1 3 1 0 2
+Str: 90
+Dex: 80
+Int: 68
+Wis: 70
+Con: 78
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6203
+guard elven haughty~
+an elven guard~
+A haughty elven guard patrols the streets.~
+She is tall and muscular, with braided red hair and amber eyes. She
+has a haughty expression on her finely-sculpted features, and she 
+doesn't appear to miss much.~
+18520 8 0 E
+90 0 0 0d0+0 0d0+25
+0 0 0 0 0 62
+3 3 2 3 1 0 2
+Str: 84
+Dex: 80
+Int: 77
+Wis: 72
+Con: 72
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6204
+mage half elven~
+a half-elven mage~
+A half-elven mage surveys the crowd critically.~
+He is handsome, with pale skin, black hair, and dark eyes that seem
+at once arrogant and critical, wise and knowing. He is taller than the
+average human male, and of a far more wiry and slender build, but for
+the most part, he looks human.~
+26696 0 0 E
+75 0 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 4 1 0 9 0 2
+Str: 70
+Dex: 78
+Int: 81
+Wis: 97
+Con: 74
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6205
+cat dark tabby~
+a dark tabby cat~
+A dark-striped tabby cat noses around for food here.~
+She's a sturdy little cat, with black stripes on a brown background.
+Her coat is fairly coarse, indicating that she lives outside all the
+time, and a bit is torn out of one of her ears.~
+200 0 0 E
+1 0 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 2 24 14 0 1
+Str: 95
+Dex: 86
+Int: 66
+Wis: 72
+Con: 76
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6206
+guard guildguard gold-guard~
+a gold-surcoated guard~
+A gold-surcoated guard stands near the ascending staircase.~
+He's young and very strong-looking, most likely human. He has broad
+shoulders and powerfully muscled arms and legs, and his deep green eyes
+do not miss much going on around him.~
+256026 0 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 1 3 0 0 2
+Str: 96
+Dex: 76
+Int: 78
+Wis: 70
+Con: 79
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 3155
+T 3159
+#6207
+burro donkey~
+a burro~
+A little burro stands off to the side.~
+This burro is a sturdy little girl.  She is covered with dark brown fur that's
+black on the tips of her long ears.  A strap mark across her belly suggests
+that she has been used for hauling, but she looks healthy enough.    ~
+268697610 0 0 E
+1 20 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 2 3 14 0 2
+BareHandAttack: 4
+Str: 96
+Dex: 80
+Int: 70
+Wis: 72
+Con: 72
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6208
+mule~
+a mule~
+A long-eared mule stands here munching on nothing.~
+Covered with light brown fur, this hardy mix of horse and donkey looks
+intelligent and strong.  Its large dark eyes look at you carefully, as if
+analyzing your intentions.    ~
+268697610 0 0 E
+6 20 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 0 3 14 0 2
+BareHandAttack: 4
+Str: 95
+Dex: 82
+Int: 57
+Wis: 67
+Con: 83
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6209
+hrongang beast animal~
+a hrongang~
+An odd-looking, tall beast of burden glares at you with yellow eyes.~
+Is it a camel, horse, or dog?  Whichever, it is a tall lanky-legged beast with
+a very wide mouth, and covered with dirty-yellow fur.  Its feet are broad and
+flat, but it has a long furry tail that wags from time to time.  Its broad back
+looks like a good place for cargo or riders.    ~
+268697610 0 0 E
+11 20 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 0 3 14 0 3
+BareHandAttack: 9
+Str: 94
+Dex: 85
+Int: 64
+Wis: 70
+Con: 70
+Cha: 72
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6210
+guard burly dirty~
+a burly guard~
+A burly dirty guard hangs out near the south exit.~
+This looks to be a man of about average height.  His greasy hair hangs down his
+back in a ponytail, and a ragged black shirt is tightly stretched over bulging
+muscles.  He has little reddish eyes that peer about, alighting on nothing.  
+He smells a bit.~
+26650 0 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 0 3 0 0 2
+Str: 90
+Dex: 76
+Int: 74
+Wis: 74
+Con: 76
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6211
+aylana illusionist guild guildmaster woman~
+Aylana~
+A woman in a blue robe smiles in your direction.~
+Aylana appears happy, relaxed, and at ease in her sumptuous home.  She has
+shiny golden hair which is pulled into a small vertical bun at the back of her
+head.  Her age is difficult to discern, but is probably over thirty years.  
+She is of medium height and rather thin.  Despite the unpleasant appearance of
+the room outside, her bearing is one of welcome.~
+-1610610662 671088640 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 2 22 0 0 2
+Str: 75
+Dex: 75
+Int: 86
+Wis: 77
+Con: 70
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55712
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#6216
+guard ranger man~
+a green-clad ranger~
+A green-clad man guards the staircase.~
+He is tall and wiry, with a lean build and tanned skin. He moves almost
+completely silently, but rarely moves far from his staircase. Sometimes
+he looks up to the top of the staircase, as if expecting somebody.~
+57370 4104 0 E
+99 0 -4 0d0+0 5d5+0
+0 0 0 0 0 62
+3 3 1 6 9 0 2
+Str: 79
+Dex: 87
+Int: 83
+Wis: 64
+Con: 77
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 306
+T 307
+T 308
+T 311
+T 314
+#6217
+guard knight white~
+a white-clad knight~
+A white-clad knight stands at attention.~
+He is tall and lordly in his mail armor and his gleaming white surcoat.
+Standing at strict attention unless in battle, he doesn't talk to anybody
+or let himself get distracted.~
+59418 0 0 E
+99 0 -8 0d0+500 10d10+0
+0 0 0 0 0 62
+3 3 1 4 0 0 2
+Str: 95
+Dex: 69
+Int: 63
+Wis: 72
+Con: 74
+Cha: 82
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#6218
+priestess priest guildmaster master high-priestess guild-master~
+the High Priestess~
+A white-robed High Priestess worships here.~
+She is of average height, and perhaps a bit overweight. Her features are
+fairly plain, but her devotion to her deity makes her appear radiant.
+She speaks gently, and her demeanor is humble.~
+268492826 5176 0 E
+80 0 0 0d0+500 5d5+0
+0 0 0 0 0 62
+3 3 2 1 0 0 2
+Str: 82
+Dex: 72
+Int: 74
+Wis: 87
+Con: 77
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55716
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 316
+T 315
+T 3155
+T 3159
+T 326
+T 55706
+T 318
+#6219
+guard black guildguard black-guard~
+a black-surcoated guard~
+A black-surcoated guard stands near the descending staircase.~
+Little can be seen of his features under his extensive armor. He stands
+at rigid attention near the staircase, keeping the nosy out.~
+59418 0 40 E
+99 0 0 0d0+0 5d5+40
+0 0 0 0 0 62
+3 3 1 3 0 0 2
+Str: 84
+Dex: 74
+Int: 77
+Wis: 79
+Con: 77
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 3155
+T 3159
+#6220
+pyromancer guildmaster woman red flame Archmage~
+a pyromancer~
+A flame-haired woman dressed in red stands before the fireplace.~
+She is dangerous-looking indeed, with flame-colored red hair and bright
+green, almost feline eyes. She moves with sinuous grace, and when she
+speaks, her voice almost always has a purr in it -- unless she is angry.
+She seems like the sort who'd get angry often.~
+536928266 1064 0 E
+90 0 -10 0d0+0 10d10+0
+0 0 0 0 0 62
+3 3 2 20 0 0 2
+Str: 85
+Dex: 70
+Int: 82
+Wis: 82
+Con: 73
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55712
+T 6204
+T 6206
+T 6214
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 3155
+T 3159
+T 55706
+#6221
+cryomancer scholar tall man Archmage guildmaster~
+a cryomancer~
+A tall scholar consults his books.~
+He is a tall, pale human man, his skin having an almost bluish cast to
+it. He seems coldly rational, with his pale blond goatee and his neatly
+combed short hair, and the pale grey eyes he turns to visitors do not
+hold any warmth.~
+536928266 1064 0 E
+90 0 -8 0d0+0 5d5+0
+0 0 0 0 0 62
+3 3 1 21 0 0 2
+Str: 76
+Dex: 76
+Int: 80
+Wis: 82
+Con: 74
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55712
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#6222
+druid serene druidess guildmaster~
+a serene druidess~
+A serene druidess tends to her plants.~
+She is of average height and weight, with tattoos along her cheekbones,
+and an utterly serene expression. She walks with a slow, steady gait,
+stopping to check plants and trees.~
+805322762 5160 0 E
+90 0 -10 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 2 7 0 0 2
+Str: 78
+Dex: 66
+Int: 94
+Wis: 96
+Con: 60
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55720
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#6223
+necromancer pale white man gaunt guildmaster~
+a necromancer~
+A pale, gaunt man examines a book.~
+He looks supremely unconcerned with anything going on around him. Pale
+and gaunt, his white skin is evidence that he rarely sees the light of
+day, but his eyes burn with a feverish light. His hands are long-fingered
+to the point of being spidery, and slender to the point of being skeletal.~
+536887322 1064 0 E
+90 0 -6 0d0+0 5d5+0
+0 0 0 0 0 62
+3 3 1 11 0 0 2
+Str: 86
+Dex: 81
+Int: 86
+Wis: 87
+Con: 52
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55714
+T 6201
+T 6202
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6204
+T 6215
+T 3155
+T 3159
+T 55706
+#6224
+serena elf elven beautiful golden woman shopkeeper~
+Serena~
+A beautiful, golden-haired elven woman tends to customers.~
+Tall and elegant of bearing, this regal elf woman appears to be in her
+prime. Golden hair falls past her shoulders in a silken wave, and violet
+eyes dominate her face. High cheekbones and an aquiline nose give her even
+more of an aristocratic appearance.~
+57354 0 0 E
+50 20 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 2 24 1 0 2
+Str: 81
+Dex: 79
+Int: 62
+Wis: 80
+Con: 77
+Cha: 72
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6225
+shazz mage shopkeeper~
+Shazz~
+A hunchbacked mage cackles weirdly near the counter.~
+He's very short, with long, oily grey hair that's more or less bound
+back by a cord. Hunchbacked, he hobbles around with a cane, and his
+thin, reedy voice is perfectly suited to wheezing and cackling, both
+of which he does constantly. His pointed noise and his pointed chin
+almost meet, but despite all this, he seems exceptionally intelligent.~
+57354 8 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 4 1 0 2 0 1
+Str: 90
+Dex: 66
+Int: 85
+Wis: 85
+Con: 72
+Cha: 53
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6226
+barmaid maid shopkeeper~
+a barmaid~
+A barmaid makes rounds of the tables.~
+She is wide-hipped, blonde, and extremely competent-looking. With
+professional savoir-faire, she nimbly steps past tables with her
+loaded tray, and just as easily sidesteps propositions from the
+good-natured patrons of the tavern.~
+16394 0 0 E
+70 0 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 2 24 0 0 2
+Str: 92
+Dex: 74
+Int: 74
+Wis: 83
+Con: 74
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6227
+receptionist recep innkeeper girl~
+the receptionist~
+A girl sits behind the desk.~
+She looks barely out of her teens, and has a freshly-scrubbed look
+to her. She may be an elf or half-elf, from her willowy build and
+general attractiveness, but it's difficult to say, since her hair
+goes past her ears and she doesn't have the disctinctive elven
+accent.~
+57354 32 0 E
+80 0 0 0d0+0 5d5+0
+0 0 0 0 0 62
+3 3 2 24 9 0 2
+Str: 100
+Dex: 93
+Int: 63
+Wis: 69
+Con: 80
+Cha: 49
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 1000
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6228
+shula stable-keeper shopkeeper hardworking~
+Shula~
+A hardworking stable keeper scrubs the counter here.~
+Shula is sleek and well defined, having grown up working long hour days.  Her
+arms are strong from having scrubbed the counter so often to keep it clean.  
+Her hair is pulled back in a nice bow, making her beauty really stand out
+nicely.    ~
+92250 16789512 750 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 2 3 1 0 2
+BareHandAttack: 7
+Str: 93
+Dex: 94
+Int: 57
+Wis: 70
+Con: 77
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6230
+banker dwarven dwarf~
+a dwarven banker~
+A dwarf tends to patrons of the bank.~
+He is short and stout, like most dwarves, and fairly old, with a
+bushy white beard and spectacles on the end of his nose. He has a
+querulous voice that isn't ever very loud.~
+122890 40 0 E
+90 20 -8 0d0+0 5d5+0
+0 0 0 0 0 62
+3 3 1 24 3 0 2
+Str: 92
+Dex: 78
+Int: 66
+Wis: 83
+Con: 75
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 30006
+#6231
+archmage guildmaster mage master 6231~
+the Archmage~
+The Archmage studies a book.~
+Even though your guildmaster looks old and tired, you can clearly see the
+vast amount of knowledge she posesses. She is wearing fine magic clothing,
+and you notice that she is surrounded by a blue shimmering aura.~
+536889354 1064 1000 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 4 2 0 0 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55712
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#6232
+phayla-daughter-sun~
+Phayla~
+Phayla, Daughter of the Sun, works in her sanctuary.~
+Standing before you is a radiant woman with sunlight hair and luminous bronze
+skin.  She moves with a purposeful grace befitting her regal composure.  
+Phayla wears a trailing robe made of a dark fabric which perfectly complements
+her complexion and noble bearing.  Yet behind her beauty is a stern,
+dispassionate demeanor which coolly and intently surveys her dimensional
+sanctuary.~
+536870922 8 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 2 20 0 0 2
+Str: 81
+Dex: 75
+Int: 90
+Wis: 78
+Con: 69
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 3
+Composition: 0
+Stance: 6
+E
+T 6209
+T 6210
+T 6211
+T 6212
+#6233
+grand-diva-belissica bard~
+Grand Diva Belissica~
+Belissica, grand diva of South Caelia, performs for her guests.~
+Belissica is the foremost leading lady of the stage in all of known Ethilien.
+She regularly travels giving performances for lords and ladies the world over.
+Her home venue is in the port city of Solta, the sprawling port city of South
+Caelia.  She regularly brings the resplendent finery of her home city with her
+to gift her fellow bards in exchange for rewards for their adventures.~
+-2013241318 1064 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 2 19 9 0 2
+Str: 95
+Dex: 85
+Int: 67
+Wis: 73
+Con: 76
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55739
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55705
+T 55706
+#6299
+soltan-gem-trader merchant~
+the gem trader~
+The Soltan Gem Master watches over the lively Exchange.~
+      The gem trader is a jeweled and bedecked elder gentleman of considerable means
+and class.  His clothes are of the highest quality, crafted from sumptuous
+fabrics and colored with the rarest dyes.  Each accessory he wears is the
+purest metal, featuring flawless sparkling gemstones.  His keen eyes scrutinize
+every transaction in the Exchange with exacting precision and accounting.~
+-2013110262 1032 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 62
+3 3 1 24 3 0 2
+Str: 78
+Dex: 82
+Int: 68
+Wis: 76
+Con: 82
+Cha: 84
+AFF2: 4194304
+AFF3: 65536
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 6292
+T 6293
+T 6294
+T 6295
+T 6296
+T 6297
+T 6298
+T 6299
+$

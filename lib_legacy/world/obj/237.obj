@@ -1,0 +1,1152 @@
+#23701
+giant pillar huge~
+the giant pillar of Dheduu~
+A gigantic pillar rises to the top of the cavern, shedding a red light.~
+~
+1 0 0 100
+0 -1 -1 0 0 0 0
+2000.00 0 0 0 0 0 0 0
+E
+giant pillar huge red light~
+   Though it appears to be a natural fusion of stalagmite and stalactite, this
+pillar is constantly lit with a pervasive red light.  Lightly carved runes near
+the middle mark the joining of the two huge stone pillars into one.    ~
+E
+rune runes~
+The runes are carved in a spidery script, reading:
+if you are near to the dark
+I will tell you 'bout the sun
+you are here, no escape
+from my visions of the world
+you will cry all alone
+but it does not mean a thing to me
+knowing the song I will sing
+till the darkness comes to sleep
+come to me, I will tell
+'bout the secret of the sun
+it's in you, not in me
+but it does not mean a thing to you
+the sun is in your eyes
+the sun is in your ears
+I hope you see the sun
+someday in the darkness.
+Kourrya 2002~
+#23702
+portal~
+the portal to Dheduu~
+A portal glimmers here, pentagrams floating at its top and bottom.~
+~
+24 0 0 0
+23711 0 0 0 0 0 0
+1500.00 0 -1 0 0 0 0 0
+E
+portal shimmering pentagram~
+   It seems like a puddle of water hovering in midair, but light blue
+pentagrams floating at its top and bottom serve to keep the magic stable.  
+Through the portal itself, you see only another cavern.  Why is this portal
+here?    ~
+#23703
+portal~
+the portal from Dheduu~
+A watery portal floats in midair here.~
+~
+24 16 0 0
+23710 0 0 0 0 0 0
+1500.00 0 -1 0 0 0 0 0
+E
+portal watery floating~
+   Through the portal, you can see the watery outline of a cavern.  What a
+surprise.    ~
+#23704
+glaive soulsteel soul-steel pole blade-dark-steel~
+a soulsteel glaive~
+A pole weapon with a blade of dark steel lies here.~
+~
+5 37368320 8193 25
+4 2 5 3 0 0 0
+4.00 1000 0 8192 0 0 0 0
+E
+glaive soulsteel soul-steel pole blade-dark-steel~
+The blade of this pole weapon--a glaive--is long and shaped somewhat like a can
+opener.  The pole is made of the same metal as the blade, which appears to be a
+dark-stained steel.  However, upon closer inspection, the metal actually swirls
+beneath the surface, as if there were souls trapped inside....~
+A
+14 -15
+A
+2 3
+X
+993
+#23705
+breastplate breast-plate soulsteel-breastplate soul-steel dark-metal~
+a soulsteel breastplate~
+A breastplate made of dark metal rests on the ground.~
+~
+9 41570816 9 25
+12 0 0 0 0 0 0
+15.00 1000 0 0 0 0 0 0
+E
+breastplate breast-plate soulsteel-breastplate soul-steel dark-metal~
+It is very light, for a breastplate.  The metal hardly seems to weigh anything.
+It is a very strange metal, formed of black and grey swirls that are
+constantly, if slowly, moving.  Touching a swirl with one's bare hands gives
+something of a shock, as if you had laid your bare hands against a trapped
+soul.~
+A
+1 3
+X
+1048817
+#23706
+collar leather-slave-collar~
+a slave collar~
+A leather slave collar sits here, its owner nowhere in sight.~
+~
+9 536870912 5 30
+1 0 0 0 0 0 0
+1.00 15 0 0 0 0 0 0
+T 23706
+E
+collar leather-slave-collar~
+Made of a tough leather, the collar is very resistant to cuts, even by very
+sharp blades.  A locking mechanism shocks you if you try to loosen with it.~
+A
+18 5
+A
+19 -2
+#23707
+whip slaver's-whip slavers-whip soaked blood black-whip drow~
+the slaver's whip~
+A black whip is coiled here, the ends soaked in blood.~
+~
+5 37366272 8193 25
+2 2 4 2 0 0 0
+2.00 1000 0 0 0 0 0 0
+E
+whip slaver's-whip slavers-whip soaked blood black-whip drow~
+Made of a resilient black leather, this whip shows extremely fine
+craftsmanship.  It is actually nine strips of leather braided together.  The
+ends are soaked with blood from many different creatures, giving it a sickly
+sweet smell.~
+A
+19 1
+X
+768
+#23708
+pendant shining-pendant necklace~
+a shining pendant~
+A shining necklace lies in the dirt.~
+~
+1 12632137 5 15
+0 590 590 0 0 0 0
+1.00 1000 0 0 0 0 0 0
+E
+shining pendant necklace~
+It looks as if someone caught a ball of pure light and set it on a fine chain.
+The form of the ball is constantly changing as it sparkles in different
+directions.    ~
+A
+3 2
+A
+17 1
+A
+5 1
+X
+16
+#23709
+key prison humming black~
+the prison key~
+A black, humming key is lying here, unnoticed.~
+~
+18 65542 1 35
+0 0 0 0 0 0 0
+0.50 0 0 0 0 0 0 0
+E
+key prison humming black~
+It's a large, black key.  Magical energy keeps it humming.~
+#23710
+crystal psionic-crystal psi double-spear-quartz~
+a psionic crystal~
+A double spear of quartz rests serenely on the ground.~
+~
+3 15654922 16385 50
+70 3 3 111 0 0 0
+0.50 1000 0 0 0 0 0 0
+E
+crystal psionic-crystal psi double-spear-quartz~
+A large quartz crystal that splits into twin spears, this crystal humms with
+energy.  The illithid probably imbued it with a portion of his power.~
+X
+785
+#23711
+pendant black-spider small-necklace black-spider-pendant~
+a spider pendant~
+A black spider crawls on a small necklace here.~
+~
+8 2560 5 25
+3 0 0 0 0 0 0
+1.25 1000 0 0 0 0 0 0
+E
+pendant black-spider small-necklace black-spider-pendant~
+The black stone spider on the end of the necklace chain seems to be alive.  It
+crawls back and forth on the chain whenever it senses danger.~
+A
+27 1
+#23712
+spear adamantine-spear spear-adamant-metal~
+an adamantine spear~
+A spear made of adamant metal is resting here.~
+~
+5 52443648 8193 30
+3 2 8 11 0 0 0
+5.00 1000 0 0 0 0 0 0
+E
+spear adamantine-spear spear-adamant-metal~
+The spear is made entirely out of the pale adamantine metal that, according to
+superstition, never goes dull until its bearer is defeated in battle.  It is
+about six feet long and looks pretty unweildy to someone who has not trained
+with spears before.  Yet it would be extremely deadly in hands trained to use
+it properly.~
+A
+19 1
+X
+993
+#23713
+vest shimmering-black-vest ethereal-looking-black-vest~
+a shimmering black vest~
+An ethereal-looking black vest shimmers in and out of sight.~
+~
+9 12634632 9 25
+7 0 0 0 0 0 0
+9.00 150 0 0 0 0 0 0
+E
+vest shimmering-black-vest ethereal-looking-black-vest~
+Woven of an unknown black fabric, this vest slowly fades in and out of
+existance.  It seems perfectly solid, yet reflects light very well.~
+A
+5 3
+X
+16
+#23714
+longsword long-sword adamantine-longsword shiny-longsword~
+an adamantine longsword~
+A shiny longsword is lying here on the ground.~
+~
+5 53492224 8193 40
+3 3 5 3 0 0 0
+6.00 10000 0 0 0 0 0 0
+E
+longsword long-sword adamantine-longsword shiny-longsword~
+Much lighter than a regular longsword, its versatility and keen edge can
+probably be attributed to the material it is constructed out of.  The rare
+metal adamantine is used exclusively in its blade, making this a valuable
+weapon indeed.~
+A
+18 3
+A
+19 1
+X
+997
+#23715
+sword practice-sword~
+a practice sword~
+A practice sword rests against the wall.~
+~
+5 53489664 8193 5
+0 1 8 3 0 0 0
+4.00 666 0 0 0 0 0 0
+E
+practice-sword~
+Made of cheap metal, this sword seems to be weighted to make one's arm tired.
+This is to let the trainees get used to the weight of a sword.  Though it is of
+inferior craftsmanship, it is well balanced and should work well in simple
+combat.~
+A
+18 1
+A
+1 1
+X
+997
+#23716
+crest sunfire-crest sun-fire beaten-copper-sun light badge~
+the Sunfire crest~
+A beaten copper sun shines with a brilliant light here.~
+~
+1 536937537 2637825 50
+0 -1 -1 0 0 0 0
+0.10 0 0 0 0 0 256 0
+E
+crest sunfire-crest sun-fire beaten-copper-sun light badge~
+Shaped like a small artist's rendition of the sun, the core is made of a
+brightly glowing yellow material that is cool to the touch despite the light it
+sheds.  Extending from the core in four directions are flame-shaped reddish
+copper rays.  It looks like it would make a fine identifying mark on a cloak.~
+A
+5 2
+A
+2 3
+A
+19 2
+A
+27 3
+A
+17 8
+#23717
+bracelet crawling-spider-bracelet shape-black-silver-spider~
+a crawling spider bracelet~
+A bracelet in the shape of a black and silver spider has been left here.~
+~
+8 2624 4097 30
+1 0 0 0 0 0 0
+0.25 10000 100 0 0 0 0 0
+E
+bracelet crawling-spider-bracelet shape-black-silver-spider~
+Though the spider is made entirely aout of black and silver metal, it crawls
+around of its own free will.  As soon as it recognizes an owner, it settles
+back and two of its eight legs extend into a lopp so that it can be worn around
+the wrist as a bracelet.  Its tiny ruby eyes wink up at you as you contemplate
+it.~
+A
+2 5
+A
+27 1
+#23718
+shadowcloak shadow-cloak cloak-spun-shadows-darkness~
+a shadowcloak~
+A cloak spun out of shadows and darkness rests here.~
+~
+9 536873472 1025 20
+4 0 0 0 0 0 0
+3.00 75000 100 0 0 0 0 0
+T 23718
+E
+shadowcloak shadow-cloak cloak-spun-shadows-darkness~
+It feels almost fluffy and very weightless.  It becomes more clearly defined in
+the light, appearing to be more like black cloth, yet when in the shadows it
+fades until it is barely visible.  Cloaked in shadow, it would be easy to
+remain hidden wherever there is darkness.~
+A
+2 2
+#23719
+key black widow spider kar'shezden~
+the Kar'Shezden key~
+A key shaped like a black widow spider is lying here.~
+~
+18 4 1 0
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+key black widow kar'shezden~
+The handle is shaped like the poisonous spider's body, while the legs make up
+the actual key.  The red hourglass of the black widow feels warm to the touch.
+  ~
+#23720
+head drider king severed bloated~
+the head of the drider king~
+A severed, bloated drow head is rolling around here.~
+~
+12 65540 1 50
+0 0 0 0 0 0 0
+8.00 0 0 0 0 0 0 0
+E
+head drider king bloated severed~
+   The tortured, insane expression of the drider king remains intact, even in
+death.    ~
+#23721
+heart drow-heart fresh-steaming-heart questobject~
+a drow heart~
+A fresh, steaming heart sits in the corner here.~
+~
+12 536936452 1 25
+0 0 0 0 0 0 0
+0.80 0 0 0 0 0 0 0
+E
+heart drow-heart fresh-steaming-heart questobject~
+Red and steaming, this fresh heart is thankfully no longer beating.  It
+definitely came from a human-sized creature.  Yuck.    ~
+#23722
+fungus purple mushroom cap food~
+a piece of purple fungus~
+A purple-capped mushroom pushes its way out of the ground.~
+~
+19 0 1 1
+8 0 0 0 0 0 0
+0.75 40 0 0 0 0 0 0
+E
+fungus mushroom purple shroom cap~
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+#23723
+fungus pink mushroom bulb shroom food~
+a piece of pink fungus~
+A bulb of pink fungus grows out of the wall.~
+~
+19 0 1 1
+6 0 0 0 0 0 0
+3.00 50 0 0 0 0 0 0
+E
+fungus pink mushroom shroom bulb~
+This bright pink fungus actually smells quite appetizing.  It is not discolored
+by any bruises or spots--unless, of course, the pink that almost hurts the eyes
+is a discoloration.    ~
+#23724
+stew bowl mystery food~
+a bowl of mystery stew~
+A bowl of stew steams, left on the ground.~
+~
+19 1 1 1
+25 0 0 1 0 0 0
+0.75 5 0 0 0 0 0 0
+E
+mystery stew bowl~
+Chinks of unidentifiable substances float in a thick broth.  Whether or not the
+rancid stew is edible, is impossible to declare.    ~
+#23750
+parsley sprig herb spice food~
+a sprig of parsley~
+A sprig of parsley is sitting here, ready to garnish a dish.~
+~
+19 0 1 1
+2 0 0 0 0 0 0
+0.10 120 0 0 0 0 0 0
+E
+sprig parsley herb spice~
+A fluffy little herb, parsley is often used to add flavor or color to
+otherwise unremarkable dishes.    ~
+#23751
+sage delicious packet spice herb food~
+a bit of sage~
+A delicious-smelling packet of spice is sitting here.~
+~
+19 0 1 1
+1 0 0 0 0 0 0
+0.10 40 0 0 0 0 0 0
+E
+sage delicious spice herb packet~
+It's a small linen packet filled with the yummy-smelling herb sage.    ~
+#23752
+rosemary herb spice jar small food~
+a jar of rosemary~
+A small jar of rosemary lies forgotten here.~
+~
+19 0 1 0
+1 0 0 0 0 0 0
+0.10 1100 0 0 0 0 0 0
+E
+jar rosemary herb spice small~
+A small glass jar is filled with rosemary, a pungent herb mostly used in the
+healing arts to soothe infections.  It also makes food taste better and
+supposedly makes you healthier if you eat it.    ~
+#23753
+thyme herb spice shoot tiny food~
+a shoot of thyme~
+A tiny shoot of thyme grows here.~
+~
+19 0 1 0
+1 0 0 0 0 0 0
+0.10 600 0 0 0 0 0 0
+E
+thyme herb spice shoot tiny food~
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+#23754
+cinnamon spice herb stick food~
+a stick of cinnamon~
+A brown stick of cinnamon sits here, smelling yummy.~
+~
+19 0 1 0
+1 0 0 0 0 0 0
+0.10 10 0 0 0 0 0 0
+E
+cinnamon spice herb stick food~
+This long, slender brown object could be mistaken for a twig if it didn't smell
+so good.  Used to spice up apple cider, cinnamon is a local favorite in many
+other dishes as well.  Don't eat too much of it though--in high concentrations,
+it can be quite hot.    ~
+#23755
+pepper black spice herb dash food~
+a dash of pepper~
+A black spice sits here, unused.~
+~
+19 0 1 0
+1 0 0 0 0 0 0
+0.10 1000 0 0 0 0 0 0
+E
+pepper black spice herb dash food~
+A very rare spice, black pepper can be sold for a lot of money in areas where
+it is in high demand.  Kings and queens have sent explorers to their deaths for
+this spice, so it has something of a nasty reputation.    ~
+#23756
+salt spice herb shaker food~
+a shaker of salt~
+An ornamental salt shaker sits here.~
+~
+19 0 1 0
+1 0 0 0 0 0 0
+0.10 5 0 0 0 0 0 0
+E
+salt shaker spice~
+Salt is one of the oldest and simplest spices known to man.  In some ancient
+lands, soldiers were paid in salt.  It is used to preserve meat and usually
+makes you very thirsty if you eat too much of it.  It can be distilled from the
+ocean or mined from the mountains.  Some kinds of salt can be found in deserts,
+just sitting around.  It is the most common spice.    ~
+#23757
+garlic clove white spice herb food~
+a clove of garlic~
+A clove of garlic sits here.~
+~
+19 0 1 0
+1 0 0 0 0 0 0
+0.10 80 0 0 0 0 0 0
+E
+clove garlic white herb spice~
+Garlic is said to be able to ward off vampires.  It certainly will ward off
+your friends if you eat too much of it, as it can cause very bad breath.  It
+is, however, excellent at curing minor illnesses such as the common cold.  ~
+#23758
+basil leaves herb spice stack food~
+a stack of basil leaves~
+A small stack of basil leaves lies here.~
+~
+19 0 1 0
+1 0 0 0 0 0 0
+0.10 30 0 0 0 0 0 0
+E
+basil leaves herb spice stack food~
+Basil is a sweet, mintlike herb that can be ground into a fine spice.  It has
+no known magical properties, but it goes really well with tomatoes in sauces
+and other dishes.  The larger leaves can also be added to soup for a weaker
+flavor.    ~
+#23759
+oregano packet herb spice food~
+a packet of oregano~
+A small packet of oregano is sitting here.~
+~
+19 0 1 0
+1 0 0 0 0 0 0
+0.10 3300 0 0 0 0 0 0
+E
+oregano packet herb spice food~
+Oregano is a rather mild herb used to add zest to otherwise plain dishes.  It
+is said to help in restoration spells and help someone with chronic weakness
+gain strength.  It goes well in tomato sauces with basil and garlic.    ~
+#23760
+saffron vial small herb yellow spice food~
+a small vial of saffron~
+A small vial of a yellow spice lies forgotten in the dust.~
+~
+19 0 1 65
+1 0 0 0 0 0 0
+1.00 20000 0 0 0 0 0 0
+E
+saffron vial small herb yellow spice food~
+Two tiny, golden yellow stalks are suspended in oil inside this vial.  Saffron
+is known as the most expensive, hard-to-get spice in the world.  Each saffron
+plant, which takes two years to mature, only produces two stalks that can be
+used as a spice.  It is a powerful spell component for earth elemental spells,
+and it is also a very delicious spice.  Take good care of it.    ~
+#23761
+sign glowing blue drow-city-warning-sign~
+a sign~
+A sign outlined in &4&bglowing blue flame&0 sits here.~
+~
+12 603979792 0 0
+0 0 0 0 0 0 0
+15.00 0 0 0 0 0 0 0
+E
+sign glowing blue drow-city-warning-sign~
+A large sign is here, outlined in glowing blue flames!
+Reading it, it says in common:
+
+WARNING
+Beyond this point is a very DANGEROUS place, full of wicked drow!
+More importantly, the tiny mist beasts which have made these caverns
+their home have taken their toll on many a young adventurer.
+Please, to be safe, be sure that you can defeat a mezzoloth before
+venturing any further east.  Thank you.
+
+-The Ranger Guild of Mielikki~
+#23762
+pants sleek black leather sleek-black-leather-pants shimonos-pants lead-player-pants~
+sleek black leather pants~
+Sleek black leather pants lie here, looking sexy.~
+~
+9 666890432 33 80
+7 0 0 0 0 0 0
+3.00 0 0 0 0 0 0 0
+E
+pants sleek black leather sleek-black-leather-pants shimonos-pants lead-player-pants~
+A pair of pants made out of a black leather so shiny it almost doesn't look
+like leather at all, this sleek and sexy piece of clothing is at the pinnacle
+of fashion.  These are the kind of pants that draw attention to themselves!  
+What's more, they look to be tailor-made for a slender, athletic woman, and
+anyone who could fit in these pants without ripping them along the seams would
+be astoundingly sexy in them.    ~
+A
+19 2
+A
+18 2
+A
+2 5
+A
+1 5
+A
+27 3
+X
+1008
+#23763
+ring fire large burning fire-ring shimonos-ring~
+a ring of &1f&3&bi&1r&0&1e&0~
+A large ring of fire floats in midair here, burning magically.~
+~
+5 658481152 8193 80
+0 5 6 11 0 0 0
+5.00 0 0 0 0 0 0 1048576
+E
+ring fire large burning fire-ring shimonos-ring~
+About a foot and a half in diameter, this ring is covered in brilliant flames
+everywhere except along a bright red leather grip on one side.  A resourceful
+person could use it as a weapon, though it would be dangerous in the extreme to
+wield.  Still, the dancing flames are hypnotic...  What is life, next to the
+beauty of one perfect flame?    ~
+A
+2 2
+A
+9 -8
+A
+5 1
+A
+19 2
+A
+27 3
+X
+768
+#23769
+sheath demonhide-sheath pitch-black-sheath foul odorous abandoned~
+a demonhide sheath~
+A pitch black sheath with a foul odor has been abandoned here.~
+~
+15 633403987 1048577 0
+16 1 -1 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+sheath demonhide-sheath pitch-black-sheath foul odorous abandoned~
+Made from the hide of a Glabrezu demon, this sheath fades into the
+shadowseasily and radiates power.  It looks like it was made for a two-handed
+sword or other large blade.  Silver runes set into the sheath glimmer with
+arcane power, and it looks both sinister and impressive.~
+A
+13 10
+A
+19 2
+A
+17 5
+X
+1008
+#23772
+mirror long oval shimmering hells-mirror~
+the mirror~
+A long oval mirror shimmers with ethereal light here.~
+~
+24 603979842 0 1
+2215 0 0 0 0 0 0
+12.00 0 -1 0 0 0 0 0
+E
+mirror long oval shimmering hells-mirror~
+   A long oval mirror set horizontal rather than the customary alignment of
+vertical flashes continuously with images of this plane and others.  Cities
+past and present vie with images of volcanoes, whirlpools, tornadoes and other
+places of heavy activity, be it mortal or natural in nature.  The frame is a
+work of art in itself: the scarlet silk that edges the mirror is embroidered
+with golden runes of magic and slender outlines of fantastical creatures doing
+battle.  Its value alone would be worth the price of a soul.~
+#23773
+koto long wooden instrument zither lisminis-koto~
+a koto~
+A long wooden instrument resembling a zither is lying here.~
+~
+8 536870912 16385 20
+0 0 0 0 0 0 0
+20.00 0 0 0 0 0 0 0
+E
+koto long wooden instrument zither lisminis-koto~
+Nearly two meters long, the koto resembles a zither.  It has thirteen strings,
+each witha moveable bridge to adjust the pitch to the musician's desired tone.
+It is played with three picks: one each on the thumb, forefinger, and middle
+finger and has a thin, almost ghostly quality.  Many of the haunting melodies
+played on the koto bring with them images of a solitary green island, isolated
+from the rest of the world but holding its own beauty.    ~
+A
+3 3
+A
+6 3
+#23774
+hairpiece hair piece dragon carved ivory jade miniature lisminis-hairpiece~
+a dragon hairpiece made of carved ivory and jade~
+A miniature dragon made of carved ivory and jade is resting here.~
+~
+8 0 17 2
+0 0 0 0 0 0 0
+0.40 0 0 8 0 0 0 0
+E
+hairpiece hair piece dragon carved ivory jade miniature lisminis-hairpiece~
+Upon closer inspection, this dragon carving reveals a long silver pin that
+looks like it could be used to style hair in quite a striking manner.  Two
+dragons, one each of ivory and jade, twirl around each other with artistically
+elongated bodies and catfish-like whiskers, looking both fierce and wise.  
+Such a hairpiece is surely the height of fashion.    ~
+A
+6 2
+#23775
+hair lock brown dusty torowas-hair~
+a lock of hair which falls over his face~
+A lock of brown hair is getting dusty here.~
+~
+12 604045456 131073 0
+0 0 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+hair lock brown dusty torowas-hair~
+It shifts from left to right, always covering half the face.  It's a light
+brown lock of hair, matching seamlessly the hair on the rest of the wearer's
+head.  It almost, but not always, obscures an eye.  Despite this, it doesn't
+seem like it impairs vision at all.  What is the purpose of such a strange
+fashion statement?    ~
+A
+1 2
+A
+4 2
+A
+17 3
+#23776
+ring wedding-ring silver-leaves-ring ari-torowa-ring~
+a wedding ring of silver leaves~
+A silver ring catches the light.~
+~
+8 604045456 3 1
+2 0 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+ring wedding-ring silver-leaves-ring ari-torowa-ring~
+Beautiful and delicate, this priceless ring has a base of some soft green metal
+which is overlaid with an incredibly realistic display of silver leaves.  Each
+leaf is different, representing oack, ash, birch, yew, and other trees sacred
+to those who hold Nature dear to their hearts.  Intertwining around the leaves
+is a delicate vine, representing the unity of those bound by the rings.  
+Heartbreaking in its purity, it is nevertheless very sturdy and could probably
+withstand the harshest of conditions.    ~
+A
+3 4
+A
+4 4
+A
+13 8
+A
+5 2
+A
+27 5
+#23777
+beard brown hair pile selyns-beard~
+a beard~
+A pile of brown hair is sitting in the dirt.~
+~
+12 603979856 131073 0
+0 0 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+E
+beard brown hair pile selyns-beard~
+This fine beard is made of a light brown hair that, when worn, instantly
+matches itself to the color of the wearer's hair (unless you have auburn hair,
+and then it turns red).  Complete with connecting sideburns, it is not
+ridiculously long like a dwarf's nor the short, weak beard of a half-elf.  It
+is quite masculine.    ~
+A
+17 3
+A
+1 2
+A
+4 2
+A
+27 5
+#23778
+dress plain-black-dress folded gaz-dress~
+a plain black dress~
+A plain black dress has been neatly folded here.~
+~
+9 603979776 9 50
+30 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+dress plain-black-dress folded gaz-dress~
+   It looks like it was made for a teenage girl, but this dress is very plain
+with no ornamentation or embroidery.  The thick cloth it is made of - perhaps
+linen - reaches down past the knees and looks like it isn't in the best shape.
+Still, though plain, it serves its purpose well.    ~
+A
+13 35
+A
+18 1
+A
+27 5
+#23779
+tights pile black-and-white-striped-tights fabric gaz-tights~
+black and white striped tights~
+A pile of black and white striped fabric sits here.~
+~
+9 604045328 33 70
+13 0 0 0 0 0 0
+0.50 750 0 0 0 0 0 0
+E
+tights pile black-and-white-striped-tights fabric gaz-tights~
+   Stretchy and well-made, these tights would look absolutely smashing with the
+right style of gothic clothing.  What better way to proclaim your indifference
+to the world than to wear these tights?  The fabric isn't silk, though it is
+light.  Rather, it's a stretchy material that seems unfamiliar.  Maybe they
+were made with magic?    ~
+A
+19 2
+A
+18 2
+A
+2 3
+A
+27 5
+#23780
+doll gir green-puppy-doll strange-looking gaz-doll gir-doll~
+a green puppy doll~
+A strange-looking green doll is lying here.~
+~
+1 603979777 2113537 1
+0 -1 -1 0 0 0 0
+0.75 0 0 0 0 0 0 16384
+E
+doll gir green-puppy-doll strange-looking gaz-doll gir-doll~
+It's a little green puppy dog!  No, wait, it's not?  Why does it have a zipper?
+What's that strange grey creature under the zipper?  Why does it looks so
+insane?  Why is it making me talk really fast and in a high-pitched voice and
+making me ask all these questions?  I DON'T KNOW!  (A little button on the
+bottom makes the doll light up if you press it).    ~
+#23781
+stiletto glazed-black-horn-stiletto shiny-black-handle-dagger switchblade switch-blade kresselack~
+a glazed black-horn stiletto~
+The shiny black handle of a dagger lies here.~
+~
+5 666890448 8193 90
+3 5 6 11 0 0 0
+5.00 0 0 0 0 0 0 0
+T 23781
+E
+glazed-black-horn-stiletto shiny-black-handle-dagger switchblade kresselack~
+The handle of this stiletto is skillfully made from heavy steel and glazed
+black ivory from a stag's antlers.  A razor-sharp blade folds out from the
+handle, about a hand-and-a-half in length.  Although somewhat heavy, the
+stiletto can be wielded deftly within a sleeve, making an effective assassin's
+weapon.    ~
+A
+2 2
+A
+5 1
+A
+19 2
+X
+1008
+#23783
+ring wedding-ring-silver-ice-golden-fire gold shining beautiful auvcan-voltel-ring-unique~
+a wedding ring of silver ice and golden fire~
+A beautiful ring of silver and gold shines brightly in the dust.~
+~
+8 604045521 3 85
+0 0 0 0 0 0 0
+0.02 10000 10 8 0 0 0 0
+E
+ring wedding-ring-silver-ice-golden-fire gold shining beautiful auvcan-voltel-ring-unique~
+This ring is small, yet anything but simple.  At first, it seems like a simple
+ring of intertwining gold and silver strands lit with an inner fire, but it
+feels alive, and indeed upon closer inspection it is revealed that the golden
+bands have the glitter of living flame, flowing like molten flame around the
+silver bands.  They also glimmer, but with the power of coldest ice.  One would
+expect these two opposing elements bound together would destroy each other, but
+instead the flame burns brighter and the ice rests cooler because of the
+opposition inherent in them.  The binding is tighter than ever, a joyous
+inclusion of difference.    ~
+A
+3 3
+A
+26 28
+A
+9 -12
+A
+14 20
+A
+4 3
+A
+27 5
+#23786
+garland blue-white-flower-garland pretty-graland sisenna-garland~
+a garland of blue and white flowers~
+A pretty garland of flowers lies here, getting dirty.~
+~
+9 670036160 17 41
+2 0 0 0 0 0 0
+0.40 0 0 8 0 0 0 0
+E
+garland blue-white-flower-garland pretty-graland sisenna-garland~
+It's a sweet-smelling garland woven to be worn on the head, made of hundreds of
+tiny flowers, their blue and white blossoms winking out of the green mess of
+stems.  Though it looks like it could fall apart at any moment, it stays
+together.  Someone must have spent a very long time weaving it!    ~
+A
+4 3
+X
+1008
+#23787
+locket locket-forgotten tiny-silver-locket chain-knot questobject~
+the Locket of the Forgotten~
+A tiny silver locket lies here, its chain in a knot.~
+~
+8 0 5 90
+2 0 0 0 0 0 0
+0.50 0 0 0 0 0 0 0
+E
+locket-forgotten tiny-silver-locket chain-knot~
+Cast from the finest dwarven silver, this locket is beautifully carved and
+decorated by wonderfully complex patterns and runes.  A tiny clasp on one side
+locks the hinge on one side of the locket, enclosing the memories of those who
+have passed on and become forgotten.  An aura of mourning and remoteness
+surrounds the locket, flowing from the tiny portrait painted within-the face is
+neither male nor female, neither old nor young.  Expressionless, the face
+nevertheless seems to be lonely, crying for remembrance.    ~
+A
+18 2
+A
+19 3
+A
+13 50
+#23788
+rags tattered-rags heap pile~
+some tattered rags~
+A pile of tattered rags lies in a heap here.~
+~
+9 671084608 9 78
+35 0 0 0 0 0 0
+4.00 0 0 0 0 0 0 0
+E
+rags tattered-rags heap pile~
+This pile of rags could be used for clothing, maybe, if one weren't morally
+opposed to wearing minimal clothing and one could not afford real clothes.  
+Close inspection reveals the greyish-brown rags to be made of silk; it was
+likely once a very fine garment.  Perhaps it has some magical properties?  
+There is surely no other reason these rags haven't found their way to the
+rubbish heap yet.    ~
+A
+2 5
+A
+5 5
+A
+13 25
+X
+1008
+#23789
+rags tattered-armwraps pile heap~
+some tattered armwraps~
+A pile of tattered rags lies in a heap here.~
+~
+9 671019008 257 60
+12 0 0 0 0 0 0
+2.00 0 0 16777216 0 0 0 0
+E
+rags tattered-armwraps pile heap~
+These grey-brown rags may have once been proper clothing, but now the silk is
+so torn and thin that they surely can't provide much protection.  Laces on one
+end could be used to attach them to a shirt like a pair of sleeves, but anyone
+with fashion sense would probably rather go without sleeves at all than use
+these old things.    ~
+A
+19 1
+A
+18 2
+X
+1008
+#23790
+potion black-potion-recall~
+a black potion of recall~
+A black potion is lying here.~
+~
+10 65600 16385 1
+99 33 4 8 0 0 0
+2.00 5000 1000 0 0 0 0 0
+T 23790
+#23791
+rags tattered-legwraps pile heap~
+some tattered legwraps~
+A pile of tattered rags lies here in a heap.~
+~
+9 671019008 33 70
+13 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+rags tattered-legwraps pile heap~
+Barely enough to keep to the standards of decency, this pile of unsightly rags
+probably used to be part of a fine suit.  Now the silk is grey-brown with age,
+and tattered and shredded almost beyond recognition.  Why would anyone want to
+wear this?  It hardly counts as clothing, and it surely can't be very
+protective.    ~
+A
+19 2
+A
+18 2
+A
+2 3
+X
+1008
+#23792
+rags tattered-sash pile heap~
+a tattered sash~
+A pile of tattered rags lies here in a heap.~
+~
+9 671019008 2049 70
+15 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+rags tattered-sash pile heap~
+It's a simple length of tattered, worn greyish-brown silk.  It looks like the
+only thing it would be good for is a belt or sash.  The silk is torn and
+threadbare, though, so even tying it in a knot might not be a very good idea
+lest it break.  It looks more like something for the junk pile than a piece of
+clothing.    ~
+A
+1 3
+X
+1008
+#23794
+lizard sleeves sandrock little-metallic-lizard lizard-named-sandrock aris-lizard~
+a lizard named Sandrock~
+A little metallic lizard sits on the ground here.~
+~
+9 603979840 257 1
+6 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+E
+lizard sleeves sandrock little-metallic-lizard lizard-named-sandrock aris-lizard~
+Aww, it's a cute little sculpture shaped like a shocker lizard...  Or is it a
+cute little shocker lizard that looks like a sculpture?  Its scales are a shiny
+golden color and it feels like it's charged with static electricity - you could
+probably shock someone by touching them with the lizard.~
+A
+13 20
+A
+18 1
+A
+5 3
+A
+27 3
+A
+6 5
+A
+14 10
+#23795
+robe spider's-web spiders-web spidersilk-robe spider-silk-robe~
+a spidersilk robe~
+A spider's web is piled on the ground.~
+~
+9 604000451 9 78
+30 0 0 0 0 0 0
+1.50 0 0 16777216 0 0 0 0
+E
+robe spider's-web spiders-web spidersilk-robe spider-silk-robe~
+It is surprisingly strong, for something that looks so fragile.  Spider's silk
+woven into a protective garment has never looked so fashionable!  Even the
+strongest blows might be turned by wearing this delicate-seeming robe, and it
+is surely magical.~
+A
+14 25
+A
+13 25
+A
+27 3
+X
+240
+#23796
+boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots~
+black leather drow boots~
+Breathtakingly intricate black leather boots rest here.~
+~
+9 604045376 65 40
+4 0 0 0 0 0 0
+1.75 0 0 0 0 0 0 0
+E
+boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots~
+This grand pair of customized drow boots appears to have just been completed
+after many hours and days of labor.  The flawless leather straps glisten with
+every bit of light that crosses its surface.  The extra cushioning and soft
+padding along the sole ensure that these boots are not only comfortable, but
+very protective.~
+A
+18 2
+A
+14 30
+#23797
+boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots~
+black leather drow boots~
+Breathtakingly intricate black leather boots rest here.~
+~
+9 604045376 65 45
+4 0 0 0 0 0 0
+1.75 0 0 0 0 0 0 0
+E
+boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots~
+This grand pair of customized drow boots appears to have just been completed
+after many hours and days of labor.  The flawless leather straps glisten with
+every bit of light that crosses its surface.  The extra cushioning and soft
+padding along the sole ensure that these boots are not only comfortable, but
+very protective.    ~
+A
+18 3
+A
+9 -3
+A
+14 30
+#23798
+boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots~
+black leather drow boots~
+Breathtakingly intricate black leather boots rest here.~
+~
+9 604045376 65 50
+4 0 0 0 0 0 0
+1.75 0 0 0 0 0 0 0
+E
+boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots~
+This grand pair of customized drow boots appears to have just been completed
+after many hours and days of labor.  The flawless leather straps glisten with
+every bit of light that crosses its surface.  The extra cushioning and soft
+padding along the sole ensure that these boots are not only comfortable, but
+very protective.~
+A
+18 2
+A
+19 1
+A
+14 40
+#23799
+boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots~
+black leather drow boots~
+Breathtakingly intricate black leather boots rest here.~
+~
+9 604045376 65 65
+2 0 0 0 0 0 0
+1.75 0 0 16777216 0 0 0 0
+E
+boots black-leather-drow-boots breathtakingly-intricate-black-leather-boots~
+This grand pair of customized drow boots appears to have just been completed
+after many hours and days of labor.  The flawless leather straps glisten with
+every bit of light that crosses its surface.  The extra cushioning and soft
+padding along the sole ensure that these boots are not only comfortable, but
+very protective.~
+A
+18 2
+A
+19 2
+A
+14 40
+$~

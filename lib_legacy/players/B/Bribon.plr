@@ -1,0 +1,105 @@
+name: Bribon
+password: BrdvdKqLvN
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 2
+race: 3
+level: 37
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17236
+birthtime: 1233100390
+timeplayed: 312879
+lastlogintime: 1460856877
+host: 190.162.002.134
+height: 42
+weight: 173
+base_height: 42
+base_weight: 173
+base_size: 2
+natural_size: 2
+alignment: -999
+playerflags: gxy
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 59092
+lastlevel: 0
+hitpoints: 433/359
+mana: 136/136
+move: 162/162
+damroll: 4
+hitroll: 5
+strength: 96
+intelligence: 57
+wisdom: 69
+dexterity: 96
+constitution: 97
+charisma: 48
+cash: 244 16 91 107
+experience: 8327128
+quit_reason: 7
+saveroom: 59092
+skills:
+401 401
+403 420
+405 172
+408 420
+409 390
+411 403
+415 50
+416 50
+420 398
+421 399
+438 110
+443 73
+444 221
+464 402
+465 50
+467 50
+478 183
+0 0
+trophy:
+1 51021 0.250000
+1 51018 1.000000
+1 51017 0.916667
+1 51019 0.833333
+1 51015 0.750000
+1 51014 0.533333
+1 51001 1.433333
+1 51007 0.250000
+1 51023 0.250000
+1 51009 0.250000
+1 51011 0.250000
+1 51006 0.250000
+1 51004 0.833333
+1 51000 0.450000
+1 51002 0.500000
+1 51020 1.000000
+1 51012 0.250000
+1 51010 0.250000
+1 51008 1.533333
+1 51013 1.250000
+1 51022 0.250000
+0 0 0
+aliases:
+3 assi thora;ba;ba
+2 assi mecke;ba;ba
+1 assi gelidus;ba;ba
+gr group
+wa wak;sta
+gac g all corpse
+gc g all.coins all.corpse
+li l i corpse
+gg g all.gem all.corpse
+z pick door;pick door;pick door
+a hide;steal key warrior;give key warrior
+wh who -w
+x hide;steal donut warrior;give donut warrior
+5 assi thora;ba
+dr drink skin
+b g key corpse;give key warrior
+0

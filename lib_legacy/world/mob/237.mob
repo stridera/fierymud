@@ -1,0 +1,1007 @@
+#23700
+drow guard house elf black scowling~
+the drow house guard~
+A black-skinned drow house guard is standing here, scowling.~
+He looks very much like an ebony-skinned elf, if elves had such cruel
+expressions.  He is tall and finely muscled, holding his weapon with the ease
+of tremendous skill and long use.  His house's sigil is emblazoned on his dark
+clothes, and he looks ready to rip any intruders into slave chow.    ~
+47690 0 -1000 E
+25 20 10 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 3 5 1 2
+Str: 96
+Dex: 82
+Int: 67
+Wis: 74
+Con: 70
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23701
+mage drow black elf cruel~
+the drow mage~
+A cruel-looking drow mage paces around the room.~
+Robes of maroon and violet swirl around the black-skinned drow, marking him as
+a mage in the service of his house.  His pale hair hangs in intricate braids
+showing his ranking, and he smells quite nasty, probably from his spell
+components.  He is constantly looking around for new victims for his
+experiments.    ~
+6668 0 -850 E
+20 20 10 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 0 5 1 2
+Str: 85
+Dex: 75
+Int: 81
+Wis: 83
+Con: 73
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23702
+crawling lizard green~
+a crawling lizard~
+A green lizard slowly climbs up the walls, flicking its tongue at you.~
+Looking rather like a giant gecko, the lizard is green and scaly.  Its feet
+have large, sticky pads on them that lets them cling to the walls without
+falling.  Huge red eyes blink slowly at you as you contemplate it.    ~
+262152 65536 0 E
+20 20 10 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 0 24 14 0 2
+BareHandAttack: 4
+Str: 98
+Dex: 90
+Int: 72
+Wis: 78
+Con: 86
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23704
+killart glowing light blob flashing~
+the killart~
+A small blob of glowing light hovers near the ground here.~
+Looking closely, it becomes obvious that what seems like one blob of light is
+really made up of many small, brightly colored orbs of light.  Green, blue and
+red lights swirl around the center in a chaotic dance, beautiful and
+mysterious.    ~
+196680 1064 0 E
+16 20 10 0d0+0 0d0+0
+0 0 0 0 0 237
+4 4 0 0 17 0 2
+BareHandAttack: 12
+Str: 77
+Dex: 83
+Int: 72
+Wis: 90
+Con: 73
+Cha: 60
+AFF2: 1
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 7
+Stance: 6
+E
+#23705
+mushroom fungus man pink myconid~
+a myconid man~
+A pink mushroom slowly moves around the room.~
+This strange, pink mushroom actually has humanoid features.  It has stalks
+where arms and legs should be, and discolored spots for eyes on its cap.  It
+appears to be tending to the fungus on the walls.    ~
+200 262144 0 E
+15 20 10 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 3 12 0 2
+BareHandAttack: 5
+Str: 92
+Dex: 95
+Int: 64
+Wis: 71
+Con: 68
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 12
+Stance: 6
+E
+T 23705
+#23706
+cow creature animal licca~
+a licca~
+A strange, cow-like creature with six legs grazes on the fungus.~
+   It looks like a cow, but is purple and has six legs.  Odd.    ~
+72 65536 0 E
+15 20 10 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 0 24 14 0 1
+BareHandAttack: 6
+Str: 94
+Dex: 82
+Int: 70
+Wis: 76
+Con: 80
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23707
+drow guard gateguard black~
+the drow gateguard~
+A black-skinned drow stands here, guarding his city.~
+Standing before you is a very muscular, and terribly cruel elf with scars all
+over his deep ebony skin.  Wearing dark armor and looks like he won't let
+anyone pass into his city.  A sneer twists his features as he gazes out, as if
+daring anyone to even try and challenge him--and his experienced pose, firm
+grip on his weapon and catlike grace suggest that he is well-trained to handle
+any intruder.    ~
+18542 40 -850 E
+20 20 10 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 3 5 1 2
+Str: 82
+Dex: 85
+Int: 64
+Wis: 72
+Con: 81
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 23701
+#23708
+slave master drow cruel~
+the drow slave master~
+The drow slave master stands here with a cruel expression on his face.~
+Red eyes stand out starkly from his black skin as the drow slaver yells at
+another victim.  His expression suggests that he enjoys whipping and tormenting
+the city's many slaves, and the jewels of rank on his uniform show that he is
+very good at his job.  Slaves scatter at his approach with good reason, for the
+ends of his whip are covered in blood.    ~
+1056268 0 -1000 E
+24 20 10 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 9 5 1 2
+BareHandAttack: 2
+Str: 72
+Dex: 78
+Int: 81
+Wis: 91
+Con: 72
+Cha: 57
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23709
+drow mage black elf~
+a drow mage~
+A black-skinned drow mage glances lazily around.~
+The black-skinned drow mage resembles an elf from the surface lands only
+superficially.  Cruel eyes and a face perpetually frowning or sneering offset
+his natural beauty.  His maroon sorcerers' robes are emblazoned with the crest
+of all seven of the drow Houses, showing that he is in the service of the
+entire city.  The odd smell of his spell components precedes him wherever he
+walks.    ~
+4684 2 -850 E
+20 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 0 5 1 2
+Str: 90
+Dex: 63
+Int: 98
+Wis: 97
+Con: 52
+Cha: 51
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23710
+drow priestess beautiful female~
+a drow priestess~
+A beautiful drow female is here, chanting to her foul goddess.~
+The perfectly chiseled features of this drow are stunning to behold.  However,
+her red eyes remind you that she is an innately evil creature.  A ceremonial
+silver dagger sits in a sheath stained with the heart's blood of countless
+sacrifices at her side.  She would probably be willing to sacrifice you to her
+goddess if you bothered her.    ~
+5848 8204 -1000 E
+25 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 2 16 5 1 2
+Str: 75
+Dex: 71
+Int: 95
+Wis: 92
+Con: 69
+Cha: 50
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23711
+mage archmage wizard drow dheduu man~
+the Archmage of Dheduu~
+An arrogant-looking drow in wizard's robes sneers at you.~
+Clad in robes of pure black, the Archmage seems to be in charge of making sure
+the great pillar in the middle of the cavern lights up.  He is only approached
+by citizens with great respect.  His finely chiseled features are constantly
+twisted in an expression of arrogance, as he clearly believes that he is
+superior to everyone else.  Looking closely, you can see the insignia of House
+Kar'Shezden embroidered on the fringes of his robe.    ~
+134234122 44 -1000 E
+33 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 0 5 1 2
+Str: 76
+Dex: 74
+Int: 86
+Wis: 90
+Con: 72
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 53458
+T 55696
+#23712
+kobold frightened slave~
+a kobold slave~
+A frightened kobold slave cowers here.~
+Distant relatives of lizards, kobolds resemble scaly rats with their prominent
+jaws and long tails.  They are only about three feet tall, though whether this
+is natural or a result of long years of slavery under cruel masters is
+difficult to tell.  Lucky to be clad in filthy rags, it looks like it wants to
+get its task finished.    ~
+136 0 -450 E
+18 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 0 18 13 0 2
+Str: 82
+Dex: 86
+Int: 76
+Wis: 72
+Con: 78
+Cha: 70
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23713
+goblin filthy slave~
+a goblin slave~
+A filthy goblin slave drools on the ground.~
+Yuck!  You can smell this goblin from a mile away.  It looks like it hasn't
+been free of slime or dirt since its putrid birth.    ~
+12 0 -350 E
+15 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 0 2 18 0 2
+Str: 82
+Dex: 74
+Int: 78
+Wis: 71
+Con: 80
+Cha: 67
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23714
+dwarf duergar slave~
+a duergar slave~
+A strange, tough-looking dwarf lurches around here.~
+The duergar, or dark dwarves, are rumored to be many times stronger and more
+evil than their mountain-dwelling relatives, but this has not stopped them from
+being enslaved by the drow.  His overdeveloped muscles suggest that he is
+mostly used by his masters for tough manual labor.    ~
+76 0 -700 E
+18 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 3 6 1 2
+Str: 92
+Dex: 84
+Int: 75
+Wis: 72
+Con: 74
+Cha: 54
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23715
+orc orcish slave tough~
+an orcish slave~
+A tough-looking orc mindlessly completes its task.~
+This big, brutish cousin to the smaller goblins looks like a prize for any
+slave master: he is well-muscled and looks like he hasn't got a brain.  He must
+be the perfect slave.    ~
+8 0 -800 E
+18 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 3 8 1 2
+BareHandAttack: 6
+Str: 94
+Dex: 91
+Int: 66
+Wis: 68
+Con: 77
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23716
+troll slave lean~
+a troll slave~
+A lean troll slave lurches around here.~
+His naturally green skin seems out of place underground.  Though he is very
+skinny, he looks very strong.  His slave collar is emblazoned with the symbol
+of the House that owns him.    ~
+8 0 -700 E
+18 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 10 4 1 3
+Str: 88
+Dex: 89
+Int: 75
+Wis: 67
+Con: 78
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23717
+ogre overseer mean~
+an ogre overseer~
+A mean-looking ogre watches over the slaves.~
+This ogre towers over the smaller slaves.  Though he too wears a collar, he
+also holds a whip and barks commands at other slaves.  Apparently he is some
+kind of overseer.  He looks very tough.    ~
+522 0 -850 E
+23 20 10 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 3 7 1 4
+BareHandAttack: 9
+Str: 93
+Dex: 81
+Int: 64
+Wis: 73
+Con: 81
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23718
+human slave~
+a human slave~
+An abused human slave cowers here.~
+Looking closely at this poor creature's bruised body, it appears that it is
+actually female.  How a human got down here into the drow city is impossible to
+guess, but judging from her slave collar, she is never going to get out.    ~
+136 0 0 E
+18 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 2 3 0 0 2
+Str: 86
+Dex: 83
+Int: 82
+Wis: 71
+Con: 73
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23719
+prisoner elven elf serin sunfire golden~
+Serin Sunfire~
+An elven prisoner is shackled to the wall, barely moving.~
+His hair is golden under all the grime, and his features are quite noble.  
+Pain lines cross his face with every breath, and numerous scars bear testament
+to his will and courage after being held prisoner by his race's worst enemies
+for untold years.  Though he is thin and weak-looking from lack of food, anyone
+who could be alive after years of drow torture is surely much stronger than he
+appears.    ~
+268650506 4198540 1000 E
+99 10 -4 0d0+10000 15d15+20
+0 0 0 0 0 237
+1 1 1 13 1 0 2
+Str: 88
+Dex: 80
+Int: 74
+Wis: 76
+Con: 78
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 23720
+T 23722
+T 23723
+T 23728
+T 23798
+#23720
+guard prison drow bored~
+the prison guard~
+A drow prison guard stands here, looking bored.~
+Clad in the raiment of House Z'kenian, this slightly bored-looking drow is
+waiting for his shift to get over.  After all, it is near impossible to escape
+from the prison, let alone survive the dreadful city above.    ~
+4686 12 -850 E
+33 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 3 5 1 2
+Str: 89
+Dex: 83
+Int: 62
+Wis: 67
+Con: 69
+Cha: 82
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23721
+illithid fhlarrfakk octupus creature~
+Fhlarrfakk the Illithid~
+A strange, octupus-headed creature is writing at his desk.~
+He wears robes of a brilliant maroon, which contrast with the grey-pink skin of
+his tentacled head.  His eyes spark with intelligence as his mouth-tentacles
+grasp at the air, searching for tasty brains.  Something like this should just
+not be allowed to exist.    ~
+2103374 2 -850 E
+37 20 10 0d0+1000 0d0+0
+0 0 0 0 0 237
+3 3 1 0 13 0 2
+BareHandAttack: 12
+Str: 79
+Dex: 78
+Int: 83
+Wis: 88
+Con: 64
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 58006
+T 55696
+#23722
+female shrine maiden unholy drow~
+a drow shrine maiden~
+An unholy maiden tends to the altar of the Spider Queen.~
+A feverous glint in this drow female's eyes speaks of her devotion to her foul
+goddess.  She is constantly checking her altar to make sure it is clean of
+everything except fresh blood and other offerings.  Perhaps interfering with
+her devotions is a bad idea.    ~
+602 8196 -1000 E
+31 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 2 16 5 1 2
+Str: 70
+Dex: 68
+Int: 82
+Wis: 90
+Con: 73
+Cha: 68
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23724
+drow master sword swordmaster~
+the drow swordmaster~
+The drow swordmaster is here, scowling fiercely.~
+Lean and muscular, he moves with perfect balance and surprising speed.  His
+swords seem like a part of his body, moving almost faster than the eye can see.
+His liquid grace is surpassed only by his cruelty, judging by the expression on
+his face.  It probably wouldn't be a good idea to mess with him.    ~
+2101854 33554444 -999 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 3 5 1 2
+Str: 82
+Dex: 78
+Int: 79
+Wis: 74
+Con: 76
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23726
+guardian golem stone construct animated~
+the guardian~
+An animated golem stands here, guarding his House.~
+Silent and immobile unless it senses a threat, the golem guardian was obviously
+created by magic.  Carved into a roughly humanoid shape, it is grey in color
+and stands unobtrousively by the walls.  It looks ready to crush invaders.    ~
+106 0 0 E
+30 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 0 24 17 0 2
+BareHandAttack: 13
+Str: 82
+Dex: 80
+Int: 63
+Wis: 82
+Con: 83
+Cha: 63
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 2
+Composition: 9
+Stance: 6
+E
+#23727
+drow student~
+a weapons student~
+A drow gracefully practices with his weapons.~
+He looks young and strong.  Perhaps one day he will join the guards and
+soldiers in the main city, but it looks like he still needs a bit of practice,
+as he occassionally drops his practice sword.    ~
+584 1073741828 -850 E
+31 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 3 5 1 2
+Str: 94
+Dex: 87
+Int: 65
+Wis: 66
+Con: 81
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23728
+vilekka kar'shezden drow high priestess~
+Vilekka Kar'Shezden~
+The High Priestess of the Spider Queen is resting here.~
+Though the wrinkles on her face suggest that she is very old, even by drow
+standards, Vilekka Kar'Shezden is in no way frail.  Clad in beautiful garments
+of black and silver, she is a stuning figure even from a distance.  Up close,
+her presence is overwhelming.  She is the most powerful being in this city and
+she knows it.  Messing with her would be an EXTREMELY bad idea.    ~
+134430810 4464684 -1000 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 2 16 5 1 2
+Str: 78
+Dex: 74
+Int: 82
+Wis: 96
+Con: 68
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 23750
+T 23751
+T 23753
+T 23754
+T 23757
+T 23752
+T 23799
+#23729
+drider half-drow half-spider drow spider creature~
+a drider~
+A disgusting, half-drow half-spider creature clicks at you.~
+The bloated, purplish upper body of a spider is set onto the abdomen and legs
+of a huge, hairy black spider.  Some terrible magic must have created such a
+disgusting, unnatural thing.  All traces of drow intelligence and subtlety are
+gone from this creature, replaced by brute strength and animal cunning.  It
+looks very threatening.    ~
+1054824 17039360 -1000 E
+40 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 24 17 0 2
+BareHandAttack: 4
+Str: 86
+Dex: 84
+Int: 64
+Wis: 78
+Con: 83
+Cha: 56
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23730
+drider drow spider king drider-king~
+the drider king~
+The drider king sits here, hissing at you.~
+Huge and bloated, this disgusting half-drow, half-spider thing prances around
+on his eight legs, hissing and spitting acid wherever he goes.  The sight of
+him is almost enough to make you sick.  Such a disgusting thing simply
+shouldn't be alive.    ~
+2115706 40 -1000 E
+45 20 0 0d0+0 0d0+1
+0 0 0 0 0 237
+3 3 1 24 17 0 2
+BareHandAttack: 1
+Str: 85
+Dex: 75
+Int: 68
+Wis: 67
+Con: 78
+Cha: 78
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 23756
+T 55699
+T 5314
+#23731
+spider black large~
+a large black spider~
+A very large, black spider scurries around in the shadows.~
+About the size of a grown man's foot, the spider is a shiny black color and
+does not seem intimidated by you at all.  However, it doesn't appear to be very
+threatening, apart from being every arachnophobe's nightmare.    ~
+72 0 0 E
+15 19 8 0d0+0 3d3+1
+0 0 0 0 0 237
+3 3 0 24 14 0 2
+BareHandAttack: 4
+Str: 90
+Dex: 80
+Int: 68
+Wis: 74
+Con: 76
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 61554
+#23732
+blue mist beast creature tiny~
+a tiny mist beast~
+A tiny creature made entirely of mist growls at you.~
+This is surely a relative of the ferocious mist beasts known to inhabit the
+Blue-Fog Trail south of the forest villege of Mielikki.  However, it looks very
+young, resembling a puppy rather than a wolf.  Its teeth look very sharp,
+none-the-less.    ~
+2097256 0 -250 E
+16 18 5 0d0+0 3d5+2
+0 0 0 0 0 237
+3 3 0 3 14 0 2
+BareHandAttack: 4
+Str: 92
+Dex: 86
+Int: 70
+Wis: 72
+Con: 84
+Cha: 60
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 5
+Composition: 6
+Stance: 6
+E
+#23733
+stone pillar roper tentacle~
+the roper~
+A large pillar of stone hangs down from the ceiling.~
+This is not a normal stone pillar....  Normal stalactites don't have tentacles!~
+135274 0 -450 E
+20 19 5 0d0+0 4d4+3
+0 0 0 0 0 237
+3 3 0 24 17 0 2
+BareHandAttack: 2
+Str: 89
+Dex: 79
+Int: 66
+Wis: 73
+Con: 77
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 200
+Lifeforce: 5
+Composition: 9
+Stance: 6
+E
+#23734
+kar'shezden drow guard~
+a Kar'Shezden guard~
+A guard stands here, blocking the entrance to House Kar'Shezden.~
+His smirk clearly states his pride at guarding the illustrious and powerful
+House Kar'Shezden.  An aura of dark power surrounds him--or is that just
+arrogance?  His fine raiment and beautiful, dark metal jewelry don't detract
+from his splendor.  It probably wouldn't be a good idea to mess with him.    ~
+526 32 -850 E
+28 17 3 0d0+0 5d5+3
+0 0 2 0 0 237
+3 3 1 5 5 1 2
+Str: 82
+Dex: 97
+Int: 60
+Wis: 70
+Con: 86
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 23700
+#23735
+drow alchemist mad insane~
+the drow alchemist~
+An insane-looking drow stands here, brewing nasty potions.~
+His face is quite mad.  Though he wears faded purple robes of House Trenkessda,
+it is doubtful that he bows to anyone's authority but his own.  His insanity is
+apparent, he looks like he would be quite an opponent in battle.  Anything that
+handles strong acid with his bare hands must have quite a tolerance for pain.~
+10 0 -1000 E
+35 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 0 5 1 2
+Str: 76
+Dex: 73
+Int: 87
+Wis: 86
+Con: 65
+Cha: 64
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55696
+#23736
+drow servant black~
+a drow servant~
+A black-skinned drow servant silently completes her task.~
+Though she is clad in simple garments of black, the servant projects an aura of
+power.  It is clear that no lesser races serve the powerful House Kar'Shezden,
+but there seems to be no dishonor is being a servant.    ~
+2099788 12 -850 E
+28 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 2 1 5 1 2
+Str: 89
+Dex: 70
+Int: 81
+Wis: 84
+Con: 62
+Cha: 65
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23737
+drow soldier elite~
+a drow soldier~
+An elite drow soldier patrols his city.~
+The look of pride on his face is clearly not faked.  Clad in fine armor and
+weilding deadly, sharp weapons, the soldier patrols Dheduu on constant watch
+for outsiders or anyone who catches his eye.  These eyes, which glow red, are
+hungry for their next victim.    ~
+1612 4 -1000 E
+25 20 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 3 5 1 2
+Str: 89
+Dex: 81
+Int: 65
+Wis: 82
+Con: 72
+Cha: 66
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#23738
+drow drow-master arrogant scowling karshezden~
+the drow master~
+An arrogant drow is here, scowling around himself.~
+He looks like an elf, but with dark skin and a palpable air of hostility.  He
+seems quite out of place - drow usually live in subterranean cities or in areas
+populated by other evil races, not on the surface in a dwarven city.  He seems
+quite ready to pick fights.  Maybe it wouldn't be a good idea to mess with him.~
+2062 1024 0 E
+25 0 0 0d0+0 0d0+0
+0 0 0 0 0 237
+3 3 1 3 5 1 2
+Str: 76
+Dex: 76
+Int: 82
+Wis: 74
+Con: 74
+Cha: 70
+AFF2: 4194304
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 23755
+$

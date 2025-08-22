@@ -1,0 +1,66 @@
+#16401
+arch portal emerald emerald-portal-arch~
+a portal~
+A tall deep green crystal arch stands here.~
+~
+24 0 0 1
+16057 1 1 0 0 0 0
+0.00 0 -1 0 0 0 0 0
+E
+arch portal emerald~
+An emerald green portal pulses with energy, as if it is the gateway to
+greater, or safer, things. Between its flares of brilliance, you can see what
+looks like a destroyed chapel. Perhaps the one within the keep...~
+#16402
+globe mystwatch-1~
+a globe~
+An ornate emerald globe stands in the corner near an entryway.~
+~
+13 0 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+globe emerald~
+The globe is emerald in colour and has a hole in it. Perhaps you
+can place a shard inside it?~
+#16403
+portal chapel-portal-mystwatch~
+a portal~
+A large stone portal stands against the far wall.~
+~
+13 0 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+portal stone~
+   A massive stone arch that nearly touches the high ceiling of the chapel.  
+Steps lead up to the arch as though you could walk through but it only leads to
+the wall behind it...    ~
+#16404
+portal hall-portal-mystwatch~
+a portal~
+A large stone portal stands near the far wall.~
+~
+13 0 0 1
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+stone portal arch~
+   This stone portal seems inactive now and is covered in the dried blood and
+bones of those souls who braved to come here before you.  Since it's inactive
+now there must be another way out.    ~
+#16405
+portal silvery glowing portal-to-lord-mystwatch~
+a portal~
+A brightly glowing stone portal stands against the far wall.~
+~
+24 0 0 1
+16402 1 1 0 0 0 0
+999.00 20 -1 0 0 0 0 0
+E
+portal glowing brightly stone~
+   This portal looks quite ancient and is covered in a fine dusty powder.  
+Although it is quite active it looks as though this room hasn't been disturbed
+for quite some time.  The silvery glow of the portals surface ripples to your
+touch and feels strangely cold...    ~
+$~

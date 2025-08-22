@@ -1,0 +1,56 @@
+name: Syrin
+password: SydHkb2r39
+prompt: %_%_%_%_%_[First%dfAid]%_%_[%e][%a]%_%_[%w][%W]%x%_%_[(%h)%Hhp%-{%ph}%-(%v)%Vmv%-{%pv}]%_%_%_
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19482
+birthtime: 1569288532
+timeplayed: 12721
+lastlogintime: 1569301277
+host: 024.228.179.095
+height: 73
+weight: 150
+base_height: 73
+base_weight: 150
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 28/27
+mana: 1/0
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 74
+wisdom: 74
+dexterity: 98
+constitution: 95
+charisma: 66
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0

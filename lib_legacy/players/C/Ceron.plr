@@ -1,0 +1,132 @@
+name: Ceron
+password: CeqnQ/aBk.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 7
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17194
+birthtime: 1230940600
+timeplayed: 227614
+lastlogintime: 1719706295
+host: 066.199.058.082
+height: 297
+weight: 2200
+base_height: 69
+base_weight: 144
+base_size: 2
+natural_size: 4
+alignment: -1000
+playerflags: gxyz
+effectflags: k w 0
+prefflags: hnosuxzC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+hunger: 4
+thirst: 12
+lastlevel: 0
+hitpoints: 1417/1219
+mana: 980/980
+move: 112/144
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 58
+wisdom: 74
+dexterity: 81
+constitution: 100
+charisma: 56
+cash: 31 12681 14856 74
+experience: 116386599
+quit_reason: 1
+saveroom: 3054
+skills:
+402 1000
+404 952
+407 146
+411 1000
+412 1000
+415 50
+416 50
+419 1000
+420 700
+421 700
+422 750
+427 1000
+430 68
+431 50
+434 52
+438 88
+441 1000
+443 50
+444 309
+463 1000
+464 50
+465 1000
+466 55
+467 50
+468 443
+473 52
+0 0
+trophy:
+1 11750 1.000000
+1 62550 1.000000
+1 8704 1.000000
+1 8711 5.000000
+1 2802 1.000000
+1 12319 1.000000
+1 13303 4.000000
+1 16306 1.000000
+1 16311 3.000000
+1 16300 1.000000
+1 16310 1.000000
+1 16302 2.000000
+1 16305 4.000000
+1 16308 2.000000
+1 16309 2.000000
+1 16313 5.000000
+1 53008 0.500000
+1 53024 1.000000
+1 53007 0.500000
+1 53021 1.000000
+1 53006 0.500000
+0 0 0
+tells:
+1673159050 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673159050 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673159050 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673159051 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673159051 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673159051 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673159051 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673159052 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1673159590 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1697408104 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1673125628 Holk gossips, '*better'
+1673126339 Hackwriter gossips, 'should i try the hive mother'
+1673126396 Hackwriter gossips, 'too big to bash'
+1673126406 Hackwriter gossips, 'but i can still kick'
+1673126431 Hackwriter gossips, 'hmm might have to flee'
+1673126470 Hackwriter gossips, 'yep had to flee'
+1673126480 Hackwriter gossips, 'too tough me yet'
+1673126530 Holk gossips, 'I flee all the time'
+1673126807 Hackwriter gossips, 'hive mother has memory'
+1673127055 Hackwriter gossips, 'honeycomb heals you when you eat it'
+$
+aliases:
+aqua rec aqua
+ii as kravax
+lc l in corpse
+gc g all.coins from corpse
+jj wi sword
+yy quaff poison
+b bash
+0

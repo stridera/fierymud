@@ -1,0 +1,91 @@
+name: Shinko
+password: ShXG/VYtAJ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 0
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18556
+birthtime: 1374895620
+timeplayed: 7935
+lastlogintime: 1374903558
+host: 076.120.122.044
+height: 64
+weight: 144
+base_height: 64
+base_weight: 144
+base_size: 2
+natural_size: 2
+alignment: -43
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 14
+thirst: 20
+lastlevel: 0
+hitpoints: 64/64
+mana: 0/0
+move: 124/124
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 68
+wisdom: 83
+dexterity: 88
+constitution: 87
+charisma: 62
+cash: 0 17 90 96
+experience: 58762
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+421 65
+438 50
+443 50
+444 50
+463 50
+464 50
+465 62
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3500 0.500000
+1 3509 2.000000
+1 61500 1.000000
+1 61501 0.666667
+1 4101 0.666667
+1 61526 2.333333
+1 61519 1.666667
+1 61504 0.333333
+1 61525 1.666667
+1 61502 0.666667
+1 61503 1.333333
+1 3506 1.166667
+1 3508 2.833333
+1 8022 0.333333
+1 8607 0.333333
+1 8608 0.333333
+1 8616 2.666667
+1 8611 1.000000
+1 8615 1.000000
+1 8612 0.666667
+1 8613 1.666667
+0 0 0
+aliases:
+sa scan
+as assist Setra
+gac get all all.corpse
+0

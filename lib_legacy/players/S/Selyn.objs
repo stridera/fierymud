@@ -1,0 +1,7239 @@
+1
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: agoprstwx 0
+name: ring glittering-ruby-ring questobject
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 8
+3 2
+4 2
+5 2
+27 3
+~
+extradesc: ring glittering-ruby-ring questobject
+The ring has been formed of some mysterious reddish metal, the likes of which
+you are unfamiliar with.  A glittering ruby has been set in the ring.~
+~~
+vnum: 5201
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: adgoprstwx ae
+name: ring glittering-ruby-ring questobject
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 8
+3 2
+4 2
+5 2
+27 3
+~
+extradesc: ring glittering-ruby-ring questobject
+The ring has been formed of some mysterious reddish metal, the likes of which
+you are unfamiliar with.  A glittering ruby has been set in the ring.~
+~~
+vnum: 48919
+location: 3
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: necklace shadow-necklace dark-beaded-necklace
+shortdesc: the Shadow Necklace
+desc: A dark-beaded necklace lies hidden in shadows.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 50
+14 -25
+27 3
+~
+extradesc: necklace shadow-necklace dark-beaded-necklace
+It's a fairly simple necklace -- teak beads carved into geometric shapes are
+strung onto dark thread to form a circle of beads.  Here and there little
+strings of beads are strung along the main circlet to form interesting
+geometric designs.  This necklace is a charm from the Wizardess Thekra; you
+recognize it at once.~
+~~
+vnum: 12450
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: adornment adornment-light shimmering-glint-light small-chain
+shortdesc: an adornment of &7&blight&0
+desc: A shimmering glint of light shines from a small chain on the ground.
+type: 8
+weight: 0.01
+cost: 0
+timer: 0
+level: 90
+effects: mn 0 0
+wear: 5
+hiddenness: 0
+applies:
+5 5
+4 5
+1 5
+13 15
+24 -15
+27 4
+~
+extradesc: adornment adornment-light shimmering-glint-light small-chain
+A small ball of light glows from an unknown source, but somehow still 
+remains attached to a shining platinum chain.  It looks like a common 
+necklace, except for the small glint of light that emits tiny beams that 
+illuminate the palm of your hand.  Occasionally the light grows brighter for 
+an instant, then fades back to normal.  ~
+~~
+vnum: 552
+location: 5
+values:
+40
+0
+0
+0
+0
+0
+0
+~
+flags: agADE 0
+name: platemail plate-mail platemail-gods god-armor gleaming-full-plate
+shortdesc: platemail of the gods
+desc: A gleaming set of full plate floats nearby.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+24 -10
+27 3
+~
+~~
+vnum: 55510
+location: 6
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: dgmopqrstuvwxyz abefghj
+name: helm saintly-helm symbols-divine-clarity mythril-helm
+shortdesc: &5&bSaintly Helm&0
+desc: Symbols of divine clarity adorn a mythril helm resting here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+13 15
+28 45
+27 3
+~
+extradesc: helm saintly-helm symbols-divine-clarity mythril-helm
+Large, decorative symbols for sight and clarity cover this sanctified helm.  
+Both symbols are stylistically enclosed in the sign of the original wearer's
+patron spirit.  Blessed by the gods, this helm grants clerics a closer
+connection to their deities in their travels.~
+~~
+vnum: 53501
+location: 7
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: klmosuvwyz 0
+name: greaves sleet-greaves thin-white-legplates leg-plates
+shortdesc: a pair of sleet greaves
+desc: Thin white legplates lie crisscrossed on the ground.
+type: 9
+weight: 5.00
+cost: 5490
+timer: 0
+level: 75
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+18 1
+19 1
+13 13
+1 3
+27 3
+~
+extradesc: greaves sleet-greaves thin-white-legplates leg-plates
+Cast from an odd white metal, the outside of these greaves are cold as ice, but
+can withstand quite a bit of damage.  They are padded on the inside with white
+fur, preventing the frigid white metal from touching skin.  The plate metal is
+slightly curved and much thinner than average steel, undoubtedly created by
+some uncomprehensible elven miracle.~
+triggers:
+5324
+5332
+~
+~~
+vnum: 55514
+location: 8
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: agkmopqrstuvwxyz 0
+name: boots saintly-boots shining-radiant-mythril-boots
+shortdesc: &5&bSaintly Boots&0
+desc: Shining, radiant mythril boots gleam in the light here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 25
+6 2
+3 2
+27 3
+~
+extradesc: boots saintly-boots shining-radiant-mythril-boots
+These boots more than reflect light, they radiate with their own inner
+sanctified illumination.  Exquisite angelic designs and celestial glyphs cover
+each boot, identifying the wearer as a holy being.  The beauty of these boots
+is surpassed only by their holy purity.~
+~~
+vnum: 55516
+location: 9
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: dgmopqrstuvwxyz abefghj
+name: gauntlets saintly-gauntlets divine-mythril-gauntlets
+shortdesc: &5&bSaintly Gauntlets&0
+desc: A pair of divine mythril gauntlets has been placed on a small table here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+13 20
+5 3
+27 3
+~
+extradesc: gauntlets saintly-gauntlets divine-mythril-gauntlets
+Made more for protection and recognition than strength and battle prowess,
+these gauntlets are made from many small plates linked together, but are
+relatively unadorned.  Strong spiritual enchantments have been placed on these
+gauntlets however; the healing aura around them is unmistakable.~
+~~
+vnum: 55511
+location: 10
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: dgmopqrstuvwxyz abefghj
+name: vambraces saintly-vambraces mythril-vambraces
+shortdesc: &5&bSaintly Vambraces&0
+desc: Mythril vambraces reverently await their owner here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+24 -5
+27 3
+1 2
+~
+extradesc: vambraces saintly-vambraces mythril-vambraces
+These vambraces are forged from mythril, a metal that when in its purest form,
+can hold great spiritual power and divine favor.  Each set of vambraces like
+these is made for a specific cleric in the name of a specific deity, both of
+which are indicated in intricate designs across the surface of the plates.~
+~~
+vnum: 48801
+location: 12
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gopwxD 0
+name: stormcloak storm-cloak glittering-cloak
+shortdesc: the Stormcloak
+desc: Someone has dropped a glittering cloak here.
+type: 9
+weight: 4.00
+cost: 12000
+timer: 0
+level: 90
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: stormcloak storm-cloak glittering-cloak
+You behold the legendary Stormcloak, once worn by the mighty Stormlord, Holder
+of Tempests, himself.  The dark indigo cloth the cloak is made of scintillates,
+giving the impression of thousands of tiny indigo-colored gems woven right into
+its brocade surface.  It's quite heavy, with a handspan-wide collar held
+together by a bronze clasp, beautifully worked into the shape of a horned demon
+whose raised fists make the clasp circular in form.  The ankle-length cloak is
+lined in black silk and edged in crimson.  Your blood stirs inside you as you
+look at it, touch it.~
+~~
+vnum: 12398
+location: 13
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: belt belt-stars glimmering-incredible-beauty-silver-belt-sparkling-lights star-belt
+shortdesc: a belt of stars
+desc: Glimmering with incredible beauty is a silver belt set with sparkling lights.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+13 25
+4 2
+5 2
+24 -5
+27 3
+~
+extradesc: belt-stars glimmering-incredible-beauty-silver-belt-sparkling-lights
+This belt appears to be made of small silver discs set with dark blue starstone
+hemispheres.  However, upon closer inspection, you realize the glittering dots
+within the hemispheres are not merely reflecting light - they are diminutive
+pinpoints of luminescence contained in some kind of crystalline matrix.  They
+swirl and float, giving a cosmic life to each disc.  Surely a treasure like
+this must be a gift from the Gods!~
+~~
+vnum: 12417
+location: 14
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: silver-gold-twist-bracelet silver gold twist bracelet thin intertwining silver-bracelet gold-bracelet
+shortdesc: a &bsilver&0 and &3gold&0 twist bracelet
+desc: A thin bracelet of intertwining silver and gold lay discarded here.
+type: 8
+weight: 0.01
+cost: 2000
+timer: 0
+level: 90
+effects: 0 k 0
+wear: 4097
+hiddenness: 0
+applies:
+6 3
+4 3
+1 2
+13 30
+27 3
+~
+extradesc: silver-gold-twist-bracelet silver gold twist bracelet thin intertwining silver-bracelet gold-bracelet
+Two thin strips of metal, one silver, one gold, twisted gently together form a
+simple, elegant bracelet.  Though it bears no signs of unique purpose, it would
+make an excellent accessory to just about any outfit.~
+~~
+vnum: 12451
+location: 15
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bracelet small stone gold beads consecrated spirit bracelet-consecrated-spirit
+shortdesc: the bracelet of the &7&bconsecrated spirit&0
+desc: A small bracelet made of stone and gold beads is lying on the ground.
+type: 8
+weight: 0.50
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 o
+wear: 4097
+hiddenness: 0
+applies:
+5 5
+4 5
+18 2
+19 2
+13 25
+27 4
+~
+extradesc: bracelet small stone gold beads consecrated spirit bracelet-consecrated-spirit
+   The bracelet is formed from small beads of gold and grayish colored stones.
+It is very old and shows the marks from years of use.  The stone beads are
+cracked and worn down on the edges and a few of them have chipped apart.  The
+gold beads are starting to tarnish and fade, almost matching the dull luster of
+the stone, from prolonged contact with the sweat from the skin.~
+~~
+vnum: 48002
+location: 20
+values:
+0
+10
+10
+7
+0
+0
+0
+~
+flags: bgmoptwxyz 0
+name: hammer kingpriest's-hammer kingpriests-hammer kingpriest-hammer king-priest large-hammer mythril
+shortdesc: the KingPriest's Hammer
+desc: A large hammer has been dropped here.
+type: 5
+weight: 6.00
+cost: 1800
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 32769
+hiddenness: 0
+applies:
+2 -3
+27 3
+~
+extradesc: hammer kingpriest's-hammer kingpriests-hammer kingpriest-hammer king-priest large-hammer mythril
+This is a very ancient weapon, crafted and enchanted long before your time.  
+The head of the hammer is pure mythril, and connects to a haft composed of a
+strange black metal.~
+~~
+vnum: 12446
+location: 21
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pale light swirls tiny pool moonlight swirls-moonlight moonlight-swirls
+shortdesc: swirls of &6&bm&7oo&6nl&7igh&6t&0
+desc: Pale light swirls in a tiny pool on the ground.
+type: 8
+weight: 0.01
+cost: 19582
+timer: 0
+level: 90
+effects: cdef 0 0
+wear: 65537
+hiddenness: 0
+applies:
+4 2
+28 100
+27 5
+19 1
+3 1
+6 1
+~
+extradesc: pale light swirls tiny pool moonlight swirls-moonlight moonlight-swirls
+You pick up what can only be described as liquid light, gently swirling in a
+small pool.  The pool splits into two small droplets of equal size, each alight
+with similar incandescence.  Strangely, they do not leave any smears or traces
+behind, remaining perfectly coherent.~
+~~
+vnum: 23777
+location: 22
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: egAD 0
+name: beard brown hair pile selyns-beard
+shortdesc: a beard
+desc: A pile of brown hair is sitting in the dirt.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+17 3
+1 2
+4 2
+27 5
+~
+extradesc: beard brown hair pile selyns-beard
+This fine beard is made of a light brown hair that, when worn, instantly
+matches itself to the color of the wearer's hair (unless you have auburn hair,
+and then it turns red).  Complete with connecting sideburns, it is not
+ridiculously long like a dwarf's nor the short, weak beard of a half-elf.  It
+is quite masculine.    ~
+~~
+vnum: 53502
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gklA c
+name: stud tiny-white-stud miniscule-speck-white earring
+shortdesc: a tiny white stud
+desc: A miniscule speck of white almost escapes detection here.
+type: 8
+weight: 0.01
+cost: 3420
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+4 2
+6 2
+13 17
+27 3
+~
+extradesc: stud tiny-white-stud miniscule-speck-white earring
+Small and round, this ear stud is made of an odd white metal and shaped
+somewhat like a little sphere.  It feels cool against skin, strangely drawn to
+it as if magnetic, allowing it to stick to an ear without a piercing.~
+~~
+vnum: 53502
+location: 24
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gklA c
+name: stud tiny-white-stud miniscule-speck-white earring
+shortdesc: a tiny white stud
+desc: A miniscule speck of white almost escapes detection here.
+type: 8
+weight: 0.01
+cost: 3420
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+4 2
+6 2
+13 17
+27 3
+~
+extradesc: stud tiny-white-stud miniscule-speck-white earring
+Small and round, this ear stud is made of an odd white metal and shaped
+somewhat like a little sphere.  It feels cool against skin, strangely drawn to
+it as if magnetic, allowing it to stick to an ear without a piercing.~
+~~
+vnum: 23716
+location: 25
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: agkqD 0
+name: crest sunfire-crest sun-fire beaten-copper-sun light badge
+shortdesc: the Sunfire crest
+desc: A beaten copper sun shines with a brilliant light here.
+type: 1
+weight: 0.10
+cost: 0
+timer: 0
+level: 50
+effects: 0 i 0
+wear: 2637825
+hiddenness: 0
+applies:
+5 2
+2 3
+19 2
+27 3
+17 8
+~
+extradesc: crest sunfire-crest sun-fire beaten-copper-sun light badge
+Shaped like a small artist's rendition of the sun, the core is made of a
+brightly glowing yellow material that is cool to the touch despite the light it
+sheds.  Extending from the core in four directions are flame-shaped reddish
+copper rays.  It looks like it would make a fine identifying mark on a cloak.~
+~~
+vnum: 62508
+location: 26
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: biowD 0
+name: bear glass-bear hollow-sturdy-glass-bear-figurine
+shortdesc: a glass bear
+desc: A hollow, yet sturdy, glass bear figurine is lying on the ground.
+type: 8
+weight: 1.00
+cost: 300000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 1064965
+hiddenness: 0
+applies:
+1 6
+5 5
+13 10
+26 6
+19 1
+27 1
+~
+extradesc: bear glass-bear hollow-sturdy-glass-bear-figurine
+Shaped in this glass is the face of a raging bear.  The mere sight of it's
+terrible eyes are disturbing.  It seems so real!  It hums with the power of the
+awful bear trapped inside it, barely contained.  You wonder if it's even safe
+to handle.~
+~~
+vnum: 12399
+location: 27
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: abgD 0
+name: starseed star-seed single-pinpoint-light
+shortdesc: a starseed
+desc: A single pinpoint of light twinkles against the dome of the sky.
+adesc:
+A starseed twinkles brilliantly as you lift it aloft, illuminating your surroundings.~
+type: 1
+weight: 0.00
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 o
+wear: 3948545
+hiddenness: 0
+applies:
+13 50
+17 2
+5 1
+24 -10
+3 1
+27 3
+~
+extradesc: starseed star-seed single-pinpoint-light
+Examining this tiny light more closely, it becomes obvious this is no meager
+glass or crystal.  It is the heart of a newborn star, breathed into creation
+through divine providence.  Within it lay all the hopes and dreams of creation,
+which perhaps could become another legendary soul, or a cosmic array of life
+and potential.~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 55029
+location: 127
+values:
+250
+1
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: 0.00
+cost: 600
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    ~
+~~
+vnum: 10310
+location: -1
+values:
+0
+1
+2
+5
+0
+0
+0
+~
+flags: D 0
+name: spoon master-chef's-wooden-spoon slender-wooden-spoon master-chefs-wooden-spoon
+shortdesc: the master chef's wooden spoon
+desc: A slender wooden spoon has been lost here.
+type: 5
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+11 5
+~
+extradesc: spoon master-chef's-wooden-spoon slender-wooden-spoon master-chefs-wooden-spoon
+An ordinary kitchen utensil...  Or is it?~
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 408
+location: -1
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: ag 0
+name: ball ornamental-christmas-ball small-shining-ornament orb
+shortdesc: an ornamental christmas ball
+desc: A small shining ornament sparkles on the ground.
+type: 1
+weight: 0.06
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1310721
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 1207
+location: 127
+values:
+100000
+1
+0
+0
+90
+0
+0
+~
+flags: D 0
+name: hole portable-hole large-black-hole
+shortdesc: a portable hole
+desc: A large black hole lies here folded upon itself.
+type: 15
+weight: 15.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+~~
+vnum: 20305
+location: -1
+values:
+17
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat large-chunk-meat food
+shortdesc: a large chunk of meat
+desc: A large chunk of meat lies on the ground here.
+type: 19
+weight: 2.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat large-chunk-meat food
+This is a large, tasty-looking chunk of wildebeest meat.~
+~~
+vnum: 20305
+location: -1
+values:
+17
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat large-chunk-meat food
+shortdesc: a large chunk of meat
+desc: A large chunk of meat lies on the ground here.
+type: 19
+weight: 2.30
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat large-chunk-meat food
+This is a large, tasty-looking chunk of wildebeest meat.~
+~~
+vnum: 58421
+location: -1
+values:
+6
+0
+0
+1
+0
+0
+0
+~
+flags: 0 0
+name: stomach part fish cod-stomach cod food
+shortdesc: the cod's stomach
+desc: A smelly fish part rots here.
+type: 19
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: stomach cod fish part
+How disgusting! This bit of slick leathery fish bulges slightly, from
+whatever its previous owner ate just before they parted ways. It smells
+absolutely foul.~
+~~
+vnum: 50200
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lime wedge green lime-wedge fat little food
+shortdesc: a wedge of lime
+desc: A fat little wedge of lime lies on the ground.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: lime wedge green lime-wedge fat little food
+This bright green morsel is sure to keep away scurvy.  It's also good with
+certain drinks.    ~
+~~
+vnum: 8002
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: carrot food
+shortdesc: a carrot
+desc: A carrot grows here.
+type: 19
+weight: 0.20
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: carrot food
+It's a reasonably healthy specimen, with a long orange root and
+a feathery green head.~
+~~
+vnum: 8002
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: carrot food
+shortdesc: a carrot
+desc: A carrot grows here.
+type: 19
+weight: 0.20
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: carrot food
+It's a reasonably healthy specimen, with a long orange root and
+a feathery green head.~
+~~
+vnum: 8002
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: carrot food
+shortdesc: a carrot
+desc: A carrot grows here.
+type: 19
+weight: 0.20
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: carrot food
+It's a reasonably healthy specimen, with a long orange root and
+a feathery green head.~
+~~
+vnum: 8004
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wheat stalk food
+shortdesc: a wheat stalk
+desc: A golden wheat stalk lies here in the corner.
+type: 19
+weight: 0.10
+cost: 10
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 8004
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wheat stalk food
+shortdesc: a wheat stalk
+desc: A golden wheat stalk lies here in the corner.
+type: 19
+weight: 0.10
+cost: 10
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 8004
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wheat stalk food
+shortdesc: a wheat stalk
+desc: A golden wheat stalk lies here in the corner.
+type: 19
+weight: 0.10
+cost: 10
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 8004
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wheat stalk food
+shortdesc: a wheat stalk
+desc: A golden wheat stalk lies here in the corner.
+type: 19
+weight: 0.10
+cost: 10
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 5205
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: jerky beef beef-jerky food
+shortdesc: a piece of beef jerky
+desc: A piece of beef jerky gathers dust here.
+type: 19
+weight: 0.30
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jerky beef beef-jerky food
+This is a fairly sizable, and rather salty looking, piece of jerky.~
+~~
+vnum: 16211
+location: -1
+values:
+14
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: grain food
+shortdesc: some grain
+desc: A pile of grain lies on the ground.
+type: 19
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 50200
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: lime wedge green lime-wedge fat little food
+shortdesc: a wedge of lime
+desc: A fat little wedge of lime lies on the ground.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: lime wedge green lime-wedge fat little food
+This bright green morsel is sure to keep away scurvy.  It's also good with
+certain drinks.    ~
+~~
+vnum: 8329
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom small green yellow food
+shortdesc: a small mushroom
+desc: A small green and yellow mushroom grows here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom green yellow small
+This small mushroom is certainly one of a kind.  Its green stem and yellow cap,
+give this mushroom a very strange look.  Although it appears to be quite
+extra-ordinary, it is very edible.    ~
+~~
+vnum: 8329
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom small green yellow food
+shortdesc: a small mushroom
+desc: A small green and yellow mushroom grows here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom green yellow small
+This small mushroom is certainly one of a kind.  Its green stem and yellow cap,
+give this mushroom a very strange look.  Although it appears to be quite
+extra-ordinary, it is very edible.    ~
+~~
+vnum: 8329
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom small green yellow food
+shortdesc: a small mushroom
+desc: A small green and yellow mushroom grows here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom green yellow small
+This small mushroom is certainly one of a kind.  Its green stem and yellow cap,
+give this mushroom a very strange look.  Although it appears to be quite
+extra-ordinary, it is very edible.    ~
+~~
+vnum: 8329
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom small green yellow food
+shortdesc: a small mushroom
+desc: A small green and yellow mushroom grows here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom green yellow small
+This small mushroom is certainly one of a kind.  Its green stem and yellow cap,
+give this mushroom a very strange look.  Although it appears to be quite
+extra-ordinary, it is very edible.    ~
+~~
+vnum: 8329
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom small green yellow food
+shortdesc: a small mushroom
+desc: A small green and yellow mushroom grows here.
+type: 19
+weight: 0.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom green yellow small
+This small mushroom is certainly one of a kind.  Its green stem and yellow cap,
+give this mushroom a very strange look.  Although it appears to be quite
+extra-ordinary, it is very edible.    ~
+~~
+vnum: 58424
+location: -1
+values:
+11
+1
+0
+0
+0
+0
+0
+~
+flags: f 0
+name: stomach part fish cod-stomach cod
+shortdesc: the cod's stomach
+desc: A smelly fish part rots here.
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: stomach cod fish part
+How disgusting! This bit of slick leathery fish bulges slightly, from
+whatever its previous owner ate just before they parted ways. It smells
+absolutely foul.~
+~~
+vnum: 16905
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom furry-black-mushroom food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom furry-black-mushroom food
+The mushroom looks disgusting, but it has a surprisingly nice aroma.  It seems
+to say, come on, take a nibble ....~
+~~
+vnum: 16905
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom furry-black-mushroom food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom furry-black-mushroom food
+The mushroom looks disgusting, but it has a surprisingly nice aroma.  It seems
+to say, come on, take a nibble ....~
+~~
+vnum: 16905
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom furry-black-mushroom food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom furry-black-mushroom food
+The mushroom looks disgusting, but it has a surprisingly nice aroma.  It seems
+to say, come on, take a nibble ....~
+~~
+vnum: 16905
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom furry-black-mushroom food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom furry-black-mushroom food
+The mushroom looks disgusting, but it has a surprisingly nice aroma.  It seems
+to say, come on, take a nibble ....~
+~~
+vnum: 16905
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom furry-black-mushroom food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom furry-black-mushroom food
+The mushroom looks disgusting, but it has a surprisingly nice aroma.  It seems
+to say, come on, take a nibble ....~
+~~
+vnum: 16905
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom furry-black-mushroom food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom furry-black-mushroom food
+The mushroom looks disgusting, but it has a surprisingly nice aroma.  It seems
+to say, come on, take a nibble ....~
+~~
+vnum: 36303
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: donuts-dozen donuts dozen donut dozen-donuts food
+shortdesc: a dozen donuts
+desc: A dozen glazed donuts lie here.  They look scrumptious!
+type: 19
+weight: 0.40
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 16905
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom furry-black-mushroom food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom furry-black-mushroom food
+The mushroom looks disgusting, but it has a surprisingly nice aroma.  It seems
+to say, come on, take a nibble ....~
+~~
+vnum: 16905
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom furry-black-mushroom food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom furry-black-mushroom food
+The mushroom looks disgusting, but it has a surprisingly nice aroma.  It seems
+to say, come on, take a nibble ....~
+~~
+vnum: 146
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cantaloupe melon fruit food
+shortdesc: a cantaloupe
+desc: A large round cantaloupe sits here giving off a sweet smell.
+type: 19
+weight: 2.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: cantaloupe melon fruit food
+In spite of the apparently tough and leathery skin of this melon, its delicious
+aroma drifts outward effortlessly, making your mouth water.  It is the size of
+a young troll's head.    ~
+~~
+vnum: 19
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rations ration iron food
+shortdesc: some iron rations
+desc: Some iron rations have been set here.
+type: 19
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: iron rations
+These lightweight rations aren't the best-tasting, but they are the traveler's
+best food for long trips -- they never spoil, and fill the stomach for many
+hours.  There is dried meat of unknown origin here, mixed with nuts.  The whole
+mess is glued together into a bar by means of some waxy, fatty substance.    ~
+~~
+vnum: 19
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rations ration iron food
+shortdesc: some iron rations
+desc: Some iron rations have been set here.
+type: 19
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: iron rations
+These lightweight rations aren't the best-tasting, but they are the traveler's
+best food for long trips -- they never spoil, and fill the stomach for many
+hours.  There is dried meat of unknown origin here, mixed with nuts.  The whole
+mess is glued together into a bar by means of some waxy, fatty substance.    ~
+~~
+vnum: 16905
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom furry-black-mushroom food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom furry-black-mushroom food
+The mushroom looks disgusting, but it has a surprisingly nice aroma.  It seems
+to say, come on, take a nibble ....~
+~~
+vnum: 16905
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mushroom furry-black-mushroom food
+shortdesc: a black mushroom
+desc: A furry, black mushroom is growing on the wall.
+type: 19
+weight: 1.00
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mushroom furry-black-mushroom food
+The mushroom looks disgusting, but it has a surprisingly nice aroma.  It seems
+to say, come on, take a nibble ....~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 41011
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: honeycomb honey-comb chunk-sweet-hiver food questobject
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: honeycomb honey-comb chunk-sweet-hiver food questobject
+Hexagonal wax chambers are filled with an amber fluid.  It covers your hands
+with sticky goodness as you examine it.~
+~~
+vnum: 41011
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: honeycomb honey-comb chunk-sweet-hiver food questobject
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: honeycomb honey-comb chunk-sweet-hiver food questobject
+Hexagonal wax chambers are filled with an amber fluid.  It covers your hands
+with sticky goodness as you examine it.~
+~~
+vnum: 41011
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: honeycomb honey-comb chunk-sweet-hiver food questobject
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: honeycomb honey-comb chunk-sweet-hiver food questobject
+Hexagonal wax chambers are filled with an amber fluid.  It covers your hands
+with sticky goodness as you examine it.~
+~~
+vnum: 58019
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 58019
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 58019
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 58019
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 58019
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rice-ball rice ball seaweed food
+shortdesc: a rice ball
+desc: A ball of rice wrapped in dried seaweed has fallen off some vendor's cart here.
+type: 19
+weight: 0.20
+cost: 3
+timer: 1
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: rice ball seaweed
+For a plain ball of rice wrapped in seaweed, it certainly smells good.~
+~~
+vnum: 12002
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pie meat-pie meat pastry food
+shortdesc: a meat pie
+desc: A delicious-smelling pastry's been lost here.
+type: 19
+weight: 0.90
+cost: 9
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat pie pastry
+Golden, buttery pastry crust forms a double-handful of some
+kind of handheld pie. You smell meat inside it, a little cool
+from its earlier baking, but still delicious.~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 1606
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: grass single-blade-grass food
+shortdesc: a blade of grass
+desc: A single blade of grass peeks out of the dirt.
+type: 19
+weight: 0.09
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: grass single-blade-grass food
+Its a single long blade of grass, rich green and freshly-picked.  A ridge runs
+the length of the blade, reinforcing it from its tip to its root.~
+~~
+vnum: 41011
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: honeycomb honey-comb chunk-sweet-hiver food questobject
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: honeycomb honey-comb chunk-sweet-hiver food questobject
+Hexagonal wax chambers are filled with an amber fluid.  It covers your hands
+with sticky goodness as you examine it.~
+~~
+vnum: 41011
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: honeycomb honey-comb chunk-sweet-hiver food questobject
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: honeycomb honey-comb chunk-sweet-hiver food questobject
+Hexagonal wax chambers are filled with an amber fluid.  It covers your hands
+with sticky goodness as you examine it.~
+~~
+vnum: 41011
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: honeycomb honey-comb chunk-sweet-hiver food questobject
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: honeycomb honey-comb chunk-sweet-hiver food questobject
+Hexagonal wax chambers are filled with an amber fluid.  It covers your hands
+with sticky goodness as you examine it.~
+~~
+vnum: 41011
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: honeycomb honey-comb chunk-sweet-hiver food questobject
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: honeycomb honey-comb chunk-sweet-hiver food questobject
+Hexagonal wax chambers are filled with an amber fluid.  It covers your hands
+with sticky goodness as you examine it.~
+~~
+vnum: 41011
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: honeycomb honey-comb chunk-sweet-hiver food questobject
+shortdesc: a piece of honeycomb
+desc: A chunk of sweet Hiver comb is getting dirty.
+type: 19
+weight: 1.00
+cost: 10
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: honeycomb honey-comb chunk-sweet-hiver food questobject
+Hexagonal wax chambers are filled with an amber fluid.  It covers your hands
+with sticky goodness as you examine it.~
+~~
+vnum: 61501
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peach plump food
+shortdesc: a plump peach
+desc: A plump, fuzzy peach hangs from a low branch.
+type: 19
+weight: 0.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: peach plump food
+This peach is a little on the small side.  It's rather soft, quite fuzzy, and
+has a large, faint red blotch on one side.  It smells delicious!    ~
+~~
+vnum: 61501
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peach plump food
+shortdesc: a plump peach
+desc: A plump, fuzzy peach hangs from a low branch.
+type: 19
+weight: 0.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: peach plump food
+This peach is a little on the small side.  It's rather soft, quite fuzzy, and
+has a large, faint red blotch on one side.  It smells delicious!    ~
+~~
+vnum: 61501
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peach plump food
+shortdesc: a plump peach
+desc: A plump, fuzzy peach hangs from a low branch.
+type: 19
+weight: 0.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: peach plump food
+This peach is a little on the small side.  It's rather soft, quite fuzzy, and
+has a large, faint red blotch on one side.  It smells delicious!    ~
+~~
+vnum: 61501
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peach plump food
+shortdesc: a plump peach
+desc: A plump, fuzzy peach hangs from a low branch.
+type: 19
+weight: 0.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: peach plump food
+This peach is a little on the small side.  It's rather soft, quite fuzzy, and
+has a large, faint red blotch on one side.  It smells delicious!    ~
+~~
+vnum: 61501
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: peach plump food
+shortdesc: a plump peach
+desc: A plump, fuzzy peach hangs from a low branch.
+type: 19
+weight: 0.40
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: peach plump food
+This peach is a little on the small side.  It's rather soft, quite fuzzy, and
+has a large, faint red blotch on one side.  It smells delicious!    ~
+~~
+vnum: 35001
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: seeds food
+shortdesc: some seeds
+desc: A small stash of seeds are piled here.
+type: 19
+weight: 0.46
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: seeds food
+A mixed pile of seeds from several different grasses and wildflowers.  They
+seem fresh and should make a tasty snack.    ~
+~~
+vnum: 61551
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: purple-cherry purple cherry food
+shortdesc: a purple cherry
+desc: A ripe-looking purple cherry has fallen to the ground.
+type: 19
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: purple cherry
+   This is an odd-looking cherry, with a bright purple skin.  It's also rather
+large for a cherry.  It is soft and ripe and smells quite good!    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 49024
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: mussel food
+shortdesc: a mussel
+desc: A mussel has chosen this place for a home.
+type: 19
+weight: 0.04
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mussel food
+Yummy! A raw, living mussel... what a delicacy!~
+~~
+vnum: 49024
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: mussel food
+shortdesc: a mussel
+desc: A mussel has chosen this place for a home.
+type: 19
+weight: 0.04
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mussel food
+Yummy! A raw, living mussel... what a delicacy!~
+~~
+vnum: 49024
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: mussel food
+shortdesc: a mussel
+desc: A mussel has chosen this place for a home.
+type: 19
+weight: 0.04
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: mussel food
+Yummy! A raw, living mussel... what a delicacy!~
+~~
+vnum: 12516
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tuber glowing food
+shortdesc: a glowing tuber
+desc: The unnatural glow of a tuber of some sort is visible beneath the dirt of a pot.
+type: 19
+weight: 0.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tuber glowing food
+Beneath the layer of dark soil at the top of the pot, is obviously a tuber of
+some sort - even through the dirt, its glow visible.  Disturbing.    ~
+~~
+vnum: 12516
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tuber glowing food
+shortdesc: a glowing tuber
+desc: The unnatural glow of a tuber of some sort is visible beneath the dirt of a pot.
+type: 19
+weight: 0.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tuber glowing food
+Beneath the layer of dark soil at the top of the pot, is obviously a tuber of
+some sort - even through the dirt, its glow visible.  Disturbing.    ~
+~~
+vnum: 12516
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tuber glowing food
+shortdesc: a glowing tuber
+desc: The unnatural glow of a tuber of some sort is visible beneath the dirt of a pot.
+type: 19
+weight: 0.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tuber glowing food
+Beneath the layer of dark soil at the top of the pot, is obviously a tuber of
+some sort - even through the dirt, its glow visible.  Disturbing.    ~
+~~
+vnum: 12516
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tuber glowing food
+shortdesc: a glowing tuber
+desc: The unnatural glow of a tuber of some sort is visible beneath the dirt of a pot.
+type: 19
+weight: 0.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tuber glowing food
+Beneath the layer of dark soil at the top of the pot, is obviously a tuber of
+some sort - even through the dirt, its glow visible.  Disturbing.    ~
+~~
+vnum: 12516
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tuber glowing food
+shortdesc: a glowing tuber
+desc: The unnatural glow of a tuber of some sort is visible beneath the dirt of a pot.
+type: 19
+weight: 0.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tuber glowing food
+Beneath the layer of dark soil at the top of the pot, is obviously a tuber of
+some sort - even through the dirt, its glow visible.  Disturbing.    ~
+~~
+vnum: 12516
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tuber glowing food
+shortdesc: a glowing tuber
+desc: The unnatural glow of a tuber of some sort is visible beneath the dirt of a pot.
+type: 19
+weight: 0.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tuber glowing food
+Beneath the layer of dark soil at the top of the pot, is obviously a tuber of
+some sort - even through the dirt, its glow visible.  Disturbing.    ~
+~~
+vnum: 12516
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tuber glowing food
+shortdesc: a glowing tuber
+desc: The unnatural glow of a tuber of some sort is visible beneath the dirt of a pot.
+type: 19
+weight: 0.30
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tuber glowing food
+Beneath the layer of dark soil at the top of the pot, is obviously a tuber of
+some sort - even through the dirt, its glow visible.  Disturbing.    ~
+~~
+vnum: 12515
+location: -1
+values:
+10
+0
+0
+1
+0
+0
+0
+~
+flags: 0 0
+name: plant glowing food
+shortdesc: a glowing plant
+desc: A glowing plant in a pot grows before your eyes. 
+type: 19
+weight: 0.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: plant glowing pot
+Inside a simple stone pot is a leafy green plant, which happens to be glowing
+brightly.    ~
+~~
+vnum: 12515
+location: -1
+values:
+10
+0
+0
+1
+0
+0
+0
+~
+flags: 0 0
+name: plant glowing food
+shortdesc: a glowing plant
+desc: A glowing plant in a pot grows before your eyes. 
+type: 19
+weight: 0.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: plant glowing pot
+Inside a simple stone pot is a leafy green plant, which happens to be glowing
+brightly.    ~
+~~
+vnum: 12515
+location: -1
+values:
+10
+0
+0
+1
+0
+0
+0
+~
+flags: 0 0
+name: plant glowing food
+shortdesc: a glowing plant
+desc: A glowing plant in a pot grows before your eyes. 
+type: 19
+weight: 0.60
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: plant glowing pot
+Inside a simple stone pot is a leafy green plant, which happens to be glowing
+brightly.    ~
+~~
+vnum: 8003
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tomato food
+shortdesc: a ripe red tomato
+desc: A ripe red tomato grows on a trellis.
+type: 19
+weight: 0.20
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tomato food
+It's round and red, just soft enough to be ripe. It smells inviting.~
+~~
+vnum: 8003
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tomato food
+shortdesc: a ripe red tomato
+desc: A ripe red tomato grows on a trellis.
+type: 19
+weight: 0.20
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tomato food
+It's round and red, just soft enough to be ripe. It smells inviting.~
+~~
+vnum: 8003
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tomato food
+shortdesc: a ripe red tomato
+desc: A ripe red tomato grows on a trellis.
+type: 19
+weight: 0.20
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tomato food
+It's round and red, just soft enough to be ripe. It smells inviting.~
+~~
+vnum: 8003
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tomato food
+shortdesc: a ripe red tomato
+desc: A ripe red tomato grows on a trellis.
+type: 19
+weight: 0.20
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tomato food
+It's round and red, just soft enough to be ripe. It smells inviting.~
+~~
+vnum: 8003
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tomato food
+shortdesc: a ripe red tomato
+desc: A ripe red tomato grows on a trellis.
+type: 19
+weight: 0.20
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: tomato food
+It's round and red, just soft enough to be ripe. It smells inviting.~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread heavy-loaf-bread food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bread heavy-loaf-bread food
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread heavy-loaf-bread food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bread heavy-loaf-bread food
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread heavy-loaf-bread food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bread heavy-loaf-bread food
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.~
+~~
+vnum: 5109
+location: -1
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread heavy-loaf-bread food
+shortdesc: a heavy loaf of bread
+desc: A heavy loaf of bread has been left here.
+type: 19
+weight: 1.80
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bread heavy-loaf-bread food
+Made of the finest stone-ground wheat and kneaded with extra grit, this bread
+is much heavier than a normal loaf.  It looks pretty filling.~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh-loaf-bread freshly-baked food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fresh-loaf-bread freshly-baked food
+The bread is well baked, and its tantalising aroma makes your mouth water.  
+This loaf is a gourmet's delight.~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh-loaf-bread freshly-baked food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fresh-loaf-bread freshly-baked food
+The bread is well baked, and its tantalising aroma makes your mouth water.  
+This loaf is a gourmet's delight.~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh-loaf-bread freshly-baked food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fresh-loaf-bread freshly-baked food
+The bread is well baked, and its tantalising aroma makes your mouth water.  
+This loaf is a gourmet's delight.~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh-loaf-bread freshly-baked food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fresh-loaf-bread freshly-baked food
+The bread is well baked, and its tantalising aroma makes your mouth water.  
+This loaf is a gourmet's delight.~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh-loaf-bread freshly-baked food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fresh-loaf-bread freshly-baked food
+The bread is well baked, and its tantalising aroma makes your mouth water.  
+This loaf is a gourmet's delight.~
+~~
+vnum: 18501
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bread fresh-loaf-bread freshly-baked food
+shortdesc: a fresh loaf of bread
+desc: A freshly baked loaf of bread tantalizes your tastebuds.
+type: 19
+weight: 0.80
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fresh-loaf-bread freshly-baked food
+The bread is well baked, and its tantalising aroma makes your mouth water.  
+This loaf is a gourmet's delight.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 23756
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: salt spice herb shaker food
+shortdesc: a shaker of salt
+desc: An ornamental salt shaker sits here.
+type: 19
+weight: 0.10
+cost: 5
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: salt shaker spice
+Salt is one of the oldest and simplest spices known to man.  In some ancient
+lands, soldiers were paid in salt.  It is used to preserve meat and usually
+makes you very thirsty if you eat too much of it.  It can be distilled from the
+ocean or mined from the mountains.  Some kinds of salt can be found in deserts,
+just sitting around.  It is the most common spice.    ~
+~~
+vnum: 23756
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: salt spice herb shaker food
+shortdesc: a shaker of salt
+desc: An ornamental salt shaker sits here.
+type: 19
+weight: 0.10
+cost: 5
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: salt shaker spice
+Salt is one of the oldest and simplest spices known to man.  In some ancient
+lands, soldiers were paid in salt.  It is used to preserve meat and usually
+makes you very thirsty if you eat too much of it.  It can be distilled from the
+ocean or mined from the mountains.  Some kinds of salt can be found in deserts,
+just sitting around.  It is the most common spice.    ~
+~~
+vnum: 23756
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: salt spice herb shaker food
+shortdesc: a shaker of salt
+desc: An ornamental salt shaker sits here.
+type: 19
+weight: 0.10
+cost: 5
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: salt shaker spice
+Salt is one of the oldest and simplest spices known to man.  In some ancient
+lands, soldiers were paid in salt.  It is used to preserve meat and usually
+makes you very thirsty if you eat too much of it.  It can be distilled from the
+ocean or mined from the mountains.  Some kinds of salt can be found in deserts,
+just sitting around.  It is the most common spice.    ~
+~~
+vnum: 23756
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: salt spice herb shaker food
+shortdesc: a shaker of salt
+desc: An ornamental salt shaker sits here.
+type: 19
+weight: 0.10
+cost: 5
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: salt shaker spice
+Salt is one of the oldest and simplest spices known to man.  In some ancient
+lands, soldiers were paid in salt.  It is used to preserve meat and usually
+makes you very thirsty if you eat too much of it.  It can be distilled from the
+ocean or mined from the mountains.  Some kinds of salt can be found in deserts,
+just sitting around.  It is the most common spice.    ~
+~~
+vnum: 23756
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: salt spice herb shaker food
+shortdesc: a shaker of salt
+desc: An ornamental salt shaker sits here.
+type: 19
+weight: 0.10
+cost: 5
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: salt shaker spice
+Salt is one of the oldest and simplest spices known to man.  In some ancient
+lands, soldiers were paid in salt.  It is used to preserve meat and usually
+makes you very thirsty if you eat too much of it.  It can be distilled from the
+ocean or mined from the mountains.  Some kinds of salt can be found in deserts,
+just sitting around.  It is the most common spice.    ~
+~~
+vnum: 23759
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: oregano packet herb spice food
+shortdesc: a packet of oregano
+desc: A small packet of oregano is sitting here.
+type: 19
+weight: 0.10
+cost: 3300
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: oregano packet herb spice food
+Oregano is a rather mild herb used to add zest to otherwise plain dishes.  It
+is said to help in restoration spells and help someone with chronic weakness
+gain strength.  It goes well in tomato sauces with basil and garlic.    ~
+~~
+vnum: 23755
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pepper black spice herb dash food
+shortdesc: a dash of pepper
+desc: A black spice sits here, unused.
+type: 19
+weight: 0.10
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: pepper black spice herb dash food
+A very rare spice, black pepper can be sold for a lot of money in areas where
+it is in high demand.  Kings and queens have sent explorers to their deaths for
+this spice, so it has something of a nasty reputation.    ~
+~~
+vnum: 23758
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: basil leaves herb spice stack food
+shortdesc: a stack of basil leaves
+desc: A small stack of basil leaves lies here.
+type: 19
+weight: 0.10
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: basil leaves herb spice stack food
+Basil is a sweet, mintlike herb that can be ground into a fine spice.  It has
+no known magical properties, but it goes really well with tomatoes in sauces
+and other dishes.  The larger leaves can also be added to soup for a weaker
+flavor.    ~
+~~
+vnum: 23758
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: basil leaves herb spice stack food
+shortdesc: a stack of basil leaves
+desc: A small stack of basil leaves lies here.
+type: 19
+weight: 0.10
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: basil leaves herb spice stack food
+Basil is a sweet, mintlike herb that can be ground into a fine spice.  It has
+no known magical properties, but it goes really well with tomatoes in sauces
+and other dishes.  The larger leaves can also be added to soup for a weaker
+flavor.    ~
+~~
+vnum: 23758
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: basil leaves herb spice stack food
+shortdesc: a stack of basil leaves
+desc: A small stack of basil leaves lies here.
+type: 19
+weight: 0.10
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: basil leaves herb spice stack food
+Basil is a sweet, mintlike herb that can be ground into a fine spice.  It has
+no known magical properties, but it goes really well with tomatoes in sauces
+and other dishes.  The larger leaves can also be added to soup for a weaker
+flavor.    ~
+~~
+vnum: 23752
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rosemary herb spice jar small food
+shortdesc: a jar of rosemary
+desc: A small jar of rosemary lies forgotten here.
+type: 19
+weight: 0.10
+cost: 1100
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jar rosemary herb spice small
+A small glass jar is filled with rosemary, a pungent herb mostly used in the
+healing arts to soothe infections.  It also makes food taste better and
+supposedly makes you healthier if you eat it.    ~
+~~
+vnum: 23752
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rosemary herb spice jar small food
+shortdesc: a jar of rosemary
+desc: A small jar of rosemary lies forgotten here.
+type: 19
+weight: 0.10
+cost: 1100
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jar rosemary herb spice small
+A small glass jar is filled with rosemary, a pungent herb mostly used in the
+healing arts to soothe infections.  It also makes food taste better and
+supposedly makes you healthier if you eat it.    ~
+~~
+vnum: 23752
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rosemary herb spice jar small food
+shortdesc: a jar of rosemary
+desc: A small jar of rosemary lies forgotten here.
+type: 19
+weight: 0.10
+cost: 1100
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jar rosemary herb spice small
+A small glass jar is filled with rosemary, a pungent herb mostly used in the
+healing arts to soothe infections.  It also makes food taste better and
+supposedly makes you healthier if you eat it.    ~
+~~
+vnum: 23752
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rosemary herb spice jar small food
+shortdesc: a jar of rosemary
+desc: A small jar of rosemary lies forgotten here.
+type: 19
+weight: 0.10
+cost: 1100
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jar rosemary herb spice small
+A small glass jar is filled with rosemary, a pungent herb mostly used in the
+healing arts to soothe infections.  It also makes food taste better and
+supposedly makes you healthier if you eat it.    ~
+~~
+vnum: 23752
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rosemary herb spice jar small food
+shortdesc: a jar of rosemary
+desc: A small jar of rosemary lies forgotten here.
+type: 19
+weight: 0.10
+cost: 1100
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jar rosemary herb spice small
+A small glass jar is filled with rosemary, a pungent herb mostly used in the
+healing arts to soothe infections.  It also makes food taste better and
+supposedly makes you healthier if you eat it.    ~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 600
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 600
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 600
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 23752
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rosemary herb spice jar small food
+shortdesc: a jar of rosemary
+desc: A small jar of rosemary lies forgotten here.
+type: 19
+weight: 0.10
+cost: 1100
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jar rosemary herb spice small
+A small glass jar is filled with rosemary, a pungent herb mostly used in the
+healing arts to soothe infections.  It also makes food taste better and
+supposedly makes you healthier if you eat it.    ~
+~~
+vnum: 23759
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: oregano packet herb spice food
+shortdesc: a packet of oregano
+desc: A small packet of oregano is sitting here.
+type: 19
+weight: 0.10
+cost: 3300
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: oregano packet herb spice food
+Oregano is a rather mild herb used to add zest to otherwise plain dishes.  It
+is said to help in restoration spells and help someone with chronic weakness
+gain strength.  It goes well in tomato sauces with basil and garlic.    ~
+~~
+vnum: 23759
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: oregano packet herb spice food
+shortdesc: a packet of oregano
+desc: A small packet of oregano is sitting here.
+type: 19
+weight: 0.10
+cost: 3300
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: oregano packet herb spice food
+Oregano is a rather mild herb used to add zest to otherwise plain dishes.  It
+is said to help in restoration spells and help someone with chronic weakness
+gain strength.  It goes well in tomato sauces with basil and garlic.    ~
+~~
+vnum: 23759
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: oregano packet herb spice food
+shortdesc: a packet of oregano
+desc: A small packet of oregano is sitting here.
+type: 19
+weight: 0.10
+cost: 3300
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: oregano packet herb spice food
+Oregano is a rather mild herb used to add zest to otherwise plain dishes.  It
+is said to help in restoration spells and help someone with chronic weakness
+gain strength.  It goes well in tomato sauces with basil and garlic.    ~
+~~
+vnum: 23759
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: oregano packet herb spice food
+shortdesc: a packet of oregano
+desc: A small packet of oregano is sitting here.
+type: 19
+weight: 0.10
+cost: 3300
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: oregano packet herb spice food
+Oregano is a rather mild herb used to add zest to otherwise plain dishes.  It
+is said to help in restoration spells and help someone with chronic weakness
+gain strength.  It goes well in tomato sauces with basil and garlic.    ~
+~~
+vnum: 23759
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: oregano packet herb spice food
+shortdesc: a packet of oregano
+desc: A small packet of oregano is sitting here.
+type: 19
+weight: 0.10
+cost: 3300
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: oregano packet herb spice food
+Oregano is a rather mild herb used to add zest to otherwise plain dishes.  It
+is said to help in restoration spells and help someone with chronic weakness
+gain strength.  It goes well in tomato sauces with basil and garlic.    ~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 600
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 600
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 600
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 49022
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: herb foul smelling acrid food
+shortdesc: a foul-smelling herb
+desc: An herb with an acrid smell grows here.
+type: 19
+weight: 0.10
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: herb foul smelling acrid food
+The only thing differentiating it from the other herbs is that it smells
+absolutely foul.~
+~~
+vnum: 23755
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pepper black spice herb dash food
+shortdesc: a dash of pepper
+desc: A black spice sits here, unused.
+type: 19
+weight: 0.10
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: pepper black spice herb dash food
+A very rare spice, black pepper can be sold for a lot of money in areas where
+it is in high demand.  Kings and queens have sent explorers to their deaths for
+this spice, so it has something of a nasty reputation.    ~
+~~
+vnum: 23760
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: saffron vial small herb yellow spice food
+shortdesc: a small vial of saffron
+desc: A small vial of a yellow spice lies forgotten in the dust.
+type: 19
+weight: 1.00
+cost: 20000
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: saffron vial small herb yellow spice food
+Two tiny, golden yellow stalks are suspended in oil inside this vial.  Saffron
+is known as the most expensive, hard-to-get spice in the world.  Each saffron
+plant, which takes two years to mature, only produces two stalks that can be
+used as a spice.  It is a powerful spell component for earth elemental spells,
+and it is also a very delicious spice.  Take good care of it.    ~
+~~
+vnum: 23760
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: saffron vial small herb yellow spice food
+shortdesc: a small vial of saffron
+desc: A small vial of a yellow spice lies forgotten in the dust.
+type: 19
+weight: 1.00
+cost: 20000
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: saffron vial small herb yellow spice food
+Two tiny, golden yellow stalks are suspended in oil inside this vial.  Saffron
+is known as the most expensive, hard-to-get spice in the world.  Each saffron
+plant, which takes two years to mature, only produces two stalks that can be
+used as a spice.  It is a powerful spell component for earth elemental spells,
+and it is also a very delicious spice.  Take good care of it.    ~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 600
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 600
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 23760
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: saffron vial small herb yellow spice food
+shortdesc: a small vial of saffron
+desc: A small vial of a yellow spice lies forgotten in the dust.
+type: 19
+weight: 1.00
+cost: 20000
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: saffron vial small herb yellow spice food
+Two tiny, golden yellow stalks are suspended in oil inside this vial.  Saffron
+is known as the most expensive, hard-to-get spice in the world.  Each saffron
+plant, which takes two years to mature, only produces two stalks that can be
+used as a spice.  It is a powerful spell component for earth elemental spells,
+and it is also a very delicious spice.  Take good care of it.    ~
+~~
+vnum: 23760
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: saffron vial small herb yellow spice food
+shortdesc: a small vial of saffron
+desc: A small vial of a yellow spice lies forgotten in the dust.
+type: 19
+weight: 1.00
+cost: 20000
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: saffron vial small herb yellow spice food
+Two tiny, golden yellow stalks are suspended in oil inside this vial.  Saffron
+is known as the most expensive, hard-to-get spice in the world.  Each saffron
+plant, which takes two years to mature, only produces two stalks that can be
+used as a spice.  It is a powerful spell component for earth elemental spells,
+and it is also a very delicious spice.  Take good care of it.    ~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 600
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 23755
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pepper black spice herb dash food
+shortdesc: a dash of pepper
+desc: A black spice sits here, unused.
+type: 19
+weight: 0.10
+cost: 1000
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: pepper black spice herb dash food
+A very rare spice, black pepper can be sold for a lot of money in areas where
+it is in high demand.  Kings and queens have sent explorers to their deaths for
+this spice, so it has something of a nasty reputation.    ~
+~~
+vnum: 49022
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: herb foul smelling acrid food
+shortdesc: a foul-smelling herb
+desc: An herb with an acrid smell grows here.
+type: 19
+weight: 0.10
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: herb foul smelling acrid food
+The only thing differentiating it from the other herbs is that it smells
+absolutely foul.~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 600
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 600
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 23752
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rosemary herb spice jar small food
+shortdesc: a jar of rosemary
+desc: A small jar of rosemary lies forgotten here.
+type: 19
+weight: 0.10
+cost: 1100
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jar rosemary herb spice small
+A small glass jar is filled with rosemary, a pungent herb mostly used in the
+healing arts to soothe infections.  It also makes food taste better and
+supposedly makes you healthier if you eat it.    ~
+~~
+vnum: 23752
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rosemary herb spice jar small food
+shortdesc: a jar of rosemary
+desc: A small jar of rosemary lies forgotten here.
+type: 19
+weight: 0.10
+cost: 1100
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jar rosemary herb spice small
+A small glass jar is filled with rosemary, a pungent herb mostly used in the
+healing arts to soothe infections.  It also makes food taste better and
+supposedly makes you healthier if you eat it.    ~
+~~
+vnum: 23752
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rosemary herb spice jar small food
+shortdesc: a jar of rosemary
+desc: A small jar of rosemary lies forgotten here.
+type: 19
+weight: 0.10
+cost: 1100
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jar rosemary herb spice small
+A small glass jar is filled with rosemary, a pungent herb mostly used in the
+healing arts to soothe infections.  It also makes food taste better and
+supposedly makes you healthier if you eat it.    ~
+~~
+vnum: 23752
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rosemary herb spice jar small food
+shortdesc: a jar of rosemary
+desc: A small jar of rosemary lies forgotten here.
+type: 19
+weight: 0.10
+cost: 1100
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jar rosemary herb spice small
+A small glass jar is filled with rosemary, a pungent herb mostly used in the
+healing arts to soothe infections.  It also makes food taste better and
+supposedly makes you healthier if you eat it.    ~
+~~
+vnum: 23753
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: thyme herb spice shoot tiny food
+shortdesc: a shoot of thyme
+desc: A tiny shoot of thyme grows here.
+type: 19
+weight: 0.10
+cost: 600
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: thyme herb spice shoot tiny food
+This fragile-looking plant is known as a spell component for powerful
+enchantments involving time, such as aging or rejuvination spells.  It is also
+a main component of gravy.    ~
+~~
+vnum: 23754
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cinnamon spice herb stick food
+shortdesc: a stick of cinnamon
+desc: A brown stick of cinnamon sits here, smelling yummy.
+type: 19
+weight: 0.10
+cost: 10
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: cinnamon spice herb stick food
+This long, slender brown object could be mistaken for a twig if it didn't smell
+so good.  Used to spice up apple cider, cinnamon is a local favorite in many
+other dishes as well.  Don't eat too much of it though--in high concentrations,
+it can be quite hot.    ~
+~~
+vnum: 23754
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cinnamon spice herb stick food
+shortdesc: a stick of cinnamon
+desc: A brown stick of cinnamon sits here, smelling yummy.
+type: 19
+weight: 0.10
+cost: 10
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: cinnamon spice herb stick food
+This long, slender brown object could be mistaken for a twig if it didn't smell
+so good.  Used to spice up apple cider, cinnamon is a local favorite in many
+other dishes as well.  Don't eat too much of it though--in high concentrations,
+it can be quite hot.    ~
+~~
+vnum: 23754
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cinnamon spice herb stick food
+shortdesc: a stick of cinnamon
+desc: A brown stick of cinnamon sits here, smelling yummy.
+type: 19
+weight: 0.10
+cost: 10
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: cinnamon spice herb stick food
+This long, slender brown object could be mistaken for a twig if it didn't smell
+so good.  Used to spice up apple cider, cinnamon is a local favorite in many
+other dishes as well.  Don't eat too much of it though--in high concentrations,
+it can be quite hot.    ~
+~~
+vnum: 23754
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: cinnamon spice herb stick food
+shortdesc: a stick of cinnamon
+desc: A brown stick of cinnamon sits here, smelling yummy.
+type: 19
+weight: 0.10
+cost: 10
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: cinnamon spice herb stick food
+This long, slender brown object could be mistaken for a twig if it didn't smell
+so good.  Used to spice up apple cider, cinnamon is a local favorite in many
+other dishes as well.  Don't eat too much of it though--in high concentrations,
+it can be quite hot.    ~
+~~
+vnum: 37013
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: flower food-flower delicious
+shortdesc: a flower
+desc: A delicious looking flower lies here, waiting to be eaten.
+type: 19
+weight: 0.04
+cost: 10000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: flower food-flower delicious
+The flower resembles a perfect looking daisy, and is yellow in color.
+The flower smells good enough to eat, and just looking at it makes you
+kind of hungry. The more you study the flower, the more it looks like
+some type of magical food, rather than a real flower. ~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 23722
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fungus purple mushroom cap food
+shortdesc: a piece of purple fungus
+desc: A purple-capped mushroom pushes its way out of the ground.
+type: 19
+weight: 0.75
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fungus mushroom purple shroom cap
+The broad cap of this brilliant purple mushroom smells rather good.  It doesn't
+seem to be producing spores yet, so is probably quite delicious.    ~
+~~
+vnum: 37013
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: flower food-flower delicious
+shortdesc: a flower
+desc: A delicious looking flower lies here, waiting to be eaten.
+type: 19
+weight: 0.04
+cost: 10000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: flower food-flower delicious
+The flower resembles a perfect looking daisy, and is yellow in color.
+The flower smells good enough to eat, and just looking at it makes you
+kind of hungry. The more you study the flower, the more it looks like
+some type of magical food, rather than a real flower. ~
+~~
+vnum: 37013
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: flower food-flower delicious
+shortdesc: a flower
+desc: A delicious looking flower lies here, waiting to be eaten.
+type: 19
+weight: 0.04
+cost: 10000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: flower food-flower delicious
+The flower resembles a perfect looking daisy, and is yellow in color.
+The flower smells good enough to eat, and just looking at it makes you
+kind of hungry. The more you study the flower, the more it looks like
+some type of magical food, rather than a real flower. ~
+~~
+vnum: 12552
+location: -1
+values:
+1
+0
+0
+1
+0
+0
+0
+~
+flags: 0 0
+name: dill umbel feathery flower flowers yellow green spice herb food
+shortdesc: a dill umbel
+desc: A plant with feathery yellow-green flowers basks in the light. 
+type: 19
+weight: 0.01
+cost: 10000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: dill umbel feathery flower flowers yellow green
+   A single stalk of dill, complete with a fist sized umbrel of yellow-green
+flowers, grows in a small earthen pot.  Basking in the unnatural glow of the
+room has benefitted the plant, which has a strong aroma.  The stalk seems to be
+in good condition, nearly ready for harvesting of its oil.    ~
+~~
+vnum: 12552
+location: -1
+values:
+1
+0
+0
+1
+0
+0
+0
+~
+flags: 0 0
+name: dill umbel feathery flower flowers yellow green spice herb food
+shortdesc: a dill umbel
+desc: A plant with feathery yellow-green flowers basks in the light. 
+type: 19
+weight: 0.01
+cost: 10000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: dill umbel feathery flower flowers yellow green
+   A single stalk of dill, complete with a fist sized umbrel of yellow-green
+flowers, grows in a small earthen pot.  Basking in the unnatural glow of the
+room has benefitted the plant, which has a strong aroma.  The stalk seems to be
+in good condition, nearly ready for harvesting of its oil.    ~
+~~
+vnum: 12552
+location: -1
+values:
+1
+0
+0
+1
+0
+0
+0
+~
+flags: 0 0
+name: dill umbel feathery flower flowers yellow green spice herb food
+shortdesc: a dill umbel
+desc: A plant with feathery yellow-green flowers basks in the light. 
+type: 19
+weight: 0.01
+cost: 10000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: dill umbel feathery flower flowers yellow green
+   A single stalk of dill, complete with a fist sized umbrel of yellow-green
+flowers, grows in a small earthen pot.  Basking in the unnatural glow of the
+room has benefitted the plant, which has a strong aroma.  The stalk seems to be
+in good condition, nearly ready for harvesting of its oil.    ~
+~~
+vnum: 8350
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pork piece-pork piece-thick-red-meat food questobject
+shortdesc: a piece of pork
+desc: A piece of thick red meat lies here on the ground.
+type: 19
+weight: 1.50
+cost: 10
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: pork piece-pork piece-thick-red-meat food questobject
+This juicy piece of red meat has been grilled to perfection by the fat Frakati
+chef.  The sheer size of the meat shows the Frakati's incredible appetite, and
+the juices flowing off of it urge all who receive a piece to swallow it whole.~
+~~
+vnum: 8350
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pork piece-pork piece-thick-red-meat food questobject
+shortdesc: a piece of pork
+desc: A piece of thick red meat lies here on the ground.
+type: 19
+weight: 1.50
+cost: 10
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: pork piece-pork piece-thick-red-meat food questobject
+This juicy piece of red meat has been grilled to perfection by the fat Frakati
+chef.  The sheer size of the meat shows the Frakati's incredible appetite, and
+the juices flowing off of it urge all who receive a piece to swallow it whole.~
+~~
+vnum: 8350
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pork piece-pork piece-thick-red-meat food questobject
+shortdesc: a piece of pork
+desc: A piece of thick red meat lies here on the ground.
+type: 19
+weight: 1.50
+cost: 10
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: pork piece-pork piece-thick-red-meat food questobject
+This juicy piece of red meat has been grilled to perfection by the fat Frakati
+chef.  The sheer size of the meat shows the Frakati's incredible appetite, and
+the juices flowing off of it urge all who receive a piece to swallow it whole.~
+~~
+vnum: 8350
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pork piece-pork piece-thick-red-meat food questobject
+shortdesc: a piece of pork
+desc: A piece of thick red meat lies here on the ground.
+type: 19
+weight: 1.50
+cost: 10
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: pork piece-pork piece-thick-red-meat food questobject
+This juicy piece of red meat has been grilled to perfection by the fat Frakati
+chef.  The sheer size of the meat shows the Frakati's incredible appetite, and
+the juices flowing off of it urge all who receive a piece to swallow it whole.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 55213
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: perch fresh-perch shiny-slimy-fish food questobject
+shortdesc: some fresh perch
+desc: A shiny slimy fish lies here, recently gutted.
+type: 19
+weight: 1.00
+cost: 1
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fresh-perch shiny-slimy-fish food questobject
+Though uncooked, this fish looks mighty tasty.  It is the gutted body of a lake
+perch.  It has small scales and a short fat body.  Its nearly white flesh has a
+mild taste that should make for an enjoyable meal.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 18509
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: fish bit-raw-fish slimy-uncooked-filet questobject food
+shortdesc: a bit of raw fish
+desc: A slimy, uncooked filet lies here getting dirty.
+type: 19
+weight: 0.30
+cost: 3
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: fish bit-raw-fish slimy-uncooked-filet questobject food
+An utterly disgusting bit of uncooked fish is all that remains of a once truely
+unsightly flounder.~
+~~
+vnum: 349
+location: 127
+values:
+0
+3
+10
+5
+0
+0
+0
+~
+flags: dmoprstuvwx abefgh
+name: mace mace-disruption-mace mace-unspeakable-power
+shortdesc: the mace of disruption
+desc: A mace of unspeakable power beckons the dead to the grave.
+type: 5
+weight: 4.00
+cost: 1000
+timer: 0
+level: 90
+effects: m 0 o
+wear: 8193
+hiddenness: 0
+applies:
+13 50
+27 3
+~
+extradesc: mace mace-disruption-mace mace-unspeakable-power
+This relatively simple mace is almost completely unadorned.  It is perfectly
+smooth simple steel on well-varnished wood, lacking almost any distinctive
+characteristics.  It radiates no magic, which is often the case of artifacts of
+supreme power.  A single inscription is written around the base of the mace
+head, where it attaches to the haft.~
+extradesc: inscription
+The inscription reads: "I am the phoenix who guides the souls to the
+Netherworld when they go forth.  " It is clear this mace serves one purpose and
+one purpose only: to send the souls of the unquiet dead back to their eternal
+rest.~
+triggers:
+317
+319
+305
+~
+~~
+vnum: 48403
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: bmouvwyz abefgh
+name: shield-valor shield-painted-images-heroism-valor
+shortdesc: the Shield of Valor
+desc: A shield painted with images of heroism and valor lies here.
+type: 9
+weight: 7.00
+cost: 2000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 513
+hiddenness: 0
+applies:
+1 5
+24 -5
+27 3
+~
+extradesc: shield-valor shield-painted-images-heroism-valor
+The shield has many dents in it but seems quite sturdy.  The surface of the
+shield is painted with images of heroism and valor.  It original owner was
+surely a mighty warrior who held these values in high esteem.~
+~~

@@ -1,0 +1,70 @@
+name: Anokpanda
+password: An61NVP1iJ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 27
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20479
+birthtime: 1679313844
+timeplayed: 819
+lastlogintime: 1679314671
+host: 072.002.043.141
+height: 80
+weight: 310
+base_height: 80
+base_weight: 310
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 6
+lastlevel: 0
+hitpoints: 25/25
+mana: 0/0
+move: 114/114
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 82
+wisdom: 80
+dexterity: 78
+constitution: 72
+charisma: 64
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+203 1000
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+454 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+487 57
+0 0
+tells:
+$
+gossips:
+1679314301 Chinok gossips, 'welcome Anokpanda'
+1679314326 Chinok gossips, 'please just yell if you have any questions or need help'
+$

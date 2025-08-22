@@ -1,0 +1,138 @@
+name: Kria
+password: Krz4YOST2V
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%df&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 13
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17510
+birthtime: 1259891882
+timeplayed: 690101
+lastlogintime: 1335731454
+host: 070.170.088.071
+height: 67
+weight: 96
+base_height: 67
+base_weight: 96
+base_size: 2
+natural_size: 2
+alignment: -349
+playerflags: gxyz
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 100
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1181/1082
+mana: 980/980
+move: 138/138
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 76
+wisdom: 86
+dexterity: 90
+constitution: 96
+charisma: 74
+cash: 2379 48660 133154 1
+experience: 158708999
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+404 1000
+411 1000
+412 1000
+414 1000
+415 1000
+416 1000
+420 1000
+421 1000
+422 1000
+430 1000
+438 1000
+443 1000
+444 1000
+446 1000
+448 1000
+449 1000
+463 1000
+475 1000
+601 50
+602 50
+603 50
+604 50
+605 50
+606 50
+608 50
+0 0
+trophy:
+1 53021 2.000000
+1 53024 2.000000
+1 53006 2.000000
+1 53401 0.500000
+1 53304 1.000000
+1 53302 0.500000
+1 53313 1.000000
+1 55014 2.000000
+1 55017 0.500000
+1 55018 1.000000
+1 53415 2.000000
+1 53416 0.500000
+1 53424 5.500000
+1 53410 1.500000
+1 53402 1.000000
+1 53404 2.000000
+1 53414 1.000000
+1 53314 2.500000
+1 53311 2.500000
+1 53312 5.000000
+1 53407 7.000000
+0 0 0
+effects:
+601 19 60 26 0 0 0
+0 0 0 0 0
+aliases:
+kk kill lamprey
+aa assist dyren
+as assist skeleton
+az assist zombie
+aaa assist dyren
+rec recite green
+ds drink skin
+c corner
+rf rem flail
+cis chant 'ivory symphony'
+kb kill bile
+dk douse kip
+kr kill red
+kmm kill monk
+cr chant 'regen'
+km kill man
+dd drag kria east
+ggc get all.coins corpse
+gac get all corpse
+ec exa corpse
+kh kill hedge
+ks kill skeleton
+gaa get all all.corpse
+, dism
+cbh chant 'battle hymn'
+css chant 'shadows sorrow song'
+wf wield flail
+csm chant 'sonata of malaise'
+mmount mustang
+gb get bread bp; eat bread
+m mount warhorse
+cp chant 'peace'
+f fle
+ee drag dyren e
+oo open curtain
+ooo open door
+0

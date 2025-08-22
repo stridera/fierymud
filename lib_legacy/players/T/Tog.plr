@@ -1,0 +1,119 @@
+name: Tog
+password: ToGrnSf3G0
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 10
+race: 10
+level: 99
+home: 3038
+lifeforce: 0
+composition: 0
+id: 16425
+birthtime: 1174340825
+timeplayed: 1324112
+lastlogintime: 1434395091
+host: 050.150.041.243
+height: 75
+weight: 213
+base_height: 75
+base_weight: 213
+base_size: 3
+natural_size: 3
+alignment: -796
+playerflags: glxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 8050
+hunger: 21
+thirst: 18
+lastlevel: 8
+hitpoints: 1238/1139
+mana: 100/100
+move: 148/148
+damroll: 5
+hitroll: 4
+strength: 96
+intelligence: 64
+wisdom: 69
+dexterity: 99
+constitution: 85
+charisma: 54
+cash: 14 658 64665 45361
+experience: 105805999
+pagelength: 50
+quit_reason: 7
+saveroom: 8050
+skills:
+401 1000
+402 154
+403 50
+404 154
+410 162
+411 1000
+412 1000
+415 103
+416 115
+419 1000
+420 1000
+421 1000
+422 1000
+427 1000
+428 150
+430 236
+431 150
+434 150
+438 50
+443 50
+444 50
+463 150
+464 1000
+465 79
+466 150
+467 50
+468 150
+473 50
+474 50
+0 0
+trophy:
+1 18507 0.500000
+1 18518 0.500000
+1 16309 0.500000
+1 16308 0.500000
+1 16313 1.000000
+1 16310 0.500000
+1 18551 0.500000
+1 18504 1.000000
+1 18510 1.000000
+1 2808 0.500000
+1 11701 1.500000
+1 11702 1.000000
+1 11710 0.500000
+1 11750 2.000000
+1 5210 1.000000
+1 5200 5.000000
+1 5213 6.500000
+1 5212 1.000000
+1 5120 1.500000
+1 5484 0.500000
+1 5483 0.500000
+0 0 0
+aliases:
+3 as grym
+4 sell gem
+5 exam corpse
+55 g all all.corpse
+` flee
+1 wield dagger; wield dagger
+id recite identify $1
+12 rem dagger; wear shield
+13 rem dagger; rem dagger
+21 rem shield; wield dagger
+22 bodyslam
+6 level gain
+8 dri skin; dri skin; eat food; eat food;
+9 g all.food; g all.food all.corpse
+2 gt hitall
+0

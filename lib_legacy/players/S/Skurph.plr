@@ -1,0 +1,57 @@
+name: Skurph
+password: Sk/b2g6Thb
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18858
+birthtime: 1425756385
+timeplayed: 527
+lastlogintime: 1425762389
+host: 076.113.152.072
+height: 60
+weight: 163
+base_height: 60
+base_weight: 163
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 2
+lastlevel: 0
+hitpoints: 26/26
+mana: 1/0
+move: 110/110
+damroll: 3
+hitroll: 3
+strength: 93
+intelligence: 65
+wisdom: 71
+dexterity: 93
+constitution: 81
+charisma: 59
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0

@@ -1,0 +1,125 @@
+name: Yuhen
+password: YuqIZxsxDE
+description
+A pretty average guy.~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+poofin: &6&bA drizzle comes in from above, falling together to form Yuhen.&0
+poofout: &7Yu&6&bhen&0&6's &4&bbod&0&4y &blose&0&4ns in&bto a fl&0&6uid a&bnd drain&0&7s into &0&3the floor.&0
+autoinvis: 100
+sex: 1
+class: 21
+race: 0
+level: 101
+home: 1270
+lifeforce: 0
+composition: 0
+id: 17952
+birthtime: 1311401558
+timeplayed: 22659474
+lastlogintime: 1649569159
+host: 069.162.244.194
+height: 81
+weight: 768
+base_height: 37
+base_weight: 103
+base_size: 1
+natural_size: 2
+alignment: 823
+playerflags: gy
+effectflags: t 0 0
+prefflags: himnovACD c
+privflags: 0
+savingthrows: 0 0 0 0 0
+invislevel: 100
+loadroom: 1270
+lastlevel: 0
+hitpoints: 5787/5581
+mana: 1081/1081
+move: 100/100
+damroll: 35
+hitroll: 30
+strength: 100
+intelligence: 97
+wisdom: 60
+dexterity: 75
+constitution: 100
+charisma: 62
+cash: 11666 6889 33761 47811
+experience: 300000006
+pagelength: 50
+clan: 3
+logview: 40
+wiztitle: NULL&0
+quit_reason: 1
+saveroom: 1270
+trophy:
+1 1208 1.000000
+1 48001 2.000000
+1 2251 1.000000
+1 1200 1.000000
+1 2216 1.000000
+1 2215 1.000000
+1 2214 1.000000
+1 2213 1.000000
+1 2210 1.000000
+1 2211 4.000000
+1 2212 1.000000
+2 17298 1.000000
+1 11702 1.000000
+1 11701 1.000000
+1 11809 1.000000
+1 3090 2.000000
+2 17018 1.000000
+1 8010 1.000000
+1 16020 1.000000
+1 48912 1.000000
+1 11750 1.000000
+0 0 0
+tells:
+1618555479 @WDaedela@W tells you, 'I don't like having say convos in front of chinok@W'@0
+1619844420 @WKrax@W tells you, 'what clue are you supposed to used to find that door?@W'@0
+1619844443 @WKrax@W tells you, 'has the exact same text as the other rooms@W'@0
+1620098870 @WKost@W tells you, 'ty ty@W'@0
+1621145457 @WKrax@W tells you, 'what should I stay away from?@W'@0
+1621145470 @WKrax@W tells you, 'how do I know I am getting in too deep@W'@0
+1621145475 @WKrax@W tells you, 'no in fiery@W'@0
+1621145542 @WKrej@W tells you, 'nothing like walking straight into a lava pit@W'@0
+1621145548 @WKrej@W tells you, 'okay cool@W'@0
+1649568027 @WZaver@W tells you, 'haha forget you are an imm :D@W'@0
+$
+gossips:
+1624813262 Wittawat gossips, 'but dunno where to use?'
+1624813293 Wittawat gossips, 'all door in lab is no need to use key'
+1624813300 Wittawat gossips, 'no locked door'
+1624813389 Wittawat gossips, 'never see'
+1624813394 Wittawat gossips, 'may be missing out'
+1624813412 Wittawat gossips, '*nod*'
+1649178633 Leddie gossips, 'already tryed summon and steal'
+1649179047 Chinok gossips, 'yes, but depends on the mob...'
+1649179235 Leddie gossips, 'how about A dragon hairpiece made of carved ivory and jade is being worn by Hinazuru'
+1649179275 Leddie gossips, 'any way to get that?'
+$
+aliases:
+2 c 'stone' flike
+1 restore flike
+all get all all.corpse
+wecho gecho $*
+sam mudman1
+p give christmas $*
+inv invis 100
+snakepit 1628
+rats 48041
+heaven 1210
+inn 3054
+crater 1273
+no c 'superno'
+hellhounds 17321
+fd c 'flood'
+well c moonwell $*
+ha hitall
+boar load obj 2023
+bat load obj 36100
+orchid load obj 18003
+site www.nublue.com/fiery
+` show note yuhen
+0

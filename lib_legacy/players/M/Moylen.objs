@@ -1,0 +1,3247 @@
+1
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: adgoprstwx ae
+name: ring glittering-ruby-ring questobject
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 8
+3 2
+4 2
+5 2
+27 3
+~
+extradesc: ring glittering-ruby-ring questobject
+The ring has been formed of some mysterious reddish metal, the likes of which
+you are unfamiliar with.  A glittering ruby has been set in the ring.~
+~~
+vnum: 5201
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: adgoprstwx ae
+name: ring glittering-ruby-ring questobject
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 8
+3 2
+4 2
+5 2
+27 3
+~
+extradesc: ring glittering-ruby-ring questobject
+The ring has been formed of some mysterious reddish metal, the likes of which
+you are unfamiliar with.  A glittering ruby has been set in the ring.~
+~~
+vnum: 48102
+location: 3
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace coral-necklace fragile-pink-necklace
+shortdesc: a coral necklace
+desc: A fragile pink necklace catches your eye.
+type: 8
+weight: 0.30
+cost: 900
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+4 1
+3 -1
+13 15
+27 1
+~
+extradesc: necklace coral-necklace fragile-pink-necklace
+The coral necklace is made up of a variety of different pieces of coral.  This
+coral is brightly colored; whether the coral's coloration is natural or the
+result of pigments applied by the savages, you are unsure of.  In any event, it
+is a very pretty piece of jewelry.~
+~~
+vnum: 48102
+location: 4
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace coral-necklace fragile-pink-necklace
+shortdesc: a coral necklace
+desc: A fragile pink necklace catches your eye.
+type: 8
+weight: 0.30
+cost: 900
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+4 1
+3 -1
+13 15
+27 1
+~
+extradesc: necklace coral-necklace fragile-pink-necklace
+The coral necklace is made up of a variety of different pieces of coral.  This
+coral is brightly colored; whether the coral's coloration is natural or the
+result of pigments applied by the savages, you are unsure of.  In any event, it
+is a very pretty piece of jewelry.~
+~~
+vnum: 12304
+location: 5
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: dkopswxy e
+name: toga scintillating-toga piles-cloth-scintillating-sunlight sun-light
+shortdesc: a scintillating toga
+desc: Piles of cloth scintillating like sunlight hang from a branch.
+type: 9
+weight: 1.00
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+24 -5
+13 10
+27 2
+~
+extradesc: toga scintillating-toga piles-cloth-scintillating-sunlight sun-light
+Somehow, sunlight seems to have woven into a delicate fabric.  It hangs
+perfectly from the body, draping it in a delicate, gentle warmth.~
+~~
+vnum: 55433
+location: 6
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: adgmopqrstuvwxyz abefghj
+name: helm believer's-helm believers-helm divine-helm
+shortdesc: &5Believer's Helm&0
+desc: Resting on the ground is a divine helm.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+4 1
+13 7
+14 10
+27 2
+~
+extradesc: helm believer's-helm believers-helm divine-helm
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.~
+~~
+vnum: 55394
+location: 7
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: greaves acolyte-greaves magical-thin-metal-greaves magic
+shortdesc: acolyte greaves
+desc: A slightly magical set of thin metal greaves lies here.
+type: 9
+weight: 15.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+1 1
+13 7
+27 1
+~
+extradesc: greaves acolyte-greaves magical-thin-metal-greaves magic
+Newly forged, these magical metal greaves were made to reflect your acceptance
+to your god.  Treated well, they will carry you through your beginning trials
+and on to greater wisdom.~
+~~
+vnum: 55395
+location: 8
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: boots acolyte-boots magical-thin-metal-boots magic
+shortdesc: acolyte boots
+desc: A set of sligtly magical thin metal boots lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 10
+13 4
+27 1
+~
+extradesc: acolyte-boots slightly-magical-thin-metal-boots
+Newly forged, these magical metal boots were made to reflect your acceptance to
+your god.  Treated well, they will carry you through your beginning trials and
+on to greater wisdom.~
+~~
+vnum: 55439
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: adgmopqrstuvwxyz abefghj
+name: gauntlets believer's-gauntlets believers-gauntlets divine-gauntlets
+shortdesc: &5Believer's Gauntlets&0
+desc: Resting on the ground is a divine pair of gauntlets.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+3 1
+1 2
+27 2
+~
+extradesc: gauntlets believer's-gauntlets believers-gauntlets divine-gauntlets
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.~
+~~
+vnum: 55392
+location: 10
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: vambraces acolyte-vambraces magical-thin-metal-vambraces magic
+shortdesc: acolyte vambraces
+desc: A slightly magical set of thin metal vambraces lies here.
+type: 9
+weight: 11.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+2 1
+13 7
+27 1
+~
+extradesc: vambraces acolyte-vambraces magical-thin-metal-vambraces magic
+Newly forged, these magical metal vambraces were made to reflect your
+acceptance to your god.  Treated well, they will carry you through your
+beginning trials and on to greater wisdom.~
+~~
+vnum: 10308
+location: 12
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: agD 0
+name: cloak tundra-cloak pile snowy-white-cloth
+shortdesc: a tundra cloak
+desc: A pile of snowy white cloth has been carelessly dropped here.
+type: 9
+weight: 8.00
+cost: 5000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+13 5
+14 10
+4 3
+~
+extradesc: cloak tundra-cloak pile snowy-white-cloth
+This finely woven cloak is made of pure white satin with cotton embroidery
+marking out an abstract bird symbol on the back which, though it is also in
+white, shows up in string light due to the difference in luster between the two
+fabrics.  Long ties at the neck can be used to fasten the cloak against the
+chill winds of the north.  It looks like it would also make great camoflauge in
+the snow.~
+~~
+vnum: 18556
+location: 13
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: belt brown-rope-belt long-tied-piece-rope thick
+shortdesc: a brown rope belt
+desc: A long, tied piece of rope lies on the ground here.
+adesc:
+Nothing.~
+type: 9
+weight: 0.32
+cost: 45
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+2 2
+4 3
+13 10
+27 1
+~
+extradesc: brown-rope-belt long-tied-piece-rope thick
+This belt made from rope is very plain and simlistic.  Just the kind of thing a
+monk would wear.~
+~~
+vnum: 5209
+location: 14
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: adgprst 0
+name: bracelet quickening-bracelet reddish-metallic-bracelet
+shortdesc: a quickening bracelet
+desc: A reddish metallic bracelet is on the floor here.
+type: 8
+weight: 0.40
+cost: 450
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 10
+2 3
+14 15
+18 2
+27 2
+~
+extradesc: bracelet quickening-bracelet reddish-metallic-bracelet
+It looks very light-weight and definately has a magical aura about it.  The
+strange reddish metal is unlike anything you're used to.~
+~~
+vnum: 55438
+location: 15
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: adgmopqrstuvwxyz abefghj
+name: bracer believer's-bracer believers-bracer divine bracer
+shortdesc: &5Believer's Bracer&0
+desc: Resting on the ground is a small divine bracer.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+5 2
+13 20
+27 2
+~
+extradesc: divine believer belivers bracer believers-bracer
+Prayer and dedicated talent combine together to create this piece of
+divinely-imbued armor.  Granted to holy men and women to strengthen their
+connection to their chosen divinity, this armor is the sign of a journeyman
+cleric or priest.~
+~~
+vnum: 43007
+location: 16
+values:
+0
+3
+4
+6
+0
+0
+0
+~
+flags: myz fgh
+name: mace large-obsidian-mace
+shortdesc: an obsidian mace
+desc: A large obsidian mace rests on the ground here.
+type: 5
+weight: 6.00
+cost: 3000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+4 3
+27 1
+~
+extradesc: mace large-obsidian-mace
+The large, obsidian mace looks as if it's just waiting to crush someone's
+skull.~
+~~
+vnum: 18505
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bdgkmopstwxyD befgh
+name: book-discipline great tome questobject
+shortdesc: the Book of Discipline
+desc: A great tome is before you.
+type: 8
+weight: 1.30
+cost: 80
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 1
+3 1
+6 1
+27 1
+~
+extradesc: book-discipline great tome questobject
+Before you is the great Book of Discipline.  Written in it are the teachings of
+the great St.  George, to whom this monastery is dedicated to.  It is said that
+great wisdom is held by the tome.~
+triggers:
+5342
+~
+~~
+vnum: 18511
+location: 21
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: spectacles small-spectacles little-spectacles
+shortdesc: small spectacles
+desc: A pair of little spectacles rests here.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+3 2
+28 30
+27 1
+~
+extradesc: spectacles small-spectacles little-spectacles
+These spectacles are small and likely used for reading.  They have an odd and
+unique hexagonal frame around the glass portions, but look strong and
+well-used.~
+~~
+vnum: 5536
+location: 22
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: faceguard small-faceguard eldoria-reward face-guard 3rd-eldorian-guard-faceguard third
+shortdesc: a faceguard of the 3rd Eldorian Guard
+desc: A small faceguard lies here.
+type: 9
+weight: 1.40
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+18 1
+~
+~~
+vnum: 550
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: adeiopqrstwxy ae
+name: cuff shining-ear-cuff glint-light
+shortdesc: &7a sh&binin&6g &7ear c&7uff&0
+desc: A glint of light shines up from the ground.
+type: 8
+weight: 0.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+26 5
+28 15
+23 -2
+5 3
+27 2
+~
+~~
+vnum: 5401
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: earring tiny-silver-earring small-silver-stud
+shortdesc: a tiny silver earring
+desc: A small silver stud lies here.
+type: 8
+weight: 0.01
+cost: 10
+timer: 10
+level: 5
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+27 1
+13 3
+~
+extradesc: tiny-silver-earring small-silver-stud
+This simple silver stud is a perfect a lustrous accessory.~
+~~
+vnum: 5516
+location: 25
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: symbol eldoria-reward small-white-symbol holy-symbol-3rd-eldorian-guard third questobject
+shortdesc: a holy symbol of the 3rd Eldorian Guard
+desc: A small white symbol lies nearby.
+type: 9
+weight: 0.25
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 30
+14 25
+26 10
+27 1
+~
+extradesc: holy symbol eldoria-trophy small white 3rd-eldorian-guard-symbol
+A mild feeling of benevolence radiates from this white medal.~
+~~
+vnum: 48101
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: shell rainbow-shell seashell-glittering-rainbow-hues
+shortdesc: the Rainbow Shell
+desc: A seashell glittering with rainbow hues uplifts your spirit.
+type: 8
+weight: 2.00
+cost: 3000
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+26 5
+13 20
+27 1
+~
+extradesc: shell rainbow-shell seashell-glittering-rainbow-hues
+You can't help but be entranced by this beautiful shell.  As large as your
+hand, it is striated with rainbow colors that glitter in the light.  You know
+this shell would sell for a high price in any market, but do you really want to
+part with the sea's breathtaking work of art?~
+triggers:
+5324
+5332
+~
+~~
+vnum: 5212
+location: 27
+values:
+1
+400
+787
+0
+0
+0
+0
+~
+flags: DE g
+name: flame gray-flame grey-flame small-pillar fire questobject
+shortdesc: a gray flame
+desc: A small pillar of gray flame flickers here.
+type: 1
+weight: 0.50
+cost: 0
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+13 15
+2 1
+~
+extradesc: gray-flame grey-flame small-pillar questobject
+The fire seems at the same time both large, yet small, hot yet cold.  
+Strangely, you are able to pick it up in your hand.  Its luminosity is both too
+bright and too dim, yet seems to light the area perfectly.~
+triggers:
+5207
+~
+~~
+vnum: 16304
+location: 127
+values:
+0
+2
+4
+6
+0
+0
+0
+~
+flags: g 0
+name: quarterstaff large-quarterstaff quarter-staff
+shortdesc: a large quarterstaff
+desc: A large quarterstaff is here.
+type: 5
+weight: 2.00
+cost: 200
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+4 2
+~
+extradesc: large-quarterstaff quarter-staff
+The staff is about 8 feet long and seems to be rather easy to use.  In the
+hands of an expert, this would be devastating.~
+~~
+vnum: 58103
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: kimono neatly-folded autumn-themed-kimono colored-leaves patterned
+shortdesc: an autumn-themed kimono
+desc: A kimono patterned with colored leaves is lying here, neatly folded.
+adesc:
+Nothing.~
+type: 9
+weight: 1.20
+cost: 10000
+timer: 100
+level: 25
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+3 4
+4 4
+5 3
+~
+extradesc: kimono neatly-folded autumn-themed-kimono colored-leaves patterned
+Made of a raw, tan-colored silk that is much heavier than normal silk, the
+kimono is patterned with leaves of red, yellow, orange, and brown.  The leaves
+are embroidered on with silk thread, making them shine in the light.  The body
+of the kimono must have been made of raw silk so that the textures, both
+tactile and visual, would complement each other.  This robe is truly a work of
+art.    ~
+~~
+vnum: 55568
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: malachite gem malachite-dust
+shortdesc: some malachite dust
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 2312
+location: 127
+values:
+128
+128
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin waterskin water simple soco-waterskin
+shortdesc: a plain waterskin
+desc: A simple waterskin sits here.
+type: 17
+weight: 1.00
+cost: 30
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+extradesc: skin waterskin water simple soco-waterskin
+It's made of leather, and looks vaguely like a pouch, with a spout
+for drinking from.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 5205
+location: 127
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: jerky beef beef-jerky food
+shortdesc: a piece of beef jerky
+desc: A piece of beef jerky gathers dust here.
+type: 19
+weight: 0.30
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: jerky beef beef-jerky food
+This is a fairly sizable, and rather salty looking, piece of jerky.~
+~~
+vnum: 55001
+location: 127
+values:
+0
+3
+4
+5
+0
+0
+0
+~
+flags: bg 0
+name: club jade-headed-club jade-encrusted-club-solid-granite
+shortdesc: a jade-headed club
+desc: A jade-encrusted club of solid granite is hidden among the rocks.
+type: 5
+weight: 10.00
+cost: 2000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+3 3
+27 1
+~
+extradesc: club jade-headed-club jade-encrusted-club-solid-granite
+You look at a large granite club fashioned with many jade gems.  The club has
+many symbols carved into it as though they are a history of some battles.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 596
+location: 127
+values:
+500
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: basket cornucopia corn thanksgiving
+shortdesc: a &3cornucopia&0
+desc: A &3cornucopia&0 lies here on the ground, full beyond belief.
+type: 15
+weight: 1.20
+cost: 100
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 49035
+location: -1
+values:
+30
+57
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll fly paper scrap
+shortdesc: a scroll of fly
+desc: A scrap of paper blows in the wind.
+type: 2
+weight: 0.03
+cost: 2000
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: scroll fly paper scrap
+It has rune letters written upon it.~
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 2005
+location: 127
+values:
+1
+1
+5
+5
+0
+0
+0
+~
+flags: 0 0
+name: staff walking-staff
+shortdesc: a walking-staff
+desc: A staff rests here.
+type: 5
+weight: 2.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 30
+~
+extradesc: walking-staff
+This plain wooden staff is imbued with a peaceful feeling, making it useless in
+combat.  But it does help one walk rather nicely.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 58609
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: marigold-poultice soft-mass-marigold-mush questobject
+shortdesc: some marigold poultice
+desc: A soft mass of marigold mush burbles here.
+type: 12
+weight: 0.20
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: marigold-poultice soft-mass-marigold-mush questobject
+Varying shades of green, this poultice is crushed from freshly-picked
+marigolds.  It has a sickly scent, smelling strongly of herbs and medicine.~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag~
+~~
+vnum: 5520
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz fgh
+name: torque eldoria-reward small-torque 3rd-eldorian-guard-torque discarded iron third
+shortdesc: a torque of the 3rd Eldorian Guard
+desc: A small torque lies discarded nearby.
+type: 9
+weight: 2.10
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+extradesc: eldoria-reward small-torque 3rd-eldorian-guard-torque discarded iron third
+It's a torque made of twisted metal.  It looks fairly protective.~
+~~
+vnum: 8611
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tooth snake-tooth small-tooth earring
+shortdesc: a snake tooth
+desc: A small tooth with a post attached sits here in the dirt.
+type: 8
+weight: 0.01
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+2 2
+~
+extradesc: snake-tooth small-tooth earring
+This ivory colored white fang is as sharp as a pin.  This earring is a status
+symbol among the people who constructed it.~
+~~
+vnum: 3032
+location: 127
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag small
+shortdesc: a bag
+desc: A small bag is crumpled on the floor.
+type: 15
+weight: 1.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: small bag
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.~
+extradesc: label
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag~
+~~
+vnum: 299
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 18
+location: 127
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bag leather
+shortdesc: &3a small leather bag&0
+desc: &3A small leather bag is lying here.&0
+type: 15
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+triggers:
+51919
+~
+~~
+vnum: 19
+location: -1
+values:
+16
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: rations ration iron food
+shortdesc: some iron rations
+desc: Some iron rations have been set here.
+type: 19
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: iron rations
+These lightweight rations aren't the best-tasting, but they are the traveler's
+best food for long trips -- they never spoil, and fill the stomach for many
+hours.  There is dried meat of unknown origin here, mixed with nuts.  The whole
+mess is glued together into a bar by means of some waxy, fatty substance.    ~
+~~
+vnum: 3090
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: map small-map-mielikki-map old-roll-paper
+shortdesc: a small map of Mielikki
+desc: An old roll of paper lies here on the ground.
+type: 12
+weight: 0.20
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: map mielikki map-of-mielikki
+                  Mielikki, the forest town, by Kara-Sithri
+  
+                                                             &3***POINTS OF INTEREST***&0
+          &3#&0              &6&b2&0                                 |&6&b1&0: Temple to Mielikki
+          &9&b|              |&0                                 |&6&b2&0: Altar to Mielikki
+          &9&bSB&0         &B&1&b3&0 - &6&b1&0   &1???&0        &517&0 - &9&bNC&0            |&B&1&b3&0: Cleric Guild
+          &9&b|              |    |              |&0             |&B&1&b4&0: Warrior Guild
+      &521&0  &9&bSB        TC - TC - TC             NC -&0 &518&0       |&B&1&b5&0: Rogue Guild
+      &9&b|   |         |    |    |              |&0             |&B&1&b6&0: Sorcerer Guild
+      &2&b7&0 &9&b- SB -&0 &38&0    &9&bTC -&0 &C&4&b*&0 &9&b-  TC&0   &515&0 - &B&1&b4&0    &9&bNC -&0 &519&0       |&2&b7&0: Forest Inn
+          &9&b|         |    |    |    |         |&0             |&38&0: Post Office
+ &3#&0 &9&b- SQ - WM - WM - TC - TC - TC - EM - EM - CS - EM -&0 &3#&0   |&59&0: Drako's Bronze Shop
+     &9&b|          |   |         |              |&0             |&510&0: Garm's Shield Emporium
+ &59&0 &9&b- SR -&0 &510&0    &513&0  &514&0 &9&b-&0 &B&1&b5&0    &9&bDA - DA - DA   SC&0            |&511&0: Shauna's Hosue of Iron
+     &9&b|          |                  |    |    |&0             |&512&0: Beowyn's Steel
+&511&0 &9&b- SR -&0 &512&0    &B&1&b6&0        &3&b21&0        &516&0  &9&bdump  SC -&0 &520&0       |&513&0: Bigby's House of Magic
+     &9&b|                   |                   |&0             |&514&0: Fine Jewelry
+    &9&bNCP - NC - NC - NC - NC - NC - NC - NC - NCS&0           |&515&0: Santiago's Weapons
+          &9&b|              &0&1#&0&9&b         |&0                       |&516&0: Sloshed Squirrel Tavern
+     &9&bRP - RP - RP   TH - TH - TH   WW&0                      |&517&0: Helena's Bakery
+     &9&b|    |    |    |    |    |    |&0                       |&518&0: Aaron's General Store
+     &9&bRP -&0 &C&4&b*&0  &9&b- RP   TH - TH - TH   WW -&0 &1???&0                |&519&0: Lisa's House of Leather
+     &9&b|    |    |                   |&0                       |&520&0: Freddy's Toy Shop
+     &9&bRP - RP - RP                  WW&0                      |&521&0: Cartographer's Room
+          &9&b|                        |&0                       |&3&b22&0: Bank
+         &9&bGrey&0                      &3#&0                       |&C&4&b*&0: Fountain
+        &9&bCastle&0                                             |&3#&0: City Gates     
+                                                                 |&1???&0: New Adventures! 
+ 
+                                                               &9&b***ROADS***&0
+                                                           |SB: Sleepy Blvd.
+                                                           |SQ: Smelter's Sq.
+                                                           |WM: West main St.
+                                                           |TC: Town Center
+                                                           |EM: East Main St.
+                                                           |CS: Commerce Sq.
+                                                           |NC: N. Commerce Ave.
+                                                           |SC: S. Commerce Ave.
+                                                           |DA: Dark Alley
+                                                           |SR: Smelter's Row
+                                                           |NCP: New Castle Plaza
+                                                           |NC: New castle Rd.
+                                                           |NCS: New Castle Sq.
+                                                           |WW: Windy Way
+                                                           |RP: Royal Plaza
+                                                           |TH: Town Hall~
+extradesc: side2
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild~
+~~
+vnum: 55753
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: muyz abefgh
+name: vest coin-studded-boilded-woolen-vest coin-studded-vest
+shortdesc: a coin-studded, boiled woolen vest
+desc: A coin-studded vest rests here.
+type: 9
+weight: 4.00
+cost: 200
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+14 10
+~
+extradesc: coin-studded-boilded-woolen-vest coin-studded-vest
+This vest is made of black wool that's been boiled so it's almost as hard as
+leather.  All over its surface, it's studded with cheap nickel and bronze coins
+-- all sorts of different ones, from all sorts of different lands.~
+~~
+vnum: 2001
+location: -1
+values:
+15
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: meat boar-meat food questobject
+shortdesc: some boar meat
+desc: Dripping, raw meat attracts flies here.
+type: 19
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: meat boar raw
+It's raw meat.~
+~~
+vnum: 58603
+location: 127
+values:
+100
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: duffel duffel-bag bag satchel canvas-satchel canvas
+shortdesc: a duffel bag
+desc: A canvas satchel awaits its new owner.
+type: 15
+weight: 1.75
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+applies:
+17 4
+~
+extradesc: satchel canvas bag duffel
+A green sailcloth bag that closes at the top with a drawstring,
+this satchel seems like it'd hold a lot of stuff! Straps allow
+it to be worn as well as merely held.~
+~~
+vnum: 13662
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: earring peridot-earring
+shortdesc: a peridot earring
+desc: A peridot earring lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.01
+cost: 20
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+13 5
+3 1
+27 1
+~
+extradesc: peridot-earring
+Made with a steel backing, this drop earring has a peridot pendant.
+The pale green stone is faceted to catch the light.~
+~~
+vnum: 41114
+location: -1
+values:
+0
+1
+7
+11
+0
+0
+0
+~
+flags: 0 0
+name: knife wickedly-sharp-skean-dhu sharp-steel-knife
+shortdesc: a wickedly sharp skean-dhu
+desc: A sharp steel knife stands up from a block of wood.
+type: 5
+weight: 1.10
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+4 2
+~
+extradesc: knife wickedly-sharp-skean-dhu sharp-steel-knife
+The razor-sharp knife looks like it could peel the skin from your fingers
+without you noticing the cut until you started bleeding.  A custom-carved
+wooden handle makes it easy to grip.~
+~~
+vnum: 13662
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: earring peridot-earring
+shortdesc: a peridot earring
+desc: A peridot earring lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.01
+cost: 20
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+13 5
+3 1
+27 1
+~
+extradesc: peridot-earring
+Made with a steel backing, this drop earring has a peridot pendant.
+The pale green stone is faceted to catch the light.~
+~~
+vnum: 5532
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: kmyz fgh
+name: leggings eldoria-reward 3rd-eldorian-guard-leggings third
+shortdesc: leggings of the 3rd Eldorian Guard
+desc: Some leggings lie discarded nearby.
+type: 9
+weight: 4.90
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+3 2
+~
+~~
+vnum: 55393
+location: -1
+values:
+12
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: plate acolyte-plate magical-thin-metal-plate magic
+shortdesc: an acolyte plate
+desc: A slightly magical thin metal plate lies here.
+type: 9
+weight: 16.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+5 2
+13 10
+27 1
+~
+extradesc: acolyte-plate slight-magical-thin-metal-plate
+Newly forged, this magical metal plate was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.~
+~~
+vnum: 5526
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: k 0
+name: gloves eldoria-reward 3rd-eldorian-guard-gloves third leather
+shortdesc: gloves of the 3rd Eldorian Guard
+desc: Some gloves lie discarded here.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 12
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+3 2
+13 5
+~
+~~
+vnum: 12008
+location: -1
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: baldric emblazoned-baldric large-ornamented-belt leather
+shortdesc: an emblazoned baldric
+desc: A large, ornamented belt lies coiled here.
+type: 9
+weight: 1.25
+cost: 225
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+19 1
+~
+extradesc: emblazoned-baldric large-ornamented-belt leather
+This large, wide belt goes around the waist, up over the shoulders, to support
+a sword's sheath.  A lion rampant adorns the front of it, where it goes across
+the stomach.  The baldric seems very old; its owner hasn't taken good care of
+it -- the leather is cracked in places.~
+~~
+vnum: 13647
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: ring ring-green-leaves tiny-branches
+shortdesc: a ring of green leaves
+desc: A ring made of tiny branches and leaves lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.03
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+4 2
+~
+extradesc: ring-green-leaves tiny-branches
+The ring is made of tiny, slender branches, still living, their equally tiny
+green leaves forming a wreath.~
+~~
+vnum: 1617
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wristband wristband-nordus wrist-band city-logo
+shortdesc: the wristband of Nordus
+desc: A wristband, stamped with a city logo, lies here.
+type: 8
+weight: 0.80
+cost: 200
+timer: 20
+level: 5
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+4 1
+3 1
+~
+extradesc: wristband-nordus wrist-band city-logo
+This wristband is metal, but somehow slightly stretchy, almost elastic.  Its
+finely grained metal is stamped with the outline of a city; it appears to be
+Nordus.~
+~~
+vnum: 1617
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: wristband wristband-nordus wrist-band city-logo
+shortdesc: the wristband of Nordus
+desc: A wristband, stamped with a city logo, lies here.
+type: 8
+weight: 0.80
+cost: 200
+timer: 20
+level: 5
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+4 1
+3 1
+~
+extradesc: wristband-nordus wrist-band city-logo
+This wristband is metal, but somehow slightly stretchy, almost elastic.  Its
+finely grained metal is stamped with the outline of a city; it appears to be
+Nordus.~
+~~
+vnum: 13647
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: ring ring-green-leaves tiny-branches
+shortdesc: a ring of green leaves
+desc: A ring made of tiny branches and leaves lies here.
+adesc:
+Nothing.~
+type: 8
+weight: 0.03
+cost: 40
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+4 2
+~
+extradesc: ring-green-leaves tiny-branches
+The ring is made of tiny, slender branches, still living, their equally tiny
+green leaves forming a wreath.~
+~~
+vnum: 55391
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: dgmoprstwxyz abefgh
+name: helm acolyte-helm magical-thin-plate magic
+shortdesc: an acolyte helm
+desc: A slightly magical thin plate helm lies here.
+type: 9
+weight: 5.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+hiddenness: 0
+applies:
+27 1
+13 7
+~
+extradesc: helm acolyte-helm magical-thin-plate magic
+Newly forged, this magical metal helm was made to reflect your acceptance to
+your god.  Treated well, it will carry you through your beginning trials and on
+to greater wisdom.~
+~~
+vnum: 55803
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tail deer-tail
+shortdesc: a deer tail
+desc: A deer tail, disattached from its owner, lies here.
+type: 12
+weight: 0.08
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+18 1
+~
+extradesc: deer-tail
+It is a little white deer tail which has little strips of brown down the side.~
+~~
+vnum: 36100
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace bat-tooth-necklace sharp teeth
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+extradesc: bat-tooth-necklace sharp teeth
+When examined closely, it is easy to see the necklace was constructed hastily
+with clumsy hands.  The teeth vary in shape and size making you wonder if more
+than bat teeth were used.  Even with all of its flaws, you can tell the
+necklace held some significance to the owner.~
+~~
+vnum: 36100
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: necklace bat-tooth-necklace sharp teeth
+shortdesc: a bat tooth necklace
+desc: A necklace comprised of sharp teeth lies forgotten on the ground.
+type: 8
+weight: 0.40
+cost: 145
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+13 10
+18 1
+~
+extradesc: bat-tooth-necklace sharp teeth
+When examined closely, it is easy to see the necklace was constructed hastily
+with clumsy hands.  The teeth vary in shape and size making you wonder if more
+than bat teeth were used.  Even with all of its flaws, you can tell the
+necklace held some significance to the owner.~
+~~
+vnum: 55317
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: sleeves flimsy-leather-sleeves armor
+shortdesc: flimsy leather sleeves
+desc: A pile of flimsy leather armor lies here unusable.
+type: 8
+weight: 3.20
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sleeves flimsy-leather-sleeves armor
+These sleeves are flimsy beyond use.  Perhaps the Rogue guild master will know
+what to do with them.~
+~~

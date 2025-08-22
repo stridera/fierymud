@@ -1,0 +1,5423 @@
+1
+vnum: 12445
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: prs 0
+name: smoky quartz crystal faerie ring smoky-quartz-faerie-ring quartz-ring faerie-ring
+shortdesc: a &9&bsmoky quartz&0 ring
+desc: A ring with a smoky crystal has been dropped here.
+type: 8
+weight: 0.01
+cost: 12852
+timer: 0
+level: 90
+effects: 0 k 0
+wear: 3
+hiddenness: 0
+applies:
+4 3
+5 2
+24 -15
+13 25
+3 3
+27 4
+~
+extradesc: smoky quartz crystal faerie bracelet smoky-quartz-faerie-ring quartz-ring faerie-ring
+Smoky quartz is a powerful mystic matrix because it energizes like clear quartz
+but also has strong connections to the realms of sleep and dreams.  Set in
+silver, a ring like this provides powerful connections to both the moon and the
+Reverie, making it highly prized by faeries and witches alike.~
+~~
+vnum: 12406
+location: 2
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring light circle undulating small ring-light
+shortdesc: a ring of &7&blight&0
+desc: A small circle of undulating light floats in midair.
+type: 8
+weight: 0.01
+cost: 10000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+19 3
+3 3
+5 3
+2 3
+27 3
+~
+extradesc: ring light small circle undulating ring-light
+Warm to the touch and bright as the morning light, this small ring seems to
+have no physical structure or support.  It appears to have been made of light
+fused into a semi-solid and stable shape that adjusts naturally in size.~
+~~
+vnum: 431
+location: 3
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: A 0
+name: teardrop silver-teardrop tear-drop leather-cord-tear-shaped-piece-silver
+shortdesc: a silver teardrop
+desc: A leather cord with a tear shaped piece of silver has been lost here.
+type: 8
+weight: 0.15
+cost: 1000
+timer: 0
+level: 50
+effects: m 0 0
+wear: 16389
+hiddenness: 0
+applies:
+5 2
+4 2
+26 25
+27 4
+~
+extradesc: teardrop silver-teardrop tear-drop leather-cord-tear-shaped-piece-silver
+Said to have been shed from a silver wyrm as she lay dying while her hatchling
+were butchered by members of the black hearted 'Regis Mortis' troupe, this
+silver teardrop is encircled with a thin copper wire and anchored to black
+leather cord.  The tear is frigid to the touch and fills your mind with an
+eerie clarity and sense of beauty.~
+~~
+vnum: 12436
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: indigo gem leather cord gleaming starstone pendant gleaming-starstone-pendant starstone-pendant
+shortdesc: a gleaming &4&bstarstone&0 pendant
+desc: A gleaming indigo gem on a leather cord lays amongst the rocks.
+type: 8
+weight: 0.30
+cost: 4899
+timer: 0
+level: 90
+effects: 0 ijkl 0
+wear: 5
+hiddenness: 0
+applies:
+3 4
+1 4
+24 -10
+27 4
+6 4
+~
+extradesc: indigo gem leather cord gleaming starstone pendant gleaming-starstone-pendant starstone-pendant
+From a leather cord dangles a dark blue starstone pendant.  Hundreds of
+thousands of tiny mineral deposits within it reflect and refract light like
+stars twinkling in the dark, giving it its name.  Though starstone itself is
+not inherently magical, a pendant like this almost certainly is!~
+~~
+vnum: -1
+location: 5
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: oprswx e
+name: dark ombre robe luminescent sparkles robe scintillating stars robe-scintillating-stars robe-of-stars robe-stars
+shortdesc: a robe of &b&9sc&3i&b&9nt&3i&b&9ll&3a&b&9t&3i&b&9ng s&3ta&b&9rs&0
+desc: A dark ombre robe with shifting luminescent sparkles rests here.
+type: 9
+weight: 3.00
+cost: 22783
+timer: 0
+level: 90
+effects: 0 m 0
+wear: 9
+hiddenness: 0
+applies:
+24 -15
+2 2
+3 2
+13 25
+27 5
+~
+extradesc: dark ombre robe luminescent sparkles robe scintillating stars robe-scintillating-stars robe-of-stars robe-stars
+At first glance this robe appears to be multicolored sparkles set against
+blue-black ombre dyed fabric.  After watching it for a bit, you notice the
+flecks of color subtly drift amongst the fabric, which shifts and flows as the
+robe moves.  This is not just a representation of the night sky, but a
+recreation of the cosmos in physical form!~
+~~
+vnum: 55552
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: agnopqrstuvwxyz 0
+name: skullcap-seer skull-cap powerful-magic-skullcap
+shortdesc: &3&bSkullcap of the Seer&0
+desc: A powerful magic skullcap lies on the ground, waiting for its owner to return.
+type: 9
+weight: 0.85
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+1 4
+28 60
+27 3
+~
+extradesc: skullcap-seer skull-cap powerful-magic-skullcap
+Being in the presence of something like this is enough to know that deep arcane
+powers have been placed in this skullcap.  Made from simple cloth and studded
+with small aquamarines, it is not only very beautiful, it is capable of
+handling some of the most powerful enchantments.  This one is dedicated to
+seeing and clarity of vision.~
+~~
+vnum: 55555
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: agnopqrstuvwxyz 0
+name: leggings-seer enchanted-leggings
+shortdesc: &3&bLeggings of the Seer&0
+desc: Folded neatly in a bag here is a pair of deeply enchanted leggings.
+type: 9
+weight: 2.40
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+5 3
+27 3
+18 2
+~
+extradesc: leggings-seer enchanted-leggings
+These long velvet leggings are given to very wise mages to assist in their
+pursuit of magical knowledge.  Usually crafted for a formal dedication
+ceremony, much room for magical development is left with these leggings,
+allowing them to grow with their wearer as a caster's magic grows in power.~
+~~
+vnum: 6422
+location: 8
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: inopqrstuvwxyzABD 0
+name: boots ashen-leather-boots singed-gray-boots-dark-leather eone
+shortdesc: ashen leather boots
+desc: Singed gray boots of dark leather await their owner here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+14 100
+27 4
+~
+extradesc: ashen-leather-boots singed-gray-boots-dark-leather
+These boots were once magnificently rich and beautiful, crafted from smooth
+leather and lightly decorated with blood-red tassels.  Only remnants of the
+boots' previous splendor remains, burned away by some unknown fire.  Somehow
+the boots were not completely consumed, perhaps by some magical protection.~
+~~
+vnum: 52003
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: gloves black-gloves fabric
+shortdesc: a pair of black gloves
+desc: A pair of black gloves lies here.
+type: 9
+weight: 0.75
+cost: 500
+timer: 0
+level: 75
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+4 2
+3 3
+27 3
+~
+extradesc: gloves black-gloves fabric
+These gloves are jet black, nearly dark as the night sky with no moon.  There
+are even small twinkles like the stars.~
+~~
+vnum: 55553
+location: 10
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: adgnopqrstuvwxyz abeij
+name: sleeves-seer archmage's-long-elegant-sleeves archemages-long-elegant-sleeves
+shortdesc: &3&bSleeves of the Seer&0
+desc: Some archmage's long, elegant sleeves lie folded on a stand.
+type: 9
+weight: 1.90
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+3 1
+4 1
+13 20
+28 10
+27 3
+~
+extradesc: sleeves-seer archmage's-long-elegant-sleeves archemages-long-elegant-sleeves
+Made from rich velvet, these sleeves bear the residual magic of many, many
+uses.  Originally crafted for a great archmage and clearly enchanted during
+that process, these sleeves have since taken on addition power from being used
+in numerous arcane rituals.~
+~~
+vnum: 48801
+location: 12
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gopwxD 0
+name: stormcloak storm-cloak glittering-cloak
+shortdesc: the Stormcloak
+desc: Someone has dropped a glittering cloak here.
+type: 9
+weight: 4.00
+cost: 12000
+timer: 0
+level: 90
+effects: u 0 0
+wear: 1025
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: stormcloak storm-cloak glittering-cloak
+You behold the legendary Stormcloak, once worn by the mighty Stormlord, Holder
+of Tempests, himself.  The dark indigo cloth the cloak is made of scintillates,
+giving the impression of thousands of tiny indigo-colored gems woven right into
+its brocade surface.  It's quite heavy, with a handspan-wide collar held
+together by a bronze clasp, beautifully worked into the shape of a horned demon
+whose raised fists make the clasp circular in form.  The ankle-length cloak is
+lined in black silk and edged in crimson.  Your blood stirs inside you as you
+look at it, touch it.~
+~~
+vnum: 12498
+location: 13
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: ag 0
+name: silver belt stars lights glimmering sparkling star-belt belt-of-stars
+shortdesc: a belt of &7&bs&6t&7a&6r&7s&0
+desc: Glimmering with incredible beauty is a silver belt set with sparkling lights.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 90
+effects: y 0 o
+wear: 2049
+hiddenness: 0
+applies:
+4 5
+5 5
+3 5
+24 -15
+6 5
+27 5
+~
+extradesc: silver belt stars lights glimmering sparkling star-belt belt-of-stars
+This belt appears to be made of small silver discs set with dark blue starstone
+hemispheres.  However, upon closer inspection, you realize the glittering dots
+within the hemispheres are not merely reflecting light - they are diminutive
+pinpoints of luminescence contained in some kind of crystalline matrix.  They
+swirl and float, giving a cosmic life to each disc.  Surely a treasure like
+this must be a gift from the Gods!~
+~~
+vnum: -1
+location: 14
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: ginoprstuvwxAD 0
+name: binding planar-binding large-silvery-ring
+shortdesc: a planar binding
+desc: A large silvery ring gleams here.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 90
+effects: 0 q 0
+wear: 20481
+hiddenness: 0
+applies:
+13 40
+17 3
+3 3
+27 5
+~
+extradesc: planar-binding large-silvery-ring
+This large silvery ring looks like it could fit loosely around a wrist.  A
+series of random runes is etched into the band.  This metal has the odd
+property that runes written in ink upon its surface become permanently etched
+in silver.~
+~~
+vnum: -1
+location: 15
+values:
+50
+0
+0
+0
+0
+0
+0
+~
+flags: ginoprstuvwxAD 0
+name: binding planar-binding large-silvery-ring
+shortdesc: a planar binding
+desc: A large silvery ring gleams here.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 90
+effects: 0 q 0
+wear: 20481
+hiddenness: 0
+applies:
+13 40
+17 3
+3 3
+27 5
+~
+extradesc: planar-binding large-silvery-ring
+This large silvery ring looks like it could fit loosely around a wrist.  A
+series of random runes is etched into the band.  This metal has the odd
+property that runes written in ink upon its surface become permanently etched
+in silver.~
+~~
+vnum: 319
+location: 16
+values:
+0
+10
+4
+15
+0
+0
+0
+~
+flags: dnoprstuvwx abcij
+name: staff staff-glorious-flame-staff glorious-rowan-staff-fiery-might fire
+shortdesc: the staff of the glorious flame
+desc: A glorious rowan staff radiating with fiery might burns here.
+type: 5
+weight: 3.00
+cost: 10000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+13 50
+1 5
+27 3
+~
+extradesc: staff staff-glorious-flame-staff glorious-rowan-staff-fiery-might fire
+This glorious staff, fashioned from a length of rowan nearly the size of an
+adult human, represents pinnacle mastery over the very essence of elemental
+fire itself.  Decorated heavily with runes and sigils of fire and flame and
+topped with a large pure ruby, the staff is an exquisite masterwork of
+elemental craftsmanship - the perfect synthesis of art and magic.~
+triggers:
+303
+304
+305
+~
+~~
+vnum: 492
+location: 18
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: degnopqrsuvwxyzAD a
+name: feather metal-peacock-feather rainbows pen quill large-feather
+shortdesc: a metal peacock feather
+desc: Rainbows shimmer across a large feather lying here.
+type: 21
+weight: 0.84
+cost: 43240
+timer: 0
+level: 90
+effects: de 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+3 5
+4 5
+13 100
+27 3
+17 10
+~
+~~
+vnum: 12405
+location: 21
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: radiance dawn light radiant pools radiance-dawn
+shortdesc: the &7&br&3a&7d&3ia&7nc&3e&0 of the &7&bd&0&3&baw&0&7&bn&0
+desc: Light coalesces here in radiant pools on the ground.
+type: 8
+weight: 0.01
+cost: 15000
+timer: 0
+level: 90
+effects: cdef 0 o
+wear: 65537
+hiddenness: 0
+applies:
+4 2
+5 1
+6 1
+28 100
+27 5
+~
+extradesc: radiance dawn light radiant pools radiance-dawn
+What can only be described as liquid light has collected into a small fluid
+pool.  Picking it up, the pool splits into two small droplets of equal size.  
+Strangely, they do not leave any smears or traces behind, remaining perfectly
+coherent.~
+~~
+vnum: 493
+location: 22
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: mask mask-neris slender-burial-mask golden gold
+shortdesc: the Mask of Neris
+desc: A slender burial mask gleams golden under a film of dust.
+type: 8
+weight: 0.58
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+2 -2
+13 33
+24 -20
+27 4
+~
+extradesc: mask mask-neris slender-burial-mask golden gold
+The mask is hammered from a large, single mass of smooth gold.  Various jewels
+glint in its surface, embedded carefully in its facial features.  Two large
+rubies form the eyes of the mask, perhaps the most prominent feature of the
+mask.  An aura of power seems to radiate from the mask, causing you to wonder
+who such a mask might have belonged to.~
+~~
+vnum: 53502
+location: 23
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gklA 0
+name: stud tiny-white-stud miniscule-speck-white earring
+shortdesc: a tiny white stud
+desc: A miniscule speck of white almost escapes detection here.
+type: 8
+weight: 0.01
+cost: 3420
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+4 2
+6 2
+13 17
+27 3
+~
+extradesc: stud tiny-white-stud miniscule-speck-white earring
+Small and round, this ear stud is made of an odd white metal and shaped
+somewhat like a little sphere.  It feels cool against skin, strangely drawn to
+it as if magnetic, allowing it to stick to an ear without a piercing.~
+~~
+vnum: 53502
+location: 24
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: gklA 0
+name: stud tiny-white-stud miniscule-speck-white earring
+shortdesc: a tiny white stud
+desc: A miniscule speck of white almost escapes detection here.
+type: 8
+weight: 0.01
+cost: 3420
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+4 2
+6 2
+13 17
+27 3
+~
+extradesc: stud tiny-white-stud miniscule-speck-white earring
+Small and round, this ear stud is made of an odd white metal and shaped
+somewhat like a little sphere.  It feels cool against skin, strangely drawn to
+it as if magnetic, allowing it to stick to an ear without a piercing.~
+~~
+vnum: 549
+location: 25
+values:
+11
+0
+0
+0
+0
+0
+0
+~
+flags: ehiqAB 0
+name: crest crest-dragon-hunter dragon-crest
+shortdesc: &3&bCrest&2 of the &0&2Dragon&1&b Hunter&0
+desc: A dragon crest shines brightly from the ground.
+type: 8
+weight: 1.00
+cost: 0
+timer: 0
+level: 80
+effects: 0 i 0
+wear: 524289
+hiddenness: 0
+applies:
+13 80
+23 -20
+20 -10
+24 -10
+27 2
+19 1
+~
+~~
+vnum: 12411
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bell small-silver-bell
+shortdesc: a small silver bell
+desc: A bell chiming a beautiful tone hangs in the wind.
+type: 9
+weight: 0.02
+cost: 1000
+timer: 0
+level: 90
+effects: 0 jk 0
+wear: 1064961
+hiddenness: 0
+applies:
+24 -10
+14 10
+27 4
+3 2
+4 2
+~
+extradesc: small silver bell small-silver-bell silver-bell
+Inscribed with symbols of water and celestial bodies, this conical handbell has
+an appearance as beautiful as its sound.  The small hand bell is well polished
+and cleaned, though evidence of wear and use can be seen inside the cone.~
+~~
+vnum: 12499
+location: 27
+values:
+1
+-1
+-1
+0
+0
+0
+0
+~
+flags: abgD 0
+name: pinpoint light star seed starseed
+shortdesc: a &7&bstarseed&0
+desc: A single pinpoint of light twinkles against the dome of the sky.
+adesc:
+A starseed twinkles brilliantly as you lift it aloft, illuminating your surroundings.~
+type: 1
+weight: 0.00
+cost: 0
+timer: 0
+level: 90
+effects: h 0 o
+wear: 2900225
+hiddenness: 0
+applies:
+27 5
+17 2
+4 2
+3 2
+5 2
+24 -15
+~
+extradesc: pinpoint light star seed starseed
+Examining this tiny light more closely, it becomes obvious this is no meager
+glass or crystal.  It is the heart of a newborn star, breathed into creation
+through divine providence.  Within it lay all the hopes and dreams of creation,
+which perhaps could become another legendary soul, or a cosmic array of life
+and potential.~
+~~
+vnum: 1207
+location: 127
+values:
+100000
+1
+0
+0
+90
+0
+0
+~
+flags: D 0
+name: hole portable-hole large-black-hole
+shortdesc: a portable hole
+desc: A large black hole lies here folded upon itself.
+type: 15
+weight: 15.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+~~
+vnum: 53504
+location: -1
+values:
+0
+10
+6
+6
+0
+0
+0
+~
+flags: gklmopstvwxyz 0
+name: staff elaborately-chiseled-staff deep-brown-maple-staff
+shortdesc: an elaborately chiseled staff
+desc: Complex elven runes run up and down a deep-brown maple staff resting here.
+type: 5
+weight: 3.00
+cost: 8340
+timer: 0
+level: 75
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 50
+14 50
+24 -8
+21 -8
+~
+extradesc: elaborately-chiseled-staff deep-brown-maple-staff
+The staff has intricate elven runes across its length, telling of histories
+long ago past.  Finely chiseled from a heavy dark brown maple wood, it has a
+carved handle two-thirds of the way up so it may be held without covering any
+of the runes.    ~
+triggers:
+53504
+~
+~~
+vnum: 49250
+location: -1
+values:
+60
+2
+2
+42
+0
+0
+0
+~
+flags: agnopqrstvwxyzD 0
+name: staff mystic mystics
+shortdesc: the Staff of the &5My&9&bst&5&bics&0
+desc: A lightly &5&bglowing&0 staff floats just above the ground.
+adesc:
+Glowing with a strange aura, this staff seems to be centuries
+old. The creator of this staff must have a been great sorcerer,
+for the power eminating from it would make even the greatest
+of mages shudder in disbelief.~
+type: 4
+weight: 4.00
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 30
+~
+extradesc: staff mystic mystics
+Glowing with a strange aura, this staff seems to be centuries old.  The creator
+of this staff must have been a great sorcerer, for the power eminating from it
+would make even the greatest of mages shudder in disbelief.    ~
+triggers:
+49227
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx 0
+name: staff carved-ivory-staff intricately-carved-ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -20
+26 10
+27 2
+~
+extradesc: staff carved-ivory-staff intricately-carved-ivory-staff
+It is covered in intricate carvings which seem to indicate its use.~
+extradesc: carving carvings
+The carvings seem to show a group of people vanishing from one room and
+appearing in another.~
+~~
+vnum: 48901
+location: -1
+values:
+99
+3
+3
+54
+0
+0
+0
+~
+flags: agopwx 0
+name: staff rogue's-staff rogues-staff gem-encrusted-staff
+shortdesc: the Rogue's Staff
+desc: A gem-encrusted staff lies on the ground here.
+type: 4
+weight: 5.00
+cost: 20000
+timer: 0
+level: 95
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 -100
+2 -10
+~
+extradesc: staff rogue's-staff rogues-staff gem-encrusted-staff
+The bronze staff in your hands is huge-- it's almost too large to hold
+effectively.  It pulses with power, its gemstone decorations lit as if from
+some inner radiance.  A crystal on its tip sparkles with light.  Your hands
+tingle at contact with it.  You wonder what it does.~
+~~
+vnum: 3217
+location: -1
+values:
+15
+2
+2
+23
+0
+0
+0
+~
+flags: g 0
+name: staff serpentine
+shortdesc: a green serpentine staff
+desc: A green serpentine staff has been left here.
+type: 4
+weight: 4.00
+cost: 6600
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: staff serpentine
+It looks like a very sturdy hand-crafted staff made out of oak. The
+staff has been carved to resemble a serpent.~
+~~
+vnum: 53504
+location: -1
+values:
+0
+10
+6
+6
+0
+0
+0
+~
+flags: gklmopstvwxyz cefgh
+name: staff elaborately-chiseled-staff deep-brown-maple-staff
+shortdesc: an elaborately chiseled staff
+desc: Complex elven runes run up and down a deep-brown maple staff resting here.
+type: 5
+weight: 3.00
+cost: 8340
+timer: 0
+level: 75
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 50
+14 50
+24 -8
+21 -8
+~
+extradesc: elaborately-chiseled-staff deep-brown-maple-staff
+The staff has intricate elven runes across its length, telling of histories
+long ago past.  Finely chiseled from a heavy dark brown maple wood, it has a
+carved handle two-thirds of the way up so it may be held without covering any
+of the runes.    ~
+triggers:
+53504
+~
+~~
+vnum: 3217
+location: -1
+values:
+15
+2
+2
+23
+0
+0
+0
+~
+flags: g 0
+name: staff serpentine
+shortdesc: a green serpentine staff
+desc: A green serpentine staff has been left here.
+type: 4
+weight: 4.00
+cost: 6600
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: staff serpentine
+It looks like a very sturdy hand-crafted staff made out of oak. The
+staff has been carved to resemble a serpent.~
+~~
+vnum: 6906
+location: -1
+values:
+0
+3
+3
+12
+0
+0
+0
+~
+flags: agoprswx ae
+name: staff green-staff-growing thin-hollow-staff wisdom
+shortdesc: the Green Staff of Growing
+desc: A thin hollow staff glows with a green aura.
+adesc:
+$n taps $p on the ground three times.~
+type: 4
+weight: 3.00
+cost: 25
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+~
+extradesc: green-staff-growing thin-hollow-staff wisdom
+The thin staff is as light as a hollowed out tube, but as strong as any metal
+sword picked off the forge.  The green glow radiating from the brown oak gives
+the impression that the stick is naturally green.  The glow seems to emanate a
+deep wisdom.    ~
+~~
+vnum: 53306
+location: -1
+values:
+60
+5
+5
+23
+0
+0
+0
+~
+flags: dgjoprstwx ae
+name: staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw
+shortdesc: a dragon's claw staff
+desc: An oaken staff with the head of dragon's claw rests here.
+type: 4
+weight: 7.00
+cost: 1900
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw
+This thin wooden staff is made of deep rich oak.  A cap made of silver protects
+the base of the stick.  At its head is a small dragon's claw that clutches a
+sapphire stone made of the richest blue you have ever seen.  An aura of power
+surrounds the staff.~
+~~
+vnum: 53306
+location: -1
+values:
+60
+5
+5
+23
+0
+0
+0
+~
+flags: dgjoprstwx ae
+name: staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw
+shortdesc: a dragon's claw staff
+desc: An oaken staff with the head of dragon's claw rests here.
+type: 4
+weight: 7.00
+cost: 1900
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw
+This thin wooden staff is made of deep rich oak.  A cap made of silver protects
+the base of the stick.  At its head is a small dragon's claw that clutches a
+sapphire stone made of the richest blue you have ever seen.  An aura of power
+surrounds the staff.~
+~~
+vnum: 53306
+location: -1
+values:
+60
+5
+5
+23
+0
+0
+0
+~
+flags: dgjoprstwx ae
+name: staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw
+shortdesc: a dragon's claw staff
+desc: An oaken staff with the head of dragon's claw rests here.
+type: 4
+weight: 7.00
+cost: 1900
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw
+This thin wooden staff is made of deep rich oak.  A cap made of silver protects
+the base of the stick.  At its head is a small dragon's claw that clutches a
+sapphire stone made of the richest blue you have ever seen.  An aura of power
+surrounds the staff.~
+~~
+vnum: 3033
+location: -1
+values:
+20
+1
+1
+3
+0
+0
+0
+~
+flags: 0 0
+name: cane short-cane mayor's-cane
+shortdesc: the mayor's cane
+desc: A short cane is resting here in the way.
+type: 3
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: short-cane mayor's-cane
+The mayor's cane is simply a short piece of wood to help him with walking in
+his old age.  It is probably worthless otherwise.~
+triggers:
+6019
+~
+~~
+vnum: 13604
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: cane short-wooden-cane
+shortdesc: a wooden cane
+desc: A short wooden cane was left here on the ground.
+type: 12
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 20
+~
+extradesc: short-wooden-cane
+It is a wooden cane, just long enough to hold onto its bulbous end and use to
+aid in walking.  It's slightly dinged up from time and the elements, but it
+maintains its usefulness.~
+~~
+vnum: 3033
+location: -1
+values:
+20
+1
+1
+3
+0
+0
+0
+~
+flags: 0 0
+name: cane short-cane mayor's-cane
+shortdesc: the mayor's cane
+desc: A short cane is resting here in the way.
+type: 3
+weight: 2.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: short-cane mayor's-cane
+The mayor's cane is simply a short piece of wood to help him with walking in
+his old age.  It is probably worthless otherwise.~
+triggers:
+6019
+~
+~~
+vnum: 13604
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: cane short-wooden-cane
+shortdesc: a wooden cane
+desc: A short wooden cane was left here on the ground.
+type: 12
+weight: 2.00
+cost: 20
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 20
+~
+extradesc: short-wooden-cane
+It is a wooden cane, just long enough to hold onto its bulbous end and use to
+aid in walking.  It's slightly dinged up from time and the elements, but it
+maintains its usefulness.~
+~~
+vnum: 16309
+location: -1
+values:
+15
+3
+2
+29
+0
+0
+0
+~
+flags: 0 0
+name: wand black-wand
+shortdesc: a black wand
+desc: A black wand is here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand black-wand
+The wand is jet black in colour, and it seems to absorb all the light that
+falls on it. Etched on one end are the words:
+           May the eyes never set their sights on me.~
+~~
+vnum: 12533
+location: -1
+values:
+80
+4
+4
+26
+0
+0
+0
+~
+flags: 0 0
+name: wand smoking ash
+shortdesc: an ash wand
+desc: An ash wand gives off wisps of dark smoke. 
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand ash smoking
+The ash wand is blackened near its tip, and wisps of smoke curl from that end.
+The wand is warm to the touch, but not hot enough to be painful.    ~
+~~
+vnum: 12533
+location: -1
+values:
+80
+4
+4
+26
+0
+0
+0
+~
+flags: 0 0
+name: wand smoking ash
+shortdesc: an ash wand
+desc: An ash wand gives off wisps of dark smoke. 
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand ash smoking
+The ash wand is blackened near its tip, and wisps of smoke curl from that end.
+The wand is warm to the touch, but not hot enough to be painful.    ~
+~~
+vnum: 17203
+location: -1
+values:
+10
+7
+7
+32
+0
+0
+0
+~
+flags: gnoprtu 0
+name: wand sorcerer ebony
+shortdesc: the sorcerer's wand
+desc: An ebony wand is left here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand sorcerer ebony
+The wand is made of fire blackened wood, as if it has been burnt before. The
+words 'AURAM' is burnt into its base.~
+~~
+vnum: 16309
+location: -1
+values:
+15
+3
+1
+29
+0
+0
+0
+~
+flags: 0 0
+name: wand black-wand
+shortdesc: a black wand
+desc: A black wand is here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand black-wand
+The wand is jet black in colour, and it seems to absorb all the light that
+falls on it. Etched on one end are the words:
+           May the eyes never set their sights on me.~
+~~
+vnum: 52004
+location: -1
+values:
+80
+5
+5
+42
+0
+0
+0
+~
+flags: agoprt 0
+name: wand-sagece dusty-cracked-old-wand
+shortdesc: the Wand of Sagece
+desc: A dusty, cracked, old wand sits here.
+type: 3
+weight: 0.60
+cost: 1400
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand-sagece dusty-cracked-old-wand
+This is a wonderful, magical wand, capable of acts beyond normal imagination.
+It is about two feet long, with a small dragon head at the top.~
+~~
+vnum: 52004
+location: -1
+values:
+80
+5
+5
+42
+0
+0
+0
+~
+flags: agoprt 0
+name: wand-sagece dusty-cracked-old-wand
+shortdesc: the Wand of Sagece
+desc: A dusty, cracked, old wand sits here.
+type: 3
+weight: 0.60
+cost: 1400
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand-sagece dusty-cracked-old-wand
+This is a wonderful, magical wand, capable of acts beyond normal imagination.
+It is about two feet long, with a small dragon head at the top.~
+~~
+vnum: 55017
+location: -1
+values:
+40
+2
+2
+4
+0
+0
+0
+~
+flags: g 0
+name: wand crystal-wand wand-crystal
+shortdesc: a crystal wand
+desc: A wand of crystal lies here in the snow.
+type: 3
+weight: 3.00
+cost: 150
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand crystal-wand wand-crystal
+You hold a simple, small crystal stick.  It has a brilliant streak of red
+running through its center.  The red glows slightly.~
+~~
+vnum: 52004
+location: -1
+values:
+80
+5
+5
+42
+0
+0
+0
+~
+flags: adgoprstwx ae
+name: wand-sagece dusty-cracked-old-wand
+shortdesc: the Wand of Sagece
+desc: A dusty, cracked, old wand sits here.
+type: 3
+weight: 0.60
+cost: 1400
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand-sagece dusty-cracked-old-wand
+This is a wonderful, magical wand, capable of acts beyond normal imagination.
+It is about two feet long, with a small dragon head at the top.~
+~~
+vnum: 52004
+location: -1
+values:
+80
+5
+5
+42
+0
+0
+0
+~
+flags: adgoprstwx ae
+name: wand-sagece dusty-cracked-old-wand
+shortdesc: the Wand of Sagece
+desc: A dusty, cracked, old wand sits here.
+type: 3
+weight: 0.60
+cost: 1400
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand-sagece dusty-cracked-old-wand
+This is a wonderful, magical wand, capable of acts beyond normal imagination.
+It is about two feet long, with a small dragon head at the top.~
+~~
+vnum: 52004
+location: -1
+values:
+80
+5
+5
+42
+0
+0
+0
+~
+flags: adgoprstwx ae
+name: wand-sagece dusty-cracked-old-wand
+shortdesc: the Wand of Sagece
+desc: A dusty, cracked, old wand sits here.
+type: 3
+weight: 0.60
+cost: 1400
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand-sagece dusty-cracked-old-wand
+This is a wonderful, magical wand, capable of acts beyond normal imagination.
+It is about two feet long, with a small dragon head at the top.~
+~~
+vnum: 12533
+location: -1
+values:
+80
+4
+4
+26
+0
+0
+0
+~
+flags: 0 0
+name: wand smoking ash
+shortdesc: an ash wand
+desc: An ash wand gives off wisps of dark smoke. 
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand ash smoking
+The ash wand is blackened near its tip, and wisps of smoke curl from that end.
+The wand is warm to the touch, but not hot enough to be painful.    ~
+~~
+vnum: 16309
+location: -1
+values:
+15
+3
+2
+29
+0
+0
+0
+~
+flags: 0 0
+name: wand black-wand
+shortdesc: a black wand
+desc: A black wand is here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand black-wand
+The wand is jet black in colour, and it seems to absorb all the light that
+falls on it. Etched on one end are the words:
+           May the eyes never set their sights on me.~
+~~
+vnum: 16309
+location: -1
+values:
+15
+3
+2
+29
+0
+0
+0
+~
+flags: 0 0
+name: wand black-wand
+shortdesc: a black wand
+desc: A black wand is here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand black-wand
+The wand is jet black in colour, and it seems to absorb all the light that
+falls on it. Etched on one end are the words:
+           May the eyes never set their sights on me.~
+~~
+vnum: 12533
+location: -1
+values:
+80
+4
+4
+26
+0
+0
+0
+~
+flags: 0 0
+name: wand smoking ash
+shortdesc: an ash wand
+desc: An ash wand gives off wisps of dark smoke. 
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand ash smoking
+The ash wand is blackened near its tip, and wisps of smoke curl from that end.
+The wand is warm to the touch, but not hot enough to be painful.    ~
+~~
+vnum: 53311
+location: -1
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+17 1
+27 2
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+~~
+vnum: 53311
+location: -1
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+17 1
+27 2
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+~~
+vnum: 53311
+location: -1
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+17 1
+27 2
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+~~
+vnum: 53311
+location: -1
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+17 1
+27 2
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+~~
+vnum: 53311
+location: -1
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+17 1
+27 2
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+~~
+vnum: 53311
+location: -1
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+17 1
+27 2
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+~~
+vnum: 53311
+location: -1
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+17 1
+27 2
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+~~
+vnum: 53311
+location: -1
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+17 1
+27 2
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+~~
+vnum: 48009
+location: -1
+values:
+80
+3
+3
+25
+0
+0
+0
+~
+flags: agjnoprt 0
+name: statuette statue imp
+shortdesc: a statuette
+desc: A statuette is here, waiting to be admired.
+type: 3
+weight: 2.00
+cost: 2200
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: statuette statue imp
+Carved from stone and shaped into the likeness of an imp, this statuette 
+at first glance appears to be worthless. However, a closer inspection 
+reveals minute mystical symbols running alone the back of the imp.~
+~~
+vnum: 48009
+location: -1
+values:
+80
+3
+3
+25
+0
+0
+0
+~
+flags: agjnoprtwx aeij
+name: statuette statue imp
+shortdesc: a statuette
+desc: A statuette is here, waiting to be admired.
+type: 3
+weight: 2.00
+cost: 2200
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: statuette statue imp
+Carved from stone and shaped into the likeness of an imp, this statuette 
+at first glance appears to be worthless. However, a closer inspection 
+reveals minute mystical symbols running alone the back of the imp.~
+~~
+vnum: 48009
+location: -1
+values:
+80
+3
+3
+25
+0
+0
+0
+~
+flags: agjnoprtwx aeij
+name: statuette statue imp
+shortdesc: a statuette
+desc: A statuette is here, waiting to be admired.
+type: 3
+weight: 2.00
+cost: 2200
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: statuette statue imp
+Carved from stone and shaped into the likeness of an imp, this statuette 
+at first glance appears to be worthless. However, a closer inspection 
+reveals minute mystical symbols running alone the back of the imp.~
+~~
+vnum: 23710
+location: -1
+values:
+70
+3
+3
+111
+0
+0
+0
+~
+flags: bdnoprstvwx aeij
+name: crystal psionic-crystal psi double-spear-quartz
+shortdesc: a psionic crystal
+desc: A double spear of quartz rests serenely on the ground.
+type: 3
+weight: 0.50
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: crystal psionic-crystal psi double-spear-quartz
+A large quartz crystal that splits into twin spears, this crystal humms with
+energy.  The illithid probably imbued it with a portion of his power.~
+~~
+vnum: 23710
+location: -1
+values:
+70
+3
+3
+111
+0
+0
+0
+~
+flags: bnoprsvwxz 0
+name: crystal psionic-crystal psi double-spear-quartz
+shortdesc: a psionic crystal
+desc: A double spear of quartz rests serenely on the ground.
+type: 3
+weight: 0.50
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: crystal psionic-crystal psi double-spear-quartz
+A large quartz crystal that splits into twin spears, this crystal humms with
+energy.  The illithid probably imbued it with a portion of his power.~
+~~
+vnum: 12509
+location: -1
+values:
+70
+1
+1
+66
+0
+0
+0
+~
+flags: 0 0
+name: fist crystal
+shortdesc: a yellow, fist shaped crystal
+desc: A yellow-tinged, fist-shaped crystal lies here, its purpose forgotten.
+adesc:
+The fist pulses with energy, and soars through the air.~
+type: 3
+weight: 0.75
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fist crystal 
+The crystal is a sickly yellow, and has been carved into a clenched fist, with
+part of the forearm intact.    ~
+~~
+vnum: 12509
+location: -1
+values:
+70
+1
+0
+66
+0
+0
+0
+~
+flags: 0 0
+name: fist crystal
+shortdesc: a yellow, fist shaped crystal
+desc: A yellow-tinged, fist-shaped crystal lies here, its purpose forgotten.
+adesc:
+The fist pulses with energy, and soars through the air.~
+type: 3
+weight: 0.75
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fist crystal 
+The crystal is a sickly yellow, and has been carved into a clenched fist, with
+part of the forearm intact.    ~
+~~
+vnum: 11704
+location: -1
+values:
+50
+10
+10
+1
+0
+0
+0
+~
+flags: g 0
+name: stick hardened leather
+shortdesc: a stick made of hardened leather
+desc: A small stick made of hardened leather lies here.
+type: 3
+weight: 1.00
+cost: 45
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 11704
+location: -1
+values:
+50
+10
+10
+1
+0
+0
+0
+~
+flags: g 0
+name: stick hardened leather
+shortdesc: a stick made of hardened leather
+desc: A small stick made of hardened leather lies here.
+type: 3
+weight: 1.00
+cost: 45
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 11704
+location: -1
+values:
+50
+10
+10
+1
+0
+0
+0
+~
+flags: g 0
+name: stick hardened leather
+shortdesc: a stick made of hardened leather
+desc: A small stick made of hardened leather lies here.
+type: 3
+weight: 1.00
+cost: 45
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 11704
+location: -1
+values:
+50
+10
+10
+1
+0
+0
+0
+~
+flags: g 0
+name: stick hardened leather
+shortdesc: a stick made of hardened leather
+desc: A small stick made of hardened leather lies here.
+type: 3
+weight: 1.00
+cost: 45
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 48029
+location: -1
+values:
+80
+3
+3
+27
+0
+0
+0
+~
+flags: ag 0
+name: spider jeweled-eyes-ceramic-green-spider questobject
+shortdesc: a ceramic green spider
+desc: The jeweled eyes of a ceramic green spider wink at you.
+type: 3
+weight: 1.80
+cost: 125
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+18 1
+28 175
+27 2
+~
+extradesc: spider jeweled-eyes-ceramic-green-spider questobject
+This ceramic is a work of art.  The green spider appears life-like, forever
+frozen in one position.  The spider's ruby eyes sparkle in the light, the only
+sign that it is an artificial creation.~
+~~
+vnum: 48029
+location: -1
+values:
+80
+3
+3
+27
+0
+0
+0
+~
+flags: ag 0
+name: spider jeweled-eyes-ceramic-green-spider questobject
+shortdesc: a ceramic green spider
+desc: The jeweled eyes of a ceramic green spider wink at you.
+type: 3
+weight: 1.80
+cost: 125
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+18 1
+28 175
+27 2
+~
+extradesc: spider jeweled-eyes-ceramic-green-spider questobject
+This ceramic is a work of art.  The green spider appears life-like, forever
+frozen in one position.  The spider's ruby eyes sparkle in the light, the only
+sign that it is an artificial creation.~
+~~
+vnum: 48029
+location: -1
+values:
+80
+3
+3
+27
+0
+0
+0
+~
+flags: ag 0
+name: spider jeweled-eyes-ceramic-green-spider questobject
+shortdesc: a ceramic green spider
+desc: The jeweled eyes of a ceramic green spider wink at you.
+type: 3
+weight: 1.80
+cost: 125
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+18 1
+28 175
+27 2
+~
+extradesc: spider jeweled-eyes-ceramic-green-spider questobject
+This ceramic is a work of art.  The green spider appears life-like, forever
+frozen in one position.  The spider's ruby eyes sparkle in the light, the only
+sign that it is an artificial creation.~
+~~
+vnum: 49032
+location: -1
+values:
+20
+1
+1
+14
+0
+0
+0
+~
+flags: b 0
+name: misthorn mist-horn
+shortdesc: a misthorn
+desc: There's a horn lying in front of you.
+type: 3
+weight: 1.10
+cost: 2000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: misthorn mist-horn
+Once used by a man with powerful lungs, it will never again make a sound.  A
+big rock is firmly stuck inside.~
+~~
+vnum: 49032
+location: -1
+values:
+20
+1
+1
+14
+0
+0
+0
+~
+flags: b 0
+name: misthorn mist-horn
+shortdesc: a misthorn
+desc: There's a horn lying in front of you.
+type: 3
+weight: 1.10
+cost: 2000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: misthorn mist-horn
+Once used by a man with powerful lungs, it will never again make a sound.  A
+big rock is firmly stuck inside.~
+~~
+vnum: 3112
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: whistle tiny-bird-whistle wooden-bird-whistle toy
+shortdesc: a bird whistle
+desc: A tiny bird lies on its side here.
+type: 12
+weight: 0.30
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: tiny-bird-whistle wooden-bird-whistle
+Shaped like a tiny bluejay, this whistle is carved from a single block of wood.
+It is hollowed out inside, and a tiny flap in the beak vibrates when the
+whistle is blown, making a twittering whistle.    ~
+triggers:
+3112
+~
+~~
+vnum: 49021
+location: -1
+values:
+40
+3
+3
+10
+0
+0
+0
+~
+flags: egj 0
+name: post whipping-post
+shortdesc: a whipping post
+desc: A whipping post draws your attention.
+type: 3
+weight: 20.00
+cost: 900
+timer: 0
+level: 40
+effects: j 0 0
+wear: 16385
+hiddenness: 0
+applies:
+5 -1
+1 -1
+~
+extradesc: post whipping-post
+It's a rather small wooden beam with an iron ring at its end, meant to chain
+people to.~
+~~
+vnum: 49021
+location: -1
+values:
+40
+3
+3
+10
+0
+0
+0
+~
+flags: egj 0
+name: post whipping-post
+shortdesc: a whipping post
+desc: A whipping post draws your attention.
+type: 3
+weight: 20.00
+cost: 900
+timer: 0
+level: 40
+effects: j 0 0
+wear: 16385
+hiddenness: 0
+applies:
+5 -1
+1 -1
+~
+extradesc: post whipping-post
+It's a rather small wooden beam with an iron ring at its end, meant to chain
+people to.~
+~~
+vnum: 53002
+location: -1
+values:
+45
+5
+5
+22
+0
+0
+0
+~
+flags: gk 0
+name: doll small-bride-doll
+shortdesc: the bride doll
+desc: A small doll of a bride lies forgotten in the dust.
+type: 3
+weight: 0.40
+cost: 200
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+27 2
+~
+~~
+vnum: 53002
+location: -1
+values:
+45
+5
+5
+22
+0
+0
+0
+~
+flags: gk 0
+name: doll small-bride-doll
+shortdesc: the bride doll
+desc: A small doll of a bride lies forgotten in the dust.
+type: 3
+weight: 0.40
+cost: 200
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+27 2
+~
+~~
+vnum: 12342
+location: -1
+values:
+41
+3
+3
+57
+0
+0
+0
+~
+flags: dprsx a
+name: sack-faerie-dust tiny-pouch-glittering-dust
+shortdesc: a sack of faerie dust
+desc: A tiny pouch of glittering dust has been tossed on the ground.
+type: 3
+weight: 0.80
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+24 -5
+27 2
+3 1
+14 5
+~
+extradesc: tiny pouch glittering dust sack faerie dust sack-faerie-dust faerie-dust sack-dust dust-sack
+Looking inside this pouch of fur, you see a small pinch of gleaming dust.  
+Light flashes over it, reflecting in rainbow colors.~
+~~
+vnum: 43020
+location: -1
+values:
+57
+10
+10
+55
+0
+0
+0
+~
+flags: a 0
+name: rod-intervention wicked-looking-rod
+shortdesc: the Rod of Intervention
+desc: A wicked-looking rod is embedded in the earth here.
+type: 3
+weight: 1.50
+cost: 0
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+5 2
+~
+extradesc: rod-intervention wicked-looking-rod
+Upon closer inspection, there are some words carved into the rod.~
+extradesc: words
+In times of strife, my cause was to be known;
+Bitter tears of regret, clenched tooth to bone.
+Milnae urthlii, sumalin murtgnai d'ench pa'r...
+Veteinri Umse YaYa lechniq emt umscuia'r.~
+~~
+vnum: 52004
+location: -1
+values:
+80
+5
+5
+42
+0
+0
+0
+~
+flags: adgoprstwx ae
+name: wand-sagece dusty-cracked-old-wand
+shortdesc: the Wand of Sagece
+desc: A dusty, cracked, old wand sits here.
+type: 3
+weight: 0.60
+cost: 1400
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand-sagece dusty-cracked-old-wand
+This is a wonderful, magical wand, capable of acts beyond normal imagination.
+It is about two feet long, with a small dragon head at the top.~
+~~
+vnum: 53306
+location: -1
+values:
+60
+5
+5
+23
+0
+0
+0
+~
+flags: dgjoprstwx ae
+name: staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw
+shortdesc: a dragon's claw staff
+desc: An oaken staff with the head of dragon's claw rests here.
+type: 4
+weight: 7.00
+cost: 1900
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw
+This thin wooden staff is made of deep rich oak.  A cap made of silver protects
+the base of the stick.  At its head is a small dragon's claw that clutches a
+sapphire stone made of the richest blue you have ever seen.  An aura of power
+surrounds the staff.~
+~~
+vnum: 48029
+location: -1
+values:
+80
+3
+3
+27
+0
+0
+0
+~
+flags: ag 0
+name: spider jeweled-eyes-ceramic-green-spider questobject
+shortdesc: a ceramic green spider
+desc: The jeweled eyes of a ceramic green spider wink at you.
+type: 3
+weight: 1.80
+cost: 125
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+18 1
+28 175
+27 2
+~
+extradesc: spider jeweled-eyes-ceramic-green-spider questobject
+This ceramic is a work of art.  The green spider appears life-like, forever
+frozen in one position.  The spider's ruby eyes sparkle in the light, the only
+sign that it is an artificial creation.~
+~~
+vnum: 48009
+location: -1
+values:
+80
+3
+3
+25
+0
+0
+0
+~
+flags: agjnoprtwx aeij
+name: statuette statue imp
+shortdesc: a statuette
+desc: A statuette is here, waiting to be admired.
+type: 3
+weight: 2.00
+cost: 2200
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: statuette statue imp
+Carved from stone and shaped into the likeness of an imp, this statuette 
+at first glance appears to be worthless. However, a closer inspection 
+reveals minute mystical symbols running alone the back of the imp.~
+~~
+vnum: 43020
+location: -1
+values:
+57
+10
+10
+55
+0
+0
+0
+~
+flags: a 0
+name: rod-intervention wicked-looking-rod
+shortdesc: the Rod of Intervention
+desc: A wicked-looking rod is embedded in the earth here.
+type: 3
+weight: 1.50
+cost: 0
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+5 2
+~
+extradesc: rod-intervention wicked-looking-rod
+Upon closer inspection, there are some words carved into the rod.~
+extradesc: words
+In times of strife, my cause was to be known;
+Bitter tears of regret, clenched tooth to bone.
+Milnae urthlii, sumalin murtgnai d'ench pa'r...
+Veteinri Umse YaYa lechniq emt umscuia'r.~
+~~
+vnum: 12509
+location: -1
+values:
+70
+1
+1
+66
+0
+0
+0
+~
+flags: 0 0
+name: fist crystal
+shortdesc: a yellow, fist shaped crystal
+desc: A yellow-tinged, fist-shaped crystal lies here, its purpose forgotten.
+adesc:
+The fist pulses with energy, and soars through the air.~
+type: 3
+weight: 0.75
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fist crystal 
+The crystal is a sickly yellow, and has been carved into a clenched fist, with
+part of the forearm intact.    ~
+~~
+vnum: 23710
+location: -1
+values:
+70
+3
+3
+111
+0
+0
+0
+~
+flags: bdnoprstvwx aeij
+name: crystal psionic-crystal psi double-spear-quartz
+shortdesc: a psionic crystal
+desc: A double spear of quartz rests serenely on the ground.
+type: 3
+weight: 0.50
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: crystal psionic-crystal psi double-spear-quartz
+A large quartz crystal that splits into twin spears, this crystal humms with
+energy.  The illithid probably imbued it with a portion of his power.~
+~~
+vnum: 53311
+location: -1
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+17 1
+27 2
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+~~
+vnum: 53306
+location: -1
+values:
+60
+5
+5
+23
+0
+0
+0
+~
+flags: dgjoprstwx ae
+name: staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw
+shortdesc: a dragon's claw staff
+desc: An oaken staff with the head of dragon's claw rests here.
+type: 4
+weight: 7.00
+cost: 1900
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw
+This thin wooden staff is made of deep rich oak.  A cap made of silver protects
+the base of the stick.  At its head is a small dragon's claw that clutches a
+sapphire stone made of the richest blue you have ever seen.  An aura of power
+surrounds the staff.~
+~~
+vnum: 12533
+location: -1
+values:
+80
+4
+4
+26
+0
+0
+0
+~
+flags: 0 0
+name: wand smoking ash
+shortdesc: an ash wand
+desc: An ash wand gives off wisps of dark smoke. 
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand ash smoking
+The ash wand is blackened near its tip, and wisps of smoke curl from that end.
+The wand is warm to the touch, but not hot enough to be painful.    ~
+~~
+vnum: 52004
+location: -1
+values:
+80
+5
+5
+42
+0
+0
+0
+~
+flags: adgoprstwx ae
+name: wand-sagece dusty-cracked-old-wand
+shortdesc: the Wand of Sagece
+desc: A dusty, cracked, old wand sits here.
+type: 3
+weight: 0.60
+cost: 1400
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand-sagece dusty-cracked-old-wand
+This is a wonderful, magical wand, capable of acts beyond normal imagination.
+It is about two feet long, with a small dragon head at the top.~
+~~
+vnum: 53311
+location: -1
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+17 1
+27 2
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+~~
+vnum: 61512
+location: -1
+values:
+10
+3
+3
+157
+0
+0
+0
+~
+flags: 0 0
+name: thighbone gnome's-thighbone thigh-bone shrunken-thighbone spiralling-inscription gnomes-thighbone
+shortdesc: a gnome's thighbone
+desc: A shrunken thighbone with a spiralling inscription lies here unclaimed.
+type: 3
+weight: 0.50
+cost: 0
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: thighbone gnome's-thighbone thigh-bone shrunken-thighbone spiralling-inscription gnomes-thighbone
+This bone is under a foot long, and clearly comes from the leg of an
+unfortunate gnome.  It's highly polished, as if it were extensively handled.  
+An inscription, apparently burned into the surface of the bone, starts near the
+middle and spirals toward the thick end.  Its language is unknown to you.~
+~~
+vnum: 43020
+location: -1
+values:
+57
+10
+10
+55
+0
+0
+0
+~
+flags: a 0
+name: rod-intervention wicked-looking-rod
+shortdesc: the Rod of Intervention
+desc: A wicked-looking rod is embedded in the earth here.
+type: 3
+weight: 1.50
+cost: 0
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+5 2
+~
+extradesc: rod-intervention wicked-looking-rod
+Upon closer inspection, there are some words carved into the rod.~
+extradesc: words
+In times of strife, my cause was to be known;
+Bitter tears of regret, clenched tooth to bone.
+Milnae urthlii, sumalin murtgnai d'ench pa'r...
+Veteinri Umse YaYa lechniq emt umscuia'r.~
+~~
+vnum: 12509
+location: -1
+values:
+70
+1
+1
+66
+0
+0
+0
+~
+flags: 0 0
+name: fist crystal
+shortdesc: a yellow, fist shaped crystal
+desc: A yellow-tinged, fist-shaped crystal lies here, its purpose forgotten.
+adesc:
+The fist pulses with energy, and soars through the air.~
+type: 3
+weight: 0.75
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: fist crystal 
+The crystal is a sickly yellow, and has been carved into a clenched fist, with
+part of the forearm intact.    ~
+~~
+vnum: 3217
+location: -1
+values:
+15
+2
+2
+23
+0
+0
+0
+~
+flags: g 0
+name: staff serpentine
+shortdesc: a green serpentine staff
+desc: A green serpentine staff has been left here.
+type: 4
+weight: 4.00
+cost: 6600
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: staff serpentine
+It looks like a very sturdy hand-crafted staff made out of oak. The
+staff has been carved to resemble a serpent.~
+~~
+vnum: 48039
+location: -1
+values:
+50
+5
+5
+17
+0
+0
+0
+~
+flags: 0 0
+name: staff infidel's-staff infidels-staff
+shortdesc: the infidel's staff
+desc: A jagged staff of decaying flesh and broken glass rots away.
+type: 4
+weight: 3.00
+cost: 10000
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 49032
+location: -1
+values:
+20
+1
+1
+14
+0
+0
+0
+~
+flags: b 0
+name: misthorn mist-horn
+shortdesc: a misthorn
+desc: There's a horn lying in front of you.
+type: 3
+weight: 1.10
+cost: 2000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: misthorn mist-horn
+Once used by a man with powerful lungs, it will never again make a sound.  A
+big rock is firmly stuck inside.~
+~~
+vnum: 55017
+location: -1
+values:
+40
+2
+2
+4
+0
+0
+0
+~
+flags: g 0
+name: wand crystal-wand wand-crystal
+shortdesc: a crystal wand
+desc: A wand of crystal lies here in the snow.
+type: 3
+weight: 3.00
+cost: 150
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand crystal-wand wand-crystal
+You hold a simple, small crystal stick.  It has a brilliant streak of red
+running through its center.  The red glows slightly.~
+~~
+vnum: 43020
+location: -1
+values:
+57
+10
+10
+55
+0
+0
+0
+~
+flags: a 0
+name: rod-intervention wicked-looking-rod
+shortdesc: the Rod of Intervention
+desc: A wicked-looking rod is embedded in the earth here.
+type: 3
+weight: 1.50
+cost: 0
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+5 2
+~
+extradesc: rod-intervention wicked-looking-rod
+Upon closer inspection, there are some words carved into the rod.~
+extradesc: words
+In times of strife, my cause was to be known;
+Bitter tears of regret, clenched tooth to bone.
+Milnae urthlii, sumalin murtgnai d'ench pa'r...
+Veteinri Umse YaYa lechniq emt umscuia'r.~
+~~
+vnum: 53306
+location: -1
+values:
+60
+5
+5
+23
+0
+0
+0
+~
+flags: dgjoprstwx ae
+name: staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw
+shortdesc: a dragon's claw staff
+desc: An oaken staff with the head of dragon's claw rests here.
+type: 4
+weight: 7.00
+cost: 1900
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+27 2
+~
+extradesc: staff dragon's-claw-staff dragons-claw-staff oaken-staff head-dragon's-claw
+This thin wooden staff is made of deep rich oak.  A cap made of silver protects
+the base of the stick.  At its head is a small dragon's claw that clutches a
+sapphire stone made of the richest blue you have ever seen.  An aura of power
+surrounds the staff.~
+~~
+vnum: 3217
+location: -1
+values:
+15
+2
+2
+23
+0
+0
+0
+~
+flags: g 0
+name: staff serpentine
+shortdesc: a green serpentine staff
+desc: A green serpentine staff has been left here.
+type: 4
+weight: 4.00
+cost: 6600
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: staff serpentine
+It looks like a very sturdy hand-crafted staff made out of oak. The
+staff has been carved to resemble a serpent.~
+~~
+vnum: 48009
+location: -1
+values:
+80
+3
+3
+25
+0
+0
+0
+~
+flags: agjnoprtwx aeij
+name: statuette statue imp
+shortdesc: a statuette
+desc: A statuette is here, waiting to be admired.
+type: 3
+weight: 2.00
+cost: 2200
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: statuette statue imp
+Carved from stone and shaped into the likeness of an imp, this statuette 
+at first glance appears to be worthless. However, a closer inspection 
+reveals minute mystical symbols running alone the back of the imp.~
+~~
+vnum: 53311
+location: -1
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+17 1
+27 2
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+~~
+vnum: 11704
+location: -1
+values:
+50
+10
+10
+1
+0
+0
+0
+~
+flags: g 0
+name: stick hardened leather
+shortdesc: a stick made of hardened leather
+desc: A small stick made of hardened leather lies here.
+type: 3
+weight: 1.00
+cost: 45
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 11704
+location: -1
+values:
+50
+10
+10
+1
+0
+0
+0
+~
+flags: g 0
+name: stick hardened leather
+shortdesc: a stick made of hardened leather
+desc: A small stick made of hardened leather lies here.
+type: 3
+weight: 1.00
+cost: 45
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 11704
+location: -1
+values:
+50
+10
+10
+1
+0
+0
+0
+~
+flags: g 0
+name: stick hardened leather
+shortdesc: a stick made of hardened leather
+desc: A small stick made of hardened leather lies here.
+type: 3
+weight: 1.00
+cost: 45
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 49032
+location: -1
+values:
+20
+1
+1
+14
+0
+0
+0
+~
+flags: b 0
+name: misthorn mist-horn
+shortdesc: a misthorn
+desc: There's a horn lying in front of you.
+type: 3
+weight: 1.10
+cost: 2000
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: misthorn mist-horn
+Once used by a man with powerful lungs, it will never again make a sound.  A
+big rock is firmly stuck inside.~
+~~
+vnum: 16309
+location: -1
+values:
+15
+3
+2
+29
+0
+0
+0
+~
+flags: 0 0
+name: wand black-wand
+shortdesc: a black wand
+desc: A black wand is here.
+type: 3
+weight: 1.00
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand black-wand
+The wand is jet black in colour, and it seems to absorb all the light that
+falls on it. Etched on one end are the words:
+           May the eyes never set their sights on me.~
+~~
+vnum: 48007
+location: -1
+values:
+0
+4
+5
+6
+0
+0
+0
+~
+flags: ag 0
+name: rod witching-rod long-metal-rod
+shortdesc: the witching rod
+desc: A long metal rod has been dropped here.
+type: 5
+weight: 5.00
+cost: 400
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: rod witching-rod long-metal-rod
+The power of this device is evident to any who look at it.  It is as tall as a
+staff, although somewhat slimmer.  It is composed of a black metal which is
+quite a bit lighter than iron.~
+~~
+vnum: 48007
+location: -1
+values:
+0
+4
+5
+6
+0
+0
+0
+~
+flags: ag 0
+name: rod witching-rod long-metal-rod
+shortdesc: the witching rod
+desc: A long metal rod has been dropped here.
+type: 5
+weight: 5.00
+cost: 400
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+27 3
+~
+extradesc: rod witching-rod long-metal-rod
+The power of this device is evident to any who look at it.  It is as tall as a
+staff, although somewhat slimmer.  It is composed of a black metal which is
+quite a bit lighter than iron.~
+~~
+vnum: 48009
+location: -1
+values:
+80
+3
+3
+25
+0
+0
+0
+~
+flags: agjnoprtwx aeij
+name: statuette statue imp
+shortdesc: a statuette
+desc: A statuette is here, waiting to be admired.
+type: 3
+weight: 2.00
+cost: 2200
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: statuette statue imp
+Carved from stone and shaped into the likeness of an imp, this statuette 
+at first glance appears to be worthless. However, a closer inspection 
+reveals minute mystical symbols running alone the back of the imp.~
+~~
+vnum: 61512
+location: -1
+values:
+10
+3
+3
+157
+0
+0
+0
+~
+flags: 0 0
+name: thighbone gnome's-thighbone thigh-bone shrunken-thighbone spiralling-inscription gnomes-thighbone
+shortdesc: a gnome's thighbone
+desc: A shrunken thighbone with a spiralling inscription lies here unclaimed.
+type: 3
+weight: 0.50
+cost: 0
+timer: 0
+level: 3
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: thighbone gnome's-thighbone thigh-bone shrunken-thighbone spiralling-inscription gnomes-thighbone
+This bone is under a foot long, and clearly comes from the leg of an
+unfortunate gnome.  It's highly polished, as if it were extensively handled.  
+An inscription, apparently burned into the surface of the bone, starts near the
+middle and spirals toward the thick end.  Its language is unknown to you.~
+~~
+vnum: 23710
+location: -1
+values:
+70
+3
+3
+111
+0
+0
+0
+~
+flags: bdnoprstvwx aeij
+name: crystal psionic-crystal psi double-spear-quartz
+shortdesc: a psionic crystal
+desc: A double spear of quartz rests serenely on the ground.
+type: 3
+weight: 0.50
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: crystal psionic-crystal psi double-spear-quartz
+A large quartz crystal that splits into twin spears, this crystal humms with
+energy.  The illithid probably imbued it with a portion of his power.~
+~~
+vnum: 53311
+location: -1
+values:
+50
+1
+1
+42
+0
+0
+0
+~
+flags: 0 0
+name: white-egg egg white dragon
+shortdesc: a white dragon egg
+desc: A large white dragon's egg lies in the snow.
+type: 3
+weight: 5.50
+cost: 1300
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+17 1
+27 2
+~
+extradesc: white-egg egg white dragon
+As you look at the large white dragon's egg you seem to remember something
+you heard a long time ago.  Something about how a dragon's egg had some
+special power.  If only you could remember what it was...~
+~~
+vnum: 52004
+location: -1
+values:
+80
+5
+5
+42
+0
+0
+0
+~
+flags: adgoprstwx ae
+name: wand-sagece dusty-cracked-old-wand
+shortdesc: the Wand of Sagece
+desc: A dusty, cracked, old wand sits here.
+type: 3
+weight: 0.60
+cost: 1400
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: wand-sagece dusty-cracked-old-wand
+This is a wonderful, magical wand, capable of acts beyond normal imagination.
+It is about two feet long, with a small dragon head at the top.~
+~~
+vnum: 23710
+location: -1
+values:
+70
+3
+3
+111
+0
+0
+0
+~
+flags: bdnoprstvwx aeij
+name: crystal psionic-crystal psi double-spear-quartz
+shortdesc: a psionic crystal
+desc: A double spear of quartz rests serenely on the ground.
+type: 3
+weight: 0.50
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: crystal psionic-crystal psi double-spear-quartz
+A large quartz crystal that splits into twin spears, this crystal humms with
+energy.  The illithid probably imbued it with a portion of his power.~
+~~
+vnum: 55029
+location: 127
+values:
+250
+1
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: bag tattered tattered-bag ripped torn rune-covered
+shortdesc: a tattered bag
+desc: A ripped and torn, rune-covered bag lies here.
+type: 15
+weight: 0.00
+cost: 600
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: bag tattered tattered-bag ripped torn rune-covered
+A massive bag made of thick leather, the outer layer has been ripped and torn
+to shreds, obscuring the silvery runes that once covered it.  Bits and pieces
+of them can be seen, but never enough to be read.  Whatever was holding on to
+this bag probably liked the bag but not the runes.    ~
+~~
+vnum: 58106
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: brush fine-calligraphy-brush brush-tipped-calligraphy-pen
+shortdesc: a fine calligraphy brush
+desc: A brush-tipped calligraphy pen lies here.
+type: 21
+weight: 0.20
+cost: 9000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: brush fine-calligraphy-brush brush-tipped-calligraphy-pen
+   It is a beige-colored bamboo pen set with a brush tip that allows
+it to be used for fine calligraphy in the Odaishyozen style. The
+brush tip is made of soft black sable hair.~
+~~
+vnum: 55557
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: agnopqrstuvwxyz 0
+name: bracelet-seer pure-arcane-force
+shortdesc: &3&bBracelet of the Seer&0
+desc: A bracelet made of pure arcane force rests amongst the rocks.
+type: 9
+weight: 0.21
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+27 3
+5 2
+18 1
+~
+extradesc: bracelet-seer pure-arcane-force
+Forged from solidified magic, this bracelet is the embodiment of true magical
+power.  Iridescent colors glint off the bracelet, which has a soft internal
+glow of its own.  The surface of the bracelet slides and reacts when touched,
+like oil on water, swirling the colors with the movement.~
+~~
+vnum: 55214
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: quill porcupine-quill long-sharp-quill feather pen
+shortdesc: a porcupine quill
+desc: A long, sharp quill lies on the ground here.
+type: 21
+weight: 0.02
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: porcupine-quill long-sharp-quill feather
+It's an extra-long quill from the back of an Eldorian Porcupine.  Though
+extremely painful when jabbed into bare flesh, young punk sorcerers use these
+as quills for scribing spells.  Being thinner than a bird feather, they make
+impressive, spidery-looking letters but also break more easily.~
+~~
+vnum: 10307
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: oprstwx 0
+name: glasses silver-trimmed-glasses
+shortdesc: a pair of glasses
+desc: A pair of silver-trimmed glasses has been abandoned here.
+type: 8
+weight: 0.10
+cost: 500
+timer: 5
+level: 40
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+3 3
+28 80
+27 1
+~
+extradesc: glasses silver-trimmed-glasses
+These finely ground lenses must be gnomish work, for they seem to be flawless.
+The rims are a thin silver and the nosepiece seems quite comfortable.  They
+would surely be a great help to someone who has no near-vision that wants to
+read a book or crochet or do anything else that requires them to see things
+close up.    ~
+~~
+vnum: 50220
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: octant dull-gray-metal-instrument grey
+shortdesc: an octant
+desc: A dull, gray metal instrument is hidden in the rubble.
+type: 8
+weight: 0.40
+cost: 0
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+applies:
+3 2
+27 1
+~
+extradesc: octant dull-gray-metal-instrument grey
+Made of a gray metal, and tarnished with age, this small handheld artifact has
+seen better days.  It has two metal struts that are attached at one end and
+splay apart.  At their far end, a gradiated strip of brass curves from one to
+the other in an eighth of a circle.  It appears to be an octant, which is used
+to find one's location out at sea, with the help of the stars.~
+~~
+vnum: 55556
+location: -1
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: agnopqrstuvwxyz 0
+name: slippers-seer arcane-symbols
+shortdesc: &3&bSlippers of the Seer&0
+desc: A pair of slippers covered in arcane symbols has been left here.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: u 0 0
+wear: 65
+hiddenness: 0
+applies:
+5 2
+27 3
+~
+extradesc: slippers-seer arcane-symbols
+Simple cloth slippers are the basis for these embroidered shoes.  Created
+during a period of intense ritual working, each stitch, each fold, each piece
+of fabric bears a spell or enchantment to protect and fuel a grand wizard.  
+Slippers like these are very powerful, very rare items that should be handled
+with care.~
+~~
+vnum: 1154
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: quill feather-quill long-white-feather pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill feather-quill long-white-feather pen
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)~
+triggers:
+51990
+~
+~~
+vnum: 1030
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: quill white-feather-quill pen
+shortdesc: a white feather quill
+desc: A white feather quill lies here.
+type: 21
+weight: 0.05
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: quill white-feather-quill pen
+&0A slender quill made from a white feather.  Its point is used to dunk in ink
+and write with.    ~
+~~
+vnum: 30006
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: quill raven's-quill long-black-shiny-feather ravens-quill
+shortdesc: a &9&braven's&0 quill
+desc: A long black shiny feather flutters in the breeze.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 48803
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather wing-feather-cavern-hawk cavern-hawk-wing-feather immense-feather quill pen
+shortdesc: the wing feather of a cavern hawk
+desc: An immense feather is sitting on the ground here.
+type: 21
+weight: 3.10
+cost: 10000
+timer: 0
+level: 85
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 5
+4 5
+26 15
+27 3
+~
+extradesc: feather wing-feather-cavern-hawk cavern-hawk-wing-feather immense-feather quill pen
+This is the primary flight feather of the giant cavern hawks near the
+Stormchild's keep.  Dark gold in color, it is nearly three feet long.  If
+someone were large enough, they could probably use it as a quill pen, but other
+than that it would make a nice trophy.~
+~~
+vnum: 8605
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather buzzard's-feather buzzards-feather pen quill
+shortdesc: a buzzard feather
+desc: A buzzard's feather drifts lazily to the ground here.
+type: 21
+weight: 0.02
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 1
+6 -1
+~
+extradesc: feather buzzard's-feather buzzards-feather
+A dark feather from the powerful buzzard, these creatures are very well known
+for their strength, not their beauty.~
+~~
+vnum: 46414
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather royal-blue-feather deep-blue-feather pen quill
+shortdesc: a &4&broyal blue&0 feather
+desc: A deep blue feather is sitting here, getting dirty.
+type: 21
+weight: 0.25
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+6 1
+~
+extradesc: feather royal-blue-feather deep-blue-feather pen quill
+This beautifully curving feather is a deep royal blue, just like the kingfisher
+it comes from.  It's a primary flight feather from the left wing, so it would
+probably make an excellent writing pen.~
+~~
+vnum: 13611
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather bright-red-feather pen quill
+shortdesc: a &1red&0 feather
+desc: A bright red feather lies in the dust.
+type: 21
+weight: 0.03
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 1
+4 -1
+~
+extradesc: feather bright-red-feather pen quill
+It's a long wingfeather from the bright birds that live around Morgan Hill.  
+It looks ideal for scribing spells into a spellbook.~
+~~
+vnum: 20302
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather vulture-feather ugly-brown-feather pen quill
+shortdesc: a vulture feather
+desc: An ugly brown feather lies here floating with the wind.
+type: 21
+weight: 0.04
+cost: 0
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+4 1
+14 15
+~
+extradesc: feather vulture-feather ugly-brown-feather pen quill
+This is the feather of a large vulture.  The feather itself is quite ugly and
+dull.  It is a plain brown color and the feather is ruffled everywhere making
+it look messy.~
+~~
+vnum: 17807
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: o 0
+name: feather eagle's-feather eagles-feather pen quill
+shortdesc: an eagle's feather
+desc: An eagle's feather rests on the ground.
+type: 21
+weight: 0.02
+cost: 500
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 2
+3 2
+27 1
+~
+extradesc: feather eagle's-feather eagles-feather pen quill
+You sense that there is more to this feather than meets the eye.  Just touching
+it gives you a tingling feeling.~
+~~
+vnum: 50224
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tailfeather parrot's-tailfeather tail-feather bright-green-feather pen quill
+shortdesc: a &2&bparrot's&0 tailfeather
+desc: A bright green feather lies here.
+type: 21
+weight: 0.02
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+6 2
+~
+extradesc: tailfeather parrot's-tailfeather tail-feather bright-green-feather pen quill
+Looking rather tattered, this long tailfeather is too beat-up to look good in a
+hat.  It seems sturdy enough to use as a pen, though.~
+~~
+vnum: 36200
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: feather liath-feather long-grey-feather long-gray-feather pen quill
+shortdesc: a &9&bliat&0&4h&0 feather
+desc: A long gray feather tipped with blue is floating here
+type: 21
+weight: 0.02
+cost: 500
+timer: 0
+level: 15
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+6 3
+~
+extradesc: liath-feather long-grey-feather long-gray-feather
+A wing feather from the rare gray liath, this quill is nearly a foot long.  
+Prized by artisans and mages alike, it is in high demand as a scribing quill,
+especially for water-based spells as it comes from a seabird.  The feathers are
+also supposed to be lucky!~
+~~
+vnum: 12023
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather kestrel-feather pen quill
+shortdesc: a kestrel feather
+desc: A kestrel feather sits on the ground.
+type: 21
+weight: 0.10
+cost: 10
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 1
+~
+extradesc: feather kestrel-feather pen quill
+Black on the top and white spotted with brown on the bottom, this handsome
+kestrel feather must have come from a large member of its species.  It's one of
+the wing feathers and would probably make a fine quill to scribe in a spellbook
+with.~
+~~
+vnum: 3500
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather cute-yellow-feather sparrow's-feather pen quill sparrows-feather
+shortdesc: a &3sparrow's&0 feather
+desc: A cute yellow feather is drifting around here.
+type: 21
+weight: 0.01
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+~
+extradesc: feather cute-yellow-feather sparrow's-feather pen quill sparrows-feather
+Aww, it's a cute little wing feather from a song sparrow.  It looks delicate,
+but could probably be used as a quill to scribe with in a pinch.~
+~~
+vnum: 30217
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather golden-eagle-feather beautiful-eagle-feather quill pen
+shortdesc: a &3&bgol&7d&3en eag&7l&3e&0 feather
+desc: A beautiful eagle feather has been left on the ground here.
+type: 21
+weight: 0.02
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 3
+~
+extradesc: feather golden-eagle-feather beautiful-eagle-feather quill pen
+The wing feather of the brown eagles that inhabit the Mountains of Pain, this
+feather is a pleasing golden color in the light.  It would make a fine quill to
+scribe spells with.~
+~~
+vnum: 35011
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather red-feather red-cardinal-feather pen quill
+shortdesc: a &1&bred cardinal&0 feather
+desc: A red feather floats around on the breeze.
+type: 21
+weight: 0.07
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 1
+~
+extradesc: feather red-feather red-cardinal-feather pen quill
+This is the tailfeather of a red cardinal from the Brushlands west of the city
+of Anduin.  It would make a hondsome quill for a sorcerer who wants a little
+extra flair when scribing spells.~
+~~
+vnum: 23828
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather garuda-feather shining-blue-feather sparkly-blue-feather pen quill
+shortdesc: a &6&bshining blue&0 feather
+desc: A sparkly blue feather rests on the ground here.
+type: 21
+weight: 0.40
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+3 2
+4 2
+14 10
+18 2
+27 3
+~
+extradesc: feather garuda-feather shining-blue-feather sparkly-blue-feather pen quill
+It's a gorgeous wing feather from the rare ice garuda.  Slightly chilly to the
+touch, this kind of feather is prized among cryomancers for use as a quill.  
+The sparkles are really tiny ice crystals embedded in the feather.~
+~~
+vnum: 55558
+location: -1
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: agnopqrstuvwxyz 0
+name: gloves seer
+shortdesc: &3&bGloves of the Seer&0
+desc: Gloves adorned with mystical runes lie next to an experiment station here.
+type: 9
+weight: 0.43
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+2 3
+13 10
+27 3
+~
+extradesc: gloves seer
+These gloves are used in magical experimentation and during mystic rituals.  
+The runes on each glove represent different spheres of creation, enhancing a
+sorcerer's connection to said powers.  Sewn from simple cloth, then painted and
+decorated with pearls, these gloves are a mark of a very powerful sorcerer.~
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 309
+location: -1
+values:
+0
+10
+4
+18
+0
+0
+0
+~
+flags: dnoprstuvwxDE abcij
+name: staff staff-maelstrom-staff glorious-aspen-staff electrical-might air lightning
+shortdesc: the staff of the maelstrom
+desc: A glorious aspen staff radiating with electrical might floats here.
+type: 5
+weight: 3.00
+cost: 10000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+14 50
+2 5
+20 -10
+23 -10
+24 -10
+27 3
+~
+extradesc: staff staff-maelstrom-staff glorious-aspen-staff electrical-might
+This glorious staff, fashioned from a length of aspen nearly the size of an
+adult human, represents pinnacle mastery over air and lightning, the very power
+of the maelstrom itself.  Decorated heavily with runes and sigils of air and
+lightning and topped with a large pure diamond, the staff is an exquisite
+masterwork of elemental craftsmanship - the perfect synthesis of art and magic.~
+triggers:
+303
+304
+305
+~
+~~
+vnum: 329
+location: -1
+values:
+0
+10
+4
+16
+0
+0
+0
+~
+flags: dnoprstuvwx abcij
+name: staff staff-frozen-deep-staff glorious-willow-staff icy might ice
+shortdesc: the staff of the frozen deep
+desc: A glorious willow staff radiating with icy might freezes here.
+type: 5
+weight: 3.00
+cost: 10000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+17 10
+5 5
+20 -10
+27 3
+~
+extradesc: staff staff-frozen-deep-staff glorious-willow-staff icy might ice
+This glorious staff, fashioned from a length of willow nearly the size of an
+adult human, represents pinnacle mastery over the very essence of elemental ice
+itself.  Decorated heavily with runes and sigils of water and ice and topped
+with a large pure sapphire, the staff is an exquisite masterwork of elemental
+craftsmanship - the perfect synthesis of art and magic.~
+triggers:
+303
+304
+305
+~
+~~
+vnum: 339
+location: -1
+values:
+0
+10
+4
+17
+0
+0
+0
+~
+flags: dnoprstuvwx abcij
+name: staff staff-disintegration-staff glorious-yew-staff-radiating-devastating-might earth acid
+shortdesc: the staff of disintegration
+desc: A glorious yew staff radiating with devastating might stands here.
+type: 5
+weight: 3.00
+cost: 10000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+applies:
+20 -20
+23 -20
+24 -20
+17 5
+13 20
+27 3
+~
+extradesc: staff staff-disintegration-staff glorious-yew-staff-radiating-devastating-might earth acid
+This glorious staff, fashioned from a length of yew nearly the size of an adult
+human, represents pinnacle mastery over the very essence of elemental earth
+itself.  It is capable of using the forces of the earth to pull apart and
+disintegrate any object or creature it encounters.  Decorated heavily with
+runes and sigils of earth and death and topped with a large pure emerald, the
+staff is an exquisite masterwork of elemental craftsmanship - the perfect
+synthesis of art and magic.~
+triggers:
+303
+304
+305
+~
+~~
+vnum: 55554
+location: -1
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: agnopqrstuvwxyzD 0
+name: robe-seer enchanted-arcane-robe
+shortdesc: &3&bRobe of the Seer&0
+desc: An extremely enchanted arcane robe is displayed here on a mannequin.
+type: 9
+weight: 2.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 9
+hiddenness: 0
+applies:
+13 50
+27 3
+28 10
+~
+extradesc: robe-seer enchanted-arcane-robe
+This robe is made not from cloth or silk or any other known fabric, but is made
+from Wyrd Weave, a substance spun from the fabric of magic itself.  Such a robe
+is a vast undertaking to make, requiring the most powerful arcane substances
+and materials known.  Once created and attuned to a wearer, the robe changes to
+match a sorcerer's mood and style, as well as~
+~~
+vnum: 23828
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: feather garuda-feather shining-blue-feather sparkly-blue-feather pen quill
+shortdesc: a &6&bshining blue&0 feather
+desc: A sparkly blue feather rests on the ground here.
+type: 21
+weight: 0.40
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+3 2
+4 2
+14 10
+18 2
+27 3
+~
+extradesc: feather garuda-feather shining-blue-feather sparkly-blue-feather pen quill
+It's a gorgeous wing feather from the rare ice garuda.  Slightly chilly to the
+touch, this kind of feather is prized among cryomancers for use as a quill.  
+The sparkles are really tiny ice crystals embedded in the feather.~
+~~
+vnum: 13611
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather bright-red-feather pen quill
+shortdesc: a &1red&0 feather
+desc: A bright red feather lies in the dust.
+type: 21
+weight: 0.03
+cost: 100
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 1
+4 -1
+~
+extradesc: feather bright-red-feather pen quill
+It's a long wingfeather from the bright birds that live around Morgan Hill.  
+It looks ideal for scribing spells into a spellbook.~
+~~
+vnum: 8605
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: feather buzzard's-feather buzzards-feather pen quill
+shortdesc: a buzzard feather
+desc: A buzzard's feather drifts lazily to the ground here.
+type: 21
+weight: 0.02
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 1
+6 -1
+~
+extradesc: feather buzzard's-feather buzzards-feather
+A dark feather from the powerful buzzard, these creatures are very well known
+for their strength, not their beauty.~
+~~
+vnum: 50224
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: tailfeather parrot's-tailfeather tail-feather bright-green-feather pen quill
+shortdesc: a &2&bparrot's&0 tailfeather
+desc: A bright green feather lies here.
+type: 21
+weight: 0.02
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+6 2
+~
+extradesc: tailfeather parrot's-tailfeather tail-feather bright-green-feather pen quill
+Looking rather tattered, this long tailfeather is too beat-up to look good in a
+hat.  It seems sturdy enough to use as a pen, though.~
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 20
+location: 127
+values:
+256
+256
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 2.00
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 12520
+location: 127
+values:
+150
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: spellbook silver-trimmed-leather-spellbook spell-book
+shortdesc: a silver-trimmed leather spellbook
+desc: A silver-trimmed leather spellbook lies open, face down.
+type: 26
+weight: 1.00
+cost: 0
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 2
+1 -2
+27 2
+~
+extradesc: spellbook silver leather book
+The leather is pale grey, very supple, and thin.  The silver trim is painted on
+in long, quick strokes.  No symbols or drawings adorn the spine or cover; only
+faint wrinkles criscross the leather.~
+spells:
+5 1
+101 1
+20 1
+32 1
+100 1
+8 1
+19 1
+39 1
+99 1
+186 1
+31 1
+37 1
+246 1
+106 1
+105 1
+50 1
+103 1
+30 1
+107 1
+83 1
+102 1
+2 1
+228 1
+10 1
+76 1
+62 1
+67 1
+29 1
+38 1
+26 1
+57 1
+68 1
+77 1
+52 1
+66 1
+111 1
+110 1
+108 1
+109 1
+112 1
+113 1
+65 1
+185 1
+184 1
+104 1
+7 1
+~
+~~

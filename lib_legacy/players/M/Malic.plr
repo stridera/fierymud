@@ -1,0 +1,112 @@
+name: Malic
+password: MabUUrjL4z
+prompt: %n|%N|%h|%H|%ph|%v|%V|%pv|%a|%i|%o |%t |%x |%w|%W|%l |%r|%e|%di|%dd|%dm|%dl|%df|%dt|%ds|%dc|
+autoinvis: 0
+sex: 1
+class: 9
+race: 6
+level: 25
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20132
+birthtime: 1643492030
+timeplayed: 296603
+lastlogintime: 1646760266
+host: 074.193.157.039
+height: 40
+weight: 194
+base_height: 40
+base_weight: 194
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: k w 0
+prefflags: fhnoxC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 317/267
+mana: 62/62
+move: 158/158
+damroll: 4
+hitroll: 5
+strength: 94
+intelligence: 44
+wisdom: 88
+dexterity: 100
+constitution: 95
+charisma: 42
+cash: 30 206 816 34
+bank: 27 559 3097 2699
+experience: 2873994
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+401 300
+403 300
+405 193
+408 300
+410 50
+411 300
+415 50
+416 50
+420 94
+421 106
+438 81
+440 300
+443 50
+444 79
+464 298
+465 51
+0 0
+trophy:
+1 16102 0.200000
+1 16107 0.400000
+1 16100 0.200000
+1 16105 0.400000
+1 16110 4.050000
+1 16111 0.200000
+1 16103 0.200000
+1 2001 0.200000
+1 2005 0.200000
+1 2002 0.400000
+1 18510 0.200000
+1 18507 0.200000
+1 12003 0.200000
+1 12007 0.250000
+1 58029 0.333333
+1 58007 0.200000
+1 39007 0.200000
+1 12006 0.200000
+1 12016 0.650000
+1 50212 0.200000
+1 50203 0.200000
+0 0 0
+tells:
+1646758482 @WChinok@W tells you, 'besides, I don't want you to leave! :)@W'@0
+1646758533 @WChinok@W tells you, 'yeah, just tell me which IP you want banned@W'@0
+1646758619 @WChinok@W tells you, '074.193.157.039 is your current address@W'@0
+1646758628 @WChinok@W tells you, 'I assume that's not the one you wnt to ban@W'@0
+1646758776 @WChinok@W tells you, 'curl api.ipify.org@W'@0
+1646758966 @WChinok@W tells you, 'no, that's your goss hi Meina..@W'@0
+1646759239 @WChinok@W tells you, 'ok, just tell me when you are ready for that ban to be added@W'@0
+1646759560 @WChinok@W tells you, 'when I do this, it's going to kick you out@W'@0
+1646759970 @WChinok@W tells you, 'give me just a sec to look at something... @W'@0
+1646760188 @WChinok@W tells you, 'log off and bcak in now@W'@0
+$
+gossips:
+1646759125 Mersh gossips, 'expert? No but I know what they are and what they do'
+1646759163 Strider gossips, 'That like visual design for aws?'
+1646759164 Meina gossips, 'I need to take over building a system (basically a rules engine) based on step functions, and i have a business-level understanding (i.e. i can use the word...) any advice on best tutorials/documentation online?'
+1646759167 Chinok gossips, 'I trip every time I try to step'
+1646759183 Meina gossips, 'like the visual design BUT writing it as serverless framework code somehow.'
+1646759194 Meina gossips, 'hiya chinnie'
+1646759197 Meina gossips, 'Gratz Mersh!'
+1646759208 Mersh gossips, 'ty'
+1646759999 Meina gossips, 'doh'
+1646760006 Meina gossips, 'not a great sign'
+$

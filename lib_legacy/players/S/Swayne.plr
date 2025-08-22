@@ -1,0 +1,107 @@
+name: Swayne
+password: SwC343.UR/
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19710
+birthtime: 1600708460
+timeplayed: 12268
+lastlogintime: 1724433319
+host: 174.179.016.210
+height: 44
+weight: 188
+base_height: 44
+base_weight: 188
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: k w q
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 20
+thirst: 16
+lastlevel: 0
+hitpoints: 61/58
+mana: 1/0
+move: 150/150
+damroll: 4
+hitroll: 5
+strength: 94
+intelligence: 78
+wisdom: 82
+dexterity: 89
+constitution: 90
+charisma: 74
+cash: 0 12 15 2
+experience: 19753
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 61
+415 50
+416 50
+421 52
+438 50
+443 50
+444 50
+463 50
+464 50
+465 57
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 36305 0.750000
+1 12002 0.500000
+1 12009 0.500000
+1 12020 0.250000
+1 12012 0.750000
+1 12003 0.500000
+1 12024 0.500000
+1 12004 0.750000
+1 12023 0.750000
+1 12025 0.500000
+1 12011 1.500000
+1 12001 0.250000
+1 12014 0.500000
+1 12007 2.333333
+1 12016 0.250000
+1 12015 0.250000
+1 3503 0.250000
+1 3501 0.250000
+1 3507 0.250000
+1 18007 2.333333
+1 18004 1.500000
+0 0 0
+tells:
+1600720327 @WGlaim@W tells you, 'sway  sc@W'@0
+1600720338 @WGlaim@W tells you, 'sway  get bread bag@W'@0
+1600720339 @WGlaim@W tells you, 'sway  get bread bag@W'@0
+1600720383 @WGlaim@W tells you, 'sway  eat bread@W'@0
+1600720383 @WGlaim@W tells you, 'sway  eat bread@W'@0
+1600720388 @WGlaim@W tells you, 'sway  drink skin@W'@0
+1600720520 @WGlaim@W tells you, 'sway  sleep@W'@0
+1600720622 @WGlaim@W tells you, 'sway  wake@W'@0
+1600720625 @WGlaim@W tells you, 'sway  stand@W'@0
+1600720670 @WGlaim@W tells you, 'sway  rent@W'@0
+$
+gossips:
+1600717093 Swayod gossips, 'hello! :)'
+1600717093 Rolatti gossips, 'hello! :)'
+1600717093 Glaim gossips, 'hello! :)'
+1600717101 Leroc gossips, 'hi there.'
+1600717119 Glaim gossips, 'heh hiya, and welcome!'
+1600717602 Glaim gossips, 'any idea what touching this goddess statue does? says i feel a magical link, but i dont notice anything else hmmm'
+1620695608 Chinok gossips, 'sultan of swayne ?'
+$

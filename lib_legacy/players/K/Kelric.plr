@@ -1,0 +1,85 @@
+name: Kelric
+password: KeOxDLtHgR
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19544
+birthtime: 1582552088
+timeplayed: 6878
+lastlogintime: 1582559462
+host: 072.082.056.058
+height: 70
+weight: 178
+base_height: 70
+base_weight: 178
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 49/49
+mana: 1/0
+move: 118/118
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 62
+wisdom: 80
+dexterity: 100
+constitution: 82
+charisma: 60
+experience: 28987
+quit_reason: 3
+saveroom: 0
+skills:
+403 57
+415 50
+416 50
+421 60
+438 50
+443 50
+444 50
+464 52
+465 50
+467 50
+0 0
+trophy:
+1 8012 2.000000
+1 8023 2.000000
+1 8022 1.000000
+1 8000 3.000000
+1 8015 4.000000
+1 8021 2.000000
+1 8020 2.000000
+1 8013 2.000000
+1 8014 3.000000
+1 8011 4.000000
+1 8010 4.000000
+1 8001 3.000000
+0 0 0
+tells:
+1582555069 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+$
+gossips:
+1582558430 Chinok gossips, 'we are fairly active in fixing and adding stuff. last build was Feb 4 (see world command) '
+1582558462 Chinok gossips, 'circle'
+1582558477 Chinok gossips, 'but to be honest, there's not a ton of circle code left anymore :)'
+1582558535 Chinok gossips, 'another guy manages most of the GMCP stuff -- why I had to lookup how to show the vars :)'
+1582558615 Chinok gossips, 'just added room contents to his 'list' :)'
+1582558672 Chinok gossips, 'lol your name wasn't mentioned :)'
+1582558761 Chinok gossips, 'hehehe just spread the pain'
+1582559435 Chinok gossips, 'thanks'
+1582559440 Chinok gossips, 'please come back and join us.'
+1582559454 Chinok gossips, 'we do have others that show up and play'
+$

@@ -1,0 +1,72 @@
+name: Dwin
+password: DwkIevcuUr
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20615
+birthtime: 1693882172
+timeplayed: 1013
+lastlogintime: 1693883191
+host: 099.019.071.249
+height: 41
+weight: 182
+base_height: 41
+base_weight: 182
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k w q
+prefflags: hC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 42/38
+mana: 0/0
+move: 158/158
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 61
+wisdom: 85
+dexterity: 67
+constitution: 92
+charisma: 53
+cash: 0 6 70 43
+experience: 6050
+quit_reason: 3
+saveroom: 0
+skills:
+402 60
+404 54
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+463 50
+464 50
+465 52
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8016 1.000000
+1 36002 4.000000
+1 36001 3.000000
+1 36003 3.000000
+0 0 0
+tells:
+1693883049 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+$

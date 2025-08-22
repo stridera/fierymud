@@ -1,0 +1,69 @@
+name: Xinu
+password: XimLf0J/O.
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18652
+birthtime: 1393193641
+timeplayed: 332
+lastlogintime: 1393194002
+host: 098.175.107.066
+height: 75
+weight: 211
+base_height: 75
+base_weight: 211
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8049
+hunger: 20
+thirst: 16
+lastlevel: 0
+hitpoints: 26/26
+mana: 0/0
+move: 122/134
+damroll: 5
+hitroll: 4
+strength: 100
+intelligence: 68
+wisdom: 65
+dexterity: 93
+constitution: 77
+charisma: 59
+experience: 2139
+quit_reason: 7
+saveroom: 8049
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8011 0.500000
+1 8001 0.500000
+1 8000 1.000000
+0 0 0

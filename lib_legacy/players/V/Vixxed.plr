@@ -1,0 +1,94 @@
+name: Vixxed
+password: Vibo.Fn4We
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 0
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20755
+birthtime: 1708394881
+timeplayed: 2149
+lastlogintime: 1708397030
+host: 047.028.021.229
+height: 64
+weight: 135
+base_height: 64
+base_weight: 135
+base_size: 2
+natural_size: 2
+alignment: 4
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoxC ae
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 57/57
+mana: 0/0
+move: 146/146
+damroll: 3
+hitroll: 3
+strength: 80
+intelligence: 70
+wisdom: 66
+dexterity: 98
+constitution: 86
+charisma: 70
+cash: 0 6 27 89
+bank: 0 1 1 1
+experience: 33000
+quit_reason: 3
+saveroom: 0
+skills:
+401 74
+403 51
+408 50
+415 50
+416 50
+421 60
+438 50
+443 50
+444 50
+463 50
+464 56
+465 50
+493 50
+0 0
+trophy:
+1 8014 2.000000
+1 8013 3.000000
+1 16900 1.000000
+1 36001 2.000000
+1 8000 1.000000
+1 8015 2.000000
+1 8011 2.000000
+1 8016 4.000000
+1 8022 3.000000
+1 8023 2.000000
+1 8002 6.000000
+1 8020 3.000000
+1 51900 1.000000
+0 0 0
+tells:
+1708395668 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
+1708396439 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1708396447 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
+1708396456 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
+1708396461 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1708396468 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1708396471 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1708396473 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1708396475 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+1708396478 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
+$
+gossips:
+1708394896 Chinok gossips, 'welcome Vixxed!'
+1708394968 Chinok gossips, 'Vixxed, if you have any questions or need any advice, just yell.. we're happy to help you out'
+1708395611 Chinok gossips, 'gratz on level 2 Vixxed'
+1708396214 Chinok gossips, 'gratz on level 3 Vixxed'
+$

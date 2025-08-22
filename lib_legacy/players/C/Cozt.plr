@@ -1,0 +1,130 @@
+name: Cozt
+password: CofsvlewD8
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 5
+race: 0
+level: 35
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17377
+birthtime: 1246280419
+timeplayed: 250041
+lastlogintime: 1738289167
+host: 104.048.170.022
+height: 75
+weight: 176
+base_height: 75
+base_weight: 176
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: cn 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 501/431
+mana: 122/122
+move: 92/138
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 81
+wisdom: 60
+dexterity: 84
+constitution: 97
+charisma: 50
+cash: 3 384 690 3
+bank: 57 2067 8940 6963
+experience: 7146336
+quit_reason: 1
+saveroom: 3054
+skills:
+12 1000
+13 1000
+17 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+131 1000
+132 1000
+235 1000
+402 216
+404 400
+407 210
+411 400
+415 400
+416 400
+417 50
+420 276
+421 400
+423 400
+424 400
+430 204
+434 86
+438 50
+443 249
+444 217
+450 50
+451 322
+457 124
+458 136
+459 369
+460 75
+461 99
+463 109
+464 307
+465 168
+466 50
+467 50
+468 354
+0 0
+trophy:
+1 18520 1.000000
+1 18512 2.000000
+1 8020 1.000000
+1 8011 1.000000
+1 3501 1.000000
+1 8022 2.000000
+1 8014 1.000000
+1 18550 1.000000
+1 18501 1.000000
+1 18519 2.000000
+1 18503 2.000000
+1 8012 1.000000
+1 18515 2.000000
+1 18517 8.000000
+1 18507 22.000000
+1 18510 8.000000
+1 3503 1.000000
+1 3502 6.000000
+0 0 0
+tells:
+1626389028 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1626389029 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738199376 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738199377 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738199378 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738199379 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738200689 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738200691 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1738200740 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1738200758 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1738197819 Discord gossips, 'Daedela: It's a conditional bug.  I run the Barrows frequently, but I never noticed because I never encountered the conditions for it TO bug'
+1738198226 Thort gossips, 'what's the condition? wanting the treasure? lol'
+1738198394 Discord gossips, 'Daedela: Yes haha'
+1738198405 Discord gossips, 'Daedela: No, not really'
+$
+effects:
+254 2 3 5 0 0 0
+132 3 10 17 0 256 0
+0 0 0 0 0

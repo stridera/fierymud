@@ -1,0 +1,74 @@
+name: Gamaroch
+password: Ga0YK0kWDg
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20308
+birthtime: 1658945653
+timeplayed: 46
+lastlogintime: 1705003695
+host: 207.194.163.074
+height: 38
+weight: 194
+base_height: 38
+base_weight: 194
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: xy
+effectflags: k w q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 21/21
+mana: 1/0
+move: 110/110
+damroll: 4
+hitroll: 5
+strength: 90
+intelligence: 82
+wisdom: 94
+dexterity: 73
+constitution: 66
+charisma: 56
+experience: 1
+quit_reason: 5
+saveroom: 3001
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 50
+424 50
+438 50
+443 50
+444 50
+451 50
+457 50
+458 50
+459 50
+460 50
+462 50
+463 50
+466 50
+0 0
+tells:
+$
+gossips:
+$

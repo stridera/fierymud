@@ -1,0 +1,75 @@
+name: Gudrun
+password: GuNTvpWNIu
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19133
+birthtime: 1487470728
+timeplayed: 5678
+lastlogintime: 1487476501
+host: 066.169.223.199
+height: 68
+weight: 153
+base_height: 68
+base_weight: 153
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8022
+hunger: 16
+lastlevel: 0
+hitpoints: 42/40
+mana: 0/0
+move: 130/138
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 62
+wisdom: 66
+dexterity: 92
+constitution: 97
+charisma: 61
+experience: 8840
+quit_reason: 7
+saveroom: 8022
+skills:
+402 50
+404 54
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8000 1.000000
+1 8016 1.000000
+1 8023 1.000000
+1 8002 1.000000
+1 8022 1.000000
+1 8013 1.000000
+1 8011 2.000000
+1 8010 2.000000
+1 8012 1.000000
+0 0 0
+aliases:
+eb eat bread
+0

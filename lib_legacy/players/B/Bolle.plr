@@ -1,0 +1,124 @@
+name: Bolle
+password: BogcbKtL1w
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 19
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20082
+birthtime: 1640467255
+timeplayed: 108549
+lastlogintime: 1641177402
+host: 068.170.115.166
+height: 61
+weight: 130
+base_height: 61
+base_weight: 130
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: 0 0 0
+prefflags: ghnoxBC e
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 40
+loadroom: 3054
+lastlevel: 0
+hitpoints: 251/251
+mana: 36/36
+move: 118/118
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 62
+wisdom: 68
+dexterity: 92
+constitution: 82
+charisma: 65
+cash: 9 1122 3423 1249
+experience: 1648427
+quit_reason: 3
+saveroom: 0
+skills:
+402 236
+404 240
+407 122
+415 203
+416 90
+421 240
+430 84
+438 132
+443 50
+444 134
+463 57
+464 230
+465 215
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 13611 1.000000
+1 36105 1.000000
+1 36104 3.500000
+1 36100 8.500000
+1 5404 1.000000
+1 16103 1.500000
+1 16111 0.500000
+1 16101 1.000000
+1 16107 6.000000
+1 16109 0.500000
+1 13606 0.500000
+1 13604 0.500000
+1 13602 3.500000
+1 13601 2.000000
+1 13603 1.000000
+1 13610 3.000000
+1 13605 0.500000
+1 8604 0.500000
+1 8606 0.500000
+1 7001 0.500000
+1 6909 0.500000
+0 0 0
+tells:
+1640891057 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1640891075 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1640891075 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641065299 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641065306 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641065321 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641102576 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641102576 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641102577 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1641102577 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1641177100 Rokari gossips, 'not sure I have ever seen a token'
+1641177116 Someone gossips, 'inside corpse of mob will get item'
+1641177131 Someone gossips, 'and u've to give that one to questmaster'
+1641177140 Daedela gossips, '3rd Black Legion or 3rd Eldorian Guard items.  They drop in a few specific zones'
+1641177154 Rokari gossips, 'I have seen those items all over'
+1641177160 Someone gossips, 'splitskull are also given token area'
+1641177170 Rokari gossips, 'do you take them to a questmaster in Eldoria?'
+1641177174 Daedela gossips, 'yep'
+1641177183 Daedela gossips, 'which one depends on your alignment'
+1641177184 Someone gossips, 'also got quest master at Abbey'
+$
+aliases:
+kb kill bandit
+ag assist gir
+gg get all corpse
+fw fill water fountain
+aa assist pashku
+ar assist razaria
+aw assist wozzaki
+kd kill dwarf
+df drink fountain
+dw drink water
+who who -w
+0

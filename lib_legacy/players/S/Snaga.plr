@@ -1,0 +1,96 @@
+name: Snaga
+password: Snx5Afor3z
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 14
+home: 6015
+lifeforce: 0
+composition: 0
+id: 18543
+birthtime: 1373861974
+timeplayed: 75314
+lastlogintime: 1589128727
+host: 174.216.011.138
+height: 63
+weight: 127
+base_height: 63
+base_weight: 127
+base_size: 2
+natural_size: 2
+alignment: 965
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 10053
+lastlevel: 0
+hitpoints: 197/197
+mana: 19/19
+move: 130/130
+damroll: 3
+hitroll: 3
+strength: 99
+intelligence: 64
+wisdom: 64
+dexterity: 83
+constitution: 91
+charisma: 61
+cash: 0 36 0 6
+bank: 40 100 1000 0
+experience: 667694
+quit_reason: 1
+saveroom: 10053
+skills:
+402 50
+404 186
+415 180
+416 128
+421 184
+430 56
+438 129
+443 50
+444 84
+463 50
+464 50
+465 180
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 46403 1.000000
+1 58810 2.000000
+1 58801 1.000000
+1 58812 1.000000
+1 36400 1.000000
+1 36401 3.000000
+1 55222 3.000000
+1 55229 1.000000
+1 55240 4.000000
+1 55241 4.000000
+1 4306 1.000000
+1 4309 1.000000
+1 55224 1.000000
+1 6910 1.000000
+1 7052 1.000000
+1 6909 1.000000
+1 7001 1.000000
+1 7051 2.000000
+1 7002 2.000000
+1 7050 1.000000
+1 8606 1.000000
+0 0 0
+tells:
+$
+gossips:
+1589089657 Chinok gossips, 'auto-friggin-magic ??'
+1589089671 Shriekback gossips, 'gos liking it already'
+1589089863 Shriekback gossips, 'First time you connect with a profile the password isn't recognized'
+$
+aliases:
+krt kill rat
+0

@@ -1,0 +1,100 @@
+name: Totsy
+password: Tol4OrlGzi
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 3
+race: 10
+level: 18
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18638
+birthtime: 1390589607
+timeplayed: 92153
+lastlogintime: 1392424066
+host: 098.246.191.221
+height: 74
+weight: 132
+base_height: 74
+base_weight: 132
+base_size: 3
+natural_size: 3
+alignment: -532
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 16
+lastlevel: 0
+hitpoints: 277/251
+mana: 32/32
+move: 158/158
+damroll: 5
+hitroll: 4
+strength: 98
+intelligence: 72
+wisdom: 69
+dexterity: 78
+constitution: 90
+charisma: 55
+cash: 24 815 2638 871
+experience: 1331602
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 11770/18000
+-1 0
+skills:
+402 220
+404 50
+407 50
+415 50
+416 50
+419 1000
+421 230
+427 1000
+430 50
+438 50
+443 50
+444 76
+463 50
+464 50
+465 225
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 4107 0.500000
+1 4117 0.500000
+1 4125 0.500000
+1 4118 0.500000
+1 4109 0.500000
+1 4105 1.000000
+1 4103 0.500000
+1 4104 0.500000
+1 4102 2.000000
+1 4101 0.500000
+1 18503 0.500000
+1 16310 0.500000
+1 18507 0.500000
+1 18509 0.500000
+1 3500 0.500000
+1 18510 1.500000
+1 18515 0.500000
+1 18501 0.500000
+1 18519 0.500000
+1 18551 0.500000
+1 18518 0.500000
+0 0 0
+aliases:
+tc take all corpse
+"ah" assist hotsy
+ah assist hotsy
+take all corpse "tc"
+"tc" take all corpse
+an assist nakir
+0

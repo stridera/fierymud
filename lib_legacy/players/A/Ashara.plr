@@ -1,0 +1,97 @@
+name: Ashara
+password: AstcpolNLt
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 3
+race: 7
+level: 31
+home: 3022
+lifeforce: 0
+composition: 0
+id: 15679
+birthtime: 1143949354
+timeplayed: 6885752
+lastlogintime: 1453961784
+host: 209.033.249.166
+height: 87
+weight: 184
+base_height: 87
+base_weight: 184
+base_size: 3
+natural_size: 3
+alignment: -753
+playerflags: glxy
+effectflags: k w 0
+prefflags: hno 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 13
+hitpoints: 513/389
+mana: 100/100
+move: 176/176
+damroll: 5
+hitroll: 4
+strength: 91
+intelligence: 68
+wisdom: 78
+dexterity: 81
+constitution: 100
+charisma: 40
+cash: 0 17 126 256
+experience: 5530161
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 56
+407 176
+411 173
+415 51
+416 51
+419 1000
+420 174
+421 184
+427 1000
+430 150
+431 150
+434 158
+438 50
+443 50
+444 50
+463 50
+464 51
+465 80
+466 50
+467 50
+468 54
+0 0
+trophy:
+1 50207 0.250000
+1 50216 0.250000
+1 50212 0.500000
+1 50200 0.250000
+1 50205 1.250000
+1 50218 0.250000
+1 50217 0.250000
+1 50219 0.250000
+1 50215 0.583333
+1 50214 1.000000
+1 50213 1.000000
+1 2001 1.000000
+1 5101 1.000000
+1 5103 1.000000
+1 5100 1.000000
+1 5408 1.000000
+1 5420 2.000000
+1 16007 0.500000
+1 16004 1.000000
+1 16011 1.000000
+1 16008 1.000000
+0 0 0
+aliases:
+3 rescue vasque
+2 rescue frumly
+1 rescue fylae
+slam bodyslam $*
+0

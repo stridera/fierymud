@@ -1,0 +1,108 @@
+#58701
+well wishing-well wishing fountain~
+a wishing well~
+A stone wishing well stands in the center of the courtyard.~
+~
+23 0 0 1
+9999 9999 0 0 0 0 0
+9999.00 0 0 0 0 0 0 0
+T 2806
+E
+wishing well stone fountain~
+It's made of polished cream-grey stones cobbled together into
+a cylindrical shape. Though it's not very large, it's probably
+more than able to handle the water demands of the compound it
+calls home. When you lean over and look inside it, you can
+see sparkling water far below.~
+#58702
+canteen~
+a canteen~
+Somebody's lost a canteen.~
+~
+17 0 16385 1
+32 32 0 0 0 0 0
+2.00 20 0 0 0 0 0 0
+E
+canteen~
+You behold a simple circular shape held rigid with boiled leather
+straps that support some kind of oiled canvas that probably holds
+water. A stopper on the canteen's mouth keeps the liquid inside
+from spilling. The maker of this container has thoughtfully
+included straps for easy carrying.~
+#58703
+muffin bran-muffin bran food~
+a bran muffin~
+A delicious-looking bran muffin in a wrapper lies here.~
+~
+19 0 1 1
+6 0 0 0 0 0 0
+0.50 3 0 0 0 0 0 0
+E
+bran muffin~
+A small, vaguely cylindrical shape, this cupcake-like muffin smells
+of dates, of nuts, and of simple stone-ground wheat flour. It's
+probably very filling and might even help with that regularity
+problem you've been having!~
+#58704
+lunch box box-lunch meat cheese bread food~
+a box lunch~
+Meat and cheese and bread in a box smells good.~
+~
+19 0 1 1
+10 0 0 0 0 0 0
+1.00 5 0 0 0 0 0 0
+E
+box lunch meat cheese bread~
+A thin wooden box with a lid reveals all manner of delicious
+lunch type foods! Rolled up slices of smoked meats rest alongside
+thick slabs of hard white cheese, which in turn lie beside a few
+pieces of hard tack bread.~
+#58705
+pouch cloth-pouch cloth~
+a pouch~
+A cloth pouch lies crumpled on the ground.~
+~
+15 0 1064961 1
+50 1 -1 0 0 0 0
+0.25 8 0 0 0 0 0 0
+E
+pouch cloth~
+It's just a simple woolen pouch. The fabric is dyed a brilliant
+red color, and there's some embroidery on its front. A cord closes
+around the pouch's neck; the cord is quite long, long enough for
+you to tie its ends around your belt.~
+E
+embroidery~
+The embroidery is of a strange kind. Usually embroidery is of
+pretty things, for some sort of informative or decorative purpose,
+but this picture is of a monstrous golden wolf-like beast with
+eerily human eyes.~
+#58706
+pitcher~
+a pitcher~
+A light pitcher sits here.~
+~
+17 0 1 1
+44 44 24 0 0 0 0
+1.00 100 0 0 0 0 0 0
+E
+pitcher~
+The pitcher is big enough to hold several glasses of your favorite
+beverage.~
+#58707
+wind-chimes windchimes windchime wind-chime~
+wind chimes~
+A set of wind chimes hang from the eaves, ringing in the breeze.~
+The wind chimes sing in tintinnabulation.~
+30 0 1064961 1
+5 3 3 89 0 0 0
+0.05 0 0 0 0 0 0 0
+E
+wind-chimes windchimes~
+These wind chimes are thin metal rods hung in graduated descending lengths,
+dangling from a single circular disc.  The peeling of these chimes is light and
+soft, adding a tintinnabulation to the air like the twinkling of stars at
+night.~
+A
+14 5
+$~

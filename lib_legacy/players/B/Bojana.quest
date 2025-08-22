@@ -1,0 +1,48 @@
+19 4 1
+choice 2
+22 1 5
+actor_level 99
+price -2134826
+skill_level 50
+word2 bludgeoning
+skill_name 2h
+23 1 5
+actor_level 99
+price -2021135
+skill_level 50
+word2 earth
+skill_name sphere
+21 1 4
+actor_level 99
+price -2134826
+skill_level 50
+skill_name bandage
+17 1 2
+eg_faction 0
+bl_faction 0
+9 255 0
+7 2 10
+55346_armor_acquired 1
+55334_armor_acquired 1
+55354_armor_acquired 1
+55651_gems_acquired 3
+55618_gems_acquired 3
+55640_gems_acquired 3
+55607_gems_acquired 3
+55596_gems_acquired 3
+55629_gems_acquired 3
+55662_gems_acquired 3
+6 255 11
+got_spice:23751 1
+got_spice:23758 1
+got_spice:12552 1
+got_spice:23754 1
+got_spice:23753 1
+got_spice:23750 1
+got_spice:23757 1
+got_spice:23752 1
+got_spice:23759 1
+got_spice:23760 1
+num_spices 10
+2 255 0
+18 1 0

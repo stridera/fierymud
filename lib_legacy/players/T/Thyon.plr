@@ -1,0 +1,102 @@
+name: Thyon
+password: ThhBfJ1YRg
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 9
+race: 0
+level: 16
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19144
+birthtime: 1488595222
+timeplayed: 66757
+lastlogintime: 1588440073
+host: 067.183.244.046
+height: 64
+weight: 128
+base_height: 64
+base_weight: 128
+base_size: 2
+natural_size: 2
+alignment: -98
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 2016
+lastlevel: 0
+hitpoints: 167/167
+mana: 25/25
+move: 110/110
+damroll: 3
+hitroll: 3
+strength: 95
+intelligence: 66
+wisdom: 73
+dexterity: 96
+constitution: 77
+charisma: 60
+cash: 7 916 3222 249
+experience: 856993
+quit_reason: 3
+saveroom: 0
+skills:
+401 200
+403 201
+405 50
+408 200
+410 50
+411 203
+415 51
+416 50
+420 194
+421 200
+438 50
+440 187
+443 50
+444 50
+464 200
+465 50
+0 0
+trophy:
+1 55216 1.000000
+1 18507 1.500000
+1 2003 1.500000
+1 2001 0.500000
+1 2005 1.500000
+1 2004 1.500000
+1 3508 1.000000
+1 3506 1.000000
+1 3500 3.000000
+1 3509 1.000000
+1 3501 1.000000
+1 3502 1.000000
+1 16107 1.500000
+1 18510 1.000000
+1 1603 3.000000
+1 1602 16.500000
+1 1605 3.000000
+1 1601 15.000000
+1 17300 1.500000
+1 17305 2.000000
+1 55700 5.000000
+0 0 0
+tells:
+$
+gossips:
+$
+aliases:
+13 who -w
+5 look self
+2 in
+1 get all corpse
+3 get all
+14 search
+7 drink from waterskin
+8 scan
+9 social
+4 who
+0

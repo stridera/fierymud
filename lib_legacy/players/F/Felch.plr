@@ -1,0 +1,125 @@
+name: Felch
+password: FeeCk/1952
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA> <%ih&2&b> <&0%e&2&b>&0 <%l>%_<%t&0>:<&0%o&0>
+autoinvis: 0
+sex: 1
+class: 11
+race: 0
+level: 21
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17860
+birthtime: 1300100495
+timeplayed: 164248
+lastlogintime: 1326937939
+host: 076.177.020.038
+height: 71
+weight: 162
+base_height: 71
+base_weight: 162
+base_size: 2
+natural_size: 2
+alignment: -830
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 18
+lastlevel: 0
+hitpoints: 101/137
+mana: 39/39
+move: 30/122
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 96
+wisdom: 94
+dexterity: 84
+constitution: 86
+charisma: 66
+cash: 23 654 1727 671
+bank: 2 84 471 283
+experience: 2278355
+quit_reason: 1
+saveroom: 3054
+cooldowns:
+10 16540/18000
+-1 0
+skills:
+5 1000
+8 1000
+19 1000
+20 1000
+32 1000
+33 1000
+39 1000
+45 1000
+87 1000
+100 1000
+101 1000
+121 1000
+415 170
+416 95
+421 74
+423 257
+424 255
+438 50
+443 50
+444 255
+447 98
+451 202
+452 251
+453 250
+454 179
+459 157
+460 85
+461 246
+462 64
+464 115
+0 0
+trophy:
+1 8329 1.000000
+1 39001 1.000000
+1 39009 1.000000
+1 39011 1.000000
+1 39004 2.000000
+1 39005 2.000000
+1 39003 2.000000
+1 39006 3.000000
+1 36108 1.000000
+1 16905 1.000000
+1 18551 1.000000
+1 18507 1.000000
+1 18517 2.000000
+1 8000 1.000000
+1 18520 0.500000
+1 18550 1.500000
+1 18518 0.500000
+1 18519 1.500000
+1 18515 0.500000
+1 18501 2.000000
+1 8022 1.000000
+0 0 0
+mem:
+100 1 1
+32 0 1
+5 1 2
+32 1 1
+5 1 2
+32 1 1
+32 1 1
+32 1 1
+87 0 3
+5 1 2
+5 1 3
+45 0 6
+19 1 2
+8 1 1
+33 1 6
+121 1 1
+8 1 6
+8 1 7
+0 0 0

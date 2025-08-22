@@ -1,0 +1,237 @@
+name: Drit
+password: DrlXCwUIse
+currenttitle: Harbin
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 1
+class: 5
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 6899
+birthtime: 988322297
+timeplayed: 19240344
+lastlogintime: 1574445342
+host: 173.230.129.180
+height: 62
+weight: 152
+base_height: 62
+base_weight: 152
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: alny
+effectflags: cn 0 0
+prefflags: bhnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+freezelevel: 104
+loadroom: 1270
+lastlevel: 9
+hitpoints: 1093/1093
+mana: 100/100
+move: 134/134
+damroll: 3
+hitroll: 3
+strength: 96
+intelligence: 76
+wisdom: 78
+dexterity: 92
+constitution: 94
+charisma: 64
+cash: 413 11037 215428 272492
+bank: 4660 6130 399868 646809
+experience: 105805999
+title: Harbin
+quit_reason: 3
+saveroom: 0
+skills:
+4 1000
+12 1000
+13 1000
+14 1000
+17 1000
+27 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+92 1000
+96 1000
+99 1000
+131 1000
+132 1000
+188 1000
+402 999
+404 1000
+407 576
+411 1000
+412 1000
+415 1000
+416 1000
+417 203
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 530
+431 176
+434 999
+438 52
+441 1000
+443 62
+444 291
+445 1000
+450 150
+451 1000
+452 156
+457 163
+458 1000
+459 269
+460 697
+461 1000
+463 1000
+464 86
+465 1000
+466 50
+468 292
+473 150
+0 0
+trophy:
+1 62500 18.000000
+1 62505 0.500000
+1 62507 0.500000
+1 62502 2.500000
+1 62501 4.000000
+1 62503 1.000000
+1 62510 1.000000
+1 62511 2.000000
+1 62508 1.000000
+1 62509 9.000000
+1 11750 1.000000
+1 2806 1.000000
+1 2807 1.000000
+1 3060 1.000000
+1 18504 1.000000
+1 18505 1.000000
+1 18512 2.000000
+1 18514 2.000000
+1 18508 3.000000
+1 18507 1.000000
+1 18506 1.000000
+0 0 0
+tells:
+$
+gossips:
+$
+mem:
+92 1 2
+92 1 2
+92 1 2
+92 1 2
+92 1 2
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+96 1 2
+96 1 2
+96 1 2
+96 1 2
+96 1 2
+17 1 2
+17 1 2
+17 1 2
+17 1 2
+17 1 2
+99 1 2
+99 1 2
+99 1 2
+188 1 1
+188 1 1
+188 1 2
+12 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+84 1 2
+33 1 2
+33 1 2
+33 1 2
+33 1 2
+46 1 2
+46 1 2
+46 1 2
+86 1 2
+86 1 2
+4 1 2
+4 1 2
+4 1 2
+4 1 2
+4 1 2
+14 1 2
+14 1 2
+14 1 2
+14 1 2
+14 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+12 1 2
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+132 1 2
+86 1 2
+17 1 2
+17 1 2
+17 1 2
+17 1 2
+17 1 2
+27 1 1
+27 1 2
+27 1 2
+27 1 2
+27 1 2
+27 1 2
+27 1 2
+12 1 2
+12 1 2
+12 1 2
+12 1 2
+0 0 0
+aliases:
+` get all corpse
+getit get all.coins all.corpse
+1 get all.coins corpse
+getall get all all.corpse
+ak assist kylana
+occ 'buntoi nakkarri karisto
+getgem get all.gem all.corpse
+soul cast 'soulshield'
+blind cast 'blind' $1
+curse cast 'curse' $1
+demon cast 'demonskin' $1
+unholy cast 'unholy'
+ga group vangar
+harm cast 'harm' $1
+0

@@ -1,0 +1,86 @@
+name: Zellas
+password: ZeJPsd5goF
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 13
+race: 0
+level: 18
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18542
+birthtime: 1373852684
+timeplayed: 87312
+lastlogintime: 1375029985
+host: 024.022.211.217
+height: 64
+weight: 115
+base_height: 64
+base_weight: 115
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 14
+lastlevel: 0
+hitpoints: 248/248
+mana: 32/32
+move: 122/122
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 60
+wisdom: 80
+dexterity: 95
+constitution: 85
+charisma: 53
+cash: 0 262 351 274
+bank: 6 200 0 0
+experience: 1831875
+quit_reason: 1
+saveroom: 3054
+skills:
+404 223
+411 50
+415 220
+416 220
+420 83
+421 138
+438 50
+443 50
+444 91
+446 50
+448 1000
+449 1000
+463 50
+601 50
+0 0
+trophy:
+1 8606 5.000000
+1 8604 15.000000
+1 8605 15.000000
+1 8020 1.000000
+1 8022 2.000000
+1 8010 2.000000
+1 8014 2.000000
+1 8012 4.000000
+1 8021 5.000000
+1 8013 4.000000
+1 8015 5.000000
+1 8023 2.000000
+1 8001 14.000000
+1 36003 6.000000
+1 36002 10.000000
+1 36001 14.000000
+1 8002 6.000000
+1 8000 5.000000
+1 8011 3.000000
+1 8016 4.000000
+1 36300 1.000000
+0 0 0

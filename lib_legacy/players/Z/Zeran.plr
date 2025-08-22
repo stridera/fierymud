@@ -1,0 +1,86 @@
+name: Zeran
+password: ZexMEDY2hP
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
+sex: 1
+class: 13
+race: 0
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 9428
+birthtime: 1015698721
+timeplayed: 2076035
+lastlogintime: 1336356591
+host: 050.206.102.120
+height: 76
+weight: 127
+base_height: 76
+base_weight: 127
+base_size: 2
+natural_size: 2
+alignment: -996
+playerflags: glnyz
+effectflags: 0 0 0
+prefflags: hnoCD 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 105
+loadroom: 3054
+badpasswords: 2
+lastlevel: 14
+hitpoints: 1067/1067
+mana: 100/100
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 63
+wisdom: 75
+dexterity: 96
+constitution: 93
+charisma: 42
+cash: 23 126 786 879
+experience: 158708999
+pagelength: 50
+quit_reason: 1
+saveroom: 3054
+skills:
+404 1000
+411 1000
+412 1000
+414 1000
+415 1000
+416 1000
+420 1000
+421 1000
+422 1000
+430 1000
+438 1000
+443 1000
+444 1000
+446 1000
+448 1000
+449 1000
+463 1000
+475 1000
+601 50
+602 50
+603 50
+604 50
+605 50
+606 50
+608 50
+0 0
+trophy:
+1 58412 0.500000
+1 58414 0.250000
+1 58405 0.250000
+1 58408 1.200000
+1 58406 0.450000
+1 58403 0.950000
+0 0 0
+tells:
+$
+gossips:
+$

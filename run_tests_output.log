@@ -1,0 +1,64 @@
+[1;33mFieryMUD Test Suite[0m
+=================
+[1;33mBuilding tests...[0m
+[1/2] Building CXX object CMakeFiles/tests.dir/src/modern/world/weather.cpp.o
+In file included from /usr/include/c++/13/bits/fs_fwd.h:37,
+                 from /usr/include/c++/13/filesystem:48,
+                 from /home/strider/Code/fierymud/build/_deps/json-src/include/nlohmann/detail/meta/std_fs.hpp:22,
+                 from /home/strider/Code/fierymud/build/_deps/json-src/include/nlohmann/detail/conversions/from_json.hpp:27,
+                 from /home/strider/Code/fierymud/build/_deps/json-src/include/nlohmann/adl_serializer.hpp:14,
+                 from /home/strider/Code/fierymud/build/_deps/json-src/include/nlohmann/json.hpp:34,
+                 from /home/strider/Code/fierymud/src/modern/world/../core/entity.hpp:15,
+                 from /home/strider/Code/fierymud/src/modern/world/weather.hpp:12,
+                 from /home/strider/Code/fierymud/src/modern/world/weather.cpp:10:
+In static member function ‘static constexpr _ToDur std::chrono::__duration_cast_impl<_ToDur, _CF, _CR, true, true>::__cast(const std::chrono::duration<_Rep, _Period>&) [with _Rep = long int; _Period = std::ratio<60>; _ToDur = std::chrono::duration<float, std::ratio<60> >; _CF = std::ratio<1>; _CR = float]’,
+    inlined from ‘constexpr std::chrono::__enable_if_is_duration<_ToDur> std::chrono::duration_cast(const duration<_Rep, _Period>&) [with _ToDur = duration<float, std::ratio<60> >; _Rep = long int; _Period = std::ratio<60>]’ at /usr/include/c++/13/bits/chrono.h:287:23,
+    inlined from ‘constexpr std::chrono::duration<_Rep, _Period>::duration(const std::chrono::duration<_Rep, _Period>&) [with _Rep2 = long int; _Period2 = std::ratio<60>; <template-parameter-2-3> = void; _Rep = float; _Period = std::ratio<60>]’ at /usr/include/c++/13/bits/chrono.h:582:33,
+    inlined from ‘constexpr std::chrono::duration<std::chrono::__common_rep_t<_Rep1, _Rep2>, _Period> std::chrono::operator*(const duration<_Rep1, _Period1>&, const _Rep2&) [with _Rep1 = long int; _Period = std::ratio<60>; _Rep2 = float]’ at /usr/include/c++/13/bits/chrono.h:745:14,
+    inlined from ‘std::chrono::minutes WeatherSystem::generate_weather_duration(WeatherType, Season) const’ at /home/strider/Code/fierymud/src/modern/world/weather.cpp:767:77:
+/usr/include/c++/13/bits/chrono.h:199:27: warning: ‘base_duration.std::chrono::duration<long int, std::ratio<60> >::__r’ may be used uninitialized [-Wmaybe-uninitialized]
+  199 |             return _ToDur(static_cast<__to_rep>(__d.count()));
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/strider/Code/fierymud/src/modern/world/weather.cpp: In member function ‘std::chrono::minutes WeatherSystem::generate_weather_duration(WeatherType, Season) const’:
+/home/strider/Code/fierymud/src/modern/world/weather.cpp:710:26: note: ‘base_duration.std::chrono::duration<long int, std::ratio<60> >::__r’ was declared here
+  710 |     std::chrono::minutes base_duration;
+      |                          ^~~~~~~~~~~~~
+In member function ‘void WeatherSystem::set_season(Season)’,
+    inlined from ‘void WeatherSystem::advance_season(std::chrono::days)’ at /home/strider/Code/fierymud/src/modern/world/weather.cpp:583:19:
+/home/strider/Code/fierymud/src/modern/world/weather.cpp:551:5: warning: ‘next_season’ may be used uninitialized [-Wmaybe-uninitialized]
+  551 |     if (current_season_ != season) {
+      |     ^~
+/home/strider/Code/fierymud/src/modern/world/weather.cpp: In member function ‘void WeatherSystem::advance_season(std::chrono::days)’:
+/home/strider/Code/fierymud/src/modern/world/weather.cpp:575:16: note: ‘next_season’ was declared here
+  575 |         Season next_season;
+      |                ^~~~~~~~~~~
+[2/2] Linking CXX executable tests
+[1;33mRunning all tests...[0m
+Internal ctest changing into directory: /home/strider/Code/fierymud/build
+Test project /home/strider/Code/fierymud/build
+    Start 1: FieryMUD_Tests
+1/4 Test #1: FieryMUD_Tests ...................Subprocess aborted***Exception:   0.11 sec
+    Start 2: Unit_Tests
+2/4 Test #2: Unit_Tests .......................***Failed    0.00 sec
+    Start 3: Integration_Tests
+3/4 Test #3: Integration_Tests ................Subprocess aborted***Exception:   0.29 sec
+    Start 4: Session_Tests
+4/4 Test #4: Session_Tests ....................Subprocess aborted***Exception:   0.20 sec
+
+0% tests passed, 4 tests failed out of 4
+
+Label Time Summary:
+integration    =   0.40 sec*proc (2 tests)
+session        =   0.31 sec*proc (2 tests)
+unit           =   0.12 sec*proc (2 tests)
+
+Total Test time (real) =   0.61 sec
+
+The following tests FAILED:
+	  1 - FieryMUD_Tests (Subprocess aborted)
+	  2 - Unit_Tests (Failed)
+	  3 - Integration_Tests (Subprocess aborted)
+	  4 - Session_Tests (Subprocess aborted)
+Errors while running CTest
+Output from these tests are in: /home/strider/Code/fierymud/build/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.

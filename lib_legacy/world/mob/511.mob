@@ -1,0 +1,86 @@
+#51100
+swamp-beast swamp beast~
+a swamp beast~
+An ugly swamp beast slithers by your feet causing your body to shiver.
+~
+As you look at this hideous beast, you notice that it is green-black in
+color and it's very slimy.  The beast stops and look right in your eyes
+and you get a picture of pure terror in your mind.  What is this beast?
+~
+2060 4 -500 E
+30 0 0 0d0+0 0d0+0
+0 0 0 511
+3 3 0 3 14 0 1
+Str: 96
+Dex: 87
+Int: 65
+Wis: 74
+Con: 30
+Cha: 62
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#51101
+glowing-lizard glowing lizard~
+a glowing lizard~
+A glowing lizard, bright pink in color, stares at you.
+~
+The glowing lizard looks to have very tough skin.  Its skin is shiny and
+resembles metal.  The lizard is fairly large; about 10 feet in length, and has
+a pretty powerful looking tail and set of teeth.  It may be a lizard
+but it looks like it could inflict some serious damage.
+~
+2060 4 -666 E
+35 0 0 0d0+0 0d0+0
+0 0 0 511
+3 3 0 3 14 0 1
+Str: 88
+Dex: 96
+Int: 66
+Wis: 68
+Con: 30
+Cha: 52
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#51102
+bile shaman deranged~
+a bile shaman~
+A deranged bile lurches through the undergrowth.
+~
+Dressed in woven swamp grass, this bile is difficult to see from a distance.  
+It lurches forward, its pupils dilated. It appears quite deranged, and
+more than a little angry!
+~
+268443468 0 -400 E
+40 0 0 0d0+0 0d0+0
+0 0 0 511
+3 3 0 22 13 0 2
+Str: 79
+Dex: 80
+Int: 92
+Wis: 81
+Con: 60
+Cha: 61
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+$

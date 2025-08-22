@@ -1,0 +1,107 @@
+name: Dagnarille
+password: DayYiKrpiM
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20475
+birthtime: 1678993773
+timeplayed: 10544
+lastlogintime: 1679224047
+host: 217.180.201.049
+height: 87
+weight: 216
+base_height: 87
+base_weight: 216
+base_size: 3
+natural_size: 3
+alignment: 35
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3507
+lastlevel: 0
+hitpoints: 80/75
+mana: 1/0
+move: 151/157
+damroll: 5
+hitroll: 4
+strength: 90
+intelligence: 73
+wisdom: 68
+dexterity: 87
+constitution: 81
+charisma: 63
+cash: 0 22 105 139
+bank: 0 1 1 1
+experience: 84281
+quit_reason: 7
+saveroom: 3507
+skills:
+402 50
+404 100
+415 50
+416 50
+419 1000
+421 66
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 64
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18003 0.333333
+1 18005 1.000000
+1 18007 2.000000
+1 18001 1.333333
+1 3066 0.333333
+1 18002 1.333333
+1 16909 0.833333
+1 16903 0.333333
+1 16906 0.666667
+1 16902 1.000000
+1 16900 2.000000
+1 16905 0.833333
+1 3506 0.333333
+1 3508 1.000000
+1 3503 6.333334
+1 3507 1.666667
+1 3500 4.666667
+1 3502 3.333333
+1 3501 7.333334
+1 16908 1.500000
+1 8001 2.000000
+0 0 0
+tells:
+1678995001 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1678996310 @WDaedela@W tells you, 'corrext@W'@0
+1678996325 @WDaedela@W tells you, 'certain mobs have better chances of dropping things than others@W'@0
+$
+gossips:
+1678995551 Chinok gossips, 'but we've moved on from 28.8 modems :)'
+1678995562 Daedela gossips, 'in the wo'
+1678995589 Chinok gossips, 'yep, it's not a bad way to go :)'
+1678995591 Daedela gossips, 'in the old days when your stuff got dropped, it dropped in The Void, meaning you could never get it back!'
+1678995633 Daedela gossips, 'keeping green scrolls of recall on you is a faster way to recall back to Mielikki, but you can link death in a pinch'
+1678995665 Chinok gossips, 'Dagnarille, mudlet should show your map.'
+1678995670 Daedela gossips, 'just don't ever, EVER use the "quit yes" command unless you REALLY mean it.  that still drops all your stuff!'
+1678995805 Denolo gossips, 'Grats!'
+1678995866 Daedela gossips, 'oh weird it should start from level 1'
+1679164441 Discord gossips, 'Daedela: Congrats!'
+$
+effects:
+1 0 10 17 0 0 0
+0 0 0 0 0

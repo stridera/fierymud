@@ -1,0 +1,107 @@
+#10200
+wild-barbarian-berserker-guard~
+a barbarian berserker guard~
+A wild barbarian berserker guard stands before the doors.~
+This barbarian is a giant beast of a man, primed to slay at a moment's notice.
+Years of experience and countless ravaging battles have earned him a place of
+honor guarding the Great Lodge.  It is his duty to keep out any who might
+accidentally enter the guildhall - for their own safety.~
+-2013208566 40 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 102
+3 3 1 14 10 0 3
+Str: 76
+Dex: 76
+Int: 80
+Wis: 75
+Con: 77
+Cha: 71
+AFF2: 0
+AFF3: 0
+MOB2: 64
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+#10201
+avaldr-mountainhelm guildmaster master~
+Avaldr Mountainhelm~
+Guildmaster Avaldr Mountainhelm oversees the chaos of the Great Lodge.~
+Avaldr Mountainhelm is not quite what you would expect from the guildmaster of
+the berserker's guild.  His appearance is wild and rough, but he is well
+groomed, his long hair and beard restrained if not cleaned.  He wears the rough
+furs common of northern berserker barbarians, but with a little more
+discernment than one might expect.  He is also not the hulking beast most of
+his barbarian brethren are.  His tightly muscled body belies a speed and
+strength more deadly than his appearance suggests.~
+-2011144168 40 0 E
+99 0 0 0d0+0 0d0+0
+0 0 0 0 0 102
+3 3 1 14 10 0 3
+Str: 81
+Dex: 81
+Int: 87
+Wis: 72
+Con: 74
+Cha: 59
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 55737
+T 55700
+T 55701
+T 55702
+T 55703
+T 55704
+T 55705
+T 106
+T 107
+T 108
+T 109
+T 110
+T 111
+T 112
+T 6201
+T 6204
+T 3155
+T 3159
+T 55706
+#10202
+The ranger of the north~
+A mysterious ranger from the north~
+A cloaked ranger leans on a snow drift.
+~
+A tall, slender elf is trying to adjust his snowshoes for the fresh powder.  
+His clothes are made of the finest fur.  The white garments blend so well with
+the surrounding landscape that it is amazing he is visible at all.  Even the
+great longbow resting over his shoulder is wrapped in the excellent material.
+Steadily he adjusts his gear and garments for the open tundra.~
+134406154 33554440 1000 E
+90 0 0 0d0+0 0d0+0
+0 0 0 0 0 102
+3 3 1 6 1 0 2
+Str: 80
+Dex: 81
+Int: 69
+Wis: 74
+Con: 79
+Cha: 69
+AFF2: 0
+AFF3: 0
+MOB2: 96
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 10201
+$

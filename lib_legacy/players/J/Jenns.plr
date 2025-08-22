@@ -1,0 +1,67 @@
+name: Jenns
+password: JeZH/ev.IC
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20814
+birthtime: 1721689604
+timeplayed: 67
+lastlogintime: 1721689677
+host: 076.180.145.102
+height: 80
+weight: 184
+base_height: 80
+base_weight: 184
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 26/24
+mana: 0/0
+move: 158/166
+damroll: 5
+hitroll: 4
+strength: 88
+intelligence: 62
+wisdom: 63
+dexterity: 98
+constitution: 93
+charisma: 62
+experience: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+401 50
+403 50
+408 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+493 50
+0 0
+tells:
+$
+gossips:
+$

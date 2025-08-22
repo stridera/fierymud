@@ -1,0 +1,1806 @@
+#20300
+A Dusty Desert Path~
+   The path widens a bit here, as the sand dunes seem to have retreated from
+the path.  The sand is immensely hot here, heated by the large sun above.  A
+few cacti grow along the path here, their large spines serving as a painful
+reminder to keep away.  The wind has calmed, and most of the flying pieces of
+sand and other debris have fallen back to the ground.  Even with the wind
+subsided it is still almost impossible to see far away, for the sun's heat waves
+distort all vision.  The path continues on and bends to the north, and also
+heads east back towards the desert.    ~
+203 0 10
+D0
+~
+~
+0 0 20301
+D1
+~
+~
+0 0 20355
+S
+#20301
+A Dusty Desert Path~
+   As the path continues the sight of tracks along the trail is still present.
+It is still not possible to make out what has these tracks are from, but this
+may become evident further down the path.  Scattered cacti can be found
+throughout the area, several of them very close to the main section of the
+path.  The wind has picked up in this section of the path, but not enough to
+carry any sand.  To the east the path continues and looks to lead into a large
+sand dune.  To the south the path leads back towards the beginning of the path
+and the desert.    ~
+203 0 10
+D1
+~
+~
+0 0 20302
+D2
+~
+~
+0 0 20300
+S
+#20302
+At the Base of a Large Sand Dune~
+   The path continues here, and runs itself right into a large sand dune.  The
+dune itself is quite large and certainly takes quite a bit of energy to scale.
+The sand around and on it is very loose, making it much harder to move around.
+The sun is hotter than ever before, and it drains the very life out of
+everything in sight.  The path continues up the dune, leading farther into the
+unknown, and back towards the beginning of the path to the west.    ~
+203 0 10
+D3
+~
+~
+0 0 20301
+D4
+~
+~
+0 0 20303
+S
+#20303
+On The Sand Dune~
+   The conditions look to have increased in intensity here.  The wind is the
+main factor that has changed here, throwing sand and dust everywhere.  The sun
+also has grown in intensity and seems to suck the very life out of everything
+in sight.  The sand does not help either, it's heat and constant shifting make
+traveling quite difficult.  It is hard to imagine what kind of animals live in
+this barren desert, but from the tracks all around the path it is evident that
+some kind of animals have been around here.  The path continues further into
+the unknown to the east, or back down the dune towards the beginning of the
+path and the large expanse of desert.    ~
+203 0 5
+D1
+~
+~
+0 0 20304
+D5
+~
+~
+0 0 20302
+S
+#20304
+A Small Desert Path~
+   The path seems to have narrowed quite a bit here and looks much harder to
+maneuver on now.  Now that the path is leaving the top of the sand dune, the
+wind has stopped blowing so hard and the dust and sand have settled.  A lone
+skull of what looks like a wildebeest lies in the sand here, and probably died
+from a lack of water.  It looks as though there is no end to all the sand, but
+hopefully relief will be found somewhere nearby.  The small desert path
+continues on to the south or back to the top of the sand dune towards the west.~
+203 0 10
+D2
+~
+~
+0 0 20305
+D3
+~
+~
+0 0 20303
+S
+#20305
+A Small Desert Path~
+   The path widens a bit here, but not enough to make traveling any easier.  
+The sand continues to move around a bit here, but it rarely leaves the ground.
+The sun beats down hard, heating everything in sight and making it almost
+unbearable to be here.  Many different sized tracks can be seen going both ways
+along the path, showing that this path is used quite often by different animals
+as some kind of route to somewhere.  The path continues onward towards the end
+of the path to the east or back towards the beginning of the path to the north.~
+203 0 10
+D0
+~
+~
+0 0 20304
+D1
+~
+~
+0 0 20306
+S
+#20306
+A Small Desert Path~
+   The path widens a bit here, but not enough to make traveling any easier.  
+The sand continues to move around a bit here, but it rarely leaves the ground.
+The sun beats down hard, heating everything in sight and making it almost
+unbearable to be here.  Many different sized tracks can be seen going both ways
+along the path, showing that this path is used quite often by different animals
+as some kind of route to somewhere.  To the east the path seems to be coming to
+an end and a beautiful grassland seems to be unfolding, and to the west the
+scorching heat of the desert lies in wait of yet another victim.
+~
+203 0 10
+D1
+~
+~
+0 0 20307
+D3
+~
+~
+0 0 20305
+S
+#20307
+The Desert Path's End~
+   This long desert path looks to be finally coming to an end.  The sand that
+once covered everything in sight is now being replaced by luscious grasses and
+other vegetation that grow almost everywhere.  To the north, what looks like an
+endless expanse of grasslands is seen as far as the eye can see, a welcome
+sight to anyone who has been in the desert to the west.  The path comes to its
+end to the north or goes back into the barren desert to the west.~
+203 0 11
+D0
+~
+~
+0 0 20308
+D3
+~
+~
+0 0 20306
+S
+#20308
+Before the Plains~
+   Everything around here has changed drastically.  The barren desert of before
+has transformed itself into a luscious grassland.  It appears to stretch out
+forever and it could be miles to its end.  The tracks seen on the path before
+spread out here and it is obvious that these luscious plains were the
+destination of those animals.  The plains continue on to the north while the
+path goes back towards the desert to the south.    ~
+203 32836 11
+D0
+~
+~
+0 0 20309
+D2
+~
+~
+0 0 20307
+S
+#20309
+The Beginning of the Plains~
+   The plains spread out in almost every direction, covering everything with
+its radiant green color.  A few things other than grass grow here, such as a
+few short shrubs and a few spread out trees that can be seen in a distance.  
+Food doesn't seem to be a problem here, the resources of this plain look to be
+able to feed a very large group of animals quite well.  The plains continue in
+all directions except to the south, where a path leads back into the desert.  ~
+203 32768 11
+D0
+~
+~
+0 0 20312
+D1
+~
+~
+0 0 20310
+D2
+~
+~
+0 0 20308
+D3
+~
+~
+0 0 20311
+S
+#20310
+The Beginning of the Plains~
+   The plains spread out in almost every direction, covering everything with
+its radiant green color.  A few things other than grass grow here, such as a
+few short shrubs and a few spread out trees that can be seen in a distance.  
+Food doesn't seem to be a problem here, the resources of this plain look to be
+able to feed a very large group of animals quite well.  The plains continue on
+to the north and west.  To the east and south exit is blocked by a large stone
+wall that seems to encircle the plains.    ~
+203 32768 11
+D0
+~
+~
+0 0 20314
+D3
+~
+~
+0 0 20309
+S
+#20311
+The Beginning of the Plains~
+   The plains spread out in almost every direction, covering everything with
+its radiant green color.  A few things other than grass grow here, such as a
+few short shrubs and a few spread out trees that can be seen in a distance.  
+Food doesn't seem to be a problem here, the resources of this plain look to be
+able to feed a very large group of animals quite well.  The plains continue on
+to the north and east.  To the west and south exit is blocked by a large stone
+wall that seems to encircle the plains.    ~
+203 32768 11
+D0
+~
+~
+0 0 20313
+D1
+~
+~
+0 0 20309
+S
+#20312
+The Plains~
+   This is the most common sight on the plains, endless grass.  It spreads out
+far and wide providing an almost endless amount of food for all the animals
+that live here.  Almost all of the grass here is still intact, but small
+portions of it are gone and look to have been devoured by hungry animals.  
+Very few things other than grass grow here, but a few small shrubs and other
+various small desert plants can be seen dotted along the plains.  The plains
+continue on in all directions.    ~
+203 32768 11
+D0
+~
+~
+0 0 20317
+D1
+~
+~
+0 0 20314
+D2
+~
+~
+0 0 20309
+D3
+~
+~
+0 0 20313
+S
+#20313
+The Plains~
+   This is the most common sight on the plains, endless grass.  It spreads out
+far and wide providing an almost endless amount of food for all the animals
+that live here.  Almost all of the grass here is still intact, but small
+portions of it are gone and look to have been devoured by hungry animals.  
+Very few things other than grass grow here, but a few small shrubs and other
+various small desert plants can be seen dotted along the plains.  The plains
+continue on in all directions.    ~
+203 32768 11
+D0
+~
+~
+0 0 20321
+D1
+~
+~
+0 0 20312
+D2
+~
+~
+0 0 20311
+D3
+~
+~
+0 0 20316
+S
+#20314
+The Plains~
+   This is the most common sight on the plains, endless grass.  It spreads out
+far and wide providing an almost endless amount of food for all the animals
+that live here.  Almost all of the grass here is still intact, but small
+portions of it are gone and look to have been devoured by hungry animals.  
+Very few things other than grass grow here, but a few small shrubs and other
+various small desert plants can be seen dotted along the plains.  The plains
+continue on in all directions.    ~
+203 32768 11
+D0
+~
+~
+0 0 20318
+D1
+~
+~
+0 0 20315
+D2
+~
+~
+0 0 20310
+D3
+~
+~
+0 0 20312
+S
+#20315
+The Plains~
+   The plains end abruptly to the south and east where, a large wall of rock
+blocks any exit.  It is a mystery how these plains were made because all around
+them, they are surrounded by desert.  Sand blows in from over the wall of stone
+and flies around everywhere covering some of the green grass with its dull tan
+color.  A large carcass stripped clean of all meat lies against the wall, it
+must have been good meal for the lions that roam these plains.  The plains
+continue onward to the north and west~
+203 0 11
+D0
+~
+~
+0 0 20319
+D3
+~
+~
+0 0 20314
+S
+#20316
+The Plains~
+   The plains end abruptly to the south and west where, a large wall of rock
+blocks any exit.  It is a mystery how these plains were made because all around
+them, they are surrounded by desert.  Sand blows in from over the wall of stone
+and flies around everywhere covering some of the green grass with its dull tan
+color.  The wall is at its shortest point here, but it is still not high enough
+for anyone to climb over.  The plains continue onward to the north and east.  ~
+203 0 11
+D0
+~
+~
+0 0 20322
+D1
+~
+~
+0 0 20313
+S
+#20317
+The Plains~
+   This is the heart of the plains.  Brilliant green grass abounds in every
+direction, seemingly never coming to an end.  Other than all the grass that is
+all around, only a few other things can be seen.  A few small shrubs and other
+small desert like plants lie scattered along the plains as well as a few wide
+trees in the distance.  A good portion of the grass around here has been eaten
+but what is left of it still sways in the wind.  The plains continue in all
+directions but to the north where a medium sized water hole presides.    ~
+203 32768 11
+D0
+~
+~
+0 0 20324
+D1
+~
+~
+0 0 20318
+D2
+~
+~
+0 0 20312
+D3
+~
+~
+0 0 20321
+S
+#20318
+The Plains~
+   Overlooking the rolling and seemingly endless plains, many things can be
+seen.  Many animals have made their homes here, or travel here regularly to eat
+and drink, and do all sorts of other things.  Tall and short grasses engulf the
+plains, the tall ones swaying in tune with the wind, the short regrowing
+themselves to feed the large variety of animals that need the grass to live.  
+A few small pools of water lie scattered around from a previous rain, that have
+not yet been soaked up by the fertile ground.  A few small shrubs, and other
+small desert plants lie scattered along the plains, providing something new for
+the animals to see, and to eat.  A few wide spread trees can be seen off in the
+distance, providing shade from the hot sun.  The plains continue onward in all
+directions.    ~
+203 0 11
+D0
+~
+~
+0 0 20325
+D1
+~
+~
+0 0 20319
+D2
+~
+~
+0 0 20314
+D3
+~
+~
+0 0 20317
+S
+#20319
+The Plains~
+   Overlooking the rolling and seemingly endless plains, many things can be
+seen.  Many animals have made their homes here, or travel here regularly to eat
+and drink, and do all sorts of other things.  Tall and short grasses engulf the
+plains, the tall ones swaying in tune with the wind, the short regrowing
+themselves to feed the large variety of animals that need the grass to live.  
+A few small pools of water lie scattered around from a previous rain, that have
+not yet been soaked up by the fertile ground.  A few small shrubs, and other
+small desert plants lie scattered along the plains, providing something new for
+the animals to see, and to eat.  A few wide spread trees can be seen off in the
+distance, providing shade from the hot sun.  The plains continue onward in all
+directions but to the north where a clump of trees preside.    ~
+203 0 11
+D0
+~
+~
+0 0 20326
+D1
+~
+~
+0 0 20320
+D2
+~
+~
+0 0 20315
+D3
+~
+~
+0 0 20318
+S
+#20320
+The Plains~
+   The plains end abruptly to the south and east where, a large wall of rock
+blocks any exit.  It is a mystery how these plains were made because all around
+them, they are surrounded by desert.  Sand blows in from over the wall of stone
+and flies around everywhere covering some of the green grass with its dull tan
+color.  A large carcass stripped clean of all meat lies against the wall, it
+must have been good meal for the lions that roam these plains.  The plains
+continue onward to the north and west~
+203 0 11
+D0
+~
+~
+0 0 20327
+D3
+~
+~
+0 0 20319
+S
+#20321
+The Plains~
+   Overlooking the rolling and seemingly endless plains, many things can be
+seen.  Many animals have made their homes here, or travel here regularly to eat
+and drink, and do all sorts of other things.  Tall and short grasses engulf the
+plains, the tall ones swaying in tune with the wind, the short regrowing
+themselves to feed the large variety of animals that need the grass to live.  
+A few small pools of water lie scattered around from a previous rain, that have
+not yet been soaked up by the fertile ground.  A few small shrubs, and other
+small desert plants lie scattered along the plains, providing something new for
+the animals to see, and to eat.  A few wide spread trees can be seen off in the
+distance, providing shade from the hot sun.  The plains continue onward in all
+directions but to the north, where a small stream presides.    ~
+203 0 11
+D0
+~
+~
+0 0 20328
+D1
+~
+~
+0 0 20317
+D2
+~
+~
+0 0 20313
+D3
+~
+~
+0 0 20322
+S
+#20322
+The Plains~
+   Overlooking the rolling and seemingly endless plains, many things can be
+seen.  Many animals have made their homes here, or travel here regularly to eat
+and drink, and do all sorts of other things.  Tall and short grasses engulf the
+plains, the tall ones swaying in tune with the wind, the short regrowing
+themselves to feed the large variety of animals that need the grass to live.  
+A few small pools of water lie scattered around from a previous rain, that have
+not yet been soaked up by the fertile ground.  A few small shrubs, and other
+small desert plants lie scattered along the plains, providing something new for
+the animals to see, and to eat.  A few wide spread trees can be seen off in the
+distance, providing shade from the hot sun.  The plains continue onward in all
+directions but to the north, where a small stream presides.    ~
+203 0 11
+D0
+~
+~
+0 0 20329
+D1
+~
+~
+0 0 20321
+D2
+~
+~
+0 0 20316
+D3
+~
+~
+0 0 20323
+S
+#20323
+The Plains~
+   The plains end abruptly to the south and west where, a large wall of rock
+blocks any exit.  It is a mystery how these plains were made because all around
+them, they are surrounded by desert.  Sand blows in from over the wall of stone
+and flies around everywhere covering some of the green grass with its dull tan
+color.  A few scattered shrubs and other smaller plants grow along and around
+the wall of rock, providing the herbivores here with another type of food to
+eat, besides grass.  The plains continue onward to the north and east.    ~
+203 0 11
+D0
+~
+~
+0 0 20330
+D1
+~
+~
+0 0 20322
+S
+#20324
+The Water Hole~
+   This is the most important and most visited site of these plains.  It is the
+water hole.  This is where all the animals get their daily drinks of like
+giving water.  Without this water these plains would just be another barren
+desert, and all the animals would have no place to live.  The water hole itself
+is the end of a small stream coming in from the west.  It looks like a natural
+dam has stopped the flow of the stream and made this pool of water.  The plains
+continue on to the north, south and east.    ~
+203 4 6
+D0
+~
+~
+0 0 20331
+D1
+~
+~
+0 0 20325
+D2
+~
+~
+0 0 20317
+D3
+~
+~
+0 0 20328
+S
+#20325
+The Plains~
+   This is the heart of the plains.  Brilliant green grass abounds in every
+direction, seemingly never coming to an end.  Other than all the grass that is
+all around, only a few other things can be seen.  A few small shrubs and other
+small desert like plants lie scattered along the plains as well as a few wide
+trees in the distance.  A good portion of the grass around here has been eaten
+but what is left of it still sways in the wind.  To the east a clump of trees
+being, while to the west a medium sized water hole presides.  The plains
+continue on to the north and south.    ~
+203 0 11
+D0
+~
+~
+0 0 20332
+D1
+~
+~
+0 0 20326
+D2
+~
+~
+0 0 20318
+D3
+~
+~
+0 0 20324
+S
+#20326
+A Clump of Trees~
+   This is an unusual sight on these plains, trees.  These trees spread out for
+several feet and provide nice shade for any animal that might want it.  The
+trees themselves are not tall but they spread out about twenty feet in
+diameter.  Many of the green leaves of these trees are still attached but a
+small portion of them look to have been eaten by some hungry animal.  A few
+rays of sunlight barely make it through the branches but the heat from them is
+barely felt.  The trees continue to the north and east, while the plains lie to
+the south and west.    ~
+203 4 11
+D0
+~
+~
+0 0 20333
+D1
+~
+~
+0 0 20327
+D2
+~
+~
+0 0 20319
+D3
+~
+~
+0 0 20325
+S
+#20327
+A Clump of Trees~
+   This is an unusual sight on these plains, trees.  These trees spread out for
+several feet and provide nice shade for any animal that might want it.  The
+trees themselves are not tall but they spread out about twenty feet in
+diameter.  Many of the green leaves of these trees are still attached but a
+small portion of them look to have been eaten by some hungry animal.  A few
+rays of sunlight barely make it through the branches but the heat from them is
+barely felt.  The exit to the east is blocked off by a large wall of rock that
+encircles the plains.  The clump of trees continue to the north and west while
+the plains linger to the south.    ~
+203 4 11
+D0
+~
+~
+0 0 20334
+D2
+~
+~
+0 0 20320
+D3
+~
+~
+0 0 20326
+S
+#20328
+A Small Stream~
+   This is the only stream located on the Gothra Plains.  Its beginning is to
+towards west and it continues on through the plains to the east.  This stream
+is one of the most visited sites in the plains, where many animals flock here
+to drink, bathe and do several other things.  The stream itself is only about
+two or three feet deep but it has enough water to provide for all the plains.
+Its dull tan color is from all the dirt and sand that is kicked up by the
+animals, and mixes with the clear water.  The end of this small stream lies to
+the east, while the plains spread out to the north and south.    ~
+203 68 6
+D0
+~
+~
+0 0 20335
+D1
+~
+~
+0 0 20324
+D2
+~
+~
+0 0 20321
+D3
+~
+~
+0 0 20329
+S
+#20329
+A Small Stream~
+   This is the only stream located on the Gothra Plains.  Its beginning is to
+towards north and it continues on through the plains to the east.  This stream
+is one of the most visited sites in the plains, where many animals flock here
+to drink, bathe and do several other things.  The stream itself is only about
+two or three feet deep but it has enough water to provide for all the plains.
+Its dull tan color is from all the dirt and sand that is kicked up by the
+animals, and mixes with the clear water.  The plains spread outward to the
+south and west.    ~
+203 68 6
+D0
+~
+~
+0 0 20336
+D1
+~
+~
+0 0 20328
+D2
+~
+~
+0 0 20322
+D3
+~
+~
+0 0 20330
+S
+#20330
+The Plains~
+   The plains end abruptly to the west where, a large wall of rock blocks any
+exit.  It is a mystery how these plains were made because all around them, they
+are surrounded by desert.  Sand blows in from over the wall of stone and flies
+around everywhere covering some of the green grass with its dull tan color.  A
+large carcass stripped clean of all meat lies against the wall, it must have
+been good meal for the lions that roam these plains.  A small stream flows
+through the plains to the north and east, while the plains lie to the south.  ~
+203 0 11
+D0
+~
+~
+0 0 20337
+D1
+~
+~
+0 0 20329
+D2
+~
+~
+0 0 20323
+S
+#20331
+The Plains~
+   This is the heart of the plains.  Brilliant green grass abounds in every
+direction, seemingly never coming to an end.  Other than all the grass that is
+all around, only a few other things can be seen.  A few small shrubs and other
+small desert like plants lie scattered along the plains as well as a few wide
+trees in the distance.  A good portion of the grass around here has been eaten
+but what is left of it still sways in the wind.  Several tracks of several
+different animals can be seen coming in from the south, where the water hole
+presides.  Other than to the south, the plains continue in every direction.  ~
+203 0 11
+D0
+~
+~
+0 0 20338
+D1
+~
+~
+0 0 20332
+D2
+~
+~
+0 0 20324
+D3
+~
+~
+0 0 20335
+S
+#20332
+The Plains~
+   The land rises slightly here, providing an excellent view of almost all of
+the plains.  Overlooking the rolling and seemingly endless plains, many things
+can be seen.  Many animals have made their homes here, or travel here regularly
+to eat and drink, and do all sorts of other things.  Tall and short grasses
+engulf the plains, the tall ones swaying in tune with the wind, the short
+regrowing themselves to feed the large variety of animals that need the grass
+to live.  A few small pools of water lie scattered around from a previous rain,
+that have not yet been soaked up by the fertile ground.  A few small shrubs,
+and other small desert plants lie scattered along the plains, providing
+something new for the animals to see, and to eat.  A few wide spread trees can
+be seen off in the distance, providing shade from the hot sun.  The plains
+continue onward in all directions but to the east where a clump of trees
+preside.    ~
+203 0 11
+D0
+~
+~
+0 0 20339
+D1
+~
+~
+0 0 20333
+D2
+~
+~
+0 0 20325
+D3
+~
+~
+0 0 20331
+S
+#20333
+A Clump of Trees~
+   This is an unusual sight on these plains, trees.  These trees spread out for
+several feet and provide nice shade for any animal that might want it.  The
+trees themselves are not tall but they spread out about twenty feet in
+diameter.  Many of the green leaves of these trees are still attached but a
+small portion of them look to have been eaten by some hungry animal.  A few
+rays of sunlight barely make it through the branches but the heat from them is
+barely felt.  The clump of trees continue to the south and east while the
+plains spread out to the north and west.    ~
+203 4 11
+D0
+~
+~
+0 0 20340
+D1
+~
+~
+0 0 20334
+D2
+~
+~
+0 0 20326
+D3
+~
+~
+0 0 20332
+S
+#20334
+A Clump of Trees~
+   This is an unusual sight on these plains, trees.  These trees spread out for
+several feet and provide nice shade for any animal that might want it.  The
+trees themselves are not tall but they spread out about twenty feet in
+diameter.  Many of the green leaves of these trees are still attached but a
+small portion of them look to have been eaten by some hungry animal.  A few
+rays of sunlight barely make it through the branches but the heat from them is
+barely felt.  The exit to the east is blocked off by a large wall of rock that
+encircles the plains.  The clump of trees continue to the south and west while
+the plains linger to the north.    ~
+203 4 11
+D0
+~
+~
+0 0 20341
+D2
+~
+~
+0 0 20327
+D3
+~
+~
+0 0 20333
+S
+#20335
+The Plains~
+   The land rises slightly here, providing an excellent view of almost all of
+the plains.  Tall and short grasses engulf the plains, the tall ones swaying in
+tune with the wind, the short regrowing themselves to feed the large variety of
+animals that need the grass to live.  A few small shrubs, and other small
+desert plants lie scattered along the plains, providing something new for the
+animals to see, and to eat.  The plains are to the north and east while a small
+stream travels through the plains to the south and west.    ~
+203 0 11
+D0
+~
+~
+0 0 20342
+D1
+~
+~
+0 0 20331
+D2
+~
+~
+0 0 20328
+D3
+~
+~
+0 0 20336
+S
+#20336
+A Small Stream~
+   This is the only stream located on the Gothra Plains.  Its beginning is to
+towards west and it continues on through the plains to the south.  This stream
+is one of the most visited sites in the plains, where many animals flock here
+to drink, bathe and do several other things.  The stream itself is only about
+two or three feet deep but it has enough water to provide for all the plains.
+Its dull tan color is from all the dirt and sand that is kicked up by the
+animals, and mixes with the clear water.  A clump of trees lie to the north
+while the stream continues to the south and the plains to the east.    ~
+203 68 6
+D0
+~
+~
+0 0 20343
+D1
+~
+~
+0 0 20335
+D2
+~
+~
+0 0 20329
+D3
+~
+~
+0 0 20337
+S
+#20337
+The Beginning of a Small Stream~
+   This is the site of the very beginning of a small life-giving stream.  It
+seems to have come out of nowhere and is making its way slowly through the
+plains.  This stream is one of the most visited sites in the plains, where many
+animals flock here to drink, bathe and do several other things.  The stream
+itself is only about two or three feet deep but it has enough water to provide
+for all the plains.  Its dull tan color is from all the dirt and sand that is
+kicked up by the animals, and mixes with the clear water.  A clump of trees
+lies to the north while the stream continues on to the east.  The plains to
+spread out to the south.    ~
+203 68 6
+D0
+~
+~
+0 0 20344
+D1
+~
+~
+0 0 20336
+D2
+~
+~
+0 0 20330
+S
+#20338
+The Plains~
+   This is the most common sight on the plains, endless grass.  It spreads out
+far and wide providing an almost endless amount of food for all the animals
+that live here.  Almost all of the grass here is still intact, but small
+portions of it are gone and look to have been devoured by hungry animals.  
+Very few things other than grass grow here, but a few small shrubs and other
+various small desert plants can be seen dotted along the plains.  The plains
+continue on in all directions except to the north, where the entrance to a
+large cave can be seen.    ~
+203 68 11
+D0
+~
+~
+0 0 20345
+D1
+~
+~
+0 0 20339
+D2
+~
+~
+0 0 20331
+D3
+~
+~
+0 0 20342
+S
+#20339
+The Plains~
+   This is the most common sight on the plains, endless grass.  It spreads out
+far and wide providing an almost endless amount of food for all the animals
+that live here.  Almost all of the grass here is still intact, but small
+portions of it are gone and look to have been devoured by hungry animals.  
+Very few things other than grass grow here, but a few small shrubs and other
+various small desert plants can be seen dotted along the plains.  The plains
+continue on in all directions except to the north, where the entrance to a
+large cave can be seen.    ~
+203 0 11
+D0
+~
+~
+0 0 20346
+D1
+~
+~
+0 0 20340
+D2
+~
+~
+0 0 20332
+D3
+~
+~
+0 0 20338
+S
+#20340
+The Plains~
+   Overlooking the rolling and seemingly endless plains, many things can be
+seen.  Many animals have made their homes here, or travel here regularly to eat
+and drink, and do all sorts of other things.  Tall and short grasses engulf the
+plains, the tall ones swaying in tune with the wind, the short regrowing
+themselves to feed the large variety of animals that need the grass to live.  
+A few small pools of water lie scattered around from a previous rain, that have
+not yet been soaked up by the fertile ground.  A few small shrubs, and other
+small desert plants lie scattered along the plains, providing something new for
+the animals to see, and to eat.  A few wide spread trees can be seen off in the
+distance, providing shade from the hot sun.  The plains continue onward in all
+directions but to the south where a clump of trees preside.    ~
+203 0 11
+D0
+~
+~
+0 0 20347
+D1
+~
+~
+0 0 20341
+D2
+~
+~
+0 0 20333
+D3
+~
+~
+0 0 20339
+S
+#20341
+The Plains~
+   The plains end abruptly to the east where, a large wall of rock blocks any
+exit.  It is a mystery how these plains were made because all around them, they
+are surrounded by desert.  Sand blows in from over the wall of stone and flies
+around everywhere covering some of the green grass with its dull tan color.  
+The stone wall seems to be growing in height and looks to keep getting higher
+to the north.  The plains continue to the north and west while a clump of trees
+begins to the south.    ~
+203 0 11
+D0
+~
+~
+0 0 20348
+D2
+~
+~
+0 0 20334
+D3
+~
+~
+0 0 20340
+S
+#20342
+The Plains~
+   Overlooking the rolling and seemingly endless plains, many things can be
+seen.  Tall and short grasses engulf the plains, the tall ones swaying in tune
+with the wind, the short regrowing themselves to feed the large variety of
+animals that need the grass to live.  A few small shrubs, and other small
+desert plants lie scattered along the plains, providing something new for the
+animals to see, and to eat.  The plains continue to the south and east, while a
+clump of trees lie to the west.  To the north lies the entrance to a large
+cave.    ~
+203 0 11
+D0
+~
+~
+0 0 20349
+D1
+~
+~
+0 0 20338
+D2
+~
+~
+0 0 20335
+D3
+~
+~
+0 0 20343
+S
+#20343
+A Clump of Trees~
+   This is an unusual sight on these plains, trees.  These trees spread out for
+several feet and provide nice shade for any animal that might want it.  The
+trees themselves are not tall but they spread out about twenty feet in
+diameter.  Many of the green leaves of these trees are still attached but a
+small portion of them look to have been eaten by some hungry animal.  A few
+rays of sunlight barely make it through the branches but the heat from them is
+barely felt.  The trees continue to the north and west, while the plains lie to
+the east.  To the south lies a small stream, making its way through the plains.~
+203 4 11
+D0
+~
+~
+0 0 20350
+D1
+~
+~
+0 0 20342
+D2
+~
+~
+0 0 20336
+D3
+~
+~
+0 0 20344
+S
+#20344
+A Clump of Trees~
+   This is an unusual sight on these plains, trees.  These trees spread out for
+several feet and provide nice shade for any animal that might want it.  The
+trees themselves are not tall but they spread out about twenty feet in
+diameter.  Many of the green leaves of these trees are still attached but a
+small portion of them look to have been eaten by some hungry animal.  A few
+rays of sunlight barely make it through the branches but the heat from them is
+barely felt.  The trees continue to the north and east, while a small stream
+begins to the south.  A small break in the rock wall surrounding these
+plains lies to the west, leading off into a small path.    ~
+203 4 11
+D0
+~
+~
+0 0 20351
+D1
+~
+~
+0 0 20343
+D2
+~
+~
+0 0 20337
+D3
+~
+~
+0 0 20359
+S
+#20345
+Before a Large Den~
+   The plains suddenly stop here in front of a large cave.  It looks like a den
+of some sort, and from all the bones seen scattered around it, it looks to hold
+some powerful beasts.  The entrance to the cave is about ten feet high, the
+depth of the cave is unknown because of the shroud of darkness that covers the
+inside of the cave.  The cave itself lies to the north while the plains stretch
+out back to the south.  To the east and west the caves entrance continues.    ~
+203 68 11
+D0
+~
+~
+0 0 20352
+D1
+~
+~
+0 0 20346
+D2
+~
+~
+0 0 20338
+D3
+~
+~
+0 0 20349
+S
+#20346
+Before a Large Den~
+   The plains suddenly stop here in front of a large cave.  It looks like a den
+of some sort, and from all the bones seen scattered around it, it looks to hold
+some powerful beasts.  The entrance to the cave is about ten feet high, the
+depth of the cave is unknown because of the shroud of darkness that covers the
+inside of the cave.  The cave itself lies to the north while the plains stretch
+out to the south and east.  To the west the caves entrance continues.    ~
+203 68 11
+D0
+~
+~
+0 0 20353
+D1
+~
+~
+0 0 20347
+D2
+~
+~
+0 0 20339
+D3
+~
+~
+0 0 20345
+S
+#20347
+The Plains~
+   The plains end abruptly to the north, where a large wall of rock blocks any
+exit.  Sand blows in from over the wall of stone and flies around everywhere
+covering some of the green grass with its dull tan color.  Heat radiates off
+the dusty plains, creating wavy illusions that distort everything in the area.
+A half eaten carcass of a zebra lies in a large pool of its own blood, being
+consumed by small flies and maggots.  The plains continue onward to the south
+and east while a large den makes itself visible to the west.    ~
+203 0 11
+D1
+~
+~
+0 0 20348
+D2
+~
+~
+0 0 20340
+D3
+~
+~
+0 0 20346
+S
+#20348
+The Plains~
+   The plains end abruptly to the north and east where, a large wall of rock
+blocks any exit.  It is a mystery how these plains were made because all around
+them, they are surrounded by desert.  Sand blows in from over the wall of stone
+and flies around everywhere covering some of the green grass with its dull tan
+color.  The wall seems to have come to a peak here and continues onward into
+the desert beyond view.  The plains continue onward to the south and west.    ~
+203 0 11
+D2
+~
+~
+0 0 20341
+D3
+~
+~
+0 0 20347
+S
+#20349
+Before a Large Den~
+   The plains suddenly stop here in front of a large cave.  It looks like a den
+of some sort, and from all the bones seen scattered around it, it looks to hold
+some powerful beasts.  The entrance to the cave is about ten feet high, the
+depth of the cave is unknown because of the shroud of darkness that covers the
+inside of the cave.  The cave itself lies to the north while the plains stretch
+out back to the south.  To the west a large clump of trees begin, while to the
+east, the caves entrance continues.    ~
+203 68 12
+D0
+~
+~
+0 0 20354
+D1
+~
+~
+0 0 20345
+D2
+~
+~
+0 0 20342
+D3
+~
+~
+0 0 20350
+S
+#20350
+A Clump of Trees~
+   This is an unusual sight on these plains, trees.  These trees spread out for
+several feet and provide nice shade for any animal that might want it.  The
+trees themselves are not tall but they spread out about twenty feet in
+diameter.  Many of the green leaves of these trees are still attached but a
+small portion of them look to have been eaten by some hungry animal.  A few
+rays of sunlight barely make it through the branches but the heat from them is
+barely felt.  The clump of trees continue on to the south and west.  To the
+east lies the entrance to a cave of some sort.    ~
+203 4 11
+D1
+~
+~
+0 0 20349
+D2
+~
+~
+0 0 20343
+D3
+~
+~
+0 0 20351
+S
+#20351
+A Clump of Trees~
+   This is an unusual sight on these plains, trees.  These trees spread out for
+several feet and provide nice shade for any animal that might want it.  The
+trees themselves are not tall but they spread out about twenty feet in
+diameter.  Many of the green leaves of these trees are still attached but a
+small portion of them look to have been eaten by some hungry animal.  A few
+rays of sunlight barely make it through the branches but the heat from them is
+barely felt.  The clump of trees continue to the south and east.  The way north
+and west is blocked off by a wall of stone that surrounds the plains.    ~
+203 4 11
+D1
+~
+~
+0 0 20350
+D2
+~
+~
+0 0 20344
+S
+#20352
+In the Lions' Den~
+   The light that covered everything outside has completely vanished, leaving
+this cave in complete darkness.  Many bones and carcasses line the edges of the
+cave, the smell of the rotting flesh engulfs the cave in a almost unbearable
+putrid smell.  Whatever beasts live here look to be the main hunters of these
+plains, feared by every animal that dwells on the plains.  The cave comes to
+an end to the north , but continues on to the east and west.  The only exit
+from this cave is to the south, back towards the plains.    ~
+203 0 12
+D1
+~
+~
+0 0 20353
+D2
+~
+~
+0 0 20345
+D3
+~
+~
+0 0 20354
+S
+#20353
+In the Lions' Den~
+   The light that covered everything outside has completely vanished, leaving
+this cave in complete darkness.  Many bones and carcasses line the edges of the
+cave, the smell of the rotting flesh engulfs the cave in a almost unbearable
+putrid smell.  Whatever beasts live here look to be the main hunters of these
+plains, feared by every animal that dwells on the plains.  The cave comes to
+an end to the north and east , but continues on to the west.  The only exit
+from this cave is to the south, back towards the plains.
+~
+203 0 12
+D2
+~
+~
+0 0 20346
+D3
+~
+~
+0 0 20352
+S
+#20354
+In the Lions' Den~
+   The light that covered everything outside has completely vanished, leaving
+this cave in complete darkness.  Many bones and carcasses line the edges of the
+cave, the smell of the rotting flesh engulfs the cave in a almost unbearable
+putrid smell.  Whatever beasts live here look to be the main hunters of these
+plains, feared by every animal that dwells on the plains.  The cave comes to
+an end to the north and west, but continues on to the east.  The only exit
+from this cave is to the south, back towards the plains.    ~
+203 0 12
+D1
+~
+~
+0 0 20352
+D2
+~
+~
+0 0 20349
+S
+#20355
+A Dusty Desert Path~
+   The path is slowly beginning to ascend here, growing higher with each step.
+The wind is blowing much harder here, stirring up sand everywhere, making it
+nearly impossible to see the ground or the nearby surroundings.  A few
+withering plants can be seen along the path, trying in vain to grow.  To the
+north and south, enormous sand dunes block off all travel.  The dusty path
+continues to the west and back towards the desert to the east.    ~
+203 0 10
+D1
+~
+~
+0 0 20356
+D3
+~
+~
+0 0 20300
+S
+#20356
+A Dusty Desert Path~
+   This worn dusty path looks to have been traveled many times, by many
+different animals.  Amongst the sand there are several tracks of various sizes
+that seem to have mixed in with each other.  This makes it almost impossible to
+figure out what made these tracks.  Dust and small particles of sand swirl
+through the area, covering everything in sight with its dull tan color.  The
+sun beats down unmercifully on the path, making it impossible for almost any
+plant to grow.  A few small rocks mix themselves in with the sand, making it
+even harder to travel further down the path.  The path continues on to the 
+west or back towards the seemingly endless desert to the east.    ~
+203 0 10
+D1
+~
+~
+0 0 20357
+D3
+~
+~
+0 0 20355
+S
+#20357
+A Dusty Desert Path~
+   The path is slowly beginning to ascend here, growing higher with each step.
+The wind is blowing much harder here, stirring up sand everywhere, making it
+nearly impossible to see the ground or the nearby surroundings.  A few
+withering plants can be seen along the path, trying in vain to grow.  To the
+north and south, enormous sand dunes block off all travel.  The dusty path
+continues to the west and back towards the desert to the east.    ~
+203 0 10
+D1
+~
+~
+0 0 20358
+D3
+~
+~
+0 0 20356
+S
+#20358
+A Dusty Desert Path~
+   This worn dusty path, seems to have been traveled many times by several
+different animals.  Amongst the sand there are several tracks of various sizes
+that seem to have mixed in with each other.  This makes it almost impossible to
+figure out what made these tracks.  Dust and small particles of sand swirl
+through the area, covering everything in sight with its dull tan color.  The
+sun beats down unmercifully on the path, making it impossible for almost any
+plant to grow.  The path continues on to the west or back into the seemingly
+endless desert to the east.    ~
+203 68 10
+D1
+~
+~
+0 0 16101
+D3
+~
+~
+0 0 20357
+S
+#20359
+A Small Path Through the Plains~
+   This trail looks to be a migratory path that some of the animals take
+throughout parts of the year in search of more food and water.  Tall grass
+covers the edges of the trail where the animals have not beaten it down with
+their many footprints.  The trail continues on to the west, or heads back into
+the main part of the plains to the east.    ~
+203 68 11
+D1
+~
+~
+0 0 20344
+D3
+~
+~
+0 0 20360
+S
+#20360
+A Small Path Through the Plains~
+   The path grows smaller than at its beginning, the tall grass is much closer
+than it was before.  It sways in the wind, and is quite high making it hard to
+see what lies ahead.  Several different types of animal tracks are visible
+here, showing all the different types of animals to travel this path.  The path
+continues on to the west, or back towards the main part of the plains to the
+east.    ~
+203 0 11
+D1
+~
+~
+0 0 20359
+D3
+~
+~
+0 0 20361
+S
+#20361
+A Small Path Through the Plains~
+   The direction of the path winds a bit here in the southern direction.  The
+tall grasses continue to surround this small path, but at a lower height than
+usual.  Some other vegetation is also cluttered around the path such as small
+bushes and shrubs.  Even a few small cacti can be seen off to the edge of the
+path.  The path continues off towards the south, and back towards the main
+section of the plains to the east.    ~
+203 0 11
+D1
+~
+~
+0 0 20360
+D2
+~
+~
+0 0 20362
+S
+#20362
+A Small Path Through the Plains~
+   The trail widens a bit here, as small patches of grass seem to be missing
+throughout parts surrounding the path.  Off a ways from the path some shrubbery
+and cacti can be seen through a break in the tall grass.  A single large
+boulder lies to the east, a few small reptiles resting in the shade that it
+provides.  The path continues on to the west, or heads back north to the main
+section of the plains.~
+203 0 11
+D0
+~
+~
+0 0 20361
+D3
+~
+~
+0 0 20363
+S
+#20363
+A Small Path Through the Plains~
+   The grass grows sparser in this section of the path, but many medium and
+small sized rocks lie in the way instead.  Several small creatures can be seen
+lying on and moving about the rocks that surround the area.  Their tracks and
+others scatter the sandy dirt that covers the path, their directions scattered
+in almost every direction.  The path winds on towards the south, or goes back
+towards the plains to the east.    ~
+203 68 11
+D1
+~
+~
+0 0 20362
+D2
+~
+~
+0 0 20364
+S
+#20364
+A Small Path Through the Plains~
+   The unusual amount of rocks still scatter the area here, with plenty of
+small reptiles and other creatures using them for shelter from the sun and
+homes.  A flock of birds flies overhead to the west, chirping loudly as they
+go.  The path widens a bit as it continues towards the south, or back towards
+the main part of the plains to the north.    ~
+203 0 11
+D0
+~
+~
+0 0 20363
+D2
+~
+~
+0 0 20365
+S
+#20365
+A Small Path Through the Plains~
+   The grass is sparser in this part of the path, but many medium and small
+sized rocks lie in the way instead.  Several small creatures can be seen lying
+on and moving about the rocks that surround the area.  Their tracks and others
+scatter the sandy dirt that covers the path, scattered in almost every
+direction.  Some birds can be heard flying overhead, their destination not
+known.  The path continues on towards the west, or goes back towards the plains
+to the north.    ~
+203 0 11
+D0
+~
+~
+0 0 20364
+D3
+~
+~
+0 0 20366
+S
+#20366
+A Small Path Through the Plains~
+   A large tree lies on the side of the path here casting a shadow on
+everything surrounding it.  By the looks of the tree several animals have made
+their homes in and around its trunk and branches.  Most of its leaves are
+intact but some of them flutter around along the path and surrounding area.  
+The path continues on to the south, or back towards the plains to the east.  ~
+203 0 11
+D1
+~
+~
+0 0 20365
+D2
+~
+~
+0 0 20367
+S
+#20367
+A Small Path Through the Plains~
+   The tall grasses continue to surround the small path, swaying in the wind
+and blocking view.  Some other vegetation is also cluttered around the path
+such as small bushes and shrubs.  Even a few small cacti can be seen off to the
+edge of the path.  The sound of birds can be heard off in the distance, heading
+in this direction.  The path contines on to the west, and back towards the
+plains to the north.    ~
+203 0 11
+D0
+~
+~
+0 0 20366
+D3
+~
+~
+0 0 20368
+S
+#20368
+A Break In the Plains~
+   The grass seems to have overrun almost the entire path here creating a
+break.  It is still possible to see the continuation of the path through the
+swaying grass to the west.  Some slithering sounds can be heard in the grass,
+but it is hard to make out what and where it is coming from in the tall grass.
+The break in the path ends to the west, while to the east the path leads back
+towards the main section of the plains.    ~
+203 0 11
+D1
+~
+~
+0 0 20367
+D3
+~
+~
+0 0 20369
+S
+#20369
+A Small Path Through the Plains~
+   The tall grasses continue to surround the small path, swaying in the wind
+and blocking view.  Off a ways from the path some shrubbery and cacti can be
+seen through a break in the tall grass.  A few medium sized rocks lie to the
+east, a few small reptiles resting in the shade that it provides.  The path
+continues on to the west, or heads back east to the main section of the plains.~
+203 0 11
+D1
+~
+~
+0 0 20368
+D3
+~
+~
+0 0 20370
+S
+#20370
+A Small Path Through the Plains ~
+   The grass is sparser in this part of the path, overrun by animal tracks and
+a few rocks.  Several small creatures can be seen moving about the area now
+that the grass isn't so thick.  Their tracks and others scatter the sandy dirt
+that covers the path, scattered in almost every direction.  Some birds can be
+heard flying overhead, flying off to an unknown location.  The path continues
+on towards the south, or goes back towards the plains to the east.    ~
+203 0 11
+D1
+~
+~
+0 0 20369
+D2
+~
+~
+0 0 20371
+S
+#20371
+A Small Path Through the Plains~
+   The tall grasses continue to surround the small path, swaying in the wind
+and blocking view.  Some other vegetation is also cluttered around the path
+such as small bushes and shrubs.  Even a few small cacti can be seen off to the
+edge of the path.  The sound of birds can be heard off in the distance, growing
+fainter as they get farther away.  The path contines on to the west, and back
+towards the plains to the north.    ~
+203 0 11
+D0
+~
+~
+0 0 20370
+D3
+~
+~
+0 0 20372
+S
+#20372
+A Small Path Through the Plains~
+   A large tree lies on the side of the path here casting a shadow on
+everything surrounding it.  By the looks of the tree several animals have made
+their homes in and around its trunk and branches.  Most of its leaves are
+intact but some of them flutter around along the path and surrounding area.  
+Several tracks of animals can be seen at the base of the tree where the grass
+has ceased to grow.  The path continues on to the south, or back towards the
+plains to the east.    ~
+203 0 11
+D1
+~
+~
+0 0 20371
+D2
+~
+~
+0 0 20373
+S
+#20373
+A Small Path Through the Plains~
+   The path grows smaller here, the tall grass overrunning the path and is much
+closer than it was before.  It sways in the wind, and is quite high making it
+hard to see what lies ahead.  Several different types of animal tracks are
+visible on the sandy path here, showing all the different types of animals to
+travel this path.  A light breeze can be felt coming in from the west, along
+with a smell that cannot be made out.  The path continues on to the west, or
+back towards the main part of the plains to the north.    ~
+203 0 11
+D0
+~
+~
+0 0 20372
+D3
+~
+~
+0 0 20374
+S
+#20374
+A Small Path Through the Plains~
+   The direction of the path winds a bit here in the western direction.  The
+tall grasses continue to surround this small path, but at a lower height than
+usual.  Some other vegetation is also cluttered around the path such as small
+bushes and shrubs.  Even a few small cacti can be seen off to the edge of the
+path.  A light breeze from the west cools things down a little, countering the
+hot sun overhead.  The path continues off towards the west, and back towards
+the main section of the plains to the east.    ~
+203 0 11
+D1
+~
+~
+0 0 20373
+D3
+~
+~
+0 0 20375
+S
+#20375
+A Small Path Through the Plains~
+   The path is almost completely overrun here by the tall grass, but it is
+still possible to make out where the path runs.  Other than the grass small
+amounts of other vegetation can be seen scattered around the area.  Some small
+animals scurry around, looking for a place to shield themselves from the sun's
+hot rays.  The faint smell of the sea is coming in from the west, through a
+small breeze that cools of the area a little.  The path continues and winds
+towards the south, or goes towards the main section of the plains to the east.~
+203 0 11
+D1
+~
+~
+0 0 20374
+D2
+~
+~
+0 0 20376
+S
+#20376
+A Small Path Through the Plains~
+   The grass is sparser in this part of the path, overrun by animal tracks and
+a few rocks.  Several small creatures can be seen moving about the area now
+that the grass isn't so thick.  Their tracks and others scatter the sandy dirt
+that covers the path, scattered in almost every direction.  The smell of the
+sea can be made out coming from the west, through a light breeze.  The path
+continues on towards the west, or goes back towards the plains to the north.  ~
+203 0 11
+D0
+~
+~
+0 0 20375
+D3
+~
+~
+0 0 20377
+S
+#20377
+Path Through the Ruins~
+   The path crosses through a set of black and grey stone ruins.  The stone is
+worn by years of animal migration and is broken in many places.  Obelisks are
+broken and scattered to the north and south of the trail.  The smell of the sea
+is coming in strong here, through a mild breeze that is blowing in from the
+west.  The path continues on to the west, and back towards the plains to the
+east.  There seem to be more ruins to the north, accessible from here through
+the rubble.~
+203 0 11
+D0
+~
+~
+0 0 20379
+D1
+~
+~
+0 0 20376
+D3
+~
+~
+0 0 20378
+S
+#20378
+A Small Path Through the Plains~
+   The trail widens here as the trail nears its end, the grass almost
+completely tramped by the animals.  Some small shrubbery still lies scattered
+around the area, along with several cacti that have not been trampled.  A smell
+of the sea blowing in from the west continues here and is much stronger here
+than in other places along the path.  The path leads back to the main section
+of the plains to the east.  It looks like it may have continued to the west at
+one time, but it is now severely overgrown and impassable.~
+203 0 11
+D1
+~
+~
+0 0 20377
+S
+#20379
+An Old Stone Ruin~
+   A large smooth stone dais has been created here in the middle of the
+windswept plains of Gothra.  The dais is made of black and grey stone and is
+very wind and weather worn.  Some obelisks remain standing encircling the dais
+but most are broken.  There is a large bowl shaped hole hewn very smoothly into
+the center of the dais.  Several people could stand inside and walk out on each
+of the stairways exiting the hole in the cardinal directions.  There is a wind
+constantly blowing in from the west and the smell of sea salt is strong.  The
+blue of the western sea can be seen on the horizon as the plateau of the Gothra
+plains can be seen to fall off quickly into a forested foothills and sea plain.~
+203 4 12
+D2
+Nothing.~
+~
+0 -1 20377
+S
+T 1833
+$~

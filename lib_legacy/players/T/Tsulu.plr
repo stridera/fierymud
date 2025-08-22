@@ -1,0 +1,62 @@
+name: Tsulu
+password: Ts4cYZc1r1
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19288
+birthtime: 1511756355
+timeplayed: 1326
+lastlogintime: 1511757689
+host: 143.207.068.162
+height: 64
+weight: 173
+base_height: 64
+base_weight: 173
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8018
+hunger: 15
+thirst: 6
+lastlevel: 0
+hitpoints: 28/28
+mana: 1/0
+move: 88/132
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 63
+wisdom: 75
+dexterity: 66
+constitution: 93
+charisma: 63
+experience: 1509
+quit_reason: 7
+saveroom: 8018
+skills:
+402 50
+404 50
+415 50
+416 50
+421 52
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0

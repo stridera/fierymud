@@ -1,0 +1,228 @@
+name: Lanlot
+password: LaV8lJnft8
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 5
+race: 0
+level: 66
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17638
+birthtime: 1272086198
+timeplayed: 374479
+lastlogintime: 1384019740
+host: 098.230.026.143
+height: 75
+weight: 140
+base_height: 75
+base_weight: 140
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxy
+effectflags: cn 0 0
+prefflags: ghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 800/734
+mana: 435/435
+move: 141/144
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 48
+wisdom: 65
+dexterity: 92
+constitution: 100
+charisma: 53
+experience: 37095089
+quit_reason: 1
+saveroom: 3054
+skills:
+4 1000
+12 1000
+13 1000
+14 1000
+17 1000
+27 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+92 1000
+99 1000
+131 1000
+132 1000
+188 1000
+402 56
+404 214
+407 97
+411 710
+415 140
+416 710
+417 50
+420 493
+421 587
+422 378
+423 710
+424 326
+430 56
+431 50
+434 50
+438 81
+443 50
+444 141
+445 52
+450 50
+451 382
+452 51
+457 62
+458 160
+459 174
+460 71
+461 58
+463 50
+464 199
+465 387
+466 50
+468 109
+473 50
+0 0
+trophy:
+1 5403 1.000000
+1 8302 1.500000
+1 8303 1.000000
+1 8316 0.500000
+1 8317 4.000000
+1 8314 0.500000
+1 8312 1.500000
+1 8310 0.500000
+1 8311 2.000000
+1 8313 0.500000
+1 8318 4.500000
+1 8305 0.500000
+1 8308 2.500000
+1 8300 1.000000
+1 8301 0.500000
+1 18513 1.000000
+1 18552 0.500000
+1 18520 2.000000
+1 18515 0.500000
+1 18553 1.500000
+1 18518 2.500000
+0 0 0
+mem:
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+132 0 1
+131 0 1
+131 0 1
+132 0 1
+132 1 1
+131 1 1
+131 1 1
+17 1 1
+17 1 1
+85 1 1
+85 1 1
+17 1 1
+17 1 1
+17 1 1
+17 1 1
+46 1 1
+46 1 1
+46 1 1
+46 1 1
+46 1 1
+46 1 1
+14 1 1
+14 1 1
+14 1 1
+14 1 1
+14 1 1
+13 1 1
+13 1 1
+12 1 1
+12 1 1
+14 1 1
+13 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+99 1 1
+17 1 1
+27 1 4
+188 0 2
+188 0 2
+188 0 2
+188 0 2
+188 0 2
+188 0 2
+27 1 4
+0 0 0
+aliases:
+al assist lanelot
+ko kill oni
+cdl cast 'demonskin' lanelot
+cdpl cast 'dark presence' lanelot
+cd cast 'demonskin'
+kl kill ladybug
+ks kill spider
+kr kill roach
+kf kill fly
+kp kill priest
+bs backstab seether
+sy say yajiro
+an assist nero
+ki kill initiate
+ap assist prunkhaft
+fsfw fill skin from well
+as assist syra
+kk kill kitten
+od open door
+ud unlock door
+gcc get coins corpse
+fsff fill skin from fountain
+gac get all corpse
+dff drink from fountain
+eb eat bread
+dfs drink from skin
+kv kill vine
+gdc get decayed corpse
+ggc get gem corpse
+kz kill zombie
+ccl cast 'cause light'
+ccs cast 'cause serious'
+ccf cast 'create food'
+ccw cast 'create water'
+lh lay hands
+kh kill humanoid
+af assist fernius
+cdg cast 'dispel good'
+ak assist kerl
+cdp cast 'dark presence'
+kg kill guard
+ab assist berl
+bz backstab zombie
+cdma cast 'dispel magic' aelfric
+ka kill aelfric
+dcn drag corpse north
+kd kill demon
+kb kill beast
+km kill mist
+kc kill creature
+kw kill water
+rf rescue foosha
+0

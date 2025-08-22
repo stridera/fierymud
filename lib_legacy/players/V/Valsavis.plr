@@ -1,0 +1,68 @@
+name: Valsavis
+password: Va9TN0iD9P
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19928
+birthtime: 1622189657
+timeplayed: 743
+lastlogintime: 1622190401
+host: 063.152.042.096
+height: 75
+weight: 230
+base_height: 75
+base_weight: 230
+base_size: 3
+natural_size: 3
+alignment: -12
+playerflags: xy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 14
+thirst: 4
+lastlevel: 0
+hitpoints: 30/28
+mana: 0/0
+move: 154/154
+damroll: 5
+hitroll: 4
+strength: 91
+intelligence: 54
+wisdom: 81
+dexterity: 94
+constitution: 88
+charisma: 50
+experience: 4255
+quit_reason: 5
+saveroom: 3006
+skills:
+403 50
+415 50
+416 50
+419 1000
+421 54
+427 1000
+438 50
+443 50
+444 50
+464 51
+465 50
+467 50
+0 0
+trophy:
+1 3064 1.000000
+1 3061 3.000000
+0 0 0
+tells:
+$
+gossips:
+$

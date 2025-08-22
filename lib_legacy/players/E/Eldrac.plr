@@ -1,0 +1,56 @@
+name: Eldrac
+password: El64y92z1C
+prompt: %_%_[%n][%o]%_%_%e%_%_c.%cc s.%cs g.%cg p.%cp%_%_[hp:%h-%H mv:%v-%V]%_%_%l%_%_
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18553
+birthtime: 1374379446
+timeplayed: 1718
+lastlogintime: 1374434067
+host: 024.191.039.172
+height: 70
+weight: 155
+base_height: 70
+base_weight: 155
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 29/28
+mana: 1/0
+move: 144/144
+damroll: 3
+hitroll: 3
+strength: 91
+intelligence: 62
+wisdom: 66
+dexterity: 93
+constitution: 100
+charisma: 59
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0

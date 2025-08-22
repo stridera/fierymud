@@ -1,0 +1,147 @@
+name: Kresselack
+password: KrvP9CwrBh
+currenttitle: Shilak a'Thak
+description
+d
+e
+s
+
+l~
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 1
+class: 9
+race: 5
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 9889
+birthtime: 1022012937
+timeplayed: 13110412
+lastlogintime: 1739073170
+host: 066.199.058.082
+height: 63
+weight: 158
+base_height: 63
+base_weight: 158
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: glxyz
+effectflags: k w 0
+prefflags: hnosuxzC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 102
+loadroom: 3054
+hunger: 3
+thirst: 14
+lastlevel: 9
+hitpoints: 887/1323
+mana: 980/980
+move: 119/122
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 100
+wisdom: 100
+dexterity: 100
+constitution: 100
+charisma: 100
+cash: 35588 44 274 311
+experience: 105805999
+title: Shilak a'Thak
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+404 1000
+405 1000
+408 1000
+410 1000
+411 1000
+412 1000
+415 1000
+416 1000
+418 1000
+420 1000
+421 1000
+438 1000
+440 1000
+443 1000
+444 1000
+463 50
+464 1000
+465 1000
+477 1000
+0 0
+trophy:
+1 30030 1.000000
+1 58404 1.000000
+1 43013 1.000000
+1 11809 1.000000
+1 1806 1.000000
+1 47007 2.000000
+1 41003 1.000000
+1 5523 1.000000
+1 8512 1.000000
+1 2312 3.000000
+1 53403 1.000000
+1 53402 2.000000
+1 53408 2.000000
+1 53409 1.000000
+1 53022 1.000000
+1 5522 1.000000
+1 12020 2.000000
+1 55002 1.000000
+1 55015 1.000000
+1 37001 4.000000
+1 37002 2.000000
+0 0 0
+tells:
+1738112683 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738113320 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738113324 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738195477 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738195790 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738195794 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738196034 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1738205877 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739072858 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739072860 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1739073144 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1738112791 Discord gossips, 'glorious_gull_07269: There was something I thought they carry that was protection from evil'
+1738112812 Tynder gossips, 'I only killed one or two of them. after the hassle I felt Mysa was a better use of time'
+1738113361 Tynder gossips, 'oooh. are you talking about the small bolt of energy? that's prot evil, but it's on the lightning.'
+1738195483 Thort gossips, 'no, but if you don't mind preserving that corpse so I can be reminded of being stupid'
+1738195712 Thort gossips, 'awesome thank you!'
+1738205817 Discord gossips, 'Chinok: Hey Kress'
+1738205831 Discord gossips, 'Chinok: fixing the world'
+1738206050 Discord gossips, 'Chinok: gratz on 52 Anexis'
+1738206055 Anexis gossips, 'thank'
+1739072807 Discord gossips, 'venath.2005: Brutha Kress'
+1739072826 Chinok gossips, 'hey Kress'
+$
+aliases:
+oo as illusion
+hh t soran hh
+ii as illusion
+tp rec teleport
+kl wield flame
+rt rem chaos
+tt wield chaos
+fq say buntoi nakkarri karisto
+yy quaff poison
+ga g all from corpse
+lc l in corpse
+jj wi stiletto
+gc g all.coins from corpse
+nq ' floor phrase is eingang bitte
+gac g all.coins from all.corpse
+aqua rec aqua
+nq2 say floor phrase is let me in dorkus
+kk t shikata stone
+0

@@ -1,0 +1,353 @@
+#51900
+horrible-little-monster~
+a horrible little monster~
+A horrible little monster runs around here!~
+This horrible little gremlin-like creature is mean and dangerous!  It drools in
+hunger, its dull eyes unfocused and wild.  Sharp claws and teeth viciously
+gnash and flail as it attacks!~
+10 0 0 E
+1 20 1 0d0+-552 -5d-1+-7
+0 0 0 0 0 519
+3 3 0 24 13 0 2
+BareHandAttack: 4
+Str: 68
+Dex: 77
+Int: 75
+Wis: 67
+Con: 74
+Cha: 92
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51979
+#51901
+academy-recruiter~
+the Recruiter~
+The Academy Recruiter stands ready to take your application.~
+A middle-aged gentleman with many years of experience, the Academy Recruiter is
+here to start prospective adventurers on their way.  If you tell him yes or no,
+he can send you to the proper place to begin your adventure.~
+-2013241318 1080 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 519
+3 3 1 24 9 0 2
+Str: 76
+Dex: 78
+Int: 58
+Wis: 66
+Con: 84
+Cha: 92
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51900
+T 51967
+T 51975
+T 51980
+#51902
+instructor-adventure teacher~
+the Instructor of Adventure~
+The Instructor of Adventure greets new students here.~
+The Instructor is a rugged, good-looking halfling.  His scruffy hair and beard
+give him the appearance of a carefree uncle or family friend.  He is well
+versed in communication and adventure preparation, and teaches his students the
+same.~
+-2013241318 1064 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 519
+3 3 1 24 11 0 1
+Str: 71
+Dex: 75
+Int: 72
+Wis: 64
+Con: 78
+Cha: 92
+AFF2: 0
+AFF3: 0
+MOB2: 0
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51901
+T 51902
+T 51903
+T 51904
+T 51905
+T 51906
+T 51907
+T 51908
+T 51911
+T 51913
+T 51914
+T 51916
+T 51917
+T 51918
+T 51920
+T 51921
+T 51978
+T 51982
+T 51983
+T 51915
+T 51985
+T 51981
+#51903
+combat-clerk~
+the Combat Clerk~
+The Combat Clerk sorts through student records.~
+Barely past graduation age himself, this half-elf has the unenviable job of
+directing students to their proper instructors and filing admissions records
+for each student at the Academy.~
+-2013241318 1064 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 519
+3 3 1 24 9 0 2
+Str: 72
+Dex: 79
+Int: 68
+Wis: 64
+Con: 85
+Cha: 84
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51923
+T 51925
+T 51968
+T 51970
+T 51971
+T 51924
+T 51978
+T 51986
+T 51987
+T 51988
+T 51969
+#51904
+warmaster war-master~
+the Warmaster~
+The Warmaster barks orders at students as they train.~
+A valiant mature barbarian woman, the Warmaster proudly wears the gleaming
+armor of Ethilien Training Academy.  She carries her helmet in her hands, a
+sword at her side, and a shield on her back.  Watchful and commanding, she
+clearly teaches from ages of experience hard-earned on the battlefield.~
+-2013241318 40 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 519
+3 3 2 3 10 0 3
+Str: 86
+Dex: 76
+Int: 85
+Wis: 73
+Con: 77
+Cha: 55
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51930
+T 51931
+T 51932
+T 51933
+T 51935
+T 51955
+T 51956
+T 51957
+T 51974
+T 51977
+T 51978
+T 51989
+#51905
+doctor-mischief~
+Doctor Mischief~
+Doctor Mischief, PhD hides amongst the debris.~
+A broad grin peeks out from behind an oversized hooded cloak.  Most of this
+person is shrouded, making discerning their true shape a fool's errand.  Based
+on the voice, you might guess the speaker is female, but it's impossible to be
+sure.  They seem quiet and loud, coldly methodical and chaotically messy all at
+the same time.  How someone like this ended up a Doctor is anyone's guess!~
+-2013241318 40 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 519
+3 3 2 18 0 0 2
+Str: 81
+Dex: 80
+Int: 68
+Wis: 75
+Con: 74
+Cha: 76
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51926
+T 51927
+T 51928
+T 51929
+T 51955
+T 51956
+T 51957
+T 51974
+T 51977
+T 51978
+T 51989
+#51906
+chair-arcane-studies~
+the Arcane Chair~
+The Chair of Arcane Studies dabbles with mystical formulas in the lab.~
+It is impossible to guess the age of this gold-scaled dragonborn.  He wears the
+robes of the highest station in Arcane Studies and comports himself in a manner
+befitting such a person.  It is difficult to find anything relatable in his
+humorless and superior demeanor, but his passion for imparting knowledge is
+palpable.~
+-1476370406 1064 0 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 519
+3 3 1 0 26 0 2
+Str: 74
+Dex: 74
+Int: 96
+Wis: 76
+Con: 73
+Cha: 58
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51945
+T 51946
+T 51947
+T 51948
+T 51950
+T 51951
+T 51952
+T 51953
+T 51954
+T 51955
+T 51956
+T 51957
+T 51974
+T 51977
+T 51978
+T 51989
+T 51972
+#51907
+professor professor-divinity~
+the Professor of Divinity~
+The Professor of Divinity sits in rapt contemplation.~
+This wizened little old dwarf looks as old as Ethilien Training Academy itself!
+He is dressed in plain gray cotton robes and a pair of old spectacles.  The
+only indication of his faith is a small unicorn symbol worn around his neck,
+the holy symbol of the goddess Mielikki.~
+-2013241318 1064 1000 E
+99 20 0 0d0+0 0d0+0
+0 0 0 0 0 519
+3 3 1 1 3 0 2
+Str: 83
+Dex: 86
+Int: 80
+Wis: 87
+Con: 60
+Cha: 59
+AFF2: 0
+AFF3: 65536
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51936
+T 51937
+T 51938
+T 51939
+T 51941
+T 51942
+T 51943
+T 51944
+T 51955
+T 51956
+T 51957
+T 51974
+T 51977
+T 51978
+T 51989
+T 51940
+#51908
+master-revel~
+the Master of the Revel~
+The Master of the Revel welcomes students to the banquet hall.~
+This loud and cheery gnome is eager to spread joy wherever he goes.  Rosy
+cheeks, a long pointed beard, and a beaming demeanor makes him easy to talk to
+and pleasant to work with.  He is quick to greet students with a pint and a
+tale to congratulate them on their progress.~
+-2013241318 1064 1000 E
+99 20 0 0d0+0 0d0+0
+0 0 10000000 0 0 519
+3 3 1 24 2 0 1
+Str: 80
+Dex: 72
+Int: 54
+Wis: 70
+Con: 82
+Cha: 96
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
+T 51958
+T 51959
+T 51960
+T 51961
+T 51962
+T 51963
+T 51964
+T 51965
+T 51966
+T 51973
+T 51976
+T 51978
+T 51991
+T 51992
+T 51993
+$

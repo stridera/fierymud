@@ -1,0 +1,112 @@
+name: Rael
+password: RamBskdqi7
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 27
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20339
+birthtime: 1661816543
+timeplayed: 3032
+lastlogintime: 1661908339
+host: 065.087.060.115
+height: 72
+weight: 322
+base_height: 72
+base_weight: 322
+base_size: 2
+natural_size: 2
+alignment: 16
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 13
+lastlevel: 0
+hitpoints: 26/26
+mana: 1/0
+move: 91/106
+damroll: 3
+hitroll: 3
+strength: 72
+intelligence: 100
+wisdom: 100
+dexterity: 73
+constitution: 69
+charisma: 49
+cash: 0 6 35 54
+bank: 0 1 1 1
+experience: 22589
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+203 1000
+415 50
+416 50
+423 64
+424 54
+438 50
+443 50
+444 50
+447 52
+451 53
+452 52
+453 52
+454 50
+459 50
+460 50
+462 50
+464 50
+487 81
+0 0
+trophy:
+1 8015 1.000000
+1 8014 1.000000
+1 8002 0.500000
+1 8000 0.500000
+1 8022 0.500000
+1 8030 0.500000
+1 8016 1.500000
+1 36003 1.000000
+1 36001 2.500000
+1 36002 2.500000
+1 8001 0.500000
+1 8013 1.000000
+1 8021 0.500000
+1 51900 1.000000
+0 0 0
+tells:
+1661817622 @WThe Master of the Revel@W tells you, 'Will also grant you your first quest.@W'@0
+1661817622 @WThe Master of the Revel@W tells you, 'Which drop randomly from creatures across the world.@W'@0
+1661817622 @WThe Master of the Revel@W tells you, 'Bring back what they ask for@W'@0
+1661817622 @WThe Master of the Revel@W tells you, 'and you'll be well rewarded!@W'@0
+1661817636 @WThe Master of the Revel@W tells you, 'Congratulations again, graduate!@W'@0
+1661817636 @WThe Master of the Revel@W tells you, 'May you climb to ever greater fortune!@W'@0
+1661817880 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1661905561 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1661905565 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+1661905566 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
+$
+gossips:
+1661816573 Zaver gossips, 'Hey Rael'
+1661817862 Zaver gossips, 'gratz!'
+1661818069 Daedela gossips, 'well hello Keric'
+1661818073 Keric gossips, 'sup sup'
+1661905194 Donaar gossips, 'grats'
+$
+mem:
+32 0 8
+5 0 7
+5 0 8
+0 0 0

@@ -1,0 +1,283 @@
+name: Zegna
+password: ZeGovp5ykN
+currenttitle: Lisenia
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 15
+race: 0
+level: 99
+home: 3003
+lifeforce: 0
+composition: 0
+id: 5058
+birthtime: 970760532
+timeplayed: 20475463
+lastlogintime: 1644791862
+host: 162.233.153.155
+height: 65
+weight: 131
+base_height: 65
+base_weight: 131
+base_size: 2
+natural_size: 2
+alignment: 982
+playerflags: glxy
+effectflags: c 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+freezelevel: 104
+loadroom: 3208
+lastlevel: 10
+hitpoints: 782/782
+mana: 100/100
+move: 128/128
+damroll: 3
+hitroll: 3
+strength: 88
+intelligence: 90
+wisdom: 92
+dexterity: 86
+constitution: 90
+charisma: 84
+cash: 15 695 4263 1199
+bank: 0 8000 48000 50000
+experience: 105805999
+quit_reason: 7
+saveroom: 3208
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+28 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+51 1000
+53 1000
+54 1000
+70 1000
+74 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+97 1000
+99 1000
+115 1000
+116 1000
+117 1000
+118 1000
+119 1000
+120 1000
+122 1000
+123 1000
+124 1000
+126 1000
+129 1000
+142 1000
+206 1000
+207 1000
+208 1000
+209 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+451 1000
+452 486
+455 119
+457 1000
+458 559
+459 991
+460 446
+461 1000
+462 129
+463 1000
+466 1000
+0 0
+trophy:
+1 8522 0.200000
+1 8521 0.333333
+1 8505 0.600000
+1 8503 4.750000
+1 8509 1.800000
+1 8504 1.709524
+1 3070 0.200000
+1 2804 2.550000
+1 11809 0.600000
+1 11702 1.400000
+1 11710 1.400000
+1 2803 5.950000
+1 11704 1.950000
+1 2802 6.150000
+1 2809 4.250000
+1 2807 2.650000
+1 2801 22.750015
+1 11703 1.450000
+1 11701 2.200000
+1 2808 0.400000
+1 51102 0.200000
+0 0 0
+tells:
+1572094416 @WNorisent@W tells you, 'Or could it be that your order has forgotten how the resurrection incantations are to be preformed?@W'@0
+1572094519 @WNorisent@W tells you, 'What brings a young cleric to my home? Has your order sent you to steal my books again?@W'@0
+1572094519 @WNorisent@W tells you, 'Or could it be that your order has forgotten how the resurrection incantations are to be preformed?@W'@0
+1572094758 @WNorisent@W tells you, 'What brings a young cleric to my home? Has your order sent you to steal my books again?@W'@0
+1572094758 @WNorisent@W tells you, 'Or could it be that your order has forgotten how the resurrection incantations are to be preformed?@W'@0
+1572118042 @WNorisent@W tells you, 'What brings a young cleric to my home? Has your order sent you to steal my books again?@W'@0
+1572118042 @WNorisent@W tells you, 'Or could it be that your order has forgotten how the resurrection incantations are to be preformed?@W'@0
+1574231440 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1574231461 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1574231468 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1644090036 Giaccobe gossips, 'is it one per reset?'
+1644090038 Zaver gossips, 'wasn't me this time!'
+1644090044 Chinok gossips, 'not exactly'
+1644090111 Pashku gossips, 'Zegna!  seeing new people on today'
+1644090120 Tensel gossips, 'Hello!'
+1644090129 Chinok gossips, 'actually, I believe oyu are seeing OLD people on today :)'
+1644090200 Chinok gossips, 'look at Mand!! gratz on 99'
+1644090206 Mand gossips, 'ty :D '
+1644768281 Voruulr gossips, 'Lube Luba!'
+1644768302 Lefa gossips, 'lube leaf'
+$
+mem:
+28 1 1
+28 1 1
+53 1 1
+53 1 1
+129 1 1
+54 1 2
+54 1 2
+54 1 2
+54 1 2
+54 1 2
+97 1 1
+99 1 1
+99 1 1
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+99 1 2
+53 1 1
+53 1 1
+53 1 1
+53 1 1
+53 1 2
+53 1 2
+53 1 2
+74 1 2
+74 1 2
+74 1 2
+94 1 1
+94 1 1
+94 1 2
+119 1 2
+119 1 2
+119 1 2
+94 1 2
+1 1 2
+1 1 2
+1 1 2
+1 1 2
+13 1 2
+12 1 2
+12 1 2
+12 1 2
+12 1 2
+12 1 2
+3 1 1
+3 1 1
+3 1 2
+3 1 2
+3 1 2
+3 1 2
+3 1 2
+3 1 2
+3 1 2
+3 1 2
+34 1 2
+34 1 2
+40 1 2
+40 1 1
+40 1 1
+40 1 1
+42 1 2
+42 1 2
+91 1 1
+91 1 1
+4 1 2
+4 1 2
+28 1 1
+28 1 2
+28 1 2
+28 1 2
+23 1 2
+23 1 2
+23 1 2
+23 1 2
+15 1 2
+15 1 2
+90 1 2
+15 1 2
+15 1 2
+15 1 2
+15 1 2
+97 1 2
+97 1 2
+97 1 2
+97 1 2
+97 1 2
+209 1 1
+43 1 1
+0 0 0
+aliases:
+word cast 'word of recall'
+lic look in corpse
+gcc get all.coins corpse
+1 cast 'full heal' ardus
+df drink fountain
+gc get all.coins
+fe cast 'full heal' ermenegildo
+ce consent ermenegildo
+car cast 'armor'
+- enter well
+ae assist ermenegildo
+hw cast 'holy word'
+gs group self
+bli cast 'blindness'
+gac get all corpse
+cf cast 'create food'
+fh cast 'full heal'
+who who -where
+gccc get all.coins 2.corpse
+z group vuitton
+0

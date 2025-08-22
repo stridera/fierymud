@@ -1,0 +1,66 @@
+name: Busk
+password: Bu0Sdc6E51
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20008
+birthtime: 1631064342
+timeplayed: 177
+lastlogintime: 1631064520
+host: 075.057.034.132
+height: 39
+weight: 180
+base_height: 39
+base_weight: 180
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: y
+effectflags: k 0 q
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: -15/26
+mana: 0/0
+move: 154/154
+damroll: 4
+hitroll: 5
+strength: 100
+intelligence: 58
+wisdom: 68
+dexterity: 86
+constitution: 92
+charisma: 56
+experience: 1
+quit_reason: 10
+saveroom: 3002
+skills:
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+tells:
+$
+gossips:
+$

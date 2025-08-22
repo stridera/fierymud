@@ -1,0 +1,60 @@
+name: Veptrix
+password: Ve9gId69Tv
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 10
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18845
+birthtime: 1425330714
+timeplayed: 152
+lastlogintime: 1425330878
+host: 071.048.172.192
+height: 81
+weight: 218
+base_height: 81
+base_weight: 218
+base_size: 3
+natural_size: 3
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 15
+thirst: 6
+lastlevel: 0
+hitpoints: 28/28
+mana: 0/0
+move: 132/132
+damroll: 5
+hitroll: 4
+strength: 89
+intelligence: 68
+wisdom: 77
+dexterity: 89
+constitution: 76
+charisma: 65
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+419 1000
+421 50
+427 1000
+438 50
+443 50
+444 50
+464 50
+465 50
+467 50
+0 0

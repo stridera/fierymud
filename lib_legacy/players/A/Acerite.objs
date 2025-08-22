@@ -1,0 +1,664 @@
+1
+vnum: 11799
+location: 5
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: kD 0
+name: cloud sheet layer thin
+shortdesc: a thin sheet of cloud
+desc: A thin layer of cloud rests upon the ground here.
+type: 9
+weight: 0.01
+cost: 1400
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 9
+applies:
+1 -2
+6 4
+26 5
+5 -2
+~
+~~
+vnum: 55014
+location: 6
+values:
+0
+0
+400
+0
+0
+0
+0
+~
+flags: agjop 0
+name: diadem sunstone golden strange gleaming sunstone-diadem
+shortdesc: the Sunstone Diadem
+desc: A strange golden diadem is gleaming through the dust.
+type: 1
+weight: 0.25
+cost: 6000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 17
+applies:
+26 2
+18 -4
+~
+extradesc: diadem sunstone golden strange gleaming sunstone-diadem
+Light seems to flow naturally from this ancient golden medallion.  Symbols of
+what look like stars in the heavens are spread across it, and there is a symbol
+of the sun dominating its center.  
+~
+~~
+vnum: 46407
+location: 8
+values:
+3
+0
+0
+1
+0
+0
+0
+~
+flags: 0 0
+name: droppings bird bird-droppings food
+shortdesc: some nasty bird droppings
+desc: The grounds crew has neglected to clean up a bit of droppings here.
+type: 19
+weight: 0.20
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+applies:
+17 1
+~
+extradesc: droppings nasty bit bird
+     Yech!  Though the birds within the aviary's walls are far from
+domesticated - much less housebroken - happening upon such a nasty bit of
+droppings is an unpleasant surprise; generally the aviary grounds crew seem to
+do a pretty good job keeping the paths clean, turning such offal into the soil
+to act as fertilizer for the exotic plant life.
+     The core of the droppings is a greenish-grey snakelike solid, surrounded
+by an off-white liquid that is quickly drying in the sun.  Though bird
+droppings do not have the disgusting smell of other animal feces, they are
+still rather repulsive nonetheless.
+~
+~~
+vnum: 3237
+location: 13
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: belt broad
+shortdesc: a broad silver belt
+desc: A broad silver belt has been left here.
+type: 9
+weight: 2.00
+cost: 1200
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 2049
+extradesc: belt silver
+It is a broad belt made from tiny silver rings woven together.
+~
+triggers:
+1299
+~
+~~
+vnum: 1281
+location: 16
+values:
+100
+100
+20
+12
+0
+0
+0
+~
+flags: abeghiAD 0
+name: bolt lightning
+shortdesc: a lightning bolt
+desc: A huge lightning bolt is coming at you!
+type: 5
+weight: 1.23
+cost: 2147483647
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 8193
+applies:
+14 1000
+~
+~~
+vnum: 1281
+location: 17
+values:
+100
+100
+20
+12
+0
+0
+0
+~
+flags: abeghiAD 0
+name: bolt lightning
+shortdesc: a lightning bolt
+desc: A huge lightning bolt is coming at you!
+type: 5
+weight: 1.23
+cost: 2147483647
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 8193
+applies:
+14 1000
+~
+~~
+vnum: 49062
+location: 22
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: abjAD 0
+name: mask mask-deception smooth-black-mask
+shortdesc: the mask of deception
+desc: A completely smooth black mask lies on the floor, shimmering slightly.
+type: 11
+weight: 1.25
+cost: 0
+timer: 0
+level: 65
+effects: 0 0 0
+wear: 131073
+applies:
+25 1
+2 5
+1 5
+~
+extradesc: mask-deception smooth-black-mask
+The mask is smooth to the touch, yet no highlights are visible on its surface.
+Its color is that of the deepest black.  Expressionless ovals allow its wearer
+to see, and small openings assist with breathing, but no other feature is
+visible.  Indeed, it appears to float in front of its wearer's face with no
+means of support.    
+~
+~~
+vnum: 420
+location: 25
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aeA 0
+name: badge herlequin
+shortdesc: a badge of the herlequin
+desc: A red and black badge pulsates in the dust.
+type: 11
+weight: 0.25
+cost: 0
+timer: 0
+level: 1
+effects: f 0 0
+wear: 540673
+applies:
+19 4
+18 3
+26 10
+13 150
+6 -4
+~
+extradesc: badge herlequin
+Pulsing with what appears to be a heart beat, this badge
+is the reminence of the demons known as the herlequin.
+The power it emites adds to the person wearing it,
+strengthening them with it's unholy power.
+~
+~~
+vnum: 1001
+location: 26
+values:
+60
+1
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: sack rough-cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: rough-cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.    
+~
+~~
+vnum: 58354
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bouquet wedding bridal-bouquet bridal
+shortdesc: a bridal bouquet of cream and gold colored roses
+desc: A bridal bouquet has been lost here!
+type: 8
+weight: 2.00
+cost: 500
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+extradesc: bridal bouquet
+The bouquet is made up of what must be a hundred absolutely perfect
+roses. Most of them are cream colored, but there are a few golden 
+ones thrown in to add artistic flavor. The bouquet is very large,
+going down to the bride's knees, but it's so light that she could
+carry it easily.
+~
+~~
+vnum: 58352
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: gown wedding-gown wedding
+shortdesc: a long, flowing white silk wedding gown
+desc: A long, flowing white silk gown has been neatly folded and left here.
+type: 12
+weight: 4.00
+cost: 1800
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 9
+extradesc: wedding gown dress
+You've never seen such a magnificent gown! It's good enough for a 
+princess or queen to wear to her nuptials, with a long, flowing skirt
+of white silk tulle, and a bodice of the same and covered in handmade 
+laces from around the world. The leg-o-mutton sleeves end in triangles
+of soft white fabric that partially cover the backs of the bride's hands. 
+Truly, it's a magnificent garment.
+~
+~~
+vnum: 1045
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: veil fine-white-lace-wedding-veil
+shortdesc: a fine white lace wedding veil
+desc: A fine white lace wedding veil has been set here.
+type: 11
+weight: 0.25
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+extradesc: fine-white-lace-wedding-veil
+Lace is so finely crocheted from white silk thread that it seems
+like this veil is made of spiderwebs. It covers the head, but 
+does not obscure the features in any way, instead ghosting an
+image of its wearer.
+~
+~~
+vnum: 1241
+location: 127
+values:
+40
+0
+0
+0
+0
+0
+0
+~
+flags: agjkAD 0
+name: cloak moonlight
+shortdesc: a cloak of moonlight
+desc: A beam of moonlight hits the ground here.
+adesc:
+Nothing.
+~
+type: 9
+weight: 1.45
+cost: 0
+timer: 0
+level: 102
+effects: cuy 0 0
+wear: 1025
+applies:
+25 3
+~
+extradesc: cloak moonlight
+This is Iolar's magical cloak that was a gift from the goddess of the hunt.  
+It's powers are only known to Iolar and the goddess herself.    
+~
+~~
+vnum: 1098
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: strip color-quick-reference-strip
+shortdesc: a Color Quick-Reference Strip
+desc: A Color Quick-Reference Strip lays here!
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 100
+effects: 0 0 0
+wear: 1
+extradesc: color-quick-reference-strip
+&0&11  &0&1&b1b  &0&22  &0&2&b2b  &0&33  &0&3&b3b  &0&44  &0&4&b4b  &0&55  &0&5&b5b  &0&66  &0&6&b6b  &0&77  &0&7&b7b  &0&88  &0&8&b8b  &0&99  &0&9&b9b&0
+~
+~~
+vnum: 17205
+location: 127
+values:
+-3
+0
+0
+0
+0
+0
+0
+~
+flags: gh 0
+name: cord red
+shortdesc: a red cord
+desc: A blood red cord lies on the ground.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+applies:
+3 -5
+4 -5
+~
+extradesc: cord red
+This cord is made of fine red threads which feels slightly sticky. 
+~
+~~
+vnum: 55572
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pearl gem crushed crushed-pearl
+shortdesc: a crushed pearl
+desc: This seems to be a precious discovery, and it glimmers in the ambient light.
+type: 8
+weight: 0.01
+cost: 500
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1
+~~
+vnum: 17206
+location: 127
+values:
+15
+16
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: flask bubbling
+shortdesc: a bubbling flask
+desc: A bubbling flask is left at the side of the room.
+type: 10
+weight: 1.00
+cost: 15
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 1
+extradesc: flask bubbling
+The liquid in the flask has a sweet and pleasant aroma. It smells somewhat
+delicious.
+~
+~~
+vnum: 17204
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g 0
+name: cord golden
+shortdesc: the golden cord
+desc: A golden cord lies on the ground.
+type: 9
+weight: 0.50
+cost: 20
+timer: 0
+level: 5
+effects: 0 0 0
+wear: 2049
+applies:
+3 1
+13 -1
+~
+extradesc: cord golden
+You look upon a length of cord made of finely spun gold threads. It seems to
+emanate a strange aura.
+~
+~~
+vnum: 3022
+location: 127
+values:
+0
+1
+8
+3
+0
+0
+0
+~
+flags: mnouvwyz 0
+name: sword long long-sword longsword
+shortdesc: a longsword
+desc: A longsword has been left here.
+adesc:
+Nothing.
+~
+type: 5
+weight: 3.00
+cost: 240
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+extradesc: sword long
+The sword is about three and a half feet in length, and the blade is
+very sharp. It's plain and undecorated, allowing its steel to speak for 
+itself.
+~
+~~
+vnum: 49201
+location: 127
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: gjnprtuvz 0
+name: black ice legplates leg plates dark
+shortdesc: a pair of black ice legplates
+desc: A pair of dark plates rest in the shadows here.
+type: 9
+weight: 3.00
+cost: 0
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 33
+applies:
+6 -3
+19 1
+9 10
+2 1
+~
+extradesc: black ice legplates leg plates dark shadows
+As if formed from solid shadow, these plates are very lightweight.  Light
+gleams off the surface, either pushed away or consumed inside.    
+~
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Sep 05 2013
+  To: Acerite
+From: Venath
+
+Do you still check in?
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~
+vnum: -1
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: mail paper letter
+shortdesc: a piece of mail
+desc: Someone has left a piece of mail here.
+adesc:
+ * * * * &2FieryMUD Mail System&0 * * * *
+Date: Sep 12 2013
+  To: Acerite
+From: Venath
+
+I saw you log in. How ya been man? What's new?
+@0~
+type: 16
+weight: 1.00
+cost: 30
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16385
+~~

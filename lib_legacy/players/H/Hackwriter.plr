@@ -1,0 +1,256 @@
+name: Hackwriter
+password: HaCdPUGKUv
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 4
+race: 0
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20405
+birthtime: 1672788202
+timeplayed: 923795
+lastlogintime: 1682537061
+host: 216.125.017.034
+height: 72
+weight: 169
+base_height: 72
+base_weight: 169
+base_size: 2
+natural_size: 2
+alignment: 448
+playerflags: gyz
+effectflags: cm 0 0
+prefflags: abhnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1230/1131
+mana: 980/980
+move: 294/294
+damroll: 3
+hitroll: 3
+strength: 90
+intelligence: 62
+wisdom: 62
+dexterity: 92
+constitution: 92
+charisma: 65
+cash: 37 2091 10024 1927
+bank: 250 10290 67700 9900
+experience: 121676898
+quit_reason: 1
+saveroom: 3054
+skills:
+1 1000
+3 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+21 1000
+22 1000
+28 1000
+34 1000
+43 1000
+88 1000
+92 1000
+97 1000
+99 1000
+241 1000
+402 1000
+404 1000
+407 898
+411 1000
+412 1000
+415 505
+416 1000
+417 878
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 574
+431 870
+434 979
+438 520
+441 492
+443 50
+444 807
+450 50
+451 593
+452 1000
+457 1000
+458 1000
+459 1000
+460 50
+461 1000
+462 201
+463 980
+464 930
+465 905
+466 700
+467 50
+468 1000
+473 50
+0 0
+trophy:
+1 58606 2.000000
+1 58607 1.500000
+1 58608 1.500000
+1 39008 0.500000
+1 39003 0.500000
+1 12003 1.000000
+1 12007 0.500000
+1 36500 2.000000
+1 55234 5.000000
+1 58019 1.000000
+1 58018 1.000000
+1 58028 1.000000
+1 58016 1.000000
+1 58017 1.000000
+1 58025 1.000000
+1 58001 1.000000
+1 58037 2.000000
+1 12015 1.000000
+1 58033 1.000000
+1 58012 1.000000
+1 58010 2.500000
+0 0 0
+tells:
+1680448229 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680448230 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680448230 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680448230 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680449887 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
+1680449891 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680449908 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
+1680449920 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680450891 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1680732281 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1680445434 Chinok gossips, 'hey Wittawat!'
+1680445437 Renolo gossips, 'that's found in Odaishyozen'
+1680445438 Wittawat gossips, 'Hey ya'
+1680445454 Chinok gossips, 'been a while, welcome back'
+1680445454 Wittawat gossips, 'i was missing out from here for a while'
+1680445467 Wittawat gossips, 'i'm now confusing with my screen'
+1680445533 Wittawat gossips, 'can anyone help to set up my display'
+1680445564 Chinok gossips, 'I only have a couple minutes, but what's wrong with it?'
+1680445587 Chinok gossips, 'shoot, gotta leave'
+1680445612 Wittawat gossips, '*nod* chinok'
+1680732389 Renolo gossips, 'yeah, I've been there, I think I remember how to get there'
+$
+mem:
+3 0 1
+1 0 1
+16 1 1
+3 0 2
+1 0 1
+16 1 1
+3 1 2
+1 0 2
+16 1 1
+1 1 2
+1 1 1
+1 1 1
+12 1 1
+13 1 1
+13 1 1
+13 1 1
+13 1 1
+1 1 1
+88 1 1
+88 1 1
+88 1 1
+88 1 1
+3 1 1
+88 1 1
+22 1 1
+22 1 1
+22 1 1
+21 1 2
+21 1 1
+14 1 1
+15 1 1
+15 1 1
+15 1 1
+14 1 1
+12 1 1
+241 1 1
+99 1 1
+43 1 1
+241 1 1
+43 1 1
+92 0 1
+92 0 1
+92 0 2
+92 1 2
+92 1 1
+92 1 1
+88 1 1
+28 1 1
+28 1 1
+28 1 1
+28 1 1
+28 1 1
+28 1 1
+97 1 1
+16 1 1
+97 1 1
+97 1 1
+97 1 1
+97 1 1
+97 1 1
+1 1 1
+22 1 1
+99 1 1
+15 1 1
+12 1 1
+99 1 1
+88 1 1
+22 1 1
+92 1 1
+15 1 1
+3 1 1
+1 1 1
+99 1 1
+28 1 1
+12 1 1
+88 1 1
+22 1 1
+15 1 1
+13 1 2
+88 1 2
+22 1 1
+14 1 2
+3 1 1
+1 1 2
+13 1 2
+88 1 2
+22 1 1
+15 1 2
+43 1 2
+92 1 1
+0 0 0
+aliases:
+rf rescue fireson
+ai assist isiac
+am assist meeka
+an assist nessa
+af assist fiyero
+au assist unoma
+as assist stienmaur
+lc get all corpse
+ak assist kra
+off n * con officer * s
+rt retreat $1
+ag assist gorath
+ra rescue aahz
+0

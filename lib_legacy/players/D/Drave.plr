@@ -1,0 +1,93 @@
+name: Drave
+password: DrA7BfgSPZ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19524
+birthtime: 1579041626
+timeplayed: 4354
+lastlogintime: 1579045982
+host: 072.177.064.138
+height: 74
+weight: 206
+base_height: 74
+base_weight: 206
+base_size: 3
+natural_size: 3
+alignment: -5
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 24
+lastlevel: 0
+hitpoints: 58/52
+mana: 0/0
+move: 139/158
+damroll: 5
+hitroll: 4
+strength: 96
+intelligence: 56
+wisdom: 92
+dexterity: 74
+constitution: 90
+charisma: 56
+cash: 0 12 54 48
+experience: 18150
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 53
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 52
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 18003 0.666667
+1 18005 1.333333
+1 18007 1.000000
+1 18001 1.166667
+1 12011 1.500000
+1 12015 1.333333
+1 12016 1.333333
+1 3503 0.666667
+1 3501 1.333333
+1 3509 0.333333
+1 3502 2.833333
+0 0 0
+tells:
+1579043808 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1579043846 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
+$
+gossips:
+1579043698 Savi gossips, 'Ohhh, 1 char for each class'
+1579044041 Strider gossips, 'have your sorc try cast minor book'
+1579044129 Savi gossips, 'YES, that worked :)'
+1579044137 Strider gossips, 'but yeah, your first spellbook should last you until around lvl 20'
+1579044444 Daker gossips, 'corpdrink fountain'
+1579044463 Daker gossips, 'I hate corpse runs. myabe i'll try minor concealment'
+1579044609 Strider gossips, 'I can make you one :P'
+1579044638 Strider gossips, 'you can drag corpses'
+1579045274 Strider gossips, ':)'
+1579045954 Strider gossips, 'labeled inn on your map.. go there and go up'
+$

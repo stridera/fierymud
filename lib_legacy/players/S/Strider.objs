@@ -1,0 +1,352 @@
+1
+vnum: 1240
+location: 16
+values:
+1
+8
+4
+3
+0
+0
+0
+~
+flags: abmnovwyz0 efghij0
+name: longsword sword noisy talking
+shortdesc: a &5TALKING&0 steel longsword
+desc: A steel-bladed longsword lies here screaming about the injustice.
+type: 5
+weight: 3.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 8193
+hiddenness: 0
+triggers:
+1240
+~
+~~
+vnum: 1207
+location: 127
+values:
+100000
+1
+0
+0
+90
+0
+0
+~
+flags: D0 0
+name: hole portable-hole large-black-hole
+shortdesc: a portable hole
+desc: A large black hole lies here folded upon itself.
+type: 15
+weight: 15.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 1048577
+hiddenness: 0
+~~
+vnum: 16208
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gDE0 0
+name: carpet flying-carpet large-colorful-carpet
+shortdesc: a carpet
+desc: A large, colorful carpet is rolled up here.
+type: 8
+weight: 10.00
+cost: 0
+timer: 0
+level: 40
+effects: u0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+14 50
+~
+extradesc: carpet flying-carpet large-colorful-carpet
+This carpet is woven of very rich materials.  Strangely, it seems to have water
+stains on it, as if it has gone through a cloud.~
+~~
+vnum: 16208
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gDE0 0
+name: carpet flying-carpet large-colorful-carpet
+shortdesc: a carpet
+desc: A large, colorful carpet is rolled up here.
+type: 8
+weight: 10.00
+cost: 0
+timer: 0
+level: 40
+effects: u0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+14 50
+~
+extradesc: carpet flying-carpet large-colorful-carpet
+This carpet is woven of very rich materials.  Strangely, it seems to have water
+stains on it, as if it has gone through a cloud.~
+~~
+vnum: 16208
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gDE0 0
+name: carpet flying-carpet large-colorful-carpet
+shortdesc: a carpet
+desc: A large, colorful carpet is rolled up here.
+type: 8
+weight: 10.00
+cost: 0
+timer: 0
+level: 40
+effects: u0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+14 50
+~
+extradesc: carpet flying-carpet large-colorful-carpet
+This carpet is woven of very rich materials.  Strangely, it seems to have water
+stains on it, as if it has gone through a cloud.~
+~~
+vnum: 16208
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gDE0 0
+name: carpet flying-carpet large-colorful-carpet
+shortdesc: a carpet
+desc: A large, colorful carpet is rolled up here.
+type: 8
+weight: 10.00
+cost: 0
+timer: 0
+level: 40
+effects: u0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+14 50
+~
+extradesc: carpet flying-carpet large-colorful-carpet
+This carpet is woven of very rich materials.  Strangely, it seems to have water
+stains on it, as if it has gone through a cloud.~
+~~
+vnum: 16208
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gDE0 0
+name: carpet flying-carpet large-colorful-carpet
+shortdesc: a carpet
+desc: A large, colorful carpet is rolled up here.
+type: 8
+weight: 10.00
+cost: 0
+timer: 0
+level: 40
+effects: u0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+14 50
+~
+extradesc: carpet flying-carpet large-colorful-carpet
+This carpet is woven of very rich materials.  Strangely, it seems to have water
+stains on it, as if it has gone through a cloud.~
+~~
+vnum: 16208
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gDE0 0
+name: carpet flying-carpet large-colorful-carpet
+shortdesc: a carpet
+desc: A large, colorful carpet is rolled up here.
+type: 8
+weight: 10.00
+cost: 0
+timer: 0
+level: 40
+effects: u0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+14 50
+~
+extradesc: carpet flying-carpet large-colorful-carpet
+This carpet is woven of very rich materials.  Strangely, it seems to have water
+stains on it, as if it has gone through a cloud.~
+~~
+vnum: 16208
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gDE0 0
+name: carpet flying-carpet large-colorful-carpet
+shortdesc: a carpet
+desc: A large, colorful carpet is rolled up here.
+type: 8
+weight: 10.00
+cost: 0
+timer: 0
+level: 40
+effects: u0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+14 50
+~
+extradesc: carpet flying-carpet large-colorful-carpet
+This carpet is woven of very rich materials.  Strangely, it seems to have water
+stains on it, as if it has gone through a cloud.~
+~~
+vnum: 16208
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gDE0 0
+name: carpet flying-carpet large-colorful-carpet
+shortdesc: a carpet
+desc: A large, colorful carpet is rolled up here.
+type: 8
+weight: 10.00
+cost: 0
+timer: 0
+level: 40
+effects: u0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+14 50
+~
+extradesc: carpet flying-carpet large-colorful-carpet
+This carpet is woven of very rich materials.  Strangely, it seems to have water
+stains on it, as if it has gone through a cloud.~
+~~
+vnum: 16208
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gDE0 0
+name: carpet flying-carpet large-colorful-carpet
+shortdesc: a carpet
+desc: A large, colorful carpet is rolled up here.
+type: 8
+weight: 10.00
+cost: 0
+timer: 0
+level: 40
+effects: u0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+14 50
+~
+extradesc: carpet flying-carpet large-colorful-carpet
+This carpet is woven of very rich materials.  Strangely, it seems to have water
+stains on it, as if it has gone through a cloud.~
+~~
+vnum: 16208
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gDE0 0
+name: carpet flying-carpet large-colorful-carpet
+shortdesc: a carpet
+desc: A large, colorful carpet is rolled up here.
+type: 8
+weight: 10.00
+cost: 0
+timer: 0
+level: 40
+effects: u0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+14 50
+~
+extradesc: carpet flying-carpet large-colorful-carpet
+This carpet is woven of very rich materials.  Strangely, it seems to have water
+stains on it, as if it has gone through a cloud.~
+~~

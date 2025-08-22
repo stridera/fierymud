@@ -1,0 +1,106 @@
+name: Oaver
+password: OaTFOVqeTZ
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 11
+level: 57
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20485
+birthtime: 1680100861
+timeplayed: 404584
+lastlogintime: 1722543405
+host: 136.038.235.105
+height: 42
+weight: 125
+base_height: 42
+base_weight: 125
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: y
+effectflags: fkt 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 16
+thirst: 8
+lastlevel: 0
+hitpoints: 481/481
+mana: 324/324
+move: 378/378
+damroll: 3
+hitroll: 6
+strength: 94
+intelligence: 74
+wisdom: 82
+dexterity: 94
+constitution: 100
+charisma: 66
+experience: 25542245
+quit_reason: 1
+saveroom: 3054
+skills:
+401 620
+403 620
+405 175
+408 620
+410 50
+411 620
+415 50
+416 50
+420 122
+421 209
+438 50
+443 85
+444 177
+463 50
+464 620
+465 50
+476 620
+478 50
+491 50
+492 90
+493 163
+0 0
+tells:
+1681333274 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1681333274 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1681333274 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1681333274 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1681830343 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1682737415 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1682737415 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1682737415 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1682737415 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+1682737415 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
+$
+gossips:
+1689361061 Strider gossips, 'Do you need a hand?'
+1689361067 Jiw gossips, 'nop'
+1689361072 Jiw gossips, 'well not me dreven might'
+1689361094 Ilish gossips, 'ty though'
+1689361094 Dreven gossips, 'heh just too many courtyards in Highlands. and wolves of course'
+1689361117 Dreven gossips, 'i will eventually find me way back'
+1689361125 Strider gossips, 'ack'
+1689361127 Strider gossips, 'sorry'
+1689361131 Dreven gossips, 'nice'
+1689361143 Strider gossips, 'Super Restore'
+1689361148 Dreven gossips, 'blinded by the light of benevolence'
+$
+aliases:
+who who -w
+df drink fountain
+gcc get all.coins all.corpse
+ul unlock $*;open $*
+fa first aid
+ec examine corpse
+tu tripup $*
+cw cartwheel $*
+id get identify sack;recite identify $*
+rc get curse sack;recite curse $*
+0

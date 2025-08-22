@@ -1,0 +1,131 @@
+name: Wimwinkle
+password: Wi4XAmTKS2
+prompt: <%h/%Hhp %v/%Vmv> $%w%_%E %o
+autoinvis: 0
+sex: 2
+class: 0
+race: 2
+level: 5
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20298
+birthtime: 1657154372
+timeplayed: 22815
+lastlogintime: 1657220724
+host: 038.070.212.026
+height: 33
+weight: 67
+base_height: 33
+base_weight: 67
+base_size: 1
+natural_size: 1
+alignment: 1000
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 10
+loadroom: 3054
+hunger: 8
+lastlevel: 0
+hitpoints: 39/39
+mana: 1/0
+move: 97/100
+damroll: 2
+hitroll: 4
+strength: 75
+intelligence: 100
+wisdom: 86
+dexterity: 68
+constitution: 66
+charisma: 66
+cash: 0 17 120 221
+experience: 98998
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 100
+416 100
+423 100
+424 100
+438 64
+443 50
+444 50
+447 74
+451 59
+452 100
+453 50
+459 67
+460 91
+462 81
+464 69
+0 0
+trophy:
+1 36002 10.000000
+1 36003 8.000000
+1 36001 7.000000
+1 6910 0.500000
+1 8606 6.500000
+1 8605 7.500000
+1 8604 8.000000
+1 8020 2.000000
+1 8022 1.500000
+1 8021 3.000000
+1 8013 9.000000
+1 8023 2.000000
+1 8012 8.000000
+1 8001 6.000000
+1 8010 9.000000
+1 8016 8.500000
+1 8002 6.000000
+1 8014 8.000000
+1 8015 2.500000
+1 8030 3.500000
+1 8011 4.000000
+0 0 0
+tells:
+1657154940 @WThe Master of the Revel@W tells you, 'Bring back what they ask for and you'll be well rewarded!@W'@0
+1657154946 @WThe Master of the Revel@W tells you, 'Congratulations again, graduate!@W'@0
+1657154946 @WThe Master of the Revel@W tells you, 'May you climb to ever greater fortune!@W'@0
+1657157156 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1657157187 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1657172392 @WShauna@W tells you, 'I don't trade in such items.@W'@0
+1657172399 @WBeowyn@W tells you, 'I only buy the finest steel armour.@W'@0
+1657172522 @WHelena@W tells you, 'You can only afford 3.@W'@0
+1657172522 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1657172539 @WHelena@W tells you, 'Hahaha, very funny, you think I sell things I get from miscreants on the street?@W'@0
+$
+gossips:
+1657160234 Holk gossips, 'hey you got that item database done yet?'
+1657160253 Holk gossips, 'or you still breaking down amazon boxes?'
+1657160255 Chinok gossips, 'mostly -- but there's some other work that has to be done to hide some stuff'
+1657160424 Holk gossips, 'Gratz Wim'
+1657219694 Chinok gossips, 'welcome back Wimwinkle'
+1657219742 Chinok gossips, 'level 5 now, time to branch out and find some new areas'
+1657219790 Chinok gossips, 'you found the help area command ?'
+1657220062 Chinok gossips, 'OK, yeah, enjoy the area'
+1657220189 Chinok gossips, 'cool, glad you like it.  '
+1657220220 Chinok gossips, 'did you also notice, each area in help area, also has a individual help entry.. with more info about the area and a hint on where it might be'
+$
+mem:
+32 1 6
+32 1 6
+100 1 6
+20 0 6
+101 1 7
+0 0 0
+aliases:
+k kill $1
+mc cast 'minor creation' $*
+mm cast 'magic missile' $1
+dm cast 'detect magic' $1
+conc cast 'concealment' $1
+rmm rest;med;mem
+0

@@ -1,0 +1,79 @@
+name: Vyddin
+password: VyBIIxPm6E
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 29
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20410
+birthtime: 1673307562
+timeplayed: 538
+lastlogintime: 1673308103
+host: 096.238.184.141
+height: 80
+weight: 326
+base_height: 80
+base_weight: 326
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: xy
+effectflags: k 0 0
+prefflags: ghxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 24
+thirst: 24
+lastlevel: 0
+hitpoints: 31/30
+mana: 0/0
+move: 140/140
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 74
+wisdom: 76
+dexterity: 84
+constitution: 91
+charisma: 66
+experience: 1861
+quit_reason: 5
+saveroom: 51907
+cooldowns:
+25 470/2250
+-1 0
+skills:
+205 1000
+402 52
+404 52
+415 50
+416 50
+421 50
+435 75
+438 50
+443 50
+444 50
+456 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 51900 2.000000
+0 0 0
+tells:
+1673307835 @WThe Combat Clerk@W tells you, 'Your trainer is to the north.@W'@0
+1673307856 @WThe Combat Clerk@W tells you, 'Your trainer is to the north.@W'@0
+$
+gossips:
+1673307582 Chinok gossips, 'welcome Vyddin'
+1673307664 Chinok gossips, 'Vyddin, if you need any help, please shout out (or gossip)'
+$

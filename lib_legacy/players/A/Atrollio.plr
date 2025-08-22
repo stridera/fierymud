@@ -1,0 +1,112 @@
+name: Atrollio
+password: AteFBEcNtt
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 19
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19442
+birthtime: 1557437550
+timeplayed: 140044
+lastlogintime: 1566593342
+host: 104.037.031.250
+height: 84
+weight: 228
+base_height: 84
+base_weight: 228
+base_size: 3
+natural_size: 3
+alignment: 529
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 10
+thirst: 24
+lastlevel: 0
+hitpoints: 273/251
+mana: 36/36
+move: 152/158
+damroll: 5
+hitroll: 4
+strength: 87
+intelligence: 70
+wisdom: 70
+dexterity: 87
+constitution: 90
+charisma: 66
+cash: 106 1731 3722 233
+experience: 1565110
+quit_reason: 1
+saveroom: 3054
+skills:
+402 240
+404 240
+407 50
+415 50
+416 50
+419 1000
+421 240
+427 1000
+430 54
+438 150
+443 50
+444 50
+463 240
+464 78
+465 194
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 3143 1.000000
+1 10051 1.000000
+1 58812 1.000000
+1 58807 2.000000
+1 58808 2.000000
+1 58803 4.000000
+1 58804 1.000000
+1 58809 5.000000
+1 58810 1.000000
+1 58805 5.000000
+1 58801 15.000000
+1 58811 2.000000
+1 58806 1.000000
+1 36401 3.000000
+1 36400 2.000000
+1 10052 2.000000
+1 55702 2.000000
+1 55216 2.000000
+1 55701 2.000000
+1 3061 1.000000
+1 41012 2.000000
+0 0 0
+aliases:
+g gossip
+cc con chief
+kb kill bird
+kq kill quidnatta
+km kill monkey
+ks kill skeleton
+kf kill familiar
+ka kill apprentice
+kw kill warrior
+kh kill hedgehog
+b bash
+kg kill gremlin
+kz kill zombie
+gac get all corpse
+ga get all
+df drink fountain
+kp kill priest
+lic look in corpse
+gacc get all.coins corpse
+ke kill eye
+0

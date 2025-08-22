@@ -1,0 +1,106 @@
+name: Dimmy
+password: DiFRG6nP6M
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 3
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 17297
+birthtime: 1236579847
+timeplayed: 667349
+lastlogintime: 1429667399
+host: 098.231.133.187
+height: 42
+weight: 181
+base_height: 42
+base_weight: 181
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxyz
+effectflags: kt 0 q
+prefflags: abghnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 1039/841
+mana: 980/980
+move: 154/154
+damroll: 4
+hitroll: 5
+strength: 91
+intelligence: 64
+wisdom: 73
+dexterity: 93
+constitution: 92
+charisma: 52
+cash: 707 13070 56802 63357
+bank: 1246 3225 17679 18882
+experience: 105805999
+clan: 1
+quit_reason: 1
+saveroom: 3054
+skills:
+401 1000
+403 1000
+405 1000
+408 1000
+410 650
+411 1000
+412 1000
+415 1000
+416 1000
+420 388
+421 505
+438 458
+443 50
+444 417
+464 1000
+465 75
+467 50
+472 899
+475 108
+476 1000
+477 1000
+478 1000
+0 0
+trophy:
+1 12511 1.000000
+1 12507 2.000000
+1 12502 3.000000
+1 12508 2.000000
+1 5511 1.000000
+1 5514 19.000000
+1 5523 3.000000
+1 5522 10.000000
+1 5521 9.000000
+1 5517 11.000000
+1 5516 19.000000
+1 5509 3.000000
+1 5507 5.000000
+1 5506 6.000000
+1 5505 7.000000
+1 5504 8.000000
+1 5503 5.000000
+1 5502 5.000000
+1 5501 7.000000
+1 5518 14.000000
+1 5519 12.000000
+0 0 0
+effects:
+39 7 14 1 0 0 0
+0 0 0 0 0
+aliases:
+c cackle
+pose emote strikes a pose!
+wi whistle
+gac g all corpse
+aaa ass kilop
+who who -w
+ttt track quartermaster
+0

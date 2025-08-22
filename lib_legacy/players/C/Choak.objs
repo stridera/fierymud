@@ -1,0 +1,8217 @@
+1
+vnum: 5201
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: adgoprstwx a
+name: ring glittering-ruby-ring questobject
+shortdesc: a &1g&1&bl&3&bi&3t&1&bte&1r&3&bi&1&bn&1g ruby&0 ring
+desc: A glittering ruby ring lies on the ground here.
+type: 8
+weight: 0.02
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+13 8
+3 2
+4 2
+5 2
+27 3
+~
+extradesc: ring glittering-ruby-ring questobject
+The ring has been formed of some mysterious reddish metal, the likes of which
+you are unfamiliar with.  A glittering ruby has been set in the ring.~
+~~
+vnum: 16907
+location: 2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: ring sparkling-diamond-ring
+shortdesc: a diamond ring
+desc: A sparkling diamond ring catches your eye.
+type: 8
+weight: 0.20
+cost: 320
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 3
+hiddenness: 0
+applies:
+6 3
+~
+extradesc: ring sparkling-diamond-ring
+The diamond sparkles with a merry light, as if it were alive.  You can't help
+but admire the skill of the jeweler.~
+~~
+vnum: 53317
+location: 3
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gj 0
+name: amulet dragon's-eye-amulet dragons-eye-amulet silver-amulet-embedded-dragons-eye
+shortdesc: a dragon's eye amulet
+desc: A silver amulet embedded with a dragon's eye lies here.
+type: 8
+weight: 1.50
+cost: 1100
+timer: 0
+level: 53
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+3 2
+2 -1
+28 100
+27 3
+~
+extradesc: amulet dragon's-eye-amulet dragons-eye-amulet silver-amulet-embedded-dragons-eye
+This amulet is made of pure silver and in its center is embedded the huge eye
+of a dragon.  A gold chain allows it it be worn around the neck.~
+~~
+vnum: 53317
+location: 4
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gj 0
+name: amulet dragon's-eye-amulet dragons-eye-amulet silver-amulet-embedded-dragons-eye
+shortdesc: a dragon's eye amulet
+desc: A silver amulet embedded with a dragon's eye lies here.
+type: 8
+weight: 1.50
+cost: 1100
+timer: 0
+level: 53
+effects: 0 0 0
+wear: 5
+hiddenness: 0
+applies:
+3 2
+2 -1
+28 100
+27 3
+~
+extradesc: amulet dragon's-eye-amulet dragons-eye-amulet silver-amulet-embedded-dragons-eye
+This amulet is made of pure silver and in its center is embedded the huge eye
+of a dragon.  A gold chain allows it it be worn around the neck.~
+~~
+vnum: 55526
+location: 5
+values:
+30
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnopqrstvwxyz ab
+name: tunic leather-tunic-glade painted-embroidered-deer-hide-tunic
+shortdesc: &3&bLeather Tunic of the Glade&0
+desc: A painted and embroidered deer-hide tunic lies folded in the grass.
+type: 9
+weight: 8.00
+cost: 0
+timer: 0
+level: 41
+effects: y 0 0
+wear: 9
+hiddenness: 0
+applies:
+14 15
+13 25
+27 3
+~
+extradesc: tunic leather-tunic-glade painted-embroidered-deer-hide-tunic
+This tunic is decorated with many natural images, ranging from leaves to great
+beasts.  Made from the hide of a stag, to the druids the most holy and
+respected of beasts, such a garment is granted only to high druids who have
+done much to spread the causes of nature.~
+~~
+vnum: 55524
+location: 6
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnopqrstvwxyzD ab
+name: helm-glade wooden-helm
+shortdesc: &3&bHelm of the Glade&0
+desc: A wooden helm lies here tangled in vines.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: d 0 0
+wear: 17
+hiddenness: 0
+applies:
+4 2
+13 30
+28 40
+27 3
+~
+extradesc: helm-glade wooden-helm
+Unwilling to be dislodged, the vines have actually grown into and through the
+wood of this helm.  The helm itself appears to have been formed naturally, with
+very little if any human alteration.  Powerful natural magic emanates from this
+helm, indicating that it is more than what it seems.~
+~~
+vnum: 55527
+location: 7
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnopqrstvwxyz ab
+name: pants leather-pants-glade furry-goat-hide-pants
+shortdesc: &3&bLeather Pants of the Glade&0
+desc: Furry goat-hide pants flap from a nearby tree.
+type: 9
+weight: 7.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 33
+hiddenness: 0
+applies:
+2 2
+1 2
+28 25
+27 3
+~
+extradesc: pants leather-pants-glade furry-goat-hide-pants
+These are no ordinary goat-hide pants!  Strange, residual fae magic lingers on
+them, indicating that powerful magic resided in the creature these were taken
+from.  Sewn with great care, leggings like these are quite special indeed.~
+~~
+vnum: 55528
+location: 8
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnopqrstvwxyz ab
+name: boots-glade pressed-birch-leaf-leather-boots
+shortdesc: &3&bBoots of the Glade&0
+desc: A pair of pressed birch leaf and leather boots rests next to a dying fire.
+type: 9
+weight: 2.60
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 65
+hiddenness: 0
+applies:
+27 3
+1 2
+14 25
+~
+extradesc: boots-glade pressed-birch-leaf-leather-boots
+Several layers of pressed birch leaves have been sewn on to tanned hide to
+create these boots.  These boots still seem to be in sturdy condition, ready to
+handle any climate or condition, even though they have seen years of use.  Odd
+that the leaves still seem to be fresh, as if picked from a tree and stitched
+on this morning.~
+~~
+vnum: 55530
+location: 9
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: adghmnopqrstvwxyzD ab
+name: gloves-glade glowing-mass-silver-spider-webbing silverspider
+shortdesc: &3&bGloves of the Glade&0
+desc: A glowing mass of silver spider webbing floats on the wind.
+type: 9
+weight: 1.30
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 129
+hiddenness: 0
+applies:
+1 3
+3 2
+13 20
+27 3
+~
+extradesc: gloves-glade glowing-mass-silver-spider-webbing silverspider
+Crafted from the incredibly rare silk of the silver spider, webbing such as
+this is nearly indestructible, in addition to being able to hold the most
+powerful enchantments.  These gloves are both beautiful and blithe, as soft as
+the light that glimmers off them and as soft as the wind.~
+~~
+vnum: 55525
+location: 10
+values:
+6
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnopqrstvwxyz ab
+name: sleeves-glade hollowed-oak-tubes
+shortdesc: &3&bSleeves of the Glade&0
+desc: Hollowed out oak tubes lie here, hidden under vines and leaves.
+type: 9
+weight: 5.70
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 257
+hiddenness: 0
+applies:
+13 20
+18 1
+5 3
+6 3
+27 3
+~
+extradesc: sleeves-glade hollowed-oak-tubes
+Made from the holy oak, a symbol of strength and stability, these tubes are
+enhanced to act as natural armor.  Each sleeves is made of two smaller tubes,
+wrapped in leafy vines that act as threads and cords.  Not exactly a fashion
+statement, there is a raw natural beauty to these sleeves.~
+~~
+vnum: 1000
+location: 12
+values:
+110
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: backpack heavy-backpack back-pack leather
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+hiddenness: 0
+extradesc: backpack heavy-backpack back-pack leather
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.~
+~~
+vnum: 53002
+location: -1
+values:
+45
+5
+5
+22
+0
+0
+0
+~
+flags: gk 0
+name: doll small-bride-doll
+shortdesc: the bride doll
+desc: A small doll of a bride lies forgotten in the dust.
+type: 3
+weight: 0.40
+cost: 200
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+27 2
+~
+~~
+vnum: 3143
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: D 0
+name: doll miniature-spark-pixie-doll translucent-pixie
+shortdesc: a miniature spark pixie doll
+desc: A nearly translucent pixie with a glowing outline sits on the ground, grinning.
+type: 1
+weight: 0.50
+cost: 20000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-spark-pixie-doll translucent-pixie
+Formed from some mysterious translucent material, this pretty little pixie doll
+shimmers golden and blue in color.  Tiny wire-frammed silk wings project from
+the doll's back.  Some blue and gold glitter is attached to the doll, scattered
+to look like sparks racing across her skin.~
+~~
+vnum: 3165
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-forest-spider-doll
+shortdesc: a miniature forest spider doll
+desc: A miniature forest spider sits on the ground.
+type: 12
+weight: 0.50
+cost: 200000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 2
+5 2
+2 2
+~
+extradesc: doll miniature-forest-spider-doll
+Only close-up is it obvious this spider is just a doll.  It has little fangs
+and a hairy body, with wireframe legs to keep it standing.  It's large for a
+spider, but is modelled after even larger forest spiders who are rarely seen by
+those who continue living.  Its abdomen is three times larger than its upper
+body, though they are all one piece, giving it a sort of pear shape.~
+~~
+vnum: 52130
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: figure dakhod-action-figure miniature-pirate doll toy seawater
+shortdesc: a Dakhod action figure
+desc: A miniature pirate lies in a pool of seawater here.
+type: 1
+weight: 0.50
+cost: 22000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: dakhod-action-figure miniature-pirate doll toy seawater
+This action figure appears to be an exact replica of Dakhod!  With a peg leg
+and a hook for a hand, the attention to detail is stunning.  This action figure
+comes complete with karate chop action when its legs are squeezed, and a
+pullstring on his back.    ~
+triggers:
+52131
+52130
+52133
+52132
+~
+~~
+vnum: 3183
+location: -1
+values:
+60
+54
+54
+54
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-zalkar-doll tiny-demon-lord
+shortdesc: a miniature Zalkar doll
+desc: A tiny demon lord sits on its haunches here, mouth hanging open hungrily.
+type: 2
+weight: 0.50
+cost: 300000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 3
+~
+extradesc: doll miniature-zalkar-doll tiny-demon-lord
+Summoned here either by a powerful wizard or a talented doll-maker, you wonder
+what foul purpose was intended in summoning this Zalkar doll.  It has magma red
+skin, and an evil look in its eyes.  Such a doll couldn't be intended as an
+agent of evil, but it could hardly be meant as a plaything for children.~
+~~
+vnum: 53002
+location: -1
+values:
+45
+5
+5
+22
+0
+0
+0
+~
+flags: gk 0
+name: doll small-bride-doll
+shortdesc: the bride doll
+desc: A small doll of a bride lies forgotten in the dust.
+type: 3
+weight: 0.40
+cost: 200
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+27 2
+~
+~~
+vnum: -1
+location: -1
+values:
+50
+10
+6
+57
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-griffin-chick-doll itty-bitty-griffin-chick-doll
+shortdesc: a miniature griffin chick doll
+desc: An itty-bitty griffin chick doll tries to lighten up your day!
+type: 4
+weight: 0.00
+cost: 300000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-griffin-chick-doll itty-bitty-griffin-chick-doll
+It's so teeny and cuddly!  It's so cute!  It has a tiny little beak just big
+enough to fit a worm or finger in!~
+~~
+vnum: 3141
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-meer-cat-doll cute-little-meer-cat-warrior
+shortdesc: a miniature Meer Cat doll
+desc: A cute little Meer Cat warrior sits here, ready to cuddle.
+type: 12
+weight: 0.50
+cost: 10000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+11 -10
+~
+extradesc: doll miniature-meer-cat-doll cute-little-meer-cat-warrior
+Crudely sewn from animal fur, this little Meer Cat is very cute and cuddly
+nonetheless.  It has the softest, fuzziest fur and has a friendly look upon its
+tiny face.~
+~~
+vnum: 3142
+location: -1
+values:
+25
+16
+88
+15
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-prismatic-attendant-doll
+shortdesc: a miniature Prismatic Attendant doll
+desc: A Prismatic Attendant doll sits here waiting for your attention.
+type: 10
+weight: 0.50
+cost: 15000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+11 -10
+~
+extradesc: doll miniature-prismatic-attendant-doll
+Much like a real Hiver, this little replica has a crystal-clear chitin shell,
+sparkling gracefully in the light.  She has six little round feet and looks
+like a diligent, caring worker.~
+~~
+vnum: 3142
+location: -1
+values:
+25
+16
+88
+15
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-prismatic-attendant-doll
+shortdesc: a miniature Prismatic Attendant doll
+desc: A Prismatic Attendant doll sits here waiting for your attention.
+type: 10
+weight: 0.50
+cost: 15000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+11 -10
+~
+extradesc: doll miniature-prismatic-attendant-doll
+Much like a real Hiver, this little replica has a crystal-clear chitin shell,
+sparkling gracefully in the light.  She has six little round feet and looks
+like a diligent, caring worker.~
+~~
+vnum: 3148
+location: -1
+values:
+25
+10
+10
+144
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-larva-worm-doll larva-doll
+shortdesc: a miniature Larva Worm doll
+desc: A larva doll slithers around here.
+type: 3
+weight: 0.50
+cost: 100000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-larva-worm-doll larva-doll
+Short and stout, this little Larva Worm doll is sewn from pieces of tough white
+leather of unknown origin.  It's stuffed unevenly with thick clumpy wool and
+its white skin is discolored, giving it a sickly appearance.  Its red bead eyes
+glare menacingly, evil intentions in its eyes.~
+~~
+vnum: 3168
+location: -1
+values:
+32
+32
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-water-elemental-doll little-crest-water
+shortdesc: a miniature water elemental doll
+desc: A little crest of water has raised itself up here.
+type: 17
+weight: 2.00
+cost: 25000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 25
+~
+extradesc: doll miniature-water-elemental-doll little-crest-water
+Shaped like a mostly amorphous blob, this doll is dyed almost uniformly light
+blue, with white crests across the top.  It completely resembles running water
+from rivers and oceans.  A little spigot on the back lets one pour water into
+and draw water out of the doll.~
+~~
+vnum: 3167
+location: -1
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: opwx 0
+name: doll miniature-flame-elemental-doll itty-bitty-pillar-flame
+shortdesc: a miniature flame elemental doll
+desc: An itty-bitty pillar of flame dances across the floor.
+type: 1
+weight: 0.50
+cost: 250000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-flame-elemental-doll itty-bitty-pillar-flame
+This soft little doll is sewn in the shape of a flame, with varying shades of
+red for dye.  It has two little black beads as eyes, giving it a cute harmless
+appearance.  When squeezed, a little burst of real flame pops out its top.~
+~~
+vnum: 3181
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-vulcera-doll little-bronze-skinned-sculpture
+shortdesc: a miniature Vulcera doll
+desc: A little bronze-skinned sculpture stands here, admiring itself in a mirror.
+type: 12
+weight: 0.50
+cost: 250000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+19 2
+3 -1
+4 -1
+24 -3
+5 -2
+13 20
+~
+extradesc: doll miniature-vulcera-doll little-bronze-skinned-sculpture
+Carefully smithed from the finest bronze, this little sculpture depicts a woman
+of the greatest hubris.  She is fixed in a permanent position of rapture,
+admiring herself in a tiny mirror in her hand.  Her hair is painted red, and
+sprawls down across a sculpted cloak painted the same fiery red.~
+~~
+vnum: 3143
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: D 0
+name: doll miniature-spark-pixie-doll translucent-pixie
+shortdesc: a miniature spark pixie doll
+desc: A nearly translucent pixie with a glowing outline sits on the ground, grinning.
+type: 1
+weight: 0.50
+cost: 20000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-spark-pixie-doll translucent-pixie
+Formed from some mysterious translucent material, this pretty little pixie doll
+shimmers golden and blue in color.  Tiny wire-frammed silk wings project from
+the doll's back.  Some blue and gold glitter is attached to the doll, scattered
+to look like sparks racing across her skin.~
+~~
+vnum: 3189
+location: -1
+values:
+70
+10
+10
+71
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-slender-druid-doll
+shortdesc: a miniature slender druid doll
+desc: A slender druid doll stands watch over a few square feet.
+type: 3
+weight: 0.50
+cost: 500000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-slender-druid-doll
+This little half-elven doll has thin dark blonde straw for hair covering his
+little pointed ears.  A stubby beard is drawn onto the doll's face, reflecting
+a half-human lineage.  A thick swath of green felt forms a flowing robe which
+wraps his body from shoulder to knee.~
+~~
+vnum: 3189
+location: -1
+values:
+70
+10
+10
+71
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-slender-druid-doll
+shortdesc: a miniature slender druid doll
+desc: A slender druid doll stands watch over a few square feet.
+type: 3
+weight: 0.50
+cost: 500000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-slender-druid-doll
+This little half-elven doll has thin dark blonde straw for hair covering his
+little pointed ears.  A stubby beard is drawn onto the doll's face, reflecting
+a half-human lineage.  A thick swath of green felt forms a flowing robe which
+wraps his body from shoulder to knee.~
+~~
+vnum: 3192
+location: -1
+values:
+80
+10
+10
+4
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-titan-doll regal-man
+shortdesc: a miniature Titan doll
+desc: A regal man of miniscule proportions lies here forlorn.
+type: 4
+weight: 0.50
+cost: 500000
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 3
+~
+extradesc: doll miniature-titan-doll regal-man
+It's odd to see one of these great beings so small, even if it is only a
+child's-toy representation.  The doll has a noble, reserved expression, with a
+knowing look in his eyes.  A little golden ball is adhered to one of his hands,
+and he wears a squishy white belt covered in metal glitter.~
+~~
+vnum: 3163
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: doll miniature-squid-doll
+shortdesc: a miniature squid doll
+desc: A miniature squid floats ominiously in a puddle of water, long tentacles waving.
+type: 21
+weight: 0.50
+cost: 200000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 5
+~
+extradesc: doll miniature-squid-doll
+Resembling the accounts of the fabled Giant Squid of the seas, this doll is one
+of the ugliest in existence, with no eyes to speak of and little ropes for
+tentacles.  A strange beak-like maw sits at the center of the tentacles, with
+the tip of a fountain pen protruding slightly.  The squishy sac-like body must
+be the ink well that allows this doll to act as a pen as well.~
+~~
+vnum: 3185
+location: -1
+values:
+60
+48
+48
+48
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-black-deer-doll evil-looking-deer-doll
+shortdesc: a miniature black deer doll
+desc: An evil-looking deer doll lies on its side here.
+type: 10
+weight: 0.50
+cost: 200000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-black-deer-doll evil-looking-deer-doll
+This doll only marginally resembles the average forest deer, for it has jet
+black cloth for skin, and its eyes are pale red beads tied to its head.  Sharp
+bits of glass and hardened clay act as sharp teeth in its mouth, which seems to
+be stained with a thick dark-red substance...~
+~~
+vnum: 3169
+location: -1
+values:
+50
+10
+10
+2
+0
+0
+0
+~
+flags: gopuwx 0
+name: doll miniature-krisenna-doll plump-little-demon
+shortdesc: a miniature Krisenna doll
+desc: A plump little demon stares off into the swirling nothingness.
+type: 3
+weight: 0.50
+cost: 150000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-krisenna-doll plump-little-demon
+The demon stands at least twice as tall the average doll.  He has little
+stuffed muscles and a thoughtful that looks off into space.  He wears only a
+pair of red trousers and a little pouch, but two black horns curve back from
+his head, like deer antlers.~
+~~
+vnum: 3140
+location: -1
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-brownie-doll tiny-mischievous-brownie food
+shortdesc: a miniature brownie doll
+desc: A tiny, mischievous-looking brownie lies here limply.
+type: 19
+weight: 0.50
+cost: 5000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-brownie-doll tiny-mischievous-brownie food
+Even smaller than the tiny forest brownies, this squishy little doll looks
+roughly like its fairy namesake.  Somehow it retains a mischievous glint in its
+little candy eyes that tells you SOMETHING is up.~
+~~
+vnum: 3173
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-nondescript-doll
+shortdesc: a miniature nondescript doll
+desc: A nondescript doll loiters here.
+type: 12
+weight: 0.50
+cost: 250000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-nondescript-doll
+The doll depicts a fairly average man, with nondescript features.  There's
+nothing about this doll that's memorable.~
+~~
+vnum: 3159
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-scholar-doll wise-scholarly-looking-doll
+shortdesc: a miniature scholar doll
+desc: A wise, scholarly-looking doll sits here contemplating.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 5
+~
+extradesc: doll miniature-scholar-doll wise-scholarly-looking-doll
+The doll resembles a wise, learned man who has many years of education.  He has
+itty-bitty spectacles that would probably break under the smallest amount of
+pressure.~
+~~
+vnum: 3145
+location: -1
+values:
+25
+10
+10
+32
+0
+0
+0
+~
+flags: noprsuvwx 0
+name: doll miniature-ambitious-mage-doll little-ambitious-mage
+shortdesc: a miniature ambitious mage doll
+desc: A little ambitious mage sits here searching for knowledge.
+type: 4
+weight: 0.50
+cost: 30000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-ambitious-mage-doll little-ambitious-mage
+This little bald doll resembles a slightly older man, dressed in a little grey
+cloth shirt, miniature grey canvas pants, and some tiny reed sandals.  He holds
+a small polished black wand in his hand, pointing it aggressively at some
+unknown foe.~
+~~
+vnum: 3194
+location: -1
+values:
+80
+10
+10
+81
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-mysa-doll cloudy-hued-dragon-doll
+shortdesc: a miniature Mysa doll
+desc: A cloudy-hued dragon doll rests upon a little pile of coins.
+type: 3
+weight: 0.50
+cost: 1000000
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 3
+~
+extradesc: doll miniature-mysa-doll cloudy-hued-dragon-doll
+This fierce-looking dragon doll is small and toylike, but not terribly cute
+with its mottled grey reptilian hide and dull eyes.  The underbelly is a softer
+white fuzzy cloth, contrasting the doll's pointed metal claws, odd for a
+child's plaything.  A small pile of copper coins is glued together, resting
+under the doll's belly.~
+~~
+vnum: 52130
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: figure dakhod-action-figure miniature-pirate doll toy seawater
+shortdesc: a Dakhod action figure
+desc: A miniature pirate lies in a pool of seawater here.
+type: 1
+weight: 0.50
+cost: 22000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: dakhod-action-figure miniature-pirate doll toy seawater
+This action figure appears to be an exact replica of Dakhod!  With a peg leg
+and a hook for a hand, the attention to detail is stunning.  This action figure
+comes complete with karate chop action when its legs are squeezed, and a
+pullstring on his back.    ~
+triggers:
+52131
+52130
+52133
+52132
+~
+~~
+vnum: 52130
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: figure dakhod-action-figure miniature-pirate doll toy seawater
+shortdesc: a Dakhod action figure
+desc: A miniature pirate lies in a pool of seawater here.
+type: 1
+weight: 0.50
+cost: 22000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: dakhod-action-figure miniature-pirate doll toy seawater
+This action figure appears to be an exact replica of Dakhod!  With a peg leg
+and a hook for a hand, the attention to detail is stunning.  This action figure
+comes complete with karate chop action when its legs are squeezed, and a
+pullstring on his back.    ~
+triggers:
+52131
+52130
+52133
+52132
+~
+~~
+vnum: 52130
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: figure dakhod-action-figure miniature-pirate doll toy seawater
+shortdesc: a Dakhod action figure
+desc: A miniature pirate lies in a pool of seawater here.
+type: 1
+weight: 0.50
+cost: 22000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: dakhod-action-figure miniature-pirate doll toy seawater
+This action figure appears to be an exact replica of Dakhod!  With a peg leg
+and a hook for a hand, the attention to detail is stunning.  This action figure
+comes complete with karate chop action when its legs are squeezed, and a
+pullstring on his back.    ~
+triggers:
+52131
+52130
+52133
+52132
+~
+~~
+vnum: 3194
+location: -1
+values:
+80
+10
+10
+81
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-mysa-doll cloudy-hued-dragon-doll
+shortdesc: a miniature Mysa doll
+desc: A cloudy-hued dragon doll rests upon a little pile of coins.
+type: 3
+weight: 0.50
+cost: 1000000
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 3
+~
+extradesc: doll miniature-mysa-doll cloudy-hued-dragon-doll
+This fierce-looking dragon doll is small and toylike, but not terribly cute
+with its mottled grey reptilian hide and dull eyes.  The underbelly is a softer
+white fuzzy cloth, contrasting the doll's pointed metal claws, odd for a
+child's plaything.  A small pile of copper coins is glued together, resting
+under the doll's belly.~
+~~
+vnum: 3143
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: D 0
+name: doll miniature-spark-pixie-doll translucent-pixie
+shortdesc: a miniature spark pixie doll
+desc: A nearly translucent pixie with a glowing outline sits on the ground, grinning.
+type: 1
+weight: 0.50
+cost: 20000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-spark-pixie-doll translucent-pixie
+Formed from some mysterious translucent material, this pretty little pixie doll
+shimmers golden and blue in color.  Tiny wire-frammed silk wings project from
+the doll's back.  Some blue and gold glitter is attached to the doll, scattered
+to look like sparks racing across her skin.~
+~~
+vnum: 3172
+location: -1
+values:
+50
+10
+10
+73
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chaos-doll spidery-flowing-form
+shortdesc: a miniature Chaos doll
+desc: A spidery, flowing form shimmers on the floor.
+type: 3
+weight: 0.50
+cost: 200000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-chaos-doll spidery-flowing-form
+This is a miniature, vortex-like mass of cloth and stuffing.  Thin strands of
+wool flow out in all directions.  There seems to be no pattern to it, but there
+are faces and scenes randomly swirled in with paint on the cloth.~
+~~
+vnum: 3192
+location: -1
+values:
+80
+10
+10
+4
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-titan-doll regal-man
+shortdesc: a miniature Titan doll
+desc: A regal man of miniscule proportions lies here forlorn.
+type: 4
+weight: 0.50
+cost: 500000
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 3
+~
+extradesc: doll miniature-titan-doll regal-man
+It's odd to see one of these great beings so small, even if it is only a
+child's-toy representation.  The doll has a noble, reserved expression, with a
+knowing look in his eyes.  A little golden ball is adhered to one of his hands,
+and he wears a squishy white belt covered in metal glitter.~
+~~
+vnum: 3187
+location: -1
+values:
+70
+10
+10
+66
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-sandman-doll small-form-robed-doll
+shortdesc: a miniature Sandman doll
+desc: The small form of a robed doll rests in a little pile of sand here.
+type: 3
+weight: 0.50
+cost: 400000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-sandman-doll small-form-robed-doll
+This cloth doll is modeled after a middle-aged man dressed in dun-colored
+robes.  His crafted expression conveys wisdom and serenity, but nothing about
+this doll particularly demands a second look.~
+~~
+vnum: 3149
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-frost-stallion-doll tiny-proud-white-horse
+shortdesc: a miniature frost stallion doll
+desc: A tiny, proud white horse lies calmly on one side.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+14 50
+~
+extradesc: doll miniature-frost-stallion-doll tiny-proud-white-horse
+This slender-legged, bright white doll has a look of nobility in its
+well-crafted stitches.  Clumps of stuffing ripple under its skin and its
+underlying wire frame allows the doll to stand on its four little legs with
+grace and assuredness.~
+~~
+vnum: 3190
+location: -1
+values:
+70
+10
+10
+49
+0
+0
+0
+~
+flags: D 0
+name: doll miniature-samurai-doll
+shortdesc: a miniature samurai doll
+desc: A doll with a white-painted face and silk robes glares icily in front of itself.
+type: 3
+weight: 0.50
+cost: 400000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-samurai-doll
+This porcelain doll looks just like a samurai from Odaishyozen, but unlike a
+real samurai, its face is an unpainted white, and the remainder of its "skin"
+is covered in a skin-tone paint.  Black hair is glued to its head, tied back in
+a topknot.  Two miniature swords hang from its belt that encircles the doll's
+bulky cloth robes.~
+~~
+vnum: 3171
+location: -1
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-will-o-wisp-doll tiny-glowing-blue-orb
+shortdesc: a miniature will-o-wisp doll
+desc: A tiny glowing blue orb darts about rapidly in an erratic manner.
+type: 1
+weight: 0.50
+cost: 200000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-will-o-wisp-doll tiny-glowing-blue-orb
+This glowing sphere is similar to a lantern or torch, but seems to have a mind
+of its own, darting about at high speed and in a completely random manner.  
+The intensity of the light changes from very bright to quite dim.  Resembling
+an actual will-o-wisp, the doll is carved from glass that shifts in color from
+blue to violet to green and back again.~
+~~
+vnum: 3193
+location: -1
+values:
+80
+78
+78
+78
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-dargentan-doll itty-bitty-silver-dragon
+shortdesc: a miniature Dargentan doll
+desc: An itty-bitty silver dragon is curled up in a ball on the floor.
+type: 2
+weight: 0.50
+cost: 500000
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+26 10
+~
+extradesc: doll miniature-dargentan-doll itty-bitty-silver-dragon
+This dragon doll is truly adorable.  It is hollow yet very heavy, its surface
+skillfully smithed from tiny burnished overlapping silver scales.  Little
+crystals resembling ice are caked on its claws, as if the doll resided in a
+frigid environment.  Although curled up in a sleepy little ball, one of its
+large, glassy eyes is open, as if watching its surroundings carefully.~
+~~
+vnum: 3172
+location: -1
+values:
+50
+10
+10
+73
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chaos-doll spidery-flowing-form
+shortdesc: a miniature Chaos doll
+desc: A spidery, flowing form shimmers on the floor.
+type: 3
+weight: 0.50
+cost: 200000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-chaos-doll spidery-flowing-form
+This is a miniature, vortex-like mass of cloth and stuffing.  Thin strands of
+wool flow out in all directions.  There seems to be no pattern to it, but there
+are faces and scenes randomly swirled in with paint on the cloth.~
+~~
+vnum: 53002
+location: -1
+values:
+45
+5
+5
+22
+0
+0
+0
+~
+flags: gk 0
+name: doll small-bride-doll
+shortdesc: the bride doll
+desc: A small doll of a bride lies forgotten in the dust.
+type: 3
+weight: 0.40
+cost: 200
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 1
+27 2
+~
+~~
+vnum: 3194
+location: -1
+values:
+80
+10
+10
+81
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-mysa-doll cloudy-hued-dragon-doll
+shortdesc: a miniature Mysa doll
+desc: A cloudy-hued dragon doll rests upon a little pile of coins.
+type: 3
+weight: 0.50
+cost: 1000000
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 3
+~
+extradesc: doll miniature-mysa-doll cloudy-hued-dragon-doll
+This fierce-looking dragon doll is small and toylike, but not terribly cute
+with its mottled grey reptilian hide and dull eyes.  The underbelly is a softer
+white fuzzy cloth, contrasting the doll's pointed metal claws, odd for a
+child's plaything.  A small pile of copper coins is glued together, resting
+under the doll's belly.~
+~~
+vnum: 3179
+location: -1
+values:
+50
+10
+10
+94
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-serenity-doll slender-monk-doll
+shortdesc: a miniature Chosen of Serenity doll
+desc: A slender monk doll with long purple hair lies here.
+type: 4
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+~
+extradesc: doll miniature-chosen-serenity-doll slender-monk-doll
+If the proportions of this doll can be trusted, its muse was rather tall and
+graceful.  She has long purple hair, hanging partially in front of her dark
+eyes, which have simultaneously inviting yet dangerous aspects.  A mysterious
+glowing blue symbol rests on her forehead.~
+~~
+vnum: 3178
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-secrets-doll little-monk-doll
+shortdesc: a miniature Chosen of Secrets doll
+desc: A little monk doll sits here, reading an even tinier book.
+type: 12
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: x 0 0
+wear: 1
+hiddenness: 0
+extradesc: doll miniature-chosen-secrets-doll little-monk-doll
+Somewhat short, even for a doll, this little cloth replica is made to appear
+totally engrossed in her tiny book.  She looks scholarly, with thin wire
+"glasses" set upon her head.  A half-smirk sits on her lips and a strange
+yellow symbol sits on her forehead.~
+~~
+vnum: 3177
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-battles-doll vigorous-doll
+shortdesc: a miniature Chosen of Battles doll
+desc: A vigorous-looking doll sits here, enjoying a hot puddle.
+type: 12
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+19 3
+~
+extradesc: doll miniature-chosen-battles-doll vigorous-doll
+The doll has pliable arms and legs, not quite limp, but their position is
+easily changed.  Although a relaxed look is stitched onto his face, he seems to
+have an inexplicable alertness.  Some long scars are stitched on his back,
+resembling lash marks.  An unfamiliar symbol on the doll's forehead glows
+bright red.~
+~~
+vnum: 3146
+location: -1
+values:
+24
+24
+4
+0
+0
+0
+0
+~
+flags: 0 0
+name: dark-ale doll miniature-stone-golem-doll pure-rock-doll
+shortdesc: a miniature stone golem doll
+desc: A doll made of pure rock stands guard here.
+type: 17
+weight: 1.00
+cost: 35000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-stone-golem-doll pure-rock-doll
+This little stone flask is a perfect sculpture of a stony golem, save the
+little stopper protruding from the top of its head.  Its hollow stone eyes
+chillingly reflect no emotions or remorse...  Though that would seem to be
+normal from such an inanimate object as this.~
+~~
+vnum: 3146
+location: -1
+values:
+24
+24
+4
+0
+0
+0
+0
+~
+flags: 0 0
+name: dark-ale doll miniature-stone-golem-doll pure-rock-doll
+shortdesc: a miniature stone golem doll
+desc: A doll made of pure rock stands guard here.
+type: 17
+weight: 1.00
+cost: 35000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-stone-golem-doll pure-rock-doll
+This little stone flask is a perfect sculpture of a stony golem, save the
+little stopper protruding from the top of its head.  Its hollow stone eyes
+chillingly reflect no emotions or remorse...  Though that would seem to be
+normal from such an inanimate object as this.~
+~~
+vnum: 3146
+location: -1
+values:
+24
+24
+4
+0
+0
+0
+0
+~
+flags: 0 0
+name: dark-ale doll miniature-stone-golem-doll pure-rock-doll
+shortdesc: a miniature stone golem doll
+desc: A doll made of pure rock stands guard here.
+type: 17
+weight: 1.00
+cost: 35000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-stone-golem-doll pure-rock-doll
+This little stone flask is a perfect sculpture of a stony golem, save the
+little stopper protruding from the top of its head.  Its hollow stone eyes
+chillingly reflect no emotions or remorse...  Though that would seem to be
+normal from such an inanimate object as this.~
+~~
+vnum: 3146
+location: -1
+values:
+24
+24
+4
+0
+0
+0
+0
+~
+flags: 0 0
+name: dark-ale doll miniature-stone-golem-doll pure-rock-doll
+shortdesc: a miniature stone golem doll
+desc: A doll made of pure rock stands guard here.
+type: 17
+weight: 1.00
+cost: 35000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-stone-golem-doll pure-rock-doll
+This little stone flask is a perfect sculpture of a stony golem, save the
+little stopper protruding from the top of its head.  Its hollow stone eyes
+chillingly reflect no emotions or remorse...  Though that would seem to be
+normal from such an inanimate object as this.~
+~~
+vnum: 3146
+location: -1
+values:
+24
+24
+4
+0
+0
+0
+0
+~
+flags: 0 0
+name: dark-ale doll miniature-stone-golem-doll pure-rock-doll
+shortdesc: a miniature stone golem doll
+desc: A doll made of pure rock stands guard here.
+type: 17
+weight: 1.00
+cost: 35000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-stone-golem-doll pure-rock-doll
+This little stone flask is a perfect sculpture of a stony golem, save the
+little stopper protruding from the top of its head.  Its hollow stone eyes
+chillingly reflect no emotions or remorse...  Though that would seem to be
+normal from such an inanimate object as this.~
+~~
+vnum: 3146
+location: -1
+values:
+24
+24
+4
+0
+0
+0
+0
+~
+flags: 0 0
+name: dark-ale doll miniature-stone-golem-doll pure-rock-doll
+shortdesc: a miniature stone golem doll
+desc: A doll made of pure rock stands guard here.
+type: 17
+weight: 1.00
+cost: 35000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-stone-golem-doll pure-rock-doll
+This little stone flask is a perfect sculpture of a stony golem, save the
+little stopper protruding from the top of its head.  Its hollow stone eyes
+chillingly reflect no emotions or remorse...  Though that would seem to be
+normal from such an inanimate object as this.~
+~~
+vnum: 3146
+location: -1
+values:
+24
+24
+4
+0
+0
+0
+0
+~
+flags: 0 0
+name: dark-ale doll miniature-stone-golem-doll pure-rock-doll
+shortdesc: a miniature stone golem doll
+desc: A doll made of pure rock stands guard here.
+type: 17
+weight: 1.00
+cost: 35000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-stone-golem-doll pure-rock-doll
+This little stone flask is a perfect sculpture of a stony golem, save the
+little stopper protruding from the top of its head.  Its hollow stone eyes
+chillingly reflect no emotions or remorse...  Though that would seem to be
+normal from such an inanimate object as this.~
+~~
+vnum: 3166
+location: -1
+values:
+30
+10
+10
+34
+0
+0
+0
+~
+flags: k 0
+name: doll miniature-holyguard-doll miniature-holyguard-warrior holy-guard
+shortdesc: a miniature Holyguard doll
+desc: A miniature Holyguard warrior stands here, at full attention.
+type: 4
+weight: 0.50
+cost: 200000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-holyguard-doll miniature-holyguard-warrior holy-guard
+The doll stands with a little wooden sword at his side and in full tin replica
+armor.  It's fairly polished, but also has scratches and dents from hours of
+play.  He has a stoic, concerned expression, ready at every moment to help his
+owner banish the evils of the world.~
+~~
+vnum: 3176
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: doll miniature-chosen-journeys-doll monk-doll
+shortdesc: a miniature Chosen of Journeys doll
+desc: A monk doll sits here resting.
+type: 12
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+14 50
+~
+extradesc: doll miniature-chosen-journeys-doll monk-doll
+Dressed in robes of soft blue, this little doll has a teeny black silk
+blindfold covering his eyes.  Its sewn to his head, and doesn't seem
+removeable.  A cheerful smile is depicted on his face, and an unfamiliar symbol
+in bright blue is on his forehead.~
+~~
+vnum: 3175
+location: -1
+values:
+50
+10
+10
+28
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-endings-doll muscular-doll
+shortdesc: a miniature Chosen of Endings doll
+desc: A muscular doll soaks in a steaming puddle.
+type: 3
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-chosen-endings-doll muscular-doll
+Stitches made to look as scars crisscross the muscular form of this doll.  He
+has a relaxed expression on his face, resting in a mysterious pool of hot water
+that appears wherever he sits.  On his forehead is a strange, purple tattoo.~
+~~
+vnum: 3183
+location: -1
+values:
+60
+54
+54
+54
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-zalkar-doll tiny-demon-lord
+shortdesc: a miniature Zalkar doll
+desc: A tiny demon lord sits on its haunches here, mouth hanging open hungrily.
+type: 2
+weight: 0.50
+cost: 300000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 3
+~
+extradesc: doll miniature-zalkar-doll tiny-demon-lord
+Summoned here either by a powerful wizard or a talented doll-maker, you wonder
+what foul purpose was intended in summoning this Zalkar doll.  It has magma red
+skin, and an evil look in its eyes.  Such a doll couldn't be intended as an
+agent of evil, but it could hardly be meant as a plaything for children.~
+~~
+vnum: 3141
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-meer-cat-doll cute-little-meer-cat-warrior
+shortdesc: a miniature Meer Cat doll
+desc: A cute little Meer Cat warrior sits here, ready to cuddle.
+type: 12
+weight: 0.50
+cost: 10000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+11 -10
+~
+extradesc: doll miniature-meer-cat-doll cute-little-meer-cat-warrior
+Crudely sewn from animal fur, this little Meer Cat is very cute and cuddly
+nonetheless.  It has the softest, fuzziest fur and has a friendly look upon its
+tiny face.~
+~~
+vnum: 3144
+location: -1
+values:
+25
+10
+10
+50
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-crimson-rosella-doll pudgy-red-plumed-bird
+shortdesc: a miniature crimson rosella doll
+desc: A pudgy red-plumed bird lies on its side, its beak open in silent song.
+type: 3
+weight: 0.50
+cost: 25000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-crimson-rosella-doll pudgy-red-plumed-bird
+This little avian doll is covered in actual rich, deep red feathers from a
+rosella.  Its beauty could easily be mistaken for a blossoming flower, albeit a
+flower with a large wooden hookbill.  Little wooden feet stick out of the
+bottom, but don't seem to serve very well for balance, as the doll has trouble
+standing up.~
+~~
+vnum: 3151
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-ash-drakling-doll itty-bitty-black-dragon
+shortdesc: a miniature Ash Drakling doll
+desc: An itty-bitty black dragon is sitting here with a burning look in its eyes.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -10
+~
+extradesc: doll miniature-ash-drakling-doll itty-bitty-black-dragon
+This little doll has a glossy black hide, its shiny scales probably taken from
+a snake or other small reptile.  Little felt flames flare from its nostrils,
+burning the imaginary miniature townspeople around it.~
+~~
+vnum: 3175
+location: -1
+values:
+50
+10
+9
+28
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-endings-doll muscular-doll
+shortdesc: a miniature Chosen of Endings doll
+desc: A muscular doll soaks in a steaming puddle.
+type: 3
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-chosen-endings-doll muscular-doll
+Stitches made to look as scars crisscross the muscular form of this doll.  He
+has a relaxed expression on his face, resting in a mysterious pool of hot water
+that appears wherever he sits.  On his forehead is a strange, purple tattoo.~
+~~
+vnum: 3197
+location: -1
+values:
+90
+10
+10
+36
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-doll-moonless-night doll-god-moonless-night
+shortdesc: a miniature Doll of the Moonless Night
+desc: A doll of the God of the Moonless Night laughs silently at you.
+type: 3
+weight: 0.50
+cost: 5000000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-doll-moonless-night doll-god-moonless-night
+No ordinary doll, it has pale, translucent skin and black hair tinted slightly
+blue.  A silvery light seems to glow about the doll, highlighting its
+glittering indigo eyes.  Amusement shows in the capricious grin stitched on its
+face.  A tiny glass shard is clasped in the doll's right hand, pyramidal in
+shape and about as long as the doll's forearm.~
+~~
+vnum: 3197
+location: -1
+values:
+90
+10
+10
+36
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-doll-moonless-night doll-god-moonless-night
+shortdesc: a miniature Doll of the Moonless Night
+desc: A doll of the God of the Moonless Night laughs silently at you.
+type: 3
+weight: 0.50
+cost: 5000000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-doll-moonless-night doll-god-moonless-night
+No ordinary doll, it has pale, translucent skin and black hair tinted slightly
+blue.  A silvery light seems to glow about the doll, highlighting its
+glittering indigo eyes.  Amusement shows in the capricious grin stitched on its
+face.  A tiny glass shard is clasped in the doll's right hand, pyramidal in
+shape and about as long as the doll's forearm.~
+~~
+vnum: 3197
+location: -1
+values:
+90
+10
+10
+36
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-doll-moonless-night doll-god-moonless-night
+shortdesc: a miniature Doll of the Moonless Night
+desc: A doll of the God of the Moonless Night laughs silently at you.
+type: 3
+weight: 0.50
+cost: 5000000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-doll-moonless-night doll-god-moonless-night
+No ordinary doll, it has pale, translucent skin and black hair tinted slightly
+blue.  A silvery light seems to glow about the doll, highlighting its
+glittering indigo eyes.  Amusement shows in the capricious grin stitched on its
+face.  A tiny glass shard is clasped in the doll's right hand, pyramidal in
+shape and about as long as the doll's forearm.~
+~~
+vnum: 3160
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-mesmeriz-doll troll-sorcerer-doll
+shortdesc: a miniature Mesmeriz doll
+desc: A troll sorcerer doll glares around itself.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+26 10
+~
+extradesc: doll miniature-mesmeriz-doll troll-sorcerer-doll
+Crafted in the image of Mesmeriz himself, this trollish doll has rough green
+skin painted with purple and red symbols.  True to form, one horn curls back as
+a ram, but the other is broken off near his head.  Even as a doll, he seems
+dangerous.~
+~~
+vnum: 3177
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-battles-doll vigorous-doll
+shortdesc: a miniature Chosen of Battles doll
+desc: A vigorous-looking doll sits here, enjoying a hot puddle.
+type: 12
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+19 3
+~
+extradesc: doll miniature-chosen-battles-doll vigorous-doll
+The doll has pliable arms and legs, not quite limp, but their position is
+easily changed.  Although a relaxed look is stitched onto his face, he seems to
+have an inexplicable alertness.  Some long scars are stitched on his back,
+resembling lash marks.  An unfamiliar symbol on the doll's forehead glows
+bright red.~
+~~
+vnum: 3176
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: doll miniature-chosen-journeys-doll monk-doll
+shortdesc: a miniature Chosen of Journeys doll
+desc: A monk doll sits here resting.
+type: 12
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+14 50
+~
+extradesc: doll miniature-chosen-journeys-doll monk-doll
+Dressed in robes of soft blue, this little doll has a teeny black silk
+blindfold covering his eyes.  Its sewn to his head, and doesn't seem
+removeable.  A cheerful smile is depicted on his face, and an unfamiliar symbol
+in bright blue is on his forehead.~
+~~
+vnum: 3179
+location: -1
+values:
+50
+10
+10
+94
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-serenity-doll slender-monk-doll
+shortdesc: a miniature Chosen of Serenity doll
+desc: A slender monk doll with long purple hair lies here.
+type: 4
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+~
+extradesc: doll miniature-chosen-serenity-doll slender-monk-doll
+If the proportions of this doll can be trusted, its muse was rather tall and
+graceful.  She has long purple hair, hanging partially in front of her dark
+eyes, which have simultaneously inviting yet dangerous aspects.  A mysterious
+glowing blue symbol rests on her forehead.~
+~~
+vnum: 3175
+location: -1
+values:
+50
+10
+10
+28
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-endings-doll muscular-doll
+shortdesc: a miniature Chosen of Endings doll
+desc: A muscular doll soaks in a steaming puddle.
+type: 3
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-chosen-endings-doll muscular-doll
+Stitches made to look as scars crisscross the muscular form of this doll.  He
+has a relaxed expression on his face, resting in a mysterious pool of hot water
+that appears wherever he sits.  On his forehead is a strange, purple tattoo.~
+~~
+vnum: 3179
+location: -1
+values:
+50
+10
+10
+94
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-serenity-doll slender-monk-doll
+shortdesc: a miniature Chosen of Serenity doll
+desc: A slender monk doll with long purple hair lies here.
+type: 4
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+~
+extradesc: doll miniature-chosen-serenity-doll slender-monk-doll
+If the proportions of this doll can be trusted, its muse was rather tall and
+graceful.  She has long purple hair, hanging partially in front of her dark
+eyes, which have simultaneously inviting yet dangerous aspects.  A mysterious
+glowing blue symbol rests on her forehead.~
+~~
+vnum: 3179
+location: -1
+values:
+50
+10
+10
+94
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-serenity-doll slender-monk-doll
+shortdesc: a miniature Chosen of Serenity doll
+desc: A slender monk doll with long purple hair lies here.
+type: 4
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+~
+extradesc: doll miniature-chosen-serenity-doll slender-monk-doll
+If the proportions of this doll can be trusted, its muse was rather tall and
+graceful.  She has long purple hair, hanging partially in front of her dark
+eyes, which have simultaneously inviting yet dangerous aspects.  A mysterious
+glowing blue symbol rests on her forehead.~
+~~
+vnum: 3176
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: doll miniature-chosen-journeys-doll monk-doll
+shortdesc: a miniature Chosen of Journeys doll
+desc: A monk doll sits here resting.
+type: 12
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+14 50
+~
+extradesc: doll miniature-chosen-journeys-doll monk-doll
+Dressed in robes of soft blue, this little doll has a teeny black silk
+blindfold covering his eyes.  Its sewn to his head, and doesn't seem
+removeable.  A cheerful smile is depicted on his face, and an unfamiliar symbol
+in bright blue is on his forehead.~
+~~
+vnum: 3177
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-battles-doll vigorous-doll
+shortdesc: a miniature Chosen of Battles doll
+desc: A vigorous-looking doll sits here, enjoying a hot puddle.
+type: 12
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+19 3
+~
+extradesc: doll miniature-chosen-battles-doll vigorous-doll
+The doll has pliable arms and legs, not quite limp, but their position is
+easily changed.  Although a relaxed look is stitched onto his face, he seems to
+have an inexplicable alertness.  Some long scars are stitched on his back,
+resembling lash marks.  An unfamiliar symbol on the doll's forehead glows
+bright red.~
+~~
+vnum: 3151
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-ash-drakling-doll itty-bitty-black-dragon
+shortdesc: a miniature Ash Drakling doll
+desc: An itty-bitty black dragon is sitting here with a burning look in its eyes.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+24 -10
+~
+extradesc: doll miniature-ash-drakling-doll itty-bitty-black-dragon
+This little doll has a glossy black hide, its shiny scales probably taken from
+a snake or other small reptile.  Little felt flames flare from its nostrils,
+burning the imaginary miniature townspeople around it.~
+~~
+vnum: 3179
+location: -1
+values:
+50
+10
+10
+94
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-serenity-doll slender-monk-doll
+shortdesc: a miniature Chosen of Serenity doll
+desc: A slender monk doll with long purple hair lies here.
+type: 4
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 10
+~
+extradesc: doll miniature-chosen-serenity-doll slender-monk-doll
+If the proportions of this doll can be trusted, its muse was rather tall and
+graceful.  She has long purple hair, hanging partially in front of her dark
+eyes, which have simultaneously inviting yet dangerous aspects.  A mysterious
+glowing blue symbol rests on her forehead.~
+~~
+vnum: 3166
+location: -1
+values:
+30
+10
+10
+34
+0
+0
+0
+~
+flags: k 0
+name: doll miniature-holyguard-doll miniature-holyguard-warrior holy-guard
+shortdesc: a miniature Holyguard doll
+desc: A miniature Holyguard warrior stands here, at full attention.
+type: 4
+weight: 0.50
+cost: 200000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-holyguard-doll miniature-holyguard-warrior holy-guard
+The doll stands with a little wooden sword at his side and in full tin replica
+armor.  It's fairly polished, but also has scratches and dents from hours of
+play.  He has a stoic, concerned expression, ready at every moment to help his
+owner banish the evils of the world.~
+~~
+vnum: 3188
+location: -1
+values:
+70
+10
+10
+28
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-fallen-angel-doll beautiful-white-doll
+shortdesc: a miniature fallen angel doll
+desc: A beautiful white doll with a dark taint lies here.
+type: 4
+weight: 0.50
+cost: 500000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-fallen-angel-doll beautiful-white-doll
+This doll is more beautiful than one can imagine.  It depicts a woman, her hair
+a shiny black, as dark as night.  The cloth for her skin is pale and she is
+dressed in a dusty white robe.  She has odd little wooden talons fixed to the
+end of her hands, looking as sharp as any sword.~
+~~
+vnum: 3156
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-wounded-amazon-doll wounded-mercenary-doll
+shortdesc: a miniature wounded Amazon doll
+desc: A wounded mercenary doll lies here looking up angrily.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 5
+~
+extradesc: doll miniature-wounded-amazon-doll wounded-mercenary-doll
+Modeled after the famous mercenary women of the north, this little Amazon doll
+is dressed in tiny replicas of battle armor and weaponry.  She sports a tough
+mohawk haircut, and carefully sewn stitches recreate stylish wounds and scars
+scattered across her cloth skin.~
+~~
+vnum: 3165
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-forest-spider-doll
+shortdesc: a miniature forest spider doll
+desc: A miniature forest spider sits on the ground.
+type: 12
+weight: 0.50
+cost: 200000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 2
+5 2
+2 2
+~
+extradesc: doll miniature-forest-spider-doll
+Only close-up is it obvious this spider is just a doll.  It has little fangs
+and a hairy body, with wireframe legs to keep it standing.  It's large for a
+spider, but is modelled after even larger forest spiders who are rarely seen by
+those who continue living.  Its abdomen is three times larger than its upper
+body, though they are all one piece, giving it a sort of pear shape.~
+~~
+vnum: 3155
+location: -1
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-plant-elemental-doll food
+shortdesc: a miniature plant elemental doll
+desc: A plant elemental doll blends in with the surrounding underbrush.
+type: 19
+weight: 0.50
+cost: 100000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: doll miniature-plant-elemental-doll food
+A mass of vines and vegetation, the doll has loose wriggling roots stretching
+out from its body in random directions.  It's crafted from various samples of
+underbrush and bound together with strong vegetable cords, with a shape vaguely
+resembling a human.~
+~~
+vnum: 3156
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-wounded-amazon-doll wounded-mercenary-doll
+shortdesc: a miniature wounded Amazon doll
+desc: A wounded mercenary doll lies here looking up angrily.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+1 5
+~
+extradesc: doll miniature-wounded-amazon-doll wounded-mercenary-doll
+Modeled after the famous mercenary women of the north, this little Amazon doll
+is dressed in tiny replicas of battle armor and weaponry.  She sports a tough
+mohawk haircut, and carefully sewn stitches recreate stylish wounds and scars
+scattered across her cloth skin.~
+~~
+vnum: 3168
+location: -1
+values:
+32
+32
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-water-elemental-doll little-crest-water
+shortdesc: a miniature water elemental doll
+desc: A little crest of water has raised itself up here.
+type: 17
+weight: 2.00
+cost: 25000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 25
+~
+extradesc: doll miniature-water-elemental-doll little-crest-water
+Shaped like a mostly amorphous blob, this doll is dyed almost uniformly light
+blue, with white crests across the top.  It completely resembles running water
+from rivers and oceans.  A little spigot on the back lets one pour water into
+and draw water out of the doll.~
+~~
+vnum: 3162
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-master-shaman-doll little-shaman-doll
+shortdesc: a miniature Master Shaman doll
+desc: A little shaman doll wearing a Snow Leopard cloak sits here.
+type: 12
+weight: 0.50
+cost: 200000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 5
+4 5
+1 -5
+5 -5
+~
+extradesc: doll miniature-master-shaman-doll little-shaman-doll
+This doll is very beautiful and seems very elegant crafted from soft cloth.  
+Resembling a Technitzitlan Shaman, she is dressed in fine flowing robes and a
+cute little Snow Leopard cloak.  An upset look has been stitched upon her face,
+reflecting concern of some great evil powers.~
+~~
+vnum: 3143
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: D 0
+name: doll miniature-spark-pixie-doll translucent-pixie
+shortdesc: a miniature spark pixie doll
+desc: A nearly translucent pixie with a glowing outline sits on the ground, grinning.
+type: 1
+weight: 0.50
+cost: 20000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-spark-pixie-doll translucent-pixie
+Formed from some mysterious translucent material, this pretty little pixie doll
+shimmers golden and blue in color.  Tiny wire-frammed silk wings project from
+the doll's back.  Some blue and gold glitter is attached to the doll, scattered
+to look like sparks racing across her skin.~
+~~
+vnum: 3184
+location: -1
+values:
+60
+10
+10
+111
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-storm-demon-doll tiny-demon
+shortdesc: a miniature storm demon doll
+desc: A little storm hovers about a tiny demon sitting arrogantly here.
+type: 3
+weight: 0.50
+cost: 400000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-storm-demon-doll tiny-demon
+Black cloth forms the skin of this demon-like doll, with bolts of blue
+lightning painted across its surface.  Puffs of cotton are attached, resembling
+a storm floating about its body.~
+~~
+vnum: 3153
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-fiery-drakling-doll itty-bitty-red-dragon
+shortdesc: a miniature Fiery Drakling doll
+desc: An itty-bitty red dragon is sitting here, its mouth wide open.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+19 3
+~
+extradesc: doll miniature-fiery-drakling-doll itty-bitty-red-dragon
+This little doll is voracious-looking, with a full mouth of razor-sharp felt
+teeth.  It has a hungry look on its tiny face, ready to chomp on the next
+little newbie to pass by.~
+~~
+vnum: 3167
+location: -1
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: opwx 0
+name: doll miniature-flame-elemental-doll itty-bitty-pillar-flame
+shortdesc: a miniature flame elemental doll
+desc: An itty-bitty pillar of flame dances across the floor.
+type: 1
+weight: 0.50
+cost: 250000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-flame-elemental-doll itty-bitty-pillar-flame
+This soft little doll is sewn in the shape of a flame, with varying shades of
+red for dye.  It has two little black beads as eyes, giving it a cute harmless
+appearance.  When squeezed, a little burst of real flame pops out its top.~
+~~
+vnum: 3180
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-luchiaans-doll miniature-sorcerer
+shortdesc: a miniature Luchiaans doll
+desc: A miniature sorcerer stands in a corner, holding two beakers.
+type: 12
+weight: 0.50
+cost: 250000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+20 -20
+~
+extradesc: doll miniature-luchiaans-doll miniature-sorcerer
+Dressed in a red robe, this miniature doll resembles a power-hungry sorcerer.
+Carved from light wood, he is eternally fixed in his position, holding a
+miniature glass beaker in each hand.  It appears as if he is pouring one beaker
+into the other.  He has a maniacal grin carved onto his face, as if these very
+two beakers held the secret of unlimited power.~
+~~
+vnum: 3158
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-general-angrugg-doll large-orc-doll
+shortdesc: a miniature General Angrugg doll
+desc: A large orc doll in general's insignia sits here, a rough look on his face.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+6 5
+~
+extradesc: doll miniature-general-angrugg-doll large-orc-doll
+The doll has an permanent irritated look stitched on its face.  His proportions
+would make him seem quite large and muscular for an orc, and his uniform bears
+resemblance to an actual general's outfit.  He has little yellow beady eyes
+that would seem to be more interested in pillaging than the average doll.~
+~~
+vnum: 3155
+location: -1
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-plant-elemental-doll food
+shortdesc: a miniature plant elemental doll
+desc: A plant elemental doll blends in with the surrounding underbrush.
+type: 19
+weight: 0.50
+cost: 100000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: doll miniature-plant-elemental-doll food
+A mass of vines and vegetation, the doll has loose wriggling roots stretching
+out from its body in random directions.  It's crafted from various samples of
+underbrush and bound together with strong vegetable cords, with a shape vaguely
+resembling a human.~
+~~
+vnum: 3168
+location: -1
+values:
+32
+32
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-water-elemental-doll little-crest-water
+shortdesc: a miniature water elemental doll
+desc: A little crest of water has raised itself up here.
+type: 17
+weight: 2.00
+cost: 25000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 25
+~
+extradesc: doll miniature-water-elemental-doll little-crest-water
+Shaped like a mostly amorphous blob, this doll is dyed almost uniformly light
+blue, with white crests across the top.  It completely resembles running water
+from rivers and oceans.  A little spigot on the back lets one pour water into
+and draw water out of the doll.~
+~~
+vnum: 3159
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-scholar-doll wise-scholarly-looking-doll
+shortdesc: a miniature scholar doll
+desc: A wise, scholarly-looking doll sits here contemplating.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+4 5
+~
+extradesc: doll miniature-scholar-doll wise-scholarly-looking-doll
+The doll resembles a wise, learned man who has many years of education.  He has
+itty-bitty spectacles that would probably break under the smallest amount of
+pressure.~
+~~
+vnum: 3146
+location: -1
+values:
+24
+24
+4
+0
+0
+0
+0
+~
+flags: 0 0
+name: dark-ale doll miniature-stone-golem-doll pure-rock-doll
+shortdesc: a miniature stone golem doll
+desc: A doll made of pure rock stands guard here.
+type: 17
+weight: 1.00
+cost: 35000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-stone-golem-doll pure-rock-doll
+This little stone flask is a perfect sculpture of a stony golem, save the
+little stopper protruding from the top of its head.  Its hollow stone eyes
+chillingly reflect no emotions or remorse...  Though that would seem to be
+normal from such an inanimate object as this.~
+~~
+vnum: 3164
+location: -1
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-crazed-nereid-doll lovely-little-doll
+shortdesc: a miniature crazed Nereid doll
+desc: A lovely little doll sits here, glaring with hate.
+type: 26
+weight: 0.50
+cost: 300000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 5
+~
+extradesc: doll crazed-nereid-doll lovely-little-doll
+A beautiful little Nereid doll sits here, skillfully formed from delicate
+porcelain.  A chilly expression of insanity has been painted on her face, so
+masterfully done that it seems to contort and laugh in glee...~
+~~
+vnum: 3145
+location: -1
+values:
+25
+10
+10
+32
+0
+0
+0
+~
+flags: noprsuvwx 0
+name: doll miniature-ambitious-mage-doll little-ambitious-mage
+shortdesc: a miniature ambitious mage doll
+desc: A little ambitious mage sits here searching for knowledge.
+type: 4
+weight: 0.50
+cost: 30000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-ambitious-mage-doll little-ambitious-mage
+This little bald doll resembles a slightly older man, dressed in a little grey
+cloth shirt, miniature grey canvas pants, and some tiny reed sandals.  He holds
+a small polished black wand in his hand, pointing it aggressively at some
+unknown foe.~
+~~
+vnum: 3178
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-chosen-secrets-doll little-monk-doll
+shortdesc: a miniature Chosen of Secrets doll
+desc: A little monk doll sits here, reading an even tinier book.
+type: 12
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: x 0 0
+wear: 1
+hiddenness: 0
+extradesc: doll miniature-chosen-secrets-doll little-monk-doll
+Somewhat short, even for a doll, this little cloth replica is made to appear
+totally engrossed in her tiny book.  She looks scholarly, with thin wire
+"glasses" set upon her head.  A half-smirk sits on her lips and a strange
+yellow symbol sits on her forehead.~
+~~
+vnum: 3142
+location: -1
+values:
+25
+16
+88
+15
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-prismatic-attendant-doll
+shortdesc: a miniature Prismatic Attendant doll
+desc: A Prismatic Attendant doll sits here waiting for your attention.
+type: 10
+weight: 0.50
+cost: 15000
+timer: 0
+level: 10
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+11 -10
+~
+extradesc: doll miniature-prismatic-attendant-doll
+Much like a real Hiver, this little replica has a crystal-clear chitin shell,
+sparkling gracefully in the light.  She has six little round feet and looks
+like a diligent, caring worker.~
+~~
+vnum: 3148
+location: -1
+values:
+25
+10
+10
+144
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-larva-worm-doll larva-doll
+shortdesc: a miniature Larva Worm doll
+desc: A larva doll slithers around here.
+type: 3
+weight: 0.50
+cost: 100000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-larva-worm-doll larva-doll
+Short and stout, this little Larva Worm doll is sewn from pieces of tough white
+leather of unknown origin.  It's stuffed unevenly with thick clumpy wool and
+its white skin is discolored, giving it a sickly appearance.  Its red bead eyes
+glare menacingly, evil intentions in its eyes.~
+~~
+vnum: 3181
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-vulcera-doll little-bronze-skinned-sculpture
+shortdesc: a miniature Vulcera doll
+desc: A little bronze-skinned sculpture stands here, admiring itself in a mirror.
+type: 12
+weight: 0.50
+cost: 250000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+19 2
+3 -1
+4 -1
+24 -3
+5 -2
+13 20
+~
+extradesc: doll miniature-vulcera-doll little-bronze-skinned-sculpture
+Carefully smithed from the finest bronze, this little sculpture depicts a woman
+of the greatest hubris.  She is fixed in a permanent position of rapture,
+admiring herself in a tiny mirror in her hand.  Her hair is painted red, and
+sprawls down across a sculpted cloak painted the same fiery red.~
+~~
+vnum: 3157
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-heucuva-doll evil-heucuva-doll
+shortdesc: a miniature Heucuva doll
+desc: An evil heucuva doll lies here reaching up to grab a finger.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 5
+~
+extradesc: doll miniature-heucuva-doll evil-heucuva-doll
+Apparently crafted using the thin bones of a chicken, they have been rearranged
+into a humanoid form and robed in ragged garments.  In an effort to make the
+Heucuva replica more authentic, it has apparently been perfumed in the odor of
+rotting flesh.~
+~~
+vnum: 3169
+location: -1
+values:
+50
+10
+10
+2
+0
+0
+0
+~
+flags: gopuwx 0
+name: doll miniature-krisenna-doll plump-little-demon
+shortdesc: a miniature Krisenna doll
+desc: A plump little demon stares off into the swirling nothingness.
+type: 3
+weight: 0.50
+cost: 150000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-krisenna-doll plump-little-demon
+The demon stands at least twice as tall the average doll.  He has little
+stuffed muscles and a thoughtful that looks off into space.  He wears only a
+pair of red trousers and a little pouch, but two black horns curve back from
+his head, like deer antlers.~
+~~
+vnum: 3140
+location: -1
+values:
+24
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-brownie-doll tiny-mischievous-brownie food
+shortdesc: a miniature brownie doll
+desc: A tiny, mischievous-looking brownie lies here limply.
+type: 19
+weight: 0.50
+cost: 5000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-brownie-doll tiny-mischievous-brownie food
+Even smaller than the tiny forest brownies, this squishy little doll looks
+roughly like its fairy namesake.  Somehow it retains a mischievous glint in its
+little candy eyes that tells you SOMETHING is up.~
+~~
+vnum: 3152
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-emerald-drakling-doll itty-bitty-green-dragon
+shortdesc: a miniature Emerald Drakling doll
+desc: An itty-bitty green dragon is sitting with a mesmerizing look about it.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+18 3
+~
+extradesc: doll miniature-emerald-drakling-doll itty-bitty-green-dragon
+This little doll has vibrant green skin and wings, its little beady eyes
+projecting an unnatural aura about itself.  Drawing miniature little newbies to
+their deaths.~
+~~
+vnum: 3150
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-ice-drakling-doll itty-bitty-blue-dragon
+shortdesc: a miniature Ice Drakling doll
+desc: An itty-bitty blue dragon is sitting with a chilly look to it.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+5 5
+~
+extradesc: doll miniature-ice-drakling-doll itty-bitty-blue-dragon
+This little doll is made from a light blue hide, and has a cute little red
+tongue hanging out of its open mouth.  It has little floppy wings attached to
+its back.~
+~~
+vnum: 3154
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-roc-hatchling-doll little-baby-roc-doll
+shortdesc: a miniature roc hatchling doll
+desc: A little baby roc doll sits here, its mouth open hungrily.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+2 5
+~
+extradesc: doll miniature-roc-hatchling-doll little-baby-roc-doll
+Though the cutest baby roc doll ever, this hatchling looks vicious at the same
+time.  It's armed with a hooked beak and claws carved from wood.  The beak is
+open wide in a hungry silent squawk.~
+~~
+vnum: 52130
+location: -1
+values:
+0
+500
+500
+0
+0
+0
+0
+~
+flags: 0 0
+name: figure dakhod-action-figure miniature-pirate doll toy seawater
+shortdesc: a Dakhod action figure
+desc: A miniature pirate lies in a pool of seawater here.
+type: 1
+weight: 0.50
+cost: 22000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: dakhod-action-figure miniature-pirate doll toy seawater
+This action figure appears to be an exact replica of Dakhod!  With a peg leg
+and a hook for a hand, the attention to detail is stunning.  This action figure
+comes complete with karate chop action when its legs are squeezed, and a
+pullstring on his back.    ~
+triggers:
+52131
+52130
+52133
+52132
+~
+~~
+vnum: 3173
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-nondescript-doll
+shortdesc: a miniature nondescript doll
+desc: A nondescript doll loiters here.
+type: 12
+weight: 0.50
+cost: 250000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-nondescript-doll
+The doll depicts a fairly average man, with nondescript features.  There's
+nothing about this doll that's memorable.~
+~~
+vnum: 3185
+location: -1
+values:
+60
+48
+48
+48
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-black-deer-doll evil-looking-deer-doll
+shortdesc: a miniature black deer doll
+desc: An evil-looking deer doll lies on its side here.
+type: 10
+weight: 0.50
+cost: 200000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-black-deer-doll evil-looking-deer-doll
+This doll only marginally resembles the average forest deer, for it has jet
+black cloth for skin, and its eyes are pale red beads tied to its head.  Sharp
+bits of glass and hardened clay act as sharp teeth in its mouth, which seems to
+be stained with a thick dark-red substance...~
+~~
+vnum: 3174
+location: -1
+values:
+50
+10
+10
+29
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-house-gnome-doll scared-looking-little-doll
+shortdesc: a miniature House Gnome doll
+desc: A scared-looking little doll peeks out from behind little hands.
+type: 3
+weight: 0.50
+cost: 200000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-house-gnome-doll scared-looking-little-doll
+This little gnomic doll hides behind its hands, its little bead eyes peering
+through its fingers.  It has stubby little legs that closely resemble a real
+gnome's.  Dressed all in black, the gnome would be very difficult to see, say,
+above a darkened theater stage.~
+~~
+vnum: 3161
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: dkloprstwx ab
+name: doll miniature-mammoth-doll miniature-elephant
+shortdesc: a miniature mammoth doll
+desc: A miniature elephant with curved tusks and thick wooly hair sits here waiting for a hug.
+type: 12
+weight: 0.50
+cost: 200000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+25 1
+~
+extradesc: doll miniature-mammoth-doll miniature-elephant
+Mammoths are gigantic elephants covered in thick wooly hair.  Although not
+gigantic, this doll is fairly true to form, with thick brownish wool covering
+its body.  It has two little pale wooden curved tusks, which are really the
+only danger to this cute, cuddly mammoth.~
+~~
+vnum: 3161
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: dkloprstwx ab
+name: doll miniature-mammoth-doll miniature-elephant
+shortdesc: a miniature mammoth doll
+desc: A miniature elephant with curved tusks and thick wooly hair sits here waiting for a hug.
+type: 12
+weight: 0.50
+cost: 200000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+25 1
+~
+extradesc: doll miniature-mammoth-doll miniature-elephant
+Mammoths are gigantic elephants covered in thick wooly hair.  Although not
+gigantic, this doll is fairly true to form, with thick brownish wool covering
+its body.  It has two little pale wooden curved tusks, which are really the
+only danger to this cute, cuddly mammoth.~
+~~
+vnum: 3197
+location: -1
+values:
+90
+10
+10
+36
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-doll-moonless-night doll-god-moonless-night
+shortdesc: a miniature Doll of the Moonless Night
+desc: A doll of the God of the Moonless Night laughs silently at you.
+type: 3
+weight: 0.50
+cost: 5000000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-doll-moonless-night doll-god-moonless-night
+No ordinary doll, it has pale, translucent skin and black hair tinted slightly
+blue.  A silvery light seems to glow about the doll, highlighting its
+glittering indigo eyes.  Amusement shows in the capricious grin stitched on its
+face.  A tiny glass shard is clasped in the doll's right hand, pyramidal in
+shape and about as long as the doll's forearm.~
+~~
+vnum: 3195
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-stormchild-doll little-towheaded-doll
+shortdesc: a miniature Stormchild doll
+desc: A little towheaded doll looks up at you.
+type: 12
+weight: 0.50
+cost: 2000000
+timer: 0
+level: 90
+effects: gu 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-stormchild-doll little-towheaded-doll
+You've never seen such an adorable little doll.  It's modeled after a young
+girl, with almost-white flaxen hair cut to brush her itty-bitty shoulders.  
+She has huge, exaggerated blue eyes giving her the cutest expression.  In a
+tiny white pullover shirt and blue overalls, this doll is an absolutely
+precious picture.~
+~~
+vnum: 3153
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-fiery-drakling-doll itty-bitty-red-dragon
+shortdesc: a miniature Fiery Drakling doll
+desc: An itty-bitty red dragon is sitting here, its mouth wide open.
+type: 12
+weight: 0.50
+cost: 150000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+19 3
+~
+extradesc: doll miniature-fiery-drakling-doll itty-bitty-red-dragon
+This little doll is voracious-looking, with a full mouth of razor-sharp felt
+teeth.  It has a hungry look on its tiny face, ready to chomp on the next
+little newbie to pass by.~
+~~
+vnum: 3196
+location: -1
+values:
+90
+10
+10
+42
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-sagece-raymif-doll black-dragon-doll
+shortdesc: a miniature Sagece of Raymif doll
+desc: A black dragon doll glares at you contemptuously.
+type: 4
+weight: 0.50
+cost: 3500000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-sagece-raymif-doll black-dragon-doll
+Crafted from black snakeskin stretched over a light wooden frame and thick wool
+stuffing, this little dragon doll looks very similar to a real live dragon,
+only magnitudes smaller.  An air of death surrounds even this small doll, and a
+look in its red gleaming glass eyes is as vile and black as its scales.~
+~~
+vnum: 3191
+location: -1
+values:
+70
+10
+10
+151
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-mighty-druid-doll wizened-little-doll
+shortdesc: a miniature, yet mighty druid doll
+desc: A wizened little doll sits here its arms outstretched.
+type: 4
+weight: 0.50
+cost: 400000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-mighty-druid-doll wizened-little-doll
+The cloth surface of this doll has many tiny folds, resembling aged wrinkled
+skin.  A mass of tangled hair is attached to the head, and a look of concern
+and panic marks his face.  The doll's arms stick out in front of him, as if
+fanning something.~
+~~
+vnum: 3189
+location: -1
+values:
+70
+10
+10
+71
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-slender-druid-doll
+shortdesc: a miniature slender druid doll
+desc: A slender druid doll stands watch over a few square feet.
+type: 3
+weight: 0.50
+cost: 500000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-slender-druid-doll
+This little half-elven doll has thin dark blonde straw for hair covering his
+little pointed ears.  A stubby beard is drawn onto the doll's face, reflecting
+a half-human lineage.  A thick swath of green felt forms a flowing robe which
+wraps his body from shoulder to knee.~
+~~
+vnum: 3186
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-earth-elemental-doll shapeless-mound-stone
+shortdesc: a miniature earth elemental doll
+desc: A shapeless mound of stone sits on the floor, dirtying the area.
+type: 12
+weight: 0.50
+cost: 400000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+13 50
+3 4
+~
+extradesc: doll miniature-earth-elemental-doll shapeless-mound-stone
+At first glance, the little mound seems to be made of just ordinary stone.  
+But a closer look shows it to have a vaguely humanoid shape, with arms and legs
+of earth, bound together by wire.  The doll's limbs bounce comically on their
+wires when it's handled.~
+~~
+vnum: 3198
+location: -1
+values:
+3
+5
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: set miniature-chosen-boxed-set little-wooden-box
+shortdesc: a miniature Chosen boxed set
+desc: A little wooden box sits here covered in mysterious symbols.
+type: 15
+weight: 1.00
+cost: 2000000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: set miniature-chosen-boxed-set little-wooden-box
+Magnificently carved from a single piece of polished cedar wood, this little
+box is a delightful little container.  Five mysterious glowing symbols are
+imprinted on the cover, each lit a different hue.  Inside are five metal
+brackets each marked with a single word in an unknown language.~
+~~
+vnum: 3182
+location: -1
+values:
+1
+1
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sarcophagus miniature-sarcophagus miniature-golden-sarcophagus
+shortdesc: a miniature sarcophagus
+desc: A miniature golden sarcophagus sits on the floor.
+type: 15
+weight: 0.50
+cost: 300000
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: sarcophagus miniature-sarcophagus miniature-golden-sarcophagus
+The sarcophagus is fantastically crafted and sculpted in the image of the
+pharoah Imanhotep.  The detail on this minuscule replica is unbelievable.~
+~~
+vnum: 3199
+location: -2
+values:
+60
+10
+10
+35
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-imanhotep-replica little-pharaohs-mummy
+shortdesc: a miniature Imanhotep replica
+desc: A little pharaoh's mummy is resting here.
+type: 3
+weight: 0.50
+cost: 0
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-imanhotep-replica little-pharaohs-mummy
+This little doll is wrapped tightly in linen bandages, carefully criss-crossed
+about its body.  The hands are wrapped in a different, darker linen, and the
+fingers have little gold tips on them.  A little ruby scarab is attached to the
+mummy's chest, a spell of protection written on its face.  Although not
+emaciated like the average mummy, this doll is a very realistic replica.~
+~~
+vnum: 3163
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: doll miniature-squid-doll
+shortdesc: a miniature squid doll
+desc: A miniature squid floats ominiously in a puddle of water, long tentacles waving.
+type: 21
+weight: 0.50
+cost: 200000
+timer: 0
+level: 30
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+applies:
+3 5
+~
+extradesc: doll miniature-squid-doll
+Resembling the accounts of the fabled Giant Squid of the seas, this doll is one
+of the ugliest in existence, with no eyes to speak of and little ropes for
+tentacles.  A strange beak-like maw sits at the center of the tentacles, with
+the tip of a fountain pen protruding slightly.  The squishy sac-like body must
+be the ink well that allows this doll to act as a pen as well.~
+~~
+vnum: 3147
+location: -1
+values:
+237
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-green-gelatinous-blob-doll oozing-green-gelatinous-blob
+shortdesc: a miniature green gelatinous blob doll
+desc: An oozing green gelatinous blob lies here, oozing over bits of debris.
+type: 15
+weight: 0.50
+cost: 100000
+timer: 0
+level: 25
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-green-gelatinous-blob-doll oozing-green-gelatinous-blob
+The doll is a horrid looking thing: it's little, greenish, and looks like the
+blob.  Under the globs of gelatinous gleaming gunk, glint the green eyes of a
+gooey effigy.  Its original visage is difficult to make out, because of all the
+green gelatin caked on it.  The goo is quite sticky, causing anything touching
+it to become lodged in the mess.~
+~~
+vnum: 3197
+location: -1
+values:
+90
+10
+10
+36
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-doll-moonless-night doll-god-moonless-night
+shortdesc: a miniature Doll of the Moonless Night
+desc: A doll of the God of the Moonless Night laughs silently at you.
+type: 3
+weight: 0.50
+cost: 5000000
+timer: 0
+level: 90
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-doll-moonless-night doll-god-moonless-night
+No ordinary doll, it has pale, translucent skin and black hair tinted slightly
+blue.  A silvery light seems to glow about the doll, highlighting its
+glittering indigo eyes.  Amusement shows in the capricious grin stitched on its
+face.  A tiny glass shard is clasped in the doll's right hand, pyramidal in
+shape and about as long as the doll's forearm.~
+~~
+vnum: 4316
+location: 13
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: sash fire-sash beautiful-shimmering-piece-fabric
+shortdesc: a fire sash
+desc: A beautiful shimmering piece of fabric hangs loosely in the wind.
+adesc:
+Nothing.~
+type: 8
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 2049
+hiddenness: 0
+applies:
+6 2
+~
+extradesc: fire-sash beautiful-shimmering-piece-fabric
+A shimmering piece of fabric, this sash fades from dark yellow and gold to
+burnt orange to a deep blood red, imitating fire.  It would look very sultry
+draped around someone's waist.~
+~~
+vnum: 55529
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: dghmnopqrstvwxyz ab
+name: bracer-glade single-small-lotus-blossom flower
+shortdesc: &3&bBracer of the Glade&0
+desc: A single small lotus blossom sits on top of a twisted stem here.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 41
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+13 30
+18 1
+27 3
+~
+extradesc: bracer-glade single-small-lotus-blossom flower
+The stem of this lotus actually goes nowhere, ending in a simple knot.  
+However, it could easily be wrapped around the wrist, creating a beautiful and
+exotic bracer.  The lotus is the ultimate representation of the ability of
+nature to produce beauty and perfection from the darkest of places.  Such an
+ever-growing blossom as this is created only for very powerful druids.~
+~~
+vnum: 55452
+location: 15
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: adghmnopqrstvwxyz ab
+name: bracer-nature leaves-sewn-leather
+shortdesc: &2Bracer of Nature&0
+desc: Fluttering in the wind are bracers made of leaves sewn on leather.
+type: 9
+weight: 0.64
+cost: 0
+timer: 0
+level: 21
+effects: 0 0 0
+wear: 4097
+hiddenness: 0
+applies:
+19 2
+27 2
+~
+extradesc: bracer-nature leaves-sewn-leather
+Oak leaves enchanted to remain forever green have been grafted on to piece of
+leather and sewn into a bracer in a perfect mix of natural forces.  Armor like
+this is granted to druids still new in their training.~
+~~
+vnum: 48109
+location: 18
+values:
+0
+2400
+0
+0
+0
+0
+0
+~
+flags: gA 0
+name: eye fiery-eye jewel-burning-intense-inner-light questobject
+shortdesc: the fiery eye
+desc: A jewel burning with an intense inner light lies here.
+type: 1
+weight: 0.40
+cost: 900
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+18 -1
+13 20
+28 45
+5 2
+24 -10
+27 2
+~
+extradesc: eye fiery-eye jewel-burning-intense-inner-light questobject
+This jewel is the size of your fist!  Beneath its multifaceted surface you
+perceive an intense reddish light so intense it seems a reflection of Vulcera's
+fiery passion and hot desires.~
+~~
+vnum: 1220
+location: 19
+values:
+500
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: pumpkin bag container
+shortdesc: a &1&bpumpkin&0 &6&bca&3n&5dy&0 container
+desc: A small orange pumpkin lies here.
+type: 15
+weight: 1.05
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 16401
+hiddenness: 0
+~~
+vnum: 48036
+location: 21
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: gaze fiery-gaze glowing-red-eyes
+shortdesc: &3&ba&0 &1&bfiery&0 &3&bgaze&0
+desc: Glowing red eyes rest here.
+type: 8
+weight: 0.60
+cost: 8010
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 65537
+hiddenness: 0
+applies:
+18 1
+28 175
+~
+extradesc: gaze fiery-gaze glowing-red-eyes
+They're a pair of magical red eyes that strike fear into the hearts of those
+who oppose their owner.~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a 0
+name: mask-imanhotep golden-burial-mask
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 8
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+hiddenness: 0
+applies:
+1 2
+4 2
+27 2
+~
+extradesc: mask-imanhotep golden-burial-mask
+The mask is made of solid gold and is encrusted with jewels.  It has an aura of
+power around it.~
+~~
+vnum: 55019
+location: 23
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: fang ice-fang clear-fang snake
+shortdesc: an ice fang
+desc: What looks like a clear fang of a snake lies here.
+type: 8
+weight: 0.20
+cost: 1900
+timer: 0
+level: 45
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+18 3
+19 2
+13 10
+~
+extradesc: fang ice-fang clear-fang snake
+This looks to be a piece of clear crystal constructed from magic to protect it
+owner in an attack.  It looks like the fang of a beast of prey.~
+~~
+vnum: 903
+location: 24
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: b 0
+name: fang legendary-ice-fang clear-fang snake
+shortdesc: a legendary ice fang
+desc: What looks like a clear fang of a snake lies here.
+type: 8
+weight: 0.20
+cost: 1900
+timer: 0
+level: 43
+effects: 0 0 0
+wear: 262145
+hiddenness: 0
+applies:
+18 3
+19 3
+13 75
+~
+extradesc: fang legendary-ice-fang clear-fang snake
+This looks to be a piece of clear crystal constructed from magic to protect it
+owner in an attack.  It looks like the fang of a beast of prey.~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: scale fiery-red-drakling-scale small-fiery-red-scale
+shortdesc: a &1F&bi&3e&1r&0&1y R&3&be&1d&0 drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 524289
+hiddenness: 0
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery-red-drakling-scale
+This odd little draconic scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some of its
+fieryness into its holder, promising power and strength to its wearer.~
+~~
+vnum: 521
+location: 26
+values:
+20
+0
+0
+0
+0
+0
+0
+~
+flags: agoprwx 0
+name: purse purse-magic-focuses ragged-pouch strange-smell
+shortdesc: a purse of magic focuses
+desc: A ragged pouch lies on the floor, exuding a strange smell.
+adesc:
+Nothing.~
+type: 15
+weight: 2.00
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+applies:
+3 4
+4 4
+1 4
+6 7
+17 2
+27 4
+~
+extradesc: purse purse-magic-focuses ragged-pouch strange-smell
+This ragged pouch is Fecil's bag of magic focus items.  It permanently stinks
+from the odd things the old shaman had stored there.~
+~~
+vnum: 48109
+location: 27
+values:
+0
+2400
+2400
+0
+0
+0
+0
+~
+flags: gA 0
+name: eye fiery-eye jewel-burning-intense-inner-light questobject
+shortdesc: the fiery eye
+desc: A jewel burning with an intense inner light lies here.
+type: 1
+weight: 0.40
+cost: 900
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 2113537
+hiddenness: 0
+applies:
+18 -1
+13 20
+28 45
+5 2
+24 -10
+27 2
+~
+extradesc: eye fiery-eye jewel-burning-intense-inner-light questobject
+This jewel is the size of your fist!  Beneath its multifaceted surface you
+perceive an intense reddish light so intense it seems a reflection of Vulcera's
+fiery passion and hot desires.~
+~~
+vnum: 48431
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: bAD 0
+name: vial sunlight wax-stoppered-lead-vial sunlight-vial
+shortdesc: a vial of sunlight
+desc: A wax-stoppered lead vial lies here unattended.
+type: 8
+weight: 0.10
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: vial sunlight wax-stoppered-lead-vial sunlight-vial
+A warm, comforting heat comes from this vial.  If it were to be opened,what
+would it release?  Imprinted on the wax stopper is the ancient symbol for
+Timun, the sun god: a four-pointed sun symbol.  But it would take divine power
+to seal something immaterial inside a container....~
+triggers:
+48423
+~
+~~
+vnum: 0
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: bug
+shortdesc: a bug
+desc: This object is BAD!  If you see it, tell a god or post! DO NOT USE THE BUG COMMAND.
+type: 13
+weight: 0.00
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 0
+hiddenness: 0
+~~
+vnum: 1001
+location: 127
+values:
+60
+1
+0
+0
+0
+0
+0
+~
+flags: q 0
+name: sack rough-cloth cloth-sack
+shortdesc: a cloth sack
+desc: A sack made of rough cloth is set here.
+type: 15
+weight: 0.60
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+hiddenness: 0
+extradesc: sack rough-cloth cloth-sack
+It's a simple sack made from a thick white cloth, smaller than a backpack, but
+also much lighter.~
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3056
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll red recall red-recall
+shortdesc: a red scroll of recall
+desc: A red scroll of recall lies here.
+type: 2
+weight: 0.20
+cost: 900
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3027
+location: -1
+values:
+20
+228
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll world-teleport aqua-scroll
+shortdesc: a aqua scroll of world teleport
+desc: A aqua scroll lies here on the ground.
+type: 2
+weight: 0.10
+cost: 2000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3027
+location: -1
+values:
+20
+228
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll world-teleport aqua-scroll
+shortdesc: a aqua scroll of world teleport
+desc: A aqua scroll lies here on the ground.
+type: 2
+weight: 0.10
+cost: 2000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3027
+location: -1
+values:
+20
+228
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll world-teleport aqua-scroll
+shortdesc: a aqua scroll of world teleport
+desc: A aqua scroll lies here on the ground.
+type: 2
+weight: 0.10
+cost: 2000
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3057
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll green recall green-recall
+shortdesc: a green scroll of recall
+desc: A green scroll is lying here. 
+type: 2
+weight: 0.20
+cost: 3
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 299
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0 0
+name: journal quest quest-journal
+shortdesc: the quest journal
+desc: A journal detailing your greatest adventures lays out here.
+type: 12
+weight: 0.01
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+extradesc: journal quest quest-journal
+You do not see that here.~
+extradesc: undefined
+Nothing.~
+triggers:
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+422
+483
+482
+484
+485
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+500
+501
+505
+483
+486
+487
+~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 30010
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: gqD 0
+name: scroll gray recall gray-recall
+shortdesc: a gray scroll of recall
+desc: A gray scroll is lying here.
+type: 2
+weight: 0.12
+cost: 3000
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3058
+location: -1
+values:
+0
+221
+0
+0
+0
+0
+0
+~
+flags: qD 0
+name: scroll blue recall blue-recall
+shortdesc: a blue scroll of recall
+desc: A blue scroll is lying here.
+type: 2
+weight: 0.20
+cost: 600
+timer: 1000
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3053
+location: -1
+values:
+20
+35
+0
+0
+0
+0
+0
+~
+flags: D 0
+name: scroll remove-curse
+shortdesc: a scroll of remove curse
+desc: A rolled up blue scroll rests on the ground.
+type: 2
+weight: 0.18
+cost: 1500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+hiddenness: 0
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3050
+location: -1
+values:
+12
+186
+0
+0
+0
+0
+0
+~
+flags: gD 0
+name: scroll identify identify-scroll
+shortdesc: a scroll of identify
+desc: A scroll has carelessly been left here.
+type: 2
+weight: 0.10
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: scroll identify
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF~
+~~
+vnum: 3170
+location: 127
+values:
+50
+10
+10
+57
+0
+0
+0
+~
+flags: 0 0
+name: doll miniature-griffin-chick-doll itty-bitty-griffin-chick-doll
+shortdesc: a miniature griffin chick doll
+desc: An itty-bitty griffin chick doll tries to lighten up your day!
+type: 4
+weight: 0.50
+cost: 300000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 16385
+hiddenness: 0
+extradesc: doll miniature-griffin-chick-doll itty-bitty-griffin-chick-doll
+It's so teeny and cuddly!  It's so cute!  It has a tiny little beak just big
+enough to fit a worm or finger in!~
+~~

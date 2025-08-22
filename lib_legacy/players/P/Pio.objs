@@ -1,0 +1,84 @@
+1
+vnum: 16902
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: boots white white-boots
+shortdesc: a pair of white boots
+desc: A pair of white boots is here.
+type: 9
+weight: 2.00
+cost: 20
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 65
+applies:
+14 10
+~
+extradesc: boots white white-boots
+The boots are made of a strange sort of leather which is totally white. 
+There is a rather strange feel to it too.
+~
+~~
+vnum: 16902
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: f
+name: boots white white-boots
+shortdesc: a pair of white boots
+desc: A pair of white boots is here.
+type: 9
+weight: 2.00
+cost: 20
+timer: 0
+level: 2
+effects: 0 0 0
+wear: 65
+applies:
+14 10
+~
+extradesc: boots white white-boots
+The boots are made of a strange sort of leather which is totally white. 
+There is a rather strange feel to it too.
+~
+~~
+vnum: 17207
+location: 127
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: c
+name: key green
+shortdesc: a green key
+desc: A green key has been left here.
+type: 18
+weight: 1.00
+cost: 0
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+~~

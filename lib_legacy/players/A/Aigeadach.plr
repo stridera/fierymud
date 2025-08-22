@@ -1,0 +1,104 @@
+name: Aigeadach
+password: AirzEonCUa
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 3
+class: 3
+race: 28
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20562
+birthtime: 1688792221
+timeplayed: 12300
+lastlogintime: 1689256574
+host: 076.184.241.147
+height: 76
+weight: 306
+base_height: 76
+base_weight: 306
+base_size: 2
+natural_size: 2
+alignment: 22
+playerflags: y
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 77/73
+mana: 1/0
+move: 156/156
+damroll: 3
+hitroll: 3
+strength: 85
+intelligence: 78
+wisdom: 65
+dexterity: 80
+constitution: 96
+charisma: 60
+cash: 0 2 32 131
+experience: 41140
+quit_reason: 1
+saveroom: 3054
+skills:
+204 1000
+402 50
+404 68
+415 50
+416 50
+421 61
+438 50
+443 50
+444 61
+455 50
+463 50
+464 50
+465 54
+466 50
+467 50
+468 50
+488 57
+0 0
+trophy:
+1 8020 1.000000
+1 8016 2.000000
+1 8021 2.000000
+1 8001 3.500000
+1 8011 1.333333
+1 8002 3.000000
+1 8022 1.333333
+1 8010 2.000000
+1 8012 3.666667
+1 8015 1.333333
+1 8013 2.000000
+1 8023 0.666667
+1 36001 1.333333
+1 36002 1.000000
+1 36003 1.333333
+1 8000 1.000000
+1 8014 1.833333
+1 51900 1.000000
+0 0 0
+tells:
+1688797216 @WNarin@W tells you, 'Oh@W'@0
+1688798616 @WNarin@W tells you, 'Ahhh@W'@0
+1688798706 @WNarin@W tells you, 'Oh? Most content is meant to be for a group?@W'@0
+1688798751 @WNarin@W tells you, 'Ahh. Understandable.@W'@0
+1688798758 @WNarin@W tells you, 'Thank you.@W'@0
+1688803035 @WCalken@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+$
+gossips:
+1688800812 Narin gossips, 'Grats!!!'
+1688800818 Fianta gossips, 'thanks!!'
+1688801842 Fianta gossips, 'gratz Narin!'
+1688802091 Discord gossips, 'Daedela: Nothing in the house that needs bless is aggro AND there's an item in there that gives you bless!'
+1688802105 Fianta gossips, 'yes i got a green potion!'
+1688802280 Fianta gossips, 'are there two green potions maybe?'
+1688802400 Narin gossips, 'Grats Fianta!'
+1688802404 Fianta gossips, 'thanks!'
+1688802467 Narin gossips, 'Night.'
+1688802574 Fianta gossips, 'what a day! I got to play with a newbie to this mud!'
+$

@@ -1,0 +1,3926 @@
+#53000
+Castle Wall Corner~
+   Rising out of the swamp are the remains of a massive castle wall.  Before
+you lies one corner of the wall, with the wall running south and east of here.
+Even crumbling and blackened by fire they still bar entrance into the interior.
+Plants have overgrown the wall in many areas indicating the walls have remained
+in a state of disrepair for a LONG, LONG time.  Strange.  There does not appear
+to be any structure behind the walls...    ~
+530 0 5
+D1
+~
+~
+0 -1 53007
+D2
+~
+~
+0 -1 53001
+D3
+You see the Northern Swamps.~
+~
+0 -1 7457
+S
+#53001
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs north to south.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D0
+~
+~
+0 -1 53000
+D2
+~
+~
+0 -1 53002
+D3
+You see the Northern Swamps.~
+~
+0 -1 7453
+S
+#53002
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs north to south.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D0
+~
+~
+0 -1 53001
+D2
+~
+~
+0 -1 53003
+D3
+You see the Northern Swamps.~
+~
+0 -1 7446
+S
+#53003
+Crumbling Castle Walls~
+   Rising out of the swamp are the remains of a massive castle wall.  This
+section of the wall has all but collapsed.  Rubble from the wall is spread out
+all over this area of the swamp.  Thick plant growth covers the wall in a
+blanket of green.  Moving aside the growth you can see that the collapsed wall
+offers a way into the interior...    ~
+530 0 0
+D0
+~
+~
+0 -1 53002
+D1
+~
+~
+0 -1 53010
+D2
+~
+~
+0 -1 53004
+D3
+You see the Northern Swamps.~
+~
+0 -1 7439
+S
+#53004
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs north to south.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D0
+~
+~
+0 -1 53003
+D2
+~
+~
+0 -1 53005
+D3
+You see the Northern Swamps.~
+~
+0 -1 7432
+S
+#53005
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs north to south.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D0
+~
+~
+0 -1 53004
+D2
+~
+~
+0 -1 53006
+D3
+You see the Northern Swamps.~
+~
+0 -1 7426
+S
+#53006
+Castle Wall Corner~
+   Rising out of the swamp are the remains of a massive castle wall.  Before
+you lies one corner of the wall, with the wall running north and east of here.
+Even crumbling and blackened by fire they still bar entrance into the interior.
+Plants have overgrown the wall in many areas indicating the walls have remained
+in a state of disrepair for a LONG, LONG time.  Strange.  There does not appear
+to be any structure behind the walls...    ~
+530 0 5
+D0
+~
+~
+0 -1 53005
+D1
+~
+~
+0 -1 53013
+D2
+You see the Northern Swamps.~
+~
+0 -1 7405
+D3
+You see the Northern Swamp Road.~
+~
+0 -1 7419
+S
+#53007
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs east to west.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D1
+~
+~
+0 -1 53014
+D3
+~
+~
+0 -1 53000
+S
+#53008
+Courtyard~
+   Before you lies more swamp.  The castle walls all around you are the only
+indication that this was once a courtyard.  At the far end of the courtyard, to
+the southeast, you can see some sort of cylindrical structure.    ~
+530 0 5
+D1
+~
+~
+0 -1 53015
+D2
+~
+~
+0 -1 53009
+S
+#53009
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  At the far end of the
+courtyard, to the east, you can see some sort of cylindrical structure.    ~
+530 0 5
+D0
+~
+~
+0 -1 53008
+D1
+~
+~
+0 -1 53016
+D2
+~
+~
+0 -1 53010
+S
+#53010
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  At the far end of the
+courtyard, to the east, you can see some sort of cylindrical structure.  A
+breach in the wall offers an exit out of the courtyard.    ~
+530 0 5
+D0
+~
+~
+0 -1 53009
+D1
+~
+~
+0 -1 53017
+D2
+~
+~
+0 -1 53011
+D3
+~
+~
+0 -1 53003
+S
+#53011
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  At the far end of the
+courtyard, to the east, you can see some sort of cylindrical structure.    ~
+530 0 5
+D0
+~
+~
+0 -1 53010
+D1
+~
+~
+0 -1 53018
+D2
+~
+~
+0 -1 53012
+S
+#53012
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  At the far end of the
+courtyard, to the northeast, you can see some sort of cylindrical structure.  ~
+530 0 5
+D0
+~
+~
+0 -1 53011
+D1
+~
+~
+0 -1 53019
+S
+#53013
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs east to west.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D1
+~
+~
+0 -1 53020
+D2
+You see the Northern Swamps.~
+~
+0 -1 7406
+D3
+~
+~
+0 -1 53006
+S
+#53014
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs east to west.  Even crumbling and blackened by fire, they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D1
+~
+~
+0 -1 53021
+D3
+~
+~
+0 -1 53007
+S
+#53015
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  At the far end of the
+courtyard, to the southeast, you can see some sort of cylindrical structure.  ~
+530 0 5
+D1
+~
+~
+0 -1 53022
+D2
+~
+~
+0 -1 53016
+D3
+~
+~
+0 -1 53008
+S
+#53016
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  At the far end of the
+courtyard, to the east, you can see some sort of cylindrical structure.    ~
+530 0 5
+D0
+~
+~
+0 -1 53015
+D1
+~
+~
+0 -1 53023
+D2
+~
+~
+0 -1 53017
+D3
+~
+~
+0 -1 53009
+S
+#53017
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  At the far end of the
+courtyard, to the east, you can see some sort of cylindrical structure.    ~
+530 0 5
+D0
+~
+~
+0 -1 53016
+D1
+~
+~
+0 -1 53024
+D2
+~
+~
+0 -1 53018
+D3
+~
+~
+0 -1 53010
+S
+#53018
+Courtyard~
+   There seems to be something solid under your feet for once and you can take
+refuge from the swamp on some solid ground here.  Partially buried in the muck
+you notice a rusted sword hilt, a blackened piece of leather, and shattered
+bone fragments.  All hint at some disaster the befell this place.  To the east
+you can see some sort of cylindrical structure.  Maybe the answer to this
+mystery lies there?    ~
+530 0 5
+D0
+~
+~
+0 -1 53017
+D1
+~
+~
+0 -1 53025
+D2
+~
+~
+0 -1 53019
+D3
+~
+~
+0 -1 53011
+S
+#53019
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  At the far end of the
+courtyard, to the northeast, you can see some sort of cylindrical structure.  ~
+530 0 5
+D0
+~
+~
+0 -1 53018
+D1
+~
+~
+0 -1 53026
+D3
+~
+~
+0 -1 53012
+S
+#53020
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs east to west.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D1
+~
+~
+0 -1 53027
+D2
+You see the Northern Swamps.~
+~
+0 -1 7407
+D3
+~
+~
+0 -1 53013
+S
+#53021
+Crumbling Castle Wall~
+   Rising out of the swamp are the remains of a massive castle wall.  This
+section of the wall has all but collapsed.  Rubble from the wall is spread out
+all over this area of the swamp.  Thick plant growth covers the wall in a
+blanket of green.  Moving aside the growth you can see that the collapsed wall
+offers a way into the interior...    ~
+530 0 5
+D1
+~
+~
+0 -1 53028
+D2
+~
+~
+0 -1 53022
+D3
+~
+~
+0 -1 53014
+S
+#53022
+Courtyard~
+   There seems to be something solid under your feet for once and you can take
+refuge from the swamp on some solid ground here.  There is evidence that a
+campfire has been made here recently.  To the southeast you can see some sort
+of cylindrical structure.  A breach in the wall to the north offer an exit out
+of the courtyard.    ~
+530 0 5
+D0
+~
+~
+0 -1 53021
+D1
+~
+~
+0 -1 53029
+D2
+~
+~
+0 -1 53023
+D3
+~
+~
+0 -1 53015
+S
+#53023
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  At the far end of the
+courtyard, to the east, you can see some sort of cylindrical structure.    ~
+530 0 5
+D0
+~
+~
+0 -1 53022
+D1
+~
+~
+0 -1 53030
+D2
+~
+~
+0 -1 53024
+D3
+~
+~
+0 -1 53016
+S
+#53024
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  To the east you can see some
+sort of cylindrical structure.    ~
+530 0 5
+D0
+~
+~
+0 -1 53023
+D1
+~
+~
+0 -1 53031
+D2
+~
+~
+0 -1 53025
+D3
+~
+~
+0 -1 53017
+S
+#53025
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  At the far end of the
+courtyard, to the east, you can see some sort of cylindrical structure.    ~
+530 0 5
+D0
+~
+~
+0 -1 53024
+D1
+~
+~
+0 -1 53032
+D2
+~
+~
+0 -1 53026
+D3
+~
+~
+0 -1 53018
+S
+#53026
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  At the far end of the
+courtyard, to the northeast, you can see some sort of cylindrical structure.  ~
+530 0 5
+D0
+~
+~
+0 -1 53025
+D1
+~
+~
+0 -1 53033
+D3
+~
+~
+0 -1 53019
+S
+#53027
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs east to west.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D1
+~
+~
+0 -1 53034
+D2
+You see the Northern Swamps.~
+~
+0 -1 7408
+D3
+~
+~
+0 -1 53020
+S
+#53028
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs east to west.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D1
+~
+~
+0 -1 53035
+D3
+~
+~
+0 -1 53021
+S
+#53029
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  Off to the southeast you can
+see some sort of cylindrical structure.    ~
+530 0 5
+D1
+~
+~
+0 -1 53036
+D2
+~
+~
+0 -1 53030
+D3
+~
+~
+0 -1 53022
+S
+#53030
+Near the Tower~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  Immediately to the southeast
+you can see some sort of cylindrical structure...  It looks like a tower.    ~
+530 0 5
+D0
+~
+~
+0 -1 53029
+D1
+~
+~
+0 -1 53037
+D2
+~
+~
+0 -1 53031
+D3
+~
+~
+0 -1 53023
+S
+#53031
+Near the Tower~
+   Directly in front of you, to the east, lies a blackened, crumbling tower.  
+Rising some 50 feet out the swamp, it looks like a watch tower of some sort.  
+Slightly tilted it would appear to have settled into the swamp over the years.
+If this is the watch tower of a castle, where is the rest of the castle?    ~
+530 0 5
+D0
+~
+~
+0 -1 53030
+D2
+~
+~
+0 -1 53032
+D3
+~
+~
+0 -1 53024
+S
+#53032
+Near the Tower~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  Immediately to the northeast
+you can see some sort of cylindrical structure...  It looks like a tower.    ~
+530 0 5
+D0
+~
+~
+0 -1 53031
+D1
+~
+~
+0 -1 53039
+D2
+~
+~
+0 -1 53033
+D3
+~
+~
+0 -1 53025
+S
+#53033
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  At the far end of the
+courtyard, to the northeast, you can see some sort of cylindrical structure.  ~
+530 0 5
+D0
+~
+~
+0 -1 53032
+D1
+~
+~
+0 -1 53040
+D3
+~
+~
+0 -1 53026
+S
+#53034
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs east to west.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D1
+~
+~
+0 -1 53041
+D2
+You see the Northern Swamps.~
+~
+0 -1 7409
+D3
+~
+~
+0 -1 53027
+S
+#53035
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs east to west.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D1
+~
+~
+0 -1 53042
+D3
+~
+~
+0 -1 53028
+S
+#53036
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  Off to the south you can see
+some sort of cylindrical structure.    ~
+530 0 5
+D1
+~
+~
+0 -1 53043
+D2
+~
+~
+0 -1 53037
+D3
+~
+~
+0 -1 53029
+S
+#53037
+Near the Tower~
+   Directly in front of you, to the south, lies a blackened, crumbling tower.
+Rising some 50 feet out the swamp, it looks like a watch tower of some sort.  
+Slightly tilted it would appear to have settled into the swamp over the years.
+If this is the watch tower of a castle....  Where is the rest of the castle?  
+Hidden among the plant growth that hangs from the tower you notice a section of
+the wall that has crumbled away revealing a way into the gloomy darkness of the
+tower.    ~
+530 0 5
+D0
+~
+~
+0 -1 53036
+D1
+~
+~
+0 -1 53044
+D2
+~
+~
+0 -1 53038
+D3
+~
+~
+0 -1 53030
+S
+#53038
+Watch Tower Entrance~
+   Darkness, dust, and cobwebs cover everything inside the tower.  Broken bits
+of wood and rubble lie about in piles.  A single staircase, upon which you are
+standing is attached to the inner wall and winds its way up to the top of the
+watch tower.  However, more intriguing are the stairs that drop away into the
+even inkier darkness of below...    ~
+530 12 0
+D0
+~
+~
+0 -1 53037
+D4
+~
+~
+0 -1 53056
+D5
+~
+~
+0 -1 53058
+S
+#53039
+Near the Tower~
+   Directly in front of you, to the north, lies a blackened, crumbling tower.
+Rising some 50 feet out the swamp, it looks like a watch tower of some sort.  
+Slightly tilted it would appear to have settled into the swamp over the years.
+If this is the watch tower of a castle, where is the rest of the castle?    ~
+530 0 5
+D1
+~
+~
+0 -1 53046
+D2
+~
+~
+0 -1 53040
+D3
+~
+~
+0 -1 53032
+S
+#53040
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  Off to the north you can see
+some sort of cylindrical structure.  A breach in the wall to south offer an
+exit out of the courtyard.    ~
+530 0 5
+D0
+~
+~
+0 -1 53039
+D1
+~
+~
+0 -1 53047
+D2
+~
+~
+0 -1 53041
+D3
+~
+~
+0 -1 53033
+S
+#53041
+Crumbling Castle Wall~
+   Rising out of the swamp are the remains of a massive castle wall.  This
+section of the wall has all but collapsed.  Rubble from the wall is spread out
+all over this area of the swamp.  Thick plant growth covers the wall in a
+blanket of green.  Moving aside the growth you can see that the collapsed wall
+offers a way into the interior...    ~
+530 0 5
+D0
+~
+~
+0 -1 53040
+D1
+~
+~
+0 -1 53048
+D2
+You see the Northern Swamps.~
+~
+0 -1 7410
+D3
+~
+~
+0 -1 53034
+S
+#53042
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs east to west.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D1
+~
+~
+0 -1 53049
+D3
+~
+~
+0 -1 53035
+S
+#53043
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  Off to the southwest you can
+see some sort of cylindrical structure.    ~
+530 0 5
+D2
+~
+~
+0 -1 53044
+D3
+~
+~
+0 -1 53036
+S
+#53044
+Near the Tower~
+   There seems to be something solid under your feet for once and you can take
+refuge from the swamp on some solid ground here.  There is evidence that a
+campfire has been made here recently.  Immediately to the southwest you can see
+some sort of cylindrical structure.    ~
+530 0 5
+D0
+~
+~
+0 -1 53043
+D2
+~
+~
+0 -1 53045
+D3
+~
+~
+0 -1 53037
+S
+#53045
+Near the Tower~
+   Directly in front of you, to the west, lies a blackened, crumbling tower.  
+Rising some 50 feet out the swamp, it looks like a watch tower of some sort.  
+Slightly tilted it would appear to have settled into the swamp over the years.
+If this is the watch tower of a castle....  Where is the rest of the castle?  ~
+530 0 5
+D0
+~
+~
+0 -1 53044
+D2
+~
+~
+0 -1 53046
+S
+#53046
+Courtyard~
+   There seems to be something solid under your feet for once and you can take
+refuge from the swamp on some solid ground here.  There is evidence that a
+campfire has been made here recently.  Immediately to the northwest you can see
+some sort of cylindrical structure.  A breach in the wall to the east offers an
+exit out of the courtyard.    ~
+530 0 5
+D0
+~
+~
+0 -1 53045
+D1
+~
+~
+0 -1 53053
+D2
+~
+~
+0 -1 53047
+D3
+~
+~
+0 -1 53039
+S
+#53047
+Courtyard~
+   Before you lies more of the swamp.  The castle walls all around you are the
+only indication that this was once a courtyard.  Off to the northwest you can
+see some sort of cylindrical structure.    ~
+530 0 5
+D0
+~
+~
+0 -1 53046
+D3
+~
+~
+0 -1 53040
+S
+#53048
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs east to west.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D1
+~
+~
+0 -1 53055
+D2
+You see the Northern Swamps.~
+~
+0 -1 7411
+D3
+~
+~
+0 -1 53041
+S
+#53049
+Castle Wall Corner~
+   Rising out of the swamp are the remains of a massive castle wall.  Before
+you lies one corner of the wall, with the wall running south and west of here.
+Even crumbling and blackened by fire they still bar entrance into the interior.
+Plants have overgrown the wall in many areas indicating the walls have remained
+in a state of disrepair for a LONG, LONG time.  Strange.  There does not appear
+to be any structure behind the walls...    ~
+530 0 5
+D2
+~
+~
+0 -1 53050
+D3
+~
+~
+0 -1 53042
+S
+#53050
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs north to south.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D0
+~
+~
+0 -1 53049
+D2
+~
+~
+0 -1 53051
+S
+#53051
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs north to south.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D0
+~
+~
+0 -1 53050
+D2
+~
+~
+0 -1 53052
+S
+#53052
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs north to south.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D0
+~
+~
+0 -1 53051
+D2
+~
+~
+0 -1 53053
+S
+#53053
+Crumbling Castle Wall~
+   Rising out of the swamp are the remains of a massive castle wall.  This
+section of the wall has all but collapsed.  Rubble from the wall is spread out
+all over this area of the swamp.  Thick plant growth covers the wall in a
+blanket of green.  Moving aside the growth you can see that the collapsed wall
+offers a way into the interior...    ~
+530 0 5
+D0
+~
+~
+0 -1 53052
+D2
+~
+~
+0 -1 53054
+D3
+~
+~
+0 -1 53046
+S
+#53054
+Ruined Castle Wall~
+   Rising out of the swamp before you are the remains of a massive castle wall
+which runs north to south.  Even crumbling and blackened by fire they still bar
+entrance into the interior.  Plants have overgrown the wall in many areas
+indicating the walls have remained in a state of disrepair for a LONG, LONG
+time.  Strange.  There does not appear to be any structure behind the walls...~
+530 0 5
+D0
+~
+~
+0 -1 53053
+D2
+~
+~
+0 -1 53055
+S
+#53055
+Castle Wall Corner~
+   Rising out of the swamp are the remains of a massive castle wall.  Before
+you lies one corner of the wall, with the wall running north and west of here.
+Even crumbling and blackened by fire they still bar entrance into the interior.
+Plants have overgrown the wall in many areas indicating the walls have remained
+in a state of disrepair for a LONG, LONG time.  Strange.  There does not appear
+to be any structure behind the walls...    ~
+530 0 5
+D0
+~
+~
+0 -1 53054
+D2
+You see the Northern Swamps.~
+~
+0 -1 7412
+D3
+~
+~
+0 -1 53048
+S
+#53056
+Watch Tower Stairs~
+   Rubble and fallen wooden beams makes travel along the stairs difficult.  
+The stairs leading up end at a trap door placed in the ceiling.  Stairs
+continue downward as well.    ~
+530 8 0
+D4
+The trapdoor is set into the ceiling and opens upward. ~
+trapdoor~
+1 -1 53057
+D5
+~
+~
+0 -1 53038
+S
+#53057
+Top of Watch Tower~
+   The top of the watch tower shows signs of continual use.  A fire-pit has
+been built near the center and surrounding it are crudely made straw
+mattresses.  Bits of bone and other rubble are piled up along southern end of
+the tower.  From here one has a commanding view of the entire courtyard.    ~
+530 8 0
+D5
+A small wooden trapdoor is set into the floor. ~
+trapdoor~
+1 -1 53056
+S
+#53058
+Watch Tower Stairs~
+   The sound of dripping water echoes in the darkness.  The walls of the tower
+are broken and uneven as if the earth itself where trying to crush this tower.
+Water from the swamps seeps through the wall in places and a small stream runs
+down the stairs only to plummet over the edge into the darkness.  The stairs
+continue both up and down from here.    ~
+530 8 0
+D4
+~
+~
+0 -1 53038
+D5
+~
+~
+0 -1 53059
+S
+#53059
+Watch Tower Stairs~
+   The tower has nearly buckled here.  Large gaps in the stairs make travel
+slow and treacherous.  Large sections of the wall have crumbled away and in
+many areas the cold earth is visible.  Off to the west, just at the edge of the
+darkness, something catches your eye.  The remains of a window?  Why would
+someone place a window in an underground passage?  Off to the north, where a
+large section of the wall has crumbled away, a crude passageway seems to be dug
+into the earth.  The stairs continue up and down from here.    ~
+530 8 0
+D0
+~
+~
+0 -1 53062
+D4
+~
+~
+0 -1 53058
+D5
+~
+~
+0 -1 53060
+S
+#53060
+Watch Tower Stairs~
+   Ice cold water streams through another window in the tower wall.  The
+presence of another window begins to confirm your suspicions.  This tower was
+not built underground...  Here the walls of the tower have almost total
+crumbled away.  Large uneven sections of earth have forced their way through
+the walls.  Cold and darkness grip you on all sides.  The stairs continue up
+and down from here.    ~
+530 8 0
+D4
+~
+~
+0 -1 53059
+D5
+~
+~
+0 -1 53061
+S
+#53061
+Watch Tower Stairs~
+   Rubble and earth block your descent.  It appears as if the earth has pinched
+the tower together at this point.  Rubble and debris, fallen from above, have
+formed an uneven floor where water has collected forming a small pool.  Water
+continues to trickle down from above, breaking the eerie silence.  Your only
+exit is back the way you came.    ~
+530 264 0
+D4
+~
+~
+0 -1 53060
+S
+#53062
+Earthen Tunnel~
+   Damp cold earth surrounds you.  A crude uneven tunnel has been dug through
+the earth here.  In places the ceiling is supported by heavy wooden beams.  
+Deathly silence clutches you from all sides.  The tunnel leads off to the east.
+  ~
+530 264 0
+D1
+~
+~
+0 -1 53063
+D2
+~
+~
+0 -1 53059
+S
+#53063
+Earthen Tunnel~
+   Damp cold earth surrounds you.  A crude uneven tunnel has been dug through
+the earth here.  In places the ceiling is supported by heavy wooden beams.  
+The tunnel splits here.  Passages run east, west, and south.  The sounds of
+movement from the darkness sends chills down your spine.    ~
+530 264 0
+D1
+~
+~
+0 -1 53065
+D2
+~
+~
+0 -1 53064
+D3
+~
+~
+0 -1 53062
+S
+#53064
+Earth Room~
+   The tunnel leads to a small room.  Huge piles of dirt and earth seem to
+illustrate that attempts to support the roof have failed.  The remains of a
+fire pit and litter strewn about the floor seem to hint that this room is still
+in use.    ~
+530 264 0
+D0
+~
+~
+0 -1 53063
+S
+#53065
+Earthen Tunnel~
+   The tunnel abruptly ends at a curving stone wall with a large window set in
+it.  Is this another tower sunken into the swamp?    ~
+530 264 0
+D1
+~
+~
+0 -1 53066
+D3
+~
+~
+0 -1 53063
+S
+#53066
+Tower Stairs~
+   You are standing inside another tower.  Stairs lead down into the darkness
+below.  Above you the tower has crumbled, exposing the earth.  To the west a
+large window leads to darkness.    ~
+530 8 0
+D3
+~
+~
+0 -1 53065
+D5
+~
+~
+0 -1 53069
+S
+#53067
+Spiral Staircase~
+   A small spiral staircase covered in dust and cobwebs descends down.  A
+landing is just visible to the north.    ~
+530 8 0
+D0
+~
+~
+0 -1 53068
+D5
+~
+~
+0 -1 53074
+S
+#53068
+Stair Landing~
+   Shadows seem to dance at the edge of visibility.  Humanoid bones, tattered
+cloth, and broken weapons lie in a pile along the west wall.  The floors and
+walls are blackened with soot.  Thick cobwebs hang from a vaulted ceiling
+overhead.  A cold chill blows through a broken doorway to the east.  A
+staircase to the south leads down into the darkness...    ~
+530 8 0
+D0
+You see a blackened oak door.~
+door oak blackened~
+1 -1 53070
+D1
+~
+~
+0 -1 53069
+D2
+~
+~
+0 -1 53067
+S
+#53069
+Tower Stairs~
+   The spiraling tower staircase comes to a end here.  Rubble and dirt litter
+the floor in huge piles.  The walls of the tower are blackened as if by a huge
+fire.  To the west a shattered blackened door creaks on a single hinge.    ~
+530 8 0
+D3
+~
+~
+0 -1 53068
+D4
+~
+~
+0 -1 53066
+S
+#53070
+Lounge Room~
+   This appears to have once been a plush lounge area but now it lies in ruin.
+It is obvious a fire once raced through this room.  Everything is covered in
+soot.  Footprints through the soot are everywhere in this room.  Once plush
+furniture is now nothing more than burnt wood and ash.  The north wall that
+once held a massive stained-glass window has collapsed into a pile of stone,
+earth, and shattered glass.  The room continues to the west.    ~
+530 8 0
+D2
+You see a blackened oak door.~
+door oak blackened~
+1 -1 53068
+D3
+~
+~
+0 -1 53071
+S
+#53071
+Lounge Room~
+   For some reason the fire that destroyed the eastern half of the room never
+made it to this part of the room.  However, this room speaks of its own horror.
+The remains of human corpses lie about the room; their limbs torn from their
+bodies.  Dried blood covers everything in the room.  A deathly silence grips
+this room while death and decay assault your nostrils.  A door is placed in the
+south wall.  The room continues to the east.    ~
+530 8 0
+D1
+~
+~
+0 -1 53070
+D2
+Crudely carved into the door are the words, "DEATH AWAITS"~
+door~
+1 -1 53072
+S
+#53072
+Familiar Room~
+   Smashed furniture is thrown everywhere in this darkened room.  The shadows
+seem to dance and circle you while the silence rings in your ears.  Claw marks
+cover the walls and everything else in this room.  Soot and dried blood cover
+the walls and floor.  Humanoid bones litter the room in piles.  Doorways to the
+north and south offer the only exits from this room.    ~
+530 136 0
+D0
+A door with many claw marks.~
+door~
+1 -1 53071
+D2
+A simple door, most likely leading to a closet. Claw marks cover the
+door which has nearly splintered.~
+closet~
+1 -1 53073
+S
+#53073
+Closet~
+   This small closet is filled with piles of rubble, burnt cloth, and bone
+fragments.    ~
+530 8 0
+D0
+You see a simple closet door.~
+closet door~
+1 -1 53072
+D5
+Under a pile of rubble you see a small hole in the floor.~
+trapdoor hole small~
+1 -1 53081
+S
+#53074
+Spiral Staircase~
+   A small staircase spirals upward; an opening to the north leads to a
+hallway.    ~
+530 8 0
+D0
+~
+~
+0 -1 53075
+D4
+~
+~
+0 -1 53067
+S
+#53075
+Guest Hallway~
+   This hallway slopes downward sharply to the west and the walls are cracked
+and bulging in many places.  Broken stone from the walls and ceiling line the
+floor.  Water has seeped through the fractured walls and a trickle of water
+runs off to the west.  Eerie voices seem to come from the shadows.  The hallway
+continues to the west while stairways to the south and east lead up and down
+respectively.  An ornate oak door is to the north.    ~
+530 8 0
+D0
+A brass plaque on this door has been mostly scratched out. All that can
+be made out is the following, "Li   r "~
+door~
+1 -1 53078
+D1
+~
+~
+0 -1 53077
+D2
+~
+~
+0 -1 53074
+D3
+~
+~
+0 -1 53076
+S
+#53076
+Guest Hallway~
+   Twisted, sagging, and broken, this hallway is completely destroyed.  Huge
+piles of broken stonework litter the floor.  A small stream of ice-cold water
+snakes between the rubble and flows under a shattered door to the west.  
+Another door is placed in what remains of the south wall.  The hallway
+continues to the east.    ~
+530 8 0
+D1
+~
+~
+0 -1 53075
+D2
+Although the doorway is fractured this sturdy oak door
+still bars entrance to the room beyond.~
+door sturdy oak~
+1 53007 53081
+D3
+A splintering door creaks crazily on a single hinge.~
+door splintering~
+1 -1 53080
+S
+#53077
+Spiral Staircase~
+   A staircase of old wood descends down a stonework shaft.  With each step
+upon it, the wood strains underfoot, creaking and groaning.    ~
+530 8 0
+D3
+~
+~
+0 -1 53075
+D5
+~
+~
+0 -1 53082
+S
+#53078
+Library~
+   A low ceiling, supported by heavy beams, seems to press down on this room.
+Plush couches and overstuffed chairs are placed about the room.  Their fabric
+has faded over the ages; the prints nearly gone.  Bookcases filled with ancient
+dusty tomes line the walls.  The north wall has collapsed inward spilling the
+priceless texts all over the floor.  The library continues to the west.    ~
+530 8 0
+D2
+~
+door~
+1 -1 53075
+D3
+~
+~
+0 -1 53079
+S
+T 53455
+#53079
+Library~
+   This section of the room survived the descent of the castle virtually
+intact.  Only a handful of old rotting tomes have fallen from the shelves.  
+Fine carpets and plush chairs still decorate the room.  An eerie white light
+emanates from torches, still in their scones, that burn with a ghostly flame.
+A chill runs down your spine as you realize the flame gives off no heat!    ~
+530 8 0
+D1
+~
+~
+0 -1 53078
+S
+T 53455
+#53080
+Guest Room~
+   This room must once have served to accommodate guests of the lords of the
+castle.  An elegant four posted bed lies against the west wall its sheets
+filled with holes.  A splintered table lies on a finely woven rug which covers
+the entire floor.  Cobwebs cling to everything here.  However it is obvious
+this room has seen use over the centuries.    ~
+530 8 0
+D1
+A splintering door creaks crazily on a single hinge.~
+door splintering~
+1 -1 53076
+S
+#53081
+Guest Room~
+   Someone took great pains to restore this room to the condition it existed in
+before the castle sunk into the swamp.  A bed is neatly made against the east
+wall.  A fine dresser and table are placed against the south wall.  Rich carpet
+covers the floor.    ~
+530 8 0
+D0
+A sturdy oak door stands in a fractured doorway.~
+door sturdy oak~
+1 53007 53076
+D4
+You see a trapdoor.~
+trapdoor~
+1 -1 53073
+S
+#53082
+Spiral Staircase~
+   A staircase of old wood is affixed shakily to a stonework shaft.  With each
+step upon it, the wood strains underfoot, creaking and groaning.  The staircase
+leads both up and down.    ~
+530 8 0
+D3
+~
+~
+0 -1 53083
+D4
+~
+~
+0 -1 53077
+D5
+~
+~
+0 -1 53132
+S
+#53083
+Hallway~
+   This narrow hallway has a dark vaulted ceiling.  Shadows seem to dance
+across the distant ceiling.  A low moan rises and falls the length of the
+corridor, intoning sadness and despair.  A layer of dust covers the floor,
+undisturbed for centuries...    ~
+530 8 0
+D1
+~
+~
+0 -1 53082
+D3
+~
+~
+0 -1 53084
+S
+#53084
+Guard Post~
+   From both sides of this narrow hallway deep alcoves of darkness silently
+face each other.  Within each, the crumpled remains of a fallen soldier can be
+made out.  Their flesh rotted away, only a hideous skeleton remains; their
+leather armor, rotting over the years, is filled with holes.  They seem to have
+been guarding the doorway to the west when they met their end.    ~
+530 8 0
+D1
+~
+~
+0 -1 53083
+D3
+You see a sturdy oak door.~
+door sturdy oak~
+1 -1 53085
+S
+#53085
+Dining Hall~
+   Dust fills your lungs, choking you.  The musty smell of death and decay
+swirls around you.  A long table of polished oak lies before you covered by a
+blanket of dust and debris.  In the center of the table a large cake leans
+heavily to one side, its once white frosting turned white with age.  Cobwebs
+drape like dusty lace down every side.  It is obvious no one has disturbed this
+room in centuries.  A shattered window and earthen rubble remind you that you
+are still underground.  The dining hall continues to the north.    ~
+530 8 0
+D0
+~
+~
+0 -1 53086
+D1
+You see a sturdy oak door.~
+door sturdy oak~
+1 -1 53084
+S
+#53086
+Dining Hall~
+   Stained yellow lace drapes the walls of this section of the room.  Cobwebs
+swirl around you and hinder sight.  Chairs have been arranged around the room
+as if in preparation for a banquet.  A layer of dust covers everything here.  
+Against the eastern wall the slumped form of a man lies.  Long dead his skin
+has shriveled and begun to decay.  His finely tailored robes, though decaying,
+are obviously a type worn, centuries ago, by a groom on his wedding day.    ~
+530 8 0
+D0
+This door is made of finely crafted wood with decorative brass fittings.~
+door wood~
+1 -1 53087
+D2
+~
+~
+0 -1 53085
+D3
+A simple door of fine wood with decorative metal bands.~
+door simple wood~
+1 53004 53090
+S
+#53087
+Study~
+   A huge desk of polished mahogany stands in the center of the room.  The
+walls are lined with ancient tomes.  Their leather covers rot and crack from a
+lack of oiling over the centuries.  Light from a fireplace to the east casts an
+eerie illumination in this room.  Shadows seem to dance across the walls.  
+Doorways are positioned to the west and south.  A staircase to the north leads
+down into the heart of the castle.  This room continues to the east.    ~
+530 8 0
+D0
+~
+~
+0 -1 53093
+D1
+~
+~
+0 -1 53088
+D2
+This door is made of finely crafted wood with decorative brass fittings.~
+door wood~
+1 -1 53086
+D3
+Rich, detailed carvings adorn the rich wood of the doorway before you. The
+hinges suffering from a lack of oil have most likely 'frozen' in place. It
+is doubtful you would be able to open this door even if you did possess the
+key to unlock it.~
+door wood rich~
+1 53004 53089
+S
+#53088
+Fireplace~
+   A blazing hearth fire, from a fireplace set along the east wall, fills this
+room with rolling waves of red and amber light.  The stone floor is hidden
+beneath a luxurious rug of bear fur.  Three plush chairs face the heart.  A
+huge painting hangs over the mantlepiece.  Masterfully rendered, it shows the
+likeness of a young man and woman, obviously very much in love.  A thick layer
+of undisturbed dust covers everything in the room.  If no one has been in this
+room in centuries why is the fireplace still burning?  A door is set into the
+north wall.  The room continues to the west.    ~
+530 8 0
+D0
+A stout wooden door of simple design is placed in a simple doorway made
+of polished wood.~
+door stout wooden~
+1 -1 53094
+D1
+You notice a false panel in the rear of the fireplace.~
+panel~
+1 -1 53100
+D3
+~
+~
+0 -1 53087
+S
+#53089
+King's Bedroom~
+   Rotting cloth and dusty cobwebs assault your senses.  Heavy purple curtains
+line the west wall.  Shattered glass and broken stone indicate that there was
+once huge windows along that wall.  Obviously they did not survive the descent
+of the castle.  A large bed canopied by yellowed rotting silken curtains is
+positioned with its headboard against the north wall.  Small tables and spent
+candles are placed about the room.  Undisturbed, this room has lain for
+centuries.  Doors to the east and south offer the only exits from this room.  ~
+530 8 0
+D0
+You notice that a section of the wall pivots.~
+wall~
+1 -1 53092
+D1
+Rich, detailed carvings adorn the rich wood of the doorway before you. The
+hinges suffering from a lack of oil have most likely 'frozen' in place. It
+is doubtful you would be able to open this door even if you did possess the
+key to unlock it.~
+door wood rich~
+1 53004 53087
+D2
+~
+~
+0 -1 53090
+S
+#53090
+Bathing Room~
+   In the center of this room a large, ornate ivory bathtub lies sunken into
+the floor.  Cobwebs drape from the ceiling and dust covers everything.  Lying
+in the middle of the room is the decaying corpse of a young woman.  It appears
+as though the cause of death was a slit throat.    ~
+530 8 0
+D0
+~
+~
+0 -1 53089
+D1
+A simple door of fine wood with decorative metal bands.~
+door simple wood~
+1 53004 53086
+D2
+~
+~
+0 -1 53091
+S
+#53091
+Closet~
+   A musty smell of rotting and decaying cloth permeates through this room.  
+Bits of cloth that once must have been finely tailored robes and cloaks hang
+from the many pegs and hooks that line the walls.  Cobwebs hang from all
+corners of the room.    ~
+530 8 0
+D0
+~
+~
+0 -1 53090
+S
+#53092
+Secret Passageway~
+   This small hallway offers a secret entrance for the maid into the King's
+Bedchamber.  Dust and cobwebs fill the narrow corridor.    ~
+530 8 0
+D0
+It looks like the back-side of a rotating wall.~
+wall door~
+2 -1 53098
+D2
+You see the back-side of a panel. A secret door perhaps?~
+panel door secret~
+2 -1 53089
+S
+#53093
+Spiral Staircase~
+   This spiraling staircase of ancient stone is worn smooth through use in ages
+long forgotten.  Dust lies on the floor and dry cobwebs choke its passage.    ~
+530 8 0
+D2
+~
+~
+0 -1 53087
+D5
+~
+~
+0 -1 53139
+S
+#53094
+Hallway~
+   A narrow hallway leads north.  To the south the hallway ends in a doorway.
+Dust blankets the floor while a mass of cobwebs hang from the ceiling.  No one
+has traveled through this hallway in centuries.    ~
+530 8 0
+D0
+~
+~
+0 -1 53095
+D2
+A stout wooden door of simple design is placed in a simple doorway made
+of polished wood. ~
+door stout wooden~
+1 -1 53088
+S
+#53095
+Great Spiral Staircase Landing~
+   This small vaulted corridor serves as a landing for the great spiral
+staircase to the east.  Hallways lead off to the west and south.  A path
+through the dust indicates that this hallway has been used recently and
+frequently.  The path runs east to west.    ~
+530 8 0
+D1
+~
+~
+0 -1 53096
+D2
+~
+~
+0 -1 53094
+D3
+~
+~
+0 -1 53097
+S
+#53096
+Great Spiral Staircase~
+   You find yourself in a huge, vast, empty tower.  A spiraling staircase both
+rises and descends from here, circling the open shaft.  Thick cobwebs fill the
+tower.  However, someone or something has made a path through the dust and
+cobwebs from this point leading down the stairs.  The staircase rises to the
+north and descends to the south.    ~
+530 8 0
+D0
+~
+~
+0 -1 53104
+D2
+~
+~
+0 -1 53105
+D3
+~
+~
+0 -1 53095
+S
+#53097
+Hall of Statues~
+   Long, low moans drift from alcoves that line both walls of this long hall
+that continues off to the west.  The ceiling has collapsed here spreading earth
+and rubble across the floor.  A statue stands in each of the four alcoves that
+line this section of the hallway.  You notice their faces formed into the
+shapes of terrified men and women.  You notice a path through the dust that
+runs east to west.    ~
+530 8 0
+D1
+~
+~
+0 -1 53095
+D3
+~
+~
+0 -1 53098
+S
+#53098
+Hall of Statues~
+   A hallway with deep alcoves begins here and continues to the east.  In each
+alcove is a statue, a terrified look chiseled into their faces.  To the west a
+narrow staircase drops away into the darkness.  A path through the dust shows
+that this hallway is still in use...    ~
+530 8 0
+D1
+~
+~
+0 -1 53097
+D2
+A section of the wall pivots.~
+wall~
+1 -1 53092
+D3
+~
+~
+0 -1 53099
+S
+#53099
+Servant's Staircase~
+   This narrow stairway descends along grey, dusty stones.  Someone has
+traveled through here recently.    ~
+530 8 0
+D1
+~
+~
+0 -1 53098
+D5
+~
+~
+0 -1 53116
+S
+#53100
+Bell Tower Hallway~
+   This ancient hallway is choked by patches of spider webs.  Their dusty forms
+hide the walls and ceiling from view.  The hallway continues to the east.    ~
+530 8 0
+D1
+~
+~
+0 -1 53101
+D3
+~
+panel~
+1 -1 53088
+S
+#53101
+Bell Tower Hallway~
+   This ancient hallway is choked by patches of spider webs.  Their dusty forms
+hide the walls and ceiling from view.  The hallway ends at a pair of huge
+bronze double doors to the east.  The hallway continues to the west.    ~
+530 8 0
+D1
+Huge bronze double doors of a highly ornate design block your way.~
+door bronze huge double~
+1 53006 53102
+D3
+~
+~
+0 -1 53100
+S
+#53102
+Belfry~
+   Dusty cobwebs fill the area, their musty smell assaulting your senses and
+obscuring sight.  Deep pools of darkness lie all about you as you attempt in
+vain to penetrate the spidery veils.  A single path leads to the center of the
+room where a rope dangles from high above.    ~
+530 8 0
+D0
+A mysterious keyhole is positioned in the wall. ~
+keyhole~
+2 53005 53103
+D3
+Huge bronze double doors of a highly ornate design stand before you.~
+door huge bronze double~
+1 53006 53101
+S
+#53103
+Treasure Room~
+   A huge circular room with a domed ceiling surrounds you.  Dust and cobwebs
+indicate that no one has entered this room in centuries.  Frescos once
+decorated this room but their images have long faded past recognition.    ~
+530 8 0
+D2
+~
+door keyhole~
+2 53005 53102
+S
+#53104
+Great Spiral Staircase~
+   This staircase spirals around the inside of the tower.  After about twenty
+steps the staircase falls away.  Just at the edge of darkness you can see that
+the tower was 'pinched' closed when the castle descended into the swamp.  Your
+only exit is back down the stairs to the south.    ~
+530 8 0
+D2
+~
+~
+0 -1 53096
+S
+#53105
+Great Spiral Staircase~
+   Spiraling around the inside of the tower, this stairway leads down.  A
+landing is to the north.    ~
+530 8 0
+D0
+~
+~
+0 -1 53096
+D5
+~
+~
+0 -1 53111
+S
+#53106
+Archer's Post~
+   Centuries ago archers defended the castle from here.  Very little of the
+walls remain.  The descent of the castle crumbled the walls; moist uneven earth
+forms a little cave here.  Broken stone lies about the floor.    ~
+530 8 0
+D1
+~
+~
+0 -1 53107
+S
+#53107
+Guard's Passageway~
+   Blackened stone forms a narrow hallway that leads east and west from here.
+Blackened timber, ash, and dust line the floor.  The darkness seems especially
+oppressive here.    ~
+530 8 0
+D1
+~
+~
+0 -1 53108
+D3
+~
+~
+0 -1 53106
+S
+#53108
+Guard's Passageway~
+   A narrow hallway with an arched roof leads east and west from here.  Heavy
+timbers support the stone roof.  Rubble from the walls is scattered about the
+hallway.    ~
+530 8 0
+D1
+~
+~
+0 -1 53109
+D3
+~
+~
+0 -1 53107
+S
+#53109
+Guard's Passageway~
+   A narrow hallway with an arched ceiling leads west.  To the east the landing
+to the great spiral staircase can just be made out through the darkness.    ~
+530 8 0
+D1
+~
+~
+0 -1 53110
+D2
+A strange handle is built into the wall.~
+handle strange~
+1 -1 53113
+D3
+~
+~
+0 -1 53108
+S
+#53110
+Great Spiral Staircase Landing~
+   You find yourself in a vast open tower.  A staircase, attached to the inner
+wall of the tower, spirals the open shaft.  The stairway descends to the south
+and rises to the east.  To the west a hallway leads into darkness.    ~
+530 8 0
+D1
+~
+~
+0 -1 53111
+D2
+~
+~
+0 -1 53112
+D3
+~
+~
+0 -1 53109
+S
+#53111
+Great Spiral Staircase~
+   Spiraling around the inside of the tower, this stairway leads up.  A landing
+is to the west.    ~
+530 8 0
+D3
+~
+~
+0 -1 53110
+D4
+~
+~
+0 -1 53105
+S
+#53112
+Great Spiral Staircase~
+   Spiraling around the inside wall of the tower this stairway leads down.  To
+the north is a landing.    ~
+530 8 0
+D0
+~
+~
+0 -1 53110
+D5
+~
+~
+0 -1 53152
+S
+#53113
+Servant's Hallway Corner~
+   The hallway arrives at a corner and leaves both west and south from here.  
+A path through the dust on the floor leads in both directions...  And also to
+the north.    ~
+530 8 0
+D0
+It would appear that a section of this wall can be pressed inward.~
+wall~
+1 -1 53109
+D2
+~
+~
+0 -1 53119
+D3
+~
+~
+0 -1 53114
+S
+#53114
+Servant's Hallway~
+   A narrow hallway made of smooth grey stones leads east and west from here.
+Someone or something has made a path through the dust.    ~
+530 8 0
+D1
+~
+~
+0 -1 53113
+D3
+~
+~
+0 -1 53115
+S
+#53115
+Servant's Hallway~
+   A narrow hallway runs east into the darkness.  Damp grey stones seem to
+press in around you...  Restricting you.  A path through the dust leads east.
+A small doorway is set into the south wall.  To the west a staircase rises into
+obscurity.    ~
+530 8 0
+D1
+~
+~
+0 -1 53114
+D2
+A simple door made of oak is set into the wall. Nothing on the door
+betrays what could lie beyond.~
+door simple oak~
+1 -1 53117
+D3
+~
+~
+0 -1 53116
+S
+#53116
+Servant's Staircase~
+   This narrow stairway ascends along grey, dusty stones.  To the east a
+hallway vanishes into the darkness.  Someone has travelled here recently.    ~
+530 8 0
+D1
+~
+~
+0 -1 53115
+D4
+~
+~
+0 -1 53099
+S
+#53117
+Servant's Quarters~
+   Stained and yellowing lace hangs neatly from 3 canopied beds.  A small,
+broken table rests crazily against the wall on only three legs.  Cobwebs drape
+from the ceiling, but someone has cleared a path to the far end of the room.  
+The room continues to the east.    ~
+530 8 0
+D0
+~
+door simple oak~
+1 -1 53115
+D1
+~
+~
+0 -1 53118
+S
+#53118
+Servant's Quarters~
+   This section of the room is filled with rotting straw that has been bunched
+together into five distinct piles.  Someone may be using these for crude
+mattresses.  Broken bed frames litter the floor.  Dust filled cobwebs hang from
+the corners of this room.  The only exit is back to the west.    ~
+530 8 0
+D3
+~
+~
+0 -1 53117
+S
+#53119
+Servant's Hallway~
+   A narrow hallway of damp, smooth, stones heads both north and south into the
+darkness.  A path through the blanket of dust that covers the floor indicates
+that this hallway still sees frequent use.    ~
+530 8 0
+D0
+~
+~
+0 -1 53113
+D2
+~
+~
+0 -1 53120
+S
+#53120
+Servant's Hallway~
+   A narrow hallway of damp, smooth, grey stones heads north into the darkness.
+A path through the layer of dust that covers the floor indicates this hallway
+still sees frequent use.    ~
+530 8 0
+D0
+~
+~
+0 -1 53119
+D2
+You can make out the vague outline of a door among the stones in this wall.~
+outline wall vague~
+1 -1 53121
+S
+#53121
+Guard Room~
+   This small room must have functioned as a guard post at one time.  Deep
+alcoves flank a huge double-door along the west wall.  To the east another set
+of double-doors silently stands in the cold darkness.  A tiny doorway,
+seemingly forgotten, penetrates the south wall.    ~
+530 8 0
+D0
+You seem to make out the vague outline of a door along this wall.~
+outline wall vague~
+1 -1 53120
+D1
+Huge double doors of finely carved wood stand firm against the ages. The
+carvings on the door seem to depict holy men and women, their names long
+forgotten.~
+door double huge~
+1 -1 53125
+D2
+A door made of simple yet elegant design proudly bars any exit to the south.~
+door~
+1 -1 53131
+D3
+Massive double doors that form a single arch at their top when closed stand
+before you. Their height is well over ten feet tall and bands of rich 
+metal adorn its edges. The center of the door is dominated by a carving of
+what can only be this castle when it once stood proudly on the surface.~
+door massive double~
+1 -1 53122
+S
+#53122
+Throne Room~
+   This immense room stands in chilly, brooding darkness.  Thousands of dust-
+thick cobwebs drape from all corners of this room; the ceiling hidden from
+view.  The west wall has collapsed into a pile of rubble; bare-earth now forms
+the west wall.  Moisture clings to the walls.  To the north a huge staircase
+descends further into the cold and darkness.  Along the east wall are a set of
+double doors.  The room continues to the south.    ~
+530 8 0
+D0
+~
+~
+0 -1 53123
+D1
+Huge double doors well over ten feet in height stand before you. Rich
+metal bands decorate the door and the center is dominated by a carving of
+what can only be this castle when it once stood proudly on the surface.~
+door double huge~
+1 -1 53121
+D2
+~
+~
+0 -1 53124
+S
+#53123
+Great Staircase~
+   At one time this immense stairway was probably one of the most attractive
+points in the castle.  Rich, red carpet lined these wide stairs.  Finely
+chiseled marble hand rails and numerous huge crystal chandeliers completed the
+stairway.  Now it lies in ruins.  The crystal chandeliers lie smashed on the
+steps, thousands of crystal shards litter the stairs.  In many places the
+stairs are cracked from falling rubble which is strewn across the floor.  
+Somehow darkness and silence seem appropriate for this once great stairway.  ~
+530 8 0
+D2
+~
+~
+0 -1 53122
+D5
+~
+~
+0 -1 53140
+S
+#53124
+Dais~
+   A huge throne sits atop a raised dais.  A small door is set into the east
+wall.  The room is damp and chilly.  A strange fungus grows on the walls.  
+Huge piles of rubble are strewn about the floor.    ~
+530 8 0
+D0
+~
+~
+0 -1 53122
+D1
+This door is set into a small alcove making it only visible from up on
+the dais. ~
+door~
+1 -1 53131
+D2
+Behind a partially rotting banner you notice a small door set into the
+wall. It does not contain a handle so you can only guess it opens
+outward.~
+door small banner~
+1 -1 53135
+S
+#53125
+Hall of Grace~
+   This wide hallway has a dark, vaulted ceiling.  Shadows seem to dance across
+the distant ceiling.  A low moan rises out of the silence.  It appears to be
+coming from the east.  But who could tell?    ~
+530 8 0
+D1
+~
+~
+0 -1 53126
+D3
+Huge double doors of finely carved wood stand firm against the ages. The
+carvings on the door seem to depict holy men and women, their names long
+forgotten.~
+door double huge~
+1 -1 53121
+S
+#53126
+Hall of Grace~
+   Once adorned with colorful frescos, the walls are now faded and covered in a
+strange fungus.  The air is dense and choking.  A low moan pierces the silence.
+The hallway ends at a huge double-door to the east.  To the west the hallway
+continues into the darkness.    ~
+530 8 0
+D1
+~
+~
+0 -1 53127
+D3
+~
+~
+0 -1 53125
+S
+#53127
+Royal Balcony~
+   You are standing on a huge balcony that overlooks the castle chapel below.
+Two huge thrones that once stood here can be seen in the rubble below.  A
+decomposing human corpse lies crumpled on floor.  He is dressed in a rotting
+guard's uniform.  Dried blood stains the floor.  Part of the railing has broken
+away; it might be possible to lower yourself to the chapel below.  The balcony
+continues north and south.  Double doors are to the west.    ~
+530 8 0
+D0
+~
+~
+0 -1 53128
+D2
+~
+~
+0 -1 53129
+D3
+~
+~
+0 -1 53126
+D5
+~
+~
+0 -1 53157
+S
+#53128
+Royal Balcony~
+   It was here that important guests of the king or queen would enjoy mass with
+the royal couple.  Now everything lies silent, covered in a blanket of dust.  
+A stairway to the chapel below is to the west.  The balcony continues to the
+south.    ~
+530 8 0
+D2
+~
+~
+0 -1 53127
+D3
+~
+~
+0 -1 53130
+S
+#53129
+Royal Balcony~
+   It was here that important guests of the king or queen would enjoy mass with
+the royal couple.  Now everything lies silent, covered in a blanket of dust.  
+The balcony continues to the north.    ~
+530 8 0
+D0
+~
+~
+0 -1 53127
+S
+#53130
+Chapel Stairs~
+   An ancient wooden stairway filled with dust and cobwebs descends to the
+chapel below. An archway leads off east.~
+530 8 0
+D1
+~
+~
+0 -1 53128
+D5
+~
+~
+0 -1 53155
+S
+#53131
+Briefing Room~
+   Dusty tomes and scrolls line the walls of this room and are strewn about the
+floors.  This may have once been a briefing room for the king.  However, it now
+lies in ruins much like the castle around it.  Footprints in the dust indicate
+this room is still in use.  Doorways are positioned north and west.  A spiral
+staircase is to the east.    ~
+530 8 0
+D0
+A door of simple yet elegant design bars any exit to the north.~
+door simple~
+1 -1 53121
+D1
+~
+~
+0 -1 53132
+D3
+This door bears a brass plaque which reads, 'The King Awaits.' Besides
+the plaque it is a rather uninteresting door that has faired the ages
+rather well.~
+door~
+1 -1 53124
+S
+#53132
+Spiral Staircase~
+   A staircase of old wood is affixed shakily to a stonework shaft.  With each
+step upon it, the wood strains underfoot, creaking and groaning.  The staircase
+leads both up and down.    ~
+530 8 0
+D3
+~
+~
+0 -1 53131
+D4
+~
+~
+0 -1 53082
+D5
+~
+~
+0 -1 53164
+S
+#53133
+Guard's Staircase~
+   An old, rotting wooden staircase is attached to a stone framework and leads
+deeper into the castle.  The wood has rotted because of a small stream of water
+that runs down the steps.    ~
+530 8 0
+D3
+~
+~
+0 -1 53134
+D5
+~
+~
+0 -1 53171
+S
+#53134
+Guard's Passageway~
+   Rubble and earth litter this narrow hallway.  The south wall has collapsed
+in many places exposing the cold, damp earth.  A small stream of icy water
+flows west; it seems to be coming from the east.    ~
+530 8 0
+D1
+~
+~
+0 -1 53133
+D3
+~
+~
+0 -1 53135
+S
+#53135
+Guard's Passageway~
+   A trickle of water seeps through the buckled wall to the south and runs in a
+small stream to the east.  A narrow hallway with an arched ceiling leads both
+east and west.    ~
+530 8 0
+D0
+~
+door~
+1 -1 53124
+D1
+~
+~
+0 -1 53134
+D3
+~
+~
+0 -1 53136
+E
+north~
+The smooth door along the north wall appears to have been designed to
+only be opened from the other side. There is no handle and it appears
+the door opens inward.~
+S
+#53136
+Guard's Passageway~
+   This narrow hallway is choked with dusty cobwebs.  A vaulted ceiling seems
+to press down on you.  Dust layers the floor; however, someone has made a path
+through both the dust and the cobwebs.    ~
+530 8 0
+D0
+~
+~
+0 -1 53137
+D1
+~
+~
+0 -1 53135
+D3
+~
+~
+0 -1 53138
+S
+#53137
+Archer's Post~
+   This is where archers used to defend the castle.  Dirt has poured through
+the arrow slits and covers the floor.  However, over the centuries, the narrow
+arrow slits have become clogged with dirt and silt.  Everything is silent here.~
+530 8 0
+D2
+~
+~
+0 -1 53136
+S
+#53138
+Archer's Post~
+   At one time archers used to defend the keep from here.  The walls must have
+buckled when the castle descended because earth and broken stone cover the
+floor in huge piles.    ~
+530 8 0
+D1
+~
+~
+0 -1 53136
+S
+#53139
+Spiral Staircase~
+   This spiraling staircase of ancient stone is worn smooth through use in ages
+long forgotten.  Dust lies on the floor and dry cobwebs choke its passage.    ~
+530 8 0
+D4
+~
+~
+0 -1 53093
+D5
+~
+~
+0 -1 53150
+S
+#53140
+Great Staircase Landing~
+   The massive stairs arrive at a huge landing.  Stone arches support a ceiling
+covered with frescos.  Faces in the frescos are scratched beyond recognition.
+Dust floats in the air here making it difficult to see.  There are two alcoves
+set into the north wall.  The grand staircase rises up from here and descends
+to the east.    ~
+530 8 0
+D1
+~
+~
+0 -1 53141
+D4
+~
+~
+0 -1 53123
+S
+#53141
+Great Staircase~
+   This once glorious staircase bends here.  Leading west to a small landing
+and down to the great entrance hall.  The marbled hand rails have are broken
+and line the staircase as rubble.  A fallen chandelier has covered the floor
+with tiny shards of crystal.  Strangely one statue along the wall seems
+perfectly intact.  It stares back at you with an impish grin.    ~
+530 8 0
+D3
+~
+~
+0 -1 53140
+D5
+~
+~
+0 -1 53154
+S
+#53142
+Pool Room~
+   At one time archers used to defend the keep from here.  However, the thick
+walls of this room have completed crumbled exposing the bare earth.  This room
+is roughly circular in shape.  Broken pieces of stone and other rubble from the
+collapsed walls has been arranged in a circular formation around a strange pool
+of water.  A slight glow emanates from deep within the pool casting eerie
+shadows across the walls.  Your feet seem to sink into the damp earth.    ~
+530 8 0
+D1
+~
+~
+0 -1 53143
+S
+#53143
+Guard's Passageway~
+   You are standing in a narrow hallway once used by the guards of this castle.
+Its plain stone walls are covered in dust and cobwebs hang everywhere.  The
+hallway runs east to west.    ~
+530 8 0
+D1
+~
+~
+0 -1 53145
+D2
+~
+~
+0 -1 53144
+D3
+~
+~
+0 -1 53142
+S
+#53144
+Archer's Post~
+   Little remains to prove that this was once a post where archer's defended
+the castle.  Rubble and earth cover this room in huge piles.  The air is very
+humid making it hard to breath.    ~
+530 8 0
+D0
+~
+~
+0 -1 53143
+S
+#53145
+Guard's Passageway~
+   You are standing in a narrow hallway once used by the guards of the castle.
+Its plain stone walls are covered in dust and cobwebs hang everywhere.  The
+hallway runs east to west.    ~
+530 8 0
+D1
+~
+~
+0 -1 53146
+D3
+~
+~
+0 -1 53143
+S
+#53146
+Guard's Passageway~
+   You are standing in a narrow hallway once used by the guards of this castle.
+Its plain stone walls are covered in dust and cobwebs hang everywhere.  The
+hallway runs east to west.    ~
+530 8 0
+D1
+~
+~
+0 -1 53147
+D3
+~
+~
+0 -1 53145
+S
+#53147
+Guard's Passageway~
+   You are standing in a narrow hallway that was once used by the guards of
+this castle.  Its plain stone walls are covered in dust and cobwebs hang
+everywhere.  The hallway runs east to west.  To the south a small staircase
+descends into the darkness.    ~
+530 8 0
+D1
+~
+~
+0 -1 53148
+D2
+~
+~
+0 -1 53151
+D3
+~
+~
+0 -1 53146
+S
+#53148
+Servant's Passageway~
+   This narrow passageway allowed the servants coming from the servant's
+entrance to the east to ascend the great spiral staircase to the south without
+disturbing the lords of the castle.  Now it lies in dark silence, unused in
+ages.  Another hallway leads west from here.    ~
+530 8 0
+D1
+~
+~
+0 -1 53149
+D2
+~
+~
+0 -1 53152
+D3
+~
+~
+0 -1 53147
+S
+#53149
+Servant's Entrance~
+   At one time the servants used this entrance to enter the castle.  Now the
+east wall that once held the doorway has collapses in a pile of rubble and
+earth.  A broken table and bits of rotting cloth litter the floor.  A small
+passageway leads west from here.    ~
+530 8 0
+D2
+~
+~
+0 -1 53153
+D3
+~
+~
+0 -1 53148
+S
+#53150
+Spiral Staircase~
+   This spiraling staircase of ancient stone is worn smooth through use in ages
+long forgotten.  Dust lies on the floor and dry cobwebs choke its passage.  
+Fallen rubble has nearly blocked all passage here along the stairs.    ~
+530 8 0
+D4
+~
+~
+0 -1 53139
+D5
+~
+~
+0 -1 53173
+S
+#53151
+Guard's Staircase~
+   A rickety wooden staircase leads down to a lower level of the castle.  
+Black soot covers the floor and the staircase shows sign that it survived a
+fire that raced through this stairwell.  Although judging from the look of the
+staircase it just barely survived.    ~
+530 8 0
+D0
+~
+~
+0 -1 53147
+D5
+~
+~
+0 -1 53175
+S
+#53152
+Great Spiral Staircase Landing~
+   You find yourself in vast tower that rises up into the darkness.  You can
+feel the heavy weight of the tower pressing down on top of you.  A stair- case
+spirals along the inside wall of tower leading up into the inky blackness.  
+You can see a passageway to the north.    ~
+530 8 0
+D0
+~
+~
+0 -1 53148
+D4
+~
+~
+0 -1 53112
+S
+#53153
+Servant's Staircase~
+   A narrow staircase of worn grey stones descends sharply into the darkness.~
+530 8 0
+D0
+~
+~
+0 -1 53149
+D5
+~
+~
+0 -1 53179
+S
+#53154
+Great Staircase~
+   At one time this staircase was probably one of the most attractive spots in
+the castle.  Marbled hand rails, rich red carpet, great crystal chandeliers,
+and fine statues in small alcoves all added to the appeal of this stairway.  
+The descend into the swamp destroyed much of this.  The staircase is now
+cracked and uneven.  One chandelier hangs crazily on one of the three chains
+that once supported it, the other lies shattered on the floor.  The statues lie
+smashed and broken on the steps.  This above all else points at the catastrophe
+that befell this place.    ~
+530 8 0
+D2
+~
+~
+0 -1 53162
+D4
+~
+~
+0 -1 53141
+S
+#53155
+Chapel Stairs~
+   An ancient wooden stairway filled with dusty cobwebs climbs up to the
+balcony overhead.    ~
+530 8 0
+D1
+~
+~
+0 -1 53156
+D4
+~
+~
+0 -1 53130
+S
+#53156
+North Chapel Alcove~
+   This arched room leads to a vast chamber to the south, and a rising
+staircase to the west.  Alcoves in the north and east walls open into this
+room.  With the dark murky confines of the alcoves lurk huge shadowy figures.
+Their stone forms show muscled arms and legs.  Dark shadows fall across their
+faces, obscuring them from sight.    ~
+530 8 0
+D2
+~
+~
+0 -1 53157
+D3
+~
+~
+0 -1 53155
+S
+#53157
+Castle Chapel~
+   Before you lies the chapel of this ancient castle.  Pews and benches lie
+about the floor in jumbled disarray, coated with centuries of dust.  Two large
+thrones lie in the rubble, totally out of place.  A long balcony along the
+south wall overlooks this room.  Bits of stained- glass cover everything; the
+windows apparently shattering when the castle sank into the swamp.  To the
+north and south you see chapel alcoves.  The altar is to the east and
+double-doors lead west.    ~
+530 8 0
+D0
+~
+~
+0 -1 53156
+D1
+~
+~
+0 -1 53159
+D2
+~
+~
+0 -1 53158
+D3
+Huge doors of bronze are covered with various scenes of rather pious looking
+people praying with their arms raised toward the sky.~
+door huge bronze~
+1 -1 53160
+D4
+~
+~
+0 -1 53127
+S
+#53158
+South Chapel Alcove~
+   This arched room leads to a vast chamber to the north.  Alcoves are
+positioned in the south and east walls.  Huge figures, cloaked in shadows lurk
+in the cold, dark confines of the alcoves.  Bright blades clutched firmly in
+their muscled arms.  Dark shadows obscure their faces.    ~
+530 8 0
+D0
+~
+~
+0 -1 53157
+S
+#53159
+Chapel Altar~
+   Before you lies the altar of this once proud and mighty castle.  It somehow
+seems to defy the fate that has befallen the rest of the castle; it stands
+untouched by the ages, free of dust and decay.  A sense of peace surrounds you
+here.    ~
+530 8 0
+D3
+~
+~
+0 -1 53157
+S
+#53160
+Hall of Kings~
+   This dark dank hallway ends in a pair of huge bronze double-doors to the
+east.  The walls are covered with faded frescos which seem to portray the great
+deeds of the former kings of this castle.  You cannot help but wonder of all
+those deeds where in vain.  The hallway continues to the west.    ~
+530 8 0
+D1
+Huge doors of bronze are covered with various scenes of rather pious looking
+people praying with their arms raised toward the sky.~
+door huge bronze~
+1 -1 53157
+D3
+~
+~
+0 -1 53161
+S
+#53161
+Hall of Kings~
+   This wide dark hallway leads eastward into the gloomy heart of the castle.
+Statues, most likely of former kings, line the halls covered in centuries of
+dust and decay.  They seem to watch you as you pass by.  One in particular
+catches your attention.    ~
+530 8 0
+D1
+~
+~
+0 -1 53160
+D3
+Huge doors of bronze tower above you. Across the surface of both doors
+a huge landscape depicts what the surrounding countryside once looked
+like countless centuries ago. A huge fertile valley dominates the
+landscape and in the center a glorious castle rises like a beacon of
+hope and refuge~
+door huge bronze~
+1 -1 53162
+S
+#53162
+Great Entrance Hall~
+   Cobwebs covered with ages of dust hang from columns of this great hall.  
+Shadows seem to dance across the faces of four stone gargoyles, each squatting
+motionlessly on the rim of the domed ceiling.  Huge bronze double-doors stand
+closed to the east.  A wide staircase to the north climbs up into the darkness.
+A dark hallway retreats to the south.    ~
+530 8 0
+D0
+~
+~
+0 -1 53154
+D1
+Huge doors of bronze tower before you. Across the surface of both a
+huge landscape depicts what the surrounding countryside once looked
+like countless centuries ago. A huge fertile valley dominates the
+landscape and in the center a glorious castle rises like a beacon of
+hope and refuge.~
+door~
+1 -1 53161
+D2
+~
+~
+0 -1 53163
+S
+#53163
+Guest's Hallway~
+   This small vaulted hallway leads off from the entrance hall to the north.  
+A thick layer of dust covers the floor, disturbed in many places.  A stairway
+to the west spirals up and down.  Large wooden doors stand slightly open to the
+east.    ~
+530 8 0
+D0
+~
+~
+0 -1 53162
+D1
+~
+~
+0 -1 53164
+D3
+Huge wooden ornately carved with images of feasting tower above you.~
+door huge wooden~
+1 -1 53165
+S
+#53164
+Spiral Staircase~
+   A staircase of old wood is affixed shakily to a stonework shaft.  With each
+step upon it, the wood strains underfoot, creaking and groaning.  The staircase
+leads both up and down.    ~
+530 8 0
+D3
+~
+~
+0 -1 53163
+D4
+~
+~
+0 -1 53132
+D5
+~
+~
+0 -1 53187
+S
+#53165
+Guest's Dining Hall~
+   This massive room was once lit by three large chandeliers which now lie
+smashed on the marble floor.  A long wooden table in the center of the room was
+broken in two by one of the chandeliers.  Rubble, dust, and cobwebs are your
+only companions here.    ~
+530 8 0
+D1
+Huge wooden doors ornately carved with images of feasting tower above you.~
+door huge wooden~
+1 -1 53163
+D2
+~
+~
+0 -1 53169
+S
+#53166
+Archer's Post~
+   At one time archers defended the castle from here.  The wall must have
+buckled when the castle descended for earth and broken stone cover the floor in
+huge piles.  All is silent here.    ~
+530 8 0
+D2
+~
+~
+0 -1 53168
+S
+#53167
+Archer's Post~
+   This is where the archers used to defend the castle.  The narrow arrow slits
+are now clogged with muck and dirt.  Darkness and silence surround you here.  ~
+530 8 0
+D1
+~
+~
+0 -1 53168
+S
+#53168
+Guard's Passageway~
+   Cobwebs drape from the ceiling limiting sigh to a few feet.  Unlike the rest
+of the hallway it appears as though no one has traveled through here in ages.
+Doors are set into the north and west wall, while the hallway continues to the
+east.    ~
+530 8 0
+D0
+~
+~
+0 -1 53166
+D1
+~
+~
+0 -1 53169
+D3
+~
+~
+0 -1 53167
+S
+#53169
+Guard's Passageway~
+   A narrow hallway runs east and west from here.  Many of the heavy beams that
+once supported the arched roof have collapsed and now litter the floor.  It
+would appear as though a section of the ceiling has buckled.    ~
+530 8 0
+D0
+~
+~
+0 -1 53165
+D1
+~
+~
+0 -1 53170
+D3
+~
+~
+0 -1 53168
+S
+#53170
+Guard's Passageway~
+   This narrow hallway has an arched roof supported by heavy beams.  The air is
+incredibly moist causing the torch scones to rust.    ~
+530 8 0
+D1
+~
+~
+0 -1 53171
+D3
+~
+~
+0 -1 53169
+S
+#53171
+Guard's Staircase~
+   An old, rotting wooden staircase is attached to a stone framework.  The wood
+has rotted because of a small stream of water that trickles down the steps.  
+Cobwebs choke this stairway that leads both up and down.  A narrow hallway
+leads off to the west.    ~
+530 8 0
+D3
+~
+~
+0 -1 53170
+D4
+~
+~
+0 -1 53133
+D5
+~
+~
+0 -1 53188
+S
+#53172
+Kingsman's Quarters~
+   These small quarters once housed the most trusted protector of the king.  
+It looks as if a whirlwind once raced through this room.  Furniture is thrown
+about the room and rests against the wall at strange angles.  Shields and
+swords jut from the stone walls as if driven there by some tremendous force.  
+A great penetrating evil surrounds you here.    ~
+530 8 0
+D2
+~
+door~
+1 -1 53174
+D3
+The rough outline of a door can be made out among the stones in this wall.~
+outline wall rough~
+1 -1 53192
+S
+#53173
+Spiral Staircase~
+   This spiraling staircase of ancient stone is worn smooth though use in ages
+long forgotten.  Cobwebs choke its passage and dust covers the floor.    ~
+530 8 0
+D4
+~
+~
+0 -1 53150
+D5
+~
+~
+0 -1 53194
+S
+#53174
+Kingsman Hall~
+   This entire room is covered in black soot.  A powerful fire must have once
+raced through this room.  Burnt and broken furniture is scattered about the
+room.  Blackened armor and weapons lie in piles.  Broken bones lies scattered
+among the ruin.    ~
+530 8 0
+D0
+Unlike the door along the south wall this door survived the fire mostly
+intact. Although blackened by the fire it owes it survival to the thick
+metal bands the outline the door.~
+door blackened~
+1 -1 53172
+D1
+~
+~
+0 -1 53175
+D2
+The door in this wall has been badly blackened by the fire that raced
+through this room. It now hangs on only one hinge.~
+door~
+1 -1 53176
+S
+#53175
+Guard's Staircase~
+   A rickety wooden staircase leads up into the darkness.  Black soot covers
+the walls and in many places the staircase show signs that it survived a dire
+that raced through this narrow stairwell, although just barely.    ~
+530 8 0
+D3
+~
+~
+0 -1 53174
+D4
+~
+~
+0 -1 53151
+S
+#53176
+Guard's Hall~
+   This section of the room lies in total chaos; broken bones lie scattered
+amid the crumpled and crushed plate armor and shields.  A large oaken table,
+bearing deep cuts in its surface, stands in the middle of the room.  The
+hallway continues to the south.    ~
+530 8 0
+D0
+The door set into this wall has been badly blackened by fire. It now swings
+crazily on only one hinge.~
+door~
+1 -1 53174
+D2
+~
+~
+0 -1 53180
+S
+#53177
+Butler's Quarters~
+   This small room is completely bare.  Only dust and cobwebs occupy this room.
+A small pile of straw, possibly a mattress, lies in the northwest corner of
+this room.    ~
+530 8 0
+D2
+~
+door~
+1 -1 53181
+S
+#53178
+Castle Kitchen~
+   A horrible odor assaults your senses as you enter this huge room.  A dark
+cold fireplace is positioned in the north wall.  A huge table, covered with
+various rusting utensils stands in the center of the room.  Large, black iron
+pots are placed against the west wall.  An ominous presence seems to grip this
+room.    ~
+530 8 0
+D2
+~
+door~
+1 -1 53182
+S
+T 18521
+#53179
+Servant's Staircase~
+   A narrow staircase of worn grey stones climbs through a veil of darkness and
+cobwebs.  A hallway is visible to the south.    ~
+530 8 0
+D2
+~
+~
+0 -1 53183
+D4
+~
+~
+0 -1 53153
+S
+#53180
+Guard's Hall~
+   Chilly darkness presses in around you.  Large wooden tables, crushed and
+splintered, seem haphazardly placed around the room.  Dark stains of dried
+blood cover the floor and walls.  Broken swords, crumpled helmets and shields
+are scattered around the room.  The hallway continues to the north.  Doorways
+are to the east and south.    ~
+530 8 0
+D0
+~
+~
+0 -1 53176
+D1
+This wide door has been reinforced with metal bands. It does not seem
+to fit in the doorway properly. It appears as if some great force had
+slammed into the door at one time.~
+door wide~
+1 -1 53181
+D2
+A narrow door made of oak is set into the wall. Cut marks, as if made by
+a sword, cover this side of the door.~
+door narrow oak~
+1 -1 53186
+S
+#53181
+Servant's Hallway~
+   A constricting hallway made of grey dusty stones runs east and west from
+here.  A small doorway set in the north wall is covered over with centuries of
+cobwebs.    ~
+530 8 0
+D0
+This small doorway is covered in cobwebs and dust. It is unlikely that
+anyone has opened this door in centuries.~
+door small~
+1 -1 53177
+D1
+~
+~
+0 -1 53182
+D3
+This wide door has been reinforced with metal bands. It does not seem to
+fit into the doorway properly. It would appear that some great force had
+slammed into the door.~
+door wide~
+1 -1 53180
+S
+#53182
+Servant's Hallway~
+   A narrow hallway cloaked in darkness runs to the east and west.  The hallway
+is made of grey stones which have become slippery because of all the moisture
+in the castle.  Cobwebs have nearly obscured a doorway in the north wall.    ~
+530 8 0
+D0
+A plain oaken door showing the signs of centuries of age is set in a
+stone door frame. A plaque on the door reads, 'Kit hen'~
+door~
+1 -1 53178
+D1
+~
+~
+0 -1 53183
+D3
+~
+~
+0 -1 53181
+S
+#53183
+Servant's Hallway~
+   A narrow hallway leads off to the west from here.  A small staircase rises
+steeply to the north.  To the east an old rotten door is set in a stone frame.~
+530 8 0
+D0
+~
+~
+0 -1 53179
+D1
+This wooden door is covered in a layer of moisture. Sickly green lichen
+covers the door in a think layer. The moisture has begun to warp the
+wood.~
+door wooden~
+1 -1 53185
+D3
+~
+~
+0 -1 53182
+S
+#53184
+Wine Cellar~
+   The huge wooden beams that once supported the low arched ceiling of this
+cellar have collapsed, shattering many of the huge casks that line the walls.
+Broken wood and stone from the crumbling ceiling cover the floor.  The wine
+cellar continues to the south.    ~
+530 8 0
+D2
+~
+~
+0 -1 53185
+S
+#53185
+Wine Cellar~
+   Arched frames of stone form a low wet ceiling over this wine cellar.  Great
+wooden casks of wine line the walls.  Some are broken, their contents long
+since spilled in the floor.  Cobwebs block vision beyond a few feet.  The
+darkness seems to press in around you.  The cellar continues to the north.    ~
+530 8 0
+D0
+~
+~
+0 -1 53184
+D3
+~
+door~
+1 -1 53183
+S
+#53186
+Guard's Run~
+   Sickly green lichen covers the ceiling of this wide passageway that runs
+south from here.  To the north a door blocks passage.  An narrow arched hallway
+runs east.  A deathly silence permeates the room.    ~
+530 8 0
+D0
+A narrow door made of oak is set into the wall. It's simple design
+makes it impossible to judge what is in the room beyond.~
+door narrow oak~
+1 -1 53180
+D1
+~
+~
+0 -1 53187
+D2
+~
+~
+0 -1 53189
+S
+#53187
+Spiral Staircase~
+   A staircase of old wood is affixed shakily to a stonework shaft.  With each
+step upon it, the wood stains underfoot, creaking and groaning.  The staircase
+leads north.  A narrow arched hallway leads west.    ~
+530 8 0
+D3
+~
+~
+0 -1 53186
+D4
+~
+~
+0 -1 53164
+S
+#53188
+Guard's Staircase~
+   An old, rotting wooden staircase is attached to a stone framework.  The wood
+has rotted because of a small stream of water that trickles down the steps.  
+Cobwebs choke this stairway that leads both up and down.  A narrow arched
+hallway leads west.    ~
+530 8 0
+D3
+~
+~
+0 -1 53189
+D4
+~
+~
+0 -1 53171
+D5
+~
+~
+0 -1 53204
+S
+#53189
+Guard's Run~
+   A sickly green lichen covers the ceiling of this hallway.  A spiral
+staircase to the east leads both up and down.  A door to the west seems to lead
+to the guard's quarters.  The hallway leads north.    ~
+530 8 0
+D0
+~
+~
+0 -1 53186
+D1
+~
+~
+0 -1 53188
+D3
+A thick oaken door reinforced with metal bands is set into a stone
+door frame. A brass plaque that once identified the room beyond has
+been scratched out, as if by some savage beast.~
+door thick oak oaken~
+1 -1 53190
+S
+#53190
+Guard's Quarters~
+   A sickly green lichen covers the ceiling of this ten foot wide passage that
+runs off to the west.  Opening off to both sides of this passage way are large
+ten-foot-square alcoves.  Rotting cloth and rags are in the darkness of each
+alcove.  An eerie silence permeates this hallway.    ~
+530 8 0
+D1
+~
+door~
+1 -1 53189
+D3
+~
+~
+0 -1 53191
+S
+#53191
+Guard's Quarters~
+   A sickly green lichen covers the walls and ceiling of this wide hallway.  
+Opening off to both sides of this hallway are ten-foot-square alcoves.  
+Rotting cloth and rags can be made in the darkness of each alcove.  In one the
+rooting corpse of a human lies slumped against the wall.  A deathly silence
+fills the hall, sending a shiver down your spine.    ~
+530 8 0
+D1
+~
+~
+0 -1 53190
+S
+#53192
+Kingsman's Stairway~
+   A narrow stairwell descends into the darkness.    ~
+530 8 0
+D1
+It would appear that a section of the wall can pivot inwards.~
+wall~
+1 -1 53172
+D5
+~
+~
+0 -1 53193
+S
+#53193
+Kingsman's Stairway~
+   A narrow constricting stairway rises sharply into the darkness.    ~
+530 8 0
+D2
+A simple door made of oak is set into the wall. Nothing on the door
+betrays what could lie beyond.~
+door oak~
+1 -1 53195
+D4
+~
+~
+0 -1 53192
+S
+#53194
+Spiral Staircase~
+   This spiraling staircase of ancient stone ends at a door set into the south
+wall.  The air seems especially humid here making it very difficulty to breath.~
+530 8 0
+D2
+A simple door made of oak is set into the wall. Nothing on the door
+betrays what could lie beyond.~
+door oak~
+1 -1 53196
+D4
+~
+~
+0 -1 53173
+S
+#53195
+Brazier Room~
+   This room is well lit by the brazier in the eastern section of this room.  
+High up on the arched roof two huge gargoyles stare down at you, an impish
+smile carved in their face.  The only visible exists from this room are a door
+in the north wall and the rest of the room to the east.    ~
+530 8 0
+D0
+A simple door made of oak is set into the wall. Nothing on the door
+betrays what could lie beyond.~
+door oak~
+1 -1 53193
+D1
+~
+~
+0 -1 53196
+S
+#53196
+Brazier Room~
+   This huge room rises to an arched roof over twenty feet overhead.  In the
+center of this section of the room a huge brazier burns fiercely.  High
+overhead gargoyles smile down on you.  The room continues to the west.  You
+notice a door on the north wall and a black curtain on the south wall.    ~
+530 8 0
+D0
+A simple door made of oak is set into the wall. Nothing on the door
+betrays what could lie beyond.~
+door oak~
+1 -1 53194
+D1
+It looks as though a section of the wall can be pushed inward.~
+wall~
+1 -1 53205
+D2
+~
+curtain~
+1 -1 53197
+D3
+~
+~
+0 -1 53195
+S
+#53197
+Observation Balcony~
+   There are two large thrones on this balcony.  A tattered and torn black
+curtain covers a passageway north.  From here the lords of the castle could
+oversee the torture of prisoners.  Below the balcony to the south is the
+torture, which can be reached by a set of stairs to the west.  Water has
+collected here over the centuries and the torture room to the south is now
+filled with dark, cold water.    ~
+530 8 0
+D0
+~
+curtain~
+1 -1 53196
+D3
+~
+~
+0 -1 53198
+S
+#53198
+Flooded Stairs~
+   This was once the stairway that connected the torture chamber to the south
+with the observation balcony to the east.  Now all but a few steps are below
+water.  The dark waters must rise a good 10 feet off the floor.  Dark shapes
+can be made out in the water.    ~
+530 8 0
+D1
+~
+~
+0 -1 53197
+D2
+~
+~
+0 -1 53199
+S
+#53199
+Flooded Torture Chamber~
+   This entire room lies sunken beneath dark forbidding water.  The strange
+shapes of various torture devices can be made out through the water.  Along the
+south wall, just the water level, a rotting hand is attached to a wall manacle;
+the rest of the body must lie underwater.    ~
+530 8 7
+D0
+~
+~
+0 -1 53198
+D1
+~
+~
+0 -1 53200
+S
+#53200
+Flooded Torture Chamber~
+   The dark shapes of various torture devices can be made out through the
+forbidding water that continues to rise slowly over the centuries.    ~
+530 8 7
+D1
+~
+~
+0 -1 53201
+D3
+~
+~
+0 -1 53199
+S
+#53201
+Flooded Hallway~
+   This hallway lies under six or seven feet of water.  The roof only a few
+feet over head makes travel slow and dangerous.  The water is dark here,
+unwilling to reveal any secrets hidden underwater.  The hallway continues to
+the east and west.  Two smaller hallways lead off to the north and south.    ~
+530 8 7
+D0
+~
+~
+0 -1 53202
+D1
+~
+~
+0 -1 53204
+D2
+~
+~
+0 -1 53203
+D3
+~
+~
+0 -1 53200
+S
+#53202
+Flooded Cells~
+   Judging by the bars that rise out of the water in various places around this
+narrow hallway this would appear to be were the prisoners were kept.  There
+seems to be five small cells along both the east and west walls.  However, the
+bars prevent any entrance.    ~
+530 8 7
+D2
+~
+~
+0 -1 53201
+S
+#53203
+Flooded Cells~
+   Judging by the bars that rise out of the water it would seem that this where
+the prisoners were kept.  There seems to be five cells along the east and west
+walls.  However, the bars prevent any entrance.  The only exit is back the way
+you came.    ~
+530 8 7
+D0
+~
+~
+0 -1 53201
+S
+#53204
+Flooded Staircase~
+   The wooden staircase ends at a flooded hallway.  The trickle of water
+empties out into the flooded hallway.  Only about a 4 foot section of the
+hallway is above water which seems to have flooded the entire lower section of
+the castle.  The only way seems to be back up the way you came.    ~
+530 8 0
+D3
+~
+~
+0 -1 53201
+D4
+~
+~
+0 -1 53188
+S
+#53205
+Secret Hallway~
+   You find yourself in a dark, damp hallway made of rough hewn stones that
+leads off to the north.  A layer of thick fog clings to the floor; it seems to
+clutch at your ankles.    ~
+530 8 0
+D0
+~
+~
+0 -1 53206
+D3
+It appears as if a section of the wall can be pushed in here.~
+wall~
+1 -1 53196
+S
+#53206
+A Bend in the Secret Hallway~
+   This dark hallway made of rough hewn stones leads off south and east from
+here.  A low layer of fog clings to the floor, clutching at your ankles.    ~
+530 8 0
+D1
+~
+~
+0 -1 53207
+D2
+~
+~
+0 -1 53205
+S
+#53207
+Secret Hallway~
+   This hallway made of rough hewn stones runs east to west.  A layer of fog
+covers the floor, clinging to your ankles.    ~
+530 8 0
+D1
+~
+~
+0 -1 53208
+D3
+~
+~
+0 -1 53206
+S
+#53208
+Secret Hallway~
+   This hallway made of rough hewn stones runs east to west.  A layer of fog
+covers the floor, clinging to your ankles.    ~
+530 8 0
+D1
+~
+~
+0 -1 53209
+D3
+~
+~
+0 -1 53207
+S
+#53209
+Secret Hallway~
+   This hallway made of rought hewn stones ends at a door to the east.  To the
+west the hallway retreats into the darkness.  The fog seems to be coming from
+under the door...    ~
+530 8 0
+D1
+A heavy door made of blackened wood stands in thick stone frame. A
+rusting metal plaque bears an inscription which you can just make out,
+"May all who lie here find peace."~
+door~
+1 53008 53210
+D3
+~
+~
+0 -1 53208
+S
+#53210
+Crypt (NW)~
+   An arched ceiling sags over squat crypts forming a maze of catacombs.  A
+thick fog clings to the floor at knee height.  A layer of icy water covers the
+floor up to your ankles.  Cobwebs hang limp in the musty air.  Thick dust has
+settled over everything making it difficult to read the names of those buried
+here.~
+530 8 0
+D1
+~
+~
+0 -1 53211
+D2
+~
+~
+0 -1 53213
+D3
+A heavy door made of blackened wood stands before you. A rusting metal
+plaque bears an inscription which you can just make out, "May all who
+lie here find peace."~
+door~
+1 53008 53209
+S
+#53211
+Crypt (N)~
+   An arched ceiling sags over squat crypts forming a maze of catacombs.  A
+thick fog clings to the floor at knee height.  A layer of icy water covers the
+floor up to your ankles.  Thick dust has settled over everything making it
+difficult to read the names of those buried here.  A few of the heavy stone
+doors of the catacombs have been ripped off, as if by some tremendous force,
+and now lie scattered about this section of the room.    ~
+530 8 0
+D1
+~
+~
+0 -1 53212
+D2
+~
+~
+0 -1 53214
+D3
+~
+~
+0 -1 53210
+S
+#53212
+Crypt (NE)~
+   Thick fog clings to the floor at knee height of this section of the crypt.
+Icy water clutches at your ankles.  All around is silence and the feeling of
+death!  Dusty cobwebs hang limply in the musty air.    ~
+530 8 0
+D2
+~
+~
+0 -1 53215
+D3
+~
+~
+0 -1 53211
+S
+#53213
+Crypt (W)~
+   An arched ceiling sags over squat crypts forming a maze of catacombs.  A
+thick fog clings to the floor at knee height.  A layer of icy water covers the
+floor up to your ankles.    ~
+530 8 0
+D0
+~
+~
+0 -1 53210
+D1
+~
+~
+0 -1 53214
+D2
+~
+~
+0 -1 53216
+S
+#53214
+Crypt (Center)~
+   An arched ceiling sags over squat crypts forming a maze of catacombs.  A
+thick fog clings to the floor at knee height.  A layer of icy water covers the
+floor up to your ankles.  Some of the crypts have been knocked over to the
+south baring any exit in that direction.  A sinister feeling surrounds you
+here.    ~
+530 8 0
+D0
+~
+~
+0 -1 53211
+D1
+~
+~
+0 -1 53215
+D3
+~
+~
+0 -1 53213
+S
+#53215
+Crypt (E)~
+   An arched ceiling overhead sags over squat crypts forming a maze of
+catacombs.  A thick fog clings to the floor at knee height.  A layer of icy
+water covers the floor up to your ankles.  Cobwebs hang limp in the musty air.
+A thick layer of dust has settled over everything making it difficult to read
+the names of those buried here.    ~
+530 8 0
+D0
+~
+~
+0 -1 53212
+D2
+~
+~
+0 -1 53218
+D3
+~
+~
+0 -1 53214
+S
+#53216
+Crypt (SW)~
+   The fog is much thicker here and rises off the floor to waist level.  It is
+pouring into this room from a crack in the ceiling and from here must spread
+out to the rest of the catacombs.  The ground feels uneven here and the fog
+seems to swirl around you.  The squat crypts rise out the fog like black
+sentinels.  Icy water clings to your feet.    ~
+530 8 0
+D0
+~
+~
+0 -1 53213
+S
+#53217
+Crypt (S)~
+   An arched roof sags over squat crypts forming a maze of catacombs.  A thick
+fog clings to the floor at knee height.  Icy water covers the floor up to your
+ankles.  The fog seems to flowing off to the south.    ~
+530 8 0
+D1
+~
+~
+0 -1 53218
+D2
+~
+~
+0 -1 53219
+S
+#53218
+Crypt (SE)~
+   Part of the arched roof overhead has collapsed crushing many of the crypts
+here and spilling their decaying contents on the fog covered floor.  Icy water
+clutches at your ankles.  A feeling of dread sends a shiver through your body.~
+530 8 0
+D0
+~
+~
+0 -1 53215
+D3
+~
+~
+0 -1 53217
+S
+#53219
+Lizard King's Lair~
+   This was once the last resting place of one of the great kings of this
+castle.  The whole room slopes down to the southeast and the lower section is
+flooded with dark water.  A thick fog covers the floor here obscuring the floor
+from view.  A throne, probably taken from somewhere else in the castle has been
+set upon a crudely carved stone dais.  A sick stench permeates this room.    ~
+530 8 0
+D0
+~
+~
+0 -1 53217
+S
+T 6207
+$~

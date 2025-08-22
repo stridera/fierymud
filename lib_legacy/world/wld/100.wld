@@ -1,0 +1,1182 @@
+#10000
+The Arctic Temple~
+   Judging by all the plants growing around here, this section of the Arctic
+Temple is used mainly by northern druids.  Sweet-scented pines and pale,
+tough-looking bushes grow out of the ground, which is bare earth here and not
+stone like the rest of the temple.  The air seems fresher here too, although
+really all air in the north smells fresh.  The chittering of small animals can
+be heard, although none of them are visible.  The temple continues to the south
+and the altar is to the east.
+~
+100 33554440 0
+D1
+You see the Arctic Temple Altar.
+~
+~
+0 -1 10001
+D2
+You see the Arctic Temple.
+~
+~
+0 -1 10005
+S
+#10001
+The Arctic Temple Altar~
+   An altar made of shining blue ice rises here at the heart of the Arctic
+Temple, with no signs of crafting upon it.  Rather, it is as if the altar was
+simply found in its current shape and brough here by the devout.  The walls and
+ceiling are lavishly decorated with holy symbols of the gods of the north, and
+prominent among them is the blue rose of Haddixx.  There is an alcove behind
+the altar, but it is currently empty.  The temple continues to the west, south,
+and east.
+~
+100 33554460 0
+D1
+You see the Arctic Temple.
+~
+~
+0 -1 10002
+D2
+You see the Entrance to the Arctic Temple.
+~
+~
+0 -1 10006
+D3
+You see the Arctic Temple.
+~
+~
+0 -1 10000
+E
+alcove~
+This alcove is empty.  Once it seems that there were some candles or other
+religious articles placed here, but for now there is nothing.    
+~
+S
+T 1833
+#10002
+The Arctic Temple~
+   Standing out of the way, this corner of the Arctic Temple is dedicated to
+meditation.  Although even the busiest days don't see more than a handful of
+pilgrims this far north, the quiet in the section of the temple seems
+unnatural.  It's a bit chilly here, but compared to the normal temperature up
+north it isn't too bad.  Warm-looking fur mats are laid out on the floor so
+that those seeking inner peace won't be distracted by the icy floors.  The
+altar is to the west and the temple also continues to the south.
+~
+100 33554440 0
+D2
+You see the Arctic Temple.
+~
+~
+0 -1 10007
+D3
+You see the Arctic Temple Altar.
+~
+~
+0 -1 10001
+S
+#10003
+The Cleric's Inner Sanctum~
+   Though the heart of any temple's power is at its altar, it seems the second
+most powerful area of the Arctic Temple is right here.  These chambers are
+warm, comfortable, and very peaceful.  Symbols of various northern deities are
+mixed in with personal belongings of Zalish, the High Priest.  A draft of
+cooler air blows in from the main temple to the east, which is the only exit
+from this room.
+~
+100 33554456 0
+D1
+You see the Entrance to the Cleric's Guild.
+~
+~
+0 -1 10004
+S
+#10004
+Entrance to the Cleric's Guild~
+   This narrow hallway connects the Cleric's Guild to the west with the Arctic
+Temple to the east.  A warm glow seems to come from the sanctum, though whether
+this is the result of a holy power or simply due to better heating than the
+rest of the temple is unclear.  There are usually several guards here blocking
+the sanctum from outsiders.
+~
+100 33554440 0
+D1
+You see the Arctic Temple.
+~
+~
+0 -1 10005
+D3
+You see the Inner Sanctum of the Cleric's Guild.
+~
+~
+0 -1 10003
+S
+#10005
+The Arctic Temple~
+   Beautifully carved stone descends from the high ceiling of the rest of the
+temple here, ending in a small passageway to the Cleric's Guild to the west.  
+Hanging from the walls are fantastical carvings made of ice and packed snow,
+kept from melting by the chilly temperature of the temple.  The entrance to the
+temple is back to the east and there seem to be a lot of plants growing to the
+north.
+~
+100 33554440 0
+D0
+You see the Arctic Temple.
+~
+~
+0 -1 10000
+D1
+You see the Entrance to the Arctic Temple.
+~
+~
+0 -1 10006
+D3
+You see the Entrance to the Cleric's Guild.
+~
+~
+0 -1 10004
+S
+#10006
+Entrance to the Arctic Temple~
+   Rising out of the snows of the town of Ickle, the Arctic Temple is chilly
+but lacks the biting cold of the rest of the town.  The entrance area is a
+large atrium with pillars reaching towards the heavens, and the rare blue
+arctic rose twines itself around these pillars, blooming regardless of the
+season.  Although most of the residents of Ickle don't seem to come here on a
+regular basis, the temple is well cared-for by its acolytes.  The altar is to
+the north and the temple continues to the east and west.  Blade Square and the
+rest of Ickle is to the south.
+~
+100 33554456 0
+D0
+You see the Arctic Temple Altar.
+~
+~
+0 -1 10001
+D1
+You see the Arctic Temple.
+~
+~
+0 -1 10007
+D2
+You see the Arctic Square.
+~
+~
+0 -1 10009
+D3
+You see the Arctic Temple.
+~
+~
+0 -1 10005
+E
+rose arctic roses vine vines pillar pillars~
+Seeming too delicate to survive in this harsh environment, the blue arctic rose
+represents the arctic god Haddixx.
+~
+S
+#10007
+The Arctic Temple~
+   The large, open Temple of Haddixx is chilly but not uncomfortable.  Benches
+to rest on are arranged next to alcoves depicting life in the northlands and
+the many legends that surround the town of Ickle: the fall of an elven kingdom,
+a hidden pyramid deep within the ice, a portal with demons emerging from it,
+and even a mighty white dragon.  Despite these rather violent images, it is
+very peaceful in here.  The temple continues to the north and west.
+~
+100 33554440 0
+D0
+You see the Arctic Temple.
+~
+~
+0 -1 10002
+D3
+You see the Entrance to the Arctic Temple.
+~
+~
+0 -1 10006
+S
+#10008
+Blade Square~
+   Blade Square truely is unique in this land.  No where else is the air as
+crisp and captivating.  It could be that Blade Square has surroundings found no
+where else, but there is just something about it.  The square continues along
+south and east from this corner.    
+~
+100 0 1
+D1
+You see the Arctic Square.
+~
+~
+0 -1 10009
+D2
+You see the Arctic Square.
+~
+~
+0 -1 10015
+S
+#10009
+Blade Square~
+   This section of Blade Square is prone to vicious winds flying through it,
+chilling even the most heavily covered creature to the bone.  Directly north is
+the entrance to the Temple of Zalish, while just south lies Ickle's main town
+fountain.    
+~
+100 0 1
+D0
+You see the Entrance to the Arctic Temple.
+~
+~
+0 -1 10006
+D1
+You see the Arctic Square.
+~
+~
+0 -1 10010
+D2
+You see the Arctic Square Fountain.
+~
+~
+0 -1 10016
+D3
+You see the Arctic Square.
+~
+~
+0 -1 10008
+S
+#10010
+Blade Square~
+   Blade Square extends south and west of here.  There is nothing really
+noteworthy here.  There wander about a variety of creatures, many of which are
+the city guards.  The town fountain lies south and west of here.  Yet also east
+there lies some sort of path or trail ending at an unknown location.    
+~
+100 0 1
+D1
+A sunny path lies to the east.
+~
+~
+0 -1 46400
+D2
+You see the Arctic Square.
+~
+~
+0 -1 10017
+D3
+You see the Arctic Square.
+~
+~
+0 -1 10009
+S
+#10011
+The Bank of Ickle~
+   This is a small bank branch in Ickle.  It does serve its intended purpose,
+though it is a wonder why any human would want to run a bank surrounded by
+barbarians.    
+~
+100 33554460 0
+D2
+You see Snowy Boulevard.
+~
+~
+0 -1 10019
+S
+#10012
+Traldi's Weaponry~
+   This is the shop of the notable Traldi Trumward, a renouned story teller.  
+Though he tends to pick the losing side of a battle when placing wagers or even
+if fighting, his knack is recounting the stories.  Traldi is especially good at
+recounting savage, unprovoked attacks making them seem docile and even
+warranted sometimes.  There is much for sale in this shop, much of it discards
+from battles past.  Forge Boulevard lies to the south.    
+~
+100 33554456 0
+D2
+You see Snowy Boulevard.
+~
+~
+0 -1 10021
+S
+#10013
+The Warrior's Inner Sanctum~
+   This simple room serves its function perfectly well.  Warriors from all
+around share accounts of what they have learned in this training arena.  The
+one purpose of this room is filled fully and concisely.    
+~
+100 33554456 0
+D1
+You see the Entrance to the Warrior's Guild.
+~
+~
+0 -1 10014
+S
+#10014
+Entrance to the Warrior's Guild~
+   Here is the entrance for the nearest warriors Inner Sanctum for much of the
+north.  The building itself speaks of its function, being sparce and concise.
+~
+100 33554440 0
+D1
+You see the Arctic Square.
+~
+~
+0 -1 10015
+D3
+You see the Inner Sanctum of the Warrior's Guild.
+~
+~
+0 -1 10013
+S
+#10015
+Blade Square~
+   There is the entrance to a large building west of here.  From the looks of
+it inside would be a kind of guildhouse.  Directly in the opposite direction is
+the town fountain with a statue rising out of the center of it.  The square
+extends also north and south.    
+~
+100 0 1
+D0
+You see the Arctic Square.
+~
+~
+0 -1 10008
+D1
+You see the Arctic Square Fountain.
+~
+~
+0 -1 10016
+D2
+You see the Arctic Square.
+~
+~
+0 -1 10024
+D3
+You see the Entrance to the Warrior's Guild.
+~
+~
+0 -1 10014
+S
+#10016
+The Blade Square Fountain~
+   Despite how the fountain may have been in the past, it has long since gone
+cold.  The water now is cold and bitter, yet still seems like it would be good
+if the need arose.  Even now that the water runs cold it seems it is the
+life-blood of this barbarian town.  What ever the cause for the change in the
+water, it really does not matter.  Blade Square extends in all directions
+around the fountain, north to the Temple of Zalish, west to the warriors guild,
+and to various roads to the south and east.    
+~
+100 0 1
+D0
+You see the Arctic Square.
+~
+~
+0 -1 10009
+D1
+You see the Arctic Square.
+~
+~
+0 -1 10017
+D2
+You see the Arctic Square.
+~
+~
+0 -1 10025
+D3
+You see the Arctic Square.
+~
+~
+0 -1 10015
+S
+#10017
+Blade Square~
+   The length of Forge Boulevard extends east of here.  Distantly that
+direction lies the eastern gates.  The town fountain lies directly west of here
+with the square continuing west, north, and south.    
+~
+100 0 1
+D0
+You see the Arctic Square.
+~
+~
+0 -1 10010
+D1
+You see Snowy Boulevard.
+~
+~
+0 -1 10018
+D2
+You see the Arctic Square.
+~
+~
+0 -1 10026
+D3
+You see the Arctic Square Fountain.
+~
+~
+0 -1 10016
+S
+#10018
+Forge Boulevard~
+   Close by to the west there is Blade Square and all of its interesting
+happenings.  Far to the east on Forge Boulevard lies the east gate of Ickle and
+a few shops.    
+~
+100 0 1
+D1
+You see Snowy Boulevard.
+~
+~
+0 -1 10019
+D3
+You see the Arctic Square.
+~
+~
+0 -1 10017
+S
+#10019
+Forge Boulevard~
+   There are puddles of some slimy goo around that would probably be good to
+avoid.  North of here is the small Ickle Bank.  Forge Boulevard continues on
+east to town gates, or just to the west lies Blade Square.  To the south is
+the post office.
+~
+100 0 1
+D0
+You see the FieryMud Bank Branch at Ickle.
+~
+~
+0 -1 10011
+D1
+You see Snowy Boulevard.
+~
+~
+0 -1 10020
+D2
+~
+~
+0 0 10055
+D3
+You see Snowy Boulevard.
+~
+~
+0 -1 10018
+S
+#10020
+Forge Boulevard~
+   Forge Boulevard runs in both directions here.  Further west is Blade Square,
+and a bit off to the east lies the east gates of Ickle.    
+~
+100 0 1
+D1
+You see Snowy Boulevard.
+~
+~
+0 -1 10021
+D3
+You see Snowy Boulevard.
+~
+~
+0 -1 10019
+S
+#10021
+Forge Boulevard~
+   There are body parts from some unknown beast strewn on one side of the
+street which continues east to the east gates, or on further west.  Traldi's
+Weaponry shop is north, while Vran tends to his leather goods south.    
+~
+100 0 1
+D0
+You see Traldi's Weaponry.
+~
+~
+0 -1 10012
+D1
+You see the Inside of the East Gate.
+~
+~
+0 -1 10022
+D2
+You see Vran's Leather Shop.
+~
+~
+0 -1 10027
+D3
+You see Snowy Boulevard.
+~
+~
+0 -1 10020
+S
+#10022
+Inside Ickle's East Gate~
+   This is the easternmost outskirts of Ickle.  The strength of these gates
+appears to have been well tested over time, as they are becoming battered and
+worn down.  Forge Boulevard lies to the west of here, leading into town.    
+~
+100 0 1
+D1
+You see the Outside of the East Gate.
+~
+~
+0 -1 10023
+D3
+You see Snowy Boulevard.
+~
+~
+0 -1 10021
+S
+#10023
+Outside Ickle's East Gate~
+   This is the outside of Ickle's Eastern Gates.  There is a trail starting off
+east which almost seems to lead towards a large mountain, which dominates the
+skyline in that direction.  Ickle lies back to the west, through the battered
+gates.    
+~
+100 68 1
+D1
+You see the trail to Mt. FrostBite.
+~
+~
+0 -1 10200
+D3
+You see the Inside of the East Gate.
+~
+~
+0 -1 10022
+S
+#10024
+Blade Square~
+   There is a large building west of here, though there does not seem to be an
+entrance for it here.  Blade Square extends in the north and east direction
+from here, with the town fountain in the center.    
+~
+100 0 1
+D0
+You see the Arctic Square.
+~
+~
+0 -1 10015
+D1
+You see the Arctic Square.
+~
+~
+0 -1 10025
+S
+#10025
+Blade Square~
+   Just south of this part of Blade Square is a slightly desolate section of
+Fire Avenue which runs off to the south.  Just north is Ickle's town fountain.
+Distantly west there looks to be a large wall of some kind, probably a section
+of building.    
+~
+100 0 1
+D0
+You see the Arctic Square Fountain.
+~
+~
+0 -1 10016
+D1
+You see the Arctic Square.
+~
+~
+0 -1 10026
+D2
+You see Frost Avenue.
+~
+~
+0 -1 10028
+D3
+You see the Arctic Square.
+~
+~
+0 -1 10024
+S
+#10026
+Blade Square~
+   This corner of Blade Square seems cozy compaired to the rest.  The torch
+light around illuminates the carved walls, giving them an almost life-like
+feeling.  Blade Square continues north and west of here.    
+~
+100 0 1
+D0
+You see the Arctic Square.
+~
+~
+0 -1 10017
+D3
+You see the Arctic Square.
+~
+~
+0 -1 10025
+S
+#10027
+Vran's Leather Shop~
+   You are standing in Vran's Leather Shop.  Vran is surprisingly well-stocked
+for such a small shop in the middle of nowhere.  There is only one exit.  
+Snowy Boulevard is just north of here.    
+~
+100 33554456 0
+D0
+You see Snowy Boulevard.
+~
+~
+0 -1 10021
+S
+#10028
+Fire Avenue~
+   This is the only north-south road in Ickle, connecting Blade Square to Skull
+Way and the south gate of town.  Directly north is Blade Square and just south
+is the intersection with Blood Lane.  The smell of horses drifts in through the
+wide-open door of a stable to the west.    
+~
+100 0 1
+D0
+You see the Arctic Square.
+~
+~
+0 -1 10025
+D1
+~
+~
+0 -1 10058
+D2
+You see Frost Avenue.
+~
+~
+0 -1 10032
+D3
+~
+~
+0 -1 10056
+S
+#10029
+Karr's Pub~
+   The crowds of Ickle are often unruly and brash.  Those occupying the pub at
+the moment are no exception.  There is a large amount of drunken, loud
+creatures roaring and cackling at eachother.  Karr's business indeed is doing
+quite well, even though few of the folk that do not call Ickle home do not
+frequent here.  Blood Lane lies to the south, providing some escape from the
+noise.    
+~
+100 33554456 0
+D2
+You see Polar Lane.
+~
+~
+0 -1 10034
+S
+T 48200
+#10030
+The Mage's Inner Sanctum~
+   This is the Inner Sanctum for those who study sorcery around Ickle.  Cold as
+the other parts of town, this Guildhouse is none the less, different.  It seems
+as though the room shifts in and out of this plane of existance, seemingly at
+random, just conveying the raw magic stored within these walls and the ArchMage
+who stands here.    
+~
+100 33554456 0
+D2
+You see the Entrance of the Mage's Guild.
+~
+~
+0 -1 10036
+S
+#10031
+Ariana's General Store~
+   Ariana has a quite nice General Store.  It appears as though she has
+expanded on the original building, making the store wide and vast.  The
+shelves are stocked high with items for sale, and it does look as though Ariana
+and her clerk could ward off and attempt at theft.  Blood Lane and Fire Avenue
+are directly east of here.    
+~
+100 33554456 0
+D1
+You see Frost Avenue.
+~
+~
+0 -1 10032
+S
+#10032
+Fire Avenue and Blood Lane Intersection~
+   Here Fire Avenue intersects with Blood Lane, which runs off to the east
+towards a variety of shops.  The torch light on Fire Avenue nicely accentuates
+the shop signs and advertisements stretching down Blood Lane.  Fire Avenue
+continues north to Blade Square and south towards the southern gate and to
+Skull Way.    
+~
+100 0 1
+D0
+You see Frost Avenue.
+~
+~
+0 -1 10028
+D1
+You see Polar Lane.
+~
+~
+0 -1 10033
+D2
+You see Frost Avenue.
+~
+~
+0 -1 10038
+D3
+You see Ariana's General Store.
+~
+~
+0 -1 10031
+S
+#10033
+Blood Lane~
+   The intersection with Fire Avenue lies directly west of here.  To the east
+Blood Lane continues on to some shops which would likely prove useful to those
+needing supplies.  Some odd bits of trash litter the street, much of it
+probably discarded material that no one needed any longer.    
+~
+100 0 1
+D1
+You see Polar Lane.
+~
+~
+0 -1 10034
+D3
+You see Frost Avenue.
+~
+~
+0 -1 10032
+S
+#10034
+The End of Blood Lane~
+   This is a section of town favored particularly by the locals.  Karr's Pub
+lies north drawing in a majority of the traffic.  Mara's Bakery to the east
+also seems to pull in some of the town's consumers, while the Yeti Inn to the
+south houses all the weary travelers that ventured into this land.    
+~
+100 0 1
+D0
+You see Karr's Pub.
+~
+~
+0 -1 10029
+D1
+You see Mara's Bakery.
+~
+~
+0 -1 10035
+D2
+You see the Yeti Inn.
+~
+~
+0 -1 10039
+D3
+You see Polar Lane.
+~
+~
+0 -1 10033
+S
+#10035
+Mara's Bakery~
+   Smell is a powerful sense, and the scent of Mara's wonderful baking is
+becoming overwhelming.  Just west is Blood Lane, but the aroma of freshly baked
+goods are aluring to most people.    
+~
+100 33554456 0
+D3
+You see Polar Lane.
+~
+~
+0 -1 10034
+S
+#10036
+Entrance to the Mage's Guild~
+   This is a small-ish room where coats may be hung.  Stone benches lie on
+either side of the room.  The south exit leads to a cold snowy street, while a
+foreboding doorway leads north into the heart of the guild.
+~
+100 33554440 0
+D0
+You see the Inner Sanctum of the Mage's Guild.
+~
+~
+0 -1 10030
+D2
+You see Icy Way.
+~
+~
+0 -1 10042
+S
+#10037
+Fur by Surr~
+   It is quite obvious by the looks of the high quality merchandise here why
+Surr is all the rage.  There are stacks of interesting clothing, all of which
+is for sale.  Skull Way lies as the only exit south.    
+~
+100 33554456 0
+D2
+You see Icy Way.
+~
+~
+0 -1 10044
+S
+#10038
+Fire Avenue~
+   This is a relatively plain section of Fire Avenue.  Along the sides still
+are smoking torches that could be burning more brightly.  It seems that this is
+where the north part of Ickle connects to the smaller southern part.  Fire
+Avenue continues north to Blade Square passed Blood Lane, and south to Skull
+Way and the south gate.    
+~
+100 0 1
+D0
+You see Frost Avenue.
+~
+~
+0 -1 10032
+D2
+You see the corner of Frost Avenue and Icy Way.
+~
+~
+0 -1 10046
+S
+#10039
+The Yeti Inn~
+   The Yeti Inn has been heard of all around this land.  That could partially
+be because people of the north really have no other near by towns to stay
+safely in for the night.  North lies Blood Lane, while down is the Yeti Inn
+reception area.    
+~
+100 33554440 0
+D0
+You see Polar Lane.
+~
+~
+0 -1 10034
+D5
+You see the Reception Area.
+~
+~
+0 -1 10053
+S
+#10040
+Outside Ickle's West Gate~
+   This is to the outside of the Western Gates of Ickle.  West from this point
+begins the Sirestis Trail, which does not see much traffic and is becoming
+overgrown in spots.  The town Ickle lies east of here.    
+~
+100 68 1
+D1
+You see the Inside of the West Gate.
+~
+~
+0 -1 10041
+D3
+~
+~
+0 0 36400
+S
+#10041
+Inside Ickle's West Gate~
+   This is the westernmost outskirts of Ickle.  The strength of these gates
+appears to have been well tested over time, as they are becoming battered and
+worn down.  Skull Way lies to the east of here, leading into town.    
+~
+100 0 1
+D1
+You see Icy Way.
+~
+~
+0 -1 10042
+D3
+You see the Outside of the West Gate.
+~
+~
+0 -1 10040
+S
+#10042
+Skull Way~
+   Skull way begins here, leading east into the snowy village.  The town gates
+are directly to the west.  On the north is an imposing structure with stone
+walls with stout wooden beams reinforcing the corners; it bears the mark of the
+Sorcerers' Guild.  To the south, a smaller stone building gives off a
+flickering bluish light through the narrow doorway.  A sign beside the door
+states simply, "Kilaxi Magic Shop".
+~
+100 0 1
+D0
+You see the Entrance to the Mage's Guild.
+~
+~
+0 -1 10036
+D1
+You see Icy Way.
+~
+~
+0 -1 10043
+D2
+You see Kilaxi's Magic Shop.
+~
+~
+0 -1 10049
+D3
+You see the Inside of the West Gate.
+~
+~
+0 -1 10041
+S
+#10043
+Skull Way~
+   The light along Skull Way is dimmer here than most other parts of the road.
+Immediately east is a section of shops, and further along east is the
+intersection with Fire Avenue.  West of here is the western town gates, and the
+mages guildhouse.    
+~
+100 0 1
+D1
+You see Icy Way.
+~
+~
+0 -1 10044
+D3
+You see Icy Way.
+~
+~
+0 -1 10042
+S
+#10044
+Skull Way~
+   The buzz about this strip of Skull way is Fur by Surr to the north.  There
+is also a smaller shop housing Garm's Shields south.  Off further west is the
+western gate while is seems busy further east towards the intersection of Skull
+Way with Fire Avenue.    
+~
+100 0 1
+D0
+You see the "Fur by Surr" shop.
+~
+~
+0 -1 10037
+D1
+You see Icy Way.
+~
+~
+0 -1 10045
+D2
+You see Garm's Shield Shop.
+~
+~
+0 -1 10050
+D3
+You see Icy Way.
+~
+~
+0 -1 10043
+S
+#10045
+Skull Way~
+   This section of Skull Way has surprisingly little traffic considering how
+busy it is both east and west of here.  To the east is the intersection of
+Skull Way with Fire Avenue, while west are some shops and distantly the west
+gate.
+~
+100 0 1
+D1
+You see the corner of Icy Way and Frost Avenue.
+~
+~
+0 -1 10046
+D3
+You see Icy Way.
+~
+~
+0 -1 10044
+S
+#10046
+The Corner of Fire Avenue and Skull Way~
+   This is one of the busier intersections of Ickle.  Skull way extending off
+to the west towards some shops and the western gate meets with Fire Avenue
+which leads to the northern part of town.  Directly east is the Mercenary
+guildhouse and south is the southern gate leading out of town.    
+~
+100 0 1
+D0
+You see Frost Avenue.
+~
+~
+0 -1 10038
+D1
+You see the Entrance to the Ranger's Guild.
+~
+~
+0 -1 10047
+D2
+You see the Inside of the South Gate.
+~
+~
+0 -1 10051
+D3
+You see Icy Way.
+~
+~
+0 -1 10045
+S
+#10047
+Entrance to the Mercenary's Guild~
+   This is the entrance to the Mercenary's Inner Sanctum here in Ickle.  It
+would seem many rogue types enter this place, but it is not really known why.
+All true rogues, once they complete any formal training, usually never return.
+The inside is east, and there is the intersection of Skull Way and Fire Avenue
+west.    
+~
+100 33554440 0
+D1
+You see the Inner Sanctum of the Ranger's Guild.
+~
+~
+0 -1 10048
+D3
+You see the corner of Frost Avenue and Icy Way.
+~
+~
+0 -1 10046
+S
+#10048
+The Mercenary Inner Sanctum~
+   This is the training ground for those who are alone much of the time.  The
+training area is sharply contrasted, the more advanced of the mercenaries study
+on the northern side, while the newer ones begin in the southern section.  A
+very elite and highly trained mercenary stands here prepared to help those
+worthy.    
+~
+100 33554456 0
+D3
+You see the Entrance to the Ranger's Guild.
+~
+~
+0 -1 10047
+S
+#10049
+Kilaxi's Magic Shop~
+   Kilaxi's Magic Shop, being the nearest shop of spells for great distances,
+makes him quite wealthy.  Aside from the store being in a state of utter chaos,
+it is well stocked with magical merchandise for the pleasure or amusement of
+those who might purchase them.  Skull Way lies as the only exit from here, to
+the north.    
+~
+100 33554456 0
+D0
+You see Icy Way.
+~
+~
+0 -1 10042
+S
+#10050
+Garm's Shields~
+   Garm has a fabulous selection of shields avalible for purchase.  Though some
+of the better and more expensive of them have been sold, there are still many
+quality items avalible.  Garm has always had a healthy competition between he
+and Surr, who's shop lies just across Skull Way to the north.    
+~
+100 33554456 0
+D0
+You see Icy Way.
+~
+~
+0 -1 10044
+S
+#10051
+Inside Ickle's South Gate~
+   This is the southernmost outskirts of Ickle.  The strength of these gates
+appears to have been well tested over time, as they are becoming battered and
+worn down.  Fire Avenue lies to the north of here, leading into town.    
+~
+100 0 1
+D0
+You see the corner of Frost Avenue and Icy Way.
+~
+~
+0 -1 10046
+D2
+You see the Outside of the South Gate.
+~
+~
+0 -1 10052
+S
+#10052
+Outside Ickle's South Gate~
+   This is the outside of Ickle's Southern Gates.  Just south is the beginning
+of Nikozian Trail, which heads south to green fields and warmer climates.    
+~
+100 68 1
+D0
+You see the Inside of the South Gate.
+~
+~
+0 -1 10051
+D2
+You see the Nikozian Trail.
+~
+~
+0 -1 55550
+S
+#10053
+The Yeti Inn Reception Area~
+   The reception area of the Yeti Inn is highly decorated, probably trying to
+draw in patrons though that effort is unnessecary.  The insides of the rooms
+are probably not this nice, but that cannot be determined until after you rent
+for the night.    
+~
+100 33554460 0
+D4
+You see the Entrance to the Yeti Inn.
+~
+~
+0 -1 10039
+S
+#10055
+The Ickle Post Office~
+   The room is small and cozy with dark hardwood floors as if some form of
+company with deep pockets could build a sturdy post in this barren wilderness.
+A long counter adorns the south side of the room with barred embattlements
+spaced as though lines should form infront of each.  There are slots along the
+west side and a list of times on a sign.    
+~
+100 33554460 0
+D0
+~
+~
+0 0 10019
+S
+#10056
+Faric's Stables~
+   Faric's stables hold a variety of mounts, from staid, locally-bred
+clydesdales to spirited mustangs captured from nearby herds.  The stalls appear
+to be clean and well-maintained.  The smell is rather strong, however.  To the
+east lies the street, with its crisp fresh air.    
+~
+100 33554460 0
+D1
+~
+~
+0 -1 10028
+S
+#10057
+Faric's Backroom~
+Faric's backroom, YOU SHOULD NOT BE HERE!  Tell a god.    
+~
+100 590360 1
+S
+#10058
+Map Shop~
+   The room is filled with empty shelves.  It is like the cartographer has only
+recently set up shop here.  He has a large chest in the corner hand carved with
+the same design as the sign outside the shop.  Certainly, this could be made
+into a wonderful business but something must be done about the smell from
+across the road.
+~
+0 28 1
+D3
+~
+~
+0 -1 10028
+S
+$~

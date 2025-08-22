@@ -1,0 +1,203 @@
+name: Laisha
+password: TeEjC8def/
+currenttitle: Netali
+prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
+sex: 2
+class: 20
+race: 9
+level: 44
+home: 3094
+lifeforce: 0
+composition: 0
+id: 14481
+birthtime: 1108622927
+timeplayed: 441148
+lastlogintime: 1611458112
+host: 024.005.087.088
+height: 69
+weight: 137
+base_height: 69
+base_weight: 137
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: gly
+effectflags: k 0 0
+prefflags: hnoxC ac
+privflags: 0
+savingthrows: 0 0 0 0 0
+wimpy: 1
+loadroom: 2019
+badpasswords: 5
+lastlevel: 5
+hitpoints: 247/247
+mana: 193/193
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 86
+intelligence: 93
+wisdom: 93
+dexterity: 73
+constitution: 67
+charisma: 54
+cash: 71 1776 7546 5662
+bank: 50 2501 11019 14285
+experience: 12695040
+pagelength: 50
+title: Netali
+quit_reason: 7
+saveroom: 2019
+skills:
+2 1000
+5 1000
+19 1000
+20 1000
+26 1000
+29 1000
+31 1000
+38 1000
+39 1000
+50 1000
+52 1000
+62 1000
+67 1000
+68 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+107 1000
+157 1000
+158 1000
+159 1000
+160 1000
+161 1000
+162 1000
+163 1000
+200 1000
+220 1000
+228 1000
+415 396
+416 440
+421 448
+423 460
+424 450
+438 50
+443 69
+444 61
+447 402
+451 449
+452 73
+453 450
+455 111
+458 50
+459 65
+460 109
+462 126
+464 370
+0 0
+trophy:
+1 47008 1.500000
+1 47013 1.500000
+1 47017 0.333333
+1 47031 2.000000
+1 47032 2.333333
+1 47001 0.666667
+1 47002 12.666664
+1 47003 7.833334
+1 55216 1.000000
+1 20307 1.000000
+1 20315 1.000000
+1 20302 2.000000
+1 20301 5.000000
+1 20311 4.000000
+1 16106 1.000000
+1 16107 5.500000
+1 16102 1.000000
+1 2004 1.000000
+1 18510 1.000000
+0 0 0
+tells:
+1605421144 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1605423078 @WIteralde@W tells you, 'thank you :)@W'@0
+1605423188 @WIteralde@W tells you, '26%@W'@0
+1605423203 @WIteralde@W tells you, 'level 7@W'@0
+1606627494 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1606627502 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
+1608006471 @WHelena@W tells you, 'I only sell bread and donuts, all home made.@W'@0
+1608006476 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1608346237 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
+1608447775 @WFaerylyn@W tells you, 'I can regroup you when you're ready!@W'@0
+$
+gossips:
+1610851282 Golanth gossips, 'hello!'
+1610851294 Chinok gossips, 'how goes it?!'
+1610851307 Golanth gossips, 'it goes well!  Coming to team up with Laisha!'
+1610852338 Golanth gossips, 'congratulations!'
+1610852442 Daedela gossips, 'Congratulations Zeypherus!'
+1610852463 Zeypherus gossips, 'One grind at a time. '
+1610853536 Daedela gossips, 'wahoo!'
+1610855371 Daedela gossips, 'Congratulations!'
+1610856926 Chinok gossips, 'man Anduin is hopping tonight'
+1610856954 Chinok gossips, 'Gratz Laisha!'
+$
+mem:
+100 1 1
+5 1 1
+5 1 1
+5 1 1
+157 1 1
+157 1 1
+157 1 1
+157 1 1
+157 1 1
+157 1 1
+157 1 1
+26 1 1
+26 1 1
+26 1 1
+29 1 3
+220 1 1
+220 1 1
+162 1 4
+26 1 1
+26 1 1
+103 1 1
+162 1 4
+100 1 1
+100 1 1
+162 1 4
+100 1 1
+162 1 4
+99 1 1
+162 1 4
+220 1 1
+220 1 1
+220 1 1
+163 1 6
+163 1 5
+163 1 8
+0 0 0
+aliases:
+cc get coins corpse
+<ass> <assist faerylyn>
+dm dismount
+mh mount horse
+phos c 'phosphoric embers' $*
+invis c 'invisibility' $*
+fb cast 'fireball' $*
+smo cast 'smoke' $*
+glomp : hugs you with the force of a raging beefalo!
+fd cast 'fire darts' $*
+bh c 'burning hands' $*
+gac get all corpse
+mc cast 'minor creation' $*
+mp cast 'minor paralysis' $*
+pf cast 'positive field' $*
+field c 'positive field' $*
+ass assist golanth
+0

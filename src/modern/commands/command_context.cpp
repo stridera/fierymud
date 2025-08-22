@@ -1,0 +1,543 @@
+/***************************************************************************
+ *   File: src/commands/command_context.cpp           Part of FieryMUD *
+ *  Usage: Command execution context implementation                        *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.       *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ ***************************************************************************/
+
+#include <iostream>
+#include "command_system.hpp"
+#include "../world/world_manager.hpp"
+#include "command_context.hpp"
+#include "../core/actor.hpp"
+#include "../core/object.hpp"
+#include "../world/room.hpp"
+#include "../core/logging.hpp"
+
+#include <fmt/format.h>
+#include <algorithm>
+#include <cctype>
+
+using namespace std::string_view_literals;
+
+//////////////////////////////////////////////////////////////////////////////
+// TargetInfo Implementation
+//////////////////////////////////////////////////////////////////////////////
+
+std::string TargetInfo::describe() const {
+    switch (type) {
+        case TargetType::None:
+            return "no target";
+        case TargetType::Self:
+            return "yourself";
+        case TargetType::Actor:
+            return actor ? std::string{actor->name()} : "unknown actor";
+        case TargetType::Object:
+            return object ? std::string{object->name()} : "unknown object";
+        case TargetType::Room:
+            return room ? fmt::format("room '{}'", room->name()) : "unknown room";
+        case TargetType::Direction:
+            return fmt::format("direction {}", CommandContextUtils::direction_to_string(direction));
+        case TargetType::String:
+            return fmt::format("string '{}'", string_value);
+        case TargetType::Number:
+            return fmt::format("number {}", numeric_value);
+        case TargetType::Multiple:
+            return fmt::format("{} targets", multiple_targets.size());
+        default:
+            return "unknown target type";
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// CommandExecutionState Implementation
+//////////////////////////////////////////////////////////////////////////////
+
+std::vector<std::string> CommandExecutionState::keys() const {
+    std::vector<std::string> result;
+    result.reserve(data_.size());
+    for (const auto& [key, value] : data_) {
+        result.push_back(key);
+    }
+    return result;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// CommandContext Methods Implementation
+//////////////////////////////////////////////////////////////////////////////
+
+void CommandContext::send(std::string_view message) const {
+    if (actor) {
+        actor->send_message(message);
+    }
+}
+
+void CommandContext::send_line(std::string_view message) const {
+    if (actor) {
+        fmt::print("CommandContext::send_line: {}\n", message);
+        actor->send_message(fmt::format("{}\n", message));
+    }
+}
+
+void CommandContext::send_error(std::string_view message) const {
+    if (actor) {
+        auto formatted = CommandContextUtils::format_message(message, MessageType::Error);
+        actor->send_message(formatted);
+    }
+}
+
+void CommandContext::send_success(std::string_view message) const {
+    if (actor) {
+        auto formatted = CommandContextUtils::format_message(message, MessageType::Success);
+        actor->send_message(formatted);
+    }
+}
+
+void CommandContext::send_info(std::string_view message) const {
+    if (actor) {
+        auto formatted = CommandContextUtils::format_message(message, MessageType::Info);
+        actor->send_message(formatted);
+    }
+}
+
+void CommandContext::send_usage(std::string_view usage) const {
+    if (actor) {
+        auto formatted = fmt::format("Usage: {}", usage);
+        send_error(formatted);
+    }
+}
+
+void CommandContext::send_to_room(std::string_view message, bool exclude_self) const {
+    if (!room) return;
+    
+    // Send message to all actors in the room
+    const auto& actors = room->contents().actors;
+    for (const auto& room_actor : actors) {
+        if (!room_actor) continue;
+        
+        // Skip self if exclude_self is true
+        if (exclude_self && room_actor == actor) {
+            continue;
+        }
+        
+        room_actor->send_message(message);
+    }
+}
+
+void CommandContext::send_to_actor(std::shared_ptr<Actor> target, std::string_view message) const {
+    if (target) {
+        target->send_message(message);
+    }
+}
+
+void CommandContext::send_to_all(std::string_view message) const {
+    // For now, implement as a simple broadcast to all actors in the world
+    // In a full MUD, this would be more sophisticated with online player tracking
+    auto& world = WorldManager::instance();
+    
+    // Get all rooms and iterate through their actors
+    for (size_t zone_id = 0; zone_id < 1000; ++zone_id) { // Basic range check
+        auto zone = world.get_zone(EntityId{zone_id});
+        if (!zone) continue;
+        
+        auto rooms = world.get_rooms_in_zone(EntityId{zone_id});
+        for (const auto& room : rooms) {
+            if (!room) continue;
+            
+            const auto& actors = room->contents().actors;
+            for (const auto& room_actor : actors) {
+                if (room_actor) {
+                    room_actor->send_message(message);
+                }
+            }
+        }
+    }
+}
+
+std::shared_ptr<Actor> CommandContext::find_actor_target(std::string_view name) const {
+    if (!room) return nullptr;
+    
+    // Search for actor by name in current room
+    const auto& actors = room->contents().actors;
+    for (const auto& room_actor : actors) {
+        if (!room_actor || room_actor == actor) continue; // Skip self
+        
+        // Check if name matches (case insensitive substring match)
+        std::string actor_name{room_actor->name()};
+        std::string search_name{name};
+        
+        // Convert both to lowercase for comparison
+        std::transform(actor_name.begin(), actor_name.end(), actor_name.begin(), ::tolower);
+        std::transform(search_name.begin(), search_name.end(), search_name.begin(), ::tolower);
+        
+        if (actor_name.find(search_name) != std::string::npos) {
+            return room_actor;
+        }
+    }
+    
+    return nullptr;
+}
+
+std::shared_ptr<Actor> CommandContext::find_actor_global(std::string_view name) const {
+    // Search for actor by name globally across all rooms
+    auto& world = WorldManager::instance();
+    
+    std::string search_name{name};
+    std::transform(search_name.begin(), search_name.end(), search_name.begin(), ::tolower);
+    
+    // Get all rooms and search through their actors
+    for (size_t zone_id = 0; zone_id < 1000; ++zone_id) { // Basic range check
+        auto zone = world.get_zone(EntityId{zone_id});
+        if (!zone) continue;
+        
+        auto rooms = world.get_rooms_in_zone(EntityId{zone_id});
+        for (const auto& room : rooms) {
+            if (!room) continue;
+            
+            const auto& actors = room->contents().actors;
+            for (const auto& room_actor : actors) {
+                if (!room_actor || room_actor == actor) continue; // Skip self
+                
+                std::string actor_name{room_actor->name()};
+                std::transform(actor_name.begin(), actor_name.end(), actor_name.begin(), ::tolower);
+                
+                if (actor_name.find(search_name) != std::string::npos) {
+                    return room_actor;
+                }
+            }
+        }
+    }
+    
+    return nullptr;
+}
+
+std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name) const {
+    if (!actor) return nullptr;
+    
+    std::string search_name{name};
+    std::transform(search_name.begin(), search_name.end(), search_name.begin(), ::tolower);
+    
+    // First search in actor's inventory
+    auto inventory_items = actor->inventory().get_all_items();
+    for (const auto& obj : inventory_items) {
+        if (!obj) continue;
+        
+        std::string obj_name{obj->name()};
+        std::transform(obj_name.begin(), obj_name.end(), obj_name.begin(), ::tolower);
+        
+        if (obj_name.find(search_name) != std::string::npos) {
+            return obj;
+        }
+    }
+    
+    // Then search in current room
+    if (room) {
+        const auto& room_objects = room->contents().objects;
+        for (const auto& obj : room_objects) {
+            if (!obj) continue;
+            
+            std::string obj_name{obj->name()};
+            std::transform(obj_name.begin(), obj_name.end(), obj_name.begin(), ::tolower);
+            
+            if (obj_name.find(search_name) != std::string::npos) {
+                return obj;
+            }
+        }
+    }
+    
+    return nullptr;
+}
+
+std::shared_ptr<Room> CommandContext::find_room_target(std::string_view name) const {
+    // TODO: Implement room finding by name or ID
+    // For now, return nullptr as stub
+    // LOG_DEBUG("Finding room target: {}", name);
+    return nullptr;
+}
+
+TargetInfo CommandContext::resolve_target(std::string_view name) const {
+    if (name.empty()) {
+        return TargetInfo{};
+    }
+    
+    // Handle special keywords
+    if (name == "self" || name == "me") {
+        TargetInfo info;
+        info.type = TargetType::Self;
+        info.actor = actor;
+        return info;
+    }
+    
+    // Try to parse as direction
+    if (CommandContextUtils::is_direction_string(name)) {
+        TargetInfo info;
+        info.type = TargetType::Direction;
+        info.direction = CommandContextUtils::parse_direction_string(name);
+        return info;
+    }
+    
+    // Try to parse as number
+    if (CommandContextUtils::is_numeric_string(name)) {
+        TargetInfo info;
+        info.type = TargetType::Number;
+        try {
+            info.numeric_value = std::stoi(std::string{name});
+        } catch (const std::exception&) {
+            info.numeric_value = 0;
+        }
+        return info;
+    }
+    
+    // Try to find actor in room
+    if (auto found_actor = find_actor_target(name)) {
+        TargetInfo info;
+        info.type = TargetType::Actor;
+        info.actor = found_actor;
+        return info;
+    }
+    
+    // Try to find object in room/inventory
+    if (auto found_object = find_object_target(name)) {
+        TargetInfo info;
+        info.type = TargetType::Object;
+        info.object = found_object;
+        return info;
+    }
+    
+    // Try to find room by name
+    if (auto found_room = find_room_target(name)) {
+        TargetInfo info;
+        info.type = TargetType::Room;
+        info.room = found_room;
+        return info;
+    }
+    
+    // Default to string target
+    TargetInfo info;
+    info.type = TargetType::String;
+    info.string_value = std::string{name};
+    return info;
+}
+
+std::string CommandContext::format_object_name(std::shared_ptr<Object> obj) const {
+    if (!obj) return "nothing";
+    
+    // TODO: Implement proper object name formatting with articles
+    return std::string{obj->name()};
+}
+
+Result<void> CommandContext::move_actor_direction(Direction dir) const {
+    if (!actor || !room) {
+        return std::unexpected(Error{ErrorCode::InvalidState, "No actor or room for movement"});
+    }
+    
+    // Get the WorldManager instance
+    auto& world_manager = WorldManager::instance();
+    
+    // Use WorldManager's movement system to move the actor
+    auto movement_result = world_manager.move_actor(actor, dir);
+    
+    if (!movement_result.success) {
+        return std::unexpected(Error{ErrorCode::InvalidState, movement_result.failure_reason});
+    }
+    
+    // Success - movement messages are handled by WorldManager callbacks
+    return Result<void>{};
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// CommandContextUtils Implementation
+//////////////////////////////////////////////////////////////////////////////
+
+namespace CommandContextUtils {
+
+std::vector<std::string> parse_target_list(std::string_view target_string) {
+    std::vector<std::string> targets;
+    
+    // Simple comma-separated parsing for now
+    std::string str{target_string};
+    std::string delimiter = ",";
+    size_t pos = 0;
+    std::string token;
+    
+    while ((pos = str.find(delimiter)) != std::string::npos) {
+        token = str.substr(0, pos);
+        // Trim whitespace
+        token.erase(0, token.find_first_not_of(" \t"));
+        token.erase(token.find_last_not_of(" \t") + 1);
+        if (!token.empty()) {
+            targets.push_back(token);
+        }
+        str.erase(0, pos + delimiter.length());
+    }
+    
+    // Add the last token
+    str.erase(0, str.find_first_not_of(" \t"));
+    str.erase(str.find_last_not_of(" \t") + 1);
+    if (!str.empty()) {
+        targets.push_back(str);
+    }
+    
+    return targets;
+}
+
+std::string describe_target(const TargetInfo& target) {
+    return target.describe();
+}
+
+bool is_direction_string(std::string_view str) {
+    std::string lower_str;
+    lower_str.reserve(str.size());
+    std::transform(str.begin(), str.end(), std::back_inserter(lower_str),
+                   [](char c) { return std::tolower(c); });
+    
+    return lower_str == "north" || lower_str == "n" ||
+           lower_str == "south" || lower_str == "s" ||
+           lower_str == "east" || lower_str == "e" ||
+           lower_str == "west" || lower_str == "w" ||
+           lower_str == "up" || lower_str == "u" ||
+           lower_str == "down" || lower_str == "d" ||
+           lower_str == "northeast" || lower_str == "ne" ||
+           lower_str == "northwest" || lower_str == "nw" ||
+           lower_str == "southeast" || lower_str == "se" ||
+           lower_str == "southwest" || lower_str == "sw";
+}
+
+bool is_numeric_string(std::string_view str) {
+    if (str.empty()) return false;
+    
+    size_t start = 0;
+    if (str[0] == '-' || str[0] == '+') {
+        start = 1;
+        if (str.size() == 1) return false; // Just a sign
+    }
+    
+    for (size_t i = start; i < str.size(); ++i) {
+        if (!std::isdigit(str[i])) {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+Direction parse_direction_string(std::string_view str) {
+    std::string lower_str;
+    lower_str.reserve(str.size());
+    std::transform(str.begin(), str.end(), std::back_inserter(lower_str),
+                   [](char c) { return std::tolower(c); });
+    
+    if (lower_str == "north" || lower_str == "n") return Direction::North;
+    if (lower_str == "south" || lower_str == "s") return Direction::South;
+    if (lower_str == "east" || lower_str == "e") return Direction::East;
+    if (lower_str == "west" || lower_str == "w") return Direction::West;
+    if (lower_str == "up" || lower_str == "u") return Direction::Up;
+    if (lower_str == "down" || lower_str == "d") return Direction::Down;
+    if (lower_str == "northeast" || lower_str == "ne") return Direction::Northeast;
+    if (lower_str == "northwest" || lower_str == "nw") return Direction::Northwest;
+    if (lower_str == "southeast" || lower_str == "se") return Direction::Southeast;
+    if (lower_str == "southwest" || lower_str == "sw") return Direction::Southwest;
+    
+    return Direction::None;
+}
+
+std::string_view direction_to_string(Direction dir) {
+    switch (dir) {
+        case Direction::North: return "north"sv;
+        case Direction::South: return "south"sv;
+        case Direction::East: return "east"sv;
+        case Direction::West: return "west"sv;
+        case Direction::Up: return "up"sv;
+        case Direction::Down: return "down"sv;
+        case Direction::Northeast: return "northeast"sv;
+        case Direction::Northwest: return "northwest"sv;
+        case Direction::Southeast: return "southeast"sv;
+        case Direction::Southwest: return "southwest"sv;
+        case Direction::None: 
+        default: return "none"sv;
+    }
+}
+
+std::string_view direction_to_preposition(Direction dir) {
+    switch (dir) {
+        case Direction::North: return "to the north"sv;
+        case Direction::South: return "to the south"sv;
+        case Direction::East: return "to the east"sv;
+        case Direction::West: return "to the west"sv;
+        case Direction::Up: return "above"sv;
+        case Direction::Down: return "below"sv;
+        case Direction::Northeast: return "to the northeast"sv;
+        case Direction::Northwest: return "to the northwest"sv;
+        case Direction::Southeast: return "to the southeast"sv;
+        case Direction::Southwest: return "to the southwest"sv;
+        case Direction::None:
+        default: return "nowhere"sv;
+    }
+}
+
+Direction reverse_direction(Direction dir) {
+    switch (dir) {
+        case Direction::North: return Direction::South;
+        case Direction::South: return Direction::North;
+        case Direction::East: return Direction::West;
+        case Direction::West: return Direction::East;
+        case Direction::Up: return Direction::Down;
+        case Direction::Down: return Direction::Up;
+        case Direction::Northeast: return Direction::Southwest;
+        case Direction::Northwest: return Direction::Southeast;
+        case Direction::Southeast: return Direction::Northwest;
+        case Direction::Southwest: return Direction::Northeast;
+        case Direction::None:
+        default: return Direction::None;
+    }
+}
+
+std::string format_message(std::string_view message, MessageType type) {
+    auto color_code = get_color_code(type);
+    if (color_code.empty()) {
+        return std::string{message};
+    }
+    return fmt::format("{}{}\033[0m", color_code, message);
+}
+
+std::string strip_color_codes(std::string_view message) {
+    std::string result;
+    result.reserve(message.size());
+    
+    bool in_escape = false;
+    for (char c : message) {
+        if (c == '\033') {
+            in_escape = true;
+        } else if (in_escape && c == 'm') {
+            in_escape = false;
+        } else if (!in_escape) {
+            result.push_back(c);
+        }
+    }
+    
+    return result;
+}
+
+std::string_view get_color_code(MessageType type) {
+    switch (type) {
+        case MessageType::Error: return "\033[31m"sv;      // Red
+        case MessageType::Success: return "\033[32m"sv;    // Green
+        case MessageType::Warning: return "\033[33m"sv;    // Yellow
+        case MessageType::Info: return "\033[34m"sv;       // Blue
+        case MessageType::System: return "\033[36m"sv;     // Cyan
+        case MessageType::Debug: return "\033[37m"sv;      // Gray
+        case MessageType::Combat: return "\033[35m"sv;     // Magenta
+        case MessageType::Social: return "\033[33m"sv;     // Yellow
+        case MessageType::Tell: return "\033[36m"sv;       // Cyan
+        case MessageType::Say: return "\033[37m"sv;        // White
+        case MessageType::Emote: return "\033[33m"sv;      // Yellow
+        case MessageType::Channel: return "\033[35m"sv;    // Magenta
+        case MessageType::Broadcast: return "\033[31m"sv;  // Red
+        case MessageType::Normal:
+        default: return ""sv;
+    }
+}
+
+} // namespace CommandContextUtils

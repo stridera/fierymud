@@ -1,0 +1,99 @@
+name: Raylen
+password: Ra6DK7raLe
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 9
+race: 0
+level: 23
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18718
+birthtime: 1406850537
+timeplayed: 231530
+lastlogintime: 1515128895
+host: 099.097.090.156
+height: 70
+weight: 122
+base_height: 70
+base_weight: 122
+base_size: 2
+natural_size: 2
+alignment: 53
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 1
+thirst: 16
+lastlevel: 0
+hitpoints: 251/251
+mana: 52/52
+move: 132/132
+damroll: 3
+hitroll: 3
+strength: 94
+intelligence: 61
+wisdom: 78
+dexterity: 96
+constitution: 92
+charisma: 54
+cash: 26 991 3388 3596
+bank: 9 373 1556 1704
+experience: 2360947
+quit_reason: 1
+saveroom: 3054
+skills:
+401 280
+403 244
+405 208
+408 271
+410 53
+411 280
+415 50
+416 50
+420 137
+421 199
+438 50
+440 270
+443 50
+444 80
+464 267
+465 50
+0 0
+trophy:
+1 3501 1.000000
+1 62509 0.583333
+1 5404 0.166667
+1 5103 0.166667
+1 5102 0.166667
+1 5201 0.166667
+1 5211 0.833333
+1 5200 0.666667
+1 5210 1.000000
+1 5113 0.166667
+1 5121 0.333333
+1 5122 0.166667
+1 5120 1.000000
+1 5110 0.166667
+1 5101 0.333333
+1 5104 0.166667
+1 5479 0.166667
+1 5403 0.166667
+1 8002 0.166667
+1 36004 0.166667
+1 36003 0.333333
+0 0 0
+aliases:
+gg assist gilden
+fs fill skin fountain
+df drink fountain
+gac get all all.corpse
+gcc get all.coins all.corpse
+aa ass aislynn
+cs consent gilden
+ll look in corpse
+0

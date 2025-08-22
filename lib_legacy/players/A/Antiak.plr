@@ -1,0 +1,173 @@
+name: Antiak
+password: AnAc1qvaXC
+prompt: <%hh(%HH) %vv(%VV)> <%aA> <%ih> <%df>%_<%t>:<%o>
+autoinvis: 0
+sex: 2
+class: 5
+race: 8
+level: 40
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18116
+birthtime: 1328238201
+timeplayed: 849566
+lastlogintime: 1362784791
+host: 184.042.029.026
+height: 67
+weight: 104
+base_height: 67
+base_weight: 104
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: y
+effectflags: cn 0 0
+prefflags: hnouC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 478/478
+mana: 160/160
+move: 126/126
+damroll: 3
+hitroll: 3
+strength: 98
+intelligence: 61
+wisdom: 67
+dexterity: 92
+constitution: 88
+charisma: 58
+cash: 0 100 0 0
+bank: 222 10939 33381 10020
+experience: 9958709
+clan: 1
+quit_reason: 3
+saveroom: 0
+skills:
+12 1000
+13 1000
+17 1000
+33 1000
+46 1000
+84 1000
+85 1000
+86 1000
+131 1000
+132 1000
+402 430
+404 445
+407 117
+411 450
+415 450
+416 450
+417 54
+420 450
+421 450
+422 70
+423 450
+424 450
+430 426
+434 50
+438 50
+443 450
+444 450
+450 50
+451 450
+457 435
+458 432
+459 442
+460 415
+461 154
+463 441
+464 450
+465 450
+466 450
+468 450
+0 0
+trophy:
+1 8606 3.000000
+1 8011 1.000000
+1 8023 1.000000
+1 8021 2.000000
+1 8013 1.000000
+1 8010 1.000000
+1 8020 1.000000
+1 13303 1.000000
+1 18514 2.000000
+1 18513 2.000000
+1 18503 1.000000
+1 18512 2.000000
+1 18509 2.000000
+1 18517 1.000000
+1 18507 26.000000
+1 18510 3.000000
+0 0 0
+mem:
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+84 1 1
+132 0 1
+131 0 1
+132 0 1
+131 0 1
+131 1 1
+132 1 1
+17 1 1
+131 1 1
+17 1 1
+17 1 1
+17 1 1
+17 1 1
+17 1 1
+12 1 1
+12 1 1
+12 1 1
+12 1 2
+12 1 2
+13 1 2
+86 1 6
+46 1 6
+46 1 6
+46 1 6
+46 1 6
+46 1 6
+0 0 0
+aliases:
+cauc cast 'cause critical' $*
+ccw cast 'create water' waterskin
+avl as valaina
+eep emo eeps
+sh say heal
+curse cast 'curse' $*
+cf cast 'create food'$*
+cse cast 'cause serious' $*
+gbb get bread basket
+gfb g food basket
+gfc get food corpse
+gafc get all.food corpse
+mh mount horse
+df drink fountain
+kh kill hedgehog
+kr kill rabbit
+ef eat food
+gac get all corpse
+gaa get all all.corpse
+gaac get all.coins all.corpse
+kg kill gremlin
+db drink waterskin
+clt cast 'cause light' $*
+ca cast 'demonskin' $*
+unbless cast 'dark presence' $*
+ks kill skeleton
+khum kill humanoid
+disgood cast 'dispel good' $*
+ccc cast 'cause critical' $*
+poison cast 'poison' $*
+f e: 
+0

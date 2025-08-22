@@ -1,0 +1,4470 @@
+#49000
+Stone Arch~
+   Created by thousands of years of erosion, this solid arch of stone spans the
+distance from the mainland to Griffin Isle.  Far below the sea violently bashes
+the ancient rocks.  The air smells of the ocean, and there is no respite from
+unyielding forces of nature.    ~
+490 4 4
+D2
+A stone arch leading to the island.~
+~
+0 -1 49001
+D4
+~
+~
+0 -1 49100
+D5
+~
+~
+0 -1 39135
+S
+#49001
+Stone Arch~
+   A skilled mason's hands have made this part of the stone arch more easily
+scalable by carving steps into the rock.  To the south the ground becomes even
+more hospitable as the stone arch meets the island.  The climb to the north is
+steep though, and the miserable excuse for a path leading down tries hard to
+look even tougher.    ~
+490 4 4
+D0
+A stone arch, connecting the mainland with the island.~
+~
+0 -1 49000
+D2
+Griffin Isle.~
+~
+0 -1 49002
+D4
+~
+~
+0 -1 49101
+D5
+Lots of very sharp and deadly looking rocks...~
+~
+0 -1 49019
+S
+#49002
+On the island~
+   Dotted with small and round patches of tall grass, this stretch of sandstone
+may well be called the entrance to Griffin Isle.  The cold, hard stone arch to
+the north serves as a welcome, and offers little comfort.  Farther to the south
+the island opens, in all its splendor.    ~
+490 0 2
+D0
+A stone arch leading to the mainland.~
+~
+0 -1 49001
+D2
+The beginning of the northern path.~
+~
+0 -1 49003
+D4
+~
+~
+0 -1 49102
+S
+#49003
+Northern Path~
+   Trees and shrubs in all shades of green line the path that starts here and
+leads to the west.  To the north you can just make out the island's connection
+with the mainland.    ~
+490 0 2
+D0
+~
+~
+0 -1 49002
+D3
+~
+~
+0 -1 49004
+D4
+~
+~
+0 -1 49103
+S
+#49004
+Crossroads~
+   Though the rocky path going north and the broad, neatly trimmed lawn leading
+south do not exactly join up, this can be called a crossroads of sorts.  The
+northern path continues to the west.  A considerate creature has placed a
+signpost here.    ~
+490 0 2
+D0
+~
+~
+0 -1 49012
+D1
+~
+~
+0 -1 49003
+D2
+~
+~
+0 -1 49022
+D3
+~
+~
+0 -1 49005
+D4
+~
+~
+0 -1 49104
+E
+sign signpost post roadsign~
+Four wooden arrows point you in the right direction :
+                        /\
+                     The Beach
+
+< The Megalyth                       Stone Arch >
+
+                    The Village
+                        \/~
+S
+#49005
+Northern Path~
+   You are on a long stretch of path running from east to west.  A sweet breeze
+carries flowery scents to your nose.  To the south, the dense forest forms a
+natural fence to the druids' woods, while a stretch of rather unfriendly
+looking rocks blocks your way to the north.  A long stretch of path, covered
+with small pebbles, runs from east to west.~
+490 0 2
+D1
+~
+~
+0 -1 49004
+D3
+~
+~
+0 -1 49006
+D4
+~
+~
+0 -1 49105
+S
+#49006
+Northern Path~
+   Some strange force has caused the vegetation here to grow strangely.  All
+plantlife seems to stretch itself to catch as much of the blue glow as they
+possibly can.  Here and there flowers have grown to a grotesque shape.  The
+path seems to lead right into the light to the west.  To the east the world
+becomes normal again.    ~
+490 0 2
+D1
+~
+~
+0 -1 49005
+D3
+~
+~
+0 -1 49007
+D4
+~
+~
+0 -1 49106
+S
+#49007
+Crystal Megalith~
+   Like a broken bone sticking out of a wound, this tree-high crystal spire
+interrupts the northern path.  An aura of evil surrounds this vile structure.
+The area surrounding the monument is emerald green, well-manicured grass.  
+Many exotic flowers flourish here, and the sweet smells are intoxicating.    ~
+490 0 2
+D0
+~
+~
+0 -1 49009
+D1
+~
+~
+0 -1 49006
+D2
+~
+~
+0 -1 49018
+D3
+~
+~
+0 -1 49008
+D4
+~
+~
+0 -1 49107
+S
+#49008
+Mudflats~
+   Here, on these mudflats, land and sea are in perfect balance.  In the light
+emanating from the crystalline monument, you notice the glistening of salt on
+the many patches of sand not flooded by the water.  Aquatic creatures of all
+shapes and sizes, interact with land animals in the delicate dance of living.~
+490 0 2
+D1
+~
+~
+0 -1 49007
+D2
+~
+~
+0 -1 49017
+D4
+~
+~
+0 -1 49108
+S
+#49009
+Sandy Beach~
+   This beautiful beach is made of fine sand, and is dotted with crushed and
+small shells.  The sea gently, repeatedly, kisses the earth as the two meet.  
+From here the beach continues to the east.    ~
+490 4 2
+D1
+~
+~
+0 -1 49010
+D2
+~
+~
+0 -1 49007
+D4
+~
+~
+0 -1 49109
+S
+#49010
+Sandy Beach~
+   This beautiful beach is made of fine sand, and is dotted with crushed and
+small shells.  Waves lazily slosh onto the sand, bringing long strings of black
+seaweed with them.  Large boulders of yellow stone prohibit passage to the
+inland parts of the island~
+490 0 2
+D1
+~
+~
+0 -1 49011
+D3
+~
+~
+0 -1 49009
+D4
+~
+~
+0 -1 49110
+S
+#49011
+Boathouse~
+   Years of weathering have given this wooden boat house a gray and mildewed
+appearance.  The wood has rotted out in some places, the shutters barely hang
+to the frames, and the glass that was once in the windows has been removed or
+broken.  The door to the house has rotted off of it's hinges, nothing is left
+to deter theives from making off with whatever is inside.    ~
+490 0 2
+D1
+~
+~
+0 -1 49012
+D2
+~
+~
+0 -1 49184
+D3
+~
+~
+0 -1 49010
+D4
+You can clamber onto the roof.    ~
+~
+0 0 49111
+S
+#49012
+Slope~
+   Erosion from heavy rains over countless years have carved a natural channel
+here.  Rubble and rocks lie loosely against the incline rising eastward, and it
+looks like even the slightest disturbance might start an avalanche.    ~
+490 4 2
+D2
+~
+~
+0 -1 49004
+D3
+~
+~
+0 -1 49011
+D4
+~
+~
+0 -1 49112
+S
+#49013
+Pebbles Beach~
+   To the west the cliffs start their steep ascent again, while to the south
+the beach continues.  There seems to be a trail heading towards the cliff.    ~
+490 0 15
+D2
+~
+~
+0 -1 49014
+D3
+~
+~
+0 0 49183
+D4
+~
+~
+0 -1 49113
+S
+#49014
+Circle Of Stone~
+   Approach with respect - this is consecrated ground.  These monolithic stones
+were placed here thousands of years ago, in the exact configuration they are
+still in now.  As you near, you can almost feel the incredible cosmic energies
+they have gathered in their time.    ~
+490 0 2
+D0
+~
+~
+0 -1 49013
+D1
+~
+~
+0 -1 49015
+D2
+~
+~
+0 -1 49025
+D4
+~
+~
+0 -1 49114
+S
+#49015
+Pebbles Beach~
+   Lots of smooth little pebbles of various shapes, sizes, and colors, make
+this colorful quiet beach.  The ocean, from this point, seems to stretch out to
+eternity.  Inland the scenery becomes somewhat more green from the abundance of
+flora.    ~
+490 0 15
+D2
+~
+~
+0 -1 49026
+D3
+~
+~
+0 -1 49014
+D4
+~
+~
+0 -1 49115
+S
+#49016
+Western Beach~
+   Pieces of wreckage, blown onto the island by a strong stormwind, litter the
+beach.  Rotting hulls and planks from wrecks, huge masts snapped like twigs,
+and an occasional downed tree make this beach seem like a graveyard.  The
+shoreline continues to the south~
+490 0 15
+D1
+~
+~
+0 -1 49017
+D2
+~
+~
+0 -1 49149
+D4
+~
+~
+0 -1 49116
+S
+#49017
+Marsh~
+   The nutrient rich silt and mud that makes up the primordial mixture of this
+marsh brims over with new life.  The reeds in this swamp have grown to a
+considerable height, making it impossible to see very far.    ~
+490 4194304 6
+D0
+~
+~
+0 -1 49008
+D1
+~
+~
+0 -1 49018
+D2
+~
+~
+0 -1 49029
+D3
+~
+~
+0 -1 49016
+D4
+~
+~
+0 -1 49117
+S
+#49018
+Right Eye Lake~
+   This is a tranquil lake of cool water that is bordered by trees.  Its
+surface is only occasionally disturbed by those fish who can be bothered to
+take a look a you.    ~
+490 0 6
+D0
+~
+~
+0 -1 49007
+D1
+~
+~
+0 -1 49020
+D2
+~
+~
+0 -1 49030
+D3
+~
+~
+0 -1 49017
+D4
+~
+~
+0 -1 49118
+S
+#49019
+Underneath The Arch~
+   Slipping and sliding, you daringly scramble down an impossible slope, only
+to be soaked to the bone by a wall of water whipped up by the wind!  Only a few
+black stones covered with seaweed may possibly provide unsure footing amidst
+the restless water, that pounds the rocks incessently.    ~
+490 0 5
+D4
+~
+~
+0 -1 49001
+S
+#49020
+Right Eye Lake~
+   This is a tranquil lake of cool water that is bordered by trees.  Its
+surface is only occasionally disturbed by those fish who can be bothered to
+take a look at you.    ~
+490 0 6
+D1
+~
+~
+0 -1 49021
+D2
+~
+~
+0 -1 49031
+D3
+~
+~
+0 -1 49018
+D4
+~
+~
+0 -1 49120
+S
+#49021
+Eliah's Tree~
+   Eliah's house is placed high in this oak tree, giving him a great view of
+the Lake and the northern part of the island - well, in autumn and winter at
+least.  There is a spiral staircase wrapped around the stem of the tree, just
+in case there's a visitor who doesn't feel like flying.  The 'village'
+continues to the east and to the south.    ~
+490 0 3
+D1
+~
+~
+0 -1 49022
+D2
+~
+~
+0 -1 49032
+D3
+~
+~
+0 -1 49020
+D4
+~
+~
+0 -1 49185
+S
+#49022
+Entrance To The Druids' Woods~
+   The entrance to the druid's village and the village itself is awe inspiring.
+Where you would expect paved roads, there is a soft lawn; instead of stone
+houses, you see massive 100 year old trees holding tree-houses in their
+branches.  To the east is Left Eye Lake.  Flowers grow to the west and to the
+south.    ~
+490 0 3
+D0
+~
+~
+0 -1 49004
+D1
+~
+~
+0 -1 49023
+D2
+~
+~
+0 -1 49033
+D3
+~
+~
+0 -1 49021
+D4
+~
+~
+0 -1 49122
+S
+#49023
+Left Eye Lake~
+   Here, far from the shore, your mind has a chance to settle down.  Only the
+fish will disturb you here.  The sound of the surf can be heard, as well as the
+cheerful sounds of wildlife.    ~
+490 0 6
+D1
+~
+~
+0 -1 49025
+D2
+~
+~
+0 -1 49034
+D3
+~
+~
+0 -1 49022
+D4
+~
+~
+0 -1 49123
+S
+#49024
+In The Well~
+   The well is dry and the walls and floor are completely smooth.  They seem to
+have been smoothed by some magical means as there is not a chip or any sign of
+a tool.  You feel a sense of impending doom as you loiter here.  Something very
+powerful has created this.    ~
+490 0 22
+D4
+~
+cover hatch~
+1 49007 49051
+S
+T 49024
+#49025
+Left Eye Lake~
+  The breeze gently ripples the water, distorting the reflections in the lake.
+Here far from the shore, your mind has a chance to settle down.  Only the fish
+will disturb you here.~
+490 0 6
+D0
+~
+~
+0 -1 49014
+D1
+~
+~
+0 -1 49026
+D2
+~
+~
+0 -1 49035
+D3
+~
+~
+0 -1 49023
+D4
+~
+~
+0 -1 49125
+S
+#49026
+Grassland~
+   Stretched out for as far as the eye can see is a large, emerald green sea of
+grass.  The soft ground would be perfect for napping on a warm spring day.  
+From here the vast expanse of the ocean can be fully taken in.  The smells and
+sights are almost intoxicating.    ~
+490 0 2
+D0
+~
+~
+0 -1 49015
+D1
+~
+~
+0 -1 49027
+D2
+~
+~
+0 -1 49036
+D3
+~
+~
+0 -1 49025
+D4
+~
+~
+0 -1 49126
+S
+#49027
+Broken Bones Path~
+   The ground crunches beneath you feet.  What must be hundreds of crushed
+bones, bleached out white from the sun and salt-air, make up this path.  Going
+south seems barely possible.    ~
+490 0 5
+D2
+~
+~
+0 -1 49037
+D3
+~
+~
+0 -1 49026
+D4
+~
+~
+0 -1 49127
+S
+#49028
+The Wreck Of The 'St Marvin'~
+   Here lies the wreck of the 'St.  Marvin'.  Not much is left of this once
+proud merchant vessel - where the keel used to be, there is now a large gaping
+wound.  It's infamous canons probably rest on the bottom of the sea.  To the
+east and above you is an overhanging cliff.~
+490 0 2
+D3
+~
+~
+0 -1 49081
+D4
+~
+~
+0 -1 49128
+S
+#49029
+Marsh~
+   The nutrient rich silt and mud that makes up the primordial mixture of this
+marsh brims over with new life.  The reeds in this swamp have grown to a
+considerable height, making it impossible to see very far.    ~
+490 4194304 6
+D0
+~
+~
+0 -1 49017
+D1
+~
+~
+0 -1 49030
+D2
+~
+~
+0 -1 49039
+D3
+~
+~
+0 -1 49149
+D4
+~
+~
+0 -1 49129
+S
+#49030
+Right Eye Lake~
+   This is a tranquil lake of cool water that is bordered by trees.  Its
+surface is only occasionally disturbed by those fish who can be bothered to
+take a look at you.    ~
+490 0 6
+D0
+~
+~
+0 -1 49018
+D1
+~
+~
+0 -1 49031
+D2
+~
+~
+0 -1 49040
+D3
+~
+~
+0 -1 49029
+D4
+~
+~
+0 -1 49130
+S
+#49031
+Holy Oak~
+   Towering over the surrounding oak trees at well over 100 feet, this tree
+looks like it has lived a millenium, perhaps more.  It's trunk is huge, maybe
+50 or 60 feet in diameter.  The branches extend from the tree creating a huge
+shadow that one could easily build a large home under.  It is truly a marvel of
+nature, and of the talent of the druids who tend to the forest here.    ~
+490 0 3
+D0
+~
+~
+0 -1 49020
+D1
+~
+~
+0 -1 49032
+D2
+~
+~
+0 -1 49041
+D3
+~
+~
+0 -1 49030
+D4
+~
+~
+0 -1 49131
+D5
+Several of the roots look rather strange, perhaps even fake.    ~
+roots strange fake~
+1 -1 49080
+S
+#49032
+Five Birches~
+   The five heavy birches that grow here in a cluster, support a tree-house
+unlike all the others.  The treehouse far above is almost the size of a typical
+human dwelling.  A small rope ladder allows access to the tree house itself.  ~
+490 0 3
+D0
+~
+~
+0 -1 49021
+D1
+~
+~
+0 -1 49033
+D2
+~
+~
+0 -1 49042
+D3
+~
+~
+0 -1 49031
+D4
+~
+~
+0 -1 49098
+S
+#49033
+Suspended House~
+   Built around the tree trunk, this circular house creaks as it is gently
+rocked by the wind.  Arm-thick ropes swung around the pine-tree's branches keep
+the house suspended just above your head.    ~
+490 0 3
+D0
+~
+~
+0 -1 49022
+D1
+~
+~
+0 -1 49034
+D2
+~
+~
+0 -1 49043
+D3
+~
+~
+0 -1 49032
+D4
+~
+~
+0 -1 49099
+S
+#49034
+Left Eye Lake~
+   Thick mist prevents you from seeing exactly where you are, but the fact that
+your feet are getting wet tells you enough.  Through shards of mist, standing
+stones can be seen to the east.    ~
+490 4194304 6
+D0
+~
+~
+0 -1 49023
+D1
+~
+~
+0 -1 49035
+D2
+~
+~
+0 -1 49044
+D3
+~
+~
+0 -1 49033
+D4
+~
+~
+0 -1 49134
+S
+#49035
+Mushroom Patch~
+   Psilocybe Cubensis grows affluently on this knoll overlooking Left Eye Lake.
+These sky-blue mushrooms are used by the druids in their explorations of the
+higher regions of consciousness, it is rumored that they are also the main
+ingredient of several magical elixirs, including potions of fly.    ~
+490 0 2
+D0
+~
+~
+0 -1 49025
+D1
+~
+~
+0 -1 49036
+D2
+~
+~
+0 -1 49045
+D3
+~
+~
+0 -1 49034
+D4
+~
+~
+0 -1 49135
+S
+#49036
+Grassland~
+   Stretched out for as far as the eye can see is a large, emerald green sea of
+grass.  The soft ground would be perfect for napping on a warm spring day.  
+From here the vast expanse of the ocean can be fully taken in.  The smells and
+sights are almost intoxicating.    ~
+490 0 2
+D0
+~
+~
+0 -1 49026
+D2
+~
+~
+0 -1 49046
+D3
+~
+~
+0 -1 49035
+D4
+~
+~
+0 -1 49136
+S
+#49037
+Broken Bones Path~
+   The ground crunches beneath you feet.  What must be hundreds of crushed
+bones, bleached out white from the sun and salt-air, make up this path.  Going
+south seems barely possible.    ~
+490 0 5
+D0
+~
+~
+0 -1 49027
+D2
+~
+~
+0 -1 49047
+D4
+~
+~
+0 -1 49137
+S
+#49038
+Seaside Hills~
+   Soft rolling hills covered with grass and clover, and thistles, dandelions,
+poppies, and oxeye daisies are far too numerous to count.  The urge to nap is
+almost overwhelming.  To the west, the sea lies far below.    ~
+490 0 4
+D0
+~
+~
+0 -1 49149
+D1
+~
+~
+0 -1 49039
+D2
+~
+~
+0 -1 49048
+D4
+~
+~
+0 -1 49138
+S
+#49039
+Marsh~
+   The nutrient rich silt and mud that makes up the primordial mixture of this
+marsh brims over with new life.  The reeds in this swamp have grown to a
+considerable height, making it impossible to see very far.    ~
+490 4194304 6
+D0
+~
+~
+0 -1 49029
+D1
+~
+~
+0 -1 49040
+D2
+~
+~
+0 -1 49050
+D3
+~
+~
+0 -1 49038
+D4
+~
+~
+0 -1 49139
+S
+#49040
+Edge Of The Woods~
+   The ground raises itself out of the swamp and becomes firm and dry.  You are
+on the edge of a forest.  Northeast of here, a light is sometimes visible
+between the trees.    ~
+490 0 3
+D0
+~
+~
+0 -1 49030
+D1
+~
+~
+0 -1 49041
+D3
+~
+~
+0 -1 49039
+D4
+~
+~
+0 -1 49140
+S
+#49041
+Living Treehouse~
+   This must be the most wonderful of tree houses!  The branches of this tree
+form a floor and walls, its dense crown a roof of leaves.  The tree seems to
+embrace its inhabitants, like it actually cares for the people it holds.    ~
+490 0 3
+D0
+~
+~
+0 -1 49031
+D1
+~
+~
+0 -1 49042
+D3
+~
+~
+0 -1 49040
+D4
+~
+~
+0 -1 49141
+S
+#49042
+Derceta's Tree~
+   This is where Derceta, the wandering warrior-druid, has made her temporary
+home.  It is a small undistinguished tree compared to some of the others in
+this forest.  Derceta obviously did not spend much time tending to it,
+preferring to practice her fighting skills.  To the south of the tree is a
+small hillock with a boulder on the near side of it.    ~
+490 0 0
+D0
+~
+~
+0 -1 49032
+D1
+~
+~
+0 -1 49043
+D3
+~
+~
+0 -1 49041
+D4
+~
+~
+0 -1 49142
+E
+boulder~
+It could probably be moved - by a very strong person!~
+S
+T 49000
+#49043
+Clearing~
+   This doesn't look like a construction site, but it is!  In the middle of
+this large open space a baby-tree is fighting its way towards the sky.  
+Strange rune signs drawn on the ground protect the would-be druid's house
+against evil influences.    ~
+490 0 3
+D0
+~
+~
+0 -1 49033
+D1
+~
+~
+0 -1 49044
+D3
+~
+~
+0 -1 49042
+D4
+~
+~
+0 -1 49143
+S
+#49044
+Hollow Wood Giant~
+   Always looking for ways to live in closer communion with Nature, the druids
+have hollowed out this giant tree, apparently without harming it.  The trunk
+has the dimensions of a castle tower.  An opening that is probably the front
+door is just above your head.    ~
+490 0 3
+D0
+~
+~
+0 -1 49034
+D1
+~
+~
+0 -1 49045
+D2
+~
+~
+0 -1 49055
+D3
+~
+~
+0 -1 49043
+D4
+~
+~
+0 -1 49097
+S
+#49045
+Herb Garden~
+   Herbs and spices from all over the world have been planted here in tidy
+rows.  Some are familiar to you, some unknown.  The result is a mix of aromas
+that immediately stirs up strange emotions deep inside of you.    ~
+490 0 2
+D0
+~
+~
+0 -1 49035
+D1
+~
+~
+0 -1 49046
+D2
+~
+~
+0 -1 49056
+D3
+~
+~
+0 -1 49044
+D4
+~
+~
+0 -1 49145
+S
+#49046
+Grassland~
+   Stretched out for as far as the eye can see is a large, emerald green sea of
+grass.  The soft ground would be perfect for napping on a warm spring day.  
+From here the vast expanse of the ocean can be fully taken in.  The smells and
+sights are almost intoxicating.    ~
+490 0 2
+D0
+~
+~
+0 -1 49036
+D2
+~
+~
+0 -1 49057
+D3
+~
+~
+0 -1 49045
+D4
+~
+~
+0 -1 49146
+S
+#49047
+Mussel Bank~
+   Thousands of mussels truly crowd the shore here, more than a few as large as
+the palm of your hand.  Talk about favorable natural conditions!  Seafood
+afficionados can enjoy it to their heart's content...    ~
+490 0 6
+D0
+~
+~
+0 -1 49037
+D2
+~
+~
+0 -1 49058
+D4
+~
+~
+0 -1 49147
+S
+#49048
+Seaside Hills~
+   Soft rolling hills covered with grass and clover, and thistles, dandelions,
+poppies, and oxeye daisies are far too numerous to count.  The urge to nap is
+almost overwhelming.  To the west, the sea lies far below.    ~
+490 0 4
+D0
+~
+~
+0 -1 49038
+D4
+~
+~
+0 -1 49148
+S
+#49049
+Inside The House~
+   Draught comes through a crack in the door, but the fireplace manages to warm
+your chilly bones.  A few sticks of furniture fill the room.  It looks like Mr.
+Crowley is somewhat of a beachcomber in his spare time.  Only the engraved
+plaque on the wall stands out from the rest.    ~
+490 8 0
+D1
+~
+window shutter~
+1 49006 49050
+E
+plaque engraved~
+It reads: " 'Tis an ill wind that blows no minds " - Malaclypse The Younger~
+S
+#49050
+Brother Crowley's House~
+   Sheltered in a dip between the hills, this is a simple house for an austere
+man.  It's made of stone with a door big enough to pull a boat through, and a
+single small window.  A sign above the door reads 'Thelema'.  Smoke twirls out
+of the chimney.    ~
+490 0 3
+D0
+~
+~
+0 -1 49039
+D1
+~
+~
+0 -1 49051
+D2
+~
+~
+0 -1 49059
+D3
+There's a shutter in front of the window.~
+window shutter~
+1 49006 49049
+D4
+You can clamber onto the roof of the house if you want.~
+~
+0 -1 49150
+E
+window shutter~
+There's a shutter in front of the window.~
+E
+door~
+It looks like it's out of use.~
+S
+#49051
+Well~
+   Strangely enough, the brickwork around this well is rather low.  A wooden
+cover keeps animals and people from falling into it.  There's a strange symbol
+on the cover.  There is the faint smell of sulphur in the air.    ~
+490 4 3
+D1
+~
+~
+0 -1 49052
+D2
+~
+~
+0 -1 49060
+D3
+~
+~
+0 -1 49050
+D4
+~
+~
+0 -1 49151
+D5
+~
+cover hatch~
+2 49036 49024
+E
+cover wooden~
+It has a heavy iron lock on it, but perhaps it could be levered off the well.~
+E
+lock~
+This lock looks like it has rusted shut, you will never get this off.~
+E
+symbol~
+There is a horned triangle carved into the cover.~
+S
+#49052
+Sunken Road~
+   Trees that bend over to obscure the sky line this path.  Shadowy figures
+hide in the thorn-bushes, waiting to catch you unawares.  The road continues
+east- and westward.    ~
+490 0 2
+D1
+~
+~
+0 -1 49053
+D3
+~
+~
+0 -1 49051
+S
+#49053
+Sunken road~
+   Trees that bend over to obscure the sky line this path.  Shadowy figures
+hide in the thorn-bushes, waiting to catch you unawares.  The road continues
+east- and westward.    ~
+490 0 2
+D1
+~
+~
+0 -1 49054
+D3
+~
+~
+0 -1 49052
+S
+#49054
+Dirt Path~
+   A twisting little path that leads to all kinds of opportunities east and
+west of here.    ~
+490 0 2
+D1
+~
+~
+0 -1 49055
+D3
+~
+~
+0 -1 49053
+D4
+~
+~
+0 -1 49154
+S
+#49055
+Crater~
+   You step down into a deep crater, obviously formed not long ago.  Debris
+from whatever hit the ground here lies scattered all around.  The earth around
+the crater has been scorched by the tremendous impact.  You can see possible
+exits to the west and to the north.    ~
+490 0 3
+D0
+~
+~
+0 -1 49044
+D3
+~
+~
+0 -1 49054
+D4
+~
+~
+0 -1 49155
+S
+#49056
+Grassland~
+   A lazy meadow with a view of the sea, this is the perfect grazing ground for
+cattle.    ~
+490 0 2
+D0
+~
+~
+0 -1 49045
+D1
+~
+~
+0 -1 49057
+D2
+~
+~
+0 -1 49065
+D4
+~
+~
+0 -1 49156
+S
+#49057
+Hanging Rock~
+   Imagine a ten thousand ton monolith hovering just above your head.  Now,
+quickly, before it drops and crushes you to ketchup, imagine that this monolith
+is attached at the top to an even larger one standing next to it, so that it
+won't drop.  Good.  You can relax now.    ~
+490 0 4
+D0
+~
+~
+0 -1 49046
+D1
+~
+~
+0 -1 49058
+D2
+~
+~
+0 -1 49066
+D3
+~
+~
+0 -1 49056
+D4
+~
+~
+0 -1 49157
+S
+#49058
+Rocky Beach~
+   The beach ends against a cliff to the south, although there seems to be a
+small entrance in the base of the cliff.  To the north the shoreline continues
+while to the west is the main body of the island.    ~
+490 4 15
+D0
+~
+~
+0 -1 49047
+D2
+~
+~
+0 0 49078
+D3
+~
+~
+0 -1 49057
+D4
+~
+~
+0 -1 49158
+S
+#49059
+Cave-In~
+   Just a few footsteps in front of you, the island ends abruptly in a steep
+cliff.  Part of the island has been savagely torn off by the sea.    ~
+490 0 5
+D0
+~
+~
+0 -1 49050
+D1
+~
+~
+0 -1 49060
+D4
+~
+~
+0 -1 49159
+S
+#49060
+Dead Forest~
+   Gnarled, shapeless trees, and grass that crumbles to dust under one's
+boots...  Death has a stranglehold on this forest.    ~
+490 0 3
+D0
+~
+~
+0 -1 49051
+D1
+~
+~
+0 -1 49061
+D2
+~
+~
+0 -1 49067
+D3
+~
+~
+0 -1 49059
+D4
+~
+~
+0 -1 49160
+S
+#49061
+Dead Forest~
+   Gnarled.  Shapeless trees, and grass that crumbles to dust under one's
+boots...  Death has a stranglehold on this forest.    ~
+490 0 3
+D1
+~
+~
+0 -1 49062
+D2
+~
+~
+0 -1 49068
+D3
+~
+~
+0 -1 49060
+D4
+~
+~
+0 -1 49161
+S
+#49062
+Dead Forest~
+   Gnarled, shapeless trees, and grass that crumbles to dust under one's
+boots...  Death has a stranglehold on this forest.    ~
+490 16 3
+D1
+~
+~
+0 -1 49063
+D2
+~
+~
+0 -1 49069
+D3
+~
+~
+0 -1 49061
+D4
+~
+~
+0 -1 49162
+S
+#49063
+Dead Forest~
+   Gnarled, shapeless trees, and grass that crumbles to dust under one's
+boots...  Death has a stranglehold on this forest.    ~
+490 0 3
+D1
+~
+~
+0 -1 49064
+D2
+~
+~
+0 -1 49070
+D3
+~
+~
+0 -1 49062
+D4
+~
+~
+0 -1 49163
+S
+#49064
+Dead Forest~
+   Gnarled, shapeless trees, and grass that crumbles to dust under one's
+boots...  Death has a stranglehold on this forest.    ~
+490 0 3
+D1
+~
+~
+0 -1 49065
+D2
+~
+~
+0 -1 49071
+D3
+~
+~
+0 -1 49063
+D4
+~
+~
+0 -1 49164
+S
+#49065
+Ancient Monument~
+   A gigantic statue extracted from the volcanic stone stands on a stone
+pedestal, making it visible from afar.  The stone colossus depicts a face with
+a long, straight nose, a narrow lipped mouth, sunken eyes and a low forehead.~
+490 0 3
+D0
+~
+~
+0 -1 49056
+D1
+~
+~
+0 -1 49066
+D2
+~
+~
+0 -1 49072
+D3
+~
+~
+0 -1 49064
+D4
+~
+~
+0 -1 49165
+S
+#49066
+Beacon Fire~
+   Pirates have made a large fire here, trying to lure ships onto the
+treacherous cliffs.  The flames prey eagerly on the dry wood from the dead
+forest.    ~
+490 0 4
+D0
+~
+~
+0 -1 49057
+D3
+~
+~
+0 -1 49065
+D4
+~
+~
+0 -1 49166
+S
+#49067
+Dead Man's Dive~
+   This is THE place for a quick exit to Nirvana Terminal.  The razor-edged
+rocks at the base of this cliff will make sure that the sharks get their meat
+in nice, bite-size chunks...    ~
+490 0 5
+D0
+~
+~
+0 -1 49060
+D1
+~
+~
+0 -1 49068
+D2
+~
+~
+0 -1 49073
+D4
+~
+~
+0 -1 49167
+S
+#49068
+Top Of The Bay~
+   A mist of fine water droplets covers your face.  Just a few steps to the
+south, and a long way down, the waves crash violently into the island.  You
+decide that a speedy death is not what you are after.    ~
+490 0 5
+D0
+~
+~
+0 -1 49061
+D1
+~
+~
+0 -1 49069
+D3
+~
+~
+0 -1 49067
+D4
+~
+~
+0 -1 49168
+S
+#49069
+Griffin Ground~
+   This is griffin territory, here the mythical beasts reign supreme, here they
+are king of all they survey.  Whoever dares to tread here becomes vulnerable to
+their most vicious attacks.    ~
+490 0 4
+D0
+~
+~
+0 -1 49062
+D1
+~
+~
+0 -1 49070
+D2
+~
+~
+0 -1 49074
+D3
+~
+~
+0 -1 49068
+D4
+~
+~
+0 -1 49169
+S
+#49070
+Hollow~
+   The griffins have made their nests in this dried up swamp, out of the wind.
+Animal skeletons bleached in the sun lie here and there.    ~
+490 0 4
+D0
+~
+~
+0 -1 49063
+D1
+~
+~
+0 -1 49071
+D2
+~
+~
+0 -1 49075
+D3
+~
+~
+0 -1 49069
+D4
+~
+~
+0 -1 49170
+S
+#49071
+Hollow~
+   The griffins have made their nests in this dried up swamp, out of the wind.
+Animal skeletons bleached in the sun lie here and there.    ~
+490 0 4
+D0
+~
+~
+0 -1 49064
+D1
+~
+~
+0 -1 49072
+D2
+~
+~
+0 -1 49076
+D3
+~
+~
+0 -1 49070
+D4
+~
+~
+0 -1 49171
+S
+#49072
+Griffin Ground~
+   This is griffin territory, here the mythical beasts reign supreme, here they
+are king of all they survey.  Whoever dares to tread here becomes vulnerable to
+their most vicious attacks.    ~
+490 0 4
+D0
+~
+~
+0 -1 49065
+D2
+~
+~
+0 -1 49077
+D3
+~
+~
+0 -1 49071
+D4
+~
+~
+0 -1 49172
+S
+#49073
+Black Cliff~
+   The sea has failed to dent this unyielding cliff of hard volcanic stone.  
+It stands apart from the white cliffs to the east, like a rotten tooth in a
+grinning mouth.    ~
+490 0 5
+D0
+~
+~
+0 -1 49067
+D4
+~
+~
+0 -1 49173
+S
+#49074
+White Cliffs~
+   It is said that on a good day one can see these white marble cliffs from the
+other side of the sea, gleaming in the sunlight.  But then, only adventurers of
+the worst sort over return from the other side of the sea.  A southern gale
+makes it impossible to breathe normally.  Somehow, this unforgiving environment
+seems to suit the ferocious griffins.    ~
+490 0 5
+D0
+~
+~
+0 -1 49069
+D1
+~
+~
+0 -1 49075
+D4
+~
+~
+0 -1 49174
+S
+#49075
+White Cliffs~
+   It is said that on a good day one can see these white marble cliffs from the
+other side of the sea, gleaming in the sunlight.  But then, only adventurers of
+the worst sort ever return from the other side of the sea.  A southern gale
+makes it impossible to breathe normally.  Somehow, this unforgiving environment
+seems to suit the ferocious griffins.    ~
+490 0 5
+D0
+~
+~
+0 -1 49070
+D1
+~
+~
+0 -1 49076
+D3
+~
+~
+0 -1 49074
+D4
+~
+~
+0 -1 49175
+S
+#49076
+White Cliffs~
+   It is said that on a good day one can see these white marble cliffs from the
+other side of the sea, gleaming in the sunlight.  But then, only adventurers of
+the worst sort ever return from the other side of the sea.  A southern gale
+makes it impossible to breathe normally.  Somehow, this unforgiving environment
+seems to suit the ferocious griffins.    ~
+490 0 5
+D0
+~
+~
+0 -1 49071
+D1
+~
+~
+0 -1 49077
+D3
+~
+~
+0 -1 49075
+D4
+~
+~
+0 -1 49176
+S
+#49077
+Panorama Point~
+   Higher than all the other hills, Panorama Point provides the best overview
+of the island.  Through thick shards of mist, you can just barely recognize the
+island's skull shape.    ~
+490 0 5
+D0
+~
+~
+0 -1 49072
+D2
+~
+~
+0 -1 49181
+D3
+~
+~
+0 -1 49076
+D4
+~
+~
+0 -1 49177
+S
+#49078
+Seer's Cave~
+   This cave is very bare, with a large pool of rainwater in one corner and
+some phosphorescent moss coating the walls.  There seems to be no furniture or
+anything resembling a creature comfort.  The seer obviously takes her calling
+very seriously.    ~
+490 8 12
+D0
+~
+~
+0 0 49058
+S
+#49079
+Sentinel Rock~
+   Sentinel Rock rises out of the foaming waters, a solitary rock that will not
+yield to the sea's undying pressure.    ~
+490 0 5
+D0
+~
+~
+0 -1 49180
+D4
+~
+~
+0 -1 49178
+S
+#49080
+Between The Roots Of The Holy Tree~
+   You have to stoop down to get into the cavity underneath the tree.  
+Surprisingly enough this hollow is rather large- it's a little house!  There's
+a tiny little bench here, and a little table...  Everything here is made to the
+size of little people.    ~
+490 8 0
+D4
+The roots up above open to the outside.~
+roots~
+1 -1 49031
+S
+#49081
+Inside The 'St. Marvin'~
+   The sound of water dripping echoes through the hull, which is filled
+knee-deep with mucky water.  A foul stench hits your nostrils.    ~
+490 8 0
+D1
+~
+~
+0 -1 49028
+S
+#49082
+Claustrophobic Passage~
+   It's too dark to see; too narrow to breathe.  An oozing slime attaches
+itself to your clothes, your face...  It gets in your mouth...  YUCK!!  An iron
+gate with bars as thick as your arms blocks the way to the south.    ~
+490 776 12
+D0
+~
+~
+0 0 49085
+D2
+There's a sturdy iron gate to the south.~
+gate iron~
+2 49008 49087
+S
+#49083
+MOBILE_TRANSFER_ROOM~
+   Hmm...  You shouldn't be in here!  Everything is formless void and you start
+to worry that you will be deconstructed too...    ~
+490 1638912 0
+S
+#49084
+Claustrophobic Passage~
+   It's too dark to see; too narrow to breathe.  An oozing slime attaches
+itself to your clothes, your face...  It gets in your mouth...  YUCK!!    ~
+490 776 12
+D0
+The boulder seems to have been loosened.
+~
+boulder~
+2 49036 49042
+D2
+~
+~
+0 -1 49086
+S
+#49085
+Claustrophobic Passage~
+   It's too dark to see; too narrow to breathe.  An oozing slime attaches
+itself to your clothes, your face...  It gets in your mouth...  YUCK!!    ~
+490 776 12
+D1
+~
+~
+0 0 49086
+D2
+~
+~
+0 0 49082
+S
+#49086
+Claustrophobic Passage~
+   It's too dark to see; too narrow to breathe.  An oozing slime attaches
+itself to your clothes, your face...  It gets in your mouth...  YUCK!!    ~
+490 776 12
+D0
+~
+~
+0 -1 49084
+D3
+~
+~
+0 0 49085
+S
+#49087
+Luminous Tunnel~
+   The face of the rock in this narrow tunnel is covered with a moss that
+emanates an eerie pulsating light.  The walls seem to come alive as you pass by
+- awakened by your presence, thousands of moss buds explode, sending a green
+powder in your direction.  Well, at least you won't pass unnoticed in the dark.
+You can go back to the south if you feel unable to open the gate to the north.~
+490 780 12
+D0
+There's a sturdy iron gate to the north.~
+gate iron sturdy~
+2 49008 49082
+D2
+~
+~
+0 -1 49088
+S
+#49088
+Griffin Chapel~
+   To the south a granite altar is visible and to the west there are murals on
+the walls.  North of here is the entrance to the tunnels that lead to the
+chapel.    ~
+490 520 12
+D0
+~
+~
+0 -1 49087
+D2
+~
+~
+0 -1 49091
+D3
+~
+~
+0 0 49089
+S
+#49089
+Griffin Chapel~
+   This side of the chapel has colourful murals painted all over the walls.  
+To the east is the exit from the chapel while the murals continue southwards.~
+490 520 12
+D1
+~
+~
+0 0 49088
+D2
+~
+~
+0 0 49090
+E
+murals mural wall walls~
+The murals tell the story of the great griffin god who the cult worship.
+He seems to have arrived on the island one day after a tour of the universe
+and decreed this island to be the only place fit for his creatures to live.
+He created the cave and its altar and killed all the people living on the
+island who did not accept his authority. The story seems to take place before
+even the druids were here, or perhaps the painter felt it diplomatic not to
+paint his master's undefeated enemies.~
+S
+#49090
+Griffin Chapel~
+   The murals continue north and you can see an altar to the east.    ~
+490 520 12
+D0
+~
+~
+0 0 49089
+D1
+~
+~
+0 0 49091
+E
+mural murals wall walls~
+This mural seems more fanciful, as if it tells of the future not the past.
+Dagon is represented as rising from the altar to destroy his enemies, among
+whom you can clearly see Earle suffering. Behind Dagon is the shadow of an
+even larger griffin which seems to be scorching everything it touches. Perhaps
+it is just that the painter has a bad sense of perspective.~
+S
+#49091
+Griffin Chapel~
+   This dome is large enough to hold about fifty worshippers and a large altar
+in the centre of the room.  There are no obvious seams in the creation of the
+dome, it is as if it were carved out of the solid rock around the altar,
+although no tool marks are visible either.    ~
+490 520 12
+D0
+~
+~
+0 -1 49088
+D1
+~
+~
+0 -1 49092
+D3
+~
+~
+0 0 49090
+S
+T 49002
+T 49005
+T 49007
+#49092
+Pentagram Cavern~
+   Dripping stones - stalagtites and stalagmites - adorn this cavern.  As you
+move through it, their shadows shift unsettlingly.  To the west you can see an
+altar while to the south you can feel a cold wind blowing, and you can hear the
+sea against the cliffs.    ~
+490 520 12
+D2
+~
+~
+0 -1 49093
+D3
+~
+~
+0 -1 49091
+S
+#49093
+Cavern~
+   The cavern here becomes wide and flat.  It's walls are covered with ancient
+cave paintings of mythical animals.  Some bones lie scattered on the floor.  
+North of here the cavern gets darker.  A strong draught enters the cave from
+the south.    ~
+490 776 12
+D0
+~
+~
+0 -1 49092
+D2
+~
+~
+0 -1 49094
+S
+#49094
+Giant Griffin's Nest~
+   In a way, griffins are birds, too, and it is in a nest that they sleep and
+raise their young.  This nest, twice the size of, say, the Forest Inn, is built
+on a rocky ledge overlooking the sea.  The thunder of the waves is at its
+loudest.  The cavern continues to the north.  The wind here is so strong that
+you fear that if you could fly south you wouldn't be able to fly back to the
+cliff.    ~
+490 512 5
+D0
+~
+~
+0 -1 49093
+D2
+~
+~
+0 -1 49095
+S
+#49095
+Swirling Water~
+   The waves crash into the rock with a thunderous roar...  In this narrow bay,
+with high cliffs east, west and north of you, the boiling turbulence of the sea
+becomes life-threatening.  To the north you see a giant nest placed on a ledge,
+but no matter how you try the air currents don't permit you to go in that
+direction.    ~
+490 4 6
+D4
+~
+~
+0 -1 49096
+S
+#49096
+Above the Swirling Water~
+Accidents have a way of happening to those who venture too far from the shore -
+and what a dangerous piece of shore this is. The power with which the waves
+crash into the rocks some distance below is just awesome. Leaving down
+means risking death - but isn't that what you live for?~
+490 4 9
+D4
+~
+~
+0 -1 49119
+D5
+~
+~
+0 -1 49095
+S
+#49097
+In The Hollow Tree~
+   It's considerably warmer in here than outside - which seems strange, as you
+could hardly light a fire inside a tree...  Here and there twigs sprout from
+the simple furniture.  An exit leads down.    ~
+490 0 0
+D5
+~
+~
+0 -1 49044
+S
+#49098
+Five Birches House~
+   This is a spacious house, with all the amenities necessary for a luxurious
+life.  It has that little 'je ne sais quoi' that the other houses don't have.
+Through a large window you can see a forest of emerald-green trees whose leaves
+shimmer with moisture from the night's rain.    ~
+490 0 0
+D5
+~
+~
+0 -1 49032
+S
+#49099
+Suspended House~
+   Hundreds of plants from all over the world fill this plant-nursery.  Placed
+in flower pots and trays, some of them are only seedlings, while others have
+grown to a size too big for this house.  Around the stem, a stairway leads to
+the crown of the tree.    ~
+490 8 0
+D4
+~
+~
+0 -1 49133
+D5
+~
+~
+0 -1 49033
+S
+#49100
+Above the Stone Arch~
+   You merrily float in the air above the stone arch.  South of here you can
+see an island covered with emerald-green trees.    ~
+490 0 9
+D2
+~
+~
+0 -1 49101
+D4
+~
+~
+0 -1 49100
+D5
+~
+~
+0 -1 49000
+S
+#49101
+Above the Stone Arch~
+   You merrily float in the air above the stone arch.  South of here you can
+see an island covered with emerald-green trees.    ~
+490 0 9
+D0
+~
+~
+0 -1 49100
+D2
+~
+~
+0 -1 49102
+D4
+~
+~
+0 -1 49101
+D5
+~
+~
+0 -1 49001
+S
+#49102
+Above the Island~
+   West and east lies the shore.  In a more or less southernly direction you
+see two lakes.  The world looks much prettier from up here...    ~
+490 0 9
+D0
+~
+~
+0 -1 49101
+D1
+~
+~
+0 -1 49113
+D2
+~
+~
+0 -1 49103
+D3
+~
+~
+0 -1 49112
+D4
+~
+~
+0 -1 49102
+D5
+~
+~
+0 -1 49002
+S
+#49103
+Flying Over the Northern Path~
+   Looking down to take your bearing, you see the northern path running east to
+west.    ~
+490 0 9
+D0
+~
+~
+0 -1 49102
+D1
+~
+~
+0 -1 49114
+D2
+~
+~
+0 -1 49123
+D3
+~
+~
+0 -1 49104
+D4
+~
+~
+0 -1 49103
+D5
+~
+~
+0 -1 49003
+S
+#49104
+Above the Northern Path~
+   Looking down to take your bearing, you see the northern path running east to
+west.    ~
+490 0 9
+D0
+~
+~
+0 -1 49112
+D1
+~
+~
+0 -1 49103
+D2
+~
+~
+0 -1 49122
+D3
+~
+~
+0 -1 49105
+D4
+~
+~
+0 -1 49104
+D5
+~
+~
+0 -1 49004
+S
+#49105
+Over the Northern Path~
+   Looking down to take your bearing, you see the northern path running east to
+west.    ~
+490 0 9
+D0
+~
+~
+0 -1 49111
+D1
+~
+~
+0 -1 49104
+D2
+~
+~
+0 -1 49121
+D3
+~
+~
+0 -1 49106
+D4
+~
+~
+0 -1 49105
+D5
+~
+~
+0 -1 49005
+S
+#49106
+Above the Northern Path~
+   Looking down to take your bearing, you see the northern path running east to
+west.    ~
+490 0 9
+D0
+~
+~
+0 -1 49110
+D1
+~
+~
+0 -1 49105
+D2
+~
+~
+0 -1 49120
+D3
+~
+~
+0 -1 49107
+D4
+~
+~
+0 -1 49106
+D5
+~
+~
+0 -1 49006
+S
+#49107
+Above the Crystal Megalith~
+   You fly around the sharp point of the crystal megalith below...  The harsh
+blue light seems to affect your flying skills - in a negative way...    ~
+490 0 9
+D0
+~
+~
+0 -1 49109
+D1
+~
+~
+0 -1 49106
+D2
+~
+~
+0 -1 49118
+D3
+~
+~
+0 -1 49108
+D4
+~
+~
+0 -1 49107
+D5
+~
+~
+0 -1 49007
+S
+#49108
+Above the Shore~
+   You swirl about like an accomplished osprey!    ~
+490 0 9
+D1
+~
+~
+0 -1 49107
+D2
+~
+~
+0 -1 49117
+D4
+~
+~
+0 -1 49108
+D5
+~
+~
+0 -1 49008
+S
+#49109
+Above the Shore~
+   You swirl about like an accomplished osprey!    ~
+490 0 9
+D1
+~
+~
+0 -1 49110
+D2
+~
+~
+0 -1 49107
+D4
+~
+~
+0 -1 49109
+D5
+~
+~
+0 -1 49009
+S
+#49110
+Above the Shore~
+   You swirl about like an accomplished osprey.    ~
+490 0 9
+D1
+~
+~
+0 -1 49111
+D2
+~
+~
+0 -1 49106
+D3
+~
+~
+0 -1 49109
+D4
+~
+~
+0 -1 49110
+D5
+~
+~
+0 -1 49010
+S
+#49111
+Roof of the Boathouse~
+   You touch down on the roof of the boat house.  You could drop down, or fly
+east, west or south.    ~
+490 0 1
+D1
+~
+~
+0 -1 49112
+D2
+~
+~
+0 -1 49105
+D3
+~
+~
+0 -1 49110
+D4
+~
+~
+0 -1 49111
+D5
+~
+~
+0 -1 49011
+S
+#49112
+Above the Shore~
+   You swirl about like an accomplished osprey.    ~
+490 0 9
+D1
+~
+~
+0 -1 49102
+D2
+~
+~
+0 -1 49104
+D3
+~
+~
+0 -1 49111
+D4
+~
+~
+0 -1 49112
+D5
+~
+~
+0 -1 49012
+S
+#49113
+In the Air~
+   You fly into a fluffy little cloud, temporarily losing your sense of
+direction.    ~
+490 0 9
+D2
+~
+~
+0 -1 49114
+D3
+~
+~
+0 -1 49102
+D4
+~
+~
+0 -1 49113
+D5
+~
+~
+0 -1 49013
+S
+#49114
+Over the Circle of Stone~
+   You get an extra boost from the cosmic energies emanating from the circle of
+stone below.  Southwest of here is a lake.    ~
+490 0 9
+D0
+~
+~
+0 -1 49113
+D1
+~
+~
+0 -1 49115
+D2
+~
+~
+0 -1 49125
+D3
+~
+~
+0 -1 49103
+D4
+~
+~
+0 -1 49114
+D5
+~
+~
+0 -1 49014
+S
+#49115
+In the Air~
+   You fly into a fluffy little cloud, temporarily losing your sense of
+direction.    ~
+490 0 9
+D2
+~
+~
+0 -1 49126
+D3
+~
+~
+0 -1 49114
+D4
+~
+~
+0 -1 49115
+D5
+~
+~
+0 -1 49015
+S
+#49116
+Above the Western Beach~
+   You fill your lungs with the fresh sea air...  South of here lies a
+shipwreck.    ~
+490 0 9
+D1
+~
+~
+0 -1 49117
+D2
+~
+~
+0 -1 49128
+D4
+~
+~
+0 -1 49116
+D5
+~
+~
+0 -1 49016
+S
+#49117
+Over the Swamp~
+   You smell the swamp gas from the marsh below.    ~
+490 0 9
+D0
+~
+~
+0 -1 49108
+D1
+~
+~
+0 -1 49118
+D2
+~
+~
+0 -1 49129
+D3
+~
+~
+0 -1 49116
+D4
+~
+~
+0 -1 49117
+D5
+~
+~
+0 -1 49017
+S
+#49118
+Above Righ Eye Lake~
+   Whee!  At least you'll splash down safely when your fly spell runs out...  
+You did bring a boat, didn't you?    ~
+490 0 9
+D0
+~
+~
+0 -1 49107
+D1
+~
+~
+0 -1 49120
+D2
+~
+~
+0 -1 49130
+D3
+~
+~
+0 -1 49117
+D4
+~
+~
+0 -1 49118
+D5
+~
+~
+0 -1 49018
+S
+#49119
+High above the Swirling Water~
+   Up here, the raging sea seems to be too far away to be able to get at you,
+but remember that falling down is just going to be that more painful.    ~
+490 0 9
+D0
+~
+~
+0 -1 49168
+D1
+~
+~
+0 -1 49174
+D3
+~
+~
+0 -1 49173
+D5
+~
+~
+0 -1 49096
+S
+#49120
+Above Right Eye Lake~
+   Whee!  At least you'll splash down safely when your fly spell runs out...  
+You did bring a boat, didn't you?    ~
+490 0 9
+D0
+~
+~
+0 -1 49106
+D1
+~
+~
+0 -1 49121
+D2
+~
+~
+0 -1 49131
+D3
+~
+~
+0 -1 49118
+D4
+~
+~
+0 -1 49120
+D5
+~
+~
+0 -1 49020
+S
+#49121
+Eliah's Tree~
+   A pinewood cabin nests in the crown of this oak.  As you fly around it, you
+notice only a few small windows.  The entrance seems to have been made in the
+floor.    ~
+490 0 9
+D0
+~
+~
+0 -1 49106
+D1
+~
+~
+0 -1 49122
+D2
+~
+~
+0 -1 49132
+D3
+~
+~
+0 -1 49120
+D4
+~
+~
+0 -1 49121
+D5
+~
+~
+0 -1 49021
+S
+#49122
+Above the Woods~
+   You are in the air, with a forest below you.    ~
+490 0 9
+D0
+~
+~
+0 -1 49104
+D1
+~
+~
+0 -1 49123
+D2
+~
+~
+0 -1 49133
+D3
+~
+~
+0 -1 49121
+D4
+~
+~
+0 -1 49122
+D5
+~
+~
+0 -1 49022
+S
+#49123
+Above Left Eye Lake~
+   Whee!  At least you'll splash down safely when your fly spell runs out...  
+You did bring a boat, didn't you?    ~
+490 0 9
+D0
+~
+~
+0 -1 49103
+D1
+~
+~
+0 -1 49125
+D2
+~
+~
+0 -1 49134
+D3
+~
+~
+0 -1 49122
+D4
+~
+~
+0 -1 49123
+D5
+~
+~
+0 -1 49023
+S
+#49124
+In The Living Tree House~
+   Well, reconsidering, this looks like the most primitive of all the houses in
+this forest, but its inhabitants would probably not agree.  As regards
+furniture, well, there isn't any, really.  It's just branches and leaves to all
+sides.    ~
+490 0 0
+D5
+~
+~
+0 -1 49041
+S
+#49125
+Above Left Eye Lake~
+   Whee!  At least you'll splash down safely when your fly spell runs out...  
+You did bring a boat, didn't you?    ~
+490 0 9
+D0
+~
+~
+0 -1 49114
+D1
+~
+~
+0 -1 49126
+D2
+~
+~
+0 -1 49135
+D3
+~
+~
+0 -1 49123
+D4
+~
+~
+0 -1 49125
+D5
+~
+~
+0 -1 49025
+S
+#49126
+Above the Grassland~
+   You dart around in the sky.  Below you is grassland.    ~
+490 0 9
+D0
+~
+~
+0 -1 49115
+D1
+~
+~
+0 -1 49127
+D2
+~
+~
+0 -1 49136
+D3
+~
+~
+0 -1 49125
+D4
+~
+~
+0 -1 49126
+D5
+~
+~
+0 -1 49026
+S
+#49127
+In the Air~
+   You float on your back and let a light breeze carry you off in the right
+direction.    ~
+490 0 9
+D2
+~
+~
+0 -1 49137
+D3
+~
+~
+0 -1 49126
+D4
+~
+~
+0 -1 49127
+D5
+~
+~
+0 -1 49027
+S
+#49128
+Above the Wreck~
+   From up here, you can take a good look at poor old 'St.  Marvin'.  And what
+a sorry sight it is!  Only the nameplate has no holes in it!  It makes one want
+to shake one's head and weep...    ~
+490 0 9
+D0
+~
+~
+0 -1 49116
+D1
+~
+~
+0 -1 49129
+D2
+~
+~
+0 -1 49138
+D4
+~
+~
+0 -1 49128
+D5
+~
+~
+0 -1 49028
+S
+#49129
+Over the Swamp~
+   You smell the swamp gas from the marsh below.    ~
+490 0 9
+D0
+~
+~
+0 -1 49117
+D1
+~
+~
+0 -1 49130
+D2
+~
+~
+0 -1 49139
+D3
+~
+~
+0 -1 49128
+D4
+~
+~
+0 -1 49129
+D5
+~
+~
+0 -1 49029
+S
+#49130
+Above Right Eye Lake~
+   Whee!  At least you'll splash down safely when your fly spell runs out...  
+You did bring a boat, didn't you?    ~
+490 0 9
+D0
+~
+~
+0 -1 49118
+D1
+~
+~
+0 -1 49131
+D2
+~
+~
+0 -1 49140
+D3
+~
+~
+0 -1 49129
+D4
+~
+~
+0 -1 49130
+D5
+~
+~
+0 -1 49030
+S
+#49131
+Crown of the Holy Oak~
+   Between the oak's own foliage, leaves in a different shade of green are
+visible.  These are the leaves of the parasite that feeds on the oak's sap :
+mistletoe.  Without this, the oak would not be revered as much as it is.  It is
+this mistletoe that is cut with a golden sickle by the eldest druid, and is
+used in the most powerful potions.    ~
+490 0 3
+D0
+~
+~
+0 -1 49120
+D1
+~
+~
+0 -1 49132
+D2
+~
+~
+0 -1 49141
+D3
+~
+~
+0 -1 49130
+D4
+~
+~
+0 -1 49131
+D5
+~
+~
+0 -1 49031
+S
+#49132
+Roof of 'The Five Birches'~
+   Some deck chairs have been put on the spacious roof of the biggest house in
+the woods.    ~
+490 0 1
+D0
+~
+~
+0 -1 49121
+D1
+~
+~
+0 -1 49133
+D2
+~
+~
+0 -1 49142
+D3
+~
+~
+0 -1 49131
+D4
+~
+~
+0 -1 49132
+D5
+~
+~
+0 -1 49032
+S
+#49133
+A Tree with a House~
+   There's a house without much in the way of a roof beneath you.  A stairway
+leads down.    ~
+490 0 9
+D0
+~
+~
+0 -1 49122
+D1
+~
+~
+0 -1 49134
+D2
+~
+~
+0 -1 49143
+D3
+~
+~
+0 -1 49132
+D4
+~
+~
+0 -1 49133
+D5
+~
+~
+0 -1 49099
+S
+#49134
+Above Left Eye Lake~
+   Whee!  At least you'll splash down safely when your fly spell runs out...  
+You did bring a boat, didn't you?    ~
+490 0 9
+D0
+~
+~
+0 -1 49123
+D1
+~
+~
+0 -1 49135
+D2
+~
+~
+0 -1 49144
+D3
+~
+~
+0 -1 49133
+D4
+~
+~
+0 -1 49134
+D5
+~
+~
+0 -1 49034
+S
+#49135
+Above the Mushroom Patch~
+   You are high above a patch of colourful mushrooms.    ~
+490 0 9
+D0
+~
+~
+0 -1 49125
+D1
+~
+~
+0 -1 49136
+D2
+~
+~
+0 -1 49145
+D3
+~
+~
+0 -1 49134
+D4
+~
+~
+0 -1 49135
+D5
+~
+~
+0 -1 49035
+S
+#49136
+Above the Grassland~
+   You dart around in the sky.  Below you is grassland.    ~
+490 0 9
+D0
+~
+~
+0 -1 49126
+D1
+~
+~
+0 -1 49137
+D2
+~
+~
+0 -1 49146
+D3
+~
+~
+0 -1 49135
+D4
+~
+~
+0 -1 49136
+D5
+~
+~
+0 -1 49036
+S
+#49137
+In the Air~
+   You float on your back and let a light breeze carry you off in the right
+direction.    ~
+490 0 9
+D0
+~
+~
+0 -1 49127
+D2
+~
+~
+0 -1 49147
+D3
+~
+~
+0 -1 49136
+D4
+~
+~
+0 -1 49137
+D5
+~
+~
+0 -1 49037
+S
+#49138
+Above the Hills~
+   Green hills dotted with flowers lie directly below you.    ~
+490 0 9
+D0
+~
+~
+0 -1 49128
+D1
+~
+~
+0 -1 49139
+D2
+~
+~
+0 -1 49148
+D4
+~
+~
+0 -1 49138
+D5
+~
+~
+0 -1 49038
+S
+#49139
+Over the Swamp~
+   You smell the swamp gas from the marsh below.    ~
+490 0 9
+D0
+~
+~
+0 -1 49129
+D1
+~
+~
+0 -1 49140
+D2
+~
+~
+0 -1 49150
+D3
+~
+~
+0 -1 49138
+D4
+~
+~
+0 -1 49139
+D5
+~
+~
+0 -1 49039
+S
+#49140
+Above the Trees~
+   As you tear through the sky, your feet brush the tops of the trees, leaving
+a flutter of leaves in your wake.    ~
+490 0 9
+D0
+~
+~
+0 -1 49130
+D1
+~
+~
+0 -1 49141
+D2
+~
+~
+0 -1 49151
+D3
+~
+~
+0 -1 49139
+D4
+~
+~
+0 -1 49140
+D5
+~
+~
+0 -1 49040
+S
+#49141
+Crown of the Living Treehouse~
+   You begin to appreciate why birds like trees so much.  But let's not start
+singing bird songs, shall we...    ~
+490 0 3
+D0
+~
+~
+0 -1 49131
+D1
+~
+~
+0 -1 49142
+D2
+~
+~
+0 -1 49152
+D3
+~
+~
+0 -1 49140
+D4
+~
+~
+0 -1 49141
+D5
+~
+~
+0 -1 49041
+S
+#49142
+Hanging Bridge~
+   This rope bridge connects the suspended house that is more or less east of
+here with the living tree house west of here.  Don't fall off!    ~
+490 4 3
+D0
+~
+~
+0 -1 49132
+D1
+~
+~
+0 -1 49143
+D2
+~
+~
+0 -1 49153
+D3
+~
+~
+0 -1 49141
+D4
+~
+~
+0 -1 49142
+D5
+~
+~
+0 -1 49042
+S
+#49143
+Above the Clearing~
+   Do I spot a landing-zone down there?  Beneath you lies a clearing in the
+woods.    ~
+490 0 9
+D0
+~
+~
+0 -1 49133
+D1
+~
+~
+0 -1 49144
+D2
+~
+~
+0 -1 49154
+D3
+~
+~
+0 -1 49142
+D4
+~
+~
+0 -1 49143
+D5
+~
+~
+0 -1 49043
+S
+#49144
+In the Crown of the Hollow Wood Giant~
+   You fly into the crown of this tree, trying to hide between the leaves.    ~
+490 0 3
+D0
+~
+~
+0 -1 49134
+D1
+~
+~
+0 -1 49145
+D2
+~
+~
+0 -1 49155
+D3
+~
+~
+0 -1 49143
+D4
+~
+~
+0 -1 49144
+D5
+~
+~
+0 -1 49044
+S
+#49145
+Over the Herb Garden~
+   You close your eyes and take in a deep breath of air through your nose.  
+You smell all kinds of herbs and spices.    ~
+490 0 9
+D0
+~
+~
+0 -1 49135
+D1
+~
+~
+0 -1 49146
+D2
+~
+~
+0 -1 49156
+D3
+~
+~
+0 -1 49144
+D4
+~
+~
+0 -1 49145
+D5
+~
+~
+0 -1 49045
+S
+#49146
+Above the Grassland~
+   You dart around in the air.  Below you is grassland.    ~
+490 0 9
+D0
+~
+~
+0 -1 49136
+D1
+~
+~
+0 -1 49147
+D2
+~
+~
+0 -1 49157
+D3
+~
+~
+0 -1 49145
+D4
+~
+~
+0 -1 49146
+D5
+~
+~
+0 -1 49046
+S
+#49147
+In the Air~
+   You float on your back and let a light breeze carry you off in the right
+direction.    ~
+490 0 9
+D0
+~
+~
+0 -1 49137
+D2
+~
+~
+0 -1 49158
+D3
+~
+~
+0 -1 49146
+D4
+~
+~
+0 -1 49147
+D5
+~
+~
+0 -1 49047
+S
+#49148
+Over the Hills~
+   Green hills dotted with flowers lie directly below you.    ~
+490 0 9
+D0
+~
+~
+0 -1 49138
+D1
+~
+~
+0 -1 49150
+D4
+~
+~
+0 -1 49148
+D5
+~
+~
+0 -1 49048
+S
+#49149
+Seaside Cliffs~
+   The hills rise away from the sea to become an overhanging cliff here.  You
+can't see anything from the top apart from sea and you can see no way to climb
+down either.  The hills continue south, while a marsh lies to the east and a
+beach to the north.    ~
+490 0 4
+D0
+~
+~
+0 0 49016
+D1
+~
+~
+0 -1 49029
+D2
+~
+~
+0 0 49038
+E
+ground cliff~
+There is a stake in the ground here, if only you had a rope you could climb down.~
+S
+T 49010
+T 49012
+#49150
+Roof of Brother Crowley's House~
+   Grass grows on this roof made with planks that are covered with dirt.  By
+the look of it, they were salvaged from a shipwreck.    ~
+490 0 1
+D0
+~
+~
+0 -1 49139
+D1
+~
+~
+0 -1 49151
+D2
+~
+~
+0 -1 49159
+D3
+~
+~
+0 -1 49148
+D4
+~
+~
+0 -1 49150
+D5
+~
+~
+0 -1 49050
+S
+#49151
+In the Air~
+   A light breeze toys with your hair.  It feels good to get that weight off
+your feet!    ~
+490 0 9
+D0
+~
+~
+0 -1 49140
+D1
+~
+~
+0 -1 49152
+D2
+~
+~
+0 -1 49160
+D3
+~
+~
+0 -1 49150
+D4
+~
+~
+0 -1 49151
+D5
+~
+~
+0 -1 49051
+S
+#49152
+Above the Trees~
+   As you tear through the sky, your feet brush the tops of the trees, leaving
+a flutter of leaves in your wake.    ~
+490 0 9
+D0
+~
+~
+0 -1 49141
+D1
+~
+~
+0 -1 49153
+D2
+~
+~
+0 -1 49161
+D3
+~
+~
+0 -1 49151
+D4
+~
+~
+0 -1 49152
+D5
+~
+~
+0 -1 49052
+S
+#49153
+Above the Trees~
+   As you tear through the sky, your feet brush the tops of the trees, leaving
+a flutter of leaves in your wake.    ~
+490 0 9
+D0
+~
+~
+0 -1 49142
+D1
+~
+~
+0 -1 49154
+D2
+~
+~
+0 -1 49162
+D3
+~
+~
+0 -1 49152
+D4
+~
+~
+0 -1 49153
+D5
+~
+~
+0 -1 49053
+S
+#49154
+Above some Trees~
+   You're able to make out a dirt path between the trees below you.    ~
+490 0 9
+D0
+~
+~
+0 -1 49143
+D1
+~
+~
+0 -1 49155
+D2
+~
+~
+0 -1 49163
+D3
+~
+~
+0 -1 49153
+D4
+~
+~
+0 -1 49154
+D5
+~
+~
+0 -1 49054
+S
+#49155
+Above the Crater~
+   From up here the crater below looks even more impressive.  The explosion has
+completely disintegrated a piece of forest the size of a large house.    ~
+490 0 9
+D0
+~
+~
+0 -1 49144
+D1
+~
+~
+0 -1 49156
+D2
+~
+~
+0 -1 49164
+D3
+~
+~
+0 -1 49154
+D4
+~
+~
+0 -1 49155
+D5
+~
+~
+0 -1 49055
+S
+#49156
+Above the Grassland~
+   You dart around in the air.  Below you is grassland.    ~
+490 0 9
+D0
+~
+~
+0 -1 49145
+D1
+~
+~
+0 -1 49157
+D2
+~
+~
+0 -1 49165
+D3
+~
+~
+0 -1 49155
+D4
+~
+~
+0 -1 49156
+D5
+~
+~
+0 -1 49056
+S
+#49157
+Top of Hanging Rock~
+   You need to pull up sharply in order not to crash into this giant rock.    ~
+490 0 9
+D0
+~
+~
+0 -1 49146
+D1
+~
+~
+0 -1 49158
+D2
+~
+~
+0 -1 49166
+D3
+~
+~
+0 -1 49156
+D4
+~
+~
+0 -1 49157
+D5
+~
+~
+0 -1 49057
+S
+#49158
+In the Air~
+   You float on your back and let a light breeze carry you off in the right
+direction.    ~
+490 0 9
+D0
+~
+~
+0 -1 49147
+D3
+~
+~
+0 -1 49157
+D4
+~
+~
+0 -1 49158
+D5
+~
+~
+0 -1 49058
+S
+#49159
+Above the Cave-In~
+   Below you, you can see where part of the island has crumbled into the sea.~
+490 0 9
+D0
+~
+~
+0 -1 49150
+D1
+~
+~
+0 -1 49160
+D4
+~
+~
+0 -1 49159
+D5
+~
+~
+0 -1 49059
+S
+#49160
+Over the Dead Forest~
+   You exhibit some cool flying skills, enough to make even a proud griffin
+jealous.    ~
+490 0 9
+D0
+~
+~
+0 -1 49151
+D1
+~
+~
+0 -1 49161
+D2
+~
+~
+0 -1 49167
+D3
+~
+~
+0 -1 49159
+D4
+~
+~
+0 -1 49160
+D5
+~
+~
+0 -1 49060
+S
+#49161
+Over the Dead Forest~
+   You exhibit some cool flying skills, enough to make even a proud griffin
+jealous.    ~
+490 0 9
+D0
+~
+~
+0 -1 49152
+D1
+~
+~
+0 -1 49162
+D2
+~
+~
+0 -1 49168
+D3
+~
+~
+0 -1 49160
+D4
+~
+~
+0 -1 49161
+D5
+~
+~
+0 -1 49061
+S
+#49162
+Over the Dead Forest~
+   You exhibit some cool flying skill, enough to make even a proud griffin
+jealous.    ~
+490 0 9
+D0
+~
+~
+0 -1 49153
+D1
+~
+~
+0 -1 49163
+D2
+~
+~
+0 -1 49169
+D3
+~
+~
+0 -1 49161
+D4
+~
+~
+0 -1 49162
+D5
+~
+~
+0 -1 49062
+S
+#49163
+Over the Dead Forest~
+   You exhibit some cool flying skills, enough to make even a proud griffin
+jealous.    ~
+490 0 9
+D0
+~
+~
+0 -1 49154
+D1
+~
+~
+0 -1 49164
+D2
+~
+~
+0 -1 49170
+D3
+~
+~
+0 -1 49162
+D4
+~
+~
+0 -1 49163
+D5
+~
+~
+0 -1 49063
+S
+#49164
+Over the Dead Forest~
+   You exhibit some cool flying skills, enough to make even a proud griffin
+jealous.    ~
+490 0 9
+D0
+~
+~
+0 -1 49155
+D1
+~
+~
+0 -1 49165
+D2
+~
+~
+0 -1 49171
+D3
+~
+~
+0 -1 49163
+D4
+~
+~
+0 -1 49164
+D5
+~
+~
+0 -1 49064
+S
+#49165
+Above the Ancient Monument~
+   You hover above the massive stone head that stands here forever looking
+south.    ~
+490 0 9
+D0
+~
+~
+0 -1 49156
+D1
+~
+~
+0 -1 49166
+D2
+~
+~
+0 -1 49172
+D3
+~
+~
+0 -1 49164
+D4
+~
+~
+0 -1 49165
+D5
+~
+~
+0 -1 49065
+S
+#49166
+Above the Beacon Fire~
+   Uche Uche!  The smoke from the fire below stings your eyes and gets into
+your lungs.  Mayday, mayday...    ~
+490 0 9
+D0
+~
+~
+0 -1 49157
+D3
+~
+~
+0 -1 49165
+D4
+~
+~
+0 -1 49166
+D5
+~
+~
+0 -1 49066
+S
+#49167
+Above the Island~
+   You are floating over the southwestern shore of the island.    ~
+490 0 9
+D0
+~
+~
+0 -1 49160
+D1
+~
+~
+0 -1 49168
+D2
+~
+~
+0 -1 49173
+D4
+~
+~
+0 -1 49167
+D5
+~
+~
+0 -1 49067
+S
+#49168
+High above the Bay~
+   While you're here, get yourself a breath of fresh air!  Below you and some
+distance to the south lies a narrow bay.    ~
+490 0 9
+D0
+~
+~
+0 -1 49161
+D1
+~
+~
+0 -1 49169
+D2
+~
+~
+0 -1 49119
+D3
+~
+~
+0 -1 49167
+D4
+~
+~
+0 -1 49168
+D5
+~
+~
+0 -1 49068
+S
+#49169
+Over Griffin Ground~
+   You are hunting high and low above griffin ground...  But who is the hunter,
+and who is the hunted?    ~
+490 0 9
+D0
+~
+~
+0 -1 49162
+D1
+~
+~
+0 -1 49170
+D2
+~
+~
+0 -1 49174
+D3
+~
+~
+0 -1 49168
+D4
+~
+~
+0 -1 49169
+D5
+~
+~
+0 -1 49069
+S
+#49170
+Above the Hollow~
+   You are caressed by a sweet little breeze.    ~
+490 0 9
+D0
+~
+~
+0 -1 49163
+D1
+~
+~
+0 -1 49171
+D2
+~
+~
+0 -1 49175
+D3
+~
+~
+0 -1 49169
+D4
+~
+~
+0 -1 49170
+D5
+~
+~
+0 -1 49070
+S
+#49171
+Above the Hollow~
+   You are caressed by a sweet little breeze.    ~
+490 0 9
+D0
+~
+~
+0 -1 49164
+D1
+~
+~
+0 -1 49172
+D2
+~
+~
+0 -1 49176
+D3
+~
+~
+0 -1 49170
+D4
+~
+~
+0 -1 49171
+D5
+~
+~
+0 -1 49071
+S
+#49172
+Over Griffin Ground~
+   You are hunting high and low above griffin ground...  But who is the hunter,
+and who is the hunted?    ~
+490 0 9
+D0
+~
+~
+0 -1 49165
+D2
+~
+~
+0 -1 49177
+D3
+~
+~
+0 -1 49171
+D4
+~
+~
+0 -1 49172
+D5
+~
+~
+0 -1 49072
+S
+#49173
+Over the Cliffs~
+   A strong southern gale puts your feet above your head.    ~
+490 0 9
+D0
+~
+~
+0 -1 49167
+D1
+~
+~
+0 -1 49119
+D4
+~
+~
+0 -1 49173
+D5
+~
+~
+0 -1 49073
+S
+#49174
+Over the Cliffs~
+   A strong southern gale puts your feet above your head.    ~
+490 0 9
+D0
+~
+~
+0 -1 49169
+D1
+~
+~
+0 -1 49175
+D3
+~
+~
+0 -1 49119
+D4
+~
+~
+0 -1 49174
+D5
+~
+~
+0 -1 49074
+S
+#49175
+Over the Cliffs~
+   A strong southern gale puts your feet above your head.    ~
+490 0 9
+D0
+~
+~
+0 -1 49170
+D1
+~
+~
+0 -1 49176
+D3
+~
+~
+0 -1 49174
+D4
+~
+~
+0 -1 49175
+D5
+~
+~
+0 -1 49075
+S
+#49176
+Over the Cliffs~
+   A strong southern gale puts your feet above your head.    ~
+490 0 9
+D0
+~
+~
+0 -1 49171
+D1
+~
+~
+0 -1 49177
+D3
+~
+~
+0 -1 49175
+D4
+~
+~
+0 -1 49176
+D5
+~
+~
+0 -1 49076
+S
+#49177
+Above Panorama Point~
+   And here the view is even better!  Staying airborne is tiring though, for
+you have to lean hard into the wind to stay put.  South of here you can see a
+small rocky island separated from Griffin Isle.    ~
+490 0 9
+D0
+~
+~
+0 -1 49172
+D3
+~
+~
+0 -1 49176
+D4
+~
+~
+0 -1 49177
+D5
+~
+~
+0 -1 49077
+S
+#49178
+Above Sentinel Rock~
+   You're gliding in the air above Sentinel Rock.    ~
+490 0 9
+D0
+~
+~
+0 -1 49181
+D5
+~
+~
+0 -1 49079
+S
+#49179
+Sea~
+   You're up to your middle in the waves, and sinking slowly...  North and
+south of here are black cliffs.    ~
+490 0 7
+D4
+~
+~
+0 -1 49180
+S
+#49180
+North Of Sentinel Rock~
+   You're in the air.  Below is the sea, north a cliff and south Sentinel Rock.~
+490 0 9
+D2
+~
+~
+0 -1 49079
+D4
+~
+~
+0 -1 49181
+D5
+~
+~
+0 -1 49179
+S
+#49181
+South Of Panorama Point~
+   You're above the sea.  South of here and down lies an islet.  Griffin Isle
+is to the north.    ~
+490 4 9
+D0
+~
+~
+0 -1 49077
+D2
+~
+~
+0 -1 49178
+D5
+~
+~
+0 -1 49180
+S
+#49182
+Deep in the Cave~
+   Deeper in the cave there seems to have been an attempt to make some sort of
+living quarters.  A sad looking straw sack lies against one wall and a
+rudimentary set of weights is scattered around the floor.    ~
+490 264 12
+D1
+~
+~
+0 -1 49183
+S
+#49183
+The Entrance to the Cave~
+   The cave is long and narrow and dark, and doesn't seem to go back into the
+cliff very far.    ~
+490 264 12
+D1
+~
+~
+0 -1 49013
+D3
+~
+~
+0 0 49182
+S
+#49184
+In The Boat House~
+   The interior of the boathouse is quite clean for an abandoned structure.  
+Obviously someone still uses it, although given the basic amenities on show
+probably not someone who cares for the finer things in life.    ~
+490 264 0
+D0
+~
+~
+0 -1 49011
+S
+#49185
+Cabin~
+   It's a pretty mess in here!  Eliah, a confirmed bachelor, has better things
+to do than beating the carpet and picking up his dirty laundry!  A glint on the
+wall catches your eye.    ~
+490 8 0
+D5
+~
+~
+0 -1 49021
+E
+glint mirror~
+A horrendous monster raises its fist to attack you!
+Aw no, hold it, it's just your mirror image.~
+S
+#49186
+An Unfamiliar Plane~
+   You are having trouble making sense of up and down on this plane, there
+seems to be no horizon and colours shift before your eyes.  Perhaps being here
+is not such a good idea for a mortal.    ~
+490 4915200 0
+D1
+~
+~
+0 0 49186
+D3
+~
+~
+0 0 49187
+S
+#49187
+An Unfamiliar Plane~
+   You are having trouble making sense of up and down on this plane, there
+seems to be no horizon and colours shift before your eyes.  Perhaps being here
+is not such a good idea for a mortal.    ~
+490 4915200 0
+D1
+~
+~
+0 0 49188
+D3
+~
+~
+0 0 49189
+S
+#49188
+An Unfamiliar Plane~
+   You are having trouble making sense of up and down on this plane, there
+seems to be no horizon and colours shift before your eyes.  Perhaps being here
+is not such a good idea for a mortal.    ~
+490 4915200 0
+D0
+~
+~
+0 0 49186
+D2
+~
+~
+0 0 49188
+E
+patch rift~
+There seems to be an anomoly here, perhaps a small rift exists?~
+S
+#49189
+An Unfamiliar Plane~
+   You are having trouble making sense of up and down on this plane, there
+seems to be no horizon and colours shift before your eyes.  Perhaps being here
+is not such a good idea for a mortal.    ~
+490 4915200 0
+D2
+~
+~
+0 0 49190
+D3
+~
+~
+0 0 49188
+S
+#49190
+An Unfamiliar Plane~
+   You are having trouble making sense of up and down on this plane, there
+seems to be no horizon and colours shift before your eyes.  Perhaps being here
+is not such a good idea for a mortal.    ~
+490 4915200 0
+D0
+~
+~
+0 0 49190
+D1
+~
+~
+0 0 49190
+D2
+~
+~
+0 0 49186
+D3
+~
+~
+0 0 49187
+D4
+~
+~
+0 0 49190
+D5
+~
+~
+0 0 49190
+S
+T 49009
+$~

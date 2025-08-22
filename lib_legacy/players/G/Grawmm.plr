@@ -1,0 +1,118 @@
+name: Grawmm
+password: GrQDvrUscj
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 0
+race: 28
+level: 3
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20560
+birthtime: 1688785387
+timeplayed: 4230
+lastlogintime: 1688789619
+host: 050.231.120.146
+height: 74
+weight: 205
+base_height: 74
+base_weight: 205
+base_size: 2
+natural_size: 2
+alignment: -1
+playerflags: gxy
+effectflags: k 0 0
+prefflags: ghnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8040
+lastlevel: 0
+hitpoints: 34/31
+mana: 0/0
+move: 142/142
+damroll: 3
+hitroll: 3
+strength: 67
+intelligence: 85
+wisdom: 82
+dexterity: 83
+constitution: 88
+charisma: 56
+cash: 0 5 5 75
+experience: 33351
+quit_reason: 7
+saveroom: 8040
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+204 1000
+415 50
+416 50
+423 80
+424 61
+438 50
+443 50
+444 50
+447 50
+451 50
+452 64
+453 50
+455 50
+459 50
+460 50
+462 50
+464 54
+488 65
+0 0
+trophy:
+1 8011 1.000000
+1 8030 1.000000
+1 8000 4.000000
+1 8002 1.000000
+1 8021 1.000000
+1 8010 3.000000
+1 8016 4.000000
+1 8015 3.000000
+1 8014 2.000000
+1 8022 2.000000
+1 8012 3.000000
+1 8013 3.000000
+1 8001 2.000000
+1 51900 1.000000
+0 0 0
+tells:
+1688786181 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
+1688786493 @WBigby@W tells you, 'No cash, no delivery.@W'@0
+1688788465 @WBigby@W tells you, 'No cash, no delivery.@W'@0
+1688788495 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1688787147 Varnestra gossips, 'for instance, damage spells that are in air use your skill in the sphere of air'
+1688787153 Varnestra gossips, 'yes'
+1688787279 Varnestra gossips, 'every time you cast and use up the slots, you have to re-memorize them.'
+1688787294 Varnestra gossips, 'if you type 'mem' you can see which ones are prepared and which ones are in the 'to do' list'
+1688787325 Meina gossips, 'yes, you have to 'forget' a spell to clear it off the list, but if you rest and type mem it will go through and memorize all the ones in the list on the right'
+1688787330 Meina gossips, 'does that make sense?'
+1688787994 Nauis gossips, 'yup'
+1688788022 Meina gossips, 'It does get faster as you improve your meditate ability'
+1688788083 Nauis gossips, 'it does, which is nice'
+1688788452 Meina gossips, 'Congratz!'
+$
+mem:
+32 0 7
+32 0 7
+32 1 7
+0 0 0
+aliases:
+wd wear dag
+rb rem book
+rq rem quill
+hq hold quill
+hb hold book
+rd rem dag
+1 c 'magic missile'
+0

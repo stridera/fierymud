@@ -1,0 +1,71 @@
+name: Slyke
+password: SlJNaNPX6Y
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 10
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 18721
+birthtime: 1407091015
+timeplayed: 2370
+lastlogintime: 1407093438
+host: 076.113.171.180
+height: 78
+weight: 210
+base_height: 78
+base_weight: 210
+base_size: 3
+natural_size: 3
+alignment: 3
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 47/43
+mana: 0/0
+move: 173/174
+damroll: 5
+hitroll: 4
+strength: 92
+intelligence: 57
+wisdom: 76
+dexterity: 91
+constitution: 99
+charisma: 50
+experience: 6050
+quit_reason: 1
+saveroom: 3054
+skills:
+402 50
+404 50
+415 50
+416 50
+419 1000
+421 51
+427 1000
+438 50
+443 50
+444 50
+463 50
+464 50
+465 51
+466 50
+467 50
+468 50
+0 0
+trophy:
+1 8012 1.000000
+1 8020 1.000000
+1 8010 1.000000
+1 8016 1.000000
+1 8000 1.000000
+1 3066 2.000000
+1 3062 1.000000
+0 0 0

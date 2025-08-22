@@ -1,0 +1,1362 @@
+#36200
+The Beginning of the Greengreen Sea~
+   The waters below you are tinged with the deepest green.  It makes a sharp
+contrast to the blue seas you've walked before.  Below the surface, a tall kelp
+forest waves fronds slowly in the subtle action of the currents.  Here at the
+surface, the water is amazingly calm and glassy.  To the east, a great
+scattering of rocks lies waiting for you to scramble across their surfaces.  
+Passage south and west seems doubtful as the great kelp forest breaches the
+surface in those directions.  North of you the calm, glassy pathway of water
+continues.    
+~
+362 4 7
+D0
+A haunting melody floats across the one clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36201
+D1
+A jumble of sharp rocks lies tumbled to your east.
+~
+~
+0 -1 -1
+D2
+Seaweed pokes its curious head above water to your south, blocking
+passage in that direction.
+~
+~
+3 -1 -1
+D3
+Nothing.
+~
+~
+0 -1 39088
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+3 -1 -1
+D5
+The tops of several strands of kelp wave at you from a few feet below
+the surface.
+~
+~
+3 -1 -1
+S
+#36201
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your north and to your east.  The narrow, clear
+lane of water continues to your south and to your west.    
+~
+362 4 7
+D0
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+3 -1 -1
+D1
+Seaweed pokes its curious head above water, blocking passage in this direction.
+~
+~
+3 -1 -1
+D2
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36200
+D3
+A haunting melody floats across the one clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36202
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+3 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+3 -1 -1
+S
+#36202
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your north and to your south.  The narrow,
+clear lane of water continues to your east and to your west.    
+~
+362 0 7
+D0
+A narrow passage of open water runs between the tangles of kelp.
+~
+~
+0 -1 36203
+D1
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36201
+D2
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+3 -1 -1
+D3
+A haunting melody floats across the clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36217
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+3 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+3 -1 -1
+S
+#36203
+An Entanglement in the Fronds~
+   The dark green sea below you is preternaturally calm, but at least it's
+clear of seaweed.  You find this fact less reassuring than you did as you
+glance around and note how the kelp fronds have closed in all about you.  
+There is no way out!  The menacing weeds even reach above you in a canopy,
+blocking all light from this tangle.    
+~
+362 4 7
+D0
+The tangling seaweed is impassable.
+~
+~
+3 -1 -1
+D1
+The tangling seaweed is impassable.
+~
+~
+3 -1 -1
+D2
+The tangling seaweed is impassable.
+The tangling seaweed seems impassable!
+~
+tangle~
+1 -1 36202
+D3
+The tangling seaweed is impassable.
+~
+~
+3 -1 -1
+D4
+The thick tangle above you blocks all view of the sky above. 
+~
+~
+3 -1 -1
+D5
+Dark green waters shine back at you, reflecting everything about you 
+like the finest mirror, but giving no clue as to what's below.
+~
+~
+3 -1 -1
+S
+#36204
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your north and to your east.  The narrow, clear
+lane of water continues to your south and to your west.    
+~
+362 0 7
+D0
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+3 -1 -1
+D1
+A narrow passage of open water runs between the tangles of kelp.
+~
+~
+0 -1 36203
+D2
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36217
+D3
+A haunting melody floats across the clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36205
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+3 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+3 -1 -1
+S
+#36205
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your south and to your west.  The narrow, clear
+lane of water continues to your north and to your east.    
+~
+362 0 7
+D0
+A haunting melody floats across the clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36206
+D1
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36204
+D2
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+3 -1 -1
+D3
+Flat fronds of seaweed form a thick, impassable mat on the surface. Nothing
+is visible between the weave.
+~
+~
+3 -1 -1
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+3 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+3 -1 -1
+S
+#36206
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your north and to your east.  The narrow, clear
+lane of water continues to your south and to your west.    
+~
+362 0 7
+D0
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+3 -1 -1
+D1
+Seaweed pokes its curious head above water, blocking passage in this direction.
+~
+~
+3 -1 -1
+D2
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36205
+D3
+A haunting melody floats across the one clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36207
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+3 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+3 -1 -1
+S
+#36207
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your north and to your south.  The narrow,
+clear lane of water continues to your east and to your west.    
+~
+362 0 7
+D0
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D1
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36206
+D2
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D3
+A haunting melody floats across the clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36208
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36208
+A Clearing upon the Greengreen Sea~
+   The field of kelp has opened here into a small clearing.  Your way is open
+in every direction except south.  Clear pathways wind away from here in several
+directions.  One leads off immediately to your east.  Across the clearing, you
+can see two others: one leading west and the other south.    
+~
+362 0 7
+D0
+The open area extends ahead.
+~
+~
+0 -1 36209
+D1
+A narrow pathway, clear of the ever-present seaweed, leads off to the east.
+~
+~
+0 -1 36207
+D2
+Seaweed pokes its curious head above water, blocking passage in this direction.
+~
+~
+0 -1 -1
+D3
+The open area extends ahead.
+~
+~
+0 -1 36228
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36209
+A Clearing upon the Greengreen Sea~
+   The field of kelp has opened here into a small clearing.  Your way is open
+to the south and the west.  A little ways away, you can see clear pathways
+winding their way deeper into the kelp bed to the east, the south, and the
+west.  I wonder where they lead?    
+~
+362 0 7
+D0
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D1
+Seaweed pokes its curious head above water, blocking passage in this direction.
+~
+~
+0 -1 -1
+D2
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36208
+D3
+A haunting melody floats across the one clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36210
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36210
+A Clearing upon the Greengreen Sea~
+   The field of kelp has opened here into a small clearing.  Your way is open
+in every direction except north.  Clear pathways wind away from the clearing in
+several directions.  One leads off immediately to your west.  Across the
+clearing, you can see two others: one leading east and the other south.    
+~
+362 0 7
+D0
+Seaweed pokes its curious head above water, blocking passage in this direction.
+~
+~
+0 -1 -1
+D1
+The open area extends ahead.
+~
+~
+0 -1 36209
+D2
+The open area extends ahead.
+~
+~
+0 -1 36228
+D3
+A narrow pathway, clear of the ever-present seaweed, leads off to the west.
+~
+~
+0 -1 36211
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36211
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your south and to your west.  The narrow, clear
+lane of water continues to your north and to your east.    
+~
+362 4 7
+D0
+A haunting melody floats across the clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36212
+D1
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36210
+D2
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D3
+Flat fronds of seaweed form a thick, impassable mat on the surface. Nothing
+is visible between the weave.
+~
+~
+0 -1 -1
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36212
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your east and to your west.  The narrow, clear
+lane of water continues to your north and to your south.    
+~
+362 0 7
+D0
+A haunting melody floats across the clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36213
+D1
+ Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D2
+The clear passage of water winds through the stand of kelp.
+~
+~
+0 -1 36211
+D3
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36213
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your east and to your west.  The narrow, clear
+lane of water continues to your north and to your south.    
+~
+362 0 7
+D0
+A haunting melody floats across the clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36214
+D1
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D2
+The clear passage of water winds through the stand of kelp.
+~
+~
+0 -1 36212
+D3
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36214
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your north and to your east.  The narrow, clear
+lane of water continues to your south and to your west.    
+~
+362 0 7
+D0
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D1
+Seaweed pokes its curious head above water, blocking passage in this direction.
+~
+~
+0 -1 -1
+D2
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36213
+D3
+A haunting melody floats across the one clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36215
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36215
+The Greengreen Sea~
+   The green tinge is fading from the waters below you.  A more normal blue
+replaces it to the west.  Waves form beneath you and roll towards the rocks
+protecting a peninsula to your west.  The kelp holds sway to the north and the
+south.  The narrow, clear lane of water continues to your east.    
+~
+362 0 7
+D0
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D1
+The calm surface waters are clear of the entangling seaweed. The passage
+disappears around a bend just ahead.
+~
+~
+0 -1 36214
+D2
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D3
+A haunting melody floats across the clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36216
+D4
+The green fades to blue above. A lone gull rides the currents far overhead.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36216
+The Beginning of the Greengreen Sea~
+   The waters below you are faintly tinged with green.  A more normal blue
+replaces it to the west while the green deepens to your east.  Gentle waves
+roll beneath you toward the near shore area.  Tall kelp thrusts above the water
+to your north and south, blocking your passage.  A narrow, clear lane of water
+continues to your east.    
+~
+362 4 7
+D0
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D1
+The narrow passage between the stands of kelp winds around a corner a
+short distance ahead. Who can tell where it leads?
+~
+~
+0 -1 36215
+D2
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D3
+A sad melody fades away in the wind as you face a small area of shallow 
+waters guarding the headland.
+~
+~
+0 -1 41107
+D4
+The green fades to blue above. A lone gull rides the currents far overhead.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36217
+A T-Crossing on the Greengreen Sea~
+   Tall fronds of kelp press in from nearby on all sides.  The press especially
+close to you from the west, but narrow passages of clear water wind a careful
+path between the strands to your north, south, and east.    
+~
+362 0 7
+D0
+A haunting melody floats across the clear, glassy path of green water
+like the lost sound of a lullaby.
+~
+~
+0 -1 36204
+D1
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36202
+D2
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36218
+D3
+Flat fronds of seaweed form a thick, impassable mat on the surface. Nothing
+is visible between the weave.
+~
+~
+3 -1 -1
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+3 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+3 -1 -1
+S
+#36218
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your east and to your west.  The narrow, clear
+lane of water continues to your north and to your south.    
+~
+362 0 7
+D0
+The clear passage of water winds through the stand of kelp.
+~
+~
+0 -1 36217
+D1
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D2
+The clear passage of water winds through the stand of kelp.
+~
+~
+0 -1 36219
+D3
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36219
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your south and to your east.  The narrow, clear
+lane of water continues to your north and to your west.    
+~
+362 0 7
+D0
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36218
+D1
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D2
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D3
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36220
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36220
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your north and to your south.  The narrow,
+clear lane of water continues to your east and to your west.    
+~
+362 0 7
+D0
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D1
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36219
+D2
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D3
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36221
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36221
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your south and to your west.  The narrow, clear
+lane of water continues to your north and to your east.    
+~
+362 0 7
+D0
+The calm surface waters are clear of the entangling seaweed. All sounds 
+are deadened and flat. 
+~
+~
+0 -1 36222
+D1
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36220
+D2
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D3
+Flat fronds of seaweed form a thick, impassable mat on the surface. Nothing
+is visible between the weave.
+~
+~
+0 -1 -1
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36222
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your east and to your west.  The narrow, clear
+lane of water continues to your north and to your south.    
+~
+362 0 7
+D0
+The clear passage of water winds through the stand of kelp.
+~
+~
+0 -1 36223
+D1
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D2
+The clear passage of water winds through the stand of kelp.
+~
+~
+0 -1 36221
+D3
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36223
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your north and to your east.  The narrow, clear
+lane of water continues to your south and to your west.    
+~
+362 0 7
+D0
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D1
+Seaweed pokes its curious head above water, blocking passage in this direction.
+~
+~
+0 -1 -1
+D2
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36222
+D3
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36224
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36224
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your north and to your west.  The narrow, clear
+lane of water continues to your south and to your east.    
+~
+362 0 7
+D0
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D1
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36223
+D2
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36225
+D3
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36225
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your south and to your east.  The narrow, clear
+lane of water continues to your north and to your west.    
+~
+362 0 7
+D0
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36224
+D1
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D2
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D3
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36226
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36226
+The Greengreen Sea~
+   The green tinge is fading from the waters below you.  A more normal blue
+replaces it to the west.  Waves form beneath you and roll towards the rocks
+protecting a peninsula to your west.  The kelp holds sway to the north and the
+south.  The narrow, clear lane of water continues to your east.    
+~
+362 0 7
+D0
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D1
+The calm surface waters are clear of the entangling seaweed. The passage
+disappears around a bend just ahead.
+~
+~
+0 -1 36225
+D2
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D3
+A hunting horn sounds in the distance and a great noise like the passing of
+a flock of geese fills the air from the island ahead of you.
+~
+~
+0 -1 36227
+D4
+The green fades to blue above. A lone gull rides the currents far overhead.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36227
+The Beginning of the Greengreen Sea~
+   The waters below you are faintly tinged with green.  A more normal blue
+replaces it to the west while the green deepens to your east.  Gentle waves
+roll beneath you toward the near shore area.  Tall kelp thrusts above the water
+to your north and south, blocking your passage.  A narrow, clear lane of water
+continues to your east.    
+~
+362 0 7
+D0
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D1
+The narrow passage between the stands of kelp winds around a corner a
+short distance ahead. Who can tell where it leads?
+~
+~
+0 -1 36226
+D2
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D3
+The sound of many horsemen crashes through the forest on the land ahead
+of you. It sounds like a mighty hunt is in progress on the island.
+~
+~
+0 -1 -1
+D4
+The green fades to blue above. A lone gull rides the currents far overhead.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36228
+A Clearing upon the Greengreen Sea~
+   The field of kelp has opened here into a small clearing.  Your way is open
+in every direction except south.  Clear pathways wind away from the clearing in
+several directions.  One leads off immediately to your south.  Across the
+clearing, you can see two others: one leading east and the other west.    
+~
+362 0 7
+D0
+The open area extends ahead.
+~
+~
+0 -1 36210
+D1
+The open area extends ahead.
+~
+~
+0 -1 36208
+D2
+A narrow pathway, clear of the ever-present seaweed, leads off to the south.
+~
+~
+0 -1 36229
+D3
+Seaweed pokes its curious head above water, blocking passage in this direction.
+~
+~
+0 -1 -1
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36229
+The Greengreen Sea~
+   The waters below you are tinged with the deepest green.  Below the surface,
+a tall kelp forest waves fronds slowly in the subtle action of the currents.  
+Here at the surface, the water is amazingly calm and glassy.  A tangled mat of
+kelp thrusts above the ocean to your south and to your east.  The narrow, clear
+lane of water continues to your north and to your west.    
+~
+362 0 7
+D0
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36228
+D1
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D2
+Flat fronds of seaweed form a thick, impassable mat on the surface.
+~
+~
+0 -1 -1
+D3
+The calm surface waters are clear of the entangling seaweed.
+~
+~
+0 -1 36230
+D4
+The sky seems to have taken on a greenish hue. It doesn't look healthy.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36230
+The Greengreen Sea~
+   The green tinge is fading from the waters below you.  A more normal blue
+replaces it to the west.  Waves form beneath you and roll towards the rocks
+protecting a peninsula to your west.  The kelp holds sway to the north and the
+south.  The narrow, clear lane of water continues to your east.    
+~
+362 0 7
+D0
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D1
+The calm surface waters are clear of the entangling seaweed. The passage
+disappears around a bend just ahead.
+~
+~
+0 -1 36229
+D2
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D3
+The faint whinny of a horse comes from the island visible ahead.
+~
+~
+0 -1 36231
+D4
+The green fades to blue above. A lone gull rides the currents far overhead.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+#36231
+The Beginning of the Greengreen Sea~
+   The waters below you are faintly tinged with green.  A more normal blue
+replaces it to the west while the green deepens to your east.  Gentle waves
+roll beneath you toward the near shore area.  Tall kelp thrusts above the water
+to your north and south, blocking your passage.  A narrow, clear lane of water
+continues to your east.    
+~
+362 0 7
+D0
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D1
+The narrow passage between the stands of kelp winds around a corner a
+short distance ahead. Who can tell where it leads?
+~
+~
+0 -1 36230
+D2
+Tall weeds wave in the wind. They block your view completely making you feel
+small and isolated in this unnatural forest on the open sea.
+~
+~
+0 -1 -1
+D3
+The sounds of bells and laughter carry across the water from the woods on
+the island. 
+~
+~
+0 -1 -1
+D4
+The green fades to blue above. A lone gull rides the currents far overhead.
+~
+~
+0 -1 -1
+D5
+Thick leaves of seaweed tangle and untangle in a slow dance just below
+the surface.
+~
+~
+0 -1 -1
+S
+$~

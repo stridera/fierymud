@@ -1,0 +1,31 @@
+2 255 0
+17 1 11
+5527_reward 1
+5557_reward 2
+5516_trophies 5
+5514_trophies 9
+5506_trophies 5
+5508_trophies 18
+5512_trophies 21
+5504_trophies 17
+5510_trophies 24
+eg_faction -1
+bl_faction 167
+10 255 0
+1 255 3
+got_item:37081 1
+got_item:37080 1
+got_item:37082 1
+6 255 11
+got_spice:23755 1
+got_spice:23760 1
+got_spice:23750 1
+got_spice:23751 1
+got_spice:12552 1
+got_spice:23752 1
+got_spice:23753 1
+got_spice:23758 1
+got_spice:23754 1
+got_spice:23759 1
+num_spices 10
+7 1 0

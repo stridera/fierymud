@@ -1,0 +1,83 @@
+name: Grung
+password: GrlMNFgch8
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 26
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20267
+birthtime: 1654057816
+timeplayed: 600
+lastlogintime: 1654058416
+host: 100.012.198.061
+height: 78
+weight: 367
+base_height: 78
+base_weight: 367
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: k 0 0
+prefflags: hnoxC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+hunger: 22
+thirst: 20
+lastlevel: 0
+hitpoints: 39/39
+mana: 0/0
+move: 112/122
+damroll: 3
+hitroll: 3
+strength: 100
+intelligence: 68
+wisdom: 60
+dexterity: 96
+constitution: 79
+charisma: 54
+cash: 0 0 0 9
+experience: 6050
+quit_reason: 1
+saveroom: 3054
+skills:
+201 1000
+402 50
+404 51
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+453 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+486 65
+0 0
+trophy:
+1 51900 1.000000
+0 0 0
+tells:
+1654058357 @WThe Master of the Revel@W tells you, 'Now that you're ready to level,@W'@0
+1654058357 @WThe Master of the Revel@W tells you, 'It's time to find a Guild Master!@W'@0
+1654058357 @WThe Master of the Revel@W tells you, 'There are Guild Masters in every town.@W'@0
+1654058357 @WThe Master of the Revel@W tells you, 'You will advance to the next level.@W'@0
+1654058357 @WThe Master of the Revel@W tells you, 'Your Guild Master here in Mielikki@W'@0
+1654058357 @WThe Master of the Revel@W tells you, 'Will also grant you your first quest.@W'@0
+1654058357 @WThe Master of the Revel@W tells you, 'Which will drop randomly from mobs across the world.@W'@0
+1654058357 @WThe Master of the Revel@W tells you, 'Bring back what they ask for and you'll be well rewarded!@W'@0
+1654058363 @WThe Master of the Revel@W tells you, 'Congratulations again, graduate!@W'@0
+1654058363 @WThe Master of the Revel@W tells you, 'May you climb to ever greater fortune!@W'@0
+$
+gossips:
+$

@@ -1,0 +1,95 @@
+name: Xandrea
+password: XaN79N4PaV
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19562
+birthtime: 1585102376
+timeplayed: 5639
+lastlogintime: 1585108016
+host: 192.069.120.078
+height: 64
+weight: 115
+base_height: 64
+base_weight: 115
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: bghnoC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 30/30
+mana: 0/0
+move: 94/112
+damroll: 3
+hitroll: 3
+strength: 84
+intelligence: 90
+wisdom: 86
+dexterity: 74
+constitution: 78
+charisma: 60
+experience: 6600
+quit_reason: 1
+saveroom: 3054
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 58
+424 60
+438 50
+443 50
+444 50
+447 60
+451 52
+452 50
+453 50
+459 50
+460 54
+462 50
+464 52
+0 0
+trophy:
+1 8011 2.000000
+1 8013 1.000000
+1 8014 2.000000
+1 8002 2.000000
+1 8010 2.000000
+0 0 0
+tells:
+1585104865 @WChinok@W tells you, 'wake@W'@0
+$
+gossips:
+1585107360 Strider gossips, 'Going in enlisted?'
+1585107394 Strider gossips, 'Then my number one advice.... GO TO SCHOOL'
+1585107443 Strider gossips, 'It's free while active.  And if you want to fly, save up and fly.  Your private license will cost you, but after that you can use the MGIB to pay for all other ratings.'
+1585107637 Strider gossips, 'Yeah.  I drove guntrucks across iraq back in 2003.  I didn't expect any combat at all either.'
+1585107652 Strider gossips, 'ahh, joy, the automatic reboot'
+1585107701 Strider gossips, 'better than being stuck in barracks with 28 other sick dudes'
+1585107845 Strider gossips, 'Sounds good.  You found the inn?'
+1585107883 Strider gossips, 'if you quit, yes... you can camp if your outside town'
+1585107903 Strider gossips, 'where you are, I think it's w n n w n w n'
+1585107984 Strider gossips, 'It's on west main'
+$
+mem:
+100 1 9
+32 1 9
+0 0 0
+aliases:
+lc 'look in corpse'
+0

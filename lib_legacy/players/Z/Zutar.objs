@@ -1,0 +1,2292 @@
+1
+vnum: 51073
+location: 0
+values:
+0
+-1
+-1
+0
+0
+0
+0
+~
+flags: agi
+name: sun light bright miniature-sun
+shortdesc: a Miniature Sun
+desc: A ball of bright light is enclosed in an orb of glass.
+type: 1
+weight: 5.00
+cost: 600
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 16385
+applies:
+26 2
+18 2
+~
+extradesc: small sun minature glowing orb glass ball
+This small ball of light is giving off an immense amount of light.
+It is enclosed in some type of a glass orb that seems to keep the outside
+of the ball cool to the touch and manageable.  The inside glows like a small
+sun, radiating bright light in all directions.  If you have this item,
+luck, determination and the Gods are with you.
+~
+~~
+vnum: 41120
+location: 1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring sea sea-ring blue clear
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 9
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 30
+~
+extradesc: sea-ring blue ring water dolphin clear
+A series of playful dolphins chase each other around the perimeter of
+the sea-blue ring. It is difficult to determine exactly what the ring
+is made of -- clear, yet neither crystal nor glass. 
+~
+~~
+vnum: 41120
+location: 2
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: g
+name: ring sea sea-ring blue clear
+shortdesc: the Sea's Ring
+desc: A clear blue ring rests on the ground.
+type: 9
+weight: 0.20
+cost: 20
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 3
+applies:
+13 30
+~
+extradesc: sea-ring blue ring water dolphin clear
+A series of playful dolphins chase each other around the perimeter of
+the sea-blue ring. It is difficult to determine exactly what the ring
+is made of -- clear, yet neither crystal nor glass. 
+~
+~~
+vnum: 58429
+location: 3
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant alicorn-pendant alicorn horn tip spiral chain
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 9
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant alicorn horn tip spiral chain
+This pendant is made of the very tip of a spiral horn. It's been drilled
+so a primitive chain can support it. The horn glows with power.
+~
+~~
+vnum: 58429
+location: 4
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant alicorn-pendant alicorn horn tip spiral chain
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 9
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant alicorn horn tip spiral chain
+This pendant is made of the very tip of a spiral horn. It's been drilled
+so a primitive chain can support it. The horn glows with power.
+~
+~~
+vnum: 52022
+location: 5
+values:
+40
+0
+0
+0
+0
+0
+0
+~
+flags: abgmo
+name: skin armor dragon-skin dragon-armor
+shortdesc: a dragon skin
+desc: A set of scaled dragon armor lies here, apparently forgotten by the gods.
+type: 9
+weight: 19.00
+cost: 14000
+timer: 0
+level: 78
+effects: 0 0 0
+wear: 9
+applies:
+1 -5
+5 -5
+~
+extradesc: skin armor dragon-skin dragon-armor
+Of all things, dragon skin is incredibly rare.  The scales are hard and a dark
+black color.  Each scale is the size of a man's kneecap, connected
+mysteriously beneath.    
+~
+~~
+vnum: 482
+location: 6
+values:
+5
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: horns demon krisenna krisenna's
+shortdesc: Krisenna's horns
+desc: The horns of a demon lie here, a trophy of the slaying of the demon. 
+type: 9
+weight: 10.00
+cost: 12000
+timer: 0
+level: 50
+effects: y 0 0
+wear: 17
+applies:
+19 4
+18 2
+14 20
+~
+~~
+vnum: 58430
+location: 7
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tights purple purple-tights snug-fitting pair rolled ball discarded
+shortdesc: a pair of snug-fitting purple tights
+desc: A pair of tights has been rolled into a ball and discarded.
+type: 9
+weight: 0.50
+cost: 750
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: tights purple purple-tights snug-fitting pair rolled ball discarded
+These tights look like they'd be a perfect fit! A tie-waist secures
+them at the waist, and the thick woolen material goes from there all the
+way down to your feet. They look quite old, and seem to glow with some
+kind of magical power. Perhaps they're enchanted!
+~
+~~
+vnum: 52008
+location: 8
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gmnu
+name: boots elven leather laced elven-boots
+shortdesc: a pair of elven boots
+desc: A pair of leather laced boots has been dropped here.
+type: 11
+weight: 1.40
+cost: 7200
+timer: 0
+level: 80
+effects: 0 0 0
+wear: 65
+applies:
+14 50
+2 3
+17 8
+~
+extradesc: boots elven leather faced elven-boots
+These boots are fairly simple, nicely designed with high quality and precision,
+and laced in the center.    
+~
+~~
+vnum: 52007
+location: 9
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: egmnouvwyz
+name: gauntlets ogre ogre-gauntlets
+shortdesc: a pair of ogre gauntlets
+desc: A pair of heavy gauntlets leaves its imprint on the floor here.
+type: 9
+weight: 1.80
+cost: 7600
+timer: 0
+level: 75
+effects: 0 0 0
+wear: 129
+applies:
+1 5
+2 -3
+~
+extradesc: gauntlets ogre
+They're made of heavy bronze with steel plating, and buckle around the forearm.
+Each one covers the forearm from elbow to knuckles.    
+~
+~~
+vnum: 58433
+location: 10
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: bracers warder warders-bracers large pair
+shortdesc: the Warder's Bracers
+desc: A large pair of bracers lies here.
+type: 9
+weight: 1.50
+cost: 3500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 257
+applies:
+19 2
+~
+extradesc: bracers warder warders-bracers large pair
+You can tell that only royalty could have afforded to make these.
+Made of some dark-green metal alloy, these bracers, made to fit
+and buckle around a very large arm, are worked in a cunning
+scrolling design. They're obviously very old, as well; the metal
+feels worn in places, as though decades of contact with the same
+arms have altered their shape slightly.
+~
+~~
+vnum: 1000
+location: 12
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48019
+location: -1
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 48031
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: head head_of_the_infidel
+shortdesc: the infidel's head
+desc: The head of the infidel has rolled over here.
+adesc:
+Nothing.
+~
+type: 12
+weight: 8.00
+cost: 1
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 1
+extradesc: head
+The hair on this head is matted down, and the eyelashes occasionally blink over
+the opening where the eyeball should be.    
+~
+~~
+vnum: 58432
+location: 13
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmnou
+name: girth storm-giants-girth giant blue-steel-girth lightning
+shortdesc: the Storm Giant's Girth
+desc: A blue steel girth flashes with its own lightning.
+type: 9
+weight: 3.00
+cost: 2500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+extradesc: girth storm-giants-girth giant blue-steel-girth lightning
+You can see that this girth must be not only magical, but intrinsically
+strong, for though it is very old, there are no dents, dings, or scratches
+in its shockingly blue surface. It reflects a fierce strike of lightning
+as you look at it. But no lightning flashed right then in the sky....
+~
+~~
+vnum: 58434
+location: 14
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 58434
+location: 15
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 48003
+location: 16
+values:
+0
+2
+7
+3
+0
+0
+0
+~
+flags: aghklmuvwyz
+name: sword blade indigo indigo-blade
+shortdesc: an indigo blade
+desc: An ancient blade has been left here.
+type: 5
+weight: 12.00
+cost: 3700
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+applies:
+19 3
+~
+extradesc: indigo-blade indigo blade
+One glance at this weapon is enough to tell you that it has been 
+powerfully enchanted. Black runes run the length of the sword, and a 
+dull white flame surrounds the blade. The blade itself has an odd purple 
+hue.
+~
+~~
+vnum: 48908
+location: 17
+values:
+0
+2
+10
+3
+0
+0
+0
+~
+flags: aghklmnopstuvwxyz
+name: sword Rahmat blue-steel-sword
+shortdesc: Rahmat
+desc: A blue-steel sword glints in the darkness here.
+type: 5
+weight: 7.50
+cost: 3000
+timer: 0
+level: 95
+effects: n 0 0
+wear: 8193
+applies:
+3 2
+4 2
+19 3
+~
+extradesc: rahmat blue-steel-sword
+Here you see Rahmat, the ancient sword used by the High Paladin of the 
+Order of the Sun. Its blue steel blade gleams as though it were brand 
+new, not older than the mountains, its edge sharp as Truth. Its hilt is a 
+silvery metal, with claw quillions. A brilliant green emerald forms its 
+pommel. You sense that only someone truly Good, and truly strong, could 
+wield this weapon.
+~
+triggers:
+18887
+~
+~~
+vnum: 502
+location: 21
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: gaze night
+shortdesc: &9&bthe Night Gaze&0
+desc: &9&bA dark path of matierial is floating just above the ground here.&0
+type: 9
+weight: 0.50
+cost: 4000
+timer: 0
+level: 30
+effects: k 0 0
+wear: 65537
+applies:
+19 2
+18 1
+~
+~~
+vnum: 16200
+location: 22
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: a
+name: mask imanhotep golden
+shortdesc: the Mask of Imanhotep
+desc: A golden burial mask gleams under a film of dust.
+type: 9
+weight: 1.00
+cost: 1000
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 131073
+applies:
+1 2
+4 2
+~
+extradesc: mask
+The mask is made of solid gold and is encrusted with jewels. It has an aura
+of power around it.~
+~~
+vnum: 8506
+location: 23
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring jet black ear ring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 9
+weight: 0.02
+cost: 250
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 262145
+applies:
+18 1
+19 1
+~
+extradesc: earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.
+~
+~~
+vnum: 8506
+location: 24
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: earring jet black ear ring
+shortdesc: a jet earring
+desc: A tiny black earring rests here.
+type: 9
+weight: 0.02
+cost: 250
+timer: 0
+level: 35
+effects: 0 0 0
+wear: 262145
+applies:
+18 1
+19 1
+~
+extradesc: earring
+This small silver earring features a shiny black cabuchon. Odd runes are
+carved into the stone.
+~
+~~
+vnum: 8034
+location: 25
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some if its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 48104
+location: 26
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: head shrivelled severed-head
+shortdesc: a shrivelled, severed head
+desc: The shrivelled head of a jungle savage lies here.
+type: 12
+weight: 8.00
+cost: 50
+timer: 0
+level: 20
+effects: 0 0 0
+wear: 1064961
+applies:
+3 1
+17 5
+~
+extradesc: shrivelled head severed
+This grotesque trophy makes you want to puke. Why would you ever want to
+look at such a thing??
+~
+~~
+vnum: 53425
+location: 127
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: E
+name: canoe lightweight-canoe small-canoe light-canoe
+shortdesc: a lightweight canoe
+desc: A small canoe has been left here.
+type: 22
+weight: 1.50
+cost: 1100
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1
+~~
+vnum: 58705
+location: 127
+values:
+50
+1
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: pouch cloth-pouch cloth
+shortdesc: a pouch
+desc: A cloth pouch lies crumpled on the ground.
+type: 15
+weight: 0.25
+cost: 8
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1064961
+extradesc: pouch cloth
+It's just a simple woolen pouch. The fabric is dyed a brilliant
+red color, and there's some embroidery on its front. A cord closes
+around the pouch's neck; the cord is quite long, long enough for
+you to tie its ends around your belt.
+~
+extradesc: embroidery
+The embroidery is of a strange kind. Usually embroidery is of
+pretty things, for some sort of informative or decorative purpose,
+but this picture is of a monstrous golden wolf-like beast with
+eerily human eyes.
+~
+~~
+vnum: 43022
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: cloak cloak-insanity something insanity
+shortdesc: the Cloak of Insanity
+desc: Something rests on the ground here, slowly corrupting reality.
+type: 12
+weight: 3.00
+cost: 0
+timer: 0
+level: 50
+effects: 0 0 0
+wear: 1025
+applies:
+4 -3
+19 3
+~
+extradesc: cloak insanity
+Looking at the cloak too long gives you a headache.
+~
+~~
+vnum: 48003
+location: -1
+values:
+0
+2
+8
+3
+0
+0
+0
+~
+flags: agklmuvwyz
+name: sword blade indigo indigo-blade
+shortdesc: an indigo blade
+desc: An ancient blade has been left here.
+type: 5
+weight: 12.00
+cost: 3700
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+applies:
+19 3
+~
+extradesc: indigo-blade indigo blade
+One glance at this weapon is enough to tell you that it has been 
+powerfully enchanted. Black runes run the length of the sword, and a 
+dull white flame surrounds the blade. The blade itself has an odd purple 
+hue.
+~
+~~
+vnum: 48003
+location: -1
+values:
+0
+2
+8
+3
+0
+0
+0
+~
+flags: agklmuvwyz
+name: sword blade indigo indigo-blade
+shortdesc: an indigo blade
+desc: An ancient blade has been left here.
+type: 5
+weight: 12.00
+cost: 3700
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+applies:
+19 3
+~
+extradesc: indigo-blade indigo blade
+One glance at this weapon is enough to tell you that it has been 
+powerfully enchanted. Black runes run the length of the sword, and a 
+dull white flame surrounds the blade. The blade itself has an odd purple 
+hue.
+~
+~~
+vnum: 20
+location: 127
+values:
+25
+25
+0
+0
+0
+0
+0
+~
+flags: 0
+name: skin water waterskin leather
+shortdesc: &3a leather water skin&0
+desc: &3A leather water skin lies on the ground here.&0
+type: 17
+weight: 3.63
+cost: 10
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+~~
+vnum: 55008
+location: 127
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: gl
+name: cloak snow-leopard-cloak snow leopard pelt fur pure white dark spots
+shortdesc: the Snow Leopard Cloak
+desc: A pelt of pure white fur and dark spots is piled in a corner.
+type: 9
+weight: 2.10
+cost: 5900
+timer: 0
+level: 57
+effects: 0 0 0
+wear: 1025
+applies:
+1 1
+2 -2
+~
+extradesc: cloak snow-leopard-cloak snow leopard pelt fur pure white dark spots
+In your hands is the cloak made from the pelt of a snow leopard, valuable
+beyond anything else to the people of Technitzitlan.  It is said that those who
+wear such a cloak are closer to the great Snow Leopard herself than anyone
+else.    
+~
+~~
+vnum: 48019
+location: 127
+values:
+80
+5
+5
+2
+0
+0
+0
+~
+flags: abgkoprstwx
+name: staff ivory ivory-staff
+shortdesc: the carved ivory staff
+desc: An intricately carved ivory staff lies here.
+adesc:
+Nothing.
+~
+type: 4
+weight: 5.00
+cost: 4800
+timer: 0
+level: 62
+effects: 0 0 0
+wear: 16385
+applies:
+24 20
+26 10
+~
+extradesc: ivory staff ivory-staff
+It is covered in intricate carvings which seem to indicate its use.
+~
+extradesc: carving
+The carvings seem to show a group of people vanishing from
+one room and appearing in another.
+~
+~~
+vnum: 52017
+location: 127
+values:
+18
+0
+0
+0
+0
+0
+0
+~
+flags: abgmouvwyz
+name: shield dragon dragon-shield
+shortdesc: a dragon shield
+desc: A shield made of dragon skin and tempered with dragon fire is here.
+type: 9
+weight: 5.00
+cost: 9000
+timer: 0
+level: 80
+effects: f 0 0
+wear: 513
+applies:
+19 3
+~
+extradesc: shield dragon dragon-shield
+This shield is huge.  There are large, black dragon claws curving out from the
+top and bottom towards the outside.  There is a grey symbol surrounded by the
+coal color of the shield.    
+~
+~~
+vnum: 48003
+location: 127
+values:
+0
+2
+7
+3
+0
+0
+0
+~
+flags: aghklmuvwyz
+name: sword blade indigo indigo-blade
+shortdesc: an indigo blade
+desc: An ancient blade has been left here.
+type: 5
+weight: 12.00
+cost: 3700
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 8193
+applies:
+19 3
+~
+extradesc: indigo-blade indigo blade
+One glance at this weapon is enough to tell you that it has been 
+powerfully enchanted. Black runes run the length of the sword, and a 
+dull white flame surrounds the blade. The blade itself has an odd purple 
+hue.
+~
+~~
+vnum: 1000
+location: 127
+values:
+110
+0
+-1
+0
+0
+0
+0
+~
+flags: 0
+name: backpack heavy-backpack back-pack bp
+shortdesc: &0a heavy&0&3 backpack&0
+desc: &0&3A heavy leather backpack lies here.&0
+type: 15
+weight: 5.00
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1025
+extradesc: heavy-backpack back-pack bp
+This backpack is able to contain a large selection of goods, but its bulky
+size makes it quite heavy. It is crafted from a fine waterproof leather,
+and seems capable of resisting most adverse weather conditions.
+~
+~~
+vnum: 58431
+location: -1
+values:
+8
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: flowers plaited plaited-flowers belt
+shortdesc: some plaited flowers
+desc: Some plaited flowers form a sort of belt.
+type: 9
+weight: 0.75
+cost: 1000
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+applies:
+6 3
+~
+extradesc: flowers belt plaited
+You see a loose belt made of braided wildflowers. The daisies and
+honeysuckles were connected by threading each flower through its
+neighbor somehow. They must be enchanted, for you cannot separate
+any of the flowers from the belt.
+~
+~~
+vnum: 43019
+location: -1
+values:
+1
+0
+0
+0
+0
+0
+0
+~
+flags: anoprtu
+name: amulet midnight-amulet dark form midnight
+shortdesc: the Midnight Amulet
+desc: The dark form of something violates the reality of this space.
+type: 9
+weight: 0.12
+cost: 0
+timer: 0
+level: 55
+effects: 0 0 0
+wear: 5
+applies:
+4 3
+~
+extradesc: midnight amulet
+Looking closer at the dark form, you realize that it is some form of amulet.
+As if aware of your interest, it flares with a dark light briefly, revealing
+the following: Lin'trau vendil martook umse. You feel something within you
+mend and a power from beyond merging with your own.
+~
+~~
+vnum: 43009
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: gnopru
+name: paw pather-paw panther feline
+shortdesc: a panther's paw
+desc: A large feline's paw rests here, awaiting a sprint.
+type: 12
+weight: 1.20
+cost: 0
+timer: 0
+level: 42
+effects: 0 0 0
+wear: 16385
+applies:
+14 40
+6 2
+~
+extradesc: feline paw panther
+The rather large paw seems to emit the elemental energy of its previous
+owner. Mere proximity to this item seems to enhance your sense of smell...
+you can't help but wonder what other use this item might have...
+~
+~~
+vnum: 58430
+location: -1
+values:
+9
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: tights purple purple-tights snug-fitting pair rolled ball discarded
+shortdesc: a pair of snug-fitting purple tights
+desc: A pair of tights has been rolled into a ball and discarded.
+type: 9
+weight: 0.50
+cost: 750
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 33
+applies:
+13 10
+~
+extradesc: tights purple purple-tights snug-fitting pair rolled ball discarded
+These tights look like they'd be a perfect fit! A tie-waist secures
+them at the waist, and the thick woolen material goes from there all the
+way down to your feet. They look quite old, and seem to glow with some
+kind of magical power. Perhaps they're enchanted!
+~
+~~
+vnum: 58414
+location: -1
+values:
+7
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: crown golden gypsy-crown gypsy
+shortdesc: the Gypsy Crown
+desc: A golden crown inlaid with emeralds rolls around here.
+type: 9
+weight: 1.00
+cost: 0
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 17
+applies:
+5 8
+~
+extradesc: crown gypsy
+This crown seems pretty heavy. It's made of thick gold, and probably
+incredibly expensive. The gold is shaped into the traditional peaks of 
+crowns. A green emerald, marquise-cut, is set into each peak, and several 
+of them in various cuts adorn the very front of the crown's tallest peak,
+which would be centered over the wearer's forehead.
+~
+~~
+vnum: 58408
+location: -1
+values:
+5
+5
+-1
+0
+0
+0
+0
+~
+flags: a
+name: locket golden-locket golden filigree gold chain
+shortdesc: a golden locket on a filigree chain
+desc: A gold locket on a filigree chain lies here.
+type: 15
+weight: 0.10
+cost: 1200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+6 5
+~
+extradesc: golden locket chain filigree gold
+You've never seen such exquisite goldworking. This locket, on its
+whisper-thin golden link necklace, seems very old. The hinges on
+it are coming a bit loose, but it's still pretty tightly closed.
+~
+~~
+vnum: 58409
+location: -2
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: portrait miniature-painting hand-painted-miniature-portrait
+shortdesc: a hand-painted miniature portrait
+desc: A hand-painted portrait the size of your palm lies here.
+type: 8
+weight: 0.40
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 1
+extradesc: portrait miniature-painting hand-painted-miniature-portrait
+The woman in this painting is amazingly beautiful, but in the same
+way that a deadly sword is beautiful. She's exactly like a sword --
+whipcord-lithe, slender, well-muscled, and seems as if she is about
+to strike. Her eyes seem incredibly intelligent and perceptive. The
+portrait is no bigger than the palm of your hand, making the artistry
+of the representation seem all the more amazing. 
+   The woman in the painting is looking right out at the viewer. As
+you watch, her full, lush lips move, and you hear words: "My little
+Frederick, remember that I am always watching over you." You hear no
+more.
+~
+~~
+vnum: 58433
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: bracers warder warders-bracers large pair
+shortdesc: the Warder's Bracers
+desc: A large pair of bracers lies here.
+type: 9
+weight: 1.50
+cost: 3500
+timer: 0
+level: 60
+effects: 0 0 0
+wear: 257
+applies:
+19 2
+~
+extradesc: bracers warder warders-bracers large pair
+You can tell that only royalty could have afforded to make these.
+Made of some dark-green metal alloy, these bracers, made to fit
+and buckle around a very large arm, are worked in a cunning
+scrolling design. They're obviously very old, as well; the metal
+feels worn in places, as though decades of contact with the same
+arms have altered their shape slightly.
+~
+~~
+vnum: 58434
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 58429
+location: -1
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: pendant alicorn-pendant alicorn horn tip spiral chain
+shortdesc: an alicorn pendant
+desc: You see the tip of a spiral horn on a chain.
+type: 9
+weight: 0.01
+cost: 1500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 5
+applies:
+18 2
+19 3
+~
+extradesc: pendant alicorn-pendant alicorn horn tip spiral chain
+This pendant is made of the very tip of a spiral horn. It's been drilled
+so a primitive chain can support it. The horn glows with power.
+~
+~~
+vnum: 58432
+location: -1
+values:
+13
+0
+0
+0
+0
+0
+0
+~
+flags: gmnou
+name: girth storm-giants-girth giant blue-steel-girth lightning
+shortdesc: the Storm Giant's Girth
+desc: A blue steel girth flashes with its own lightning.
+type: 9
+weight: 3.00
+cost: 2500
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 2049
+extradesc: girth storm-giants-girth giant blue-steel-girth lightning
+You can see that this girth must be not only magical, but intrinsically
+strong, for though it is very old, there are no dents, dings, or scratches
+in its shockingly blue surface. It reflects a fierce strike of lightning
+as you look at it. But no lightning flashed right then in the sky....
+~
+~~
+vnum: 58426
+location: -1
+values:
+90
+61
+18
+39
+0
+0
+0
+~
+flags: 0
+name: elixir little-vial-faerie-elixir cunning-little-vial-clear-liquid
+shortdesc: a little vial of faerie elixir
+desc: A cunning little vial of clear liquid floats past.
+type: 10
+weight: 0.20
+cost: 0
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 1
+extradesc: little-vial-faerie-elixir cunning-little-vial-clear-liquid
+This little glass bottle looks so delicate you swear you could destroy
+it with a gentle breath of air. Its stopper is made of some kind of 
+filigree that somehow still keeps the liquid in the vial from spilling
+out. The liquid itself is clear and seems to bubble and sway all by
+itself inside the bottle.
+~
+~~
+vnum: 58434
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 58434
+location: -1
+values:
+4
+0
+0
+0
+0
+0
+0
+~
+flags: mnou
+name: fetter slave slave-fetter steel
+shortdesc: a slave fetter
+desc: A fetter's been discarded by a freed slave.
+type: 9
+weight: 1.00
+cost: 200
+timer: 0
+level: 70
+effects: 0 0 0
+wear: 4097
+applies:
+19 2
+~
+extradesc: fetter slave
+This very old shackle's made of steel. There are numerous little
+dents in its surface, but it still seems supernaturally strong. 
+It fastens with a steel clip.
+~
+~~
+vnum: 8034
+location: -1
+values:
+10
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: fiery red drakling scale
+shortdesc: a Fiery Red drakling scale
+desc: A small Fiery Red scale lies here.
+type: 9
+weight: 0.50
+cost: 0
+timer: 0
+level: 0
+effects: 0 0 0
+wear: 524289
+applies:
+13 15
+18 1
+19 1
+~
+extradesc: fiery red drakling scale
+This odd little draconian scale is burning with some sort of internal fire,
+making it quite warm but bearable to the touch.  It seems to impart some if its
+fieryness into its holder, promising power and strength to its wearer.
+~
+~~
+vnum: 52001
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: afgnopqrstuvwx
+name: ring protection elven elven-ring
+shortdesc: an elven ring
+desc: A ring with golden elven leaves lies here.
+type: 8
+weight: 0.50
+cost: 18090
+timer: 0
+level: 85
+effects: d 0 0
+wear: 3
+applies:
+3 3
+9 -12
+26 28
+~
+extradesc: ring protection elven elven-ring
+The golden elven leaves sparkle without reflecting any light.  The glinting
+appearance comes from the ring itself, and would probably serve to warm the
+finger it is worn on.    
+~
+~~
+vnum: 12509
+location: -1
+values:
+70
+1
+1
+66
+0
+0
+0
+~
+flags: 0
+name: fist crystal
+shortdesc: a yellow, fist shaped crystal
+desc: A yellow-tinged, fist-shaped crystal lies here, its purpose forgotten.
+adesc:
+The fist pulses with energy, and soars through the air.
+~
+type: 3
+weight: 0.75
+cost: 1000
+timer: 0
+level: 40
+effects: 0 0 0
+wear: 16385
+extradesc: fist crystal 
+The crystal is a sickly yellow, and has been carved into a clenched fist, with
+part of the forearm intact.    
+~
+~~
+vnum: 23823
+location: -1
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: aiAD
+name: wings dragon pair silver scales heap dragon-wings
+shortdesc: a pair of dragon wings
+desc: A heap of silver scales lies here.
+type: 11
+weight: 21.00
+cost: 10000
+timer: 0
+level: 85
+effects: 0 0 0
+wear: 1025
+applies:
+19 2
+14 20
+13 20
+~
+extradesc: wings dragon pair silver scales heap dragon-wings
+A quicksilver mess of barely-defined scales and membranes resolves itself into
+a pair of wings upon closer inspection.  They seem to magically resize
+themselves if worn, becoming closer to the size of the wearer as though to fit
+them personally.  Once worn, they attach themselves seamlessly to the wearer's
+back and look like an extra set of limbs that could probably be used for their
+original purpose: flight.  Their value seems beyond reckoning.    
+~
+~~

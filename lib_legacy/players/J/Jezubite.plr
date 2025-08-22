@@ -1,0 +1,75 @@
+name: Jezubite
+password: Je2V20obZd
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 27
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20211
+birthtime: 1648127170
+timeplayed: 707
+lastlogintime: 1648127877
+host: 199.089.149.254
+height: 77
+weight: 300
+base_height: 77
+base_weight: 300
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 7
+lastlevel: 0
+hitpoints: 26/25
+mana: 0/0
+move: 136/136
+damroll: 3
+hitroll: 3
+strength: 92
+intelligence: 67
+wisdom: 75
+dexterity: 91
+constitution: 88
+charisma: 54
+experience: 1
+quit_reason: 3
+saveroom: 0
+skills:
+203 1000
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+454 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+487 84
+0 0
+tells:
+$
+gossips:
+1648127203 Chinok gossips, 'welcome Jezubite'
+1648127252 Chinok gossips, 'ah, cool'
+1648127258 Someone gossips, 'welcome back then!'
+1648127303 Chinok gossips, 'remember any of your old character names ?'
+1648127331 Fril gossips, 'remember anyone you used to play with?'
+1648127489 Chinok gossips, 'well enjoy, and yell if you have any questions, here to help'
+1648127512 Chinok gossips, 'we've done a lot of work since 1993 :)'
+$

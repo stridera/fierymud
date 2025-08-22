@@ -1,0 +1,177 @@
+name: Velena
+password: VemICA1HxU
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 2
+class: 15
+race: 3
+level: 99
+home: 3003
+lifeforce: 0
+composition: 0
+id: 15624
+birthtime: 1142659724
+timeplayed: 4408339
+lastlogintime: 1717454018
+host: 066.199.058.082
+height: 46
+weight: 177
+base_height: 46
+base_weight: 177
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: glxy
+effectflags: ck w q
+prefflags: hnouC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+thirst: 24
+lastlevel: 9
+hitpoints: 779/779
+mana: 100/100
+move: 94/108
+damroll: 4
+hitroll: 5
+strength: 81
+intelligence: 86
+wisdom: 92
+dexterity: 73
+constitution: 65
+charisma: 68
+cash: 0 5 28 21
+experience: 105805999
+quit_reason: 1
+saveroom: 3054
+spellcasts:
+2 40
+0 0
+skills:
+1 1000
+3 1000
+4 1000
+12 1000
+13 1000
+14 1000
+15 1000
+16 1000
+18 1000
+20 1000
+21 1000
+22 1000
+23 1000
+28 1000
+34 1000
+35 1000
+40 1000
+42 1000
+43 1000
+44 1000
+51 1000
+53 1000
+54 1000
+70 1000
+74 1000
+84 1000
+85 1000
+86 1000
+87 1000
+88 1000
+89 1000
+90 1000
+91 1000
+92 1000
+93 1000
+94 1000
+97 1000
+99 1000
+115 1000
+116 1000
+117 1000
+118 1000
+119 1000
+120 1000
+122 1000
+123 1000
+124 1000
+126 1000
+129 1000
+142 1000
+206 1000
+207 1000
+208 1000
+209 1000
+241 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+451 1000
+452 1000
+455 1000
+457 1000
+458 1000
+459 1000
+460 1000
+461 1000
+462 1000
+463 1000
+466 1000
+0 0
+trophy:
+1 5122 1.000000
+1 11702 8.000000
+1 2807 1.000000
+1 2806 4.000000
+1 2809 2.500000
+1 11801 1.000000
+1 48501 0.500000
+1 48502 0.783000
+1 48500 0.833000
+1 48511 0.167000
+1 48405 0.167000
+1 48404 0.500000
+1 48406 0.167000
+1 48408 0.500000
+1 48401 0.167000
+1 48403 0.167000
+1 48409 1.667000
+1 48001 3.500000
+1 48009 0.500000
+1 48013 0.500000
+1 48021 0.500000
+0 0 0
+tells:
+1700536218 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1700536220 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1700536266 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+$
+gossips:
+1682285037 Enthilza gossips, 'what are you going to watch?'
+1682285042 Daedela gossips, 'Super Mario!'
+1682285100 Enthilza gossips, 'cool!'
+1700536190 Mersh gossips, 'Hey Velena'
+1700536244 Mersh gossips, 'not much. Just waiting for Venath to put something fun in doom :D'
+1700536269 Mersh gossips, 'fun!'
+1700536282 Mersh gossips, 'hope you remember where those keys were from hells gate :D'
+1700536316 Mersh gossips, 'I think it is just the keys but I could be remembering wrong been a while'
+1700536584 Chinok gossips, 'lol I've forgotten more than most people will ever know about that stuff :)'
+1700536708 Mersh gossips, 'Hey Haborym'
+$
+effects:
+108 7 0 0 0 32768 0
+3 7 0 0 0 0 16384
+3 7 2 19 0 0 0
+3 7 -12 24 0 0 0
+0 0 0 0 0
+aliases:
+jk c 'heal' keric
+holy c 'holy word'
+st stand
+sk c 'sum' mlyec
+jj c 'f heal' corana
+0

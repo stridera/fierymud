@@ -1,0 +1,69 @@
+name: Xrc
+password: XrFO1/tMyW
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 3
+race: 26
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20501
+birthtime: 1682105804
+timeplayed: 46
+lastlogintime: 1682105865
+host: 064.058.165.210
+height: 70
+weight: 370
+base_height: 70
+base_weight: 370
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: xy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 23
+thirst: 22
+lastlevel: 0
+hitpoints: 27/27
+mana: 0/0
+move: 111/111
+damroll: 3
+hitroll: 3
+strength: 97
+intelligence: 71
+wisdom: 73
+dexterity: 89
+constitution: 70
+charisma: 60
+experience: 1
+quit_reason: 5
+saveroom: 3002
+skills:
+201 1000
+402 50
+404 50
+415 50
+416 50
+421 50
+438 50
+443 50
+444 50
+453 50
+463 50
+464 50
+465 50
+466 50
+467 50
+468 50
+486 87
+0 0
+tells:
+$
+gossips:
+$

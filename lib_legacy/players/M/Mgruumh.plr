@@ -1,0 +1,69 @@
+name: Mgruumh
+password: MgygMgi5oT
+prompt: Hp: &2%h&0 (&2&b%H&0) Mv: &2%v&0 (&2&b%V&0)&2&b Exp: [%e] Aff:[%l]%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 18
+race: 3
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20114
+birthtime: 1642425662
+timeplayed: 1812
+lastlogintime: 1642427474
+host: 084.250.235.220
+height: 38
+weight: 183
+base_height: 38
+base_weight: 183
+base_size: 2
+natural_size: 2
+alignment: 998
+playerflags: y
+effectflags: k 0 q
+prefflags: chnotxC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+lastlevel: 0
+hitpoints: 23/23
+mana: 0/0
+move: 116/116
+damroll: 4
+hitroll: 5
+strength: 98
+intelligence: 57
+wisdom: 65
+dexterity: 100
+constitution: 70
+charisma: 65
+cash: 0 2 25 24
+experience: 5499
+quit_reason: 3
+saveroom: 0
+skills:
+403 50
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+464 51
+465 50
+467 50
+0 0
+trophy:
+1 17208 1.000000
+1 17202 1.000000
+1 17203 0.750000
+1 17205 0.250000
+1 17204 0.500000
+1 3500 0.250000
+0 0 0
+tells:
+$
+gossips:
+$

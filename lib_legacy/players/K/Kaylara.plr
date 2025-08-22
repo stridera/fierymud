@@ -1,0 +1,157 @@
+name: Kaylara
+password: KaW9N.K07x
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 20
+race: 5
+level: 99
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20157
+birthtime: 1645247019
+timeplayed: 869231
+lastlogintime: 1737962413
+host: 052.119.120.201
+height: 63
+weight: 112
+base_height: 63
+base_weight: 112
+base_size: 2
+natural_size: 2
+alignment: -1000
+playerflags: gxyz
+effectflags: k w 0
+prefflags: fhnoxCD a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 544/544
+mana: 980/980
+move: 269/276
+damroll: 3
+hitroll: 3
+strength: 66
+intelligence: 96
+wisdom: 93
+dexterity: 64
+constitution: 100
+charisma: 84
+cash: 4071 14443 47299 8123
+experience: 126967199
+quit_reason: 1
+saveroom: 3054
+skills:
+2 1000
+5 1000
+19 1000
+20 1000
+26 1000
+29 1000
+31 1000
+38 1000
+39 1000
+50 1000
+52 1000
+57 1000
+62 1000
+65 1000
+67 1000
+68 1000
+83 1000
+99 1000
+100 1000
+101 1000
+102 1000
+103 1000
+105 1000
+107 1000
+108 1000
+112 1000
+113 1000
+157 1000
+158 1000
+159 1000
+160 1000
+161 1000
+162 1000
+163 1000
+164 1000
+165 1000
+166 1000
+167 1000
+168 1000
+169 1000
+170 1000
+200 1000
+220 1000
+228 1000
+415 1000
+416 1000
+421 1000
+423 1000
+424 1000
+438 1000
+443 1000
+444 1000
+447 1000
+451 1000
+452 1000
+453 1000
+455 1000
+458 1000
+459 1000
+460 1000
+462 1000
+464 1000
+465 50
+0 0
+trophy:
+1 48011 0.200000
+1 48012 1.200000
+1 48020 0.200000
+1 48013 0.200000
+1 48009 0.200000
+1 23809 0.200000
+1 23800 0.200000
+1 23802 0.200000
+1 23803 0.200000
+1 23817 0.800000
+1 23812 1.200000
+1 23810 0.600000
+0 0 0
+tells:
+1682667209 @WShazz@W tells you, 'Take good care of that.@W'@0
+1682667382 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1682668658 @WShazz@W tells you, 'Take good care of that.@W'@0
+1682749260 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1682759530 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1682763573 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1682844558 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1682844953 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
+1682847787 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+1682910404 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
+$
+gossips:
+1682838063 Daedela gossips, 'thanks for the heads up about that bug Paver - got it fixed'
+1682845663 The Knight Templar shouts, 'Hark all and listen, Tavsan has fended off a great evil for our fair town!'
+1682845665 The Knight Templar shouts, 'Hark all and listen, Tavsan has fended off a great evil for our fair town!'
+1707382124 A kobold scout shouts, 'Help meeeeee!!'
+1707382128 A gnoll spiritbreaker shouts, 'Kill the slave!'
+1707382132 A kobold scout shouts, 'Nooo!  Save meee!!'
+1707467874 Gaz gossips, 'congrats!'
+1707467877 Dilar gossips, 'thx :)'
+1707468673 Gaz gossips, 'uh oh!  You got it okay?'
+1707468706 Dilar gossips, 'I'll be fine thx :)'
+1707468724 Gaz gossips, 'okay :)'
+$
+effects:
+235 5 0 0 8192 0 0
+0 0 0 0 0
+aliases:
+gac get all corpse
+gat get all 2.corpse
+ga get all
+0

@@ -1,0 +1,102 @@
+name: Varnestra
+password: Va9Y.XdELB
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 18
+race: 32
+level: 4
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20334
+birthtime: 1661452333
+timeplayed: 23637
+lastlogintime: 1689256535
+host: 076.184.241.147
+height: 9
+weight: 6
+base_height: 9
+base_weight: 6
+base_size: 0
+natural_size: 0
+alignment: 998
+playerflags: y
+effectflags: u 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 0
+hitpoints: 58/58
+mana: 1/0
+move: 100/100
+damroll: 0
+hitroll: 6
+strength: 82
+intelligence: 78
+wisdom: 78
+dexterity: 92
+constitution: 87
+charisma: 70
+cash: 0 9 120 124
+experience: 52330
+quit_reason: 1
+saveroom: 3054
+skills:
+401 90
+403 90
+408 90
+415 50
+416 50
+421 52
+438 50
+443 50
+444 50
+463 50
+464 62
+465 50
+493 50
+0 0
+trophy:
+1 1605 0.750000
+1 1601 3.750000
+1 1602 1.250000
+1 8020 0.250000
+1 8011 1.250000
+1 8014 0.750000
+1 8021 0.500000
+1 8000 0.500000
+1 8001 0.500000
+1 8023 0.500000
+1 13611 0.250000
+1 13615 0.250000
+1 13610 0.250000
+1 13602 0.750000
+1 13601 0.750000
+1 8016 1.750000
+1 8013 1.500000
+1 8030 0.250000
+1 8002 1.750000
+1 8022 1.250000
+1 8012 1.000000
+0 0 0
+tells:
+1661453569 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+1661453581 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
+$
+gossips:
+1688800812 Narin gossips, 'Grats!!!'
+1688800818 Fianta gossips, 'thanks!!'
+1688801842 Fianta gossips, 'gratz Narin!'
+1688802091 Discord gossips, 'Daedela: Nothing in the house that needs bless is aggro AND there's an item in there that gives you bless!'
+1688802105 Fianta gossips, 'yes i got a green potion!'
+1688802280 Fianta gossips, 'are there two green potions maybe?'
+1688802400 Narin gossips, 'Grats Fianta!'
+1688802404 Fianta gossips, 'thanks!'
+1688802467 Narin gossips, 'Night.'
+1688802574 Fianta gossips, 'what a day! I got to play with a newbie to this mud!'
+$
+aliases:
+bs backstab $*
+0

@@ -1,0 +1,67 @@
+name: Enan
+password: En21c0T.ix
+prompt: %_[%w][%W]%_%_[%e]%_[throat%dt]%_[insta%di]%_[disarm%dd]%_[%t][%o]%_[%h/%Hhp%-%v/%Vmv][%a][%i]%_%_
+autoinvis: 0
+sex: 1
+class: 18
+race: 0
+level: 2
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19317
+birthtime: 1516823683
+timeplayed: 2653
+lastlogintime: 1516922355
+host: 024.228.181.046
+height: 74
+weight: 172
+base_height: 74
+base_weight: 172
+base_size: 2
+natural_size: 2
+alignment: 0
+playerflags: y
+effectflags: 0 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8010
+lastlevel: 0
+hitpoints: 41/41
+mana: 1/0
+move: 25/118
+damroll: 3
+hitroll: 3
+strength: 89
+intelligence: 62
+wisdom: 64
+dexterity: 100
+constitution: 82
+charisma: 60
+experience: 9220
+quit_reason: 7
+saveroom: 8010
+skills:
+403 50
+415 50
+416 50
+421 51
+438 50
+443 50
+444 50
+464 54
+465 50
+467 50
+0 0
+trophy:
+1 8014 1.000000
+1 8016 1.000000
+1 8000 2.000000
+1 8013 2.000000
+1 8002 3.000000
+1 8001 1.000000
+0 0 0
+aliases:
+where who -w
+0

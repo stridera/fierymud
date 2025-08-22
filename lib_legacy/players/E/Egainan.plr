@@ -1,0 +1,81 @@
+name: Egainan
+password: EgJFavRdop
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 2
+class: 0
+race: 9
+level: 1
+home: 3001
+lifeforce: 0
+composition: 0
+id: 19778
+birthtime: 1605414297
+timeplayed: 1360
+lastlogintime: 1605415664
+host: 024.196.246.148
+height: 70
+weight: 100
+base_height: 70
+base_weight: 100
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: xy
+effectflags: k 0 0
+prefflags: hnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3001
+hunger: 6
+lastlevel: 0
+hitpoints: 18/18
+mana: 1/0
+move: 100/100
+damroll: 3
+hitroll: 3
+strength: 78
+intelligence: 89
+wisdom: 96
+dexterity: 73
+constitution: 66
+charisma: 66
+experience: 1
+quit_reason: 5
+saveroom: 3001
+skills:
+5 1000
+20 1000
+32 1000
+100 1000
+101 1000
+415 50
+416 50
+423 51
+424 50
+438 50
+443 50
+444 50
+447 50
+451 52
+452 50
+453 50
+459 50
+460 50
+462 50
+464 50
+0 0
+tells:
+$
+gossips:
+1605414308 Chinok gossips, 'welcome Egainan'
+1605414314 Felessan gossips, 'hellooooooo'
+1605414449 Chinok gossips, 'Egainan just yell if we can help you figure out how things work here'
+1605414681 Chinok gossips, 'Gratz guys!'
+1605414694 Felessan gossips, 'gonna plevel to 10'
+1605414739 Chinok gossips, 'enjoy, afk a min'
+1605414745 Felessan gossips, 'kk!'
+1605414746 Laisha gossips, 'ty'
+1605415552 Chinok gossips, 'Gratz Laisha'
+1605415558 Laisha gossips, 'Thanks!'
+$

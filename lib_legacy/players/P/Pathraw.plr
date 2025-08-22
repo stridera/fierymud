@@ -1,0 +1,158 @@
+name: Pathraw
+password: Paqp6sa/2t
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%rr&2&b>%_&0<%t&0>:<&0%o&0> 
+sex: 2
+class: 6
+race: 9
+level: 99
+home: 3022
+lifeforce: 0
+composition: 0
+id: 17199
+birthtime: 1139730262
+timeplayed: 16599790
+lastlogintime: 1437297578
+host: 068.231.070.014
+height: 69
+weight: 114
+base_height: 69
+base_weight: 114
+base_size: 2
+natural_size: 2
+alignment: 1000
+playerflags: glxyz
+effectflags: kx 0 0
+prefflags: hnoxzC a
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 3054
+lastlevel: 13
+hitpoints: 1076/1076
+mana: 980/980
+move: 125/126
+damroll: 3
+hitroll: 3
+strength: 93
+intelligence: 66
+wisdom: 76
+dexterity: 80
+constitution: 93
+charisma: 57
+cash: 1972 7107 16586 6226
+experience: 121676898
+quit_reason: 1
+saveroom: 3054
+skills:
+8 1000
+15 1000
+16 1000
+18 1000
+30 1000
+32 1000
+37 1000
+44 1000
+69 1000
+88 1000
+144 1000
+214 1000
+402 1000
+404 1000
+407 1000
+410 1000
+411 1000
+412 1000
+415 1000
+416 1000
+417 1000
+420 1000
+421 1000
+422 1000
+423 1000
+424 1000
+430 1000
+438 227
+443 1000
+444 1000
+447 1000
+451 1000
+452 1000
+454 1000
+456 1000
+457 1000
+458 1000
+459 1000
+462 1000
+463 1000
+464 1000
+465 1000
+466 1000
+467 1000
+468 1000
+0 0
+trophy:
+1 16007 0.500000
+1 16006 2.500000
+1 16005 2.500000
+1 16002 0.500000
+1 16004 1.500000
+1 16000 4.000000
+1 16001 3.500000
+1 7053 0.500000
+1 7004 0.500000
+1 5104 1.000000
+1 5103 1.000000
+1 5102 2.000000
+1 5420 1.000000
+1 52013 1.000000
+1 52012 0.500000
+1 52003 0.250000
+1 52016 1.000000
+1 52010 0.250000
+1 52006 0.333333
+0 0 0
+mem:
+69 0 1
+69 1 1
+69 1 1
+69 0 1
+69 0 1
+15 0 1
+15 0 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+15 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+30 1 1
+0 0 0
+aliases:
+q rescue shanta
+a kill elf
+2 rescue shanta
+1 rescue wrya
+qq rescue moet
+z kill wisp
+` cast 'blur'
+00 consent shanta
+0 fol shanta
+4 rescue shikata
+11 fol drimlok; group drimlok
+zz cast 'cure critic' juevet
+f flee
+`` remove shield; wield head
+6 rescue nodem
+7 rescue gyde
+9 consent evlok
+aa wear ring
+x rescue shanta
+3 rescue shanta
+0

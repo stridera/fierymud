@@ -1,0 +1,128 @@
+name: Grewip
+password: GrnEK4V4S6
+prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
+autoinvis: 0
+sex: 1
+class: 1
+race: 0
+level: 6
+home: 3001
+lifeforce: 0
+composition: 0
+id: 20780
+birthtime: 1715222598
+timeplayed: 21008
+lastlogintime: 1715926025
+host: 108.081.164.067
+height: 68
+weight: 179
+base_height: 68
+base_weight: 179
+base_size: 2
+natural_size: 2
+alignment: 3
+playerflags: gxy
+effectflags: 0 0 0
+prefflags: ghnoC 0
+privflags: 0
+savingthrows: 0 0 0 0 0
+loadroom: 8025
+hunger: 14
+lastlevel: 0
+hitpoints: 64/58
+mana: 1/0
+move: 161/161
+damroll: 3
+hitroll: 3
+strength: 76
+intelligence: 92
+wisdom: 94
+dexterity: 72
+constitution: 94
+charisma: 58
+cash: 0 2 59 563
+experience: 94859
+quit_reason: 7
+saveroom: 8025
+skills:
+1 1000
+12 1000
+13 1000
+16 1000
+20 1000
+84 1000
+206 1000
+415 50
+416 50
+423 53
+424 103
+438 50
+443 50
+444 50
+451 50
+457 100
+458 65
+459 78
+460 54
+462 50
+463 72
+466 50
+0 0
+trophy:
+1 36001 2.000000
+1 36002 2.000000
+1 8030 1.000000
+1 8016 14.000000
+1 3508 3.000000
+1 3500 2.000000
+1 3509 3.000000
+1 8022 5.000000
+1 8010 4.000000
+1 8021 5.000000
+1 8023 7.000000
+1 8011 9.000000
+1 8015 10.000000
+1 8000 10.000000
+1 8014 8.000000
+1 8013 15.000000
+1 8020 3.000000
+1 8012 13.000000
+1 8002 7.000000
+1 8001 11.000000
+1 51900 1.000000
+0 0 0
+tells:
+1715224345 @WChinok@W tells you, 'he told you to try these...@W'@0
+1715224345 @WChinok@W tells you, '1. (R)EST@W'@0
+1715224346 @WChinok@W tells you, '2. (MED)ITATE@W'@0
+1715224346 @WChinok@W tells you, '3. (PR)AY@W'@0
+1715224346 @WChinok@W tells you, '4. (C)AST ))@W'@0
+1715224795 @WChinok@W tells you, 'look journal@W'@0
+1715224845 @WChinok@W tells you, 'now you see the different section in it@W'@0
+1715227167 @WSelean@W tells you, 'hi@W'@0
+1715227301 @WSelean@W tells you, 'type spells that will give you a list of spells you know. if you havent casted a spell yet you dont need to pray@W'@0
+1715302352 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
+$
+gossips:
+1715403618 Discord gossips, 'Daedela: Yes, many'
+1715403622 Chinok gossips, 'tons of them, yes'
+1715403645 Chinok gossips, 'clerics typically can't use anything with 'a sharp edge''
+1715403749 Discord gossips, 'Daedela: Swords and axes generally'
+1715403760 Discord gossips, 'Daedela: Basically anyone can use a dagger'
+1715403795 Chinok gossips, 'yep, what he said'
+1715404164 Discord gossips, 'Daedela: Generally!'
+1715404562 Discord gossips, 'Daedela: Items generally do it'
+1715404568 Discord gossips, 'Daedela: Or certain spells'
+1715404647 Discord gossips, 'Daedela: Not to your core score, no'
+$
+effects:
+1 2 10 17 0 0 0
+0 0 0 0 0
+aliases:
+ar cast 'armor'
+cl cast 'cure light'
+le cast 'lesser endurance'
+cul cast 'cause light' $1
+cf cast 'create food'
+cw cast 'create water' $1
+0

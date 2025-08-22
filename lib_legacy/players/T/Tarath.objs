@@ -1,0 +1,262 @@
+1
+vnum: 3031
+location: 0
+values:
+1
+250
+238
+0
+0
+0
+0
+~
+flags: 0
+name: lantern brass
+shortdesc: a lantern
+desc: A brass lantern sits here leaking lamp oil.
+type: 1
+weight: 3.00
+cost: 50
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: brass lantern
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+extradesc: words bottom
+The words read:
+      Type "light lantern" to activate.
+~
+~~
+vnum: 1029
+location: 18
+values:
+100
+0
+0
+0
+0
+0
+0
+~
+flags: D
+name: spellbook book
+shortdesc: &0&3a spellbook&0
+desc: &0A &0&3spellbook&0 lies here.
+type: 26
+weight: 2.50
+cost: 1
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: spellbook book
+Bound with a leather cover, this spellbook has about a hundred high-quality
+pages.  A studious mage could write his or her own spells in this book using
+the 'scribe' command and a quill at his or her guildmaster.
+~
+spells:
+5 5
+32 5
+~
+~~
+vnum: 1154
+location: 19
+values:
+0
+0
+0
+0
+0
+0
+0
+~
+flags: 0
+name: quill feather feather-quill pen
+shortdesc: a feather quill
+desc: A long white feather lies here in the dirt.
+type: 21
+weight: 0.05
+cost: 5
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 16385
+extradesc: feather quill
+The fluffy white feather is quite long, with a red shaft. It looks
+suspiciously like a writing utensil!
+     (Hint : you need something to write on...then
+      while carrying both, type: write on paper with quill
+      OR you may hold the quill and type: write paper)
+~
+~~
+vnum: 1101
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: mo
+name: jacket studded studded-leather-jacket
+shortdesc: a studded leather jacket
+desc: A studded leather jacket has been abandoned here.
+type: 9
+weight: 9.30
+cost: 500
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 9
+extradesc: jacket leather studded
+This jacket is made of dark brown leather, studded all over with bits of
+metal to make it more protective. The hems are all double-stitched with
+wax thread, to make it durable. 
+~
+~~
+vnum: 1102
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: gloves leather leather-gloves
+shortdesc: leather gloves
+desc: A pair of leather gloves lies neatly folded out of the way.
+type: 9
+weight: 1.30
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 129
+extradesc: gloves leather
+Beige leather makes up these soft gloves. They're made to fit just about
+anybody's hands.
+~
+~~
+vnum: 1103
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: cap leather leather-cap
+shortdesc: a leather cap
+desc: A leather cap lies right in the way.
+type: 9
+weight: 2.50
+cost: 150
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 17
+extradesc: leather cap
+This is a dapper, smart-looking black leather cap, very fashionable. A
+very small bill sticks out from its front.
+~
+~~
+vnum: 1104
+location: 127
+values:
+3
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: pants leather leather-pants
+shortdesc: thick leather pants
+desc: A pair of leather pants is lying in a heap on the ground.
+type: 9
+weight: 8.10
+cost: 150
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 33
+extradesc: leather pants
+These pants are full-cut, made from good solid tan leather. Though hardly
+fashionable, at least with the dignified crowd, they're oddly appealing to
+most people. At least they'll afford their wearer's legs with some
+protection.
+~
+~~
+vnum: 1105
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: sleeves leather leather-sleeves
+shortdesc: thick leather sleeves
+desc: A pair of leather sleeves lies curled up together on the ground.
+type: 9
+weight: 5.90
+cost: 75
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 257
+extradesc: sleeves leather
+Cylinders of leather form a pair of sleeves, designed to hook onto a vest
+of whatever type you please. They're made of tan leather, and are
+completely unornamented.
+~
+~~
+vnum: 1106
+location: 127
+values:
+2
+0
+0
+0
+0
+0
+0
+~
+flags: m
+name: boots leather leather-boots
+shortdesc: sturdy leather boots
+desc: A pair of leather boots stands off to the side.
+type: 9
+weight: 2.80
+cost: 60
+timer: 0
+level: 1
+effects: 0 0 0
+wear: 65
+extradesc: leather boots
+These work boots are made of dark brown leather. They go about calf-high,
+and though they're unornamented, the leather is finely worked and tooled
+along its edges. They have no cuffs, and a very low heel -- quite suitable
+for anybody wanting some basic protection.
+~
+~~
