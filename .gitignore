@@ -12,3 +12,9 @@ __pycache__
 .aider*
 .cache/
 .serena/
+
+# Data dirs
+data/
+data_prod/
+data_test/
+lib_legacy/

@@ -7,40 +7,40 @@
  *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
  ***************************************************************************/
 
-#include "server/modern_mud_server.hpp"
 #include "core/logging.hpp"
+#include "server/mud_server.hpp"
 
-#include <iostream>
+#include <chrono>
 #include <csignal>
 #include <cstdlib>
+#include <filesystem>
+#include <iostream>
 #include <memory>
 #include <thread>
-#include <chrono>
-#include <filesystem>
 
 // Global server instance for signal handling
 std::unique_ptr<ModernMUDServer> g_server;
 
 void signal_handler(int signal) {
     switch (signal) {
-        case SIGINT:
-        case SIGTERM:
-            std::cout << "\nReceived shutdown signal, stopping server...\n";
-            if (g_server) {
-                g_server->stop();
+    case SIGINT:
+    case SIGTERM:
+        std::cout << "\nReceived shutdown signal, stopping server...\n";
+        if (g_server) {
+            g_server->stop();
+        }
+        break;
+    case SIGHUP:
+        std::cout << "Received SIGHUP, reloading configuration...\n";
+        if (g_server) {
+            auto result = g_server->reload_config();
+            if (!result) {
+                std::cerr << "Failed to reload config: " << result.error().message << "\n";
             }
-            break;
-        case SIGHUP:
-            std::cout << "Received SIGHUP, reloading configuration...\n";
-            if (g_server) {
-                auto result = g_server->reload_config();
-                if (!result) {
-                    std::cerr << "Failed to reload config: " << result.error().message << "\n";
-                }
-            }
-            break;
-        default:
-            break;
+        }
+        break;
+    default:
+        break;
     }
 }
 
@@ -48,12 +48,12 @@ void setup_signal_handlers() {
     std::signal(SIGINT, signal_handler);
     std::signal(SIGTERM, signal_handler);
     std::signal(SIGHUP, signal_handler);
-    
+
     // Ignore SIGPIPE (broken connections)
     std::signal(SIGPIPE, SIG_IGN);
 }
 
-void print_usage(const char* program_name) {
+void print_usage(const char *program_name) {
     std::cout << "Modern FieryMUD Server\n";
     std::cout << "Usage: " << program_name << " [options]\n";
     std::cout << "\nOptions:\n";
@@ -75,15 +75,15 @@ void print_version() {
     std::cout << "Copyright (C) 1998-2025 Fiery Consortium\n";
 }
 
-Result<ServerConfig> parse_arguments(int argc, char* argv[]) {
+Result<ServerConfig> parse_arguments(int argc, char *argv[]) {
     ServerConfig config;
     std::string config_file = "config/modern_mud.json";
     bool daemon_mode = false;
     bool test_mode = false;
-    
+
     for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
-        
+
         if (arg == "-h" || arg == "--help") {
             print_usage(argv[0]);
             std::exit(0);
@@ -101,7 +101,7 @@ Result<ServerConfig> parse_arguments(int argc, char* argv[]) {
             }
             try {
                 config.port = std::stoi(argv[++i]);
-            } catch (const std::exception&) {
+            } catch (const std::exception &) {
                 return std::unexpected(Errors::InvalidArgument("port", "Invalid port number"));
             }
         } else if (arg == "-d" || arg == "--daemon") {
@@ -112,7 +112,7 @@ Result<ServerConfig> parse_arguments(int argc, char* argv[]) {
             return std::unexpected(Errors::InvalidArgument("argument", fmt::format("Unknown argument: {}", arg)));
         }
     }
-    
+
     // Load configuration file if it exists
     if (std::filesystem::exists(config_file)) {
         auto load_result = ServerConfig::load_from_file(config_file);
@@ -123,21 +123,21 @@ Result<ServerConfig> parse_arguments(int argc, char* argv[]) {
     } else {
         std::cout << "Configuration file not found: " << config_file << "\n";
         std::cout << "Creating default configuration...\n";
-        
+
         // Create directory if needed
         std::filesystem::create_directories(std::filesystem::path(config_file).parent_path());
-        
+
         auto save_result = config.save_to_file(config_file);
         if (!save_result) {
             std::cerr << "Failed to create default config: " << save_result.error().message << "\n";
             return std::unexpected(save_result.error());
         }
-        
+
         std::cout << "Default configuration created at: " << config_file << "\n";
         std::cout << "Please review and modify as needed, then restart the server.\n";
         std::exit(0);
     }
-    
+
     if (test_mode) {
         std::cout << "Testing configuration...\n";
         auto validate_result = config.validate();
@@ -148,56 +148,56 @@ Result<ServerConfig> parse_arguments(int argc, char* argv[]) {
         std::cout << "Configuration is valid.\n";
         std::exit(0);
     }
-    
+
     if (daemon_mode) {
         // TODO: Implement daemonization
         std::cout << "Daemon mode not yet implemented\n";
     }
-    
+
     return config;
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     try {
         std::cout << "Starting Modern FieryMUD Server...\n";
-        
+
         // Parse command line arguments and load configuration
         auto config_result = parse_arguments(argc, argv);
         if (!config_result) {
             std::cerr << "Configuration error: " << config_result.error().message << "\n";
             return 1;
         }
-        
+
         auto config = config_result.value();
-        
+
         // Setup signal handlers
         setup_signal_handlers();
-        
+
         // Create and initialize server
         g_server = std::make_unique<ModernMUDServer>(config);
-        
+
         auto init_result = g_server->initialize();
         if (!init_result) {
             std::cerr << "Server initialization failed: " << init_result.error().message << "\n";
             return 1;
         }
-        
+
         // Start the server
         auto start_result = g_server->start();
         if (!start_result) {
             std::cerr << "Server start failed: " << start_result.error().message << "\n";
             return 1;
         }
-        
+
         // Main server loop - wait for shutdown
         while (g_server->is_running()) {
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
-        
+
         std::cout << "Server shutdown completed.\n";
         return 0;
-        
-    } catch (const std::exception& e) {
+
+    } catch (const std::exception &e) {
         std::cerr << "Fatal error: " << e.what() << "\n";
         return 1;
     } catch (...) {

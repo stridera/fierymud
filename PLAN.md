@@ -13,16 +13,19 @@ This document provides a concrete, incremental roadmap for modernizing FieryMUD 
 ## Objectives
 
 ✅ **Modernize Architecture**
+
 - Transform legacy global-state design into modular, domain-driven architecture
 - Establish clear boundaries between networking, game logic, and persistence layers
 - Implement single-threaded world simulation with message-passing I/O
 
 ✅ **Improve Code Quality**
+
 - Replace C-style structs and globals with modern C++23 classes
 - Add comprehensive test coverage using Catch2
 - Implement RAII, smart pointers, and modern standard library features
 
 ✅ **Enable Future Development**
+
 - Create stable, testable APIs for World, Entity/Object/Actor systems
 - Establish patterns for safe, incremental feature development
 - Provide foundation for advanced features like scripting modernization
@@ -53,16 +56,19 @@ The new architecture organizes code into logical modules with clear responsibili
 ## Concurrency Model
 
 **Single-Threaded Game World**
+
 - One world strand owns ALL world state mutations
 - Eliminates data races and synchronization complexity
 - Deterministic execution for reliable testing
 
 **Multi-Threaded I/O**
+
 - Separate I/O strands handle networking
 - I/O threads NEVER mutate world state directly
 - Message passing between I/O and world threads
 
 **Message Flow**
+
 ```
 Network Input → Command Request → World Thread → Output Event → Network Output
 ```
@@ -149,6 +155,7 @@ public:
 # ⚡ Modern C++ Standards
 
 ## Error Handling
+
 ```cpp
 // Use std::expected for operations that can fail
 std::expected<Player, Error> load_player(std::string_view name);
@@ -165,6 +172,7 @@ struct Error {
 ```
 
 ## Logging & Debugging
+
 ```cpp
 // Structured logging with spdlog
 spdlog::info("Player {} entered room {}", player.name(), room.vnum());
@@ -179,6 +187,7 @@ log_error("Command failed", {
 ```
 
 ## Modern Features Required
+
 - **Strings**: `fmt::format()`, `std::string_view` parameters
 - **Containers**: `std::vector`, `std::span`, `std::unordered_map`
 - **Memory**: Smart pointers, RAII, no raw `new`/`delete`
@@ -189,6 +198,7 @@ log_error("Command failed", {
 ## 6) File/Folder Layout (incremental)
 
 We will introduce new headers/impl into subfolders without breaking existing includes, then migrate call sites:
+
 - src/core/… (ids.hpp, result.hpp, time.hpp, logging.hpp)
 - src/domain/… (entity.hpp, object.hpp, actor.hpp, mob.hpp, player.hpp, stats.hpp, inventory.hpp)
 - src/world/… (room.hpp, zone.hpp, world.hpp)
@@ -201,11 +211,13 @@ Note: During early phases we may place thin adapters in existing files (e.g., ke
 ## 7) APIs and Contracts (LLM reference)
 
 Core types
+
 - Unified EntityId replaces all legacy ID types (vnum/rnum/obj_num/room_num/zone_vnum)
 - using EntityId = std::uint64_t; constexpr auto INVALID_ENTITY_ID = 0;
 - struct Error { enum class Code { NotFound, InvalidState, Permission, Parse }; Code code; std::string msg; };
 
 World
+
 - class World {
   - get_room(Vnum) -> std::optional<std::shared_ptr<Room>>
   - post(CommandRequest) -> void  // thread-safe; queues to world strand
@@ -214,10 +226,12 @@ World
 }
 
 Command pipeline
+
 - struct CommandRequest { EntityId player_id; std::string verb; std::vector<std::string> args; };
 - execute_command(World&, CommandRequest) -> std::expected<void, Error>
 
 Room
+
 - class Room {
   - vnum() -> Vnum
   - add_actor(std::shared_ptr<Actor>) -> void
@@ -228,6 +242,7 @@ Room
 }
 
 Actor
+
 - class Actor {
   - id() -> EntityId; room() -> std::weak_ptr<Room>
   - move_to(std::shared_ptr<Room>) -> std::expected<void, Error>
@@ -235,6 +250,7 @@ Actor
 }
 
 Notes
+
 - Use fmt::format for all user-visible strings.
 - Use ranges for iteration over containers where clear.
 
@@ -243,12 +259,14 @@ Notes
 ## Core Principles
 
 **🔄 Strangler Fig Pattern**
+
 - Build new modules alongside legacy code
 - Add adapter layers between old and new systems  
 - Gradually migrate call sites without breaking functionality
 - Remove legacy code only after full replacement
 
 **📈 Incremental & Safe**
+
 - Small, reviewable changes with comprehensive tests
 - Preserve all existing gameplay functionality during migration
 - Each milestone can be deployed independently
@@ -257,6 +275,7 @@ Notes
 ## Implementation Phases
 
 ### Phase 1: Foundation (Weeks 1-2)
+
 **Goal**: Modern C++ infrastructure
 
 1. 🆕 **ID System Consolidation**: Replace multiple ID types (vnum/rnum/obj_num/room_num/zone_vnum) with unified EntityId system
@@ -269,6 +288,7 @@ Notes
 #### 🔑 ID System Consolidation Details
 
 **Current Problem**: Multiple overlapping ID systems create confusion and bugs:
+
 - `typedef int room_num` - Real room numbers (array indices)  
 - `typedef int obj_num` - Object prototype numbers
 - `typedef int zone_vnum` - Zone virtual numbers
@@ -276,6 +296,7 @@ Notes
 - Various VNUM/RNUM conversion macros (`GET_MOB_VNUM`, `IN_ROOM_VNUM`, etc.)
 
 **Root Cause**: Legacy CircleMUD distinction between:
+
 - **VNUM** (Virtual Number): World builder's ID in zone files  
 - **RNUM** (Real Number): Runtime array index for fast lookup
 - **ID**: Global unique identifier for scripting system
@@ -310,18 +331,21 @@ public:
 ```
 
 **Migration Approach**:
+
 1. **Phase 1**: Add `EntityId` alongside existing ID types - no breaking changes
 2. **Phase 2**: Update APIs to accept both old and new ID types using adapter functions  
 3. **Phase 3**: Migrate internal storage to use `EntityId` with backward compatibility
 4. **Phase 4**: Remove legacy ID types once all references are updated
 
 **Benefits**:
+
 - ✅ **Type Safety**: Compiler prevents mixing room IDs with object IDs
 - ✅ **Clarity**: Single concept instead of vnum/rnum/id confusion
 - ✅ **Performance**: Direct hash table lookups replace array indexing
 - ✅ **Scalability**: 64-bit IDs support massive worlds without wraparound
 
 ### Phase 2: Domain Models (Weeks 3-4)  
+
 **Goal**: Modern game entity classes
 
 5. ✅ **Object Hierarchy**: Weapons, armor, containers with modern APIs
@@ -331,6 +355,7 @@ public:
 **Success Criteria**: Can create and manipulate game entities via modern APIs
 
 ### Phase 3: Game Loop (Weeks 5-6)
+
 **Goal**: Multi-threaded architecture foundation
 
 8. ✅ **World Class**: Registry, scheduling, command queuing
@@ -340,6 +365,7 @@ public:
 **Success Criteria**: Simple commands work end-to-end through new architecture
 
 ### Phase 4: Core Gameplay (Weeks 7-10)
+
 **Goal**: Essential game systems working
 
 10. ✅ **Movement System**: Look, move, room transitions
@@ -350,6 +376,7 @@ public:
 **Success Criteria**: Core gameplay loop functional through modern APIs
 
 ### Phase 5: Data & Persistence (Weeks 11-12)
+
 **Goal**: Modern data handling
 
 14. ✅ **JSON Persistence**: Save/load world data and players
@@ -363,6 +390,7 @@ public:
 ## Test Categories
 
 **Unit Tests (Catch2)**
+
 ```cpp
 TEST_CASE("Entity creation and basic properties") {
     auto entity = Entity::create("sword", 1001);
@@ -372,6 +400,7 @@ TEST_CASE("Entity creation and basic properties") {
 ```
 
 **Integration Tests**
+
 ```cpp  
 TEST_CASE("Command pipeline end-to-end") {
     auto world = create_test_world();
@@ -384,6 +413,7 @@ TEST_CASE("Command pipeline end-to-end") {
 ```
 
 **Game System Tests**
+
 - Movement between rooms with proper messaging
 - Inventory operations (get/drop/equip)
 - Combat mechanics and damage calculation
@@ -392,12 +422,14 @@ TEST_CASE("Command pipeline end-to-end") {
 ## Test Infrastructure
 
 **Fixtures & Test Data**
+
 - Small JSON world (2-3 rooms, basic objects, test NPCs)
 - Deterministic random number generation for reproducible tests
 - Controllable game clock for time-dependent tests
 - Memory leak detection and performance benchmarks
 
 **Test Coverage Goals**
+
 - 90%+ line coverage for new code
 - 100% coverage of error handling paths
 - Integration tests for all major game systems
@@ -406,7 +438,9 @@ TEST_CASE("Command pipeline end-to-end") {
 # 🎯 Detailed Milestones
 
 ## M1: Foundation (Week 1)
+
 **Deliverables**
+
 - `src/core/ids.hpp` - Unified EntityId system replacing vnum/rnum/obj_num/room_num/zone_vnum
 - `src/core/result.hpp` - Error struct and Result<T> type alias  
 - `src/core/logging.hpp` - spdlog integration with structured logging
@@ -414,6 +448,7 @@ TEST_CASE("Command pipeline end-to-end") {
 - Unit tests for all core utilities including ID conversion/compatibility
 
 **Definition of Done**
+
 - All code compiles without warnings
 - Tests pass with 100% coverage
 - spdlog logger works across modules
@@ -422,49 +457,61 @@ TEST_CASE("Command pipeline end-to-end") {
 - Conversion functions between old and new ID systems tested and documented
 
 ## M2: Entity System (Week 2)  
+
 **Deliverables**
+
 - `src/domain/entity.hpp|.cpp` - Base Entity class with JSON support
 - `src/domain/object.hpp|.cpp` - Object hierarchy with modern APIs
 - `src/domain/actor.hpp|.cpp` - Actor base with stats/inventory stubs
 - Comprehensive unit tests for all entity types
 
 **Definition of Done**
+
 - JSON serialization round-trip works perfectly
 - Entity relationships properly modeled
 - No dependencies on legacy global state
 - Memory-safe with smart pointers
 
 ## M3: World Management (Week 3)
+
 **Deliverables**  
+
 - `src/world/room.hpp|.cpp` - Room class with occupancy management
 - `src/world/world.hpp|.cpp` - World registries and basic API
 - Unit tests for room operations and world indexing
 
 **Definition of Done**
+
 - Room add/remove operations work correctly
 - World registries properly index entities by vnum/id
 - Thread-safety considerations documented
 - No threading implementation yet (single-threaded)
 
 ## M4: Game Loop Foundation (Week 4)
+
 **Deliverables**
+
 - `src/game/loop.hpp|.cpp` - GameLoop with command queue
 - `src/game/commands.hpp|.cpp` - CommandRequest processing
 - Integration test for echo command end-to-end
 
 **Definition of Done**
+
 - Commands can be posted to world thread
 - Simple echo command works via new pipeline  
 - Output properly routed back to players
 - No gameplay functionality yet
 
 ## M5: Command Pipeline (Week 5)
+
 **Deliverables**
+
 - Modified `src/interpreter.cpp` - Bridge to new command system
 - Adapter layer routing legacy commands through new pipeline
 - All existing commands still work unchanged
 
 **Definition of Done**
+
 - Legacy command parsing uses new CommandRequest format
 - All commands route through World::post()  
 - Player behavior remains identical
@@ -473,6 +520,7 @@ TEST_CASE("Command pipeline end-to-end") {
 # 🚀 Quick Reference
 
 ## Key API Patterns
+
 ```cpp
 // Modern error handling
 auto result = load_player("gandalf");
@@ -497,6 +545,7 @@ auto loaded_player = Player::from_json(j);
 ```
 
 ## File Organization
+
 ```
 src/
 ├── core/           # Foundation: IDs, errors, logging
@@ -509,6 +558,7 @@ src/
 ```
 
 ## Command Implementation Template
+
 ```cpp
 // In src/game/commands/movement.cpp
 # FieryMUD Modernization Plan
@@ -686,6 +736,7 @@ auto loaded_player = Player::from_json(j);
 ```
 
 ### File Organization
+
 ```
 src/
 ├── core/           # Foundation: IDs, errors, logging
@@ -699,31 +750,33 @@ src/
 
 ## Appendix B: Coding Standards
 
--   **Strings**: `std::string_view` for parameters, `std::string` for owned strings; `fmt::format` for all string formatting.
--   **Containers**: `std::vector`, `std::array`, `std::span`; `std::unordered_map` for registries.
--   **Memory**: Smart pointers (`std::unique_ptr`, `std::shared_ptr`); RAII for all resources; no raw `new` or `delete`.
--   **Algorithms**: `std::ranges` and range-based for loops should be preferred over manual loops.
--   **Error Handling**: `std::expected` for operations that can fail; `std::optional` for nullable values.
--   **Enums**: `magic_enum` for all enum-to-string conversions.
--   **JSON**: `nlohmann/json` for all JSON processing.
+- **Strings**: `std::string_view` for parameters, `std::string` for owned strings; `fmt::format` for all string formatting.
+- **Containers**: `std::vector`, `std::array`, `std::span`; `std::unordered_map` for registries.
+- **Memory**: Smart pointers (`std::unique_ptr`, `std::shared_ptr`); RAII for all resources; no raw `new` or `delete`.
+- **Algorithms**: `std::ranges` and range-based for loops should be preferred over manual loops.
+- **Error Handling**: `std::expected` for operations that can fail; `std::optional` for nullable values.
+- **Enums**: `magic_enum` for all enum-to-string conversions.
+- **JSON**: `nlohmann/json` for all JSON processing.
 
 ## Appendix C: Risks and Mitigations
 
--   **Risk**: Hidden global state interfering with world invariants.
-    -   **Mitigation**: Isolate mutations behind the `World` API. Flag and replace global variables on a case-by-case basis.
--   **Risk**: Threading bugs.
-    -   **Mitigation**: Strictly enforce the single-threaded world strand model. Use thread-safe queues for all inter-thread communication.
--   **Risk**: Migration scope creep.
-    -   **Mitigation**: Adhere strictly to the "Non-Goals" for this phase. Keep pull requests small and focused.
+- **Risk**: Hidden global state interfering with world invariants.
+  - **Mitigation**: Isolate mutations behind the `World` API. Flag and replace global variables on a case-by-case basis.
+- **Risk**: Threading bugs.
+  - **Mitigation**: Strictly enforce the single-threaded world strand model. Use thread-safe queues for all inter-thread communication.
+- **Risk**: Migration scope creep.
+  - **Mitigation**: Adhere strictly to the "Non-Goals" for this phase. Keep pull requests small and focused.
 
 ## Appendix D: Future Work
 
 The following sections are provided for future reference and are not part of the core modernization phase.
 
 ### JSON Persistence Plan
+
 (The detailed JSON persistence plan from the original document would go here.)
 
 ### Scripting Modernization: Lua
+
 (The detailed Lua scripting plan from the original document would go here.)
 
 ```
@@ -756,7 +809,7 @@ The following sections are provided for future reference and are not part of the
 - **Adopt smart pointer patterns**: Follow clan system's shared_ptr usage
 
 ### E2: Field-by-Field Structure Evolution ⚡ **IMMEDIATE**  
-**Why**: CharData/ObjData are mixed modern/legacy, not pure legacy
+**Why**: CharData/ObjData are mixed legacy, not pure legacy
 
 **Strategy - Don't Replace, Evolve**:
 ```cpp
@@ -774,26 +827,32 @@ struct CharData {
 ```
 
 ### E3: Adapter Pattern Implementation
+
 **Why**: Bridge existing code with modern interfaces gradually
 
 **Create Adapter Classes**:
+
 - `CharacterAdapter` wrapping `CharData*` with modern interface
 - `ObjectAdapter` wrapping `ObjData*` with modern interface  
 - `RoomAdapter` wrapping `RoomData*` (already mostly modern)
 - **Benefit**: Use modern APIs while legacy code continues working
 
 ### E4: String Modernization Priority
+
 **Why**: String handling is partially modern already
 
 **Target Areas**:
+
 - Replace `char* name` with `std::string` in ObjData (easy win)
 - Leverage existing `std::string_view` utilities from string_utils.hpp
 - Extend existing string parsing for command processing
 
 ### E5: Smart Pointer Migration  
+
 **Why**: Clan system shows the pattern, just extend it
 
 **Migration Path**:
+
 - Add `std::shared_ptr` equivalents alongside raw pointers
 - Gradually migrate relationship management (following, group, etc.)
 - Use RAII patterns from existing modern code
@@ -803,12 +862,14 @@ struct CharData {
 # 📋 Ready-to-Implement Tasks (Revised Evolutionary Approach)
 
 ## Task E1: Extend Existing Modern Patterns ⚡
+
 **Context**: Leverage clan system's perfect C++23 patterns for entity management
 **Files**: `src/entities/{character_adapter.hpp, object_adapter.hpp}`, extend `src/clan.hpp` patterns
 **Dependencies**: None - builds on existing code
 **Estimated Time**: 6-8 hours  
 
 **Implementation Steps**:
+
 1. Copy `std::expected` error patterns from clan.hpp to new entity utilities
 2. Create `CharacterAdapter` class wrapping `CharData*` with modern interface
 3. Create `ObjectAdapter` class wrapping `ObjData*` with modern interface  
@@ -823,12 +884,14 @@ struct CharData {
 ✅ Zero changes to existing legacy code
 
 ## Task E2: String Modernization in ObjData ⚡
+
 **Context**: Replace char* with std::string in ObjData structure  
 **Files**: `src/objects.hpp`, `src/objects.cpp`, related object functions
 **Dependencies**: None - direct improvement
 **Estimated Time**: 4-6 hours
 
 **Implementation Steps**:
+
 1. Replace `char *name, *description, *short_description` with `std::string`
 2. Update all object creation/loading functions to use std::string
 3. Leverage existing string utilities from `src/string_utils.hpp`
@@ -843,12 +906,14 @@ struct CharData {
 ✅ Performance maintained or improved
 
 ## Task E3: Smart Pointer Integration ⚡  
+
 **Context**: Add smart pointers alongside existing raw pointers for gradual migration
 **Files**: `src/structs.hpp`, `src/characters.hpp`, related character functions
 **Dependencies**: Task E1 (Adapter patterns established)
 **Estimated Time**: 8-12 hours
 
 **Implementation Steps**:
+
 1. Add `std::shared_ptr<CharData> next_shared` alongside `CharData *next`
 2. Add smart pointer relationship management (following, group, etc.)
 3. Create utility functions for converting raw→smart and smart→raw pointers
@@ -863,12 +928,14 @@ struct CharData {
 ✅ Follows clan system's smart pointer patterns exactly
 
 ## Task E4: Enhanced Command Integration
+
 **Context**: Extend existing function registration system with entity commands  
 **Files**: `src/function_registration.hpp`, `src/commands/entity_commands.cpp` (new)
 **Dependencies**: Tasks E1-E2 (Adapters and string modernization)
 **Estimated Time**: 6-10 hours
 
 **Implementation Steps**:
+
 1. Study existing function registration system (already perfect!)
 2. Add entity manipulation commands using existing registration patterns
 3. Integrate CharacterAdapter/ObjectAdapter with command system
@@ -887,41 +954,48 @@ struct CharData {
 ## Summary of Revised Evolutionary Approach
 
 ### 🎯 **Key Strategy Change**
+
 - **Before**: Complete architectural replacement
 - **After**: Evolutionary modernization building on existing patterns
 
 ### ⚡ **Immediate Benefits**  
+
 - **Task E1**: Modern APIs available immediately via adapters
 - **Task E2**: Memory safety improvements with zero risk
 - **Task E3**: Smart pointer benefits with legacy compatibility
 - **Task E4**: Enhanced commands through existing proven system
 
 ### 🔄 **Migration Philosophy**
+
 1. **Extend, Don't Replace**: Add modern alongside legacy
 2. **Copy Proven Patterns**: Clan system shows perfect C++23 usage
 3. **Gradual Transition**: Provide both interfaces during migration
 4. **Zero Disruption**: Legacy code continues working unchanged
 
 ### 📊 **Risk Reduction**  
+
 - **Binary Compatibility**: Maintained throughout transition
 - **Rollback Capability**: Can remove modern additions if needed  
 - **Incremental Testing**: Each task independently testable
 - **Community Continuity**: No disruption to existing development
 
 ### 🚀 **Implementation Timeline**
-- **Week 1**: Tasks E1-E2 (Adapters + String modernization) 
+
+- **Week 1**: Tasks E1-E2 (Adapters + String modernization)
 - **Week 2**: Tasks E3-E4 (Smart pointers + Command integration)
 - **Week 3+**: Continue pattern extension to remaining systems
 
 This evolutionary approach leverages the significant modern C++ already present in FieryMUD, providing immediate benefits while maintaining full compatibility with the existing mature codebase.
 
 ## Task A4: Game Loop & Command Pipeline
+
 **Context**: Single-threaded game loop with command queuing
 **Files**: `src/game/{loop.hpp, commands.hpp}`, modified `src/interpreter.cpp`
 **Dependencies**: Task A3 (World management)  
 **Estimated Time**: 12-16 hours
 
 **Implementation Steps**:
+
 1. Implement `GameLoop` with command queue and world strand
 2. Create `CommandRequest` struct and processing pipeline
 3. Add adapter in `interpreter.cpp` to bridge legacy commands
@@ -947,6 +1021,7 @@ The following sections contain detailed technical specifications, extended miles
 ## Summary
 
 This modernized PLAN.md provides:
+
 - **Clear executive summary** and scope definition
 - **Visual organization** with headers, emojis, and tables
 - **Concrete implementation tasks** with time estimates and dependencies  
@@ -957,21 +1032,25 @@ This modernized PLAN.md provides:
 The plan maintains all technical depth while significantly improving readability and actionability for both human developers and LLM implementation.
 
 Task F: GameLoop and queues
+
 - Files: src/game/loop.hpp/cpp, src/game/commands.hpp/cpp
 - Steps: world strand, post/schedule, tick; CommandRequest and execute_command stub
 - DoD: integration test posts a command and receives echo output.
 
 Task G: Interpreter bridge
+
 - Files: src/interpreter.cpp (adapter), src/game/commands.cpp
 - Steps: parse verb/args -> CommandRequest -> post to World
 - DoD: legacy commands route via new pipeline while preserving behavior.
 
 Task H: Movement slice
+
 - Files: src/game/commands_move.cpp (new), tests/movement_tests.cpp
 - Steps: implement look/move; room enter/leave messages
 - DoD: tests passing; manual smoke ok.
 
 Task I: Inventory basics
+
 - Files: src/game/commands_inventory.cpp, tests/inventory_tests.cpp
 - Steps: get/drop/equip/unequip
 - DoD: tests passing; no leaks; ranges used for iteration.
@@ -1019,11 +1098,13 @@ Task I: Inventory basics
 ## 17) JSON Persistence Plan (files now, DB later)
 
 Goals
+
 - Use JSON files initially for areas/world data and player saves.
 - Hide storage behind repository interfaces so a DB backend can be dropped in later without touching game logic.
 - Ensure safe writes (atomic, crash-safe) and clear versioning for smooth migrations.
 
 Abstractions (interfaces)
+
 - IWorldStore
   - load_indices() -> Result<WorldIndex>
   - load_zone(vnum) -> Result<ZoneData>
@@ -1038,6 +1119,7 @@ Abstractions (interfaces)
 - Implementations: JsonWorldStore, JsonPlayerStore (later: DbWorldStore, DbPlayerStore)
 
 File layout (configurable root, defaults shown)
+
 - data_root: configurable via CLI/env; default to detected repo path `lib/` (or external runtime directory).
 - World content (static-ish)
   - {data_root}/json/world/index.json  // global indices
@@ -1050,6 +1132,7 @@ File layout (configurable root, defaults shown)
   - {data_root}/json/.backup/YYYYMMDD-HHMM/{mirrors of above}
 
 Indices
+
 - world/index.json example
   {
     "version": 1,
@@ -1060,6 +1143,7 @@ Indices
 - At startup, load indices only; lazy-load entities on demand if needed.
 
 Schema (drafts; keep minimal and explicit; evolve via version field)
+
 - Common envelope
   - { "schema": { "name": "room|zone|object|player", "version": 1 }, "data": { ... } }
 - Room
@@ -1071,30 +1155,36 @@ Schema (drafts; keep minimal and explicit; evolve via version field)
 - Note: Separate object prototypes (by vnum) from instances (owned by players/rooms) which add durability, timer, etc.
 
 Versioning and migrations
+
 - Each file carries {schema.version}; breaking changes bump version.
 - Provide migration helpers to upgrade older versions at load time into current in-memory model.
 - Keep migrations idempotent and covered by tests.
 
 Atomic writes and durability
+
 - Write to a temporary file next to the target (e.g., `.tmp` suffix), flush, fsync, then std::filesystem::rename to final path.
 - fsync directory after rename on POSIX to ensure directory entry durability.
 - Optionally write timestamped backup before overwrite if configured.
 
 Performance and caching
+
 - Load indices on startup; load full zone files on first access; retain in-memory caches in World.
 - Serialize saves on world strand to avoid races; batch or throttle large save operations.
 
 Security and trust
+
 - Treat JSON as untrusted: validate required fields and value ranges; reject unknown schema names/versions.
 - Never evaluate scripts embedded in JSON; scripting remains separate.
 
 DB migration path
+
 - Game code talks only to IWorldStore/IPlayerStore.
 - Swap Json*Store for Db*Store implementing the same interface.
 - Maintain vnum as stable content key; map to DB primary keys internally.
 - Keep entity_id generation internal to runtime for now; DB may assign its own ids later; vnums remain external stable references.
 
 Testing
+
 - Provide small JSON fixtures under tests/fixtures/json/... matching schemas above.
 - Unit tests for adapters: parse-valid, parse-invalid, round-trip, migration from older schema.
 - Integration tests: save/load a mini world and a player; ensure referential integrity (room->objects, exits target rooms).
@@ -1102,30 +1192,36 @@ Testing
 ## 18) Additional Milestones (Persistence)
 
 M8: JSON stores and schemas (read path)
+
 - Deliver: JsonWorldStore/JsonPlayerStore (load-only), indices loader, schema structs, fixtures.
 - DoD: can load a tiny world and a test player into memory; tests cover happy + invalid cases.
 
 M9: Safe save path (atomic writes)
+
 - Deliver: save implementations with temp+rename+fsync; backups optional.
 - DoD: tests simulate partial writes (via temp files); final files remain valid.
 
 M10: Interpreter save hooks
+
 - Deliver: autosave intervals and explicit save command using IPlayerStore; world snapshot save for admin command.
 - DoD: tests verify no cross-thread mutations; saves occur on world strand.
 
 ## 19) Additional Tasks (Persistence)
 
 Task J: Define schema structs and adapters
+
 - Files: src/persist/schemas.hpp, src/persist/json_adapters.{hpp,cpp}, tests/persist_schema_tests.cpp
 - Steps: define DTOs for RoomData/ObjectProto/PlayerData with nlohmann/json to/from; version field; validations.
 - DoD: fixtures parse and round-trip; invalid inputs rejected with informative Error.
 
 Task K: JsonWorldStore
+
 - Files: src/persist/json_world_store.{hpp,cpp}, tests/json_world_store_tests.cpp
 - Steps: implement load_indices, load_zone/room/object_proto; configurable data root; path helpers; caching policy.
 - DoD: loads tiny world fixture; missing files return Error::NotFound.
 
 Task L: JsonPlayerStore (atomic saves)
+
 - Files: src/persist/json_player_store.{hpp,cpp}, tests/json_player_store_tests.cpp
 - Steps: implement load/save player; atomic write with temp+rename+fsync; optional backups; directory sharding by first letter.
 - DoD: save then load matches; interrupted write leaves previous version intact.
@@ -1133,16 +1229,19 @@ Task L: JsonPlayerStore (atomic saves)
 ## 20) Scripting Modernization: Lua (coexist with current, then migrate)
 
 Goals
+
 - Add Lua scripting alongside the current framework, then migrate incrementally.
 - Provide a safe, deterministic, hot-reloadable scripting environment that runs on the world strand.
 - Keep script attachment declarative via JSON; minimize game code coupling.
 
 Choices
+
 - Runtime: Lua 5.4
 - Binding: sol2 (friendly C++ API; header-only; fits C++23 style). Fallback: Lua C API if needed.
 - Execution: always on the world strand to preserve world invariants.
 
 Abstractions
+
 - IScriptEngine
   - load_script(std::string_view name, std::string_view source_or_path) -> Result<void>
   - unload_script(std::string_view name) -> Result<void>
@@ -1155,10 +1254,12 @@ Abstractions
 - Implementation: LuaScriptEngine (sol2 + sandbox), later Db-backed or other engines if desired.
 
 Event model and mapping
+
 - Unified events (first wave): on_tick, on_enter(room, actor), on_leave(room, actor), on_speech(actor, text), on_use(actor, object), on_pickup/on_drop, on_combat_tick(actor, target), on_death(actor)
 - Map existing DG-style triggers to unified events via an adapter; both systems can fire during migration.
 
 Script packaging & discovery
+
 - Root (configurable): {data_root}/scripts/lua/
   - rooms/{name}.lua, mobs/{name}.lua, objects/{name}.lua, world/{name}.lua
 - JSON schema references scripts by logical name, not absolute path (engine resolves):
@@ -1166,6 +1267,7 @@ Script packaging & discovery
   - MobData/ObjectProto similar
 
 Safety and sandboxing
+
 - Only enable safe libs: base, table, string, math; disable io, os, package.loadlib, debug.
 - Use a custom allocator to cap memory per VM or per script group.
 - Instruction limit: lua_sethook to yield/abort long-running scripts (wall-clock budget per call; e.g., 2–5ms).
@@ -1173,16 +1275,19 @@ Safety and sandboxing
 - Validate and sanitize all inbound JSON args; never expose raw pointers.
 
 Threading and performance
+
 - All calls executed on the world strand; expose async via schedule() and timers.
 - Cache loaded scripts/compiled chunks; reload only on change or via admin command.
 - Optional: bytecode cache if needed later.
 
 Error handling and logging
+
 - Wrap errors into Error{Code::ScriptError, msg}; include script name, event, stack trace.
 - Log via spdlog with fields: script, event, actor, room, zone.
 - Scripts can log with log_info/debug/warn exposed by the host.
 
 Bindings (initial surface)
+
 - log_info(msg), log_warn(msg), log_debug(msg)
 - player_send(player, msg), room_broadcast(room, msg)
 - get_room(vnum)->RoomRef, move_actor(actor, room)
@@ -1191,6 +1296,7 @@ Bindings (initial surface)
 - Accessors for simple fields (name, vnum, tags), with immutable views where possible
 
 Minimal example (rooms/welcome.lua)
+
 ```
 function on_enter(ctx)
   local player = ctx.actor
@@ -1201,11 +1307,13 @@ end
 ```
 
 Testing
+
 - Unit: run Lua functions in isolation with a fake context; assert returned json or side effects on fakes.
 - Integration: fire on_enter when a player moves; ensure message delivered.
 - Negative: infinite loop/alloc-heavy script must abort within budget and produce an error.
 
 Migration strategy
+
 - Phase 1: Introduce engine and bindings; no production scripts run by default.
 - Phase 2: Dual-run for select events (e.g., on_enter); compare outputs in logs; add a feature flag per zone/room.
 - Phase 3: Port critical scripts category-by-category; remove DG trigger equivalents once parity is verified.
@@ -1213,48 +1321,58 @@ Migration strategy
 ## 21) Lua Work Milestones
 
 M11: Embed Lua + sol2 and sandbox
+
 - Deliver: LuaScriptEngine with safe libs, instruction limit, basic logging bindings.
 - DoD: unit tests run a simple script; bad scripts fail safely; no io/os access.
 
 M12: Event bridge (enter/speech)
+
 - Deliver: map on_enter/on_speech from world events to Lua calls; context plumbing; basic helpers (player_send, room_broadcast).
 - DoD: integration tests prove events fire and messages arrive.
 
 M13: JSON attachment
+
 - Deliver: extend schemas to allow scripts array per entity; loader resolves and registers scripts.
 - DoD: room JSON with on_enter script runs on player entry.
 
 M14: Hot reload + limits
+
 - Deliver: admin command to reload scripts; file-watcher optional; memory and instruction budgets configurable.
 - DoD: reload updates behavior without restart; enforced limits covered by tests.
 
 M15: Migration sample
+
 - Deliver: port one representative DG script to Lua; adapter dual-runs for comparison.
 - DoD: outputs match; flag flips to Lua-only for that script.
 
 ## 22) Lua Tasks (LLM-ready)
 
 Task M11a: LuaScriptEngine scaffolding
+
 - Files: src/script/{engine.hpp,lua_engine.{hpp,cpp}}, tests/script_engine_tests.cpp
 - Steps: create IScriptEngine; implement LuaScriptEngine with sandbox, register log_*; unit tests for safe/unsafe code.
 - DoD: runs simple function; unsafe libs are unavailable; errors surfaced as Error::ScriptError.
 
 Task M11b: Host bindings
+
 - Files: src/script/host_bindings.{hpp,cpp}
 - Steps: expose log_*, random, schedule; wrap Room/Actor/Player handles with safe proxies; assert world strand.
 - DoD: basic functions callable; schedule posts back to loop.
 
 Task M12a: Event adapter
+
 - Files: src/game/script_events.{hpp,cpp}
 - Steps: translate world events to script function names; build ScriptContext; call engine->call.
 - DoD: on_enter/on_speech integration tests pass.
 
 Task M13a: Schema & loader updates
+
 - Files: src/persist/schemas.hpp, src/persist/json_adapters.{hpp,cpp}
 - Steps: add scripts: [ {event:string, name:string} ] to RoomData/MobData/ObjectProto; loader resolves names.
 - DoD: fixtures parse; scripts registered with engine on load.
 
 Task M14a: Hot reload & limits
+
 - Files: src/script/lua_engine.cpp, src/commands/admin_scripts.cpp, tests/script_reload_tests.cpp
 - Steps: reload_all(), bounded allocator, instruction budget config; admin command `scripts reload`.
 - DoD: reload works; limits enforced.

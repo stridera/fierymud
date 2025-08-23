@@ -13,7 +13,7 @@ def main(path: str, zone: int | None, output: str = None):
         prototype = {}
         for file in zone_files.files:
             print(f"-- Processing {file.get_mud_type()} file: {file.filename}")
-            prototype[file.mud_type.name] = file.parse_world()
+            prototype[file.get_json_id()] = file.parse_world()
 
         if output is None:
             out_file = os.path.join(zone_files.path, f"{zone_id}.json")
@@ -24,7 +24,6 @@ def main(path: str, zone: int | None, output: str = None):
         else:
             out_file = os.path.join(output, f"{zone_id}.json")
 
-        print(f"-- Writing {out_file} ...")
         if out_file == "stdout":
             print(json.dumps(prototype, cls=Encoder, indent=4))
         else:

@@ -1,0 +1,39 @@
+{
+  "created": 1755945608,
+  "password": "tester",
+  "player_data": {
+    "description": "",
+    "equipment": null,
+    "flags": [],
+    "id": 1000,
+    "inventory": {
+      "items": []
+    },
+    "keywords": [
+      "tester"
+    ],
+    "name": "Tester",
+    "position": "Standing",
+    "stats": {
+      "armor_class": 10,
+      "charisma": 13,
+      "constitution": 13,
+      "damage_roll": 0,
+      "dexterity": 13,
+      "experience": 0,
+      "gold": 0,
+      "hit_points": 20,
+      "hit_roll": 0,
+      "intelligence": 13,
+      "level": 1,
+      "mana": 100,
+      "max_hit_points": 20,
+      "max_mana": 100,
+      "max_movement": 100,
+      "movement": 100,
+      "strength": 13,
+      "wisdom": 13
+    },
+    "type": "Player"
+  }
+}

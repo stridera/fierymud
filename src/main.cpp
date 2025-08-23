@@ -3,59 +3,56 @@
  *  Usage: Modern FieryMUD server main entry point                        *
  ***************************************************************************/
 
-#include "modern/server/modern_mud_server.hpp"
-#include "modern/core/logging.hpp"
+#include "core/logging.hpp"
+#include "server/mud_server.hpp"
 
+#include <atomic>
+#include <chrono>
+#include <csignal>
 #include <cxxopts.hpp>
+#include <filesystem>
 #include <iostream>
 #include <memory>
-#include <csignal>
-#include <chrono>
 #include <thread>
-#include <atomic>
-#include <filesystem>
 
 // Global server instance for signal handling
 std::unique_ptr<ModernMUDServer> g_server;
 
 void signal_handler(int signal) {
     switch (signal) {
-        case SIGINT:
-        case SIGTERM:
-            std::cout << "\nReceived shutdown signal, stopping server...\n";
-            if (g_server) {
-                g_server->stop();
+    case SIGINT:
+    case SIGTERM:
+        std::cout << "\nReceived shutdown signal, stopping server...\n";
+        if (g_server) {
+            g_server->stop();
+        }
+        break;
+    case SIGHUP:
+        std::cout << "Received SIGHUP, reloading configuration...\n";
+        if (g_server) {
+            auto result = g_server->reload_config();
+            if (!result) {
+                std::cerr << "Failed to reload config: " << result.error().message << "\n";
             }
-            break;
-        case SIGHUP:
-            std::cout << "Received SIGHUP, reloading configuration...\n";
-            if (g_server) {
-                auto result = g_server->reload_config();
-                if (!result) {
-                    std::cerr << "Failed to reload config: " << result.error().message << "\n";
-                }
-            }
-            break;
-        default:
-            break;
+        }
+        break;
+    default:
+        break;
     }
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     try {
         std::cout << "Starting Modern FieryMUD Server...\n";
-        
+
         // Parse command line options
         cxxopts::Options options("fierymud", "Modern FieryMUD Server v3.0");
-        
-        options.add_options()
-            ("h,help", "Show help message")
-            ("c,config", "Configuration file path", cxxopts::value<std::string>()->default_value("config/prod.json"))
-            ("p,port", "Port number to listen on", cxxopts::value<std::string>()->default_value("4001"))
-            ("d,daemon", "Run as daemon")
-            ("t,test", "Test configuration and exit")
-            ("v,version", "Show version information")
-        ;
+
+        options.add_options()("h,help", "Show help message")(
+            "c,config", "Configuration file path", cxxopts::value<std::string>()->default_value("config/prod.json"))(
+            "p,port", "Port number to listen on", cxxopts::value<std::string>()->default_value("4001"))(
+            "d,daemon", "Run as daemon")("t,test", "Test configuration and exit")("v,version",
+                                                                                  "Show version information");
 
         auto result = options.parse(argc, argv);
 
@@ -80,9 +77,9 @@ int main(int argc, char* argv[]) {
         // Extract configuration
         ServerConfig config;
         config.port = std::stoi(result["port"].as<std::string>());
-        
+
         std::string config_file = result["config"].as<std::string>();
-        
+
         // Load configuration file if it exists
         if (std::filesystem::exists(config_file)) {
             auto load_result = ServerConfig::load_from_file(config_file);
@@ -91,7 +88,7 @@ int main(int argc, char* argv[]) {
                 return 1;
             }
             config = load_result.value();
-            
+
             // Override port if specified on command line
             if (result.count("port")) {
                 config.port = std::stoi(result["port"].as<std::string>());
@@ -100,7 +97,7 @@ int main(int argc, char* argv[]) {
             std::cout << "Configuration file not found: " << config_file << "\n";
             std::cout << "Using default configuration with port " << config.port << "\n";
         }
-        
+
         // Test mode
         if (result.count("test")) {
             std::cout << "Testing configuration...\n";
@@ -112,43 +109,43 @@ int main(int argc, char* argv[]) {
             std::cout << "Configuration is valid.\n";
             return 0;
         }
-        
+
         // Setup signal handlers
         std::signal(SIGINT, signal_handler);
         std::signal(SIGTERM, signal_handler);
         std::signal(SIGHUP, signal_handler);
         std::signal(SIGPIPE, SIG_IGN); // Ignore SIGPIPE (broken connections)
-        
+
         // Create and initialize server
         g_server = std::make_unique<ModernMUDServer>(config);
-        
+
         auto init_result = g_server->initialize();
         if (!init_result) {
             std::cerr << "Server initialization failed: " << init_result.error().message << "\n";
             return 1;
         }
-        
+
         // Start the server
         auto start_result = g_server->start();
         if (!start_result) {
             std::cerr << "Server start failed: " << start_result.error().message << "\n";
             return 1;
         }
-        
+
         std::cout << "Server running on port " << config.port << ". Press Ctrl+C to stop.\n";
-        
+
         // Main server loop - wait for shutdown
         while (g_server->is_running()) {
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
-        
+
         std::cout << "Server shutdown completed.\n";
         return 0;
-        
+
     } catch (const cxxopts::exceptions::exception &e) {
         std::cerr << "Command line error: " << e.what() << std::endl;
         return 1;
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         std::cerr << "Fatal error: " << e.what() << "\n";
         return 1;
     } catch (...) {

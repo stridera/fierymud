@@ -1,0 +1,24 @@
+{
+  "game": {
+    "name": "FieryMUD Test Server",
+    "port": 4002,
+    "data_directory": "data_test",
+    "world_directory": "data_test/world",
+    "players_directory": "data_test/players",
+    "logs_directory": "logs",
+    "autosave_interval": 300,
+    "crash_save": true,
+    "backup_enabled": false
+  },
+  "world": {
+    "format_version": "2.0",
+    "validate_on_load": true,
+    "zone_auto_reset": true,
+    "max_zones": 1000
+  },
+  "testing": {
+    "enabled": true,
+    "test_zones": [9998, 9999],
+    "debug_world_loading": true
+  }
+}

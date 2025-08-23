@@ -2,8 +2,9 @@
   "game": {
     "log_directory": "logs",
     "mud_name": "Modern FieryMUD",
-    "player_directory": "lib/players",
-    "world_directory": "lib/world"
+    "player_directory": "data_prod/players",
+    "world_directory": "data_prod/world",
+    "default_starting_room": 3001
   },
   "network": {
     "bind_address": "0.0.0.0",

@@ -9,7 +9,7 @@ from mud.types.object import ObjectType
 
 @dataclass
 class Shop:
-    vnum: int
+    id: int
     selling: list[dict[int, int]]
     buy_profit: float
     sell_profit: float
@@ -38,7 +38,7 @@ class Shop:
             raise ValueError("Invalid shop file")
         for shop_data in data.split_by_delimiter():
             shop = {}
-            shop["vnum"] = int(shop_data.get_next_line().lstrip("#").rstrip("~"))
+            shop["id"] = int(shop_data.get_next_line().lstrip("#").rstrip("~"))
             shop["selling"] = {}
             for line in shop_data.read_until_starts("-1"):
                 item = line.split()
@@ -75,3 +75,14 @@ class Shop:
                 shop["hours"].append({"open": opens, "close": closes})
             shops.append(cls(**shop))
         return shops
+
+    def to_json(self):
+        from dataclasses import asdict
+        d = asdict(self)
+        # Convert ObjectType enums in accepts
+        accepts = []
+        for a in self.accepts:
+            entry = {"type": a.get("type").name if a.get("type") is not None and hasattr(a.get("type"), "name") else a.get("type"), "keywords": a.get("keywords")}
+            accepts.append(entry)
+        d["accepts"] = accepts
+        return d

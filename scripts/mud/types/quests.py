@@ -27,3 +27,7 @@ class Quests:
                 )
             )
         return quests
+
+    def to_json(self):
+        from dataclasses import asdict
+        return asdict(self)

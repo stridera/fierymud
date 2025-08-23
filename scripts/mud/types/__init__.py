@@ -87,7 +87,6 @@ class MudTypes(Enum):
                 from mud.types.zone import Zone
 
                 return Zone
-
             case MudTypes.PLAYER:
                 from mud.types.player import Player
 
@@ -107,11 +106,41 @@ class MudTypes(Enum):
             case _:
                 raise ValueError(f"Invalid MudType: {self}")
 
+    def get_json_id(self):
+        match self:
+            case MudTypes.MOB:
+                return "mobs"
+            case MudTypes.OBJECT:
+                return "objects"
+            case MudTypes.SHOP:
+                return "shops"
+            case MudTypes.TRIGGER:
+                return "triggers"
+            case MudTypes.WORLD:
+                return "rooms"
+            case MudTypes.ZONE:
+                return "zone"
+            case MudTypes.PLAYER:
+                return "player"
+            case MudTypes.PET:
+                return "pet"
+            case MudTypes.QUESTS:
+                return "quests"
+            case MudTypes.NOTES:
+                return "notes"
+            case _:
+                raise ValueError(f"Invalid MudType: {self}")
+
 
 @dataclass
 class CurrentMax:
     current: int
     max: int
+
+    def to_json(self):
+        from dataclasses import asdict
+
+        return asdict(self)
 
 
 @dataclass
@@ -123,6 +152,11 @@ class Stats:
     constitution: int
     charisma: int
 
+    def to_json(self):
+        from dataclasses import asdict
+
+        return asdict(self)
+
 
 @dataclass
 class Money:
@@ -130,6 +164,11 @@ class Money:
     silver: int
     gold: int
     platinum: int
+
+    def to_json(self):
+        from dataclasses import asdict
+
+        return asdict(self)
 
 
 @dataclass
@@ -139,6 +178,11 @@ class SavingThrows:
     petrification: int
     breath: int
     spell: int
+
+    def to_json(self):
+        from dataclasses import asdict
+
+        return asdict(self)
 
 
 @dataclass
@@ -157,6 +201,9 @@ class Dice:
 
     def __repr__(self):
         return f"{self.num}d{self.size}+{self.bonus}"
+
+    def to_json(self):
+        return {"num": self.num, "size": self.size, "bonus": self.bonus}
 
 
 class Direction(Enum):
@@ -510,6 +557,29 @@ class Size(Enum):
     Colossal = 7
     Titanic = 8
     Mountainous = 9
+
+class DamageType(Enum):
+    HIT = 1
+    STING = 2
+    WHIP = 3
+    SLASH = 4
+    BITE = 5
+    BLUDGEON = 6
+    CRUSH = 7
+    POUND = 8
+    CLAW = 9
+    MAUL = 10
+    THRASH = 11
+    PIERCE = 12
+    BLAST = 13
+    PUNCH = 14
+    STAB = 15
+    FIRE = 16
+    COLD = 17
+    ACID = 18
+    SHOCK = 19
+    POISON = 20
+    ALIGN = 21
 
 
 def obj_val(item_type: str, *args):

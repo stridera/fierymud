@@ -7,11 +7,13 @@ The modern zone reset system has been successfully implemented with meaningful f
 ## Immediate Next Steps
 
 ### 1. Weather System Implementation 🌦️ **[HIGH PRIORITY]**
+
 **Status**: Ready to implement  
 **Estimated Effort**: 2-3 hours  
 **Dependencies**: None
 
 **Scope**:
+
 - Environmental weather effects (rain, snow, storm, clear, etc.)
 - Zone-based weather variations
 - Weather impact on gameplay (visibility, movement, combat)
@@ -19,21 +21,24 @@ The modern zone reset system has been successfully implemented with meaningful f
 - Weather commands for players and admins
 
 **Technical Approach**:
-- Create `src/modern/world/weather.hpp/cpp` system
+
+- Create `src/world/weather.hpp/cpp` system
 - Add weather state to Zone and Room classes  
 - Implement weather transition engine with realistic patterns
 - Add weather-related commands (`weather`, `forecast`)
 - Integrate weather effects into movement and visibility systems
 
 **Files to Create**:
-- `src/modern/world/weather.hpp` - Weather system interface
-- `src/modern/world/weather.cpp` - Weather implementation
-- `src/modern/commands/weather_commands.cpp` - Weather commands
+
+- `src/world/weather.hpp` - Weather system interface
+- `src/world/weather.cpp` - Weather implementation
+- `src/commands/weather_commands.cpp` - Weather commands
 
 **Files to Modify**:
-- `src/modern/world/zone.hpp` - Add weather state
-- `src/modern/world/room.hpp` - Add weather effects
-- `src/modern/world/world_manager.cpp` - Weather updates
+
+- `src/world/zone.hpp` - Add weather state
+- `src/world/room.hpp` - Add weather effects
+- `src/world/world_manager.cpp` - Weather updates
 - Movement and visibility systems for weather effects
 
 ---
@@ -41,10 +46,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 ## Medium Priority Features
 
 ### 2. Enhanced Object Interactions 🎒
+
 **Status**: Foundation exists, needs expansion  
 **Estimated Effort**: 3-4 hours
 
 **Scope**:
+
 - Container objects (chests, bags, etc.)
 - Object stacking and grouping
 - Object decay and preservation
@@ -52,10 +59,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 - Object scripting hooks
 
 ### 3. Magic System Expansion ✨
+
 **Status**: Basic framework exists  
 **Estimated Effort**: 4-5 hours
 
 **Scope**:
+
 - Spell memorization system
 - Mana/spell point management
 - Spell components and reagents
@@ -63,10 +72,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 - Spell scripting system
 
 ### 4. Advanced NPC AI 🤖
+
 **Status**: Basic mobile loading works  
 **Estimated Effort**: 3-4 hours
 
 **Scope**:
+
 - NPC behavioral patterns
 - Aggressive/passive/friendly AI
 - NPC conversation system
@@ -74,10 +85,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 - NPC equipment and inventory
 
 ### 5. Player Advancement System 📈
+
 **Status**: Basic stats exist  
 **Estimated Effort**: 3-4 hours
 
 **Scope**:
+
 - Experience and leveling
 - Skill training and improvement
 - Class-specific abilities
@@ -89,10 +102,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 ## Infrastructure Improvements
 
 ### 6. Enhanced Database System 💾
+
 **Status**: JSON loading works  
 **Estimated Effort**: 2-3 hours
 
 **Scope**:
+
 - Player data persistence optimization
 - Incremental world saves
 - Database integrity checking
@@ -100,10 +115,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 - Migration tools for legacy data
 
 ### 7. Network and Protocol Enhancements 🌐
+
 **Status**: Basic telnet works  
 **Estimated Effort**: 4-5 hours
 
 **Scope**:
+
 - MXP (MUD eXtension Protocol) support
 - MCCP (compression) implementation
 - IPv6 support
@@ -111,10 +128,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 - WebSocket support for web clients
 
 ### 8. Administration Tools 🔧
+
 **Status**: Basic god commands exist  
 **Estimated Effort**: 2-3 hours
 
 **Scope**:
+
 - Online world editing (OLC) modernization
 - Real-time player monitoring
 - Performance profiling tools
@@ -126,10 +145,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 ## Quality and Performance
 
 ### 9. Testing Framework Expansion 🧪
+
 **Status**: Basic tests exist  
 **Estimated Effort**: 2-3 hours
 
 **Scope**:
+
 - Comprehensive unit test coverage
 - Integration test scenarios
 - Performance benchmarking
@@ -137,10 +158,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 - Load testing for multiple players
 
 ### 10. Documentation and Guides 📚
+
 **Status**: Basic CLAUDE.md exists  
 **Estimated Effort**: 2-3 hours
 
 **Scope**:
+
 - Complete API documentation
 - Player and admin guides
 - Building and deployment instructions
@@ -152,10 +175,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 ## Advanced Features
 
 ### 11. Clan System Enhancement 🏰
+
 **Status**: Basic clan commands exist in legacy  
 **Estimated Effort**: 4-5 hours
 
 **Scope**:
+
 - Modern clan management system
 - Clan halls and territories
 - Clan banks and shared resources
@@ -163,10 +188,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 - Inter-clan warfare system
 
 ### 12. Economy and Trading 💰
+
 **Status**: Basic value system exists  
 **Estimated Effort**: 3-4 hours
 
 **Scope**:
+
 - Dynamic pricing system
 - Player-run shops
 - Auction house implementation
@@ -174,10 +201,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 - Trade skill systems
 
 ### 13. PvP and Arena System ⚔️
+
 **Status**: Basic combat exists  
 **Estimated Effort**: 3-4 hours
 
 **Scope**:
+
 - Structured PvP zones
 - Tournament systems
 - Player rankings
@@ -185,10 +214,12 @@ The modern zone reset system has been successfully implemented with meaningful f
 - Death and resurrection mechanics
 
 ### 14. Quest and Storyline Engine 📜
+
 **Status**: None implemented  
 **Estimated Effort**: 5-6 hours
 
 **Scope**:
+
 - Dynamic quest generation
 - Storyline progression tracking
 - Quest rewards and achievements
@@ -200,24 +231,28 @@ The modern zone reset system has been successfully implemented with meaningful f
 ## Implementation Strategy
 
 ### Phase 1: Core Gameplay (Current Priority)
+
 1. **Weather System** - Immediate next step
 2. Enhanced Object Interactions
 3. Advanced NPC AI
 4. Player Advancement System
 
 ### Phase 2: System Reliability
+
 1. Enhanced Database System
 2. Testing Framework Expansion
 3. Administration Tools
 4. Documentation
 
 ### Phase 3: Advanced Features
+
 1. Network Protocol Enhancements
 2. Magic System Expansion
 3. Clan System Enhancement
 4. Economy and Trading
 
 ### Phase 4: Endgame Content
+
 1. PvP and Arena System
 2. Quest and Storyline Engine
 3. Performance optimization
@@ -228,6 +263,7 @@ The modern zone reset system has been successfully implemented with meaningful f
 ## Development Guidelines
 
 ### Code Quality Standards
+
 - **Modern C++23**: Use latest language features
 - **Type Safety**: Leverage strong typing with EntityId, Result<T>, etc.
 - **Error Handling**: Comprehensive error handling with Result types
@@ -235,6 +271,7 @@ The modern zone reset system has been successfully implemented with meaningful f
 - **Documentation**: Self-documenting code with meaningful names
 
 ### Architecture Principles
+
 - **Separation of Concerns**: Clear module boundaries
 - **Event-Driven**: Use callbacks and events for loose coupling
 - **Performance**: Optimize for real-time gameplay
@@ -242,6 +279,7 @@ The modern zone reset system has been successfully implemented with meaningful f
 - **Extensibility**: Design for future feature additions
 
 ### Implementation Process
+
 1. **Design Phase**: Create interface and document approach
 2. **Implementation**: Write code following modern C++ practices
 3. **Testing**: Add unit tests and manual verification
@@ -253,18 +291,21 @@ The modern zone reset system has been successfully implemented with meaningful f
 ## Success Metrics
 
 ### Technical Metrics
+
 - **Build Time**: < 30 seconds for incremental builds
 - **Test Coverage**: > 80% for core systems
 - **Memory Usage**: < 100MB for single-player testing
 - **Response Time**: < 50ms for most commands
 
 ### Gameplay Metrics
+
 - **Feature Completeness**: All core MUD features functional
 - **Stability**: > 99% uptime during testing
 - **Performance**: Support for 50+ concurrent players
 - **Usability**: Intuitive commands and clear feedback
 
 ### Development Metrics
+
 - **Code Quality**: Clean, readable, well-documented code
 - **Maintainability**: Easy to add new features and fix bugs
 - **Team Velocity**: Consistent feature delivery pace

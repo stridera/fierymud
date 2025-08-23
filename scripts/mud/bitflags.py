@@ -105,7 +105,7 @@ class BitFlags:
         return BitFlags(flags).set_flags(data, offset)
 
     @staticmethod
-    def build_flags(flag, flag_list, offset=0) -> str:
+    def build_flags(flag, flag_list, offset=0) -> list[str]:
         """Builds a string of flags from a bitfield"""
         active = []
         flag = int(flag)
@@ -116,7 +116,7 @@ class BitFlags:
         for i in range(len(flag_list)):
             if flag & (1 << i + offset):
                 active.append(flag_list[i])
-        return ",".join(active)
+        return active
 
     @staticmethod
     def get_flag(flag: int, flag_list: list[str]) -> str:

@@ -300,8 +300,8 @@ class Parser:
                     for line in mudfile.read_until_starts("~"):
                         key, value = line.split(" ", 1)
                         prototype["script_variables"][key] = value
-                case "vnum":
-                    prototype["vnum"] = int(value)
+                case "id":
+                    prototype["id"] = int(value)
                 case "wear":
                     prototype["wear_flags"] = list(list(BitFlags.read_flags(value, WEAR_FLAGS)))
                 case "weight":

@@ -61,51 +61,51 @@ configure_file(
 
 # Get all legacy source files
 file(GLOB_RECURSE LEGACY_SOURCES "src/legacy/*.cpp")
-list(FILTER LEGACY_SOURCES EXCLUDE REGEX "src/legacy/modern_main.cpp")
+list(FILTER LEGACY_SOURCES EXCLUDE REGEX "src/legacy/main.cpp")
 
-# Get modern source files
+# Get source files
 set(SOURCES
     src/main.cpp
-    src/modern/core/logging.cpp
-    src/modern/core/config.cpp
-    src/modern/core/entity.cpp
-    src/modern/core/actor.cpp
-    src/modern/core/object.cpp
-    src/modern/world/room.cpp
-    src/modern/world/zone.cpp
-    src/modern/world/world_manager.cpp
-    src/modern/world/weather.cpp
-    src/modern/server/world_server.cpp
-    src/modern/server/modern_mud_server.cpp
-    src/modern/server/network_manager.cpp
-    src/modern/server/player_connection.cpp
-    src/modern/server/persistence_manager.cpp
-    src/modern/server/configuration_manager.cpp
-    src/modern/server/gmcp_handler.cpp
-    src/modern/commands/command_system.cpp
-    src/modern/commands/command_context.cpp
-    src/modern/commands/command_parser.cpp
-    src/modern/commands/builtin_commands.cpp
+    src/core/logging.cpp
+    src/core/config.cpp
+    src/core/entity.cpp
+    src/core/actor.cpp
+    src/core/object.cpp
+    src/world/room.cpp
+    src/world/zone.cpp
+    src/world/world_manager.cpp
+    src/world/weather.cpp
+    src/server/world_server.cpp
+    src/server/mud_server.cpp
+    src/server/network_manager.cpp
+    src/net/player_connection.cpp
+    src/game/login_system.cpp
+    src/server/persistence_manager.cpp
+    src/server/configuration_manager.cpp
+    src/commands/command_system.cpp
+    src/commands/command_context.cpp
+    src/commands/command_parser.cpp
+    src/commands/builtin_commands.cpp
 )
 
 # Test sources (without main.cpp and networking)
 set(SIMPLE_TEST_SOURCES
-    src/modern/core/logging.cpp
-    src/modern/core/config.cpp
-    src/modern/core/entity.cpp
-    src/modern/core/actor.cpp
-    src/modern/core/object.cpp
-    src/modern/world/room.cpp
-    src/modern/world/zone.cpp
-    src/modern/world/world_manager.cpp
-    src/modern/world/weather.cpp
-    src/modern/world/world_server.cpp
-    src/modern/commands/command_system.cpp
-    src/modern/commands/weather_commands.cpp
-    src/modern/commands/command_context.cpp
-    src/modern/commands/command_parser.cpp
-    src/modern/commands/builtin_commands.cpp
-    src/modern/testing/test_simple_functionality.cpp
+    src/core/logging.cpp
+    src/core/config.cpp
+    src/core/entity.cpp
+    src/core/actor.cpp
+    src/core/object.cpp
+    src/world/room.cpp
+    src/world/zone.cpp
+    src/world/world_manager.cpp
+    src/world/weather.cpp
+    src/world/world_server.cpp
+    src/commands/command_system.cpp
+    src/commands/weather_commands.cpp
+    src/commands/command_context.cpp
+    src/commands/command_parser.cpp
+    src/commands/builtin_commands.cpp
+    src/testing/test_simple_functionality.cpp
 )
 
 # Modern FieryMUD Server (fierymud)
@@ -138,24 +138,24 @@ target_compile_options(fierymud PRIVATE
 # Comprehensive Test Suite
 set(TEST_SOURCES
     # Core system sources (needed for tests)
-    src/modern/core/logging.cpp
-    src/modern/core/config.cpp
-    src/modern/core/entity.cpp
-    src/modern/core/actor.cpp
-    src/modern/core/object.cpp
-    src/modern/world/room.cpp
-    src/modern/world/zone.cpp
-    src/modern/world/world_manager.cpp
-    src/modern/world/weather.cpp
-    src/modern/server/world_server.cpp
-    src/modern/server/player_connection.cpp
-    src/modern/server/gmcp_handler.cpp
-    src/modern/commands/command_system.cpp
-    src/modern/commands/command_context.cpp
-    src/modern/commands/command_parser.cpp
-    src/modern/commands/builtin_commands.cpp
-    src/modern/core/arguments.cpp
-    src/modern/core/string_utils.cpp
+    src/core/logging.cpp
+    src/core/config.cpp
+    src/core/entity.cpp
+    src/core/actor.cpp
+    src/core/object.cpp
+    src/world/room.cpp
+    src/world/zone.cpp
+    src/world/world_manager.cpp
+    src/world/weather.cpp
+    src/server/world_server.cpp
+    src/net/player_connection.cpp
+    src/game/login_system.cpp
+    src/commands/command_system.cpp
+    src/commands/command_context.cpp
+    src/commands/command_parser.cpp
+    src/commands/builtin_commands.cpp
+    src/core/arguments.cpp
+    src/core/string_utils.cpp
     tests/mock_game_session.cpp
     
     # Test files
@@ -180,7 +180,7 @@ set(TEST_SOURCES
 # Main test executable
 add_executable(tests ${TEST_SOURCES})
 
-target_include_directories(tests PRIVATE src src/modern . ${CMAKE_SOURCE_DIR} src/modern/core src/modern/world src/modern/server src/modern/commands)
+target_include_directories(tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands)
 
 target_link_libraries(tests PRIVATE 
     fmt::fmt 

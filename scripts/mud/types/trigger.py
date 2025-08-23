@@ -7,7 +7,7 @@ from mud.mudfile import MudData
 
 @dataclass
 class Trigger:
-    vnum: int
+    id: int
     name: str
     attach_type: str
     flags: list[str]
@@ -26,7 +26,7 @@ class Trigger:
         triggers = []
         for trigger_data in trigger_file.split_by_delimiter():
             trigger = {}
-            trigger["vnum"] = trigger_data.get_next_line().lstrip("#")
+            trigger["id"] = trigger_data.get_next_line().lstrip("#")
             trigger["name"] = trigger_data.read_string()
             attach_type, flags, args = trigger_data.get_next_line().split()
             attach_type = cls.ATTACH_TYPES[int(attach_type)]
@@ -38,3 +38,7 @@ class Trigger:
             triggers.append(trigger)
 
         return triggers
+
+    def to_json(self):
+        from dataclasses import asdict
+        return asdict(self)

@@ -1,40 +1,62 @@
 from dataclasses import dataclass
+from enum import Enum
 
 from mud.bitflags import BitFlags
 from mud.flags import ROOM_FLAGS
 from mud.mudfile import MudData
 from mud.types import Direction
 
-
-@dataclass
-class Room:
-    name: str
-    description: str
-    sector: str
-    flags: list[str]
-    affects: dict[str, str] | None = None
-    exits: dict[str, dict[str, str]] | None = None
-    extra_descriptions: dict[str, str] | None = None
+class Sectors(Enum):
+    STRUCTURE = 0 # A building of some kind
+    CITY = 1       # In a city
+    FIELD = 2      # In a field
+    FOREST = 3     # In a forest
+    HILLS = 4      # In the hills
+    MOUNTAIN = 5   # On a mountain
+    SHALLOWS = 6   # Easily passable water
+    WATER = 7      # Water - need a boat
+    UNDERWATER = 8 # Underwater
+    AIR = 9        # Wheee!
+    ROAD = 10
+    GRASSLANDS = 11
+    CAVE = 12
+    RUINS = 13
+    SWAMP = 14
+    BEACH = 15
+    UNDERDARK = 16
+    ASTRALPLANE = 17
+    AIRPLANE = 18
+    FIREPLANE = 19
+    EARTHPLANE = 20
+    ETHEREALPLANE = 21
+    AVERNUS = 22
 
 
 @dataclass
 class World:
     """Construct an World"""
 
-    rooms: list[Room]
+    id: int
+    name: str
+    description: str
+    sector: Sectors
+    flags: list[str]
+    exits: dict[str, dict[str, str]] | None = None
+    extra_descriptions: dict[str, str] | None = None
 
     @classmethod
     def parse(cls, world_file: MudData):
         rooms = []
         for room_data in world_file.split_by_delimiter():
             room = {}
+            room["id"] = room_data.get_next_line().lstrip("#")
             room["name"] = room_data.read_string()
             room["description"] = room_data.read_string()
             (_zone, flags, sector) = room_data.get_next_line().split()
             room["flags"] = BitFlags.read_flags(flags, ROOM_FLAGS)
-            room["sector"] = sector
+            room["sector"] = Sectors(int(sector))
             while line := room_data.get_next_line():
-                if line == "S":
+                if line == "S" or line.startswith("$"):
                     break
                 elif line.startswith("D"):
                     if "exits" not in room:
@@ -53,7 +75,7 @@ class World:
                     exit["key"] = key
                     exit["destination"] = destination
                     if direction in room["exits"]:
-                        print(f"Duplicate exit for direction {direction} in room {room_data.vnum}")
+                        print(f"Duplicate exit for direction {direction} in room {room_data.id}")
                     room["exits"][direction] = exit
                 elif line.startswith("E"):
                     if "extra_descriptions" not in room:
@@ -64,6 +86,11 @@ class World:
                 else:
                     print(f"Unknown line: {line}")
 
-            rooms.append(Room(**room))
+            rooms.append(room)
 
-        return cls(rooms)
+        return rooms
+
+    def to_json(self):
+        from dataclasses import asdict
+
+        return asdict(self)

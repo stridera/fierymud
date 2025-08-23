@@ -4,7 +4,7 @@ import traceback
 from dataclasses import dataclass
 from enum import Enum
 from json import JSONEncoder
-from typing import Self, Type, TypeVar, cast
+from typing import Optional, Self, Type, TypeVar, cast
 
 from mud.types import MudTypes
 
@@ -13,17 +13,17 @@ T = TypeVar("T")
 
 class Encoder(JSONEncoder):
     # Writing files
-    def default(self, obj):
+    def default(self, o):
         """
         Default method for converting the object to json
         :param obj: The object to convert
         :return: The converted object
         """
-        if hasattr(obj, "json_repr"):
-            return obj.json_repr()
-        if isinstance(obj, Enum):
-            return obj.name
-        return obj.__dict__ if hasattr(obj, "__dict__") else str(obj)
+        if hasattr(o, "json_repr"):
+            return o.json_repr()
+        if isinstance(o, Enum):
+            return o.name
+        return o.__dict__ if hasattr(o, "__dict__") else str(o)
 
 
 class MudData:
@@ -63,10 +63,12 @@ class MudData:
         text = ""
         while line := self.get_next_line():
             if line.endswith("~"):
-                return text.rstrip("~")
+                text += line[:-1]
+                return text
             text += line + " "
+        return text
 
-    def read_key_value(self) -> tuple[str, str]:
+    def read_key_value(self) -> Optional[tuple[str, str]]:
         line = self.get_next_line()
         if not line:
             return None
@@ -134,6 +136,9 @@ class MudFile:
     def get_mud_type(self) -> str:
         return self.mud_type.name
 
+    def get_json_id(self) -> str:
+        return self.mud_type.get_json_id()
+
     def parse_world(self):
         cls = self.mud_type.cls()
         try:
@@ -145,7 +150,10 @@ class MudFile:
     def parse_player(self):
         cls = self.mud_type.cls()
         try:
-            return cls.parse_player(self.data)
+            if hasattr(cls, "parse_player"):
+                return cls.parse_player(self.data)
+            else:
+                raise AttributeError(f"{cls.__name__} does not support player parsing.")
         except Exception as e:
             print(f"Error parsing {self.filename}:{self.data.current_line}: {e}")
             print(traceback.format_exc())

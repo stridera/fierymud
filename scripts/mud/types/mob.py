@@ -7,6 +7,7 @@ from mud.mudfile import MudData
 from mud.types import (
     Class,
     Composition,
+    DamageType,
     Dice,
     Gender,
     LifeForce,
@@ -21,7 +22,7 @@ from mud.types import (
 
 @dataclass
 class Mob:
-    vnum: int
+    id: int
     name_list: str
     mob_class: str
     short_description: str
@@ -53,7 +54,7 @@ class Mob:
     life_force: LifeForce
     composition: Composition
     stance: Stance
-    bare_hand_attack: int | None = None
+    damage_type: DamageType = DamageType.HIT
 
     @classmethod
     def parse(cls, mob_file: MudData):
@@ -63,7 +64,7 @@ class Mob:
             line = mob_data.get_next_line()
             if line.startswith("*"):
                 continue
-            mob["vnum"] = int(line.lstrip("#"))
+            mob["id"] = int(line.lstrip("#"))
             mob["name_list"] = mob_data.read_string()
             mob["short_description"] = mob_data.read_string()
             mob["long_description"] = mob_data.read_string()
@@ -133,11 +134,40 @@ class Mob:
                     case "Stance":
                         mob["stance"] = Stance(int(value))
                     case "BareHandAttack":
-                        mob["bare_hand_attack"] = int(value)
+                        mob["damage_type"] = DamageType(int(value))
                     case "E":
                         break
                     case _:
-                        print(f"Unknown key {key} in mob {mob['vnum']}")
+                        print(f"Unknown key {key} in mob {mob['id']}")
             mob["stats"] = Stats(**stats)
             mobs.append(cls(**mob))
         return mobs
+
+    def to_json(self):
+        """Return a JSON-serializable dict for this Mob."""
+        from dataclasses import asdict
+
+        d = asdict(self)
+        # If nested dataclasses implement to_json, call them
+        for key in (
+            "hp_dice",
+            "damage_dice",
+            "money",
+            "stats",
+            "life_force",
+            "composition",
+            "stance",
+        ):
+            val = getattr(self, key, None)
+            if val is None:
+                continue
+            if hasattr(val, "to_json"):
+                d[key] = val.to_json()
+
+        # Enums (like Class, Race, Gender, Size, Position) -> use .name when available
+        for enum_key in ("mob_class", "race", "gender", "size", "position", "default_position"):
+            val = getattr(self, enum_key, None)
+            if val is not None and hasattr(val, "name"):
+                d[enum_key] = val.name
+
+        return d

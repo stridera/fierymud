@@ -1162,7 +1162,7 @@ PREFERENCE_FLAGS = [
     "PRF_AUTOSPLIT",  # 23  /* Auto split coins from corpses      */
     "PRF_NOCLANCOMM",  # 24 /* Can't hear clan communication      */
     "PRF_ANON",  # 25       /* Anon flag                          */
-    "PRF_SHOWVNUMS",  # 26  /* Show Virtual Numbers               */
+    "PRF_SHOWidS",  # 26  /* Show Virtual Numbers               */
     "PRF_NICEAREA",  # 27
     "PRF_VICIOUS",  # 28
     "PRF_PASSIVE",  # 29 /* char will not engage upon being cast on */

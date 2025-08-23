@@ -45,7 +45,7 @@ class ObjectType(Enum):
 
 @dataclass
 class Object:
-    vnum: int
+    id: int
     type: ObjectType | None = None
     name_list: str | None = None
     short_description: str | None = None
@@ -75,7 +75,7 @@ class Object:
         objects = []
         for object_data in data.split_by_delimiter():
             obj = {}
-            obj["vnum"] = object_data.get_next_line().lstrip("#")
+            obj["id"] = object_data.get_next_line().lstrip("#")
 
             obj["name_list"] = object_data.read_string()
             obj["short_description"] = object_data.read_string()
@@ -85,9 +85,9 @@ class Object:
             type_flag, extra_flags, wear_flags, level = object_data.get_next_line().split()
             f1, f2, f3, f4, f5, f6, f7 = object_data.get_next_line().split()
             weight, cost, timer, eff1, _, _, eff2, eff3 = object_data.get_next_line().split()
-            item_types = BitFlags.get_flag(type_flag, OBJECT_TYPES)
-            extra_flags_text = BitFlags.build_flags(extra_flags, OBJECT_FLAGS)
-            wear_flags_text = BitFlags.build_flags(wear_flags, WEAR_FLAGS)
+            item_types = BitFlags.get_flag(int(type_flag), OBJECT_TYPES)
+            extra_flags_text = BitFlags.build_flags(int(extra_flags), OBJECT_FLAGS)
+            wear_flags_text = BitFlags.build_flags(int(wear_flags), WEAR_FLAGS)
             extra_stats = obj_val(item_types, f1, f2, f3, f4, f5, f6, f7)
             effects = (int(eff3) << 26) | (int(eff2) << int(13)) | int(eff1)
             obj_effects = BitFlags.build_flags(effects, EFFECTS)
@@ -153,7 +153,7 @@ class Object:
             if location < 0:  # Item inside container.
                 depth = -location
                 if not last_root:
-                    raise Exception("Error!  No last root.", obj.vnum)
+                    raise Exception("Error!  No last root.", obj.id)
                 parent = last_root
                 for _ in range(1, depth):
                     parent = parent.contains[-1]
@@ -169,3 +169,28 @@ class Object:
                 last_root = obj
 
         return objects
+
+    def to_json(self):
+        """Return a JSON-serializable dict for this Object."""
+        from dataclasses import asdict
+
+        d = asdict(self)
+        # Convert enum type to name
+        if self.type is not None and hasattr(self.type, "name"):
+            d["type"] = self.type.name
+
+        # Recursively convert contained objects
+        if self.contains:
+            d["contains"] = [c.to_json() for c in self.contains]
+
+        # Convert affects list of dicts (location may be enum)
+        if self.affects:
+            converted = []
+            for a in self.affects:
+                loc = a.get("location")
+                if hasattr(loc, "name"):
+                    a["location"] = loc.name
+                converted.append(a)
+            d["affects"] = converted
+
+        return d

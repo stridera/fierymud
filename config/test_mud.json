@@ -1,9 +1,9 @@
 {
   "game": {
     "log_directory": "logs",
-    "mud_name": "Test FieryMUD", 
-    "player_directory": "data/players",
-    "world_directory": "data/world",
+    "mud_name": "Test FieryMUD",
+    "player_directory": "data_test/players",
+    "world_directory": "data_test/world",
     "default_starting_room": 100
   },
   "network": {

@@ -3,22 +3,22 @@ from os import rename
 from mud import Mob
 
 
-def process_file(filename, vnum=-1):
+def process_file(filename, id=-1):
     print(f"Processing {filename}")
-    current_vnum = -1
+    current_id = -1
     mobs = []
     data = []
     with open(filename, 'r') as f:
         for line in f:
             line = line.rstrip()
             if line.startswith('#'):
-                if current_vnum >= 0 and (vnum == -1 or vnum == current_vnum):
-                    print(f"Processing vnum {current_vnum}")
-                    mob = Mob(current_vnum)
+                if current_id >= 0 and (id == -1 or id == current_id):
+                    print(f"Processing id {current_id}")
+                    mob = Mob(current_id)
                     # print(f"Data: {data}\n\n")
                     mob.parse(data)
                     mobs.append(mob)
-                current_vnum = int(line[1:])
+                current_id = int(line[1:])
                 data = []
             else:
                 data.append(line)
@@ -27,7 +27,7 @@ def process_file(filename, vnum=-1):
     with open(filename, 'w') as f:
         for mob in mobs:
             m = mob.stats
-            f.write(f'#{mob.vnum}\n')
+            f.write(f'#{mob.id}\n')
             f.write(f'{m["namelist"]}~\n')
             f.write(f'{m["short_descr"]}~\n')
             f.write(f'{m["long_descr"]}~\n')
@@ -50,7 +50,7 @@ def process_file(filename, vnum=-1):
         f.write("$\n")
 
 
-def process_index(index_file, vnum):
+def process_index(index_file, id):
     path = index_file[:-5]
     with open(index_file) as f:
         for line in f:
@@ -61,11 +61,11 @@ def process_index(index_file, vnum):
                 process_file(path + line.rstrip())
 
 
-def main(mob_file, vnum):
+def main(mob_file, id):
     if mob_file.endswith('index'):
-        process_index(mob_file, vnum)
+        process_index(mob_file, id)
     else:
-        process_file(mob_file, vnum)
+        process_file(mob_file, id)
 
 
 if __name__ == '__main__':

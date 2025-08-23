@@ -64,7 +64,7 @@ def convert_zone_to_modern_format(legacy_json):
                         "is_door": exit_data.get("type", "Normal") != "Normal",
                         "is_closed": False,
                         "is_locked": False,
-                        "key_vnum": int(exit_data.get("key", -1)) if exit_data.get("key", "-1") != "-1" else 0
+                        "key_id": int(exit_data.get("key", -1)) if exit_data.get("key", "-1") != "-1" else 0
                     }
             
             modern_zone["rooms"].append(modern_room)
@@ -73,7 +73,7 @@ def convert_zone_to_modern_format(legacy_json):
     zone_commands = zone_data.get("commands", {})
     if "mob" in zone_commands:
         for mob_command in zone_commands["mob"]:
-            mob_id = mob_command.get("vnum", 0)
+            mob_id = mob_command.get("id", 0)
             modern_mob = {
                 "id": mob_id,
                 "name": mob_command.get("name", f"mob {mob_id}").strip("()"),
@@ -93,7 +93,7 @@ def convert_zone_to_modern_format(legacy_json):
     # Convert objects from zone commands  
     if "object" in zone_commands:
         for obj_command in zone_commands["object"]:
-            obj_id = obj_command.get("vnum", 0)
+            obj_id = obj_command.get("id", 0)
             modern_obj = {
                 "id": obj_id,
                 "name": obj_command.get("name", f"object {obj_id}").strip("()"),

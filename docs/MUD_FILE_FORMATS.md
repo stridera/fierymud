@@ -110,4 +110,114 @@ Here's a breakdown of the fields and their expected format in the `.plr` file:
 *   **`grant_groups`**: List of dictionaries. Read from `grantgroups:` followed by lines of `command grantor level` until `~`.
 *   **`grants`**: List of dictionaries. Read from `grants:` followed by lines of `command grantor level` until `~`.
 
-This is the content for the `.plr` file format. I will now write this to `MUD_FILE_FORMATS.md`.
+## Legacy World File Formats
+
+FieryMUD uses enhanced CircleMUD-style world files with key improvements. These are the formats processed by our conversion script.
+
+### Zone File (`.zon`)
+
+**Overview:**
+Zone files define area-wide settings, reset commands, and zone metadata.
+
+**Structure:**
+```
+#<zone_id>
+<zone_name>~
+<top_room> <reset_time> <reset_mode> <zone_factor> <hemisphere> <climate>
+<reset_commands>
+S
+$
+```
+
+**Fields:**
+- `zone_id`: Numeric zone identifier
+- `zone_name`: Zone display name (terminated with `~`)
+- `top_room`: Highest room number in zone
+- `reset_time`: Minutes between zone resets
+- `reset_mode`: 0=never, 1=empty, 2=always
+- `zone_factor`: Experience modifier (usually 100)
+- `hemisphere`: 0=north, 1=south (affects weather)
+- `climate`: Climate type string
+
+### World/Room File (`.wld`)
+
+**Structure:**
+```
+#<room_id>
+<room_name>~
+<room_description>
+~
+<zone> <room_flags> <sector_type>
+<exits>
+<extra_descriptions>
+S
+$~
+```
+
+**Fields:**
+- `room_flags`: Bitfield for room properties (dark, peaceful, etc.)
+- `sector_type`: Terrain type (0=inside, 1=city, 2=field, etc.)
+
+### Mobile File (`.mob`)
+
+**Structure:**
+```
+#<mob_id>
+<keywords>~
+<short_description>~
+<long_description>~
+<detailed_description>~
+<mob_flags> <aff_flags> <alignment> <mob_type>
+<level> <thac0> <ac> <hitpoints> <damage>
+<gold> <xp> <load_position> <default_position> <sex> <class> <race> <size>
+<lifeforce> <composition> <attack_type>
+<stats_section>
+E
+```
+
+### Object File (`.obj`)
+
+**Structure:**
+```
+#<obj_id>
+<keywords>~
+<short_description>~
+<long_description>~
+<action_description>~
+<type> <extra_flags> <wear_flags> <anti_flags>
+<value0> <value1> <value2> <value3> <value4> <value5> <value6>
+<weight> <cost> <rent> <min_level> <max_level> <timer> <bitvector> <spec_proc>
+<extra_descriptions>
+<affects>
+E
+```
+
+### Trigger File (`.trg`)
+
+**Structure:**
+DG Scripts triggers for rooms, objects, and mobiles.
+
+### Shop File (`.shp`)
+
+**Structure:**
+Shop definitions for NPC merchants.
+
+## Current Conversion Issues
+
+The existing conversion produces JSON with several readability problems:
+
+### 1. **String-Based Bitflags**
+❌ Current: `"mob_flags": "SENTINEL, ISNPC, AWARE, MEMORY"`
+✅ Improved: `"flags": ["sentinel", "npc", "aware", "memory"]`
+
+### 2. **Magic Numbers**
+❌ Current: `"location": 16` (equipment slot)
+✅ Improved: `"location": "wielded_weapon"`
+
+### 3. **Inconsistent Nesting**
+❌ Current: Mixed object/array structures
+✅ Improved: Consistent, logical grouping
+
+### 4. **Unclear Field Names**
+❌ Current: `"vnum"`, `"hp_dice"`
+✅ Improved: `"id"`, `"hit_points"`
