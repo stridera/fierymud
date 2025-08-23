@@ -1,92 +1,0 @@
-name: Cloak
-password: ClTMXHoFAG
-prompt: &1&b%h&0&1hp &2&b%v&0&2mv&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 10
-level: 1
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20094
-birthtime: 1641028646
-timeplayed: 2585
-lastlogintime: 1661887604
-host: 174.000.148.182
-height: 74
-weight: 236
-base_height: 74
-base_weight: 236
-base_size: 3
-natural_size: 3
-alignment: 0
-playerflags: xy
-effectflags: 0 0 0
-prefflags: bhnoC e
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-lastlevel: 0
-hitpoints: 30/29
-mana: 1/0
-move: 141/144
-damroll: 5
-hitroll: 4
-strength: 100
-intelligence: 67
-wisdom: 71
-dexterity: 81
-constitution: 82
-charisma: 62
-experience: 6049
-quit_reason: 5
-saveroom: 3099
-skills:
-402 50
-404 57
-415 50
-416 50
-419 1000
-421 53
-427 1000
-438 50
-443 50
-444 50
-463 50
-464 50
-465 50
-466 50
-467 50
-468 50
-0 0
-trophy:
-1 8013 1.000000
-1 8010 1.000000
-1 8023 1.000000
-1 8001 3.000000
-1 18001 1.000000
-0 0 0
-tells:
-1641033123 @WMorris@W tells you, 'welcome@W'@0
-1641033156 @WMorris@W tells you, 'when you level you have to go back to the warrior guild and level gain@W'@0
-1641033206 @WMorris@W tells you, 'ok i can get you some equipment if you need some@W'@0
-1641033266 @WDrako@W tells you, 'Come back later when you have the money.@W'@0
-1661887554 @WThe Academy Recruiter@W tells you, 'Hello there!@W'@0
-1661887554 @WThe Academy Recruiter@W tells you, 'Are you here for new player training?@W'@0
-1661887563 @WThe Academy Recruiter@W tells you, 'Then you can begin your adventures at the Forest Temple of Mielikki!@W'@0
-1661887563 @WThe Academy Recruiter@W tells you, 'Good luck and happy hunting!@W'@0
-1661887563 @WThe Academy Recruiter@W tells you, 'You may come back and go through the training academy at any time.@W'@0
-$
-gossips:
-1641032561 Morris gossips, 'Fiery is one of the oldest on line'
-1641032594 Morris gossips, 'yes just everyone is sleeping because its new years'
-1641032645 Morris gossips, 'this is just one of my char I have level 100 or ** warrior name Astrid'
-1641032670 Morris gossips, '100 is the highest you can do on this mud'
-1641032687 Morris gossips, 'next is a god...lol'
-1641032719 Morris gossips, 'i have been on and off fiery for 36 years'
-1641032756 Morris gossips, 'been off for a long time i have forgotten more then i remember so i started back'
-1641032810 Morris gossips, 'lol 18 years ago i was married for the 3rd time ..in real life...lol'
-1641032881 Morris gossips, 'ok where are you?'
-1641032925 Morris gossips, 'go out west of town kill bugs'
-$

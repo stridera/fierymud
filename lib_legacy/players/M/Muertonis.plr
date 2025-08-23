@@ -1,265 +1,0 @@
-name: Muertonis
-password: MuVRuDNTz5
-prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
-sex: 1
-class: 11
-race: 0
-level: 99
-home: 3046
-lifeforce: 0
-composition: 0
-id: 15841
-birthtime: 1150318130
-timeplayed: 19892434
-lastlogintime: 1645237927
-host: 162.233.153.155
-height: 75
-weight: 159
-base_height: 75
-base_weight: 159
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: glxyz
-effectflags: 0 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 3
-hitpoints: 1871/523
-mana: 100/100
-move: 94/100
-damroll: 3
-hitroll: 3
-strength: 89
-intelligence: 92
-wisdom: 91
-dexterity: 60
-constitution: 64
-charisma: 65
-cash: 70 21 93 99
-bank: 2000 31000 174000 214000
-experience: 137547799
-quit_reason: 1
-saveroom: 3054
-skills:
-5 1000
-8 1000
-19 1000
-20 1000
-21 1000
-25 1000
-29 1000
-31 1000
-32 1000
-33 1000
-38 1000
-39 1000
-45 1000
-50 1000
-52 1000
-62 1000
-67 1000
-68 1000
-76 1000
-87 1000
-100 1000
-101 1000
-106 1000
-121 1000
-125 1000
-186 1000
-187 1000
-188 1000
-211 1000
-213 1000
-222 1000
-223 1000
-224 1000
-226 1000
-415 1000
-416 1000
-421 1000
-423 1000
-424 1000
-438 1000
-443 1000
-444 1000
-447 684
-451 1000
-452 1000
-453 1000
-454 1000
-458 1000
-459 1000
-460 1000
-461 1000
-462 1000
-464 1000
-0 0
-trophy:
-1 8010 1.000000
-1 11704 1.000000
-1 8016 1.000000
-1 8015 1.000000
-1 8002 1.000000
-1 8012 3.000000
-1 8001 2.000000
-1 8020 1.000000
-1 3170 0.062500
-1 3165 0.129167
-1 3070 0.062500
-1 3052 0.379167
-1 3051 0.316667
-1 3050 0.651923
-1 3059 0.517262
-1 3060 0.895833
-1 3055 1.316667
-1 3067 0.129167
-1 3075 0.125000
-1 3160 0.250000
-1 3161 0.250000
-0 0 0
-tells:
-1644075809 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644075810 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644766008 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1644767135 @WFreddy@W tells you, 'Yay, I hope you enjoy it!@W'@0
-1644767157 @WFreddy@W tells you, 'Yay, I hope you enjoy it!@W'@0
-1644767170 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644767171 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644793319 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1645237625 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1645237784 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-$
-gossips:
-1644076921 Pashku gossips, 'I can't tell if this conversation is serious or if the players of this fine mud are now mocking me'
-1644076930 Choak gossips, 'I am serious!'
-1644076947 Choak gossips, 'I would say do it!'
-1644077320 Astrid gossips, 'hello Fiery'
-1644077327 Chinok gossips, 'hey astrid'
-1644766037 Daegara gossips, 'damn'
-1644792351 A spectre gossips, 'nice a spectre!'
-1644792441 Chinok gossips, 'should we call ghostbusters ? '
-1644792567 Gorukai gossips, 'sloppy'
-1645237722 Astrid gossips, 'i am still trying to find a perfect eremral'
-$
-mem:
-45 0 1
-45 1 1
-52 1 1
-52 1 1
-52 1 1
-52 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-19 1 1
-19 1 1
-19 1 1
-19 1 1
-8 1 1
-8 1 1
-8 1 1
-87 1 1
-87 1 1
-87 1 1
-45 1 1
-45 1 1
-45 1 1
-45 1 1
-45 1 1
-106 1 1
-106 1 1
-106 1 1
-106 1 1
-187 1 1
-187 1 1
-106 1 1
-188 1 1
-188 1 1
-62 1 1
-62 1 1
-62 1 1
-62 1 1
-25 1 1
-25 1 1
-25 1 1
-25 1 1
-25 1 1
-25 1 1
-25 1 1
-25 1 1
-25 1 1
-25 1 1
-223 1 1
-223 1 1
-223 1 2
-223 1 2
-223 1 2
-223 1 2
-223 1 2
-68 1 2
-68 1 2
-213 1 2
-213 1 2
-213 1 2
-213 1 2
-213 1 2
-213 1 2
-213 1 2
-226 1 2
-226 1 2
-226 1 2
-226 1 2
-226 1 2
-226 1 2
-224 1 2
-224 1 2
-224 1 2
-224 1 2
-29 0 1
-29 1 1
-125 1 2
-125 1 2
-125 1 2
-5 1 2
-5 1 2
-5 1 2
-188 1 2
-188 1 2
-188 1 2
-188 1 2
-188 1 2
-188 1 2
-0 0 0
-aliases:
-who who -where
-, order roper kill qua
-` order roper kill demon
-ac cast 'animate' corpse
-b order roper kill water
-m order roper kill merchant
-v order roper kill illithid
-c order roper kill lord
-x order roper kill blue
-z order roper kill mist
-a who -where
-vv order 2.roper kill illithid
-gs group self
-gac get all corpse
-gc get all.coins
-lic look in corpse
-- enter well
-df drink fountain
-zz order 2.roper kill mist
-gcc get all.coins corpse
-0

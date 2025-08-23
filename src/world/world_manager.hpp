@@ -139,6 +139,7 @@ public:
     
     // Room Management
     std::shared_ptr<Room> get_room(EntityId room_id) const;
+    std::shared_ptr<Room> get_first_available_room() const;
     Result<void> add_room(std::shared_ptr<Room> room);
     void remove_room(EntityId room_id);
     

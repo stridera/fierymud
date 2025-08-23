@@ -1,115 +1,0 @@
-name: Lefa
-password: LeWuVMGtF.
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%ih&2&b> <&0&2%e&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 2
-class: 9
-race: 0
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20148
-birthtime: 1644489416
-timeplayed: 1045059
-lastlogintime: 1667448702
-host: 208.093.179.103
-height: 67
-weight: 121
-base_height: 67
-base_weight: 121
-base_size: 2
-natural_size: 2
-alignment: 569
-playerflags: gxyz
-effectflags: 0 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 820/842
-mana: 980/980
-move: 138/138
-damroll: 3
-hitroll: 3
-strength: 96
-intelligence: 57
-wisdom: 69
-dexterity: 98
-constitution: 96
-charisma: 52
-cash: 588 4994 13491 1190
-experience: 105805999
-pagelength: 44
-quit_reason: 1
-saveroom: 3054
-cooldowns:
-10 11630/18000
--1 0
-skills:
-401 1000
-403 507
-404 55
-405 226
-408 1000
-410 750
-411 1000
-412 1000
-415 50
-416 50
-418 50
-420 933
-421 910
-438 50
-440 1000
-443 78
-444 342
-463 50
-464 1000
-465 50
-477 50
-0 0
-trophy:
-1 52000 0.250000
-1 48915 0.333333
-1 48901 0.333333
-0 0 0
-tells:
-1665467937 @WLyft@W tells you, 'Loap requested i send a well Incoming@W'@0
-1665553196 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1665553250 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1665825480 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665901800 @WLyft@W tells you, 'Lufa requested i send a well Incoming@W'@0
-1665903466 @WLyft@W tells you, 'Laird requested i send a well Incoming@W'@0
-1666169890 @WLyft@W tells you, 'Laird requested i send a well Incoming@W'@0
-1667361654 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1667362158 @WLyft@W tells you, 'Laird requested i send a well Incoming@W'@0
-1667364196 @WLyft@W tells you, 'Laird requested i send a well Incoming@W'@0
-$
-gossips:
-1665930491 Choak gossips, 'what was that white light?'
-1665930510 Chinok gossips, 'not seen anything'
-1665930519 Choak gossips, 'I just read 'White light from no particular source suddenly fills the room, then vanishes.''
-1665930586 Chinok gossips, 'what room /'
-1665930600 Choak gossips, 'inn'
-1665930642 Chinok gossips, 'some of the new innates can do that, when they wear off. but I'd have to look closer for which one it is'
-1665930653 Choak gossips, 'I see must be one the L*s'
-1665983149 Luba gossips, 'hi'
-1666169742 The Lord of the Realm shouts, 'It has been long since I have taken this form! Beware--this time I will be the victorious one!'
-1667360144 The Lord of the Realm shouts, 'It has been long since I have taken this form! Beware--this time I will be the victorious one!'
-1667361308 Choak gossips, 'if you need a quick corpse return and res without reconnecting guys you can just consent lokar and he and Mril will take care it'
-1667361328 Laird gossips, 'nice'
-$
-aliases:
-tel recite teleport
-gac get all all.corpse
-gax g all.coins all.corpse
-id recite identify $*
-starthp 27
-y ass luba
-yy ass lufa
-yyy ass loap
-yyyy ass lempi
-combat need aquamarine dust pearl dust and garnet dust
-0

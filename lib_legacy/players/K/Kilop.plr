@@ -1,142 +1,0 @@
-name: Kilop
-password: KiqxdyH6Rd
-currenttitle: Xian
-description
-He is aged, but with wisdom, yet he can be deleterious.~
-prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
-sex: 1
-class: 13
-race: 0
-level: 61
-home: 3001
-lifeforce: 0
-composition: 0
-id: 16554
-birthtime: 1182464344
-timeplayed: 9361981
-lastlogintime: 1737902118
-host: 195.252.220.094
-height: 72
-weight: 158
-base_height: 72
-base_weight: 158
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: glxy
-effectflags: 0 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 100
-loadroom: 3054
-lastlevel: 15
-hitpoints: 720/720
-mana: 372/372
-move: 114/114
-damroll: 3
-hitroll: 3
-strength: 100
-intelligence: 72
-wisdom: 76
-dexterity: 82
-constitution: 80
-charisma: 58
-cash: 142 1727 6 6
-bank: 900 2790 9000 0
-experience: 45542344
-title: Xian
-quit_reason: 1
-saveroom: 3054
-skills:
-404 639
-411 620
-412 660
-414 620
-415 620
-416 620
-420 660
-421 660
-422 660
-430 624
-438 620
-443 620
-444 620
-446 660
-448 1000
-449 1000
-463 620
-601 50
-602 50
-605 50
-606 50
-608 50
-0 0
-trophy:
-1 58003 0.142857
-1 58029 1.166667
-1 58021 0.142857
-1 58022 0.142857
-1 58026 0.285714
-1 58023 0.142857
-1 58150 0.142857
-1 58020 0.142857
-1 58028 0.142857
-1 58025 0.142857
-1 58016 0.142857
-1 58017 0.142857
-1 58031 0.142857
-1 58019 0.285714
-1 58011 0.285714
-1 58008 0.142857
-1 58030 0.285714
-1 58010 0.428571
-1 58009 0.428571
-1 58015 2.342857
-1 58033 0.428571
-0 0 0
-tells:
-1618859377 @WAaron@W tells you, 'It's not in stock right now, but I will try and get one for you!@W'@0
-1618859384 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1618859435 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1618859448 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1618859493 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1618859526 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1618859551 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1618859551 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1618859552 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1618859696 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1640644933 Andron gossips, 'I just came back from vacation!'
-1640644938 Andron gossips, 'First day back home lol'
-1640644946 Daedela gossips, 'oh where did you go/wher eis home?'
-1640644947 Aaver gossips, 'Hello :D'
-1640645230 Daedela gossips, 'look at all these peeps!'
-1640645237 Porto gossips, 'hey Pashku!'
-1640645248 Pashku gossips, 'hey!'
-1666103676 Chinok gossips, 'hey Kilop'
-1666103686 Chinok gossips, 'how is everyone this morning ?'
-1666105644 Eslander gossips, 'Hey Chinok what is the link to the not nublue item db?'
-1671752874 Andron gossips, 'Good evening everyone!'
-$
-effects:
-601 4 43 26 0 0 0
-602 0 3 18 0 0 0
-602 0 3 19 0 0 0
-0 0 0 0 0
-aliases:
-ds gsay demonskin
-dp gsay dark presence
-ax assist xianga
-regen chant 'regeneration' self
-gs recite green
-bh chant 'battle hymn' self
-aa assist andron
-gal get all corpse
-sorrow chant 'shadows sorrow song'
-fa follow andron
-hide gsay hide
-as gsay assist
-swamp gsay swamp
-0

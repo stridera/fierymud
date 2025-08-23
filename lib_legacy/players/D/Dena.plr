@@ -1,162 +1,0 @@
-name: Dena
-password: DeBcw1a7CN
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 2
-class: 4
-race: 0
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19768
-birthtime: 1604902950
-timeplayed: 351548
-lastlogintime: 1739088713
-host: 052.119.120.201
-height: 69
-weight: 102
-base_height: 69
-base_weight: 102
-base_size: 2
-natural_size: 2
-alignment: 1000
-playerflags: gxyz
-effectflags: cm 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 1241/1043
-mana: 980/980
-move: 316/316
-damroll: 3
-hitroll: 3
-strength: 97
-intelligence: 73
-wisdom: 86
-dexterity: 82
-constitution: 100
-charisma: 90
-cash: 4858 6272 30680 34126
-experience: 121676898
-quit_reason: 1
-saveroom: 3054
-skills:
-1 1000
-3 1000
-12 1000
-13 1000
-14 1000
-15 1000
-16 1000
-21 1000
-22 1000
-28 1000
-34 1000
-43 1000
-88 1000
-92 1000
-97 1000
-99 1000
-241 1000
-402 1000
-404 1000
-407 1000
-411 1000
-412 1000
-415 1000
-416 1000
-417 1000
-420 1000
-421 1000
-422 1000
-423 1000
-424 1000
-430 1000
-431 1000
-434 1000
-438 1000
-441 1000
-443 1000
-444 1000
-450 50
-451 1000
-452 1000
-457 1000
-458 1000
-459 1000
-460 1000
-461 1000
-462 50
-463 1000
-464 1000
-465 1000
-466 1000
-467 1000
-468 1000
-473 1000
-0 0
-trophy:
-1 4009 0.200000
-1 4010 0.250000
-1 4013 0.200000
-1 4003 0.200000
-1 4011 1.400000
-1 4007 1.200000
-1 4001 0.800000
-1 4000 2.000000
-1 4004 0.200000
-1 53417 0.200000
-1 53410 0.200000
-1 43017 0.200000
-1 43016 0.200000
-1 43012 0.400000
-1 43013 1.000000
-1 43003 1.600000
-1 43002 2.600000
-1 43010 0.200000
-1 43011 0.200000
-1 43009 0.200000
-1 43008 0.200000
-0 0 0
-tells:
-1623112957 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1623113922 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623113924 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623113930 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1623134473 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1658983194 @WLord Dargo@W tells you, 'To show my gratitude, take this.@W'@0
-1671533652 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1673689871 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1676358819 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1676358819 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1734040228 Thort gossips, 'The XP scale is different depending on the class, right?'
-1734040235 Zinyora gossips, 'yep'
-1734040359 Zinyora gossips, 'not all of them, but some'
-1734040416 Tynder gossips, 'gratz!'
-1734040447 Zinyora gossips, 'thank you!'
-1734040526 Tynder gossips, 'woowoo!'
-1734040566 Urog gossips, 'there we go'
-1734040625 Zinyora gossips, 'and that is complete!'
-1736312422 Flynt gossips, 'woo! Meteorswarm!'
-1737279593 Unoliph gossips, 'ty'
-$
-aliases:
-bash bash $* ; st
-cpe c 'protection from evil' $*
-ga get all
-gac get all corpse
-gat get all 2.corpse
-ch c 'heal' $*
-chw c 'holy word'
-re rescue $*
-cde c 'dispel evil' $*
-cdm c 'dispel magic' $*
-ccc c 'cure crit' $*
-ccs c 'cure seri' $*
-ccl c 'cure light' $*
-0

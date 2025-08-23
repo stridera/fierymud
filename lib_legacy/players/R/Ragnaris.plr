@@ -1,126 +1,0 @@
-name: Ragnaris
-password: Rakvkowi/p
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 1
-race: 2
-level: 8
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19691
-birthtime: 1598650133
-timeplayed: 92408
-lastlogintime: 1599545314
-host: 034.228.095.236
-height: 28
-weight: 69
-base_height: 28
-base_weight: 69
-base_size: 1
-natural_size: 1
-alignment: 988
-playerflags: gxy
-effectflags: k 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-hunger: 1
-thirst: 18
-lastlevel: 0
-hitpoints: 73/73
-mana: 1/0
-move: 79/100
-damroll: 2
-hitroll: 4
-strength: 70
-intelligence: 93
-wisdom: 89
-dexterity: 71
-constitution: 71
-charisma: 70
-cash: 0 94 625 6
-experience: 154000
-quit_reason: 1
-saveroom: 3054
-skills:
-1 1000
-12 1000
-13 1000
-16 1000
-20 1000
-84 1000
-206 1000
-415 130
-416 130
-423 120
-424 120
-438 110
-443 120
-444 120
-451 120
-457 120
-458 120
-459 120
-460 120
-462 120
-463 120
-466 50
-0 0
-trophy:
-1 61504 1.000000
-1 61525 1.000000
-1 61512 1.000000
-1 61502 2.000000
-1 61501 3.000000
-1 8016 1.000000
-1 3506 5.000000
-1 3507 6.000000
-1 3503 7.000000
-1 3509 1.000000
-1 3502 6.000000
-1 3501 35.000000
-1 3508 17.000000
-1 3500 24.000000
-1 8030 1.000000
-1 8604 5.000000
-1 36001 21.000000
-1 36003 21.000000
-1 36002 39.000000
-1 8606 2.000000
-1 8605 5.000000
-0 0 0
-tells:
-1598846441 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1598846447 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1598846470 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1598846484 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
-1598846496 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
-1598858950 @WGranite@W tells you, 'I hope it protects you well.@W'@0
-1599113437 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
-1599358058 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1599538389 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1599545205 @WShauna@W tells you, 'You won't find better iron anywhere.@W'@0
-$
-gossips:
-1599360738 Strider gossips, 'Probably a PEBKAC error.  Might want to check the manual.'
-1599360789 Lamorak gossips, 'Ill get on that!'
-1599360795 Strider gossips, 'hehe'
-1599538143 Chinok gossips, 'hi Ragnaris'
-1599538171 Chinok gossips, 'everything going ok?'
-1599538282 Chinok gossips, 'if it were any better, Id need more rum :)'
-1599538319 Chinok gossips, 'but watch out for Dakhod.. he can be mean'
-1599538325 Dakhod gossips, 'lol'
-1599538329 Dakhod gossips, 'can be'
-1599539255 Dakhod gossips, 'night gentlemen'
-$
-mem:
-12 1 5
-12 1 5
-12 1 5
-12 1 5
-12 0 5
-12 0 5
-0 0 0

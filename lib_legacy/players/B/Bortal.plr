@@ -1,109 +1,0 @@
-name: Bortal
-password: BoeB25ff9G
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 18
-race: 0
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 18099
-birthtime: 1323873238
-timeplayed: 5825074
-lastlogintime: 1719021914
-host: 058.169.059.103
-height: 64
-weight: 176
-base_height: 64
-base_weight: 176
-base_size: 2
-natural_size: 2
-alignment: 319
-playerflags: gxyz
-effectflags: t 0 0
-prefflags: hC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 50
-loadroom: 3054
-lastlevel: 0
-hitpoints: 884/884
-mana: 980/980
-move: 122/122
-damroll: 3
-hitroll: 3
-strength: 91
-intelligence: 72
-wisdom: 67
-dexterity: 93
-constitution: 85
-charisma: 61
-cash: 517 4939 13763 171
-bank: 1300 16000 40000 13435
-experience: 105805999
-quit_reason: 1
-saveroom: 3054
-skills:
-401 1000
-403 1000
-405 580
-408 1000
-410 628
-411 1000
-412 1000
-415 227
-416 51
-420 572
-421 706
-438 402
-443 72
-444 658
-463 50
-464 1000
-465 860
-475 75
-476 1000
-477 770
-478 357
-491 50
-492 50
-493 50
-0 0
-trophy:
-1 59013 1.000000
-1 59002 1.000000
-1 59000 2.000000
-1 59004 1.000000
-1 36106 2.000000
-1 36101 3.000000
-1 23720 0.615385
-1 30023 0.142857
-1 30026 0.142857
-1 18516 1.000000
-1 18503 1.000000
-1 53302 2.000000
-1 53306 2.000000
-1 53305 3.000000
-1 53303 0.666667
-1 53314 3.666667
-1 53315 9.666666
-1 53312 3.833333
-1 7051 2.000000
-1 18510 0.500000
-1 8520 0.500000
-0 0 0
-tells:
-1573908519 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1573997758 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1573998311 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1573998332 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1672568088 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1573908558 Chinok gossips, 'how's the weather in doom'
-1573908572 Alasha gossips, 'only just got here ... but seems ok'
-1573908579 Alasha gossips, 'I forecast raining corpses'
-1573908606 Alasha gossips, 'it's been a while - so I suspect I'll stuff up a few times'
-$

@@ -1,113 +1,0 @@
-name: Hanzo
-password: HaFQi.Eu/u
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 18
-race: 8
-level: 14
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20089
-birthtime: 1640807752
-timeplayed: 37949
-lastlogintime: 1641177402
-host: 068.170.115.166
-height: 65
-weight: 95
-base_height: 65
-base_weight: 95
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: y
-effectflags: 0 0 0
-prefflags: ghnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 30
-loadroom: 3054
-lastlevel: 0
-hitpoints: 164/150
-mana: 19/19
-move: 144/144
-damroll: 3
-hitroll: 3
-strength: 91
-intelligence: 52
-wisdom: 71
-dexterity: 100
-constitution: 100
-charisma: 48
-cash: 4 449 1591 879
-experience: 614682
-quit_reason: 3
-saveroom: 0
-skills:
-401 188
-403 50
-405 169
-408 50
-415 50
-416 50
-421 96
-438 160
-443 50
-444 60
-464 121
-465 72
-467 50
-0 0
-trophy:
-1 13611 1.000000
-1 36105 1.000000
-1 36104 3.500000
-1 36100 8.500000
-1 5404 1.000000
-1 16102 1.000000
-1 16103 1.500000
-1 16111 0.500000
-1 16101 1.000000
-1 16107 6.000000
-1 16109 0.500000
-1 13616 1.000000
-1 13607 1.000000
-1 13613 5.000000
-1 13618 4.000000
-1 13606 2.500000
-1 13604 1.500000
-1 13602 3.500000
-1 13601 2.000000
-1 13603 1.000000
-1 13610 3.000000
-0 0 0
-tells:
-1641065258 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1641065282 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
-1641065287 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1641065292 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1641065334 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1641065351 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1641102581 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1641102581 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1641177335 @WSomeone@W tells you, 'hi@W'@0
-1641177351 @WSomeone@W tells you, 'do u finish quest armor tier-1 already?@W'@0
-$
-gossips:
-1641177100 Rokari gossips, 'not sure I have ever seen a token'
-1641177116 Someone gossips, 'inside corpse of mob will get item'
-1641177131 Someone gossips, 'and u've to give that one to questmaster'
-1641177140 Daedela gossips, '3rd Black Legion or 3rd Eldorian Guard items.  They drop in a few specific zones'
-1641177154 Rokari gossips, 'I have seen those items all over'
-1641177160 Someone gossips, 'splitskull are also given token area'
-1641177170 Rokari gossips, 'do you take them to a questmaster in Eldoria?'
-1641177174 Daedela gossips, 'yep'
-1641177183 Daedela gossips, 'which one depends on your alignment'
-1641177184 Someone gossips, 'also got quest master at Abbey'
-$
-aliases:
-ag assist gir
-aa assist bolle
-who who -w
-0

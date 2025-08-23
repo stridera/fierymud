@@ -1,184 +1,0 @@
-name: Traff
-password: Tr/W2kfrUv
-prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
-sex: 2
-class: 11
-race: 0
-level: 99
-home: 3046
-lifeforce: 0
-composition: 0
-id: 15071
-birthtime: 1126224079
-timeplayed: 5970353
-lastlogintime: 1739082231
-host: 208.093.179.007
-height: 67
-weight: 123
-base_height: 67
-base_weight: 123
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: glxyz
-effectflags: 0 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 100
-loadroom: 3054
-lastlevel: 5
-hitpoints: 544/516
-mana: 980/980
-move: 102/102
-damroll: 3
-hitroll: 3
-strength: 75
-intelligence: 85
-wisdom: 77
-dexterity: 64
-constitution: 72
-charisma: 94
-cash: 1494 4045 410 1594
-bank: 0 50 0 0
-experience: 137547799
-pagelength: 50
-clan: 3
-quit_reason: 1
-saveroom: 3054
-spellcasts:
-5 11
-5 95
-0 0
-skills:
-5 1000
-8 1000
-19 1000
-20 1000
-21 1000
-25 1000
-29 1000
-31 1000
-32 1000
-33 1000
-38 1000
-39 1000
-45 1000
-50 1000
-52 1000
-62 1000
-67 1000
-68 1000
-76 1000
-87 1000
-100 1000
-101 1000
-106 1000
-121 1000
-125 1000
-186 1000
-187 1000
-188 1000
-189 1000
-191 200
-211 1000
-212 1000
-213 1000
-222 1000
-223 1000
-224 1000
-226 1000
-415 1000
-416 1000
-421 1000
-423 1000
-424 1000
-438 1000
-443 50
-444 1000
-447 1000
-451 1000
-452 830
-453 1000
-454 869
-458 1000
-459 1000
-460 1000
-461 1000
-462 1000
-464 116
-0 0
-trophy:
-1 16905 1.000000
-1 48911 0.500000
-1 48906 0.500000
-1 48920 1.000000
-1 48908 1.500000
-0 0 0
-tells:
-1618369803 @WDavar@W tells you, 'Fayris requested i send a well Incoming@W'@0
-1618369913 @WDavar@W tells you, 'Fernley requested i send a well Incoming@W'@0
-1618370836 @WDavar@W tells you, 'Aawk requested i send a well Incoming@W'@0
-1618809753 @WKost@W tells you, 'done@W'@0
-1618809792 @WKost@W tells you, 'ty ty@W'@0
-1619120454 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1619122322 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1619122330 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1619123759 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1619130235 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-$
-gossips:
-1739065179 Chinok gossips, 'welcome traff'
-1739065904 Antix gossips, 'sorry just saw your chat! :o'
-1739066363 Chinok gossips, 'gratz on 72 Antix'
-1739066939 Discord gossips, 'Chinok: if you say so!'
-1739070501 Chinok gossips, 'poor Nawk'
-1739070505 Chinok gossips, 'and gratz Risa'
-1739070530 Risa gossips, 'thx :)'
-1739070730 Nawk gossips, 'should have know better then to afk in the rat room after i cleared them'
-1739070758 Chinok gossips, 'ROFL yeah, I have limited sympathy for you on that one :)'
-1739070796 Nawk gossips, 'if your not diein your not tryin :)'
-$
-aliases:
-ad c 'a d' $*
-pres c 'pres' $*
-4 order followers rescue davar
-armor c 'bone armor' me
-` o followers $*
-invis c 'invis' $*
-shift c ' shift corpse' $*
-y ass guard
-money '1036 Platinum, 10148 Gold, 21841 Silver, and 5210 Copper
-stone c 'stone skin' $*
-haste c 'haste' $*
-burn c 'burn han' $*
-tap c 'soul tap' $*
-iron c 'iron m' $*
-fire c 'pyre' $*
-diseng order followers disengage
-rnawk order followers rescue nawk
-resc order followers rescue traff
-o order followers $*
-hand c 'burn h' $*
-chill c 'chill t' $*
-mag c 'ma mi' $*
-1 drink fountain
-gax g all.coins all.corpse
-x g all.coins 
-gac g all all.corpse
-gag g all.gem all.corpse
-id recite identify $*
-see c 'detect invis' $*
-foli foll ija
-oz o zombie $*
-ord o followers $*
-make c 'minor c' $*
-pra mem $*
-cone c 'cone of c' $*
-os order skeleton $*
-suck c 'e d' $*
-rgilgal order follow rescue gilgal
-summon c 'sum cor' $*
-2 o f rescue traff
-3 o f ass traff
-0

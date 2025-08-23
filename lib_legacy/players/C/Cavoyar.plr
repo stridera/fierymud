@@ -1,115 +1,0 @@
-name: Cavoyar
-password: CaENllpYsF
-prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
-sex: 1
-class: 3
-race: 10
-level: 90
-home: 3022
-lifeforce: 0
-composition: 0
-id: 16229
-birthtime: 1165611126
-timeplayed: 236286
-lastlogintime: 1737335834
-host: 174.097.215.151
-height: 71
-weight: 244
-base_height: 71
-base_weight: 244
-base_size: 3
-natural_size: 3
-alignment: 966
-playerflags: glxy
-effectflags: 0 0 0
-prefflags: hnoxC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 35
-loadroom: 3054
-lastlevel: 13
-hitpoints: 1283/1103
-mana: 810/810
-move: 370/370
-damroll: 5
-hitroll: 4
-strength: 100
-intelligence: 72
-wisdom: 82
-dexterity: 97
-constitution: 97
-charisma: 70
-cash: 425 1610 7098 4088
-experience: 85736201
-pagelength: 34
-quit_reason: 1
-saveroom: 3054
-skills:
-402 114
-404 386
-407 154
-411 420
-412 182
-415 51
-416 50
-419 1000
-420 137
-421 297
-422 50
-427 1000
-430 158
-431 50
-434 50
-438 50
-441 50
-443 50
-444 209
-463 128
-464 62
-465 161
-466 50
-467 50
-468 50
-473 50
-0 0
-trophy:
-1 51002 1.000000
-1 51100 3.000000
-1 51020 6.000000
-1 7300 1.000000
-1 16905 1.000000
-1 16907 1.000000
-1 16901 1.000000
-1 16902 1.000000
-1 16906 1.000000
-1 16908 1.000000
-1 8023 1.000000
-1 8013 4.000000
-1 8030 1.000000
-1 8021 2.000000
-1 8001 4.000000
-1 8011 5.000000
-1 8010 5.000000
-1 8022 4.000000
-1 8014 5.000000
-1 8000 4.000000
-1 8012 8.000000
-0 0 0
-tells:
-$
-gossips:
-1601324040 Dairyu gossips, 'ooo is there anything you're looking for?'
-1601324163 Dairyu gossips, 'nice, how much for each? :)'
-1601324498 Dairyu gossips, 'me n the chief are having a pow wow :P'
-1601324553 Dairyu gossips, 'ok I did :)'
-1601324790 Dairyu gossips, 'idk how about 100plat each? how many did you have total?'
-1601324889 Dairyu gossips, 'ok, where can we meet?'
-1601325172 Dairyu gossips, 'close!'
-1601325216 Dairyu gossips, 'if I was able to complete 3 pieces that definitely would have been a level'
-1638482242 Mersh gossips, 'haha'
-1638482247 Mersh gossips, 'well played!'
-$
-aliases:
-who who -w
-lc look in corpse
-0

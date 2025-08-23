@@ -1,67 +1,0 @@
-name: Discord
-password: Di6J.8/bkp
-currenttitle: https://discord.gg/aqhapUCgFz
-prompt: --END--%_
-autoinvis: 0
-sex: 1
-class: 3
-race: 0
-level: 100
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20304
-birthtime: 1658168466
-timeplayed: 70835283
-lastlogintime: 1739034389
-host: 127.000.000.001
-height: 63
-weight: 145
-base_height: 63
-base_weight: 145
-base_size: 2
-natural_size: 2
-alignment: 0
-playerflags: y
-effectflags: 0 0 0
-prefflags: dhmnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 1200
-lastlevel: 0
-hitpoints: 1222/1222
-mana: 1000/1000
-move: 106/106
-damroll: 3
-hitroll: 3
-strength: 95
-intelligence: 65
-wisdom: 75
-dexterity: 87
-constitution: 74
-charisma: 68
-experience: 116386601
-wiztitle: &7Bot&0
-quit_reason: 10
-saveroom: 1200
-tells:
-1659603783 @WStrider@W tells you, 'hi@W'@0
-1665697727 @WChinok@W tells you, 'hi@W'@0
-1686897511 @WStrider@W tells you, 'hi@W'@0
-$
-gossips:
-1738984024 Chinok gossips, 'Mysa is a DRAGON! .. if she were radioactive, she's giving Godzilla a run!'
-1738984142 Anexis gossips, 'oh nooooo that's not good lol'
-1738984182 Davar gossips, 'i'm going to barrows best chance i think we have'
-1738984246 Davar gossips, 'that or we all get a imm quest and start a cold war'
-1738985191 Chinok gossips, 'Sawk, not seen that one in a while'
-1738985245 Davar gossips, 'my SC campsite'
-1738987187 Yawk gossips, 'nice'
-1738991031 Anexis gossips, 'gnite all'
-1738991039 Davar gossips, 'night'
-1738991044 Chinok gossips, 'ngiht!'
-1738991051 Chinok gossips, 'I'm heading that way myself'
-1738991060 Emawk gossips, 'night to you too'
-1738991089 Chinok gossips, 'theoretically, I turned into a pumpkin 4 minutes ago'
-1739020192 Choak gossips, 'Don't for get to vote for us https://www.mudverse.com/vote/536'
-$

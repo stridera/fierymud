@@ -1,129 +1,0 @@
-name: Samui
-password: SaXWNz0e4j
-prompt: &1&b%h&0&1hp &2&b%v&0&2mv&0> 
-autoinvis: 0
-sex: 1
-class: 0
-race: 9
-level: 25
-home: 3001
-lifeforce: 0
-composition: 0
-clan: 4
-id: 19470
-birthtime: 1566615490
-timeplayed: 127056
-lastlogintime: 1755722206
-host: 127.000.000.001
-height: 68
-weight: 158
-base_height: 68
-base_weight: 158
-base_size: 2
-natural_size: 2
-alignment: 990
-playerflags: gy0
-effectflags: k0 0 0
-prefflags: ghnoxC0 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-stored:
-0 0
-wimpy: 25
-loadroom: 3054
-lastlevel: 0
-hitpoints: 133/133
-mana: 62/62
-move: 116/116
-damroll: 3
-hitroll: 3
-strength: 88
-intelligence: 100
-wisdom: 90
-dexterity: 82
-constitution: 86
-charisma: 74
-cash: 100 27 83 57
-experience: 3341059
-pagelength: 50
-quit_reason: 10
-saveroom: 3054
-skills:
-2 1000
-5 1000
-8 1000
-19 1000
-20 1000
-30 1000
-31 1000
-32 1000
-37 1000
-39 1000
-50 1000
-83 1000
-99 1000
-100 1000
-101 1000
-102 1000
-103 1000
-105 1000
-106 1000
-107 1000
-186 1000
-228 1000
-246 1000
-415 92
-416 50
-421 50
-423 150
-424 108
-438 50
-443 50
-444 65
-447 170
-451 70
-452 51
-453 78
-454 50
-456 50
-458 50
-459 82
-460 67
-462 60
-464 73
-0 0
-trophy:
-1 18510 0.500000
-1 12007 0.333333
-1 12016 0.666667
-0 0 0
-tells:
-1569982185 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1569982187 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1569982187 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1571474675 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1571474677 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1688954874 Hyudin gossips, 'tks!'
-1688957949 The Knight Templar shouts, 'Hark all and listen, Dorath has fended off a great evil for our fair town!'
-1688957954 The Knight Templar shouts, 'Hark all and listen, Dorath has fended off a great evil for our fair town!'
-1688958416 Gorath gossips, 'what an incredible game'
-1688958503 Discord gossips, 'Daedela: Something going wrong?'
-1688958542 Gorath gossips, 'USA vs. Canada in Gold Cup'
-1688958549 Discord gossips, 'Daedela: Aaahhhh'
-1688958561 Gorath gossips, 'USA wins it in penalty kicks 3-2'
-1688961121 The Knight Templar shouts, 'Hark all and listen, Gorath has fended off a great evil for our fair town!'
-1688961124 The Knight Templar shouts, 'Hark all and listen, Gorath has fended off a great evil for our fair town!'
-$
-aliases:
-cw cast world
-cbh cast 'burning hands'
-cc cast 'concealment'
-eat take 2 bread bag; eat bread; eat bread
-drink drink skin
-wa wake;stand
-fc follow $1;consent $1
-to_split_skull n;n;e;e;n;n;n;n;w;n;n;n;e;e;e;e;n;e;e;e;n;n;e;s;s
-mem rest;memorize $*;meditate
-0

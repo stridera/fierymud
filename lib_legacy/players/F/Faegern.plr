@@ -1,130 +1,0 @@
-name: Faegern
-password: FaUVkLiR4.
-currenttitle: has layers
-description
-
-~
-prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0>
-sex: 1
-class: 3
-race: 7
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 14476
-birthtime: 1108475522
-timeplayed: 9965804
-lastlogintime: 1649566734
-host: 069.162.244.194
-height: 118
-weight: 198
-base_height: 118
-base_weight: 198
-base_size: 4
-natural_size: 4
-alignment: -769
-playerflags: lyz
-effectflags: k w 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-hunger: 13
-thirst: 2
-lastlevel: 15
-hitpoints: 1420/1222
-mana: 980/980
-move: 176/176
-damroll: 5
-hitroll: 4
-strength: 94
-intelligence: 72
-wisdom: 76
-dexterity: 88
-constitution: 88
-charisma: 64
-cash: 49 242 975 949
-experience: 114111789
-pagelength: 50
-clan: 3
-quit_reason: 3
-saveroom: 0
-skills:
-402 1000
-404 1000
-407 1000
-411 1000
-412 1000
-415 1000
-416 1000
-419 1000
-420 700
-421 700
-422 800
-427 1000
-430 1000
-431 1000
-434 1000
-438 231
-441 1000
-443 198
-444 1000
-463 1000
-464 1000
-465 1000
-466 556
-467 50
-468 1000
-473 1000
-0 0
-tells:
-1592100352 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1592100567 @WRuin Wormheart@W tells you, 'So, the merchant has gotten himself in quite a bit of trouble.@W'@0
-1592100568 @WRuin Wormheart@W tells you, 'I know what he must do, but he won't like it.@W'@0
-1592100569 @WRuin Wormheart@W tells you, 'Quickly, take this to him! Perhaps the Darkness still finds him... amusing.@W'@0
-1592100646 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1592100816 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1592102343 @WDavar@W tells you, 'Ogawk requested i send a well Incoming@W'@0
-1595224330 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1616387851 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1620879585 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1649564161 Mand gossips, 'corpse at fasq'
-1649564244 Zaver gossips, 'gratz'
-1649564250 Flike gossips, ':)'
-1649565434 Zaver gossips, 'ty'
-1649565435 Chinok gossips, 'I'm outa here.. enjoy'
-1649565439 Chinok gossips, 'night all'
-1649566680 Zaver gossips, 'hey kress want to die with us'
-1649566684 Kresselack gossips, 'sup'
-1649566691 Kresselack gossips, 'oh nine hells'
-1649566726 Kresselack gossips, 'how far have you gotten so far?'
-$
-effects:
-1 6 15 17 0 0 0
-210 1 580 13 0 0 0
-0 0 0 0 0
-aliases:
-` disarm baton lord
-5 rescue arreeleo
-0 recite green
-coin get all.coins all.corpse
-gem get all.gem all.corpse
-all get all all.corpse
-baggem put all.gem bag
-ba bash $*
-id recite identify $*
-df drink fountain
-ha hitall
-6 rescue ijja
-r rescue $*
-4 rescue warra
-1 ass zaver
-11 rescue zaver
-3 ass tensel
-33 rescue tensel
-2 ass vitkus
-22 rescue vitkus
-0

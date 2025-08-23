@@ -1,137 +1,0 @@
-name: Oawk
-password: OaXMqNbcSn
-currenttitle: Dew Dew...
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <%ih><%e><%l>%_&0<%t&0>:<&0%o&0>
-autoinvis: 0
-sex: 1
-class: 18
-race: 10
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19138
-birthtime: 1487799246
-timeplayed: 1482935
-lastlogintime: 1739063027
-host: 208.093.179.007
-height: 73
-weight: 202
-base_height: 73
-base_weight: 202
-base_size: 3
-natural_size: 3
-alignment: -1000
-playerflags: gxyz
-effectflags: t 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 48223
-lastlevel: 0
-hitpoints: 1064/866
-mana: 980/980
-move: 158/158
-damroll: 5
-hitroll: 4
-strength: 94
-intelligence: 78
-wisdom: 82
-dexterity: 96
-constitution: 90
-charisma: 68
-cash: 696 26803 56057 5970
-experience: 105805999
-pagelength: 44
-clan: 3
-quit_reason: 7
-saveroom: 48223
-skills:
-401 1000
-403 1000
-405 1000
-408 1000
-410 650
-411 1000
-412 1000
-415 1000
-416 1000
-419 1000
-420 1000
-421 1000
-427 1000
-438 1000
-443 1000
-444 1000
-463 50
-464 1000
-465 1000
-475 1000
-476 1000
-477 1000
-478 1000
-491 50
-492 50
-493 50
-0 0
-trophy:
-1 48105 3.000000
-1 48102 1.000000
-1 12007 1.000000
-1 8503 3.500000
-1 8504 2.000000
-1 8509 1.500000
-1 13307 4.000000
-1 13301 15.000000
-1 13303 4.000000
-1 43013 4.500000
-1 43012 3.500000
-1 43003 5.500000
-1 43002 2.500000
-1 43010 0.500000
-1 43011 0.500000
-1 43009 0.500000
-1 43008 0.500000
-1 43007 0.500000
-1 43006 0.500000
-1 43019 5.000000
-1 43020 1.000000
-0 0 0
-tells:
-1618554236 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1618554242 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1618554247 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1618554267 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1619129816 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1691861067 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1693194475 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1693194495 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1693194496 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1693194496 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1619125396 Meina gossips, 'so yeah, i check out task manager cuz of course'
-1619125416 Meina gossips, 'and i notice gee, that's new... BASupSrvcConfig and a few other BASup processes'
-1619125432 Meina gossips, 'They aren't using a big amt of CPU or RAM, but their I/O other is huge.'
-1619125451 Meina gossips, 'so without bothering to tell any of the users, they decided to install solar winds '
-1619125500 Meina gossips, 'possibly coincidental, also looks like they have had some infrastructure go down, because ethernet is showing 100k.'
-1619125520 Meina gossips, 'this is so incredibly bad that it is timing out even trying to talk to a db on the same intranet.'
-1619125523 Meina gossips, ':|'
-1619125539 Chinok gossips, 'might be the db is having issues'
-1619125577 Chinok gossips, 'or it's all been hacked'
-1619126056 Meina gossips, 'we shall see. i got it to be up long enough to grab a file i needed.'
-$
-effects:
-108 1 0 0 0 32768 0
-0 0 0 0 0
-aliases:
-y ass glawk
-tel recite teleport
-yy ass aawk
-4 ass zombie
-3 ass frumly
-gac g all all.corpse
-id recite identify $*
-eye gouge $*
-yyy ass vawk
-0

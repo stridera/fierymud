@@ -1,116 +1,0 @@
-name: Tithlo
-password: TiwljemQ1z
-currenttitle: (dragross's swimmer)
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 9
-race: 0
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 18150
-birthtime: 1331261190
-timeplayed: 1085468
-lastlogintime: 1640490769
-host: 024.020.004.178
-height: 65
-weight: 167
-base_height: 65
-base_weight: 167
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: yz
-effectflags: 0 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 860/860
-mana: 980/980
-move: 118/118
-damroll: 3
-hitroll: 3
-strength: 92
-intelligence: 70
-wisdom: 90
-dexterity: 96
-constitution: 82
-charisma: 60
-cash: 217 1493 7073 6725
-bank: 1525 10589 16742 8308
-experience: 105805999
-quit_reason: 1
-saveroom: 3054
-skills:
-401 1000
-403 1000
-404 357
-405 1000
-408 1000
-410 750
-411 1000
-412 1000
-415 1000
-416 1000
-418 1000
-420 1000
-421 1000
-438 161
-440 1000
-443 50
-444 917
-464 1000
-465 1000
-477 1000
-0 0
-trophy:
-1 12311 3.000000
-1 2301 1.000000
-1 41116 2.000000
-1 41108 1.000000
-1 41107 1.000000
-1 41105 4.000000
-1 41120 2.000000
-1 41106 3.000000
-1 12307 2.000000
-1 12313 1.000000
-1 12319 2.000000
-1 12320 18.000000
-1 12314 23.000000
-1 12318 5.000000
-1 12315 9.000000
-1 12317 9.000000
-1 2300 3.000000
-1 16105 2.000000
-1 16110 10.000000
-1 16109 1.000000
-1 16111 1.000000
-0 0 0
-tells:
-1621648591 @WGris@W tells you, 'and a potion that is cure crit lol@W'@0
-1621649386 @WGris@W tells you, 'i got a fist on apoc@W'@0
-1621649504 @WGris@W tells you, 'you there?@W'@0
-1621649537 @WGris@W tells you, 'oh. but yeah i got a fist@W'@0
-1621649610 @WGris@W tells you, 'hah@W'@0
-1621649761 @WGris@W tells you, 'i was pretty sure i had one somewhere@W'@0
-1621649797 @WGris@W tells you, 'oh shit lol@W'@0
-1621649847 @WGris@W tells you, 'finally got their stars@W'@0
-1621649944 @WGris@W tells you, 'ima let one of the kids use my pc for a bit. i can help out with your quest if you want or run something@W'@0
-1621650202 @WKiram@W tells you, 'pretty sure its tri-azp@W'@0
-$
-gossips:
-1640489687 Chinok gossips, 'it's something we did about 8 months back.. people buying the wrong thing, cause it's hard to follow the lines'
-1640489768 Chinok gossips, 'and depending on the 'seller' they might or might not take the item back'
-1640490055 Pashku gossips, 'is +hit better than AC of 3?'
-1640490122 Pashku gossips, 'yes'
-1640490152 Pashku gossips, 'is a BODY armor for warrior with AC 3 +1 hitroll better than AC 6 no hitroll?'
-1640490193 Pashku gossips, 'so take the AC 3 +1 hit?'
-1640490242 Pashku gossips, 'ty'
-1640490413 Chinok gossips, 'I'm about 10 mins from bed ... if you guys need anything, speak soon :)'
-1640490437 Razaria gossips, 'okay'
-1640490462 Chinok gossips, 'glad I could help'
-$

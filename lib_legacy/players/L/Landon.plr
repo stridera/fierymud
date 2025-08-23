@@ -1,158 +1,0 @@
-name: Landon
-password: LaZiQr33oP
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
-sex: 1
-class: 5
-race: 0
-level: 99
-home: 3022
-lifeforce: 0
-composition: 0
-id: 12376
-birthtime: 1059436448
-timeplayed: 7246071
-lastlogintime: 1717278811
-host: 066.199.058.082
-height: 65
-weight: 124
-base_height: 65
-base_weight: 124
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: glxyz
-effectflags: cn 0 0
-prefflags: hnouC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-hunger: 2
-thirst: 14
-lastlevel: 9
-hitpoints: 1199/1100
-mana: 100/100
-move: 134/134
-damroll: 3
-hitroll: 3
-strength: 95
-intelligence: 56
-wisdom: 70
-dexterity: 93
-constitution: 94
-charisma: 54
-cash: 0 0 1663 1516
-experience: 105805999
-quit_reason: 1
-saveroom: 3054
-skills:
-4 1000
-12 1000
-13 1000
-14 1000
-17 1000
-27 1000
-33 1000
-46 1000
-84 1000
-85 1000
-86 1000
-92 1000
-96 1000
-99 1000
-131 1000
-132 1000
-188 1000
-191 200
-235 1000
-402 649
-404 1000
-407 302
-411 1000
-412 1000
-415 80
-416 999
-417 158
-420 1000
-421 1000
-422 1000
-423 668
-424 662
-430 228
-431 150
-434 150
-438 50
-441 1000
-443 50
-444 51
-445 1000
-450 150
-451 950
-452 169
-457 178
-458 187
-459 311
-460 163
-461 399
-463 50
-464 50
-465 1000
-466 50
-467 50
-468 58
-473 150
-0 0
-trophy:
-1 18503 1.000000
-1 43009 1.000000
-1 43011 1.000000
-1 43008 1.000000
-1 43007 1.000000
-1 43006 1.000000
-1 43019 2.000000
-1 43020 1.000000
-1 18513 2.000000
-1 18500 1.000000
-1 18507 2.000000
-1 18510 2.000000
-1 52 1.000000
-1 8330 7.000000
-1 8331 6.000000
-1 8329 7.000000
-1 8013 2.000000
-1 8000 1.000000
-1 8012 2.000000
-1 8014 3.000000
-1 8021 2.000000
-0 0 0
-tells:
-1571188590 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1571188590 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1571188591 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1571188591 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1571188591 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1618718686 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1646626883 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1649613389 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1570590462 Gizelle gossips, 'Gratz!'
-1570590482 Meina gossips, 'Landon, you should be in bed (that is my son's name irl hehehe)'
-1570590567 Meina gossips, 'SISTER!!!!!!'
-1570590573 Nauis gossips, 'howdy folks'
-1570590586 Meina gossips, 'Check it out, Landon is playing lol (not my landon)'
-1618630620 Davar gossips, 'wonder if i could take it to a smith and have it resized'
-1649613390 Tors gossips, 'Hey landon'
-1649613419 Chinok gossips, 'about to restart...'
-1649613431 Chinok gossips, 'so don't go far :)'
-$
-aliases:
-io rem sword
-ii wear sword
-b bash
-rm rem blade
-kk wi dagger
-gc get all.coins from corpse
-unh c 'unholy'
-jj wi blade
-lc l in corpse
-0

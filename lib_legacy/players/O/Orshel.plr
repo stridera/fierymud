@@ -1,130 +1,0 @@
-name: Orshel
-password: Orh1woNPXO
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 10
-race: 10
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19764
-birthtime: 1604901300
-timeplayed: 353468
-lastlogintime: 1739088890
-host: 052.119.120.201
-height: 76
-weight: 238
-base_height: 76
-base_weight: 238
-base_size: 3
-natural_size: 3
-alignment: 1000
-playerflags: gxyz
-effectflags: 0 0 0
-prefflags: ghnoxC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 1274/1076
-mana: 980/980
-move: 306/306
-damroll: 5
-hitroll: 4
-strength: 91
-intelligence: 62
-wisdom: 65
-dexterity: 97
-constitution: 89
-charisma: 60
-cash: 16477 2752 11833 0
-experience: 105805999
-quit_reason: 1
-saveroom: 3054
-skills:
-401 1000
-402 1000
-403 1000
-404 1000
-410 1000
-411 1000
-412 1000
-415 1000
-416 1000
-419 1000
-420 1000
-421 1000
-422 1000
-427 1000
-428 50
-430 1000
-431 1000
-434 1000
-438 1000
-443 1000
-444 1000
-463 1000
-464 1000
-465 1000
-466 1000
-467 1000
-468 1000
-473 1000
-474 1000
-0 0
-trophy:
-1 4009 0.200000
-1 4010 0.250000
-1 4013 0.200000
-1 4003 0.200000
-1 4011 1.400000
-1 4007 1.200000
-1 4001 0.800000
-1 4000 2.000000
-1 4004 0.200000
-1 53417 0.200000
-1 53410 0.200000
-1 43017 0.200000
-1 43016 0.200000
-1 43012 0.400000
-1 43013 1.000000
-1 43003 1.600000
-1 43002 2.600000
-1 43010 0.200000
-1 43011 0.200000
-1 43009 0.200000
-1 43008 0.200000
-0 0 0
-tells:
-1626333928 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1626333930 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1658983194 @WLord Dargo@W tells you, 'To show my gratitude, take this.@W'@0
-1671534805 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1707546892 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1707546893 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1707546895 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1707546900 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1707546924 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
-1707546924 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
-$
-gossips:
-1732865505 Flynt gossips, 'oh shit, didn't notice that'
-1732865641 Flynt gossips, 'the +2 int/wis loss is negligible? the extra focus is that much more valuable?'
-1732865646 Flynt gossips, 'say it didn't have detectinvis'
-1732865673 Tavsan gossips, 'I think so, but that's just me'
-1732865706 Tavsan gossips, 'as a faerie, the int/wis loss is pretty minimal if you're already over 100.  Focus is way more valuable'
-1732865878 Thort gossips, 'cool thank you'
-1736312536 Yirr gossips, 'gnite all'
-1736312539 Shimono gossips, 'good night!'
-1737279209 Dena gossips, 'Congrats!'
-1737279593 Unoliph gossips, 'ty'
-$
-aliases:
-bash bash $*; st
-kill backstab $*
-gat get all 2.corpse
-gac get all corpse
-ga get all
-0

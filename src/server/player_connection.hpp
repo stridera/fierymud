@@ -67,6 +67,7 @@ public:
 private:
     void handle_read(const asio::error_code& error, size_t bytes_transferred);
     void handle_write(const asio::error_code& error, size_t bytes_transferred);
+    void do_write();
     void process_input();
     void process_telnet_data(std::string_view data);
     void handle_input_by_state(const std::string& input);
@@ -78,6 +79,10 @@ private:
     static constexpr size_t buffer_size = 1024;
     std::array<char, buffer_size> read_buffer_;
     std::string input_buffer_;
+    
+    // Write buffer for async operations
+    std::vector<std::string> write_queue_;
+    std::atomic<bool> writing_{false};
     
     // Player association
     std::weak_ptr<Player> player_;

@@ -56,6 +56,7 @@ struct ServerConfig {
     std::string world_directory = "data/world";
     std::string player_directory = "data/players";
     std::string log_directory = "logs";
+    uint64_t default_starting_room = 3001;
 
     // Performance settings
     int target_tps = 10; // Ticks per second

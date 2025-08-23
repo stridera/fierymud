@@ -32,6 +32,8 @@ Result<void> PlayerConnection::initialize() {
 void PlayerConnection::close() {
     if (connected_.load()) {
         connected_ = false;
+        writing_ = false;
+        write_queue_.clear();
         
         try {
             socket_.close();
@@ -53,15 +55,16 @@ Result<void> PlayerConnection::send(std::string_view message) {
     }
     
     try {
-        auto msg_str = std::string(message);
-        asio::async_write(socket_, asio::buffer(msg_str),
-            [self = shared_from_this()](const asio::error_code& error, size_t bytes_transferred) {
-                self->handle_write(error, bytes_transferred);
-            });
+        write_queue_.emplace_back(message);
+        
+        // If not currently writing, start a write operation
+        if (!writing_.exchange(true)) {
+            do_write();
+        }
         return Success();
     } catch (const std::exception& e) {
         return std::unexpected(Error{ErrorCode::NetworkError, 
-            fmt::format("Failed to send message: {}", e.what())});
+            fmt::format("Failed to queue message: {}", e.what())});
     }
 }
 
@@ -77,14 +80,16 @@ Result<void> PlayerConnection::send_prompt(std::string_view prompt) {
             static_cast<char>(GMCPHandler::TELNET_IAC),
             static_cast<char>(GMCPHandler::TELNET_GA));
         
-        asio::async_write(socket_, asio::buffer(prompt_str),
-            [self = shared_from_this()](const asio::error_code& error, size_t bytes_transferred) {
-                self->handle_write(error, bytes_transferred);
-            });
+        write_queue_.emplace_back(std::move(prompt_str));
+        
+        // If not currently writing, start a write operation
+        if (!writing_.exchange(true)) {
+            do_write();
+        }
         return Success();
     } catch (const std::exception& e) {
         return std::unexpected(Error{ErrorCode::NetworkError, 
-            fmt::format("Failed to send prompt: {}", e.what())});
+            fmt::format("Failed to queue prompt: {}", e.what())});
     }
 }
 
@@ -117,10 +122,37 @@ void PlayerConnection::handle_read(const asio::error_code& error, size_t bytes_t
     }
 }
 
+void PlayerConnection::do_write() {
+    if (!connected_ || write_queue_.empty()) {
+        writing_ = false;
+        return;
+    }
+    
+    const std::string& message = write_queue_.front();
+    asio::async_write(socket_, asio::buffer(message),
+        [self = shared_from_this()](const asio::error_code& error, size_t bytes_transferred) {
+            self->handle_write(error, bytes_transferred);
+        });
+}
+
 void PlayerConnection::handle_write(const asio::error_code& error, size_t bytes_transferred) {
     if (error) {
         Log::debug("Write error: {}", error.message());
+        writing_ = false;
         close();
+        return;
+    }
+    
+    // Remove the message that was just sent
+    if (!write_queue_.empty()) {
+        write_queue_.erase(write_queue_.begin());
+    }
+    
+    // Continue with next message in queue, or stop writing
+    if (!write_queue_.empty() && connected_) {
+        do_write();
+    } else {
+        writing_ = false;
     }
 }
 

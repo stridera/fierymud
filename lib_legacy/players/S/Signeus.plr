@@ -1,253 +1,0 @@
-name: Signeus
-password: IgbAMBmTX1
-prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
-sex: 1
-class: 20
-race: 0
-level: 96
-home: 3046
-lifeforce: 0
-composition: 0
-id: 15985
-birthtime: 1155247904
-timeplayed: 25123284
-lastlogintime: 1645237955
-host: 162.233.153.155
-height: 61
-weight: 121
-base_height: 61
-base_weight: 121
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: glxyz
-effectflags: 0 0 0
-prefflags: hno 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 7
-hitpoints: 513/513
-mana: 921/921
-move: 93/100
-damroll: 3
-hitroll: 3
-strength: 88
-intelligence: 94
-wisdom: 100
-dexterity: 74
-constitution: 60
-charisma: 52
-cash: 5902 11473 57012 54320
-experience: 111121363
-quit_reason: 1
-saveroom: 3054
-skills:
-2 1000
-5 1000
-19 1000
-20 1000
-26 1000
-29 1000
-31 1000
-38 1000
-39 1000
-50 1000
-52 1000
-57 1000
-62 1000
-67 1000
-68 1000
-83 1000
-99 1000
-100 1000
-101 1000
-102 1000
-103 1000
-105 1000
-107 1000
-108 780
-112 1000
-113 710
-157 1000
-158 1000
-159 1000
-160 1000
-161 1000
-162 1000
-163 1000
-164 1000
-165 1000
-166 1000
-168 1000
-169 1000
-170 1000
-200 1000
-220 1000
-228 1000
-415 1000
-416 1000
-421 1000
-423 1000
-424 1000
-438 1000
-443 1000
-444 1000
-447 967
-451 1000
-452 1000
-453 1000
-455 1000
-458 1000
-459 1000
-460 912
-462 1000
-464 1000
-0 0
-trophy:
-1 51011 0.500000
-1 51001 0.500000
-1 51002 0.500000
-1 51020 2.000000
-1 51000 1.500000
-1 51004 0.500000
-1 51003 3.500000
-1 51102 1.000000
-1 51101 9.500000
-1 51100 8.500000
-1 3503 0.500000
-1 17204 2.500000
-1 3500 1.500000
-1 3506 0.500000
-1 3509 1.000000
-1 3508 2.500000
-1 3501 1.500000
-1 3066 0.500000
-1 3061 0.500000
-1 8015 0.500000
-1 8021 0.500000
-0 0 0
-tells:
-1574307921 @WXianga@W tells you, 'fly@W'@0
-1597611558 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1597611575 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1603579720 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1603579725 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1603583050 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1625583407 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1625584544 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1625883013 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1645150753 @WChoak@W tells you, 'haha I need to turn it off.@W'@0
-$
-gossips:
-1645189427 Chinok gossips, 'nope, we don't give numbers.. that's a rule'
-1645189441 Gorukai gossips, 'although I had a mind to screenshot the entire conversation jusssst to get your goat'
-1645189468 Gorukai gossips, 'I was like, ooooh this is juicy content'
-1645189475 Chinok gossips, 'the numbers is the only thing that'gets my goat' -- the rest was what I had already told you'
-1645189495 Gorukai gossips, 'the numbers are meaningless and useless though, so you should care'
-1645189700 Gorukai gossips, 'at volume'
-1645237114 Chinok gossips, 'but also true...'
-1645237254 Lufa gossips, 'balls thought summon was circle 3'
-1645237263 Lufa gossips, 'there goes that plan'
-1645237722 Astrid gossips, 'i am still trying to find a perfect eremral'
-$
-mem:
-166 1 1
-166 1 1
-166 1 2
-168 1 1
-108 0 1
-108 0 1
-108 1 1
-52 1 1
-52 1 1
-52 1 1
-52 1 1
-52 1 1
-52 1 1
-52 1 1
-112 1 2
-29 1 1
-29 1 1
-164 0 1
-164 1 1
-105 1 2
-105 1 2
-62 1 1
-62 1 2
-62 1 2
-62 1 2
-38 1 2
-38 1 2
-170 1 2
-170 1 2
-102 1 2
-102 1 2
-102 1 2
-102 1 2
-112 1 2
-168 1 1
-168 1 1
-168 1 1
-105 1 2
-105 1 2
-170 1 2
-170 1 2
-170 1 2
-170 1 2
-170 1 2
-159 1 2
-220 1 2
-220 1 2
-99 1 1
-99 1 1
-99 1 1
-99 1 1
-200 1 2
-157 1 2
-157 1 2
-157 1 2
-19 1 2
-19 1 2
-19 1 2
-19 1 2
-100 1 2
-100 1 2
-100 1 2
-100 1 2
-100 1 2
-100 1 2
-100 1 2
-100 1 2
-113 0 1
-168 1 1
-168 1 2
-164 1 1
-31 1 2
-57 1 2
-0 0 0
-aliases:
-dig cast 'detect invis' giaccobe
-dij cast 'detect invis' jagvor
-dis cast 'detect invis' smrt
-rr recite recall
-x cast 'haste' anaconda
-z cast 'stone' anaconda
-mass cast 'mass invis'
-who who -where
-mm cast 'melt' dragon
-cc cast 'cremate'
-1 drag corpse n
-gs group self
-- enter well
-gcc get all.coins corpse
-gccc get all.coins 2.corpse
-ae assist ermenegildo
-gc get all.coins
-df drink fountain
-2 recite recall
-ii cast 'immolate' dragon
-gac get all corpse
-door cast 'dimension door' mornir
-lic look in corpse
-0

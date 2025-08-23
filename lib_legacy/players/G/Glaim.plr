@@ -1,123 +1,0 @@
-name: Glaim
-password: GlkByIs88V
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 1
-race: 2
-level: 5
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19708
-birthtime: 1600662071
-timeplayed: 19369
-lastlogintime: 1724433207
-host: 174.179.016.210
-height: 29
-weight: 89
-base_height: 29
-base_weight: 89
-base_size: 1
-natural_size: 1
-alignment: 998
-playerflags: gxy
-effectflags: k 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-hunger: 18
-thirst: 14
-lastlevel: 0
-hitpoints: 54/54
-mana: 1/0
-move: 100/100
-damroll: 2
-hitroll: 4
-strength: 78
-intelligence: 97
-wisdom: 97
-dexterity: 66
-constitution: 71
-charisma: 55
-cash: 0 2 3 8
-experience: 56546
-quit_reason: 1
-saveroom: 3054
-skills:
-1 1000
-12 1000
-13 1000
-16 1000
-20 1000
-84 1000
-206 1000
-415 50
-416 50
-423 50
-424 84
-438 50
-443 50
-444 90
-451 53
-457 57
-458 56
-459 52
-460 68
-462 50
-463 75
-466 50
-0 0
-trophy:
-1 36305 0.750000
-1 12002 0.500000
-1 12009 0.500000
-1 12020 0.250000
-1 12012 0.750000
-1 12003 0.500000
-1 12024 0.500000
-1 12004 0.750000
-1 12023 0.750000
-1 12025 0.500000
-1 12011 1.500000
-1 12001 0.250000
-1 12014 0.500000
-1 12007 2.333333
-1 12016 0.250000
-1 12015 0.250000
-1 3503 0.250000
-1 3501 0.250000
-1 3507 0.250000
-1 18007 1.333333
-1 55216 1.000000
-0 0 0
-tells:
-1600707853 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1600709289 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1600709293 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1600709296 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1600719485 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1600719487 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1600719503 @WHelena@W tells you, 'I only sell bread and donuts, all home made.@W'@0
-1600719626 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1600719627 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1600719627 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-$
-gossips:
-1600717093 Swayod gossips, 'hello! :)'
-1600717093 Rolatti gossips, 'hello! :)'
-1600717093 Swayne gossips, 'hello! :)'
-1600717101 Leroc gossips, 'hi there.'
-1620695721 Chinok gossips, 'don't have to start from scratch on a few then :)'
-1724433166 Chinok gossips, 'but the IP matches exact, so I'd be surprised if it's not yours'
-1724433185 Chinok gossips, ':)'
-$
-aliases:
-cl cast 'cure light' $1
-kk tell swayod sway kill $*
-ds tell swayod sway $*
-rs tell rolatti sway $*
-all tell swayod sway $*;tell rolatti sway $*;tell swayne sway $*;$*
-ak tell rolatti sway assist swayod;tell swayne sway assist swayod;assist swayod
-0

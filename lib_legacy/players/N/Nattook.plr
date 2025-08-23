@@ -1,173 +1,0 @@
-name: Nattook
-password: NaJHyyv/W/
-currenttitle: Brauxebell
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 0
-race: 2
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19753
-birthtime: 1604891044
-timeplayed: 1385317
-lastlogintime: 1738666159
-host: 052.119.120.201
-height: 38
-weight: 60
-base_height: 38
-base_weight: 60
-base_size: 1
-natural_size: 1
-alignment: 1000
-playerflags: gxyz
-effectflags: k 0 0
-prefflags: ghnoxCD ac
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 632/533
-mana: 980/980
-move: 250/250
-damroll: 2
-hitroll: 4
-strength: 100
-intelligence: 100
-wisdom: 100
-dexterity: 100
-constitution: 100
-charisma: 100
-cash: 11040 20124 82435 107173
-bank: 5000 5000 50000 5000
-experience: 126967199
-pagelength: 50
-quit_reason: 1
-saveroom: 3054
-skills:
-2 1000
-5 1000
-7 1000
-8 1000
-10 1000
-19 1000
-20 1000
-26 1000
-29 1000
-30 1000
-31 1000
-32 1000
-37 1000
-38 1000
-39 1000
-50 1000
-52 1000
-57 1000
-62 1000
-65 1000
-66 1000
-67 1000
-68 1000
-76 1000
-77 1000
-83 1000
-99 1000
-100 1000
-101 1000
-102 1000
-103 1000
-104 1000
-105 1000
-106 1000
-107 1000
-108 1000
-109 1000
-110 1000
-111 1000
-112 1000
-113 1000
-184 1000
-185 1000
-186 1000
-228 1000
-246 1000
-415 940
-416 940
-421 1000
-423 1000
-424 1000
-438 940
-443 940
-444 940
-447 1000
-451 1000
-452 1000
-453 1000
-454 1000
-455 1000
-456 940
-458 1000
-459 1000
-460 967
-462 946
-464 940
-0 0
-trophy:
-1 11798 2.000000
-1 11797 4.050001
-1 11799 8.049997
-1 11811 4.400000
-1 52012 0.125000
-1 52011 0.125000
-1 52003 0.250000
-1 52016 0.500000
-1 52006 0.125000
-1 52010 0.125000
-1 48022 0.500000
-1 48014 0.142857
-1 48015 0.125000
-1 48020 0.125000
-1 48013 0.125000
-1 48009 0.125000
-1 48002 0.125000
-1 53300 0.125000
-1 53301 0.250000
-1 53309 0.125000
-1 53310 0.500000
-0 0 0
-tells:
-1622368207 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1622510705 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1622528581 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623112778 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623140577 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623283247 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
-1658983194 @WLord Dargo@W tells you, 'To show my gratitude, take this.@W'@0
-1667181034 @WLord Dargo@W tells you, 'To show my gratitude, take this.@W'@0
-1706178735 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1732687682 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
-$
-gossips:
-1736310371 Thort gossips, 'yep, I know what you mean. Shit gets real.. real fast.'
-1736311304 Thort gossips, 'okay, so, don't laugh. or do laugh.. whatever. i solved the riddle. got the key. but it still didn't open the door. so I just went around to every single room searching for another door somewhere. reading all of the pentagrams.
-1736311313 Thort gossips, 'I tried unlocking the door with the wrong character.'
-1736311323 Cerworn gossips, 'oh man.  I LOVE when i do that'
-1736311343 Cerworn gossips, 'the other night i sat there for TWO HOURS trying to figure out what key unlocked a certain door...'
-1736311350 Cerworn gossips, 'only to realize it wasn't even locked'
-1736311358 Thort gossips, 'oh NooooOOOooo'
-1736312422 Flynt gossips, 'woo! Meteorswarm!'
-1736312536 Yirr gossips, 'gnite all'
-1736312539 Shimono gossips, 'good night!'
-$
-aliases:
-cct c 'chill touch' $*
-cmm c 'magic' $*
-cbh c 'burning' $*
-cdm c 'dispel magic' $*
-ga get all
-gac get all corpse
-gat get all 2.corpse
-css c 'stoneskin' $*
-0

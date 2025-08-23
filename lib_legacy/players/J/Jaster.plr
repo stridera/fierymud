@@ -1,105 +1,0 @@
-name: Jaster
-password: JauYFHWC75
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 18
-race: 0
-level: 8
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19496
-birthtime: 1575055693
-timeplayed: 20509
-lastlogintime: 1575252261
-host: 075.105.147.193
-height: 74
-weight: 144
-base_height: 74
-base_weight: 144
-base_size: 2
-natural_size: 2
-alignment: -1
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: ghnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 100/100
-mana: 1/-1
-move: 87/112
-damroll: 3
-hitroll: 3
-strength: 83
-intelligence: 72
-wisdom: 79
-dexterity: 96
-constitution: 79
-charisma: 54
-cash: 10 230 536 418
-experience: 170920
-quit_reason: 1
-saveroom: 3054
-skills:
-403 101
-405 50
-415 50
-416 50
-421 129
-438 50
-443 50
-444 60
-464 97
-465 50
-467 50
-0 0
-trophy:
-1 5420 1.000000
-1 5408 6.000000
-1 5403 2.000000
-1 5404 5.000000
-1 3507 3.000000
-1 3503 2.000000
-1 3501 3.000000
-1 3506 1.000000
-1 3508 6.000000
-1 3509 2.000000
-1 3500 8.000000
-1 61526 7.000000
-1 61519 3.000000
-1 61503 2.000000
-1 61501 1.000000
-1 61502 2.000000
-1 61525 5.000000
-1 61500 3.000000
-1 3090 0.500000
-1 8013 0.500000
-1 36001 5.500000
-0 0 0
-tells:
-1575077995 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1575078001 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
-1575078017 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1575078125 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
-1575078146 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
-1575078357 @WDrako@W tells you, 'I only deal in bronze at the moment, try Beowyn.@W'@0
-1575078376 @WBeowyn@W tells you, 'I only buy the finest steel armour.@W'@0
-1575078399 @WBeowyn@W tells you, 'I only buy the finest steel armour.@W'@0
-1575078420 @WShauna@W tells you, 'I don't trade in such items.@W'@0
-1575080994 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-$
-gossips:
-1575064537 Kilop gossips, 'what was that all about?'
-1575064650 Chinok gossips, 'back in an hour roughly'
-1575064653 Andron gossips, 'Ok'
-1575064656 Andron gossips, 'take care'
-1575065161 Xiana gossips, 'haha, nice'
-1575065238 Xiana gossips, 'Sec, relogging to my zmud fy'
-1575080649 Chinok gossips, 'hey Jaster!'
-1575081119 Chinok gossips, 'you doing OK ?'
-1575081208 Chinok gossips, 'you know what you're doing, need any help or advice ?'
-1575081292 Chinok gossips, 'ok, well yell if you need anything, and don't forget to clear your trophy list'
-$

@@ -1,119 +1,0 @@
-name: Cerix
-password: CeqnQ/aBk.
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 30
-level: 11
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20187
-birthtime: 1646870384
-timeplayed: 16717
-lastlogintime: 1654911101
-host: 066.199.058.082
-height: 73
-weight: 345
-base_height: 73
-base_weight: 345
-base_size: 2
-natural_size: 2
-alignment: -39
-playerflags: gxy
-effectflags: k 0 0
-prefflags: hnouxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-hunger: 16
-thirst: 24
-lastlevel: 0
-hitpoints: 163/152
-mana: 12/12
-move: 133/140
-damroll: 3
-hitroll: 3
-strength: 96
-intelligence: 65
-wisdom: 67
-dexterity: 93
-constitution: 91
-charisma: 50
-cash: 1 22 160 150
-experience: 430969
-quit_reason: 1
-saveroom: 3054
-skills:
-202 1000
-402 160
-404 160
-415 50
-416 50
-421 160
-430 50
-438 50
-443 50
-444 160
-456 50
-463 50
-464 50
-465 149
-466 50
-467 50
-468 50
-489 86
-0 0
-trophy:
-1 51900 1.000000
-1 3502 1.000000
-1 3509 2.000000
-1 36304 1.000000
-1 36300 1.000000
-1 61508 1.000000
-1 61509 2.000000
-1 61510 2.000000
-1 61507 1.000000
-1 61506 1.000000
-1 61523 1.000000
-1 61512 3.000000
-1 61501 1.000000
-1 61502 1.000000
-1 61503 1.000000
-1 61525 3.000000
-1 61500 2.000000
-1 17204 5.000000
-1 3508 6.000000
-1 3500 11.000000
-1 3501 4.000000
-0 0 0
-tells:
-1654911057 @WThe Warmaster@W tells you, 'Spamming it can trap you in a very deadly situation.@W'@0
-1654911057 @WThe Warmaster@W tells you, 'There's a big risk too.@W'@0
-1654911057 @WThe Warmaster@W tells you, 'If you miss, which is very likely when you're starting out,@W'@0
-1654911057 @WThe Warmaster@W tells you, 'But don't worry, I'm here to protect you.@W'@0
-1654911062 @WThe Warmaster@W tells you, 'Good attempt!@W'@0
-1654911064 @WThe Warmaster@W tells you, 'It's a good idea if you start to run low on hit points.@W'@0
-1654911064 @WThe Warmaster@W tells you, 'If you try to flee and fail, you'll be stunned for a little bit.@W'@0
-1654911064 @WThe Warmaster@W tells you, 'Don't wait until the last second to run!@W'@0
-1654911064 @WThe Warmaster@W tells you, 'Feel free to use any of the skills you've learned.@W'@0
-1654911064 @WThe Warmaster@W tells you, 'Be careful not to get locked by skill stun though!@W'@0
-$
-gossips:
-1648332552 Lyno gossips, 'hi cerix'
-1648332575 Lyno gossips, 'makeing chinok go gray with my constant problems?'
-1649543856 Tors gossips, 'haha no kidding!'
-1649543938 Chinok gossips, 'lol they can't hide from gas/fire'
-1650208427 Chaldin gossips, 'Thanks Chinok!'
-1650209691 Chaldin gossips, 'Nah ... gotta pay the price for takin' on too much ... Thanks though'
-1650209739 Chaldin gossips, 'the corpse is in a place where I only get hit if I attack'
-1650209878 Chaldin gossips, 'almost there'
-1654910935 Daedela gossips, 'hello!'
-1654911035 Daedela gossips, 'not a lot!  Just working away while trying not to melt'
-$
-aliases:
-bg breathe gas
-lc l in corpse
-gc g all.coins from all.corpse
-0

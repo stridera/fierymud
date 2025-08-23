@@ -1,189 +1,0 @@
-name: Selyn
-password: SeXZO6CNxr
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 1
-race: 0
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19763
-birthtime: 1604901099
-timeplayed: 239570
-lastlogintime: 1737962774
-host: 052.119.120.201
-height: 64
-weight: 134
-base_height: 64
-base_weight: 134
-base_size: 2
-natural_size: 2
-alignment: 1000
-playerflags: gxyz
-effectflags: 0 0 0
-prefflags: ghnoCD 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 785/785
-mana: 980/980
-move: 359/364
-damroll: 3
-hitroll: 3
-strength: 86
-intelligence: 96
-wisdom: 94
-dexterity: 82
-constitution: 80
-charisma: 84
-cash: 860 2446 10106 2
-experience: 105805999
-quit_reason: 1
-saveroom: 3054
-skills:
-1 1000
-3 1000
-4 1000
-12 1000
-13 1000
-14 1000
-15 1000
-16 1000
-18 1000
-20 1000
-21 1000
-22 1000
-23 1000
-27 1000
-28 1000
-33 1000
-34 1000
-35 1000
-40 1000
-42 1000
-43 1000
-44 1000
-46 1000
-47 1000
-48 1000
-49 1000
-51 1000
-53 1000
-54 1000
-70 1000
-73 1000
-74 1000
-81 1000
-84 1000
-85 1000
-86 1000
-87 1000
-88 1000
-89 1000
-90 1000
-91 1000
-92 1000
-93 1000
-94 1000
-95 1000
-96 1000
-97 1000
-99 1000
-131 1000
-206 1000
-207 1000
-208 1000
-209 1000
-210 1000
-235 1000
-241 1000
-415 1000
-416 1000
-421 1000
-423 1000
-424 1000
-438 1000
-443 1000
-444 1000
-451 1000
-452 1000
-453 1000
-455 1000
-457 1000
-458 1000
-459 1000
-460 1000
-461 1000
-462 1000
-463 1000
-466 1000
-0 0
-trophy:
-1 8513 1.000000
-1 10310 0.250000
-1 48630 2.400000
-1 48408 0.400000
-1 48407 0.800000
-1 48402 0.600000
-1 48409 1.400000
-1 48400 1.200000
-1 48414 0.400000
-1 53300 0.200000
-1 53309 0.200000
-1 53310 0.800000
-1 53308 0.200000
-1 53311 1.000000
-1 53307 0.250000
-1 53304 1.400000
-1 53302 1.000000
-1 53306 0.250000
-1 53305 1.700000
-1 53313 0.200000
-1 53303 1.200000
-0 0 0
-tells:
-1626947279 @WShazz@W tells you, 'Take good care of that.@W'@0
-1627028128 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1658983194 @WLord Dargo@W tells you, 'To show my gratitude, take this.@W'@0
-1671535164 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1719423892 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1719423931 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
-1719423944 @WDugrik@W tells you, 'Let's keep quiet about this, ok?@W'@0
-1719424033 @WMara the Baker@W tells you, 'Thank you for the good deal. I shall remember it.@W'@0
-1734830418 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
-1734830426 @WDugrik@W tells you, 'Let's keep quiet about this, ok?@W'@0
-$
-gossips:
-1665381419 Lyft gossips, 'but its always possable'
-1665381909 Daedela gossips, 'okay just tried it out and it works just fine'
-1670618458 Fril gossips, 'ooo I see it too!'
-1670618485 Daedela gossips, 'wait, Fril sees what?'
-1670618485 Fril gossips, 'wait'
-1670618493 Fril gossips, 'the saintly bracer'
-1670618498 Daedela gossips, '... you have one?'
-1676668653 Daedela gossips, 'hello!'
-1676668657 Elphaba gossips, 'hello!'
-1676668661 Elphaba gossips, 'sorry, missed your welcome'
-1676668669 Kra gossips, 'no worries :D'
-$
-aliases:
-cwr c 'word of recall'
-cgh c 'group heal'
-cfh c 'full heal' $*
-cga c 'group armor'
-cdm c 'dispel magic' $*
-chh c 'full harm' $*
-ch c 'heal' $*
-cha c 'harm' $*
-ccc c 'cure crit' $*
-cs c 'silence' $*
-ga get all
-gac get all corpse
-gat get all 2.corpse
-chw c 'holy word'
-cpe c 'protection from evil' $*
-cdu c 'destroy undead' $*
-0

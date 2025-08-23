@@ -1,90 +1,0 @@
-name: Acerite
-password: AcBakHlB4w
-currenttitle: the forgotten.
-description
-testie testie~
-prompt: &6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)hitp &2%v&0(&2&b%V&0)&7move&0> 
-poofin: &6&bThere is a flash of &0&3&blight&0&6&b and the crack of &0&4&bli&0&6ght&0&6&bni&0&8ng&0&6&b as &0&3Acerite&0&6&b decends from above.&0
-poofout: &6&bA bolt of lightning &0&9&bsc&0&1orch&0&9&bes&0&6&b the earth and&0&3 Acerite &0&6&bis gone!&0
-sex: 1
-class: 12
-race: 0
-level: 101
-home: 2269
-lifeforce: 0
-composition: 0
-id: 13803
-birthtime: 1094778405
-timeplayed: 16393828
-lastlogintime: 1606777310
-host: 099.244.033.208
-height: 70
-weight: 181
-base_height: 70
-base_weight: 181
-base_size: 3
-natural_size: 3
-alignment: -336
-playerflags: glnoy
-effectflags: 0 0 0
-prefflags: ahikmnorvABCD 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 2269
-lastlevel: 9
-hitpoints: 30248/30042
-mana: 100/100
-move: 162/162
-damroll: 3
-hitroll: 3
-strength: 100
-intelligence: 100
-wisdom: 100
-dexterity: 100
-constitution: 100
-charisma: 100
-cash: 10023448 10312 2230 2800
-bank: 1105846 842 17061 48908
-experience: 300000006
-logview: 40
-quit_reason: 7
-saveroom: 2269
-trophy:
-1 3067 0.666667
-1 3143 1.500000
-1 3060 1.666667
-1 3070 1.000000
-1 3050 2.833333
-1 17202 2.000000
-1 17203 1.000000
-1 17205 6.000000
-1 2213 1.000000
-1 2210 1.000000
-1 2212 1.000000
-1 2216 2.000000
-1 3059 3.000000
-1 2251 2.000000
-1 3056 3.000000
-1 3055 2.500000
-1 3051 2.666333
-1 3549 0.333000
-1 3208 0.500000
-1 3052 3.166333
-1 23711 0.500000
-0 0 0
-tells:
-$
-gossips:
-1574352555 Chinok gossips, 'sorry guys, on a call for work, so won't be too chatty, but happy to see everyone'
-1574352849 Chinok gossips, 'there are some new 'trainers' in town'
-1574352961 Chinok gossips, 'yeah, and zzur didn't give me all the backups.. I do have a couple.. so if you let me know the names, I can look'
-1574352971 Chinok gossips, 'soon as I took over, I turned the damn purge off'
-1574353162 Chinok gossips, 'email chinok@@fierymud.org .. if you want me to look for any chars in the backups'
-1574353363 Chinok gossips, 'feel free...'
-$
-aliases:
-who who -w
-ann gecho [Acerite] $*
-we wiz #103 $*
-users users -i
-0

@@ -1,153 +1,0 @@
-name: Trowa
-password: ToM1HpVcFg
-currenttitle: B'rton
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 6
-race: 9
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19861
-birthtime: 1614764708
-timeplayed: 114856
-lastlogintime: 1737962860
-host: 052.119.120.201
-height: 80
-weight: 268
-base_height: 80
-base_weight: 268
-base_size: 2
-natural_size: 2
-alignment: 1000
-playerflags: gxyz
-effectflags: kx 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 1138/1039
-mana: 100/100
-move: 376/376
-damroll: 3
-hitroll: 3
-strength: 100
-intelligence: 84
-wisdom: 58
-dexterity: 94
-constitution: 100
-charisma: 100
-cash: 2434 1499 8263 1182
-experience: 121676898
-quit_reason: 1
-saveroom: 3054
-skills:
-8 1000
-15 1000
-16 1000
-18 1000
-30 1000
-32 1000
-37 1000
-44 1000
-68 1000
-69 1000
-88 1000
-111 1000
-144 1000
-214 1000
-263 1000
-264 1000
-265 1000
-266 1000
-402 1000
-404 1000
-407 1000
-410 1000
-411 1000
-412 1000
-415 1000
-416 1000
-417 1000
-420 1000
-421 1000
-422 1000
-423 1000
-424 1000
-430 1000
-434 1000
-438 1000
-443 1000
-444 1000
-447 1000
-451 1000
-452 1000
-454 1000
-456 1000
-457 1000
-458 1000
-459 1000
-462 1000
-463 1000
-464 1000
-465 1000
-466 1000
-467 1000
-468 1000
-0 0
-trophy:
-1 4009 0.400000
-1 4010 0.200000
-1 4013 0.200000
-1 4007 0.600000
-1 4015 0.200000
-1 4008 0.200000
-1 4004 0.200000
-1 53417 0.200000
-1 43003 1.200000
-1 43017 0.200000
-1 43016 0.200000
-1 43013 0.600000
-1 43002 1.200000
-1 43010 0.200000
-1 43011 0.200000
-1 43009 0.200000
-1 43008 0.200000
-1 43007 0.200000
-1 43006 0.200000
-1 43019 2.000000
-1 8509 0.600000
-0 0 0
-tells:
-1623140276 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1658983194 @WLord Dargo@W tells you, 'To show my gratitude, take this.@W'@0
-1686881908 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1688110654 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1688188773 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
-1688330322 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1688330322 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1688330322 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1688330322 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1688330323 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-$
-gossips:
-1706854979 Karoth gossips, 'heya all'
-1706855047 Phillameia gossips, 'Hello!'
-1706855174 Felessan gossips, 'How's it going?'
-1706855195 Karoth gossips, 'not bad, yourself?'
-1706855233 Felessan gossips, 'Doing alright.  Just watching TV before bed, doing quest stuff'
-1706856067 Karoth gossips, 'just waking up here, thinking of things I want to accomplish and realizing I have too much work to do it :('
-1706856075 Felessan gossips, 'Booooo'
-1706859891 A kobold scout shouts, 'Help meeeeee!!'
-1706859895 A gnoll spiritbreaker shouts, 'Kill the slave!'
-1706859899 A kobold scout shouts, 'Nooo!  Save meee!!'
-$
-aliases:
-re rescue $*
-ga get all
-gac get all corpse
-gat get all 2.corpse
-0

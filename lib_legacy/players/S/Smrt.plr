@@ -1,152 +1,0 @@
-name: Smrt
-password: SmzSSPCGE3
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%rr&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 14
-race: 7
-level: 1
-home: 3022
-lifeforce: 0
-composition: 0
-id: 17018
-birthtime: 1215718294
-timeplayed: 1251674
-lastlogintime: 1645240937
-host: 162.233.153.155
-height: 181
-weight: 812
-base_height: 82
-base_weight: 256
-base_size: 3
-natural_size: 4
-alignment: -1000
-playerflags: cyz
-effectflags: k w 0
-prefflags: hno 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-freezelevel: 104
-loadroom: 3054
-thirst: 6
-lastlevel: 0
-hitpoints: 1235/-4
-mana: 980/0
-move: 176/176
-damroll: 5
-hitroll: 4
-strength: 91
-intelligence: 65
-wisdom: 62
-dexterity: 92
-constitution: 94
-charisma: 43
-cash: 2621 33337 174031 73529
-bank: 1428 0 0 0
-experience: 1
-quit_reason: 3
-saveroom: 0
-skills:
-404 1000
-415 1000
-416 1000
-419 1000
-421 700
-427 1000
-430 1000
-438 1000
-443 1000
-444 1000
-463 1000
-464 1000
-465 1000
-466 1000
-467 1000
-468 1000
-0 0
-trophy:
-1 53314 1.500000
-1 53315 5.000000
-1 53305 1.000000
-1 53303 2.000000
-1 53312 7.000000
-1 55003 1.000000
-1 55017 1.000000
-1 55018 2.000000
-1 3075 0.250000
-0 0 0
-tells:
-1642347172 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644074212 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1644184512 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1644184729 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644184729 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644184729 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644184730 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644184807 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644185167 @WAstrid@W tells you, 'you left some stuff in your corpse@W'@0
-1644185202 @WAstrid@W tells you, 'a fiery gaze and ince eyes both invisble@W'@0
-$
-gossips:
-1644682093 Pashku gossips, 'You are not experienced enough to use some polar bear skin pants.'
-1644682125 Luba gossips, 'i wish that item level only mattered for wearing/useing'
-1644682132 Holk gossips, 'Id guess at least one level above you :)'
-1644682148 Pashku gossips, 'yeah it is annoying you cannot at least identify the item'
-1644682162 Luba gossips, 'if its on the ground you might be able '
-1644682173 Luba gossips, 'but idk for sure'
-1644682203 Luba gossips, 'if the item is in a bag you can pick up the bag from the ground but not hand it to another'
-1644682214 Vuitton gossips, 'False'
-1644682216 Rokari gossips, 'you can id things on the ground - yay!'
-1644682226 Vuitton gossips, 'True'
-1645156031 Zaver gossips, 'moonwell is at your corpse though'
-$
-aliases:
-km kill mist
-avv assist valarien
-gc get all.coins
-kb kill beast
-kl kill lizard
-gac get all corpse
-beat emote beats his chest like a Silverback gorilla and yells out, "OooooooAaaaaaaHhhhhOoooo!"
-f gsay flee
-df drink fountain
-lic look in corpse
-gcc get all.coins corpse
-gccc get all.coins 2.corpse
-- enter well
-who who -where
-wolff chant 'spirit of the wolf'
-b say back
-rr recite recall
-iw chant 'interminable wrath'
-sow chant 'spirit of the wolf'
-sob chant 'spirit of the bear'
-mmm gsay memming then moving
-tvw tell vuitton well
-srch say srch
-rv say rescue valarien
-rt say rescue torin
-dae say rescue daegara
-hide gsay stalk
-aj gsay assist jagvor
-rs gsay rescue signeus
-ry gsay rescue yasuhiro
-rd gsay rescue dominio
-rdae gsay rescue daegara
-rw gsay rescue wavum
-tvb tell valarien bash
-tbp tell bojana pray
-bd tell valarien bash dancer
-bf tell valarien bash faerie
-bs tell valarien bash swan
-gf tell gorukai bash faerie
-bg tell valarien bash goblin
-gd tell gorukai bash dancer
-gdd tell gorukai bash 2.dancer
-gg tell gorukai bash goblin
-ggg tell gorukai bash 2.goblin
-gs tell gorukai bash swan
-bgg tell valarien bash gypsy
-ggy bash gypsy
-__ enter 2.well
-0

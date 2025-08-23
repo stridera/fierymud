@@ -1,101 +1,0 @@
-name: Ketten
-password: KeGbPrhO9u
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 9
-race: 0
-level: 18
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20164
-birthtime: 1645384459
-timeplayed: 152880
-lastlogintime: 1651381142
-host: 069.162.244.194
-height: 60
-weight: 121
-base_height: 60
-base_weight: 121
-base_size: 2
-natural_size: 2
-alignment: -938
-playerflags: y
-effectflags: 0 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 5572
-lastlevel: 0
-hitpoints: 184/184
-mana: 32/32
-move: 132/132
-damroll: 3
-hitroll: 3
-strength: 93
-intelligence: 67
-wisdom: 72
-dexterity: 91
-constitution: 92
-charisma: 45
-cash: 10 726 2779 2918
-experience: 1162455
-pagelength: 40
-quit_reason: 3
-saveroom: 0
-skills:
-401 226
-403 84
-405 50
-408 114
-410 64
-411 230
-415 50
-416 50
-420 119
-421 149
-438 50
-440 224
-443 50
-444 71
-464 222
-465 53
-0 0
-trophy:
-1 5515 0.750000
-1 5514 1.500000
-1 5513 2.000000
-0 0 0
-tells:
-1645504466 @WEslander@W tells you, 'That would be sweet!@W'@0
-1645504482 @WEslander@W tells you, 'this black wand is yours if you want it@W'@0
-1645504509 @WEslander@W tells you, 'good call!@W'@0
-1645504523 @WEslander@W tells you, 'I know when you are@W'@0
-1645504532 @WEslander@W tells you, 'or if you wnt to sneak on some other char that is some time@W'@0
-1645504597 @WEslander@W tells you, 'well good luck! Hope you find something sweet!@W'@0
-1645504635 @WEslander@W tells you, 'yeah for sure!@W'@0
-1645594698 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1645594714 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
-1645595282 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-$
-gossips:
-1648861276 Vasel gossips, 'my characters are sometimes seeing eachothers feed'
-1648861293 Chinok gossips, 'what feed ?'
-1648861293 Vasel gossips, 'when they all check score at the same time, they all see larix's'
-1648861324 Chinok gossips, 'that's a client thing... '
-1648861329 Chinok gossips, 'it's not the mud, sorry'
-1648861329 Vasel gossips, 'and i've seen messages of seeing myself do stuff, like I'm not vasel'
-1648861369 Vasel gossips, 'hmm, straqnge. maybe it'll act right with a reconnect or a restart'
-1648861390 Vasel gossips, 'anyway, off to watch Dr horrible's singalong blog'
-1648861394 Vasel gossips, 'later guys'
-1648861396 Chinok gossips, 'that's what I'd try'
-$
-aliases:
-` track drakling
-3 ass larix
-h hide
-2 ass stenip
-1 ass vasel
-all get all all.corpse
-0

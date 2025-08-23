@@ -1,117 +1,0 @@
-name: Banax
-password: BaOPUhR6VP
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 0
-level: 7
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19662
-birthtime: 1595123365
-timeplayed: 25286
-lastlogintime: 1596158670
-host: 142.116.065.238
-height: 75
-weight: 172
-base_height: 75
-base_weight: 172
-base_size: 2
-natural_size: 2
-alignment: 121
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 61545
-hunger: 24
-thirst: 24
-lastlevel: 0
-hitpoints: 109/109
-mana: 1/0
-move: 61/132
-damroll: 3
-hitroll: 3
-strength: 92
-intelligence: 73
-wisdom: 76
-dexterity: 92
-constitution: 92
-charisma: 62
-cash: 0 18 118 105
-bank: 0 20 0 50
-experience: 148643
-quit_reason: 7
-saveroom: 61545
-skills:
-402 50
-404 120
-415 50
-416 50
-421 120
-438 56
-443 50
-444 50
-463 50
-464 50
-465 104
-466 50
-467 50
-468 50
-0 0
-trophy:
-1 61512 1.000000
-1 61508 2.000000
-1 3505 2.000000
-1 3507 2.000000
-1 3502 1.000000
-1 3503 1.000000
-1 8020 1.000000
-1 8809 1.000000
-1 8806 1.000000
-1 8803 2.000000
-1 8802 1.000000
-1 8801 1.000000
-1 8804 3.000000
-1 8800 1.000000
-1 8011 1.000000
-1 8012 1.000000
-1 3509 1.000000
-1 3500 3.000000
-1 3508 5.000000
-1 3506 2.000000
-1 3501 2.000000
-0 0 0
-tells:
-1595790168 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1595790203 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1595790231 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1595790302 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1595790374 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1595790375 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1595790377 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1595790377 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1595790378 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1596021318 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1595600095 Arakius gossips, ':D'
-1595614933 Mosawk gossips, 'hi neth and ban'
-1595615096 Chinok gossips, 'what I don't get a HI ?'
-1595615117 Yawk gossips, 'if you never leave i can never welcome you back'
-1595723041 Chinok gossips, 'hi Banax'
-1595723142 Strider gossips, 'Yo'
-1595774354 Strider gossips, 'Morning Banax'
-1595774392 Chinok gossips, 'morning all'
-1596157993 Meina gossips, 'hello!'
-1596158311 Strider gossips, 'olleh'
-$
-aliases:
-ec examine corpse
-gac get all corpse
-gbb get bread bag
-ri recite identify $1
-0

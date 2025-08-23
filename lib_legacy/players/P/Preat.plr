@@ -1,110 +1,0 @@
-name: Preat
-password: PrcBoQTNcN
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 9
-race: 0
-level: 47
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19849
-birthtime: 1614251401
-timeplayed: 693693
-lastlogintime: 1669387790
-host: 099.184.067.036
-height: 62
-weight: 132
-base_height: 62
-base_weight: 132
-base_size: 2
-natural_size: 2
-alignment: 693
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-thirst: 10
-lastlevel: 0
-hitpoints: 432/432
-mana: 220/220
-move: 122/122
-damroll: 3
-hitroll: 3
-strength: 85
-intelligence: 65
-wisdom: 70
-dexterity: 100
-constitution: 86
-charisma: 58
-cash: 27 2841 89 103
-bank: 200 3500 15100 8900
-experience: 15195011
-pagelength: 50
-quit_reason: 1
-saveroom: 3054
-skills:
-401 520
-403 62
-404 50
-405 286
-408 202
-410 234
-411 520
-415 50
-416 50
-418 51
-420 154
-421 172
-438 61
-440 520
-443 50
-444 56
-463 50
-464 520
-465 51
-477 50
-0 0
-trophy:
-1 23808 0.200000
-1 23807 0.400000
-1 23806 0.200000
-1 23805 0.400000
-1 32412 0.200000
-1 32403 0.200000
-1 2345 0.400000
-1 2341 0.800000
-0 0 0
-tells:
-1615277278 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1615277279 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1615277279 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1615277279 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1615277279 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1615409598 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1615424464 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1615488301 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1615603108 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1615619864 @WDorndle@W tells you, 'Don't hurt yourself, now!@W'@0
-$
-gossips:
-1615622150 Strider gossips, 'You can already ride (some) pets'
-1615622154 Shimono gossips, 'so it doesn't die in a really nasty fight?'
-1615622191 Strider gossips, 'maybe order it to sit a room away?'
-1615622195 Shimono gossips, 'fair'
-1615624324 Kiash gossips, 'cya all'
-1669387693 Holk gossips, 'can you name it 'Beta +' and leave it on for several years, then wipe out everyone's characters?'
-1669387715 Chinok gossips, 'If I were a dick, I would :P'
-1669387720 Chinok gossips, 'I'm not!'
-1669387754 Holk gossips, 'sorry, I'm still bitter about that one 20 years later'
-1669387763 Chinok gossips, 'you are not the only one!'
-$
-effects:
-19 3 10 28 8 0 0
-0 0 0 0 0
-aliases:
-gac get all corpse
-0

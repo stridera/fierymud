@@ -1,122 +1,0 @@
-name: Malac
-password: MaqZAOLKLp
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 10
-race: 4
-level: 65
-home: 3001
-lifeforce: 0
-composition: 0
-id: 18608
-birthtime: 1385857923
-timeplayed: 1080283
-lastlogintime: 1719022698
-host: 058.169.059.103
-height: 87
-weight: 196
-base_height: 87
-base_weight: 196
-base_size: 3
-natural_size: 3
-alignment: -712
-playerflags: gxy
-effectflags: k w 0
-prefflags: huxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3208
-lastlevel: 0
-hitpoints: 845/715
-mana: 422/422
-move: 168/168
-damroll: 5
-hitroll: 4
-strength: 96
-intelligence: 64
-wisdom: 62
-dexterity: 92
-constitution: 96
-charisma: 61
-cash: 468 4630 19959 7481
-experience: 34775785
-quit_reason: 7
-saveroom: 3208
-skills:
-401 700
-402 58
-403 118
-404 178
-410 50
-411 700
-412 50
-415 50
-416 50
-419 1000
-420 216
-421 515
-422 109
-427 1000
-428 50
-430 50
-431 50
-434 68
-438 112
-443 50
-444 109
-463 50
-464 694
-465 56
-466 131
-467 650
-468 50
-473 54
-0 0
-trophy:
-1 18550 0.500000
-1 18515 0.500000
-1 18553 1.000000
-1 18517 1.500000
-1 18520 1.000000
-1 18518 1.500000
-1 18551 2.500000
-1 18519 1.500000
-1 18507 1.500000
-1 18503 0.500000
-1 18510 0.500000
-1 49019 0.500000
-1 49014 0.500000
-1 49026 3.500000
-1 49013 1.500000
-1 49030 1.000000
-1 49018 0.500000
-1 49025 3.500000
-1 49009 0.500000
-1 49029 3.500000
-1 49020 1.000000
-0 0 0
-tells:
-1573393359 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1573399069 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1573399118 @WAndron@W tells you, 'are you leveling in cath?@W'@0
-1573399156 @WAndron@W tells you, 'oh@W'@0
-1573399204 @WAndron@W tells you, 'what quest you doing?@W'@0
-1573399272 @WAndron@W tells you, 'ahh nice, gratz!@W'@0
-1573399890 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1574257315 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1574258804 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1574774925 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1573400139 Ablio gossips, 'yeah - up to solek and velocity now'
-1573400144 Ablio gossips, 'that won't happen tonight'
-1573400152 Chinok gossips, 'ahh'
-1573400746 Moonda gossips, 'see ya all'
-1573400751 Chinok gossips, 'later'
-1573400762 Moonda gossips, 'solek and velocity ... you are going down'
-1573400771 Moonda gossips, 'sometime when I have 3 hours to play :)'
-1573400811 Moonda gossips, 'later all'
-1719022565 Discord gossips, 'Zaver: Wanna kill something?'
-1719022674 Discord gossips, 'Zaver: Need any items?'
-$

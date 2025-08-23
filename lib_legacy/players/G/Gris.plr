@@ -1,126 +1,0 @@
-name: Gris
-password: Gr1w2z1.I9
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 10
-race: 7
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 18194
-birthtime: 1331877706
-timeplayed: 513873
-lastlogintime: 1713048932
-host: 097.120.082.157
-height: 73
-weight: 244
-base_height: 73
-base_weight: 244
-base_size: 3
-natural_size: 3
-alignment: -337
-playerflags: gxyz
-effectflags: k w 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 1412/1090
-mana: 980/980
-move: 136/176
-damroll: 5
-hitroll: 4
-strength: 86
-intelligence: 68
-wisdom: 72
-dexterity: 92
-constitution: 100
-charisma: 66
-cash: 498 6443 34127 23842
-experience: 105805999
-quit_reason: 1
-saveroom: 3054
-skills:
-401 1000
-402 926
-403 190
-404 173
-410 196
-411 1000
-412 1000
-415 50
-416 50
-419 1000
-420 297
-421 360
-422 269
-427 1000
-428 50
-430 50
-431 50
-434 102
-438 264
-443 55
-444 229
-463 65
-464 1000
-465 50
-466 50
-467 50
-468 50
-473 53
-474 50
-0 0
-trophy:
-1 18504 1.000000
-1 8002 1.000000
-1 49010 1.000000
-1 49041 7.000000
-1 49038 1.000000
-1 49021 1.000000
-1 49035 1.000000
-1 49036 3.000000
-1 49034 3.000000
-1 49040 1.000000
-1 49018 1.000000
-1 49023 2.000000
-1 49014 3.000000
-1 49030 2.000000
-1 49026 6.000000
-1 49009 1.000000
-1 49013 4.000000
-1 49025 15.000000
-1 49001 1.000000
-1 49033 1.000000
-1 4009 0.250000
-0 0 0
-tells:
-1621647998 @WTithlo@W tells you, 'oops@W'@0
-1621648491 @WSomeone@W tells you, 'thats pretty sweet. both doing it and the reward@W'@0
-1621648555 @WSomeone@W tells you, 'oh thats toatlyy bad ass@W'@0
-1621648603 @WTithlo@W tells you, 'lol the main prize there@W'@0
-1621649529 @WTithlo@W tells you, 'of i was battling@W'@0
-1621649542 @WTithlo@W tells you, 'i acn see both at once@W'@0
-1621649556 @WTithlo@W tells you, 'ouch@W'@0
-1621649628 @WTithlo@W tells you, 'whats that then?@W'@0
-1621649798 @WTithlo@W tells you, 'between us we probably have 30% of the game items sread on all or characters@W'@0
-1621649815 @WTithlo@W tells you, 'oh yeah that dude@W'@0
-$
-gossips:
-1713047408 Discord gossips, 'Daedela: Haha that wasn't me'
-1713047505 Discord gossips, 'Daedela: Hehe that we have no control over'
-1713047519 Bjorn gossips, 'i should probably change to something more modern'
-1713047551 Discord gossips, 'Daedela: We've got decent integration with Mudlet, but it's not very user friendly'
-1713047606 Bjorn gossips, 'i'll check it out. i think i had that on my phone'
-1713047681 Bjorn gossips, 'oh hey i see a new area too'
-1713047682 Discord gossips, 'Daedela: I doubt that.  I don't think Mudlet has mobile support'
-1713047707 Discord gossips, 'Daedela: Yeah!  It still needs some work haha.  It's pretty chaotic'
-1713047782 Bjorn gossips, 'i'll have to check it out'
-1713048920 Kiram gossips, 'catch y'all later :)'
-$
-effects:
-136 2 -50 4 0 2097152 0
-0 0 0 0 0

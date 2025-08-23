@@ -1,178 +1,0 @@
-name: Vasel
-password: VaKMV.n0AQ
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 2
-class: 16
-race: 2
-level: 21
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20161
-birthtime: 1645332362
-timeplayed: 215017
-lastlogintime: 1651381144
-host: 069.162.244.194
-height: 36
-weight: 62
-base_height: 36
-base_weight: 62
-base_size: 1
-natural_size: 1
-alignment: -1000
-playerflags: y
-effectflags: ck 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 5572
-lastlevel: 0
-hitpoints: 176/176
-mana: 44/44
-move: 126/126
-damroll: 2
-hitroll: 4
-strength: 70
-intelligence: 89
-wisdom: 77
-dexterity: 74
-constitution: 94
-charisma: 59
-cash: 3 511 2740 1194
-experience: 1840037
-pagelength: 50
-quit_reason: 3
-saveroom: 0
-skills:
-14 1000
-15 1000
-16 1000
-18 1000
-20 1000
-21 1000
-33 1000
-43 1000
-84 1000
-85 1000
-86 1000
-87 1000
-88 1000
-89 1000
-90 1000
-131 1000
-132 1000
-133 1000
-134 1000
-206 1000
-207 1000
-235 1000
-415 51
-416 50
-421 62
-423 260
-424 260
-438 50
-443 50
-444 112
-451 145
-452 50
-453 50
-457 258
-458 149
-459 173
-462 67
-463 116
-466 190
-0 0
-trophy:
-1 4110 1.000000
-1 4108 1.500000
-1 4107 1.000000
-1 4118 0.500000
-1 4128 1.500000
-1 4116 3.000000
-1 4117 3.500000
-1 5515 0.750000
-1 5514 1.500000
-1 5513 2.000000
-1 17204 7.666668
-1 8034 0.250000
-1 8033 0.250000
-1 8032 0.250000
-1 36004 0.250000
-1 5211 0.500000
-1 5121 0.500000
-1 5122 0.500000
-1 5120 3.000000
-1 5103 3.583333
-1 5100 1.500000
-0 0 0
-tells:
-1647452275 @WLuba@W tells you, 'so i don't miss asmany@W'@0
-1647452355 @WLuba@W tells you, 'so your spell make npc speak any limit on word count?@W'@0
-1647452416 @WLuba@W tells you, 'bet theres more then a few ways to crash the mud but other then that theres not many things that react to spearch@W'@0
-1647452420 @WLuba@W tells you, 'speach@W'@0
-1647452450 @WLuba@W tells you, 'third times the charm speech@W'@0
-1647452554 @WLuba@W tells you, 'i expect its more of a cool factor gimik then a utilty spell@W'@0
-1648857808 @WLyno@W tells you, 'hope he didn't just point me at templace as a go play outside move@W'@0
-1648857828 @WLyno@W tells you, 'that database says it has prot evil@W'@0
-1648857843 @WLyno@W tells you, 'thats it@W'@0
-1648857885 @WLyno@W tells you, 'either way i'll just tell him its great and needs nerfing@W'@0
-$
-gossips:
-1648859373 Vash gossips, 'anyone know what area Cirion is in?'
-1648859401 Lyno gossips, 'the best gambling one liner i ever heard was its like trying to kill your self by flying commercial'
-1648859425 Lyno gossips, 'mini mine'
-1648859503 Vash gossips, 'thanks'
-1648861242 Chinok gossips, 'do what ?'
-1648861293 Chinok gossips, 'what feed ?'
-1648861324 Chinok gossips, 'that's a client thing... '
-1648861329 Chinok gossips, 'it's not the mud, sorry'
-1648861396 Chinok gossips, 'that's what I'd try'
-1649356951 Chinok gossips, 'hey Vasel'
-$
-mem:
-206 1 1
-88 0 2
-88 1 2
-88 1 3
-84 1 2
-88 1 3
-131 1 2
-132 1 1
-132 1 1
-132 1 2
-131 1 2
-15 0 5
-43 1 6
-14 1 6
-206 1 2
-206 1 1
-15 0 5
-15 1 7
-0 0 0
-aliases:
-33 c 'cure ser' larix
-3 ass larix
-4 c 'cure ser' lyno
-cc c 'cure crit' $*
-dp c 'dark pre' $*
-22 c 'cure ser' ketten
-11 c 'cure ser' stenip
-da c 'det al' $*
-`` o fol $*
-` gt ass
-2 ass ketten
-cl c 'cure light' $*
-all get all all.corpse
-1 ass stenip
-mem pray $*
-id recite identify $*
-vig c 'vig light' $*
-vit c 'les end' $*
-cast 'cure serious' $*
-cs cast 'cure serious' $*
-harm c 'cause light' $*
-arm c 'demonsk' $*
-0

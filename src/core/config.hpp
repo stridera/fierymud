@@ -17,6 +17,9 @@
 #include <optional>
 #include <string>
 
+// Forward declaration
+struct ServerConfig;
+
 /**
  * Modern server configuration system.
  * Loads configuration from existing FieryMUD JSON config files.
@@ -43,6 +46,9 @@ class Config {
     static Result<void> initialize_with_overrides(const std::string &config_file,
                                                   const std::optional<uint16_t> &port_override = std::nullopt,
                                                   const std::optional<std::string> &data_path_override = std::nullopt);
+
+    /** Initialize singleton from ServerConfig */
+    static Result<void> initialize_from_server_config(const ServerConfig &server_config);
 
     // Accessors for configuration values
     EntityId default_starting_room() const { return default_starting_room_; }

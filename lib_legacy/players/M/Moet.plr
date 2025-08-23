@@ -1,169 +1,0 @@
-name: Moet
-password: MofnlWP7rl
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
-sex: 1
-class: 0
-race: 2
-level: 99
-home: 3046
-lifeforce: 0
-composition: 0
-id: 16145
-birthtime: 1161376614
-timeplayed: 11910210
-lastlogintime: 1732220997
-host: 107.170.209.113
-height: 29
-weight: 78
-base_height: 29
-base_weight: 78
-base_size: 1
-natural_size: 1
-alignment: -963
-playerflags: glxyz
-effectflags: k 0 0
-prefflags: hnoxC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 105
-freezelevel: 102
-loadroom: 3054
-lastlevel: 5
-hitpoints: 1697/1598
-mana: 980/975
-move: 300/300
-damroll: 2
-hitroll: 4
-strength: 100
-intelligence: 100
-wisdom: 100
-dexterity: 100
-constitution: 100
-charisma: 100
-cash: 2040 168 858 891
-bank: 3362 27424 76556 21501
-experience: 126967199
-pagelength: 32
-clan: 1
-quit_reason: 1
-saveroom: 3054
-skills:
-2 1000
-5 1000
-7 1000
-8 1000
-10 1000
-19 1000
-20 1000
-26 1000
-29 1000
-30 1000
-31 1000
-32 1000
-37 1000
-38 1000
-39 1000
-50 1000
-52 1000
-57 1000
-62 1000
-65 50
-66 1000
-67 1000
-68 1000
-76 1000
-77 1000
-83 1000
-99 1000
-100 1000
-101 1000
-102 1000
-103 1000
-104 50
-105 1000
-106 1000
-107 1000
-108 1000
-109 1000
-110 1000
-111 1000
-112 1000
-113 50
-184 1000
-185 1000
-186 1000
-228 1000
-246 1000
-415 1000
-416 1000
-421 1000
-423 1000
-424 1000
-438 50
-443 1000
-444 1000
-447 1000
-451 1000
-452 1000
-453 1000
-454 1000
-455 1000
-456 1000
-458 1000
-459 1000
-460 1000
-462 1000
-464 1000
-0 0
-trophy:
-1 8014 1.000000
-1 8012 1.000000
-1 8015 1.000000
-1 3059 0.500000
-1 16019 1.000000
-1 16006 5.000000
-1 16018 1.000000
-1 16004 1.000000
-1 16017 1.000000
-1 16001 1.000000
-1 16016 1.000000
-1 16015 1.000000
-1 16002 4.000000
-1 16000 3.000000
-1 16007 2.000000
-1 16103 1.000000
-1 16105 2.000000
-1 16110 14.000000
-1 53304 1.000000
-1 51014 1.000000
-1 51021 1.000000
-0 0 0
-tells:
-1572643862 @WMejna@W tells you, 'ok one last round of heal spam and then i am logging to make dinner. I'm getting all elaborate tonight and making a pumpkin pasta served in the pumpkin itself, and steaks.@W'@0
-1572643880 @WMejna@W tells you, 'might have hubby buy salad on the way home.@W'@0
-1572643892 @WMejna@W tells you, 'since he's off to pick up his brother for the weekend.@W'@0
-1572644098 @WMejna@W tells you, 'ok, killing bugs first.@W'@0
-1572644280 @WMejna@W tells you, 'nice!@W'@0
-1572644284 @WMejna@W tells you, 'heheheheheh@W'@0
-1572644293 @WMejna@W tells you, 'well at least you konw what you are gonna get :D@W'@0
-1572644345 @WMejna@W tells you, 'i'm still just baffled that he thinks this is playful :D@W'@0
-1572644358 @WMejna@W tells you, 'its like, i'm actively fucking working right then - wasn't even screwing off on the mud at the time :D@W'@0
-1572644458 @WMejna@W tells you, 'yuck. those are the worst on fridays@W'@0
-$
-gossips:
-1588450943 Akiko gossips, 'Moet!'
-1588450952 Akiko gossips, 'Ahoy!'
-1591630990 Chinok gossips, 'hummmm'
-1591631045 Meina gossips, 'i saw that'
-1591631054 Meina gossips, 'but didnt see you come back'
-1591631067 Meina gossips, 'so, saw you arrive, saw you leave, didn't see you come back, saw you say hummm'
-1591631072 Chinok gossips, 'yep'
-1591631129 Chinok gossips, 'it works, .. but it works kinda strange.'
-1638504916 Porto gossips, 'ty'
-1638504956 Chinok gossips, 'damn, I don't remember him being that hard to kill!'
-$
-aliases:
-who who -w
-pray mem
-pra mem
-0

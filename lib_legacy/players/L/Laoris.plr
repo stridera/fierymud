@@ -1,145 +1,0 @@
-name: Laoris
-password: LaP39M2Osc
-currenttitle: is a cat
-description
-Breathing great clouds of poison gas from his nostrils with heaving
-sighs of his brown-scaled chest, the presence of this monstrous
-draconian beast seems to fill the vicinity with a toxic, nauseous
-odor screaming of aeons of decaying dragon flesh.  His large brown
-scales protect his body from physical harm, but a thick layer of
-rotting moss and tangled plant matter is firmly rooted across the
-bumpy arched back.  The dragon's eyes may be the most unnerving;
-one is a sharp, piercing scarlet that looks like it might burst
-with blood any moment, and the other is a dull milky white that
-seems useless as a sensory organ.  This ponderous dragon appears
-ancient--perhaps older than Caelia itself--for there seems to be
-no way for a living being to look so aged.
-~
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%rr&2&b>%_&0<%t&0>:<&0%o&0> 
-poofin: A flash of darkness consumes the area, leaving as quickly as it came.
-poofout: A flash of darkness consumes the area, leaving as quickly as it came.
-sex: 1
-class: 9
-race: 15
-level: 103
-home: 1275
-lifeforce: 1
-composition: 0
-id: 15527
-birthtime: 1139805845
-timeplayed: 39872770
-lastlogintime: 1576219229
-host: 067.175.118.184
-height: 308
-weight: 5061
-base_height: 32
-base_weight: 63
-base_size: 2
-natural_size: 5
-alignment: -993
-playerflags: glmy
-effectflags: cmntx 0 0
-prefflags: behimnorvA c
-privflags: a
-savingthrows: 0 0 0 0 0
-freezelevel: 102
-invislevel: 100
-loadroom: 1275
-lastlevel: 3
-hitpoints: 1304/1200
-mana: 100/100
-move: 1247/1247
-damroll: 0
-hitroll: 3
-strength: 100
-intelligence: 100
-wisdom: 100
-dexterity: 100
-constitution: 100
-charisma: 100
-cash: 12441 5221 16495 38441
-bank: 43 286 1793 11811
-experience: 300000006
-pagelength: 30
-logview: 40
-wiztitle: @y:3&0
-quit_reason: 6
-saveroom: 1275
-trophy:
-1 36003 1.000000
-1 5201 1.500000
-1 5211 0.500000
-1 5200 2.500000
-1 5210 0.500000
-1 3061 1.000000
-1 6905 1.000000
-2 17298 0.250000
-2 16155 0.500000
-2 13760 1.000000
-2 14476 0.750000
-1 58812 1.000000
-1 4312 9.000000
-1 48801 2.000000
-1 16003 1.000000
-1 18000 2.000000
-1 18006 1.000000
-1 18004 1.000000
-1 18002 1.000000
-1 18007 1.000000
-1 3050 1.000000
-0 0 0
-tells:
-1573843382 @WChinok@W tells you, 'well thanks for stopping by, even if I dont catch you@W'@0
-1574271471 @WChinok@W tells you, 'lol@W'@0
-1574271481 @WChinok@W tells you, 'hey-- type lastgos and lasttel@W'@0
-1574271971 @WChinok@W tells you, 'I thought so :)@W'@0
-1574272879 @WChinok@W tells you, 'hummm res quest.. in-game now@W'@0
-1574273175 @WChinok@W tells you, 'I've not seen her in a long time.. @W'@0
-1574273203 @WChinok@W tells you, 'Ive asked a few others that were friends with her, and they hadn't heard anything either@W'@0
-1574273270 @WChinok@W tells you, 'suraki, etc@W'@0
-$
-gossips:
-1574380313 Someone gossips, 'happy evil day'
-1574380320 Andron gossips, 'Thank you so much.'
-1574383367 Kilop gossips, 'ty'
-1574383572 Xianga gossips, 'bft rough lol'
-1574383706 Someone gossips, 'yep'
-1574385683 Kilop gossips, 'good night everyone'
-1574880015 Dakhod gossips, 'bbl'
-1574893814 Chinok gossips, 'or good'
-1576213685 Chinok gossips, 'well been up since 5(am) and just finished an hour worth of change work (that I hope I didn't screw up, cause I'm exhaused)'
-1576213702 Chinok gossips, 'but.. the place is yours'
-$
-aliases:
-sossip gecho @ySomeone gossips, '@$*@y'@0
-` get all corpse
-getit get all.coins all.corpse
-dump 3035
-getgem get all.gem all.corpse
-getall get all all.corpse
-necho gecho [Laoris]$*
-coins emote gives you &b&6a lot of&0 platinum coins.
-fecho echo A large marble fountain$*
-room set self room $1
-secho gecho [Someone]$*
-cloak at 1100$*
-vostat vstat obj $1
-vmstat vstat mob $1
-mload load mob $1
-oload load obj $1
-rbutter rr @bLa@Bor@bis@L spreads his @Ypeanut butter@L across the bread, evenly @Rcoating@L everything in its path!@0
-0
-grants:
-linkload Laoris 104
-reload Laoris 104
-coredump Cronax 104
-boardadmin Laoris 104
-iptables Laoris 104
-gedit Laoris 104
-grant Laoris 104
-revoke Laoris 104
-advance Laoris 104
-~
-grantgroups:
-builder Cronax 104
-~

@@ -1,146 +1,0 @@
-name: Astrid
-password: AsJihyc9ES
-currenttitle: Death is only the Beginning
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 10
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19130
-birthtime: 1486847889
-timeplayed: 1618715
-lastlogintime: 1731978350
-host: 129.222.084.164
-height: 69
-weight: 199
-base_height: 69
-base_weight: 199
-base_size: 3
-natural_size: 3
-alignment: 1000
-playerflags: gxyz
-effectflags: 0 0 0
-prefflags: ghnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-hunger: 1
-thirst: 6
-lastlevel: 0
-hitpoints: 1418/1220
-mana: 980/980
-move: 172/172
-damroll: 5
-hitroll: 4
-strength: 95
-intelligence: 62
-wisdom: 64
-dexterity: 92
-constitution: 98
-charisma: 55
-cash: 9 2025 253 280
-bank: 10000 0 0 0
-experience: 116386599
-quit_reason: 1
-saveroom: 3054
-skills:
-402 68
-404 1000
-407 1000
-411 661
-412 1000
-415 50
-416 50
-419 1000
-420 1000
-421 1000
-422 1000
-427 1000
-430 330
-431 58
-434 1000
-438 77
-441 84
-443 50
-444 50
-463 50
-464 592
-465 660
-466 801
-467 330
-468 1000
-473 55
-0 0
-trophy:
-1 11702 0.500000
-1 2806 2.000000
-1 11809 1.000000
-1 11704 0.500000
-1 11701 2.500000
-1 11703 2.000000
-1 2809 1.000000
-1 2807 1.000000
-1 2804 2.000000
-1 2802 4.000000
-1 2801 27.000000
-1 2805 4.000000
-1 2808 4.000000
-1 11710 2.500000
-1 53305 1.500000
-1 53306 1.500000
-1 48501 2.500000
-1 53303 1.500000
-1 53314 0.500000
-1 53315 1.500000
-1 53312 3.000000
-0 0 0
-tells:
-1649421132 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1649421132 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1649421133 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1649421133 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1649421134 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1649421134 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1649421134 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1649421135 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1649421135 @WAaron@W tells you, 'Sorry, I have 25 of those in stock already.@W'@0
-1649421136 @WAaron@W tells you, 'Sorry, I have 25 of those in stock already.@W'@0
-$
-gossips:
-1669299646 Chinok gossips, 'thanks for stopping by'
-1677356830 Chinok gossips, 'hey Astrid'
-1677356846 Chinok gossips, 'cool'
-1677356914 Chinok gossips, 'yeah sounded like star-link was forcing some traffic through proxy.-- telnet traffic (what is used for fiery) don't usually get pushed through one'
-1691333945 Gyy gossips, 'I wouldn't know... first time playing in 15 years :)'
-1691334011 Morris gossips, 'I played back in the 1990s started back and stopped again been out of the country'
-1691334025 Gyy gossips, 'same... started in 95 back in college'
-1691334057 Gyy gossips, 'Gy and Ry mostly... also had Ly, Ny, and Wy'
-1691334094 Gyy gossips, 'my guild was Warmacle and we had several members back in the day'
-1691334110 Gyy gossips, 'ahh yes, I remember you too... good to see you again'
-$
-aliases:
-al assist laird
-eb eat sandwich
-gs get sandwich stocking
-rm rescue morris
-rc recite green
-qp quaf potion
-fb fill barrel fountain
-tr trophy
-lc look in corpse
-dff drink from fountain
-gg get all corpse
-ss scan
-dd drink from barrel
-ga get all
-qc quaf clear
-gr get green stocking
-az assist zaver
-rr rescue risk
-gi get ivory;wear ring
-am assist morris
-0

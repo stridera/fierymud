@@ -357,6 +357,15 @@ std::shared_ptr<Room> WorldManager::get_room(EntityId room_id) const {
     return it != rooms_.end() ? it->second : nullptr;
 }
 
+std::shared_ptr<Room> WorldManager::get_first_available_room() const {
+    std::shared_lock lock(world_mutex_);
+    // Return the first available room, preferring lower-numbered rooms
+    if (!rooms_.empty()) {
+        return rooms_.begin()->second;
+    }
+    return nullptr;
+}
+
 Result<void> WorldManager::add_room(std::shared_ptr<Room> room) {
     if (!room) {
         return std::unexpected(Errors::InvalidArgument("room", "cannot be null"));

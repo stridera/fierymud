@@ -1,116 +1,0 @@
-name: Krej
-password: Krsvh4eyNh
-currenttitle: the Reasonably Brave
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 13
-race: 0
-level: 44
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19884
-birthtime: 1616029711
-timeplayed: 642674
-lastlogintime: 1623285920
-host: 071.033.129.164
-height: 72
-weight: 125
-base_height: 72
-base_weight: 125
-base_size: 2
-natural_size: 2
-alignment: 994
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 30009
-thirst: 12
-lastlevel: 0
-hitpoints: 583/539
-mana: 193/193
-move: 121/136
-damroll: 3
-hitroll: 3
-strength: 94
-intelligence: 65
-wisdom: 72
-dexterity: 83
-constitution: 95
-charisma: 58
-cash: 390 1854 8273 8834
-bank: 0 9747 26369 24265
-experience: 19790090
-quit_reason: 1
-saveroom: 30009
-skills:
-404 490
-411 50
-412 490
-415 50
-416 50
-420 357
-421 377
-422 347
-430 76
-438 138
-443 50
-444 253
-446 90
-448 1000
-449 1000
-463 50
-601 50
-602 50
-605 50
-0 0
-trophy:
-1 59040 0.200000
-1 32401 0.200000
-1 32402 0.600000
-1 32403 0.200000
-1 2337 0.200000
-1 12317 0.250000
-1 12315 0.950000
-1 12323 0.200000
-1 12320 0.650000
-1 2312 0.200000
-1 2301 0.200000
-1 39008 0.600000
-1 12007 0.400000
-1 11703 0.200000
-1 11809 0.200000
-1 8011 0.200000
-1 8023 0.200000
-1 8013 0.200000
-1 5211 1.400000
-1 5210 0.800000
-1 5200 1.600000
-0 0 0
-tells:
-1621665214 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1621665247 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1621665282 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1621665283 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1621729347 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623280761 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623280787 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623280908 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623280920 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623280936 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1623285587 Kruk gossips, 'the woooorst'
-1623285594 Tavsan gossips, 'oh hey, I just picked up a corroded wristband, do you need it?'
-1623285608 Krax gossips, 'don't believe so'
-1623285724 Krax gossips, 'ahhh I was hopping the gray scrolls of recall would be cheaper down here'
-1623285742 Felessan gossips, 'sadly no, you can just buy an unlimited quantity of them'
-1623285863 Krax gossips, 'oookie dokie'
-1623285869 Krax gossips, 'well that was a productive session'
-1623285877 Krax gossips, 'gotta cook dinner'
-1623285884 Krax gossips, 'later '
-1623285889 Cerworn gossips, 'bye!'
-$

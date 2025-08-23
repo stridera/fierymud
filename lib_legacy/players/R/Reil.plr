@@ -1,82 +1,0 @@
-name: Reil
-password: ReEaDdt7gw
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 27
-level: 1
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20266
-birthtime: 1654048321
-timeplayed: 5743
-lastlogintime: 1655135695
-host: 100.006.049.010
-height: 80
-weight: 347
-base_height: 80
-base_weight: 347
-base_size: 2
-natural_size: 2
-alignment: 0
-playerflags: gxy
-effectflags: k 0 0
-prefflags: hnoxC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 27/26
-mana: 1/0
-move: 138/138
-damroll: 3
-hitroll: 3
-strength: 83
-intelligence: 76
-wisdom: 71
-dexterity: 88
-constitution: 89
-charisma: 58
-experience: 1
-quit_reason: 1
-saveroom: 3054
-skills:
-203 1000
-402 50
-404 50
-415 50
-416 50
-421 50
-438 50
-443 50
-444 50
-454 50
-463 50
-464 50
-465 50
-466 50
-467 50
-468 50
-487 70
-0 0
-tells:
-1654051656 @WThe Combat Clerk@W tells you, 'But I'm getting ahead of myself.@W'@0
-1654051656 @WThe Combat Clerk@W tells you, 'For now, let's get you ready to share loot.@W'@0
-1654051752 @WThe Combat Clerk@W tells you, 'Grand.@W'@0
-1654051752 @WThe Combat Clerk@W tells you, 'You're ready to continue.@W'@0
-1654051757 @WThe Combat Clerk@W tells you, 'Hmmmm...@W'@0
-1654051759 @WThe Combat Clerk@W tells you, 'I see you're a fighter type.@W'@0
-1654051759 @WThe Combat Clerk@W tells you, 'You'll do best learning from the Academy's Warmaster.@W'@0
-1654051759 @WThe Combat Clerk@W tells you, 'Proceed north to her arena.@W'@0
-1654051948 @WThe Academy Recruiter@W tells you, 'Hello there!@W'@0
-1654051948 @WThe Academy Recruiter@W tells you, 'Are you here for new player training?@W'@0
-$
-gossips:
-1654048835 Chinok gossips, 'welcome Reil'
-1654049510 Chinok gossips, 'please yell if you have any questions.'
-1655134424 Chinok gossips, 'welcome back reil'
-1655135104 Chinok gossips, 'Reil, if you need any help, just gossip -- and ask'
-1655135353 Paver gossips, 'ty'
-$

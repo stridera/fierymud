@@ -1,113 +1,0 @@
-name: Arakius
-password: ArcgKQlG0h
-prompt: &2&b<&0&1%hh&0(&1&b%HH&0)&6%vv&0(&6&b%VV&0)&2&b><&0&2%aA&2&b><&0%e&2&b>%_&0<%t&0>:<&0%o&0> <%l>%
-autoinvis: 0
-sex: 1
-class: 2
-race: 11
-level: 11
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19373
-birthtime: 1531852723
-timeplayed: 314139
-lastlogintime: 1634658861
-host: 108.039.112.080
-height: 41
-weight: 120
-base_height: 41
-base_weight: 120
-base_size: 1
-natural_size: 1
-alignment: 972
-playerflags: gxy
-effectflags: fk 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3500
-lastlevel: 0
-hitpoints: 118/118
-mana: 12/10
-move: 97/102
-damroll: 3
-hitroll: 6
-strength: 78
-intelligence: 74
-wisdom: 66
-dexterity: 98
-constitution: 81
-charisma: 68
-cash: 0 31 782 64
-experience: 404084
-quit_reason: 7
-saveroom: 3500
-skills:
-401 50
-403 160
-405 50
-408 160
-409 50
-415 50
-416 50
-421 91
-438 88
-443 150
-444 160
-464 96
-465 150
-467 50
-478 50
-0 0
-trophy:
-1 16107 0.250000
-1 2001 0.200000
-1 2003 1.000000
-1 2004 0.600000
-1 2005 0.600000
-1 41013 0.400000
-1 8614 0.250000
-1 8613 0.250000
-1 8010 0.200000
-1 8000 0.400000
-1 1601 0.200000
-1 8020 0.200000
-1 7052 0.200000
-1 7053 0.200000
-1 7004 0.400000
-1 16907 0.200000
-1 16906 0.400000
-1 16902 0.400000
-1 16905 0.600000
-1 16908 1.200000
-1 16900 3.400001
-0 0 0
-tells:
-1596053616 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1632149931 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1632154259 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1632154272 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1632154316 @WBeowyn@W tells you, 'You don't actually seem to have one of those.@W'@0
-1632154381 @WBeowyn@W tells you, 'You don't actually seem to have one of those.@W'@0
-1632154385 @WBeowyn@W tells you, 'I only buy the finest steel armour.@W'@0
-1632238888 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1634311692 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1634311698 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-$
-gossips:
-1634437147 Chinok gossips, 'CONGRATZ!!!'
-1634437152 Chinok gossips, 'you little thief!'
-1634439340 Chinok gossips, 'gratz Solarius'
-1634439564 Solarius gossips, 'thanks'
-1634655792 Chinok gossips, 'welcome back'
-1634655799 Quillion gossips, 'thank you'
-1634657183 Chinok gossips, 'well good news is, you found the highlands'
-1634657806 Quillion gossips, 'i dropped all my stuff and eq before hand wand was willing to take the xp hit to be sure :P'
-1634657822 Quillion gossips, 'i prolly could have fleed and lived, but work had me distracted'
-1634657835 Chinok gossips, 'lol'
-$
-aliases:
-aq assist quillion
-k kill $1
-0

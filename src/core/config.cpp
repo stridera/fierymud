@@ -6,6 +6,7 @@
 #include "config.hpp"
 
 #include "logging.hpp"
+#include "../server/mud_server.hpp"
 
 #include <filesystem>
 #include <fmt/format.h>
@@ -92,6 +93,28 @@ Result<void> Config::initialize_with_overrides(const std::string &config_file,
     initialized_ = true;
 
     Log::info("Configuration initialized from {} with overrides", config_file);
+    return {};
+}
+
+Result<void> Config::initialize_from_server_config(const ServerConfig &server_config) {
+    Config config;
+
+    // Copy settings from ServerConfig to Config
+    config.default_starting_room_ = EntityId{server_config.default_starting_room};
+    config.port_ = static_cast<uint16_t>(server_config.port);
+    config.connection_timeout_seconds_ = static_cast<int>(server_config.connection_timeout.count());
+    config.auto_save_interval_seconds_ = static_cast<int>(server_config.auto_save_interval.count());
+    config.world_directory_ = server_config.world_directory;
+    config.player_directory_ = server_config.player_directory;
+    config.mud_name_ = server_config.mud_name;
+
+    // Keep default values for settings not in ServerConfig
+    // (starting_health_, starting_movement_, max_level_, etc.)
+
+    instance_ = std::move(config);
+    initialized_ = true;
+
+    Log::info("Configuration initialized from ServerConfig");
     return {};
 }
 

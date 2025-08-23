@@ -1,103 +1,0 @@
-name: Kias
-password: KiSJXZOenD
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 0
-level: 6
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19860
-birthtime: 1614763780
-timeplayed: 9765
-lastlogintime: 1669387640
-host: 099.184.067.036
-height: 66
-weight: 155
-base_height: 66
-base_weight: 155
-base_size: 2
-natural_size: 2
-alignment: 39
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-aggression: 20
-loadroom: 3054
-thirst: 22
-lastlevel: 0
-hitpoints: 95/89
-mana: 1/0
-move: 138/138
-damroll: 3
-hitroll: 3
-strength: 96
-intelligence: 76
-wisdom: 85
-dexterity: 92
-constitution: 96
-charisma: 66
-cash: 0 4 52 40
-experience: 97184
-quit_reason: 1
-saveroom: 3054
-skills:
-402 50
-404 51
-415 50
-416 50
-421 64
-438 50
-443 50
-444 50
-463 50
-464 50
-465 92
-466 50
-467 50
-468 50
-0 0
-trophy:
-1 8011 0.200000
-1 8001 0.400000
-1 41013 0.400000
-1 8329 0.400000
-1 8331 0.400000
-1 8330 0.600000
-1 16908 0.400000
-1 16900 0.400000
-1 8602 0.200000
-1 7001 0.200000
-1 8606 1.000000
-1 8605 0.600000
-1 8604 0.800000
-1 36003 0.400000
-1 8023 0.200000
-1 8030 0.400000
-1 8000 1.000000
-1 8020 0.200000
-1 8013 1.200000
-1 8015 1.200000
-1 8021 0.200000
-0 0 0
-tells:
-1614856275 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1614856289 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1614857888 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1614860303 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1614863742 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1614763819 Strider gossips, 'Starting fresh already, eh?'
-1614763837 Kiash gossips, 'i dont like my ranger being behind in levels'
-1614763852 Kiash gossips, 'so he is going to lead some others until he catches up :p'
-1614763868 Strider gossips, 'Have fun'
-1614763883 Kiash gossips, 'that and I want to see the evil classes :)'
-$
-aliases:
-gac get all corpse
-0

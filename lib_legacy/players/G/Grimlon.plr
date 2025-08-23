@@ -1,246 +1,0 @@
-name: Grimlon
-password: GrTPwMiP17
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 21
-race: 2
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 17107
-birthtime: 1222661468
-timeplayed: 2805189
-lastlogintime: 1622691253
-host: 024.020.004.178
-height: 35
-weight: 90
-base_height: 35
-base_weight: 90
-base_size: 1
-natural_size: 1
-alignment: -962
-playerflags: yz
-effectflags: k 0 0
-prefflags: bhnouxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 105
-freezelevel: 102
-loadroom: 3054
-lastlevel: 0
-hitpoints: 512/512
-mana: 980/980
-move: 94/100
-damroll: 2
-hitroll: 4
-strength: 70
-intelligence: 91
-wisdom: 92
-dexterity: 88
-constitution: 70
-charisma: 54
-cash: 175 1340 5435 392
-bank: 432 5685 11385 3041
-experience: 105805999
-quit_reason: 1
-saveroom: 3054
-skills:
-2 1000
-8 1000
-19 1000
-20 1000
-29 1000
-30 1000
-31 1000
-37 1000
-38 1000
-39 1000
-51 1000
-52 1000
-57 1000
-62 1000
-67 1000
-68 1000
-76 1000
-77 1000
-83 1000
-99 1000
-100 1000
-101 1000
-102 1000
-103 1000
-106 1000
-107 1000
-108 1000
-111 1000
-112 1000
-113 1000
-171 1000
-172 1000
-173 1000
-174 1000
-175 1000
-177 1000
-180 1000
-181 1000
-182 1000
-183 1000
-228 1000
-415 1000
-416 1000
-421 1000
-423 1000
-424 1000
-438 667
-443 146
-444 1000
-447 1000
-451 1000
-452 1000
-454 1000
-456 1000
-458 1000
-459 1000
-460 1000
-462 1000
-464 209
-0 0
-trophy:
-1 12307 1.000000
-1 12320 1.000000
-1 12318 1.000000
-1 12317 2.000000
-1 8513 1.000000
-1 8511 1.000000
-1 5403 1.000000
-1 5451 2.000000
-1 5404 4.000000
-1 2807 0.333333
-1 2809 0.333333
-1 2804 0.333333
-1 11704 0.333333
-1 2801 4.000000
-1 2803 0.500000
-1 2802 1.333333
-1 11703 0.500000
-1 2808 1.000000
-1 11710 1.000000
-0 0 0
-tells:
-1621473353 @WHortur@W tells you, 'not much@W'@0
-1621473369 @WHortur@W tells you, 'trying to figure out this quest but don't know what to do, lol@W'@0
-1621473400 @WHortur@W tells you, 'in this area. that forest north of anduin@W'@0
-1621473423 @WHortur@W tells you, 'anyway. what you want to do?@W'@0
-1621473478 @WHortur@W tells you, 'im guessing its not working or complete. tiny area. woman asks you to find someone locked away. you do and they throw you out of the room. killing them does nothing.@W'@0
-1621473529 @WHortur@W tells you, 'you got any characters you're working on?@W'@0
-1621645759 @WGris@W tells you, 'yo@W'@0
-1621645815 @WGris@W tells you, 'i had one on hortur@W'@0
-1621649516 @WGris@W tells you, 'or over here?@W'@0
-1621653823 @WAneki@W tells you, 'i'll check back a bit later, adios@W'@0
-$
-gossips:
-1622690979 Daedela gossips, 'it's quite a switch between the two, wow'
-1622690996 Daedela gossips, 'anyway, gonna go do that for a bit.  Get my weekly achievement done.  See ya later!'
-1622691025 Fess gossips, 'GW1 had like 7 classes, i think, but you could make your sub be any of the other class,es so you could have  a mage sub warrior or a warrior sub mage'
-1622691032 Fess gossips, 'bye'
-1622691086 Wittawat gossips, 'Warrior also good'
-1622691104 Fess gossips, 'oh, warra, hi there'
-1622691116 Wittawat gossips, 'Yup Warra/Wittawat/Sor'
-1622691126 Wittawat gossips, 'a combination of '
-1622691222 Wittawat gossips, 'i also got another warrior, Assassin, druid'
-1622691248 Fess gossips, 'how is the druid doing as a groups healer?'
-$
-mem:
-8 1 1
-8 1 1
-19 1 1
-8 1 1
-30 1 1
-30 1 1
-30 1 1
-30 1 1
-30 1 1
-19 1 1
-62 1 1
-106 1 1
-19 1 1
-175 1 1
-175 1 1
-175 1 1
-175 1 1
-175 1 1
-175 1 1
-108 1 1
-76 1 1
-76 1 1
-29 1 1
-29 1 1
-29 1 1
-108 1 1
-108 1 1
-57 1 1
-112 1 1
-30 1 1
-177 1 1
-177 1 1
-113 1 1
-177 1 1
-177 1 1
-180 1 1
-180 1 1
-8 1 1
-62 1 1
-2 1 1
-175 1 1
-108 1 1
-67 1 1
-52 1 1
-20 1 1
-20 1 1
-101 1 1
-52 1 1
-52 1 1
-52 1 1
-52 1 1
-68 1 1
-52 1 1
-68 1 1
-100 1 1
-100 1 1
-100 1 1
-99 1 1
-99 1 1
-31 1 1
-31 1 1
-31 1 1
-51 1 1
-51 1 1
-51 1 1
-20 1 1
-19 1 1
-175 1 1
-112 1 1
-99 1 1
-30 1 1
-76 1 1
-100 1 1
-39 1 1
-31 1 1
-30 1 1
-29 1 1
-68 1 1
-175 1 1
-57 1 1
-172 1 1
-57 1 1
-57 1 1
-99 1 1
-31 1 1
-68 1 1
-181 1 1
-181 1 2
-181 1 2
-180 1 1
-0 0 0

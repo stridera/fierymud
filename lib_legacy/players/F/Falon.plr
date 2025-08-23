@@ -1,166 +1,0 @@
-name: Falon
-password: FaArkAoVL6
-currenttitle: Blackstar
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 5
-race: 0
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19767
-birthtime: 1604902731
-timeplayed: 1340946
-lastlogintime: 1738665844
-host: 052.119.120.201
-height: 75
-weight: 145
-base_height: 75
-base_weight: 145
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: gxyz
-effectflags: cn 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-aggression: 1000
-loadroom: 3054
-lastlevel: 0
-hitpoints: 1743/1545
-mana: 980/980
-move: 272/272
-damroll: 3
-hitroll: 3
-strength: 100
-intelligence: 100
-wisdom: 100
-dexterity: 100
-constitution: 100
-charisma: 100
-cash: 1160 10041 47477 4
-experience: 121676898
-pagelength: 50
-quit_reason: 1
-saveroom: 3054
-skills:
-4 1000
-12 1000
-13 1000
-14 1000
-17 1000
-27 1000
-33 1000
-46 1000
-84 1000
-85 1000
-86 1000
-92 1000
-96 1000
-99 1000
-131 1000
-132 1000
-188 1000
-235 1000
-402 926
-404 864
-407 1000
-411 559
-412 1000
-415 50
-416 50
-417 320
-420 1000
-421 1000
-422 1000
-423 1000
-424 1000
-430 1000
-431 630
-434 1000
-438 920
-441 1000
-443 920
-444 932
-445 318
-450 50
-451 1000
-452 677
-457 920
-458 1000
-459 962
-460 321
-461 962
-463 101
-464 76
-465 909
-466 75
-467 50
-468 1000
-473 50
-0 0
-trophy:
-1 7051 1.000000
-1 13301 2.600000
-1 13303 4.000000
-1 48011 0.200000
-1 48012 1.200000
-1 48020 0.200000
-1 48013 0.200000
-1 48009 0.200000
-1 23800 0.200000
-1 23802 0.200000
-1 23803 0.200000
-1 23817 0.800000
-1 23812 1.200000
-1 23810 1.050000
-1 23811 0.200000
-1 23816 0.600000
-1 23818 0.400000
-1 23819 1.000000
-1 23815 0.400000
-1 23813 0.800000
-1 23804 0.200000
-0 0 0
-tells:
-1660380337 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1660461763 @WShazz@W tells you, 'Take good care of that.@W'@0
-1660713923 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1660967300 @WSomeone@W tells you, 'want to help me with the maddened Tremaen? @W'@0
-1660970899 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1702704508 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1702704510 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1708243846 @WJhanna@W tells you, 'Be certain that you treasure it.@W'@0
-1708243848 @WJhanna@W tells you, 'Be certain that you treasure it.@W'@0
-1731058589 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1731535384 Derrgon gossips, 'thanks'
-1732865454 Flynt gossips, 'your opinion. cap of the seer vs pale circlet.'
-1732865462 Flynt gossips, 'seer cap is +4 STR, +60 perception +3 focus'
-1732865464 Jranor gossips, 'Cap of the Seer'
-1732865468 Flynt gossips, 'current int / wis scores are 110 / 111 respectively'
-1732865483 Jranor gossips, 'Cap of the Seer also has permanent detect invis on it'
-1732865505 Flynt gossips, 'oh shit, didn't notice that'
-1732865641 Flynt gossips, 'the +2 int/wis loss is negligible? the extra focus is that much more valuable?'
-1732865646 Flynt gossips, 'say it didn't have detectinvis'
-1732865673 Tavsan gossips, 'I think so, but that's just me'
-1732865706 Tavsan gossips, 'as a faerie, the int/wis loss is pretty minimal if you're already over 100.  Focus is way more valuable'
-$
-aliases:
-cdg c 'dispel good' $*
-cdm c 'dispel magic' $*
-csl c 'cause light' $*
-csh c 'cause serious' $*
-cch c 'cause crit' $*
-chh c 'harm' $*
-cb c 'blindness' $*
-re rescue $*
-chw c 'unholy word'
-gat get all 2.corpse
-gac get all corpse
-ga get all
-0

@@ -1,267 +1,0 @@
-name: Yasuhiro
-password: YaCY3P5y1P
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
-sex: 0
-class: 0
-race: 9
-level: 99
-home: 3046
-lifeforce: 0
-composition: 0
-id: 13306
-birthtime: 1079607344
-timeplayed: 22421493
-lastlogintime: 1645237739
-host: 162.233.153.155
-height: 67
-weight: 129
-base_height: 67
-base_weight: 129
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: glxyz
-effectflags: k 0 0
-prefflags: hno 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 105
-loadroom: 3054
-lastlevel: 5
-hitpoints: 528/528
-mana: 100/100
-move: 97/104
-damroll: 3
-hitroll: 3
-strength: 94
-intelligence: 100
-wisdom: 94
-dexterity: 80
-constitution: 77
-charisma: 46
-cash: 79 6 8 3
-bank: 0 7500 36000 39000
-experience: 126967199
-quit_reason: 1
-saveroom: 3054
-skills:
-2 1000
-5 1000
-8 1000
-10 1000
-19 1000
-20 1000
-26 1000
-29 1000
-30 1000
-31 1000
-32 1000
-37 1000
-38 1000
-39 1000
-50 1000
-52 1000
-57 1000
-62 1000
-66 1000
-67 1000
-68 1000
-76 1000
-77 1000
-83 1000
-99 1000
-100 1000
-101 1000
-102 1000
-103 1000
-105 1000
-106 1000
-107 1000
-108 1000
-109 1000
-110 1000
-111 1000
-112 1000
-113 910
-184 1000
-185 1000
-186 1000
-228 1000
-415 177
-416 1000
-421 1000
-423 1000
-424 1000
-438 60
-443 50
-444 50
-447 921
-451 1000
-452 1000
-453 1000
-454 1000
-455 50
-456 405
-458 1000
-459 1000
-460 1000
-462 1000
-464 861
-0 0
-trophy:
-1 48020 0.066667
-1 3068 0.533333
-1 11710 0.066667
-1 3067 0.153846
-1 10040 0.316667
-1 3056 0.204762
-1 3070 0.925595
-1 3051 2.346429
-1 3055 1.960257
-1 3075 0.445833
-1 3170 0.254167
-1 3052 2.317858
-1 3050 2.210119
-1 3059 4.005952
-1 3060 4.470512
-1 3165 0.521429
-1 3161 0.508333
-1 3160 0.512500
-0 0 0
-tells:
-1574229028 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1574229047 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1642346242 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1642346243 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1642346243 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644767717 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644767717 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644767717 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644767819 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1645237565 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-$
-gossips:
-1642345623 Lokar gossips, 'HAHA Got the dumb bar to not take over my screen'
-1642345817 Morris gossips, 'nose too ?'
-1644089139 Choak gossips, 'oh boy new in game quest! :D'
-1644089180 Giaccobe gossips, 'oh I have a diabolist'
-1644089197 Tensel gossips, 'nice!'
-1644089200 Tensel gossips, 'me too but too low'
-1645133902 Daegara gossips, 'Lube Luba!'
-1645133906 Zaver gossips, 'haha'
-1645133915 Luba gossips, 'hi'
-1645237722 Astrid gossips, 'i am still trying to find a perfect eremral'
-$
-mem:
-57 1 1
-52 1 1
-52 1 1
-52 1 2
-52 1 2
-52 1 2
-52 1 2
-52 1 2
-52 1 2
-184 1 1
-185 1 1
-185 1 1
-185 1 1
-185 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-100 1 1
-110 1 1
-110 1 1
-110 1 1
-66 1 1
-66 1 1
-66 1 1
-66 1 1
-66 1 1
-66 1 1
-66 1 1
-66 1 1
-66 1 1
-62 1 2
-62 1 1
-62 1 1
-29 1 1
-29 1 1
-29 1 1
-105 1 1
-105 1 1
-106 1 1
-106 1 1
-102 1 1
-102 1 1
-99 1 1
-99 1 1
-99 1 1
-99 1 1
-19 1 1
-19 1 1
-19 1 1
-19 1 1
-19 1 1
-8 1 1
-8 1 1
-8 1 1
-8 1 1
-8 1 1
-2 1 1
-2 1 1
-108 1 1
-108 1 1
-108 1 1
-108 1 1
-111 1 2
-76 1 2
-76 1 2
-38 1 1
-38 1 1
-113 1 1
-112 1 2
-112 1 2
-113 1 2
-113 1 2
-113 1 2
-113 1 2
-2 1 2
-2 1 2
-31 0 1
-31 1 1
-31 1 2
-31 1 2
-186 1 1
-186 1 1
-52 1 2
-0 0 0
-aliases:
-ss cast 'stone' ermenegildo
-who who -where
-df drink fountain
-gcc get all.coins corpse
-ae assist ermenegildo
-gccc get all.coins 2.corpse
-lic look in corpse
-- enter well
-3 get ring; wear ring
-gc get all.coins
-ct cast ' chill touch'
-di cast 'detect invis'
-gac get all corpse
-2 open gate s
-1 unlock gate s
-gs group self
-stone cast 'stone' self
-haste cast 'haste' self
-0 cast 'stone' zaver
-ration cast 'minor creation' ration
-0

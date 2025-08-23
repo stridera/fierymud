@@ -1,103 +1,0 @@
-name: Zenhaivne
-password: ZeL8zu2LHG
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 2
-class: 0
-race: 9
-level: 5
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19981
-birthtime: 1627781823
-timeplayed: 30575
-lastlogintime: 1628120226
-host: 152.044.072.047
-height: 69
-weight: 154
-base_height: 69
-base_weight: 154
-base_size: 2
-natural_size: 2
-alignment: 795
-playerflags: gxy
-effectflags: k 0 0
-prefflags: ghnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 55715
-lastlevel: 0
-hitpoints: 44/45
-mana: 1/0
-move: 104/104
-damroll: 3
-hitroll: 3
-strength: 77
-intelligence: 93
-wisdom: 90
-dexterity: 64
-constitution: 77
-charisma: 64
-cash: 0 30 304 20
-experience: 86558
-quit_reason: 7
-saveroom: 55715
-skills:
-5 1000
-20 1000
-32 1000
-100 1000
-101 1000
-415 50
-416 50
-423 100
-424 100
-438 50
-443 50
-444 50
-447 60
-451 54
-452 86
-453 82
-459 51
-460 57
-462 50
-464 65
-0 0
-trophy:
-1 55701 0.500000
-1 55216 1.500000
-1 2001 0.500000
-1 2004 1.500000
-1 2003 0.500000
-0 0 0
-tells:
-1627949116 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1627949266 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1627949270 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1627949270 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1627949271 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1627949297 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1627949297 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1627949297 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1627949297 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1627950527 @WMalinard@W tells you, 'at the far north@W'@0
-$
-gossips:
-1627951541 Chinok gossips, 'needing any help ?'
-1627951591 Malinard gossips, 'apparently only went to get zenhaivne's stuff off here corpse'
-1627951608 Chinok gossips, 'well let me get your corpses, and maybe wait a couple more levels'
-1627951617 Malinard gossips, 'I will '
-1627951652 Chinok gossips, 'yep, sorc's get pretty weak without that'
-1627951655 Malinard gossips, 'can you walk to the other cities at our level?'
-1627951852 Malinard gossips, 'I remeber that'
-1627951875 Malinard gossips, 'have a good evening'
-1628119982 Chinok gossips, 'BTW -- the multi-play limit is 5 these days.'
-1628120026 Chinok gossips, 'yeah, it's changed '
-$
-mem:
-5 1 6
-32 1 6
-100 1 1
-0 0 0

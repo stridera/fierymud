@@ -1,130 +1,0 @@
-name: Malinard
-password: MaIGe5J7qi
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 1
-race: 3
-level: 15
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19982
-birthtime: 1627781836
-timeplayed: 162659
-lastlogintime: 1645896891
-host: 066.255.216.196
-height: 44
-weight: 181
-base_height: 44
-base_weight: 181
-base_size: 2
-natural_size: 2
-alignment: 1000
-playerflags: y
-effectflags: k 0 q
-prefflags: ghnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 25
-loadroom: 3054
-hunger: 6
-thirst: 12
-lastlevel: 0
-hitpoints: 139/124
-mana: 22/22
-move: 111/138
-damroll: 4
-hitroll: 5
-strength: 78
-intelligence: 77
-wisdom: 99
-dexterity: 64
-constitution: 83
-charisma: 66
-cash: 0 159 866 306
-bank: 0 246 0 0
-experience: 753236
-quit_reason: 1
-saveroom: 3054
-skills:
-1 1000
-3 1000
-12 1000
-13 1000
-16 1000
-18 1000
-20 1000
-21 1000
-84 1000
-85 1000
-87 1000
-88 1000
-89 1000
-206 1000
-415 50
-416 50
-423 200
-424 200
-438 124
-443 50
-444 56
-451 79
-457 200
-458 91
-459 69
-460 76
-462 50
-463 195
-466 50
-0 0
-trophy:
-1 36303 1.000000
-1 36300 4.000000
-1 36305 2.500000
-1 4104 0.500000
-1 4102 2.500000
-1 4101 1.000000
-1 16103 0.500000
-1 16111 0.500000
-1 16102 1.000000
-1 16107 1.000000
-0 0 0
-tells:
-1635007544 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
-1635007544 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
-1635007544 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
-1635008245 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1635008283 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1635008290 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
-1635008489 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1635008493 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1635008538 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1635008711 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-$
-gossips:
-1635476988 Chinok gossips, 'so far, pretty good'
-1635477736 Chinok gossips, 'hummm, can't deny the likeness of enterprise E in the new ship for prodigy'
-1635478117 Malinose gossips, 'good night'
-1635478123 Chinok gossips, 'night'
-1635974699 Zaver gossips, 'hey'
-1635974709 Malinose gossips, 'hello'
-1645894667 Vasel gossips, 'is malinard yours?'
-1645894684 Astrid gossips, 'nope'
-1645894747 Vasel gossips, 'good morning :)'
-1645894759 Astrid gossips, 'yep'
-$
-mem:
-84 1 1
-84 1 1
-84 1 2
-84 1 2
-84 1 2
-84 1 2
-85 0 5
-85 0 5
-85 0 5
-85 1 5
-85 1 5
-85 1 5
-0 0 0

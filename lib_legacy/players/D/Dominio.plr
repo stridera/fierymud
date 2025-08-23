@@ -1,112 +1,0 @@
-name: Dominio
-password: Do5RR92KQj
-currenttitle: Piz'az
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
-sex: 1
-class: 9
-race: 0
-level: 1
-home: 3038
-lifeforce: 0
-composition: 0
-id: 11378
-birthtime: 1044754390
-timeplayed: 21974965
-lastlogintime: 1645240933
-host: 162.233.153.155
-height: 74
-weight: 139
-base_height: 74
-base_weight: 139
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: clyz
-effectflags: 0 0 0
-prefflags: hno 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-freezelevel: 104
-loadroom: 3038
-hunger: 15
-thirst: 6
-lastlevel: 10
-hitpoints: 48/9
-mana: 980/0
-move: 138/138
-damroll: 3
-hitroll: 3
-strength: 98
-intelligence: 66
-wisdom: 62
-dexterity: 90
-constitution: 96
-charisma: 58
-bank: 0 6700 32800 36000
-experience: 1
-title: Piz'az
-quit_reason: 3
-saveroom: 0
-skills:
-401 1000
-403 1000
-408 1000
-410 750
-415 1000
-416 1000
-420 1000
-421 1000
-438 1000
-440 1000
-443 1000
-444 1000
-464 1000
-465 1000
-0 0
-tells:
-1572833998 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1573253358 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1573325741 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1574224273 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1574224275 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1574224275 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644764451 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1645238014 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1645238017 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1645238018 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1645240666 Morris gossips, 'Drum Rool Please'
-1645240669 Wavum gossips, '*oh we have to change this*'
-1645240673 Chinok gossips, 'ok, heard about enough of the same complaint for multiple days'
-1645240680 Chinok gossips, 'you've had it explained'
-1645240685 Chinok gossips, 'multiple time'
-1645240687 Wavum gossips, 'its dumb AF'
-1645240697 Daedela gossips, 'alright, you don't have ot put up with it'
-1645240706 Chinok gossips, 'any more? '
-1645240721 Daedela gossips, 'also, really unacceptable language there'
-1645240769 Daedela gossips, 'enjoy releveling'
-$
-aliases:
-bm backstab maid
-bl back lokari
-rr recite recall
-f gsay flee
-b back scout
-whoz who -zone
-- enter well
-gac get all corpse
-9 throat mist
-z back mist
-` back
-q assist thar
-who who -where
-lic look in corpse
-gc get all.coins
-fe follow ermenegildo
-1 drag darst u
-df drink fountain
-gccc get all.coins 2.corpse
-gcc get all.coins corpse
-gs group self
-0

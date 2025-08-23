@@ -1,134 +1,0 @@
-name: Balefore
-password: BaAlCMgVXu
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 4
-race: 0
-level: 17
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19749
-birthtime: 1604819289
-timeplayed: 76438
-lastlogintime: 1614459880
-host: 073.063.163.022
-height: 42
-weight: 187
-base_height: 42
-base_weight: 187
-base_size: 2
-natural_size: 2
-alignment: 962
-playerflags: y
-effectflags: cm 0 0
-prefflags: ghnoxC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-aggression: 100
-loadroom: 3054
-lastlevel: 0
-hitpoints: 204/215
-mana: 28/28
-move: 85/138
-damroll: 4
-hitroll: 5
-strength: 97
-intelligence: 77
-wisdom: 81
-dexterity: 74
-constitution: 83
-charisma: 84
-cash: 16 198 795 795
-experience: 1074155
-quit_reason: 1
-saveroom: 3054
-skills:
-1 1000
-3 1000
-12 1000
-13 1000
-16 1000
-402 52
-404 71
-407 50
-415 52
-416 104
-417 50
-421 117
-423 69
-424 122
-430 52
-434 58
-438 96
-443 50
-444 50
-450 50
-451 220
-457 88
-458 68
-459 67
-460 50
-463 50
-464 200
-465 214
-466 50
-468 50
-0 0
-trophy:
-1 8002 0.500000
-1 8012 0.500000
-1 8034 0.500000
-1 8000 0.333333
-1 8033 0.333333
-1 8010 0.666667
-1 8023 0.666667
-1 8021 0.666667
-1 8031 0.333333
-1 36004 0.333333
-1 36003 0.333333
-1 8030 1.000000
-0 0 0
-tells:
-1606883230 @WBeowyn@W tells you, 'I am sure it will save your life many times, come again!@W'@0
-1606883251 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1606888375 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1606888377 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1606888386 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1606888387 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1607222479 @WFelessan@W tells you, 'consent me!@W'@0
-1607236209 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1607243444 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1607243599 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-$
-gossips:
-1614458334 Vawk gossips, 'looking for a priest the darkseed and a dark cloaked woman'
-1614458344 Torranis gossips, 'Darkseed is in Twisted Forest'
-1614458360 Vawk gossips, 'in the center of the hidden area?'
-1614458365 Torranis gossips, 'I think so'
-1614458377 Torranis gossips, 'oh, no, that's the warden.  There's another hut out there'
-1614458392 Torranis gossips, 'the dark cloaked woman though... Ya got me!'
-1614458396 Vawk gossips, 'mutter i hate that area i always get turned around'
-1614458409 Torranis gossips, 'there's a hidden switch-back near the entrance'
-1614458436 Vawk gossips, 'ya room description gives you the hint right?'
-1614458442 Torranis gossips, 'Yep!'
-$
-effects:
-68 2 0 0 16777216 0 0
-0 0 0 0 0
-mem:
-3 1 1
-16 1 1
-16 1 1
-16 1 1
-1 1 4
-1 1 4
-16 1 1
-16 1 1
-16 1 1
-1 1 4
-1 1 4
-1 1 4
-1 1 4
-0 0 0

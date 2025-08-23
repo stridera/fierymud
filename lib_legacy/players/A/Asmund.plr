@@ -1,105 +1,0 @@
-name: Asmund
-password: As75HYyxMB
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 1
-race: 0
-level: 8
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19956
-birthtime: 1625685468
-timeplayed: 15118
-lastlogintime: 1733409251
-host: 073.121.199.068
-height: 65
-weight: 130
-base_height: 65
-base_weight: 130
-base_size: 2
-natural_size: 2
-alignment: 37
-playerflags: xy
-effectflags: 0 0 0
-prefflags: ghnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 15
-loadroom: 3054
-lastlevel: 0
-hitpoints: 76/76
-mana: 1/0
-move: 94/100
-damroll: 3
-hitroll: 3
-strength: 88
-intelligence: 88
-wisdom: 94
-dexterity: 70
-constitution: 68
-charisma: 54
-cash: 0 1 5 0
-experience: 159860
-quit_reason: 1
-saveroom: 3054
-skills:
-1 1000
-12 1000
-13 1000
-16 1000
-20 1000
-84 1000
-206 1000
-415 50
-416 50
-423 101
-424 91
-438 50
-443 50
-444 50
-451 52
-457 64
-458 59
-459 63
-460 56
-462 51
-463 117
-466 50
-0 0
-trophy:
-1 8030 2.000000
-0 0 0
-tells:
-1625690693 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1625690719 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1625690730 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1625690732 @WHelena@W tells you, 'I would love to give you this for free but I have rent to pay.@W'@0
-1625690785 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1625690787 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1625690791 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
-1625690970 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
-1625690976 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
-1625709415 @WLisa@W tells you, 'Feel the quality, a superior product.@W'@0
-$
-gossips:
-1625708513 Chinok gossips, 'you walk in, '
-1625708518 Chinok gossips, 'whoops :)'
-1625708936 Chinok gossips, 'we're working, busy improving things!!'
-1625708942 Daedela gossips, 'trying to at least!'
-1625708957 Daedela gossips, 'I'm just hanging out in bed hoping I didn't get COVID somehow haha'
-1625708979 Chinok gossips, 'we don't have a huge player base, but it's a labor of love'
-1625708995 Daedela gossips, 'really hoping it's just allergies for now.  I'm going to the doctor tomorrow'
-1625709217 Someone gossips, 'sorry guys, been a long day.. need some rest'
-1625709220 Someone gossips, 'night all'
-1625709222 Someone gossips, 'good night!'
-$
-aliases:
-cdm cast 'detect magic'
-ccw cast 'create water'
-ca cast 'armor'
-ccl cast 'cure light'
-ccf cast 'create food'
-cle cast 'lesser endurance'
-0

@@ -1,109 +1,0 @@
-name: Althinia
-password: AlR9GQlIr7
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 2
-class: 18
-race: 0
-level: 94
-home: 3001
-lifeforce: 0
-composition: 0
-id: 18605
-birthtime: 1385243785
-timeplayed: 477543
-lastlogintime: 1640490642
-host: 024.020.004.178
-height: 64
-weight: 131
-base_height: 64
-base_weight: 131
-base_size: 2
-natural_size: 2
-alignment: -735
-playerflags: y
-effectflags: 0 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 926/832
-mana: 883/883
-move: 144/144
-damroll: 3
-hitroll: 3
-strength: 91
-intelligence: 62
-wisdom: 62
-dexterity: 93
-constitution: 100
-charisma: 62
-cash: 758 6835 16412 10751
-bank: 1 58 335 142
-experience: 87498432
-quit_reason: 1
-saveroom: 3054
-skills:
-401 990
-403 879
-405 850
-408 990
-410 650
-411 990
-412 990
-415 50
-416 50
-420 144
-421 897
-438 261
-443 50
-444 271
-464 990
-465 60
-467 51
-472 831
-475 970
-476 835
-477 52
-478 850
-0 0
-trophy:
-1 2807 0.333333
-1 11805 1.333333
-1 11803 1.000000
-1 11809 1.666667
-1 2802 2.666667
-1 2805 0.333333
-1 2803 2.666667
-1 2809 0.666667
-1 2804 1.666667
-1 2801 9.333333
-1 11701 3.333333
-1 2806 2.000000
-1 11704 2.000000
-1 11710 4.000000
-1 11703 2.333333
-1 2808 3.333333
-1 11702 3.000000
-1 53303 1.500000
-1 53314 1.500000
-1 53315 4.500000
-1 53312 3.000000
-0 0 0
-tells:
-1596841655 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1596841670 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-$
-gossips:
-1596945507 Marik gossips, 'hmm'
-1596945548 Marik gossips, 'i dunno, i can take your kids to ice cult'
-1596945571 Marik gossips, 'one sec tho'
-1596946245 Apoc gossips, 'alright'
-1596946308 Apoc gossips, 'take your lowbies to ice?'
-1621477522 Krax gossips, 'howdy'
-1621477537 Krax gossips, 'i'm still in town, approximately'
-1640490437 Razaria gossips, 'okay'
-1640490452 Tithlo gossips, 'i think im good. thanks for the presents and the client suggestion'
-1640490462 Chinok gossips, 'glad I could help'
-$

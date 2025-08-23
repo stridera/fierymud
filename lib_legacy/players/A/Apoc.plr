@@ -1,220 +1,0 @@
-name: Apoc
-password: ApjzNAyVZh
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 20
-race: 2
-level: 78
-home: 3001
-lifeforce: 0
-composition: 0
-id: 17697
-birthtime: 1278890377
-timeplayed: 393721
-lastlogintime: 1691828336
-host: 097.120.089.234
-height: 36
-weight: 51
-base_height: 36
-base_weight: 51
-base_size: 1
-natural_size: 1
-alignment: 956
-playerflags: gxy
-effectflags: k 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 405/405
-mana: 608/608
-move: 106/106
-damroll: 2
-hitroll: 4
-strength: 75
-intelligence: 92
-wisdom: 92
-dexterity: 73
-constitution: 78
-charisma: 55
-cash: 594 4839 14625 7995
-experience: 55458319
-quit_reason: 1
-saveroom: 3054
-skills:
-2 1000
-5 1000
-19 1000
-20 1000
-26 1000
-29 1000
-31 1000
-38 1000
-39 1000
-50 1000
-52 1000
-57 1000
-62 1000
-67 1000
-68 1000
-83 1000
-99 1000
-100 1000
-101 1000
-102 1000
-103 1000
-105 1000
-107 1000
-108 1000
-112 1000
-113 1000
-157 1000
-158 1000
-159 1000
-160 1000
-161 1000
-162 1000
-163 1000
-164 1000
-165 1000
-166 1000
-168 1000
-169 1000
-170 1000
-200 1000
-220 1000
-228 1000
-415 99
-416 50
-421 298
-423 826
-424 830
-438 177
-443 50
-444 494
-447 312
-451 692
-452 643
-453 822
-455 778
-458 827
-459 407
-460 82
-462 157
-464 138
-0 0
-trophy:
-1 58413 0.250000
-1 58406 0.500000
-1 58405 1.000000
-1 58417 0.333333
-1 58411 0.333333
-1 58412 1.333333
-1 53301 4.000000
-1 53309 0.333333
-1 53310 2.000000
-1 53308 0.333333
-1 53311 1.666667
-1 53304 2.000000
-1 53302 1.333333
-1 53313 0.333333
-1 53306 1.666667
-1 53305 3.000000
-1 53303 1.333333
-1 53312 4.000000
-1 53314 5.333333
-1 53315 14.666661
-1 36003 0.500000
-0 0 0
-tells:
-1622500487 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1622502668 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623025701 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623531868 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623532114 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1623532116 @WBigby@W tells you, 'You can only hold 16.@W'@0
-1623532116 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1624497032 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1625875555 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1626742780 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1627347207 Ari gossips, 'how is your evening going?'
-1627347288 Ari gossips, 'going really well'
-1627347337 Ari gossips, 'I'm traveling at the moment.  Been in Colorado for 10 days'
-1627347343 Ari gossips, 'seeing old friends, having a grand old time!'
-1627347407 Ari gossips, 'it's fun to be back home for a bit'
-1627347414 Ari gossips, 'but I'm really ready to get back to SF'
-1627348802 Wittawat gossips, 'Hello'
-1627348822 Wittawat gossips, 'Howdy?'
-1627349061 Wittawat gossips, 'Congratz Bro'
-1627349081 Wittawat gossips, '*smile*'
-$
-mem:
-5 1 1
-5 1 1
-5 1 1
-100 1 1
-5 1 1
-5 1 1
-100 1 1
-26 1 1
-26 1 1
-220 1 1
-220 1 1
-26 1 1
-160 1 1
-105 1 1
-157 1 1
-157 1 1
-157 1 1
-200 1 2
-200 1 1
-26 1 1
-162 1 1
-162 1 1
-162 1 1
-162 1 1
-29 1 2
-19 0 2
-19 1 2
-99 1 1
-99 1 1
-159 1 1
-159 1 1
-170 1 1
-170 1 1
-170 1 1
-170 1 1
-170 1 1
-170 1 1
-57 1 1
-31 1 1
-108 1 2
-108 1 2
-52 1 1
-52 1 2
-164 1 2
-164 1 2
-164 1 1
-52 1 2
-52 1 1
-26 1 1
-162 1 1
-112 1 3
-166 1 1
-166 1 1
-166 1 1
-113 1 3
-166 1 1
-68 1 1
-100 1 2
-169 1 2
-168 1 4
-168 1 3
-168 1 3
-68 1 1
-168 1 3
-0 0 0

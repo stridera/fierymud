@@ -1,96 +1,0 @@
-name: Francel
-password: FrxXOKJb.K
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 0
-race: 0
-level: 6
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19893
-birthtime: 1618033262
-timeplayed: 36675
-lastlogintime: 1619070950
-host: 071.115.137.046
-height: 72
-weight: 172
-base_height: 72
-base_weight: 172
-base_size: 2
-natural_size: 2
-alignment: -2
-playerflags: y
-effectflags: 0 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-hunger: 24
-thirst: 24
-lastlevel: 0
-hitpoints: -15/48
-mana: 1/0
-move: 22/100
-damroll: 3
-hitroll: 3
-strength: 82
-intelligence: 97
-wisdom: 89
-dexterity: 70
-constitution: 64
-charisma: 63
-experience: 131380
-quit_reason: 10
-saveroom: 16001
-skills:
-5 1000
-20 1000
-32 1000
-100 1000
-101 1000
-415 50
-416 50
-423 114
-424 114
-438 50
-443 50
-444 50
-447 60
-451 53
-452 113
-453 63
-459 52
-460 56
-462 50
-464 77
-0 0
-tells:
-1618035851 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1618036091 @WSantiago@W tells you, 'What do you want to buy?@W'@0
-1618128118 @WShauna@W tells you, 'I don't trade in such items.@W'@0
-1618128340 @WA half-elven barkeep@W tells you, 'I don't trade in such items.@W'@0
-1619066321 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1619067123 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
-1619067128 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
-$
-gossips:
-1619064786 Krej gossips, 'nigh!'
-1619066005 Krej gossips, 'ty'
-1619066013 Krej gossips, 'actually just gained a level back I lost earlier today'
-1619066015 Krej gossips, 'lol'
-1619066455 Krej gossips, 'alright that's it for tonight I think'
-1619066466 Krej gossips, 'just wanted to get that level back'
-1619066475 Krej gossips, 'how things going for you? '
-1619066493 Krej gossips, 'nice'
-1619066542 Krej gossips, 'in a level or two you might not be so fragile I can escort you somewhere a little more exciting'
-1619066557 Krej gossips, 'see you around'
-$
-mem:
-5 0 6
-32 0 6
-32 0 6
-32 0 6
-32 0 6
-0 0 0

@@ -1,111 +1,0 @@
-name: Lanik
-password: LaKeMN5x0Y
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b><&0&2%aA&2&b><&0%e&2&b><&0%dc&2&b>%_&0<%t&0>:<&0%o&0>
-autoinvis: 0
-sex: 2
-class: 13
-race: 11
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20166
-birthtime: 1645398632
-timeplayed: 1140359
-lastlogintime: 1665907734
-host: 208.093.179.103
-height: 39
-weight: 132
-base_height: 39
-base_weight: 132
-base_size: 1
-natural_size: 1
-alignment: 852
-playerflags: gxyz
-effectflags: fk 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-hunger: 14
-thirst: 4
-lastlevel: 0
-hitpoints: 517/1084
-mana: 980/980
-move: 128/128
-damroll: 3
-hitroll: 6
-strength: 94
-intelligence: 54
-wisdom: 64
-dexterity: 97
-constitution: 100
-charisma: 55
-cash: 1425 14856 67741 1181
-experience: 136220338
-pagelength: 44
-quit_reason: 1
-saveroom: 3054
-skills:
-404 593
-411 602
-412 1000
-414 50
-415 53
-416 400
-420 1000
-421 1000
-422 1000
-430 1000
-438 50
-443 540
-444 776
-446 1000
-448 1000
-449 1000
-463 50
-475 121
-601 50
-602 50
-603 50
-604 50
-605 50
-606 50
-608 50
-0 0
-tells:
-1665034696 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665220432 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665220438 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665220438 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665220438 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665220447 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665220465 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665220466 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665220467 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665220468 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1665650426 Daedela gossips, 'yes.  yes it will.  There are a few of each element in the game right now.  I replaced the spells on the more useless potions with some of these new ones.  I'll be making more formal potions in the next few days'
-1665650447 Daedela gossips, 'some will be for sale, some will be questable'
-1665650463 Daedela gossips, 'I'm definitely going to add them as rewards to the Mystwatch quest'
-1665650864 The Wraith of the KingPriest shouts, 'Come to me my guardians!  We have souls to claim!'
-1665806611 Mersh gossips, 'need a res?'
-1665806626 Lufa gossips, 'got it last week'
-1665806629 Mersh gossips, 'nice!'
-1665807016 Lufa gossips, 'hey choak you got a bracer of loong kicking around in a bag'
-1665807034 Mersh gossips, 'Let me check'
-1665807045 Lufa gossips, 'no worrys if not going to put it on my priest so it can wait for the next reset'
-1665807063 Eslander gossips, 'yeah I got a couple :D'
-1665807068 Eslander gossips, 'need some?'
-$
-aliases:
-y ass laird
-combat-need3 a spiked mace of the 3rd Eldorian Guard for some pearl dust.
-combat-need2 a robe of the 3rd Eldorian Guard for some aquamarine dust
-combat-need a crystal for some citrine dust
-gac get all all.corpse
-gax g all.coins all.corpse
-id recite identify $*
-lairdsub is name of triggers
-0

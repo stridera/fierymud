@@ -1,127 +1,0 @@
-name: Chiron
-password: Chb1UZ6BQ9
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 9
-race: 0
-level: 1
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19483
-birthtime: 1569349825
-timeplayed: 847139
-lastlogintime: 1645240928
-host: 066.169.084.140
-height: 60
-weight: 179
-base_height: 60
-base_weight: 179
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: cyz
-effectflags: 0 0 0
-prefflags: hno 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-freezelevel: 104
-loadroom: 3001
-badpasswords: 6
-lastlevel: 0
-hitpoints: 30/-51
-mana: 980/0
-move: 138/138
-damroll: 3
-hitroll: 3
-strength: 91
-intelligence: 58
-wisdom: 77
-dexterity: 91
-constitution: 96
-charisma: 52
-cash: 118 6781 37226 5254
-experience: 1
-quit_reason: 3
-saveroom: 0
-skills:
-401 1000
-403 1000
-408 1000
-415 1000
-416 1000
-421 1000
-438 1000
-440 1000
-443 1000
-444 1000
-463 50
-464 1000
-465 1000
-0 0
-trophy:
-1 23817 0.285714
-1 23810 0.428571
-1 23812 0.285714
-1 23811 0.142857
-1 23818 0.142857
-1 23816 0.428571
-1 23813 0.571429
-1 23819 0.428571
-1 23804 0.142857
-1 23821 0.142857
-1 23820 0.142857
-1 23814 0.428571
-1 23809 0.285714
-1 23808 0.938095
-1 23806 1.042857
-1 23807 0.866667
-1 23805 0.976191
-0 0 0
-tells:
-1603735534 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1625927750 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1625927751 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644764503 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1644765748 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644793537 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1645156274 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1645156275 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1645156276 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1645240244 @WZaver@W tells you, 'haha thought it was mm for some reason@W'@0
-$
-gossips:
-1645240653 Luba gossips, 'well thats not normal'
-1645240666 Morris gossips, 'Drum Rool Please'
-1645240669 Wavum gossips, '*oh we have to change this*'
-1645240673 Chinok gossips, 'ok, heard about enough of the same complaint for multiple days'
-1645240680 Chinok gossips, 'you've had it explained'
-1645240685 Chinok gossips, 'multiple time'
-1645240687 Wavum gossips, 'its dumb AF'
-1645240697 Daedela gossips, 'alright, you don't have ot put up with it'
-1645240706 Chinok gossips, 'any more? '
-1645240721 Daedela gossips, 'also, really unacceptable language there'
-1645240769 Daedela gossips, 'enjoy releveling'
-$
-aliases:
-df drink fountain
-who who -where
-gccc get all.coin 2.corpse
-gss group self
-bc back shield
-bw back woman
-bm back man
-bb back beast
-bl back lizard
-gskbb group self kill bile
-gskc group self kill child
-gskw group self kill woman
-gskm group self kill man
-lic look in corpse
-- enter well
-as assist smrt
-gc get all.coins
-gcc get all.coins corpse
-gac get all corpse
-0

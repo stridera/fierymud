@@ -1,87 +1,0 @@
-name: Zxnatl
-password: Zx5noFL0M0
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 18
-race: 0
-level: 11
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19596
-birthtime: 1589004411
-timeplayed: 104026
-lastlogintime: 1589763707
-host: 174.245.242.187
-height: 68
-weight: 122
-base_height: 68
-base_weight: 122
-base_size: 2
-natural_size: 2
-alignment: 1000
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-hunger: 20
-thirst: 16
-lastlevel: 0
-hitpoints: 57/129
-mana: 12/12
-move: 101/124
-damroll: 3
-hitroll: 3
-strength: 86
-intelligence: 63
-wisdom: 64
-dexterity: 98
-constitution: 87
-charisma: 63
-cash: 0 0 49 6
-bank: 0 100 600 0
-experience: 400974
-quit_reason: 1
-saveroom: 3054
-skills:
-401 50
-403 51
-405 50
-408 50
-415 50
-416 50
-421 75
-438 50
-443 50
-444 50
-464 154
-465 50
-467 50
-0 0
-tells:
-1589699938 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1589702573 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1589702611 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1589703299 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1589703302 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1589733631 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1589735496 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1589758041 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1589760873 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1589763602 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1589759358 Shriekback gossips, 'same here'
-1589759359 Chinok gossips, 'ugh, sorry Davar, those suck'
-1589760794 Emawk gossips, 'congrats'
-1589760806 Zixel gossips, 'thnks'
-1589760823 Emawk gossips, 'davar is on triggers if you need moonwells'
-1589760825 Chinok gossips, 'good job Z guys'
-1589760839 Shriekback gossips, 'cool, thanks'
-1589761183 Emawk gossips, 'need to figure out a new mask light and belt for my self any thoughts?'
-1589761203 Emawk gossips, 'hp and ac are my main goals'
-1589761269 Chinok gossips, 'mask of duplicity, mask of deception, ,mask of human skin, maks of imanhotep'
-$

@@ -1,142 +1,0 @@
-name: Larix
-password: LaKeMN5x0Y
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 22
-race: 30
-level: 14
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20200
-birthtime: 1647199196
-timeplayed: 59367
-lastlogintime: 1648861436
-host: 069.162.244.194
-height: 72
-weight: 220
-base_height: 72
-base_weight: 220
-base_size: 2
-natural_size: 2
-alignment: -406
-playerflags: gxy
-effectflags: k 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 5572
-lastlevel: 0
-hitpoints: 101/87
-mana: 16/19
-move: 148/148
-damroll: 3
-hitroll: 3
-strength: 64
-intelligence: 88
-wisdom: 88
-dexterity: 66
-constitution: 96
-charisma: 63
-cash: 6 473 1919 1939
-experience: 737029
-pagelength: 50
-quit_reason: 7
-saveroom: 5572
-skills:
-8 1000
-19 1000
-20 1000
-31 1000
-32 1000
-41 1000
-158 1000
-202 1000
-216 1000
-401 163
-415 50
-416 50
-423 180
-424 180
-438 50
-443 50
-444 75
-447 96
-451 73
-452 180
-454 59
-456 50
-460 55
-462 56
-464 101
-478 50
-489 66
-0 0
-trophy:
-1 5515 0.750000
-1 5514 1.500000
-1 5513 2.000000
-1 17204 7.666668
-1 8034 0.250000
-1 8012 0.333333
-1 8033 0.250000
-1 8032 0.250000
-1 8031 0.333333
-1 36004 0.250000
-1 5211 0.500000
-1 5121 0.500000
-1 5122 0.500000
-1 5120 3.000000
-1 5103 3.583333
-1 5100 1.500000
-1 5112 1.750000
-1 5101 2.250000
-1 5104 5.000000
-1 5102 3.500000
-1 5484 0.250000
-0 0 0
-tells:
-1647207201 @WThe blacksmith@W tells you, 'Hello traveler, I was wondering if you had seen a dwarven boy heading this way?@W'@0
-1647207201 @WThe blacksmith@W tells you, 'My supplies are late, they should have been here a day ago.@W'@0
-1647207201 @WThe blacksmith@W tells you, 'Doren is never late, I wish i could go looking for him.@W'@0
-1647207201 @WThe blacksmith@W tells you, 'I fear something has happened to him, will you go find him?@W'@0
-$
-gossips:
-1648861276 Vasel gossips, 'my characters are sometimes seeing eachothers feed'
-1648861293 Chinok gossips, 'what feed ?'
-1648861293 Vasel gossips, 'when they all check score at the same time, they all see larix's'
-1648861324 Chinok gossips, 'that's a client thing... '
-1648861329 Chinok gossips, 'it's not the mud, sorry'
-1648861329 Vasel gossips, 'and i've seen messages of seeing myself do stuff, like I'm not vasel'
-1648861369 Vasel gossips, 'hmm, straqnge. maybe it'll act right with a reconnect or a restart'
-1648861390 Vasel gossips, 'anyway, off to watch Dr horrible's singalong blog'
-1648861394 Vasel gossips, 'later guys'
-1648861396 Chinok gossips, 'that's what I'd try'
-$
-mem:
-32 1 2
-32 1 2
-32 1 2
-32 1 2
-32 1 2
-32 1 2
-41 1 3
-158 1 7
-8 1 6
-216 1 7
-8 1 6
-31 1 6
-0 0 0
-aliases:
-light c 'magic torch' $*
-` order followers $*
-ph c 'phantas' $*
-mm c 'magic mis' $*
-all get all all.corpse
-br breathe gas
-3 ass ketten
-2 ass stenip
-1 ass vasel
-ch c 'chill' $*
-0

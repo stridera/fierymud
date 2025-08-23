@@ -1,2429 +1,0 @@
-#48901
-The Keep Entrance~
-   The winds here are tempestuous, on this short walkway.  You barely keep your
-balance as you struggle to its end.  Once there, you stare in awe at the huge
-double gates that guard this imposing citadel.  The keep itself is the size of
-a city, with stone walls that stretch toward the sky.  The hinges of the gates
-are the size of a man's forearm, made of some bronze-colored material.  Mists
-swirl around the top of the keep's pure white spires; you see lightning crash
-above your head, though sunshine also spills to the ground.  Statues of
-gargoyles and winged angels adorn every available cornice and balustrade.  
-Inside here, Lokari, God of the Moonless Night, makes his home.    
-   Do you dare enter Lokari's Keep alone? Do you dare enter it with a
-pack of friends? You thought you were brave enough, but now...
-~
-489 4 1
-D0
-A hall floored in pure white alabaster goes to the north.
-~
-~
-0 -1 48902
-E
-gate gates~
-The gates are an indication of the keep itself-- huge, imposing,
-metal-studded and metal-laced through wood so hard you can't scratch 
-it with anything you have. You can open these gates, you think, if you 
-have a lot of help. Most likely your adventure through the Keep will be 
-very similar.
-~
-S
-#48902
-The Alabaster Hall~
-   You find yourself standing in the center of a beautiful white hall.  The
-floor is polished alabaster that reflects your own image up at you.  The walls
-are carved friezes of the same stone, images you can't comprehend: strange
-people, fantastic beasts, machines of enormous size and unknowable function.  
-The images scroll all around you, except for the archway to the south and the
-doors to the east and west.    
-~
-489 8 0
-D1
-An alabaster door carved with beautiful men and women stands to the 
-east.
-~
-door
-~
-1 -1 48907
-D2
-The Keep gates stand a short way to the south.
-~
-~
-0 -1 48901
-D3
-A beautiful door made of cast gold, carved fantastically, stands here.
-~
-door
-~
-1 -1 48927
-S
-#48903
-Timun's Tragic End~
-   This dark, imposing room is lit by a single red flame scintillating from a
-large red gemstone suspended from the room's ceiling.  The haunting shadows
-illuminate a black stone coffin in the room's center.  The dancing red light
-barely illuminates a tapestry against the far wall.  This, and the flame, are
-all that can be seen in the room.  An archway leads northward.    
-~
-489 524 0
-D0
-You see a dark hall to the north.
-~
-~
-0 -1 48904
-S
-#48904
-The Hall of Deaths~
-   This long, dark hall is barely illumined by tall, standing torches
-set into each corner. Once one adjusts to the light level, one can
-see the various horrible murals carved and painted on the walls. The
-artistry displayed is incredible, but the fiendish imagination is
-no less than diabolical. Battles, sacrifices of both humans and objects,
-and twisted renditions of Lokari himself in victory over the wreckage 
-of vast hosts lie on every wall. Scenes of torture lie near the archways
-themselves, each more detailed and anatomically correct than the last.
-   Archways lead to the east, south, and west. A large statue stands
-against the north wall.
-~
-489 524 0
-D0
-~
-statue~
-2 48913 48913
-D1
-A dark hall stands to the east.
-~
-~
-0 -1 48906
-D2
-A dark hall stands to the south.
-~
-~
-0 -1 48903
-D3
-A dark hall stands to the west.
-~
-~
-0 -1 48905
-D5
-The floor looks quite plain and unremarkable.
-~
-trapdoor~
-1 -1 48972
-E
-floor trapdoor~
-The trapdoor set into the floor is made of thick, ancient oak wood. 
-~
-E
-statue~
-The statue is of a man in terrible agony, a little hunched over from some 
-great pain in his belly. He holds his arms to his stomach, as if to keep 
-his innards inside it. He looks upward, his mouth opened in a soundless, 
-eternal scream. On his forehead is written, terrible in its simplicity,
-
-                    MEZU, THE FIRST GOD TO FALL
- 
-Those who look very closely at this statue will see the pentagram-shaped
-indentation in its side.
-~
-S
-#48905
-Rhalean's Cruel Finish~
-   Murals all around this almost-dark room show a tall, ordinarily- serene
-goddess shackled screaming to one bowl of an antique-looking balance.  Water
-drips slowly into the other bowl.  The goddess' eyes are fixed above her, to
-the giant sword waiting to impale her helpless form as her end of the scales
-tip upward.  The Goddess of Justice will die by her own scales of justice.  A
-stone coffin in the center of the room is carved with the scales of justice,
-but the scales in the carvings are broken into hundreds of pieces.    
-~
-489 524 0
-D1
-You see a dark hall to the east.
-~
-~
-0 -1 48904
-S
-#48906
-Azkrael's Brutal Demise~
-   This almost-dark chamber is large, and painted in a background of
-dark green murals of forests. The scent of rotting meat is strong in
-the air, and those who seek its source quickly find that it is coming
-from the middle of the room, from a marble pool. A human-looking woman
-is crucified to a tree growing from the pool. Her face reveals the agony
-of her last moments, and her body is almost completely destroyed by
-the fangs and claws of wild beasts. Her pitifully mauled form glows just
-enough to illuminate the murals of the chamber. The Goddess of the Hunt
-was destroyed by her own hounds, in this vision.
-   A stone coffin is barely visible through the waters of the pool at 
-the figure's feet. 
-~
-489 524 0
-D3
-You see a dark hall to the west.
-~
-~
-0 -1 48904
-D5
-The central sarcophogus is lidded with a thick plate of stone.
-~
-plate stone~
-1 -1 48918
-E
-coffin sarcophogus~
-The coffin is made of stone. It lies at the bottom of a shallow pool of 
-water that just barely covers its lid.
-~
-S
-#48907
-The Alabaster Hall~
-   Your footsteps echo on the milk-white floor.  All around you you see
-evidence that you are indeed in the home of a god-- the elegant murals on the
-walls, the statues standing along the walls, the finials set into the corners
-of the ceilings, the mosaic floor made of all kinds of different shades of
-white formed into subtle patterns.  But every once in a while you see something
-that makes you shiver-- some of the statues look like they're in agony.  One of
-the mural scenes on the walls depicts a tall, powerful-looking man gesturing
-fire down upon a walled city.  One of the murals is a pentagram.  Just every
-once in a while, you notice something that goes against your preconception of
-what a god's home should look like.    
-~
-489 8 0
-D1
-You see a staircase made of gleaming alabaster to the east.
-~
-~
-0 -1 48908
-D3
-A large white alabaster door, carved with beautiful men and women and 
-reinforced with gold, stands here. 
-~
-door
-~
-1 -1 48902
-S
-#48908
-The Alabaster Stairs~
-   The elegant milk-white staircase arches above your head to unknown glories
-and perils.  The steps are inlaid with tiny chips of differently-shaded
-alabaster in patterns.  One step is in the patterns of waves, another in little
-starbursts, and so on, all the way up.    
-~
-489 8 0
-D0
-A bit of loose paneling is evident upon closer examination.
-~
-paneling~
-1 -1 48909
-D3
-The alabaster hall runs off to the west.
-~
-~
-0 -1 48907
-D4
-Bright white sunlight pours down on you from the white carved stairs.
-~
-~
-0 -1 48931
-S
-#48909
-The Chamber of Exaltation~
-   A single table in the center of the room.  A single golden vase on the
-table.  A single cream-colored rose in the vase, its leaves green and vibrant
-against the otherwise almost-white room.  You look around in wonder-- the
-simple beauty of this room is taking your breath away!  The sunlight pours in
-from the east.  Tapestries line the walls to the north, in a great hall.  A
-doorway to the south, carved gold and alabaster, completes the image.    
-~
-489 12 0
-D0
-You hear silence to the north.
-~
-~
-0 -1 48910
-D1
-A garden path goes off to the east.
-~
-~
-0 -1 48914
-D2
-A wooden door with no doorknob stands here.
-~
-door wooden panel~
-1 -1 48908
-S
-#48910
-A Velvet Lined Hallway~
-   Thick velvet tapestries line both sides of this long hallway.  Your fingers,
-brushing against the velvet, don't stir up any dust, although you have the
-clear impression that these curtains have been here for a long time.  When you
-push on the curtains you feel hard stone beyond them.  The tapestry is woven
-into beautiful patterns, each step forward more fascinating than the last.    
-~
-489 8 0
-D0
-The hall continues to the north.
-~
-~
-0 -1 48911
-D2
-A beautiful chamber stands to the south.
-~
-~
-0 -1 48909
-E
-tapestry curtain velvet~
-The velvet is woven into patterns: Suns, moons, planets, and on each 
-wall, a beautiful, well-muscled man in a flowing red cloak, his hands 
-outstretched through his private cosmos, swirls of light shooting from 
-his fingertips. But his eyes look very cruel. You understand at a glance 
-that this must depict Lokari, and you're not sure you want to see him 
-now.
-~
-S
-#48911
-A Velvet Lined Hallway~
-   The hall's floor is shiny, from ages of being polished over and over again.
-The click of your shoes is muffled by the thick velvet curtains along each
-wall, though.  The beautiful images in the velvet tapestries hold your
-attention as you walk through.    
-~
-489 8 0
-D2
-The hall continues to the south.
-~
-~
-0 -1 48910
-D3
-At first glance you don't notice anything out of the ordinary.
-~
-tapestry~
-2 48912 48912
-E
-tapestry curtain velvet~
-The velvet tapestries depict a powerful godlike man who spins planets 
-from thin air and sets them in motion, whirling amidst suns and stars. 
-The entire effect is unearthly, and intended to be so. You don't even 
-understand everything you see here. But when you push on one of the 
-tapestries, to the west, you can feel it give a little. You do notice a 
-tiny hole in the tapestry-- a keyhole, perhaps, but whatever key opens it 
-would be so thin it wouldn't resemble a key at all.
-~
-S
-#48912
-The Contemplation Chamber~
-   It's quiet in here.  Even your soft breathing echoes loudly in this dimly
-lit chamber.  A torchiere lit with a red flame burns at a low level, throwing
-dancing shadows onto the walls.  A cushioned footstool just low enough to kneel
-on stands before a short wooden railing.  Perhaps it's some kind of prayer pew.
-Before the railing, at eye level to whomever knelt at the footstool and
-railing, is a footstool cushioned in velvet.  It doesn't look like it's been
-used for very long-- the velvet isn't worn anywhere you can see.  That, or
-Lokari, the owner of this Keep, doesn't feel the need to kneel in supplication
-terribly often.    
-~
-489 8 0
-D1
-The thick red curtain hides the back of a tapestry.
-~
-tapestry~
-2 48912 48911
-D3
-An evil-seeming altar stands to the west.
-~
-~
-0 -1 48913
-E
-tapestry curtain~
-The curtain reveals the back of a tapestry -- rough and nubby from
-weaving. Near its edge, you detect a hole in the wall -- a very small 
-hole. It is decorated, making you suspect that it is supposed to be 
-there. But if it is a keyhole, the key must be very long and thin indeed.
-~
-S
-#48913
-The Altar of Revenge~
-   This large room is walled and floored entirely in black marble.
-An ebon altar stands at the northern end of the room. Black glass urns
-stand upright on the top of the altar, with smoke issuing from each
-one's narrow neck. The smoke rises eerily to the ceiling, which is black
-tile held in by weirdly warped branches of some kind of black tree; the
-branches wend their way across the entire ceiling in a grotesque pattern.
-Horrifying friezes are carved into all walls of the room, all depicting
-torture and pain.
-   The most obvious way out of here is a handsomely-appointed and much
-less intimidating chamber to the east, visible through an archway.
-~
-489 8 0
-D1
-You see a quiet chamber to the east.
-~
-~
-0 -1 48912
-D2
-The horrible carved frieze has a pentagram-shaped flat indention in its 
-surface.
-~
-frieze carved~
-2 48913 48904
-D5
-You detect a dusty circle in the floor.
-~
-circle~
-1 -1 48960
-E
-frieze carved wall walls~
-The friezes line the walls. They're intricate carvings of people, demons, 
-beasts, horrors you are convinced came out of your worst nightmares. The 
-carving is all the more remarkable because it's done in the deep black 
-wood of the rhell tree, which is almost impossible to carve well. But 
-then, as you look, the southern wall seems to be a little different...
-~
-E
-altar~
-It is made of black marble, simple and elegant, being a simple 
-rectangular shape with rimmed edges. A few things are set on its
-surface in what appear to be deliberate placings -- a stone knife
-with a few flecks of dried blood on its edge, and an elegant silver
-chalice set with gems and runes. No mortal may touch either of these;
-any attempts will burn the hands badly.
-~
-S
-#48914
-A Garden Path~
-   You walk in a dew-covered garden path.  The path is made of little white
-stones pressed into the moist, lush earth of the garden itself.  Even though
-you know, rationally, that you're inside the Keep, you can't believe how
-convincing this path is.  You honestly feel like you're inside a beautiful
-palace garden.  Above your head, birds sing.  To the north, you see a pool of
-some kind.  To the west, glass doors open to the Keep's interior.  To the east,
-the garden continues, passing near a tall, narrow stone structure about your
-height.    
-~
-489 0 1
-D0
-You see a pleasant little pool to the north.
-~
-~
-0 -1 48926
-D1
-A short structure of some kind stands to the east.
-~
-~
-0 -1 48915
-D3
-You can re-enter the Keep to the west.
-~
-~
-0 -1 48909
-D4
-If you can fly, you can take the high road!
-~
-~
-0 -1 48953
-S
-#48915
-The Dovecote~
-   Most nobles in ancient times kept a dovecote to raise pigeons in.  This one
-is a magnificent example of its genre: a very tall almost-building made of
-stone, with a small gate at its bottom and hundreds of holes a bird could fly
-into.  It smells vaguely of soap and feathers, as if someone has been trying
-valiantly to keep it clean.  The flutter of hundreds of wings is audible inside
-it.  You could just about fit into the little double doors, if you tried.  You
-can go west, to a beautiful garden path, or to the north, to a wishing well, or
-south, further along the path.  East of you, the sunshine falls full across a
-beautiful patio of some sort.    
-~
-489 0 1
-D0
-You see a well to the north.
-~
-~
-0 -1 48916
-D1
-You see a beautiful veranda to the east.
-~
-~
-0 -1 48917
-D2
-You see a garden path to the south.
-~
-~
-0 -1 48921
-D3
-The path continues to the west. Beyond that, you see the Keep.
-~
-~
-0 -1 48914
-D4
-If you can fly, you can take to the air!
-~
-~
-0 -1 48952
-S
-#48916
-The Wishing Well~
-   As you come into this part of the garden, you feel care and worry lifting
-from you like old, worn garments.  A beautiful, innocent-seeming well stands
-nearby, with the path going up to it and circling around it.  It's a low well,
-low enough that you can put your hands onto its edge and look down into its
-cool watery depths.  You see coins glinting below, but you can't reach in to
-get the coins.  The well is made of alabaster and marble, with an arched roof
-above it kept up by marble pillars carved with angels.  You resist the urge to
-toss a coin in.  To the south, you see a stone structure of some sort.  To the
-north, a large glass building sparkles in the sunshine.    
-~
-489 0 1
-D0
-A clear glass wall, fogged with steam, has a door set into its side.
-~
-door~
-1 -1 48924
-D2
-A short structure stands to the south.
-~
-~
-0 -1 48915
-D4
-If you can fly, you can take to the air here.
-~
-~
-0 -1 48949
-S
-#48917
-The Crest~
-   The vista here is glorious!  You step lightly from the garden path of the
-lush green garden onto a white-tiled veranda that juts out from the mountain's
-steep side.  You could have a ballroom dance on it, if you wished.  A low stone
-wall rises along the circular curve of the veranda.  Angels carved of white
-marble perch along the wall at intervals.  You approach the wall, careful lest
-the footing be insecure-- though it seems quite solid-- and gasp with wonder as
-you look across the most breathtaking panorama you've ever seen.  The mountains
-stretch before you, shrouded in sweet white mist, while wildwinds sweep across
-you, tickling your nose with the scent of clean mountain air and some kind of
-flower.  The dizzying heights seem to pull you into a neverending mental
-freefall.  You step back a little, awed and exhausted.  You can go north or
-south to see the Hanging Gardens, or west through the garden again.    
-~
-489 0 1
-D0
-Magnificent hanging gardens spread northward from here.
-~
-~
-0 -1 48923
-D2
-Magnificent hanging gardens spread southward from here.
-~
-~
-0 -1 48922
-D3
-A short structure stands to the west.
-~
-~
-0 -1 48915
-D4
-If you can fly, you can take to the air above you.
-~
-~
-0 -1 48951
-S
-#48918
-The Blackness~
-   You spin, flailing your arms as you struggle to get re-oriented.  You can
-see absolutely nothing in here, not even your hands in front of your face when
-you raise them, incredulous.  There is no way up.  You can only go further
-down.    
-~
-489 13 9
-D5
-You can't see a thing below you, but it's the only way you can go.
-~
-~
-0 -1 48919
-S
-#48919
-The Blackness~
-   You spin downwards through the longest pit you've ever seen.  You can't even
-see your own hands in front of your face!  You flip head over heels, your
-equilibrium gone, and your mounting sense of dread increasing with every foot
-you fall.    
-~
-489 13 9
-D5
-You can't see a thing below you, but it's the only way you can go.
-~
-~
-0 -1 48920
-S
-#48920
-A Foul Pit~
-   This wretched prison hole is utterly black, with fetid air that
-assaults the nostrils. The walls are coated in a horrible slime that
-might once have been mildew. Worst of all, from the darkness, the
-bodies of those who fell before can be made out, still rotting in their
-armor, and sometimes a faint snuffling sound can be heard.
-   There are no exits.
-~
-489 132 0
-S
-#48921
-A Primrose Path~
-   And now here you are walking down a primrose path!  Will your morals never
-improve?  -- But it is a pretty part of the garden.  Lush green shrubs and
-trees compete with the grass for the sunshine pouring from above.  The sheer
-array and variety of the flowers you see astounds your eyes and your nose, for
-yes, they smell heavenly.  Here and there small colorful birds flit around the
-flowers.  Hummingbirds and dragonflies zip past you, so bright they reflect the
-light like little mirrors on a mountaintop.  Above you the air seems to dance.
-To your north and east, the garden continues.    
-~
-489 0 1
-D0
-A short structure stands to the north.
-~
-~
-0 -1 48915
-D1
-The perfume of hundreds of different flowers wafts to you from the east.
-~
-~
-0 -1 48922
-D4
-If you can fly, you can take to the air here.
-~
-~
-0 -1 48954
-S
-#48922
-The Hanging Garden (S)~
-   Lokari's famous hanging garden is reknowned throughout the world as one of
-the Wonders of the World.  And these are magnificent gardens.  All manner of
-hanging plants seem to float in the very air, suspended by marble pillars
-carved into fanciful shapes-- birds perched on columns, angels with swords of
-fire, intricate shapes found nowhere in nature.  The flowers and herbs that
-spill out of the various containers thus suspended from the slim golden chains
-defy your imagination in their beauty.  Lokari's got great taste in
-horticulture, that's for sure.  You wander through, enjoying the sweet vista
-that is barely visible to the east.  You could stay here, if you wished, or you
-could go north, to the veranda.    
-~
-489 0 1
-D0
-You see a veranda to the north.
-~
-~
-0 -1 48917
-D3
-A garden path goes off to the west.
-~
-~
-0 -1 48921
-D4
-If you can fly, you can take to the air from here.
-~
-~
-0 -1 48955
-S
-#48923
-The Hanging Gardens (N)~
-   You find yourself on the northern end of one of the Seven Wonders of the
-World: the Hanging Gardens of Lokari.  The end of this veranda is obviously not
-suited to an actual garden with soil, so Lokari ordered a garden that would be
-safer to install.  And this is it.  Marble pillars carved into animals and
-angels and shapes from nature (and far removed from it) support all manner of
-bowls and planters, in all sizes and shapes, suspended from slender gold chains
-that glint in the sunshine.  The flowers explode from everywhere at once-- ones
-you recognize from your own homeland, and others that seem more exotic than
-anything you've ever seen.  Herbs, some flowering, some lush and green and
-without flowers, pour out of other containers.  Plants are banked along manmade
-terraces, as well.  It smells wonderful here!  You can go south, to the
-veranda, and if you could fly, you could go upwards, to the dancing air.    
-~
-489 0 0
-D2
-The veranda comes to a crest to the south.
-~
-~
-0 -1 48917
-D4
-If you can fly, you can take to the air here.
-~
-~
-0 -1 48950
-S
-#48924
-The Greenhouse~
-   You push open the glass door, and catch your breath at the heat and humidity
-in here.  As you trudge further into the greenhouse, you begin to feel more and
-more like some very wet and very furry animal is sleeping on your chest.  But
-it's quite beautiful.  You have to admire the sheer order that must be present
-here.  Shelves -- one above, one below -- ring the greenhouse, breaking only
-for doors.  On the shelves, all over, are carefully marked plants.  Some are
-seedlings, some growing, some obviously weather-injured.  You may go west, to
-another room in the greenhouse, or south from here, or up to the crawlspace
-above your head.    
-~
-489 8 0
-D2
-A glass door set into the greenhouse bars your passage.
-~
-door~
-1 -1 48916
-D3
-It's even warmer to the west.
-~
-~
-0 -1 48925
-D4
-You can climb up into a crawlspace here.
-~
-~
-0 -1 48947
-S
-#48925
-The Hothouse~
-   It's hotter and more humid in here than you thought it'd be!  You blink
-through sweat to see a riot of color like you've never seen before!  All along
-this beautifully crafted glass enclosure are plants, gloriously flowering.  
-Orange and red, blue and purple, yellow and white, compete uproariously.  The
-scent of fine flowers, like perfume, seems almost overpowering, with the clean
-scent of fresh-turned earth.  You can go only east, back to the greenhouse
-proper, or up to the roof through a small door.    
-~
-489 8 0
-D1
-The greenhouse continues to the east.
-~
-~
-0 -1 48924
-D4
-You can climb up onto the hothouse roof from here.
-~
-~
-0 -1 48946
-S
-#48926
-A Wading Pool~
-   You come upon a pretty little scene in this beautiful garden-- a shallow
-pool surrounded by hand-sized grey and reddish rocks, worn smooth from time.  
-Yellow narcissus and yellow-and-purple hyacinth and red pansies line the bank
-of the pool, except where the garden path goes up to it.  There you see a small
-stone bench, set right up at the water as if inviting you to dangle your bare
-feet into the water.  While the thought is pleasant, your brow darkens at the
-idea of being thus defenseless.  You can go south from here, back to the
-garden.    
-~
-489 0 1
-D2
-A cool garden path leads off to the south.
-~
-~
-0 -1 48914
-D4
-If you can fly, you can take to the air here.
-~
-~
-0 -1 48948
-S
-#48927
-The Hall of Wonder~
-   As you pass through this hall, you do indeed wonder.  The walls are inlaid
-with colored stones to form a magnificent mosaic that depicts fabulous
-sea-monsters that rise and fall through the endless oceans to destroy cities,
-continents, and, of course, men.  One figure rises, that of a beautiful woman
-with long, flowing hair dark as the night, to oppose one of the beasts, her
-hand in that of a man with skin pale as milk, who flies near her.  The hall
-itself is not very long.  Your feet echo on shining floors, bouncing off the
-mosaic'ed walls.  West lies what is clearly another beautiful part of the hall.
-Eastward lies a door.    
-~
-489 8 0
-D1
-A golden carved door stands here.
-~
-door~
-1 -1 48902
-D3
-You see another hall to the west.
-~
-~
-0 -1 48928
-S
-#48928
-The Ballroom Foyer~
-   A short turn in the hall, yes, but it's beautifully adorned with mosaics of
-stars and suns in gold and indigo in swirling patterns that catch your eye at
-every step.  Truly, you are in the home of a god!  You can go north, to a
-magnificent ballroom, or east, to the hall's continuation.    
-~
-489 8 0
-D0
-The ballroom begins to the north.
-~
-~
-0 -1 48929
-D1
-Another hall begins to the east.
-~
-~
-0 -1 48927
-S
-#48929
-The Ballroom (W)~
-   You stand in a beautiful ballroom.  The ceiling is so high you have to
-squint to see the angels and stars painted on the ceiling.  A huge glass dome
-atop the ballroom is so crystal clear you can see everything outside, though
-it'd have to be strong enough to hold up the roof, of course.  You can't
-imagine why Lokari had this ballroom constructed, though it is beautiful.  As
-you walk across the shining white floor, taking in the banners hanging on the
-walls, the stained glass windows depicting heroes and heroines of ancient days,
-you begin to piece together the mystery that is Lokari.    
-~
-489 8 0
-D1
-The ballroom continues to the east.
-~
-~
-0 -1 48930
-D2
-A hall begins to the south.
-~
-~
-0 -1 48928
-S
-#48930
-The Ballroom (E)~
-   The floor is polished white marble so fine you can see your reflection in
-it.  The ceiling is far above your head, painted in glorious angels and
-astronomical themes, inset with a massive clear glass dome that magnifies
-starlight and sunlight both, you know already.  The echo of your feet on the
-floor bounces off long banners sewn with care, depicting every device you've
-ever heard of from every major house in the ancient world, hanging from a
-golden rail that goes all around the room, about ten cubits from the ceiling.
-Between the banners are stained glass windows, backlit to better show their
-scenes of heroes and heroines of the ancient days, their weapons flashing,
-their hands glowing with powerful spells, haloes behind their heads.    
-~
-489 8 0
-D3
-The ballroom continues to the west.
-~
-~
-0 -1 48929
-D4
-In one corner, you notice a metal ladder. A small gate bars your way.
-~
-gate
-~
-1 -1 48945
-S
-#48931
-The Alabaster Stairs~
-   The top of this gleaming white staircase defies description!  You step
-lightly on the shiny, almost slippery white surface, its slickness expiated
-only by the deep carvings in its surface that depict stars, suns, moons, and
-patterns, carvings that make the footing somewhat surer.  The staircase railing
-glides past your fingertips, smooth oak polished until it, too, shines.  The
-railing's struts are made of carved marble somehow inlaid with more of the
-ancient brown oak.  The staircase ends in a terrace, or you can head west to a
-hallway.    
-~
-489 8 0
-D0
-Past the staircase, you see a terrace.
-~
-~
-0 -1 48937
-D3
-Glittering gems to the west catch your eye.
-~
-~
-0 -1 48932
-D5
-The glistening white staircase continues downward.
-~
-~
-0 -1 48908
-S
-#48932
-A Gem-Encrusted Hallway~
-   Your fingers brush against such a casual display of wealth.  Your eyes widen
-at the sight of such beautiful, bright gems being used for what seems frivolous
-decoration.  Of course, Lokari is a god; he is theoretically able to get as
-many riches as he wishes.  The gems are set into the wall mosaic-style, as if
-the chips in the wall are only fancy stones.  Amazing!  You can go west, to a
-quiet side room, or east, to a gleaming white staircase's landing.    
-~
-489 8 0
-D0
-A gold-chased oaken door stands here.
-~
-door~
-1 48932 48936
-D1
-A staircase made of alabaster begins to the east.
-~
-~
-0 -1 48931
-D3
-You see a quiet seeming room.
-~
-~
-0 -1 48934
-S
-#48933
-A Tower Cupola~
-   This must be one of the Keep's towers.  You step into its foyer, looking out
-beyond the filmy silk gauze curtains that flutter between you and the great
-outdoors.  As you push them aside, you blink, your eyes adjusting to the vista
-before you.  The tower rises far above the ground, swept by the wind winds that
-assaulted you on the way here.  Before you, to the south, lies the Elemental
-Plane of Air, the winds roaring and whispering and caressing and threatening
-and assaulting.  You shiver at the thought of braving that place.    
-~
-489 8 1
-D0
-You can't see much for the sunlight here. It's a little dark.
-~
-~
-0 -1 48934
-S
-#48934
-A Reading Room~
-   Maybe Lokari has a good side.  If he does, it's nowhere as evident as it is
-here.  A quiet, almost restful nook greets your eyes.  Most of the gentle light
-in here is filtered through the silken curtains of the cupola terrace to the
-south.  White candles in golden sconces along the wall provide the rest.  
-Bookshelves full of tooled leatherbound books and enamel-capped scrolls line
-the west wall and every other place that's got enough room.  In the center of
-the room rest two chairs, both overstuffed leather.  Between them is a small
-table with a single shelf, supported on lion-clawed legs.  On the table is an
-oil lamp full of sweet-smelling oil.  In one corner of the room is a podium on
-which rests a large, thick book that smells vaguely of aged parchment.  It
-looks like a dictionary, though in a language you can't identify right offhand.
-~
-489 8 0
-D0
-You see a small room through a wide open door.
-~
-~
-0 -1 48935
-D1
-A gem-encrusted hall starts to the east, and beyond that, a gleaming 
-white staircase.
-~
-~
-0 -1 48932
-D2
-Dazzling sunshine pours in from the south.
-~
-~
-0 -1 48933
-S
-#48935
-A Drawing Room~
-   The room is a little dim, but not impossibly so.  Your feet tread expensive,
-deeply piled carpeting nervously.  Comfortable chairs are arranged throughout
-the room.  A fireplace stands inexplicably against one wall, though the embers
-are cold-- no fire has been set here for quite a while, you'd venture to guess.
-The walls are adorned by paintings in frames of gilded wood.  None of the
-pictures seems to have been selected by anyone with real artistic sense.    
-~
-489 8 0
-D0
-You see an unadorned room with a wooden floor.
-~
-~
-0 -1 48939
-D2
-A room full of bookshelves lies past a wooden archway.
-~
-~
-0 -1 48934
-D3
-One of the tapestries hides a panelled door set into the wall.
-~
-door
-~
-1 -1 48945
-S
-#48936
-The Hoard Room~
-   Your eyes almost bug out of your head at the treasure in here!  Chests full
-of coins, gems, jewelry of every description, sceptres, all gleam as with their
-own inner fire.  Compared to other rooms in the Keep, you find this room rather
-plain, except for its contents.  A thronelike chair sits in the center of the
-room on a furry white bearskin rug.  A few chests sit very close to it.  
-Lokari must like to visit his hoard room!  One thing that catches your eye is a
-delicate diamond and sapphire tiara.  As you reach for it, it mists right
-through your fingers.  You wonder where the real tiara is.  It's fit for a
-princess.    
-~
-489 520 0
-D0
-A simple wooden door stands here.
-~
-door~
-2 48932 48940
-D2
-A simple wooden door stands here.
-~
-door~
-2 48932 48932
-S
-#48937
-The Terrace~
-   This room is wide, sunny, and sweet, with lots of glass windows enclosing a
-sort of patio.  The floor, polished wide, square black stones, is almost bare
-of furnishings.  A wicker chaise lounge covered in soft cushions rests beside a
-glass-topped wooden table.  As you look outside the windows, you see the garden
-stretching out below, with mountains beyond.  You wish you could rest here, but
-your task is not yet done.    
-~
-489 12 1
-D0
-A glass-paned door is set into the wall.
-~
-door~
-1 -1 48941
-D1
-You see the open air to your east.
-~
-~
-0 -1 48953
-D2
-A staircase made of gleaming alabaster stands to the south.
-~
-~
-0 -1 48931
-S
-#48938
-Dreaming of Irinia~
-   You suppress a shudder as you enter this small room.  Inside it is a shrine
-to the mortal woman Lokari wanted for his own, and whose soul he eventually
-captured by foul magicks.  A full-length painting of her adorns one entire
-wall, all by itself, lit by wall sconces with black candles in them, adorned
-further by ivy trailing around its wooden frame.  She looks magnificent, a
-beautiful, strong woman.  Her muscled frame is set off perfectly by a gown fit
-for a queen.  Around the rest of the room, you see more paintings and personal
-effects-- a lock of raven-black hair bound by a long silk ribbon, a necklace a
-child might wear, a small treasure-box of inexpensive rings.  The most chilling
-thing in the room, however, is a large painting opposite the full-length one
-that obviously depicts the princess and Lokari together on what must be their
-wedding day.  You are chilled to the bone, looking at it.    
-~
-489 8 0
-D1
-An ebon door stands here.
-~
-door
-~
-1 -1 48939
-S
-#48939
-A Quiet Room~
-   You step through the entrance onto a polished wood floor.  This room doesn't
-look like it belongs in the Keep.  It's understated, with no hangings, no
-paintings, no ornaments.  The only thing in here, in fact, is a wall sconce.  
-On the sconce rests a wall shelf, just one shelf mounted on the wall.  On the
-shelf sits a plain marble candleholder, with a plain, medium-length black
-candle in it.  The candle is lit.  Your blood chills, though, when you notice
-that the candle looks brand-new, as if it had never been lit, but the warmth
-from the flame permeates the entire area around the sconce, as if it had been
-lit for hours.    
-~
-489 8 0
-D0
-You see what seems to be a servant's room through the doorway.
-~
-~
-0 -1 48944
-D2
-You see a drawing room.
-~
-~
-0 -1 48935
-D3
-A black wooden door stands here.
-~
-door~
-1 -1 48938
-S
-#48940
-In the Chamber of a God's Bride~
-   What does a god's bride's chamber look like?  Why, this, of course.  The
-white-painted walls produce a large chamber, guarded over by alabaster carved
-angels at each corner on little ledges.  Ferns and ivy plants surround each
-angel.  The ivy drips to the floor, the deep green striking in the sunlight
-pouring in from thick glass windows set into the east.  One tendril of ivy
-almost touches the lions-claw foot of a large fourposter bed standing in the
-center of the room.  The bed looks large enough for six.  Its brass headboard
-and footboard is blocked by thin white gauze curtains that extend all the way
-around the bed.  More ivy, with fuschia flowers, snakes around the rails
-between each post of the bed; the curtains fall from these rails.  You're
-amazed at the pure luxury.  The shiny white floor holds little else.  A wooden
-armoire stands against the western wall, locked against all attempts to open
-it.  Shelves set into the northern wall hold all manner of girlish treasures--
-little glass bottles, bath salts that make the room smell like heaven, cleverly
-carved figurines of exotic hardwoods, a jewelry box that, when you open it,
-seems to have nothing in it.    
-   You have to admire Lokari. He might be pretty vicious, but he seems
-to have a gentle side.
-~
-489 8 0
-D0
-You can swish the white curtains aside to reveal a wooden door.
-~
-door~
-1 -1 48943
-D1
-Magnificent double doors stand to the east.
-~
-double-doors door doors~
-1 -1 48941
-D2
-A golden door stands to the south.
-~
-door golden~
-2 48932 48936
-S
-#48941
-The Bedroom of the God of the Moonless Night~
-   You step into this room and feel almost dizzy.  Where does a god sleep?  
-Anywhere he wants.  Lokari's power and dominion are nowhere as evident as in
-the place he reposes at night.  The room is floored in what looks like
-hematite-- shiny grey-black stone.  A thick indigo rug is thrown on the middle
-of the floor.  A massive bed stands in the center of the huge room.  The frame
-of the bed is in purple heartwood, a deep mauve stain making the wood shine.  
-It's carved in blackberry brambles.  The bedcoverings are in crimson.  The
-walls are of a dark red wood, carved all along their length in more blackberry
-vines, leaves, and berries, each berry stained dark purple, all the way up to
-the ceiling, which has a skylight set into its center.  The light that comes
-down wreaths the bed in light and illumines the wall sconces set into each
-corner of the room.  Each sconce is made of gold, with ebon candles that are
-unlit.  You can go north, to his bath chamber.    
-~
-489 8 0
-D0
-~
-~
-0 -1 48942
-D2
-A prettily painted door with glass tiles is set into the wall.
-~
-door~
-1 -1 48937
-D3
-A gold-wrought door stands here.
-~
-door~
-1 -1 48940
-S
-#48942
-The Virgin Bath~
-   You enter a voluptuous room, and immediately don't wish to leave.  Sunlight
-pours in through a huge window with one single pane-- amazing!  -- set into the
-east wall.  The sunlight dances around a bathtub large enough for six people to
-relax in.  A portable step rests next to the bathtub.  The sunlight darts
-around the tub's lion-claw feet, briefly touching an elegantly carved golden
-pail with a steel handle before moving on to a low shelf of books and pretty
-glass bottles of oil.  The sunlight flows through the glass bottles, making the
-colored oils within shine with vibrant flashes of color.  The flashes of color,
-so like stained glass, hit a golden pitcher whose function is not immediately
-obvious, but which sits on a golden tray next to two beautifully hand-blown
-wine goblets.  The shadows of the goblets touch the wall opposite the windows,
-where ivy and flowering plants grow right up the wall.  The ivy crawls across
-the ceiling, to the opposite side, framing the windows.  All in all, a
-beautiful scene.  The only way out is a door to the south.    
-~
-489 8 1
-D2
-The voluptuous chambers of the God of the Moonless Night beckon.
-~
-~
-0 -1 48941
-S
-#48943
-The Maidservant's Chamber~
-   It's a small room, and not very fancy.  Obviously, it belongs to a servant.
-The feminine print on the bedspread, as well as two threadbare dresses in the
-open closet, tell you the room must belong to a maidservant.  But what's this?
-Under the thin pillow on the bed you find a note, but it's tattered beyond
-recognition.    
-~
-489 8 0
-D2
-The door to the south is painted in bright patterns of leaves, trees, 
-and birds. 
-~
-door~
-1 -1 48940
-D3
-You see another servant's room to the west.
-~
-~
-0 -1 48944
-E
-love-note love note~
-You carefully unfold the aged paper, smoothing out the brittle creases. 
-Some of the yellowed paper splinters off in your hands, making you wince. 
-Your eyes scan the browned ink, but you can't read the neat, precise 
-handwriting's alien words.
-   Finally you refold the paper and put it back under the threadbare 
-pillow. You straighten up, still thinking about the letter. Obviously, 
-someone cared enough for the contents of the letter to keep it all these 
-years. But who? And why?
-~
-S
-#48944
-Severan's Chamber~
-   You walk in, and immediately understand what Lokari did.  He must have
-invited Severan here, to the Keep, to serve him and his new bride, Severan's
-former love, Irinia.  Severan, of course, would have refused vehemently.  But
-this room must have been where Lokari wanted Severan to stay.  It's quite well
-appointed, with rich hangings on the walls, a comfortable-seeming bed, several
-large, fluffy pillows, and a velvet bedspread embroidered with something in a
-foreign-looking script, a short word you can't read.  Shelves are lined with
-books, most of them in that same script, but one has a title you can read:
-"Techniques of the Polar Guard Squad: Triple Attack in Thirty Days!" It's
-quite thick.    
-~
-489 8 0
-D1
-You see another servant's chamber.
-~
-~
-0 -1 48943
-D2
-You see a plain room to the south. More rooms lie beyond it.
-~
-~
-0 -1 48939
-S
-#48945
-The Catwalk~
-   You stand on a precarious-seeming metal grating catwalk that extends over
-the ballroom below.  It looks like it'd extend a good dozen paces toward the
-center of the ballroom, just about reaching a central chandelier.  You suppose
-the catwalk makes cleaning the glass chandelier a lot easier.  The openweave
-metal of the catwalk, though, makes footing precarious!  You can feel it
-wobbling with each step.    
-~
-489 8 0
-D1
-A chain-link and wooden door stands here.
-~
-door~
-1 -1 48935
-D5
-A metal plate covers a ladder near the top of the metal ladder.
-~
-plate metal~
-1 -1 48930
-S
-#48946
-The Hothouse Roof~
-   You almost sneeze in the musty air up here.  Not only is it musty, it's
-moist, dank, almost wet.  You open a panel and are outside on the roof of the
-hothouse, balancing precariously and hoping desperately that the glass on the
-roof is a lot stronger than it looks.  The sun seems much brighter here than
-elsewhere; perhaps it's magnified by the glass.  The sparkling-clean glass
-winks up at you.  You can go east, through a panel, to a neighboring
-greenhouse, or south-- if you can fly!    
-~
-489 0 1
-D1
-The crawlspace continues to the east.
-~
-~
-0 -1 48947
-D2
-You see the tips of garden trees for quite some distance.
-~
-~
-0 -1 48948
-D5
-You see thousands of colorful flowers below you.
-~
-~
-0 -1 48925
-S
-#48947
-The Crawlspace~
-   You creep up a small ladder slowly, feeling your way.  Below you, the warmth
-generated by hundreds of growing plants makes this crawlspace almost unbearably
-hot.  It's also rather dark, making you feel distinctly uneasy about putting
-your hands anywhere.  Already you're touching things that make you queasy..  
-Living things..  Soft living things..    
-~
-489 8 0
-D3
-You can keep going west if you wish.
-~
-~
-0 -1 48946
-D5
-You see the greenhouse below you.
-~
-~
-0 -1 48924
-S
-#48948
-Above a Sparkling Pool~
-   You fly free above the beautiful Keep gardens.  Below you is a shallow
-wading pool.  A glass wall rises to your north, and the mountains loom far to
-the east.    
-~
-489 0 9
-D0
-You see the roof of the hothouse.
-~
-~
-0 -1 48946
-D1
-The top of the garden spreads out to the east.
-~
-~
-0 -1 48949
-D2
-The top of the garden extends to the south.
-~
-~
-0 -1 48953
-D5
-You see a wading pool below you. How pretty!
-~
-~
-0 -1 48926
-S
-#48949
-Above the Well~
-   It's so peaceful here.  Floating above the little garden well below you,
-with soft breezes caressing your face and body, you can almost believe that no
-evil exists in the world, and that you're at perfect peace.  It doesn't last,
-though.  You look around and see that you can go east or west, by flying, or
-head back down to the well.    
-~
-489 0 9
-D1
-The hanging gardens invite you to enjoy their peace.
-~
-~
-0 -1 48950
-D3
-The top of the garden extends to the west.
-~
-~
-0 -1 48948
-D5
-Below you, you see a wishing well.
-~
-~
-0 -1 48916
-S
-#48950
-Above the Hanging Garden~
-   You hover near a terraced garden.  Numbers of terraced shelves go right up
-the wall of the garden.  Plants of every description spill out of the shelves
-in carefully manicured explosions of color.  You look down and see the path
-that winds around the garden.  You can go down, west, or south.  It's so
-beautiful here, though, with the mountains so close by.    
-~
-489 0 9
-D2
-You can fly south, to hover above the crest of the veranda.
-~
-~
-0 -1 48951
-D3
-You can see the entire garden spreading to the west. It's so green!
-~
-~
-0 -1 48949
-D5
-Below you, you see where the hanging gardens begin.
-~
-~
-0 -1 48923
-S
-#48951
-Above the Crest~
-   The view here is magnificent!  You look around joyfully.  Here you are free,
-for the first time in your life.  Tears come to your eyes when you behold the
-utter simplicity of your position.  You hover, Lokari's gardens to your back,
-and behold the mountains, rising like giants as far as your eyes can see,
-fading from reddish to brown to purple.  The winds are quite strong; the voice
-of the winds is a haunting melody that sobers your exultation eventually.    
-~
-489 0 9
-D0
-You see the hanging gardens.
-~
-~
-0 -1 48950
-D2
-You see the hanging gardens.
-~
-~
-0 -1 48955
-D5
-Below you is seems like a nice place to stand while looking out over the 
-mountain vistas.~
-~
-0 -1 48917
-S
-#48952
-The Dovecote's Upper Half~
-   You are instantly revolted by the smell of caged birds.  Your hands slip a
-little on the ladder you climbed, and you very happily stand on your own two
-feet, glad to get away from the encrusted ladder.  The birds might be beautiful
-and elegant outside this dovecote, but inside it, they're absolutely
-disgusting.  The dovecote itself is spacious and bright, with light filtering
-in through small bird-sized holes all through the structure.  It's made of some
-sort of cement, you guess, that's been molded into a kind of tower.  It's
-almost beehive-shaped.    
-~
-489 8 0
-D5
-Birds' cooing assaults your ears below-- and what a SMELL!
-~
-~
-0 -1 48915
-S
-#48953
-Above the Gardens~
-   You hover above a beautifully manicured garden.  It's so peaceful up here,
-with breezes warm against your body, ruffling your hair.  The mountains rise to
-the east, and a huge Keep to your west.    
-~
-489 0 9
-D0
-The top of the garden lies to your north -- and beyond that, a building's 
-roof. 
-~
-~
-0 -1 48948
-D3
-You can enter a terrace to the west.
-~
-~
-0 -1 48937
-D5
-Below you is the beautiful garden path of Lokari's Keep.
-~
-~
-0 -1 48914
-S
-#48954
-Above the Garden Path~
-   You hover above a beautifully manicured garden.  A white path slashes
-through the green like a beam of pure light made solid.  Ancient statues dot
-the walkway here and there.  But up here, you can only see a few treetops, can
-feel only wind caressing your body.  The mountains rise to your east, and the
-Keep to the west.    
-~
-489 0 9
-D1
-You see the hanging gardens.
-~
-~
-0 -1 48955
-D5
-You see a path winding through the huge gardens below you.
-~
-~
-0 -1 48921
-S
-#48955
-Above the Hanging Garden (S)~
-   You hover above a beautiful hanging garden.  Terraced steps rise to where
-you float, with plants flowing out of the terraces and out of numerous pots
-that hang down from the terraces by hooks and light golden chains.  Flowers of
-every variety explode in color.  You reach out to touch something very pink,
-and startle when it shrinks and shrivels at your touch.  A moment later,
-unmolested, it expands and unfolds into a flower again.  You look around.  You
-can go north, west, or down to the lower level of the garden.    
-~
-489 0 9
-D0
-You could go north for a beautiful view of the mountains.
-~
-~
-0 -1 48951
-D3
-You see the top of the garden to the west.
-~
-~
-0 -1 48954
-D5
-Below you is a pretty garden path.
-~
-~
-0 -1 48922
-S
-#48960
-The Dungeon Entrance~
-   You look around at the dismal chamber.  Your spirits do not improve after
-the first glance.  It's very dark, barely lit by candles in sconces every ten
-feet or so along the wall, about shoulder level.  The walls and floor are
-roughly hewn stone, tunneled right into the mountain the Keep is on, you think.
-Weird howls sometimes fill the air.  You can't tell if they're from living --
-or dead-- souls.  You can go upward again, or to the east.    
-~
-489 8 0
-D1
-You see a dismal cell block to the east.
-~
-~
-0 -1 48961
-D4
-Above you, you see where the trapdoor is set into the ceiling above you.
-~
-trapdoor~
-1 -1 48913
-S
-T 48933
-#48961
-A Cell Block~
-   You walk past a row of cells carved into the tunnel wall.  Thorned iron bars
-stand between you and the cells' interiors.  One of the cells' doors is locked
-by a powerful-looking padlock, but you can't see anyone inside, just a dirty
-skeleton.  You shiver and move on, keeping a good eye on the insides of the
-cells.  An unearthly moan fills the air.  You feel the hairs on the back of
-your neck rise, as if in eerie salute.  You can go east or west from here.    
-~
-489 8 0
-D1
-You see a guardroom to the east.
-~
-~
-0 -1 48962
-D3
-You see the entrance to the dungeon to your west.
-~
-~
-0 -1 48960
-S
-#48962
-The Guard Room~
-   A small corner room connects two cell clocks.  Sparsely decorated, you see a
-table with two wooden chairs pushed under it.  On the table, you see a deck of
-cards, divided into two piles, one in front of each chair.  Something forced
-the guards to leave in a pretty big hurry.  You wonder what.    
-~
-489 8 0
-D0
-A cell door stands to the north. Its padlock looks very strong.
-~
-padlock~
-1 48965 48964
-D2
-An iron-work wall closes off the southern part of the room.
-~
-darkness~
-1 48963 48963
-D3
-A narrow corridor leads to a cell block.
-~
-~
-0 -1 48961
-E
-wall~
-As you examine the wall, you admire its absolute blackness. You reach out 
-and touch it, and your hands almost sink into its colorless depths before 
-you touch the cold wrought iron. The iron is thorned, so you're very 
-careful not to prick your hands. The darkness seems to consume the entire 
-wall. How will you open that darkness?
-~
-S
-#48963
-The Dark Cell~
-   You walk into death, of that you are sure.  You can't see a thing, and your
-hands, questing in front of you, touch bare dank stone, with just a hint of
-moss and lichen.  You recoil in disgust.  You can go north, only north.    
-~
-489 8 0
-D0
-The darkness roils to the north. You can barely see beyond it.
-~
-darkness~
-1 48963 48962
-S
-#48964
-A Cell Block~
-   You walk past a short row of cells set into the wall.  There are about three
-cells.  They all look alike-- small, dank, dark, with a small pile of hay in
-one corner, no windows, thorned iron bars, iron gates.  You shiver within your
-armor as you walk past them.  It's as if ancient misery can reach out to you
-and touch you.  You can only go south, but the east is blocked by rubble.    
-~
-489 8 0
-D1
-To the east, a bit of rubble seems loose.
-~
-boulder~
-1 48964 48965
-D2
-The gate to the south is locked with a huge padlock.
-~
-padlock~
-1 48965 48962
-E
-rubble~
-The path looks like it was destroyed by a cave-in. One boulder in 
-particular looks pretty key. If you could just move it, you might be able 
-to clear the rest of the rubble.
-~
-S
-#48965
-A Raw Stone Tunnel~
-   You crawl through a narrow tunnel that seems thick with choking dust and
-loose dirt.  You clamber to your feet, all too aware of how vulnerable you are
-in this cloying darkness.  You take a short, shallow breath, trying not to
-breathe in too much of the dust all around you.  You can head east from here.
-The passageway west is choked with rubble.    
-~
-489 8 0
-D1
-A creepy tunnel opens to the east.
-~
-~
-0 -1 48967
-D3
-To the west, you see the rubble that blocks this tunnel.
-~
-boulder
-~
-1 48964 48964
-S
-#48966
-The Place of Skulls~
-   You stand in the center of what is obviously a ceremonial place of the dead.
-Shelves hewn from the mountain itself hold polished, gleaming white skulls.  
-Each skull's macabre grin seems to cackle obscenely at you.  You fight a shiver
-as you walk through here.  An altar built of bones stands here, as well, but it
-holds no answers for you.  You can go east, further into the catacombs, or
-south.    
-~
-489 8 0
-D1
-You see dark catacombs.
-~
-~
-0 -1 48968
-D2
-A large, dark cavern greets your eyes. You can see little detail in its 
-depths. 
-~
-~
-0 -1 48985
-S
-#48967
-Catacombs~
-   Here, in tunnels hidden from the world for who knows how many generations,
-you can feel the veneration and the quietness that only the grave seems to
-engender.  It's dark, with just a little light filtering in from an unknown
-source, just enough that you can pick your way through the tunnels with
-relative ease.  Shelves built into the rock hold things you suppose the dearly
-departed held dear: a book, open to a passage in an unknown language; a
-battered stuffed animal made of tattered red fur; a dress made of white linen,
-ironed and laid out as if its wearer de-materialized while lying down.  All of
-these things, a dozen perhaps in all, one on each stone shelf, combine to make
-this entire room quite eerie in nature.    
-~
-489 8 0
-D2
-The Catacombs continue to the south.
-~
-~
-0 -1 48968
-D3
-A rough-hewn stone tunnel begins here.
-~
-~
-0 -1 48965
-S
-#48968
-Catacombs~
-   You walk through a room full of stone shelves, about three high and bunked
-against the walls.  There are about twelve shelves in all.  Each shelf is wide
-enough, and long enough, and sturdy enough, that you could lie down on it,
-though you'd never want to do that-- you're jumpy enough without inviting the
-comparison to a corpse.  Each shelf has something on it.  Looking closely at
-one of the shelves, the object looks like it's a pretty wooden box.  You could
-open the box, but you don't.  Every little noise makes you startle, as if a
-skeletal hand were about to reach out and touch you.  A shudder runs down your
-back.  You can go north, through another part of the catacombs, or south, to
-perils unknown, or west.    
-~
-489 8 0
-D0
-The Catacombs continue to the north.
-~
-~
-0 -1 48967
-D2
-You see signs of human life to the south -- thank goodness!
-~
-~
-0 -1 48969
-D3
-You shiver at the sight of skulls lining stone shelf after stone shelf.
-~
-~
-0 -1 48966
-S
-#48969
-An Encampment~
-   You're amazed!  Hidden in the depths of the catacombs is what's obviously a
-soldier encampment of some sort.  Some of the shelves have been roughly hewn
-off from the walls.  In their place, you see sleeping pallets and a cooking
-fire.  Rocks surround the fire at a comfortable distance for enjoying a warm
-blaze during what must be freezing nights.  You pick your way through the
-encampment carefully, not willing to call attention to yourself this early, at
-least not before you find out more about who lives here.    
-~
-489 8 0
-D0
-The narrow, cramped tunnels of the Catacombs start here.
-~
-~
-0 -1 48968
-D1
-You see the beginning of a newly made tunnel to the east.
-~
-~
-0 -1 48970
-D2
-You see canvas tents, cookfires, and weapons of all kinds littered about 
--- clearly, this is a military encampment.
-~
-~
-0 -1 48983
-S
-#48970
-A Newly Made Tunnel~
-   You carefully walk through a tunnel.  But not just any tunnel.  This tunnel
-has a new look about it.  Its walls aren't blackened by soot given off by
-innumerable torches and candles.  The dust that tickles your nose is the dust
-of newly moved earth, not the dust of ancient settling rocks.  You wonder how
-long this tunnel has been here, and who made it.  You somehow doubt the owner
-of the mountain knows it's here.    
-~
-489 8 0
-D2
-You gasp when you see the sky outside through a cave mouth.
-~
-~
-0 -1 48971
-D3
-You see an encampment to your west.
-~
-~
-0 -1 48969
-S
-#48971
-A Cave Mouth~
-   You breathe in the free air that suddenly rushes at you like a living thing.
-The tunnel opens up to become a wide-mouthed cave.  As you head out of it,
-you're suddenly about to fall right down the mountainside!  You windmill your
-arms, flailing wildly while you regain your balance.  You look down, very glad
-for your good reflexes-- you would have surely died on the way down, as
-unexpected a fall as it was.  You look around, looking for some way out.  You
-think you can see a way to climb up the mountain a ways, to a marble balustrade
-about fifty paces above your head.    
-~
-489 268 0
-D0
-A newly-hewn tunnel begins to the north.
-~
-~
-0 -1 48970
-D4
-There is a marble balustrade above you.
-~
-~
-0 -1 48917
-S
-#48972
-The Dark Prison~
-   Your feet stumble a little; at first you can't tell why, in the near-total
-darkness.  Then, as your eyes adjust to the almost-nonexistent lighting, you
-see that the floor is made of flat, square granite stones that have crumbled
-with age and moisture.  Mosses peek through the stones here and there.  As you
-pick your way through, you can see that you are in what is obviously a prison
-of some kind.  Thorned iron bars stand in a row to the west, marking off a cell
-of some kind, but no one is in it.  You look upward, to the stairs.  They don't
-look very sturdy, suddenly.    
-~
-489 520 0
-D2
-You smell blood and fear in the darkness to your south.
-~
-~
-0 -1 48973
-D4
-Your hands can't find any purchase in the ceiling above! What is holding 
-you from going up?
-~
-lever~
-1 -1 48904
-E
-bars iron thorned cell~
-As you examine the iron bars of the cell, you notice that off to the 
-side, there's an ingenious lockbox hidden in the shadows of the dank 
-room. You examine it closer, and see that the box itself is actually a 
-covering for a simple lever device. The lever leads to a series of 
-pulleys and iron bars set against the ceiling.
-~
-S
-#48973
-A Torture Chamber~
-   You pick your way across the broken granite stones of the floor, your
-stomach twisting at the sight of the torture instruments laid out on the tables
-and low ironwork shelves all along the walls of this chamber.  You can't even
-imagine what some of these implements are for, and you don't want to!  The room
-is pretty dark, and the blood you see congealed here and there on the
-instruments is old blood, dark brown and dried.  You turn away in distaste and
-look for exits.    
-~
-489 520 0
-D0
-You see the entrance to this wing of the prison.
-~
-~
-0 -1 48972
-D1
-You see a dark, narrow hallway.
-~
-~
-0 -1 48974
-D2
-A horrible smell comes from the south. What is there?
-~
-~
-0 -1 48978
-D3
-A stone door reinforced with metal thorns stands here.
-~
-door~
-2 48973 48976
-S
-#48974
-The Dark Hall~
-   You pick your way carefully across dank, rotting granite floorstones.  Moss
-makes your footing slippery and uncertain, and the stench of decaying stone and
-warm earth and death combines to produce a stink that's almost worse than just
-rotting bodies.  You can go north or west from here.    
-~
-489 520 0
-D0
-You see someone's living quarters through an open archway.
-~
-~
-0 -1 48975
-D3
-You see a torture chamber to the west -- and you shiver.
-~
-~
-0 -1 48973
-S
-#48975
-The Torturer's Suites~
-   Did you wonder how a torturer lives?  You can see that here is where
-Lokari's Master of Pain must live.  An ornate four-poster iron bed stands in
-one corner.  You walk to it idly, almost not noticing the thorned headboard and
-footboard.  You notice a strand of long, blonde hair caught in one of the
-thorns of the headboard and restrain yourself from looking at the bed further.
-Paintings in beautiful gold frames depicting stars, moons, and other features
-of the night sky line all the walls in a precise line.  A tall cabinet holding
-various kinds of liquors stands against one wall.  The walls are painted deep
-blue.  A thick, dark blue carpet lines the floor.  An ironwork bookshelf takes
-up another corner all by itself.  You blush to read the books' titles.  
-Torturing people pays pretty well, you decide.  This room is lusciously
-appointed.    
-~
-489 520 0
-D2
-You see a dark, narrow hallway to the south.
-~
-~
-0 -1 48974
-S
-#48976
-A Warm Tunnel~
-   You find yourself in a stone-lined tunnel that reeks of pain, blood, and raw
-earth.  You can't figure out why it's so warm, though.  The ceiling creaks
-under the sheer weight of what's above this floor, and you begin to desperately
-hope that the entire cavern won't cave in...    
-~
-489 776 0
-D1
-A stone door reinforced with metal thorns stands here.
-~
-door~
-1 48973 48973
-D2
-A heavy wooden door stands here. The picture of a sun, shining brightly, 
-is etched into its surface.
-~
-door
-~
-2 48422 48977
-S
-#48977
-The Necromancer's Den~
-   Keeping up with the undead is a full-time job, you suppose, as you look
-around.  Why would someone want to live in a cavern, unless he just liked being
-around his creations more than around the living?  The floor is bare stone,
-though better kept up than elsewhere in the cavern, and covered here and there
-by throw rugs that look warm.  A simple wooden bed with a headboard stands
-against one wall.  The headboard is simply carved with geometric designs.  Two
-bookshelves stand sgainst the south wall, filled to bursting with books that
-are piled into it with little attention to detail.  A plain wooden desk in a
-corner is stacked with books and papers.  Your curiosity is piqued, but, alas,
-you cannot read the language the papers are written in.    
-~
-489 520 0
-D0
-A heavy wooden door stands here. Etched into its surface is the outline 
-of a sun.
-~
-door
-~
-2 48422 48976
-D3
-A solid-seeming oak door stands here. A picture of a set of scales appears
-burned into its surface.
-~
-door
-~
-1 48402 48979
-S
-#48978
-The Feeding Room~
-   You step into a dark, high-ceilinged cavern.  It's dark, shielding you
-effectively from what you are sure is a horrifying sight.  It smells like
-something died in here a long time ago.  It smells wet and rotting and fleshy
-and slippery, and you fight to keep your last meal in your stomach where it
-belongs.  And then, you suddenly become aware of a pit right under your feet!
-You scramble for solid footing.  Will you make it in time?    
-~
-489 520 0
-D0
-You can leave this place of death by going north, to a forbiddingly 
-gruesome torture chamber.
-~
-~
-0 -1 48973
-D5
-Even from up here you can hear the dreadful growling coming from below.
-~
-~
-0 -1 48982
-S
-#48979
-Irinia's Sorrow~
-   You realize that you stand in what is unmistakably a prison cell that has
-been inhabited for a long, long time-- perhaps centuries.  The identity of that
-inhabitant, or inhabitants, is painfully and quickly obvious.  A cruel,
-decaying stone floor, the dank feel of moist rock walls, foul straw in one
-corner, a ragged bit of cloth piled on more straw in the opposite corner, stand
-in stark contrast to an elegant ermine robe hanging on a golden hook along the
-back wall.  The sight of the robe is so jarring you almost don't notice it.  
-The cell doesn't seem to support anyone living anymore.    
-~
-489 524 0
-D0
-The door is plain oak, with a symbol burned into its surface-- that of a 
-horn... 
-~
-door~
-1 48420 48980
-D1
-A solid-seeming oak door stands here, a set of scales burned into its 
-surface. 
-~
-door
-~
-1 48402 48977
-E
-robe ermine hook~
-The ankle-length robe is made of very heavy crimson velvet damask, lined 
-with dark-spotted white ermine fur. It looks beautiful, clean, utterly 
-new, and it's such a blazing contrast to the rest of its surroundings you 
-can't figure out how to categorize it. Why is it hanging here, as if to 
-underscore the misery of its surroundings?
-~
-S
-#48980
-Lokari's Wrath~
-   The cell door to the south opens into this chamber, so horrifying you wish
-you could faint, just to get the images out of your mind.  A thorned iron rack
-stands above a cold forge.  An iron maiden stands against one wall, its spiky
-embrace cool to the touch, waiting for whom it might still entrap.  The
-marble-tiled floor is spotted in places with dark brown blood that never came
-clean.  An elegant blackwood chair with lion-claw feet stands near the forge,
-as if a royal observer wished to observe someone's agony.  You shudder, unseen
-fingers tracing your spine.  Shackles hang from heavy wooden beams set into the
-ceiling; they brush your shoulders as you walk by them, making you feel vaguely
-filthy.    
-~
-489 65544 0
-D0
-You see a run-down cell to the north.
-~
-~
-0 -1 48981
-D2
-A solid oak door stands here. A picture of a horn is etched into it.
-~
-door
-~
-2 48420 48979
-S
-T 48905
-T 48906
-T 48912
-T 48913
-T 48915
-T 48916
-#48981
-The Chamber of the Ladies in Waiting~
-   The dedication of the ladies in waiting to their ruler is painfully evident
-in this room.  It's a large prison cell, its stone floor rotted long ago to
-crumbles of loose rock that threatens to trip you at any moment.  Windowless,
-cheerless, malevolent, its only concessions to kindness are the straw pallets
-in the corner, enough for, you'd guess, three or four people.  But the pallets
-appear unused.  The straw piled beside the pallets looks like where the people
-in this cell actually slept.  Could it be, you wonder suddenly, that the people
-in this room chose to go without the primitive beds?  Why would someone do
-that?    
-~
-489 66056 0
-D2
-You can feel the power emanating from the cell to the south -- whose is 
-it? What secrets will it reveal?
-~
-~
-0 -1 48980
-S
-#48982
-The Lair of the Beast~
-   You tread lightly in the bottom of what your senses tell you is a long,
-narrow pit.  You recoil with horror at the smell, a thick, oily, coppery scent
-mixed with animal waste and sheer terror, a palpable scent.  You cringe
-internally at the sight of the dimly lit pit's bottom, littered with
-red-streaked bones, torn and shredded clothes, a lock of long golden hair,
-snagged on the corner of a metal helmet...    
-~
-489 8 0
-D5
-You think you can move these boulders aside.
-~
-boulder boulders~
-1 -1 48987
-S
-#48983
-The Soldiers' Quarters~
-   You wander into what is clearly a place for military people of some sort to
-camp out.  The tents are clearly military issue of some kind.  Someone,
-probably Lokari, controls this operation and gave out these supplies in the
-name of his war.  But why are the the soldiers still here at all?  The only war
-you know of involving Lokari was that waged against him by Severan and his
-legions, and that was generations ago.  You pick your way through the primitive
-stone floor, aware that you are in terrible danger to be penetrating this far
-into the encampment.    
-~
-489 8 0
-D0
-You see the encampment to the north.
-~
-~
-0 -1 48969
-D2
-This must be where the camp's inhabitants store their foodstuffs.
-~
-~
-0 -1 48986
-D3
-A cavern with a very high ceiling opens here.
-~
-~
-0 -1 48984
-S
-#48984
-The Soldiers' Training Ground~
-   The ceiling here is very high above your head, forming an unforgiving rock
-cavern large enough for the small arena in its center.  You walk toward the
-arena formed by wooden planks into a circle.  Sand fills the arena to an
-ankle-deep depth.  The sand looks clean and cool, though you don't dare touch
-it and face that distraction.  The arena is large enough for a few people to
-get in and fight, with lots of standing room around for spectators.  From you,
-you can see only an east exit.    
-~
-489 8 0
-D1
-The living quarters of the army lie here.
-~
-~
-0 -1 48983
-S
-#48985
-An Ancient Battleground~
-   You happen into a rather odd cave.  At first you thought it was just an
-outcropping, but now, you can see that it's far more than just an accidental
-bit of cave.  You gingerly thread your way past past broken boulders and dusty
-rocks, peering into the near-total darkness at the wonders you behold.  
-Clearly, this was at one time the site of a major battle.  Broken weapons and
-armor lodged under rocks glint back at you.  Scars on the wall bespeak a time
-when spears and swords rang out in battle.  Now, though, it's hushed, quiet,
-almost reverent.  The only exit is north.    
-~
-489 8 0
-D0
-You're horrified to see skulls sitting atop dozens of stone shelves.
-~
-~
-0 -1 48966
-S
-#48986
-A Storage Cave~
-   Even an encampment must have a place to put supplies.  This is obviously it
-for this one.  Large jars stand against the wall.  You go to one, and see that
-it's empty, and has been for some time.  Sacks of grain that's clearly moldy
-are piled against another wall.  Potatoes that are sprouting sickly green
-shoots pile into another corner.  It doesn't smell very good, though it does
-remind you of how good a home-cooked meal really is.    
-~
-489 264 0
-D0
-
-~
-~
-0 -1 48983
-D2
-A porphyra in the corner lies against the wall. Its lid is loose.
-~
-porphyra~
-2 48987 48987
-E
-porphyra~
-To say it's a large jar isn't doing it justice. It's a HUGE jar with a
-pointed end. The lids are fitted on tightly, with hooks carved into the
-stone of the lid itself, for hanging the entire jar up. Since there's
-nothing in this jar, or its mates, there seems to be no reason to hang
-them up. They look extremely sturdy. Their plainness just emphasizes their
-utilitarian nature. The one you're most interested in is lying right at a 
-place in the wall where the mortar of the wall is partially eaten away. 
-The jars, being human-sized, are far too large to pick up, and your 
-efforts to smash them are repelled -- they're too sturdy. Perhaps you 
-need something magical to help you destroy them..?
-~
-S
-#48987
-A Narrow Corridor~
-   You've broken into a narrow corridor.  It's nearly dark, though that's no
-surprise, since most of the Keep seems to be nearly dark.  You wander down the
-corridor, wondering what seems to be so different about this particular hall,
-when it hits you.  The floor.  It's in excellent condition.  You can feel the
-sturdy stones under your feet; the masonry is uncorrupted by time or the
-moisture of the rock.  From here, you can go south, back to the entrance hall.
-A door blocks the way north, but you can also crawl up, though you can't tell
-what's above this hall.    
-~
-489 8 0
-D0
-The door has an unusually shaped keyhole-- hammer-shaped.
-~
-door
-~
-2 48987 48986
-D2
-The corridor opens up into an entranceway.
-~
-~
-0 -1 48988
-D4
-A fetid stench greets you from above your head, where a trapdoor lies.
-~
-trapdoor~
-1 -1 48982
-S
-#48988
-The Entrance to the Holding of the Jann~
-   A glorious hall, a beautiful entranceway; you stand in awe.  Somehow the
-narrow, dark corridor to the north has opened into this well-lit, elegant
-foyer.  The floor is white alabaster stone, and polished to a shine that
-reflects you back at yourself.  Fluted pillars support the high, white ceiling.
-Carvings are lavished on every available surface-- animals, designs of every
-sort, angels, demons, gods...  All looking down at you as if expecting you to
-do something.  A dark corridor goes off to the north, and there is a guard post
-to the west.    
-~
-489 8 0
-D0
-A dark corridor goes off to the north; beyond that is only darkness.
-~
-~
-0 -1 48987
-D3
-You see a guardpost to the west. Hopefully the guards are friendly.
-~
-~
-0 -1 48989
-S
-#48989
-An Underground Guard's Post~
-   You stand in front of a relatively plain white marble structure.  Tall,
-narrow windows face all directions of the hall-- east and south.  A stool
-stands pushed against a wall, as if its owner had to get up in a hurry.    
-~
-489 8 0
-D1
-You see a gleaming entranceway to the east.
-~
-~
-0 -1 48988
-D2
-You see a courtyard to the south, well-kept and manicured.
-~
-~
-0 -1 48990
-S
-#48990
-An Underground Courtyard~
-   A beautiful underground river flows up here, bubbling a short distance
-before it flows back into the heart of the mountain.  Around it, someone has
-arranged a beautiful man-made pond of sorts to catch the excess streamwater.  
-Vibrant green water-plants and water lilies stand around and float in the pond,
-which is small enough that you could jump across it.  Statues are arranged
-around the pond, short white marble statues depicting various animals in
-stylized form that are far enough apart that you can easily walk around them
-for a better view of the stream and pond.  Alabaster pots holding dark green
-ferns and small trees stand at the edge of the courtyard, near Doric columns
-that stretch all the way to the white ceiling.  Numerous wall sconces holding
-lanterns, golden sconces, provide more than enough light.    
-~
-489 8 0
-D0
-You see a small guardpost to the north.
-~
-~
-0 -1 48989
-D2
-You see a shining white room to the south. In the room's center you see a 
-stone bowl on a pillar. What is this?
-~
-~
-0 -1 48993
-D3
-You see an elegant receiving room.
-~
-~
-0 -1 48991
-D5
-A symbol carved into the floor catches your attention.
-~
-plate~
-2 48994 48994
-E
-floor symbol~
-As you look at the golden plate in the floor, you realize you can't 
-decipher the arcane symbols carved into it. They seem to center on one 
-particular part of the plate. You look closely at the plate and see that 
-it has a hole in it! Well, at least the hole is intentional. You push at 
-the plate, but it clearly wants something more than just a push.
-~
-S
-#48991
-The Jann Chief's Receiving Room~
-   An elegant room greets your eyes.  A red and gold carpet rolls forward to a
-sumptuous (and, incidentally, extremely comfortable-seeming) gold-chased chair.
-Red enamelled pots, filigreed with gold and gems, stand on either side of the
-chair, ferns exploding out of them, surrounding the area around the chair.  
-Cream-white columns add support for a high white ceiling.  Tapestries and
-paintings adorn the walls.  You wander around, impressed.    
-~
-489 8 0
-D1
-~
-~
-0 -1 48990
-D3
-~
-~
-0 -1 48998
-S
-#48993
-The Room of Sights~
-   You enter a fabulous room constructed of shining white stone of some kind.
-Light seems to suffuse this room from sources unknown.  Redwood and purple
-heartwood entwine in elaborate designs along the tops and bottoms of the walls.
-In the center of the room stands a small stone bowl supported by a short
-pillar.  The bowl comes to about waist height.  Clear water fills the carved
-white stone bowl.  Carved ivy leaves run down the pillar.    
-~
-489 520 0
-D0
-~
-~
-0 -1 48990
-E
-bowl fountain pillar~
-The bowl and pillar are made of matching alabaster stone, carved with ivy 
-leaves and polished until they both shine, reflecting the sourceless 
-light. When you look into the bowl, you are shocked to see scenes of all 
-four elemental planes: roiling water, rushing winds, licking flames, set 
-against dark stone.
-~
-S
-#48994
-The Altar of Sending~
-   You stand in the center of an eight-pointed star, worked in mosaic in the
-middle of an otherwise white marble floor.  The cardinal points of the star are
-worked in gold, while the other points are in silver.  Each gold point points
-to a gateway.  You can sense power in this otherwise utterly plain room, power
-and a sense of responsibility.  You wonder why the people who created this room
-had need of it.  Obviously, it's important, but how?    
-~
-489 520 0
-D0
-You see the Gateway to the Elemental Plane of Earth.
-~
-~
-0 -1 48995
-D1
-You see the Gateway to the Elemental Plane of Fire.
-~
-~
-0 -1 48999
-D2
-You see the Gateway to the Elemental Plane of Air.
-~
-~
-0 -1 48997
-D3
-You see the Gateway to the Elemental Plane of Water.
-~
-~
-0 -1 48996
-D4
-Above you, a short flight of stairs ends in a trapdoor marked with mystic 
-symbols. 
-~
-trapdoor~
-2 48994 48990
-S
-#48995
-The Gateway to the Earthen Realm~
-   You stand in the middle of a room hewn straight from living rock.  The
-beautiful white floor of the room to the south ends as if it melted clean away,
-revealing a stone floor.  The raw rock walls seem to stretch away from a
-centerpiece that depicts a mountain on a pedestal.  Bonsai plants are set into
-the miniature mountain in a classical cascade pattern.  If you feel brave,
-perhaps you can explore the Elemental Realm of Earth?  The gate that stands
-before you beckons.    
-~
-489 524 0
-D0
-The gateway is held shut by a padlock.
-~
-padlock
-~
-1 48401 47600
-D2
-~
-~
-0 -1 48994
-S
-#48996
-The Gateway to the Plane of Water~
-   The white floor of the room to the west stops and you have to step down into
-a shallow pool of water that extends through the entire chamber.  You notice
-that the water seems perfectly pure, and unnaturally light blue, as if it were
-deeper than it really is.  In the center of the room, a fountain of water
-bubbles cheerfully.  The droplets arc through the air and fall in glittering
-splashes of prismed color, falling against an elaborately carved gate.  You are
-enchanted with the peacefulness of the scene and watch for a moment.  You
-realize this room could send you straight to the Elemental Plane of Water.    
-~
-489 524 0
-D1
-To the east, you see the Altar of Sending.
-~
-~
-0 -1 48994
-D3
-The glittering gateway ahead is held shut by a padlock.
-~
-padlock
-~
-1 48401 47701
-S
-#48997
-The Gateway to the Plane of Air~
-   Howling winds pull you and push you in every direction.  You walk with
-effort to the center of this room-- or close to it, anyhow, because the center
-of the room is taken up with a very deadly-looking tornado whose source you
-can't identify.  It's not moving, so you surmise it's not natural in origin.  
-You can't even see the edges of the room you're in-- you can't see very far at
-all in this fog.  When you read forward, you can feel a forbidding stone gate
-just ahead of you.  But you are sure that you are in a gateway, and that you
-could reach the Elemental Plane of Air from here.    
-~
-489 524 0
-D0
-To the north, you see the Altar of Sending.
-~
-~
-0 -1 48994
-D2
-The stormy gateway ahead is held shut by a padlock.
-~
-padlock
-~
-1 48401 48801
-S
-#48998
-The Chamber of the Jann Chief~
-   Far from the opulence and indulgence of the receiving room, this room seems
-practical and almost homey, as if the Lord of the Jann were far too humble a
-man to bother with frills, but has to show them for the benefit of others.  A
-simple table covered in maps and instruments stands in the center of the room.
-A leather curtain hides a simple wooden bed from straight viewing.  You feel a
-sense of sympathy for the mysterious Jann chief, just from seeing that he's a
-person of simple tastes.    
-~
-489 8 0
-D1
-To the east, you see the Jann lord's receiving rooms. Beyond that, you 
-see an opulent courtyard.
-~
-~
-0 -1 48991
-S
-#48999
-The Gateway to the Realm of Fire~
-   The room is ablaze!  You cry out in surprise, then in pain, staying as far
-away from the center of the room.  A downdraft of fire, a column of flame,
-seems to well up from the center of the room, consuming everything in the room.
-You hear a crackling that would indicate that there's some kind of fuel feeding
-this fire, but you can't see it, nor would you wish to try to investigate-- the
-heat is so incredible you can barely squint.  But through it all, you can
-barely detect a gate ahead.  Where does it go to?  Perhaps to the Elemental
-Realm of Fire, as you thought when you came here?  Do you dare?    
-~
-489 524 0
-D1
-The gate is held secure by a strong padlock that you cannot break.
-~
-padlock
-~
-1 48401 47800
-D3
-To the west, you see the Altar of Sending.
-~
-~
-0 -1 48994
-S
-$~

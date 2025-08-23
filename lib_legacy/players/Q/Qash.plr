@@ -1,148 +1,0 @@
-name: Qash
-password: QaCHvgF4kP
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 7
-race: 9
-level: 40
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20143
-birthtime: 1644172064
-timeplayed: 299662
-lastlogintime: 1701279783
-host: 152.117.078.200
-height: 75
-weight: 104
-base_height: 75
-base_weight: 104
-base_size: 2
-natural_size: 2
-alignment: 738
-playerflags: gxy
-effectflags: k 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 319/319
-mana: 160/160
-move: 114/114
-damroll: 3
-hitroll: 3
-strength: 80
-intelligence: 99
-wisdom: 100
-dexterity: 76
-constitution: 76
-charisma: 52
-cash: 64 1163 4076 1356
-experience: 10279987
-quit_reason: 1
-saveroom: 3054
-skills:
-11 1000
-12 1000
-13 1000
-14 1000
-15 1000
-16 1000
-18 1000
-20 1000
-21 1000
-23 1000
-27 1000
-33 1000
-35 1000
-40 1000
-42 1000
-43 1000
-88 1000
-89 1000
-90 1000
-91 1000
-118 1000
-144 1000
-145 1000
-146 1000
-147 1000
-148 1000
-206 1000
-207 1000
-215 1000
-241 1000
-243 1000
-247 1000
-415 50
-416 50
-417 50
-421 78
-423 246
-424 335
-429 50
-438 77
-443 80
-444 73
-451 194
-454 50
-455 50
-457 440
-458 160
-459 420
-460 420
-462 50
-463 210
-464 50
-465 50
-466 50
-0 0
-trophy:
-1 53400 0.250000
-1 53406 0.250000
-1 53303 1.166667
-1 53312 1.000000
-1 8613 0.333333
-1 8612 0.333333
-1 8610 0.333333
-1 8609 0.333333
-1 8608 0.333333
-1 8611 0.333333
-1 8615 0.333333
-1 8603 3.333333
-1 8602 0.333333
-1 8605 0.333333
-1 8604 0.666667
-1 8606 0.333333
-1 8023 0.333333
-1 8000 0.333333
-1 8015 0.333333
-1 36001 0.333333
-1 36002 0.666667
-0 0 0
-tells:
-1656677875 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1656677875 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1656677875 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1656677876 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1664218180 @WDaedela@W tells you, 'secret tip: "reset" items actually reload if there isn't a copy in the game already.  the Jewel of the Heart should load when the gargoyles respawn since no one currently has one@W'@0
-1667178774 @WLokar@W tells you, 'consent me@W'@0
-1667178996 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1667179002 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1693927581 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
-1693927790 @WFecil@W tells you, 'Greetings adventurer.  Improving your skills taking too long?  I can help you for a fee.@W'@0
-$
-gossips:
-1693271428 Holk gossips, 'Hey Lokar'
-1693271430 Lokar gossips, 'Hey'
-1693271952 Chinok gossips, 'gratz on 30 and 37'
-1693271977 Mash gossips, 'Thanks'
-1693271989 Holk gossips, 'How's it going Chinok?'
-1698097539 Ulthar gossips, 'I haven't adventured in there yet'
-1698097575 Holk gossips, 'It's a good place to leave corpses if you're in a hurry'
-1698097586 Ulthar gossips, 'hah, that's just about everywhere for me'
-1698109509 Choak gossips, 'ty Chinok'
-1698109511 Tash gossips, 'thanks chinok'
-$

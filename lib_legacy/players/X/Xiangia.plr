@@ -1,134 +1,0 @@
-name: Xiangia
-password: Xis1bwXbky
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 2
-class: 1
-race: 0
-level: 12
-home: 3001
-lifeforce: 0
-composition: 0
-id: 18947
-birthtime: 1429769980
-timeplayed: 57720
-lastlogintime: 1737902153
-host: 195.252.220.094
-height: 65
-weight: 128
-base_height: 65
-base_weight: 128
-base_size: 2
-natural_size: 2
-alignment: 101
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 105/105
-mana: 13/13
-move: 100/100
-damroll: 3
-hitroll: 3
-strength: 74
-intelligence: 90
-wisdom: 92
-dexterity: 78
-constitution: 60
-charisma: 68
-cash: 3 75 7 0
-experience: 421934
-quit_reason: 1
-saveroom: 3054
-skills:
-1 1000
-3 1000
-12 1000
-13 1000
-16 1000
-18 1000
-20 1000
-21 1000
-84 1000
-85 1000
-87 1000
-88 1000
-89 1000
-131 1000
-206 1000
-415 50
-416 50
-423 54
-424 170
-438 111
-443 50
-444 50
-451 67
-457 166
-458 120
-459 53
-460 50
-462 50
-463 52
-466 50
-0 0
-trophy:
-1 17208 1.500000
-1 17205 0.500000
-1 17201 0.500000
-1 17204 3.500000
-1 17203 1.000000
-1 3508 1.500000
-1 3500 1.500000
-1 3506 0.500000
-1 3509 1.000000
-1 41012 0.500000
-1 41006 0.500000
-1 41021 0.500000
-1 41015 0.500000
-1 41014 0.500000
-1 41002 1.500000
-1 41008 0.500000
-1 41011 0.500000
-1 41007 1.000000
-1 41010 0.500000
-1 41009 0.500000
-1 41001 6.000000
-0 0 0
-tells:
-1577155709 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1577156639 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1577216251 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1577654911 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1577677883 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1632353110 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1632353199 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1632354518 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1632586721 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1632586809 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1632591963 Chinok gossips, 'it's near there. '
-1632591972 Chinok gossips, 'it's not part of phonix feather'
-1632591981 Luxx gossips, 'It's just near there according to my map'
-1632591984 Luxx gossips, 'East of it'
-1632592108 Chinok gossips, 'yeah, it's mainly considered a road, not so much of a 'area' -- '
-1632592116 Chinok gossips, 'it might need to get added tho'
-1632592117 Luxx gossips, 'Oooh ok. makes sense'
-1632592731 Chinok gossips, 'btw -- the way I find stuff like what you were asking -- (the area list) --'
-1632592740 Chinok gossips, 'go to https://www.fierymud.org/help '
-1632592765 Chinok gossips, 'search for area, and boom, the help area screen is up.. and you can search it :)'
-$
-aliases:
-csl cast 'cure serious' luxx
-cs cast 'cure serious' self
-armor cast 'armor' self
-cl cast 'cure light' self
-lesser cast'lesser endurance' self
-hl cast 'cure light' luxx
-al assist luxx
-green recite green
-0

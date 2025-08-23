@@ -1,111 +1,0 @@
-name: Kraz
-password: Kr1ZFUVjJ1
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA %ih&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
-sex: 1
-class: 10
-race: 3
-level: 99
-home: 3038
-lifeforce: 0
-composition: 0
-id: 14280
-birthtime: 1106439940
-timeplayed: 7439465
-lastlogintime: 1717459136
-host: 066.199.058.082
-height: 45
-weight: 193
-base_height: 45
-base_weight: 193
-base_size: 2
-natural_size: 2
-alignment: -142
-playerflags: glxyz
-effectflags: k w q
-prefflags: hnouzC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-hunger: 12
-thirst: 24
-lastlevel: 8
-hitpoints: 1375/1177
-mana: 100/100
-move: 168/168
-damroll: 4
-hitroll: 5
-strength: 99
-intelligence: 88
-wisdom: 52
-dexterity: 86
-constitution: 100
-charisma: 39
-cash: 43 745 73709 41614
-experience: 105805999
-quit_reason: 1
-saveroom: 3054
-skills:
-401 1000
-402 1000
-403 1000
-404 1000
-410 1000
-411 1000
-412 1000
-415 1000
-416 1000
-420 1000
-421 1000
-422 1000
-428 1000
-430 1000
-431 1000
-434 1000
-438 1000
-443 1000
-444 1000
-463 1000
-464 1000
-465 1000
-466 1000
-467 1000
-468 1000
-473 1000
-474 1000
-0 0
-trophy:
-1 53314 1.000000
-1 53315 3.000000
-1 53312 4.000000
-0 0 0
-tells:
-1662232885 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1676696872 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1693622511 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1713231456 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1713232520 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1713232520 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1713232575 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1713232577 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1713245267 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1713245270 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1646534808 Zaver gossips, 'thanks!'
-1646534826 Chinok gossips, 'if i remember right, there is a hidden door somewhere arround'
-1662232856 Zaver gossips, 'lose something?'
-1713231483 Chinok gossips, 'up Kraz, and guys'
-1713231563 Chinok gossips, 'yeah, I didn't recognize it..'
-1713231649 Chinok gossips, 'wow that tickles :)'
-1713232231 Chinok gossips, 'wow, you let Fintazz beat you up!'
-1717459135 Someone gossips, 'need a hand?'
-$
-aliases:
-lc l in corpse
-jj wi dagger
-gc g all.coins from corpse
-gg get all.gem from corpse
-tm track mesmeriz
-bb bash
-oo give totem general
-0

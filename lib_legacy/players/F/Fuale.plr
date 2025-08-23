@@ -1,212 +1,0 @@
-name: Fuale
-password: FuE4s3opj7
-currenttitle: (dragross's swimmer)
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 5
-race: 0
-level: 96
-home: 3001
-lifeforce: 0
-composition: 0
-id: 18147
-birthtime: 1331260991
-timeplayed: 649788
-lastlogintime: 1621479666
-host: 024.020.004.178
-height: 61
-weight: 147
-base_height: 61
-base_weight: 147
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: gxy
-effectflags: cn 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 1131/1035
-mana: 921/921
-move: 138/138
-damroll: 3
-hitroll: 3
-strength: 92
-intelligence: 56
-wisdom: 69
-dexterity: 92
-constitution: 97
-charisma: 60
-cash: 9 9 8 0
-bank: 761 7192 13513 4683
-experience: 91876000
-quit_reason: 1
-saveroom: 3054
-skills:
-4 1000
-12 1000
-13 1000
-14 1000
-17 1000
-27 1000
-33 1000
-46 1000
-84 1000
-85 1000
-86 1000
-92 1000
-96 1000
-99 1000
-131 1000
-132 1000
-188 1000
-402 1000
-404 999
-407 964
-411 995
-412 1000
-415 53
-416 764
-417 50
-420 989
-421 1000
-422 993
-423 997
-424 932
-430 948
-431 50
-434 962
-438 165
-441 514
-443 50
-444 510
-445 1000
-450 50
-451 964
-452 900
-457 902
-458 914
-459 926
-460 901
-461 900
-463 1000
-464 900
-465 984
-466 969
-468 966
-473 50
-0 0
-trophy:
-1 53303 1.500000
-1 53314 1.500000
-1 53315 7.500000
-1 53312 3.000000
-1 53403 0.250000
-1 53404 1.250000
-1 53402 1.250000
-1 53409 1.000000
-1 53410 1.250000
-1 53416 1.333333
-1 53415 3.250000
-1 53424 3.250000
-1 10050 0.250000
-1 10051 0.750000
-0 0 0
-tells:
-1596946180 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1596828703 Mejna gossips, 'BE A DRUID'
-1596828719 Qwidbic gossips, 'might not have time atm to finish that last step'
-1596828725 Mejna gossips, 'noooooooooooooo'
-1596828727 Mejna gossips, 'you must'
-1596828733 Qwidbic gossips, 'work is a mess right now'
-1596828743 Mejna gossips, 'needs a druid to fix it'
-1596828746 Mejna gossips, 'its the only way'
-1596946245 Apoc gossips, 'alright'
-1596946277 Althinia gossips, 'word'
-1596946308 Apoc gossips, 'take your lowbies to ice?'
-$
-effects:
-131 22 0 0 0 0 32768
-131 22 1 19 0 0 0
-131 22 -11 24 0 0 0
-0 0 0 0 0
-mem:
-84 1 1
-84 1 1
-84 1 1
-84 1 1
-84 1 1
-84 1 1
-84 1 1
-131 0 1
-131 1 1
-132 1 1
-131 1 1
-132 1 1
-131 1 1
-12 1 1
-17 1 1
-132 1 1
-17 1 1
-17 1 1
-17 1 1
-17 1 1
-17 1 1
-12 1 1
-12 1 1
-12 1 1
-12 1 1
-12 1 1
-46 1 1
-46 1 1
-86 1 1
-86 1 1
-86 1 1
-86 1 1
-14 1 1
-14 1 1
-14 1 1
-4 1 1
-4 1 1
-4 1 1
-13 1 1
-99 1 1
-99 1 1
-99 1 1
-99 1 1
-99 1 1
-99 1 1
-188 0 1
-188 1 1
-188 1 1
-92 1 1
-92 1 1
-92 1 1
-27 1 1
-27 1 1
-17 1 1
-27 1 1
-27 1 1
-27 1 1
-27 1 1
-84 1 1
-132 1 1
-46 1 1
-96 1 1
-96 1 1
-96 1 1
-96 1 1
-96 1 1
-14 1 1
-13 1 1
-17 1 1
-99 1 1
-188 1 1
-46 1 1
-14 1 1
-0 0 0

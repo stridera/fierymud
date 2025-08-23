@@ -1,206 +1,0 @@
-name: Witta
-password: WizaXSB4x0
-description
-The Warrior
-~
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 0
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 18505
-birthtime: 1368145582
-timeplayed: 2389106
-lastlogintime: 1643036317
-host: 184.022.059.139
-height: 67
-weight: 137
-base_height: 67
-base_weight: 137
-base_size: 2
-natural_size: 2
-alignment: 994
-playerflags: gxyz
-effectflags: 0 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 11823
-lastlevel: 0
-hitpoints: 1211/1211
-mana: 980/980
-move: 120/120
-damroll: 3
-hitroll: 3
-strength: 92
-intelligence: 70
-wisdom: 78
-dexterity: 94
-constitution: 84
-charisma: 58
-cash: 302 1604 11124 12220
-bank: 906 39170 43931 35798
-experience: 116386599
-quit_reason: 7
-saveroom: 11823
-skills:
-402 1000
-404 1000
-407 1000
-411 1000
-412 1000
-415 1000
-416 1000
-420 1000
-421 1000
-422 1000
-430 1000
-431 1000
-434 1000
-438 245
-441 1000
-443 50
-444 1000
-463 1000
-464 1000
-465 1000
-466 1000
-467 1000
-468 1000
-473 340
-0 0
-trophy:
-1 11811 110.333519
-1 11809 1.333333
-1 2805 1.666667
-1 2804 1.000000
-1 2802 2.166667
-1 2803 1.000000
-1 11701 3.000000
-1 2809 1.666667
-1 2801 9.833333
-1 11710 1.333333
-1 11702 2.500000
-1 2808 3.666666
-1 11703 1.333333
-1 11704 1.333333
-1 16011 1.000000
-1 16009 10.000000
-1 16008 0.333333
-1 16010 0.333333
-1 16019 0.333333
-1 16018 0.333333
-1 16017 0.333333
-0 0 0
-tells:
-1626102734 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1626102748 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1626102755 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1626276566 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1626276974 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1626277943 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1626359294 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1626359297 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1626444622 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1638916081 @WTors@W tells you, 'do you know where the phase 3 druid armor is hiding?@W'@0
-$
-gossips:
-1641744354 Someone gossips, 'hey Warra'
-1641744362 Wittawat gossips, 'Hey hey Chinok'
-1641744520 Catan gossips, 'Hey witta'
-1641744545 Wittawat gossips, 'Yeah Catan'
-1642341748 Chinok gossips, 'hey Morris'
-1642341755 Morris gossips, 'Good Morning'
-1642341776 Morris gossips, 'Wittawat !!! how its going'
-1642341785 Wittawat gossips, 'my item lost'
-1642341800 Wittawat gossips, 'cloth sack missing out'
-1643035979 Vios gossips, 'Lokar '
-$
-aliases:
-pgb p all.gem cod
-/o rescue warra
-guv giv all.uncut vios
-gboar search wheel;op wheel;n;search straw;op straw;n;search wall;say ok
-mm enter well
-prb p all.radiant cloth
-psb p all.shard cloth
-eb g bread saddle; eat bread
-pbs p all.bread saddle
-fs fill watersack fountain
-ds dri watersack
-warp rem alicorn;wear key;rem key;wear alicorn
-.. ass warra
-aaa rescue dagross
-sta stand;fly
-qq give totem general
-ash ass harnv
-asm ass marlia
-qqq u; con zzur;exa zzur;d
-dak dro all.key
-gle giv legion eldorian
-5douse douse;douse;douse;douse;douse
-. ass wittawat
-ga2c g all 2.corpse
-l3c exa 3.corpse
-l2c exa 2.corpse
-folw follow wittawat; consent wittawat; guard wittawat
-] bash
-pdb p all.dust bag
-gbb g 2 bread backpack
-gbw giv 2 bread wittawat
-' kick
-lc exa corpse
-df drink fountain
-lb exa bag
-gac get all corpse
-lbp exa backpack
-asw assist wittawat
-pbb p all.bread backpack
-/ rescue wittawat
-zz recite green
-gcw giv all.crushed wittawat
-gkc get all.key corpse
-aas drag handcart s
-aan drag handcart n
-aae drag handcart e
-aaw drag handcart w
-,, rescue haggard
-pib p all.identify backpack
-gib g identify backpack
-qaz giv legion quartermaster
-zzb recite blue
-dsp dri spring; dri spring; dri spring; dri spring; dri spring
-haa hitall all
-; hitall
-]] sta;mount mule;s
-\\ mount mule;dismount;mount mule;dismount;mount mule;dismount
-gak g all.key
-, flee
-// rescue warra
-lsd exa saddle
-lsc exa cloth
-pub p all.uncut bag
-peb p all.enchanted saddle
-phb p all.handful saddle
-;; hitall all
-/// rescue vios
-//// rescue almera
-xx recite blue
-gdw giv all.dust wittawat
-pcb p all.cursed egg
-ppb p all.perfect egg
-leg exa egg
-gfv giv all.flawed vios
-gro giv all.radiant warra
-gso giv all.shard warra
-gha giv all.handful almera
-gea giv all.enchanted almera
-lcod exa cod
-inn s;w;s;w;w;w;w;s;buy green;n;w;n;w;u;say ok
-pfb p all.perfect egg
-/v rescue vios
-0

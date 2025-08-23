@@ -1,87 +1,0 @@
-name: Martinelli
-password: MaD1ODZJ8h
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 0
-race: 9
-level: 1
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20199
-birthtime: 1647145919
-timeplayed: 2573
-lastlogintime: 1664031372
-host: 094.062.121.014
-height: 64
-weight: 141
-base_height: 64
-base_weight: 141
-base_size: 2
-natural_size: 2
-alignment: 1000
-playerflags: y
-effectflags: k 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-lastlevel: 0
-hitpoints: 20/20
-mana: 1/0
-move: 100/100
-damroll: 3
-hitroll: 3
-strength: 81
-intelligence: 88
-wisdom: 87
-dexterity: 80
-constitution: 74
-charisma: 59
-experience: 1
-quit_reason: 3
-saveroom: 0
-skills:
-5 1000
-20 1000
-32 1000
-100 1000
-101 1000
-415 50
-416 50
-423 50
-424 50
-438 50
-443 50
-444 50
-447 50
-451 50
-452 50
-453 50
-459 50
-460 50
-462 50
-464 50
-0 0
-tells:
-1664031159 @WThe Academy Recruiter@W tells you, 'Hello there!@W'@0
-1664031159 @WThe Academy Recruiter@W tells you, 'Are you here for new player training?@W'@0
-1664031192 @WThe Academy Recruiter@W tells you, 'It's always a good idea to review the basics.@W'@0
-1664031193 @WThe Instructor@W tells you, 'Greetings adventurer!@W'@0
-1664031193 @WThe Instructor@W tells you, 'I'm your Intro to Adventuring instructor.@W'@0
-1664031193 @WThe Instructor@W tells you, 'I'll be teaching you the basics of:@W'@0
-1664031193 @WThe Instructor@W tells you, 'Communication, inventory management, and movement.@W'@0
-1664031200 @WThe Instructor@W tells you, 'It sends your message to everyone in the room.@W'@0
-1664031205 @WThe Instructor@W tells you, 'I'm listening for you to say exactly that,@W'@0
-1664031205 @WThe Instructor@W tells you, 'No extra words or punctuation.@W'@0
-$
-gossips:
-1647145953 Chinok gossips, 'welcome Martinelli -- let me know if you have any questions, or need any advice'
-1647147708 Chinok gossips, 'welcome back Martinelli -- let us know if you have any questions, or need any advice'
-1647147729 Chinok gossips, 'btw -- <-- is not a bot, real live person!'
-1647147740 Cerix gossips, 'dont lie'
-1647147766 Chinok gossips, 'you may be a bot Cerix, but I am not'
-1655608191 Chinok gossips, 'welcome Martinelli'
-1655608206 Chinok gossips, 'just yell if you have any questions or need any help'
-$

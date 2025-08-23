@@ -1,113 +1,0 @@
-name: Kellegos
-password: KeJt2rN3Lj
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 18
-race: 11
-level: 15
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19403
-birthtime: 1543347596
-timeplayed: 123117
-lastlogintime: 1664497076
-host: 024.070.001.074
-height: 42
-weight: 130
-base_height: 42
-base_weight: 130
-base_size: 1
-natural_size: 1
-alignment: 375
-playerflags: y
-effectflags: fk 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 30
-loadroom: 3054
-lastlevel: 0
-hitpoints: 163/163
-mana: 22/22
-move: 116/116
-damroll: 3
-hitroll: 6
-strength: 79
-intelligence: 58
-wisdom: 62
-dexterity: 100
-constitution: 92
-charisma: 68
-cash: 1 710 2748 1235
-experience: 849554
-quit_reason: 3
-saveroom: 0
-skills:
-401 200
-403 200
-405 98
-408 200
-411 107
-415 60
-416 77
-421 134
-438 50
-443 50
-444 54
-463 50
-464 200
-465 69
-472 118
-0 0
-trophy:
-1 17204 4.000000
-1 13603 0.750000
-1 13610 1.333333
-1 13611 0.750000
-1 13602 1.833333
-1 13601 1.500000
-1 8010 0.500000
-1 16111 0.250000
-1 16103 0.500000
-1 16106 0.500000
-1 16107 2.833333
-1 36003 1.250000
-1 36001 1.500000
-1 36002 2.000000
-1 8321 1.000000
-1 8320 0.666667
-1 8332 0.333333
-1 8317 0.333333
-1 8311 1.000000
-1 8308 1.666667
-1 8305 0.666667
-0 0 0
-tells:
-1660408571 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1660408578 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1660408579 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1660408580 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1660408581 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1660408595 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1660601173 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1660601328 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1660601329 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1660601329 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1661381307 Zaver gossips, 'Hey Kellegos'
-1661381321 Discord gossips, 'Venath: Kangaroos?'
-1661381378 Zaver gossips, 'Hey Venath'
-1661381388 Venath gossips, 'er, hi'
-1661551131 Choak gossips, 'Hey Kress'
-1661551136 Kresselack gossips, 'sup'
-1661551153 Discord gossips, 'Venath: Kresseleack!'
-1661551589 Venath gossips, 'heh'
-1661551592 Keric gossips, 'lol'
-1664496050 Kell gossips, 'evening all'
-$
-aliases:
-gac get all corpse
-0

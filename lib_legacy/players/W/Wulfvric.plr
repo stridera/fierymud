@@ -1,113 +1,0 @@
-name: Wulfvric
-password: WuMnbxyINm
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 10
-level: 8
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19957
-birthtime: 1625710140
-timeplayed: 11929
-lastlogintime: 1625892266
-host: 068.063.171.019
-height: 76
-weight: 245
-base_height: 76
-base_weight: 245
-base_size: 3
-natural_size: 3
-alignment: 127
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: ghnoxC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 10
-loadroom: 55988
-hunger: 9
-thirst: 4
-lastlevel: 0
-hitpoints: 129/113
-mana: 1/0
-move: 45/160
-damroll: 5
-hitroll: 4
-strength: 92
-intelligence: 62
-wisdom: 76
-dexterity: 87
-constitution: 91
-charisma: 58
-cash: 0 79 398 191
-experience: 172744
-quit_reason: 7
-saveroom: 55988
-skills:
-402 50
-404 115
-415 50
-416 50
-419 1000
-421 98
-427 1000
-438 57
-443 50
-444 50
-463 50
-464 70
-465 56
-466 50
-467 50
-468 50
-0 0
-trophy:
-1 5403 1.000000
-1 5404 1.000000
-1 17209 4.000000
-1 17205 2.000000
-1 17203 3.000000
-1 17202 4.000000
-1 17204 10.000000
-1 7050 1.000000
-1 7051 3.000000
-1 7002 2.000000
-1 18003 5.000000
-1 16901 2.000000
-1 16900 29.000000
-1 16902 8.000000
-1 16906 6.000000
-1 16907 5.000000
-1 16905 4.000000
-1 16908 3.000000
-1 18004 1.000000
-1 18002 7.000000
-1 18001 6.000000
-0 0 0
-tells:
-1625717553 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1625717554 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1625717554 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1625720091 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1625720092 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1625720099 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
-1625720108 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
-1625720117 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1625882743 @WChinok@W tells you, 'go to the fountain and type douse@W'@0
-1625882765 @WChinok@W tells you, 'just doing douse will TRY, but probably won't work@W'@0
-$
-gossips:
-1625882653 Chinok gossips, 'watchin baseball and chillin'
-1625882673 Daegara gossips, 'we're camping out at a dark with about a dozen other families'
-1625882692 Daegara gossips, 'pizza, s'mores, movie on a projector screen'
-1625882692 Chinok gossips, 'ah cool!'
-1625882697 Daegara gossips, 'kinda cute'
-1625882979 Chinok gossips, 'lol why are you fighting guards in town ?'
-1625883083 Daegara gossips, 'wrong question'
-1625883103 Chinok gossips, 'ok, what shoudld the question have been ?'
-1625883115 Daegara gossips, 'the real question is : why i am I trying to kill guards in town with absolutely no automation'
-1625891699 Chinok gossips, 'night all'
-$

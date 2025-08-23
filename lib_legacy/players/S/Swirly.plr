@@ -1,93 +1,0 @@
-name: Swirly
-password: SwZHii7qIe
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 0
-race: 0
-level: 1
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19794
-birthtime: 1606930795
-timeplayed: 11538
-lastlogintime: 1607629211
-host: 174.204.016.158
-height: 74
-weight: 155
-base_height: 74
-base_weight: 155
-base_size: 2
-natural_size: 2
-alignment: 0
-playerflags: y
-effectflags: 0 0 0
-prefflags: hC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-lastlevel: 0
-hitpoints: 23/23
-mana: 1/0
-move: 100/100
-damroll: 3
-hitroll: 3
-strength: 80
-intelligence: 99
-wisdom: 86
-dexterity: 64
-constitution: 69
-charisma: 67
-experience: 6599
-quit_reason: 3
-saveroom: 0
-skills:
-5 1000
-20 1000
-32 1000
-100 1000
-101 1000
-415 50
-416 50
-423 50
-424 51
-438 50
-443 50
-444 50
-447 60
-451 52
-452 50
-453 50
-459 50
-460 50
-462 50
-464 54
-0 0
-trophy:
-1 8000 2.000000
-1 8015 1.000000
-1 8010 2.000000
-1 8011 2.000000
-1 8016 1.000000
-0 0 0
-tells:
-1606933489 @WChinok@W tells you, 'you can, but I wouldn't worry much about food right now@W'@0
-1606933505 @WChinok@W tells you, 'once you learn your spells, you can make your own food@W'@0
-1606933722 @WChinok@W tells you, 'you need to hold your spellbook, and quill, go to your questmaster, and scribe your spells@W'@0
-$
-gossips:
-1607105632 Chinok gossips, 'you had an iron ration in your inventory'
-1607105810 Chinok gossips, 'type mem'
-1607105860 Chinok gossips, 'get levels'
-1607105894 Chinok gossips, 'kill bugs!'
-1607106263 Chinok gossips, 'JUST WAKE'
-1607106539 Chinok gossips, 'go back to your guild -- and type level gain'
-1607106834 Chinok gossips, 'follow your map'
-1607110962 Someone gossips, 'hi Swirly'
-1607110967 Chinok gossips, 'welcome back '
-1607553544 Chinok gossips, 'hi Swirly'
-$
-mem:
-5 1 9
-0 0 0

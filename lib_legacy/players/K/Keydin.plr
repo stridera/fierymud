@@ -1,107 +1,0 @@
-name: Keydin
-password: KeFt/x33EZ
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 18
-race: 11
-level: 6
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19989
-birthtime: 1628192837
-timeplayed: 24279
-lastlogintime: 1726405273
-host: 068.036.093.003
-height: 42
-weight: 144
-base_height: 42
-base_weight: 144
-base_size: 1
-natural_size: 1
-alignment: 990
-playerflags: xy
-effectflags: fk 0 0
-prefflags: hnoxC ae
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-lastlevel: 0
-hitpoints: 81/81
-mana: 1/0
-move: 110/110
-damroll: 3
-hitroll: 6
-strength: 82
-intelligence: 61
-wisdom: 75
-dexterity: 99
-constitution: 86
-charisma: 59
-experience: 82743
-quit_reason: 5
-saveroom: 3054
-skills:
-401 50
-403 60
-405 50
-408 50
-415 50
-416 50
-421 54
-438 50
-443 50
-444 50
-463 50
-464 67
-465 50
-493 50
-0 0
-trophy:
-1 8022 0.200000
-1 5421 0.750000
-1 5420 0.900000
-1 5408 1.500000
-1 5404 0.200000
-1 3502 0.450000
-1 3501 0.900000
-1 3508 0.450000
-1 3503 0.650000
-1 3500 0.650000
-1 8015 0.650000
-1 8010 2.250000
-1 8014 4.733333
-1 8016 3.000000
-1 8020 1.650000
-1 8013 3.050000
-1 8001 1.783333
-1 8012 2.400000
-1 8021 1.933334
-1 8002 3.983334
-1 8023 1.650000
-0 0 0
-tells:
-1628195074 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1628220459 @WIrk@W tells you, 'join my group@W'@0
-1628221064 @WIrk@W tells you, 'join my group@W'@0
-1628225171 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1628271060 @WIrk@W tells you, 'join my group@W'@0
-1628276093 @WIrk@W tells you, 'join my group@W'@0
-1628301539 @WIrk@W tells you, 'join my group@W'@0
-1628366110 @WIrk@W tells you, 'join my group@W'@0
-1628367293 @WIrk@W tells you, 'join my group@W'@0
-$
-gossips:
-1628303937 Irk gossips, 'truth'
-1628304004 Irk gossips, 'alright, probably off for a couple of days, or a week or so. going camping on monday, but doing garage cleaning this weekend.'
-1628304019 Irk gossips, 'so, i will return when i do. thanks for another wonderful night'
-1628304027 Chinok gossips, 'enjoy the camping, quit the cleaning and log in :)'
-1628304056 Chinok gossips, 'I've decided the kids have to clean that crap up when I die! :)'
-1628304060 Irk gossips, 'i'd love to, but doing a lot of moving around, with the getting married thing. housing updating, remodeling and such.'
-1628304076 Chinok gossips, 'ahhh moving.. yeah.. fine, pass granted!'
-1628304151 Irk gossips, 'as much as i dislike it. might as well get it done. want to get the room ready for the little guy, and my sister is moving down, so want to prepare her room for her. then get my bedroom redone...so its a lot. and still cleaning u
-1628304151 my grandmother passed. so that is nearing its completion'
-1628304175 Chinok gossips, 'man, you got a handful going on!'
-1628304183 Chinok gossips, 'join us for some relaxation when you can'
-$

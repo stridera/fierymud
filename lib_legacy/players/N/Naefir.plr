@@ -1,149 +1,0 @@
-name: Naefir
-password: NaVChMNMyt
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 1
-race: 9
-level: 13
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19152
-birthtime: 1489969298
-timeplayed: 48640
-lastlogintime: 1584325476
-host: 072.182.058.184
-height: 64
-weight: 169
-base_height: 64
-base_weight: 169
-base_size: 2
-natural_size: 2
-alignment: 960
-playerflags: gxy
-effectflags: k 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-thirst: 4
-lastlevel: 0
-hitpoints: 103/107
-mana: 14/14
-move: -8/114
-damroll: 3
-hitroll: 3
-strength: 84
-intelligence: 91
-wisdom: 100
-dexterity: 84
-constitution: 84
-charisma: 90
-cash: 0 74 429 336
-bank: 10 0 0 0
-experience: 509220
-pagelength: 50
-quit_reason: 1
-saveroom: 3054
-skills:
-1 1000
-3 1000
-12 1000
-13 1000
-16 1000
-18 1000
-20 1000
-21 1000
-84 1000
-85 1000
-87 1000
-88 1000
-89 1000
-206 1000
-415 50
-416 50
-423 170
-424 170
-438 104
-443 50
-444 50
-451 52
-457 158
-458 60
-459 73
-460 170
-462 50
-463 173
-466 50
-0 0
-trophy:
-1 36002 7.000000
-1 36003 4.000000
-1 61506 0.500000
-1 61523 0.500000
-1 61524 1.500000
-1 61508 1.500000
-1 61517 0.500000
-1 61507 1.000000
-1 61512 3.000000
-1 61509 1.500000
-1 61510 1.500000
-1 17205 0.500000
-1 17202 0.500000
-1 17204 3.000000
-1 17203 0.500000
-1 3506 0.500000
-1 3500 1.500000
-1 3509 1.000000
-1 3508 2.000000
-1 8014 1.500000
-1 8020 0.500000
-0 0 0
-tells:
-1584065393 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1584066119 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
-1584161866 @WShazz@W tells you, 'Take good care of that.@W'@0
-1584162594 @WBigby@W tells you, 'You can only hold 5.@W'@0
-1584162594 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1584162737 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
-1584162904 @WCalken@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1584162942 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
-1584162954 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1584325212 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-$
-gossips:
-1584238403 Chinok gossips, 'why would you assume at level 12, you could do better ?'
-1584238415 Chinok gossips, 'when your skill is -- what -- awful ?'
-1584238575 Chinok gossips, 'but . if you see the * -- when you type skill'
-1584238590 Chinok gossips, 'that means, IT is the highest you can get it for level 12'
-1584238673 Chinok gossips, 'remember -- everything is a roll.. if you roll 3 -- chances are your bash fails.. if you roll 12, chances are it suceeds'
-1584238758 Orinth gossips, 'but as you said, it doesn't hit a 90% success rate until level 80.  If that's linear, there's scaling based on the practice level resulting in it failing for many many levels.'
-1584238790 Chinok gossips, 'lol not interested in arguing over the % sucess of skills'
-1584238805 Orinth gossips, 'ok.'
-1584238824 Chinok gossips, 'it is skill / level based'
-1584239401 Orinth gossips, 'thank you!'
-$
-effects:
-3 8 0 0 0 0 16384
-3 8 -3 24 0 0 0
-3 8 1 18 0 0 0
-1 6 10 17 0 0 0
-0 0 0 0 0
-mem:
-3 1 7
-89 1 7
-89 1 7
-89 1 7
-1 1 3
-1 1 3
-16 1 3
-16 1 3
-206 1 3
-206 1 3
-16 1 3
-0 0 0
-aliases:
-k kill $*
-hh cast 'cure light'
-0

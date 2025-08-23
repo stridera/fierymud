@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../core/actor.hpp"
+#include "../core/config.hpp"
+#include "../core/logging.hpp"
 #include "../net/player_connection.hpp"
 #include "../world/world_manager.hpp"
 #include "../world/room.hpp"
@@ -15,12 +17,38 @@ public:
     }
 
     void initialize() {
-        // Place the player in the starting room (room 100)
+        place_in_safe_room();
+    }
+
+    void place_in_safe_room() {
         auto& world = WorldManager::instance();
-        auto starting_room = world.get_room(EntityId{100UL});
-        if (starting_room) {
-            set_current_room(starting_room);
-            starting_room->add_actor(shared_from_this());
+        std::shared_ptr<Room> target_room = nullptr;
+        
+        // First, check if player already has a valid room (from save file)
+        auto current = current_room();
+        if (current) {
+            target_room = current;
+        }
+        
+        // If no current room or invalid, try configured starting room
+        if (!target_room) {
+            auto starting_room_id = Config::instance().default_starting_room();
+            target_room = world.get_room(starting_room_id);
+        }
+        
+        // If starting room doesn't exist, try to find any available room
+        if (!target_room) {
+            target_room = world.get_first_available_room();
+        }
+        
+        // If still no room available, log error but don't crash
+        if (target_room) {
+            set_current_room(target_room);
+            target_room->add_actor(shared_from_this());
+        } else {
+            // This should rarely happen, but log it for debugging
+            // The player will be in a "nowhere" state but won't crash the server
+            Log::error("Could not place player '{}' in any room - no rooms available!", name());
         }
     }
 
@@ -31,6 +59,8 @@ public:
             room->remove_actor(id());
         }
     }
+
+private:
 
     void send_message(std::string_view message) override {
         if (connection_) {

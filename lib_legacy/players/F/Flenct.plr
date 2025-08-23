@@ -1,118 +1,0 @@
-name: Flenct
-password: Flyv7hnmUr
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 10
-level: 12
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19914
-birthtime: 1620579176
-timeplayed: 1695315
-lastlogintime: 1724433833
-host: 174.179.016.210
-height: 71
-weight: 238
-base_height: 71
-base_weight: 238
-base_size: 3
-natural_size: 3
-alignment: 378
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: ghnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 35
-loadroom: 3054
-lastlevel: 0
-hitpoints: 178/154
-mana: 14/14
-move: 158/158
-damroll: 5
-hitroll: 4
-strength: 93
-intelligence: 63
-wisdom: 64
-dexterity: 94
-constitution: 90
-charisma: 64
-cash: 0 21 7 9
-bank: 0 200 841 0
-experience: 543465
-quit_reason: 1
-saveroom: 3054
-skills:
-402 170
-404 126
-415 50
-416 50
-419 1000
-421 146
-427 1000
-430 50
-438 76
-443 50
-444 69
-463 50
-464 50
-465 116
-466 50
-467 50
-468 50
-0 0
-trophy:
-1 5420 0.500000
-1 5442 1.000000
-1 5451 2.000000
-1 5501 0.500000
-1 5414 5.500000
-1 5443 2.500000
-1 5404 0.500000
-1 4102 2.500000
-1 4101 0.500000
-1 17205 0.500000
-1 17204 2.500000
-1 2002 0.500000
-1 1816 0.500000
-1 1815 2.000000
-1 1814 1.500000
-1 1810 1.000000
-1 1809 0.500000
-1 1804 3.500000
-1 1807 0.500000
-1 1801 2.500000
-1 1806 1.000000
-0 0 0
-tells:
-1621688941 @WTatabutataka@W tells you, 'consent Tatabutataka@W'@0
-1621688947 @WTatabutataka@W tells you, 'fol Tatabutataka@W'@0
-1621962791 @WTatabutataka@W tells you, 'consent Tatabutataka@W'@0
-1621962796 @WTatabutataka@W tells you, 'fol flenct@W'@0
-1622043081 @WTatabutataka@W tells you, 'l Tatabutataka@W'@0
-1622122843 @WTatabutataka@W tells you, 'fol Tatabutataka@W'@0
-1622122846 @WTatabutataka@W tells you, 'consent Tatabutataka@W'@0
-1622233576 @WTatabutataka@W tells you, 'fg@W'@0
-1622574189 @WTatabutataka@W tells you, 'consent tatabutataka@W'@0
-1622574198 @WTatabutataka@W tells you, 'fol tatabutataka@W'@0
-$
-gossips:
-1622773424 Tatabutataka gossips, 'but i cant manually turn off the 5g, at least yet?'
-1622773430 Chinok gossips, 'yep, 5G is AWESOME speed, but less distance'
-1646937136 Meina gossips, 'nice! :)'
-1646937163 Meina gossips, 'afk a sec - gotta get ready for a home inspection. we are trying to get rid of our mortgage insurance.'
-1646937175 Chinok gossips, 'nice'
-1724432375 Chinok gossips, 'hi Flenct'
-1724432467 Chinok gossips, ':) We been here!'
-1724432669 Chinok gossips, 'you can also camp.. disconnecting wont make you lose all your stuff'
-1724432698 Chinok gossips, 'inn is on sleepy blvd'
-1724432718 Chinok gossips, 'couple spost shy of the north gate'
-$
-aliases:
-ts tell swenct $*
-ll tell swenct assist flenct
-iden rec identify $1
-0

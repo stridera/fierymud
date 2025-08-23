@@ -1,123 +1,0 @@
-name: Felk
-password: FeNVFogMQr
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%ih&2&b> <%dt&2&b>%_&0<%t&0>:<&0%o&0>
-autoinvis: 0
-sex: 1
-class: 9
-race: 0
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 17406
-birthtime: 1247961784
-timeplayed: 566877
-lastlogintime: 1650591311
-host: 069.162.244.194
-height: 75
-weight: 139
-base_height: 75
-base_weight: 139
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: gxyz
-effectflags: 0 0 0
-prefflags: hnoxC a
-privflags: d
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-hunger: 1
-lastlevel: 0
-hitpoints: 850/850
-mana: 980/980
-move: 128/128
-damroll: 3
-hitroll: 3
-strength: 88
-intelligence: 69
-wisdom: 66
-dexterity: 93
-constitution: 89
-charisma: 60
-cash: 332 1693 7882 7617
-experience: 105805999
-pagelength: 50
-clan: 3
-quit_reason: 1
-saveroom: 3054
-skills:
-401 1000
-403 1000
-404 916
-405 423
-408 1000
-410 750
-411 1000
-412 1000
-415 84
-416 320
-418 1000
-420 1000
-421 1000
-438 110
-440 1000
-443 62
-444 558
-464 1000
-465 599
-477 84
-0 0
-trophy:
-1 43014 0.500000
-1 43013 3.000000
-1 43012 2.000000
-1 43015 0.500000
-1 43018 0.500000
-1 43004 0.500000
-1 43002 7.000000
-1 43011 0.500000
-1 43010 0.500000
-1 43009 0.500000
-1 43008 0.500000
-1 43007 0.500000
-1 43006 0.500000
-1 43019 5.000000
-1 43020 0.500000
-0 0 0
-tells:
-1590297967 @WDavar@W tells you, 'one gem please@W'@0
-1592541321 @WDavar@W tells you, 'Fayris requested i send a well Incoming@W'@0
-1620512386 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1620537006 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1620513784 Chinok gossips, 'Gratz Fel'
-1620513787 Chinok gossips, 'Gratz Felk'
-1620514791 Chinok gossips, 'gratz on 96'
-1620514799 Fayris gossips, 'thanks'
-1620514812 Fayris gossips, '1 more to my last spell'
-1620515615 Yawk gossips, 'night'
-1620534463 Chinok gossips, 'and I'm spent!! night all!!'
-1620534468 Fayris gossips, 'night'
-1620538498 Fayris gossips, 'congratz'
-1620538503 Kriv gossips, 'ty'
-$
-effects:
-102 0 -18 1 0 0 16
-0 0 0 0 0
-aliases:
-` b mist
-floor 'floor phrase is let me in dorkus
-3 ass piffaric
-0 drink water
-all get all all.corpse
-h hide
-df drink fountain
-id recite identify $*
-9 fill water fountain
-tc throat $*
-4 b eye
-2 ass zombie
-1 ass fayris
-0

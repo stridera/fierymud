@@ -1,260 +1,0 @@
-name: Lufa
-password: Lud5BwSHRt
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 2
-class: 15
-race: 3
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19632
-birthtime: 1591780864
-timeplayed: 1595036
-lastlogintime: 1667465147
-host: 208.093.179.103
-height: 43
-weight: 177
-base_height: 43
-base_weight: 177
-base_size: 2
-natural_size: 2
-alignment: 489
-playerflags: y
-effectflags: ck w q
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-lastlevel: 0
-hitpoints: 982/784
-mana: 980/980
-move: 156/156
-damroll: 4
-hitroll: 5
-strength: 88
-intelligence: 88
-wisdom: 96
-dexterity: 84
-constitution: 93
-charisma: 70
-cash: 261 1684 5511 5753
-experience: 101714636
-pagelength: 44
-quit_reason: 3
-saveroom: 0
-skills:
-1 1000
-3 1000
-4 1000
-12 1000
-13 1000
-14 1000
-15 1000
-16 1000
-18 1000
-20 1000
-21 1000
-22 1000
-23 1000
-28 1000
-34 1000
-35 1000
-40 1000
-42 1000
-43 1000
-44 1000
-47 1000
-48 1000
-51 1000
-53 1000
-54 1000
-70 1000
-74 1000
-81 1000
-84 1000
-85 1000
-86 1000
-87 1000
-88 1000
-89 1000
-90 1000
-91 1000
-92 1000
-93 1000
-94 1000
-97 1000
-99 1000
-115 1000
-116 1000
-117 1000
-118 1000
-119 1000
-120 1000
-122 1000
-123 1000
-124 1000
-126 1000
-129 1000
-142 1000
-206 1000
-207 1000
-208 1000
-209 1000
-210 1000
-241 1000
-415 50
-416 50
-421 1000
-423 1000
-424 1000
-438 62
-443 50
-444 429
-451 1000
-452 751
-455 50
-457 1000
-458 870
-459 1000
-460 1000
-461 1000
-462 730
-463 678
-466 428
-0 0
-trophy:
-1 52000 0.250000
-0 0 0
-tells:
-1665553594 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1665553601 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1665553610 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1665553612 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1665553618 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1665557710 @WLyft@W tells you, 'Loap requested i send a well Incoming@W'@0
-1665809771 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665809774 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665825482 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665984808 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1666752545 Meeka gossips, 'thawx worth a lot?'
-1666752555 Lempi gossips, 'shrug didn't give much or any of the chest so that might be something'
-1666752574 Lempi gossips, '100 p i think?'
-1666752591 Meeka gossips, 'that was just the p that was in the box but the crap armor was worth a bit too'
-1666752597 Lempi gossips, 'value of 100000 so?'
-1666752618 Meeka gossips, 'I don't remember not the entire quest but a decent amount'
-1666752670 Lempi gossips, 'started by trying to create food 1c an item '
-1666752684 Lempi gossips, 'that got old fast :)'
-1666752692 Meeka gossips, 'yeah only 1 million casts...'
-1666752826 Lempi gossips, 'all my casters are maxed for sphere of summoning :P now'
-1666753290 Daedela gossips, 'I'll be honest, I created the dragon's health quest the way I did because so many players have just giant stockpiles of templace and doom gear'
-1666753308 Daedela gossips, 'so I kinda intended for them to trade in all that stuff that no one wants or uses.  Plus it gives us a reason to actually use cash'
-$
-mem:
-3 1 1
-88 1 1
-3 1 1
-88 1 1
-88 1 1
-116 1 1
-88 1 1
-42 1 1
-40 1 1
-14 1 1
-43 1 1
-1 1 1
-1 1 1
-28 1 1
-28 1 1
-28 1 1
-28 1 1
-44 1 1
-3 1 1
-94 1 1
-23 1 1
-208 1 1
-4 1 1
-53 1 1
-53 1 1
-53 1 1
-53 1 1
-53 1 1
-35 1 1
-118 1 1
-13 1 2
-22 1 2
-34 1 2
-34 1 2
-34 1 2
-34 1 2
-99 1 2
-99 1 2
-97 1 2
-209 1 2
-48 1 1
-48 1 1
-48 1 2
-97 1 2
-97 1 2
-47 1 2
-129 1 2
-97 1 2
-97 1 2
-12 1 2
-12 1 2
-12 1 2
-12 1 2
-12 1 2
-81 1 1
-81 1 1
-81 1 1
-210 1 4
-210 1 4
-210 1 4
-210 1 4
-0 0 0
-aliases:
-gvit c 'g vit' $*
-blind c 'blindne' $*
-ct tell lyft $*
-cures c 'cure s' $*
-ray c 'd bolt' $*
-yyy ass lempi
-clantitle Restorer of the Fallen light black text
-harm c 'f harm' $*
-curel c 'cure l' $*
-gac g all all.corpse
-hol c 'holy'
-vig c 'vig c' $*
-heal c 'heal' $*
-gag g all.gem all.corpse
-word c 'word of rec'
-fh c 'full heal' $*
-evil c 'dis evil' $*
-undead c 'de und' $*
-clangate 'aderci
-armor c 'armor' $*
-druid tell druid(name) taksi please'
-sil c 'sil' $*
-clericdisarming is the name of the tiggerset for clerics
-res c 'res' $*
-r rest
-t c 'word of r'
-vit c 'd h' $*
-dis c 'dis mag' $*
-bless c 'bless' $*
-summon c 'summon' $*
-gh c 'grou heal'
-gax g all.coins all.corpse
-id recite identify $*
-cvb c 'cure critic' $*
-pain c 'g v' $*
-x g all.coins
-curec c 'cure c' $*
-o order f $*
-y ass loap
-3 tell luba resc me
-0

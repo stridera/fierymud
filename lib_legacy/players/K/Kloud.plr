@@ -1,128 +1,0 @@
-name: Kloud
-password: KldrxoaoMf
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 0
-race: 9
-level: 6
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20129
-birthtime: 1643151981
-timeplayed: 16812
-lastlogintime: 1643482094
-host: 024.066.021.152
-height: 63
-weight: 146
-base_height: 63
-base_weight: 146
-base_size: 2
-natural_size: 2
-alignment: 998
-playerflags: gxy
-effectflags: k 0 0
-prefflags: bghnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 8022
-lastlevel: 0
-hitpoints: 46/46
-mana: 1/0
-move: 104/104
-damroll: 3
-hitroll: 3
-strength: 84
-intelligence: 94
-wisdom: 91
-dexterity: 58
-constitution: 77
-charisma: 62
-cash: 0 8 46 58
-experience: 102675
-pagelength: 50
-quit_reason: 7
-saveroom: 8022
-skills:
-5 1000
-20 1000
-32 1000
-100 1000
-101 1000
-415 50
-416 50
-423 106
-424 104
-438 50
-443 50
-444 50
-447 60
-451 54
-452 95
-453 76
-459 50
-460 73
-462 53
-464 70
-0 0
-trophy:
-1 8016 1.000000
-1 8001 1.000000
-1 8011 1.000000
-1 8012 1.000000
-1 8015 2.000000
-1 8010 3.000000
-1 16905 1.000000
-1 16900 1.000000
-1 16907 1.000000
-1 16906 2.000000
-1 12004 1.000000
-1 12016 1.000000
-1 12015 1.000000
-1 3508 1.000000
-1 3509 1.000000
-1 3500 2.000000
-1 3503 1.000000
-1 3506 4.000000
-1 3501 3.000000
-1 16908 7.000000
-1 8002 9.000000
-0 0 0
-tells:
-1643237821 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
-1643237825 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
-1643237827 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1643237830 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
-1643237832 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
-1643237836 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
-1643237839 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
-1643237840 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1643237864 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
-1643237867 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
-$
-gossips:
-1643238533 Chinok gossips, 'lol why do you need such a mob? '
-1643238546 Slark gossips, 'to work on dodge of course!'
-1643238560 Rokari gossips, 'to make sure my trigger for magic attacking a mob over and over works'
-1643238574 Rokari gossips, 'attack until dead!'
-1643238585 Rokari gossips, 'but it can't be a mob I one hit'
-1643238594 Rokari gossips, 'and since I'm a mage I can't tank a lot of dmg'
-1643238603 Chinok gossips, 'bring your cleric in, and cast heal on the mob :)'
-1643238646 Rokari gossips, 'that's another optimisation - a cleric that automatically monitors another party member and heals em'
-1643448720 Roric gossips, 'congratulations'
-1643448747 Roric gossips, 'good call'
-$
-mem:
-32 0 6
-100 1 6
-5 0 6
-20 1 6
-0 0 0
-aliases:
-mm c 'magic missile' $*
-mc c 'minor creation' $*
-k kill $*
-bh c 'burning hands' $*
-dm c 'detect magic'
-0

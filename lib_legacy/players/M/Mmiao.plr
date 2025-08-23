@@ -1,103 +1,0 @@
-name: Mmiao
-password: Mmws.WnQLD
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 0
-race: 0
-level: 5
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19959
-birthtime: 1626025279
-timeplayed: 13214
-lastlogintime: 1672638631
-host: 095.174.071.027
-height: 69
-weight: 175
-base_height: 69
-base_weight: 175
-base_size: 2
-natural_size: 2
-alignment: 23
-playerflags: y
-effectflags: 0 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-hunger: 10
-lastlevel: 0
-hitpoints: 50/50
-mana: 1/0
-move: 100/100
-damroll: 3
-hitroll: 3
-strength: 77
-intelligence: 97
-wisdom: 91
-dexterity: 75
-constitution: 70
-charisma: 55
-experience: 80013
-quit_reason: 3
-saveroom: 0
-skills:
-5 1000
-20 1000
-32 1000
-100 1000
-101 1000
-415 50
-416 50
-423 50
-424 100
-438 50
-443 50
-444 50
-447 60
-451 52
-452 55
-453 100
-459 50
-460 60
-462 50
-464 55
-0 0
-tells:
-1626025728 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1626026624 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1626029263 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1626030210 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1626063281 @WElspeth the Jeweler@W tells you, 'What do you want me to evaluate??@W'@0
-1626063287 @WElspeth the Jeweler@W tells you, 'I don't trade in such items.@W'@0
-1626063308 @WShauna@W tells you, 'I don't trade in such items.@W'@0
-1626063313 @WBeowyn@W tells you, 'I only buy the finest steel armour.@W'@0
-$
-gossips:
-1626032374 Chinok gossips, 'you can camp, or rent'
-1626032389 Chinok gossips, 'you can also just disconnect, but that can have bad impacts at times.. '
-1626032415 Chinok gossips, 'if something attacks you before you are 'estracted' you could die :)'
-1626063110 Chinok gossips, 'hi Mmiao'
-1626063153 Chinok gossips, 'sadly I won't be around much longer, it's past my bed time'
-1626063157 Chinok gossips, 'help who'
-1626063206 Chinok gossips, 'you'll notice who -w shows what area people (including yourself) are in'
-1626063237 Chinok gossips, 'well it's 12 here too- - midnight :)'
-1626065855 Daedela gossips, 'hello there Mmiao!'
-1626066463 Daedela gossips, 'how are you this evening?'
-$
-mem:
-5 0 7
-5 0 7
-32 0 7
-0 0 0
-aliases:
-cmm cast 'magic missile' $1
-cp compare $1 $2
-sm sit;mem;
-cbh cast 'burning hands' $1
-cmc cast 'minor creation' $1
-ga get all from corpse $1
-c consider $1
-0

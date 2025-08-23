@@ -1,142 +1,0 @@
-name: Kayo
-password: KapA4fuq3U
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 6
-race: 9
-level: 15
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19718
-birthtime: 1601478746
-timeplayed: 36758
-lastlogintime: 1602530188
-host: 012.150.032.144
-height: 60
-weight: 103
-base_height: 60
-base_weight: 103
-base_size: 2
-natural_size: 2
-alignment: 357
-playerflags: gxy
-effectflags: kx 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 211/211
-mana: 22/22
-move: 115/122
-damroll: 3
-hitroll: 3
-strength: 92
-intelligence: 80
-wisdom: 89
-dexterity: 92
-constitution: 90
-charisma: 74
-cash: 181 645 2490 2542
-bank: 1500 0 0 0
-experience: 834114
-quit_reason: 1
-saveroom: 3054
-skills:
-16 1000
-18 1000
-32 1000
-402 50
-404 146
-410 50
-411 50
-415 50
-416 50
-417 50
-421 105
-423 58
-424 52
-430 50
-438 50
-443 50
-444 50
-447 60
-451 56
-452 51
-457 51
-462 50
-463 50
-464 50
-465 89
-466 50
-467 50
-468 50
-0 0
-trophy:
-1 3500 1.000000
-1 17200 0.500000
-1 17209 2.000000
-1 17208 1.500000
-1 17201 1.000000
-1 17205 0.500000
-1 17203 1.000000
-1 17204 2.500000
-1 4117 0.500000
-1 4128 0.500000
-1 4109 0.500000
-1 4106 1.500000
-1 4105 0.500000
-1 4103 0.500000
-1 4104 0.500000
-1 4102 6.500000
-1 18506 1.000000
-1 18502 0.500000
-1 18500 0.500000
-1 18505 0.500000
-1 18512 1.000000
-0 0 0
-tells:
-1602255467 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1602255486 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1602255490 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1602256446 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1602256460 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1602258425 @WAriana Shelti@W tells you, 'It is a pleasure doing business with you.@W'@0
-1602258466 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1602526199 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1602526237 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1602526548 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-$
-gossips:
-1602292466 Chinok gossips, 'lol'
-1602292616 Chinok gossips, '*SMI*'
-1602292873 Chinok gossips, 'pay close attention to WHO he said had the jewel'
-1602293545 Chinok gossips, 'so -- ever been to citadel ?'
-1602294141 Chinok gossips, 'gratz!'
-1602294173 Chinok gossips, 'that question earlier, may have been more of a hint :)'
-1602294409 Chinok gossips, 'ok'
-1602525350 Chinok gossips, 'afternoon'
-1602525590 Chinok gossips, 'not too bad'
-1602525719 Chinok gossips, 'ahhh fun.. no work for me today either'
-$
-mem:
-16 1 5
-32 1 1
-32 1 2
-32 1 2
-32 1 2
-32 1 2
-32 1 2
-32 1 2
-16 1 6
-16 1 6
-16 1 6
-16 1 6
-16 1 6
-0 0 0
-aliases:
-who who -w
-exa exam corpse
-0

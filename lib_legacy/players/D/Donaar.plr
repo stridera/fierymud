@@ -1,101 +1,0 @@
-name: Donaar
-password: DoEgHk/wIq
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 28
-level: 13
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20316
-birthtime: 1660022414
-timeplayed: 57437
-lastlogintime: 1662937284
-host: 024.070.001.074
-height: 72
-weight: 239
-base_height: 72
-base_weight: 239
-base_size: 2
-natural_size: 2
-alignment: 187
-playerflags: gy
-effectflags: k 0 0
-prefflags: ghnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 20
-loadroom: 3001
-lastlevel: 0
-hitpoints: 201/188
-mana: 16/16
-move: 140/140
-damroll: 3
-hitroll: 3
-strength: 100
-intelligence: 63
-wisdom: 66
-dexterity: 91
-constitution: 90
-charisma: 54
-cash: 0 319 1858 1156
-experience: 574777
-quit_reason: 3
-saveroom: 0
-skills:
-204 1000
-402 180
-404 180
-415 139
-416 50
-421 180
-430 52
-438 91
-443 50
-444 50
-455 50
-463 50
-464 50
-465 180
-466 50
-467 50
-468 50
-488 62
-0 0
-trophy:
-1 2002 2.000000
-1 2001 1.000000
-1 2005 2.000000
-1 8012 1.000000
-1 8010 1.000000
-1 4102 1.000000
-0 0 0
-tells:
-1662935884 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1662935943 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1662935943 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1662935943 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1662935943 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1662935943 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1662935962 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1662935966 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1662935967 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1662935967 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-$
-gossips:
-1662916789 Kresselack gossips, 'did you get your KOD gear?'
-1662916816 Someone gossips, 'down to sorc and cleric but hes been on awful for a while'
-1662916826 Kresselack gossips, 'yikes'
-1662916833 Kresselack gossips, 'i got a few minutes if ya need help'
-1662916846 Someone gossips, 'i think i've got it thanks for the offer'
-1662916860 Kresselack gossips, 'need a res and shift?'
-1662916883 Someone gossips, 'i'll worry about it after :)'
-1662916888 Kresselack gossips, 'k'
-1662917040 Kresselack gossips, 'gratz'
-1662917048 Lyno gossips, 'ty'
-$
-aliases:
-gac get all corpse
-0

@@ -1,85 +1,0 @@
-name: Fell
-password: Fe8gLDnUlw
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 18
-race: 10
-level: 4
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19646
-birthtime: 1592977829
-timeplayed: 6494
-lastlogintime: 1608168937
-host: 050.035.066.163
-height: 87
-weight: 228
-base_height: 87
-base_weight: 228
-base_size: 3
-natural_size: 3
-alignment: -7
-playerflags: y
-effectflags: 0 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-lastlevel: 0
-hitpoints: 58/54
-mana: 1/0
-move: 150/150
-damroll: 5
-hitroll: 4
-strength: 85
-intelligence: 66
-wisdom: 69
-dexterity: 96
-constitution: 86
-charisma: 62
-experience: 38145
-quit_reason: 3
-saveroom: 0
-skills:
-403 50
-415 50
-416 50
-419 1000
-421 67
-427 1000
-438 50
-443 50
-444 50
-464 80
-465 51
-467 50
-0 0
-trophy:
-1 3062 1.000000
-0 0 0
-tells:
-1592982120 @WStrider@W tells you, 'You probably don't really need to pay for skills until you get to higher level.  Anything at your level you can skill up just by fighting@W'@0
-1592983341 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1592983501 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1592983507 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
-1592983511 @WSantiago@W tells you, 'What is this stuff? Try Aaron he buys all sorts of trash.@W'@0
-1592983563 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
-1592983591 @WSantiago@W tells you, 'Pah, are you sure that is even a weapon?@W'@0
-1592983605 @WSantiago@W tells you, 'You've just got a real bargain there.@W'@0
-1592983616 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1592983643 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-$
-gossips:
-1592983121 Fernley gossips, 'grats'
-1593149284 Ija gossips, 'hi fell'
-1593149287 Strider gossips, 'Visiting Park City or something?'
-1593149304 Strider gossips, 'Welcome Fell'
-1593149305 Ija gossips, 'hotspot at a cabin in the woods'
-1593149331 Someone gossips, 'I miss the mountains... Only thing I miss about living in utah'
-1593149337 Someone gossips, 'google ping lost 1/2 and took 600ms'
-1593149358 Ija gossips, 'you don't miss the meth?'
-1593149402 Someone gossips, 'hah... and I didn't get exposed to drugs at all while growing up'
-1593149407 Someone gossips, 'Too many mormons'
-$

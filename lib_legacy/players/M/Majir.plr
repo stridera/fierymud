@@ -1,107 +1,0 @@
-name: Majir
-password: MaN.SDNTw/
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 0
-race: 2
-level: 2
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20110
-birthtime: 1642223776
-timeplayed: 4796
-lastlogintime: 1643239644
-host: 024.066.021.152
-height: 30
-weight: 90
-base_height: 30
-base_weight: 90
-base_size: 1
-natural_size: 1
-alignment: 998
-playerflags: xy
-effectflags: k 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-lastlevel: 0
-hitpoints: 26/26
-mana: 1/0
-move: 100/100
-damroll: 2
-hitroll: 4
-strength: 72
-intelligence: 91
-wisdom: 94
-dexterity: 75
-constitution: 73
-charisma: 60
-experience: 7531
-quit_reason: 5
-saveroom: 3001
-skills:
-5 1000
-20 1000
-32 1000
-100 1000
-101 1000
-415 50
-416 50
-423 70
-424 66
-438 50
-443 50
-444 50
-447 60
-451 50
-452 50
-453 58
-459 50
-460 54
-462 50
-464 50
-0 0
-trophy:
-1 8016 1.000000
-1 8000 1.000000
-1 8013 1.000000
-1 8002 1.000000
-1 8021 1.000000
-1 8023 1.000000
-1 8001 1.000000
-1 8012 2.000000
-0 0 0
-tells:
-1642224609 @WDaedela@W tells you, 'if you were meditating when you finished memorizing, the next time you go to memorize the spell, it should be 1/2@W'@0
-1642224628 @WDaedela@W tells you, 'yes, only one spell slot at level 1.  You'll gain spell slots almost every level.  We designed it around D&&D@W'@0
-1642224746 @WDaedela@W tells you, 'cast '<spell name>' <target>@W'@0
-1642224761 @WDaedela@W tells you, 'note the ' ' symbols.  They'll be required for casting multi-word spells@W'@0
-1642224789 @WDaedela@W tells you, 'go for it!@W'@0
-1642225526 @WDaedela@W tells you, 'congratulations!@W'@0
-1642225631 @WDaedela@W tells you, 'what's up?@W'@0
-1642225685 @WDaedela@W tells you, 'ah right, you just need to rest, meditate, and issue the memorize command with no argument@W'@0
-1642225695 @WDaedela@W tells you, 'so just "mem" or "memorize", no spell name@W'@0
-1642225983 @WDaedela@W tells you, 'great!@W'@0
-$
-gossips:
-1642224289 Daedela gossips, 'hello Majir!'
-1642224294 Daedela gossips, 'welcome to Fiery!'
-1642224302 Daedela gossips, 'are you new to the game?'
-1642224328 Daedela gossips, 'oh good'
-1642224364 Daedela gossips, 'ah yes, I did see you'
-1642225464 Zaver gossips, 'welcome back :D'
-1642226335 Eslander gossips, 'congratz!'
-1643239351 Daedela gossips, 'hello everyone'
-1643239363 Slark gossips, 'hey!'
-$
-mem:
-5 1 8
-100 1 8
-0 0 0
-aliases:
-mc c 'minor creation' $*
-bh c 'burning hands' $*
-0

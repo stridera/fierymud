@@ -1,141 +1,0 @@
-name: Hortur
-password: HorxDSPP2t
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> <%dt>
-autoinvis: 0
-sex: 1
-class: 9
-race: 0
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 17314
-birthtime: 1237093587
-timeplayed: 1436879
-lastlogintime: 1713045736
-host: 097.120.082.157
-height: 65
-weight: 177
-base_height: 65
-base_weight: 177
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: yz
-effectflags: 0 0 0
-prefflags: hmnouxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 959/860
-mana: 1000/980
-move: 135/138
-damroll: 3
-hitroll: 3
-strength: 91
-intelligence: 72
-wisdom: 71
-dexterity: 93
-constitution: 96
-charisma: 42
-cash: 764 1752 8769 5448
-bank: 0 0 4000 0
-experience: 100184092
-quit_reason: 1
-saveroom: 3054
-skills:
-7 1000
-47 1000
-48 1000
-49 1000
-58 1000
-63 1000
-65 1000
-69 1000
-71 1000
-78 1000
-81 1000
-98 1000
-104 1000
-108 1000
-113 1000
-127 1000
-128 1000
-130 1000
-138 1000
-143 1000
-167 1000
-176 1000
-178 1000
-179 1000
-181 1000
-189 1000
-191 1000
-210 1000
-212 1000
-401 1000
-403 1000
-404 1000
-405 1000
-408 1000
-410 1000
-411 1000
-412 1000
-415 1000
-416 1000
-418 1000
-420 1000
-421 1000
-438 1000
-440 1000
-443 1000
-444 1000
-463 50
-464 1000
-465 1000
-477 1000
-607 1000
-609 1000
-610 1000
-0 0
-trophy:
-1 1807 1.000000
-1 1800 1.000000
-1 1816 1.000000
-1 1808 1.000000
-1 1812 2.000000
-1 1806 2.000000
-1 1803 1.000000
-1 12305 1.000000
-1 12311 1.000000
-1 12320 1.000000
-1 48633 1.000000
-0 0 0
-tells:
-1609730323 @WDaedela@W tells you, 'ironically I'm not sure how to find character names!@W'@0
-1621473346 @WGrimlon@W tells you, 'what up dude?@W'@0
-1621473390 @WGrimlon@W tells you, 'what quest?@W'@0
-1621473440 @WGrimlon@W tells you, 'i havent really explored/quested up there too much@W'@0
-1621473488 @WGrimlon@W tells you, 'i dont know. theres an amusing variesty of classes on@W'@0
-1621473518 @WGrimlon@W tells you, 'oh that sounds broken@W'@0
-1621487571 @WWhiphal@W tells you, 'storm giant girth@W'@0
-1621487611 @WWhiphal@W tells you, 'slave fetter@W'@0
-1621487646 @WWhiphal@W tells you, 'dagger of shaddows@W'@0
-1621487946 @WDaedela@W tells you, 'daedela@@fierymud.org :)@W'@0
-$
-gossips:
-1621998061 Wittawat gossips, 'but after he re-pop'
-1621998070 Wittawat gossips, 'he still no have key with him'
-1621998096 Chinok gossips, 'because that key has a max load of 1 in-game at a time'
-1621998156 Wittawat gossips, 'it is can make Min=1, max=2'
-1621998169 Chinok gossips, 'don't like to do that.. '
-1621998175 Wittawat gossips, 'same as my warehouse stock  in my Olefins plant'
-1621998182 Wittawat gossips, '*nod*'
-1621998190 Wittawat gossips, 'just a trigger is also ok'
-1622000675 Aneki gossips, 'adios everyone'
-1713045241 Discord gossips, 'Daedela: Hello there!'
-$
-effects:
-136 4 -50 4 0 2097152 0
-0 0 0 0 0

@@ -1,141 +1,0 @@
-name: Torin
-password: Tos2JAL1WW
-prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
-sex: 2
-class: 13
-race: 9
-level: 99
-home: 3022
-lifeforce: 0
-composition: 0
-id: 6041
-birthtime: 979942167
-timeplayed: 17383916
-lastlogintime: 1644766525
-host: 099.019.071.249
-height: 65
-weight: 133
-base_height: 65
-base_weight: 133
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: glyz
-effectflags: k 0 0
-prefflags: hno 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-badpasswords: 1
-lastlevel: 15
-hitpoints: 1075/1075
-mana: 980/980
-move: 132/132
-damroll: 3
-hitroll: 3
-strength: 97
-intelligence: 56
-wisdom: 71
-dexterity: 97
-constitution: 98
-charisma: 50
-cash: 176 107 354 260
-bank: 0 28000 149000 162000
-experience: 158708999
-quit_reason: 1
-saveroom: 3054
-skills:
-404 1000
-411 1000
-412 1000
-414 1000
-415 1000
-416 1000
-420 1000
-421 1000
-422 1000
-430 1000
-438 1000
-443 1000
-444 1000
-446 1000
-448 1000
-449 1000
-463 1000
-475 1000
-601 1000
-602 1000
-603 1000
-604 1000
-605 1000
-606 1000
-608 1000
-0 0
-trophy:
-1 3075 0.166667
-1 3061 1.000000
-1 11809 1.500000
-1 11813 0.750000
-1 11802 2.000000
-1 11801 1.000000
-1 11810 1.750000
-1 11806 0.250000
-1 11805 0.750000
-1 11803 0.750000
-1 11704 0.250000
-1 62510 0.250000
-1 12024 0.250000
-1 12025 0.250000
-1 62509 0.750000
-1 62511 0.750000
-1 62506 0.500000
-1 62501 2.500000
-1 62505 0.500000
-1 62503 0.500000
-1 62508 0.500000
-0 0 0
-tells:
-1572913296 @WChiron@W tells you, 'spring fecil@W'@0
-1574134360 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1574135096 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1574227173 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1574307582 @WChiron@W tells you, 'sspring cloaked@W'@0
-1644076026 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644076154 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644076279 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644076279 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644183960 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1644076813 Muertonis gossips, 'uh yeah'
-1644076825 Muertonis gossips, 'correct me if I'm wrong Chinok'
-1644076828 Pashku gossips, 'the help files seem to indicate con upon leveling affects hp'
-1644076840 Choak gossips, 'I just figured it was broken cause con didn't just add hp'
-1644076846 Choak gossips, 'when you wear items with +con'
-1644076921 Pashku gossips, 'I can't tell if this conversation is serious or if the players of this fine mud are now mocking me'
-1644076930 Choak gossips, 'I am serious!'
-1644076947 Choak gossips, 'I would say do it!'
-1644076951 Muertonis gossips, 'ummm i responded in the affirmative'
-1644076956 Muertonis gossips, 'choak didnt know it made a difference'
-$
-aliases:
-who who -where
-ae assist ermenegildo
-gcc get all.coins corpse
-gc get all.coins
-lic look in corpse
-q assist aran
-df drink fountain
-gccc get all.coins 2.corpse
-f gsay flee
-gs group self
-z kill mist
-x chant 'regeneration'
-dis gsay disengage
-gac get all corpse
-gacc get all 2.corpse
-- enter well
-wc chant 'war cry'
-som chant 'sonata of malaise'
-sss chant 'shadows sorrow song'
-0

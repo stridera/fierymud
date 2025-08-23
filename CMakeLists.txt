@@ -59,10 +59,6 @@ configure_file(
     @ONLY
 )
 
-# Get all legacy source files
-file(GLOB_RECURSE LEGACY_SOURCES "src/legacy/*.cpp")
-list(FILTER LEGACY_SOURCES EXCLUDE REGEX "src/legacy/main.cpp")
-
 # Get source files
 set(SOURCES
     src/main.cpp
@@ -254,9 +250,11 @@ set_tests_properties(Session_Tests PROPERTIES
 )
 
 # Legacy FieryMUD Server (fierymud_legacy)
+file(GLOB_RECURSE LEGACY_SOURCES "src/legacy/*.cpp")
+
 add_executable(fierymud_legacy ${LEGACY_SOURCES})
 
-target_include_directories(fierymud_legacy PRIVATE src src/legacy ${CMAKE_BINARY_DIR})
+target_include_directories(fierymud_legacy PRIVATE src/legacy ${CMAKE_BINARY_DIR})
 
 target_link_libraries(fierymud_legacy PRIVATE 
     fmt::fmt 
@@ -282,4 +280,3 @@ target_compile_options(fierymud_legacy PRIVATE
 )
 
 set_target_properties(fierymud_legacy PROPERTIES EXCLUDE_FROM_ALL TRUE)
-

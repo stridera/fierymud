@@ -1,306 +1,0 @@
-name: Fayris
-password: FaUVkLiR4.
-currenttitle: the Stinky
-description
-Nothing.
-~
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
-sex: 1
-class: 11
-race: 0
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 14690
-birthtime: 1114137913
-timeplayed: 11807747
-lastlogintime: 1649565009
-host: 069.162.244.194
-height: 69
-weight: 146
-base_height: 69
-base_weight: 146
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: lyz
-effectflags: 0 0 0
-prefflags: hnoCD a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 7
-hitpoints: 1864/781
-mana: 980/980
-move: 100/100
-damroll: 3
-hitroll: 3
-strength: 100
-intelligence: 100
-wisdom: 100
-dexterity: 100
-constitution: 100
-charisma: 100
-cash: 1794 24984 48176 32458
-experience: 137547799
-pagelength: 50
-clan: 3
-quit_reason: 3
-saveroom: 0
-skills:
-5 1000
-8 1000
-19 1000
-20 1000
-21 1000
-25 1000
-29 1000
-31 1000
-32 1000
-33 1000
-38 1000
-39 1000
-45 1000
-50 1000
-52 1000
-62 1000
-67 1000
-68 1000
-76 1000
-87 1000
-100 1000
-101 1000
-106 1000
-121 1000
-125 1000
-186 1000
-187 1000
-188 1000
-189 1000
-211 1000
-212 1000
-213 1000
-222 1000
-223 1000
-224 1000
-226 1000
-415 1000
-416 1000
-421 1000
-423 1000
-424 1000
-438 1000
-443 1000
-444 1000
-447 1000
-451 1000
-452 1000
-453 1000
-454 1000
-458 1000
-459 1000
-460 1000
-461 1000
-462 1000
-464 1000
-0 0
-trophy:
-1 8012 1.000000
-1 8016 1.000000
-1 48409 2.000000
-1 48402 1.500000
-1 48408 2.500000
-1 48414 2.000000
-1 48400 6.000000
-1 48407 3.500000
-1 58405 0.333333
-1 58403 0.333333
-1 58419 0.500000
-1 58415 0.333333
-1 58417 1.000000
-1 58404 0.833333
-1 58410 0.833333
-1 23704 3.000000
-1 23731 4.000000
-1 23732 4.000000
-1 2802 1.000000
-1 11703 1.000000
-1 11704 1.000000
-0 0 0
-tells:
-1620880935 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1620880939 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1620880941 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1620880944 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1620880946 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1620880947 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1620880949 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
-1620881783 @WSantiago@W tells you, 'It's an interesting piece but I just can't pay the asking price.@W'@0
-1620881795 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1620881845 @WSantiago@W tells you, 'It's an interesting piece but I just can't pay the asking price.@W'@0
-$
-gossips:
-1649564117 Faegern gossips, 'wait'
-1649564126 Faegern gossips, 'theres no exit here anymore'
-1649564132 Faegern gossips, 'not sure where it went'
-1649564135 Mand gossips, 'where?'
-1649564142 Faegern gossips, 'sea of dark ice'
-1649564146 Faegern gossips, 'i'm stuck drowning'
-1649564153 Mand gossips, 'res yourself'
-1649564153 Faegern gossips, 'cant walk back to the fight anymore'
-1649564161 Mand gossips, 'corpse at fasq'
-1649564244 Zaver gossips, 'gratz'
-1649564250 Flike gossips, ':)'
-$
-effects:
-187 12 26 17 0 0 0
-0 0 0 0 0
-mem:
-100 1 1
-5 1 1
-5 1 1
-121 1 1
-121 1 1
-5 1 1
-5 1 1
-87 1 1
-121 1 1
-45 1 1
-8 1 1
-8 1 1
-5 1 1
-187 1 2
-125 1 1
-20 1 1
-187 1 1
-8 1 1
-19 1 1
-100 1 1
-100 1 2
-39 1 1
-8 1 1
-223 1 1
-223 1 1
-223 1 1
-223 1 1
-224 1 1
-224 1 1
-45 1 1
-224 1 1
-224 1 1
-125 1 2
-213 0 1
-125 1 1
-213 1 1
-213 1 1
-213 1 1
-213 1 1
-213 1 1
-32 1 1
-211 1 1
-226 1 1
-226 1 1
-211 1 1
-31 1 1
-68 1 1
-62 1 1
-19 1 1
-226 1 1
-226 1 1
-212 1 1
-212 1 1
-222 1 1
-222 1 1
-222 1 1
-224 1 1
-212 1 1
-29 1 1
-212 1 1
-125 1 2
-125 1 2
-188 1 2
-76 1 1
-76 1 1
-29 1 2
-212 1 1
-52 1 1
-52 1 1
-45 1 1
-52 1 1
-52 1 1
-223 1 1
-187 1 2
-223 1 1
-222 1 1
-76 1 1
-224 1 1
-222 1 1
-100 1 1
-87 1 1
-223 1 1
-213 1 1
-25 1 1
-25 1 1
-189 1 2
-45 1 1
-187 1 2
-189 1 2
-222 1 1
-25 1 2
-76 1 1
-76 1 1
-100 1 1
-87 1 1
-8 1 2
-125 1 2
-25 1 2
-222 1 2
-223 1 1
-224 1 2
-189 1 8
-0 0 0
-aliases:
-22 c haste frumly
-draw c 'bone draw' $*
-` order fol $*
-3 ass frumly
-33 order zombie rescue aawk
-4 ass oawk
-dr c 'energy drain' $*
-b c 'burning hands' $*
-frac c fracture $*
-im c 'iron maid' $*
-bd c 'bone draw' $*
-summon c 'summon corpse' $*
-degen c 'degen' $*
-di c 'detect in' $*
-tap c 'soul tap' $*
-cc c 'cone of cold' $*
-id rec identify $*
-door c 'dim door' $*
-all get all all.corpse
-stone c 'stone' $*
-ac c 'ani' $*
-pc c 'pre' $*
-haste c 'haste' $*
-make c 'minor c' $*
-inv c 'invis' $*
-gem get all.gem all.corpse
-coin get all.coins all.corpse
-df drink fountain
-lb c 'lightning bolt' $*
-drain c 'energy drain' $*
-p c 'pyre' $*
-dec c 'decay' $*
-ch c chill $*
-spine c 'spine' $*
-ms use stick
-wand use wand $*
-``` o fol rescue fernley
-2 ass fernley
-z order fol ass
-1 ass fohen
-11 c 'stone' fohen
-`` c stone skeleton
-0

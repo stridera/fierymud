@@ -1,88 +1,0 @@
-name: Smoog
-password: SmkqbksqkL
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 7
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 18198
-birthtime: 1332131316
-timeplayed: 897075
-lastlogintime: 1640490729
-host: 024.020.004.178
-height: 79
-weight: 180
-base_height: 79
-base_weight: 180
-base_size: 3
-natural_size: 3
-alignment: -369
-playerflags: gxyz
-effectflags: k w 0
-prefflags: hlnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 1625/1229
-mana: 980/980
-move: 176/176
-damroll: 5
-hitroll: 4
-strength: 100
-intelligence: 72
-wisdom: 74
-dexterity: 92
-constitution: 100
-charisma: 68
-cash: 13 83 513 550
-bank: 2517 5070 17517 12735
-experience: 115757824
-quit_reason: 1
-saveroom: 3054
-skills:
-402 1000
-404 1000
-407 1000
-411 1000
-412 1000
-415 1000
-416 1000
-419 1000
-420 700
-421 700
-422 750
-427 1000
-430 1000
-431 1000
-434 1000
-438 114
-441 1000
-443 50
-444 620
-463 1000
-464 1000
-465 1000
-466 50
-467 50
-468 1000
-473 1000
-0 0
-tells:
-$
-gossips:
-1597209631 Hortur gossips, 'we pleveled a bunch of characters and killed a bunch of people'
-1597209659 Dakhod gossips, 'and your char names were?'
-1597209702 Dakhod gossips, 'shut the fuck up'
-1597209803 Dakhod gossips, 'i killed who?'
-1597209814 Dakhod gossips, 'only person i killer was hortur'
-1597209814 Tithlo gossips, 'me!'
-1597209824 Dakhod gossips, 'i resurrected you'
-1597209829 Tithlo gossips, 'you are right'
-1597209833 Dakhod gossips, 'you got killed on your own'
-1597209838 Tithlo gossips, 'that is true'
-$

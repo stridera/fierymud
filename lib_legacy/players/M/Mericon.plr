@@ -1,224 +1,0 @@
-name: Mericon
-password: Me4Q9jVDzf
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 6
-race: 9
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 16930
-birthtime: 1209685082
-timeplayed: 6080757
-lastlogintime: 1621193243
-host: 024.020.004.178
-height: 67
-weight: 170
-base_height: 67
-base_weight: 170
-base_size: 2
-natural_size: 2
-alignment: 948
-playerflags: gxyz
-effectflags: kx 0 0
-prefflags: bhnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 75
-loadroom: 3054
-lastlevel: 0
-hitpoints: 1053/1053
-mana: 980/980
-move: 114/114
-damroll: 3
-hitroll: 3
-strength: 92
-intelligence: 58
-wisdom: 79
-dexterity: 95
-constitution: 84
-charisma: 58
-bank: 1829 22365 44342 20645
-experience: 121676898
-quit_reason: 1
-saveroom: 3054
-skills:
-8 1000
-15 1000
-16 1000
-18 1000
-30 1000
-32 1000
-37 1000
-44 1000
-69 1000
-88 1000
-144 1000
-214 1000
-402 1000
-404 1000
-407 1000
-410 1000
-411 1000
-412 1000
-415 1000
-416 1000
-417 56
-420 1000
-421 1000
-422 1000
-423 1000
-424 1000
-430 1000
-438 363
-443 66
-444 947
-447 190
-451 1000
-452 1000
-454 1000
-456 1000
-457 1000
-458 1000
-459 1000
-462 1000
-463 1000
-464 1000
-465 1000
-466 267
-467 50
-468 301
-0 0
-trophy:
-1 11701 1.000000
-1 55016 2.000000
-1 48105 1.000000
-1 48102 1.000000
-1 48127 1.000000
-1 48107 1.000000
-1 48120 1.000000
-1 48115 4.000000
-1 39008 2.000000
-1 62500 30.000000
-1 53308 1.000000
-1 53315 2.000000
-1 53306 3.000000
-1 53311 3.250000
-1 53304 3.500000
-1 53302 2.500000
-1 53303 2.500000
-1 53411 2.750000
-1 4016 0.333333
-1 4004 1.666666
-1 4013 0.500000
-0 0 0
-tells:
-$
-gossips:
-1596813660 Meina gossips, 'Hello Mericon!'
-1596813675 Meina gossips, 'Nice to see someone on :)'
-1596813678 Meina gossips, 'sup?'
-1596813756 Mejna gossips, 'wow! Yeah, I stopped playing around 2010/11, and restarted just over a year ago.'
-1596813761 Mejna gossips, 'been a lot of fun :)'
-1596813788 Mejna gossips, 'Chinok is on vacation this week, but he's usually online making sure everything is going smoothly.'
-1596813822 Mejna gossips, 'Pretty benevolent god imo. doesn't put up with BS, but likes encouraging players :)'
-1596813846 Mejna gossips, 'And Strider appears to be AFK this morning, but he's been adding new features (like the mudlet plugin) and it has been nice'
-1596813945 Mejna gossips, 'yup! Crazy how long this has lasted :D'
-1596814077 Meina gossips, 'sounds like there might be new zones/adjustments going in at some point too'
-$
-effects:
-214 4 6 18 0 0 0
-0 0 0 0 0
-mem:
-16 1 1
-16 1 1
-16 1 1
-16 1 1
-16 1 1
-16 1 1
-16 1 1
-88 1 1
-88 1 1
-88 1 1
-88 1 1
-88 1 1
-37 1 1
-37 1 1
-37 1 1
-37 1 1
-37 1 1
-15 1 1
-15 1 1
-15 1 1
-15 1 1
-15 1 1
-30 1 2
-44 1 1
-44 1 1
-44 1 1
-44 1 1
-44 1 1
-44 1 1
-30 1 1
-30 1 1
-30 1 1
-30 1 1
-30 1 1
-214 0 1
-88 1 1
-214 1 1
-214 1 1
-214 1 1
-214 1 1
-214 1 1
-16 1 1
-37 1 1
-15 1 1
-88 1 1
-44 1 1
-30 1 1
-37 1 1
-15 1 1
-16 1 1
-44 1 1
-214 1 1
-88 1 1
-37 1 1
-15 1 1
-88 1 1
-37 1 1
-15 1 1
-16 1 1
-88 1 1
-37 1 1
-15 1 1
-30 1 1
-44 1 1
-32 1 1
-32 1 1
-32 1 1
-32 1 1
-32 1 1
-32 1 1
-32 1 1
-32 1 1
-32 1 1
-32 1 1
-8 1 1
-8 1 1
-8 1 1
-8 1 1
-8 1 1
-8 1 1
-8 1 1
-8 1 1
-144 1 2
-144 1 1
-69 1 1
-69 1 1
-69 1 1
-69 1 1
-69 1 1
-0 0 0

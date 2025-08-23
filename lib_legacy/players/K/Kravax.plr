@@ -1,123 +1,0 @@
-name: Kravax
-password: Kr8shR.WOg
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA %ih&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
-sex: 1
-class: 3
-race: 4
-level: 99
-home: 3022
-lifeforce: 0
-composition: 0
-id: 15738
-birthtime: 1146096394
-timeplayed: 7978482
-lastlogintime: 1717459110
-host: 066.199.058.082
-height: 73
-weight: 220
-base_height: 73
-base_weight: 220
-base_size: 3
-natural_size: 3
-alignment: -1000
-playerflags: glxyz
-effectflags: k w 0
-prefflags: hnosuC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 105
-loadroom: 3054
-lastlevel: 12
-hitpoints: 1524/1227
-mana: 100/100
-move: 176/176
-damroll: 5
-hitroll: 4
-strength: 100
-intelligence: 64
-wisdom: 68
-dexterity: 77
-constitution: 100
-charisma: 52
-cash: 61 532 88848 244
-experience: 116386599
-quit_reason: 1
-saveroom: 3054
-skills:
-402 1000
-404 753
-407 292
-411 1000
-412 1000
-415 50
-416 50
-419 1000
-420 700
-421 700
-422 1000
-427 1000
-430 160
-431 232
-434 156
-438 50
-441 1000
-443 50
-444 96
-463 129
-464 50
-465 1000
-466 50
-467 98
-468 986
-473 161
-0 0
-trophy:
-1 2808 1.000000
-1 11750 1.000000
-1 11704 1.000000
-1 1602 0.500000
-1 8020 0.500000
-1 8022 0.500000
-1 8001 1.000000
-1 8010 0.500000
-1 8023 0.500000
-1 8011 1.500000
-1 8015 0.500000
-1 8002 1.500000
-1 8000 2.000000
-1 8014 1.000000
-1 8013 1.000000
-1 8012 1.000000
-1 8016 2.500000
-1 36301 0.500000
-1 36302 0.500000
-1 36306 0.500000
-1 36304 1.000000
-0 0 0
-tells:
-1617331127 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1646626845 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1662879063 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1662879065 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1664154858 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1680913760 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1680913815 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1700625231 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1700625233 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1713231715 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1662879052 Daedela gossips, 'oh my it's Kravax'
-1693622709 Chinok gossips, 'monks are pretty limited on races.. yes'
-$
-aliases:
-oo give totem general
-yy quaf poison
-dm disarm
-gc g all.coins from corpse
-lc l in corpse
-jj wi starsword
-b bash
-lair garuda
-ii as ceron
-0

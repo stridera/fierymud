@@ -1,132 +1,0 @@
-name: Adohi
-password: AdUAzrDKAI
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 1
-race: 9
-level: 15
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20122
-birthtime: 1642819193
-timeplayed: 74567
-lastlogintime: 1643329527
-host: 074.132.076.055
-height: 64
-weight: 139
-base_height: 64
-base_weight: 139
-base_size: 2
-natural_size: 2
-alignment: 271
-playerflags: gy
-effectflags: k 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 41001
-lastlevel: 0
-hitpoints: 126/126
-mana: 22/22
-move: 100/100
-damroll: 3
-hitroll: 3
-strength: 86
-intelligence: 88
-wisdom: 91
-dexterity: 82
-constitution: 72
-charisma: 77
-cash: 0 43 89 112
-bank: 23 400 3200 1700
-experience: 848090
-quit_reason: 3
-saveroom: 0
-skills:
-1 1000
-3 1000
-12 1000
-13 1000
-16 1000
-18 1000
-20 1000
-21 1000
-84 1000
-85 1000
-87 1000
-88 1000
-89 1000
-206 1000
-415 50
-416 50
-423 199
-424 200
-438 110
-443 50
-444 56
-451 76
-457 200
-458 73
-459 64
-460 52
-462 58
-463 200
-466 50
-0 0
-trophy:
-1 17209 1.000000
-1 17204 5.000000
-1 41009 1.000000
-1 41008 1.000000
-1 41010 1.000000
-1 41007 1.000000
-1 41005 9.000000
-1 41004 1.000000
-1 41001 16.000000
-1 41013 4.000000
-1 41003 8.000000
-0 0 0
-tells:
-1642970793 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1642970793 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1642970796 @WSantiago@W tells you, 'Come back when you actually have one and then we will talk.@W'@0
-1642970818 @WSantiago@W tells you, 'I guess it needs some polishing before I sell it.@W'@0
-1642970951 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1642970969 @WBigby@W tells you, 'Try Aaron, I hear he likes to buy trash.@W'@0
-1642975185 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1642975188 @WAaron@W tells you, 'You bring it to me when you get it and we'll talk.@W'@0
-1642975198 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1643175856 @WAaron@W tells you, 'Hmm, you appear to be a little short of cash for this item.@W'@0
-$
-gossips:
-1643176699 Strider gossips, 'I'm off for the night.  Good luck.  :)'
-1643176727 Strider gossips, 'Yep, it happens'
-1643176736 Strider gossips, 'Night night.'
-1643248633 Daedela gossips, 'hello'
-1643249241 Pastai gossips, 'night guys i will be back in a couple hours'
-1643249250 Astrid gossips, 'good night'
-1643328513 Chinok gossips, 'sorry, I only kill players :)'
-1643328535 Chinok gossips, 'besides, I just had a brainstorm, and have some stuff I think you guys will like coming soon'
-1643328562 Slark gossips, 'sweet! How soon?'
-1643328572 Chinok gossips, 'couple weeks... '
-$
-mem:
-1 1 1
-18 1 5
-20 1 1
-85 1 5
-85 1 5
-85 1 5
-85 1 5
-16 1 1
-16 1 1
-16 1 1
-16 1 1
-85 1 5
-16 1 1
-0 0 0
-aliases:
-qh quaf healing
-0

@@ -1,162 +1,0 @@
-name: Leddie
-password: LeWuVMGtF.
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b><&0&2%aA&2&b><&0%e&2&b><&0%dl&2&b>%_&0<%t&0>:<&0%o&0>
-autoinvis: 0
-sex: 2
-class: 5
-race: 30
-level: 22
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20216
-birthtime: 1648985898
-timeplayed: 370864
-lastlogintime: 1666841478
-host: 208.093.179.103
-height: 73
-weight: 309
-base_height: 73
-base_weight: 309
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: gxy
-effectflags: ckn 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 55923
-lastlevel: 0
-hitpoints: 323/279
-mana: 48/48
-move: 152/152
-damroll: 3
-hitroll: 3
-strength: 96
-intelligence: 79
-wisdom: 88
-dexterity: 92
-constitution: 98
-charisma: 74
-cash: 15 859 2904 1290
-experience: 2358436
-pagelength: 44
-quit_reason: 7
-saveroom: 55923
-skills:
-12 1000
-13 1000
-84 1000
-85 1000
-131 1000
-132 1000
-202 1000
-235 1000
-402 58
-404 50
-407 180
-411 50
-415 50
-416 50
-417 50
-420 62
-421 251
-423 270
-424 270
-430 58
-434 50
-438 50
-443 50
-444 159
-450 50
-451 270
-456 50
-457 50
-458 54
-459 53
-460 270
-463 50
-464 50
-465 233
-466 50
-467 50
-468 79
-489 150
-0 0
-trophy:
-1 5521 2.583333
-1 5523 0.250000
-1 5522 4.083333
-1 2002 0.250000
-1 2001 0.250000
-1 2003 0.500000
-1 2004 0.500000
-1 16106 0.750000
-1 16111 0.750000
-1 16103 0.250000
-1 16104 0.750000
-1 16108 0.500000
-1 16107 2.750000
-1 5520 1.916667
-1 5519 1.000000
-1 5518 1.000000
-1 5517 1.250000
-1 5516 2.083333
-1 5515 2.250000
-1 5514 1.500000
-1 5513 1.750000
-0 0 0
-tells:
-1650864775 @WLealmir@W tells you, 'resc me@W'@0
-1650864779 @WLealmir@W tells you, 'resc me@W'@0
-1650864822 @WLealmir@W tells you, 'resc me@W'@0
-1650867588 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1650867590 @WBigby@W tells you, 'You can only hold 4.@W'@0
-1650867590 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1650870003 @WLealmir@W tells you, 'resc me@W'@0
-1650870007 @WLealmir@W tells you, 'resc me@W'@0
-1650870012 @WLealmir@W tells you, 'resc me@W'@0
-1650870015 @WLealmir@W tells you, 'resc me@W'@0
-$
-gossips:
-1666471330 Chinok gossips, 'hey Mersh'
-1666471335 Mersh gossips, 'hey!'
-1666471595 Mersh gossips, 'Oh Azkrael can't make a well for the lowbies without marking his name'
-1666472491 Discord gossips, 'felessan: Her, and yes haha'
-1666472642 Mersh gossips, ':D Sorry Azkrael!'
-1666472732 Mersh gossips, 'you said DO map frakati... but it is hidden behind a door? Would this be a map found in the bushes :D'
-1666472733 Discord gossips, 'felessan: Fun fact, she used to be Artemis on v1, which is why she's Goddess of the Hunt.'
-1666472750 Mersh gossips, 'Ooo Nice!'
-1666472800 Discord gossips, 'felessan: I say yes do the Reservation because there are literal outsider explorers there.  Make a note like "the entrance is exceptionally well hidden" or something'
-1666472888 Mersh gossips, 'Sweet, thanks!'
-$
-mem:
-131 0 2
-131 1 2
-132 1 2
-132 1 2
-132 1 2
-131 1 2
-12 0 5
-12 0 5
-12 1 5
-12 1 5
-12 1 5
-0 0 0
-aliases:
-armor c 'demons' $*
-h hitall
-dark c 'dark p' $*
-gac g all all.corpse
-gax get all.coins all.corpse
-id rec identify $*
-unh c  'unh'
-harm c 'harm' $*
-demon c 'demons' $*
-soul c 'souls'
-breath breat gas
-startinghp 30
-o order fol $*
-ct tell lyft $*
-0

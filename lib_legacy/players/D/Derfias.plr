@@ -1,105 +1,0 @@
-name: Derfias
-password: De9PBB/qCq
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 26
-level: 14
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20370
-birthtime: 1666707778
-timeplayed: 112035
-lastlogintime: 1677378075
-host: 068.002.118.034
-height: 75
-weight: 360
-base_height: 75
-base_weight: 360
-base_size: 2
-natural_size: 2
-alignment: 419
-playerflags: y
-effectflags: k 0 0
-prefflags: ghnoxC ae
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-lastlevel: 0
-hitpoints: 186/186
-mana: 19/19
-move: 132/132
-damroll: 3
-hitroll: 3
-strength: 90
-intelligence: 62
-wisdom: 72
-dexterity: 81
-constitution: 85
-charisma: 71
-cash: 0 11 428 782
-bank: 1 188 800 500
-experience: 733484
-quit_reason: 3
-saveroom: 0
-cooldowns:
-10 7110/18000
--1 0
-skills:
-201 1000
-402 190
-404 190
-415 190
-416 190
-421 190
-430 52
-438 50
-443 50
-444 168
-453 50
-463 115
-464 50
-465 190
-466 50
-467 50
-468 50
-486 190
-0 0
-trophy:
-1 4101 2.000000
-1 16908 1.000000
-1 16901 1.000000
-1 16900 2.000000
-1 7003 1.000000
-1 7053 2.000000
-0 0 0
-tells:
-1666881049 @WChoak@W tells you, 'if you need a ride back to town you can 'tell choak well' and the a moonwell will come to you@W'@0
-1666884575 @WChoak@W tells you, 'enter well@W'@0
-1666886682 @WChoak@W tells you, 'tell lokar cr@W'@0
-1666886713 @WChoak@W tells you, 'haha consent him then tell him cr@W'@0
-1666886757 @WLokar@W tells you, 'you have to consent me first@W'@0
-1666886770 @WLokar@W tells you, 'there ya go :D@W'@0
-1666889934 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1666889938 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1666926580 @WGoaah@W tells you, 'anytime!@W'@0
-1666927545 @WFril@W tells you, 'consent me@W'@0
-$
-gossips:
-1677377942 Chinok gossips, 'HH'
-1677377956 Chinok gossips, 'do you understand that answer ?'
-1677377962 Prini gossips, 'nope'
-1677377964 Chinok gossips, 'cause it kinda assumes you been around a bit'
-1677377976 Prini gossips, 'HH = Happy Hour'
-1677377984 Prini gossips, ':-)'
-1677377992 Chinok gossips, 'HH == Haunted House'
-1677378013 Prini gossips, 'ahh...tks'
-1677378032 Chinok gossips, 'fair warning-- HH has some hidden stuff...'
-1677378055 Chinok gossips, 'if you're not reading the desc's closely, and searching the keywords, it will be hard to find'
-$
-aliases:
-am assist meeka
-ord order donkey report
-0

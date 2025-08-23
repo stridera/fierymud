@@ -1,133 +1,0 @@
-name: Rivadar
-password: Rir.zd/Iny
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%df&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 1
-race: 0
-level: 11
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19371
-birthtime: 1531834391
-timeplayed: 325315
-lastlogintime: 1713449482
-host: 108.026.121.200
-height: 63
-weight: 161
-base_height: 63
-base_weight: 161
-base_size: 2
-natural_size: 2
-alignment: 407
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3500
-lastlevel: 0
-hitpoints: 92/92
-mana: 12/10
-move: 122/122
-damroll: 3
-hitroll: 3
-strength: 78
-intelligence: 79
-wisdom: 100
-dexterity: 60
-constitution: 85
-charisma: 64
-cash: 0 39 281 120
-experience: 334355
-quit_reason: 7
-saveroom: 3500
-skills:
-1 1000
-3 1000
-12 1000
-13 1000
-16 1000
-18 1000
-20 1000
-21 1000
-84 1000
-85 1000
-87 1000
-88 1000
-89 1000
-131 1000
-206 1000
-415 50
-416 50
-423 150
-424 155
-438 110
-443 50
-444 102
-451 115
-457 157
-458 87
-459 50
-460 62
-462 50
-463 154
-466 50
-0 0
-trophy:
-1 16107 0.250000
-1 2001 0.200000
-1 2003 1.000000
-1 2004 0.600000
-1 2005 0.600000
-1 41013 0.400000
-1 8614 0.250000
-1 8613 0.250000
-1 8010 0.200000
-1 8000 0.400000
-1 1601 0.200000
-1 8020 0.200000
-1 7051 1.000000
-1 7052 0.200000
-1 7053 0.200000
-1 7004 0.400000
-1 16907 0.200000
-1 16906 0.400000
-1 16902 0.400000
-1 16905 0.600000
-1 16908 1.200000
-0 0 0
-tells:
-1596053672 @WHelena@W tells you, 'You can only hold 9.@W'@0
-1596053672 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1632149931 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1634396184 @WA bespectacled dwarf@W tells you, 'You can only afford 9.@W'@0
-1634396188 @WA bespectacled dwarf@W tells you, 'You are too poor!@W'@0
-1634398674 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1634398679 @WBigby@W tells you, 'No cash, no delivery.@W'@0
-1634398692 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1634399013 @WBigby@W tells you, 'No cash, no delivery.@W'@0
-1634399040 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1634437152 Chinok gossips, 'you little thief!'
-1634437160 Arakius gossips, 'thanks'
-1634439340 Chinok gossips, 'gratz Solarius'
-1634439564 Solarius gossips, 'thanks'
-1634655792 Chinok gossips, 'welcome back'
-1634655799 Quillion gossips, 'thank you'
-1634657183 Chinok gossips, 'well good news is, you found the highlands'
-1634657806 Quillion gossips, 'i dropped all my stuff and eq before hand wand was willing to take the xp hit to be sure :P'
-1634657822 Quillion gossips, 'i prolly could have fleed and lived, but work had me distracted'
-1634657835 Chinok gossips, 'lol'
-$
-aliases:
-blessq cast 'bless' quillion
-aq assist quillion
-armorq cast 'armor' quillion
-fud cast 'create food'
-cl cast 'cure light' $1
-healq cast 'cure light' quillion
-cs cast 'cure serious' $1
-0

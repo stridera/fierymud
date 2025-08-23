@@ -1,89 +1,0 @@
-name: Jonik
-password: Jo/HINo0JN
-prompt: &0Tank:%t%-%-%-%-Mob:%o&0%_&0&5&b%n&0%-%-&2&b<&0&1%hh&0(&1&b%HH&0)%-%-&2%vmv&0(&2&b%Vmv&0)&0%-%-&6&bAlign:%a%_&0&8&bHide:%i%_&0&*&bFirst Aid Timer:%df%_%&0&8&b%l
-autoinvis: 0
-sex: 1
-class: 18
-race: 0
-level: 11
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20227
-birthtime: 1650058001
-timeplayed: 115460
-lastlogintime: 1650657182
-host: 107.139.176.194
-height: 67
-weight: 173
-base_height: 67
-base_weight: 173
-base_size: 2
-natural_size: 2
-alignment: -202
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-hunger: 16
-thirst: 8
-lastlevel: 0
-hitpoints: 126/126
-mana: 12/12
-move: 68/124
-damroll: 3
-hitroll: 3
-strength: 100
-intelligence: 55
-wisdom: 75
-dexterity: 99
-constitution: 87
-charisma: 50
-cash: 3 40 173 212
-experience: 336089
-quit_reason: 1
-saveroom: 3054
-skills:
-401 50
-403 50
-405 50
-408 50
-415 50
-416 50
-421 70
-438 77
-443 50
-444 55
-464 125
-465 50
-467 50
-0 0
-trophy:
-1 18510 0.600000
-1 18506 0.800000
-1 18508 2.450000
-1 18501 0.400000
-1 18505 0.600000
-1 18507 6.599998
-0 0 0
-tells:
-1650061322 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1650075117 @WLisa@W tells you, 'Hrm, it doesn't look too worn, I suppose.@W'@0
-1650251400 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1650403568 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-$
-gossips:
-1650656838 Tarnoth gossips, 'Grats!'
-1650656841 Catan gossips, 'ty'
-1650656853 Leddie gossips, '""'
-1650656891 Aaver gossips, 'how are you liking the dragons?'
-1650656935 Leddie gossips, 'i like them well enough but not in love with this group i wanted to mirror my pal sorc monk and druid group'
-1650656967 Leddie gossips, 'but its not working very well'
-1650657015 Aaver gossips, 'that sucks what is worse about this group?'
-1650657054 Leddie gossips, 'healing i think is my biggest problem'
-1650657093 Aaver gossips, 'yeah need a healler at least until level 40 :D'
-1650657094 Leddie gossips, 'for now i'm getting less damage from swaping druid for warrior but i didn't want to deal with the alimnment'
-1650657152 Aaver gossips, 'that is my farvorite thing about antis '
-$

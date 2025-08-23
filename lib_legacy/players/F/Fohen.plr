@@ -1,119 +1,0 @@
-name: Fohen
-password: FoLs2IywmC
-description
-Nothing.
-~
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
-sex: 1
-class: 2
-race: 11
-level: 99
-home: 3038
-lifeforce: 0
-composition: 0
-id: 14699
-birthtime: 1114520912
-timeplayed: 10843646
-lastlogintime: 1650591357
-host: 069.162.244.194
-height: 40
-weight: 107
-base_height: 40
-base_weight: 107
-base_size: 1
-natural_size: 1
-alignment: -1000
-playerflags: glxyz
-effectflags: kt 0 0
-prefflags: hnoxzC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 10
-hitpoints: 866/866
-mana: 100/100
-move: 108/108
-damroll: 3
-hitroll: 6
-strength: 96
-intelligence: 87
-wisdom: 54
-dexterity: 94
-constitution: 85
-charisma: 48
-cash: 71 601 2787 1828
-experience: 105805999
-pagelength: 50
-clan: 3
-quit_reason: 1
-saveroom: 3054
-skills:
-401 1000
-403 1000
-405 1000
-408 1000
-409 1000
-410 600
-411 1000
-412 1000
-415 1000
-416 1000
-420 1000
-421 1000
-438 154
-443 54
-444 356
-464 1000
-465 50
-467 50
-476 1000
-478 1000
-0 0
-trophy:
-1 52015 0.200000
-1 48409 2.000000
-1 48402 1.500000
-1 48408 0.500000
-1 48414 2.000000
-1 48400 6.000000
-1 48407 4.500000
-0 0 0
-tells:
-1592850552 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1592850611 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1614737632 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1614737661 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1617656433 @WDavar@W tells you, 'Nawk requested i send a well Incoming@W'@0
-1618122523 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1618122527 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1620705862 Krej gossips, 'bbl'
-1620706802 Fayris gossips, 'i'm lagging hard. i'm off to bed'
-1620706818 Fayris gossips, 'later flank'
-1620706832 Tatabutataka gossips, 'bye!'
-1620707063 Tatabutataka gossips, 'jackpot'
-1620707070 Tatabutataka gossips, 'many many donuts'
-1620737685 Chinok gossips, 'morning'
-1620737723 Teomner gossips, 'you been sleepwalking saw you cuddleing with mysa earlyer'
-1620737747 Chinok gossips, 'lol all the players weren't any fun, so hung out with  mysa'
-1620737979 Teomner gossips, 'later'
-$
-effects:
-44 2 0 0 32 0 0
-0 0 0 0 0
-aliases:
-3 b drow
-coin get all.coins all.corpse
-gem get all.gem all.corpse
-all get all all.corpse
-df drink fountain
-id identify $*
-baggem put all.gem sack
-dis disen
-h hide
-0 drink water
-` ass skeleton
-1 ass laird
-2 ass foosha
-0

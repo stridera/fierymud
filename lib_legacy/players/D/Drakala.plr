@@ -1,154 +1,0 @@
-name: Drakala
-password: Dr9JZvgxYe
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 2
-class: 11
-race: 0
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19758
-birthtime: 1604895767
-timeplayed: 147587
-lastlogintime: 1737962159
-host: 052.119.120.201
-height: 65
-weight: 144
-base_height: 65
-base_weight: 144
-base_size: 2
-natural_size: 2
-alignment: -990
-playerflags: gxyz
-effectflags: 0 0 0
-prefflags: ghnoxCD 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 531/531
-mana: 980/980
-move: 250/250
-damroll: 3
-hitroll: 3
-strength: 66
-intelligence: 96
-wisdom: 96
-dexterity: 76
-constitution: 66
-charisma: 92
-cash: 1429 2468 5615 14557
-experience: 137547799
-quit_reason: 1
-saveroom: 3054
-skills:
-5 1000
-8 1000
-19 1000
-20 1000
-21 1000
-25 1000
-29 1000
-31 1000
-32 1000
-33 1000
-38 1000
-39 1000
-45 1000
-50 1000
-52 1000
-62 1000
-67 1000
-68 1000
-76 1000
-87 1000
-100 1000
-101 1000
-106 1000
-121 1000
-125 1000
-186 1000
-187 1000
-188 1000
-189 1000
-211 1000
-212 1000
-213 1000
-222 1000
-223 1000
-224 1000
-226 1000
-415 1000
-416 1000
-421 1000
-423 1000
-424 1000
-438 1000
-443 1000
-444 1000
-447 1000
-451 1000
-452 1000
-453 1000
-454 1000
-458 1000
-459 1000
-460 1000
-461 1000
-462 1000
-464 1000
-0 0
-trophy:
-1 4009 0.200000
-1 4010 0.200000
-1 53417 0.200000
-1 43003 1.200000
-1 43017 0.200000
-1 43016 0.200000
-1 43010 0.200000
-1 43011 0.200000
-1 43009 0.200000
-1 43007 0.200000
-1 43008 0.200000
-1 43006 0.200000
-1 8509 0.600000
-1 12523 0.200000
-1 12522 0.200000
-1 12521 0.200000
-1 12519 0.200000
-1 12514 0.200000
-1 12515 0.200000
-1 12511 0.200000
-1 12502 0.600000
-0 0 0
-tells:
-1608888980 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
-1608888980 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
-1608888981 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
-1642295758 @WLokar@W tells you, 'what is the max hp you have ever had?@W'@0
-1642295825 @WLokar@W tells you, 'haha@W'@0
-1642296168 @WLokar@W tells you, 'just hit 3k wondering what my max will look like :D@W'@0
-1642296276 @WLokar@W tells you, 'enery drain just started to not return very much hp so I am hoping I can get to around 5k at ** without too many enery drains@W'@0
-1642296350 @WLokar@W tells you, 'I am excited to use soul tap@W'@0
-1658983194 @WLord Dargo@W tells you, 'To show my gratitude, take this.@W'@0
-1672706240 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1672718060 Tors gossips, 'need me to come back?'
-1672718063 Cerworn gossips, 'moonwell us there?'
-1672718070 Tors gossips, 'yeah'
-1672718081 Kaylara gossips, 'cool, that'll do'
-1673931660 Cerworn gossips, 'but right, money haha'
-1673931774 Athmaur gossips, 'i have like 5+ corpses out there'
-1673931794 Cerworn gossips, 'I know how that goes!'
-1707382124 A kobold scout shouts, 'Help meeeeee!!'
-1707382128 A gnoll spiritbreaker shouts, 'Kill the slave!'
-1707382132 A kobold scout shouts, 'Nooo!  Save meee!!'
-$
-aliases:
-gat get all 2.corpse
-gac get all corpse
-ga get all
-0

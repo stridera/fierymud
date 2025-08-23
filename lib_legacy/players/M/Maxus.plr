@@ -1,116 +1,0 @@
-name: Maxus
-password: MaXPr3A7En
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
-sex: 1
-class: 2
-race: 0
-level: 99
-home: 3038
-lifeforce: 0
-composition: 0
-id: 10254
-birthtime: 1026443450
-timeplayed: 10748063
-lastlogintime: 1717957748
-host: 066.199.058.082
-height: 75
-weight: 167
-base_height: 75
-base_weight: 167
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: glxyz
-effectflags: t 0 0
-prefflags: hnouzC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-thirst: 6
-lastlevel: 7
-hitpoints: 855/855
-mana: 100/100
-move: 122/122
-damroll: 3
-hitroll: 3
-strength: 90
-intelligence: 78
-wisdom: 78
-dexterity: 96
-constitution: 85
-charisma: 68
-cash: 0 4070 8764 6
-experience: 105805999
-quit_reason: 1
-saveroom: 3054
-skills:
-191 200
-401 1000
-403 1000
-405 1000
-408 1000
-409 1000
-410 1000
-411 1000
-412 1000
-415 1000
-416 1000
-420 1000
-421 1000
-431 50
-438 1000
-443 1000
-444 1000
-463 50
-464 1000
-465 1000
-472 50
-476 1000
-478 1000
-494 50
-0 0
-trophy:
-1 8713 2.000000
-1 8707 1.000000
-1 8709 1.000000
-1 8711 9.000000
-1 8703 1.000000
-1 8700 1.000000
-1 8034 1.000000
-1 8033 1.000000
-1 8032 1.000000
-1 8031 1.000000
-1 41119 1.000000
-1 41121 2.000000
-1 41117 2.000000
-1 41111 1.000000
-1 41114 4.000000
-1 41110 5.000000
-1 41108 2.000000
-1 41109 1.000000
-1 41107 1.000000
-1 41103 1.000000
-1 41118 1.000000
-0 0 0
-tells:
-1650328219 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1650328245 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1650328260 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1647218874 Chinok gossips, 'if you guys want to , we can reset.. OR, we can wait if anyone is into something '
-1647218938 Vasel gossips, 'either way'
-1647218946 Vasel gossips, 'i'm going to keep stabbing stuff'
-1647218963 Chinok gossips, 'oh, I'll postpone then.. no problem'
-1650328312 Chinok gossips, 'hey Keric'
-1650328315 Keric gossips, 'sup'
-1650330162 Tarnoth gossips, 'looky there, just got a gift of 1g 8s and 11 c'
-1676835124 Isiac gossips, 'ty'
-1717469344 Chinok gossips, 'you're welcome you bunch of ingrates !! :D'
-1717469431 Chinok gossips, 'which dang bracelet ?'
-$
-aliases:
-jj wi dagger
-gc g all.coins from corpse
-lc l in corpse
-0

@@ -1,258 +1,0 @@
-name: Lyft
-password: LyBFii.9R8
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b><&0%ds&2&b>%_&0<%t&0>:<&0%o&0>
-autoinvis: 0
-sex: 2
-class: 7
-race: 9
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20154
-birthtime: 1644865965
-timeplayed: 2694600
-lastlogintime: 1669178590
-host: 208.093.179.103
-height: 63
-weight: 121
-base_height: 63
-base_weight: 121
-base_size: 2
-natural_size: 2
-alignment: -14
-playerflags: yz
-effectflags: k 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 783/783
-mana: 980/980
-move: 128/128
-damroll: 3
-hitroll: 3
-strength: 84
-intelligence: 86
-wisdom: 86
-dexterity: 82
-constitution: 95
-charisma: 66
-cash: 2 295 284 362
-bank: 0 8 0 0
-experience: 105805999
-pagelength: 44
-quit_reason: 3
-saveroom: 0
-skills:
-6 1000
-11 1000
-12 1000
-13 1000
-14 1000
-15 1000
-16 1000
-18 1000
-20 1000
-21 1000
-23 1000
-27 1000
-28 1000
-30 1000
-33 1000
-35 1000
-40 1000
-42 1000
-43 1000
-51 1000
-63 1000
-70 1000
-71 1000
-73 1000
-74 1000
-88 1000
-89 1000
-90 1000
-91 1000
-99 1000
-118 1000
-144 1000
-145 1000
-146 1000
-147 1000
-148 1000
-149 1000
-150 1000
-151 1000
-152 1000
-153 1000
-154 1000
-155 1000
-156 1000
-206 1000
-207 1000
-215 1000
-241 1000
-243 1000
-245 1000
-247 1000
-415 890
-416 890
-417 890
-421 1000
-423 1000
-424 1000
-429 50
-438 50
-443 50
-444 976
-451 1000
-452 1000
-453 1000
-454 50
-455 134
-456 50
-457 1000
-458 1000
-459 1000
-460 1000
-462 1000
-463 207
-464 50
-465 53
-466 1000
-0 0
-trophy:
-1 48806 0.500000
-1 48507 0.333333
-1 48633 0.333333
-1 48406 0.333333
-0 0 0
-tells:
-1667361985 @WLefa@W tells you, 'well@W'@0
-1667362324 @WLaird@W tells you, 'well@W'@0
-1667362556 @WLaird@W tells you, 'well@W'@0
-1667363810 @WLefa@W tells you, 'well@W'@0
-1667972428 @WLaygrim@W tells you, 'well@W'@0
-1668741135 @WEslander@W tells you, 'yeah. So you already knew?@W'@0
-1668741157 @WEslander@W tells you, 'I guess I forgot that it matters less to you imms :D@W'@0
-1668741176 @WEslander@W tells you, 'haha That doesn't answer the quest! What would an imm need money for?@W'@0
-1668741182 @WEslander@W tells you, '*question@W'@0
-1668741279 @WEslander@W tells you, 'haha@W'@0
-$
-gossips:
-1667359527 Discord gossips, 'blaz2009: I've missed the last couple resets'
-1667359532 Discord gossips, 'blaz2009: Hahaha'
-1667361308 Choak gossips, 'if you need a quick corpse return and res without reconnecting guys you can just consent lokar and he and Mril will take care it'
-1667361328 Laird gossips, 'nice'
-1668741087 Eslander gossips, 'Hey Lyft!'
-1668741336 Chinok gossips, 'yup!'
-1668741361 Chinok gossips, 'but-- if you let us kow what old items you have.. and what their starts are (vs current) -- we'll fix it before it happens'
-1668741405 Chinok gossips, 'yeah, needs to happen for future updates... '
-1668741426 Chinok gossips, 'but if you tell us the old stuff you have, we will fix it before ..'
-1668741449 Chinok gossips, 'email chinok@@fierymud.org !'
-1668741490 Chinok gossips, 'if you haev it now, and you tell us -- you get to keep it...'
-$
-mem:
-88 1 1
-16 1 1
-16 1 1
-16 1 1
-16 1 1
-88 1 1
-88 1 1
-42 1 2
-88 1 1
-42 1 1
-18 1 1
-40 1 2
-35 1 1
-35 1 1
-27 1 1
-27 1 1
-27 1 1
-27 1 1
-147 1 2
-71 1 2
-71 1 2
-71 1 2
-71 1 1
-71 1 1
-28 1 2
-28 1 2
-28 1 1
-28 1 1
-28 1 1
-43 1 1
-12 1 2
-12 1 2
-12 1 1
-70 1 2
-144 1 2
-144 1 1
-144 1 1
-40 1 2
-40 1 2
-99 1 1
-99 1 1
-99 1 1
-99 1 1
-99 1 1
-99 1 1
-99 1 1
-18 1 1
-155 1 1
-155 1 1
-155 1 1
-155 1 1
-155 1 1
-155 1 1
-63 1 2
-63 1 2
-63 1 2
-63 1 2
-63 1 2
-40 1 1
-40 1 1
-40 1 1
-40 1 1
-12 1 1
-12 1 1
-12 1 1
-12 1 1
-0 0 0
-aliases:
-falconat level 32?
-cheetahat level 40
-bless c 'bless' $*
-yyyy ass loap
-yyy ass lempi
-moon c 'moonbeam' $*
-gax g all.coins all.corpse
-vit c 'g end' $*
-hierophant phase 3 quest master
-pain c 'g endurance' $*
-ray c 'sunray' $*
-bolt c 'li bo' $*
-earth c 'earthquake'
-harm c 'harm' $*
-cure c 'cure l' $*
-gac g all all.corpse
-curel c 'cure l' $*
-cures c 'cure s' $*
-2 c 'cure s' havora
-bark c 'bark ' $*
-curec c 'cure c' $*
-id recite identify $*
-word c 'word of r'
-heal c 'heal' $*
-summon c ' summon' $*
-well c 'moonw' $*
-lig c 'call light' $*
-doom c 'cre doom'
-starthp 23
-armor c 'armor' $*
-yy ass laird
-y ass laird
-0

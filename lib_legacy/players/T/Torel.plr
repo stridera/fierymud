@@ -1,124 +1,0 @@
-name: Torel
-password: Toq.LITOTK
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 9
-race: 8
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20064
-birthtime: 1638481775
-timeplayed: 461098
-lastlogintime: 1722544402
-host: 136.038.235.105
-height: 59
-weight: 147
-base_height: 59
-base_weight: 147
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: yz
-effectflags: 0 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 863/863
-mana: 980/980
-move: 122/122
-damroll: 3
-hitroll: 3
-strength: 96
-intelligence: 63
-wisdom: 66
-dexterity: 99
-constitution: 86
-charisma: 51
-cash: 3 17 139 150
-experience: 105805999
-pagelength: 50
-quit_reason: 1
-saveroom: 3054
-skills:
-401 1000
-403 615
-404 109
-405 82
-408 745
-410 372
-411 1000
-412 891
-415 50
-416 50
-418 50
-420 292
-421 601
-438 50
-440 1000
-443 67
-444 191
-463 50
-464 1000
-465 62
-477 50
-0 0
-trophy:
-1 3067 0.750000
-1 3061 0.250000
-1 3060 0.250000
-1 11801 0.250000
-1 11802 0.250000
-1 11810 0.500000
-1 11813 0.333333
-1 58417 0.500000
-1 58404 0.500000
-1 58410 1.500000
-1 2805 0.500000
-1 2802 0.500000
-1 2801 1.000000
-1 11809 1.500000
-1 11703 0.500000
-1 2806 2.250000
-1 11702 1.750000
-1 2808 1.500000
-1 11710 2.000000
-1 11701 3.000000
-1 11750 3.000000
-0 0 0
-tells:
-1665326495 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665326500 @WBigby@W tells you, 'You can only hold 5.@W'@0
-1665326500 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665326537 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665326538 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665326540 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665326541 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665342298 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665508694 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1665508910 @WSlink@W tells you, 'thanks yo, appreciate ya@W'@0
-$
-gossips:
-1701229557 Xorath gossips, 'Emerald-Hilted and Black Dagger'
-1701229564 Discord gossips, 'Daedela: Pooooooooop'
-1701229569 Tors gossips, 'Cruel Fate and Sweet Vengeance don't work either'
-1701229581 Discord gossips, 'Daedela: Okay I'm in rehearsal and can't fix it right now.  I'll figure it out tonight'
-1701229586 Mersh gossips, 'ty :D'
-1701229645 Mersh gossips, 'I think the smite is working better though'
-1701229672 Discord gossips, 'Daedela: Yeah, it's related to that.  I thought I fixed it all correctly but apparently not!'
-1701229705 Xorath gossips, 'what's smite?'
-1701229715 Meeka gossips, 'a type of dmg'
-1701229728 Discord gossips, 'Daedela: The damage holy/unholy weapons do'
-$
-aliases:
-fieryi say buntoi nakkarri karisto
-id get identify sack;recite identify $*
-df drink fountain
-ul unlock $*;open $*
-gac get all all.corpse
-ec examine corpse
-0

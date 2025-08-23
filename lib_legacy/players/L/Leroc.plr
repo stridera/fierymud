@@ -1,81 +1,0 @@
-name: Leroc
-password: LeHDzdVXrc
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 1
-race: 0
-level: 1
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19711
-birthtime: 1600717081
-timeplayed: 2753
-lastlogintime: 1601198235
-host: 104.060.114.062
-height: 60
-weight: 153
-base_height: 60
-base_weight: 153
-base_size: 2
-natural_size: 2
-alignment: 0
-playerflags: y
-effectflags: 0 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-lastlevel: 0
-hitpoints: 21/21
-mana: 1/0
-move: 100/100
-damroll: 3
-hitroll: 3
-strength: 82
-intelligence: 84
-wisdom: 95
-dexterity: 72
-constitution: 68
-charisma: 62
-experience: 1
-quit_reason: 3
-saveroom: 0
-skills:
-1 1000
-12 1000
-13 1000
-16 1000
-20 1000
-84 1000
-206 1000
-415 50
-416 50
-423 50
-424 50
-438 50
-443 50
-444 50
-451 50
-457 50
-458 50
-459 50
-460 50
-462 50
-463 50
-466 50
-0 0
-tells:
-$
-gossips:
-1600717093 Swayod gossips, 'hello! :)'
-1600717093 Rolatti gossips, 'hello! :)'
-1600717093 Glaim gossips, 'hello! :)'
-1600717093 Swayne gossips, 'hello! :)'
-1600717119 Glaim gossips, 'heh hiya, and welcome!'
-1600717602 Glaim gossips, 'any idea what touching this goddess statue does? says i feel a magical link, but i dont notice anything else hmmm'
-1600797162 Someone gossips, 'hello Leroc'
-1600797302 Chinok gossips, 'lol'
-1600822240 Chinok gossips, 'welcome back leroc'
-$

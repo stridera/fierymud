@@ -1,130 +1,0 @@
-name: Runs
-password: RullGoryYb
-currenttitle: like the wind
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%dc%_&0<%t&0>:<&0%o&0>
-autoinvis: 0
-sex: 1
-class: 13
-race: 0
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19400
-birthtime: 1540740018
-timeplayed: 1281724
-lastlogintime: 1636610779
-host: 045.031.147.037
-height: 61
-weight: 154
-base_height: 61
-base_weight: 154
-base_size: 2
-natural_size: 2
-alignment: -356
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 105
-loadroom: 3054
-hunger: 9
-thirst: 22
-lastlevel: 0
-hitpoints: 1073/1073
-mana: 980/980
-move: 116/116
-damroll: 3
-hitroll: 3
-strength: 93
-intelligence: 80
-wisdom: 74
-dexterity: 82
-constitution: 81
-charisma: 53
-cash: 153 6540 23924 21765
-bank: 1105 13350 66500 30500
-experience: 157925432
-quit_reason: 1
-saveroom: 3054
-cooldowns:
-14 520/3000
--1 0
-skills:
-404 1000
-411 1000
-412 1000
-414 1000
-415 1000
-416 1000
-420 1000
-421 1000
-422 1000
-430 900
-438 165
-443 777
-444 404
-446 1000
-448 1000
-449 1000
-463 1000
-475 471
-601 50
-602 50
-603 50
-604 50
-605 50
-606 50
-607 1000
-608 50
-0 0
-trophy:
-1 16907 1.000000
-1 16901 1.000000
-1 16908 5.000000
-1 16902 3.000000
-1 16905 2.000000
-1 16900 9.000000
-1 11710 1.000000
-1 2806 1.000000
-1 11702 2.000000
-1 2808 3.000000
-1 18510 1.000000
-1 2001 1.000000
-1 2005 1.000000
-1 2003 1.000000
-1 8329 1.000000
-1 8331 1.000000
-1 41013 2.000000
-1 8021 1.000000
-1 8001 1.000000
-1 43019 0.714286
-1 43020 0.285714
-0 0 0
-tells:
-1580175365 @WChinok@W tells you, 'hi@W'@0
-1580175369 @WChinok@W tells you, 'try lasttel too@W'@0
-1580176943 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
-1580176947 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1580783960 @WGennaire@W tells you, '2 or 3 north of fountain, west, north@W'@0
-1580788360 @WThe Emperor@W tells you, 'So, the merchant has gotten himself in quite a bit of trouble.@W'@0
-1580788361 @WThe Emperor@W tells you, 'Please, bring him this note from me. It describes what he must do for the gods to heal him.@W'@0
-$
-gossips:
-1586223154 Chinok gossips, 'well thanks for stopping by.. come by more, bring friends :D'
-1586223176 Strider gossips, 'Sure, but he gives away so much money for human ... what.. comfort?'
-1586223182 Chinok gossips, 'the part where he owns part of them, was something I read elsewhere, -- could have been fake, I didn't look it up'
-1586223183 Strider gossips, 'He's a good guy.'
-1586223203 Strider gossips, 'I met him once.. he really is nice'
-1586223226 Chinok gossips, 'it was business ...'
-1586223235 Strider gossips, 'Yeah, you probably had to be to get to where he is'
-1586223242 Rans gossips, 'yep'
-1586223250 Strider gossips, 'I'm sure not having a manage anything is relaxing'
-1586223286 Strider gossips, 'always'
-$
-effects:
-601 32 60 26 0 0 0
-602 2 5 18 0 0 0
-602 2 5 19 0 0 0
-0 0 0 0 0

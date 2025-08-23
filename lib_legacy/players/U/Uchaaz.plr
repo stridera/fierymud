@@ -1,108 +1,0 @@
-name: Uchaaz
-password: Uc/0TXUjZm
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0>
-sex: 1
-class: 9
-race: 6
-level: 99
-home: 6015
-lifeforce: 0
-composition: 0
-id: 16834
-birthtime: 1199572120
-timeplayed: 7895778
-lastlogintime: 1698292628
-host: 174.097.215.151
-height: 47
-weight: 180
-base_height: 47
-base_weight: 180
-base_size: 2
-natural_size: 2
-alignment: -1000
-playerflags: glxyz
-effectflags: k w 0
-prefflags: hnoxC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 105
-freezelevel: 102
-loadroom: 3054
-lastlevel: 7
-hitpoints: 1045/847
-mana: 980/980
-move: 368/368
-damroll: 4
-hitroll: 5
-strength: 99
-intelligence: 62
-wisdom: 56
-dexterity: 96
-constitution: 100
-charisma: 49
-cash: 93 592 3272 3478
-bank: 5833 64502 252822 147284
-experience: 105805999
-clan: 1
-quit_reason: 1
-saveroom: 3054
-skills:
-401 1000
-403 1000
-404 1000
-405 1000
-408 1000
-410 750
-411 1000
-412 1000
-415 1000
-416 761
-418 902
-420 1000
-421 1000
-438 163
-440 1000
-443 890
-444 1000
-463 50
-464 1000
-465 374
-477 897
-0 0
-trophy:
-1 8016 1.000000
-1 3059 0.500000
-1 3051 1.000000
-1 16009 15.000000
-1 16010 2.000000
-1 16019 2.000000
-1 16018 1.000000
-1 16017 1.000000
-1 16016 1.000000
-1 16015 1.000000
-1 16007 1.000000
-1 16004 2.000000
-1 16000 8.000000
-1 7004 1.000000
-1 7053 2.000000
-1 16003 9.000000
-1 62502 4.000000
-1 62501 2.000000
-1 62511 1.000000
-1 12003 2.000000
-1 62509 3.000000
-0 0 0
-tells:
-1669405448 @WFecil@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
-$
-gossips:
-1575601536 Someone gossips, 'what's your perception'
-1669250866 Mersh gossips, 'Uchaaz!'
-1669250894 Chinok gossips, 'you can call me Chaz :D'
-1669250902 Mersh gossips, 'haha'
-1669251625 Chinok gossips, 'running out for a few...'
-$
-aliases:
-who who -w
-sta stand
-0

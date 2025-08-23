@@ -1,114 +1,0 @@
-name: Lempi
-password: LeWuVMGtF.
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%i&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0>
-autoinvis: 0
-sex: 2
-class: 2
-race: 11
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19869
-birthtime: 1614880013
-timeplayed: 1546961
-lastlogintime: 1667448961
-host: 208.093.179.103
-height: 42
-weight: 160
-base_height: 42
-base_weight: 160
-base_size: 1
-natural_size: 1
-alignment: 652
-playerflags: gxyz
-effectflags: fkt 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-hunger: 13
-thirst: 2
-lastlevel: 0
-hitpoints: 694/875
-mana: 980/980
-move: 19/118
-damroll: 3
-hitroll: 6
-strength: 93
-intelligence: 57
-wisdom: 81
-dexterity: 89
-constitution: 93
-charisma: 50
-cash: 1576 4959 17464 9482
-experience: 105805999
-pagelength: 44
-quit_reason: 1
-saveroom: 3054
-cooldowns:
-10 10650/12480
--1 0
-skills:
-401 1000
-403 856
-405 990
-408 1000
-409 242
-410 600
-411 1000
-412 1000
-415 50
-416 50
-420 682
-421 690
-438 50
-443 50
-444 358
-463 390
-464 1000
-465 285
-476 1000
-478 50
-0 0
-trophy:
-1 52000 0.250000
-0 0 0
-tells:
-1665808570 @WLyft@W tells you, 'Luba requested i send a well Incoming@W'@0
-1665825480 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665985086 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665985616 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1666076930 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1666076936 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1666262694 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1667362453 @WLyft@W tells you, 'Lefa requested i send a well Incoming@W'@0
-1667447947 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1667448785 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1666929951 Derfias gossips, 'ok night'
-1666929985 Goaah gossips, 'night!!'
-1666930525 Goaah gossips, 'night all'
-1666930563 Chinok gossips, 'damn, everyone logs off before I can say anything'
-1666931475 Chinok gossips, 'night all'
-1667359483 Discord gossips, 'blaz2009: Only if you want help'
-1667359522 Luba gossips, 'na don't think i have time for it anyway :)'
-1667359527 Discord gossips, 'blaz2009: I've missed the last couple resets'
-1667359532 Discord gossips, 'blaz2009: Hahaha'
-1667361308 Choak gossips, 'if you need a quick corpse return and res without reconnecting guys you can just consent lokar and he and Mril will take care it'
-1667361328 Laird gossips, 'nice'
-$
-effects:
-57 6 0 0 1048576 0 0
-0 0 0 0 0
-aliases:
-h hide
-yyyy ass loap
-y ass lufa
-gac g all all.corpse
-combat-need a spiked mace of the 3rd Eldorian Guard for some pearl dust.
-yyy ass lefa
-yy ass luba
-tel recite teleport
-0

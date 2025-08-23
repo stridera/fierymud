@@ -1,124 +1,0 @@
-name: Rayman
-password: RafcYwMpqG
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 1
-race: 2
-level: 12
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20361
-birthtime: 1665457585
-timeplayed: 175609
-lastlogintime: 1665888563
-host: 207.138.195.049
-height: 29
-weight: 72
-base_height: 29
-base_weight: 72
-base_size: 1
-natural_size: 1
-alignment: 998
-playerflags: y
-effectflags: k 0 0
-prefflags: ghnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 30
-loadroom: 3001
-lastlevel: 0
-hitpoints: 97/97
-mana: 14/14
-move: 100/100
-damroll: 2
-hitroll: 4
-strength: 78
-intelligence: 91
-wisdom: 94
-dexterity: 65
-constitution: 72
-charisma: 62
-cash: 1 41 156 137
-experience: 445422
-quit_reason: 3
-saveroom: 0
-skills:
-1 1000
-3 1000
-12 1000
-13 1000
-16 1000
-18 1000
-20 1000
-21 1000
-84 1000
-85 1000
-87 1000
-88 1000
-89 1000
-206 1000
-415 50
-416 50
-423 71
-424 80
-438 82
-443 50
-444 50
-451 116
-457 57
-458 62
-459 57
-460 50
-462 51
-463 111
-466 50
-0 0
-trophy:
-1 55700 0.200000
-1 17301 0.200000
-1 17302 0.200000
-1 17308 1.250000
-1 55216 0.400000
-1 17305 0.400000
-1 17307 1.800000
-1 17300 0.900000
-0 0 0
-tells:
-1665672330 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665672330 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665672330 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665672330 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665716807 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665716808 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665716808 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665810221 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1665811022 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665878202 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-$
-gossips:
-1665888524 Chinok gossips, 'yes, I want people that can speak their mind, without being abusive'
-1665888528 Slink gossips, 'fuck you, you piece of sghit'
-1665888531 Slink gossips, 'seriously'
-1665888532 Slink gossips, 'fuck you'
-1665888536 Slink gossips, 'you suck at life'
-1665888540 Chinok gossips, 'I've not seen a single bit of constructive feedback'
-1665888547 Slink gossips, 'then you are retarded'
-1665888552 Slink gossips, 'like deeedeeedee retarded'
-1665888554 Chinok gossips, 'omg, you need to get out of your moms basement.. rofl'
-1665888558 Slink gossips, 'good luck, bitch'
-$
-mem:
-16 0 4
-16 1 4
-1 1 4
-1 1 4
-1 1 4
-3 1 8
-3 1 8
-18 1 8
-0 0 0
-aliases:
-g group
-0

@@ -1,121 +1,0 @@
-name: Tatabutataka
-password: TaKgPKOVuD
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 18
-race: 10
-level: 13
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19917
-birthtime: 1620696323
-timeplayed: 1605934
-lastlogintime: 1724433803
-host: 174.179.016.210
-height: 83
-weight: 180
-base_height: 83
-base_weight: 180
-base_size: 3
-natural_size: 3
-alignment: 800
-playerflags: gxy
-effectflags: 0 0 0
-prefflags: ghnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 25
-loadroom: 3054
-lastlevel: 0
-hitpoints: 160/147
-mana: 16/16
-move: 146/146
-damroll: 5
-hitroll: 4
-strength: 92
-intelligence: 57
-wisdom: 62
-dexterity: 100
-constitution: 84
-charisma: 63
-cash: 0 64 32 8
-bank: 1 200 887 0
-experience: 539644
-quit_reason: 1
-saveroom: 3054
-skills:
-401 180
-403 58
-405 52
-408 56
-415 50
-416 50
-419 1000
-421 83
-427 1000
-438 50
-443 50
-444 50
-463 50
-464 94
-465 50
-491 50
-493 50
-0 0
-trophy:
-1 5420 0.500000
-1 5442 1.000000
-1 5451 2.000000
-1 5501 0.500000
-1 5414 4.500000
-1 5443 2.500000
-1 5404 0.500000
-1 4102 2.500000
-1 4101 0.500000
-1 17205 0.500000
-1 17204 2.500000
-1 2002 0.500000
-1 1816 0.500000
-1 1815 2.000000
-1 1814 1.500000
-1 1810 1.000000
-1 1809 0.500000
-1 1804 3.500000
-1 1807 0.500000
-1 1801 2.500000
-1 1806 1.000000
-0 0 0
-tells:
-1620947043 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1620947043 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1621280177 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1621280177 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1621376748 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1621376751 @WHelena@W tells you, 'Enjoy the home baked goodness and come again.@W'@0
-1621376929 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1621376929 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1621376934 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1621392302 @WAaron@W tells you, 'It's not in stock right now, but I will try and get one for you!@W'@0
-$
-gossips:
-1622692193 Fess gossips, 'racing from level 1 to 10'
-1622692198 Wittawat gossips, 'never tounch that event'
-1622692207 Fess gossips, 'racing from level 99 to **'
-1622692254 Fess gossips, 'it was a lot of fun, but turned out to be a really exhausting week on fiery, so it made people play less when the event was over :)'
-1622692259 Fess gossips, 'so we havent had another'
-1622773275 Chinok gossips, 'welcome back'
-1622773289 Flenct gossips, 'hey thanks'
-1622773366 Chinok gossips, 'yeah, depending on your connection strength, it can be a pain'
-1622773430 Chinok gossips, 'yep, 5G is AWESOME speed, but less distance'
-1724433581 Chinok gossips, 'see, it's all comming back'
-$
-aliases:
-iden recite identify $1
-tb tell flenct bash
-bs backstab $*
-tf tell flenct $*
-ll tell flenct assist Tatabutataka
-af assist flenct
-0

@@ -1,214 +1,0 @@
-name: Rokari
-password: RoehjuNIFB
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 2
-class: 0
-race: 2
-level: 43
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20091
-birthtime: 1640889461
-timeplayed: 1631581
-lastlogintime: 1646007705
-host: 052.232.177.117
-height: 28
-weight: 71
-base_height: 28
-base_weight: 71
-base_size: 1
-natural_size: 1
-alignment: -466
-playerflags: gxy
-effectflags: k 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 30009
-lastlevel: 0
-hitpoints: 236/236
-mana: 184/184
-move: 42/100
-damroll: 2
-hitroll: 4
-strength: 89
-intelligence: 95
-wisdom: 91
-dexterity: 68
-constitution: 67
-charisma: 54
-cash: 185 5214 20768 9778
-experience: 14959467
-quit_reason: 1
-saveroom: 30009
-skills:
-2 1000
-5 1000
-8 1000
-10 1000
-19 1000
-20 1000
-26 1000
-29 1000
-30 1000
-31 1000
-32 1000
-37 1000
-38 1000
-39 1000
-50 1000
-52 1000
-57 1000
-62 1000
-67 1000
-68 1000
-76 1000
-77 1000
-83 1000
-99 1000
-100 1000
-101 1000
-102 1000
-103 1000
-105 1000
-106 1000
-107 1000
-186 1000
-228 1000
-415 50
-416 50
-421 480
-423 480
-424 480
-438 50
-443 50
-444 56
-447 388
-451 355
-452 461
-453 480
-454 480
-456 480
-458 67
-459 137
-460 50
-462 463
-464 66
-0 0
-trophy:
-1 59014 0.200000
-1 59012 0.400000
-1 59013 0.200000
-1 59006 0.200000
-1 59026 0.400000
-1 59015 0.200000
-1 59016 0.200000
-1 59023 0.400000
-1 59022 0.800000
-1 59002 0.200000
-1 59000 0.400000
-1 59011 0.600000
-1 59007 0.200000
-1 59035 0.200000
-1 59009 0.200000
-1 59008 1.000000
-1 59010 0.600000
-1 59001 0.200000
-1 59004 0.200000
-1 2328 0.600000
-1 2320 0.200000
-0 0 0
-tells:
-1644978934 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1645715688 @WTerik@W tells you, 'i found that one :)@W'@0
-1645715713 @WTerik@W tells you, 'okay, thanks@W'@0
-1645715772 @WTerik@W tells you, 'thanks again, I'll be patient@W'@0
-1645800371 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1645800372 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1645818902 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1645818905 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
-1645818911 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1645919372 @WTensel@W tells you, 'any time!@W'@0
-$
-gossips:
-1646007498 Lanik gossips, 'can thiefs identify shop items?'
-1646007507 Daedela gossips, 'not until you buy them, unfortunately'
-1646007544 Lanik gossips, 'but if they were on the ground they anyone could recite a scroll right?'
-1646007549 Kaylara gossips, 'correct'
-1646007579 Lanik gossips, 'is makeing un pickupable items easyer then the other plan for identifying shop items?'
-1646007599 Daedela gossips, 'I'm sorry, what?'
-1646007659 Lanik gossips, 'chinok is making some method of geting stats for shop items, i was wondering if just makeing shop keepers have there items on the ground would work as long as people couldn't take them'
-1646007678 Lanik gossips, 'oh could get really spammy with gems '
-1646007691 Lanik gossips, 'might not be worth looking at'
-1646007698 Daedela gossips, 'good night Rokari'
-1646007698 Lanik gossips, 'night rok'
-$
-mem:
-8 1 2
-19 1 1
-8 1 1
-8 1 1
-8 1 1
-30 0 1
-37 0 1
-37 0 1
-37 0 1
-37 1 1
-103 1 1
-30 0 1
-103 1 1
-29 1 2
-10 1 2
-10 1 2
-10 1 2
-10 1 2
-106 1 1
-105 1 1
-5 1 1
-5 1 1
-5 1 1
-5 1 1
-5 1 1
-5 1 1
-5 1 1
-99 1 2
-52 1 5
-52 1 5
-29 1 2
-39 1 1
-186 0 1
-0 0 0
-aliases:
-stoneme cast stone self
-invis cast invis $1
-di cast 'detect invisibility' $1
-bh cast 'burning hands' $1
-creset say creset
-healup say healup
-sg cast 'shocking grasp' $1
-lb cast 'lightning bolt' $1
-who who -w
-ct cast 'chill touch' $1
-gcc get coins corpse
-uw use wand $1
-ri recite identify $1
-mm cast 'magic missile' $1
-dw drink water
-fwf fill water fountain
-gac get all corpse
-ec examine corpse
-rc recite recall self
-cureme say cureme
-ci cast 'identify' $1
-df drink fountain
-lev cast 'levitate' self
-target say target $1
-invisme cast invis self
-qh quaff healing
-cs cast coldshield
-dm cast 'dispel magic' $1
-blessme say blessme
-healme say healme
-0

@@ -1,123 +1,0 @@
-name: Luxx
-password: LuguBclJz5
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 2
-class: 3
-race: 10
-level: 15
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19027
-birthtime: 1449064506
-timeplayed: 85455
-lastlogintime: 1737901719
-host: 195.252.220.094
-height: 74
-weight: 180
-base_height: 74
-base_weight: 180
-base_size: 3
-natural_size: 3
-alignment: 977
-playerflags: xy
-effectflags: 0 0 0
-prefflags: ghnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 237/207
-mana: 22/22
-move: 168/168
-damroll: 5
-hitroll: 4
-strength: 93
-intelligence: 65
-wisdom: 70
-dexterity: 81
-constitution: 96
-charisma: 61
-cash: 3 512 1374 314
-experience: 898901
-quit_reason: 1
-saveroom: 3054
-skills:
-402 62
-404 200
-407 59
-415 50
-416 50
-419 1000
-421 167
-427 1000
-430 50
-438 83
-443 50
-444 61
-463 50
-464 50
-465 168
-466 50
-467 50
-468 50
-0 0
-trophy:
-1 17208 1.500000
-1 17205 0.500000
-1 17201 0.500000
-1 17204 3.500000
-1 17203 1.000000
-1 3508 1.500000
-1 3500 1.500000
-1 3506 0.500000
-1 3509 2.000000
-1 41012 0.500000
-1 41006 0.500000
-1 41021 0.500000
-1 41015 0.500000
-1 41014 0.500000
-1 41002 1.500000
-1 41008 0.500000
-1 41011 0.500000
-1 41007 1.000000
-1 41010 0.500000
-1 41009 0.500000
-1 41001 6.000000
-0 0 0
-tells:
-1619366084 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1619366084 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1619366427 @WAaron@W tells you, 'I can see you are a born salesperson.@W'@0
-1632353100 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1632353104 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
-1632353161 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1632353196 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1632354514 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1632586717 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1632586806 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1632591895 Chinok gossips, 'it's actually considered part of another area'
-1632591939 Malinose gossips, 'gonna assume its to high a level for me'
-1632591963 Chinok gossips, 'it's near there. '
-1632591972 Chinok gossips, 'it's not part of phonix feather'
-1632592108 Chinok gossips, 'yeah, it's mainly considered a road, not so much of a 'area' -- '
-1632592116 Chinok gossips, 'it might need to get added tho'
-1632592731 Chinok gossips, 'btw -- the way I find stuff like what you were asking -- (the area list) --'
-1632592740 Chinok gossips, 'go to https://www.fierymud.org/help '
-1632592765 Chinok gossips, 'search for area, and boom, the help area screen is up.. and you can search it :)'
-1640644521 Daedela gossips, 'hello there'
-$
-effects:
-1 4 10 17 0 0 0
-0 0 0 0 0
-aliases:
-as assist xianga
-gac get all corpse
-heal gsay heal
-armor gsay armor
-ast gsay assist
-green recite green
-0

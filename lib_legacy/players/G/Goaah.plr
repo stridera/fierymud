@@ -1,126 +1,0 @@
-name: Goaah
-password: GoVJ1c4Qf.
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 10
-race: 7
-level: 55
-home: 3001
-lifeforce: 0
-composition: 0
-id: 17592
-birthtime: 1268580602
-timeplayed: 557633
-lastlogintime: 1672030646
-host: 174.097.219.143
-height: 74
-weight: 231
-base_height: 74
-base_weight: 231
-base_size: 3
-natural_size: 3
-alignment: -805
-playerflags: gxy
-effectflags: k w 0
-prefflags: hnoxC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 712/602
-mana: 302/302
-move: 176/376
-damroll: 5
-hitroll: 4
-strength: 99
-intelligence: 64
-wisdom: 78
-dexterity: 96
-constitution: 100
-charisma: 34
-cash: 211 730 7272 4699
-bank: 996 6329 24098 17563
-experience: 22509067
-pagelength: 30
-quit_reason: 1
-saveroom: 3054
-skills:
-401 589
-402 580
-403 591
-404 590
-410 534
-411 580
-412 106
-415 530
-416 53
-419 1000
-420 591
-421 590
-427 1000
-428 50
-430 552
-431 530
-434 51
-438 50
-443 50
-444 125
-463 50
-464 590
-465 50
-466 50
-467 50
-468 50
-473 540
-0 0
-trophy:
-1 7004 1.000000
-1 51001 2.000000
-1 51100 4.000000
-1 51102 1.000000
-1 51101 2.000000
-1 48633 2.000000
-1 7302 5.000000
-1 7301 17.000000
-1 7300 31.000000
-1 18510 1.000000
-1 2003 1.000000
-1 8022 3.000000
-1 8014 5.000000
-1 8000 2.000000
-1 8016 2.000000
-1 8002 5.000000
-1 8011 2.000000
-1 8020 2.000000
-1 8013 4.000000
-1 8012 5.000000
-1 8001 3.000000
-0 0 0
-tells:
-1607043977 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1607043977 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1607043978 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1666926557 @WDerfias@W tells you, 'thanks@W'@0
-1666928738 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1666929108 @WLokar@W tells you, 'if you die just consent me and between mril and I you get ressed :D@W'@0
-1666929148 @WLokar@W tells you, 'death or letting me res you?@W'@0
-1666929227 @WLokar@W tells you, 'haha. You must pay better attention when you play than I do :D If I don't die in a given day at least once something is wrong :D@W'@0
-1666929313 @WLokar@W tells you, 'fair enough either way just consent me and I should get your ressed haven't tried the triggers yet but it'll proably work@W'@0
-1666929332 @WLokar@W tells you, 'any time :D@W'@0
-$
-gossips:
-1666929084 Lokar gossips, 'nice!'
-1666929716 Derfias gossips, 'Ok time to chase some clowns...er um sleep.'
-1666929772 Derfias gossips, 'Can't sleep, the clowns will eat me!!! O.o'
-1666929807 Derfias gossips, 'by Alice Cooper lol'
-1666929903 Derfias gossips, 'It's 9 pm and I wake up at the same time no matter what(internal clock) :O'
-1666929937 Derfias gossips, 'It's weird because I never woke at that time all the time ever in my life.'
-1666929951 Derfias gossips, 'ok night'
-1672029549 Meina gossips, 'as in discord synchs lol that's pretty cool you can stream it.'
-1672029606 Chinok gossips, 'oh, thought you were saying mud was causing you local disc syncs! :D'
-1672029626 Chinok gossips, 'yeah, I'm diggin the discord link, more than I ever thought I would'
-$
-aliases:
-who = who -w
-0

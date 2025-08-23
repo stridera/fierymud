@@ -1,153 +1,0 @@
-name: Kiram
-password: Kig755dTfN
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 0
-race: 9
-level: 99
-home: 3046
-lifeforce: 0
-composition: 0
-id: 16933
-birthtime: 1209687428
-timeplayed: 6584887
-lastlogintime: 1713048921
-host: 097.120.082.157
-height: 70
-weight: 106
-base_height: 70
-base_weight: 106
-base_size: 2
-natural_size: 2
-alignment: 282
-playerflags: gxyz
-effectflags: k 0 0
-prefflags: hnoxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 528/528
-mana: 980/980
-move: 93/100
-damroll: 3
-hitroll: 3
-strength: 64
-intelligence: 100
-wisdom: 92
-dexterity: 84
-constitution: 60
-charisma: 65
-cash: 1335 423 2456 2601
-bank: 125 2310 2763 0
-experience: 126967199
-quit_reason: 1
-saveroom: 3054
-skills:
-2 1000
-5 1000
-7 1000
-8 1000
-10 1000
-19 1000
-20 1000
-26 1000
-29 1000
-30 1000
-31 1000
-32 1000
-37 1000
-38 1000
-39 1000
-50 1000
-52 1000
-57 1000
-62 1000
-65 1000
-66 1000
-67 1000
-68 1000
-76 1000
-77 1000
-83 1000
-99 1000
-100 1000
-101 1000
-102 1000
-103 1000
-104 1000
-105 1000
-106 1000
-107 1000
-108 1000
-109 1000
-110 1000
-111 1000
-112 1000
-113 1000
-184 1000
-185 1000
-186 1000
-228 1000
-246 1000
-415 301
-416 670
-421 1000
-423 1000
-424 1000
-438 180
-443 57
-444 669
-447 728
-451 1000
-452 1000
-453 1000
-454 1000
-455 1000
-456 1000
-458 1000
-459 1000
-460 1000
-462 1000
-464 480
-0 0
-trophy:
-1 23803 3.000000
-1 2808 1.000000
-1 2803 1.000000
-1 2805 0.500000
-1 2807 0.333333
-1 2801 6.500000
-1 2809 1.333333
-1 2802 1.333333
-1 2804 0.833333
-1 11704 0.333333
-1 8011 1.000000
-1 8001 2.000000
-1 48250 1.000000
-0 0 0
-tells:
-1602375661 @WChinok@W tells you, 'awesome.. :)@W'@0
-1602375689 @WChinok@W tells you, 'cool@W'@0
-1621645751 @WGrimlon@W tells you, 'word@W'@0
-1621645790 @WGrimlon@W tells you, 'so what item are you looking for?@W'@0
-1621645830 @WGrimlon@W tells you, 'ahh naturally@W'@0
-1621647003 @WTithlo@W tells you, 'sea witch in in the green green sea right?@W'@0
-1621650067 @WTithlo@W tells you, 'word. i appreciate i man. im not sure whats next but ill let you know@W'@0
-1621650224 @WTithlo@W tells you, 'oh of course it is@W'@0
-1621650361 @WGrimlon@W tells you, 'just need censers for this megalith quest now@W'@0
-1621650811 @WDagross@W tells you, 'whats the item from tri-aszp specifically?@W'@0
-$
-gossips:
-1713047377 Gris gossips, 'they're also cool looking'
-1713047408 Discord gossips, 'Daedela: Haha that wasn't me'
-1713047505 Discord gossips, 'Daedela: Hehe that we have no control over'
-1713047519 Bjorn gossips, 'i should probably change to something more modern'
-1713047551 Discord gossips, 'Daedela: We've got decent integration with Mudlet, but it's not very user friendly'
-1713047606 Bjorn gossips, 'i'll check it out. i think i had that on my phone'
-1713047681 Bjorn gossips, 'oh hey i see a new area too'
-1713047682 Discord gossips, 'Daedela: I doubt that.  I don't think Mudlet has mobile support'
-1713047707 Discord gossips, 'Daedela: Yeah!  It still needs some work haha.  It's pretty chaotic'
-1713047782 Bjorn gossips, 'i'll have to check it out'
-$

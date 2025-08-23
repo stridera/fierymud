@@ -1,120 +1,0 @@
-name: Loap
-password: Lo/S6pbpUj
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%i&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0>
-autoinvis: 0
-sex: 2
-class: 10
-race: 10
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19868
-birthtime: 1614879320
-timeplayed: 1085711
-lastlogintime: 1667459357
-host: 208.093.179.103
-height: 76
-weight: 160
-base_height: 76
-base_weight: 160
-base_size: 3
-natural_size: 3
-alignment: 634
-playerflags: y
-effectflags: 0 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3001
-lastlevel: 0
-hitpoints: 1108/1099
-mana: 980/980
-move: 160/160
-damroll: 5
-hitroll: 4
-strength: 86
-intelligence: 58
-wisdom: 81
-dexterity: 100
-constitution: 91
-charisma: 52
-cash: 1897 4490 17173 1476
-experience: 105184951
-pagelength: 44
-quit_reason: 3
-saveroom: 0
-skills:
-47 1000
-401 1000
-402 50
-403 375
-404 50
-410 789
-411 999
-412 1000
-415 50
-416 50
-419 1000
-420 1000
-421 1000
-422 1000
-427 1000
-428 50
-430 68
-431 980
-434 371
-438 50
-443 81
-444 315
-463 823
-464 909
-465 267
-466 50
-467 1000
-468 50
-473 346
-474 50
-0 0
-trophy:
-1 7053 1.000000
-1 16004 6.000000
-1 16001 10.000000
-1 52000 0.250000
-0 0 0
-tells:
-1665987004 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665987004 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665987007 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1665987026 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1665987039 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-1667364461 @WCalken@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
-1667364506 @WJulk@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
-1667368364 @WJulk@W tells you, 'Greetings adventurer.  Are you looking for training?@W'@0
-1667368435 @WAaron@W tells you, 'Oh, I don't buy that kind of thing. I might soon.@W'@0
-1667368445 @WLisa@W tells you, 'It's only leather that I am interested in buying.@W'@0
-$
-gossips:
-1665729032 Lufa gossips, 'going to go afk likely for the night died on my 2nd to last mob without quest so need some time to cry'
-1665808837 Luba gossips, 'wanted to descrace his family make sure he can't rest in peace'
-1665815884 Daedela gossips, 'oh yeah, that's the Paladin and Priest quest master'
-1665930491 Choak gossips, 'what was that white light?'
-1665930510 Chinok gossips, 'not seen anything'
-1665930519 Choak gossips, 'I just read 'White light from no particular source suddenly fills the room, then vanishes.''
-1665930586 Chinok gossips, 'what room /'
-1665930600 Choak gossips, 'inn'
-1665930642 Chinok gossips, 'some of the new innates can do that, when they wear off. but I'd have to look closer for which one it is'
-1665930653 Choak gossips, 'I see must be one the L*s'
-1665983149 Luba gossips, 'hi'
-$
-aliases:
-yy ass luba
-y ass lufa
-combat-need2 a spiked mace of the 3rd Eldorian Guard for some pearl dust.
-combat-need "a robe of the 3rd Eldorian Guard for some aquamarine dust."
-yyy ass lempi
-id rec identify $*
-gac g all all.corpse
-yyyy ass lefa
-h hide
-0

@@ -1,122 +1,0 @@
-name: Citrin
-password: CiC6DXzb7W
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 0
-race: 28
-level: 8
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20193
-birthtime: 1646955155
-timeplayed: 439576
-lastlogintime: 1648581258
-host: 073.225.133.234
-height: 78
-weight: 252
-base_height: 78
-base_weight: 252
-base_size: 2
-natural_size: 2
-alignment: -40
-playerflags: y
-effectflags: k 0 0
-prefflags: ghnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 63/63
-mana: 1/0
-move: 108/108
-damroll: 3
-hitroll: 3
-strength: 76
-intelligence: 90
-wisdom: 86
-dexterity: 73
-constitution: 70
-charisma: 67
-cash: 0 18 124 175
-experience: 230811
-quit_reason: 10
-saveroom: 3054
-skills:
-5 1000
-20 1000
-32 1000
-100 1000
-101 1000
-204 1000
-415 50
-416 50
-423 65
-424 53
-438 50
-443 50
-444 57
-447 60
-451 89
-452 50
-453 53
-459 50
-460 50
-462 50
-464 51
-488 83
-0 0
-trophy:
-1 8611 0.666667
-1 8615 0.666667
-1 8612 1.333333
-1 8613 0.666667
-1 8614 0.666667
-1 8602 0.333333
-1 8603 1.333333
-1 8021 0.333333
-1 8600 0.333333
-1 8601 1.666667
-1 8604 4.000000
-1 8606 1.666667
-1 8605 4.666667
-1 8001 0.333333
-1 8030 0.333333
-1 8000 0.333333
-1 36002 3.000000
-1 36003 1.000000
-1 36001 3.000000
-1 17204 0.333333
-1 61509 0.333333
-0 0 0
-tells:
-1647033570 @WMeina@W tells you, 'the blue one takes you to ickle@W'@0
-1647033580 @WMeina@W tells you, 'the green one brings you back to mielikki@W'@0
-1647033760 @WBeithir@W tells you, 'give me the exact name of the room@W'@0
-1647033764 @WBeithir@W tells you, 'i'm rusty lol@W'@0
-1647033777 @WBeithir@W tells you, 'and i just went to the places i thought i'd be going lol@W'@0
-1647033787 @WBeithir@W tells you, 'awesome come one south :)@W'@0
-1647033802 @WBeithir@W tells you, 'you follow and consent to group@W'@0
-1647453738 @WMeina@W tells you, 'hi!@W'@0
-1647885610 @WMeina@W tells you, 'i'm jumping on a call but happy to group up and level you more if you want. and gte you more equipment@W'@0
-1647885619 @WMeina@W tells you, 'if you want in, follow and consent beithir@W'@0
-$
-gossips:
-1648548832 Morris gossips, 'Hello ?'
-1648555877 Chinok gossips, 'morning Vash'
-1648555892 Vash gossips, 'morning Chinok'
-1648556021 Vash gossips, 'looks the like connection issue I had mentioned was on my end, had some kind of issue with the wifi at the house. For some reason I couldn't access just this address via web or mudlet'
-1648556058 Chinok gossips, 'weirdly specific, sure your significant other hasn't sabatoged it, so you spend less time on fiery :P'
-1648556106 Vash gossips, 'she's got her own vices that she wouldn't care to be shut off... She's smarter than that'
-1648556130 Vash gossips, 'but the thought crossed my mind'
-1648556149 Chinok gossips, 'lol'
-1648556232 Vash gossips, 'the tech level is pretty low at my house,  I can't stand working on anything electronic outside of work... I've chucked more than one router out in the yard'
-1648556329 Chinok gossips, 'I wasn't like that in my younger years, but I've gotten that way now.'
-$
-mem:
-5 0 6
-5 1 6
-5 1 6
-5 1 6
-0 0 0

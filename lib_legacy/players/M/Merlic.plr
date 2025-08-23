@@ -1,142 +1,0 @@
-name: Merlic
-password: Mez43ubFc0
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 20
-race: 2
-level: 54
-home: 3001
-lifeforce: 0
-composition: 0
-id: 18968
-birthtime: 1432385476
-timeplayed: 679281
-lastlogintime: 1719022484
-host: 058.169.059.103
-height: 31
-weight: 55
-base_height: 31
-base_weight: 55
-base_size: 1
-natural_size: 1
-alignment: 475
-playerflags: gxy
-effectflags: k 0 0
-prefflags: hxC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-thirst: 22
-lastlevel: 0
-hitpoints: 288/288
-mana: 291/291
-move: 106/106
-damroll: 2
-hitroll: 4
-strength: 80
-intelligence: 98
-wisdom: 94
-dexterity: 79
-constitution: 79
-charisma: 66
-cash: 195 1532 6783 3058
-experience: 21596414
-quit_reason: 1
-saveroom: 3054
-skills:
-2 1000
-5 1000
-19 1000
-20 1000
-26 1000
-29 1000
-31 1000
-38 1000
-39 1000
-50 1000
-52 1000
-62 1000
-67 1000
-68 1000
-83 1000
-99 1000
-100 1000
-101 1000
-102 1000
-103 1000
-105 1000
-107 1000
-157 1000
-158 1000
-159 1000
-160 1000
-161 1000
-162 1000
-163 1000
-170 1000
-200 1000
-220 1000
-228 1000
-415 50
-416 50
-421 104
-423 590
-424 588
-438 95
-443 50
-444 118
-447 460
-451 500
-452 56
-453 586
-455 142
-458 209
-459 113
-460 65
-462 70
-464 108
-0 0
-trophy:
-1 62507 0.166667
-1 62505 0.111111
-1 62511 0.111111
-1 62508 0.111111
-1 62509 0.333333
-1 11704 0.111111
-1 11710 0.111111
-1 11701 0.111111
-1 8808 1.000000
-1 8809 1.000000
-1 8807 0.500000
-1 8806 1.000000
-1 8802 2.000000
-1 8803 1.500000
-1 8805 2.000000
-1 8801 1.000000
-1 8804 2.000000
-1 8800 1.000000
-0 0 0
-tells:
-1572621067 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1572622391 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1572623017 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1572623385 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1572623407 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1574428618 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1574602630 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1583078651 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-1583080089 @WMoonda@W tells you, 'incoming - please give me a present@W'@0
-$
-gossips:
-1672032711 Frozler gossips, 'we do :)'
-1672032711 Astilo gossips, 'we do :)'
-1672032711 Ablio gossips, 'we do :)'
-1672032721 Ablio gossips, 'breaking the rules'
-1672032818 Jerlic gossips, 'thanks :)'
-1672032818 Herlic gossips, 'thanks :)'
-1672032818 Frozler gossips, 'thanks :)'
-1672032818 Astilo gossips, 'thanks :)'
-1672032818 Ablio gossips, 'thanks :)'
-1672032832 Chinok gossips, 'Merry Christmas all!'
-$

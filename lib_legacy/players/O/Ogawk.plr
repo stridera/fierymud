@@ -1,125 +1,0 @@
-name: Ogawk
-password: OgpSsxkJ2n
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b><%df>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 3
-race: 10
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 17414
-birthtime: 1247972779
-timeplayed: 1474475
-lastlogintime: 1738972662
-host: 208.093.179.007
-height: 81
-weight: 201
-base_height: 81
-base_weight: 201
-base_size: 3
-natural_size: 3
-alignment: 1000
-playerflags: gxyz
-effectflags: 0 0 0
-prefflags: hnoxC a
-privflags: d
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 1419/1221
-mana: 980/980
-move: 166/166
-damroll: 5
-hitroll: 4
-strength: 100
-intelligence: 57
-wisdom: 65
-dexterity: 100
-constitution: 95
-charisma: 48
-cash: 109 964 5326 4138
-experience: 116386599
-pagelength: 40
-clan: 3
-quit_reason: 1
-saveroom: 3054
-skills:
-402 1000
-404 598
-407 1000
-411 1000
-412 1000
-415 1000
-416 1000
-419 1000
-420 1000
-421 1000
-422 1000
-427 1000
-430 1000
-431 1000
-434 1000
-438 1000
-441 1000
-443 50
-444 746
-463 1000
-464 736
-465 1000
-466 1000
-467 50
-468 1000
-473 1000
-0 0
-trophy:
-1 23713 1.000000
-1 23708 4.000000
-1 23734 10.000000
-1 23700 40.000000
-1 23709 20.000000
-1 23737 15.000000
-1 23707 10.000000
-1 11702 1.000000
-1 2808 2.000000
-1 23730 2.000000
-1 23729 90.000000
-0 0 0
-tells:
-1590387434 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1590471668 @WDavar@W tells you, 'Oawk requested i send a well Incoming@W'@0
-1615968327 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1618205116 @WDavar@W tells you, 'Oawk requested i send a well Incoming@W'@0
-1620568813 @WDavar@W tells you, 'Nawk requested i send a well Incoming@W'@0
-1738238688 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1738245896 @WDavar@W tells you, 'one gem please@W'@0
-1738267746 @WDavar@W tells you, 'one gem please@W'@0
-$
-gossips:
-1738086597 Thort gossips, 'half a millenia. not bad'
-1738086643 Anexis gossips, 'oldest Barbarian ever!'
-1738086803 Emawk gossips, 'wonder how it is cauculated play time or creation?'
-1738086808 Thort gossips, 'creation'
-1738087591 Traff gossips, 'anyone know the 3rd phase armor master for necro of the top of there head?'
-1738087675 Anexis gossips, ':( not I'
-1738087791 Chinok gossips, 'in Anduin'
-1738087804 Traff gossips, 'ty chinok'
-1738087855 Anexis gossips, 'bbl!'
-1738155383 Antix gossips, 'good morning Fiery!'
-$
-aliases:
-hit hitall
-yyy ass fernley
-yy ass felk
-gac g all all.corpse
-id recite identify $*
-29 started at 11 at 32 at 1230 40
-gax g all.coins all.corpse
-h hitall
-5 resc flike
-3 resc sawk
-4 resc mosiah
-y ass offa
-2 resc davar
-0

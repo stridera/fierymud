@@ -1,4 +1,4 @@
-lib/
+legacy/
 *.bak/
 bin/
 log/
@@ -17,4 +17,3 @@ __pycache__
 data/
 data_prod/
 data_test/
-lib_legacy/

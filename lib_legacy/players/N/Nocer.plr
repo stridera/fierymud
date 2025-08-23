@@ -1,109 +1,0 @@
-name: Nocer
-password: No.2ROX8KK
-prompt: <&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)>%_&0<%t&0>:<%o&0>
-sex: 1
-class: 9
-race: 0
-level: 20
-home: 3038
-lifeforce: 0
-composition: 0
-id: 17276
-birthtime: 1178121997
-timeplayed: 216306
-lastlogintime: 1739050835
-host: 208.093.179.007
-height: 74
-weight: 170
-base_height: 74
-base_weight: 170
-base_size: 2
-natural_size: 2
-alignment: -596
-playerflags: glxy
-effectflags: 0 0 0
-prefflags: hnoC a
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 49000
-lastlevel: 8
-hitpoints: 205/205
-mana: 100/40
-move: 122/122
-damroll: 3
-hitroll: 3
-strength: 93
-intelligence: 69
-wisdom: 64
-dexterity: 100
-constitution: 86
-charisma: 45
-cash: 28 1500 5297 157
-experience: 1683817
-pagelength: 44
-clan: 3
-quit_reason: 7
-saveroom: 49000
-skills:
-401 250
-403 154
-404 50
-405 161
-408 250
-410 250
-411 250
-415 145
-416 210
-421 250
-438 50
-440 250
-443 60
-444 209
-463 50
-464 250
-465 50
-0 0
-trophy:
-1 5514 1.000000
-1 16106 0.333333
-1 16108 0.333333
-1 16107 1.000000
-1 16111 0.833333
-1 8300 1.000000
-1 8301 0.500000
-1 18510 0.833333
-0 0 0
-tells:
-1613585739 @WVawk@W tells you, 'go@W'@0
-1613585768 @WVawk@W tells you, 'go@W'@0
-1613586496 @WVawk@W tells you, 'go@W'@0
-1613586510 @WVawk@W tells you, 'go@W'@0
-1613586539 @WVawk@W tells you, 'go@W'@0
-1613586550 @WVawk@W tells you, 'go@W'@0
-1613586562 @WVawk@W tells you, 'go@W'@0
-1613586572 @WVawk@W tells you, 'go@W'@0
-1613586582 @WVawk@W tells you, 'go@W'@0
-1613586594 @WVawk@W tells you, 'go@W'@0
-$
-gossips:
-1613586668 Chinok gossips, 'so it's working as it should, just you're doing it backwards'
-1613586683 Vawk gossips, 'i don't think you can give the eldorian to the eldorian'
-1613586693 Vawk gossips, 'think they refuse it'
-1613586773 Vawk gossips, 'ya black refuses black'
-1613586847 Vawk gossips, 'can't test eldorian to evil right now'
-1613588684 Chinok gossips, 'I will check it out.. '
-1613588764 Vawk gossips, 'see you later'
-1618550665 Shimono gossips, 'so what wonderful things are we all doing?'
-1738979398 Chinok gossips, 'is that prounced no sir?'
-1738979467 Yawk gossips, 'don't ask me i just jam letters sidebyside always thought of it like noiceSir'
-$
-aliases:
-coin g all.coins all.corpse
-gem g all.gem all.corpse
-id recite identify $*
-rusted g all.rusted all.corpse
-f track prior
-gac g all all.corpse
-y ass monk
-yy ass fayris
-0

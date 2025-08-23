@@ -1,282 +1,0 @@
-name: Vuitton
-password: VuikxhRTCU
-currenttitle: Weak Paste
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0>
-sex: 1
-class: 7
-race: 9
-level: 99
-home: 3003
-lifeforce: 0
-composition: 0
-id: 11722
-birthtime: 1049166744
-timeplayed: 19444303
-lastlogintime: 1644970839
-host: 162.233.153.155
-height: 76
-weight: 162
-base_height: 76
-base_weight: 162
-base_size: 2
-natural_size: 2
-alignment: 766
-playerflags: glxyz
-effectflags: k 0 0
-prefflags: hnoz 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-wimpy: 105
-freezelevel: 104
-loadroom: 51116
-lastlevel: 9
-hitpoints: 914/815
-mana: 100/100
-move: 136/136
-damroll: 3
-hitroll: 3
-strength: 88
-intelligence: 79
-wisdom: 81
-dexterity: 66
-constitution: 100
-charisma: 55
-cash: 34 8 4 7
-experience: 105805999
-quit_reason: 7
-saveroom: 51116
-skills:
-6 1000
-11 1000
-12 1000
-13 1000
-14 1000
-15 1000
-16 1000
-18 1000
-20 1000
-21 1000
-23 1000
-27 1000
-28 1000
-30 1000
-33 1000
-35 1000
-40 1000
-42 1000
-43 1000
-51 1000
-63 1000
-70 1000
-71 1000
-73 1000
-74 1000
-88 1000
-89 1000
-90 1000
-91 1000
-99 1000
-144 1000
-145 1000
-146 1000
-147 1000
-148 1000
-149 1000
-150 1000
-151 1000
-152 1000
-153 1000
-154 1000
-155 1000
-156 1000
-206 1000
-207 1000
-215 1000
-415 1000
-416 1000
-417 1000
-421 1000
-423 1000
-424 1000
-429 1000
-438 50
-443 1000
-444 1000
-451 1000
-452 819
-453 1000
-454 800
-455 1000
-456 805
-457 1000
-458 1000
-459 1000
-460 1000
-462 897
-463 1000
-466 1000
-0 0
-trophy:
-1 11702 0.500000
-1 7300 1.000000
-1 7301 0.500000
-1 4102 7.000000
-1 4103 1.000000
-1 4105 2.000000
-1 4128 1.000000
-1 4108 1.000000
-1 4110 2.000000
-1 4107 3.000000
-1 3059 0.066667
-1 3165 0.066667
-1 3075 0.139423
-1 58415 0.071429
-1 58414 0.090909
-1 58413 0.083333
-1 58418 0.143590
-1 58405 0.200000
-1 58422 0.066667
-1 58411 0.066667
-1 58412 0.409524
-0 0 0
-tells:
-1574221993 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1574233037 @WBigby@W tells you, 'I don't have any of those, and I am not about to create one either.@W'@0
-1574233045 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1640992731 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1644073276 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1644073455 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1644073459 @WFecil@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1644795333 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644796631 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644796632 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1644682093 Pashku gossips, 'You are not experienced enough to use some polar bear skin pants.'
-1644682125 Luba gossips, 'i wish that item level only mattered for wearing/useing'
-1644682132 Holk gossips, 'Id guess at least one level above you :)'
-1644682148 Pashku gossips, 'yeah it is annoying you cannot at least identify the item'
-1644682162 Luba gossips, 'if its on the ground you might be able '
-1644682173 Luba gossips, 'but idk for sure'
-1644682203 Luba gossips, 'if the item is in a bag you can pick up the bag from the ground but not hand it to another'
-1644682216 Rokari gossips, 'you can id things on the ground - yay!'
-1644768281 Voruulr gossips, 'Lube Luba!'
-1644768302 Lefa gossips, 'lube leaf'
-$
-mem:
-71 1 2
-71 1 1
-71 1 1
-71 1 1
-71 1 1
-71 1 1
-63 1 1
-63 1 1
-63 1 1
-63 1 1
-63 1 1
-40 1 1
-40 1 1
-42 1 1
-42 0 1
-42 1 1
-35 1 1
-35 1 1
-27 1 1
-27 1 1
-27 1 1
-27 1 1
-27 1 1
-27 1 1
-12 1 1
-12 1 1
-12 1 1
-12 1 1
-144 1 1
-144 1 1
-144 1 1
-144 1 1
-144 1 1
-144 1 1
-90 1 1
-90 1 1
-90 1 1
-90 1 1
-90 1 1
-90 1 1
-90 1 1
-90 1 1
-90 1 1
-90 1 1
-91 1 1
-91 1 1
-91 1 1
-88 1 1
-88 1 1
-88 1 1
-88 1 1
-88 1 1
-70 1 1
-70 1 1
-70 1 1
-70 1 1
-28 1 1
-28 1 1
-28 1 1
-28 1 1
-28 1 1
-28 1 1
-74 1 1
-74 1 1
-149 1 1
-6 1 1
-6 1 1
-6 1 1
-6 1 1
-6 1 1
-6 1 1
-156 1 1
-151 1 1
-151 1 1
-151 1 1
-99 1 1
-99 1 1
-99 1 1
-99 1 1
-152 0 1
-155 1 1
-155 1 1
-155 1 1
-155 1 1
-155 1 1
-43 1 1
-43 1 1
-154 1 1
-14 1 1
-35 1 1
-35 1 1
-14 1 1
-14 1 1
-14 1 1
-14 1 1
-0 0 0
-aliases:
-valarien cast 'moonwell' valarien
-ae assist ermenegildo
-df drink fountain
-lic look in corpse
-gcc get all.coins corpse
-gccc get all.coins 2.corpse
-gc get all.coins
-cf cast 'create food'
-gac get all corpse
-word cast 'word of recall'
-who who -where
-1 drag zegna n
-gs group self
-qua cast 'earthquake'
-wer cast 'moonwell' ermenegildo
-- enter well
-ana shapechange reptile anaconda
-` get all vuitton
-0

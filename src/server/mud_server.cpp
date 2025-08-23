@@ -10,6 +10,7 @@
 #include "mud_server.hpp"
 
 #include "../core/actor.hpp"
+#include "../core/config.hpp"
 #include "../core/logging.hpp"
 #include "configuration_manager.hpp"
 #include "network_manager.hpp"
@@ -58,6 +59,7 @@ Result<ServerConfig> ServerConfig::load_from_file(const std::string &filename) {
             config.world_directory = game.value("world_directory", config.world_directory);
             config.player_directory = game.value("player_directory", config.player_directory);
             config.log_directory = game.value("log_directory", config.log_directory);
+            config.default_starting_room = game.value("default_starting_room", config.default_starting_room);
         }
 
         // Performance settings
@@ -103,7 +105,8 @@ Result<void> ServerConfig::save_to_file(const std::string &filename) const {
         j["game"] = {{"mud_name", mud_name},
                      {"world_directory", world_directory},
                      {"player_directory", player_directory},
-                     {"log_directory", log_directory}};
+                     {"log_directory", log_directory},
+                     {"default_starting_room", default_starting_room}};
 
         j["performance"] = {{"target_tps", target_tps},
                             {"max_command_queue_size", max_command_queue_size},
@@ -186,6 +189,13 @@ Result<void> ModernMUDServer::initialize() {
     if (!logging_result) {
         set_state(ServerState::Error);
         return logging_result;
+    }
+
+    // Initialize legacy Config singleton from our ServerConfig
+    auto config_result = Config::initialize_from_server_config(config_);
+    if (!config_result) {
+        set_state(ServerState::Error);
+        return config_result;
     }
 
     auto dirs_result = initialize_directories();

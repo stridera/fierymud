@@ -1,110 +1,0 @@
-name: Duunga
-password: Du/gmW.yAk
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 2
-race: 11
-level: 11
-home: 3001
-lifeforce: 0
-composition: 0
-id: 20107
-birthtime: 1642130895
-timeplayed: 70218
-lastlogintime: 1685587633
-host: 096.054.189.005
-height: 41
-weight: 157
-base_height: 41
-base_weight: 157
-base_size: 1
-natural_size: 1
-alignment: 169
-playerflags: y
-effectflags: fk 0 0
-prefflags: hnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 132/132
-mana: 12/12
-move: 102/102
-damroll: 3
-hitroll: 6
-strength: 85
-intelligence: 70
-wisdom: 76
-dexterity: 100
-constitution: 81
-charisma: 54
-cash: 3 95 374 192
-experience: 396812
-quit_reason: 3
-saveroom: 0
-skills:
-401 160
-403 160
-405 160
-408 160
-409 160
-415 50
-416 50
-421 83
-438 50
-443 50
-444 50
-463 50
-464 160
-465 50
-472 50
-478 50
-0 0
-trophy:
-1 3508 1.000000
-1 8711 2.000000
-1 55214 2.000000
-1 8331 2.000000
-1 8330 1.000000
-1 8010 1.000000
-1 8015 2.000000
-1 8014 1.000000
-1 8016 3.000000
-1 8012 5.000000
-1 8000 3.000000
-1 8803 14.000000
-1 8806 10.000000
-1 8802 16.000000
-1 8800 14.000000
-1 8801 18.000000
-1 8809 11.000000
-1 8807 3.000000
-1 8805 5.000000
-1 8808 16.000000
-1 8804 27.000000
-0 0 0
-tells:
-1644740200 @WJulk@W tells you, 'Greetings adventurer. Are you looking for training?@W'@0
-1644743583 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1644743594 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1644897675 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644897684 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644898576 @WAaron@W tells you, 'A pleasure doing business with you.@W'@0
-1644993204 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644993207 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644993212 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644993215 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1644738434 Luba gossips, 'ya hate when that happens'
-1644738460 Luba gossips, 'or the wrong person getting the kill/picking up the item first'
-1644738928 Luba gossips, 'wozz would you bless some daggers for me?'
-1644739530 Luba gossips, 'theres a way to give p g s and c but i don't know how the bank will exchange gold for p but it takes a cut based on your charisma'
-1644740777 Luba gossips, 'you could also pay in gold now that i think about it just add a 0 to the plat price should work'
-1644740791 Luba gossips, 'if its 9 plat should be 90 gold'
-1644897988 Zaver gossips, 'congratz'
-1644897997 Pash gossips, 'Thank You'
-1644901459 Daedela gossips, 'oh a new Pyromancer I see!'
-1644901597 Daedela gossips, 'Pashku what gems are you trying to find?'
-$

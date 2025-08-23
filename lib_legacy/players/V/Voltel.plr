@@ -1,165 +1,0 @@
-name: Voltel
-password: VoKeBW2wbi
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 20
-race: 1
-level: 99
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19756
-birthtime: 1604892169
-timeplayed: 352520
-lastlogintime: 1737962916
-host: 052.119.120.201
-height: 61
-weight: 152
-base_height: 61
-base_weight: 152
-base_size: 2
-natural_size: 2
-alignment: 1000
-playerflags: gxyz
-effectflags: k 0 0
-prefflags: ghnoxCD ac
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 507/507
-mana: 980/980
-move: 310/310
-damroll: 3
-hitroll: 3
-strength: 84
-intelligence: 100
-wisdom: 84
-dexterity: 82
-constitution: 61
-charisma: 58
-cash: 12705 11350 60274 80622
-experience: 126967199
-quit_reason: 1
-saveroom: 3054
-skills:
-2 1000
-5 1000
-19 1000
-20 1000
-26 1000
-29 1000
-31 1000
-32 1000
-38 1000
-39 1000
-50 1000
-52 1000
-57 1000
-62 1000
-65 1000
-67 1000
-68 1000
-83 1000
-99 1000
-100 1000
-101 1000
-102 1000
-103 1000
-105 1000
-107 1000
-108 1000
-112 1000
-113 1000
-157 1000
-158 1000
-159 1000
-160 1000
-161 1000
-162 1000
-163 1000
-164 1000
-165 1000
-166 1000
-167 1000
-168 1000
-169 1000
-170 1000
-200 1000
-220 1000
-228 1000
-415 1000
-416 1000
-421 1000
-423 1000
-424 1000
-438 1000
-443 1000
-444 1000
-447 1000
-451 1000
-452 1000
-453 1000
-455 1000
-458 1000
-459 1000
-460 1000
-462 1000
-464 1000
-465 1000
-0 0
-trophy:
-1 11811 3.200001
-1 11798 1.600000
-1 11799 5.799999
-1 11797 3.000000
-0 0 0
-tells:
-1623139902 @WMcCabe the Elementalist@W tells you, 'will serve as the perfect focus for casting meteorswarm.@W'@0
-1623139906 @WMcCabe the Elementalist@W tells you, 'You are ready.@W'@0
-1623139910 @WMcCabe the Elementalist@W tells you, 'Go somewhere safe, and unlock its potential.@W'@0
-1623140001 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
-1623140001 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
-1623140001 @WElspeth the Jeweler@W tells you, 'You don't seem to have that.@W'@0
-1625121775 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1644029508 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-1658983194 @WLord Dargo@W tells you, 'To show my gratitude, take this.@W'@0
-1707569109 @WBigby@W tells you, 'No refund, no guarantee.@W'@0
-$
-gossips:
-1736310316 Tavsan gossips, 'eh, it happens'
-1736310325 Thort gossips, 'oooh. Mist Mountain?'
-1736310343 Tavsan gossips, 'yep.  Fuck up stone skin while facetanking a pile of mobs and suddenly you're dead haha'
-1736310371 Thort gossips, 'yep, I know what you mean. Shit gets real.. real fast.'
-1736311304 Thort gossips, 'okay, so, don't laugh. or do laugh.. whatever. i solved the riddle. got the key. but it still didn't open the door. so I just went around to every single room searching for another door somewhere. reading all of the pentagrams.
-1736311313 Thort gossips, 'I tried unlocking the door with the wrong character.'
-1736311323 Cerworn gossips, 'oh man.  I LOVE when i do that'
-1736311343 Cerworn gossips, 'the other night i sat there for TWO HOURS trying to figure out what key unlocked a certain door...'
-1736311350 Cerworn gossips, 'only to realize it wasn't even locked'
-1736311358 Thort gossips, 'oh NooooOOOooo'
-$
-effects:
-551 3 5 18 0 0 0
-551 3 5 19 0 0 0
-551 3 -12 20 0 0 0
-551 3 -13 21 0 0 0
-551 3 -10 22 0 0 0
-551 3 -9 23 0 0 0
-551 3 -14 24 0 0 0
-551 3 10 17 0 0 0
-551 3 300 13 0 0 0
-108 2 0 0 0 32768 0
-210 4 581 13 0 0 0
-1 7 15 17 0 0 0
-0 0 0 0 0
-aliases:
-csn c 'supernova'
-gat get all 2.corpse
-gac get all corpse
-ga get all
-cs c 'stone' $*
-cdm c 'dispel magic' $*
-cpf c 'positive field' $*
-ci c 'immolate' $*
-0

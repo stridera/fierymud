@@ -1,110 +1,0 @@
-name: Azia
-password: AzhUKJOE6g
-currenttitle: The Squirrel Slasher
-prompt: &2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> <&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> 
-autoinvis: 0
-sex: 1
-class: 18
-race: 9
-level: 14
-home: 3001
-lifeforce: 0
-composition: 0
-id: 19732
-birthtime: 1603133337
-timeplayed: 78677
-lastlogintime: 1735087588
-host: 104.228.087.146
-height: 67
-weight: 138
-base_height: 67
-base_weight: 138
-base_size: 2
-natural_size: 2
-alignment: 998
-playerflags: agxy
-effectflags: k 0 0
-prefflags: ahnoC 0
-privflags: 0
-savingthrows: 0 0 0 0 0
-loadroom: 3054
-lastlevel: 0
-hitpoints: 159/159
-mana: 17/17
-move: 120/120
-damroll: 3
-hitroll: 3
-strength: 85
-intelligence: 61
-wisdom: 73
-dexterity: 97
-constitution: 89
-charisma: 61
-cash: 10 137 716 765
-experience: 605500
-quit_reason: 1
-saveroom: 3054
-skills:
-401 50
-403 50
-405 50
-408 50
-415 50
-416 50
-421 144
-438 50
-443 50
-444 50
-463 50
-464 152
-465 50
-491 50
-493 50
-0 0
-trophy:
-1 55230 0.500000
-1 55219 0.500000
-1 55211 1.000000
-1 55212 1.500000
-1 55223 2.500000
-1 55221 4.000000
-1 55224 1.000000
-1 55234 3.500000
-1 55233 3.000000
-1 55235 4.500000
-1 55222 20.000000
-1 55220 2.000000
-1 55240 31.500000
-1 55241 32.000000
-1 55229 29.000000
-1 36004 0.500000
-1 36003 0.500000
-1 3508 0.666667
-1 3506 0.333333
-1 3502 0.333333
-1 16901 0.666667
-0 0 0
-tells:
-1603216171 @WChinok@W tells you, 'it's not, at all@W'@0
-1603216230 @WChinok@W tells you, 'yes, in this town@W'@0
-1603216360 @WChinok@W tells you, 'glad I could help :)@W'@0
-1603216464 @WChinok@W tells you, 'when you find him.. it will probably become obvious@W'@0
-1603216612 @WChinok@W tells you, 'but when you find him, I'll be here to help you figure that out@W'@0
-1603216618 @WChinok@W tells you, 'if you cant@W'@0
-1603216670 @WChinok@W tells you, 'no@W'@0
-1603217171 @WChinok@W tells you, 'think dark alley@W'@0
-1603217739 @WChinok@W tells you, 'no problem@W'@0
-1640808753 @WKilaxi the Trickster@W tells you, 'Good deal chump, stop again some time.@W'@0
-$
-gossips:
-1640805621 Chinok gossips, 'I never say one something is better than another something.. '
-1640805625 Risk gossips, 'ok Thanks?'
-1640805628 Chinok gossips, 'it depends on what you're doing'
-1640807221 Meina gossips, 'Gratz Bolle :)'
-1640807231 Bolle gossips, 'thankss'
-1640807346 Astrid gossips, 'congraz'
-1640807619 Someone gossips, 'thanks!'
-1640808051 Gizelle gossips, 'gratz Azia'
-1640808073 Bolle gossips, 'gratz'
-1640808338 Meina gossips, 'ok, afk taking dog for a walk :)'
-$
