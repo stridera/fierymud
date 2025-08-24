@@ -50,6 +50,9 @@ struct Stats {
     long experience = 0;    // Experience points
     long gold = 0;          // Currency in copper coins
     
+    // Alignment and morality
+    int alignment = 0;      // Good/Evil alignment (-1000 to 1000)
+    
     /** Validate stats are within reasonable ranges */
     Result<void> validate() const;
     
@@ -388,6 +391,7 @@ public:
     
     /** Player output interface for network layer */
     void set_output(std::shared_ptr<class PlayerOutput> output) { output_ = output; }
+    std::shared_ptr<class PlayerOutput> get_output() const { return output_; }
     
     /** Convenience methods for network layer */  
     std::shared_ptr<Room> current_room_ptr() const { return current_room(); }

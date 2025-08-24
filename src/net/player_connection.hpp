@@ -112,7 +112,7 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
 
     // Connection management
     void start();
-    void disconnect(std::string_view reason = "");
+    void disconnect(std::string_view reason = "") override;
     void force_disconnect();
 
     // Socket access for accept operations
@@ -121,7 +121,7 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
 
     // State queries
     ConnectionState state() const { return state_; }
-    bool is_connected() const { return state_ != ConnectionState::Disconnected; }
+    bool is_connected() const override { return state_ != ConnectionState::Disconnected; }
     bool is_playing() const { return state_ == ConnectionState::Playing; }
     bool has_player() const { return player_ != nullptr; }
 
@@ -129,9 +129,9 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     std::shared_ptr<Player> get_player() const { return player_; }
 
     // Message sending (thread-safe)
-    void send_message(std::string_view message);
-    void send_prompt(std::string_view prompt = "> ");
-    void send_line(std::string_view line);
+    void send_message(std::string_view message) override;
+    void send_prompt(std::string_view prompt = "> ") override;
+    void send_line(std::string_view line) override;
 
     // GMCP support
     bool supports_gmcp() const { return gmcp_handler_.supports_gmcp(); }
@@ -144,7 +144,7 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     void send_raw_data(const std::vector<uint8_t> &data);
 
     // Connection info
-    std::string remote_address() const;
+    std::string remote_address() const override;
     std::chrono::steady_clock::time_point connect_time() const { return connect_time_; }
     std::chrono::seconds connection_duration() const;
 

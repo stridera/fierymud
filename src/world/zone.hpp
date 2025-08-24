@@ -304,12 +304,18 @@ private:
     /** Zone command implementations */
     Result<bool> execute_load_mobile(const ZoneCommand& cmd);
     Result<bool> execute_load_object(const ZoneCommand& cmd);
+    Result<bool> execute_give_object(const ZoneCommand& cmd);
+    Result<bool> execute_equip_object(const ZoneCommand& cmd);
+    Result<bool> execute_put_object(const ZoneCommand& cmd);
     
     /** Check if zone is empty of players */
     bool is_empty_of_players() const;
     
     /** Update statistics */
     void update_statistics();
+    
+    /** Parse nested zone command format from JSON */
+    static Result<void> parse_nested_zone_commands(const nlohmann::json& commands_json, Zone* zone);
 };
 
 /** Zone command parser for loading from legacy format */

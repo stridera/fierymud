@@ -667,15 +667,11 @@ def obj_val(item_type: str, *args):
             dice = int(args[1])
             dice_size = int(args[2])
             average = (float(dice + 1) / 2.0) * float(dice_size)
-            if args[3] in DAMAGE_TYPES:
-                damage_type = BitFlags.get_flag(args[3], DAMAGE_TYPES)
-            else:
-                damage_type = "Invalid"
             results = {
-                "HitRoll": args[0],
+                "HitRoll": int(args[0]),
                 "Hit Dice": Dice(args[1], args[2], 0),
                 "Average": average,
-                "Damage Type": damage_type,
+                "Damage Type": DAMAGE_TYPES[int(args[3])]
             }
         case "TRAP":
             results = {

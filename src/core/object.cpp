@@ -77,7 +77,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
         if (!type_str.empty()) {
             // Map legacy type names to modern enum names
             if (type_str == "NOTHING") {
-                type = ObjectType::Undefined;  // Nothing -> Undefined 
+                type = ObjectType::Other;  // Nothing -> Other (miscellaneous items) 
             } else if (type_str == "LIGHT") {
                 type = ObjectType::Light;
             } else if (type_str == "SCROLL") {

@@ -71,15 +71,7 @@ void WorldManager::shutdown() {
     
     auto logger = Log::game();
     logger->info("Shutting down WorldManager");
-    
-    // Save any unsaved changes
-    if (has_unsaved_changes_.load()) {
-        auto result = save_world_state();
-        if (!result) {
-            logger->error("Failed to save world state during shutdown: {}", result.error().message);
-        }
-    }
-    
+      
     clear_state();
     
     initialized_.store(false);
@@ -168,6 +160,16 @@ Result<void> WorldManager::load_world() {
     // Initialize weather system for loaded zones
     initialize_weather_callbacks();
     
+    // Force initial zone resets to spawn mobiles and populate the world
+    logger->info("Performing initial zone resets to populate world...");
+    for (const auto& [zone_id, zone] : zones_) {
+        if (zone) {
+            logger->debug("Force resetting zone {} ({}) for initial population", zone_id, zone->name());
+            zone->force_reset();
+        }
+    }
+    logger->info("Initial zone resets completed - world populated with mobiles and objects");
+    
     return Success();
 }
 
@@ -235,23 +237,34 @@ Result<void> WorldManager::load_zone_file(const std::string& filename) {
     // Parse embedded rooms and add them to the world
     if (zone_json.contains("rooms") && zone_json["rooms"].is_array()) {
         for (const auto& room_json : zone_json["rooms"]) {
-            auto room_result = Room::from_json(room_json);
-            if (room_result) {
-                auto room = std::shared_ptr<Room>(room_result.value().release());
-                
-                // Set the room's zone reference
-                room->set_zone_id(zone_id);
-                
-                // Add room to world manager
-                rooms_[room->id()] = room;
-                stats_.rooms_loaded++;
-                
-                // Add room ID to zone's room list
-                zone_shared->add_room(room->id());
-                
-                logger->debug("Loaded room: {} ({}) in zone {}", room->name(), room->id(), zone_name);
+            // Handle both room objects and room ID references
+            if (room_json.is_object()) {
+                // Room object with full data
+                auto room_result = Room::from_json(room_json);
+                if (room_result) {
+                    auto room = std::shared_ptr<Room>(room_result.value().release());
+                    
+                    // Set the room's zone reference
+                    room->set_zone_id(zone_id);
+                    
+                    // Add room to world manager
+                    rooms_[room->id()] = room;
+                    stats_.rooms_loaded++;
+                    
+                    // Add room ID to zone's room list
+                    zone_shared->add_room(room->id());
+                    
+                    logger->debug("Loaded room: {} ({}) in zone {}", room->name(), room->id(), zone_name);
+                } else {
+                    logger->error("Failed to parse room in zone {}: {}", zone_name, room_result.error().message);
+                }
+            } else if (room_json.is_number()) {
+                // Room ID reference - just add to zone's room list
+                EntityId room_id{room_json.get<std::uint64_t>()};
+                zone_shared->add_room(room_id);
+                logger->debug("Referenced room: {} in zone {}", room_id, zone_name);
             } else {
-                logger->error("Failed to parse room in zone {}: {}", zone_name, room_result.error().message);
+                logger->warn("Invalid room entry in zone {}: expected object or number", zone_name);
             }
         }
     }
@@ -609,38 +622,6 @@ std::shared_ptr<Room> WorldManager::get_room_in_direction(EntityId from_room, Di
     }
     
     return get_room(exit->to_room);
-}
-
-Result<void> WorldManager::save_world_state() {
-    auto start_time = std::chrono::steady_clock::now();
-    auto logger = Log::persistence();
-    
-    logger->info("Saving world state to: {}", world_path_);
-    
-    std::shared_lock lock(world_mutex_);
-    
-    // Save zones
-    for (const auto& [id, zone] : zones_) {
-        if (zone) {
-            std::string filename = fmt::format("{}/{}.json", world_path_, id.value());
-            auto result = zone->save_to_file(filename);
-            if (!result) {
-                logger->error("Failed to save zone {}: {}", id, result.error().message);
-            }
-        }
-    }
-    
-    // Save rooms (in zone files for now)
-    // TODO: Implement separate room file saving if needed
-    
-    auto end_time = std::chrono::steady_clock::now();
-    stats_.save_time = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
-    stats_.last_save = end_time;
-    has_unsaved_changes_.store(false);
-    
-    logger->info("World state saved in {}ms", stats_.save_time.count());
-    
-    return Success();
 }
 
 Result<void> WorldManager::load_world_state() {

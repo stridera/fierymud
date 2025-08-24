@@ -42,6 +42,7 @@ The `zone` object contains zone metadata and reset commands:
 Zone commands control how objects and mobiles spawn during resets:
 
 #### Mobile Commands
+
 ```json
 "mob": [
     {
@@ -70,6 +71,7 @@ Zone commands control how objects and mobiles spawn during resets:
 ```
 
 #### Object Commands
+
 ```json
 "object": [
     {
@@ -199,6 +201,7 @@ The `objects` array contains item definitions:
 ### Object Types
 
 Common object types include:
+
 - `LIGHT` - Light sources
 - `WEAPON` - Weapons
 - `ARMOR` - Armor and shields
@@ -213,7 +216,7 @@ Common object types include:
 
 ## Rooms Section
 
-The `rooms` object contains a nested `rooms` array with room definitions:
+The `rooms` object contains an array with room definitions:
 
 ```json
 "rooms": [
@@ -248,6 +251,7 @@ The `rooms` object contains a nested `rooms` array with room definitions:
 ### Room Flags
 
 Common room flags:
+
 - `DARK` - Room is dark without light
 - `DEATH` - Room kills players who enter
 - `NOMOB` - Mobiles won't enter
@@ -289,6 +293,7 @@ Key differences between legacy and modern field names:
 ## Usage in Code
 
 The modern FieryMUD system loads these files via:
+
 1. `WorldManager::load_world()` reads zone files from `data_prod/world/`
 2. `Zone::from_json()` parses the zone section
 3. Entity `from_json()` methods handle mobs, objects, and rooms

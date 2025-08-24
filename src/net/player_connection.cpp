@@ -7,8 +7,10 @@
 
 #include "../commands/command_system.hpp"
 #include "../core/actor.hpp"
+#include "../core/config.hpp"
 #include "../core/logging.hpp"
 #include "../server/world_server.hpp"
+#include "../world/world_manager.hpp"
 
 #include <algorithm>
 #include <chrono>
@@ -351,12 +353,38 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
     // Set the player's output interface
     player_->set_output(shared_from_this());
 
+    // Ensure player is placed in a room
+    if (!player_->current_room()) {
+        // Try to place in the configured starting room
+        auto starting_room_id = Config::instance().default_starting_room();
+        auto starting_room = WorldManager::instance().get_room(starting_room_id);
+        
+        if (starting_room) {
+            auto move_result = player_->move_to(starting_room);
+            if (!move_result) {
+                Log::warn("Failed to place player '{}' in starting room {}: {}", 
+                         player_->name(), starting_room_id.value(), move_result.error().message);
+            } else {
+                starting_room->add_actor(player_);
+                Log::info("Placed player '{}' in starting room {}", player_->name(), starting_room_id.value());
+            }
+        } else {
+            Log::error("Starting room {} not found - player '{}' will be in nowhere", 
+                      starting_room_id.value(), player_->name());
+        }
+    }
+
     // Add player to the world server's online players list
     world_server_->add_player(player_);
 
     transition_to(ConnectionState::Playing);
 
     Log::info("Player '{}' logged in from {}", player_->name(), remote_address());
+
+    // Send room description after login
+    if (auto room = player_->current_room()) {
+        send_message(room->get_room_description(player_.get()));
+    }
 
     // Send initial GMCP data if supported
     if (supports_gmcp()) {

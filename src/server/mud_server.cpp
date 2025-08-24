@@ -491,10 +491,6 @@ void ModernMUDServer::monitoring_task() {
 }
 
 Result<void> ModernMUDServer::save_all_data() {
-    if (world_server_) {
-        world_server_->save_all_data();
-    }
-
     if (persistence_manager_) {
         auto persist_result = persistence_manager_->save_all_players();
         if (!persist_result) {

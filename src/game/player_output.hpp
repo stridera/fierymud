@@ -31,6 +31,9 @@ class PlayerOutput {
 
     /** Get remote address for logging purposes */
     virtual std::string remote_address() const = 0;
+
+    /** Disconnect the player with optional reason */
+    virtual void disconnect(std::string_view reason = "") = 0;
 };
 
 /**
@@ -49,6 +52,14 @@ class NullPlayerOutput : public PlayerOutput {
     bool is_connected() const override { return true; }
 
     std::string remote_address() const override { return "test-harness"; }
+
+    void disconnect(std::string_view reason = "") override { 
+        if (!reason.empty()) {
+            captured_output += "[DISCONNECT: " + std::string(reason) + "]\n";
+        } else {
+            captured_output += "[DISCONNECT]\n";
+        }
+    }
 
     /** Get captured output for testing */
     const std::string &get_captured_output() const { return captured_output; }

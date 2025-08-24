@@ -9,10 +9,12 @@
 
 #include "actor.hpp"
 #include "../core/logging.hpp"
+#include "../game/player_output.hpp"
 #include "../world/room.hpp"
 
 #include <algorithm>
 #include <cmath>
+#include <sstream>
 
 // Stats Implementation
 
@@ -99,7 +101,8 @@ nlohmann::json Stats::to_json() const {
         {"damage_roll", damage_roll},
         {"level", level},
         {"experience", experience},
-        {"gold", gold}
+        {"gold", gold},
+        {"alignment", alignment}
     };
 }
 
@@ -128,6 +131,7 @@ Result<Stats> Stats::from_json(const nlohmann::json& json) {
         if (json.contains("level")) stats.level = json["level"].get<int>();
         if (json.contains("experience")) stats.experience = json["experience"].get<long>();
         if (json.contains("gold")) stats.gold = json["gold"].get<long>();
+        if (json.contains("alignment")) stats.alignment = json["alignment"].get<int>();
         
         TRY(stats.validate());
         
@@ -667,6 +671,8 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
         auto base_entity = std::move(base_result.value());
         
         int level = json.contains("level") ? json["level"].get<int>() : 1;
+        // Handle legacy level 0 by converting to level 1
+        if (level <= 0) level = 1;
         auto mobile = std::unique_ptr<Mobile>(new Mobile(base_entity->id(), base_entity->name(), level));
         
         // Copy base properties
@@ -686,36 +692,124 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
         // Parse alignment
         if (json.contains("alignment")) {
             int alignment = json["alignment"].get<int>();
-            // TODO: Set mobile alignment when field exists
+            mobile->stats().alignment = alignment;
         }
         
-        // Parse mob class
-        if (json.contains("mob_class")) {
-            std::string mob_class = json["mob_class"].get<std::string>();
-            // TODO: Set mobile class when field exists
-        }
-        
-        // Parse flags
+        // Parse mob flags (comma-separated string)
         if (json.contains("mob_flags")) {
-            std::string flags = json["mob_flags"].get<std::string>();
-            // TODO: Parse and set mob flags when field exists
+            try {
+                std::string flags_str = json["mob_flags"].get<std::string>();
+                if (!flags_str.empty()) {
+                    std::istringstream iss(flags_str);
+                    std::string flag_name;
+                    while (std::getline(iss, flag_name, ',')) {
+                        // Trim whitespace
+                        flag_name.erase(0, flag_name.find_first_not_of(" \t"));
+                        flag_name.erase(flag_name.find_last_not_of(" \t") + 1);
+                        
+                        if (auto flag = ActorUtils::parse_flag(flag_name)) {
+                            mobile->set_flag(flag.value(), true);
+                        }
+                    }
+                }
+            } catch (const nlohmann::json::exception& e) {
+                throw std::runtime_error("mob_flags parsing error: " + std::string(e.what()));
+            }
         }
         
-        // Parse effect flags
+        // Parse effect flags (comma-separated string)
         if (json.contains("effect_flags")) {
-            std::string effects = json["effect_flags"].get<std::string>();
-            // TODO: Parse and set effect flags when field exists
+            try {
+                std::string effects_str = json["effect_flags"].get<std::string>();
+                if (!effects_str.empty()) {
+                    std::istringstream iss(effects_str);
+                    std::string flag_name;
+                    while (std::getline(iss, flag_name, ',')) {
+                        // Trim whitespace
+                        flag_name.erase(0, flag_name.find_first_not_of(" \t"));
+                        flag_name.erase(flag_name.find_last_not_of(" \t") + 1);
+                        
+                        if (auto flag = ActorUtils::parse_flag(flag_name)) {
+                            mobile->set_flag(flag.value(), true);
+                        }
+                    }
+                }
+            } catch (const nlohmann::json::exception& e) {
+                throw std::runtime_error("effect_flags parsing error: " + std::string(e.what()));
+            }
         }
         
-        // Parse stats
+        // Parse stats object
         if (json.contains("stats")) {
-            // TODO: Parse stats when Stats::from_json is available
+            auto stats_result = Stats::from_json(json["stats"]);
+            if (stats_result) {
+                mobile->stats() = stats_result.value();
+            }
         }
         
-        // Parse money
-        if (json.contains("money")) {
-            // TODO: Parse money when Money class is available
+        // Parse individual stat fields (from flat JSON format)
+        Stats& stats = mobile->stats();
+        if (json.contains("level")) {
+            int parsed_level = json["level"].get<int>();
+            if (parsed_level <= 0) parsed_level = 1;  // Handle level 0
+            stats.level = parsed_level;
         }
+        if (json.contains("hp_dice")) {
+            // Handle dice notation like {"num": 20, "size": 8, "bonus": 100}
+            const auto& hp_dice = json["hp_dice"];
+            if (hp_dice.contains("bonus") && hp_dice["bonus"].get<int>() > 0) {
+                stats.max_hit_points = hp_dice["bonus"].get<int>();
+                stats.hit_points = stats.max_hit_points;
+            }
+        }
+        if (json.contains("ac")) {
+            stats.armor_class = json["ac"].get<int>();
+        }
+        if (json.contains("hit_roll")) {
+            stats.hit_roll = json["hit_roll"].get<int>();
+        }
+        if (json.contains("damage_dice")) {
+            // Handle damage dice - store bonus as damage_roll
+            const auto& dmg_dice = json["damage_dice"];
+            if (dmg_dice.contains("bonus")) {
+                stats.damage_roll = dmg_dice["bonus"].get<int>();
+            }
+        }
+        
+        // Parse money object - handle both string and number values
+        if (json.contains("money")) {
+            const auto& money = json["money"];
+            long total_copper = 0;
+            
+            // Helper lambda to parse money value (string or number)
+            auto parse_money_value = [](const nlohmann::json& value) -> long {
+                long result = 0;
+                if (value.is_string()) {
+                    result = std::stol(value.get<std::string>());
+                } else if (value.is_number()) {
+                    result = value.get<long>();
+                }
+                // Treat negative values as 0 (common in legacy data for "no money")
+                return std::max(0L, result);
+            };
+            
+            if (money.contains("copper")) {
+                total_copper += parse_money_value(money["copper"]);
+            }
+            if (money.contains("silver")) {
+                total_copper += parse_money_value(money["silver"]) * 10;
+            }
+            if (money.contains("gold")) {
+                total_copper += parse_money_value(money["gold"]) * 100;
+            }
+            if (money.contains("platinum")) {
+                total_copper += parse_money_value(money["platinum"]) * 1000;
+            }
+            stats.gold = total_copper;
+        }
+        
+        // Initialize mobile for its level
+        mobile->initialize_for_level(stats.level);
         
         TRY(mobile->validate());
         
@@ -811,6 +905,11 @@ Result<std::unique_ptr<Player>> Player::from_json(const nlohmann::json& json) {
 
 void Player::send_message(std::string_view message) {
     output_queue_.emplace_back(message);
+    
+    // If we have an output interface (e.g., PlayerConnection), send immediately
+    if (output_) {
+        output_->send_message(message);
+    }
 }
 
 void Player::receive_message(std::string_view message) {

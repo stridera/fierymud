@@ -165,7 +165,6 @@ public:
     std::shared_ptr<Room> get_room_in_direction(EntityId from_room, Direction direction) const;
     
     // World State Management
-    Result<void> save_world_state();
     Result<void> load_world_state();
     bool has_unsaved_changes() const { return has_unsaved_changes_; }
     

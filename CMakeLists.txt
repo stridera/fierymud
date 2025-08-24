@@ -171,6 +171,9 @@ set(TEST_SOURCES
     tests/test_harness_usage.cpp
     tests/test_gmcp.cpp
     tests/test_emotes.cpp
+    tests/test_actor_json_parsing.cpp
+    tests/test_zone_json_parsing.cpp
+    tests/test_world_json_parsing.cpp
 )
 
 # Main test executable
@@ -249,34 +252,33 @@ set_tests_properties(Session_Tests PROPERTIES
     LABELS "session"
 )
 
-# Legacy FieryMUD Server (fierymud_legacy)
-file(GLOB_RECURSE LEGACY_SOURCES "src/legacy/*.cpp")
+# Legacy FieryMUD Server (fierymud_legacy) - Currently disabled
+# file(GLOB_RECURSE LEGACY_SOURCES "src/legacy/*.cpp")
+# add_executable(fierymud_legacy ${LEGACY_SOURCES})
 
-add_executable(fierymud_legacy ${LEGACY_SOURCES})
+# target_include_directories(fierymud_legacy PRIVATE src/legacy ${CMAKE_BINARY_DIR})
 
-target_include_directories(fierymud_legacy PRIVATE src/legacy ${CMAKE_BINARY_DIR})
+# target_link_libraries(fierymud_legacy PRIVATE 
+#     fmt::fmt 
+#     spdlog::spdlog
+#     nlohmann_json::nlohmann_json
+#     magic_enum::magic_enum
+#     cxxopts::cxxopts
+#     crypt
+# )
 
-target_link_libraries(fierymud_legacy PRIVATE 
-    fmt::fmt 
-    spdlog::spdlog
-    nlohmann_json::nlohmann_json
-    magic_enum::magic_enum
-    cxxopts::cxxopts
-    crypt
-)
+# target_compile_definitions(fierymud_legacy PRIVATE
+#     SPDLOG_COMPILED_LIB
+#     SPDLOG_FMT_EXTERNAL
+#     LEGACY_BUILD
+# )
 
-target_compile_definitions(fierymud_legacy PRIVATE
-    SPDLOG_COMPILED_LIB
-    SPDLOG_FMT_EXTERNAL
-    LEGACY_BUILD
-)
+# target_compile_options(fierymud_legacy PRIVATE
+#     -std=gnu++23
+#     -Wall
+#     -Wextra
+#     -O3
+#     -g
+# )
 
-target_compile_options(fierymud_legacy PRIVATE
-    -std=gnu++23
-    -Wall
-    -Wextra
-    -O3
-    -g
-)
-
-set_target_properties(fierymud_legacy PROPERTIES EXCLUDE_FROM_ALL TRUE)
+# set_target_properties(fierymud_legacy PROPERTIES EXCLUDE_FROM_ALL TRUE)

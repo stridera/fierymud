@@ -132,7 +132,6 @@ public:
     CommandSystem* get_command_system() const;
     
     // Periodic operations (thread-safe - runs on strand)
-    void schedule_periodic_save();
     void schedule_periodic_cleanup();
     void schedule_heartbeat();
     
@@ -142,7 +141,6 @@ public:
 
     // Data management
     Result<void> create_default_world();
-    Result<void> save_all_data();
     
 private:
     // Strand-based operations (must run on world_strand_)
@@ -151,7 +149,6 @@ private:
     void handle_player_disconnection(std::shared_ptr<PlayerConnection> connection);
     
     // Periodic tasks (run on world_strand_)
-    void perform_world_save();
     void perform_cleanup();
     void perform_heartbeat();
     

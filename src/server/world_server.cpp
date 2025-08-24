@@ -77,7 +77,6 @@ Result<void> WorldServer::start() {
     });
 
     // Schedule periodic operations on the world strand
-    schedule_periodic_save();
     schedule_periodic_cleanup();
     schedule_heartbeat();
 
@@ -286,11 +285,6 @@ void WorldServer::handle_player_disconnection(std::shared_ptr<PlayerConnection> 
 
 // Periodic Operations
 
-void WorldServer::schedule_periodic_save() {
-    save_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
-    schedule_timer(config_.auto_save_interval, [this]() { perform_world_save(); }, save_timer_);
-}
-
 void WorldServer::schedule_periodic_cleanup() {
     cleanup_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
     schedule_timer(std::chrono::minutes(5), [this]() { perform_cleanup(); }, cleanup_timer_);
@@ -316,20 +310,6 @@ void WorldServer::schedule_timer(std::chrono::milliseconds interval, std::functi
             schedule_timer(interval, task, const_cast<std::shared_ptr<asio::steady_timer> &>(timer));
         }
     });
-}
-
-void WorldServer::perform_world_save() {
-    // This runs on the world strand - no synchronization needed!
-    Log::info("Performing periodic world save...");
-
-    if (world_manager_) {
-        auto result = world_manager_->save_world_state();
-        if (!result) {
-            Log::error("World save failed: {}", result.error().message);
-        } else {
-            Log::debug("World save completed successfully");
-        }
-    }
 }
 
 void WorldServer::perform_cleanup() {
@@ -393,20 +373,6 @@ Result<void> WorldServer::create_default_world() {
         world_manager_->set_start_room(EntityId{1000});
 
         Log::info("Default world created with starting room [1000]");
-    });
-    return Success();
-}
-
-Result<void> WorldServer::save_all_data() {
-    // This must run on the world strand.
-    asio::post(world_strand_, [this]() {
-        if (world_manager_) {
-            auto world_result = world_manager_->save_world_state();
-            if (!world_result) {
-                Log::error("Failed to save world state: {}", world_result.error().message);
-            }
-        }
-        // Player saving will be handled separately by a PersistenceManager
     });
     return Success();
 }

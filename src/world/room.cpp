@@ -1,3 +1,4 @@
+
 /***************************************************************************
  *   File: src/world/room.cpp                             Part of FieryMUD *
  *  Usage: Modern room system implementation                               *
@@ -13,6 +14,7 @@
 #include "../core/logging.hpp"
 
 #include <algorithm>
+#include <sstream>
 #include <unordered_map>
 
 // ExitInfo Implementation
@@ -75,7 +77,23 @@ Result<ExitInfo> ExitInfo::from_json(const nlohmann::json& json) {
     try {
         ExitInfo exit;
         
-        if (json.contains("to_room")) {
+        // Handle destination (JSON) -> to_room (internal)
+        if (json.contains("destination")) {
+            if (json["destination"].is_string()) {
+                std::string dest_str = json["destination"].get<std::string>();
+                // Convert "-1" string to invalid room (no destination)
+                if (dest_str != "-1") {
+                    exit.to_room = EntityId{std::stoull(dest_str)};
+                }
+                // else: leave to_room as INVALID_ENTITY_ID
+            } else if (json["destination"].is_number()) {
+                int64_t dest_num = json["destination"].get<int64_t>();
+                if (dest_num != -1) {
+                    exit.to_room = EntityId{static_cast<std::uint64_t>(dest_num)};
+                }
+                // else: leave to_room as INVALID_ENTITY_ID
+            }
+        } else if (json.contains("to_room")) {
             exit.to_room = EntityId{json["to_room"].get<std::uint64_t>()};
         }
         
@@ -85,6 +103,23 @@ Result<ExitInfo> ExitInfo::from_json(const nlohmann::json& json) {
         
         if (json.contains("keyword")) {
             exit.keyword = json["keyword"].get<std::string>();
+        }
+        
+        // Handle key field - convert "-1" string to no key
+        if (json.contains("key")) {
+            if (json["key"].is_string()) {
+                std::string key_str = json["key"].get<std::string>();
+                if (key_str != "-1") {
+                    exit.key_id = EntityId{std::stoull(key_str)};
+                }
+            } else if (json["key"].is_number()) {
+                int64_t key_num = json["key"].get<int64_t>();
+                if (key_num != -1) {
+                    exit.key_id = EntityId{static_cast<std::uint64_t>(key_num)};
+                }
+            }
+        } else if (json.contains("key_id")) {
+            exit.key_id = EntityId{json["key_id"].get<std::uint64_t>()};
         }
         
         if (json.contains("has_door")) {
@@ -105,10 +140,6 @@ Result<ExitInfo> ExitInfo::from_json(const nlohmann::json& json) {
         
         if (json.contains("is_pickproof")) {
             exit.is_pickproof = json["is_pickproof"].get<bool>();
-        }
-        
-        if (json.contains("key_id")) {
-            exit.key_id = EntityId{json["key_id"].get<std::uint64_t>()};
         }
         
         if (json.contains("difficulty")) {
@@ -283,13 +314,32 @@ Result<std::unique_ptr<Room>> Room::from_json(const nlohmann::json& json) {
             room->set_zone_id(EntityId{json["zone_id"].get<std::uint64_t>()});
         }
         
-        // Parse flags
-        if (json.contains("flags") && json["flags"].is_array()) {
-            for (const auto& flag_name : json["flags"]) {
-                if (flag_name.is_string()) {
-                    std::string flag_str = flag_name.get<std::string>();
-                    if (auto flag = RoomUtils::parse_room_flag(flag_str)) {
-                        room->set_flag(flag.value());
+        // Parse flags from comma-separated string
+        if (json.contains("flags")) {
+            if (json["flags"].is_string()) {
+                std::string flags_str = json["flags"].get<std::string>();
+                // Split comma-separated flags
+                std::istringstream iss(flags_str);
+                std::string flag;
+                while (std::getline(iss, flag, ',')) {
+                    // Trim whitespace
+                    flag.erase(0, flag.find_first_not_of(" \t"));
+                    flag.erase(flag.find_last_not_of(" \t") + 1);
+                    
+                    if (!flag.empty()) {
+                        if (auto parsed_flag = RoomUtils::parse_room_flag(flag)) {
+                            room->set_flag(parsed_flag.value());
+                        }
+                    }
+                }
+            } else if (json["flags"].is_array()) {
+                // Also handle array format for compatibility
+                for (const auto& flag_name : json["flags"]) {
+                    if (flag_name.is_string()) {
+                        std::string flag_str = flag_name.get<std::string>();
+                        if (auto flag = RoomUtils::parse_room_flag(flag_str)) {
+                            room->set_flag(flag.value());
+                        }
                     }
                 }
             }

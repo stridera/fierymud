@@ -4,13 +4,13 @@
     "mud_name": "Test FieryMUD",
     "player_directory": "data_test/players",
     "world_directory": "data_test/world",
-    "default_starting_room": 100
+    "default_starting_room": 3001
   },
   "network": {
     "bind_address": "0.0.0.0",
     "connection_timeout_seconds": 300,
     "max_connections": 10,
-    "port": 4002
+    "port": 4000
   },
   "performance": {
     "enable_monitoring": true,

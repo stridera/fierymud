@@ -1110,8 +1110,6 @@ Abstractions (interfaces)
   - load_zone(vnum) -> Result<ZoneData>
   - load_room(vnum) -> Result<RoomData>
   - load_object_proto(vnum) -> Result<ObjectProto>
-  - save_zone(ZoneData) -> Result<void>
-  - save_room(RoomData) -> Result<void>
 - IPlayerStore
   - load_player(std::string_view name) -> Result<PlayerData>
   - save_player(const PlayerData&) -> Result<void>

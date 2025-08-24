@@ -12,6 +12,7 @@
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
 #include "../core/object.hpp"
+#include "../game/player_output.hpp"
 #include "../world/room.hpp"
 #include "../world/weather.hpp"
 #include "../world/world_manager.hpp"
@@ -836,7 +837,12 @@ Result<CommandResult> cmd_quit(const CommandContext &ctx) {
     ctx.send_line("Thank you for playing FieryMUD!");
     ctx.send_to_room(fmt::format("{} has left the game.", ctx.actor->name()), true);
 
-    // TODO: Implement actual quit logic (save player, disconnect, etc.)
+    // Disconnect the player if it's a Player with an output interface
+    if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+        if (auto output = player->get_output()) {
+            output->disconnect("Player quit");
+        }
+    }
 
     return CommandResult::Success;
 }
@@ -1442,7 +1448,7 @@ std::string format_room_description(std::shared_ptr<Room> room, std::shared_ptr<
         desc << "\nYou see:\n";
         for (const auto &obj : objects) {
             if (obj) {
-                desc << fmt::format("  {}\n", obj->name());
+                desc << fmt::format("  {}\n", obj->short_description());
             }
         }
     }
@@ -1456,7 +1462,7 @@ std::string format_room_description(std::shared_ptr<Room> room, std::shared_ptr<
                 desc << "\nAlso here:\n";
                 found_others = true;
             }
-            desc << fmt::format("  {}\n", actor->name());
+            desc << fmt::format("  {}\n", actor->short_description());
         }
     }
 
@@ -1469,7 +1475,7 @@ std::string format_object_description(std::shared_ptr<Object> obj, std::shared_p
     }
 
     std::ostringstream desc;
-    desc << fmt::format("{}\n", obj->name());
+    desc << fmt::format("{}\n", obj->short_description());
     desc << fmt::format("{}\n", obj->description());
 
     // Add object-specific details
@@ -1484,8 +1490,8 @@ std::string format_actor_description(std::shared_ptr<Actor> target, std::shared_
     }
 
     std::ostringstream desc;
-    desc << fmt::format("{}\n", target->name());
-    desc << fmt::format("{} is here.\n", target->name());
+    desc << fmt::format("{}\n", target->short_description());
+    desc << fmt::format("{} is here.\n", target->short_description());
 
     // TODO: Add equipment, health status, etc.
 
@@ -1506,7 +1512,7 @@ std::string format_inventory(std::shared_ptr<Actor> actor) {
     inv << "You are carrying:\n";
     for (const auto &item : inventory) {
         if (item) {
-            inv << fmt::format("  {}\n", item->name());
+            inv << fmt::format("  {}\n", item->short_description());
         }
     }
 
