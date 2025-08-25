@@ -67,6 +67,7 @@ set(SOURCES
     src/core/entity.cpp
     src/core/actor.cpp
     src/core/object.cpp
+    src/core/combat.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
@@ -82,6 +83,7 @@ set(SOURCES
     src/commands/command_context.cpp
     src/commands/command_parser.cpp
     src/commands/builtin_commands.cpp
+    # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
 )
 
 # Test sources (without main.cpp and networking)
@@ -91,6 +93,7 @@ set(SIMPLE_TEST_SOURCES
     src/core/entity.cpp
     src/core/actor.cpp
     src/core/object.cpp
+    src/core/combat.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
@@ -139,6 +142,7 @@ set(TEST_SOURCES
     src/core/entity.cpp
     src/core/actor.cpp
     src/core/object.cpp
+    src/core/combat.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
@@ -150,30 +154,29 @@ set(TEST_SOURCES
     src/commands/command_context.cpp
     src/commands/command_parser.cpp
     src/commands/builtin_commands.cpp
+    # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
     src/core/arguments.cpp
     src/core/string_utils.cpp
     tests/mock_game_session.cpp
     
     # Test files
-    tests/test_arguments.cpp
-    tests/test_character_creation_sessions.cpp
-    
-    
-    
-    tests/test_command_system_integration.cpp
-    tests/test_core_foundation.cpp
-    tests/test_world_management.cpp
-    tests/test_world_integration.cpp
-    tests/test_multiplayer_interaction.cpp
+    tests/test_core_arguments.cpp
+    tests/test_session_integration.cpp
+    tests/test_command_system.cpp
+    tests/test_core.cpp
+    tests/test_world_utils.cpp
+    tests/test_world.cpp
+    tests/test_multiplayer.cpp
     tests/test_performance.cpp
-    tests/test_error_handling.cpp
-    tests/test_session_lifecycle.cpp
-    tests/test_harness_usage.cpp
+    tests/test_server_resilience.cpp
+    tests/test_session.cpp
+    tests/test_test_harness.cpp
     tests/test_gmcp.cpp
     tests/test_emotes.cpp
-    tests/test_actor_json_parsing.cpp
-    tests/test_zone_json_parsing.cpp
-    tests/test_world_json_parsing.cpp
+    tests/test_actor.cpp
+    tests/test_zone_parsing.cpp
+    tests/test_world_parsing.cpp
+    tests/test_combat_system.cpp
 )
 
 # Main test executable

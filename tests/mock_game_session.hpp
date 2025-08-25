@@ -12,6 +12,8 @@
 #include "../src/server/world_server.hpp"
 #include "test_harness.hpp"
 
+#include "test_harness.hpp"
+
 #include <atomic>
 #include <chrono>
 #include <future>
@@ -58,7 +60,7 @@ class MockPlayerConnection : public PlayerConnection {
  */
 class MockGameSession {
   public:
-    MockGameSession();
+    MockGameSession(WorldServer& world_server, asio::io_context& io_context);
     ~MockGameSession();
 
     // Session lifecycle
@@ -92,17 +94,16 @@ class MockGameSession {
     std::shared_ptr<MockPlayerConnection> get_connection() const { return connection_; }
 
   private:
+    private:
     std::shared_ptr<WorldServer> world_server_;
     std::shared_ptr<MockPlayerConnection> connection_;
     std::shared_ptr<NetworkedPlayer> player_;
     std::string player_name_;
 
   private:
-    asio::io_context io_context_;
+    asio::io_context& io_context_;
     asio::executor_work_guard<asio::io_context::executor_type> work_guard_;
     std::thread io_thread_;
-
-    void initialize_world_server();
 };
 
 /**
@@ -110,12 +111,6 @@ class MockGameSession {
  */
 class UnifiedTestHarness {
   public:
-    enum class TestMode {
-        Unit,        // Isolated component testing
-        Integration, // Multi-component testing
-        Session      // Full NetworkedPlayer session testing
-    };
-
     static UnifiedTestHarness &instance();
 
     // Test execution modes
@@ -127,15 +122,23 @@ class UnifiedTestHarness {
     static std::unique_ptr<MockGameSession> create_session();
     static std::vector<std::unique_ptr<MockGameSession>> create_multiple_sessions(size_t count);
 
-    // Test environment management
-    static void setup_test_environment();
-    static void cleanup_test_environment();
-    static void reset_world_state();
+    WorldServer& get_world_server() { return *world_server_; }
 
   private:
-    UnifiedTestHarness() = default;
-    static std::unique_ptr<WorldServer> test_world_server_;
-    static bool environment_initialized_;
+    UnifiedTestHarness();
+    static std::unique_ptr<UnifiedTestHarness> instance_;
+    std::unique_ptr<WorldServer> world_server_;
+    asio::io_context io_context_;
+    asio::executor_work_guard<asio::io_context::executor_type> work_guard_;
+    std::thread io_thread_;
+    bool environment_initialized_ = false;
+    
+    // Test environment management
+    void setup_test_environment();
+    void reset_world_state();
+    
+  public:
+    static void cleanup_test_environment();
 
   public:
     static bool builtin_commands_registered_;

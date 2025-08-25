@@ -30,8 +30,11 @@ class WorldServer;
  */
 enum class ConnectionState {
     Connected,     // Just connected, telnet negotiation
-    Login,         // In login process
+    Login,         // In login process  
     Playing,       // Playing the game
+    AFK,           // Away from keyboard (no input for extended period)
+    Linkdead,      // Connection lost but player still in game
+    Reconnecting,  // Player attempting to reconnect to existing character
     Disconnecting, // Graceful disconnect in progress
     Disconnected   // Connection closed
 };
@@ -124,6 +127,12 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     bool is_connected() const override { return state_ != ConnectionState::Disconnected; }
     bool is_playing() const { return state_ == ConnectionState::Playing; }
     bool has_player() const { return player_ != nullptr; }
+    
+    // Enhanced session state queries
+    bool is_afk() const { return is_afk_; }
+    bool is_linkdead() const { return is_linkdead_; }
+    std::chrono::seconds idle_time() const;
+    std::chrono::seconds afk_time() const;
 
     // Player access (only valid when playing)
     std::shared_ptr<Player> get_player() const { return player_; }
@@ -169,6 +178,15 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     void transition_to(ConnectionState new_state);
     void on_login_completed(std::shared_ptr<Player> player);
     void cleanup_connection();
+    
+    // Enhanced session management
+    void update_last_input_time();
+    void check_idle_timeout();
+    void set_afk(bool afk);
+    void set_linkdead(bool linkdead, std::string_view reason = "");
+    bool attempt_reconnection(std::string_view name, std::string_view password);
+    void start_idle_timer();
+    void handle_idle_timer(const asio::error_code &error);
 
     // Output queue management (thread-safe with strand)
     void queue_output(std::string data);
@@ -183,6 +201,7 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     asio::strand<asio::io_context::executor_type> strand_;
     asio::ip::tcp::socket socket_;
     std::shared_ptr<WorldServer> world_server_;
+    asio::steady_timer idle_check_timer_;
 
     // Protocol handlers
     GMCPHandler gmcp_handler_;
@@ -192,6 +211,14 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     ConnectionState state_{ConnectionState::Connected};
     std::shared_ptr<Player> player_;
     std::chrono::steady_clock::time_point connect_time_;
+    
+    // Enhanced session management
+    std::chrono::steady_clock::time_point last_input_time_{std::chrono::steady_clock::now()};
+    std::chrono::steady_clock::time_point afk_start_time_{};
+    bool is_afk_{false};
+    bool is_linkdead_{false};
+    std::string disconnect_reason_;
+    std::string original_host_;  // For reconnection validation
 
     // I/O buffers and queues
     std::array<char, 4096> read_buffer_;
@@ -209,6 +236,8 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     // Connection limits and timeouts
     static constexpr std::chrono::seconds LOGIN_TIMEOUT{300}; // 5 minutes
     static constexpr std::chrono::seconds IDLE_TIMEOUT{1800}; // 30 minutes
+    static constexpr std::chrono::seconds AFK_TIMEOUT{900};   // 15 minutes for AFK detection
+    static constexpr std::chrono::seconds LINKDEAD_TIMEOUT{180}; // 3 minutes before going linkdead
     static constexpr size_t MAX_OUTPUT_QUEUE_SIZE{100};
     static constexpr size_t MAX_INPUT_LINE_LENGTH{512};
 };

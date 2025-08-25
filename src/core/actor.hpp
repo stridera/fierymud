@@ -21,6 +21,7 @@
 
 // Forward declarations
 class Room;
+class PlayerConnection;
 
 /** Basic stats for all actors (players and NPCs) */
 struct Stats {
@@ -365,6 +366,9 @@ public:
     /** Get entity type name */
     std::string_view type_name() const override { return "Player"; }
     
+    /** JSON serialization */
+    nlohmann::json to_json() const override;
+    
     /** Communication (Players queue output to session) */
     void send_message(std::string_view message) override;
     void receive_message(std::string_view message) override;
@@ -388,6 +392,7 @@ public:
     /** GMCP support methods */
     nlohmann::json get_vitals_gmcp() const;
     nlohmann::json get_status_gmcp() const;
+    void send_gmcp_vitals_update();
     
     /** Player output interface for network layer */
     void set_output(std::shared_ptr<class PlayerOutput> output) { output_ = output; }
@@ -396,11 +401,21 @@ public:
     /** Convenience methods for network layer */  
     std::shared_ptr<Room> current_room_ptr() const { return current_room(); }
     int level() const { return stats().level; }
-    std::string player_class() const { return "warrior"; } // TODO: implement proper class system
-    std::string race() const { return "human"; } // TODO: implement proper race system
+    std::string player_class() const { return player_class_; }
+    std::string race() const { return race_; }
+    
+    /** Set character class and race */
+    void set_class(std::string_view character_class) { player_class_ = character_class; }
+    void set_race(std::string_view character_race) { race_ = character_race; }
     
 protected:
     Player(EntityId id, std::string_view name);
+    
+    /** Room change notification - sends GMCP room updates */
+    void on_room_change(std::shared_ptr<Room> old_room, std::shared_ptr<Room> new_room) override;
+    
+    /** Level up notification - sends GMCP vitals updates */
+    void on_level_up(int old_level, int new_level) override;
     
 private:
     std::string account_;
@@ -408,6 +423,10 @@ private:
     int god_level_ = 0;
     std::vector<std::string> output_queue_;
     std::shared_ptr<class PlayerOutput> output_;
+    
+    // Character creation fields
+    std::string player_class_ = "warrior";  // Default class
+    std::string race_ = "human";            // Default race
 };
 
 /** Actor utility functions */

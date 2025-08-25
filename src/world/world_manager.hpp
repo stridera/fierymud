@@ -234,6 +234,9 @@ private:
     std::vector<std::unique_ptr<Object>> object_prototypes_;  // Owned prototypes
     std::vector<std::unique_ptr<Mobile>> mobile_prototypes_;  // Owned prototypes
     
+    // Spawned instance tracking (for efficient equipment lookups)
+    std::unordered_map<EntityId, std::shared_ptr<Mobile>> spawned_mobiles_;  // Live mobile instances by ID
+    
     EntityId start_room_ = INVALID_ENTITY_ID;
     std::string world_path_;
     
@@ -269,6 +272,13 @@ private:
     void setup_zone_callbacks(std::shared_ptr<Zone> zone);
     std::shared_ptr<Mobile> spawn_mobile_for_zone(EntityId mobile_id, EntityId room_id);
     std::shared_ptr<Object> spawn_object_for_zone(EntityId object_id, EntityId room_id);
+    Result<void> spawn_mobile_in_specific_room(Mobile* prototype, EntityId room_id);
+    
+    // Mobile instance tracking for efficient lookups
+    void register_spawned_mobile(std::shared_ptr<Mobile> mobile);
+    void unregister_spawned_mobile(EntityId mobile_id);
+    std::shared_ptr<Mobile> find_spawned_mobile(EntityId mobile_id) const;
+    void cleanup_zone_mobiles(EntityId zone_id);
     
     void validate_room_exits(std::shared_ptr<Room> room, ValidationResult& result) const;
     void validate_zone_integrity(std::shared_ptr<Zone> zone, ValidationResult& result) const;

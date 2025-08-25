@@ -8,8 +8,9 @@
 #include "../core/ids.hpp"
 #include "../core/result.hpp"
 #include "../game/command_system.hpp"
-#include "../world/world_server.hpp"
+#include "../world/game_world.hpp"
 
+#include <asio.hpp>
 #include <memory>
 #include <string>
 #include <string_view>
@@ -49,14 +50,15 @@ class GameTestHarness {
     bool player_can_see_player(std::shared_ptr<Player> observer, std::shared_ptr<Player> target) const;
 
     // World server access
-    std::shared_ptr<WorldServer> world_server() const { return world_server_; }
+    std::shared_ptr<GameWorld> world_server() const { return world_server_; }
 
     // Output capture for testing
     std::string get_last_output(std::shared_ptr<Player> player) const;
     void clear_output(std::shared_ptr<Player> player);
 
   private:
-    std::shared_ptr<WorldServer> world_server_;
+    asio::io_context io_context_;
+    std::shared_ptr<GameWorld> world_server_;
     std::shared_ptr<CommandSystem> command_system_;
 
     // Test player output capture

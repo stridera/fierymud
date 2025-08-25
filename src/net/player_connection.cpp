@@ -185,7 +185,8 @@ std::shared_ptr<PlayerConnection> PlayerConnection::create(asio::io_context &io_
 
 PlayerConnection::PlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server)
     : io_context_(io_context), strand_(asio::make_strand(io_context)), socket_(io_context),
-      world_server_(std::move(world_server)), gmcp_handler_(*this), connect_time_(std::chrono::steady_clock::now()) {}
+      world_server_(std::move(world_server)), idle_check_timer_(io_context), gmcp_handler_(*this), 
+      connect_time_(std::chrono::steady_clock::now()) {}
 
 PlayerConnection::~PlayerConnection() { cleanup_connection(); }
 
@@ -319,6 +320,9 @@ void PlayerConnection::process_telnet_data(const std::vector<uint8_t> &data) {
 void PlayerConnection::process_input(std::string_view input) {
     Log::debug("PlayerConnection::process_input: state={}, input='{}'", static_cast<int>(state_), input);
 
+    // Update activity tracking for session management
+    update_last_input_time();
+
     if (state_ == ConnectionState::Login && login_system_) {
         login_system_->process_input(input);
     } else if (state_ == ConnectionState::Playing && player_) {
@@ -329,6 +333,15 @@ void PlayerConnection::process_input(std::string_view input) {
         } else {
             Log::error("World server not available!");
             send_message("World server not available.");
+        }
+        send_prompt();
+    } else if (state_ == ConnectionState::AFK && player_) {
+        // AFK players can still execute commands, this brings them back
+        Log::debug("AFK player '{}' returning with command", player_->name());
+        set_afk(false);
+        // Process the command normally after returning from AFK
+        if (world_server_) {
+            world_server_->process_command(player_, input);
         }
         send_prompt();
     } else {
@@ -378,6 +391,12 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
     world_server_->add_player(player_);
 
     transition_to(ConnectionState::Playing);
+
+    // Store original host for reconnection validation
+    original_host_ = remote_address();
+    
+    // Start idle checking timer for session management
+    start_idle_timer();
 
     Log::info("Player '{}' logged in from {}", player_->name(), remote_address());
 
@@ -574,4 +593,138 @@ std::string PlayerConnection::remote_address() const {
 std::chrono::seconds PlayerConnection::connection_duration() const {
     auto now = std::chrono::steady_clock::now();
     return std::chrono::duration_cast<std::chrono::seconds>(now - connect_time_);
+}
+
+// Enhanced session management implementations
+
+std::chrono::seconds PlayerConnection::idle_time() const {
+    auto now = std::chrono::steady_clock::now();
+    return std::chrono::duration_cast<std::chrono::seconds>(now - last_input_time_);
+}
+
+std::chrono::seconds PlayerConnection::afk_time() const {
+    if (!is_afk_) return std::chrono::seconds{0};
+    auto now = std::chrono::steady_clock::now();
+    return std::chrono::duration_cast<std::chrono::seconds>(now - afk_start_time_);
+}
+
+void PlayerConnection::update_last_input_time() {
+    last_input_time_ = std::chrono::steady_clock::now();
+    
+    // If player was AFK, bring them back
+    if (is_afk_) {
+        set_afk(false);
+    }
+}
+
+void PlayerConnection::check_idle_timeout() {
+    if (state_ != ConnectionState::Playing || !player_) {
+        return;
+    }
+    
+    auto idle_duration = idle_time();
+    
+    // Check for AFK state transition
+    if (!is_afk_ && idle_duration >= AFK_TIMEOUT) {
+        set_afk(true);
+    }
+    
+    // Check for linkdead state transition (only if connection is active)
+    if (is_connected() && idle_duration >= IDLE_TIMEOUT) {
+        set_linkdead(true, "Idle timeout");
+    }
+}
+
+void PlayerConnection::set_afk(bool afk) {
+    if (is_afk_ == afk) return;
+    
+    is_afk_ = afk;
+    
+    if (afk) {
+        afk_start_time_ = std::chrono::steady_clock::now();
+        transition_to(ConnectionState::AFK);
+        send_message("You are now marked as AFK (Away From Keyboard).");
+        Log::info("Player {} went AFK after {} seconds idle", 
+                  player_ ? player_->name() : "unknown", idle_time().count());
+    } else {
+        afk_start_time_ = {};
+        transition_to(ConnectionState::Playing);
+        send_message("Welcome back! You are no longer AFK.");
+        Log::info("Player {} returned from AFK after {} seconds", 
+                  player_ ? player_->name() : "unknown", afk_time().count());
+    }
+}
+
+void PlayerConnection::set_linkdead(bool linkdead, std::string_view reason) {
+    if (is_linkdead_ == linkdead) return;
+    
+    is_linkdead_ = linkdead;
+    disconnect_reason_ = reason;
+    
+    if (linkdead) {
+        transition_to(ConnectionState::Linkdead);
+        Log::info("Player {} went linkdead: {}", 
+                  player_ ? player_->name() : "unknown", reason);
+        
+        // Keep player in world but mark as linkdead
+        // The world server will handle linkdead cleanup after timeout
+        if (player_) {
+            // TODO: Add linkdead flag to Player class for world persistence
+            Log::debug("Player {} marked linkdead, staying in world", player_->name());
+        }
+    } else {
+        Log::info("Player {} recovered from linkdead state", 
+                  player_ ? player_->name() : "unknown");
+        transition_to(ConnectionState::Playing);
+        disconnect_reason_.clear();
+    }
+}
+
+bool PlayerConnection::attempt_reconnection(std::string_view name, std::string_view password) {
+    // This would be called during login to reconnect to an existing linkdead character
+    // For now, this is a placeholder for future implementation
+    
+    if (state_ != ConnectionState::Login) {
+        Log::warn("Reconnection attempt in invalid state: {}", static_cast<int>(state_));
+        return false;
+    }
+    
+    // TODO: Implement reconnection logic
+    // 1. Find existing linkdead player with matching name
+    // 2. Validate password
+    // 3. Transfer player from old connection to new connection
+    // 4. Clean up old linkdead connection
+    
+    Log::debug("Reconnection attempt for '{}' - not yet implemented", name);
+    return false;
+}
+
+void PlayerConnection::start_idle_timer() {
+    // Start periodic idle checking every 60 seconds
+    idle_check_timer_.expires_after(std::chrono::seconds(60));
+    idle_check_timer_.async_wait(
+        asio::bind_executor(strand_, 
+            [self = shared_from_this()](const asio::error_code &error) {
+                self->handle_idle_timer(error);
+            }));
+}
+
+void PlayerConnection::handle_idle_timer(const asio::error_code &error) {
+    if (error) {
+        // Timer was cancelled or other error occurred
+        if (error != asio::error::operation_aborted) {
+            Log::warn("Idle timer error for {}: {}", remote_address(), error.message());
+        }
+        return;
+    }
+    
+    // Only check idle timeout for playing connections
+    if (state_ == ConnectionState::Playing || state_ == ConnectionState::AFK) {
+        check_idle_timeout();
+    }
+    
+    // Continue the timer if connection is still active
+    if (is_connected()) {
+        start_idle_timer();
+    }
 }

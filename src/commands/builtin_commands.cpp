@@ -8,8 +8,10 @@
  ***************************************************************************/
 
 #include "builtin_commands.hpp"
+// #include "clan_commands.hpp"  // Temporarily disabled
 
 #include "../core/actor.hpp"
+#include "../core/combat.hpp"
 #include "../core/logging.hpp"
 #include "../core/object.hpp"
 #include "../game/player_output.hpp"
@@ -30,6 +32,13 @@ namespace CombatHelpers {
 Result<CommandResult> perform_attack(const CommandContext &ctx, std::shared_ptr<Actor> target);
 bool is_valid_target(std::shared_ptr<Actor> attacker, std::shared_ptr<Actor> target);
 } // namespace CombatHelpers
+
+// Forward declarations for zone development commands
+Result<CommandResult> cmd_reload_zone(const CommandContext &ctx);
+Result<CommandResult> cmd_save_zone(const CommandContext &ctx);
+Result<CommandResult> cmd_reload_all_zones(const CommandContext &ctx);
+Result<CommandResult> cmd_toggle_file_watching(const CommandContext &ctx);
+Result<CommandResult> cmd_dump_world(const CommandContext &ctx);
 
 // =============================================================================
 // Command Registration
@@ -196,6 +205,53 @@ Result<void> register_all_commands() {
         .description("Control weather conditions")
         .build();
 
+    // Zone Development Commands
+    Commands()
+        .command("reloadzone", cmd_reload_zone)
+        .alias("rzreload")
+        .category("Development")
+        .privilege(PrivilegeLevel::Builder)
+        .description("Reload a zone from its JSON file on disk")
+        .build();
+
+    Commands()
+        .command("savezone", cmd_save_zone)
+        .alias("rzsave")
+        .category("Development")
+        .privilege(PrivilegeLevel::Builder)
+        .description("Save a zone's current state to its JSON file on disk")
+        .build();
+
+    Commands()
+        .command("reloadallzones", cmd_reload_all_zones)
+        .alias("rzreloadall")
+        .category("Development")
+        .privilege(PrivilegeLevel::Builder)
+        .description("Reload all zones from their JSON files on disk")
+        .build();
+
+    Commands()
+        .command("filewatch", cmd_toggle_file_watching)
+        .alias("watch")
+        .category("Development")
+        .privilege(PrivilegeLevel::Builder)
+        .description("Toggle automatic file watching for zone hot-reload")
+        .build();
+
+    Commands()
+        .command("dumpworld", cmd_dump_world)
+        .alias("worlddump")
+        .category("Development")
+        .privilege(PrivilegeLevel::Builder)
+        .description("Dump current world state to a JSON file")
+        .build();
+
+    // Register clan commands - temporarily disabled
+    // if (auto result = ClanCommands::register_all_clan_commands(); !result) {
+    //     Log::error("Failed to register clan commands: {}", result.error());
+    //     return result;
+    // }
+
     Log::info("Built-in commands registered successfully");
     return Success();
 }
@@ -219,8 +275,52 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
             return CommandResult::InvalidState;
         }
 
-        std::string description = Helpers::format_room_description(current_room, ctx.actor);
-        ctx.send(description);
+        // Use the room's own get_room_description method which properly handles lighting
+        std::string description = current_room->get_room_description(ctx.actor.get());
+        
+        // Only add additional formatting (exits, objects, actors) if the room is visible
+        if (!current_room->can_see_in_room(ctx.actor.get())) {
+            // Room is dark, just send the darkness message
+            ctx.send(description);
+            return CommandResult::Success;
+        }
+        
+        // Room is visible, add room name as header, then description, exits, objects, and actors
+        std::ostringstream full_desc;
+        full_desc << current_room->name() << "\n";
+        full_desc << description << "\n";
+        
+        // Add exits
+        std::string exits = Helpers::format_exits(current_room);
+        if (!exits.empty()) {
+            full_desc << fmt::format("\n{}\n", exits);
+        }
+
+        // Add objects in room
+        auto objects = current_room->contents().objects;
+        if (!objects.empty()) {
+            full_desc << "\nYou see:\n";
+            for (const auto &obj : objects) {
+                if (obj) {
+                    full_desc << fmt::format("  {}\n", obj->short_description());
+                }
+            }
+        }
+
+        // Add other actors
+        auto actors = current_room->contents().actors;
+        bool found_others = false;
+        for (const auto &actor : actors) {
+            if (actor && actor != ctx.actor) {
+                if (!found_others) {
+                    full_desc << "\nAlso here:\n";
+                    found_others = true;
+                }
+                full_desc << fmt::format("  {}\n", actor->short_description());
+            }
+        }
+
+        ctx.send(full_desc.str());
         return CommandResult::Success;
     }
 
@@ -1225,6 +1325,130 @@ Result<CommandResult> cmd_weather_control(const CommandContext &ctx) {
     return CommandResult::InvalidSyntax;
 }
 
+// Zone Development Commands
+Result<CommandResult> cmd_reload_zone(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_usage("reloadzone <zone_id>");
+        ctx.send("Reload a zone from its JSON file on disk.");
+        ctx.send("This is useful for development when you edit zone files externally.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    auto zone_id_str = ctx.arg(0);
+    EntityId zone_id;
+    try {
+        zone_id = EntityId{std::stoull(std::string{zone_id_str})};
+    } catch (const std::exception &e) {
+        ctx.send_error(fmt::format("Invalid zone ID format: {}.", zone_id_str));
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!zone_id.is_valid()) {
+        ctx.send_error("Invalid zone ID.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    auto result = WorldManager::instance().reload_zone(zone_id);
+    if (!result) {
+        ctx.send_error(fmt::format("Failed to reload zone {}: {}", zone_id, result.error().message));
+        return CommandResult::ResourceError;
+    }
+
+    ctx.send_success(fmt::format("Zone {} reloaded successfully from disk.", zone_id));
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_save_zone(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_usage("savezone <zone_id>");
+        ctx.send("Save a zone's current state to its JSON file on disk.");
+        ctx.send("This preserves any runtime modifications made through OLC or commands.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    auto zone_id_str = ctx.arg(0);
+    EntityId zone_id;
+    try {
+        zone_id = EntityId{std::stoull(std::string{zone_id_str})};
+    } catch (const std::exception &e) {
+        ctx.send_error(fmt::format("Invalid zone ID format: {}.", zone_id_str));
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!zone_id.is_valid()) {
+        ctx.send_error("Invalid zone ID.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    auto zone = WorldManager::instance().get_zone(zone_id);
+    if (!zone) {
+        ctx.send_error(fmt::format("Zone {} does not exist.", zone_id));
+        return CommandResult::ResourceError;
+    }
+
+    // Determine zone file path (same pattern as reload_zone uses)
+    std::string filename = fmt::format("lib/world/{}.json", zone_id.value());
+    
+    auto result = zone->save_to_file(filename);
+    if (!result) {
+        ctx.send_error(fmt::format("Failed to save zone {} to {}: {}", zone_id, filename, result.error().message));
+        return CommandResult::ResourceError;
+    }
+
+    ctx.send_success(fmt::format("Zone {} saved successfully to {}.", zone_id, filename));
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_reload_all_zones(const CommandContext &ctx) {
+    ctx.send("Reloading all zones from disk...");
+    
+    auto result = WorldManager::instance().reload_all_zones();
+    if (!result) {
+        ctx.send_error(fmt::format("Failed to reload all zones: {}", result.error().message));
+        return CommandResult::ResourceError;
+    }
+
+    ctx.send_success("All zones reloaded successfully from disk.");
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_toggle_file_watching(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_usage("filewatch <on|off>");
+        ctx.send("Toggle automatic file watching for zone hot-reload.");
+        ctx.send("When enabled, zones are automatically reloaded when their files change on disk.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string action{ctx.arg(0)};
+    bool enable;
+    
+    if (action == "on" || action == "enable" || action == "true" || action == "1") {
+        enable = true;
+    } else if (action == "off" || action == "disable" || action == "false" || action == "0") {
+        enable = false;
+    } else {
+        ctx.send_error(fmt::format("Invalid action: {}. Use 'on' or 'off'.", action));
+        return CommandResult::InvalidSyntax;
+    }
+
+    WorldManager::instance().enable_file_watching(enable);
+    ctx.send_success(fmt::format("File watching {}.", enable ? "enabled" : "disabled"));
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_dump_world(const CommandContext &ctx) {
+    std::string filename = "world_dump.json";
+    if (ctx.arg_count() > 0) {
+        filename = std::string{ctx.arg(0)};
+    }
+
+    ctx.send(fmt::format("Dumping world state to {}...", filename));
+    WorldManager::instance().dump_world_state(filename);
+    ctx.send_success(fmt::format("World state dumped to {}.", filename));
+    return CommandResult::Success;
+}
+
 // =============================================================================
 // Combat Commands
 // =============================================================================
@@ -1341,56 +1565,20 @@ Result<CommandResult> perform_attack(const CommandContext &ctx, std::shared_ptr<
         return std::unexpected(Errors::InvalidArgument("actor or target", "cannot be null"));
     }
 
-    // Calculate to-hit roll
-    int attacker_hit = ctx.actor->stats().hit_roll;
-    int attacker_level = ctx.actor->stats().level;
-    int target_ac = target->stats().armor_class;
-
-    // Simple hit calculation (roll d20 + hit_roll vs armor class)
-    static thread_local std::random_device rd;
-    static thread_local std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> d20(1, 20);
-    int roll = d20(gen); // d20 roll
-    int total_hit = roll + attacker_hit + attacker_level;
-
-    if (total_hit < target_ac) {
-        // Miss
-        ctx.send("Your attack misses.");
-        ctx.send_to_room(fmt::format("{}'s attack misses {}.", ctx.actor->name(), target->name()), true);
-        ctx.send_to_actor(target, fmt::format("{} misses you.", ctx.actor->name()));
-        return CommandResult::Success;
+    // Use the modern combat system
+    FieryMUD::CombatResult result = FieryMUD::CombatSystem::perform_attack(ctx.actor, target);
+    
+    // Send messages from the combat result
+    if (!result.attacker_message.empty()) {
+        ctx.send(result.attacker_message);
     }
-
-    // Hit - calculate damage
-    std::uniform_int_distribution<int> d6(1, 6);
-    int base_damage = d6(gen); // d6 base damage
-    int damage_bonus = ctx.actor->stats().damage_roll;
-    int str_modifier = Stats::attribute_modifier(ctx.actor->stats().strength);
-    int total_damage = std::max(1, base_damage + damage_bonus + str_modifier);
-
-    // Apply damage
-    auto &target_stats = target->stats();
-    target_stats.hit_points -= total_damage;
-
-    ctx.send(fmt::format("You hit {} for {} damage.", target->name(), total_damage));
-    ctx.send_to_room(fmt::format("{} hits {} for {} damage.", ctx.actor->name(), target->name(), total_damage), true);
-    ctx.send_to_actor(target, fmt::format("{} hits you for {} damage.", ctx.actor->name(), total_damage));
-
-    // Check if target died
-    if (target_stats.hit_points <= 0) {
-        target_stats.hit_points = 0;
-        target->set_position(Position::Dead);
-        ctx.actor->set_position(Position::Standing);
-
-        // Calculate experience gain (simple)
-        long exp_gain = target->stats().level * 100;
-        ctx.actor->gain_experience(exp_gain);
-
-        ctx.send(fmt::format("You have killed {}! You gain {} experience.", target->name(), exp_gain));
-        ctx.send_to_room(fmt::format("{} is DEAD!", target->name()), true);
-        ctx.send_to_actor(target, "You are DEAD!");
-
-        return CommandResult::Success;
+    
+    if (!result.target_message.empty()) {
+        ctx.send_to_actor(target, result.target_message);
+    }
+    
+    if (!result.room_message.empty()) {
+        ctx.send_to_room(result.room_message, true);
     }
 
     return CommandResult::Success;

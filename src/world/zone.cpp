@@ -355,6 +355,12 @@ void Zone::force_reset() {
     auto logger = Log::game();
     logger->info("Zone {} ({}) forced reset", name(), id());
 
+    // Clean up existing mobiles in this zone before respawning
+    if (cleanup_zone_mobiles_callback_) {
+        logger->debug("Cleaning up existing mobiles in zone {}", id());
+        cleanup_zone_mobiles_callback_(id());
+    }
+
     // Execute reset commands
     auto result = execute_reset();
     if (!result) {

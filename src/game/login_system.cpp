@@ -470,10 +470,9 @@ Result<std::shared_ptr<Player>> LoginSystem::create_character() {
 
     auto player = std::move(player_result.value());
 
-    // TODO: Set character class and race once Player supports it
-
-    // Set race (modify Player class to support race setting if needed)
-    // For now, race is set in the constructor
+    // Set character class and race from creation data
+    player->set_class(magic_enum::enum_name(creation_data_.character_class));
+    player->set_race(magic_enum::enum_name(creation_data_.race));
 
     return std::shared_ptr<Player>(player.release());
 }
@@ -559,4 +558,181 @@ std::string LoginSystem::normalize_name(std::string_view name) const {
     }
 
     return result;
+}
+
+// Player file validation and migration implementations
+
+LoginSystem::PlayerFileValidation LoginSystem::validate_player_file(std::string_view name) const {
+    PlayerFileValidation validation;
+    
+    const auto &dir = Config::instance().player_directory();
+    std::filesystem::path path{dir};
+    path /= fmt::format("{}.json", name);
+    auto filename = path.string();
+    
+    // Check if file exists
+    if (!std::filesystem::exists(path)) {
+        validation.error_message = "Player file does not exist";
+        return validation;
+    }
+    
+    // Check file permissions and size
+    std::error_code ec;
+    auto file_size = std::filesystem::file_size(path, ec);
+    if (ec) {
+        validation.error_message = fmt::format("Cannot access file: {}", ec.message());
+        return validation;
+    }
+    
+    if (file_size == 0) {
+        validation.has_corruption = true;
+        validation.error_message = "Player file is empty";
+        validation.suggested_fix = "Restore from backup or recreate character";
+        return validation;
+    }
+    
+    if (file_size > 1024 * 1024) { // 1MB limit
+        validation.has_corruption = true;
+        validation.error_message = "Player file unusually large (possible corruption)";
+        validation.suggested_fix = "Check file content for corruption";
+        return validation;
+    }
+    
+    // Validate JSON structure
+    try {
+        std::ifstream file(filename);
+        if (!file.is_open()) {
+            validation.error_message = "Cannot open player file";
+            return validation;
+        }
+        
+        nlohmann::json data;
+        file >> data;
+        
+        // Check required top-level fields
+        if (!data.contains("password")) {
+            validation.has_corruption = true;
+            validation.error_message = "Missing password field";
+            validation.suggested_fix = "File structure corruption - restore from backup";
+            return validation;
+        }
+        
+        if (!data.contains("player_data")) {
+            validation.has_corruption = true;
+            validation.error_message = "Missing player_data field";
+            validation.suggested_fix = "File structure corruption - restore from backup";
+            return validation;
+        }
+        
+        auto player_data = data["player_data"];
+        
+        // Check critical player fields
+        std::vector<std::string> required_fields = {
+            "name", "id", "level", "class", "race", "attributes", "vitals"
+        };
+        
+        for (const auto& field : required_fields) {
+            if (!player_data.contains(field)) {
+                validation.has_corruption = true;
+                validation.error_message = fmt::format("Missing required field: {}", field);
+                validation.suggested_fix = "Critical data missing - restore from backup";
+                return validation;
+            }
+        }
+        
+        // Check for migration needs (version compatibility)
+        if (!data.contains("created")) {
+            validation.needs_migration = true;
+            validation.error_message = "Legacy format detected";
+            validation.suggested_fix = "File will be migrated on load";
+        }
+        
+        // Validate data integrity
+        if (player_data["name"] != name) {
+            validation.has_corruption = true;
+            validation.error_message = "Name mismatch in player data";
+            validation.suggested_fix = "File name and data inconsistent";
+            return validation;
+        }
+        
+        validation.is_valid = true;
+        
+    } catch (const nlohmann::json::exception& e) {
+        validation.has_corruption = true;
+        validation.error_message = fmt::format("JSON parsing error: {}", e.what());
+        validation.suggested_fix = "File corrupted - restore from backup";
+        return validation;
+    } catch (const std::exception& e) {
+        validation.has_corruption = true;
+        validation.error_message = fmt::format("File validation error: {}", e.what());
+        validation.suggested_fix = "File access issue - check permissions";
+        return validation;
+    }
+    
+    return validation;
+}
+
+Result<void> LoginSystem::migrate_player_file(std::string_view name) {
+    const auto &dir = Config::instance().player_directory();
+    std::filesystem::path path{dir};
+    path /= fmt::format("{}.json", name);
+    auto filename = path.string();
+    
+    try {
+        std::ifstream file(filename);
+        if (!file.is_open()) {
+            return std::unexpected(Error{ErrorCode::FileNotFound, fmt::format("Cannot open file: {}", filename)});
+        }
+        
+        nlohmann::json data;
+        file >> data;
+        file.close();
+        
+        // Backup original file
+        auto backup_path = fmt::format("{}.backup.{}", filename, 
+                                     std::chrono::system_clock::now().time_since_epoch().count());
+        std::filesystem::copy_file(path, backup_path);
+        
+        bool modified = false;
+        
+        // Add missing created timestamp if needed
+        if (!data.contains("created")) {
+            data["created"] = std::chrono::duration_cast<std::chrono::seconds>(
+                std::chrono::system_clock::now().time_since_epoch()).count();
+            modified = true;
+        }
+        
+        // Ensure player_data has all required modern fields
+        auto& player_data = data["player_data"];
+        
+        // Add default equipment if missing
+        if (!player_data.contains("equipment")) {
+            player_data["equipment"] = nlohmann::json::object();
+            modified = true;
+        }
+        
+        // Add default inventory if missing  
+        if (!player_data.contains("inventory")) {
+            player_data["inventory"] = nlohmann::json::array();
+            modified = true;
+        }
+        
+        if (modified) {
+            // Write migrated file
+            std::ofstream output_file(filename);
+            if (!output_file.is_open()) {
+                return std::unexpected(Error{ErrorCode::FileAccessError, "Cannot write migrated file"});
+            }
+            
+            output_file << data.dump(2);
+            output_file.close();
+            
+            Log::info("Migrated player file for '{}' (backup: {})", name, backup_path);
+        }
+        
+        return Success();
+        
+    } catch (const std::exception& e) {
+        return std::unexpected(Error{ErrorCode::ParseError, fmt::format("Migration failed: {}", e.what())});
+    }
 }

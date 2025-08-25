@@ -17,7 +17,7 @@
 
 // Forward declarations
 class Player;
-class WorldServer;
+class GameWorld;
 
 /**
  * @brief Command execution result
@@ -36,7 +36,7 @@ enum class CommandResult {
  */
 struct CommandContext {
     std::shared_ptr<Player> player;     // Player executing command
-    std::shared_ptr<WorldServer> world; // World server reference
+    std::shared_ptr<GameWorld> world; // World server reference
     std::string full_input;             // Complete input line
     std::string command;                // Parsed command name
     std::vector<std::string> args;      // Parsed arguments
@@ -80,7 +80,7 @@ struct CommandDef {
  */
 class CommandSystem {
   public:
-    explicit CommandSystem(std::shared_ptr<WorldServer> world);
+    explicit CommandSystem(std::shared_ptr<GameWorld> world);
     ~CommandSystem() = default;
 
     // Command registration
@@ -107,7 +107,7 @@ class CommandSystem {
     bool can_use_command(std::shared_ptr<Player> player, const CommandDef &cmd) const;
 
     // Core data
-    std::shared_ptr<WorldServer> world_;
+    std::shared_ptr<GameWorld> world_;
     std::vector<CommandDef> commands_;
     std::unordered_map<std::string, size_t> command_index_; // Fast lookup by name
 };

@@ -9,7 +9,7 @@
 #include "../core/logging.hpp"
 #include "../net/player_connection.hpp"
 #include "../world/room.hpp"
-#include "../world/world_server.hpp"
+#include "../world/game_world.hpp"
 
 #include <algorithm>
 #include <fmt/format.h>
@@ -43,7 +43,7 @@ bool CommandDef::matches(std::string_view input) const {
 }
 
 // CommandSystem implementation
-CommandSystem::CommandSystem(std::shared_ptr<WorldServer> world) : world_(std::move(world)) {
+CommandSystem::CommandSystem(std::shared_ptr<GameWorld> world) : world_(std::move(world)) {
     register_builtin_commands();
 }
 

@@ -130,10 +130,12 @@ void MockPlayerConnection::handle_input_by_state(const std::string &input) {
 
 // MockGameSession Implementation
 
-MockGameSession::MockGameSession() : io_context_(), work_guard_(asio::make_work_guard(io_context_)) {
+MockGameSession::MockGameSession(WorldServer& world_server, asio::io_context& io_context)
+    : world_server_(std::shared_ptr<WorldServer>(&world_server, [](auto*){})), 
+      io_context_(io_context),
+      work_guard_(asio::make_work_guard(io_context)) {
     // Start the I/O thread after initialization to avoid destructor issues
     try {
-        initialize_world_server();
         connection_ = std::make_shared<MockPlayerConnection>(io_context_, world_server_);
 
         // Start thread only after successful initialization
@@ -158,38 +160,7 @@ MockGameSession::~MockGameSession() {
     }
 }
 
-void MockGameSession::initialize_world_server() {
-    // Create test configuration
-    ServerConfig config;
-    config.world_directory = "data/world";
-    config.port = 0; // Not used for testing
 
-    // Create I/O context for testing
-    // static asio::io_context test_io_context; // Removed static
-
-    // Create and initialize world server
-    world_server_ = std::make_unique<WorldServer>(io_context_, config);
-
-    auto init_result = world_server_->initialize(true); // Test mode
-    if (!init_result) {
-        throw std::runtime_error("Failed to initialize test WorldServer: " + init_result.error().message);
-    }
-
-    // Initialize command system
-    auto &command_system = CommandSystem::instance();
-    auto cmd_result = command_system.initialize();
-    if (!cmd_result) {
-        throw std::runtime_error("Failed to initialize command system: " + cmd_result.error().message);
-    }
-
-    if (!UnifiedTestHarness::builtin_commands_registered_) {
-        auto builtin_result = BuiltinCommands::register_all_commands();
-        if (!builtin_result) {
-            throw std::runtime_error("Failed to register builtin commands: " + builtin_result.error().message);
-        }
-        UnifiedTestHarness::builtin_commands_registered_ = true;
-    }
-}
 
 Result<void> MockGameSession::connect(std::string_view player_name) {
     if (is_connected()) {
@@ -313,20 +284,52 @@ class TestEnvironmentGuard {
     ~TestEnvironmentGuard() { UnifiedTestHarness::cleanup_test_environment(); }
 };
 
-// UnifiedTestHarness Implementation
-
-std::unique_ptr<WorldServer> UnifiedTestHarness::test_world_server_;
-bool UnifiedTestHarness::environment_initialized_ = false;
+std::unique_ptr<UnifiedTestHarness> UnifiedTestHarness::instance_ = nullptr;
 bool UnifiedTestHarness::builtin_commands_registered_ = false;
 
 UnifiedTestHarness &UnifiedTestHarness::instance() {
-    static UnifiedTestHarness instance;
-    return instance;
+    if (!instance_) {
+        instance_ = std::unique_ptr<UnifiedTestHarness>(new UnifiedTestHarness());
+    }
+    return *instance_;
+}
+
+UnifiedTestHarness::UnifiedTestHarness() : io_context_(), work_guard_(asio::make_work_guard(io_context_)) {
+    // Create test configuration
+    ServerConfig config;
+    config.world_directory = "data/world";
+    config.port = 0; // Not used for testing
+
+    // Create and initialize world server
+    world_server_ = std::make_unique<WorldServer>(io_context_, config);
+
+    auto init_result = world_server_->initialize(true); // Test mode
+    if (!init_result) {
+        throw std::runtime_error("Failed to initialize test WorldServer: " + init_result.error().message);
+    }
+
+    // Initialize command system
+    auto &command_system = CommandSystem::instance();
+    auto cmd_result = command_system.initialize();
+    if (!cmd_result) {
+        throw std::runtime_error("Failed to initialize command system: " + cmd_result.error().message);
+    }
+
+    if (!builtin_commands_registered_) {
+        auto builtin_result = BuiltinCommands::register_all_commands();
+        if (!builtin_result) {
+            throw std::runtime_error("Failed to register builtin commands: " + builtin_result.error().message);
+        }
+        builtin_commands_registered_ = true;
+    }
+    
+    world_server_->initialize(true); // Test mode
+    io_thread_ = std::thread([this]() { io_context_.run(); });
 }
 
 Result<void> UnifiedTestHarness::run_unit_test(std::function<void()> test) {
     TestEnvironmentGuard guard;
-    setup_test_environment();
+    instance().setup_test_environment();
 
     try {
         test();
@@ -338,8 +341,8 @@ Result<void> UnifiedTestHarness::run_unit_test(std::function<void()> test) {
 
 Result<void> UnifiedTestHarness::run_integration_test(std::function<void()> test) {
     TestEnvironmentGuard guard;
-    setup_test_environment();
-    reset_world_state();
+    instance().setup_test_environment();
+    instance().reset_world_state();
 
     try {
         test();
@@ -351,11 +354,11 @@ Result<void> UnifiedTestHarness::run_integration_test(std::function<void()> test
 
 Result<void> UnifiedTestHarness::run_session_test(std::function<void(MockGameSession &)> test) {
     TestEnvironmentGuard guard;
-    setup_test_environment();
-    reset_world_state();
+    instance().setup_test_environment();
+    instance().reset_world_state();
 
     try {
-        auto session = create_session();
+        auto session = instance().create_session();
         test(*session);
         return Success();
     } catch (const std::exception &e) {
@@ -363,14 +366,16 @@ Result<void> UnifiedTestHarness::run_session_test(std::function<void(MockGameSes
     }
 }
 
-std::unique_ptr<MockGameSession> UnifiedTestHarness::create_session() { return std::make_unique<MockGameSession>(); }
+std::unique_ptr<MockGameSession> UnifiedTestHarness::create_session() { 
+    return std::make_unique<MockGameSession>(*instance().world_server_, instance().io_context_);
+}
 
 std::vector<std::unique_ptr<MockGameSession>> UnifiedTestHarness::create_multiple_sessions(size_t count) {
     std::vector<std::unique_ptr<MockGameSession>> sessions;
     sessions.reserve(count);
 
     for (size_t i = 0; i < count; ++i) {
-        sessions.push_back(create_session());
+        sessions.push_back(UnifiedTestHarness::create_session());
     }
 
     return sessions;
@@ -388,10 +393,12 @@ void UnifiedTestHarness::setup_test_environment() {
 }
 
 void UnifiedTestHarness::cleanup_test_environment() {
-    if (test_world_server_) {
-        test_world_server_.reset();
+    if (instance_) {
+        if (instance_->world_server_) {
+            instance_->world_server_.reset();
+        }
+        instance_->environment_initialized_ = false;
     }
-    environment_initialized_ = false;
 }
 
 void UnifiedTestHarness::reset_world_state() {

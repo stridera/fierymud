@@ -90,6 +90,7 @@ void WorldManager::clear_state() {
     objects_.clear();
     mobile_prototypes_.clear();
     mobiles_.clear();
+    spawned_mobiles_.clear();  // Clear mobile instance tracking
     scheduled_resets_.clear();
     file_timestamps_.clear();
     start_room_ = INVALID_ENTITY_ID;
@@ -107,6 +108,9 @@ void WorldManager::clear_state() {
     // Clear weather system state
     WeatherSystem::instance().shutdown();
     WeatherSystem::instance().initialize();
+
+    // Reset initialized state to allow re-initialization (important for tests)
+    initialized_.store(false);
 
     Log::game()->debug("WorldManager state cleared");
 }
@@ -289,28 +293,41 @@ Result<void> WorldManager::load_zone_file(const std::string& filename) {
         }
     }
     
-    // Parse embedded mobs and spawn them
+    // Parse mobiles from the "mobs" array to create prototypes (but don't spawn them yet)
     if (zone_json.contains("mobs") && zone_json["mobs"].is_array()) {
         for (const auto& mob_json : zone_json["mobs"]) {
+            if (!mob_json.contains("id")) {
+                logger->warn("Mobile in zone {} missing id field", zone_name);
+                continue;
+            }
+            
+            EntityId mob_id{mob_json["id"].get<std::uint64_t>()};
+            
+            // Check if we already have this mobile prototype
+            if (mobiles_.find(mob_id) != mobiles_.end()) {
+                continue;
+            }
+            
+            // Create mobile prototype from JSON data
             auto mob_result = Mobile::from_json(mob_json);
             if (mob_result) {
                 auto mob = std::move(mob_result.value());
-                
-                // Add mobile prototype to registry
                 mobiles_[mob->id()] = mob.get();
                 mobile_prototypes_.push_back(std::move(mob));
                 stats_.mobiles_loaded++;
                 
                 logger->debug("Loaded mobile prototype: {} ({}) in zone {}", 
-                             mobile_prototypes_.back()->name(), mobile_prototypes_.back()->id(), zone_name);
-                
-                // Spawn mobile instance into appropriate room based on zone setup
-                TRY(spawn_mobile_in_zone(mobile_prototypes_.back().get(), zone_id));
+                             mobile_prototypes_.back()->name(), mob_id, zone_name);
             } else {
-                logger->error("Failed to parse mobile in zone {}: {}", zone_name, mob_result.error().message);
+                logger->error("Failed to parse mobile {} in zone {}: {}", 
+                             mob_id, zone_name, mob_result.error().message);
             }
         }
     }
+    
+    // Note: Mobile spawning is now handled entirely by zone reset commands
+    // The zone.commands.mob array will be processed by Zone::parse_nested_zone_commands()
+    // and spawning will occur during zone->force_reset() in the main world loading loop
     
     // Note: This method is called from the world strand - no mutex needed!
     // Zone already added above before processing embedded content
@@ -1331,6 +1348,11 @@ void WorldManager::setup_zone_callbacks(std::shared_ptr<Zone> zone) {
     zone->set_get_room_callback([this](EntityId room_id) -> std::shared_ptr<Room> {
         return get_room(room_id);
     });
+    
+    // Set up zone mobile cleanup callback
+    zone->set_cleanup_zone_mobiles_callback([this](EntityId zone_id) {
+        cleanup_zone_mobiles(zone_id);
+    });
 }
 
 std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, EntityId room_id) {
@@ -1368,7 +1390,12 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
         return nullptr;
     }
     
-    return std::static_pointer_cast<Mobile>(actor_ptr);
+    auto mobile_ptr = std::static_pointer_cast<Mobile>(actor_ptr);
+    
+    // Register the spawned mobile for efficient lookups
+    register_spawned_mobile(mobile_ptr);
+    
+    return mobile_ptr;
 }
 
 std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, EntityId room_id) {
@@ -1401,7 +1428,49 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
     new_object->set_container_info(prototype->container_info());
     new_object->set_light_info(prototype->light_info());
     
-    // Place object in room
+    // Check if this is an encoded equipment request (mobile_id | (equipment_slot << 32))
+    uint64_t room_id_value = room_id.value();
+    uint64_t potential_mobile_id = room_id_value & 0xFFFFFFFF; // Lower 32 bits
+    uint64_t potential_equipment_slot = room_id_value >> 32;   // Upper 32 bits
+    
+    // If upper 32 bits contain data, this is likely an equipment request
+    if (potential_equipment_slot > 0 && potential_equipment_slot < 32) {
+        // This looks like an equipment request - find the mobile and equip the item
+        EntityId mobile_id{potential_mobile_id};
+        
+        // Use efficient O(1) lookup for the mobile
+        std::shared_ptr<Mobile> target_mobile = find_spawned_mobile(mobile_id);
+        
+        if (!target_mobile) {
+            logger->error("Cannot equip object {} - mobile {} not found", object_id, mobile_id);
+            return nullptr;
+        }
+        
+        // Convert equipment slot number to EquipSlot enum
+        EquipSlot equip_slot = static_cast<EquipSlot>(potential_equipment_slot);
+        
+        auto shared_object = std::shared_ptr<Object>(new_object.release());
+        
+        // Try to equip the item on the mobile
+        auto equip_result = target_mobile->equipment().equip_item(shared_object);
+        if (!equip_result) {
+            logger->warn("Failed to equip object {} on mobile {}: {}", 
+                        object_id, mobile_id, equip_result.error().message);
+            // If equip fails, add to inventory instead
+            auto give_result = target_mobile->give_item(shared_object);
+            if (!give_result) {
+                logger->error("Failed to give object {} to mobile {}: {}", 
+                            object_id, mobile_id, give_result.error().message);
+                return nullptr;
+            }
+        }
+        
+        logger->debug("Successfully equipped object {} on mobile {} in slot {}", 
+                     object_id, mobile_id, potential_equipment_slot);
+        return shared_object;
+    }
+    
+    // Standard room placement
     auto room = get_room(room_id);
     if (!room) {
         logger->error("Cannot place object {} - room {} not found", object_id, room_id);
@@ -1412,6 +1481,131 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
     room->add_object(shared_object);
     
     return shared_object;
+}
+
+Result<void> WorldManager::spawn_mobile_in_specific_room(Mobile* prototype, EntityId room_id) {
+    if (!prototype) {
+        return std::unexpected(Errors::InvalidArgument("prototype", "cannot be null"));
+    }
+    
+    auto logger = Log::game();
+    
+    // Create a new mobile instance from the prototype
+    auto new_mobile_result = Mobile::create(prototype->id(), prototype->name(), prototype->stats().level);
+    if (!new_mobile_result) {
+        return std::unexpected(new_mobile_result.error());
+    }
+    
+    auto new_mobile = std::move(new_mobile_result.value());
+    
+    // Copy stats and properties from prototype
+    new_mobile->stats() = prototype->stats();
+    new_mobile->set_aggressive(prototype->is_aggressive());
+    new_mobile->set_aggression_level(prototype->aggression_level());
+    
+    // Place the mobile in the specified room
+    auto spawn_room = get_room(room_id);
+    if (!spawn_room) {
+        logger->error("Cannot spawn mobile {} - room {} not found", prototype->name(), room_id);
+        return std::unexpected(Errors::NotFound("room"));
+    }
+    
+    auto actor_ptr = std::shared_ptr<Actor>(new_mobile.release());
+    auto move_result = move_actor_to_room(actor_ptr, room_id);
+    if (!move_result.success) {
+        logger->error("Failed to place mobile {} in room {}: {}", 
+                     prototype->name(), spawn_room->id(), move_result.failure_reason);
+        return std::unexpected(Errors::InvalidState(move_result.failure_reason));
+    }
+    
+    // Register the spawned mobile for efficient lookups
+    auto mobile_ptr = std::static_pointer_cast<Mobile>(actor_ptr);
+    register_spawned_mobile(mobile_ptr);
+    
+    logger->info("Spawned mobile '{}' in room '{}' ({})", 
+                prototype->name(), spawn_room->name(), spawn_room->id());
+    
+    return Success();
+}
+
+// Mobile instance tracking for efficient lookups
+void WorldManager::register_spawned_mobile(std::shared_ptr<Mobile> mobile) {
+    if (!mobile) return;
+    
+    std::lock_guard<std::shared_mutex> lock(world_mutex_);
+    spawned_mobiles_[mobile->id()] = mobile;
+    
+    auto logger = Log::game();
+    logger->debug("Registered spawned mobile {} ({})", mobile->name(), mobile->id());
+}
+
+void WorldManager::unregister_spawned_mobile(EntityId mobile_id) {
+    std::lock_guard<std::shared_mutex> lock(world_mutex_);
+    auto it = spawned_mobiles_.find(mobile_id);
+    if (it != spawned_mobiles_.end()) {
+        auto logger = Log::game();
+        logger->debug("Unregistered spawned mobile {} ({})", it->second->name(), mobile_id);
+        spawned_mobiles_.erase(it);
+    }
+}
+
+std::shared_ptr<Mobile> WorldManager::find_spawned_mobile(EntityId mobile_id) const {
+    std::shared_lock<std::shared_mutex> lock(world_mutex_);
+    auto it = spawned_mobiles_.find(mobile_id);
+    return (it != spawned_mobiles_.end()) ? it->second : nullptr;
+}
+
+void WorldManager::cleanup_zone_mobiles(EntityId zone_id) {
+    auto logger = Log::game();
+    logger->debug("Cleaning up mobiles in zone {}", zone_id);
+    
+    auto zone_it = zones_.find(zone_id);
+    if (zone_it == zones_.end()) {
+        logger->warn("Zone {} not found during mobile cleanup", zone_id);
+        return;
+    }
+    
+    auto zone = zone_it->second;
+    std::vector<EntityId> mobiles_to_remove;
+    
+    // Find all mobiles in rooms belonging to this zone
+    for (EntityId room_id : zone->rooms()) {
+        auto room_it = rooms_.find(room_id);
+        if (room_it == rooms_.end()) {
+            continue; // Room not found, skip
+        }
+        
+        auto room = room_it->second;
+        // Copy actor IDs since we'll be modifying the collection
+        auto actors = room->contents().actors;  
+        
+        for (const auto& actor : actors) {
+            // Check if this actor is a mobile (not a player)
+            auto mobile = std::dynamic_pointer_cast<Mobile>(actor);
+            if (mobile) {
+                mobiles_to_remove.push_back(mobile->id());
+                // Remove mobile from room
+                room->remove_actor(mobile->id());
+                logger->debug("Removed mobile {} ({}) from room {}", mobile->name(), mobile->id(), room_id);
+            }
+        }
+    }
+    
+    // Unregister mobiles from tracking system
+    {
+        std::lock_guard<std::shared_mutex> lock(world_mutex_);
+        for (EntityId mobile_id : mobiles_to_remove) {
+            auto it = spawned_mobiles_.find(mobile_id);
+            if (it != spawned_mobiles_.end()) {
+                logger->debug("Unregistered spawned mobile {} from tracking", mobile_id);
+                spawned_mobiles_.erase(it);
+            }
+        }
+    }
+    
+    if (!mobiles_to_remove.empty()) {
+        logger->info("Cleaned up {} mobiles from zone {}", mobiles_to_remove.size(), zone_id);
+    }
 }
 
 // Weather Integration Implementation

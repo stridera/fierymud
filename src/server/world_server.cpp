@@ -8,6 +8,7 @@
 #include "../commands/builtin_commands.hpp"
 #include "../commands/command_system.hpp"
 #include "../core/actor.hpp"
+#include "../core/combat.hpp"
 #include "../core/logging.hpp"
 #include "../core/result.hpp"
 #include "../net/player_connection.hpp"
@@ -79,6 +80,7 @@ Result<void> WorldServer::start() {
     // Schedule periodic operations on the world strand
     schedule_periodic_cleanup();
     schedule_heartbeat();
+    schedule_combat_processing();
 
     Log::info("WorldServer started with strand-based execution");
     return Success();
@@ -99,6 +101,8 @@ void WorldServer::stop() {
         cleanup_timer_->cancel();
     if (heartbeat_timer_)
         heartbeat_timer_->cancel();
+    if (combat_timer_)
+        combat_timer_->cancel();
 
     // Disconnect all players
     asio::post(world_strand_, [this]() {
@@ -295,6 +299,11 @@ void WorldServer::schedule_heartbeat() {
     schedule_timer(std::chrono::seconds(30), [this]() { perform_heartbeat(); }, heartbeat_timer_);
 }
 
+void WorldServer::schedule_combat_processing() {
+    combat_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    schedule_timer(std::chrono::milliseconds(100), [this]() { perform_combat_processing(); }, combat_timer_);
+}
+
 void WorldServer::schedule_timer(std::chrono::milliseconds interval, std::function<void()> task,
                                  std::shared_ptr<asio::steady_timer> &timer) {
     if (!running_.load()) {
@@ -333,6 +342,12 @@ void WorldServer::perform_heartbeat() {
 
     Log::debug("WorldServer heartbeat - Uptime: {}s, Active connections: {}, Commands processed: {}", uptime,
                active_connections_.size(), commands_processed_.load());
+}
+
+void WorldServer::perform_combat_processing() {
+    // This runs on the world strand - thread safe!
+    // Process all active combat rounds
+    FieryMUD::CombatManager::process_combat_rounds();
 }
 
 // Statistics

@@ -6,8 +6,9 @@
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
 #include "../game/player.hpp"
-#include "../world/world_server.hpp"
+#include "../world/game_world.hpp"
 
+#include <asio.hpp>
 #include <cassert>
 #include <iostream>
 
@@ -25,9 +26,10 @@ void test_player_creation() {
 }
 
 void test_world_server() {
-    std::cout << "\n=== Testing WorldServer ===\n";
+    std::cout << "\n=== Testing GameWorld ===\n";
 
-    auto world_server = std::make_shared<WorldServer>();
+    asio::io_context io_context;
+    auto world_server = std::make_shared<GameWorld>(io_context);
 
     // Test room loading
     auto room = world_server->get_room(EntityId{1001});
@@ -60,7 +62,8 @@ void test_world_server() {
 void test_room_functionality() {
     std::cout << "\n=== Testing Room Functionality ===\n";
 
-    auto world_server = std::make_shared<WorldServer>();
+    asio::io_context io_context;
+    auto world_server = std::make_shared<GameWorld>(io_context);
 
     // Test multiple rooms
     for (int i = 1001; i <= 1004; ++i) {
@@ -147,7 +150,7 @@ int main() {
 
         std::cout << "\n=== All Simple Tests Completed Successfully! ===\n";
         std::cout << "✓ Player creation and management\n";
-        std::cout << "✓ WorldServer functionality\n";
+        std::cout << "✓ GameWorld functionality\n";
         std::cout << "✓ Room loading and navigation\n";
         std::cout << "✓ Player vitals and GMCP generation\n";
         std::cout << "✓ Player movement system\n";

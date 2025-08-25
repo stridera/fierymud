@@ -120,6 +120,19 @@ class LoginSystem {
     bool is_valid_name(std::string_view name) const;
     bool is_valid_password(std::string_view password) const;
     std::string normalize_name(std::string_view name) const;
+    
+    // Player file validation and migration
+    struct PlayerFileValidation {
+        bool is_valid{false};
+        bool needs_migration{false};
+        bool has_corruption{false};
+        std::string error_message;
+        std::string suggested_fix;
+    };
+    
+    PlayerFileValidation validate_player_file(std::string_view name) const;
+    Result<void> migrate_player_file(std::string_view name);
+    Result<std::shared_ptr<Player>> recover_corrupted_player(std::string_view name);
 
     // State
     LoginState state_{LoginState::GetName};

@@ -373,3 +373,4 @@ When implementing game features (especially clan system, commands, and user inte
 - **Automated Tests**: Run `./build/tests` for unit tests, but game features require manual testing
 - **Integration Testing**: Manual testing is essential for command parsing, permission systems, and user interactions
 - **User Feedback**: The user can provide immediate feedback on functionality, UI/UX, and edge cases that automated tests might miss
+- Once we complete a milestone (Everything tested, all todos handled, etc) we should commit everything to the current branch.

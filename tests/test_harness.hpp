@@ -53,6 +53,7 @@ class TestableNPC : public Actor {
 
 class TestHarness {
   public:
+    static inline bool world_initialized = false;
     class TestFixtures {
       public:
         TestFixtures(TestHarness &harness) : harness_(harness) {}
@@ -85,9 +86,12 @@ class TestHarness {
     TestFixtures fixtures_;
 
     TestHarness() : world_server(io_context, config), work_guard(asio::make_work_guard(io_context)), fixtures_(*this) {
+        if (!world_initialized) {
+            WorldManager::instance().initialize("lib/world", false); // Initialize without loading files
+            world_initialized = true;
+        }
         // Ensure WorldManager is clean before adding test data
         WorldManager::instance().clear_state();
-        WorldManager::instance().initialize("lib/world", false); // Initialize without loading files
 
         io_thread = std::thread([&]() { io_context.run(); });
 
@@ -111,6 +115,10 @@ class TestHarness {
 
         player = std::make_shared<TestablePlayer>(EntityId{1}, "TestPlayer");
         player->move_to(start_room);
+    }
+
+    static void clear_world() {
+        WorldManager::instance().clear_state();
     }
 
     ~TestHarness() {

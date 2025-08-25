@@ -122,6 +122,7 @@ enum class RoomFlag {
     NoSummon,           // Cannot summon to/from
     NoLocate,           // Cannot locate in
     NoTeleport,         // Cannot teleport to/from
+    AlwaysLit,          // Always lit (never dark)
     
     // Clan system flags
     ClanEntrance,       // Clan entrance room

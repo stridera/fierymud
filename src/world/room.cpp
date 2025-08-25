@@ -470,6 +470,11 @@ bool Room::is_naturally_lit() const {
 }
 
 int Room::calculate_effective_light() const {
+    // AlwaysLit rooms are always lit regardless of other factors
+    if (has_flag(RoomFlag::AlwaysLit)) {
+        return 10; // High light level
+    }
+    
     if (has_flag(RoomFlag::Dark)) {
         return 0;
     }
@@ -765,6 +770,11 @@ namespace RoomUtils {
     }
     
     std::optional<RoomFlag> parse_room_flag(std::string_view flag_name) {
+        // Handle legacy flag names that don't match enum names exactly
+        if (flag_name == "ALWAYSLIT") {
+            return RoomFlag::AlwaysLit;
+        }
+        
         return magic_enum::enum_cast<RoomFlag>(flag_name);
     }
     

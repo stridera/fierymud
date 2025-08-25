@@ -9,14 +9,13 @@
 
 #include "clan.hpp"
 
-#include "chars.hpp"
-#include "comm.hpp"
-#include "conf.hpp"
-#include "db.hpp"
-#include "logging.hpp"
-#include "screen.hpp"
-#include "utils.hpp"
-#include "find.hpp"
+#include "../../legacy/src/chars.hpp"
+#include "../../legacy/src/comm.hpp"
+#include "../../legacy/src/conf.hpp"
+#include "../../legacy/src/db.hpp"
+#include "../../legacy/src/screen.hpp"
+#include "../../legacy/src/utils.hpp"
+#include "../../legacy/src/find.hpp"
 
 #include <format>
 #include <expected>

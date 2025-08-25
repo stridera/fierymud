@@ -41,7 +41,7 @@ struct LogContext {
     std::string component;                                 // System component (combat, movement, etc.)
     std::string player_name;                               // Associated player if any
     EntityId entity_id = INVALID_ENTITY_ID;                // Associated entity if any
-    std::string room_vnum;                                 // Associated room if any
+    EntityId room_id = INVALID_ENTITY_ID;                  // Associated room if any
     std::unordered_map<std::string, std::string> metadata; // Additional key-value pairs
 
     // Constructors to avoid aggregate missing-initializer warnings and allow direct initialization
@@ -159,7 +159,7 @@ class Logger {
     std::string format_with_context(const LogContext &ctx, std::string_view format, Args &&...args) {
         std::string base_message = fmt::format(fmt::runtime(format), std::forward<Args>(args)...);
 
-        if (ctx.player_name.empty() && ctx.entity_id == INVALID_ENTITY_ID && ctx.room_vnum.empty() &&
+        if (ctx.player_name.empty() && ctx.entity_id == INVALID_ENTITY_ID && ctx.room_id == INVALID_ENTITY_ID &&
             ctx.metadata.empty()) {
             return base_message;
         }
@@ -176,10 +176,10 @@ class Logger {
             context_parts += fmt::format("entity={}", ctx.entity_id);
         }
 
-        if (!ctx.room_vnum.empty()) {
+        if (ctx.room_id.is_valid()) {
             if (!context_parts.empty())
                 context_parts += ", ";
-            context_parts += fmt::format("room={}", ctx.room_vnum);
+            context_parts += fmt::format("room={}", ctx.room_id);
         }
 
         for (const auto &[key, value] : ctx.metadata) {

@@ -11,6 +11,7 @@
 #include "../core/logging.hpp"
 #include "../game/player_output.hpp"
 #include "../world/room.hpp"
+#include "../net/player_connection.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -894,6 +895,14 @@ Result<std::unique_ptr<Player>> Player::from_json(const nlohmann::json& json) {
             player->set_god_level(json["god_level"].get<int>());
         }
         
+        if (json.contains("player_class")) {
+            player->set_class(json["player_class"].get<std::string>());
+        }
+        
+        if (json.contains("race")) {
+            player->set_race(json["race"].get<std::string>());
+        }
+        
         TRY(player->validate());
         
         return player;
@@ -934,11 +943,49 @@ nlohmann::json Player::get_status_gmcp() const {
     return {
         {"name", name()},
         {"level", stats.level},
-        {"class", "warrior"}, // Default class, should be dynamic in full implementation
-        {"race", "human"},    // Default race, should be dynamic in full implementation
+        {"class", player_class_},
+        {"race", race_},
         {"room", room ? room->id().value() : 0},
         {"gold", stats.gold}
     };
+}
+
+void Player::on_room_change(std::shared_ptr<Room> old_room, std::shared_ptr<Room> new_room) {
+    // Send GMCP room update if player has output (connection) and supports GMCP
+    if (auto output = get_output()) {
+        // Try to cast to PlayerConnection to access GMCP methods
+        if (auto connection = std::dynamic_pointer_cast<class PlayerConnection>(output)) {
+            connection->send_room_info();
+        }
+    }
+}
+
+void Player::send_gmcp_vitals_update() {
+    // Send GMCP vitals update if player has output (connection) and supports GMCP
+    if (auto output = get_output()) {
+        // Try to cast to PlayerConnection to access GMCP methods
+        if (auto connection = std::dynamic_pointer_cast<class PlayerConnection>(output)) {
+            connection->send_vitals();
+        }
+    }
+}
+
+void Player::on_level_up(int old_level, int new_level) {
+    // Send GMCP vitals update when player levels up (vitals change)
+    send_gmcp_vitals_update();
+}
+
+nlohmann::json Player::to_json() const {
+    nlohmann::json json = Actor::to_json();
+    
+    // Add Player-specific fields
+    json["type"] = "Player";
+    json["account"] = account_;
+    json["god_level"] = god_level_;
+    json["player_class"] = player_class_;
+    json["race"] = race_;
+    
+    return json;
 }
 
 // ActorUtils Implementation

@@ -14,7 +14,7 @@
 
 GameTestHarness::GameTestHarness() {
     // Initialize world server
-    world_server_ = std::make_shared<WorldServer>();
+    world_server_ = std::make_shared<GameWorld>(io_context_);
 
     // Get command system from world server
     command_system_ = world_server_->get_command_system();

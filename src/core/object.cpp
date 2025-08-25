@@ -148,10 +148,21 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
         
         auto object = std::unique_ptr<Object>(new Object(base_entity->id(), base_entity->name(), type));
         
-        // Copy base entity properties
+        // Copy base entity properties - use JSON directly for short_description to preserve exact value
         object->set_keywords(base_entity->keywords());
         object->set_description(base_entity->description());
-        object->set_short_description(base_entity->short_description());
+        
+        // Set short_description directly from JSON if present, otherwise from base entity
+        if (json.contains("short_description")) {
+            std::string short_desc = json["short_description"].get<std::string>();
+            fmt::print("DEBUG: Setting object short_description from JSON: '{}' (was: '{}')\n", 
+                      short_desc, object->short_description());
+            object->set_short_description(short_desc);
+        } else {
+            fmt::print("DEBUG: Setting object short_description from base_entity: '{}'\n", 
+                      base_entity->short_description());
+            object->set_short_description(base_entity->short_description());
+        }
         
         // Parse object-specific properties with field mapping
         if (json.contains("weight")) {
