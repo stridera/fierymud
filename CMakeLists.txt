@@ -159,29 +159,42 @@ set(TEST_SOURCES
     src/core/string_utils.cpp
     tests/mock_game_session.cpp
     
-    # Test files
-    tests/test_core_arguments.cpp
-    tests/test_session_integration.cpp
-    tests/test_command_system.cpp
+    # Unit Tests - Core Systems
     tests/test_core.cpp
-    tests/test_world_utils.cpp
-    tests/test_world.cpp
-    tests/test_multiplayer.cpp
-    tests/test_performance.cpp
-    tests/test_server_resilience.cpp
-    tests/test_session.cpp
-    tests/test_test_harness.cpp
-    tests/test_gmcp.cpp
-    tests/test_emotes.cpp
-    tests/test_actor.cpp
-    tests/test_zone_parsing.cpp
-    tests/test_world_parsing.cpp
+    tests/test_core_arguments.cpp
     tests/test_combat_system.cpp
+    tests/test_actor.cpp
+    tests/test_mobile_keywords.cpp
+    tests/test_player_revival.cpp
+    
+    # Unit Tests - Objects & Containers  
     tests/test_container_system.cpp
     tests/test_container_system_simple.cpp
     tests/test_object_descriptions.cpp
     tests/test_object_interactions.cpp
-    tests/test_mobile_keywords.cpp
+    
+    # Unit Tests - World & Parsing
+    tests/test_world_utils.cpp
+    tests/test_world_parsing.cpp
+    tests/test_zone_parsing.cpp
+    
+    # Integration Tests - Sessions & Commands
+    tests/test_session_integration.cpp
+    tests/test_command_system.cpp
+    tests/test_session.cpp
+    tests/test_world.cpp
+    
+    # Integration Tests - Multi-player & Communication
+    tests/test_multiplayer.cpp
+    tests/test_emotes.cpp
+    tests/test_gmcp.cpp
+    
+    # Performance & Resilience Tests
+    tests/test_performance.cpp
+    tests/test_server_resilience.cpp
+    
+    # Test Infrastructure
+    tests/test_test_harness.cpp
 )
 
 # Main test executable

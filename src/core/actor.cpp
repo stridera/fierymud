@@ -909,6 +909,11 @@ Result<std::unique_ptr<Player>> Player::from_json(const nlohmann::json& json) {
             player->set_race(json["race"].get<std::string>());
         }
         
+        if (json.contains("start_room")) {
+            auto start_room_id = json["start_room"].get<uint64_t>();
+            player->set_start_room(EntityId{start_room_id});
+        }
+        
         TRY(player->validate());
         
         return player;
@@ -990,6 +995,7 @@ nlohmann::json Player::to_json() const {
     json["god_level"] = god_level_;
     json["player_class"] = player_class_;
     json["race"] = race_;
+    json["start_room"] = start_room_.value();
     
     return json;
 }

@@ -33,6 +33,9 @@ Result<CommandResult> perform_attack(const CommandContext &ctx, std::shared_ptr<
 bool is_valid_target(std::shared_ptr<Actor> attacker, std::shared_ptr<Actor> target);
 } // namespace CombatHelpers
 
+// Forward declarations
+Result<CommandResult> cmd_prompt(const CommandContext &ctx);
+
 // Forward declarations for zone development commands
 Result<CommandResult> cmd_reload_zone(const CommandContext &ctx);
 Result<CommandResult> cmd_save_zone(const CommandContext &ctx);
@@ -151,6 +154,7 @@ Result<void> register_all_commands() {
     Commands().command("save", cmd_save).category("System").privilege(PrivilegeLevel::Player).build();
     Commands().command("help", cmd_help).category("System").privilege(PrivilegeLevel::Player).build();
     Commands().command("commands", cmd_commands).category("System").privilege(PrivilegeLevel::Player).build();
+    Commands().command("prompt", cmd_prompt).category("System").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("testcmd",
@@ -1674,6 +1678,32 @@ Result<CommandResult> cmd_commands(const CommandContext &ctx) {
     return CommandResult::Success;
 }
 
+Result<CommandResult> cmd_prompt(const CommandContext &ctx) {
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Show the player what their prompt looks like
+    const auto& stats = ctx.actor->stats();
+    std::string prompt = fmt::format("{}H {}M", stats.hit_points, stats.movement);
+    
+    if (ctx.actor->is_fighting()) {
+        prompt += " (Fighting)";
+    }
+    prompt += ">";
+
+    ctx.send("Your current prompt format:");
+    ctx.send(fmt::format("  {}", prompt));
+    ctx.send("");
+    ctx.send("Legend:");
+    ctx.send("  H = Hit Points");
+    ctx.send("  M = Movement");
+    ctx.send("  (Fighting) = You are in combat");
+    ctx.send("  (Fighting: <enemy> is <condition>) = Enemy health status");
+
+    return CommandResult::Success;
+}
+
 // =============================================================================
 // Social Commands
 // =============================================================================
@@ -2235,9 +2265,21 @@ Result<CommandResult> cmd_release(const CommandContext &ctx) {
         ctx.send_to_room(fmt::format("The ghost of {} fades away, leaving behind a corpse.", ctx.actor->name()), true);
     }
 
-    // Move player to starting room
+    // Move player to their personal starting room
     auto world_manager = &WorldManager::instance();
-    auto start_room_id = world_manager->get_start_room();
+    
+    // Try to get player's personal start room first
+    EntityId start_room_id = INVALID_ENTITY_ID;
+    if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+        start_room_id = player->start_room();
+    }
+    
+    // If player doesn't have a personal start room, use world default
+    if (!start_room_id.is_valid()) {
+        start_room_id = world_manager->get_start_room();
+        Log::debug("Player {} has no personal start room, using world default: {}", ctx.actor->name(), start_room_id);
+    }
+    
     auto start_room = world_manager->get_room(start_room_id);
 
     if (!start_room) {

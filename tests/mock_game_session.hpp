@@ -124,6 +124,9 @@ class UnifiedTestHarness {
 
     WorldServer& get_world_server() { return *world_server_; }
 
+  public:
+    ~UnifiedTestHarness();
+    
   private:
     UnifiedTestHarness();
     static std::unique_ptr<UnifiedTestHarness> instance_;

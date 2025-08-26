@@ -342,8 +342,34 @@ UnifiedTestHarness::UnifiedTestHarness() : io_context_(), work_guard_(asio::make
         builtin_commands_registered_ = true;
     }
     
-    world_server_->initialize(true); // Test mode
+    // Start world server
+    auto start_result = world_server_->start();
+    if (!start_result) {
+        throw std::runtime_error("Failed to start test WorldServer: " + start_result.error().message);
+    }
+
+    // Start I/O thread
     io_thread_ = std::thread([this]() { io_context_.run(); });
+}
+
+UnifiedTestHarness::~UnifiedTestHarness() {
+    try {
+        // Stop world server
+        if (world_server_) {
+            world_server_->stop();
+        }
+        
+        // Stop I/O context and join thread
+        io_context_.stop();
+        if (io_thread_.joinable()) {
+            io_thread_.join();
+        }
+        
+        // Reset world server
+        world_server_.reset();
+    } catch (...) {
+        // Suppress exceptions in destructor to avoid std::terminate
+    }
 }
 
 Result<void> UnifiedTestHarness::run_unit_test(std::function<void()> test) {

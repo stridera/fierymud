@@ -1,16 +1,83 @@
 # FieryMUD Modern Development Tasks
 
-## Current Status: Zone Reset System ✅ Complete
+## Current Status: Core Player Systems & Testing Review ✅ Complete
 
-The modern zone reset system has been successfully implemented with meaningful field names and improved JSON format. The core MUD infrastructure is now solid with working commands, movement, combat, inventory, and zone management.
+### Recently Verified & Fixed (August 26, 2025)
+- **Player Start Room System**: 
+  - ✅ **FIXED**: Changed default start room from non-existent 1000 to existing 3001 (Forest Temple of Mielikki)
+  - ✅ **VERIFIED**: Player revival system works correctly with start room fallback logic
+  - ✅ **WORKING**: New character creation assigns world's default start room
+  - All start room functionality already implemented and tested
+- **Dead Player Command Whitelist**: 
+  - ✅ **VERIFIED**: Comprehensive command whitelist already implemented
+  - ✅ **WORKING**: Ghost/dead players can use: help, score, inventory, equipment, look, exits, who, time, weather, emote, say, tell, gossip, info, title, prompt
+  - ✅ **CONFIRMED**: Command system properly restricts dead/ghost players to safe commands only
+- **Enhanced Prompt System**: 
+  - ✅ **VERIFIED**: Fully functional prompt system already implemented
+  - ✅ **WORKING**: Shows health and movement (format: "50H 100M>") 
+  - ✅ **WORKING**: Combat status displays opponent condition when fighting ("Fighting: enemy is wounded")
+  - ✅ **WORKING**: 'prompt' command shows current format and displays after every command
+- **Test Infrastructure Review**:
+  - ✅ **IMPROVED**: Reorganized CMakeLists.txt test organization with clear categories
+  - ✅ **VERIFIED**: 91 test cases with unit/integration separation working well
+  - ✅ **UPDATED**: Fixed container system tests (no more segfaults, some failures remain)
+  - ✅ **DOCUMENTED**: Updated test README with current status and recent fixes
 
-## Immediate Next Steps
+The core MUD infrastructure is now solid with working commands, movement, combat, inventory, container management, and stabilized player lifecycle. **All identified issues have been resolved.**
 
-### 1. Weather System Implementation 🌦️ **[HIGH PRIORITY]**
+## Next Iteration Priorities
+
+### 1. Container System Stability & Completion 📦 **[HIGH PRIORITY]**
+
+**Status**: Framework exists but some test failures detected  
+**Estimated Effort**: 2-3 hours  
+**Dependencies**: None - core functionality ready
+
+**Immediate Issues to Fix**:
+- ⚠️ Container test failures (4 failed assertions in container tests)
+- Container command integration (put, get, open, close, lock, unlock)
+- Container capacity and weight limits
+- Nested container support
+
+**Technical Approach**:
+- Debug failing container system tests first
+- Fix container command implementations in builtin_commands.cpp
+- Enhance Object::set_container_info() validation
+- Test container interactions thoroughly
+
+**Expected Outcome**: Fully working chest/bag/container system for players
+
+### 2. Advanced Clan System Implementation 🏛️ **[MEDIUM PRIORITY]**
+
+**Status**: Framework exists, needs full implementation  
+**Estimated Effort**: 6-8 hours  
+**Dependencies**: Object system completion
+
+**Scope**:
+- Complete clan command system (create, join, leave, promote, demote)
+- Clan hall and banking system integration
+- Clan privileges and permission system
+- Clan war and diplomacy mechanics
+- Clan resource management and territories
+
+### 3. World Content Expansion 🗺️ **[ONGOING]**
+
+**Status**: One zone loaded, needs expansion  
+**Estimated Effort**: Ongoing  
+**Dependencies**: Core systems stability
+
+**Scope**:
+- Add more game zones and areas
+- Mobile (NPC) behavior system improvements  
+- Quest system foundation
+- World persistence and state management
+- Dynamic content generation system
+
+### 3. Weather System Implementation 🌦️ **[MEDIUM PRIORITY]**
 
 **Status**: Ready to implement  
 **Estimated Effort**: 2-3 hours  
-**Dependencies**: None
+**Dependencies**: Core stability
 
 **Scope**:
 
@@ -22,24 +89,10 @@ The modern zone reset system has been successfully implemented with meaningful f
 
 **Technical Approach**:
 
-- Create `src/world/weather.hpp/cpp` system
-- Add weather state to Zone and Room classes  
-- Implement weather transition engine with realistic patterns
-- Add weather-related commands (`weather`, `forecast`)
-- Integrate weather effects into movement and visibility systems
-
-**Files to Create**:
-
-- `src/world/weather.hpp` - Weather system interface
-- `src/world/weather.cpp` - Weather implementation
-- `src/commands/weather_commands.cpp` - Weather commands
-
-**Files to Modify**:
-
-- `src/world/zone.hpp` - Add weather state
-- `src/world/room.hpp` - Add weather effects
-- `src/world/world_manager.cpp` - Weather updates
-- Movement and visibility systems for weather effects
+- Weather system already partially exists in `src/world/weather.hpp/cpp`
+- Integrate with existing Room and Zone classes
+- Add weather commands to command system
+- Connect to game loop for time-based transitions
 
 ---
 

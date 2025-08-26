@@ -73,7 +73,7 @@ class TestHarness {
 
       private:
         TestHarness &harness_;
-        static inline int next_entity_id = 100;
+        static inline uint64_t next_entity_id = 100UL;
     };
 
     asio::io_context io_context;

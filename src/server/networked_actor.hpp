@@ -30,10 +30,17 @@ public:
             target_room = current;
         }
         
-        // If no current room or invalid, try configured starting room
+        // If no current room or invalid, try WorldManager's starting room
         if (!target_room) {
-            auto starting_room_id = Config::instance().default_starting_room();
-            target_room = world.get_room(starting_room_id);
+            auto starting_room_id = world.get_start_room();
+            if (starting_room_id.is_valid()) {
+                target_room = world.get_room(starting_room_id);
+                
+                // Set this as the player's personal start room if they don't have one
+                if (!start_room().is_valid()) {
+                    set_start_room(starting_room_id);
+                }
+            }
         }
         
         // If starting room doesn't exist, try to find any available room

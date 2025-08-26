@@ -157,6 +157,9 @@ private:
     // GMCP support
     void send_room_info_to_player(std::shared_ptr<PlayerConnection> connection);
     
+    // Prompt system
+    void send_prompt_to_actor(std::shared_ptr<Actor> actor);
+    
     // Timer management
     void schedule_timer(std::chrono::milliseconds interval, 
                        std::function<void()> task,

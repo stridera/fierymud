@@ -18,6 +18,7 @@
 #include <algorithm>
 #include <chrono>
 #include <mutex>
+#include <set>
 
 // CommandStats Implementation
 
@@ -608,13 +609,35 @@ bool CommandSystem::check_command_conditions(std::shared_ptr<Actor> actor, const
         return false;
     }
     
-    // Check if actor is a ghost - ghosts can only look and release
-    if (actor->position() == Position::Ghost) {
-        // Only allow 'look' and 'release' commands for ghosts
+    // Check if actor is dead or ghost - allow informational commands for both states
+    if (actor->position() == Position::Ghost || actor->position() == Position::Dead) {
+        // Allow informational commands and release for dead/ghost players
         std::string cmd_name = command.name;
         std::transform(cmd_name.begin(), cmd_name.end(), cmd_name.begin(), ::tolower);
         
-        if (cmd_name == "look" || cmd_name == "release") {
+        // List of commands dead/ghost players can use
+        static const std::set<std::string> ghost_allowed_commands = {
+            "look", "l",           // Look around
+            "release",             // Return to life
+            "help", "?",           // Help system
+            "score", "sc",         // Character stats
+            "inventory", "i",      // Inventory
+            "equipment", "eq",     // Equipment
+            "commands", "comm",    // Available commands
+            "who", "users",        // Who's online
+            "time",                // Game time
+            "weather",             // Weather
+            "exits",               // Available exits
+            "emote", ":",          // Emotes
+            "say", "'",            // Communication
+            "tell", "whisper",     // Private communication
+            "gossip", "ooc",       // OOC channels
+            "info", "news",        // Information commands
+            "title",               // View/set title
+            "prompt"               // Prompt settings
+        };
+        
+        if (ghost_allowed_commands.contains(cmd_name)) {
             return true;
         }
         
@@ -622,12 +645,12 @@ bool CommandSystem::check_command_conditions(std::shared_ptr<Actor> actor, const
         for (const auto& alias : command.aliases) {
             std::string alias_lower = alias;
             std::transform(alias_lower.begin(), alias_lower.end(), alias_lower.begin(), ::tolower);
-            if (alias_lower == "l" || alias_lower == "look" || alias_lower == "release") {
+            if (ghost_allowed_commands.contains(alias_lower)) {
                 return true;
             }
         }
         
-        return false;  // Ghosts cannot use any other commands
+        return false;  // Dead/ghost players cannot use any other commands
     }
     
     // TODO: Implement other state-based checks (fighting, sitting, sleeping, etc.)

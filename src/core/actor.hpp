@@ -381,6 +381,10 @@ public:
     bool is_online() const { return online_; }
     void set_online(bool value) { online_ = value; }
     
+    /** Start room management */
+    EntityId start_room() const { return start_room_; }
+    void set_start_room(EntityId room_id) { start_room_ = room_id; }
+    
     /** Output queue for session handling */
     const std::vector<std::string>& get_output_queue() const { return output_queue_; }
     void clear_output_queue() { output_queue_.clear(); }
@@ -422,6 +426,7 @@ private:
     std::string account_;
     bool online_ = false;
     int god_level_ = 0;
+    EntityId start_room_ = INVALID_ENTITY_ID;  // Player's start room for revival
     std::vector<std::string> output_queue_;
     std::shared_ptr<class PlayerOutput> output_;
     

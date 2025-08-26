@@ -207,6 +207,9 @@ void WorldServer::process_command(std::shared_ptr<Actor> actor, std::string_view
                 // Response will be sent via the CommandContext/connection mechanism
                 // No need to send additional response here
             }
+            
+            // Send prompt after command execution
+            send_prompt_to_actor(actor);
         }
     });
 }
@@ -388,9 +391,9 @@ Result<void> WorldServer::create_default_world() {
             return;
         }
 
-        world_manager_->set_start_room(EntityId{1000});
+        world_manager_->set_start_room(EntityId{3001});
 
-        Log::info("Default world created with starting room [1000]");
+        Log::info("Default world created with starting room [3001] - The Forest Temple of Mielikki");
     });
     return Success();
 }
@@ -431,5 +434,56 @@ void WorldServer::send_room_info_to_player(std::shared_ptr<PlayerConnection> con
         }
     } else {
         Log::debug("No room found to send GMCP info");
+    }
+}
+
+void WorldServer::send_prompt_to_actor(std::shared_ptr<Actor> actor) {
+    if (!actor) {
+        return;
+    }
+    
+    // Get actor's current stats
+    const auto& stats = actor->stats();
+    
+    // Basic prompt format: <HP>H <Move>M>
+    std::string prompt = fmt::format("{}H {}M", stats.hit_points, stats.movement);
+    
+    // If fighting, show opponent's condition
+    if (actor->is_fighting()) {
+        auto opponent = FieryMUD::CombatManager::get_opponent(*actor);
+        if (opponent) {
+            // Calculate condition based on HP percentage
+            const auto& opp_stats = opponent->stats();
+            int hp_percent = (opp_stats.hit_points * 100) / std::max(1, opp_stats.max_hit_points);
+            
+            std::string condition;
+            if (hp_percent >= 95) condition = "perfect";
+            else if (hp_percent >= 85) condition = "scratched";  
+            else if (hp_percent >= 70) condition = "hurt";
+            else if (hp_percent >= 50) condition = "wounded";
+            else if (hp_percent >= 30) condition = "bleeding";
+            else if (hp_percent >= 15) condition = "critical";
+            else condition = "dying";
+            
+            prompt += fmt::format(" (Fighting: {} is {})", opponent->name(), condition);
+        } else {
+            prompt += " (Fighting)";
+        }
+    }
+    
+    prompt += "> ";
+    
+    // Send the prompt - we need to handle different actor types
+    if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+        // For players, try to get their output interface
+        if (auto output = player->get_output()) {
+            output->send_prompt(prompt);
+        } else {
+            // Fallback to send_message
+            player->send_message(prompt);
+        }
+    } else {
+        // For other actors, just send as message (though NPCs typically don't need prompts)
+        actor->send_message(prompt);
     }
 }

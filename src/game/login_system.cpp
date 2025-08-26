@@ -8,6 +8,7 @@
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
 #include "../net/player_connection.hpp"
+#include "../world/world_manager.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -473,6 +474,12 @@ Result<std::shared_ptr<Player>> LoginSystem::create_character() {
     // Set character class and race from creation data
     player->set_class(magic_enum::enum_name(creation_data_.character_class));
     player->set_race(magic_enum::enum_name(creation_data_.race));
+
+    // Set the player's start room to the world's default start room
+    auto world_start_room = WorldManager::instance().get_start_room();
+    if (world_start_room.is_valid()) {
+        player->set_start_room(world_start_room);
+    }
 
     return std::shared_ptr<Player>(player.release());
 }
