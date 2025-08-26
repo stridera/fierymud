@@ -127,12 +127,18 @@ Result<void> register_all_commands() {
     Commands().command("hit", cmd_hit).category("Combat").privilege(PrivilegeLevel::Player).build();
     Commands().command("cast", cmd_cast).category("Combat").privilege(PrivilegeLevel::Player).build();
     Commands().command("flee", cmd_flee).category("Combat").privilege(PrivilegeLevel::Player).build();
+    Commands().command("release", cmd_release).category("Death").privilege(PrivilegeLevel::Player).build();
 
     // Object Commands
     Commands().command("get", cmd_get).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("drop", cmd_drop).category("Object").privilege(PrivilegeLevel::Player).build();
+    Commands().command("put", cmd_put).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("give", cmd_give).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("wear", cmd_wear).alias("equip").category("Object").privilege(PrivilegeLevel::Player).build();
+    Commands().command("open", cmd_open).category("Object").privilege(PrivilegeLevel::Player).build();
+    Commands().command("close", cmd_close).category("Object").privilege(PrivilegeLevel::Player).build();
+    Commands().command("lock", cmd_lock).category("Object").privilege(PrivilegeLevel::Player).build();
+    Commands().command("unlock", cmd_unlock).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands()
         .command("remove", cmd_remove)
         .alias("unequip")
@@ -266,7 +272,6 @@ void unregister_all_commands() {
 // =============================================================================
 
 Result<CommandResult> cmd_look(const CommandContext &ctx) {
-    fmt::print("cmd_look: actor name: {}\n", ctx.actor->name());
     if (ctx.arg_count() == 0) {
         // Look at room - get current room from actor, not from context
         auto current_room = ctx.actor ? ctx.actor->current_room() : nullptr;
@@ -277,19 +282,19 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
 
         // Use the room's own get_room_description method which properly handles lighting
         std::string description = current_room->get_room_description(ctx.actor.get());
-        
+
         // Only add additional formatting (exits, objects, actors) if the room is visible
         if (!current_room->can_see_in_room(ctx.actor.get())) {
             // Room is dark, just send the darkness message
             ctx.send(description);
             return CommandResult::Success;
         }
-        
+
         // Room is visible, add room name as header, then description, exits, objects, and actors
         std::ostringstream full_desc;
         full_desc << current_room->name() << "\n";
         full_desc << description << "\n";
-        
+
         // Add exits
         std::string exits = Helpers::format_exits(current_room);
         if (!exits.empty()) {
@@ -338,6 +343,18 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
         break;
     case TargetType::Object:
         description = Helpers::format_object_description(target_info.object, ctx.actor);
+
+        // Check for extra descriptions if there's a second argument
+        if (ctx.arg_count() >= 2) {
+            auto extra_desc = target_info.object->get_extra_description(ctx.arg(1));
+            if (extra_desc.has_value()) {
+                description = std::string(extra_desc.value());
+            } else {
+                ctx.send_error(fmt::format("You don't see anything special about the {} when looking at '{}'.",
+                                           ctx.format_object_name(target_info.object), ctx.arg(1)));
+                return CommandResult::InvalidTarget;
+            }
+        }
         break;
     case TargetType::Room:
         description = Helpers::format_room_description(target_info.room, ctx.actor);
@@ -377,22 +394,146 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    std::string description;
+    std::ostringstream detailed_desc;
+
     switch (target_info.type) {
-    case TargetType::Object:
-        description = Helpers::format_object_description(target_info.object, ctx.actor);
-        // Add detailed examination info
-        description += "\n\nDetailed examination reveals additional information...";
+    case TargetType::Object: {
+        auto obj = target_info.object;
+
+        // Basic description
+        detailed_desc << fmt::format("=== {} ===\n", obj->short_description());
+        detailed_desc << fmt::format("{}\n", obj->description());
+
+        // Technical details
+        detailed_desc << "\n--- Technical Details ---\n";
+        detailed_desc << fmt::format("Type: {}\n", obj->type_name());
+        detailed_desc << fmt::format("Weight: {} pounds\n", obj->weight());
+        if (obj->value() > 0) {
+            detailed_desc << fmt::format("Value: {} gold coins\n", obj->value());
+        }
+        detailed_desc << fmt::format("Condition: {} ({} - {}%)\n", obj->quality_description(), obj->condition(),
+                                     obj->condition());
+
+        // Equipment slot information
+        if (obj->is_wearable()) {
+            detailed_desc << fmt::format("Worn on: {}\n", ObjectUtils::get_slot_name(obj->equip_slot()));
+        }
+
+        // Type-specific details
+        if (obj->is_weapon()) {
+            const auto &damage = obj->damage_profile();
+            detailed_desc << fmt::format("Weapon damage: {} (avg: {:.1f})\n", damage.to_dice_string(),
+                                         damage.average_damage());
+            if (auto weapon = std::dynamic_pointer_cast<Weapon>(obj)) {
+                detailed_desc << fmt::format("Reach: {}, Speed: {}\n", weapon->reach(), weapon->speed());
+            }
+        }
+
+        if (obj->is_armor()) {
+            detailed_desc << fmt::format("Armor class: {}\n", obj->armor_class());
+            if (auto armor = std::dynamic_pointer_cast<Armor>(obj)) {
+                detailed_desc << fmt::format("Material: {}\n", armor->material());
+            }
+        }
+
+        // Container details
+        if (obj->is_container()) {
+            const auto &container_info = obj->container_info();
+            detailed_desc << "\n--- Container Properties ---\n";
+            detailed_desc << fmt::format("Capacity: {} items\n", container_info.capacity);
+            detailed_desc << fmt::format("Weight limit: {} pounds\n", container_info.weight_capacity);
+            detailed_desc << fmt::format("State: {}\n", container_info.closed ? "closed" : "open");
+
+            if (container_info.lockable) {
+                detailed_desc << fmt::format("Lock: {} ({})\n", container_info.locked ? "locked" : "unlocked",
+                                             container_info.key_id.is_valid() ? "requires key" : "no key needed");
+            }
+
+            // Show contents if open and accessible
+            if (!container_info.closed) {
+                if (auto container_obj = std::dynamic_pointer_cast<Container>(obj)) {
+                    const auto &contents = container_obj->get_contents();
+                    if (!contents.empty()) {
+                        detailed_desc << "\n--- Contents ---\n";
+                        for (const auto &item : contents) {
+                            if (item) {
+                                detailed_desc << fmt::format("  {}\n", item->short_description());
+                            }
+                        }
+                    } else {
+                        detailed_desc << "The container is empty.\n";
+                    }
+                }
+            }
+        }
+
+        // Light source details
+        if (obj->is_light_source()) {
+            const auto &light_info = obj->light_info();
+            detailed_desc << "\n--- Light Properties ---\n";
+            detailed_desc << fmt::format("Brightness: {}\n", light_info.brightness);
+            detailed_desc << fmt::format("Duration: {} hours\n", light_info.duration);
+            detailed_desc << fmt::format("Status: {}\n", light_info.lit ? "lit" : "unlit");
+        }
+
+        // Object flags
+        detailed_desc << "\n--- Properties ---\n";
+        std::vector<std::string> flags;
+        if (obj->has_flag(ObjectFlag::Magic))
+            flags.push_back("magical");
+        if (obj->has_flag(ObjectFlag::Glow))
+            flags.push_back("glowing");
+        if (obj->has_flag(ObjectFlag::Hum))
+            flags.push_back("humming");
+        if (obj->has_flag(ObjectFlag::Invisible))
+            flags.push_back("invisible");
+        if (obj->has_flag(ObjectFlag::Cursed))
+            flags.push_back("cursed");
+        if (obj->has_flag(ObjectFlag::Bless))
+            flags.push_back("blessed");
+        if (obj->has_flag(ObjectFlag::NoDrop))
+            flags.push_back("no drop");
+        if (obj->has_flag(ObjectFlag::Unique))
+            flags.push_back("unique");
+        if (obj->has_flag(ObjectFlag::TwoHanded))
+            flags.push_back("two-handed");
+
+        if (flags.empty()) {
+            detailed_desc << "No special properties.\n";
+        } else {
+            detailed_desc << fmt::format("Special: {}\n",
+                                         CommandParserUtils::join(std::span<const std::string>{flags}, ", "));
+        }
+
+        // Extra descriptions
+        const auto &extra_descs = obj->get_all_extra_descriptions();
+        if (!extra_descs.empty()) {
+            detailed_desc << "\n--- Additional Details ---\n";
+            detailed_desc << "You can examine specific features: ";
+            std::vector<std::string> all_keywords;
+            for (const auto &extra : extra_descs) {
+                // Combine all keywords from this extra description
+                for (const auto &keyword : extra.keywords) {
+                    all_keywords.push_back(keyword);
+                }
+            }
+            detailed_desc << fmt::format("{}\n",
+                                         CommandParserUtils::join(std::span<const std::string>{all_keywords}, ", "));
+        }
+
         break;
+    }
     case TargetType::Actor:
-        description = Helpers::format_actor_description(target_info.actor, ctx.actor);
+        // Enhanced actor examination
+        detailed_desc << Helpers::format_actor_description(target_info.actor, ctx.actor);
+        detailed_desc << "\n\nDetailed examination shows their equipment and status...";
         break;
     default:
-        // Fall back to look
+        // Fall back to look for other types
         return cmd_look(ctx);
     }
 
-    ctx.send(description);
+    ctx.send(detailed_desc.str());
     return CommandResult::Success;
 }
 
@@ -692,8 +833,8 @@ Result<CommandResult> cmd_exits(const CommandContext &ctx) {
 // =============================================================================
 
 Result<CommandResult> cmd_get(const CommandContext &ctx) {
-    if (auto result = ctx.require_args(1, "<object>"); !result) {
-        ctx.send_usage("get <object>");
+    if (ctx.arg_count() < 1) {
+        ctx.send_usage("get <object> [from <container>]");
         return CommandResult::InvalidSyntax;
     }
 
@@ -706,47 +847,134 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // Find object in the current room
-    auto &room_objects = ctx.room->contents_mutable().objects;
     std::shared_ptr<Object> target_object = nullptr;
+    std::shared_ptr<Object> source_container = nullptr;
 
-    for (auto &obj : room_objects) {
-        if (obj && obj->name().find(ctx.arg(0)) != std::string::npos) {
-            target_object = obj;
-            break;
+    // Check if this is "get <object> from <container>" syntax
+    if (ctx.arg_count() >= 3 && ctx.arg(1) == "from") {
+        // Get from container
+        auto inventory_items = ctx.actor->inventory().get_all_items();
+
+        // First check inventory for containers
+        for (const auto &obj : inventory_items) {
+            if (obj && obj->matches_keyword(ctx.arg(2)) && obj->is_container()) {
+                source_container = obj;
+                break;
+            }
         }
+
+        // If not found in inventory, check room
+        if (!source_container) {
+            auto &room_objects = ctx.room->contents_mutable().objects;
+            for (auto &obj : room_objects) {
+                if (obj && obj->matches_keyword(ctx.arg(2)) && obj->is_container()) {
+                    source_container = obj;
+                    break;
+                }
+            }
+        }
+
+        if (!source_container) {
+            ctx.send_error(fmt::format("You don't see a container called '{}'.", ctx.arg(2)));
+            return CommandResult::InvalidTarget;
+        }
+
+        // Check container properties
+        const auto &container_info = source_container->container_info();
+
+        // Check if container is closed
+        if (container_info.closeable && container_info.closed) {
+            ctx.send_error(fmt::format("The {} is closed.", ctx.format_object_name(source_container)));
+            return CommandResult::InvalidState;
+        }
+
+        // Cast to Container to access container functionality
+        auto container_obj = std::dynamic_pointer_cast<Container>(source_container);
+        if (!container_obj) {
+            ctx.send_error(fmt::format("You can't get anything from {}.", ctx.format_object_name(source_container)));
+            return CommandResult::InvalidState;
+        }
+
+        // Search for the object in the container
+        auto items_found = container_obj->find_items_by_keyword(ctx.arg(0));
+        if (items_found.empty()) {
+            ctx.send_error(fmt::format("There's no '{}' in {}.", ctx.arg(0), ctx.format_object_name(source_container)));
+            return CommandResult::InvalidTarget;
+        }
+
+        // Get the first matching item
+        auto item_to_get = items_found[0];
+
+        // Check if actor can carry more weight
+        int object_weight = item_to_get->weight();
+        if (!ctx.actor->inventory().can_carry(object_weight, ctx.actor->max_carry_weight())) {
+            ctx.send_error("You can't carry any more.");
+            return CommandResult::ResourceError;
+        }
+
+        // Remove from container and add to inventory
+        if (!container_obj->remove_item(item_to_get)) {
+            ctx.send_error("Failed to get item from container.");
+            return CommandResult::ResourceError;
+        }
+
+        auto add_result = ctx.actor->inventory().add_item(item_to_get);
+        if (!add_result) {
+            // Return item to container if inventory add failed
+            container_obj->add_item(item_to_get);
+            ctx.send_error(add_result.error().message);
+            return CommandResult::ResourceError;
+        }
+
+        ctx.send_success(fmt::format("You get {} from {}.", ctx.format_object_name(item_to_get),
+                                     ctx.format_object_name(source_container)));
+        ctx.send_to_room(fmt::format("{} gets {} from {}.", ctx.actor->name(), ctx.format_object_name(item_to_get),
+                                     ctx.format_object_name(source_container)),
+                         true);
+
+        return CommandResult::Success;
+    } else {
+        // Get from room (original functionality)
+        auto &room_objects = ctx.room->contents_mutable().objects;
+
+        for (auto &obj : room_objects) {
+            if (obj && obj->matches_keyword(ctx.arg(0))) {
+                target_object = obj;
+                break;
+            }
+        }
+
+        if (!target_object) {
+            ctx.send_error(fmt::format("You don't see '{}' here.", ctx.arg(0)));
+            return CommandResult::InvalidTarget;
+        }
+
+        // Check if actor can carry more weight
+        int object_weight = 1; // Default weight for now
+        if (!ctx.actor->inventory().can_carry(object_weight, ctx.actor->max_carry_weight())) {
+            ctx.send_error("You can't carry any more.");
+            return CommandResult::ResourceError;
+        }
+
+        // Remove from room and add to inventory
+        auto it = std::find(room_objects.begin(), room_objects.end(), target_object);
+        if (it != room_objects.end()) {
+            room_objects.erase(it);
+        }
+
+        auto add_result = ctx.actor->inventory().add_item(target_object);
+        if (!add_result) {
+            // Return object to room if inventory add failed
+            room_objects.push_back(target_object);
+            ctx.send_error(add_result.error().message);
+            return CommandResult::ResourceError;
+        }
+
+        ctx.send_success(fmt::format("You get {}.", ctx.format_object_name(target_object)));
+        ctx.send_to_room(fmt::format("{} gets {}.", ctx.actor->name(), ctx.format_object_name(target_object)), true);
+
+        return CommandResult::Success;
     }
-
-    if (!target_object) {
-        ctx.send_error(fmt::format("You don't see '{}' here.", ctx.arg(0)));
-        return CommandResult::InvalidTarget;
-    }
-
-    // Check if actor can carry more weight
-    int object_weight = 1; // Default weight for now
-    if (!ctx.actor->inventory().can_carry(object_weight, ctx.actor->max_carry_weight())) {
-        ctx.send_error("You can't carry any more.");
-        return CommandResult::ResourceError;
-    }
-
-    // Remove from room and add to inventory
-    auto it = std::find(room_objects.begin(), room_objects.end(), target_object);
-    if (it != room_objects.end()) {
-        room_objects.erase(it);
-    }
-
-    auto add_result = ctx.actor->inventory().add_item(target_object);
-    if (!add_result) {
-        // Return object to room if inventory add failed
-        room_objects.push_back(target_object);
-        ctx.send_error(add_result.error().message);
-        return CommandResult::ResourceError;
-    }
-
-    ctx.send_success(fmt::format("You get {}.", ctx.format_object_name(target_object)));
-    ctx.send_to_room(fmt::format("{} gets {}.", ctx.actor->name(), ctx.format_object_name(target_object)), true);
-
-    return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_drop(const CommandContext &ctx) {
@@ -769,7 +997,7 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
     std::shared_ptr<Object> target_object = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->name().find(ctx.arg(0)) != std::string::npos) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
             target_object = obj;
             break;
         }
@@ -791,6 +1019,104 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
 
     ctx.send_success(fmt::format("You drop {}.", ctx.format_object_name(target_object)));
     ctx.send_to_room(fmt::format("{} drops {}.", ctx.actor->name(), ctx.format_object_name(target_object)), true);
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_put(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(2, "<object> <container>"); !result) {
+        ctx.send_usage("put <object> <container>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    if (!ctx.room) {
+        ctx.send_error("You are not in a room.");
+        return CommandResult::InvalidState;
+    }
+
+    // Find object in actor's inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> item_to_put = nullptr;
+
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            item_to_put = obj;
+            break;
+        }
+    }
+
+    if (!item_to_put) {
+        ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Find container in the room or inventory
+    std::shared_ptr<Object> container = nullptr;
+
+    // First check inventory for containers
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(1)) && obj->is_container() && obj != item_to_put) {
+            container = obj;
+            break;
+        }
+    }
+
+    // If not found in inventory, check room
+    if (!container) {
+        auto &room_objects = ctx.room->contents_mutable().objects;
+        for (auto &obj : room_objects) {
+            if (obj && obj->matches_keyword(ctx.arg(1)) && obj->is_container()) {
+                container = obj;
+                break;
+            }
+        }
+    }
+
+    if (!container) {
+        ctx.send_error(fmt::format("You don't see a container called '{}'.", ctx.arg(1)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check container properties
+    const auto &container_info = container->container_info();
+
+    // Check if container is closed
+    if (container_info.closeable && container_info.closed) {
+        ctx.send_error(fmt::format("The {} is closed.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Cast to Container to access container functionality
+    auto container_obj = std::dynamic_pointer_cast<Container>(container);
+    if (!container_obj) {
+        ctx.send_error(fmt::format("You can't put anything in {}.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Try to add item to container
+    auto add_result = container_obj->add_item(item_to_put);
+    if (!add_result) {
+        ctx.send_error(fmt::format("The {} is full.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Remove from actor's inventory
+    if (!ctx.actor->inventory().remove_item(item_to_put)) {
+        // If we can't remove from inventory, remove from container to maintain consistency
+        container_obj->remove_item(item_to_put);
+        ctx.send_error("Failed to remove item from inventory.");
+        return CommandResult::ResourceError;
+    }
+
+    ctx.send_success(
+        fmt::format("You put {} in {}.", ctx.format_object_name(item_to_put), ctx.format_object_name(container)));
+    ctx.send_to_room(fmt::format("{} puts {} in {}.", ctx.actor->name(), ctx.format_object_name(item_to_put),
+                                 ctx.format_object_name(container)),
+                     true);
 
     return CommandResult::Success;
 }
@@ -844,7 +1170,7 @@ Result<CommandResult> cmd_wear(const CommandContext &ctx) {
     std::shared_ptr<Object> target_object = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->name().find(ctx.arg(0)) != std::string::npos) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
             target_object = obj;
             break;
         }
@@ -888,7 +1214,7 @@ Result<CommandResult> cmd_remove(const CommandContext &ctx) {
     EntityId target_item_id = INVALID_ENTITY_ID;
 
     for (const auto &obj : equipped_items) {
-        if (obj && obj->name().find(ctx.arg(0)) != std::string::npos) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
             target_object = obj;
             target_item_id = obj->id();
             break;
@@ -921,6 +1247,334 @@ Result<CommandResult> cmd_remove(const CommandContext &ctx) {
 
     ctx.send_success(fmt::format("You remove {}.", ctx.format_object_name(target_object)));
     ctx.send_to_room(fmt::format("{} removes {}.", ctx.actor->name(), ctx.format_object_name(target_object)), true);
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
+// Object Interaction Commands
+// =============================================================================
+
+Result<CommandResult> cmd_open(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<object>"); !result) {
+        ctx.send_usage("open <object>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find container object - check inventory first, then room
+    std::shared_ptr<Object> container = nullptr;
+
+    // Check actor's inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_container()) {
+            container = obj;
+            break;
+        }
+    }
+
+    // If not found in inventory, check room
+    if (!container) {
+        auto &room_objects = ctx.room->contents_mutable().objects;
+        for (auto &obj : room_objects) {
+            if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_container()) {
+                container = obj;
+                break;
+            }
+        }
+    }
+
+    if (!container) {
+        ctx.send_error(fmt::format("You don't see a '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if it's a container
+    if (!container->is_container()) {
+        ctx.send_error(fmt::format("You can't open {}.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Get container info
+    const auto &container_info = container->container_info();
+
+    // Check if it can be opened
+    if (!container_info.closeable) {
+        ctx.send_error(fmt::format("{} is not something that can be opened.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Check if already open
+    if (!container_info.closed) {
+        ctx.send_error(fmt::format("{} is already open.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Check if locked
+    if (container_info.lockable && container_info.locked) {
+        ctx.send_error(fmt::format("{} is locked.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Open it - modify the container state
+    auto &mutable_info = const_cast<ContainerInfo &>(container_info);
+    mutable_info.closed = false;
+
+    ctx.send_success(fmt::format("You open {}.", ctx.format_object_name(container)));
+    ctx.send_to_room(fmt::format("{} opens {}.", ctx.actor->name(), ctx.format_object_name(container)), true);
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_close(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<object>"); !result) {
+        ctx.send_usage("close <object>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find container object - check inventory first, then room
+    std::shared_ptr<Object> container = nullptr;
+
+    // Check actor's inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_container()) {
+            container = obj;
+            break;
+        }
+    }
+
+    // If not found in inventory, check room
+    if (!container) {
+        auto &room_objects = ctx.room->contents_mutable().objects;
+        for (auto &obj : room_objects) {
+            if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_container()) {
+                container = obj;
+                break;
+            }
+        }
+    }
+
+    if (!container) {
+        ctx.send_error(fmt::format("You don't see a '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if it's a container
+    if (!container->is_container()) {
+        ctx.send_error(fmt::format("You can't close {}.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Get container info
+    const auto &container_info = container->container_info();
+
+    // Check if it can be closed
+    if (!container_info.closeable) {
+        ctx.send_error(fmt::format("{} is not something that can be closed.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Check if already closed
+    if (container_info.closed) {
+        ctx.send_error(fmt::format("{} is already closed.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Close it - modify the container state
+    auto &mutable_info = const_cast<ContainerInfo &>(container_info);
+    mutable_info.closed = true;
+
+    ctx.send_success(fmt::format("You close {}.", ctx.format_object_name(container)));
+    ctx.send_to_room(fmt::format("{} closes {}.", ctx.actor->name(), ctx.format_object_name(container)), true);
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_lock(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<object>"); !result) {
+        ctx.send_usage("lock <object>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find container object - check inventory first, then room
+    std::shared_ptr<Object> container = nullptr;
+
+    // Check actor's inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_container()) {
+            container = obj;
+            break;
+        }
+    }
+
+    // If not found in inventory, check room
+    if (!container) {
+        auto &room_objects = ctx.room->contents_mutable().objects;
+        for (auto &obj : room_objects) {
+            if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_container()) {
+                container = obj;
+                break;
+            }
+        }
+    }
+
+    if (!container) {
+        ctx.send_error(fmt::format("You don't see a '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if it's a container
+    if (!container->is_container()) {
+        ctx.send_error(fmt::format("You can't lock {}.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Get container info
+    const auto &container_info = container->container_info();
+
+    // Check if it can be locked
+    if (!container_info.lockable) {
+        ctx.send_error(fmt::format("{} doesn't have a lock.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Check if already locked
+    if (container_info.locked) {
+        ctx.send_error(fmt::format("{} is already locked.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Check if closed (must be closed to lock)
+    if (!container_info.closed) {
+        ctx.send_error(fmt::format("You must close {} first.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Check for key requirement if the container has a key_id
+    if (container_info.key_id.is_valid()) {
+        // Look for the key in the actor's inventory
+        bool has_key = false;
+        auto inventory_items = ctx.actor->inventory().get_all_items();
+        for (const auto &item : inventory_items) {
+            if (item && item->id() == container_info.key_id && item->type() == ObjectType::Key) {
+                has_key = true;
+                break;
+            }
+        }
+
+        if (!has_key) {
+            ctx.send_error(fmt::format("You don't have the key for {}.", ctx.format_object_name(container)));
+            return CommandResult::InvalidState;
+        }
+    }
+
+    // Lock it - modify the container state
+    auto &mutable_info = const_cast<ContainerInfo &>(container_info);
+    mutable_info.locked = true;
+
+    ctx.send_success(fmt::format("You lock {}.", ctx.format_object_name(container)));
+    ctx.send_to_room(fmt::format("{} locks {}.", ctx.actor->name(), ctx.format_object_name(container)), true);
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_unlock(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<object>"); !result) {
+        ctx.send_usage("unlock <object>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find container object - check inventory first, then room
+    std::shared_ptr<Object> container = nullptr;
+
+    // Check actor's inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_container()) {
+            container = obj;
+            break;
+        }
+    }
+
+    // If not found in inventory, check room
+    if (!container) {
+        auto &room_objects = ctx.room->contents_mutable().objects;
+        for (auto &obj : room_objects) {
+            if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_container()) {
+                container = obj;
+                break;
+            }
+        }
+    }
+
+    if (!container) {
+        ctx.send_error(fmt::format("You don't see a '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if it's a container
+    if (!container->is_container()) {
+        ctx.send_error(fmt::format("You can't unlock {}.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Get container info
+    const auto &container_info = container->container_info();
+
+    // Check if it can be locked/unlocked
+    if (!container_info.lockable) {
+        ctx.send_error(fmt::format("{} doesn't have a lock.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Check if already unlocked
+    if (!container_info.locked) {
+        ctx.send_error(fmt::format("{} is already unlocked.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
+
+    // Check for key requirement if the container has a key_id
+    if (container_info.key_id.is_valid()) {
+        // Look for the key in the actor's inventory
+        bool has_key = false;
+        auto inventory_items = ctx.actor->inventory().get_all_items();
+        for (const auto &item : inventory_items) {
+            if (item && item->id() == container_info.key_id && item->type() == ObjectType::Key) {
+                has_key = true;
+                break;
+            }
+        }
+
+        if (!has_key) {
+            ctx.send_error(fmt::format("You don't have the key for {}.", ctx.format_object_name(container)));
+            return CommandResult::InvalidState;
+        }
+    }
+
+    // Unlock it - modify the container state
+    auto &mutable_info = const_cast<ContainerInfo &>(container_info);
+    mutable_info.locked = false;
+
+    ctx.send_success(fmt::format("You unlock {}.", ctx.format_object_name(container)));
+    ctx.send_to_room(fmt::format("{} unlocks {}.", ctx.actor->name(), ctx.format_object_name(container)), true);
 
     return CommandResult::Success;
 }
@@ -1388,7 +2042,7 @@ Result<CommandResult> cmd_save_zone(const CommandContext &ctx) {
 
     // Determine zone file path (same pattern as reload_zone uses)
     std::string filename = fmt::format("lib/world/{}.json", zone_id.value());
-    
+
     auto result = zone->save_to_file(filename);
     if (!result) {
         ctx.send_error(fmt::format("Failed to save zone {} to {}: {}", zone_id, filename, result.error().message));
@@ -1401,7 +2055,7 @@ Result<CommandResult> cmd_save_zone(const CommandContext &ctx) {
 
 Result<CommandResult> cmd_reload_all_zones(const CommandContext &ctx) {
     ctx.send("Reloading all zones from disk...");
-    
+
     auto result = WorldManager::instance().reload_all_zones();
     if (!result) {
         ctx.send_error(fmt::format("Failed to reload all zones: {}", result.error().message));
@@ -1422,7 +2076,7 @@ Result<CommandResult> cmd_toggle_file_watching(const CommandContext &ctx) {
 
     std::string action{ctx.arg(0)};
     bool enable;
-    
+
     if (action == "on" || action == "enable" || action == "true" || action == "1") {
         enable = true;
     } else if (action == "off" || action == "disable" || action == "false" || action == "0") {
@@ -1484,9 +2138,22 @@ Result<CommandResult> cmd_kill(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
+    // Check if actor is dead (including ghost form)
+    if (!ctx.actor->is_alive()) {
+        if (ctx.actor->position() == Position::Ghost) {
+            ctx.send("You are a ghost and cannot engage in combat! Use 'release' to return to the living.");
+        } else {
+            ctx.send("You can't attack while you're dead!");
+        }
+        return CommandResult::InvalidState;
+    }
+
     // Start combat
     ctx.actor->set_position(Position::Fighting);
     target->set_position(Position::Fighting);
+
+    // Add to combat manager for ongoing combat rounds
+    FieryMUD::CombatManager::start_combat(ctx.actor, target);
 
     ctx.send(fmt::format("You attack {}!", target->name()));
     ctx.send_to_room(fmt::format("{} attacks {}!", ctx.actor->name(), target->name()), true);
@@ -1538,8 +2205,8 @@ Result<CommandResult> cmd_flee(const CommandContext &ctx) {
     std::uniform_int_distribution<size_t> exit_choice(0, exits.size() - 1);
     Direction flee_direction = exits[exit_choice(gen)];
 
-    // Stop fighting
-    ctx.actor->set_position(Position::Standing);
+    // End combat through combat manager
+    FieryMUD::CombatManager::end_combat(ctx.actor);
 
     ctx.send("You flee from combat!");
     ctx.send_to_room(fmt::format("{} flees from combat!", ctx.actor->name()), true);
@@ -1552,6 +2219,101 @@ Result<CommandResult> cmd_flee(const CommandContext &ctx) {
     }
 
     return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_release(const CommandContext &ctx) {
+    // Only ghosts can use the release command
+    if (ctx.actor->position() != Position::Ghost) {
+        ctx.send_error("You are not dead! The 'release' command is only for ghosts.");
+        return CommandResult::InvalidState;
+    }
+
+    // Create a corpse with the player's items in their current location
+    auto current_room = ctx.actor->current_room();
+    if (current_room) {
+        create_player_corpse(ctx.actor, current_room);
+        ctx.send_to_room(fmt::format("The ghost of {} fades away, leaving behind a corpse.", ctx.actor->name()), true);
+    }
+
+    // Move player to starting room
+    auto world_manager = &WorldManager::instance();
+    auto start_room_id = world_manager->get_start_room();
+    auto start_room = world_manager->get_room(start_room_id);
+
+    if (!start_room) {
+        ctx.send_error("Error: Could not find starting room! Contact an administrator.");
+        Log::error("Failed to find starting room for {}: {}", ctx.actor->name(), start_room_id);
+        return CommandResult::SystemError;
+    }
+
+    // Move the player to starting room and restore to living
+    auto move_result = ctx.actor->move_to(start_room);
+    if (!move_result) {
+        ctx.send_error("Error: Could not move to starting room! Contact an administrator.");
+        Log::error("Failed to move {} to starting room {}: {}", ctx.actor->name(), start_room_id,
+                   move_result.error().message);
+        return CommandResult::SystemError;
+    }
+    ctx.actor->set_position(Position::Standing);
+
+    // Reset player's HP to full (they get a new body)
+    auto &stats = ctx.actor->stats();
+    stats.hit_points = stats.max_hit_points;
+
+    ctx.send("You feel yourself drawn back to the mortal realm in a new body...");
+    ctx.send("You have been returned to life!");
+    ctx.send_to_room(fmt::format("{} materializes out of thin air!", ctx.actor->name()), true);
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
+// Death Helper Functions
+// =============================================================================
+
+void create_player_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> room) {
+    // Create a unique ID for the corpse (using player ID + offset for corpses)
+    EntityId corpse_id{actor->id().value() + 100000}; // Add offset to avoid conflicts
+
+    // Create corpse object
+    std::string corpse_name = fmt::format("the corpse of {}", actor->name());
+    auto corpse_result = Object::create(corpse_id, corpse_name, ObjectType::Corpse);
+    if (!corpse_result) {
+        Log::error("Failed to create corpse for {}: {}", actor->name(), corpse_result.error().message);
+        return;
+    }
+
+    auto corpse = std::shared_ptr<Object>(corpse_result.value().release());
+
+    // Set corpse description
+    corpse->set_description(fmt::format("The lifeless body of {} lies here, still and cold.", actor->name()));
+
+    // Transfer all equipment to the corpse
+    auto equipped_items = actor->equipment().get_all_equipped();
+    for (auto &item : equipped_items) {
+        if (item) {
+            // Remove from player equipment and add to corpse
+            actor->equipment().unequip_item(item->id());
+            // TODO: Add items to corpse container (need Container class)
+            Log::info("Transferred equipped item '{}' to {}'s corpse", item->name(), actor->name());
+        }
+    }
+
+    // Transfer all inventory to the corpse
+    auto inventory_items = actor->inventory().get_all_items();
+    for (auto &item : inventory_items) {
+        if (item) {
+            // Remove from player inventory and add to corpse
+            actor->inventory().remove_item(item->id());
+            // TODO: Add items to corpse container (need Container class)
+            Log::info("Transferred inventory item '{}' to {}'s corpse", item->name(), actor->name());
+        }
+    }
+
+    // Add corpse to the room
+    room->add_object(corpse);
+
+    Log::info("Created corpse for {} in room {}", actor->name(), room->id().value());
 }
 
 // =============================================================================
@@ -1567,16 +2329,16 @@ Result<CommandResult> perform_attack(const CommandContext &ctx, std::shared_ptr<
 
     // Use the modern combat system
     FieryMUD::CombatResult result = FieryMUD::CombatSystem::perform_attack(ctx.actor, target);
-    
+
     // Send messages from the combat result
     if (!result.attacker_message.empty()) {
         ctx.send(result.attacker_message);
     }
-    
+
     if (!result.target_message.empty()) {
         ctx.send_to_actor(target, result.target_message);
     }
-    
+
     if (!result.room_message.empty()) {
         ctx.send_to_room(result.room_message, true);
     }
@@ -1666,8 +2428,64 @@ std::string format_object_description(std::shared_ptr<Object> obj, std::shared_p
     desc << fmt::format("{}\n", obj->short_description());
     desc << fmt::format("{}\n", obj->description());
 
-    // Add object-specific details
-    // TODO: Add wear flags, weight, value, etc.
+    // Add object-specific details based on type
+    if (obj->is_container()) {
+        const auto &container_info = obj->container_info();
+        if (container_info.closeable) {
+            desc << fmt::format("It appears to be {}.\n", container_info.closed ? "closed" : "open");
+            if (container_info.lockable) {
+                desc << fmt::format("It is {}.\n", container_info.locked ? "locked" : "unlocked");
+            }
+        }
+        // Show capacity if not full/empty and container is open
+        if (!container_info.closed) {
+            if (container_info.capacity > 0) {
+                desc << fmt::format("It can hold {} items.\n", container_info.capacity);
+            }
+        }
+    }
+
+    if (obj->is_weapon()) {
+        const auto &damage = obj->damage_profile();
+        desc << fmt::format("Weapon damage: {}\n", damage.to_dice_string());
+    }
+
+    if (obj->is_armor()) {
+        desc << fmt::format("Armor class: {}\n", obj->armor_class());
+    }
+
+    // Show condition and quality
+    if (obj->condition() < 100) {
+        desc << fmt::format("Condition: {} ({})\n", obj->condition(), obj->quality_description());
+    }
+
+    // Show weight and value for examination
+    desc << fmt::format("It weighs {} pounds", obj->weight());
+    if (obj->value() > 0) {
+        desc << fmt::format(" and is worth {} gold coins", obj->value());
+    }
+    desc << ".\n";
+
+    // Show extra descriptions available (if any exist)
+    const auto &extras = obj->get_all_extra_descriptions();
+    if (!extras.empty()) {
+        desc << "\nYou notice some details you could examine more closely: ";
+        bool first = true;
+        for (const auto &extra : extras) {
+            if (!first)
+                desc << ", ";
+            // Format the keywords vector as a string
+            bool first_keyword = true;
+            for (const auto &keyword : extra.keywords) {
+                if (!first_keyword)
+                    desc << " ";
+                desc << keyword;
+                first_keyword = false;
+            }
+            first = false;
+        }
+        desc << "\n";
+    }
 
     return desc.str();
 }
@@ -1781,6 +2599,19 @@ bool can_move_direction(std::shared_ptr<Actor> actor, Direction dir, std::string
         failure_reason = "There's no exit in that direction";
         return false;
     }
+
+    // Check if actor is in combat
+    if (actor->position() == Position::Fighting) {
+        failure_reason = "You can't leave while fighting! Use 'flee' to escape combat";
+        return false;
+    }
+
+    // Check if actor is dead (but allow ghosts limited movement)
+    if (actor->position() == Position::Dead) {
+        failure_reason = "You can't move while you're dead!";
+        return false;
+    }
+    // Ghosts can move but with restrictions (this will be handled elsewhere)
 
     // TODO: Add more movement checks (doors, etc.)
 

@@ -159,20 +159,12 @@ void CommandContext::send_to_all(std::string_view message) const {
 std::shared_ptr<Actor> CommandContext::find_actor_target(std::string_view name) const {
     if (!room) return nullptr;
     
-    // Search for actor by name in current room
+    // Search for actor by keyword in current room
     const auto& actors = room->contents().actors;
     for (const auto& room_actor : actors) {
         if (!room_actor || room_actor == actor) continue; // Skip self
         
-        // Check if name matches (case insensitive substring match)
-        std::string actor_name{room_actor->name()};
-        std::string search_name{name};
-        
-        // Convert both to lowercase for comparison
-        std::transform(actor_name.begin(), actor_name.end(), actor_name.begin(), ::tolower);
-        std::transform(search_name.begin(), search_name.end(), search_name.begin(), ::tolower);
-        
-        if (actor_name.find(search_name) != std::string::npos) {
+        if (room_actor->matches_keyword(name)) {
             return room_actor;
         }
     }
@@ -181,11 +173,8 @@ std::shared_ptr<Actor> CommandContext::find_actor_target(std::string_view name) 
 }
 
 std::shared_ptr<Actor> CommandContext::find_actor_global(std::string_view name) const {
-    // Search for actor by name globally across all rooms
+    // Search for actor by keyword globally across all rooms
     auto& world = WorldManager::instance();
-    
-    std::string search_name{name};
-    std::transform(search_name.begin(), search_name.end(), search_name.begin(), ::tolower);
     
     // Get all rooms and search through their actors
     for (size_t zone_id = 0; zone_id < 1000; ++zone_id) { // Basic range check
@@ -200,10 +189,7 @@ std::shared_ptr<Actor> CommandContext::find_actor_global(std::string_view name) 
             for (const auto& room_actor : actors) {
                 if (!room_actor || room_actor == actor) continue; // Skip self
                 
-                std::string actor_name{room_actor->name()};
-                std::transform(actor_name.begin(), actor_name.end(), actor_name.begin(), ::tolower);
-                
-                if (actor_name.find(search_name) != std::string::npos) {
+                if (room_actor->matches_keyword(name)) {
                     return room_actor;
                 }
             }
@@ -216,32 +202,23 @@ std::shared_ptr<Actor> CommandContext::find_actor_global(std::string_view name) 
 std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name) const {
     if (!actor) return nullptr;
     
-    std::string search_name{name};
-    std::transform(search_name.begin(), search_name.end(), search_name.begin(), ::tolower);
-    
-    // First search in actor's inventory
+    // First search in actor's inventory using proper keyword matching
     auto inventory_items = actor->inventory().get_all_items();
     for (const auto& obj : inventory_items) {
         if (!obj) continue;
         
-        std::string obj_name{obj->name()};
-        std::transform(obj_name.begin(), obj_name.end(), obj_name.begin(), ::tolower);
-        
-        if (obj_name.find(search_name) != std::string::npos) {
+        if (obj->matches_keyword(name)) {
             return obj;
         }
     }
     
-    // Then search in current room
+    // Then search in current room using proper keyword matching  
     if (room) {
         const auto& room_objects = room->contents().objects;
         for (const auto& obj : room_objects) {
             if (!obj) continue;
             
-            std::string obj_name{obj->name()};
-            std::transform(obj_name.begin(), obj_name.end(), obj_name.begin(), ::tolower);
-            
-            if (obj_name.find(search_name) != std::string::npos) {
+            if (obj->matches_keyword(name)) {
                 return obj;
             }
         }
@@ -324,8 +301,8 @@ TargetInfo CommandContext::resolve_target(std::string_view name) const {
 std::string CommandContext::format_object_name(std::shared_ptr<Object> obj) const {
     if (!obj) return "nothing";
     
-    // TODO: Implement proper object name formatting with articles
-    return std::string{obj->name()};
+    // Use short_description for user-facing display, not name (which is for keywords)
+    return std::string{obj->short_description()};
 }
 
 Result<void> CommandContext::move_actor_direction(Direction dir) const {

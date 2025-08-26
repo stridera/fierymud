@@ -124,14 +124,16 @@ Result<std::unique_ptr<Entity>> Entity::from_json(const nlohmann::json& json) {
             return std::unexpected(Errors::ParseError("Entity JSON missing 'id' field"));
         }
         
-        // Handle name field mapping: name_list -> name
+        // Handle name field mapping: keywords -> name -> name_list (legacy)
         std::string name;
         if (json.contains("name")) {
             name = json["name"].get<std::string>();
+        } else if (json.contains("keywords") && json["keywords"].is_string()) {
+            name = json["keywords"].get<std::string>();
         } else if (json.contains("name_list")) {
             name = json["name_list"].get<std::string>();
         } else {
-            return std::unexpected(Errors::ParseError("Entity JSON missing 'name' or 'name_list' field"));
+            return std::unexpected(Errors::ParseError("Entity JSON missing 'name', 'keywords', or 'name_list' field"));
         }
         
         // Handle ID conversion
@@ -157,16 +159,26 @@ Result<std::unique_ptr<Entity>> Entity::from_json(const nlohmann::json& json) {
             entity->set_short_description(json["short_description"].get<std::string>());
         }
         
-        // Parse keywords from array or space-separated name_list
+        // Parse keywords from array or space-separated string
+        // Priority: keywords (array) -> keywords (string) -> name_list (legacy)
         std::vector<std::string> keywords;
         if (json.contains("keywords") && json["keywords"].is_array()) {
+            // Modern array format
             for (const auto& keyword : json["keywords"]) {
                 if (keyword.is_string()) {
                     keywords.push_back(keyword.get<std::string>());
                 }
             }
+        } else if (json.contains("keywords") && json["keywords"].is_string()) {
+            // Modern string format (space-separated)
+            std::string keyword_string = json["keywords"].get<std::string>();
+            std::istringstream iss(keyword_string);
+            std::string keyword;
+            while (iss >> keyword) {
+                keywords.push_back(keyword);
+            }
         } else if (json.contains("name_list") && json["name_list"].is_string()) {
-            // Parse space-separated keywords from name_list
+            // Legacy format (still supported for compatibility)
             std::string name_list = json["name_list"].get<std::string>();
             std::istringstream iss(name_list);
             std::string keyword;
@@ -413,16 +425,30 @@ namespace EntityUtils {
     }
     
     std::string format_entity_name(std::string_view name, std::string_view short_desc, 
-                                 bool with_article, bool definite_article) {
-        std::string display_name = short_desc.empty() ? std::string(name) : std::string(short_desc);
+                             bool with_article, bool definite_article) {
+    std::string display_name = short_desc.empty() ? std::string(name) : std::string(short_desc);
+    
+    if (with_article) {
+        // Check if display_name already starts with an article
+        std::string lower_display = display_name;
+        std::transform(lower_display.begin(), lower_display.end(), lower_display.begin(), ::tolower);
         
-        if (with_article) {
-            std::string_view article = EntityUtils::get_article(display_name, definite_article);
-            return fmt::format("{} {}", article, display_name);
+        // Common articles and demonstratives
+        if (lower_display.starts_with("a ") || 
+            lower_display.starts_with("an ") || 
+            lower_display.starts_with("the ") ||
+            lower_display.starts_with("some ") ||
+            lower_display.starts_with("this ") ||
+            lower_display.starts_with("that ")) {
+            return display_name; // Already has article, don't add another
         }
         
-        return display_name;
+        std::string_view article = EntityUtils::get_article(display_name, definite_article);
+        return fmt::format("{} {}", article, display_name);
     }
+    
+    return display_name;
+}
 }
 
 // JSON Support Functions

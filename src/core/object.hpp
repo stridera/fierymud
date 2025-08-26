@@ -104,6 +104,20 @@ struct DamageProfile {
     std::string to_dice_string() const;
 };
 
+/** Extra description for detailed object examination */
+struct ExtraDescription {
+    std::vector<std::string> keywords;  // Keywords that trigger this description
+    std::string description;            // The detailed description text
+    
+    /** Check if any keyword matches */
+    bool matches_keyword(std::string_view keyword) const {
+        for (const auto& kw : keywords) {
+            if (kw == keyword) return true;
+        }
+        return false;
+    }
+};
+
 /** Container properties */
 struct ContainerInfo {
     int capacity = 0;           // Maximum items that can be stored
@@ -272,6 +286,11 @@ public:
     /** Get quality description based on condition */
     std::string_view quality_description() const;
     
+    /** Extra description management */
+    void add_extra_description(const ExtraDescription& extra_desc);
+    std::optional<std::string_view> get_extra_description(std::string_view keyword) const;
+    const std::vector<ExtraDescription>& get_all_extra_descriptions() const { return extra_descriptions_; }
+    
 protected:
     /** Constructor for derived classes */
     Object(EntityId id, std::string_view name, ObjectType type);
@@ -290,6 +309,7 @@ private:
     DamageProfile damage_profile_;
     ContainerInfo container_info_;
     LightInfo light_info_;
+    std::vector<ExtraDescription> extra_descriptions_;
 };
 
 /** Specialized object types */
@@ -350,7 +370,17 @@ public:
     int current_capacity() const { return current_items_; }
     int current_weight() const { return current_weight_; }
     
-    /** Update capacity tracking */
+    /** Container inventory management */
+    Result<void> add_item(std::shared_ptr<Object> item);
+    std::shared_ptr<Object> remove_item(EntityId item_id);
+    bool remove_item(const std::shared_ptr<Object>& item);
+    std::shared_ptr<Object> find_item(EntityId item_id) const;
+    std::vector<std::shared_ptr<Object>> find_items_by_keyword(std::string_view keyword) const;
+    std::span<const std::shared_ptr<Object>> get_contents() const;
+    size_t contents_count() const { return contents_.size(); }
+    bool is_empty() const { return contents_.empty(); }
+    
+    /** Update capacity tracking - deprecated, use add_item/remove_item */
     void add_item_tracking(int weight = 1) { 
         current_items_++;
         current_weight_ += weight;
@@ -365,6 +395,7 @@ protected:
     Container(EntityId id, std::string_view name, int capacity);
     
 private:
+    std::vector<std::shared_ptr<Object>> contents_;
     int current_items_ = 0;
     int current_weight_ = 0;
 };

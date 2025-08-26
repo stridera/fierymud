@@ -20,46 +20,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Success Metric
 The only currency that matters: Does this advance or halt productive thinking? If we're heading down an unproductive path, point it out directly.
 
-## Safety Rules
-
-### CRITICAL RULES - NEVER VIOLATE THESE:
-
-#### 1. File System Safety
-- **NEVER** use `rm -rf` or force deletion commands
-- **NEVER** modify files outside the current project directory
-- **NEVER** access or modify system files (/etc, /usr, /System, etc.)
-- **ALWAYS** create backups before modifying important files
-
-#### 2. Git Safety
-- **NEVER** force push to main/master branches
-- **NEVER** rewrite published git history
-- **NEVER** delete remote branches without explicit permission
-- **ALWAYS** create feature branches for changes
-- **ALWAYS** use descriptive commit messages
-
-#### 3. Security Rules
-- **NEVER** commit passwords, API keys, or secrets
-- **NEVER** expose sensitive information in logs
-- **NEVER** disable security features
-- **NEVER** run commands with sudo/admin privileges
-- **ALWAYS** use environment variables for sensitive data
-
-#### 4. Network Safety
-- **NEVER** perform port scanning or network attacks
-- **NEVER** access unauthorized external services
-- **NEVER** download executables from untrusted sources
-- **ALWAYS** verify HTTPS certificates
-
-#### 5. Resource Management
-- **NEVER** create infinite loops or resource-intensive operations
-- **NEVER** consume excessive disk space (>1GB)
-- **NEVER** spawn more than 10 concurrent processes
-- **ALWAYS** clean up temporary files
-
 ### BEST PRACTICES:
 
 #### Development Workflow
-1. Always run tests before committing
+1. Always run tests before committing.  They should all be passing.
 2. Use semantic versioning for releases
 3. Follow existing code style and conventions
 4. Document all significant changes
@@ -117,13 +81,6 @@ The only currency that matters: Does this advance or halt productive thinking? I
 6. Making external API calls without explicit permission
 7. Modifying production configurations
 8. Deleting user data or backups
-
-### EXECUTION LIMITS:
-
-- Maximum execution time: 1 hour per session
-- Maximum file size for creation: 10MB
-- Maximum number of files to modify: 100
-- Maximum commits per session: 20
 
 Remember: When in doubt, choose the safer option or log the concern for human review.
 
@@ -293,9 +250,9 @@ In-game content editing system:
 
 ### File Organization
 - `src/` - All source code
-- `lib/` - Runtime data (player files, world data, configuration)
-- `lib/world/` - Zone files in JSON format
-- `lib/players/` - Player save files
+- `data/`, `data_prod` - Runtime data (player files, world data, configuration)
+- `data/world/` - Zone files in JSON format
+- `data/players/` - Player save files
 - `scripts/` - Python utilities for data conversion
 
 ## Development Guidelines

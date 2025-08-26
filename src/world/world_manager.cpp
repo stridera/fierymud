@@ -1377,6 +1377,9 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
     auto new_mobile = std::move(new_mobile_result.value());
     
     // Copy stats and properties from prototype
+    new_mobile->set_keywords(prototype->keywords());
+    new_mobile->set_short_description(prototype->short_description());
+    new_mobile->set_description(prototype->description());
     new_mobile->stats() = prototype->stats();
     new_mobile->set_aggressive(prototype->is_aggressive());
     new_mobile->set_aggression_level(prototype->aggression_level());
@@ -1420,6 +1423,8 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
     auto new_object = std::move(new_object_result.value());
     
     // Copy properties from prototype
+    new_object->set_short_description(prototype->short_description());
+    new_object->set_description(prototype->description());
     new_object->set_weight(prototype->weight());
     new_object->set_value(prototype->value());
     new_object->set_equip_slot(prototype->equip_slot());

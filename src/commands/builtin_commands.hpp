@@ -67,6 +67,10 @@ namespace BuiltinCommands {
     Result<CommandResult> cmd_southwest(const CommandContext& ctx);
     Result<CommandResult> cmd_exits(const CommandContext& ctx);
     Result<CommandResult> cmd_flee(const CommandContext& ctx);
+    Result<CommandResult> cmd_release(const CommandContext& ctx);
+    
+    // Death Helper Functions
+    void create_player_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> room);
     
     // Combat Commands
     Result<CommandResult> cmd_kill(const CommandContext& ctx);
@@ -84,6 +88,12 @@ namespace BuiltinCommands {
     Result<CommandResult> cmd_hold(const CommandContext& ctx);
     Result<CommandResult> cmd_eat(const CommandContext& ctx);
     Result<CommandResult> cmd_drink(const CommandContext& ctx);
+    
+    // Object Interaction Commands
+    Result<CommandResult> cmd_open(const CommandContext& ctx);
+    Result<CommandResult> cmd_close(const CommandContext& ctx);
+    Result<CommandResult> cmd_lock(const CommandContext& ctx);
+    Result<CommandResult> cmd_unlock(const CommandContext& ctx);
     
     // System Commands
     Result<CommandResult> cmd_quit(const CommandContext& ctx);

@@ -1,7 +1,6 @@
 legacy/
 *.bak/
 bin/
-log/
 cmake-build-debug/*
 .vscode/
 build/
@@ -17,4 +16,8 @@ __pycache__
 data/
 data_prod/
 data_test/
+
+#logs
+log/
+logs/
 *.log

@@ -50,7 +50,10 @@ public:
     
     /** Get short description (for lists, inventory, etc.) */
     std::string_view short_description() const { 
-        return short_description_.empty() ? name_ : short_description_;
+        if (short_description_.empty()) {
+            return name_;
+        }
+        return short_description_;
     }
     
     /** Check if entity matches a given keyword */

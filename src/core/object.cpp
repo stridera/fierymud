@@ -50,6 +50,12 @@ Result<std::unique_ptr<Object>> Object::create(EntityId id, std::string_view nam
     
     auto object = std::unique_ptr<Object>(new Object(id, name, type));
     
+    // Parse keywords from name (space-separated words)
+    auto keywords = EntityUtils::parse_keyword_list(name);
+    if (!keywords.empty()) {
+        object->set_keywords(keywords);
+    }
+    
     TRY(object->validate());
     
     return object;
@@ -148,21 +154,10 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
         
         auto object = std::unique_ptr<Object>(new Object(base_entity->id(), base_entity->name(), type));
         
-        // Copy base entity properties - use JSON directly for short_description to preserve exact value
+        // Copy all base entity properties
         object->set_keywords(base_entity->keywords());
         object->set_description(base_entity->description());
-        
-        // Set short_description directly from JSON if present, otherwise from base entity
-        if (json.contains("short_description")) {
-            std::string short_desc = json["short_description"].get<std::string>();
-            fmt::print("DEBUG: Setting object short_description from JSON: '{}' (was: '{}')\n", 
-                      short_desc, object->short_description());
-            object->set_short_description(short_desc);
-        } else {
-            fmt::print("DEBUG: Setting object short_description from base_entity: '{}'\n", 
-                      base_entity->short_description());
-            object->set_short_description(base_entity->short_description());
-        }
+        object->set_short_description(base_entity->short_description());
         
         // Parse object-specific properties with field mapping
         if (json.contains("weight")) {
@@ -484,6 +479,109 @@ bool Container::can_store_item(const Object& item) const {
     }
     
     return true;
+}
+
+Result<void> Container::add_item(std::shared_ptr<Object> item) {
+    if (!item) {
+        return std::unexpected(Errors::InvalidArgument("item", "cannot be null"));
+    }
+    
+    if (!can_store_item(*item)) {
+        return std::unexpected(Errors::InvalidState("container is full"));
+    }
+    
+    contents_.push_back(item);
+    current_items_ = contents_.size();
+    
+    // Recalculate current weight
+    current_weight_ = 0;
+    for (const auto& obj : contents_) {
+        if (obj) {
+            current_weight_ += obj->weight();
+        }
+    }
+    
+    return Success();
+}
+
+std::shared_ptr<Object> Container::remove_item(EntityId item_id) {
+    for (auto it = contents_.begin(); it != contents_.end(); ++it) {
+        if (*it && (*it)->id() == item_id) {
+            auto item = *it;
+            contents_.erase(it);
+            current_items_ = contents_.size();
+            
+            // Recalculate current weight
+            current_weight_ = 0;
+            for (const auto& obj : contents_) {
+                if (obj) {
+                    current_weight_ += obj->weight();
+                }
+            }
+            
+            return item;
+        }
+    }
+    return nullptr;
+}
+
+bool Container::remove_item(const std::shared_ptr<Object>& item) {
+    if (!item) return false;
+    
+    auto it = std::find(contents_.begin(), contents_.end(), item);
+    if (it != contents_.end()) {
+        contents_.erase(it);
+        current_items_ = contents_.size();
+        
+        // Recalculate current weight
+        current_weight_ = 0;
+        for (const auto& obj : contents_) {
+            if (obj) {
+                current_weight_ += obj->weight();
+            }
+        }
+        
+        return true;
+    }
+    return false;
+}
+
+std::shared_ptr<Object> Container::find_item(EntityId item_id) const {
+    for (const auto& item : contents_) {
+        if (item && item->id() == item_id) {
+            return item;
+        }
+    }
+    return nullptr;
+}
+
+std::vector<std::shared_ptr<Object>> Container::find_items_by_keyword(std::string_view keyword) const {
+    std::vector<std::shared_ptr<Object>> results;
+    for (const auto& item : contents_) {
+        if (item && item->matches_keyword(keyword)) {
+            results.push_back(item);
+        }
+    }
+    return results;
+}
+
+std::span<const std::shared_ptr<Object>> Container::get_contents() const {
+    return contents_;
+}
+
+// Object extra description implementation
+
+void Object::add_extra_description(const ExtraDescription& extra_desc) {
+    extra_descriptions_.push_back(extra_desc);
+}
+
+std::optional<std::string_view> Object::get_extra_description(std::string_view keyword) const {
+    for (const auto& extra : extra_descriptions_) {
+        if (extra.matches_keyword(keyword)) {
+            return extra.description;
+        }
+    }
+    return std::nullopt;
 }
 
 // ObjectUtils Implementation

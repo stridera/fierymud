@@ -177,6 +177,11 @@ set(TEST_SOURCES
     tests/test_zone_parsing.cpp
     tests/test_world_parsing.cpp
     tests/test_combat_system.cpp
+    tests/test_container_system.cpp
+    tests/test_container_system_simple.cpp
+    tests/test_object_descriptions.cpp
+    tests/test_object_interactions.cpp
+    tests/test_mobile_keywords.cpp
 )
 
 # Main test executable

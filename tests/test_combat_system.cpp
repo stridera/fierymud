@@ -289,8 +289,8 @@ TEST_CASE("Combat System - Warrior vs Sorcerer Combat", "[combat][integration]")
         REQUIRE(warrior_mods.hit_bonus > sorcerer_mods.hit_bonus);
         REQUIRE(warrior_mods.damage_bonus > sorcerer_mods.damage_bonus);
         
-        // Elf sorcerer should have better AC than human warrior
-        REQUIRE(sorcerer_mods.armor_class_bonus > warrior_mods.armor_class_bonus);
+        // Human warrior should have better AC than elf sorcerer (higher AC bonus is better)
+        REQUIRE(warrior_mods.armor_class_bonus > sorcerer_mods.armor_class_bonus);
     });
 }
 

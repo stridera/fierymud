@@ -9,6 +9,8 @@
 #include "../src/commands/command_system.hpp"
 #include "../src/core/logging.hpp"
 #include "../src/world/world_manager.hpp"
+#include "../src/world/room.hpp"
+#include "../src/core/actor.hpp"
 
 #include <iostream>
 #include <thread>
@@ -113,6 +115,23 @@ void MockPlayerConnection::handle_input_by_state(const std::string &input) {
         if (world_server_) {
             auto player = std::make_shared<NetworkedPlayer>(shared_from_this(), input);
             player->initialize();
+            
+            // Special handling for test players that need specific rooms
+            if (input == "WorldTester") {
+                auto& world_manager = WorldManager::instance();
+                auto target_room = world_manager.get_room(EntityId{100});
+                if (target_room) {
+                    // Remove from current room
+                    auto current_room = player->current_room();
+                    if (current_room) {
+                        current_room->remove_actor(player->id());
+                    }
+                    // Move to room 100
+                    player->set_current_room(target_room);
+                    target_room->add_actor(player);
+                }
+            }
+            
             world_server_->set_actor_for_connection(shared_from_this(), player);
             send_message(fmt::format("Welcome, {}!\r\n", input));
             world_server_->process_command(shared_from_this(), "look");
@@ -405,4 +424,32 @@ void UnifiedTestHarness::reset_world_state() {
     // Clear world manager state for clean tests
     auto &world_manager = WorldManager::instance();
     world_manager.clear_state();
+    
+    // Recreate test rooms after clearing state
+    // Create room with ID 1 as primary room for player spawning (first available room)
+    auto default_room_result = Room::create(EntityId{1}, "Test Room");
+    if (default_room_result.has_value()) {
+        auto default_room = std::shared_ptr<Room>(default_room_result.value().release());
+        default_room->set_description("Default test room for player spawning.");
+        default_room->set_short_description("a default test room");
+        world_manager.add_room(default_room);
+    }
+    
+    // Create room with ID 100 (expected by World: Room and Actor Integration test)
+    auto starting_room_result = Room::create(EntityId{100}, "Starting Room");
+    if (starting_room_result.has_value()) {
+        auto starting_room = std::shared_ptr<Room>(starting_room_result.value().release());
+        starting_room->set_description("A test room for integration testing.");
+        starting_room->set_short_description("a test room");
+        
+        // Add a test NPC guard to satisfy the integration test expectations
+        auto guard_result = Mobile::create(EntityId{200}, "test guard", 1);
+        if (guard_result.has_value()) {
+            auto guard = std::shared_ptr<Mobile>(guard_result.value().release());
+            guard->set_current_room(starting_room);
+            starting_room->add_actor(guard);
+        }
+        
+        world_manager.add_room(starting_room);
+    }
 }

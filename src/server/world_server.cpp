@@ -300,6 +300,7 @@ void WorldServer::schedule_heartbeat() {
 }
 
 void WorldServer::schedule_combat_processing() {
+    Log::info("Scheduling combat processing timer (100ms interval)");
     combat_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
     schedule_timer(std::chrono::milliseconds(100), [this]() { perform_combat_processing(); }, combat_timer_);
 }
@@ -314,9 +315,11 @@ void WorldServer::schedule_timer(std::chrono::milliseconds interval, std::functi
     timer->async_wait([this, task, interval, timer](const asio::error_code &ec) {
         if (!ec && running_.load()) {
             // Execute task on world strand
-            task();
-            // Reschedule
-            schedule_timer(interval, task, const_cast<std::shared_ptr<asio::steady_timer> &>(timer));
+            asio::post(world_strand_, [this, task, interval, timer]() {
+                task();
+                // Reschedule
+                schedule_timer(interval, task, const_cast<std::shared_ptr<asio::steady_timer> &>(timer));
+            });
         }
     });
 }
@@ -340,8 +343,8 @@ void WorldServer::perform_heartbeat() {
     auto uptime =
         std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - start_time_).count();
 
-    Log::debug("WorldServer heartbeat - Uptime: {}s, Active connections: {}, Commands processed: {}", uptime,
-               active_connections_.size(), commands_processed_.load());
+    Log::info("WorldServer heartbeat - Uptime: {}s, Active connections: {}, Commands processed: {}", uptime,
+              active_connections_.size(), commands_processed_.load());
 }
 
 void WorldServer::perform_combat_processing() {

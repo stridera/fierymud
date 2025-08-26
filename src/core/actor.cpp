@@ -654,6 +654,12 @@ Result<std::unique_ptr<Mobile>> Mobile::create(EntityId id, std::string_view nam
     
     auto mobile = std::unique_ptr<Mobile>(new Mobile(id, name, level));
     
+    // Parse keywords from name (similar to Object::create)
+    auto keywords = EntityUtils::parse_keyword_list(name);
+    if (!keywords.empty()) {
+        mobile->set_keywords(keywords);
+    }
+    
     TRY(mobile->validate());
     
     return mobile;

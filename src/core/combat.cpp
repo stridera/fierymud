@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <unordered_map>
 #include <fmt/format.h>
+#include <magic_enum/magic_enum.hpp>
 
 namespace FieryMUD {
 
@@ -228,12 +229,16 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
     // Check for death
     if (target_stats.hit_points <= 0) {
         target_stats.hit_points = 0;
-        target->set_position(Position::Dead);
+        target->set_position(Position::Ghost);
+        
+        Log::info("DEATH: {} killed {} - ending combat", attacker->name(), target->name());
         
         // End combat for both participants
         CombatManager::end_combat(attacker);
         CombatManager::end_combat(target);
         attacker->set_position(Position::Standing);
+        
+        Log::info("DEATH: Combat ended");
         
         // Calculate experience gain
         long exp_gain = calculate_experience_gain(*attacker, *target);
@@ -416,7 +421,8 @@ void CombatManager::start_combat(std::shared_ptr<Actor> actor1, std::shared_ptr<
     // Add new combat pair
     active_combats_.emplace_back(actor1, actor2);
     
-    Log::debug("Combat started between {} and {}", actor1->name(), actor2->name());
+    Log::info("Combat started between {} and {} - {} active combats", 
+               actor1->name(), actor2->name(), active_combats_.size());
 }
 
 void CombatManager::end_combat(std::shared_ptr<Actor> actor) {
@@ -428,13 +434,13 @@ void CombatManager::end_combat(std::shared_ptr<Actor> actor) {
             bool involves = combat.involves_actor(*actor);
             if (involves) {
                 // Set opponents back to standing if they're not dead
-                if (combat.actor1 && combat.actor1->position() != Position::Dead) {
+                if (combat.actor1 && combat.actor1->is_alive()) {
                     combat.actor1->set_position(Position::Standing);
                 }
-                if (combat.actor2 && combat.actor2->position() != Position::Dead) {
+                if (combat.actor2 && combat.actor2->is_alive()) {
                     combat.actor2->set_position(Position::Standing);
                 }
-                Log::debug("Ending combat involving {}", actor->name());
+                Log::info("Ending combat involving {}", actor->name());
             }
             return involves;
         });
@@ -449,8 +455,16 @@ void CombatManager::process_combat_rounds() {
     
     for (auto& combat : active_combats_) {
         if (combat.is_ready_for_next_round()) {
+            Log::info("Executing combat round between {} and {}", 
+                      combat.actor1->name(), combat.actor2->name());
             execute_round(combat);
             combat.update_last_round();
+        } else {
+            auto now = std::chrono::steady_clock::now();
+            auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - combat.last_round).count();
+            if (elapsed < 5000) { // Only log for first 5 seconds to avoid spam
+                Log::info("Combat not ready - elapsed: {}ms (need 3000ms)", elapsed);
+            }
         }
     }
 }
@@ -491,18 +505,28 @@ void CombatManager::cleanup_invalid_combats() {
         [](const CombatPair& combat) {
             // Remove if either actor is null, dead, or no longer in fighting position
             bool invalid = !combat.actor1 || !combat.actor2 ||
-                          combat.actor1->position() == Position::Dead ||
-                          combat.actor2->position() == Position::Dead ||
                           (!combat.actor1->is_alive()) ||
                           (!combat.actor2->is_alive());
             
+            // Also remove if actors are no longer in the same room
+            if (!invalid && combat.actor1->current_room() != combat.actor2->current_room()) {
+                invalid = true;
+                Log::debug("Combat ended: actors in different rooms");
+            }
+            
             if (invalid) {
-                Log::debug("Cleaning up invalid combat pair");
+                Log::info("Cleaning up invalid combat pair - actor1: {} (alive: {}, pos: {}), actor2: {} (alive: {}, pos: {})", 
+                         combat.actor1 ? combat.actor1->name() : "null", 
+                         combat.actor1 ? (combat.actor1->is_alive() ? "yes" : "no") : "n/a",
+                         combat.actor1 ? magic_enum::enum_name(combat.actor1->position()) : "n/a",
+                         combat.actor2 ? combat.actor2->name() : "null",
+                         combat.actor2 ? (combat.actor2->is_alive() ? "yes" : "no") : "n/a",
+                         combat.actor2 ? magic_enum::enum_name(combat.actor2->position()) : "n/a");
                 // Set survivors back to standing
-                if (combat.actor1 && combat.actor1->is_alive() && combat.actor1->position() != Position::Dead) {
+                if (combat.actor1 && combat.actor1->is_alive()) {
                     combat.actor1->set_position(Position::Standing);
                 }
-                if (combat.actor2 && combat.actor2->is_alive() && combat.actor2->position() != Position::Dead) {
+                if (combat.actor2 && combat.actor2->is_alive()) {
                     combat.actor2->set_position(Position::Standing);
                 }
             }
@@ -536,12 +560,16 @@ void CombatManager::execute_round(CombatPair& combat_pair) {
         
         // Send messages to room and participants
         if (auto room = first_attacker->current_room()) {
-            // Send messages via the room system if available
-            // For now, just log the combat messages
-            Log::debug("Combat round - {}: {} | {}: {} | Room: {}", 
+            Log::info("Combat round - {}: {} | {}: {} | Room: {}", 
                       first_attacker->name(), result1.attacker_message,
                       first_target->name(), result1.target_message,
                       result1.room_message);
+            
+            // Send messages to the actors
+            first_attacker->send_message(result1.attacker_message + "\r\n");
+            first_target->send_message(result1.target_message + "\r\n");
+            
+            // TODO: Send room message to other people in room
         }
         
         // If target died, combat will be ended by perform_attack
@@ -556,10 +584,16 @@ void CombatManager::execute_round(CombatPair& combat_pair) {
         
         // Send messages to room and participants
         if (auto room = first_target->current_room()) {
-            Log::debug("Combat counter - {}: {} | {}: {} | Room: {}", 
+            Log::info("Combat counter - {}: {} | {}: {} | Room: {}", 
                       first_target->name(), result2.attacker_message,
                       first_attacker->name(), result2.target_message,
                       result2.room_message);
+            
+            // Send messages to the actors
+            first_target->send_message(result2.attacker_message + "\r\n");
+            first_attacker->send_message(result2.target_message + "\r\n");
+            
+            // TODO: Send room message to other people in room
         }
     }
 }

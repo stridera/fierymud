@@ -171,6 +171,7 @@ private:
 /** Actor position in the world */
 enum class Position {
     Dead = 0,           // Character is dead
+    Ghost,              // Character is dead but in ghost form
     Mortally_Wounded,   // Dying but not dead
     Incapacitated,      // Cannot act
     Stunned,            // Briefly unable to act
@@ -258,7 +259,7 @@ public:
     
     /** Combat state */
     bool is_fighting() const { return position_ == Position::Fighting; }
-    bool is_alive() const { return position_ != Position::Dead; }
+    bool is_alive() const { return position_ != Position::Dead && position_ != Position::Ghost; }
     bool can_act() const { 
         return is_alive() && position_ != Position::Incapacitated && 
                position_ != Position::Stunned && position_ != Position::Sleeping;

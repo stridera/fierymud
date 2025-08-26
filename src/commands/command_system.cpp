@@ -604,8 +604,34 @@ Result<CommandContext> CommandSystem::create_context(std::shared_ptr<Actor> acto
 }
 
 bool CommandSystem::check_command_conditions(std::shared_ptr<Actor> actor, const CommandInfo &command) const {
-    // TODO: Implement state-based checks (fighting, sitting, sleeping, etc.)
-    // For now, allow all commands
+    if (!actor) {
+        return false;
+    }
+    
+    // Check if actor is a ghost - ghosts can only look and release
+    if (actor->position() == Position::Ghost) {
+        // Only allow 'look' and 'release' commands for ghosts
+        std::string cmd_name = command.name;
+        std::transform(cmd_name.begin(), cmd_name.end(), cmd_name.begin(), ::tolower);
+        
+        if (cmd_name == "look" || cmd_name == "release") {
+            return true;
+        }
+        
+        // Check aliases too
+        for (const auto& alias : command.aliases) {
+            std::string alias_lower = alias;
+            std::transform(alias_lower.begin(), alias_lower.end(), alias_lower.begin(), ::tolower);
+            if (alias_lower == "l" || alias_lower == "look" || alias_lower == "release") {
+                return true;
+            }
+        }
+        
+        return false;  // Ghosts cannot use any other commands
+    }
+    
+    // TODO: Implement other state-based checks (fighting, sitting, sleeping, etc.)
+    // For living actors, allow all commands for now
     return true;
 }
 
