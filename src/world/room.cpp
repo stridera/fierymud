@@ -146,6 +146,55 @@ Result<ExitInfo> ExitInfo::from_json(const nlohmann::json& json) {
             exit.difficulty = json["difficulty"].get<int>();
         }
         
+        // Parse door object with state field
+        if (json.contains("door") && json["door"].is_object()) {
+            const auto& door_obj = json["door"];
+            exit.has_door = true; // If door object exists, this exit has a door
+            
+            // Parse door state - support both string and array formats
+            if (door_obj.contains("state")) {
+                const auto& state = door_obj["state"];
+                
+                if (state.is_string()) {
+                    // String format: "CLOSED", "LOCKED", etc.
+                    std::string state_str = state.get<std::string>();
+                    if (state_str == "CLOSED") {
+                        exit.is_closed = true;
+                    } else if (state_str == "LOCKED") {
+                        exit.is_locked = true;
+                        exit.is_closed = true; // Locked doors are also closed
+                    }
+                } else if (state.is_array()) {
+                    // Array format: ["CLOSED"], ["LOCKED", "CLOSED"], etc.
+                    for (const auto& state_item : state) {
+                        if (state_item.is_string()) {
+                            std::string state_str = state_item.get<std::string>();
+                            if (state_str == "CLOSED") {
+                                exit.is_closed = true;
+                            } else if (state_str == "LOCKED") {
+                                exit.is_locked = true;
+                                exit.is_closed = true; // Locked doors are also closed
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Also support direct door properties
+            if (door_obj.contains("is_closed")) {
+                exit.is_closed = door_obj["is_closed"].get<bool>();
+            }
+            if (door_obj.contains("is_locked")) {
+                exit.is_locked = door_obj["is_locked"].get<bool>();
+            }
+            if (door_obj.contains("is_hidden")) {
+                exit.is_hidden = door_obj["is_hidden"].get<bool>();
+            }
+            if (door_obj.contains("is_pickproof")) {
+                exit.is_pickproof = door_obj["is_pickproof"].get<bool>();
+            }
+        }
+        
         return exit;
         
     } catch (const nlohmann::json::exception& e) {

@@ -88,6 +88,7 @@ namespace BuiltinCommands {
     Result<CommandResult> cmd_hold(const CommandContext& ctx);
     Result<CommandResult> cmd_eat(const CommandContext& ctx);
     Result<CommandResult> cmd_drink(const CommandContext& ctx);
+    Result<CommandResult> cmd_light(const CommandContext& ctx);
     
     // Object Interaction Commands
     Result<CommandResult> cmd_open(const CommandContext& ctx);

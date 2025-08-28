@@ -14,7 +14,6 @@ __pycache__
 
 # Data dirs
 data/
-data_prod/
 data_test/
 
 #logs

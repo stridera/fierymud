@@ -142,6 +142,9 @@ Result<void> register_all_commands() {
     Commands().command("close", cmd_close).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("lock", cmd_lock).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("unlock", cmd_unlock).category("Object").privilege(PrivilegeLevel::Player).build();
+    Commands().command("light", cmd_light).category("Object").privilege(PrivilegeLevel::Player).build();
+    Commands().command("eat", cmd_eat).category("Object").privilege(PrivilegeLevel::Player).build();
+    Commands().command("drink", cmd_drink).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands()
         .command("remove", cmd_remove)
         .alias("unequip")
@@ -859,27 +862,39 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
         // Get from container
         auto inventory_items = ctx.actor->inventory().get_all_items();
 
-        // First check inventory for containers
+        // First check inventory for the object
+        std::shared_ptr<Object> potential_container = nullptr;
         for (const auto &obj : inventory_items) {
-            if (obj && obj->matches_keyword(ctx.arg(2)) && obj->is_container()) {
-                source_container = obj;
+            if (obj && obj->matches_keyword(ctx.arg(2))) {
+                potential_container = obj;
+                if (obj->is_container()) {
+                    source_container = obj;
+                }
                 break;
             }
         }
 
         // If not found in inventory, check room
-        if (!source_container) {
+        if (!potential_container) {
             auto &room_objects = ctx.room->contents_mutable().objects;
             for (auto &obj : room_objects) {
-                if (obj && obj->matches_keyword(ctx.arg(2)) && obj->is_container()) {
-                    source_container = obj;
+                if (obj && obj->matches_keyword(ctx.arg(2))) {
+                    potential_container = obj;
+                    if (obj->is_container()) {
+                        source_container = obj;
+                    }
                     break;
                 }
             }
         }
 
+        if (!potential_container) {
+            ctx.send_error(fmt::format("You don't see a container called '{}' here.", ctx.arg(2)));
+            return CommandResult::InvalidTarget;
+        }
+
         if (!source_container) {
-            ctx.send_error(fmt::format("You don't see a container called '{}'.", ctx.arg(2)));
+            ctx.send_error(fmt::format("You can't get anything from {} - it's not a container.", ctx.format_object_name(potential_container)));
             return CommandResult::InvalidTarget;
         }
 
@@ -1028,9 +1043,21 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_put(const CommandContext &ctx) {
-    if (auto result = ctx.require_args(2, "<object> <container>"); !result) {
-        ctx.send_usage("put <object> <container>");
+    if (ctx.arg_count() < 2) {
+        ctx.send_usage("put <object> [in] <container>");
         return CommandResult::InvalidSyntax;
+    }
+    
+    // Handle both "put object container" and "put object in container" syntax
+    std::string_view object_name = ctx.arg(0);
+    std::string_view container_name;
+    
+    if (ctx.arg_count() >= 3 && ctx.arg(1) == "in") {
+        // "put object in container" syntax
+        container_name = ctx.arg(2);
+    } else {
+        // "put object container" syntax  
+        container_name = ctx.arg(1);
     }
 
     if (!ctx.actor) {
@@ -1047,41 +1074,53 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
     std::shared_ptr<Object> item_to_put = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_keyword(object_name)) {
             item_to_put = obj;
             break;
         }
     }
 
     if (!item_to_put) {
-        ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(0)));
+        ctx.send_error(fmt::format("You don't have '{}'.", object_name));
         return CommandResult::InvalidTarget;
     }
 
     // Find container in the room or inventory
     std::shared_ptr<Object> container = nullptr;
+    std::shared_ptr<Object> potential_container = nullptr;
 
-    // First check inventory for containers
+    // First check inventory 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(1)) && obj->is_container() && obj != item_to_put) {
-            container = obj;
+        if (obj && obj->matches_keyword(container_name) && obj != item_to_put) {
+            potential_container = obj;
+            if (obj->is_container()) {
+                container = obj;
+            }
             break;
         }
     }
 
     // If not found in inventory, check room
-    if (!container) {
+    if (!potential_container) {
         auto &room_objects = ctx.room->contents_mutable().objects;
         for (auto &obj : room_objects) {
-            if (obj && obj->matches_keyword(ctx.arg(1)) && obj->is_container()) {
-                container = obj;
+            if (obj && obj->matches_keyword(container_name)) {
+                potential_container = obj;
+                if (obj->is_container()) {
+                    container = obj;
+                }
                 break;
             }
         }
     }
 
+    if (!potential_container) {
+        ctx.send_error(fmt::format("You don't see '{}'.", container_name));
+        return CommandResult::InvalidTarget;
+    }
+
     if (!container) {
-        ctx.send_error(fmt::format("You don't see a container called '{}'.", ctx.arg(1)));
+        ctx.send_error(fmt::format("You can't put anything in {} - it's not a container.", ctx.format_object_name(potential_container)));
         return CommandResult::InvalidTarget;
     }
 
@@ -1397,7 +1436,7 @@ Result<CommandResult> cmd_close(const CommandContext &ctx) {
     auto &mutable_info = const_cast<ContainerInfo &>(container_info);
     mutable_info.closed = true;
 
-    ctx.send_success(fmt::format("You close {}.", ctx.format_object_name(container)));
+    ctx.send_success(fmt::format("You close {}. It is now closed.", ctx.format_object_name(container)));
     ctx.send_to_room(fmt::format("{} closes {}.", ctx.actor->name(), ctx.format_object_name(container)), true);
 
     return CommandResult::Success;
@@ -2677,6 +2716,11 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
         return CommandResult::ResourceError;
     }
 
+    // Send movement confirmation message
+    std::string dir_name{magic_enum::enum_name(dir)};
+    std::transform(dir_name.begin(), dir_name.end(), dir_name.begin(), ::tolower);
+    ctx.send(fmt::format("You move {}.", dir_name));
+    
     // Automatically show the new room after movement
     auto look_result = cmd_look(ctx);
     if (!look_result) {
@@ -2722,5 +2766,179 @@ std::string format_communication(std::shared_ptr<Actor> sender, std::string_view
 }
 
 } // namespace Helpers
+
+/**
+ * Light Command: Light torches, lanterns, and other light sources
+ */
+Result<CommandResult> cmd_light(const CommandContext &ctx) {
+    if (ctx.arg_count() < 1) {
+        ctx.send_usage("light <object>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find light source in inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> light_source = nullptr;
+
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_light_source()) {
+            light_source = obj;
+            break;
+        }
+    }
+
+    if (!light_source) {
+        ctx.send_error(fmt::format("You don't have a light source called '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if already lit
+    const auto &light_info = light_source->light_info();
+    if (light_info.lit) {
+        ctx.send_error(fmt::format("The {} is already lit.", ctx.format_object_name(light_source)));
+        return CommandResult::InvalidState;
+    }
+
+    // Check if light source has duration remaining
+    if (light_info.duration <= 0) {
+        ctx.send_error(fmt::format("The {} is burnt out and cannot be lit.", ctx.format_object_name(light_source)));
+        return CommandResult::InvalidState;
+    }
+
+    // Light the object
+    auto new_light_info = light_info;
+    new_light_info.lit = true;
+    light_source->set_light_info(new_light_info);
+
+    ctx.send_success(fmt::format("You light the {}. It glows brightly.", ctx.format_object_name(light_source)));
+    ctx.send_to_room(fmt::format("{} lights {}.", ctx.actor->name(), ctx.format_object_name(light_source)), true);
+
+    return CommandResult::Success;
+}
+
+/**
+ * Eat Command: Consume food items
+ */
+Result<CommandResult> cmd_eat(const CommandContext &ctx) {
+    if (ctx.arg_count() < 1) {
+        ctx.send_usage("eat <food>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find food item in inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> food_item = nullptr;
+
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            if (obj->type() == ObjectType::Food || obj->type() == ObjectType::Potion) {
+                food_item = obj;
+                break;
+            }
+        }
+    }
+
+    if (!food_item) {
+        ctx.send_error(fmt::format("You don't have any food called '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if food is spoiled (timer expired)
+    if (food_item->is_expired()) {
+        ctx.send_error(fmt::format("The {} is spoiled and inedible.", ctx.format_object_name(food_item)));
+        return CommandResult::InvalidState;
+    }
+
+    // Consume the food
+    if (!ctx.actor->inventory().remove_item(food_item)) {
+        ctx.send_error("Failed to consume the food item.");
+        return CommandResult::ResourceError;
+    }
+
+    if (food_item->type() == ObjectType::Food) {
+        ctx.send_success(fmt::format("You eat the {}. It's delicious!", ctx.format_object_name(food_item)));
+        ctx.send_to_room(fmt::format("{} eats {}.", ctx.actor->name(), ctx.format_object_name(food_item)), true);
+    } else {
+        ctx.send_success(fmt::format("You drink the {}. You feel refreshed.", ctx.format_object_name(food_item)));
+        ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->name(), ctx.format_object_name(food_item)), true);
+    }
+
+    return CommandResult::Success;
+}
+
+/**
+ * Drink Command: Drink from liquid containers or potions
+ */
+Result<CommandResult> cmd_drink(const CommandContext &ctx) {
+    std::string target_name;
+    
+    if (ctx.arg_count() >= 2 && ctx.arg(0) == "from") {
+        // "drink from <container>" syntax
+        target_name = ctx.arg(1);
+    } else if (ctx.arg_count() >= 1) {
+        // "drink <item>" syntax
+        target_name = ctx.arg(0);
+    } else {
+        ctx.send_usage("drink <item> | drink from <container>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find drinkable item in inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> drink_item = nullptr;
+
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(target_name)) {
+            if (obj->type() == ObjectType::Liquid_Container || 
+                obj->type() == ObjectType::Potion || 
+                obj->type() == ObjectType::Food) {
+                drink_item = obj;
+                break;
+            }
+        }
+    }
+
+    if (!drink_item) {
+        ctx.send_error(fmt::format("You don't have anything to drink called '{}'.", target_name));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Handle different drinkable types
+    if (drink_item->type() == ObjectType::Potion) {
+        // Potions are consumed completely
+        if (!ctx.actor->inventory().remove_item(drink_item)) {
+            ctx.send_error("Failed to drink the potion.");
+            return CommandResult::ResourceError;
+        }
+        
+        ctx.send_success(fmt::format("You drink the {}. You feel its effects course through your body.", 
+                                   ctx.format_object_name(drink_item)));
+        ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->name(), ctx.format_object_name(drink_item)), true);
+    } else if (drink_item->type() == ObjectType::Liquid_Container) {
+        // Liquid containers can be drunk from multiple times
+        ctx.send_success(fmt::format("You drink from the {}. The liquid is refreshing.", 
+                                   ctx.format_object_name(drink_item)));
+        ctx.send_to_room(fmt::format("{} drinks from {}.", ctx.actor->name(), ctx.format_object_name(drink_item)), true);
+    } else {
+        // Food items (like fruits with juice)
+        ctx.send_success(fmt::format("You drink from the {}. It quenches your thirst.", 
+                                   ctx.format_object_name(drink_item)));
+        ctx.send_to_room(fmt::format("{} drinks from {}.", ctx.actor->name(), ctx.format_object_name(drink_item)), true);
+    }
+
+    return CommandResult::Success;
+}
 
 } // namespace BuiltinCommands

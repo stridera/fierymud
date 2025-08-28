@@ -413,3 +413,5 @@ set_tests_properties(Session_Tests_Filter PROPERTIES
 # )
 
 # set_target_properties(fierymud_legacy PROPERTIES EXCLUDE_FROM_ALL TRUE)
+add_executable(debug_test debug_test.cpp)
+target_link_libraries(debug_test PRIVATE fierymud_core)
