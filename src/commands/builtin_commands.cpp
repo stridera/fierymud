@@ -138,6 +138,7 @@ Result<void> register_all_commands() {
     Commands().command("put", cmd_put).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("give", cmd_give).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("wear", cmd_wear).alias("equip").category("Object").privilege(PrivilegeLevel::Player).build();
+    Commands().command("wield", cmd_wield).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("open", cmd_open).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("close", cmd_close).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("lock", cmd_lock).category("Object").privilege(PrivilegeLevel::Player).build();
@@ -1241,6 +1242,49 @@ Result<CommandResult> cmd_wear(const CommandContext &ctx) {
     return CommandResult::Success;
 }
 
+Result<CommandResult> cmd_wield(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<weapon>"); !result) {
+        ctx.send_usage("wield <weapon>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find object in actor's inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> target_object = nullptr;
+
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            target_object = obj;
+            break;
+        }
+    }
+
+    if (!target_object) {
+        ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Try to equip the item (wield is just equipping)
+    auto equip_result = ctx.actor->equipment().equip_item(target_object);
+    if (!equip_result) {
+        ctx.send_error(
+            fmt::format("You can't wield {}: {}", ctx.format_object_name(target_object), equip_result.error().message));
+        return CommandResult::ResourceError;
+    }
+
+    // Remove from inventory since it's now equipped
+    ctx.actor->inventory().remove_item(target_object);
+
+    ctx.send_success(fmt::format("You wield {}.", ctx.format_object_name(target_object)));
+    ctx.send_to_room(fmt::format("{} wields {}.", ctx.actor->name(), ctx.format_object_name(target_object)), true);
+
+    return CommandResult::Success;
+}
+
 Result<CommandResult> cmd_remove(const CommandContext &ctx) {
     if (auto result = ctx.require_args(1, "<object>"); !result) {
         ctx.send_usage("remove <object>");
@@ -1536,8 +1580,8 @@ Result<CommandResult> cmd_lock(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_unlock(const CommandContext &ctx) {
-    if (auto result = ctx.require_args(1, "<object>"); !result) {
-        ctx.send_usage("unlock <object>");
+    if (ctx.arg_count() < 1) {
+        ctx.send_usage("unlock <object> [with <key>]");
         return CommandResult::InvalidSyntax;
     }
 
@@ -1594,22 +1638,44 @@ Result<CommandResult> cmd_unlock(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // Check for key requirement if the container has a key_id
-    if (container_info.key_id.is_valid()) {
-        // Look for the key in the actor's inventory
-        bool has_key = false;
+    // Check for key requirement
+    std::shared_ptr<Object> key_to_use = nullptr;
+    
+    // If "with <key>" syntax is used
+    if (ctx.arg_count() >= 3 && ctx.arg(1) == "with") {
+        // Find the specified key in inventory
         auto inventory_items = ctx.actor->inventory().get_all_items();
         for (const auto &item : inventory_items) {
-            if (item && item->id() == container_info.key_id && item->type() == ObjectType::Key) {
-                has_key = true;
+            if (item && item->matches_keyword(ctx.arg(2))) {
+                key_to_use = item;
                 break;
             }
         }
-
-        if (!has_key) {
+        
+        if (!key_to_use) {
+            ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(2)));
+            return CommandResult::InvalidState;
+        }
+    } else if (container_info.key_id.is_valid()) {
+        // Look for the specific key by ID
+        auto inventory_items = ctx.actor->inventory().get_all_items();
+        for (const auto &item : inventory_items) {
+            if (item && item->id() == container_info.key_id && item->type() == ObjectType::Key) {
+                key_to_use = item;
+                break;
+            }
+        }
+        
+        if (!key_to_use) {
             ctx.send_error(fmt::format("You don't have the key for {}.", ctx.format_object_name(container)));
             return CommandResult::InvalidState;
         }
+    }
+    
+    // If container requires a key but none was found or specified
+    if (container_info.lockable && !key_to_use && container_info.key_id.is_valid()) {
+        ctx.send_error(fmt::format("You need a key to unlock {}.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
     }
 
     // Unlock it - modify the container state

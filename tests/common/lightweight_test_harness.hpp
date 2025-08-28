@@ -124,9 +124,9 @@ public:
                     ContainerInfo info;
                     info.capacity = 5;
                     info.closeable = true;
-                    info.closed = false;
+                    info.closed = true;
                     info.lockable = true;
-                    info.locked = false;
+                    info.locked = true;
                     info.key_id = EntityId{object_id + 10}; // Key we'll create later
                     chest->set_container_info(info);
                     
