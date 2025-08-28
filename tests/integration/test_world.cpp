@@ -7,7 +7,7 @@
 #include "../src/commands/command_system.hpp"
 #include "../src/core/ids.hpp"
 #include "../src/core/object.hpp"
-#include "mock_game_session.hpp"
+#include "../common/mock_game_session.hpp"
 
 #include <catch2/catch_test_macros.hpp>
 

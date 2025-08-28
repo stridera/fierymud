@@ -134,9 +134,8 @@ target_compile_options(fierymud PRIVATE
     -g
 )
 
-# Comprehensive Test Suite
-set(TEST_SOURCES
-    # Core system sources (needed for tests)
+# Core system sources (needed for all tests)
+set(CORE_TEST_SOURCES
     src/core/logging.cpp
     src/core/config.cpp
     src/core/entity.cpp
@@ -157,49 +156,128 @@ set(TEST_SOURCES
     # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
     src/core/arguments.cpp
     src/core/string_utils.cpp
-    tests/mock_game_session.cpp
-    
-    # Unit Tests - Core Systems
-    tests/test_core.cpp
-    tests/test_core_arguments.cpp
-    tests/test_combat_system.cpp
-    tests/test_actor.cpp
-    tests/test_mobile_keywords.cpp
-    tests/test_player_revival.cpp
-    
-    # Unit Tests - Objects & Containers  
-    tests/test_container_system.cpp
-    tests/test_container_system_simple.cpp
-    tests/test_object_descriptions.cpp
-    tests/test_object_interactions.cpp
-    
-    # Unit Tests - World & Parsing
-    tests/test_world_utils.cpp
-    tests/test_world_parsing.cpp
-    tests/test_zone_parsing.cpp
-    
-    # Integration Tests - Sessions & Commands
-    tests/test_session_integration.cpp
-    tests/test_command_system.cpp
-    tests/test_session.cpp
-    tests/test_world.cpp
-    
-    # Integration Tests - Multi-player & Communication
-    tests/test_multiplayer.cpp
-    tests/test_emotes.cpp
-    tests/test_gmcp.cpp
-    
-    # Performance & Resilience Tests
-    tests/test_performance.cpp
-    tests/test_server_resilience.cpp
-    
-    # Test Infrastructure
-    tests/test_test_harness.cpp
 )
 
-# Main test executable
-add_executable(tests ${TEST_SOURCES})
+# Unit test sources
+file(GLOB_RECURSE UNIT_TEST_FILES "tests/unit/*.cpp")
 
+# Integration test sources - prioritize stable tests
+file(GLOB STABLE_INTEGRATION_TEST_FILES "tests/integration/*_stable.cpp")
+file(GLOB_RECURSE INTEGRATION_TEST_FILES "tests/integration/*.cpp")
+
+# Remove stable tests from the general integration list to avoid duplicates
+list(REMOVE_ITEM INTEGRATION_TEST_FILES ${STABLE_INTEGRATION_TEST_FILES})
+
+# Common test infrastructure
+file(GLOB_RECURSE COMMON_TEST_FILES "tests/common/*.cpp")
+
+# Unit test executable (no TestHarness dependencies)
+add_executable(unit_tests 
+    ${CORE_TEST_SOURCES}
+    ${UNIT_TEST_FILES}
+)
+
+# Stable integration test executable (recommended)
+add_executable(stable_tests 
+    ${CORE_TEST_SOURCES}
+    ${STABLE_INTEGRATION_TEST_FILES}
+    ${COMMON_TEST_FILES}
+)
+
+# Legacy integration test executable (may segfault)
+add_executable(integration_tests 
+    ${CORE_TEST_SOURCES}
+    ${INTEGRATION_TEST_FILES}
+    ${COMMON_TEST_FILES}
+)
+
+# Legacy combined test executable (for backward compatibility)
+add_executable(tests 
+    ${CORE_TEST_SOURCES}
+    ${UNIT_TEST_FILES}
+    ${STABLE_INTEGRATION_TEST_FILES}
+    ${COMMON_TEST_FILES}
+)
+
+# Configure unit tests executable
+target_include_directories(unit_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands)
+
+# Configure stable tests executable
+target_include_directories(stable_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands)
+
+target_link_libraries(unit_tests PRIVATE 
+    fmt::fmt 
+    spdlog::spdlog
+    nlohmann_json::nlohmann_json
+    magic_enum::magic_enum
+    cxxopts::cxxopts
+    asio
+    Catch2::Catch2WithMain
+)
+
+target_compile_definitions(unit_tests PRIVATE
+    SPDLOG_COMPILED_LIB
+    SPDLOG_FMT_EXTERNAL
+)
+
+target_compile_options(unit_tests PRIVATE
+    -std=gnu++23
+    -Wall
+    -Wextra
+    -O3
+    -g
+)
+
+target_link_libraries(stable_tests PRIVATE 
+    fmt::fmt 
+    spdlog::spdlog
+    nlohmann_json::nlohmann_json
+    magic_enum::magic_enum
+    cxxopts::cxxopts
+    asio
+    Catch2::Catch2WithMain
+)
+
+target_compile_definitions(stable_tests PRIVATE
+    SPDLOG_COMPILED_LIB
+    SPDLOG_FMT_EXTERNAL
+)
+
+target_compile_options(stable_tests PRIVATE
+    -std=gnu++23
+    -Wall
+    -Wextra
+    -O3
+    -g
+)
+
+# Configure integration tests executable
+target_include_directories(integration_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands)
+
+target_link_libraries(integration_tests PRIVATE 
+    fmt::fmt 
+    spdlog::spdlog
+    nlohmann_json::nlohmann_json
+    magic_enum::magic_enum
+    cxxopts::cxxopts
+    asio
+    Catch2::Catch2WithMain
+)
+
+target_compile_definitions(integration_tests PRIVATE
+    SPDLOG_COMPILED_LIB
+    SPDLOG_FMT_EXTERNAL
+)
+
+target_compile_options(integration_tests PRIVATE
+    -std=gnu++23
+    -Wall
+    -Wextra
+    -O3
+    -g
+)
+
+# Configure combined tests executable (legacy)
 target_include_directories(tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands)
 
 target_link_libraries(tests PRIVATE 
@@ -225,50 +303,82 @@ target_compile_options(tests PRIVATE
     -g
 )
 
-# CTest integration - Register the test executable with CTest
+# CTest integration - Register separate test executables
 add_test(
-    NAME FieryMUD_Tests
-    COMMAND tests
+    NAME Unit_Tests
+    COMMAND unit_tests
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-# Set test properties for better CI integration
-set_tests_properties(FieryMUD_Tests PROPERTIES
-    TIMEOUT 300  # 5 minute timeout
-    LABELS "unit;integration;session"
-)
-
-# Add specific test categories that can be run individually
 add_test(
-    NAME Unit_Tests
-    COMMAND tests "[unit]"
+    NAME Stable_Tests
+    COMMAND stable_tests
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_test(
     NAME Integration_Tests  
-    COMMAND tests "[integration]"
+    COMMAND integration_tests
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_test(
-    NAME Session_Tests
-    COMMAND tests "[session]"
+    NAME Combined_Tests
+    COMMAND tests
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-# Set properties for individual test categories
+# Set properties for test categories
 set_tests_properties(Unit_Tests PROPERTIES
     TIMEOUT 60
     LABELS "unit"
 )
 
+set_tests_properties(Stable_Tests PROPERTIES
+    TIMEOUT 30
+    LABELS "integration;stable"
+)
+
 set_tests_properties(Integration_Tests PROPERTIES
+    TIMEOUT 120
+    LABELS "integration;legacy"
+)
+
+set_tests_properties(Combined_Tests PROPERTIES
+    TIMEOUT 300  # 5 minute timeout
+    LABELS "unit;integration;session"
+)
+
+# Additional fine-grained test runs using filters
+add_test(
+    NAME Unit_Tests_Filter
+    COMMAND tests "[unit]"
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+add_test(
+    NAME Integration_Tests_Filter  
+    COMMAND tests "[integration]"
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+add_test(
+    NAME Session_Tests_Filter
+    COMMAND tests "[session]"
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+set_tests_properties(Unit_Tests_Filter PROPERTIES
+    TIMEOUT 60
+    LABELS "unit"
+)
+
+set_tests_properties(Integration_Tests_Filter PROPERTIES
     TIMEOUT 120
     LABELS "integration"
 )
 
-set_tests_properties(Session_Tests PROPERTIES
+set_tests_properties(Session_Tests_Filter PROPERTIES
     TIMEOUT 180
     LABELS "session"
 )

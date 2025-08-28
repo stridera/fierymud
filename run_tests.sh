@@ -15,32 +15,43 @@ echo "================="
 
 # Build tests
 echo -e "${YELLOW}Building tests...${NC}"
-cmake --build build --target tests
+cmake --build build --target stable_tests unit_tests
 
-# Run tests based on argument
-case "${1:-all}" in
+# Run tests based on argument  
+case "${1:-recommended}" in
     "unit")
         echo -e "${YELLOW}Running unit tests...${NC}"
         ctest --test-dir build -L unit
         ;;
+    "stable")
+        echo -e "${YELLOW}Running stable integration tests...${NC}"
+        ctest --test-dir build -L stable
+        ;;
     "integration")
-        echo -e "${YELLOW}Running integration tests...${NC}"
+        echo -e "${YELLOW}Running legacy integration tests (may segfault)...${NC}"
         ctest --test-dir build -L integration
         ;;
     "session")
         echo -e "${YELLOW}Running session tests...${NC}"
         ctest --test-dir build -L session
         ;;
-    "all"|"")
-        echo -e "${YELLOW}Running all tests...${NC}"
+    "recommended"|"")
+        echo -e "${YELLOW}Running recommended tests (unit + stable)...${NC}"
+        ctest --test-dir build -L unit
+        ctest --test-dir build -L stable
+        ;;
+    "all")
+        echo -e "${YELLOW}Running all tests (including unstable legacy)...${NC}"
         ctest --test-dir build
         ;;
     "verbose")
-        echo -e "${YELLOW}Running all tests with verbose output...${NC}"
-        ctest --test-dir build --verbose
+        echo -e "${YELLOW}Running recommended tests with verbose output...${NC}"
+        ctest --test-dir build -L unit --verbose
+        ctest --test-dir build -L stable --verbose
         ;;
     *)
-        echo -e "${RED}Usage: $0 [unit|integration|session|all|verbose]${NC}"
+        echo -e "${RED}Usage: $0 [unit|stable|integration|session|recommended|all|verbose]${NC}"
+        echo -e "${YELLOW}Recommended: $0 recommended (default)${NC}"
         exit 1
         ;;
 esac

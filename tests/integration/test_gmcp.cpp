@@ -6,7 +6,7 @@
 #include "../src/commands/builtin_commands.hpp"
 #include "../src/commands/command_context.hpp"
 #include "../src/server/gmcp_handler.hpp"
-#include "test_harness.hpp"
+#include "../common/test_harness.hpp"
 
 #include <catch2/catch_test_macros.hpp>
 

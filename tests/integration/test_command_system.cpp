@@ -7,7 +7,7 @@
 #include "../src/commands/command_parser.hpp"
 #include "../src/commands/command_system.hpp"
 #include "../src/core/ids.hpp"
-#include "mock_game_session.hpp"
+#include "../common/mock_game_session.hpp"
 
 #include <catch2/catch_test_macros.hpp>
 #include <fmt/format.h>
@@ -201,7 +201,7 @@ TEST_CASE("CommandContext: Message Routing", "[command][context]") {
         harness.clear_output();
         harness.execute_command("say Testing message routing").and_wait_for_output();
 
-        const auto &output = harness.get_output();
+        const auto& output = harness.get_output();
         REQUIRE(output.size() >= 1);
 
         // Say command should produce distinct messages

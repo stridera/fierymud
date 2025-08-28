@@ -5,11 +5,11 @@
 
 #include "../src/core/actor.hpp"
 #include "../src/core/ids.hpp"
-#include "mock_game_session.hpp"
+#include "../common/mock_game_session.hpp"
 
 #include <catch2/catch_test_macros.hpp>
 
-TEST_CASE("Mobile Keywords: Mobile::create() parses keywords from name", "[mobile][keywords][unit]") {
+TEST_CASE("Mobile Keywords: Mobile::create() parses keywords from name", "[mobile][keywords][integration]") {
     UnifiedTestHarness::run_unit_test([&]() {
         // Create a mobile with multiple keywords in the name
         auto mobile_result = Mobile::create(EntityId{1001}, "guard town soldier", 5);
@@ -38,7 +38,7 @@ TEST_CASE("Mobile Keywords: Mobile::create() parses keywords from name", "[mobil
     });
 }
 
-TEST_CASE("Mobile Keywords: JSON loading preserves keywords", "[mobile][keywords][json]") {
+TEST_CASE("Mobile Keywords: JSON loading preserves keywords", "[mobile][keywords][json][integration]") {
     UnifiedTestHarness::run_unit_test([&]() {
         // Create a mobile from JSON like world files do
         nlohmann::json mobile_json = {

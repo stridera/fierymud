@@ -3,7 +3,7 @@
  *  Usage: Tests for the test harness itself                           *
  ***************************************************************************/
 
-#include "test_harness.hpp"
+#include "../common/test_harness.hpp"
 
 #include <catch2/catch_test_macros.hpp>
 
