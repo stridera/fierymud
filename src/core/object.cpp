@@ -11,6 +11,7 @@
 #include "../core/logging.hpp"
 
 #include <algorithm>
+#include <iostream>
 #include <unordered_map>
 
 // DamageProfile Implementation
@@ -152,7 +153,60 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             }
         }
         
-        auto object = std::unique_ptr<Object>(new Object(base_entity->id(), base_entity->name(), type));
+        // Pre-parse capacity for containers to create with correct size
+        int container_capacity = 10; // Default capacity
+        if (type == ObjectType::Container || type == ObjectType::Liquid_Container) {
+            // Check for modern container_info format
+            if (json.contains("container_info") && json["container_info"].contains("capacity")) {
+                container_capacity = json["container_info"]["capacity"].get<int>();
+            }
+            // Check for legacy values format 
+            else if (json.contains("values") && json["values"].contains("Capacity")) {
+                try {
+                    const std::string cap_str = json["values"]["Capacity"].get<std::string>();
+                    if (!cap_str.empty() && cap_str != "0") {
+                        container_capacity = std::stoi(cap_str);
+                    }
+                } catch (const std::exception&) {
+                    // Use default if parsing fails
+                }
+            }
+        }
+        
+        // Create appropriate subclass based on object type
+        std::unique_ptr<Object> object;
+        switch (type) {
+            case ObjectType::Container:
+            case ObjectType::Liquid_Container: {
+                auto container_result = Container::create(base_entity->id(), base_entity->name(), container_capacity);
+                if (!container_result.has_value()) {
+                    return std::unexpected(container_result.error());
+                }
+                object = std::move(container_result.value());
+                break;
+            }
+            case ObjectType::Weapon:
+            case ObjectType::Fireweapon: {
+                auto weapon_result = Weapon::create(base_entity->id(), base_entity->name(), type);
+                if (!weapon_result.has_value()) {
+                    return std::unexpected(weapon_result.error());
+                }
+                object = std::move(weapon_result.value());
+                break;
+            }
+            case ObjectType::Armor: {
+                auto armor_result = Armor::create(base_entity->id(), base_entity->name());
+                if (!armor_result.has_value()) {
+                    return std::unexpected(armor_result.error());
+                }
+                object = std::move(armor_result.value());
+                break;
+            }
+            default: {
+                object = std::unique_ptr<Object>(new Object(base_entity->id(), base_entity->name(), type));
+                break;
+            }
+        }
         
         // Copy all base entity properties
         object->set_keywords(base_entity->keywords());
@@ -265,6 +319,48 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             
             object->set_container_info(container);
         }
+        // Parse legacy container info from "values" section for CONTAINER type objects
+        else if (type == ObjectType::Container && json.contains("values")) {
+            const auto& values_json = json["values"];
+            ContainerInfo container;
+            
+            // Parse legacy container values with error handling
+            try {
+                if (values_json.contains("Capacity")) {
+                    // Legacy format stores capacity as string
+                    std::string capacity_str = values_json["Capacity"].get<std::string>();
+                    if (!capacity_str.empty()) {
+                        container.capacity = std::stoi(capacity_str);
+                        container.weight_capacity = container.capacity * 10;  // Default weight capacity
+                    }
+                }
+                if (values_json.contains("Key")) {
+                    // Legacy format: "0" = no key, other values = key vnum
+                    std::string key_str = values_json["Key"].get<std::string>();
+                    if (!key_str.empty() && key_str != "0") {
+                        container.key_id = EntityId{static_cast<std::uint64_t>(std::stoi(key_str))};
+                        container.lockable = true;
+                    }
+                }
+                if (values_json.contains("Flags")) {
+                    // Legacy container flags could include closeable/lockable info
+                    std::string flags_str = values_json["Flags"].get<std::string>();
+                    // For now, assume basic container functionality
+                    container.closeable = true;  // Most containers can be closed
+                    container.closed = false;    // Start open
+                }
+                
+                object->set_container_info(container);
+            } catch (const std::exception& e) {
+                // If parsing legacy values fails, use defaults but continue loading
+                ContainerInfo default_container;
+                default_container.capacity = 10;        // Default capacity
+                default_container.weight_capacity = 100; // Default weight capacity
+                default_container.closeable = true;
+                default_container.closed = false;
+                object->set_container_info(default_container);
+            }
+        }
         
         // Parse light info
         if (json.contains("light_info")) {
@@ -282,6 +378,45 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             }
             
             object->set_light_info(light);
+        }
+        // Parse legacy light info from "values" section for LIGHT type objects
+        else if (type == ObjectType::Light && json.contains("values")) {
+            const auto& values_json = json["values"];
+            LightInfo light;
+            
+            // Parse legacy light values with error handling
+            try {
+                if (values_json.contains("Remaining")) {
+                    // Legacy format stores remaining duration as string
+                    std::string remaining_str = values_json["Remaining"].get<std::string>();
+                    if (!remaining_str.empty()) {
+                        light.duration = std::stoi(remaining_str);
+                    }
+                }
+                if (values_json.contains("Capacity")) {
+                    // Use capacity as brightness indicator (higher capacity = brighter)
+                    std::string capacity_str = values_json["Capacity"].get<std::string>();
+                    if (!capacity_str.empty()) {
+                        int capacity = std::stoi(capacity_str);
+                        light.brightness = std::max(1, capacity / 100);  // Scale down capacity to brightness
+                    }
+                }
+                if (values_json.contains("Is_Lit:")) {
+                    // Legacy format: "0" = not lit, "1" = lit
+                    std::string lit_str = values_json["Is_Lit:"].get<std::string>();
+                    light.lit = (!lit_str.empty() && lit_str != "0");
+                }
+                
+                object->set_light_info(light);
+            } catch (const std::exception& e) {
+                // If parsing legacy values fails, use defaults but continue loading
+                // This prevents server crashes from malformed legacy data
+                LightInfo default_light;
+                default_light.duration = 100;  // Default duration for legacy lights
+                default_light.brightness = 1;
+                default_light.lit = false;
+                object->set_light_info(default_light);
+            }
         }
         
         TRY(object->validate());

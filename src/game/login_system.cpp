@@ -451,7 +451,19 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
         return std::unexpected(player_result.error());
     }
 
-    return std::shared_ptr<Player>(player_result.value().release());
+    auto player = std::shared_ptr<Player>(player_result.value().release());
+    
+    // Refresh the player's start room to match the current world's default
+    // This ensures existing characters get updated if the world's start room changes
+    auto world_start_room = WorldManager::instance().get_start_room();
+    if (world_start_room.is_valid()) {
+        player->set_start_room(world_start_room);
+        Log::debug("Refreshed loaded player {} start room to: {}", player->name(), world_start_room);
+    } else {
+        Log::warn("World start room is invalid for loaded player {}", player->name());
+    }
+    
+    return player;
 }
 
 Result<std::shared_ptr<Player>> LoginSystem::create_character() {
@@ -479,6 +491,9 @@ Result<std::shared_ptr<Player>> LoginSystem::create_character() {
     auto world_start_room = WorldManager::instance().get_start_room();
     if (world_start_room.is_valid()) {
         player->set_start_room(world_start_room);
+        Log::debug("Set new player {} start room to: {}", player->name(), world_start_room);
+    } else {
+        Log::warn("World start room is invalid for new player {}", player->name());
     }
 
     return std::shared_ptr<Player>(player.release());

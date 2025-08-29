@@ -448,10 +448,11 @@ void CombatManager::end_combat(std::shared_ptr<Actor> actor) {
     active_combats_.erase(it, active_combats_.end());
 }
 
-void CombatManager::process_combat_rounds() {
+bool CombatManager::process_combat_rounds() {
     cleanup_invalid_combats();
     
     auto now = std::chrono::steady_clock::now();
+    bool rounds_processed = false;
     
     for (auto& combat : active_combats_) {
         if (combat.is_ready_for_next_round()) {
@@ -459,6 +460,7 @@ void CombatManager::process_combat_rounds() {
                       combat.actor1->name(), combat.actor2->name());
             execute_round(combat);
             combat.update_last_round();
+            rounds_processed = true;
         } else {
             auto now = std::chrono::steady_clock::now();
             auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - combat.last_round).count();
@@ -467,6 +469,8 @@ void CombatManager::process_combat_rounds() {
             }
         }
     }
+    
+    return rounds_processed;
 }
 
 bool CombatManager::is_in_combat(const Actor& actor) {
@@ -596,6 +600,17 @@ void CombatManager::execute_round(CombatPair& combat_pair) {
             // TODO: Send room message to other people in room
         }
     }
+}
+
+std::vector<std::shared_ptr<Actor>> CombatManager::get_all_fighting_actors() {
+    std::vector<std::shared_ptr<Actor>> fighting_actors;
+    
+    for (const auto& combat : active_combats_) {
+        fighting_actors.push_back(combat.actor1);
+        fighting_actors.push_back(combat.actor2);
+    }
+    
+    return fighting_actors;
 }
 
 } // namespace FieryMUD

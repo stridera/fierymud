@@ -542,6 +542,18 @@ int Room::calculate_effective_light() const {
         }
     }
     
+    // Add light from objects carried by actors in room
+    for (const auto& actor : contents_.actors) {
+        if (actor) {
+            auto inventory_items = actor->inventory().get_all_items();
+            for (const auto& obj : inventory_items) {
+                if (obj && obj->is_light_source() && obj->light_info().lit) {
+                    total_light += obj->light_info().brightness;
+                }
+            }
+        }
+    }
+    
     return std::max(0, total_light);
 }
 

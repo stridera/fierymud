@@ -123,6 +123,7 @@ public:
                     // Configure as closeable/lockable container
                     ContainerInfo info;
                     info.capacity = 5;
+                    info.weight_capacity = 100;  // Set proper weight capacity
                     info.closeable = true;
                     info.closed = true;
                     info.lockable = true;
@@ -297,6 +298,30 @@ public:
                     
                     // Container for liquids - for drink/pour testing
                     start_room_->add_object(waterskin);
+                }
+            }
+            
+            // 11. Second weapon - Test Dagger (to test weapon slot conflicts)
+            {
+                auto dagger_result = Weapon::create(EntityId{object_id++}, "test_dagger", ObjectType::Weapon);
+                if (dagger_result.has_value()) {
+                    auto dagger = std::shared_ptr<Weapon>(dagger_result.value().release());
+                    
+                    // Set weapon properties (using same pattern as sword)
+                    DamageProfile damage;
+                    damage.base_damage = 2;  // Slightly less damage than sword
+                    damage.dice_count = 1;
+                    damage.dice_sides = 4;
+                    damage.damage_bonus = 1;
+                    dagger->set_damage_profile(damage);
+                    
+                    dagger->set_weight(1);    // Lighter than sword
+                    dagger->set_value(25);    // Less valuable than sword
+                    dagger->set_reach(1);
+                    dagger->set_speed(1);     // Faster than sword
+                    dagger->set_equip_slot(EquipSlot::Wield); // Same slot as sword - will conflict
+                    
+                    start_room_->add_object(dagger);
                 }
             }
         }

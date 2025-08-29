@@ -70,10 +70,36 @@ Result<void> WorldServer::start() {
     asio::post(world_strand_, [this]() {
         auto world_load = world_manager_->load_world();
         if (!world_load) {
-            Log::error("Failed to load world data: {}", world_load.error().message);
-            return;
+            Log::warn("Failed to load world data: {}", world_load.error().message);
+            Log::info("Creating default world as fallback...");
+            
+            // Create default world directly (we're already on the world strand)
+            // Create a simple starting room
+            auto room_result = Room::create(EntityId{3001}, "The Forest Temple of Mielikki", SectorType::Inside);
+            if (!room_result) {
+                Log::error("Failed to create starting room: {}", room_result.error().message);
+                return;
+            }
+
+            auto start_room = std::shared_ptr<Room>(room_result.value().release());
+            start_room->set_description(
+                "This is the Forest Temple of Mielikki, a peaceful sanctuary in the heart of nature. "
+                "Ancient trees surround this sacred grove, and a gentle breeze carries the scent of wildflowers. "
+                "You feel safe and welcome here.");
+
+            auto add_result = world_manager_->add_room(start_room);
+            if (!add_result) {
+                Log::error("Failed to add starting room to world manager: {}", add_result.error().message);
+                return;
+            }
+
+            world_manager_->set_start_room(EntityId{3001});
+            Log::info("Default world created with starting room [3001] - The Forest Temple of Mielikki");
+        } else {
+            Log::info("World data loaded successfully on world strand");
+            world_manager_->set_start_room(EntityId{3001});
+            Log::info("Default starting room set to [3001] - The Forest Temple of Mielikki");
         }
-        Log::info("World data loaded successfully on world strand");
         world_loaded_promise_.set_value();
     });
 
@@ -353,7 +379,17 @@ void WorldServer::perform_heartbeat() {
 void WorldServer::perform_combat_processing() {
     // This runs on the world strand - thread safe!
     // Process all active combat rounds
-    FieryMUD::CombatManager::process_combat_rounds();
+    bool rounds_processed = FieryMUD::CombatManager::process_combat_rounds();
+    
+    // Only send prompts if actual combat rounds were processed
+    if (rounds_processed) {
+        auto fighting_actors = FieryMUD::CombatManager::get_all_fighting_actors();
+        for (auto& actor : fighting_actors) {
+            if (actor && actor->is_alive()) {
+                send_prompt_to_actor(actor);
+            }
+        }
+    }
 }
 
 // Statistics
@@ -374,7 +410,7 @@ Result<void> WorldServer::create_default_world() {
         Log::info("Creating default world...");
 
         // Create a simple starting room
-        auto room_result = Room::create(EntityId{1000}, "The Starting Room", SectorType::Inside);
+        auto room_result = Room::create(EntityId{3001}, "The Forest Temple of Mielikki", SectorType::Inside);
         if (!room_result) {
             Log::error("Failed to create starting room: {}", room_result.error().message);
             return;
@@ -382,8 +418,9 @@ Result<void> WorldServer::create_default_world() {
 
         auto start_room = std::shared_ptr<Room>(room_result.value().release());
         start_room->set_description(
-            "This is a simple starting room for the modern MUD server. "
-            "You can look around, say things, and explore the basic commands.");
+            "This is the Forest Temple of Mielikki, a peaceful sanctuary in the heart of nature. "
+            "Ancient trees surround this sacred grove, and a gentle breeze carries the scent of wildflowers. "
+            "You feel safe and welcome here.");
 
         auto add_result = world_manager_->add_room(start_room);
         if (!add_result) {

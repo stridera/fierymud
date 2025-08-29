@@ -90,8 +90,8 @@ TEST_CASE("Enhanced Feedback: Equipment Messages", "[integration][stable][feedba
                .then_output_not_contains("ERROR");
         
         // Try to wield another weapon - should get slot occupied message
-        harness.execute_command("get test_torch");  
-        harness.execute_command("wield test_torch")
+        harness.execute_command("get test_dagger");  
+        harness.execute_command("wield test_dagger")
                .then_output_matches_regex("(already.*wielding|hands.*full|remove.*first)")
                .then_output_not_contains("ERROR");
     }

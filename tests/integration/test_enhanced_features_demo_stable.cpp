@@ -28,7 +28,7 @@ TEST_CASE("Enhanced Features: Multi-Command Execution", "[integration][enhanced]
         "south"
     };
     
-    harness.execute_commands(commands)
+    harness.execute_commands_accumulate(commands)
            .then_output_contains("Test Start Room")
            .then_output_contains("North Room");
     
@@ -51,10 +51,10 @@ TEST_CASE("Enhanced Features: Output Analysis", "[integration][enhanced][analysi
     LightweightTestHarness harness;
     
     // Generate multiple output lines
-    harness.execute_command("say line 1")
-           .execute_command("say line 2")
-           .execute_command("emote does something")
-           .execute_command("say line 3");
+    harness.execute_command_accumulate("say line 1")
+           .execute_command_accumulate("say line 2")
+           .execute_command_accumulate("emote does something")
+           .execute_command_accumulate("say line 3");
     
     // Test output counting
     auto say_count = harness.count_output_lines_containing("You say");
@@ -270,7 +270,7 @@ TEST_CASE("Enhanced Features: Performance Benchmarks", "[integration][enhanced][
         }
         
         harness.then_executes_within_ms([&]() {
-            harness.execute_commands(chatty_commands);
+            harness.execute_commands_accumulate(chatty_commands);
         }, 400); // 30 say commands in 400ms
         
         // Verify output was captured correctly

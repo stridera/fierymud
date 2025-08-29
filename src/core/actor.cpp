@@ -281,7 +281,7 @@ Result<void> Equipment::equip_item(std::shared_ptr<Object> item) {
     
     EquipSlot slot = item->equip_slot();
     if (has_slot_conflict(slot, *item)) {
-        return std::unexpected(Errors::InvalidState("Equipment slot conflict"));
+        return std::unexpected(Errors::InvalidState("You are already wielding something. Remove it first."));
     }
     
     equipped_[slot] = std::move(item);
@@ -375,6 +375,11 @@ std::vector<std::shared_ptr<Object>> Equipment::clear_all() {
 }
 
 bool Equipment::has_slot_conflict(EquipSlot slot, const Object& item) const {
+    // First check: Is this slot already occupied?
+    if (is_equipped(slot)) {
+        return true;
+    }
+    
     // Check for two-handed weapon conflicts
     if (item.has_flag(ObjectFlag::TwoHanded) && slot == EquipSlot::Wield) {
         return is_equipped(EquipSlot::Wield2) || is_equipped(EquipSlot::Shield);

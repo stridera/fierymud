@@ -198,8 +198,9 @@ public:
     
     /**
      * @brief Process all active combat rounds (called from WorldServer::update())
+     * @return true if any combat rounds were processed, false otherwise
      */
-    static void process_combat_rounds();
+    static bool process_combat_rounds();
     
     /**
      * @brief Check if actor is currently in combat
@@ -215,6 +216,11 @@ public:
      * @brief Clear all active combat (for shutdown/testing)
      */
     static void clear_all_combat();
+    
+    /**
+     * @brief Get all actors currently in combat
+     */
+    static std::vector<std::shared_ptr<Actor>> get_all_fighting_actors();
     
 private:
     static std::vector<CombatPair> active_combats_;
