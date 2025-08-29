@@ -49,7 +49,43 @@ Result<std::unique_ptr<Object>> Object::create(EntityId id, std::string_view nam
         return std::unexpected(Errors::InvalidArgument("name", "cannot be empty"));
     }
     
-    auto object = std::unique_ptr<Object>(new Object(id, name, type));
+    // Create appropriate subclass based on object type (same logic as from_json)
+    std::unique_ptr<Object> object;
+    switch (type) {
+        case ObjectType::Container:
+        case ObjectType::Liquid_Container: {
+            // Default capacity for containers created via Object::create
+            int container_capacity = 10;
+            auto container_result = Container::create(id, name, container_capacity);
+            if (!container_result.has_value()) {
+                return std::unexpected(container_result.error());
+            }
+            object = std::move(container_result.value());
+            break;
+        }
+        case ObjectType::Weapon:
+        case ObjectType::Fireweapon: {
+            auto weapon_result = Weapon::create(id, name, type);
+            if (!weapon_result.has_value()) {
+                return std::unexpected(weapon_result.error());
+            }
+            object = std::move(weapon_result.value());
+            break;
+        }
+        case ObjectType::Armor: {
+            auto armor_result = Armor::create(id, name);
+            if (!armor_result.has_value()) {
+                return std::unexpected(armor_result.error());
+            }
+            object = std::move(armor_result.value());
+            break;
+        }
+        default: {
+            // For all other types, create base Object
+            object = std::unique_ptr<Object>(new Object(id, name, type));
+            break;
+        }
+    }
     
     // Parse keywords from name (space-separated words)
     auto keywords = EntityUtils::parse_keyword_list(name);
@@ -826,4 +862,230 @@ void from_json(const nlohmann::json& json, std::unique_ptr<Object>& object) {
     } else {
         throw std::runtime_error("Failed to parse object from JSON");
     }
+}
+
+std::string Object::get_stat_info() const {
+    std::ostringstream output;
+    
+    // Basic object information - similar to legacy format
+    output << fmt::format("Name: '{}', Aliases: {}, Level: {}\n", 
+        short_description().empty() ? "<None>" : short_description(), 
+        name(), 
+        1); // TODO: Add object level support
+    
+    output << fmt::format("VNum: [    0], RNum: [    0], Type: {}, SpecProc: None\n", 
+        magic_enum::enum_name(type()));
+    
+    output << fmt::format("L-Des: {}\n", 
+        description().empty() ? "None" : description());
+    
+    // TODO: Add action description support
+    
+    // Wear flags
+    std::string wear_flags = "<None>";
+    if (is_wearable()) {
+        wear_flags = "TAKE";
+        // TODO: Add specific wear location flags based on equip_slot
+        switch (equip_slot()) {
+            case EquipSlot::Head: wear_flags += " HEAD"; break;
+            case EquipSlot::Body: wear_flags += " BODY"; break;
+            case EquipSlot::Arms: wear_flags += " ARMS"; break;
+            case EquipSlot::Hands: wear_flags += " HANDS"; break;
+            case EquipSlot::Legs: wear_flags += " LEGS"; break;
+            case EquipSlot::Feet: wear_flags += " FEET"; break;
+            case EquipSlot::Wield: wear_flags += " WIELD"; break;
+            case EquipSlot::Shield: wear_flags += " SHIELD"; break;
+            case EquipSlot::Neck1: wear_flags += " NECK"; break;
+            case EquipSlot::Finger_R: wear_flags += " FINGER"; break;
+            default: break;
+        }
+    }
+    output << fmt::format("Can be worn on: {}\n", wear_flags);
+    
+    // Extra flags
+    std::string extra_flags = "<None>";
+    // TODO: Add object flags support based on flags_ set
+    output << fmt::format("Extra flags   : {}\n", extra_flags);
+    
+    // Spell effects
+    output << fmt::format("Spell Effects : <None>\n");
+    
+    // Weight, value, timer
+    output << fmt::format("Weight: {:.2f}, Effective Weight: {:.2f}, Value: {}, Timer: {}, Decomp time: {}, Hiddenness: {}\n",
+        static_cast<float>(weight()), 
+        static_cast<float>(weight()), 
+        value(), 
+        timer(), 0, 0); // TODO: Add decomp, hiddenness support
+    
+    // Location information
+    output << fmt::format("In room: {}, In object: None, Carried by: Nobody, Worn by: Nobody\n",
+        0); // TODO: Add location tracking
+    
+    // Type-specific information
+    switch (type()) {
+        case ObjectType::Weapon:
+        case ObjectType::Fireweapon: {
+            const auto& dmg = damage_profile();
+            output << fmt::format("Todam: {}d{} (avg {:.1f}), Message type: 0, 'punch'\n",
+                dmg.dice_count > 0 ? dmg.dice_count : 1,
+                dmg.dice_sides > 0 ? dmg.dice_sides : 4,
+                dmg.dice_count > 0 && dmg.dice_sides > 0 ? 
+                    static_cast<float>(dmg.dice_count * (dmg.dice_sides + 1)) / 2.0f : 2.5f);
+            break;
+        }
+        case ObjectType::Armor:
+            output << fmt::format("AC-apply: [{}]\n", armor_class());
+            break;
+        case ObjectType::Container:
+        case ObjectType::Liquid_Container:
+            if (is_container()) {
+                const auto& info = container_info();
+                output << fmt::format(
+                    "Weight capacity: {}, Lock Type: {}, Key Num: {}, Weight Reduction: {}%, Corpse: {}\n",
+                    info.weight_capacity, 
+                    info.lockable ? (info.locked ? "LOCKED" : "CLOSEABLE") : "NONE",
+                    info.key_id.is_valid() ? static_cast<uint32_t>(info.key_id.value()) : 0,
+                    0, "No");
+            } else {
+                output << fmt::format("Weight capacity: 0, Lock Type: NONE, Key Num: 0, Weight Reduction: 0%, Corpse: No\n");
+            }
+            break;
+        case ObjectType::Light:
+            if (is_light_source()) {
+                const auto& light = light_info();
+                if (light.duration == -1) {
+                    output << fmt::format("Hours left: Infinite\n");
+                } else {
+                    output << fmt::format("Hours left: [{}]  Initial hours: [{}]\n", 
+                        light.duration, light.brightness);
+                }
+            } else {
+                output << fmt::format("Hours left: [0]  Initial hours: [0]\n");
+            }
+            break;
+        case ObjectType::Food:
+            output << fmt::format("Makes full: 1, Poisoned: No\n");
+            break;
+        case ObjectType::Money:
+            output << fmt::format("Coins: 0p 1g 0s 0c\n");
+            break;
+        case ObjectType::Scroll:
+        case ObjectType::Potion:
+            output << fmt::format("Spells: (Level 1) <none>, <none>, <none>\n");
+            break;
+        case ObjectType::Wand:
+        case ObjectType::Staff:
+            output << fmt::format("Spell: <none> at level 1, 0 (of 0) charges remaining\n");
+            break;
+        case ObjectType::Fountain:
+            output << fmt::format("Capacity: 0, Contains: 0, Poisoned: No, Liquid: water\n");
+            break;
+        case ObjectType::Note:
+            output << fmt::format("Tongue: 0\n");
+            break;
+        case ObjectType::Portal:
+            output << fmt::format("To room: 0\n");
+            break;
+        default:
+            output << fmt::format("Values: [0] [0] [0] [0] [0] [0] [0]\n");
+            break;
+    }
+    
+    // Container contents
+    if (is_container()) {
+        // TODO: Add container contents listing when we have contained objects
+    }
+    
+    // Apply effects
+    output << "Applies: None\n";
+    
+    // Extra descriptions
+    const auto& extra_descs = get_all_extra_descriptions();
+    if (!extra_descs.empty()) {
+        output << "Extra descriptions:\n";
+        for (const auto& desc : extra_descs) {
+            // Format keywords as comma-separated string
+            std::string keywords_str;
+            for (size_t i = 0; i < desc.keywords.size(); ++i) {
+                if (i > 0) keywords_str += ", ";
+                keywords_str += desc.keywords[i];
+            }
+            output << fmt::format("  {}: {}\n", keywords_str, desc.description);
+        }
+    }
+    
+    // Events
+    output << "No events.\n";
+    
+    return output.str();
+}
+
+// Specialized stat info implementations for derived classes
+
+std::string Container::get_stat_info() const {
+    std::ostringstream output;
+    
+    // Start with base object information
+    output << Object::get_stat_info();
+    
+    // Add container-specific details
+    output << "\n=== Container Details ===\n";
+    output << fmt::format("Current contents: {}/{} items\n", contents_count(), container_info().capacity);
+    output << fmt::format("Current weight: {}/{} lbs\n", current_weight(), container_info().weight_capacity);
+    
+    if (!is_empty()) {
+        output << "Contains:\n";
+        const auto contents = get_contents();
+        for (const auto& item : contents) {
+            if (item) {
+                output << fmt::format("  {} ({})\n", 
+                    item->short_description(), 
+                    item->display_name_with_condition());
+            }
+        }
+    } else {
+        output << "Container is empty.\n";
+    }
+    
+    return output.str();
+}
+
+std::string Weapon::get_stat_info() const {
+    std::ostringstream output;
+    
+    // Start with base object information
+    output << Object::get_stat_info();
+    
+    // Add weapon-specific details
+    output << "\n=== Weapon Details ===\n";
+    output << fmt::format("Weapon type: {}\n", is_ranged() ? "Ranged" : "Melee");
+    output << fmt::format("Reach: {} feet\n", reach());
+    output << fmt::format("Speed: {} (lower is faster)\n", speed());
+    
+    const auto& dmg = damage_profile();
+    if (dmg.dice_count > 0 && dmg.dice_sides > 0) {
+        output << fmt::format("Damage: {}d{}", dmg.dice_count, dmg.dice_sides);
+        if (dmg.damage_bonus != 0) {
+            output << fmt::format("{:+d}", dmg.damage_bonus);
+        }
+        output << fmt::format(" (avg: {:.1f})\n", dmg.average_damage());
+    }
+    
+    return output.str();
+}
+
+std::string Armor::get_stat_info() const {
+    std::ostringstream output;
+    
+    // Start with base object information
+    output << Object::get_stat_info();
+    
+    // Add armor-specific details
+    output << "\n=== Armor Details ===\n";
+    output << fmt::format("Material: {}\n", material());
+    output << fmt::format("Armor Class bonus: {}\n", armor_class());
+    output << fmt::format("Equip slot: {}\n", ObjectUtils::get_slot_name(equip_slot()));
+    output << fmt::format("Condition: {}% ({})\n", condition(), quality_description());
+    
+    return output.str();
 }

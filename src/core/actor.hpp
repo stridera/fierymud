@@ -294,6 +294,9 @@ public:
     /** Validation */
     Result<void> validate() const override;
     
+    /** Get comprehensive stat information for debugging/admin commands */
+    std::string get_stat_info() const;
+    
 protected:
     /** Constructor for derived classes */
     Actor(EntityId id, std::string_view name);
@@ -303,10 +306,11 @@ protected:
           const Stats& stats, const Inventory& inventory, const Equipment& equipment);
     
     /** Room change notification (override in derived classes) */
-    virtual void on_room_change(std::shared_ptr<Room> old_room, std::shared_ptr<Room> new_room) {}
+    virtual void on_room_change([[maybe_unused]] std::shared_ptr<Room> old_room, 
+                               [[maybe_unused]] std::shared_ptr<Room> new_room) {}
     
     /** Level up notification (override in derived classes) */
-    virtual void on_level_up(int old_level, int new_level) {}
+    virtual void on_level_up([[maybe_unused]] int old_level, [[maybe_unused]] int new_level) {}
     
 private:
     Stats stats_;

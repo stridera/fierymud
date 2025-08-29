@@ -83,6 +83,14 @@ set(SOURCES
     src/commands/command_context.cpp
     src/commands/command_parser.cpp
     src/commands/builtin_commands.cpp
+    src/commands/information_commands.cpp
+    src/commands/communication_commands.cpp
+    src/commands/movement_commands.cpp
+    src/commands/object_commands.cpp
+    src/commands/admin_commands.cpp
+    src/commands/combat_commands.cpp
+    src/commands/social_commands.cpp
+    src/commands/system_commands.cpp
     # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
 )
 
@@ -104,6 +112,14 @@ set(SIMPLE_TEST_SOURCES
     src/commands/command_context.cpp
     src/commands/command_parser.cpp
     src/commands/builtin_commands.cpp
+    src/commands/information_commands.cpp
+    src/commands/communication_commands.cpp
+    src/commands/movement_commands.cpp
+    src/commands/object_commands.cpp
+    src/commands/admin_commands.cpp
+    src/commands/combat_commands.cpp
+    src/commands/social_commands.cpp
+    src/commands/system_commands.cpp
     src/testing/test_simple_functionality.cpp
 )
 
@@ -153,6 +169,14 @@ set(CORE_TEST_SOURCES
     src/commands/command_context.cpp
     src/commands/command_parser.cpp
     src/commands/builtin_commands.cpp
+    src/commands/information_commands.cpp
+    src/commands/communication_commands.cpp
+    src/commands/movement_commands.cpp
+    src/commands/object_commands.cpp
+    src/commands/admin_commands.cpp
+    src/commands/combat_commands.cpp
+    src/commands/social_commands.cpp
+    src/commands/system_commands.cpp
     # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
     src/core/arguments.cpp
     src/core/string_utils.cpp

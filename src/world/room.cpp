@@ -932,3 +932,114 @@ namespace RoomUtils {
         return it != colors.end() ? it->second : "\033[0;37m";
     }
 }
+
+std::string Room::get_stat_info() const {
+    std::ostringstream output;
+    
+    // Room name and basic info
+    output << fmt::format("Room name: {}\n", name());
+    
+    output << fmt::format("Zone: [{}], VNum: [{}], RNum: [{}], Sector: {}\n",
+        zone_id().is_valid() ? static_cast<uint32_t>(zone_id().value()) : 0,
+        static_cast<uint32_t>(id().value()),
+        static_cast<uint32_t>(id().value()),
+        magic_enum::enum_name(sector_type()));
+    
+    // Room flags
+    std::string flag_str = "<None>";
+    if (!flags_.empty()) {
+        std::vector<std::string> flag_names;
+        for (const auto& flag : flags_) {
+            flag_names.push_back(std::string{magic_enum::enum_name(flag)});
+        }
+        std::string joined = "";
+        for (size_t i = 0; i < flag_names.size(); ++i) {
+            if (i > 0) joined += " ";
+            joined += flag_names[i];
+        }
+        flag_str = joined;
+    }
+    output << fmt::format("SpecProc: None, Flags: {}\n", flag_str);
+    
+    output << fmt::format("Room effects: <None>\n");
+    output << fmt::format("Ambient Light : {}\n", light_level_);
+    
+    // Description
+    output << fmt::format("Description:\n{}\n", 
+        description().empty() ? "  None." : description());
+    
+    // Extra descriptions
+    // TODO: Add extra descriptions when supported
+    
+    // Characters in room
+    const auto& contents = contents_;
+    output << "Chars present:";
+    bool first_char = true;
+    for (const auto& actor : contents.actors) {
+        if (actor) {
+            // Cast to specific types to get more information
+            auto player = std::dynamic_pointer_cast<const Player>(actor);
+            auto mobile = std::dynamic_pointer_cast<const Mobile>(actor);
+            output << fmt::format("{} {}({})", 
+                first_char ? "" : ",",
+                actor->name(),
+                player ? "PC" : (mobile ? "MOB" : "NPC"));
+            first_char = false;
+        }
+    }
+    output << "\n";
+    
+    // Objects in room
+    if (!contents.objects.empty()) {
+        output << "Contents:";
+        bool first_obj = true;
+        for (const auto& obj : contents.objects) {
+            if (obj) {
+                output << fmt::format("{} {}", 
+                    first_obj ? "" : ",",
+                    obj->short_description().empty() ? obj->name() : obj->short_description());
+                first_obj = false;
+            }
+        }
+        output << "\n";
+    }
+    
+    // Exits information - iterate through all existing exits
+    for (const auto& [direction, exit] : exits_) {
+        std::string dir_name{magic_enum::enum_name(direction)};
+        
+        std::string to_room = "NONE";
+        if (exit.to_room.is_valid()) {
+            to_room = fmt::format("{}", static_cast<uint32_t>(exit.to_room.value()));
+        }
+        
+        // Exit flags
+        std::string exit_flags = "<None>";
+        if (exit.has_door) {
+            std::vector<std::string> flags;
+            flags.push_back("DOOR");
+            if (exit.is_closed) flags.push_back("CLOSED");
+            if (exit.is_locked) flags.push_back("LOCKED");
+            if (exit.is_pickproof) flags.push_back("PICKPROOF");
+            std::string joined_flags = "";
+            for (size_t i = 0; i < flags.size(); ++i) {
+                if (i > 0) joined_flags += " ";
+                joined_flags += flags[i];
+            }
+            exit_flags = joined_flags;
+        }
+        
+        output << fmt::format("Exit {:>5}:  To: [{}], Key: [{}], Keywrd: {}, Type: {}\n",
+            dir_name,
+            to_room,
+            exit.key_id.is_valid() ? static_cast<uint32_t>(exit.key_id.value()) : 0,
+            exit.keyword.empty() ? "None" : exit.keyword,
+            exit_flags);
+        
+        if (!exit.description.empty()) {
+            output << fmt::format("Extra Desc: {}\n", exit.description);
+        }
+    }
+    
+    return output.str();
+}

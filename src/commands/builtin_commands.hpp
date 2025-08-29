@@ -30,104 +30,17 @@ namespace BuiltinCommands {
     Result<void> register_all_commands();
     
     /** Unregister all built-in commands */
-    void unregister_all_commands();
+    Result<void> unregister_all_commands();
     
-    // Information Commands
-    Result<CommandResult> cmd_look(const CommandContext& ctx);
-    Result<CommandResult> cmd_examine(const CommandContext& ctx);
-    Result<CommandResult> cmd_who(const CommandContext& ctx);
-    Result<CommandResult> cmd_where(const CommandContext& ctx);
-    Result<CommandResult> cmd_inventory(const CommandContext& ctx);
-    Result<CommandResult> cmd_equipment(const CommandContext& ctx);
-    Result<CommandResult> cmd_score(const CommandContext& ctx);
-    Result<CommandResult> cmd_stats(const CommandContext& ctx);
-    Result<CommandResult> cmd_time(const CommandContext& ctx);
-    Result<CommandResult> cmd_weather(const CommandContext& ctx);
-    
-    // Communication Commands
-    Result<CommandResult> cmd_say(const CommandContext& ctx);
-    Result<CommandResult> cmd_tell(const CommandContext& ctx);
-    Result<CommandResult> cmd_emote(const CommandContext& ctx);
-    Result<CommandResult> cmd_pose(const CommandContext& ctx);
-    Result<CommandResult> cmd_whisper(const CommandContext& ctx);
-    Result<CommandResult> cmd_shout(const CommandContext& ctx);
-    Result<CommandResult> cmd_gossip(const CommandContext& ctx);
-    Result<CommandResult> cmd_ooc(const CommandContext& ctx);
-    
-    // Movement Commands  
-    Result<CommandResult> cmd_north(const CommandContext& ctx);
-    Result<CommandResult> cmd_south(const CommandContext& ctx);
-    Result<CommandResult> cmd_east(const CommandContext& ctx);
-    Result<CommandResult> cmd_west(const CommandContext& ctx);
-    Result<CommandResult> cmd_up(const CommandContext& ctx);
-    Result<CommandResult> cmd_down(const CommandContext& ctx);
-    Result<CommandResult> cmd_northeast(const CommandContext& ctx);
-    Result<CommandResult> cmd_northwest(const CommandContext& ctx);
-    Result<CommandResult> cmd_southeast(const CommandContext& ctx);
-    Result<CommandResult> cmd_southwest(const CommandContext& ctx);
-    Result<CommandResult> cmd_exits(const CommandContext& ctx);
-    Result<CommandResult> cmd_flee(const CommandContext& ctx);
-    Result<CommandResult> cmd_release(const CommandContext& ctx);
-    
-    // Death Helper Functions
-    void create_player_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> room);
-    
-    // Combat Commands
-    Result<CommandResult> cmd_kill(const CommandContext& ctx);
-    Result<CommandResult> cmd_hit(const CommandContext& ctx);
-    Result<CommandResult> cmd_cast(const CommandContext& ctx);
-    
-    // Object Manipulation Commands
-    Result<CommandResult> cmd_get(const CommandContext& ctx);
-    Result<CommandResult> cmd_drop(const CommandContext& ctx);
-    Result<CommandResult> cmd_put(const CommandContext& ctx);
-    Result<CommandResult> cmd_give(const CommandContext& ctx);
-    Result<CommandResult> cmd_wear(const CommandContext& ctx);
-    Result<CommandResult> cmd_remove(const CommandContext& ctx);
-    Result<CommandResult> cmd_wield(const CommandContext& ctx);
-    Result<CommandResult> cmd_hold(const CommandContext& ctx);
-    Result<CommandResult> cmd_eat(const CommandContext& ctx);
-    Result<CommandResult> cmd_drink(const CommandContext& ctx);
-    Result<CommandResult> cmd_light(const CommandContext& ctx);
-    
-    // Object Interaction Commands
-    Result<CommandResult> cmd_open(const CommandContext& ctx);
-    Result<CommandResult> cmd_close(const CommandContext& ctx);
-    Result<CommandResult> cmd_lock(const CommandContext& ctx);
-    Result<CommandResult> cmd_unlock(const CommandContext& ctx);
-    
-    // System Commands
-    Result<CommandResult> cmd_quit(const CommandContext& ctx);
-    Result<CommandResult> cmd_save(const CommandContext& ctx);
-    Result<CommandResult> cmd_help(const CommandContext& ctx);
-    Result<CommandResult> cmd_commands(const CommandContext& ctx);
-    Result<CommandResult> cmd_motd(const CommandContext& ctx);
-    Result<CommandResult> cmd_bug(const CommandContext& ctx);
-    Result<CommandResult> cmd_idea(const CommandContext& ctx);
-    Result<CommandResult> cmd_typo(const CommandContext& ctx);
-    
-    // Social Commands
-    Result<CommandResult> cmd_smile(const CommandContext& ctx);
-    Result<CommandResult> cmd_nod(const CommandContext& ctx);
-    Result<CommandResult> cmd_wave(const CommandContext& ctx);
-    Result<CommandResult> cmd_bow(const CommandContext& ctx);
-    Result<CommandResult> cmd_dance(const CommandContext& ctx);
-    Result<CommandResult> cmd_laugh(const CommandContext& ctx);
-    Result<CommandResult> cmd_cry(const CommandContext& ctx);
-    Result<CommandResult> cmd_hug(const CommandContext& ctx);
-    
-    // Administrative Commands (require higher privileges)
-    Result<CommandResult> cmd_shutdown(const CommandContext& ctx);
-    Result<CommandResult> cmd_reboot(const CommandContext& ctx);
-    Result<CommandResult> cmd_goto(const CommandContext& ctx);
-    Result<CommandResult> cmd_teleport(const CommandContext& ctx);
-    Result<CommandResult> cmd_summon(const CommandContext& ctx);
-    Result<CommandResult> cmd_transfer(const CommandContext& ctx);
-    Result<CommandResult> cmd_force(const CommandContext& ctx);
-    Result<CommandResult> cmd_wizlock(const CommandContext& ctx);
-    Result<CommandResult> cmd_advance(const CommandContext& ctx);
-    Result<CommandResult> cmd_restore(const CommandContext& ctx);
-    Result<CommandResult> cmd_weather_control(const CommandContext& ctx);
+    // Note: Individual command implementations are organized into specialized modules:
+    // - InformationCommands (look, who, inventory, etc.)
+    // - CommunicationCommands (say, tell, emote, etc.)
+    // - MovementCommands (north, south, exits, etc.)
+    // - ObjectCommands (get, drop, put, wear, etc.)
+    // - CombatCommands (kill, hit, cast, flee, etc.)
+    // - SystemCommands (quit, save, help, etc.)
+    // - SocialCommands (smile, nod, wave, etc.)
+    // - AdminCommands (shutdown, goto, teleport, etc.)
     
     // Helper functions
     namespace Helpers {
@@ -179,27 +92,3 @@ namespace BuiltinCommands {
     }
 }
 
-/** Command registration utility macros */
-#define REGISTER_BUILTIN_COMMAND(name, func, category, privilege) \
-    Commands().command(name, func) \
-        .category(category) \
-        .privilege(privilege) \
-        .build()
-
-#define REGISTER_MOVEMENT_COMMAND(name, direction, aliases, description) \
-    Commands().command(name, [](const CommandContext& ctx) { \
-        return BuiltinCommands::Helpers::execute_movement(ctx, direction); \
-    }) \
-        .aliases(aliases) \
-        .category("Movement") \
-        .description(description) \
-        .usable_while_sitting(false) \
-        .build()
-
-#define REGISTER_SOCIAL_COMMAND(name, action_text) \
-    Commands().command(name, [](const CommandContext& ctx) { \
-        return BuiltinCommands::cmd_##name(ctx); \
-    }) \
-        .category("Social") \
-        .description(action_text) \
-        .build()

@@ -285,6 +285,9 @@ public:
     nlohmann::json to_json() const override;
     Result<void> validate() const override;
     
+    /** Get comprehensive stat information for debugging/admin commands */
+    std::string get_stat_info() const;
+    
 protected:
     /** Protected constructor for factory pattern */
     Room(EntityId id, std::string_view name, SectorType sector);

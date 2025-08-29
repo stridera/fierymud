@@ -291,6 +291,9 @@ public:
     std::optional<std::string_view> get_extra_description(std::string_view keyword) const;
     const std::vector<ExtraDescription>& get_all_extra_descriptions() const { return extra_descriptions_; }
     
+    /** Get comprehensive stat information for debugging/admin commands */
+    virtual std::string get_stat_info() const;
+    
 protected:
     /** Constructor for derived classes */
     Object(EntityId id, std::string_view name, ObjectType type);
@@ -321,6 +324,9 @@ public:
     
     std::string_view type_name() const override { return "Weapon"; }
     
+    /** Get comprehensive stat information including weapon details */
+    std::string get_stat_info() const override;
+    
     /** Get weapon type (melee vs ranged) */
     bool is_ranged() const { return type() == ObjectType::Fireweapon; }
     
@@ -347,6 +353,9 @@ public:
     
     std::string_view type_name() const override { return "Armor"; }
     
+    /** Get comprehensive stat information including armor details */
+    std::string get_stat_info() const override;
+    
     /** Get armor material type */
     std::string_view material() const { return material_; }
     void set_material(std::string_view mat) { material_ = mat; }
@@ -364,6 +373,9 @@ public:
                                                    int capacity = 10);
     
     std::string_view type_name() const override { return "Container"; }
+    
+    /** Get comprehensive stat information including container details */
+    std::string get_stat_info() const override;
     
     /** Container-specific operations */
     bool can_store_item(const Object& item) const;

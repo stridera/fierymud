@@ -125,9 +125,9 @@ public:
                     info.capacity = 5;
                     info.weight_capacity = 100;  // Set proper weight capacity
                     info.closeable = true;
-                    info.closed = true;
+                    info.closed = false;  // Start open for close command testing
                     info.lockable = true;
-                    info.locked = true;
+                    info.locked = false;  // Start unlocked for initial testing
                     info.key_id = EntityId{object_id + 10}; // Key we'll create later
                     chest->set_container_info(info);
                     

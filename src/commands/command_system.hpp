@@ -84,7 +84,7 @@ struct CommandStats {
     int total_executions = 0;
     int successful_executions = 0;
     int failed_executions = 0;
-    std::chrono::steady_clock::time_point last_executed;
+    std::chrono::steady_clock::time_point last_executed{};
     std::chrono::milliseconds total_execution_time{0};
     std::chrono::milliseconds average_execution_time{0};
 

@@ -1101,3 +1101,152 @@ void from_json(const nlohmann::json& json, std::unique_ptr<Actor>& actor) {
         throw std::runtime_error(fmt::format("Unknown actor type: {}", type));
     }
 }
+
+std::string Actor::get_stat_info() const {
+    std::ostringstream output;
+    
+    // Cast to specific types for additional information
+    auto player = dynamic_cast<const Player*>(this);
+    auto mobile = dynamic_cast<const Mobile*>(this);
+    
+    // Vital character data - similar to legacy format
+    output << fmt::format("{} '{}'  IDNum: [{:5}], In room [{}]\n", 
+        player ? "PC" : (mobile ? "MOB" : "NPC"), 
+        name(), 
+        static_cast<uint32_t>(id().value()), 
+        current_room() ? static_cast<uint32_t>(current_room()->id().value()) : 0);
+    
+    // Mobile-specific data
+    if (mobile) {
+        // For now, use the same name as alias since we don't have separate alias field
+        output << fmt::format("Alias: {}, VNum: [N/A], RNum: [N/A]\n", name());
+    }
+    
+    // Descriptions
+    if (mobile) {
+        output << fmt::format("L-Des: {}\n", short_description().empty() ? "<None>" : short_description());
+        // TODO: Add description field support
+    } else if (player) {
+        // TODO: Add title support for players
+        output << fmt::format("Title: <None>\n");
+    }
+    
+    // Character stats and abilities
+    const auto& stats_ = stats();
+    output << fmt::format("Race: {}, Race Align: N/A, ", "Unknown");
+    output << fmt::format("Size: {}, Gender: {}\n", "Medium", "Neuter");
+    output << fmt::format("Life force: Unknown, Composition: Unknown\n");
+    output << fmt::format("Class: {}, Lev: [{:2d}], XP: [{:7}], Align: [{:4d}]\n", 
+        player ? player->player_class() : "NPC", 
+        stats_.level, 
+        stats_.experience, 
+        stats_.alignment);
+    
+    // Player-specific data
+    if (player) {
+        // TODO: Add creation/logon times
+        output << fmt::format("Created: [Unknown], Last Logon: [Unknown], Played: [Unknown]\n");
+        output << fmt::format("Age: [{}], Homeroom: [{}]", 
+            20 + stats_.level, 
+            static_cast<uint32_t>(player->start_room().value()));
+        
+        // TODO: Add clan/guild support
+        output << "\n";
+    }
+    
+    // Attributes display (similar to legacy format)
+    output << fmt::format(
+        "         STR   INT   WIS   DEX   CON   CHA\n"
+        "ACTUAL   {:3}   {:3}   {:3}   {:3}   {:3}   {:3}\n"
+        "NATURAL  {:3}   {:3}   {:3}   {:3}   {:3}   {:3}\n"
+        "AFFECTED {:3}   {:3}   {:3}   {:3}   {:3}   {:3}\n",
+        stats_.strength, stats_.intelligence, stats_.wisdom, stats_.dexterity, stats_.constitution, stats_.charisma,
+        stats_.strength, stats_.intelligence, stats_.wisdom, stats_.dexterity, stats_.constitution, stats_.charisma,
+        stats_.strength, stats_.intelligence, stats_.wisdom, stats_.dexterity, stats_.constitution, stats_.charisma);
+    
+    // Health, mana, and movement
+    output << fmt::format("HP: [{}/{}]  HP Gain: [{}] HP Regen Bonus: [{}]\n", 
+        stats_.hit_points, stats_.max_hit_points, 1, 0);
+    output << fmt::format("MV: [{}/{}]  MV Gain: [{}]\n", 
+        stats_.movement, stats_.max_movement, 1);
+    output << fmt::format("Focus: [{}]\n", stats_.mana);
+    
+    // Money (convert from gold to coins)
+    long gold = stats_.gold;
+    long platinum = gold / 1000; gold %= 1000;
+    long silver = gold / 10; gold %= 10;
+    long copper = gold;
+    
+    output << fmt::format(
+        "Coins: [{}p / {}g / {}s / {}c], "
+        "Bank: [0p / 0g / 0s / 0c]\n",
+        platinum, gold, silver, copper);
+    
+    // Combat stats
+    output << fmt::format("AC: [{}], Hitroll: [{:2}], Damroll: [{:2}], ", 
+        stats_.armor_class, stats_.hit_roll, stats_.damage_roll);
+    output << fmt::format("Saving throws: [0/0/0/0/0]\n");
+    output << fmt::format("Perception: [   0], Hiddenness: [   0], Rage: [   0]\n");
+    
+    // Position and status
+    output << fmt::format("Pos: {}", magic_enum::enum_name(position()));
+    if (mobile) {
+        output << fmt::format(", Default Pos: {}", magic_enum::enum_name(position()));
+    }
+    output << fmt::format(", Fighting: <none>");
+    output << "\n";
+    
+    // Player connection info
+    if (player) {
+        output << fmt::format("Idle: [0 tics]\n");
+    }
+    
+    // Mobile combat info
+    if (mobile) {
+        output << fmt::format("Mob Spec-Proc: None, NPC Bare Hand Dam: 1d4, Attack type: punch\n");
+    }
+    
+    // Character flags
+    if (mobile) {
+        output << fmt::format("NPC flags: <None>\n");
+    } else {
+        output << fmt::format("PLR: <None>\n");
+        output << fmt::format("PRF: <None>\n");
+        output << fmt::format("PRV: <None>\n");
+    }
+    
+    // Weight and objects
+    int worn_items = 0, worn_weight = 0;
+    if (player) {
+        auto equipped_items = player->equipment().get_all_equipped();
+        for (const auto& item : equipped_items) {
+            if (item) {
+                worn_items++;
+                worn_weight += item->weight();
+            }
+        }
+    }
+    
+    output << fmt::format(
+        "Max Carry: {} ({} weight); "
+        "Carried: {} ({} weight); "
+        "Worn: {} ({} weight)\n",
+        20, max_carry_weight(), 
+        inventory().item_count(), current_carry_weight(),
+        worn_items, worn_weight);
+    
+    // Conditions (hunger, thirst, drunk)
+    output << "Hunger: Off, Thirst: Off, Drunk: Off\n";
+    
+    // Followers and groups
+    output << fmt::format("Consented: <none>, Master is: <none>, Followers are:\n");
+    output << fmt::format("Group Master is: <none>, groupees are:\n");
+    
+    // Effects
+    output << fmt::format("EFF: <None>\n");
+    
+    // Events
+    output << "No events.\n";
+    
+    return output.str();
+}

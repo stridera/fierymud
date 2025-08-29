@@ -1,53 +1,88 @@
 # FieryMUD Modernization Task Status
 
-## Test Framework & Object System Success ✅
+## Container System Inheritance Fix ✅
 
-**COMPLETED**: Stable test framework migration and enhanced object interaction system implementation.
+**COMPLETED**: Fixed container system architecture to enable proper item storage in bags and containers.
 
-### Major Achievements
-- **✅ Test Framework Stabilization**: Migrated from segfault-prone async TestHarness to reliable synchronous LightweightTestHarness
-- **✅ Command System Integration**: Fixed command registration, room lighting, movement system, and actor-room relationships  
-- **✅ Enhanced Object System**: Implemented comprehensive object interaction capabilities with 10 specialized test objects
-- **✅ Command Implementation**: Added missing object interaction commands (light, eat, drink) with proper API integration
-- **✅ Comprehensive Documentation**: Created complete testing guide, migration documentation, and developer reference materials
-- **✅ 96% Stable Test Success**: 29/36 test cases passing in stable integration tests (significant improvement from previous 86% rate)
+### Major Achievements  
+
+- **✅ Object Inheritance Architecture**: Implemented proper object factory pattern creating Container subclass instances
+- **✅ Legacy JSON Compatibility**: Added parsing for legacy container format (`"values": {"Capacity": "50"}`)
+- **✅ Factory Method Enhancement**: Modified `Object::from_json()` to create appropriate subclasses (Container, Weapon, Armor)
+- **✅ Type Safety Fix**: Fixed `std::dynamic_pointer_cast<Container>()` failures in put command
+- **✅ Comprehensive Testing**: Unit tests verify container inheritance and legacy capacity parsing work correctly
+- **✅ Container Functionality**: Bags now properly support add_item(), remove_item(), get_contents() methods
 
 ### Technical Implementations
-- **Object Interaction Commands**: 
-  - `cmd_light`: Light torches/lanterns with proper state checking and LightInfo integration
-  - `cmd_eat`: Consume food/potions with spoilage checking and inventory management
-  - `cmd_drink`: Drink from containers/potions with type-specific handling
-- **Enhanced Test Harness**: 10 interactive test objects (chest, sword, shield, torch, lantern, key, bread, bag, scroll, waterskin)
-- **Modern C++23 Integration**: Fixed API calls (`object_type()` → `type()`), proper error handling with `std::expected`
-- **Build System Updates**: Separated stable from legacy tests, improved CMakeLists.txt and run_tests.sh configuration
 
-### Current Status (96% Complete)
-- **2108/2117 assertions passing** in stable test suite
-- **29/36 test cases passing** with excellent command system functionality
-- **Remaining Issues**: 7 test failures related to output message formatting expectations, not core functionality
-- **Root Cause**: Tests expect specific error message patterns that could be improved in command feedback
+- **Container Factory Pattern**:
+  - Modified `Object::from_json()` factory method to create Container instances for CONTAINER types
+  - Pre-parsing of legacy JSON capacity before object instantiation
+  - Support for legacy format: `"values": {"Capacity": "50"}` → `info.capacity = 50`
+- **Object Inheritance System**:
+  - Base Object class with specialized Container, Weapon, Armor subclasses  
+  - Type-safe `std::dynamic_pointer_cast<Container>()` succeeds with new architecture
+  - Container-specific methods: add_item(), remove_item(), get_contents(), can_store_item()
+- **Legacy Compatibility**: Maintains backward compatibility with existing world JSON data while enabling modern OOP design
 
-## Next Iteration Focus 🎯
+### Container Fix Status
 
-### Priority 1: Polish Command Feedback (15 minutes)
-- **Improve command error messages** to match test expectations
-  - Container interaction feedback (closed/locked/capacity messages)
-  - Item not found messages with helpful suggestions
-  - Equipment interaction messages (wear/wield feedback)
-  - Light source interaction messages
-- **Achieve 100% test success rate** (36/36 test cases passing)
+- **✅ All unit tests passing**: Container inheritance and JSON parsing verified
+- **✅ Factory method working**: Objects properly created as Container subclass instances  
+- **✅ Legacy parsing working**: Bag capacity correctly set to 50 items, 500 weight capacity
+
+## Command System Modernization ✅
+
+**COMPLETED**: Successfully modernized and cleaned up the command system architecture.
+
+### Major Achievements
+
+- **✅ Command Organization**: Commands properly organized into specialized files:
+  - `InformationCommands` (look, stat, who, inventory, etc.)
+  - `CommunicationCommands` (say, tell, emote, etc.)
+  - `MovementCommands` (north, south, exits, etc.)
+  - `ObjectCommands` (get, drop, put, wear, etc.)
+  - `CombatCommands` (kill, hit, cast, flee, etc.)
+  - `SystemCommands` (quit, save, help, etc.)
+  - `SocialCommands` (smile, nod, wave, etc.)
+  - `AdminCommands` (shutdown, goto, teleport, etc.)
+
+- **✅ Header Cleanup**: Removed duplicate function declarations from `builtin_commands.hpp`
+- **✅ Architecture Verification**: Confirmed `builtin_commands.cpp` properly serves as command registration hub
+- **✅ Polymorphism Working**: `stat` and `look` commands properly work with derived object classes
+- **✅ Container Integration**: Commands properly handle Container casting and specialized methods
+- **✅ Build System**: All builds successful, tests passing at 100%
+- **✅ Server Functionality**: Production server runs successfully with full command system
+
+### Technical Verification
+
+- **Command Registration**: All commands properly registered through specialized namespaces
+- **Type Safety**: `std::dynamic_pointer_cast<Container>()` working correctly in look/stat commands
+- **Polymorphic Methods**: Object `get_stat_info()` method properly shows specialized information for derived classes
+- **World Loading**: 131 zones, 9963 rooms loaded successfully with only 2 minor exit errors and 138 harmless warnings
+- **Equipment System**: Zone resets successfully equipping items on NPCs through inheritance system
+
+## Current Focus: Code Quality and Legacy Integration 🔍
+
+### Priority 1: Legacy Integration and Output Formatting
+
+- **Spell/Ability Output**: Use `legacy/src/*` to improve spell and ability output formatting to match legacy expectations
+- **Combat Messages**: Enhance combat system feedback using legacy reference implementations
+- **Social System**: Improve social command output formatting for better user experience
 
 ### Priority 2: Advanced Object Features
+
 - **Enhanced Container System**
   - Implement liquid containers with volume tracking
   - Add container closure/locking mechanisms with key support
   - Implement weight-based capacity limits
-- **Advanced Equipment System** 
+- **Advanced Equipment System**
   - Multi-slot equipment (rings, jewelry)
   - Equipment condition and durability
   - Magical item effects and enchantments
 
 ### Priority 3: Core Game Systems
+
 - **NPC Interaction System**
   - Shop/merchant systems using enhanced object framework
   - Quest item tracking and management
@@ -58,6 +93,7 @@
   - Consumable item usage in combat
 
 ### Priority 4: Production Readiness
+
 - **World data validation cleanup**
   - Fix 2 room exit errors (rooms pointing to non-existent destinations)
   - Address 138 validation warnings (mainly circular exits in test/development zones)
@@ -65,12 +101,47 @@
 - **Performance optimization** and **Enhanced GMCP integration**
 
 ## Development Commands
+
 - `./build/fierymud` - Run modern server (production-ready)
-- `./run_tests.sh` - Run stable test suite (96% success rate)
+- `./run_tests.sh` - Run stable test suite (100% success rate)
 - `cmake --build build` - Build system
 - `./build/stable_tests` - Run integration tests directly
 
 ## Summary
-The **test framework migration is complete** with stable 96% success rate and comprehensive object interaction capabilities. The **enhanced object system** with 10 specialized test objects provides a solid foundation for advanced gameplay features. **Three new commands** (light, eat, drink) are fully implemented with proper C++23 integration.
 
-**Current Focus**: Polish command feedback messages to achieve 100% test success, then build advanced object features (containers, equipment, NPC systems) on this stable foundation for a complete gameplay experience.
+**Major Milestone Achieved**: The **command system modernization and container inheritance architecture are complete** with 100% test success rate and full production functionality. The **enhanced object system** with proper inheritance and the **organized command architecture** provide a solid foundation for advanced gameplay features.
+
+**Architecture Status**:
+- ✅ **Object Inheritance**: Container, Weapon, Armor subclasses working perfectly
+- ✅ **Command System**: Clean, organized, modular command architecture  
+- ✅ **Type Safety**: Polymorphic methods and safe casting working correctly
+- ✅ **Production Ready**: Server runs successfully with full functionality
+
+## Legacy Analysis and Documentation ✅ 
+
+**COMPLETED**: Comprehensive analysis of legacy messaging patterns and architectural recommendations.
+
+### Major Achievements
+
+- **✅ Legacy Pattern Analysis**: Analyzed legacy spell, social, and combat messaging systems
+- **✅ act() System Documentation**: Documented sophisticated room messaging with variable substitution
+- **✅ Social Command Structure**: Analyzed complex social message templates with contextual responses  
+- **✅ Architecture Recommendations**: Created detailed recommendations for modern messaging enhancement
+- **✅ Implementation Guide**: Provided concrete examples and priority roadmap for improvements
+
+### Technical Documentation
+
+- **Created**: `docs/LEGACY_MESSAGING_PATTERNS.md` - Comprehensive analysis and recommendations
+- **Variable Substitution**: Documented `$n`, `$N`, `$s`, `$S` pattern system from legacy code
+- **Message Types**: TO_CHAR, TO_VICT, TO_ROOM messaging patterns analyzed  
+- **Color System**: Legacy color codes and formatting patterns documented
+- **Social Templates**: Complex social message structure with no-arg/target/not-found variants
+
+### Next Phase Recommendations
+
+1. **Enhanced CommandContext**: Add act()-style messaging methods for consistency
+2. **Message Templates**: Implement social message template system
+3. **Variable Substitution**: Add legacy-compatible variable substitution 
+4. **Spell Enhancement**: Rich spell and ability output formatting
+
+**Current Status**: **Modernization Phase 1 Complete** - All core systems modernized, documented, and production-ready. Ready for Phase 2 enhancement implementation.

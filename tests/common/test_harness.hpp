@@ -47,8 +47,8 @@ class TestableNPC : public Actor {
   public:
     TestableNPC(EntityId id, std::string_view name) : Actor(id, name) {}
 
-    void send_message(std::string_view message) override {}
-    void receive_message(std::string_view message) override {}
+    void send_message([[maybe_unused]] std::string_view message) override {}
+    void receive_message([[maybe_unused]] std::string_view message) override {}
 };
 
 class TestHarness {
